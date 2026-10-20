@@ -1,0 +1,1356 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 1
+- **Tool calls:** 2
+- **Original source:** `logs/chats/exported-trajectories/account-1/496d81b0-0640-442c-b4d5-098036d16a64.jsonl`
+- **Structured JSON:** [`56d637ac6fac5e2594e8.json`](../../sessions/56/56d637ac6fac5e2594e8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T08:13:59.736Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T08:13:59.736Z",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Disagreement-Type-Conditioned Active Annotation Resolution Protocol\",\n  \"project_name\": \"type_aware_disagree_resolve\",\n  \"source\": \"web_research\",\n  \"level\": \"solid\",\n  \"core_problem\": \"When human annotators disagree, current annotation systems either collapse disagreement via majority voting or model its distribution passively without intervening. A principled typed taxonomy of NLI disagreement (Jiang & de Marneffe, TACL 2022) has been proposed, and Zhang et al. (ICML 2025, arXiv:2410.14632) have now shown that even RLHF reward models and LLM judges fail to account for annotator divergence when presented with typed preference data. Ni et al. (EACL 2026, arXiv:2506.19467) extend this picture: naive CoT improves disagreement modeling for RLHF-trained LLMs, and RLVR degrades it — but neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas. The gap is not that all passive LLM reasoning fails uniformly, but that no existing method closes the loop from disagreement-type detection to type-specific probe generation, structured annotator response encoding, and soft-label training integration — a loop that passive reasoning cannot close regardless of whether CoT helps at the RLHF-prediction margin. The precise mechanism by which disagreement type should determine probe format, and how probe responses should update label distributions for downstream training, remains entirely unspecified in the literature.\",\n  \"opportunity\": \"CARE (EMNLP 2025, aclanthology 2025.emnlp-main.671) introduces disagreement detection via sub-concept alignment and counterfactual reasoning but is entirely passive — it does not type disagreements or generate resolution probes. A simultaneous structured disagreement analysis (arXiv 2604.19943, April 2026) shows task-level conceptual difficulty accounts for substantially more annotation variance than annotator identity, providing empirical grounding for type-conditioned probe selection. Zhang et al. (ICML 2025, arXiv:2410.14632) develop a 10-category disagreement taxonomy for RLHF preference annotation and find that standard reward modeling methods and LLM-as-Judge approaches 'fail to account for divergence between annotators' — a direct empirical motivation for DART's active probe-based approach. Ni et al. (EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467) provide systematic evaluation across 60 experimental setups: naive CoT improves disagreement modeling for RLHF-trained LLMs, while RLVR-style reasoning degrades it — but critically, neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas. DART's motivation is precisely this schema-generalization gap: the typed-probe resolution loop (detect type → generate type-conditioned probe → collect structured response → update soft labels) cannot be replaced by any passive reasoning strategy, CoT-assisted or otherwise, because passive prediction has no mechanism to selectively elicit the structured annotator judgments that type-conditioned probes target. ClarifyDelphi (ACL 2023, aclanthology.org/2023.acl-long.630) is the closest prior work on targeted clarification question generation, using RL with defeasibility rewards to elicit context for moral/social situations — but it operates in a narrow domain, does not pre-classify disagreement type before generating questions, generates background-context questions (not annotation-schema disambiguation probes), and does not connect to soft-label training. 'Will Annotators Disagree?' (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) predicts whether disagreement will occur on value-laden arguments (one of DART's three types), but predicts binary occurrence rather than typing it post-hoc and generates no probes. NUTMEG (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) uses Bayesian modeling to partition disagreements into systematic signal and noise, but does not further classify signal disagreements into types, does not generate clarification probes, and does not produce type-conditioned probe templates — making it complementary rather than competing. 'Disentangling Subjectivity and Uncertainty' (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460) distinguishes value-based annotator subjectivity from item-level uncertainty in hate speech annotation, paralleling DART's value-divergence vs. conceptual-ambiguity split, but uses gaze tracking rather than generated probes and contains no active resolution loop or training integration. The NLP Annotation Disagreement Workshop (ACL 2025 co-located) and NLPerspectives at EMNLP 2025 confirm sustained community interest. Together, these works leave a specific gap: no system closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration.\",\n  \"landscape\": \"Current SOTA spans: CARE (EMNLP 2025) for disagreement detection; Jiang & de Marneffe's 10-category NLI disagreement taxonomy under three classes — Ambiguity in Sentence Meaning (Lexical, Implicature, Presupposition, Probabilistic Enrichment, Imperfection), Underspecification of Guidelines (Coreference, Temporal Reference, Interrogative Hypothesis), and Annotator Behavior (Accommodating Minimally Added Content, High Overlap) (TACL 2022, aclanthology.org/2022.tacl-1.78) — which provides the most directly related typed treatment of annotation disagreement and direct training supervision for DART Stage 1 from ~450 human-annotated ChaosNLI instances; 'Diverging Preferences' (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632), which develops a 10-category taxonomy for RLHF preference annotation (pairwise A vs. B comparisons on MultiPref and HelpSteer2, spanning four high-level classes: Task, Response Style, Refusals, Errors) and finds that LLMs fail to account for annotator divergence — this null result for passive LLM prediction provides independent motivation for DART's active probing design, and distinguishes from DART in scope (pairwise RLHF preference data vs. general NLP multi-class annotation schemas), mechanism (post-hoc characterization without probe generation), and integration (no connection to annotation resolution or soft-label training); 'Can Reasoning Help Large Language Models Capture Human Annotator Disagreement?' (Ni, Fan, Zouhar, Rooein, Hoyle, Sachan, Leippold, Hovy, Ash, EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467), which evaluates 60 experimental setups across three annotation tasks and finds that naive CoT improves disagreement modeling performance for RLHF-trained LLMs while RLVR-style reasoning degrades it — providing complementary empirical support for DART's active probing approach alongside Zhang et al., and establishing that even where CoT helps at the RLHF-prediction margin, neither CoT nor RLVR generalizes to active typed-probe resolution across general NLP annotation schemas; NUTMEG (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) for Bayesian signal-vs-noise partitioning of annotation disagreement — complementary to DART in that it identifies which disagreements are worth resolving but does not type them or generate resolution probes; 'Disentangling Subjectivity and Uncertainty for Hate Speech Annotation and Modeling using Gaze' (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460), which distinguishes annotator-level subjectivity (value-based opinion differences, analogous to DART's value divergence) from item-level uncertainty (ambiguity in the stimulus, analogous to DART's conceptual ambiguity and borderline threshold) — the closest existing operationalization of DART's core typing distinction, but using gaze tracking as input signal rather than LLM classification, with no probe generation or active resolution loop; Beyond Consensus (arXiv 2601.09065, Jan 2026) for perspectivist evaluation; soft-label training (arXiv 2511.14117) for preserving epistemic uncertainty; DEM-MoE (arXiv 2508.02853) for demographic-aware expert modeling; STABLEVAL (arXiv 2605.02122, May 2026) for disagreement-aware evaluation; 'Will Annotators Disagree?' (EMNLP 2025 Findings) for predicting value-laden disagreement occurrence; 'Beyond Black-Box Labels' (arXiv 2604.17022, April 2026) for pre-annotation diagnostic criteria separation; ClarifyDelphi (ACL 2023) for RL-based clarification question generation in moral/social contexts; DARC: Disagreement-Aware Alignment via Risk-Constrained Decoding (arXiv:2603.08145, March 2026), which applies inference-time distributionally robust optimization to rerank candidate responses under heterogeneous user preferences — a concurrent work that addresses preference disagreement at inference time without model retraining, without categorizing disagreements into typed classes, and without generating annotation-resolution probes; DARC is entirely complementary to DART's annotation workflow focus and represents a distinct research direction (inference-time robust decoding rather than active human-annotation resolution); and ReasonScaffold (arXiv 2603.21094, March 2026), which exposes LLM reasoning to annotators via a two-pass Delphi protocol but applies a uniform intervention regardless of disagreement type and does not generate targeted resolution probes. Annotator-Centric Active Learning (EMNLP 2024) selects which annotators to query about disputed items but does not generate type-conditioned probe content. None of these systems include an active protocol that (i) detects disagreement type, (ii) generates type-specific resolution probes, (iii) encodes structured annotator responses as calibrated soft-label updates, and (iv) feeds these into model training.\",\n  \"approach\": \"We propose DART (Disagreement-Aware Resolution through Type-conditioned probing), a four-stage active annotation protocol scoped to ~1,500 ProbeBank instances across two domains (toxicity detection and NLI) to fit within the compute budget. Stage 1 fine-tunes Qwen3-7B as a three-way disagreement-type classifier — conceptual ambiguity (annotators interpret the construct via different sub-definitions), value divergence (shared construct understanding but differing normative weighting), and borderline threshold (stimulus near a decision boundary) — using dual-source supervision: (a) direct supervision from Jiang & de Marneffe's TACL 2022 NLI disagreement taxonomy (~450 instances with human-typed labels, drawn from ChaosNLI) with an explicit fine-grained subcategory-to-DART-type mapping specified as follows: Probabilistic Enrichment and Imperfection (from Jiang's Ambiguity in Sentence Meaning class) → borderline threshold, because these subcategories represent items where annotators diverge due to proximity to a decision boundary rather than genuine interpretive disagreement; Lexical, Implicature, and Presupposition (Ambiguity in Sentence Meaning) plus Coreference, Temporal Reference, and Interrogative Hypothesis (Underspecification of Guidelines) → conceptual ambiguity, because these subcategories reflect substantively different interpretations of the text or construct's definitional scope; Accommodating Minimally Added Content and High Overlap (Annotator Behavior) → value divergence, because these subcategories capture cases where annotators share the same construct understanding but apply different normative weights to shared features; and (b) CARE-derived weak supervision for the toxicity domain, where CARE's three output signals serve as proxy labels: sub-concept-alignment-sensitive instances (label changes when sub-concept definition is swapped) → conceptual ambiguity; rationale-stable but direction-divergent instances (rationale-to-critique output shows annotators identify the same features but weight them differently) → value divergence; counterfactual-sensitive instances (counterfactual-to-detection shows the disagreement resolves with small textual perturbation) → borderline threshold. Stage 1 classifier validation uses an 80/20 split of the ~450 Jiang & de Marneffe typed NLI instances (~360 train / ~90 held-out); macro-F1 is reported on the held-out split, with an expected range of 70–80% given the three-class structure — a target range consistent with recent evidence on LoRA-based fine-tuning of instruction-tuned 7B-class models on small annotation-classification datasets: 'Leveraging Annotator Disagreement for Text Classification' (arXiv:2409.17577) demonstrates instruction tuning applied directly to annotation-disagreement classification tasks; 'Unveiling the Secret Recipe: A Guide For Supervised Fine-Tuning Small LLMs' (arXiv:2412.13337) shows that supervised fine-tuning of 7B-class models with parameter-efficient methods generalizes effectively from limited labeled data; Qwen3-7B's pre-trained NLI and instruction-following priors further reduce the effective adaptation requirement from ~360 labeled instances by leveraging knowledge already encoded during pre-training. The CARE-derived weak supervision labels for the toxicity domain are additionally validated on a 20-instance human-adjudicated random sample (inter-rater κ reported) before full deployment, confirming that the proxy mapping captures the intended construct. Minimum-performance fallback: if Stage 1 macro-F1 < 65% on the held-out NLI split, the pipeline falls back to a rule-based classifier applying CARE proxy signals deterministically (sub-concept-alignment-sensitive → conceptual ambiguity; rationale-stable direction-divergent → value divergence; counterfactual-sensitive → borderline threshold), which is fully deterministic and prevents Stage 1 failure from propagating silently through subsequent stages. Stage 2 uses Qwen3-72B to generate type-specific resolution probes (max two candidates per instance): conceptual ambiguity → definitional boundary probes with minimal contrastive pairs ('Does X count as Y if Z is absent?'); value divergence → explicit priority-ranking elicitation frames ('Please rank the following considerations by their relevance to your judgment...'); borderline threshold → counterfactual shift probes ('Would your judgment change if [minimal feature] were [perturbed]?'). Stage 3 collects structured probe responses. In the simulated execution path (primary for EMNLP 2026 ARR), all 1,500 instances use LLM persona responses validated via cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable response distributions (Cohen's κ between types reported). This validation establishes that type-conditioned probe templates elicit structurally distinct response patterns — confirming probe discriminability, not persona-human fidelity. Persona-human fidelity is not established by this check; instead, Stage 4's downstream macro-F1 improvement over unprobed soft-label training provides the primary evidence for end-to-end system effectiveness, and the planned 100-instance Prolific gold standard (camera-ready) provides the direct human-fidelity validation. In the human-validated execution path (upgrade for EACL 2027), a 100-instance Prolific human gold standard (~50-75 annotator-hours) serves as the primary evaluation baseline, and persona responses for ~1,400 remaining instances are validated against this gold standard at ρ ≥ 0.60 before scale deployment. Concrete fallback for the human-validated path: if persona responses fail to reach ρ ≥ 0.60 on the 100-instance gold standard, the paper's primary results are reported on the 100-instance Prolific human gold standard only, with full-scale persona deployment repositioned as future work. Stage 4 integrates probe-conditioned soft labels into model fine-tuning: probe responses are encoded as pseudo-annotator vote vectors over the label space using a lightweight encoder trained on the gold standard (human-validated path) or the cross-type-consistent persona pool (simulated path); these vectors are added to the existing annotation distribution as N_probe = 3 equivalent pseudo-annotator votes via weighted average (P_updated = (N_orig × P_orig + N_probe × P_probe) / (N_orig + N_probe)); the updated distribution is used directly as the soft-label target following arXiv 2511.14117. Evaluation fine-tunes Qwen3-7B on the DART-updated soft labels and compares against three baselines on ToxiGen (toxicity domain) and the MNLI validation split (NLI domain): (1) hard-label training using majority-vote labels, (2) soft-label training without DART probing using the original annotation distribution, and (3) DART-probed soft-label training. Primary metrics are macro-F1 and Expected Calibration Error (ECE); STABLEVAL score provides a secondary disagreement-aware evaluation. Reduction in residual annotation entropy on held-out instances is reported as an auxiliary analysis. The three-way comparison isolates the contribution of type-conditioned probing over both hard labeling and unprobed soft labeling. Data architecture for contamination-free evaluation: ProbeBank-1.5K instances are drawn exclusively from the training splits of ToxiGen and MNLI; macro-F1 and ECE are computed on the standard ToxiGen test set and MNLI validation split respectively, which are held out from all ProbeBank construction and share zero instance overlap with any probe-typed, probe-generated, or soft-label-updated training instance. The three-way comparison is therefore performed entirely on genuinely out-of-distribution evaluation data, ensuring the results are reproducible and uncontaminated. DART explicitly extends ClarifyDelphi (ACL 2023) in four dimensions: domain generality (any NLP annotation schema, not only moral/social situations), type-conditioned probe selection (not uniform question generation), annotation-schema disambiguation probes rather than background-context questions, and training integration via soft-label updates. We release ProbeBank-1.5K: 1,500 type-annotated disagreement instances with validated resolution probes across two NLP domains. Limitations: We will include a 100-instance Prolific gold standard (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total) in the camera-ready version, validating Stage 3 persona response quality at ρ ≥ 0.60 against human judgments on a stratified sample of 33–34 instances per disagreement type. If ρ < 0.60, primary results are reported on the 100-instance human gold standard only, with full-scale persona deployment repositioned as future work.\",\n  \"resource_estimate\": {\n    \"simulated_emnlp2026\": {\n      \"venue_target\": \"EMNLP 2026 via ARR May 25, 2026 — PRIMARY first-class submission path for users with ≤16-day constraint. EMNLP 2026 has confirmed 'Human-Centered NLP and Human-AI Interaction' track (verified: https://2026.emnlp.org/calls/main_conference_papers/). Simulated evaluation is user-approved ('Simulated user evaluation acceptable for ARR submission').\",\n      \"gpu_hours\": \"~70-90 H100-equivalent hours — within ≤200 H100h budget\",\n      \"gpu_utilization\": \"High (~80-90%) — continuous pipeline: classifier training, probe generation, persona simulation, training sweeps\",\n      \"timeline\": \"13-15 days — within ≤16-day hard constraint\",\n      \"day_by_day\": {\n        \"Day 1-2\": \"Stage 1: Qwen3-7B three-way classifier training and validation (~2-4 H100h). Dual-source supervision from Jiang & de Marneffe NLI instances (~450 instances, ~360 train / ~90 held-out) with explicit 10-subcategory-to-3-type mapping + CARE-derived weak labels. Minimum-performance fallback activates at macro-F1 < 65%.\",\n        \"Day 2-3\": \"Stage 2: Qwen3-72B probe generation for 1,500 ProbeBank instances (~10 H100h). Type-conditioned probe templates: definitional-boundary contrastive pairs / priority-ranking elicitation frames / counterfactual shift probes.\",\n        \"Day 3-4\": \"Stage 3: LLM persona simulation for all 1,500 instances (~5 H100h). Validation via cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable response distributions (Cohen's κ between types reported). This confirms probe discriminability — that type-conditioned templates elicit structurally distinct outputs — not persona-human fidelity, which is addressed by Stage 4 downstream metrics and the planned Prolific gold standard.\",\n        \"Day 4-9\": \"Stage 4: Training sweeps and ablations (~50-75 H100h). Three-way baseline comparison (hard-label / unprobed soft-label / DART-probed soft-label) on ToxiGen and MNLI. 3 seeds × 3 baselines × 2 domains.\",\n        \"Day 10-15\": \"Analysis, figures, paper writing. Limitations section explicitly states: 'We will include a 100-instance Prolific gold standard (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total) in the camera-ready version, validating Stage 3 persona response quality at ρ ≥ 0.60 against human judgments on a stratified sample of 33–34 instances per disagreement type. If ρ < 0.60, primary results are reported on the 100-instance human gold standard only.' This is standard practice for ARR submissions and does not affect the submission's core contributions.\"\n      },\n      \"validation_approach\": \"Cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable distributions (Cohen's κ between types, p < 0.05). Confirms that type-conditioned probe templates elicit structurally distinct response patterns. This does not validate that persona responses match human annotator reasoning; Stage 4's downstream macro-F1 improvement over unprobed soft-label training provides the primary evidence for end-to-end system effectiveness.\",\n      \"human_annotation\": \"None required for initial submission. 100-instance Prolific study explicitly committed to in camera-ready: n=100, $12/hr, ~60 annotator-hours, ~$600–900 total, stratified 33–34 per disagreement type, ρ ≥ 0.60 validation threshold with documented fallback to human-gold-only results.\",\n      \"team\": \"0-1 (setup only: ~3-4h to configure pipeline, provision datasets, deploy persona simulation)\",\n      \"claude_api_cost\": \"$200-400 (~2,000-4,000 turns for orchestration, probe drafting, result summarization, paper draft generation)\",\n      \"estimated_gpu_cost\": \"~$105-225 (70-90h × $1.50-2.50/hr on RunPod/Lambda)\",\n      \"prolific_upgrade_path\": \"The 100-instance Prolific study (~$600-900, ~5-8 days wall-clock) is reserved for the camera-ready version or EACL 2027 resubmission, providing a documented upgrade path that converts the simulated submission to a fully human-validated paper.\",\n      \"risk_note\": \"Cross-type probe discriminability validation catches systematic probe generation failures (e.g., all probe types eliciting identical responses) before Stage 4. If cross-type κ does not reach significance on a 50-instance pilot, probe templates are revised before full deployment — this takes ~0.5 days and is within the timeline.\"\n    },\n    \"manual\": {\n      \"venue_infeasibility_note\": \"EMNLP 2026 (ARR May 25, 2026 deadline) is not achievable in manual mode, which requires 3–4 months; the secondary target for this mode is EACL 2027 via ARR August 3, 2026.\",\n      \"gpu_hours\": \"~100h A100 80GB (~50 H100-equivalent hours)\",\n      \"gpu_utilization\": \"Low (~20-30%) — compute bursts are short; GPU idles during Prolific study setup/pilot (~2 days), QC and re-annotation (~2 days), and manual experimental analysis\",\n      \"timeline\": \"3-4 months from start; targeting ARR August 2026 → EACL 2027 as primary (ARR submission deadline: August 3, 2026; ~3 months available as of May 2026); beginning immediately in May 2026 is feasible with buffer for revision\",\n      \"team\": \"2 researchers (1 NLP lead, 1 annotation study coordinator)\",\n      \"estimated_gpu_cost\": \"~$150-250 (100h × $1.50-2.50/hr on RunPod/Lambda)\",\n      \"annotation_cost\": \"~$600-900 for 100-instance Prolific gold standard at $12/hr × ~60 annotator-hours\"\n    },\n    \"human_in_loop\": {\n      \"venue_infeasibility_note\": \"EMNLP 2026 (ARR May 25, 2026 deadline) is not achievable in HIL mode with full Prolific study, which requires 4–6 weeks; the secondary target for this mode is EACL 2027 via ARR August 3, 2026. For EMNLP 2026, use the simulated_emnlp2026 mode above.\",\n      \"gpu_hours\": \"~150h A100 80GB (~75 H100-equivalent hours)\",\n      \"gpu_utilization\": \"Moderate (~50-60%) — agent handles hyperparameter sweeps, probe generation drafts, and evaluation runs; human approves gold-standard design, reviews probe quality samples, and checkpoints training decisions every ~45min\",\n      \"timeline\": \"4-6 weeks; recommended for ARR August 2026 → EACL 2027 primary target (ARR submission deadline: August 3, 2026 — ~3 months available as of May 2026; this mode completes well within the window with buffer for revision and one round of reviewer-requested changes)\",\n      \"team\": \"1 researcher, ~45min/day approval check-ins\",\n      \"claude_api_cost\": \"$100-200 (~1,000-2,000 turns for experiment orchestration, probe drafting, result summarization, and ProbeBank quality-filtering decisions)\",\n      \"estimated_gpu_cost\": \"~$225-375 (150h × $1.50-2.50/hr)\",\n      \"risk_note\": \"Prolific gold-standard collection (~5-8 days wall-clock) runs in parallel with data preparation and initial classifier experiments; with the ARR August 2026 deadline (~3 months away), this is not on the critical path and can be run in proper sequence if needed\"\n    },\n    \"auto_research\": {\n      \"venue_target\": \"EACL 2027 via ARR August 3, 2026 — primary target for this mode with full Prolific validation. For EMNLP 2026, use the simulated_emnlp2026 mode above.\",\n      \"gpu_hours\": \"~250-300h A100 80GB (~125-150 H100-equivalent hours, within 200 H100h budget)\",\n      \"gpu_utilization\": \"High (~80-90%) — agent runs hyperparameter sweeps, probe template ablations, persona simulation at scale, and evaluation continuously; idle time limited to API rate limits and data loading\",\n      \"timeline\": \"16-22 days (4× A100 cluster); feasible for ARR August 2026 deadline with substantial buffer; Prolific gold-standard collection (~5-8 days) is not on a compressing critical path given the ~3-month window to deadline\",\n      \"team\": \"0 (setup only: ~3-4h to configure agent, provision datasets, deploy Prolific study, set persona simulation pipeline)\",\n      \"claude_api_cost\": \"$200-400 (~2,000-4,000 turns including failed runs, multi-seed ablations, persona response filtering, and paper draft generation)\",\n      \"estimated_gpu_cost\": \"~$375-750 (250-300h × $1.50-2.50/hr)\",\n      \"speed_bottleneck\": \"Prolific gold-standard collection is the irreducible wall-clock minimum (~5-8 days); secondary bottleneck is Qwen3-72B inference rate for probe generation (single-pass at 1,500 instances × 2 candidates ≈ 15-20h A100, manageable within budget)\",\n      \"risk_note\": \"LLM persona probe responses may converge on superficially fluent but diagnostically shallow answers despite type-conditioning; validated by requiring ρ ≥ 0.60 correlation with human responses on gold standard before full deployment. Concrete fallback: if threshold is not met, paper reports results on the 100-instance human gold standard as the primary contribution and repositions persona scaling as future work.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 via ARR May 25, 2026 (PRIMARY — for simulated_emnlp2026 execution mode. ARR submission deadline: May 25, 2026 at 11:59PM UTC-12. 'Human-Centered NLP and Human-AI Interaction' track confirmed at https://2026.emnlp.org/calls/main_conference_papers/ — exact track the user specified. With the 16-day fully-simulated pipeline (~13-15 days, ~70-90 H100h), this is achievable with user-approved simulated evaluation. The annotation disagreement community — CARE, ClarifyDelphi, Jiang & de Marneffe, Ni et al. — publishes consistently at EMNLP. Limitations section commits to concrete Prolific extension for camera-ready: n=100, $12/hr, ~60 annotator-hours, stratified 33-34 per disagreement type, with ρ ≥ 0.60 threshold and documented fallback.)\",\n    \"EACL 2027 via ARR August 3, 2026 (SECONDARY — for manual/HIL/auto_research execution modes with full 100-instance Prolific gold standard. ARR submission deadline: August 3, 2026; commitment deadline: October 11, 2026; conference: Athens, Greece, March 9–14, 2027. EACL 2027 CFP not yet published as of May 2026 — track alignment with Human-Centered NLP or equivalent track cannot be verified until CFP is released. If the published CFP does not include such a track, EMNLP 2027 is the better-aligned fallback. The August 3 ARR deadline gives ~3 months from May 2026, comfortably accommodating HIL 4–6 week and auto-research 16–22 day execution with substantial buffer.)\",\n    \"EMNLP 2027 via ARR ~June 2027 (TERTIARY fallback — if EACL 2027 submission requires additional iteration or EACL 2027 CFP does not include a Human-Centered NLP track. EMNLP's dedicated Human-Centered NLP and Human-AI Interaction track is confirmed and active. Expected ARR submission ~June 2027, conference ~November 2027. EMNLP 2027 reviewers will be familiar with the full body of disagreement-taxonomy and soft-label training literature.)\",\n    \"AAAI 2027 (QUATERNARY backup; expected direct submission deadline July–August 2026, concurrent with ARR August 2026; broad AI community reach but no dedicated annotation/perspectivist NLP track and a reviewer pool less familiar with disagreement taxonomies, CARE, and soft-label training)\"\n  ],\n  \"key_references\": [\n    \"CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement (EMNLP 2025, aclanthology 2025.emnlp-main.671)\",\n    \"Investigating Reasons for Disagreement in Natural Language Inference (Jiang & de Marneffe, TACL 2022, aclanthology.org/2022.tacl-1.78) — ~450-instance ChaosNLI taxonomy with 10 subcategories spanning 3 high-level classes; Probabilistic Enrichment + Imperfection → borderline threshold; Lexical + Implicature + Presupposition + Coreference + Temporal Reference + Interrogative Hypothesis → conceptual ambiguity; Accommodating Minimally Added Content + High Overlap → value divergence; provides direct Stage 1 supervision (~360 train / ~90 held-out, 80/20 split)\",\n    \"Diverging Preferences: When do Annotators Disagree and do Models Know? (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632) — 10-category taxonomy for RLHF preference annotation (pairwise A vs. B; MultiPref and HelpSteer2 datasets) across four high-level classes (Task, Response Style, Refusals, Errors); finds that LLMs fail to capture annotator divergence, motivating DART's active probe approach; distinct from DART in targeting pairwise RLHF data (not general NLP multi-class schemas), not generating resolution probes, and not connecting to annotation resolution or soft-label training\",\n    \"Can Reasoning Help Large Language Models Capture Human Annotator Disagreement? (Ni, Fan, Zouhar, Rooein, Hoyle, Sachan, Leippold, Hovy, Ash, EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467) — 60-setup systematic evaluation across three annotation tasks, multiple model sizes, and multiple disagreement expression methods; finds naive CoT improves disagreement modeling for RLHF-trained LLMs while RLVR-style reasoning degrades it; critically, neither approach generalizes to active typed-probe resolution across general NLP annotation schemas — motivating DART's schema-generalization gap framing rather than a claim that all passive reasoning fails; EMNLP 2026/2027 reviewers will expect this citation\",\n    \"ClarifyDelphi: Reinforced Clarification Questions with Defeasibility Rewards for Social and Moral Situations (ACL 2023, aclanthology.org/2023.acl-long.630) — closest predecessor in probe generation; DART extends to annotation-domain generality, type conditioning, schema disambiguation, and training integration\",\n    \"Will Annotators Disagree? Identifying Subjectivity in Value-Laden Arguments (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) — partial prior coverage of value-divergence type (predicts binary occurrence, not type; no probe generation)\",\n    \"NUTMEG: Separating Signal From Noise in Annotator Disagreement (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) — Bayesian partitioning of disagreements into systematic signal vs. noise; complementary to DART in that it identifies which disagreements are worth resolving but does not type them, generate resolution probes, or produce type-conditioned templates\",\n    \"Disentangling Subjectivity and Uncertainty for Hate Speech Annotation and Modeling using Gaze (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460) — distinguishes annotator-level subjectivity (value divergence) from item-level uncertainty (conceptual ambiguity / borderline threshold) using gaze tracking; closest operationalization of DART's core type distinction but no probe generation or active resolution loop\",\n    \"Quantifying the Persona Effect in LLM Simulations (Hu & Collier, ACL 2024, arXiv:2402.10811) — supports the narrow claim that persona prompting yields modest improvements on high-disagreement annotation samples; basis for Stage 3 persona deployment rationale\",\n    \"Assessing the Reliability of Persona-Conditioned LLMs as Synthetic Survey Respondents (arXiv:2602.18462, Feb 2026) — shows persona conditioning can redistribute error and undermine subgroup fidelity; motivates the ρ ≥ 0.60 validation threshold and the 100-instance human gold standard fallback in the human-validated path\",\n    \"Structured Disagreement in Health-Literacy Annotation: Epistemic Stability, Conceptual Difficulty, and Agreement-Stratified Inference (arXiv 2604.19943, April 2026)\",\n    \"Beyond Black-Box Labels: Interpretable Criteria for Diagnosing Subjective NLP Tasks (arXiv 2604.17022, April 2026) — concurrent diagnostic approach; pre-annotation audit vs. DART's active resolution\",\n    \"Beyond Consensus: Perspectivist Modeling and Evaluation of Annotator Disagreement in NLP (arXiv 2601.09065, Jan 2026)\",\n    \"Soft-Label Training Preserves Epistemic Uncertainty (arXiv 2511.14117)\",\n    \"Modeling Annotator Disagreement with Demographic-Aware Experts and Synthetic Perspectives (DEM-MoE, arXiv 2508.02853)\",\n    \"STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems (arXiv 2605.02122, May 2026)\",\n    \"ReasonScaffold: Evaluating Reasoning-Based Scaffolds for Human-AI Co-Annotation (arXiv 2603.21094, March 2026)\",\n    \"Annotator-Centric Active Learning for Subjective NLP Tasks (EMNLP 2024)\",\n    \"DARC: Disagreement-Aware Alignment via Risk-Constrained Decoding (arXiv:2603.08145, March 2026) — inference-time distributionally robust optimization for response reranking under heterogeneous user preferences; concurrent work on preference disagreement at the decoding level, entirely distinct from DART's annotation workflow, typed-disagreement classification, and probe-generation approach\",\n    \"Leveraging Annotator Disagreement for Text Classification (arXiv:2409.17577, September 2024) — proposes and compares instruction tuning and ensemble strategies for annotation-disagreement classification; supports Stage 1 classifier design and the rationale for applying instruction-tuned fine-tuning to disagreement-type prediction\",\n    \"Unveiling the Secret Recipe: A Guide For Supervised Fine-Tuning Small LLMs (arXiv:2412.13337, December 2024) — demonstrates that supervised fine-tuning of 7B-class models generalizes effectively from limited labeled datasets via parameter-efficient methods; supports the 70–80% macro-F1 target for Stage 1 on ~360 training instances\"\n  ],\n  \"description\": \"DART (Disagreement-Aware Resolution through Type-conditioned probing) proposes the first active annotation protocol that closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration. Grounded in Jiang & de Marneffe's (TACL 2022) typed NLI taxonomy (~450 ChaosNLI instances with human-typed labels) and findings that task-level conceptual difficulty dominates annotation variance, DART trains a Qwen3-7B three-way classifier (conceptual ambiguity / value divergence / borderline threshold) using dual-source supervision: direct labels from the TACL 2022 taxonomy for the NLI domain with an explicit fine-grained subcategory-to-type mapping — Probabilistic Enrichment and Imperfection → borderline threshold (items near a decision boundary); Lexical, Implicature, Presupposition, Coreference, Temporal Reference, Interrogative Hypothesis → conceptual ambiguity (different construct interpretations or guideline-underspecified scope); Accommodating Minimally Added Content and High Overlap → value divergence (shared construct, different normative weights) — and CARE-derived weak supervision for toxicity where sub-concept-alignment sensitivity → conceptual ambiguity, rationale-stable but direction-divergent CARE output → value divergence, and counterfactual-sensitive CARE output → borderline threshold. Stage 1 classifier validation uses an 80/20 split of the ~450 Jiang & de Marneffe typed NLI instances (~360 train / ~90 held-out), targeting macro-F1 of 70–80% on the held-out split — a range supported by recent evidence on LoRA fine-tuning of instruction-tuned 7B-class models on small annotation-classification datasets (arXiv:2409.17577; arXiv:2412.13337) and by Qwen3-7B's pre-trained NLI priors; CARE-derived weak supervision labels for toxicity are validated on a 20-instance human-adjudicated random sample before deployment. A minimum-performance fallback activates if Stage 1 macro-F1 < 65%: the pipeline switches to a deterministic rule-based classifier applying CARE proxy signals directly, preventing silent failure propagation. Qwen3-72B generates type-specific probes: definitional boundary contrastive pairs for ambiguity, priority-ranking frames for value disputes, and counterfactual shift probes for borderline cases. DART's motivation for active typed probing is the schema-generalization gap: Ni et al. (EACL 2026) show that naive CoT improves disagreement modeling for RLHF-trained LLMs while RLVR degrades it — but neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas, which is precisely what DART addresses. Zhang et al. (ICML 2025) independently confirm LLMs fail to account for annotator divergence in pairwise RLHF preference data. The primary execution path (simulated_emnlp2026) targets EMNLP 2026 ARR (May 25, 2026) via a 13-15 day fully-simulated pipeline (~70-90 H100h): Stage 3 persona responses for all 1,500 instances are validated via cross-type probe discriminability (Cohen's κ between disagreement types) — this confirms that type-conditioned probe templates elicit structurally distinct response patterns, not that persona responses match human annotator reasoning; Stage 4's downstream macro-F1 improvement over unprobed soft-label training provides the primary end-to-end effectiveness evidence. The EMNLP 2026 'Human-Centered NLP and Human-AI Interaction' track is confirmed and precisely aligned. The limitations section commits to a concrete 100-instance Prolific gold standard for camera-ready inclusion (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total, stratified 33–34 instances per type, ρ ≥ 0.60 validation threshold with documented fallback to human-gold-only results if threshold is not met). The human-validated upgrade path (EACL 2027 via ARR August 3, 2026) adds the Prolific gold standard as the primary evaluation baseline. Probe responses are encoded as pseudo-annotator vote vectors and integrated into the annotation distribution via weighted average, then used for soft-label training following arXiv 2511.14117. Evaluation fine-tunes Qwen3-7B on the DART-updated soft labels against three baselines — hard-label training, unprobed soft-label training, and DART-probed soft-label training — on ToxiGen (toxicity) and MNLI (NLI), measuring macro-F1 and calibration ECE. Data architecture is contamination-free: ProbeBank-1.5K instances are drawn exclusively from ToxiGen and MNLI training splits; macro-F1 and ECE are computed on the held-out ToxiGen test set and MNLI validation split, with zero instance overlap. Unlike DARC (arXiv:2603.08145), which applies inference-time robust decoding under preference disagreement without annotation workflow integration, DART resolves disagreement upstream through active typed probing. Unlike ClarifyDelphi (ACL 2023), DART operates across annotation schemas, conditions probe selection on disagreement type, and completes the resolution-to-training loop. Unlike NUTMEG (EMNLP 2025), which separates signal from noise without typing signal disagreements or generating probes, DART's contribution begins where NUTMEG ends: at the point where a disagreement has been identified as worth resolving and the question becomes how type should determine probe format. Unlike 'Disentangling Subjectivity and Uncertainty' (EMNLP 2025), which operationalizes the value-divergence vs. conceptual-ambiguity distinction using gaze tracking but generates no resolution probes and integrates no training update, DART provides the full active resolution loop. The scoped release — ProbeBank-1.5K, 1,500 type-annotated disagreement instances with validated probes across toxicity and NLI — provides the first benchmark for evaluating annotation resolution protocols. Primary submission target: EMNLP 2026 via ARR May 25, 2026 (simulated path, ≤16 days, confirmed track); secondary: EACL 2027 via ARR August 3, 2026 (human-validated path).\"\n}\n\n## Reviewer feedback (round 8)\nIssues: [\"LORA UN-LEARNING RISK AT STAGE 4 IS UNACKNOWLEDGED (CRITICAL): arXiv 2604.16332 (March 2026) shows LoRA fine-tuning exhibits systematic un-learning (increasing loss) on high-annotator-disagreement examples, with Spearman ρ = 0.06–0.43 across all 25 experimental conditions. Stage 4 fine-tunes Qwen3-7B via LoRA specifically on the high-disagreement contested instances that DART processes — this is a direct mechanistic threat to Stage 4's ability to show macro-F1 improvement over baselines. The paper must acknowledge this risk and either: (a) replace LoRA with full fine-tuning (mitigates the un-learning effect per the paper's own findings), or (b) add an explicit ablation comparing LoRA vs. full fine-tuning in Stage 4, or (c) acknowledge the risk with a concrete mitigation (e.g., class-conditional learning rate, disagreement-stratified training curriculum). Without this, Stage 4 may show null or negative results from the mechanism the paper is most directly relevant to.\", \"STAGE 1 CLASS IMBALANCE UNADDRESSED: Jiang's taxonomy distributes 6/10 subcategories to conceptual ambiguity and only 2/10 each to borderline threshold and value divergence. Assuming approximate subcategory balance across the ~360 training instances, this yields roughly 216:72:72 (conceptual ambiguity : borderline threshold : value divergence). A three-way Qwen3-7B classifier trained on this distribution will likely exhibit low recall on the two minority classes. The paper does not mention class weights, oversampling, or any mitigation for this imbalance, and the 70–80% macro-F1 target does not account for it. A weighted cross-entropy loss (weight ∝ 1/class frequency) or explicit note on expected per-class F1 is needed.\", \"DART NAME CLASH WITH EACL 2026 PAPER: A paper named 'DART: Leveraging Multi-Agent Disagreement for Tool Recruitment in Multimodal Reasoning' (Sivakumaran et al., EACL 2026, aclanthology.org/2026.eacl-long.253/) already uses this acronym in the NLP venue community. EMNLP 2026 reviewers and readers familiar with EACL 2026 will encounter immediate naming confusion. The system should be renamed to a distinct acronym before submission.\", \"DIZINER (arXiv 2604.15866, APRIL 2026) IS UNCITED: DiZiNER uses disagreement between multiple heterogeneous LLMs acting as pilot annotators to iteratively refine task instructions for zero-shot NER — it achieves SOTA on 14/18 NER benchmarks via disagreement-guided annotation simulation. While DART is differentiated (typed disagreement classification + probes for general NLP schemas, not NER instruction refinement), this April 2026 paper uses the same core principle (disagreement as signal for targeted annotation intervention) and should be cited with explicit differentiation: DiZiNER does not pre-classify disagreement type, generates instruction refinements rather than annotator-directed probes, and does not connect to soft-label training integration.\"]\nFeedback: DART has successfully resolved all Round 7 issues: dataset size is corrected, the taxonomy mapping is explicit and reproducible, cross-type κ is correctly framed as probe discriminability, and the Prolific limitations commitment is concrete. Four targeted fixes are needed before submission:\n\n(1) ADDRESS LORA UN-LEARNING IN STAGE 4: arXiv 2604.16332 (March 2026) directly shows LoRA fine-tuning un-learns high-disagreement examples — the exact instances Stage 4 processes. Either switch Stage 4 to full fine-tuning of a smaller model or LoRA fine-tuning with class-conditional learning rate, OR add a LoRA-vs-full-FT ablation. At minimum, add one sentence to Stage 4: 'Because LoRA fine-tuning is known to exhibit un-learning on high-disagreement examples (arXiv:2604.16332), we additionally evaluate full fine-tuning of a 350M-parameter model as a Stage 4 variant.' This pre-empts the primary reviewer objection about whether Stage 4 can show improvement.\n\n(2) ADD CLASS WEIGHTS TO STAGE 1: The 6:2:2 subcategory split from Jiang's taxonomy creates ~216:72:72 class imbalance in Stage 1 training. Add weighted cross-entropy (weight_c = N_total / (3 × N_c)) and update the expected macro-F1 note to acknowledge that balanced accuracy may be lower than raw macro-F1 on the held-out split. This is a one-line change to the Stage 1 specification and prevents reviewers from noting the imbalance as an unacknowledged flaw.\n\n(3) RENAME THE SYSTEM: 'DART' is already used by Sivakumaran et al. (EACL 2026, aclanthology.org/2026.eacl-long.253/). Rename to something distinct — e.g., TARP (Type-Aware Resolution via Probing), PROTO (Probe-based Resolution of Typed disagreement Objects), or similar. This is a cosmetic change with no impact on substance.\n\n(4) CITE AND DIFFERENTIATE DIZINER: Add DiZiNER (arXiv:2604.15866, April 2026) to key_references and landscape with this differentiation: 'DiZiNER uses multi-LLM annotation disagreement to iteratively refine NER task instructions, demonstrating that disagreement-guided annotation simulation improves task understanding. DART differs in three ways: (a) it pre-classifies disagreement into typed categories before generating probes, (b) probes target annotator-directed resolution rather than instruction refinement, and (c) the protocol connects to soft-label training integration rather than instruction output.'\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 8 轮修订，近 3 轮的平均分从 3.5 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T08:13:59.741Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T08:13:59.741Z",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---
+
+## Round 1
+
+18 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T08:13:59.767Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "Disagreement-Type-Conditioned Active Annotation Resolution Protocol",
+  "project_name": "type_aware_disagree_resolve",
+  "source": "web_research",
+  "level": "solid",
+  "core_problem": "When human annotators disagree, current annotation systems either collapse disagreement via majority voting or model its distribution passively without intervening. A principled typed taxonomy of NLI disagreement (Jiang & de Marneffe, TACL 2022) has been proposed, and Zhang et al. (ICML 2025, arXiv:2410.14632) have now shown that even RLHF reward models and LLM judges fail to account for annotator divergence when presented with typed preference data. Ni et al. (EACL 2026, arXiv:2506.19467) extend this picture: naive CoT improves disagreement modeling for RLHF-trained LLMs, and RLVR degrades it — but neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas. The gap is not that all passive LLM reasoning fails uniformly, but that no existing method closes the loop from disagreement-type detection to type-specific probe generation, structured annotator response encoding, and soft-label training integration — a loop that passive reasoning cannot close regardless of whether CoT helps at the RLHF-prediction margin. The precise mechanism by which disagreement type should determine probe format, and how probe responses should update label distributions for downstream training, remains entirely unspecified in the literature.",
+  "opportunity": "CARE (EMNLP 2025, aclanthology 2025.emnlp-main.671) introduces disagreement detection via sub-concept alignment and counterfactual reasoning but is entirely passive — it does not type disagreements or generate resolution probes. A simultaneous structured disagreement analysis (arXiv 2604.19943, April 2026) shows task-level conceptual difficulty accounts for substantially more annotation variance than annotator identity, providing empirical grounding for type-conditioned probe selection. Zhang et al. (ICML 2025, arXiv:2410.14632) develop a 10-category disagreement taxonomy for RLHF preference annotation and find that standard reward modeling methods and LLM-as-Judge approaches 'fail to account for divergence between annotators' — a direct empirical motivation for DART's active probe-based approach. Ni et al. (EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467) provide systematic evaluation across 60 experimental setups: naive CoT improves disagreement modeling for RLHF-trained LLMs, while RLVR-style reasoning degrades it — but critically, neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas. DART's motivation is precisely this schema-generalization gap: the typed-probe resolution loop (detect type → generate type-conditioned probe → collect structured response → update soft labels) cannot be replaced by any passive reasoning strategy, CoT-assisted or otherwise, because passive prediction has no mechanism to selectively elicit the structured annotator judgments that type-conditioned probes target. ClarifyDelphi (ACL 2023, aclanthology.org/2023.acl-long.630) is the closest prior work on targeted clarification question generation, using RL with defeasibility rewards to elicit context for moral/social situations — but it operates in a narrow domain, does not pre-classify disagreement type before generating questions, generates background-context questions (not annotation-schema disambiguation probes), and does not connect to soft-label training. 'Will Annotators Disagree?' (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) predicts whether disagreement will occur on value-laden arguments (one of DART's three types), but predicts binary occurrence rather than typing it post-hoc and generates no probes. NUTMEG (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) uses Bayesian modeling to partition disagreements into systematic signal and noise, but does not further classify signal disagreements into types, does not generate clarification probes, and does not produce type-conditioned probe templates — making it complementary rather than competing. 'Disentangling Subjectivity and Uncertainty' (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460) distinguishes value-based annotator subjectivity from item-level uncertainty in hate speech annotation, paralleling DART's value-divergence vs. conceptual-ambiguity split, but uses gaze tracking rather than generated probes and contains no active resolution loop or training integration. The NLP Annotation Disagreement Workshop (ACL 2025 co-located) and NLPerspectives at EMNLP 2025 confirm sustained community interest. Together, these works leave a specific gap: no system closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration.",
+  "landscape": "Current SOTA spans: CARE (EMNLP 2025) for disagreement detection; Jiang & de Marneffe's 10-category NLI disagreement taxonomy under three classes — Ambiguity in Sentence Meaning (Lexical, Implicature, Presupposition, Probabilistic Enrichment, Imperfection), Underspecification of Guidelines (Coreference, Temporal Reference, Interrogative Hypothesis), and Annotator Behavior (Accommodating Minimally Added Content, High Overlap) (TACL 2022, aclanthology.org/2022.tacl-1.78) — which provides the most directly related typed treatment of annotation disagreement and direct training supervision for DART Stage 1 from ~450 human-annotated ChaosNLI instances; 'Diverging Preferences' (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632), which develops a 10-category taxonomy for RLHF preference annotation (pairwise A vs. B comparisons on MultiPref and HelpSteer2, spanning four high-level classes: Task, Response Style, Refusals, Errors) and finds that LLMs fail to account for annotator divergence — this null result for passive LLM prediction provides independent motivation for DART's active probing design, and distinguishes from DART in scope (pairwise RLHF preference data vs. general NLP multi-class annotation schemas), mechanism (post-hoc characterization without probe generation), and integration (no connection to annotation resolution or soft-label training); 'Can Reasoning Help Large Language Models Capture Human Annotator Disagreement?' (Ni, Fan, Zouhar, Rooein, Hoyle, Sachan, Leippold, Hovy, Ash, EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467), which evaluates 60 experimental setups across three annotation tasks and finds that naive CoT improves disagreement modeling performance for RLHF-trained LLMs while RLVR-style reasoning degrades it — providing complementary empirical support for DART's active probing approach alongside Zhang et al., and establishing that even where CoT helps at the RLHF-prediction margin, neither CoT nor RLVR generalizes to active typed-probe resolution across general NLP annotation schemas; NUTMEG (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) for Bayesian signal-vs-noise partitioning of annotation disagreement — complementary to DART in that it identifies which disagreements are worth resolving but does not type them or generate resolution probes; 'Disentangling Subjectivity and Uncertainty for Hate Speech Annotation and Modeling using Gaze' (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460), which distinguishes annotator-level subjectivity (value-based opinion differences, analogous to DART's value divergence) from item-level uncertainty (ambiguity in the stimulus, analogous to DART's conceptual ambiguity and borderline threshold) — the closest existing operationalization of DART's core typing distinction, but using gaze tracking as input signal rather than LLM classification, with no probe generation or active resolution loop; Beyond Consensus (arXiv 2601.09065, Jan 2026) for perspectivist evaluation; soft-label training (arXiv 2511.14117) for preserving epistemic uncertainty; DEM-MoE (arXiv 2508.02853) for demographic-aware expert modeling; STABLEVAL (arXiv 2605.02122, May 2026) for disagreement-aware evaluation; 'Will Annotators Disagree?' (EMNLP 2025 Findings) for predicting value-laden disagreement occurrence; 'Beyond Black-Box Labels' (arXiv 2604.17022, April 2026) for pre-annotation diagnostic criteria separation; ClarifyDelphi (ACL 2023) for RL-based clarification question generation in moral/social contexts; DARC: Disagreement-Aware Alignment via Risk-Constrained Decoding (arXiv:2603.08145, March 2026), which applies inference-time distributionally robust optimization to rerank candidate responses under heterogeneous user preferences — a concurrent work that addresses preference disagreement at inference time without model retraining, without categorizing disagreements into typed classes, and without generating annotation-resolution probes; DARC is entirely complementary to DART's annotation workflow focus and represents a distinct research direction (inference-time robust decoding rather than active human-annotation resolution); and ReasonScaffold (arXiv 2603.21094, March 2026), which exposes LLM reasoning to annotators via a two-pass Delphi protocol but applies a uniform intervention regardless of disagreement type and does not generate targeted resolution probes. Annotator-Centric Active Learning (EMNLP 2024) selects which annotators to query about disputed items but does not generate type-conditioned probe content. None of these systems include an active protocol that (i) detects disagreement type, (ii) generates type-specific resolution probes, (iii) encodes structured annotator responses as calibrated soft-label updates, and (iv) feeds these into model training.",
+  "approach": "We propose DART (Disagreement-Aware Resolution through Type-conditioned probing), a four-stage active annotation protocol scoped to ~1,500 ProbeBank instances across two domains (toxicity detection and NLI) to fit within the compute budget. Stage 1 fine-tunes Qwen3-7B as a three-way disagreement-type classifier — conceptual ambiguity (annotators interpret the construct via different sub-definitions), value divergence (shared construct understanding but differing normative weighting), and borderline threshold (stimulus near a decision boundary) — using dual-source supervision: (a) direct supervision from Jiang & de Marneffe's TACL 2022 NLI disagreement taxonomy (~450 instances with human-typed labels, drawn from ChaosNLI) with an explicit fine-grained subcategory-to-DART-type mapping specified as follows: Probabilistic Enrichment and Imperfection (from Jiang's Ambiguity in Sentence Meaning class) → borderline threshold, because these subcategories represent items where annotators diverge due to proximity to a decision boundary rather than genuine interpretive disagreement; Lexical, Implicature, and Presupposition (Ambiguity in Sentence Meaning) plus Coreference, Temporal Reference, and Interrogative Hypothesis (Underspecification of Guidelines) → conceptual ambiguity, because these subcategories reflect substantively different interpretations of the text or construct's definitional scope; Accommodating Minimally Added Content and High Overlap (Annotator Behavior) → value divergence, because these subcategories capture cases where annotators share the same construct understanding but apply different normative weights to shared features; and (b) CARE-derived weak supervision for the toxicity domain, where CARE's three output signals serve as proxy labels: sub-concept-alignment-sensitive instances (label changes when sub-concept definition is swapped) → conceptual ambiguity; rationale-stable but direction-divergent instances (rationale-to-critique output shows annotators identify the same features but weight them differently) → value divergence; counterfactual-sensitive instances (counterfactual-to-detection shows the disagreement resolves with small textual perturbation) → borderline threshold. Stage 1 classifier validation uses an 80/20 split of the ~450 Jiang & de Marneffe typed NLI instances (~360 train / ~90 held-out); macro-F1 is reported on the held-out split, with an expected range of 70–80% given the three-class structure — a target range consistent with recent evidence on LoRA-based fine-tuning of instruction-tuned 7B-class models on small annotation-classification datasets: 'Leveraging Annotator Disagreement for Text Classification' (arXiv:2409.17577) demonstrates instruction tuning applied directly to annotation-disagreement classification tasks; 'Unveiling the Secret Recipe: A Guide For Supervised Fine-Tuning Small LLMs' (arXiv:2412.13337) shows that supervised fine-tuning of 7B-class models with parameter-efficient methods generalizes effectively from limited labeled data; Qwen3-7B's pre-trained NLI and instruction-following priors further reduce the effective adaptation requirement from ~360 labeled instances by leveraging knowledge already encoded during pre-training. The CARE-derived weak supervision labels for the toxicity domain are additionally validated on a 20-instance human-adjudicated random sample (inter-rater κ reported) before full deployment, confirming that the proxy mapping captures the intended construct. Minimum-performance fallback: if Stage 1 macro-F1 < 65% on the held-out NLI split, the pipeline falls back to a rule-based classifier applying CARE proxy signals deterministically (sub-concept-alignment-sensitive → conceptual ambiguity; rationale-stable direction-divergent → value divergence; counterfactual-sensitive → borderline threshold), which is fully deterministic and prevents Stage 1 failure from propagating silently through subsequent stages. Stage 2 uses Qwen3-72B to generate type-specific resolution probes (max two candidates per instance): conceptual ambiguity → definitional boundary probes with minimal contrastive pairs ('Does X count as Y if Z is absent?'); value divergence → explicit priority-ranking elicitation frames ('Please rank the following considerations by their relevance to your judgment...'); borderline threshold → counterfactual shift probes ('Would your judgment change if [minimal feature] were [perturbed]?'). Stage 3 collects structured probe responses. In the simulated execution path (primary for EMNLP 2026 ARR), all 1,500 instances use LLM persona responses validated via cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable response distributions (Cohen's κ between types reported). This validation establishes that type-conditioned probe templates elicit structurally distinct response patterns — confirming probe discriminability, not persona-human fidelity. Persona-human fidelity is not established by this check; instead, Stage 4's downstream macro-F1 improvement over unprobed soft-label training provides the primary evidence for end-to-end system effectiveness, and the planned 100-instance Prolific gold standard (camera-ready) provides the direct human-fidelity validation. In the human-validated execution path (upgrade for EACL 2027), a 100-instance Prolific human gold standard (~50-75 annotator-hours) serves as the primary evaluation baseline, and persona responses for ~1,400 remaining instances are validated against this gold standard at ρ ≥ 0.60 before scale deployment. Concrete fallback for the human-validated path: if persona responses fail to reach ρ ≥ 0.60 on the 100-instance gold standard, the paper's primary results are reported on the 100-instance Prolific human gold standard only, with full-scale persona deployment repositioned as future work. Stage 4 integrates probe-conditioned soft labels into model fine-tuning: probe responses are encoded as pseudo-annotator vote vectors over the label space using a lightweight encoder trained on the gold standard (human-validated path) or the cross-type-consistent persona pool (simulated path); these vectors are added to the existing annotation distribution as N_probe = 3 equivalent pseudo-annotator votes via weighted average (P_updated = (N_orig × P_orig + N_probe × P_probe) / (N_orig + N_probe)); the updated distribution is used directly as the soft-label target following arXiv 2511.14117. Evaluation fine-tunes Qwen3-7B on the DART-updated soft labels and compares against three baselines on ToxiGen (toxicity domain) and the MNLI validation split (NLI domain): (1) hard-label training using majority-vote labels, (2) soft-label training without DART probing using the original annotation distribution, and (3) DART-probed soft-label training. Primary metrics are macro-F1 and Expected Calibration Error (ECE); STABLEVAL score provides a secondary disagreement-aware evaluation. Reduction in residual annotation entropy on held-out instances is reported as an auxiliary analysis. The three-way comparison isolates the contribution of type-conditioned probing over both hard labeling and unprobed soft labeling. Data architecture for contamination-free evaluation: ProbeBank-1.5K instances are drawn exclusively from the training splits of ToxiGen and MNLI; macro-F1 and ECE are computed on the standard ToxiGen test set and MNLI validation split respectively, which are held out from all ProbeBank construction and share zero instance overlap with any probe-typed, probe-generated, or soft-label-updated training instance. The three-way comparison is therefore performed entirely on genuinely out-of-distribution evaluation data, ensuring the results are reproducible and uncontaminated. DART explicitly extends ClarifyDelphi (ACL 2023) in four dimensions: domain generality (any NLP annotation schema, not only moral/social situations), type-conditioned probe selection (not uniform question generation), annotation-schema disambiguation probes rather than background-context questions, and training integration via soft-label updates. We release ProbeBank-1.5K: 1,500 type-annotated disagreement instances with validated resolution probes across two NLP domains. Limitations: We will include a 100-instance Prolific gold standard (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total) in the camera-ready version, validating Stage 3 persona response quality at ρ ≥ 0.60 against human judgments on a stratified sample of 33–34 instances per disagreement type. If ρ < 0.60, primary results are reported on the 100-instance human gold standard only, with full-scale persona deployment repositioned as future work.",
+  "resource_estimate": {
+    "simulated_emnlp2026": {
+      "venue_target": "EMNLP 2026 via ARR May 25, 2026 — PRIMARY first-class submission path for users with ≤16-day constraint. EMNLP 2026 has confirmed 'Human-Centered NLP and Human-AI Interaction' track (verified: https://2026.emnlp.org/calls/main_conference_papers/). Simulated evaluation is user-approved ('Simulated user evaluation acceptable for ARR submission').",
+      "gpu_hours": "~70-90 H100-equivalent hours — within ≤200 H100h budget",
+      "gpu_utilization": "High (~80-90%) — continuous pipeline: classifier training, probe generation, persona simulation, training sweeps",
+      "timeline": "13-15 days — within ≤16-day hard constraint",
+      "day_by_day": {
+        "Day 1-2": "Stage 1: Qwen3-7B three-way classifier training and validation (~2-4 H100h). Dual-source supervision from Jiang & de Marneffe NLI instances (~450 instances, ~360 train / ~90 held-out) with explicit 10-subcategory-to-3-type mapping + CARE-derived weak labels. Minimum-performance fallback activates at macro-F1 < 65%.",
+        "Day 2-3": "Stage 2: Qwen3-72B probe generation for 1,500 ProbeBank instances (~10 H100h). Type-conditioned probe templates: definitional-boundary contrastive pairs / priority-ranking elicitation frames / counterfactual shift probes.",
+        "Day 3-4": "Stage 3: LLM persona simulation for all 1,500 instances (~5 H100h). Validation via cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable response distributions (Cohen's κ between types reported). This confirms probe discriminability — that type-conditioned templates elicit structurally distinct outputs — not persona-human fidelity, which is addressed by Stage 4 downstream metrics and the planned Prolific gold standard.",
+        "Day 4-9": "Stage 4: Training sweeps and ablations (~50-75 H100h). Three-way baseline comparison (hard-label / unprobed soft-label / DART-probed soft-label) on ToxiGen and MNLI. 3 seeds × 3 baselines × 2 domains.",
+        "Day 10-15": "Analysis, figures, paper writing. Limitations section explicitly states: 'We will include a 100-instance Prolific gold standard (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total) in the camera-ready version, validating Stage 3 persona response quality at ρ ≥ 0.60 against human judgments on a stratified sample of 33–34 instances per disagreement type. If ρ < 0.60, primary results are reported on the 100-instance human gold standard only.' This is standard practice for ARR submissions and does not affect the submission's core contributions."
+      },
+      "validation_approach": "Cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable distributions (Cohen's κ between types, p < 0.05). Confirms that type-conditioned probe templates elicit structurally distinct response patterns. This does not validate that persona responses match human annotator reasoning; Stage 4's downstream macro-F1 improvement over unprobed soft-label training provides the primary evidence for end-to-end system effectiveness.",
+      "human_annotation": "None required for initial submission. 100-instance Prolific study explicitly committed to in camera-ready: n=100, $12/hr, ~60 annotator-hours, ~$600–900 total, stratified 33–34 per disagreement type, ρ ≥ 0.60 validation threshold with documented fallback to human-gold-only results.",
+      "team": "0-1 (setup only: ~3-4h to configure pipeline, provision datasets, deploy persona simulation)",
+      "claude_api_cost": "$200-400 (~2,000-4,000 turns for orchestration, probe drafting, result summarization, paper draft generation)",
+      "estimated_gpu_cost": "~$105-225 (70-90h × $1.50-2.50/hr on RunPod/Lambda)",
+      "prolific_upgrade_path": "The 100-instance Prolific study (~$600-900, ~5-8 days wall-clock) is reserved for the camera-ready version or EACL 2027 resubmission, providing a documented upgrade path that converts the simulated submission to a fully human-validated paper.",
+      "risk_note": "Cross-type probe discriminability validation catches systematic probe generation failures (e.g., all probe types eliciting identical responses) before Stage 4. If cross-type κ does not reach significance on a 50-instance pilot, probe templates are revised before full deployment — this takes ~0.5 days and is within the timeline."
+    },
+    "manual": {
+      "venue_infeasibility_note": "EMNLP 2026 (ARR May 25, 2026 deadline) is not achievable in manual mode, which requires 3–4 months; the secondary target for this mode is EACL 2027 via ARR August 3, 2026.",
+      "gpu_hours": "~100h A100 80GB (~50 H100-equivalent hours)",
+      "gpu_utilization": "Low (~20-30%) — compute bursts are short; GPU idles during Prolific study setup/pilot (~2 days), QC and re-annotation (~2 days), and manual experimental analysis",
+      "timeline": "3-4 months from start; targeting ARR August 2026 → EACL 2027 as primary (ARR submission deadline: August 3, 2026; ~3 months available as of May 2026); beginning immediately in May 2026 is feasible with buffer for revision",
+      "team": "2 researchers (1 NLP lead, 1 annotation study coordinator)",
+      "estimated_gpu_cost": "~$150-250 (100h × $1.50-2.50/hr on RunPod/Lambda)",
+      "annotation_cost": "~$600-900 for 100-instance Prolific gold standard at $12/hr × ~60 annotator-hours"
+    },
+    "human_in_loop": {
+      "venue_infeasibility_note": "EMNLP 2026 (ARR May 25, 2026 deadline) is not achievable in HIL mode with full Prolific study, which requires 4–6 weeks; the secondary target for this mode is EACL 2027 via ARR August 3, 2026. For EMNLP 2026, use the simulated_emnlp2026 mode above.",
+      "gpu_hours": "~150h A100 80GB (~75 H100-equivalent hours)",
+      "gpu_utilization": "Moderate (~50-60%) — agent handles hyperparameter sweeps, probe generation drafts, and evaluation runs; human approves gold-standard design, reviews probe quality samples, and checkpoints training decisions every ~45min",
+      "timeline": "4-6 weeks; recommended for ARR August 2026 → EACL 2027 primary target (ARR submission deadline: August 3, 2026 — ~3 months available as of May 2026; this mode completes well within the window with buffer for revision and one round of reviewer-requested changes)",
+      "team": "1 researcher, ~45min/day approval check-ins",
+      "claude_api_cost": "$100-200 (~1,000-2,000 turns for experiment orchestration, probe drafting, result summarization, and ProbeBank quality-filtering decisions)",
+      "estimated_gpu_cost": "~$225-375 (150h × $1.50-2.50/hr)",
+      "risk_note": "Prolific gold-standard collection (~5-8 days wall-clock) runs in parallel with data preparation and initial classifier experiments; with the ARR August 2026 deadline (~3 months away), this is not on the critical path and can be run in proper sequence if needed"
+    },
+    "auto_research": {
+      "venue_target": "EACL 2027 via ARR August 3, 2026 — primary target for this mode with full Prolific validation. For EMNLP 2026, use the simulated_emnlp2026 mode above.",
+      "gpu_hours": "~250-300h A100 80GB (~125-150 H100-equivalent hours, within 200 H100h budget)",
+      "gpu_utilization": "High (~80-90%) — agent runs hyperparameter sweeps, probe template ablations, persona simulation at scale, and evaluation continuously; idle time limited to API rate limits and data loading",
+      "timeline": "16-22 days (4× A100 cluster); feasible for ARR August 2026 deadline with substantial buffer; Prolific gold-standard collection (~5-8 days) is not on a compressing critical path given the ~3-month window to deadline",
+      "team": "0 (setup only: ~3-4h to configure agent, provision datasets, deploy Prolific study, set persona simulation pipeline)",
+      "claude_api_cost": "$200-400 (~2,000-4,000 turns including failed runs, multi-seed ablations, persona response filtering, and paper draft generation)",
+      "estimated_gpu_cost": "~$375-750 (250-300h × $1.50-2.50/hr)",
+      "speed_bottleneck": "Prolific gold-standard collection is the irreducible wall-clock minimum (~5-8 days); secondary bottleneck is Qwen3-72B inference rate for probe generation (single-pass at 1,500 instances × 2 candidates ≈ 15-20h A100, manageable within budget)",
+      "risk_note": "LLM persona probe responses may converge on superficially fluent but diagnostically shallow answers despite type-conditioning; validated by requiring ρ ≥ 0.60 correlation with human responses on gold standard before full deployment. Concrete fallback: if threshold is not met, paper reports results on the 100-instance human gold standard as the primary contribution and repositions persona scaling as future work."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 via ARR May 25, 2026 (PRIMARY — for simulated_emnlp2026 execution mode. ARR submission deadline: May 25, 2026 at 11:59PM UTC-12. 'Human-Centered NLP and Human-AI Interaction' track confirmed at https://2026.emnlp.org/calls/main_conference_papers/ — exact track the user specified. With the 16-day fully-simulated pipeline (~13-15 days, ~70-90 H100h), this is achievable with user-approved simulated evaluation. The annotation disagreement community — CARE, ClarifyDelphi, Jiang & de Marneffe, Ni et al. — publishes consistently at EMNLP. Limitations section commits to concrete Prolific extension for camera-ready: n=100, $12/hr, ~60 annotator-hours, stratified 33-34 per disagreement type, with ρ ≥ 0.60 threshold and documented fallback.)",
+    "EACL 2027 via ARR August 3, 2026 (SECONDARY — for manual/HIL/auto_research execution modes with full 100-instance Prolific gold standard. ARR submission deadline: August 3, 2026; commitment deadline: October 11, 2026; conference: Athens, Greece, March 9–14, 2027. EACL 2027 CFP not yet published as of May 2026 — track alignment with Human-Centered NLP or equivalent track cannot be verified until CFP is released. If the published CFP does not include such a track, EMNLP 2027 is the better-aligned fallback. The August 3 ARR deadline gives ~3 months from May 2026, comfortably accommodating HIL 4–6 week and auto-research 16–22 day execution with substantial buffer.)",
+    "EMNLP 2027 via ARR ~June 2027 (TERTIARY fallback — if EACL 2027 submission requires additional iteration or EACL 2027 CFP does not include a Human-Centered NLP track. EMNLP's dedicated Human-Centered NLP and Human-AI Interaction track is confirmed and active. Expected ARR submission ~June 2027, conference ~November 2027. EMNLP 2027 reviewers will be familiar with the full body of disagreement-taxonomy and soft-label training literature.)",
+    "AAAI 2027 (QUATERNARY backup; expected direct submission deadline July–August 2026, concurrent with ARR August 2026; broad AI community reach but no dedicated annotation/perspectivist NLP track and a reviewer pool less familiar with disagreement taxonomies, CARE, and soft-label training)"
+  ],
+  "key_references": [
+    "CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement (EMNLP 2025, aclanthology 2025.emnlp-main.671)",
+    "Investigating Reasons for Disagreement in Natural Language Inference (Jiang & de Marneffe, TACL 2022, aclanthology.org/2022.tacl-1.78) — ~450-instance ChaosNLI taxonomy with 10 subcategories spanning 3 high-level classes; Probabilistic Enrichment + Imperfection → borderline threshold; Lexical + Implicature + Presupposition + Coreference + Temporal Reference + Interrogative Hypothesis → conceptual ambiguity; Accommodating Minimally Added Content + High Overlap → value divergence; provides direct Stage 1 supervision (~360 train / ~90 held-out, 80/20 split)",
+    "Diverging Preferences: When do Annotators Disagree and do Models Know? (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632) — 10-category taxonomy for RLHF preference annotation (pairwise A vs. B; MultiPref and HelpSteer2 datasets) across four high-level classes (Task, Response Style, Refusals, Errors); finds that LLMs fail to capture annotator divergence, motivating DART's active probe approach; distinct from DART in targeting pairwise RLHF data (not general NLP multi-class schemas), not generating resolution probes, and not connecting to annotation resolution or soft-label training",
+    "Can Reasoning Help Large Language Models Capture Human Annotator Disagreement? (Ni, Fan, Zouhar, Rooein, Hoyle, Sachan, Leippold, Hovy, Ash, EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467) — 60-setup systematic evaluation across three annotation tasks, multiple model sizes, and multiple disagreement expression methods; finds naive CoT improves disagreement modeling for RLHF-trained LLMs while RLVR-style reasoning degrades it; critically, neither approach generalizes to active typed-probe resolution across general NLP annotation schemas — motivating DART's schema-generalization gap framing rather than a claim that all passive reasoning fails; EMNLP 2026/2027 reviewers will expect this citation",
+    "ClarifyDelphi: Reinforced Clarification Questions with Defeasibility Rewards for Social and Moral Situations (ACL 2023, aclanthology.org/2023.acl-long.630) — closest predecessor in probe generation; DART extends to annotation-domain generality, type conditioning, schema disambiguation, and training integration",
+    "Will Annotators Disagree? Identifying Subjectivity in Value-Laden Arguments (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) — partial prior coverage of value-divergence type (predicts binary occurrence, not type; no probe generation)",
+    "NUTMEG: Separating Signal From Noise in Annotator Disagreement (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) — Bayesian partitioning of disagreements into systematic signal vs. noise; complementary to DART in that it identifies which disagreements are worth resolving but does not type them, generate resolution probes, or produce type-conditioned templates",
+    "Disentangling Subjectivity and Uncertainty for Hate Speech Annotation and Modeling using Gaze (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460) — distinguishes annotator-level subjectivity (value divergence) from item-level uncertainty (conceptual ambiguity / borderline threshold) using gaze tracking; closest operationalization of DART's core type distinction but no probe generation or active resolution loop",
+    "Quantifying the Persona Effect in LLM Simulations (Hu & Collier, ACL 2024, arXiv:2402.10811) — supports the narrow claim that persona prompting yields modest improvements on high-disagreement annotation samples; basis for Stage 3 persona deployment rationale",
+    "Assessing the Reliability of Persona-Conditioned LLMs as Synthetic Survey Respondents (arXiv:2602.18462, Feb 2026) — shows persona conditioning can redistribute error and undermine subgroup fidelity; motivates the ρ ≥ 0.60 validation threshold and the 100-instance human gold standard fallback in the human-validated path",
+    "Structured Disagreement in Health-Literacy Annotation: Epistemic Stability, Conceptual Difficulty, and Agreement-Stratified Inference (arXiv 2604.19943, April 2026)",
+    "Beyond Black-Box Labels: Interpretable Criteria for Diagnosing Subjective NLP Tasks (arXiv 2604.17022, April 2026) — concurrent diagnostic approach; pre-annotation audit vs. DART's active resolution",
+    "Beyond Consensus: Perspectivist Modeling and Evaluation of Annotator Disagreement in NLP (arXiv 2601.09065, Jan 2026)",
+    "Soft-Label Training Preserves Epistemic Uncertainty (arXiv 2511.14117)",
+    "Modeling Annotator Disagreement with Demographic-Aware Experts and Synthetic Perspectives (DEM-MoE, arXiv 2508.02853)",
+    "STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems (arXiv 2605.02122, May 2026)",
+    "ReasonScaffold: Evaluating Reasoning-Based Scaffolds for Human-AI Co-Annotation (arXiv 2603.21094, March 2026)",
+    "Annotator-Centric Active Learning for Subjective NLP Tasks (EMNLP 2024)",
+    "DARC: Disagreement-Aware Alignment via Risk-Constrained Decoding (arXiv:2603.08145, March 2026) — inference-time distributionally robust optimization for response reranking under heterogeneous user preferences; concurrent work on preference disagreement at the decoding level, entirely distinct from DART's annotation workflow, typed-disagreement classification, and probe-generation approach",
+    "Leveraging Annotator Disagreement for Text Classification (arXiv:2409.17577, September 2024) — proposes and compares instruction tuning and ensemble strategies for annotation-disagreement classification; supports Stage 1 classifier design and the rationale for applying instruction-tuned fine-tuning to disagreement-type prediction",
+    "Unveiling the Secret Recipe: A Guide For Supervised Fine-Tuning Small LLMs (arXiv:2412.13337, December 2024) — demonstrates that supervised fine-tuning of 7B-class models generalizes effectively from limited labeled datasets via parameter-efficient methods; supports the 70–80% macro-F1 target for Stage 1 on ~360 training instances"
+  ],
+  "description": "DART (Disagreement-Aware Resolution through Type-conditioned probing) proposes the first active annotation protocol that closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration. Grounded in Jiang & de Marneffe's (TACL 2022) typed NLI taxonomy (~450 ChaosNLI instances with human-typed labels) and findings that task-level conceptual difficulty dominates annotation variance, DART trains a Qwen3-7B three-way classifier (conceptual ambiguity / value divergence / borderline threshold) using dual-source supervision: direct labels from the TACL 2022 taxonomy for the NLI domain with an explicit fine-grained subcategory-to-type mapping — Probabilistic Enrichment and Imperfection → borderline threshold (items near a decision boundary); Lexical, Implicature, Presupposition, Coreference, Temporal Reference, Interrogative Hypothesis → conceptual ambiguity (different construct interpretations or guideline-underspecified scope); Accommodating Minimally Added Content and High Overlap → value divergence (shared construct, different normative weights) — and CARE-derived weak supervision for toxicity where sub-concept-alignment sensitivity → conceptual ambiguity, rationale-stable but direction-divergent CARE output → value divergence, and counterfactual-sensitive CARE output → borderline threshold. Stage 1 classifier validation uses an 80/20 split of the ~450 Jiang & de Marneffe typed NLI instances (~360 train / ~90 held-out), targeting macro-F1 of 70–80% on the held-out split — a range supported by recent evidence on LoRA fine-tuning of instruction-tuned 7B-class models on small annotation-classification datasets (arXiv:2409.17577; arXiv:2412.13337) and by Qwen3-7B's pre-trained NLI priors; CARE-derived weak supervision labels for toxicity are validated on a 20-instance human-adjudicated random sample before deployment. A minimum-performance fallback activates if Stage 1 macro-F1 < 65%: the pipeline switches to a deterministic rule-based classifier applying CARE proxy signals directly, preventing silent failure propagation. Qwen3-72B generates type-specific probes: definitional boundary contrastive pairs for ambiguity, priority-ranking frames for value disputes, and counterfactual shift probes for borderline cases. DART's motivation for active typed probing is the schema-generalization gap: Ni et al. (EACL 2026) show that naive CoT improves disagreement modeling for RLHF-trained LLMs while RLVR degrades it — but neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas, which is precisely what DART addresses. Zhang et al. (ICML 2025) independently confirm LLMs fail to account for annotator divergence in pairwise RLHF preference data. The primary execution path (simulated_emnlp2026) targets EMNLP 2026 ARR (May 25, 2026) via a 13-15 day fully-simulated pipeline (~70-90 H100h): Stage 3 persona responses for all 1,500 instances are validated via cross-type probe discriminability (Cohen's κ between disagreement types) — this confirms that type-conditioned probe templates elicit structurally distinct response patterns, not that persona responses match human annotator reasoning; Stage 4's downstream macro-F1 improvement over unprobed soft-label training provides the primary end-to-end effectiveness evidence. The EMNLP 2026 'Human-Centered NLP and Human-AI Interaction' track is confirmed and precisely aligned. The limitations section commits to a concrete 100-instance Prolific gold standard for camera-ready inclusion (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total, stratified 33–34 instances per type, ρ ≥ 0.60 validation threshold with documented fallback to human-gold-only results if threshold is not met). The human-validated upgrade path (EACL 2027 via ARR August 3, 2026) adds the Prolific gold standard as the primary evaluation baseline. Probe responses are encoded as pseudo-annotator vote vectors and integrated into the annotation distribution via weighted average, then used for soft-label training following arXiv 2511.14117. Evaluation fine-tunes Qwen3-7B on the DART-updated soft labels against three baselines — hard-label training, unprobed soft-label training, and DART-probed soft-label training — on ToxiGen (toxicity) and MNLI (NLI), measuring macro-F1 and calibration ECE. Data architecture is contamination-free: ProbeBank-1.5K instances are drawn exclusively from ToxiGen and MNLI training splits; macro-F1 and ECE are computed on the held-out ToxiGen test set and MNLI validation split, with zero instance overlap. Unlike DARC (arXiv:2603.08145), which applies inference-time robust decoding under preference disagreement without annotation workflow integration, DART resolves disagreement upstream through active typed probing. Unlike ClarifyDelphi (ACL 2023), DART operates across annotation schemas, conditions probe selection on disagreement type, and completes the resolution-to-training loop. Unlike NUTMEG (EMNLP 2025), which separates signal from noise without typing signal disagreements or generating probes, DART's contribution begins where NUTMEG ends: at the point where a disagreement has been identified as worth resolving and the question becomes how type should determine probe format. Unlike 'Disentangling Subjectivity and Uncertainty' (EMNLP 2025), which operationalizes the value-divergence vs. conceptual-ambiguity distinction using gaze tracking but generates no resolution probes and integrates no training update, DART provides the full active resolution loop. The scoped release — ProbeBank-1.5K, 1,500 type-annotated disagreement instances with validated probes across toxicity and NLI — provides the first benchmark for evaluating annotation resolution protocols. Primary submission target: EMNLP 2026 via ARR May 25, 2026 (simulated path, ≤16 days, confirmed track); secondary: EACL 2027 via ARR August 3, 2026 (human-validated path)."
+}
+
+## Reviewer feedback (round 8)
+Issues: ["LORA UN-LEARNING RISK AT STAGE 4 IS UNACKNOWLEDGED (CRITICAL): arXiv 2604.16332 (March 2026) shows LoRA fine-tuning exhibits systematic un-learning (increasing loss) on high-annotator-disagreement examples, with Spearman ρ = 0.06–0.43 across all 25 experimental conditions. Stage 4 fine-tunes Qwen3-7B via LoRA specifically on the high-disagreement contested instances that DART processes — this is a direct mechanistic threat to Stage 4's ability to show macro-F1 improvement over baselines. The paper must acknowledge this risk and either: (a) replace LoRA with full fine-tuning (mitigates the un-learning effect per the paper's own findings), or (b) add an explicit ablation comparing LoRA vs. full fine-tuning in Stage 4, or (c) acknowledge the risk with a concrete mitigation (e.g., class-conditional learning rate, disagreement-stratified training curriculum). Without this, Stage 4 may show null or negative results from the mechanism the paper is most directly relevant to.", "STAGE 1 CLASS IMBALANCE UNADDRESSED: Jiang's taxonomy distributes 6/10 subcategories to conceptual ambiguity and only 2/10 each to borderline threshold and value divergence. Assuming approximate subcategory balance across the ~360 training instances, this yields roughly 216:72:72 (conceptual ambiguity : borderline threshold : value divergence). A three-way Qwen3-7B classifier trained on this distribution will likely exhibit low recall on the two minority classes. The paper does not mention class weights, oversampling, or any mitigation for this imbalance, and the 70–80% macro-F1 target does not account for it. A weighted cross-entropy loss (weight ∝ 1/class frequency) or explicit note on expected per-class F1 is needed.", "DART NAME CLASH WITH EACL 2026 PAPER: A paper named 'DART: Leveraging Multi-Agent Disagreement for Tool Recruitment in Multimodal Reasoning' (Sivakumaran et al., EACL 2026, aclanthology.org/2026.eacl-long.253/) already uses this acronym in the NLP venue community. EMNLP 2026 reviewers and readers familiar with EACL 2026 will encounter immediate naming confusion. The system should be renamed to a distinct acronym before submission.", "DIZINER (arXiv 2604.15866, APRIL 2026) IS UNCITED: DiZiNER uses disagreement between multiple heterogeneous LLMs acting as pilot annotators to iteratively refine task instructions for zero-shot NER — it achieves SOTA on 14/18 NER benchmarks via disagreement-guided annotation simulation. While DART is differentiated (typed disagreement classification + probes for general NLP schemas, not NER instruction refinement), this April 2026 paper uses the same core principle (disagreement as signal for targeted annotation intervention) and should be cited with explicit differentiation: DiZiNER does not pre-classify disagreement type, generates instruction refinements rather than annotator-directed probes, and does not connect to soft-label training integration."]
+Feedback: DART has successfully resolved all Round 7 issues: dataset size is corrected, the taxonomy mapping is explicit and reproducible, cross-type κ is correctly framed as probe discriminability, and the Prolific limitations commitment is concrete. Four targeted fixes are needed before submission:
+
+(1) ADDRESS LORA UN-LEARNING IN STAGE 4: arXiv 2604.16332 (March 2026) directly shows LoRA fine-tuning un-learns high-disagreement examples — the exact instances Stage 4 processes. Either switch Stage 4 to full fine-tuning of a smaller model or LoRA fine-tuning with class-conditional learning rate, OR add a LoRA-vs-full-FT ablation. At minimum, add one sentence to Stage 4: 'Because LoRA fine-tuning is known to exhibit un-learning on high-disagreement examples (arXiv:2604.16332), we additionally evaluate full fine-tuning of a 350M-parameter model as a Stage 4 variant.' This pre-empts the primary reviewer objection about whether Stage 4 can show improvement.
+
+(2) ADD CLASS WEIGHTS TO STAGE 1: The 6:2:2 subcategory split from Jiang's taxonomy creates ~216:72:72 class imbalance in Stage 1 training. Add weighted cross-entropy (weight_c = N_total / (3 × N_c)) and update the expected macro-F1 note to acknowledge that balanced accuracy may be lower than raw macro-F1 on the held-out split. This is a one-line change to the Stage 1 specification and prevents reviewers from noting the imbalance as an unacknowledged flaw.
+
+(3) RENAME THE SYSTEM: 'DART' is already used by Sivakumaran et al. (EACL 2026, aclanthology.org/2026.eacl-long.253/). Rename to something distinct — e.g., TARP (Type-Aware Resolution via Probing), PROTO (Probe-based Resolution of Typed disagreement Objects), or similar. This is a cosmetic change with no impact on substance.
+
+(4) CITE AND DIFFERENTIATE DIZINER: Add DiZiNER (arXiv:2604.15866, April 2026) to key_references and landscape with this differentiation: 'DiZiNER uses multi-LLM annotation disagreement to iteratively refine NER task instructions, demonstrating that disagreement-guided annotation simulation improves task understanding. DART differs in three ways: (a) it pre-classifies disagreement into typed categories before generating probes, (b) probes target annotator-directed resolution rather than instruction refinement, and (c) the protocol connects to soft-label training integration rather than instruction output.'
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 8 轮修订，近 3 轮的平均分从 3.5 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "17e4cebc-c8f8-4b6a-9507-e6aa888b40dc",
+  "type": "user",
+  "uuid": "8bdbb6c0-9954-40f1-bc2a-e5e35bc544c2",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T08:13:59.764Z_
+
+```json
+{
+  "parentUuid": "8bdbb6c0-9954-40f1-bc2a-e5e35bc544c2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0bd48ec2-3ea2-4611-a2b4-9975ebc77da2",
+  "timestamp": "2026-05-10T08:13:59.764Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T08:13:59.764Z_
+
+```json
+{
+  "parentUuid": "0bd48ec2-3ea2-4611-a2b4-9975ebc77da2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "945a0ac7-71fb-4f81-9339-1d15e9e14033",
+  "timestamp": "2026-05-10T08:13:59.764Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Disagreement-Type-Conditioned Active Annotation Resolution Protocol\",…",
+  "leafUuid": "945a0ac7-71fb-4f81-9339-1d15e9e14033",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Resolve annotation disagreement via typed active probing",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T08:15:09.501Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this situation carefully. This research idea has been through 8 rounds of revision with no meaningful improvement in scores (3.5 average for the last 3 rounds). The reviewer feedback in round 8 identifies four concrete issues:
+
+1. LoRA un-learning risk at Stage 4 (critical)
+2. Stage 1 class imbalance unaddressed
+3. DART name clash with EACL 2026 paper
+4. DiZiNER (arXiv 2604.15866) uncited
+
+These are actually fairly straightforward fixes - not fundamental problems with the idea itself. But the stagnation warning suggests I should think more deeply about whether there are deeper issues.
+
+
+The core approach makes sense: detect disagreement, classify what type it is, generate targeted probes, and use the responses to improve training labels. The gap I'm addressing is real - no existing work integrates the full pipeline from detection through typing to probing and label updating. The main question is whether I can actually demonstrate convincing end-to-end improvements within the 15-day timeline, and the round 8 feedback suggests the execution details need tightening before that's even possible.
+
+Looking at what keeps coming up: the LoRA un-learning issue is a genuine mechanistic threat to whether Stage 4 can show improvement at all, the class imbalance is a technical oversight I should fix, and the missing citations are gaps in my related work. The pattern across rounds isn't that reviewers are finding different problems - they're consistently pointing to rigor issues and validation gaps. This suggests the core idea is sound but I'm not executing it carefully enough, rather than needing a fundamental pivot.
+
+But there's something interesting here: if LoRA systematically un-learns the high-disagreement examples, that's actually the crux of why this problem is hard. I could reframe DART as solving LoRA's training failure on contested instances through type-conditioned probing and curriculum learning - that's a much stronger mechanistic story than just "better soft labels." It explains why the problem matters, positions the method as addressing a real failure mode, and justifies why the specific combination of type-conditioning and stratified curriculum is necessary.
+
+Now I need to decide how to handle this in the revision. The four concrete issues are straightforward - look up that LoRA paper properly, add class weights for imbalance, rename to avoid the clash, and cite DiZiNER. For the LoRA problem itself, I'm weighing whether to add a full fine-tuning ablation on a smaller model, introduce class-conditional learning rates, or use a disagreement-stratified curriculum. The reviewer's suggestion of just adding one clarifying sentence might be enough, but I want to make sure the mechanistic insight actually lands. I'm deciding to do a major revision because the LoRA un-learning issue is too significant to patch over, and renaming the method throughout will require substantial changes anyway. This gives me a chance to strengthen the overall framing. Now I'm brainstorming better names for the approach—something that captures the core idea of using probes to resolve typed disagreements in a way that's memorable and clear. I'm settling on TARP (Type-Aware Resolution via Probing) since it's clean, descriptive, and doesn't overlap with existing work—now I need to rename DART throughout the paper and add weighted cross-entropy loss to Stage 1 using class frequency normalization.
+
+For Stage 4, I should switch the primary approach to full fine-tuning on a smaller model like Qwen3-1.8B to avoid LoRA un-learning issues, keeping LoRA as an ablation study. I also need to add citations for DiZiNER and the DART EACL 2026 paper, plus verify a few recent papers in this space to ensure I'm not missing anything important.
+
+Now I'm classifying this as a major revision since Stage 4 gets redesigned and the system gets renamed from DART to TARP, even though the core concept stays intact. Let me update the JSON with all the changes: renaming DART to TARP throughout, adding class weights to Stage 1, redesigning Stage 4 for full fine-tuning, and updating the references and landscape sections to include the new citations and clarify the naming distinction.
+
+Looking at the pattern across eight review rounds, the stagnation seems to stem from reviewers consistently catching implementation gaps rather than fundamental flaws. This batch of issues—the LoRA un-learning problem, class imbalance handling, the naming conflict with DART, and the missing DiZiNER citation—are all concrete and addressable. If I fix these cleanly, the score should move forward.
+
+The LoRA un-learning concern is the critical one since it directly undermines the main result. My approach for Stage 4 is to sidestep this entirely by doing full fine-tuning on a smaller model like Qwen3-1.8B with the updated soft labels, then add a LoRA ablation on the larger 7B model as a comparison point that explicitly addresses the un-learning risk. This gives me a clean evaluation path while turning the potential weakness into an interesting empirical question about whether DART's probing can overcome LoRA's un-learning effects.
+
+But switching models does create a confound—I'm comparing different architectures, not just training methods. The better framing is to treat this as two parallel training regimes: full fine-tuning on the smaller model as the primary result, and LoRA on the 7B as an ablation that tests whether DART can overcome the un-learning problem.
+
+The compute is actually manageable—both paths run around 20-30 H100 hours for the full sweep across seeds and baselines. Now I need to look up the specifics on DiZiNER and the LoRA paper to get the details right, then write out the revised JSON.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "945a0ac7-71fb-4f81-9339-1d15e9e14033",
+  "isSidechain": false,
+  "requestId": "req_011CatZ5AeEXaxv4gM516Gfk",
+  "type": "assistant",
+  "uuid": "97402dc3-4aba-4f5d-9fe5-d5dc6b43c786",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01R3jjqprXT53vAgQboEjoKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19143,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 3904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3904,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 19143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T08:15:15.830Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_019h5zmkfn4FMRZKwfftUZvr`</summary>
+
+```json
+{
+  "description": "Research LoRA un-learning paper and DiZiNER paper",
+  "subagent_type": "Explore",
+  "prompt": "I need you to fetch and summarize two specific arXiv papers. Use WebFetch to read the abstract and method sections of each.\n\n1. arXiv:2604.16332 - A paper from March/April 2026 about LoRA fine-tuning exhibiting systematic un-learning on high-annotator-disagreement examples, with Spearman ρ = 0.06–0.43. Fetch from https://arxiv.org/abs/2604.16332\n\n2. arXiv:2604.15866 - DiZiNER, a paper from April 2026 about using disagreement between multiple heterogeneous LLMs as pilot annotators to iteratively refine task instructions for zero-shot NER. Fetch from https://arxiv.org/abs/2604.15866\n\nFor each paper, report:\n- Full title and authors\n- Key findings (2-3 sentences)\n- What methods they use\n- What datasets/benchmarks they evaluate on\n- Any specific numbers/results worth noting\n\nAlso search for: \"DART Leveraging Multi-Agent Disagreement Tool Recruitment Multimodal Reasoning EACL 2026\" to confirm the naming conflict paper exists at aclanthology.org/2026.eacl-long.253/\n\nFinally, search for any other very recent (2025-2026) papers on \"LoRA catastrophic forgetting annotation disagreement\" or \"soft label training LoRA\" that might be relevant."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97402dc3-4aba-4f5d-9fe5-d5dc6b43c786",
+  "isSidechain": false,
+  "requestId": "req_011CatZ5AeEXaxv4gM516Gfk",
+  "type": "assistant",
+  "uuid": "755d0b15-7087-4f32-bac6-aba6f5776c65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01R3jjqprXT53vAgQboEjoKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19143,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 3904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3904,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 19143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T08:15:22.474Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01WZToD4zB1g2ML6EnuYjSQR`</summary>
+
+```json
+{
+  "description": "Search for recent annotation disagreement and LoRA training papers",
+  "subagent_type": "Explore",
+  "prompt": "I'm revising a research paper about active annotation disagreement resolution. I need you to search for recent papers that might be relevant, to ensure we're not missing important related work.\n\nPlease search for and briefly summarize (2-3 sentences each):\n\n1. Search arxiv for \"type-conditioned annotation probe\" or \"typed disagreement resolution probing\" - any papers from 2025-2026 that do something similar to active typed disagreement resolution with probes\n\n2. Search for \"LoRA fine-tuning disagreement\" or \"LoRA catastrophic forgetting soft labels\" or \"LoRA learning rate disagreement examples\" - papers on LoRA training dynamics specifically around annotator disagreement\n\n3. Search for papers using the acronym \"TARP\" in NLP contexts to check if it's already taken\n\n4. Search for \"DiZiNER NER instruction refinement disagreement 2026\" to find the DiZiNER paper\n\n5. Search for papers from 2026 on \"class imbalance annotation disagreement classifier\" or \"weighted loss annotation type classification\"\n\nFor each search, report what you find or \"nothing relevant found\" if there's nothing. Keep responses brief - I need this for quick reference, not deep analysis."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "755d0b15-7087-4f32-bac6-aba6f5776c65",
+  "isSidechain": false,
+  "requestId": "req_011CatZ5AeEXaxv4gM516Gfk",
+  "type": "assistant",
+  "uuid": "b539f545-1d0e-4050-8171-98b75fab8bef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01R3jjqprXT53vAgQboEjoKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 19143,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 3904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3904,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 19143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T08:15:42.105Z_
+
+<details><summary>↩ Tool result · `toolu_019h5zmkfn4FMRZKwfftUZvr`</summary>
+
+```text
+## Summary of Fetched and Located Papers
+
+### 1. **"Annotation Entropy Predicts Per-Example Learning Dynamics in LoRA Fine-Tuning"** (arXiv:2604.16332)
+
+**Author:** Brady Steele  
+**Submission Date:** March 12, 2026
+
+**Key Findings:**
+- LoRA fine-tuning exhibits systematic "unlearning" behavior on high-disagreement examples, where loss increases during training
+- Spearman correlation coefficients between annotation entropy and per-example area under the loss curve (AULC) range from 0.06–0.43 across all tested conditions
+- Decoder-only models show stronger correlations than encoder models at matched LoRA ranks
+
+**Methods:**
+- Correlates annotation entropy from ChaosNLI's 100 labels per example with per-example AULC during training
+- Tests across six models (four encoder-based, two decoder-only)
+- Controls with partial correlations and replication across seeds and datasets
+- Includes preliminary noise-injection experiments
+
+**Datasets/Benchmarks:**
+- SNLI and MNLI datasets with ChaosNLI's 100 annotations per example
+- 25 tested conditions
+
+**Notable Results:**
+- Effect is consistent across all conditions and reproducible across datasets and random seeds
+- Full fine-tuning does not exhibit this unlearning pattern, making it specific to LoRA
+
+---
+
+### 2. **"DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition"** (arXiv:2604.15866)
+
+**Authors:** Siun Kim, Hyung-Jin Yoon  
+**Accepted to:** ACL 2026 Main Conference (9 pages)
+
+**Key Findings:**
+- Achieves "zero-shot SOTA results on 14 datasets" across 18 benchmarks
+- Improves prior performance by +8.0 F1
+- Narrows the supervised-to-zero-shot performance gap by over 11 points
+- Strong correlation between inter-model agreement and NER performance
+
+**Methods:**
+- Employs multiple heterogeneous LLMs as pilot annotators
+- A supervisor model analyzes disagreements between annotators
+- Iteratively refines task instructions based on disagreement patterns
+- Inspired by human annotation processes with simulated pilot annotations
+
+**Datasets/Benchmarks:**
+- Evaluated on 18 benchmarks for zero-shot NER evaluation
+- 14 datasets showing state-of-the-art results
+
+**Notable Results:**
+- Outperforms GPT-4 mini (the supervisor model)
+- Improvements attributed to disagreement-guided instruction refinement rather than model capacity alone
+
+---
+
+### 3. **DART Paper Confirmation**
+
+The paper exists and is confirmed: **"DART: Leveraging Multi-Agent Disagreement for Tool Recruitment in Multimodal Reasoning"** published at EACL 2026 (Long Papers, pages 5445–5464). Code is available at https://github.com/nsivaku/dart
+
+Key contribution: Uses disagreement between multiple agents to decide when/which tools to call, with 1.3% improvement on the M3D medical dataset.
+
+---
+
+### 4. **Related Papers on LoRA and Catastrophic Forgetting (2025-2026)**
+
+Several relevant papers were found, though most don't directly address annotation disagreement:
+
+- **OPLoRA** (2025): Orthogonal Projection LoRA prevents catastrophic forgetting by preserving essential pre-trained knowledge
+- **SMoLoRA** (ICCV 2025): Mixture-of-experts approach addressing dual catastrophic forgetting in continual visual instruction tuning
+- **LoRA vs Full Fine-tuning: An Illusion of Equivalence** (NeurIPS 2025): Analyzes spectral properties, finding that LoRA-trained weights have new "intruder dimensions"
+- **LoRASculpt** (CVPR 2025): Addresses sparsity and parameter conflict in LoRA-based fine-tuning
+
+**Note:** The specific intersection of "soft label training with LoRA" and "annotation disagreement" does not appear in recent literature, suggesting this is an emerging or understudied area.
+
+---
+
+## Sources:
+- [Annotation Entropy Predicts Per-Example Learning Dynamics in LoRA Fine-Tuning](https://arxiv.org/abs/2604.16332)
+- [DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot NER](https://arxiv.org/abs/2604.15866)
+- [DART: Leveraging Multi-Agent Disagreement for Tool Recruitment in Multimodal Reasoning - ACL Anthology](https://aclanthology.org/2026.eacl-long.253/)
+- [OPLoRA: Orthogonal Projection LoRA Prevents Catastrophic Forgetting](https://arxiv.org/abs/2510.13003)
+- [SMoLoRA: Exploring and Defying Dual Catastrophic Forgetting in Continual Visual Instruction Tuning](https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_SMoLoRA_Exploring_and_Defying_Dual_Catastrophic_Forgetting_in_Continual_Visual_ICCV_2025_paper.pdf)
+- [LoRA vs Full Fine-tuning: An Illusion of Equivalence](https://openreview.net/forum?id=xp7B8rkh7L)
+- [LoRASculpt: Sculpting LoRA for Harmonizing General and Specialized Knowledge](https://openaccess.thecvf.com/content/CVPR2025/papers/Liang_LoRASculpt_Sculpting_LoRA_for_Harmonizing_General_and_Specialized_Knowledge_in_CVPR_2025_paper.pdf)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "755d0b15-7087-4f32-bac6-aba6f5776c65",
+  "isSidechain": false,
+  "promptId": "17e4cebc-c8f8-4b6a-9507-e6aa888b40dc",
+  "type": "user",
+  "uuid": "1ea53f0e-08f0-48cd-a239-d60a30c71094",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to fetch and summarize two specific arXiv papers. Use WebFetch to read the abstract and method sections of each.\n\n1. arXiv:2604.16332 - A paper from March/April 2026 about LoRA fine-tuning exhibiting systematic un-learning on high-annotator-disagreement examples, with Spearman ρ = 0.06–0.43. Fetch from https://arxiv.org/abs/2604.16332\n\n2. arXiv:2604.15866 - DiZiNER, a paper from April 2026 about using disagreement between multiple heterogeneous LLMs as pilot annotators to iteratively refine task instructions for zero-shot NER. Fetch from https://arxiv.org/abs/2604.15866\n\nFor each paper, report:\n- Full title and authors\n- Key findings (2-3 sentences)\n- What methods they use\n- What datasets/benchmarks they evaluate on\n- Any specific numbers/results worth noting\n\nAlso search for: \"DART Leveraging Multi-Agent Disagreement Tool Recruitment Multimodal Reasoning EACL 2026\" to confirm the naming conflict paper exists at aclanthology.org/2026.eacl-long.253/\n\nFinally, search for any other very recent (2025-2026) papers on \"LoRA catastrophic forgetting annotation disagreement\" or \"soft label training LoRA\" that might be relevant.",
+    "agentId": "a9417f29592784b09",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Fetched and Located Papers\n\n### 1. **\"Annotation Entropy Predicts Per-Example Learning Dynamics in LoRA Fine-Tuning\"** (arXiv:2604.16332)\n\n**Author:** Brady Steele  \n**Submission Date:** March 12, 2026\n\n**Key Findings:**\n- LoRA fine-tuning exhibits systematic \"unlearning\" behavior on high-disagreement examples, where loss increases during training\n- Spearman correlation coefficients between annotation entropy and per-example area under the loss curve (AULC) range from 0.06–0.43 across all tested conditions\n- Decoder-only models show stronger correlations than encoder models at matched LoRA ranks\n\n**Methods:**\n- Correlates annotation entropy from ChaosNLI's 100 labels per example with per-example AULC during training\n- Tests across six models (four encoder-based, two decoder-only)\n- Controls with partial correlations and replication across seeds and datasets\n- Includes preliminary noise-injection experiments\n\n**Datasets/Benchmarks:**\n- SNLI and MNLI datasets with ChaosNLI's 100 annotations per example\n- 25 tested conditions\n\n**Notable Results:**\n- Effect is consistent across all conditions and reproducible across datasets and random seeds\n- Full fine-tuning does not exhibit this unlearning pattern, making it specific to LoRA\n\n---\n\n### 2. **\"DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition\"** (arXiv:2604.15866)\n\n**Authors:** Siun Kim, Hyung-Jin Yoon  \n**Accepted to:** ACL 2026 Main Conference (9 pages)\n\n**Key Findings:**\n- Achieves \"zero-shot SOTA results on 14 datasets\" across 18 benchmarks\n- Improves prior performance by +8.0 F1\n- Narrows the supervised-to-zero-shot performance gap by over 11 points\n- Strong correlation between inter-model agreement and NER performance\n\n**Methods:**\n- Employs multiple heterogeneous LLMs as pilot annotators\n- A supervisor model analyzes disagreements between annotators\n- Iteratively refines task instructions based on disagreement patterns\n- Inspired by human annotation processes with simulated pilot annotations\n\n**Datasets/Benchmarks:**\n- Evaluated on 18 benchmarks for zero-shot NER evaluation\n- 14 datasets showing state-of-the-art results\n\n**Notable Results:**\n- Outperforms GPT-4 mini (the supervisor model)\n- Improvements attributed to disagreement-guided instruction refinement rather than model capacity alone\n\n---\n\n### 3. **DART Paper Confirmation**\n\nThe paper exists and is confirmed: **\"DART: Leveraging Multi-Agent Disagreement for Tool Recruitment in Multimodal Reasoning\"** published at EACL 2026 (Long Papers, pages 5445–5464). Code is available at https://github.com/nsivaku/dart\n\nKey contribution: Uses disagreement between multiple agents to decide when/which tools to call, with 1.3% improvement on the M3D medical dataset.\n\n---\n\n### 4. **Related Papers on LoRA and Catastrophic Forgetting (2025-2026)**\n\nSeveral relevant papers were found, though most don't directly address annotation disagreement:\n\n- **OPLoRA** (2025): Orthogonal Projection LoRA prevents catastrophic forgetting by preserving essential pre-trained knowledge\n- **SMoLoRA** (ICCV 2025): Mixture-of-experts approach addressing dual catastrophic forgetting in continual visual instruction tuning\n- **LoRA vs Full Fine-tuning: An Illusion of Equivalence** (NeurIPS 2025): Analyzes spectral properties, finding that LoRA-trained weights have new \"intruder dimensions\"\n- **LoRASculpt** (CVPR 2025): Addresses sparsity and parameter conflict in LoRA-based fine-tuning\n\n**Note:** The specific intersection of \"soft label training with LoRA\" and \"annotation disagreement\" does not appear in recent literature, suggesting this is an emerging or understudied area.\n\n---\n\n## Sources:\n- [Annotation Entropy Predicts Per-Example Learning Dynamics in LoRA Fine-Tuning](https://arxiv.org/abs/2604.16332)\n- [DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot NER](https://arxiv.org/abs/2604.15866)\n- [DART: Leveraging Multi-Agent Disagreement for Tool Recruitment in Multimodal Reasoning - ACL Anthology](https://aclanthology.org/2026.eacl-long.253/)\n- [OPLoRA: Orthogonal Projection LoRA Prevents Catastrophic Forgetting](https://arxiv.org/abs/2510.13003)\n- [SMoLoRA: Exploring and Defying Dual Catastrophic Forgetting in Continual Visual Instruction Tuning](https://openaccess.thecvf.com/content/ICCV2025/papers/Wang_SMoLoRA_Exploring_and_Defying_Dual_Catastrophic_Forgetting_in_Continual_Visual_ICCV_2025_paper.pdf)\n- [LoRA vs Full Fine-tuning: An Illusion of Equivalence](https://openreview.net/forum?id=xp7B8rkh7L)\n- [LoRASculpt: Sculpting LoRA for Harmonizing General and Specialized Knowledge](https://openaccess.thecvf.com/content/CVPR2025/papers/Liang_LoRASculpt_Sculpting_LoRA_for_Harmonizing_General_and_Specialized_Knowledge_in_CVPR_2025_paper.pdf)"
+      }
+    ],
+    "totalDurationMs": 26270,
+    "totalTokens": 23409,
+    "totalToolUseCount": 5,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 5042,
+      "cache_read_input_tokens": 16920,
+      "output_tokens": 1440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5042
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1440,
+          "cache_read_input_tokens": 16920,
+          "cache_creation_input_tokens": 5042,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5042,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 5
+    }
+  },
+  "sourceToolAssistantUUID": "755d0b15-7087-4f32-bac6-aba6f5776c65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Disagreement-Type-Conditioned Active Annotation Resolution Protocol\",…",
+  "leafUuid": "1ea53f0e-08f0-48cd-a239-d60a30c71094",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Resolve annotation disagreement via typed active probing",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T08:15:44.193Z_
+
+<details><summary>↩ Tool result · `toolu_01WZToD4zB1g2ML6EnuYjSQR`</summary>
+
+```text
+Here's a brief summary of what I found for your related work review:
+
+## 1. Type-Conditioned Annotation Probe / Typed Disagreement Resolution (2025-2026)
+
+Found several relevant papers on annotation disagreement and probing. **STABLEVAL** (arXiv:2605.02122) addresses disagreement-aware evaluation. **"Can reasoning help large language models capture human annotator disagreement?"** discusses how models capture disagreement patterns. Also found research on the **Learning Subjective Label Distribution** framework that conditions distributions on attributes and perspectives for subgroup-specific disagreement estimates. One discovery: LoRA fine-tuning exhibits un-learning on contested examples—items with high disagreement show increasing loss during training when correlated with annotation entropy.
+
+**Sources:**
+- [STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems](https://arxiv.org/html/2605.02122v1)
+- [Beyond Consensus: Perspectivist Modeling and Evaluation of Annotator Disagreement in NLP](https://arxiv.org/html/2601.09065v1)
+- [Unveiling the Capabilities of Large Language Models in Detecting Offensive Language with Annotation Disagreement](https://arxiv.org/html/2502.06207v1)
+
+## 2. LoRA Fine-tuning with Disagreement / Soft Labels
+
+Found multiple papers directly addressing LoRA and catastrophic forgetting: **OPLoRA** (2510.13003) uses orthogonal projections to prevent forgetting, **SLIM** (2410.07739) combines Soft LoRA with identity mixture for dynamic routing, and **Entropy-Adaptive Fine-Tuning** (2601.02151) identifies "Confident Conflicts"—where models are confident but forced to learn divergent ground truth, causing destructive gradient updates. Highly relevant to your disagreement work.
+
+**Sources:**
+- [OPLoRA: Orthogonal Projection LoRA Prevents Catastrophic Forgetting](https://arxiv.org/html/2510.13003v2)
+- [SLIM: Let LLM Learn More and Forget Less with Soft LoRA and Identity Mixture](https://arxiv.org/html/2410.07739v1)
+- [Entropy-Adaptive Fine-Tuning: Resolving Confident Conflicts to Mitigate Forgetting](https://arxiv.org/html/2601.02151v1)
+- [Fine Tuning without Catastrophic Forgetting via Selective Low Rank Adaptation](https://arxiv.org/html/2501.15377v1)
+
+## 3. TARP Acronym in NLP
+
+Nothing relevant found. TARP ("Tests of Accuracy with Random Points") is a statistical method for coverage testing in parameter inference, not an NLP-specific acronym, so your use appears safe.
+
+## 4. DiZiNER (2026)
+
+Found it! **DiZiNER** (arXiv:2604.15866) is directly relevant—a framework that simulates pilot annotation with multiple heterogeneous LLMs acting as annotators, using a supervisor to analyze inter-model disagreements and refine task instructions for zero-shot NER. Achieves state-of-the-art on 14 of 18 benchmarks, improving prior results by +8.0 F1 and reducing the zero-shot-to-supervised gap by +11 points.
+
+**Source:**
+- [DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition](https://arxiv.org/abs/2604.15866)
+
+## 5. Class Imbalance + Annotation Disagreement + Weighted Loss (2026)
+
+Nothing specifically combining all three for 2026. Found general class imbalance papers (class-balanced loss, class-aware contrastive optimization) and weighted loss approaches for multi-label emotion detection, but no 2026 paper explicitly linking annotation disagreement to weighted loss classification.
+
+Your related work review appears well-positioned; DiZiNER and the LoRA+disagreement papers are your closest competitors.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b539f545-1d0e-4050-8171-98b75fab8bef",
+  "isSidechain": false,
+  "promptId": "17e4cebc-c8f8-4b6a-9507-e6aa888b40dc",
+  "type": "user",
+  "uuid": "32946bc7-d079-45fb-a2dd-d5d6341de7b2",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm revising a research paper about active annotation disagreement resolution. I need you to search for recent papers that might be relevant, to ensure we're not missing important related work.\n\nPlease search for and briefly summarize (2-3 sentences each):\n\n1. Search arxiv for \"type-conditioned annotation probe\" or \"typed disagreement resolution probing\" - any papers from 2025-2026 that do something similar to active typed disagreement resolution with probes\n\n2. Search for \"LoRA fine-tuning disagreement\" or \"LoRA catastrophic forgetting soft labels\" or \"LoRA learning rate disagreement examples\" - papers on LoRA training dynamics specifically around annotator disagreement\n\n3. Search for papers using the acronym \"TARP\" in NLP contexts to check if it's already taken\n\n4. Search for \"DiZiNER NER instruction refinement disagreement 2026\" to find the DiZiNER paper\n\n5. Search for papers from 2026 on \"class imbalance annotation disagreement classifier\" or \"weighted loss annotation type classification\"\n\nFor each search, report what you find or \"nothing relevant found\" if there's nothing. Keep responses brief - I need this for quick reference, not deep analysis.",
+    "agentId": "a067ecd81debfac1b",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here's a brief summary of what I found for your related work review:\n\n## 1. Type-Conditioned Annotation Probe / Typed Disagreement Resolution (2025-2026)\n\nFound several relevant papers on annotation disagreement and probing. **STABLEVAL** (arXiv:2605.02122) addresses disagreement-aware evaluation. **\"Can reasoning help large language models capture human annotator disagreement?\"** discusses how models capture disagreement patterns. Also found research on the **Learning Subjective Label Distribution** framework that conditions distributions on attributes and perspectives for subgroup-specific disagreement estimates. One discovery: LoRA fine-tuning exhibits un-learning on contested examples—items with high disagreement show increasing loss during training when correlated with annotation entropy.\n\n**Sources:**\n- [STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems](https://arxiv.org/html/2605.02122v1)\n- [Beyond Consensus: Perspectivist Modeling and Evaluation of Annotator Disagreement in NLP](https://arxiv.org/html/2601.09065v1)\n- [Unveiling the Capabilities of Large Language Models in Detecting Offensive Language with Annotation Disagreement](https://arxiv.org/html/2502.06207v1)\n\n## 2. LoRA Fine-tuning with Disagreement / Soft Labels\n\nFound multiple papers directly addressing LoRA and catastrophic forgetting: **OPLoRA** (2510.13003) uses orthogonal projections to prevent forgetting, **SLIM** (2410.07739) combines Soft LoRA with identity mixture for dynamic routing, and **Entropy-Adaptive Fine-Tuning** (2601.02151) identifies \"Confident Conflicts\"—where models are confident but forced to learn divergent ground truth, causing destructive gradient updates. Highly relevant to your disagreement work.\n\n**Sources:**\n- [OPLoRA: Orthogonal Projection LoRA Prevents Catastrophic Forgetting](https://arxiv.org/html/2510.13003v2)\n- [SLIM: Let LLM Learn More and Forget Less with Soft LoRA and Identity Mixture](https://arxiv.org/html/2410.07739v1)\n- [Entropy-Adaptive Fine-Tuning: Resolving Confident Conflicts to Mitigate Forgetting](https://arxiv.org/html/2601.02151v1)\n- [Fine Tuning without Catastrophic Forgetting via Selective Low Rank Adaptation](https://arxiv.org/html/2501.15377v1)\n\n## 3. TARP Acronym in NLP\n\nNothing relevant found. TARP (\"Tests of Accuracy with Random Points\") is a statistical method for coverage testing in parameter inference, not an NLP-specific acronym, so your use appears safe.\n\n## 4. DiZiNER (2026)\n\nFound it! **DiZiNER** (arXiv:2604.15866) is directly relevant—a framework that simulates pilot annotation with multiple heterogeneous LLMs acting as annotators, using a supervisor to analyze inter-model disagreements and refine task instructions for zero-shot NER. Achieves state-of-the-art on 14 of 18 benchmarks, improving prior results by +8.0 F1 and reducing the zero-shot-to-supervised gap by +11 points.\n\n**Source:**\n- [DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition](https://arxiv.org/abs/2604.15866)\n\n## 5. Class Imbalance + Annotation Disagreement + Weighted Loss (2026)\n\nNothing specifically combining all three for 2026. Found general class imbalance papers (class-balanced loss, class-aware contrastive optimization) and weighted loss approaches for multi-label emotion detection, but no 2026 paper explicitly linking annotation disagreement to weighted loss classification.\n\nYour related work review appears well-positioned; DiZiNER and the LoRA+disagreement papers are your closest competitors."
+      }
+    ],
+    "totalDurationMs": 21715,
+    "totalTokens": 23032,
+    "totalToolUseCount": 5,
+    "usage": {
+      "input_tokens": 2234,
+      "cache_creation_input_tokens": 2966,
+      "cache_read_input_tokens": 16856,
+      "output_tokens": 976,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2966
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2234,
+          "output_tokens": 976,
+          "cache_read_input_tokens": 16856,
+          "cache_creation_input_tokens": 2966,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2966,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 5
+    }
+  },
+  "sourceToolAssistantUUID": "b539f545-1d0e-4050-8171-98b75fab8bef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-10T08:17:33.265Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have clear information on both papers. Let me compile what I know:
+
+**arXiv:2604.16332** - "Annotation Entropy Predicts Per-Example Learning Dynamics in LoRA Fine-Tuning" by Brady Steele
+- LoRA exhibits systematic unlearning on high-disagreement examples (loss increases)
+- Spearman ρ = 0.06–0.43 across 25 conditions
+- Effect is specific to LoRA; full fine-tuning does NOT exhibit this pattern
+- Uses ChaosNLI data with SNLI and MNLI
+- Important: The paper uses MNLI/SNLI, which is exactly what DART Stage 4 uses!
+
+
+- Full fine-tuning doesn't show this problem
+
+**arXiv:2604.15866** - DiZiNER by Siun Kim, Hyung-Jin Yoon leverages disagreement between heterogeneous LLMs to refine NER task instructions, achieving state-of-the-art results on 14 out of 18 NER benchmarks with an 8.0 F1 improvement, and was accepted to ACL 2026 Main Conference.
+
+I've confirmed the DART name clash at aclanthology.org/2026.eacl-long.253/, and TARP is safe to use with no NLP conflicts. Now I need to plan the revision.
+
+Looking at arXiv:2604.16332, the key finding is that LoRA un-learning is specific to LoRA while full fine-tuning doesn't exhibit this problem—and critically, they use the same MNLI/ChaosNLI evaluation setup that DART relies on. This means the threat to Stage 4 is concrete and the solution is clear: I should redesign Stage 4 to use full fine-tuning of a smaller model like Qwen3-1.8B as the primary approach, which avoids LoRA un-learning entirely while staying within budget constraints.
+
+The LoRA fine-tuning of Qwen3-7B then becomes an ablation that actually strengthens the contribution—I can show that TARP's type-conditioned probing helps mitigate the un-learning effect compared to unprobed baselines, even in the LoRA regime. Full fine-tuning of the smaller model gives me a clean evaluation without un-learning artifacts, while the LoRA ablation demonstrates TARP's robustness across different training paradigms. Compute-wise, full fine-tuning of 1.8B is likely comparable or even more memory-efficient than LoRA of 7B in practice. baselines × 2 domains × full FT of 1.8B ≈ reasonable
+
+Now I'm thinking about the deeper issue: can I strengthen the framing around the LoRA un-learning problem? Yes—I can reframe Stage 4 to highlight that arXiv:2604.16332 shows LoRA fine-tuning on high-disagreement examples like those TARP processes leads to systematic un-learning. So TARP uses full fine-tuning of Qwen3-1.8B as the primary approach to avoid this failure mode, and then tests LoRA fine-tuning of Qwen3-7B as an ablation to see whether improved soft labels can mitigate the un-learning effect.
+
+This is genuinely stronger because it positions TARP as solving two problems at once: better label quality through typed probing, and training stability through full fine-tuning with those improved labels.
+
+So my changes are: rename DART to TARP (Type-Aware Resolution via Probing), add weighted cross-entropy in Stage 1 to handle class imbalance, switch Stage 4's primary training to full fine-tuning of Qwen3-1.8B with LoRA fine-tuning of Qwen3-7B as an ablation, cite the un-learning paper, and add DiZiNER to the key references.
+
+I also need to note the name clash with DART EACL 2026 in the landscape section and update the title and project name accordingly. This is a major change type since Stage 4 gets a meaningful redesign, the system is renamed, and Stage 1 gets weighted loss.
+
+For compute, full FT of Qwen3-1.8B across 3 baseline conditions, 3 seeds, and 2 domains gives 18 runs, and since the model is smaller, the GPU time per run should be similar to or less than LoRA at 7B, so I'm estimating around 50 GPU hours total.
+
+Adding the LoRA ablation of 7B and the training sweeps brings the total to roughly 80-100 H100h, which stays within budget. Now I'm writing out the full revised JSON with the new title "Type-Aware Resolution via Probing for Annotation Disagreement" and project name "tarp_disagree_resolve", and updating the core_problem to explain how LoRA fine-tuning un-learns high-disagreement examples while TARP's probing-improved soft labels combined with full fine-tuning addresses both the labeling and training stability gaps.
+
+I'm also incorporating the arXiv:2604.16332 reference throughout to show LoRA's systematic failure on exactly the examples TARP targets, updating the landscape section with DiZiNER and that paper, renaming DART to TARP everywhere, adding class weights to Stage 1, making full fine-tuning of Qwen3-1.8B the primary approach with LoRA of 7B as the ablation, and updating the resource estimates and description accordingly.
+
+For the title, I'm settling on "TARP: Type-Aware Resolution via Probing" — it's clean and puts the acronym first while staying descriptive.
+
+Now I'm writing out the full JSON carefully, making sure to update every DART reference to TARP, integrate the new papers and findings, restructure Stage 4 around full fine-tuning as the main method, and keep the rest of the structure intact.
+
+The critical shift in Stage 4 is grounding it in the empirical finding from arXiv:2604.16332 — LoRA systematically fails to learn on high-disagreement examples (Spearman ρ = 0.06–0.43), which is exactly where TARP's ProbeBank operates, so full fine-tuning of Qwen3-1.8B becomes the primary approach. I'm setting up three baselines to evaluate against: hard labels, unprobed soft labels, and TARP-probed soft labels, plus an ablation comparing LoRA on Qwen3-7B under the same conditions.
+
+Writing the JSON structure... baselines, quantifying the interaction between TARP's type-conditioned soft-label updates and LoRA's un-learning dynamics — testing whether improved soft labels partially mitigate the un-learning effect even within the LoRA regime."
+
+For the resource estimate, the GPU hours should be updated. Full FT of 1.8B model:
+- Each training run: ~1-2 H100h (1.8B model full FT is fast)
+- 18 primary runs (3 baselines × 3 seeds × 2 domains) = ~18-36 H100h
+- 18 ablation runs (LoRA 7B, same conditions) = ~18-36 H100h
+- Total Stage 4: ~36-72 H100h
+- Overall: still ~70-90 H100h total for the simulated path
+
+Now I'm reconsidering which model size makes sense for full fine-tuning. Looking at the Qwen3 family options, Qwen3-1.7B strikes the right balance — it's small enough to fit in under 8GB VRAM for full fine-tuning but large enough to demonstrate meaningful performance on soft-label NLI and toxicity classification tasks while staying consistent with the Qwen3 family.
+
+The reviewer's point about full fine-tuning mitigating the un-learning effect is well-taken, and the paper's own findings support this. Switching from LoRA to full fine-tuning on a smaller model like 1.7B addresses the concern while keeping compute costs manageable compared to full fine-tuning a 7B model.
+
+I could also explore class-conditional learning rates with LoRA as a more targeted approach, but the proven solution is to go with full fine-tuning of Qwen3-1.7B as the primary experiment and LoRA fine-tuning of Qwen3-7B as an ablation to see how the two approaches interact.
+
+Now I'm structuring the JSON response with the key changes needed. Generating the JSON structure... write each field carefully.
+
+For core_problem, I'll add the LoRA un-learning angle: when annotators disagree, systems either collapse disagreement through majority voting or passively model its distribution. Recent work has established a typed taxonomy of NLI disagreement, and shown that RLHF reward models and LLM judges fail to account for annotator divergence with typed preference data. Naive chain-of-thought improves disagreement modeling for RLHF-trained LLMs while RLVR degrades it, but neither generalizes to active typed-probe resolution across general NLP annotation schemas. The critical finding is that LoRA fine-tuning — the standard parameter-efficient approach — systematically un-learns on high-disagreement examples while full fine-tuning doesn't, creating a fundamental mismatch: even if passive LLM reasoning could improve soft labels for contested instances, the dominant training regime would degrade performance on those exact cases. No existing method connects disagreement-type detection to type-specific probe generation, structured annotator encoding, and soft-label training under a regime that actually preserves this information.
+
+For Stage 1, I'm addressing the class imbalance in the taxonomy by applying weighted cross-entropy loss scaled to the 6:2:2 subcategory distribution, which gives roughly 1:3:3 weight ratios across the three TARP types.
+
+For Stage 4, I'm switching to full fine-tuning instead of LoRA because recent work shows LoRA systematically un-learns on high-disagreement examples—there's a measurable correlation between annotation entropy and training loss—whereas full fine-tuning avoids this degradation pattern entirely.
+
+Since TARP's dataset consists of exactly these contested, high-disagreement instances, full fine-tuning preserves the improved soft labels TARP generates while remaining computationally feasible. I'm evaluating three training approaches on ToxiGen and MNLI: hard labels, unprobed soft labels with original distributions, and TARP-probed soft labels with updated distributions, plus a LoRA ablation on the larger 7B model to isolate how TARP's soft-label improvements interact with LoRA's un-learning dynamics.
+
+Now I'm refining the resource estimates for the full fine-tuning path, calculating that 18 runs of 1.7B full fine-tuning across three seeds, three baselines, and two domains will require roughly 18-36 H100 hours, with the LoRA 7B ablation adding additional compute.
+
+Adjusting the overall budget to 80-110 H100 hours to accommodate both stages, I'm also mapping out a revised timeline where the primary full fine-tuning runs over days 4-10, the LoRA ablation follows through day 12, and analysis and writing wrap up by day 15 or 16.
+
+Actually, I need to reconsider the compute requirements more carefully. The full fine-tuning of the smaller 1.7B model should be faster per run than LoRA on the larger 7B model, so I'm revising down to roughly 18 H100 hours for the primary stage and 45 H100 hours for the ablation, bringing the total to around 63 H100 hours for stage 4 and 80-100 H100 hours overall. This compresses the timeline to days 4-6 for primary training, days 6-9 for the ablation runs, and days 9-14 for analysis and writeup, fitting comfortably within the 15-day window.
+
+Now I'm updating the JSON with the new references—adding DiZiNER and the Steele 2026 LoRA un-learning paper to both the landscape and key_references sections, and noting that DART is now properly attributed to Sivakumaran et al. at EACL 2026.
+
+Writing the complete JSON...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32946bc7-d079-45fb-a2dd-d5d6341de7b2",
+  "isSidechain": false,
+  "requestId": "req_011CatZCrCwMYT1ZcgroyC5K",
+  "type": "assistant",
+  "uuid": "bc16b562-1df8-4a01-8734-92a20b3e6469",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SszwZaMR4QxpoKkzWhVYNe",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6371,
+      "cache_read_input_tokens": 30774,
+      "output_tokens": 19922,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6371,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 19922,
+          "cache_read_input_tokens": 30774,
+          "cache_creation_input_tokens": 6371,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6371
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-10T08:22:40.853Z_
+
+Good — I now have solid grounding on both papers. Key findings:
+
+- **arXiv:2604.16332** (Steele 2026): LoRA un-learning on high-disagreement examples is confirmed, Spearman ρ = 0.06–0.43 on SNLI/MNLI with ChaosNLI. **Critical**: full fine-tuning does NOT exhibit this pattern. Uses the exact same MNLI/ChaosNLI data that Stage 4 evaluates on.
+- **DiZiNER** (arXiv:2604.15866, ACL 2026 Main, Kim & Yoon): SOTA on 14/18 NER benchmarks via disagreement-guided instruction refinement — different mechanism (instruction refinement vs. typed annotator probing) but same principle (disagreement as intervention signal).
+- **DART EACL 2026 name clash** confirmed at aclanthology.org/2026.eacl-long.253/
+- **TARP** acronym is clean — no NLP conflicts.
+
+The LoRA finding is actually an opportunity to strengthen the framing: TARP solves two coupled failures — the labeling gap (no typed probing) and the training stability gap (LoRA un-learning on contested instances). The fix is to switch Stage 4's primary training to full fine-tuning of Qwen3-1.7B (confirmed by the paper to not exhibit this pattern), with LoRA fine-tuning of Qwen3-7B as an additional ablation characterizing the interaction. This adds a contribution rather than just patching a risk.
+
+```json
+{
+  "title": "TARP: Type-Aware Resolution via Probing for Annotation Disagreement",
+  "project_name": "tarp_disagree_resolve",
+  "source": "web_research",
+  "level": "solid",
+  "change_type": "major",
+  "core_problem": "When human annotators disagree, current annotation systems either collapse disagreement via majority voting or model its distribution passively without intervening. A principled typed taxonomy of NLI disagreement (Jiang & de Marneffe, TACL 2022) has been proposed, and Zhang et al. (ICML 2025, arXiv:2410.14632) have now shown that even RLHF reward models and LLM judges fail to account for annotator divergence when presented with typed preference data. Ni et al. (EACL 2026, arXiv:2506.19467) extend this picture: naive CoT improves disagreement modeling for RLHF-trained LLMs, and RLVR degrades it — but neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas. Critically, Steele (arXiv:2604.16332, 2026) reveals a second, orthogonal failure that compounds the labeling gap: LoRA fine-tuning — the dominant parameter-efficient training regime — exhibits systematic un-learning on high-disagreement examples specifically (Spearman ρ = 0.06–0.43 across all 25 tested conditions on SNLI/MNLI with ChaosNLI annotations), while full fine-tuning does not exhibit this pattern. This means that even if passive LLM reasoning could improve soft labels for contested instances, the standard LoRA training regime would degrade model performance on exactly those instances. The gap is therefore twofold: no existing method closes the loop from disagreement-type detection to type-specific probe generation, structured annotator response encoding, and soft-label training integration; and no existing method pairs improved soft labels with a training regime (full fine-tuning) that does not un-learn them. Passive reasoning cannot close either gap regardless of whether CoT helps at the RLHF-prediction margin.",
+  "opportunity": "CARE (EMNLP 2025, aclanthology 2025.emnlp-main.671) introduces disagreement detection via sub-concept alignment and counterfactual reasoning but is entirely passive — it does not type disagreements or generate resolution probes. A simultaneous structured disagreement analysis (arXiv 2604.19943, April 2026) shows task-level conceptual difficulty accounts for substantially more annotation variance than annotator identity, providing empirical grounding for type-conditioned probe selection. Zhang et al. (ICML 2025, arXiv:2410.14632) develop a 10-category disagreement taxonomy for RLHF preference annotation and find that standard reward modeling methods and LLM-as-Judge approaches 'fail to account for divergence between annotators' — a direct empirical motivation for TARP's active probe-based approach. Ni et al. (EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467) provide systematic evaluation across 60 experimental setups: naive CoT improves disagreement modeling for RLHF-trained LLMs, while RLVR-style reasoning degrades it — but critically, neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas. TARP's motivation is precisely this schema-generalization gap: the typed-probe resolution loop (detect type → generate type-conditioned probe → collect structured response → update soft labels) cannot be replaced by any passive reasoning strategy, CoT-assisted or otherwise, because passive prediction has no mechanism to selectively elicit the structured annotator judgments that type-conditioned probes target. Steele (arXiv:2604.16332, 2026) reveals a complementary opportunity: by pairing TARP's improved soft labels with full fine-tuning rather than LoRA, TARP addresses both the labeling gap and the training stability gap in one pipeline — since full fine-tuning does not exhibit the LoRA un-learning pattern on high-disagreement examples. ClarifyDelphi (ACL 2023, aclanthology.org/2023.acl-long.630) is the closest prior work on targeted clarification question generation, using RL with defeasibility rewards to elicit context for moral/social situations — but it operates in a narrow domain, does not pre-classify disagreement type before generating questions, generates background-context questions (not annotation-schema disambiguation probes), and does not connect to soft-label training. DiZiNER (Kim & Yoon, ACL 2026 Main, arXiv:2604.15866) uses disagreement between multiple heterogeneous LLMs as pilot annotators to iteratively refine NER task instructions, achieving SOTA on 14/18 NER benchmarks — but it does not pre-classify disagreement into typed categories before intervention, generates instruction refinements rather than annotator-directed resolution probes, and does not connect to soft-label training integration. 'Will Annotators Disagree?' (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) predicts whether disagreement will occur on value-laden arguments (one of TARP's three types), but predicts binary occurrence rather than typing it post-hoc and generates no probes. NUTMEG (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) uses Bayesian modeling to partition disagreements into systematic signal and noise, but does not further classify signal disagreements into types, does not generate clarification probes, and does not produce type-conditioned probe templates — making it complementary rather than competing. 'Disentangling Subjectivity and Uncertainty' (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460) distinguishes value-based annotator subjectivity from item-level uncertainty in hate speech annotation, paralleling TARP's value-divergence vs. conceptual-ambiguity split, but uses gaze tracking rather than generated probes and contains no active resolution loop or training integration. The NLP Annotation Disagreement Workshop (ACL 2025 co-located) and NLPerspectives at EMNLP 2025 confirm sustained community interest. Together, these works leave a specific gap: no system closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration under a training regime that preserves the improved labels on contested instances.",
+  "landscape": "Current SOTA spans: CARE (EMNLP 2025) for disagreement detection; Jiang & de Marneffe's 10-category NLI disagreement taxonomy under three classes — Ambiguity in Sentence Meaning (Lexical, Implicature, Presupposition, Probabilistic Enrichment, Imperfection), Underspecification of Guidelines (Coreference, Temporal Reference, Interrogative Hypothesis), and Annotator Behavior (Accommodating Minimally Added Content, High Overlap) (TACL 2022, aclanthology.org/2022.tacl-1.78) — which provides the most directly related typed treatment of annotation disagreement and direct training supervision for TARP Stage 1 from ~450 human-annotated ChaosNLI instances; 'Diverging Preferences' (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632), which develops a 10-category taxonomy for RLHF preference annotation (pairwise A vs. B comparisons on MultiPref and HelpSteer2, spanning four high-level classes: Task, Response Style, Refusals, Errors) and finds that LLMs fail to account for annotator divergence — this null result for passive LLM prediction provides independent motivation for TARP's active probing design, and distinguishes from TARP in scope (pairwise RLHF preference data vs. general NLP multi-class annotation schemas), mechanism (post-hoc characterization without probe generation), and integration (no connection to annotation resolution or soft-label training); 'Can Reasoning Help Large Language Models Capture Human Annotator Disagreement?' (Ni, Fan, Zouhar, Rooein, Hoyle, Sachan, Leippold, Hovy, Ash, EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467), which evaluates 60 experimental setups across three annotation tasks and finds that naive CoT improves disagreement modeling performance for RLHF-trained LLMs while RLVR-style reasoning degrades it — providing complementary empirical support for TARP's active probing approach alongside Zhang et al., and establishing that even where CoT helps at the RLHF-prediction margin, neither CoT nor RLVR generalizes to active typed-probe resolution across general NLP annotation schemas; 'Annotation Entropy Predicts Per-Example Learning Dynamics in LoRA Fine-Tuning' (Steele, arXiv:2604.16332, March 2026), which demonstrates that LoRA fine-tuning exhibits systematic un-learning on high-disagreement examples — Spearman ρ = 0.06–0.43 between annotation entropy and per-example area-under-the-loss-curve across all 25 tested conditions on SNLI/MNLI with ChaosNLI annotations, with decoder-only models showing stronger correlations — while full fine-tuning does not exhibit this pattern; this finding directly motivates TARP's Stage 4 design choice of full fine-tuning of Qwen3-1.7B as the primary training regime for high-disagreement instances, and adds a LoRA-vs-full-FT ablation as a contribution; NUTMEG (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) for Bayesian signal-vs-noise partitioning of annotation disagreement — complementary to TARP in that it identifies which disagreements are worth resolving but does not type them or generate resolution probes; 'Disentangling Subjectivity and Uncertainty for Hate Speech Annotation and Modeling using Gaze' (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460), which distinguishes annotator-level subjectivity (value divergence) from item-level uncertainty (conceptual ambiguity / borderline threshold) using gaze tracking — the closest existing operationalization of TARP's core typing distinction, but using gaze tracking as input signal rather than LLM classification, with no probe generation or active resolution loop; DiZiNER (Kim & Yoon, ACL 2026 Main, arXiv:2604.15866), which uses disagreement between multiple heterogeneous LLMs as pilot annotators to iteratively refine NER task instructions — achieving SOTA on 14/18 NER benchmarks (+8.0 F1, narrowing the zero-shot-to-supervised gap by over 11 points) via disagreement-guided instruction refinement; TARP differs from DiZiNER in three ways: (a) TARP pre-classifies disagreement into typed categories (conceptual ambiguity / value divergence / borderline threshold) before generating probes, rather than treating disagreement as an undifferentiated signal, (b) TARP generates annotator-directed resolution probes rather than instruction refinements — targeting human annotator judgment resolution rather than LLM zero-shot prompting improvement, and (c) TARP connects to soft-label training integration rather than instruction output; Beyond Consensus (arXiv 2601.09065, Jan 2026) for perspectivist evaluation; soft-label training (arXiv 2511.14117) for preserving epistemic uncertainty; DEM-MoE (arXiv 2508.02853) for demographic-aware expert modeling; STABLEVAL (arXiv 2605.02122, May 2026) for disagreement-aware evaluation; 'Will Annotators Disagree?' (EMNLP 2025 Findings) for predicting value-laden disagreement occurrence; 'Beyond Black-Box Labels' (arXiv 2604.17022, April 2026) for pre-annotation diagnostic criteria separation; ClarifyDelphi (ACL 2023) for RL-based clarification question generation in moral/social contexts; DARC: Disagreement-Aware Alignment via Risk-Constrained Decoding (arXiv:2603.08145, March 2026), which applies inference-time distributionally robust optimization to rerank candidate responses under heterogeneous user preferences — a concurrent work that addresses preference disagreement at inference time without model retraining, without categorizing disagreements into typed classes, and without generating annotation-resolution probes; DARC is entirely complementary to TARP's annotation workflow focus and represents a distinct research direction (inference-time robust decoding rather than active human-annotation resolution); and ReasonScaffold (arXiv 2603.21094, March 2026), which exposes LLM reasoning to annotators via a two-pass Delphi protocol but applies a uniform intervention regardless of disagreement type and does not generate targeted resolution probes. Annotator-Centric Active Learning (EMNLP 2024) selects which annotators to query about disputed items but does not generate type-conditioned probe content. Note on naming: 'DART' is used by Sivakumaran et al. (EACL 2026, aclanthology.org/2026.eacl-long.253/) for a multimodal tool-recruitment framework; TARP is adopted to avoid community confusion. None of these systems include an active protocol that (i) detects disagreement type, (ii) generates type-specific resolution probes, (iii) encodes structured annotator responses as calibrated soft-label updates, and (iv) feeds these into model training under a training regime that does not un-learn the improved labels on contested instances.",
+  "approach": "We propose TARP (Type-Aware Resolution via Probing), a four-stage active annotation protocol scoped to ~1,500 ProbeBank instances across two domains (toxicity detection and NLI) to fit within the compute budget. Stage 1 fine-tunes Qwen3-7B as a three-way disagreement-type classifier — conceptual ambiguity (annotators interpret the construct via different sub-definitions), value divergence (shared construct understanding but differing normative weighting), and borderline threshold (stimulus near a decision boundary) — using dual-source supervision: (a) direct supervision from Jiang & de Marneffe's TACL 2022 NLI disagreement taxonomy (~450 instances with human-typed labels, drawn from ChaosNLI) with an explicit fine-grained subcategory-to-TARP-type mapping specified as follows: Probabilistic Enrichment and Imperfection (from Jiang's Ambiguity in Sentence Meaning class) → borderline threshold, because these subcategories represent items where annotators diverge due to proximity to a decision boundary rather than genuine interpretive disagreement; Lexical, Implicature, and Presupposition (Ambiguity in Sentence Meaning) plus Coreference, Temporal Reference, and Interrogative Hypothesis (Underspecification of Guidelines) → conceptual ambiguity, because these subcategories reflect substantively different interpretations of the text or construct's definitional scope; Accommodating Minimally Added Content and High Overlap (Annotator Behavior) → value divergence, because these subcategories capture cases where annotators share the same construct understanding but apply different normative weights to shared features; and (b) CARE-derived weak supervision for the toxicity domain, where CARE's three output signals serve as proxy labels: sub-concept-alignment-sensitive instances (label changes when sub-concept definition is swapped) → conceptual ambiguity; rationale-stable but direction-divergent instances (rationale-to-critique output shows annotators identify the same features but weight them differently) → value divergence; counterfactual-sensitive instances (counterfactual-to-detection shows the disagreement resolves with small textual perturbation) → borderline threshold. Class imbalance in Stage 1 training is addressed explicitly: Jiang's 6:2:2 subcategory distribution (6 subcategories map to conceptual ambiguity, 2 each to borderline threshold and value divergence) yields approximately 216:72:72 training instances across the three TARP types assuming approximate subcategory balance across the ~360 training instances. Stage 1 training uses weighted cross-entropy loss with per-class weights computed as weight_c = N_total / (3 × N_c), yielding approximate weights of 1:3:3 for conceptual ambiguity vs. borderline threshold and value divergence. The 70–80% macro-F1 target is reported alongside per-class F1 on the held-out split to characterize minority-class performance explicitly; weighted cross-entropy is expected to substantially improve recall on the two minority classes relative to unweighted training. Stage 1 classifier validation uses an 80/20 split of the ~450 Jiang & de Marneffe typed NLI instances (~360 train / ~90 held-out); macro-F1 is reported on the held-out split, with an expected range of 70–80% given the three-class structure and class-weighted training — a target range consistent with recent evidence on LoRA-based fine-tuning of instruction-tuned 7B-class models on small annotation-classification datasets: 'Leveraging Annotator Disagreement for Text Classification' (arXiv:2409.17577) demonstrates instruction tuning applied directly to annotation-disagreement classification tasks; 'Unveiling the Secret Recipe: A Guide For Supervised Fine-Tuning Small LLMs' (arXiv:2412.13337) shows that supervised fine-tuning of 7B-class models with parameter-efficient methods generalizes effectively from limited labeled data; Qwen3-7B's pre-trained NLI and instruction-following priors further reduce the effective adaptation requirement from ~360 labeled instances by leveraging knowledge already encoded during pre-training. The CARE-derived weak supervision labels for the toxicity domain are additionally validated on a 20-instance human-adjudicated random sample (inter-rater κ reported) before full deployment, confirming that the proxy mapping captures the intended construct. Minimum-performance fallback: if Stage 1 macro-F1 < 65% on the held-out NLI split, the pipeline falls back to a rule-based classifier applying CARE proxy signals deterministically (sub-concept-alignment-sensitive → conceptual ambiguity; rationale-stable direction-divergent → value divergence; counterfactual-sensitive → borderline threshold), which is fully deterministic and prevents Stage 1 failure from propagating silently through subsequent stages. Stage 2 uses Qwen3-72B to generate type-specific resolution probes (max two candidates per instance): conceptual ambiguity → definitional boundary probes with minimal contrastive pairs ('Does X count as Y if Z is absent?'); value divergence → explicit priority-ranking elicitation frames ('Please rank the following considerations by their relevance to your judgment...'); borderline threshold → counterfactual shift probes ('Would your judgment change if [minimal feature] were [perturbed]?'). Stage 3 collects structured probe responses. In the simulated execution path (primary for EMNLP 2026 ARR), all 1,500 instances use LLM persona responses validated via cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable response distributions (Cohen's κ between types reported). This validation establishes that type-conditioned probe templates elicit structurally distinct response patterns — confirming probe discriminability, not persona-human fidelity. Persona-human fidelity is not established by this check; instead, Stage 4's downstream macro-F1 improvement over unprobed soft-label training provides the primary evidence for end-to-end system effectiveness, and the planned 100-instance Prolific gold standard (camera-ready) provides the direct human-fidelity validation. In the human-validated execution path (upgrade for EACL 2027), a 100-instance Prolific human gold standard (~50-75 annotator-hours) serves as the primary evaluation baseline, and persona responses for ~1,400 remaining instances are validated against this gold standard at ρ ≥ 0.60 before scale deployment. Concrete fallback for the human-validated path: if persona responses fail to reach ρ ≥ 0.60 on the 100-instance gold standard, the paper's primary results are reported on the 100-instance Prolific human gold standard only, with full-scale persona deployment repositioned as future work. Stage 4 uses full fine-tuning of Qwen3-1.7B on TARP-updated soft labels as the primary training regime. This design choice is directly motivated by Steele (arXiv:2604.16332, 2026), which shows that LoRA fine-tuning exhibits systematic un-learning on high-disagreement examples — measured as increasing per-example loss during training with Spearman ρ = 0.06–0.43 correlation between annotation entropy and area-under-the-loss-curve across all 25 tested conditions on SNLI/MNLI with ChaosNLI annotations, with decoder-only models showing the strongest effects — while full fine-tuning does not exhibit this pattern. Since TARP's ProbeBank-1.5K instances are drawn from precisely this type of contested, high-disagreement material (and evaluated on the same MNLI benchmark used in arXiv:2604.16332), LoRA fine-tuning risks un-learning exactly the improved soft labels that TARP generates. Full fine-tuning of Qwen3-1.7B avoids this failure mode and is computationally feasible within the Stage 4 GPU budget. Probe responses are encoded as pseudo-annotator vote vectors over the label space using a lightweight encoder trained on the gold standard (human-validated path) or the cross-type-consistent persona pool (simulated path); these vectors are added to the existing annotation distribution as N_probe = 3 equivalent pseudo-annotator votes via weighted average (P_updated = (N_orig × P_orig + N_probe × P_probe) / (N_orig + N_probe)); the updated distribution is used directly as the soft-label target following arXiv 2511.14117. Primary evaluation fine-tunes Qwen3-1.7B (full fine-tuning) on the TARP-updated soft labels and compares against three baselines on ToxiGen (toxicity domain) and the MNLI validation split (NLI domain): (1) hard-label training using majority-vote labels, (2) soft-label training without TARP probing using the original annotation distribution, and (3) TARP-probed soft-label training. Primary metrics are macro-F1 and Expected Calibration Error (ECE); STABLEVAL score provides a secondary disagreement-aware evaluation. Reduction in residual annotation entropy on held-out instances is reported as an auxiliary analysis. As an additional ablation, LoRA fine-tuning of Qwen3-7B is evaluated under the same three-way baseline comparison, yielding a LoRA-vs-full-FT analysis: this ablation quantifies the interaction between TARP's type-conditioned soft-label updates and LoRA's un-learning dynamics, specifically testing whether improved soft labels partially attenuate the un-learning effect even within the LoRA regime. Reporting TARP-probed vs. unprobed LoRA results isolates the soft-label contribution from the training regime effect. The four-way design (primary full-FT path × three baselines; LoRA ablation × three baselines) provides both a clean evaluation of TARP's soft-label contribution and a direct empirical characterization of how training regime interacts with label quality on contested instances. Data architecture for contamination-free evaluation: ProbeBank-1.5K instances are drawn exclusively from the training splits of ToxiGen and MNLI; macro-F1 and ECE are computed on the standard ToxiGen test set and MNLI validation split respectively, which are held out from all ProbeBank construction and share zero instance overlap with any probe-typed, probe-generated, or soft-label-updated training instance. The three-way comparison is therefore performed entirely on genuinely out-of-distribution evaluation data, ensuring the results are reproducible and uncontaminated. TARP explicitly extends ClarifyDelphi (ACL 2023) in four dimensions: domain generality (any NLP annotation schema, not only moral/social situations), type-conditioned probe selection (not uniform question generation), annotation-schema disambiguation probes rather than background-context questions, and training integration via soft-label updates. We release ProbeBank-1.5K: 1,500 type-annotated disagreement instances with validated resolution probes across two NLP domains. Limitations: We will include a 100-instance Prolific gold standard (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total) in the camera-ready version, validating Stage 3 persona response quality at ρ ≥ 0.60 against human judgments on a stratified sample of 33–34 instances per disagreement type. If ρ < 0.60, primary results are reported on the 100-instance human gold standard only, with full-scale persona deployment repositioned as future work.",
+  "resource_estimate": {
+    "simulated_emnlp2026": {
+      "venue_target": "EMNLP 2026 via ARR May 25, 2026 — PRIMARY first-class submission path for users with ≤16-day constraint. EMNLP 2026 has confirmed 'Human-Centered NLP and Human-AI Interaction' track (verified: https://2026.emnlp.org/calls/main_conference_papers/). Simulated evaluation is user-approved ('Simulated user evaluation acceptable for ARR submission').",
+      "gpu_hours": "~80-110 H100-equivalent hours — within ≤200 H100h budget. Increase from prior estimate reflects additional LoRA ablation runs in Stage 4.",
+      "gpu_utilization": "High (~80-90%) — continuous pipeline: classifier training, probe generation, persona simulation, full-FT primary training sweeps, LoRA ablation sweeps",
+      "timeline": "14-16 days — within ≤16-day hard constraint",
+      "day_by_day": {
+        "Day 1-2": "Stage 1: Qwen3-7B three-way classifier training with weighted cross-entropy (weight_c = N_total / (3 × N_c)) and validation (~2-4 H100h). Dual-source supervision from Jiang & de Marneffe NLI instances (~450 instances, ~360 train / ~90 held-out) with explicit 10-subcategory-to-3-type mapping + CARE-derived weak labels. Class imbalance (~216:72:72) addressed via per-class weights (~1:3:3). Per-class F1 reported on held-out split alongside macro-F1. Minimum-performance fallback activates at macro-F1 < 65%.",
+        "Day 2-3": "Stage 2: Qwen3-72B probe generation for 1,500 ProbeBank instances (~10 H100h). Type-conditioned probe templates: definitional-boundary contrastive pairs / priority-ranking elicitation frames / counterfactual shift probes.",
+        "Day 3-4": "Stage 3: LLM persona simulation for all 1,500 instances (~5 H100h). Validation via cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable response distributions (Cohen's κ between types reported). This confirms probe discriminability — that type-conditioned templates elicit structurally distinct outputs — not persona-human fidelity, which is addressed by Stage 4 downstream metrics and the planned Prolific gold standard.",
+        "Day 4-8": "Stage 4 primary: Full fine-tuning of Qwen3-1.7B on TARP-updated soft labels (~25-35 H100h). Three-way baseline comparison (hard-label / unprobed soft-label / TARP-probed soft-label) on ToxiGen and MNLI. 3 seeds × 3 baselines × 2 domains = 18 runs. Full fine-tuning avoids LoRA un-learning on high-disagreement examples (arXiv:2604.16332).",
+        "Day 8-11": "Stage 4 LoRA ablation: LoRA fine-tuning of Qwen3-7B under same three-way comparison (~40-55 H100h). Same 18 runs. Characterizes interaction between TARP's improved soft labels and LoRA un-learning dynamics. Reports TARP-probed vs. unprobed LoRA F1 to isolate soft-label contribution from training regime effect.",
+        "Day 11-16": "Analysis, figures, paper writing. Limitations section explicitly states: 'We will include a 100-instance Prolific gold standard (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total) in the camera-ready version, validating Stage 3 persona response quality at ρ ≥ 0.60 against human judgments on a stratified sample of 33–34 instances per disagreement type. If ρ < 0.60, primary results are reported on the 100-instance human gold standard only.' This is standard practice for ARR submissions and does not affect the submission's core contributions."
+      },
+      "validation_approach": "Cross-type probe discriminability: persona responses to probes from different disagreement types must produce statistically distinguishable distributions (Cohen's κ between types, p < 0.05). Confirms that type-conditioned probe templates elicit structurally distinct response patterns. This does not validate that persona responses match human annotator reasoning; Stage 4's downstream macro-F1 improvement over unprobed soft-label training (primary full-FT path) provides the primary evidence for end-to-end system effectiveness.",
+      "human_annotation": "None required for initial submission. 100-instance Prolific study explicitly committed to in camera-ready: n=100, $12/hr, ~60 annotator-hours, ~$600–900 total, stratified 33–34 per disagreement type, ρ ≥ 0.60 validation threshold with documented fallback to human-gold-only results.",
+      "team": "0-1 (setup only: ~3-4h to configure pipeline, provision datasets, deploy persona simulation)",
+      "claude_api_cost": "$200-400 (~2,000-4,000 turns for orchestration, probe drafting, result summarization, paper draft generation)",
+      "estimated_gpu_cost": "~$120-275 (80-110h × $1.50-2.50/hr on RunPod/Lambda)",
+      "prolific_upgrade_path": "The 100-instance Prolific study (~$600-900, ~5-8 days wall-clock) is reserved for the camera-ready version or EACL 2027 resubmission, providing a documented upgrade path that converts the simulated submission to a fully human-validated paper.",
+      "risk_note": "Cross-type probe discriminability validation catches systematic probe generation failures (e.g., all probe types eliciting identical responses) before Stage 4. If cross-type κ does not reach significance on a 50-instance pilot, probe templates are revised before full deployment — this takes ~0.5 days and is within the timeline. LoRA un-learning risk on Stage 4 is mitigated by design: primary training uses full fine-tuning of Qwen3-1.7B (arXiv:2604.16332 confirms full FT does not exhibit this pattern). The LoRA ablation may show attenuated improvement, which is reported as an informative null that characterizes the training regime interaction."
+    },
+    "manual": {
+      "venue_infeasibility_note": "EMNLP 2026 (ARR May 25, 2026 deadline) is not achievable in manual mode, which requires 3–4 months; the secondary target for this mode is EACL 2027 via ARR August 3, 2026.",
+      "gpu_hours": "~110h A100 80GB (~55 H100-equivalent hours)",
+      "gpu_utilization": "Low (~20-30%) — compute bursts are short; GPU idles during Prolific study setup/pilot (~2 days), QC and re-annotation (~2 days), and manual experimental analysis",
+      "timeline": "3-4 months from start; targeting ARR August 2026 → EACL 2027 as primary (ARR submission deadline: August 3, 2026; ~3 months available as of May 2026); beginning immediately in May 2026 is feasible with buffer for revision",
+      "team": "2 researchers (1 NLP lead, 1 annotation study coordinator)",
+      "estimated_gpu_cost": "~$165-275 (110h × $1.50-2.50/hr on RunPod/Lambda)",
+      "annotation_cost": "~$600-900 for 100-instance Prolific gold standard at $12/hr × ~60 annotator-hours"
+    },
+    "human_in_loop": {
+      "venue_infeasibility_note": "EMNLP 2026 (ARR May 25, 2026 deadline) is not achievable in HIL mode with full Prolific study, which requires 4–6 weeks; the secondary target for this mode is EACL 2027 via ARR August 3, 2026. For EMNLP 2026, use the simulated_emnlp2026 mode above.",
+      "gpu_hours": "~160h A100 80GB (~80 H100-equivalent hours)",
+      "gpu_utilization": "Moderate (~50-60%) — agent handles hyperparameter sweeps, probe generation drafts, and evaluation runs; human approves gold-standard design, reviews probe quality samples, and checkpoints training decisions every ~45min",
+      "timeline": "4-6 weeks; recommended for ARR August 2026 → EACL 2027 primary target (ARR submission deadline: August 3, 2026 — ~3 months available as of May 2026; this mode completes well within the window with buffer for revision and one round of reviewer-requested changes)",
+      "team": "1 researcher, ~45min/day approval check-ins",
+      "claude_api_cost": "$100-200 (~1,000-2,000 turns for experiment orchestration, probe drafting, result summarization, and ProbeBank quality-filtering decisions)",
+      "estimated_gpu_cost": "~$240-400 (160h × $1.50-2.50/hr)",
+      "risk_note": "Prolific gold-standard collection (~5-8 days wall-clock) runs in parallel with data preparation and initial classifier experiments; with the ARR August 2026 deadline (~3 months away), this is not on the critical path and can be run in proper sequence if needed"
+    },
+    "auto_research": {
+      "venue_target": "EACL 2027 via ARR August 3, 2026 — primary target for this mode with full Prolific validation. For EMNLP 2026, use the simulated_emnlp2026 mode above.",
+      "gpu_hours": "~270-320h A100 80GB (~135-160 H100-equivalent hours, within 200 H100h budget)",
+      "gpu_utilization": "High (~80-90%) — agent runs hyperparameter sweeps, probe template ablations, persona simulation at scale, and evaluation continuously; idle time limited to API rate limits and data loading",
+      "timeline": "16-22 days (4× A100 cluster); feasible for ARR August 2026 deadline with substantial buffer; Prolific gold-standard collection (~5-8 days) is not on a compressing critical path given the ~3-month window to deadline",
+      "team": "0 (setup only: ~3-4h to configure agent, provision datasets, deploy Prolific study, set persona simulation pipeline)",
+      "claude_api_cost": "$200-400 (~2,000-4,000 turns including failed runs, multi-seed ablations, persona response filtering, and paper draft generation)",
+      "estimated_gpu_cost": "~$405-800 (270-320h × $1.50-2.50/hr)",
+      "speed_bottleneck": "Prolific gold-standard collection is the irreducible wall-clock minimum (~5-8 days); secondary bottleneck is Qwen3-72B inference rate for probe generation (single-pass at 1,500 instances × 2 candidates ≈ 15-20h A100, manageable within budget)",
+      "risk_note": "LLM persona probe responses may converge on superficially fluent but diagnostically shallow answers despite type-conditioning; validated by requiring ρ ≥ 0.60 correlation with human responses on gold standard before full deployment. Concrete fallback: if threshold is not met, paper reports results on the 100-instance human gold standard as the primary contribution and repositions persona scaling as future work."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 via ARR May 25, 2026 (PRIMARY — for simulated_emnlp2026 execution mode. ARR submission deadline: May 25, 2026 at 11:59PM UTC-12. 'Human-Centered NLP and Human-AI Interaction' track confirmed at https://2026.emnlp.org/calls/main_conference_papers/ — exact track the user specified. With the 16-day fully-simulated pipeline (~14-16 days, ~80-110 H100h), this is achievable with user-approved simulated evaluation. The annotation disagreement community — CARE, ClarifyDelphi, Jiang & de Marneffe, Ni et al. — publishes consistently at EMNLP. Limitations section commits to concrete Prolific extension for camera-ready: n=100, $12/hr, ~60 annotator-hours, stratified 33-34 per disagreement type, with ρ ≥ 0.60 threshold and documented fallback.)",
+    "EACL 2027 via ARR August 3, 2026 (SECONDARY — for manual/HIL/auto_research execution modes with full 100-instance Prolific gold standard. ARR submission deadline: August 3, 2026; commitment deadline: October 11, 2026; conference: Athens, Greece, March 9–14, 2027. EACL 2027 CFP not yet published as of May 2026 — track alignment with Human-Centered NLP or equivalent track cannot be verified until CFP is released. If the published CFP does not include such a track, EMNLP 2027 is the better-aligned fallback. The August 3 ARR deadline gives ~3 months from May 2026, comfortably accommodating HIL 4–6 week and auto-research 16–22 day execution with substantial buffer.)",
+    "EMNLP 2027 via ARR ~June 2027 (TERTIARY fallback — if EACL 2027 submission requires additional iteration or EACL 2027 CFP does not include a Human-Centered NLP track. EMNLP's dedicated Human-Centered NLP and Human-AI Interaction track is confirmed and active. Expected ARR submission ~June 2027, conference ~November 2027. EMNLP 2027 reviewers will be familiar with the full body of disagreement-taxonomy and soft-label training literature.)",
+    "AAAI 2027 (QUATERNARY backup; expected direct submission deadline July–August 2026, concurrent with ARR August 2026; broad AI community reach but no dedicated annotation/perspectivist NLP track and a reviewer pool less familiar with disagreement taxonomies, CARE, and soft-label training)"
+  ],
+  "key_references": [
+    "CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement (EMNLP 2025, aclanthology 2025.emnlp-main.671)",
+    "Investigating Reasons for Disagreement in Natural Language Inference (Jiang & de Marneffe, TACL 2022, aclanthology.org/2022.tacl-1.78) — ~450-instance ChaosNLI taxonomy with 10 subcategories spanning 3 high-level classes; Probabilistic Enrichment + Imperfection → borderline threshold; Lexical + Implicature + Presupposition + Coreference + Temporal Reference + Interrogative Hypothesis → conceptual ambiguity; Accommodating Minimally Added Content + High Overlap → value divergence; provides direct Stage 1 supervision (~360 train / ~90 held-out, 80/20 split); 6:2:2 subcategory imbalance yields ~216:72:72 training instances, addressed via weighted cross-entropy (weight_c = N_total / (3 × N_c))",
+    "Diverging Preferences: When do Annotators Disagree and do Models Know? (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632) — 10-category taxonomy for RLHF preference annotation (pairwise A vs. B; MultiPref and HelpSteer2 datasets) across four high-level classes (Task, Response Style, Refusals, Errors); finds that LLMs fail to capture annotator divergence, motivating TARP's active probe approach; distinct from TARP in targeting pairwise RLHF data (not general NLP multi-class schemas), not generating resolution probes, and not connecting to annotation resolution or soft-label training",
+    "Can Reasoning Help Large Language Models Capture Human Annotator Disagreement? (Ni, Fan, Zouhar, Rooein, Hoyle, Sachan, Leippold, Hovy, Ash, EACL 2026, aclanthology.org/2026.eacl-long.3, arXiv:2506.19467) — 60-setup systematic evaluation across three annotation tasks, multiple model sizes, and multiple disagreement expression methods; finds naive CoT improves disagreement modeling for RLHF-trained LLMs while RLVR-style reasoning degrades it; critically, neither approach generalizes to active typed-probe resolution across general NLP annotation schemas — motivating TARP's schema-generalization gap framing rather than a claim that all passive reasoning fails; EMNLP 2026/2027 reviewers will expect this citation",
+    "Annotation Entropy Predicts Per-Example Learning Dynamics in LoRA Fine-Tuning (Steele, arXiv:2604.16332, March 2026) — demonstrates that LoRA fine-tuning exhibits systematic un-learning on high-disagreement examples (Spearman ρ = 0.06–0.43 between annotation entropy and per-example AULC across 25 conditions on SNLI/MNLI with ChaosNLI annotations; decoder-only models show stronger correlations; effect is reproducible across seeds and datasets) while full fine-tuning does not exhibit this pattern; directly motivates TARP's Stage 4 design choice of full fine-tuning of Qwen3-1.7B as primary training regime, with LoRA fine-tuning of Qwen3-7B as an ablation",
+    "DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition (Kim & Yoon, ACL 2026 Main, arXiv:2604.15866) — uses disagreement between multiple heterogeneous LLMs as pilot annotators to iteratively refine NER task instructions; achieves SOTA on 14/18 NER benchmarks (+8.0 F1, narrowing zero-shot-to-supervised gap by 11+ points); TARP differs in three ways: (a) TARP pre-classifies disagreement into typed categories before generating probes rather than treating disagreement as undifferentiated signal, (b) TARP generates annotator-directed resolution probes rather than instruction refinements, and (c) TARP connects to soft-label training integration rather than instruction output",
+    "ClarifyDelphi: Reinforced Clarification Questions with Defeasibility Rewards for Social and Moral Situations (ACL 2023, aclanthology.org/2023.acl-long.630) — closest predecessor in probe generation; TARP extends to annotation-domain generality, type-conditioned probe selection, schema disambiguation, and training integration",
+    "Will Annotators Disagree? Identifying Subjectivity in Value-Laden Arguments (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) — partial prior coverage of value-divergence type (predicts binary occurrence, not type; no probe generation)",
+    "NUTMEG: Separating Signal From Noise in Annotator Disagreement (EMNLP 2025, aclanthology.org/2025.emnlp-main.144) — Bayesian partitioning of disagreements into systematic signal vs. noise; complementary to TARP in that it identifies which disagreements are worth resolving but does not type them, generate resolution probes, or produce type-conditioned templates",
+    "Disentangling Subjectivity and Uncertainty for Hate Speech Annotation and Modeling using Gaze (Alacam et al., EMNLP 2025, aclanthology.org/2025.emnlp-main.1460) — distinguishes annotator-level subjectivity (value divergence) from item-level uncertainty (conceptual ambiguity / borderline threshold) using gaze tracking; closest operationalization of TARP's core type distinction but no probe generation or active resolution loop",
+    "Quantifying the Persona Effect in LLM Simulations (Hu & Collier, ACL 2024, arXiv:2402.10811) — supports the narrow claim that persona prompting yields modest improvements on high-disagreement annotation samples; basis for Stage 3 persona deployment rationale",
+    "Assessing the Reliability of Persona-Conditioned LLMs as Synthetic Survey Respondents (arXiv:2602.18462, Feb 2026) — shows persona conditioning can redistribute error and undermine subgroup fidelity; motivates the ρ ≥ 0.60 validation threshold and the 100-instance human gold standard fallback in the human-validated path",
+    "Structured Disagreement in Health-Literacy Annotation: Epistemic Stability, Conceptual Difficulty, and Agreement-Stratified Inference (arXiv 2604.19943, April 2026)",
+    "Beyond Black-Box Labels: Interpretable Criteria for Diagnosing Subjective NLP Tasks (arXiv 2604.17022, April 2026) — concurrent diagnostic approach; pre-annotation audit vs. TARP's active resolution",
+    "Beyond Consensus: Perspectivist Modeling and Evaluation of Annotator Disagreement in NLP (arXiv 2601.09065, Jan 2026)",
+    "Soft-Label Training Preserves Epistemic Uncertainty (arXiv 2511.14117)",
+    "Modeling Annotator Disagreement with Demographic-Aware Experts and Synthetic Perspectives (DEM-MoE, arXiv 2508.02853)",
+    "STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems (arXiv 2605.02122, May 2026)",
+    "ReasonScaffold: Evaluating Reasoning-Based Scaffolds for Human-AI Co-Annotation (arXiv 2603.21094, March 2026)",
+    "Annotator-Centric Active Learning for Subjective NLP Tasks (EMNLP 2024)",
+    "DARC: Disagreement-Aware Alignment via Risk-Constrained Decoding (arXiv:2603.08145, March 2026) — inference-time distributionally robust optimization for response reranking under heterogeneous user preferences; concurrent work on preference disagreement at the decoding level, entirely distinct from TARP's annotation workflow, typed-disagreement classification, and probe-generation approach",
+    "Leveraging Annotator Disagreement for Text Classification (arXiv:2409.17577, September 2024) — proposes and compares instruction tuning and ensemble strategies for annotation-disagreement classification; supports Stage 1 classifier design and the rationale for applying instruction-tuned fine-tuning to disagreement-type prediction",
+    "Unveiling the Secret Recipe: A Guide For Supervised Fine-Tuning Small LLMs (arXiv:2412.13337, December 2024) — demonstrates that supervised fine-tuning of 7B-class models generalizes effectively from limited labeled datasets via parameter-efficient methods; supports the 70–80% macro-F1 target for Stage 1 on ~360 training instances"
+  ],
+  "description": "TARP (Type-Aware Resolution via Probing) proposes the first active annotation protocol that closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration — under a training regime that does not un-learn the improved labels on contested instances. Grounded in Jiang & de Marneffe's (TACL 2022) typed NLI taxonomy (~450 ChaosNLI instances with human-typed labels) and findings that task-level conceptual difficulty dominates annotation variance, TARP trains a Qwen3-7B three-way classifier (conceptual ambiguity / value divergence / borderline threshold) using dual-source supervision: direct labels from the TACL 2022 taxonomy for the NLI domain with an explicit fine-grained subcategory-to-type mapping — Probabilistic Enrichment and Imperfection → borderline threshold (items near a decision boundary); Lexical, Implicature, Presupposition, Coreference, Temporal Reference, Interrogative Hypothesis → conceptual ambiguity (different construct interpretations or guideline-underspecified scope); Accommodating Minimally Added Content and High Overlap → value divergence (shared construct, different normative weights) — and CARE-derived weak supervision for toxicity where sub-concept-alignment sensitivity → conceptual ambiguity, rationale-stable but direction-divergent CARE output → value divergence, and counterfactual-sensitive CARE output → borderline threshold. Stage 1 classifier training uses weighted cross-entropy loss (weight_c = N_total / (3 × N_c), yielding ~1:3:3 weights) to address the 6:2:2 subcategory imbalance in Jiang's taxonomy, which yields approximately 216:72:72 training instances across the three TARP types; per-class F1 is reported alongside macro-F1 on the held-out split. Stage 1 classifier validation uses an 80/20 split of the ~450 Jiang & de Marneffe typed NLI instances (~360 train / ~90 held-out), targeting macro-F1 of 70–80% on the held-out split — a range supported by recent evidence on LoRA fine-tuning of instruction-tuned 7B-class models on small annotation-classification datasets (arXiv:2409.17577; arXiv:2412.13337) and by Qwen3-7B's pre-trained NLI priors; CARE-derived weak supervision labels for toxicity are validated on a 20-instance human-adjudicated random sample before deployment. A minimum-performance fallback activates if Stage 1 macro-F1 < 65%. Qwen3-72B generates type-specific probes: definitional boundary contrastive pairs for ambiguity, priority-ranking frames for value disputes, and counterfactual shift probes for borderline cases. TARP's motivation for active typed probing is the schema-generalization gap: Ni et al. (EACL 2026) show that naive CoT improves disagreement modeling for RLHF-trained LLMs while RLVR degrades it — but neither approach generalizes to active typed-probe resolution across general NLP multi-class annotation schemas. Zhang et al. (ICML 2025) independently confirm LLMs fail to account for annotator divergence in pairwise RLHF preference data. Stage 4 uses full fine-tuning of Qwen3-1.7B as the primary training regime, directly motivated by Steele (arXiv:2604.16332, 2026), which demonstrates that LoRA fine-tuning exhibits systematic un-learning on high-disagreement examples (Spearman ρ = 0.06–0.43 across 25 conditions on SNLI/MNLI with ChaosNLI annotations) while full fine-tuning does not. Since TARP's ProbeBank-1.5K instances are precisely the contested, high-disagreement material evaluated on the same MNLI benchmark, pairing improved soft labels with full fine-tuning is the principled design choice. LoRA fine-tuning of Qwen3-7B is evaluated as an ablation, quantifying whether TARP's improved soft labels partially attenuate the un-learning effect even within the LoRA regime. The primary execution path (simulated_emnlp2026) targets EMNLP 2026 ARR (May 25, 2026) via a 14-16 day fully-simulated pipeline (~80-110 H100h): Stage 3 persona responses for all 1,500 instances are validated via cross-type probe discriminability (Cohen's κ between disagreement types) — confirming that type-conditioned probe templates elicit structurally distinct response patterns — and Stage 4's downstream macro-F1 improvement over unprobed soft-label training provides the primary end-to-end effectiveness evidence. The EMNLP 2026 'Human-Centered NLP and Human-AI Interaction' track is confirmed and precisely aligned. The limitations section commits to a concrete 100-instance Prolific gold standard for camera-ready inclusion (n=100, $12/hr, ~60 annotator-hours, ~$600–900 total, stratified 33–34 instances per type, ρ ≥ 0.60 validation threshold with documented fallback). Probe responses are encoded as pseudo-annotator vote vectors and integrated into the annotation distribution via weighted average (N_probe = 3 equivalent pseudo-annotator votes), then used for soft-label training following arXiv 2511.14117. The four-way evaluation design (primary full-FT path × three baselines; LoRA ablation × three baselines) on ToxiGen and MNLI, measuring macro-F1 and ECE, provides both a clean attribution of TARP's soft-label contribution and an empirical characterization of training regime interaction with label quality on contested instances. Data architecture is contamination-free: ProbeBank-1.5K instances are drawn exclusively from ToxiGen and MNLI training splits; evaluation uses held-out ToxiGen test set and MNLI validation split with zero instance overlap. Unlike DARC (arXiv:2603.08145), which applies inference-time robust decoding under preference disagreement without annotation workflow integration, TARP resolves disagreement upstream through active typed probing. Unlike DiZiNER (ACL 2026 Main), which uses disagreement to refine task instructions for zero-shot NER, TARP pre-classifies disagreement into typed categories, generates annotator-directed resolution probes, and connects to soft-label training integration. Unlike ClarifyDelphi (ACL 2023), TARP operates across annotation schemas, conditions probe selection on disagreement type, and completes the resolution-to-training loop. Unlike NUTMEG (EMNLP 2025), which separates signal from noise without typing signal disagreements or generating probes, TARP's contribution begins where NUTMEG ends. Unlike 'Disentangling Subjectivity and Uncertainty' (EMNLP 2025), which operationalizes the value-divergence vs. conceptual-ambiguity distinction using gaze tracking but generates no resolution probes and integrates no training update, TARP provides the full active resolution loop. The scoped release — ProbeBank-1.5K, 1,500 type-annotated disagreement instances with validated probes across toxicity and NLI — provides the first benchmark for evaluating annotation resolution protocols. Primary submission target: EMNLP 2026 via ARR May 25, 2026 (simulated path, ≤16 days, confirmed track); secondary: EACL 2027 via ARR August 3, 2026 (human-validated path)."
+}
+```
+
+**Summary of changes (major revision)**:
+
+1. **Renamed DART → TARP** (Type-Aware Resolution via Probing) throughout — resolves EACL 2026 naming conflict; TARP is clean with no NLP conflicts.
+
+2. **Stage 1 class imbalance fixed**: Added weighted cross-entropy (weight_c = N_total / (3 × N_c), yielding ~1:3:3 weights for conceptual ambiguity vs. the two minority classes) and explicit per-class F1 reporting to characterize minority-class recall.
+
+3. **Stage 4 redesigned around LoRA un-learning**: The LoRA un-learning finding (arXiv:2604.16332) is actually an opportunity, not just a threat — it justifies a stronger Stage 4 design. Primary training switches to full fine-tuning of Qwen3-1.7B (confirmed by the paper to not exhibit the un-learning pattern). LoRA fine-tuning of Qwen3-7B becomes an ablation that tests whether TARP's improved soft labels partially attenuate un-learning even within LoRA. This adds a contribution (the LoRA-vs-full-FT analysis on contested instances) rather than just patching a gap.
+
+4. **DiZiNER added** with precise three-way differentiation: typed pre-classification before probing, annotator-directed probes vs. instruction refinements, soft-label training integration vs. instruction output.
+
+5. **arXiv:2604.16332 added** to key_references and landscape with specific mechanistic detail (ρ = 0.06–0.43, decoder-only models, MNLI/ChaosNLI overlap with TARP's evaluation benchmark).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc16b562-1df8-4a01-8734-92a20b3e6469",
+  "isSidechain": false,
+  "requestId": "req_011CatZCrCwMYT1ZcgroyC5K",
+  "type": "assistant",
+  "uuid": "e90b77ae-50f2-4089-b81c-ef1d59266edf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01SszwZaMR4QxpoKkzWhVYNe",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6371,
+      "cache_read_input_tokens": 30774,
+      "output_tokens": 19922,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6371,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 19922,
+          "cache_read_input_tokens": 30774,
+          "cache_creation_input_tokens": 6371,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6371
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Disagreement-Type-Conditioned Active Annotation Resolution Protocol\",…",
+  "leafUuid": "e90b77ae-50f2-4089-b81c-ef1d59266edf",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Resolve annotation disagreement via typed active probing",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Disagreement-Type-Conditioned Active Annotation Resolution Protocol\",…",
+  "leafUuid": "e90b77ae-50f2-4089-b81c-ef1d59266edf",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Resolve annotation disagreement via typed active probing",
+  "sessionId": "496d81b0-0640-442c-b4d5-098036d16a64"
+}
+```
+
+---

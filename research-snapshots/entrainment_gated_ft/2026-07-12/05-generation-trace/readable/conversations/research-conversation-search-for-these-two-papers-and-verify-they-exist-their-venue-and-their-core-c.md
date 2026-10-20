@@ -1,0 +1,1055 @@
+# Research conversation: Search for these two papers and verify they exist, their venue, and their core contribution: 1. "ChunkKV" - claimed to b
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 16
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-ad270beee5fefff64.jsonl`
+- **Structured JSON:** [`365f2ded676e499266e4.json`](../../sessions/36/365f2ded676e499266e4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+16 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T20:57:50.530Z_
+
+Search for these two papers and verify they exist, their venue, and their core contribution:
+
+1. "ChunkKV" - claimed to be NeurIPS 2025, about semantic-chunk-based KV compression using fixed-size token groups
+2. "Twilight" - claimed to be NeurIPS 2025 Spotlight, about adaptive attention sparsity with hierarchical top-p pruning
+
+For each paper:
+- Use WebSearch to find the paper (try arxiv, Google Scholar)
+- Verify the venue claim
+- Summarize the actual method in 2-3 sentences
+- Check if there's any code implementation available
+
+Also search for: "Segment-Based Attention Masking for GPTs" claimed to be ACL 2025, arXiv:2412.18487 by Katz et al.
+
+Report your findings concisely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+  "agentId": "ad270beee5fefff64",
+  "type": "user",
+  "uuid": "845b492c-299c-45b6-be62-aaafe6841633",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T20:57:50.533Z_
+
+```json
+{
+  "parentUuid": "845b492c-299c-45b6-be62-aaafe6841633",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3c493e07-0259-4568-96ff-2877e27bbf54",
+  "timestamp": "2026-05-10T20:57:50.533Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-10T20:57:53.852Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CiayWVDa72ZNgQGPBjXdHe`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c493e07-0259-4568-96ff-2877e27bbf54",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "requestId": "req_011CauZKXz25ZMzZZ3URRUW8",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "80240978-3d46-4633-a7d7-157b9d1cd36f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HjRkaQAXfwDpmXgmJjmjtE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 8969,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 8969
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 8969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 8969,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-10T20:57:53.856Z_
+
+<details><summary>↩ Tool result · `toolu_01CiayWVDa72ZNgQGPBjXdHe`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "80240978-3d46-4633-a7d7-157b9d1cd36f",
+  "isSidechain": true,
+  "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+  "agentId": "ad270beee5fefff64",
+  "type": "user",
+  "uuid": "8e9efcbc-bbbf-4c56-a77d-436c54d99884",
+  "sourceToolAssistantUUID": "80240978-3d46-4633-a7d7-157b9d1cd36f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-10T20:57:57.391Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JonptYH9ca3fNE5SgmkfZe`</summary>
+
+```json
+{
+  "query": "ChunkKV NeurIPS 2025 KV cache compression semantic chunk"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e9efcbc-bbbf-4c56-a77d-436c54d99884",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "requestId": "req_011CauZKnH17QEZW4JJauZfo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "353001b5-d49a-4431-9609-da2c59b59813",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Jv3QgSyg5oZMWZ6QxRBWS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 8969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-10T20:57:57.839Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LHMzMBawAzZGy6o11ztq1A`</summary>
+
+```json
+{
+  "query": "Twilight NeurIPS 2025 spotlight adaptive attention sparsity hierarchical top-p pruning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "353001b5-d49a-4431-9609-da2c59b59813",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "requestId": "req_011CauZKnH17QEZW4JJauZfo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6162cb61-7dcc-4b65-864e-8a446955a5a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Jv3QgSyg5oZMWZ6QxRBWS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 8969,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1392,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T20:57:58.361Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011U58ivkvKpkzKB5yeWvsa4`</summary>
+
+```json
+{
+  "query": "arXiv 2412.18487 \"Segment-Based Attention Masking\" Katz ACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6162cb61-7dcc-4b65-864e-8a446955a5a9",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "requestId": "req_011CauZKnH17QEZW4JJauZfo",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "85b364a4-f78f-41d3-bb00-678db15fb750",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Jv3QgSyg5oZMWZ6QxRBWS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1392,
+      "cache_read_input_tokens": 8969,
+      "output_tokens": 191,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1392
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 191,
+          "cache_read_input_tokens": 8969,
+          "cache_creation_input_tokens": 1392,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1392,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-10T20:58:03.706Z_
+
+<details><summary>↩ Tool result · `toolu_01JonptYH9ca3fNE5SgmkfZe`</summary>
+
+```text
+Web search results for query: "ChunkKV NeurIPS 2025 KV cache compression semantic chunk"
+
+Links: [{"title":"ChunkKV: Semantic-Preserving KV Cache Compression ...","url":"https://neurips.cc/media/neurips-2025/Slides/120181.pdf"},{"title":"[2502.00299] ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://arxiv.org/abs/2502.00299"},{"title":"ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference | OpenReview","url":"https://openreview.net/forum?id=20JDhbJqn3"},{"title":"ChunkKV: Semantic-Preserving KV Cache","url":"https://papers.neurips.cc/paper_files/paper/2025/file/2987f911151b39cd3a1761e212319e8e-Paper-Conference.pdf"},{"title":"NeurIPS Poster ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/120181"},{"title":"ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference - The Hong Kong University of Science and Technology","url":"https://researchportal.hkust.edu.hk/en/publications/chunkkv-semantic-preserving-kv-cache-compression-for-efficient-lo/"},{"title":"ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://arxiv.org/html/2502.00299v5"},{"title":"[2502.00299v5] ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://arxiv.org/abs/2502.00299v5"},{"title":"[PDF] ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ef094815dc0118c8d1cc06d4bb3aa78bae0a3877"},{"title":"Efficient LLMs at Scale: My NeurIPS Week in KV Caches, Spec Decoding, and FP4","url":"https://kaitchup.substack.com/p/efficient-llms-at-scale-my-neurips"}]
+
+Here's what I found about ChunkKV from NeurIPS 2025:
+
+## Overview
+
+ChunkKV fundamentally reimagines KV cache compression by treating semantic chunks - rather than isolated tokens - as basic compression units.
+
+## Problem Statement
+
+Large Language Models (LLMs) require significant GPU memory when processing long texts, with the key value (KV) cache consuming up to 70% of total memory during inference. Although existing compression methods reduce memory by evaluating the importance of individual tokens, they overlook critical semantic relationships between tokens, resulting in fragmented context and degraded performance.
+
+## Key Innovation
+
+This approach preserves complete linguistic structures and contextual integrity, ensuring that essential meaning is retained even under aggressive compression. Additionally, ChunkKV includes a novel layer-wise index reuse technique that exploits the higher cross-layer similarity of preserved indices in ChunkKV, reducing computational overhead and improving throughput by 26.5%.
+
+## Performance Results
+
+Comprehensive evaluations on challenging benchmarks: LongBench, Needle-In-A-HayStack, GSM8K, and JailbreakV demonstrate that ChunkKV outperforms state-of-the-art methods by up to 8.7% in precision while maintaining the same compression ratio.
+
+## Technical Details
+
+It groups tokens into chunks (short contiguous segments) and sums attention within each chunk. Entire chunks are kept or discarded together, ensuring that semantically coherent units survive.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "353001b5-d49a-4431-9609-da2c59b59813",
+  "isSidechain": true,
+  "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+  "agentId": "ad270beee5fefff64",
+  "type": "user",
+  "uuid": "e36fd916-351e-4d4f-9e4b-c3c554e0d39d",
+  "sourceToolAssistantUUID": "353001b5-d49a-4431-9609-da2c59b59813",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-10T20:58:04.365Z_
+
+<details><summary>↩ Tool result · `toolu_01LHMzMBawAzZGy6o11ztq1A`</summary>
+
+```text
+Web search results for query: "Twilight NeurIPS 2025 spotlight adaptive attention sparsity hierarchical top-p pruning"
+
+Links: [{"title":"NeurIPS Poster Twilight: Adaptive Attention Sparsity with Hierarchical Top-$p$ Pruning","url":"https://neurips.cc/virtual/2025/poster/117668"},{"title":"Twilight: Adaptive Attention Sparsity with Hierarchical Top-$p$ Pruning | OpenReview","url":"https://openreview.net/forum?id=Ve693NkzcU"},{"title":"GitHub - tsinghua-ideal/Twilight: [NeurIPS'25 Spotlight] Adaptive Attention Sparsity with Hierarchical Top-p Pruning","url":"https://github.com/tsinghua-ideal/Twilight"},{"title":"[2502.02770] Twilight: Adaptive Attention Sparsity with Hierarchical Top-$p$ Pruning","url":"https://arxiv.org/abs/2502.02770"},{"title":"Tsinghua IDEAL · GitHub","url":"https://github.com/tsinghua-ideal"},{"title":"Twilight: Adaptive Attention Sparsity with Hierarchical Top-p Pruning","url":"http://people.iiis.tsinghua.edu.cn/~gaomy/pubs/twilight.neurips25.pdf"},{"title":"Twilight: Adaptive Attention Sparsity with Hierarchical Top-p Pruning","url":"https://openreview.net/pdf/690f5f6390bd74e24fcac72c3bcf39e1a480e996.pdf"},{"title":"Twilight: Adaptive Attention Sparsity with Hierarchical Top-𝑝 Pruning","url":"https://arxiv.org/html/2502.02770v1"},{"title":"NeurIPS.2025 - Spotlight | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/NeurIPS.2025?group=Spotlight"},{"title":"Twilight: Adaptive Attention Sparsity with Hierarchical Top-$p$ Pruning | Efficient AI","url":"https://research.nvidia.com/labs/eai/publication/twilight/"}]
+
+I found relevant results for your search query. Here's a summary of what I found:
+
+## Overview
+
+Twilight is a NeurIPS 2025 spotlight paper that proposes a method to exploit KV cache sparsity efficiently and dynamically through Top-P sampling.
+
+## Core Problem and Solution
+
+Most existing sparse attention algorithms use a fixed budget of how many tokens to use, which raises critical issues in real-world deployment because it fails to account for the dynamic nature of real-world scenarios, where the optimal balance between accuracy and efficiency can vary greatly.
+
+The key insight is that leveraging the idea of top-p sampling (nucleus sampling) in sparse attention enables efficient and adaptive budget decisions. Based on this, Twilight is a framework that enhances any existing sparse attention algorithm with adaptive budget decision capabilities without sacrificing accuracy.
+
+## Performance Results
+
+Twilight can adaptively prune at most 98% of redundant tokens, leading to 15.4× acceleration in self-attention operations and 3.9× acceleration in end-to-end per token latency in long context LLM decoding.
+
+## Key Technical Details
+
+The framework uses a hierarchical Select-then-Prune architecture. 4-bit quantization strikes a balance between accuracy and efficiency, making it the ideal choice to calculate estimated attention weights for top-p, and an efficient sparse GEMV kernel is implemented based on FlashInfer.
+
+The paper is authored by Chaofan Lin, Jiaming Tang, Shuo Yang, and others from institutions including Tsinghua University, with the code available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6162cb61-7dcc-4b65-864e-8a446955a5a9",
+  "isSidechain": true,
+  "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+  "agentId": "ad270beee5fefff64",
+  "type": "user",
+  "uuid": "8add2520-04ff-4b53-b569-4e8e8da4579a",
+  "sourceToolAssistantUUID": "6162cb61-7dcc-4b65-864e-8a446955a5a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-10T20:58:05.623Z_
+
+<details><summary>↩ Tool result · `toolu_011U58ivkvKpkzKB5yeWvsa4`</summary>
+
+```text
+Web search results for query: "arXiv 2412.18487 "Segment-Based Attention Masking" Katz ACL 2025"
+
+Links: [{"title":"[2412.18487] Segment-Based Attention Masking for GPTs","url":"https://arxiv.org/abs/2412.18487"},{"title":"Segment-Based Attention Masking for GPTs","url":"https://arxiv.org/html/2412.18487"},{"title":"Segment-Based Attention Masking for GPTs Shahar Katz∗1 Liran Ringel∗2","url":"https://arxiv.org/pdf/2412.18487"},{"title":"Segment-Based Attention Masking for GPTs | alphaXiv","url":"https://www.alphaxiv.org/abs/2412.18487"},{"title":"Segment-Based Attention Masking for GPTs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.947/"},{"title":"Computer Vision and Pattern Recognition Dec 2024","url":"https://arxiv.org/list/cs.CV/2024-12?skip=1575&show=2000"},{"title":"(PDF) Segment-Based Attention Masking for GPTs","url":"https://www.researchgate.net/publication/387382912_Segment-Based_Attention_Masking_for_GPTs"},{"title":"[2112.01527] Masked-attention Mask Transformer for Universal Image Segmentation","url":"https://arxiv.org/abs/2112.01527"},{"title":"Advances in attention mechanisms for medical image segmentation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1574013724001047"},{"title":"Efficient Attention Mechanisms for Large Language Models: A Survey","url":"https://arxiv.org/html/2507.19595v1"}]
+
+Here are the search results for arXiv 2412.18487 "Segment-Based Attention Masking" by Katz and colleagues:
+
+## Paper Overview
+
+The paper "Segment-Based Attention Masking for GPTs" is by Shahar Katz, Liran Ringel, Yaniv Romano, and Lior Wolf, published in the Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025).
+
+## Main Contribution
+
+Although GPTs can process the entire user prompt at once, causal masking is applied to all input tokens step-by-step, mimicking the generation process, which imposes an unnecessary constraint during the initial "prefill" phase when the model processes the input prompt and generates internal representations before producing any output tokens.
+
+The paper proposes that attention is masked based on the known block structure at the prefill phase, followed by the conventional token-by-token autoregressive process after that. For example, in a typical chat prompt, the system prompt is treated as one block, and the user prompt as the next one, with each treated as a unit for the purpose of masking, such that the first tokens in each block can access the subsequent tokens in a non-causal manner.
+
+## Key Benefits
+
+The Segment-by-Segment scheme entails no additional computational overhead, and when integrated using lightweight fine-tuning into already trained models such as Llama and Qwen, MAS quickly increases models' performances.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85b364a4-f78f-41d3-bb00-678db15fb750",
+  "isSidechain": true,
+  "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+  "agentId": "ad270beee5fefff64",
+  "type": "user",
+  "uuid": "84d02932-b51f-424c-bc64-7296658ad04a",
+  "sourceToolAssistantUUID": "85b364a4-f78f-41d3-bb00-678db15fb750",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-10T20:58:09.173Z_
+
+Now let me search for code implementations for ChunkKV and more details on the Segment-Based Attention Masking paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84d02932-b51f-424c-bc64-7296658ad04a",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "requestId": "req_011CauZLePWdXpgWcFoaH6UF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "819c82d2-b041-4f3a-b41e-92c1b834e7cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rv44QscYM44v8kkVjQT25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3028,
+      "cache_read_input_tokens": 10361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3028,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T20:58:09.655Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JzhbrACZcsWnvGtT6bJjbr`</summary>
+
+```json
+{
+  "query": "ChunkKV github code implementation KV cache compression"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "819c82d2-b041-4f3a-b41e-92c1b834e7cd",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "requestId": "req_011CauZLePWdXpgWcFoaH6UF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "98852d23-819d-4cde-add3-692ba74969cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rv44QscYM44v8kkVjQT25",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3028,
+      "cache_read_input_tokens": 10361,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3028,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T20:58:09.941Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XGpdXJ36oLUYx5fXVk3JEC`</summary>
+
+```json
+{
+  "query": "\"Segment-Based Attention Masking\" Katz github code implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98852d23-819d-4cde-add3-692ba74969cd",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "requestId": "req_011CauZLePWdXpgWcFoaH6UF",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0059c511-708b-47af-8a28-22bf2d947390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rv44QscYM44v8kkVjQT25",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3028,
+      "cache_read_input_tokens": 10361,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3028
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 10361,
+          "cache_creation_input_tokens": 3028,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3028,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T20:58:16.135Z_
+
+<details><summary>↩ Tool result · `toolu_01JzhbrACZcsWnvGtT6bJjbr`</summary>
+
+```text
+Web search results for query: "ChunkKV github code implementation KV cache compression"
+
+Links: [{"title":"GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub","url":"https://github.com/NVIDIA/kvpress"},{"title":"NeurIPS Poster ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://neurips.cc/virtual/2025/poster/120181"},{"title":"GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).","url":"https://github.com/October2001/Awesome-KV-Cache-Compression"},{"title":"ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference | OpenReview","url":"https://openreview.net/forum?id=8sglLco8Ti"},{"title":"kvpress/kvpress/presses/chunkkv_press.py at main · NVIDIA/kvpress","url":"https://github.com/NVIDIA/kvpress/blob/main/kvpress/presses/chunkkv_press.py"},{"title":"ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://arxiv.org/html/2502.00299v5"},{"title":"[2502.00299] ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://arxiv.org/abs/2502.00299"},{"title":"Paper page - ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://huggingface.co/papers/2502.00299"},{"title":"[2502.00299v5] ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference","url":"https://arxiv.org/abs/2502.00299v5"},{"title":"[PDF] ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ef094815dc0118c8d1cc06d4bb3aa78bae0a3877"}]
+
+Based on the search results, here's what I found about ChunkKV's GitHub code implementation:
+
+## Overview
+ChunkKV is available as part of the NVIDIA KVPress repository, which provides multiple KV cache compression methods. The code is available at the NVIDIA/kvpress GitHub repository.
+
+## Implementation Details
+ChunkKV treats semantic chunks—rather than isolated tokens—as basic compression units. The implementation includes:
+
+1. **Core Architecture**: ChunkKV retains the most informative semantic chunks while discarding the less important ones by grouping related tokens.
+
+2. **Code Structure**: The implementation is available in the `chunkkv_press.py` file, with parameters including a ScorerPress input and a chunk_length parameter set to 20 by default.
+
+3. **Optimization Technique**: ChunkKV includes a layer-wise index reuse technique that exploits the higher similarity in retained KV cache indices across different layers.
+
+## Functionality
+The algorithm computes attention scores to set an observation window, selects important chunks, and retains only the key and value matrices corresponding to the selected indices, resulting in the compressed KV cache.
+
+## Performance
+The layer-wise index reuse technique reduces computational overhead and improves throughput by 26.5%, and ChunkKV outperforms state-of-the-art methods by up to 8.7% in precision while maintaining the same compression ratio.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98852d23-819d-4cde-add3-692ba74969cd",
+  "isSidechain": true,
+  "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+  "agentId": "ad270beee5fefff64",
+  "type": "user",
+  "uuid": "3d869a29-cae6-42e8-95a7-eca6c7874e65",
+  "sourceToolAssistantUUID": "98852d23-819d-4cde-add3-692ba74969cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T20:58:16.353Z_
+
+<details><summary>↩ Tool result · `toolu_01XGpdXJ36oLUYx5fXVk3JEC`</summary>
+
+```text
+Web search results for query: ""Segment-Based Attention Masking" Katz github code implementation"
+
+Links: [{"title":"GitHub - shacharKZ/MAS-Segment-Based-Attention-Masking","url":"https://github.com/shacharKZ/MAS-Segment-Based-Attention-Masking"},{"title":"Segment-Based Attention Masking for GPTs","url":"https://arxiv.org/html/2412.18487v1"},{"title":"[2412.18487] Segment-Based Attention Masking for GPTs","url":"https://arxiv.org/abs/2412.18487"},{"title":"(PDF) Segment-Based Attention Masking for GPTs","url":"https://www.researchgate.net/publication/387382912_Segment-Based_Attention_Masking_for_GPTs"},{"title":"GitHub - facebookresearch/Mask2Former: Code release for \"Masked-attention Mask Transformer for Universal Image Segmentation\" · GitHub","url":"https://github.com/facebookresearch/Mask2Former"},{"title":"Segment-Based Attention Masking for GPTs - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.947/"},{"title":"GitHub - facebookresearch/segment-anything: The repository provides code for running inference with the SegmentAnything Model (SAM), links for downloading the trained model checkpoints, and example notebooks that show how to use the model. · GitHub","url":"https://github.com/facebookresearch/segment-anything"},{"title":"Segment-Based Attention Masking for GPTs | Papers With Code","url":"https://paperswithcode.com/paper/segment-based-attention-masking-for-gpts"},{"title":"Why attention masks are not used in the SD3 self-attention computation? · huggingface/diffusers · Discussion #8628","url":"https://github.com/huggingface/diffusers/discussions/8628"},{"title":"GitHub - chwilms/AttentionMask: AttentionMask: Attentive, Efficient Object Proposal Generation Focusing on Small Objects (ACCV 2018, accepted as oral)","url":"https://github.com/chwilms/AttentionMask"}]
+
+Based on the search results, I found the official GitHub repository for Segment-Based Attention Masking by Katz and colleagues.
+
+## Key Information
+
+The repository contains the official code for the paper "Segment-Based Attention Masking for GPTs". The GitHub repository is located at: **https://github.com/shacharKZ/MAS-Segment-Based-Attention-Masking**
+
+### What's Included
+
+The repository shares model weights and a notebook visualizing MAS attention maps. The demo notebook (demo_MAS.ipynb) demonstrates how to load a MAS instance of Llama-3.2-1B, generate outputs with it, and visualize its attention maps.
+
+### Setup Requirements
+
+Python 3.10 is required, and you can install dependencies using the provided requirements.txt file.
+
+### About the Research
+
+The paper was authored by Shahar Katz, Liran Ringel, Yaniv Romano, and Lior Wolf, published as an arXiv preprint (arXiv:2412.18487) in 2024. The approach, called Masked Attention by Segment (MAS), modifies the attention masking mechanism of GPTs by unmasking entire segments of input prompts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0059c511-708b-47af-8a28-22bf2d947390",
+  "isSidechain": true,
+  "promptId": "9675c8d9-c066-4a51-852b-884e868d9748",
+  "agentId": "ad270beee5fefff64",
+  "type": "user",
+  "uuid": "6a709c54-2814-4a09-9219-62fa1765b454",
+  "sourceToolAssistantUUID": "0059c511-708b-47af-8a28-22bf2d947390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-10T20:58:41.600Z_
+
+Here are my findings for all three papers:
+
+---
+
+## 1. ChunkKV
+
+**Venue claim: NeurIPS 2025 -- VERIFIED (Poster)**
+
+The paper "ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference" is confirmed as a NeurIPS 2025 paper (poster presentation, not spotlight/oral). It appears on the official NeurIPS 2025 virtual site, OpenReview, and the NeurIPS proceedings.
+
+**Method summary:** ChunkKV groups contiguous tokens into fixed-size chunks (default chunk length = 20 tokens) and treats these chunks as atomic units for KV cache compression. Attention scores are aggregated at the chunk level, and entire chunks are kept or discarded together, preserving semantic coherence that token-level pruning destroys. It also introduces a layer-wise index reuse technique that exploits the high cross-layer similarity of retained chunk indices, reducing computation overhead by 26.5% and improving precision by up to 8.7% over prior methods.
+
+**Code:** Available as part of NVIDIA's kvpress library at `kvpress/presses/chunkkv_press.py` in the [NVIDIA/kvpress](https://github.com/NVIDIA/kvpress) repository.
+
+**Note on the claim:** The user's description says "fixed-size token groups" which is accurate -- ChunkKV uses fixed-size contiguous chunks as the compression unit.
+
+---
+
+## 2. Twilight
+
+**Venue claim: NeurIPS 2025 Spotlight -- VERIFIED**
+
+The paper "Twilight: Adaptive Attention Sparsity with Hierarchical Top-p Pruning" is confirmed as a NeurIPS 2025 Spotlight paper. The GitHub repo explicitly states "[NeurIPS'25 Spotlight]" and it appears on the NeurIPS 2025 Spotlight listing.
+
+**Method summary:** Twilight addresses the limitation of fixed-budget sparse attention by applying top-p (nucleus) sampling to attention weights, enabling adaptive per-query budget decisions. It uses a hierarchical "Select-then-Prune" architecture: first selecting candidate tokens, then pruning based on cumulative attention mass. Estimated attention weights are computed using 4-bit quantized keys for efficiency, and a custom sparse GEMV kernel (built on FlashInfer) delivers up to 15.4x acceleration in self-attention and 3.9x end-to-end latency speedup.
+
+**Code:** Official implementation available at [tsinghua-ideal/Twilight](https://github.com/tsinghua-ideal/Twilight) on GitHub.
+
+---
+
+## 3. Segment-Based Attention Masking for GPTs (MAS)
+
+**Venue claim: ACL 2025, arXiv:2412.18487 by Katz et al. -- VERIFIED**
+
+The paper appears in the ACL Anthology as part of the 63rd Annual Meeting of the ACL (ACL 2025, long paper). The arXiv ID 2412.18487 is correct. Authors are Shahar Katz, Liran Ringel, Yaniv Romano, and Lior Wolf.
+
+**Method summary:** The paper proposes Masked Attention by Segment (MAS), which modifies the standard causal attention mask during the prefill phase of GPT inference. Instead of applying strict left-to-right causal masking to all input tokens, it treats known segments of the input (e.g., system prompt, user message) as blocks where tokens within a segment can attend to all other tokens in that same segment bidirectionally. After prefill, standard autoregressive generation proceeds as normal. This adds zero computational overhead and improves performance when integrated via lightweight fine-tuning into models like Llama and Qwen.
+
+**Code:** Official repository at [shacharKZ/MAS-Segment-Based-Attention-Masking](https://github.com/shacharKZ/MAS-Segment-Based-Attention-Masking), including model weights and a demo notebook.
+
+---
+
+**Summary:** All three venue claims are verified as accurate. All three papers have publicly available code implementations.
+
+Sources:
+- [ChunkKV - NeurIPS 2025 Poster](https://neurips.cc/virtual/2025/loc/san-diego/poster/120181)
+- [ChunkKV - arXiv](https://arxiv.org/abs/2502.00299)
+- [ChunkKV - OpenReview](https://openreview.net/forum?id=20JDhbJqn3)
+- [ChunkKV - NVIDIA kvpress implementation](https://github.com/NVIDIA/kvpress/blob/main/kvpress/presses/chunkkv_press.py)
+- [Twilight - NeurIPS 2025 Poster page](https://neurips.cc/virtual/2025/poster/117668)
+- [Twilight - arXiv](https://arxiv.org/abs/2502.02770)
+- [Twilight - GitHub (tsinghua-ideal)](https://github.com/tsinghua-ideal/Twilight)
+- [Twilight - OpenReview](https://openreview.net/forum?id=Ve693NkzcU)
+- [MAS - arXiv 2412.18487](https://arxiv.org/abs/2412.18487)
+- [MAS - ACL Anthology](https://aclanthology.org/2025.acl-long.947/)
+- [MAS - GitHub](https://github.com/shacharKZ/MAS-Segment-Based-Attention-Masking)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a709c54-2814-4a09-9219-62fa1765b454",
+  "isSidechain": true,
+  "agentId": "ad270beee5fefff64",
+  "requestId": "req_011CauZMSHH2PoGRn9cDQqcA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c9e6d4b7-6a58-4705-9f2e-3b4348670e65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d91b6641-7766-46ec-8211-66f280f961a2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GMFEvioD3JfCq31uwEeUKw",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1990,
+      "cache_read_input_tokens": 13389,
+      "output_tokens": 1341,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1990
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1341,
+          "cache_read_input_tokens": 13389,
+          "cache_creation_input_tokens": 1990,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1990,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,5316 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 93
+- **Recorded user turns:** 3
+- **Tool calls:** 26
+- **Original source:** `logs/chats/exported-trajectories/account-3/34ee26b9-3c9e-41a9-a60f-229863c98b8c.jsonl`
+- **Structured JSON:** [`3410931eec92452c396d.json`](../../sessions/34/3410931eec92452c396d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T08:51:46.286Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T08:51:46.286Z",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #2。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张）\n- 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wrapper 会导致 GDN acc 偏低 ~3.3pp）\n- D009 禁止 post-hoc 统计技巧：不能做 2-benchmark Bonferroni、不能做 ρ<0 子集校正\n- 论文 framing 已锁定 \"task-specific convergence\"（LAMBADA only），不能 claim \"general convergence\"\n- D017 sprint：May 25 ARR 截止，纯写作冲刺，新实验需 Director 批准\n- Confidence margin 分析（within-category control）已写入论文 §4.3，GDN 用 h12-1（1.3B h3-1 不可用）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-48145，工作目录 `/root/entrainment_gated_ft/`\n- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 1.3B 模型：`/root/autodl-tmp/models_1.3b/`（GDN/RetNet/HGRN2 × 5 ratios + Transformer baseline，共 16）\n- 340M 模型：`/root/autodl-tmp/models/`（GDN/RetNet/HGRN2 × 5 ratios + partial，共 ~16）\n- 评估输出：`/root/entrainment_gated_ft/lm_eval_clean/`（按 benchmark 子目录组织）\n- 分析脚本：`/root/entrainment_gated_ft/analysis/`\n- 活跃进程：无。GPU 空闲\n- 活跃 Worker：`worker_analysis_exp-boolq-hellaswag-eval_20260520T124927`（刚 spawn，分析 BoolQ/HellaSwag 结果）\n- Cron：已 reconcile，无活跃 cron\n\n### 3. 📊 当前状态\n收到 `exp-boolq-hellaswag-eval` 完成 cron 回调（进程正常退出）。刚 spawn Worker 去 SSH 读日志提取 metrics，**Worker 尚未返回**。\n\nRegistry 状态：\n- `exp-boolq-hellaswag-eval` — PREPARING（cron 已转 ANALYZING 但 registry 未同步），跑了 `run_boolq_hellaswag_all.sh`，BoolQ+HellaSwag 全模型评估。**缺 hypothesis 和 parent 字段，需补填后才能转 DONE**\n- `exp-005` — PREPARING/killed（Wang zoo 无额外架构，已终止）\n- `exp-003-p2v2` — PREPARING/killed（HGRN2 monkey-patch 问题，已终止）\n- 其余 16 个实验全 DONE\n\n等待中：\n- Worker `worker_analysis_exp-boolq-hellaswag-eval_20260520T124927` 回调 → 拿到 metrics 后更新 registry、汇报 Director\n- D017 sprint 写作任务（W-CHECKLIST / W-OVERCLAIM / W-GENERAL / W-GDN / R3-POWER / Q1 / Q5 / W-ZOO / Author Response）— 需 Paper Agent 执行\n\n### 4. 📋 待办\n- Worker 回调到达 → 读 metrics，补 hypothesis（推荐：parent=exp-011，hypothesis=\"BoolQ 和 HellaSwag 的 per-example evaluation 数据用于扩展 multiplicity 分析到更多 benchmark\"），更新 registry 到 DONE，汇报 Director\n- 如果 BoolQ/HellaSwag 有 log_samples per-example 数据 → 可做 Jaccard/multiplicity 分析（类似 exp-015 对 ARC-Easy 的分析），但需 Director 批准（D017 锁定写作冲刺）\n- D017 写作任务未完成 → 汇报 Director 后确认 Paper Agent 是否需要继续推进\n- GPU 空闲 → D017 期间无需算力，但若 Director 指示新实验，westb-48145:cuda:0 可用\n\n### 5. 🎯 战略上下文\n- **核心叙事**：Hybrid architectures 中 attention 产生 task-specific aggregate convergence（仅 LAMBADA）+ task-general per-example predictive multiplicity（LAMBADA α~0.30 + ARC-Easy α~0.21）。两者 decoupled，不是 co-evolution\n- **决策链关键节点**：D008（decoupling 叙事）→ D009（W1 统计策略，BCa CI 主导）→ D015（ARC-Easy 扩展 multiplicity）→ D017（May 25 deadline sprint）\n- **易错点**：\n  1. 不要把 BoolQ/HellaSwag aggregate 结果当新发现——exp-011 已做过且 negative。本次实验的价值在于是否有 per-example log_samples 数据可做 multiplicity 分析\n  2. 统计报告必须附原始数值（ρ=X, p=Y），\"majority\"/\"most\" 必须有计数（Director 硬约束）\n  3. RetNet-pure 1.3B logsamples 数据异常（全部 acc=0），cross-scale Jaccard 不可用——不要尝试用这个数据\n  4. exp-boolq-hellaswag-eval 的 registry 状态仍是 PREPARING，需要先正确更新（可能需要补 spec 字段才能转 RUNNING → DONE）\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T08:51:46.290Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T08:51:46.290Z",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+## Round 1
+
+88 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T08:51:46.324Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #2。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张）
+- 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wrapper 会导致 GDN acc 偏低 ~3.3pp）
+- D009 禁止 post-hoc 统计技巧：不能做 2-benchmark Bonferroni、不能做 ρ<0 子集校正
+- 论文 framing 已锁定 "task-specific convergence"（LAMBADA only），不能 claim "general convergence"
+- D017 sprint：May 25 ARR 截止，纯写作冲刺，新实验需 Director 批准
+- Confidence margin 分析（within-category control）已写入论文 §4.3，GDN 用 h12-1（1.3B h3-1 不可用）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westb-48145，工作目录 `/root/entrainment_gated_ft/`
+- Python：`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 1.3B 模型：`/root/autodl-tmp/models_1.3b/`（GDN/RetNet/HGRN2 × 5 ratios + Transformer baseline，共 16）
+- 340M 模型：`/root/autodl-tmp/models/`（GDN/RetNet/HGRN2 × 5 ratios + partial，共 ~16）
+- 评估输出：`/root/entrainment_gated_ft/lm_eval_clean/`（按 benchmark 子目录组织）
+- 分析脚本：`/root/entrainment_gated_ft/analysis/`
+- 活跃进程：无。GPU 空闲
+- 活跃 Worker：`worker_analysis_exp-boolq-hellaswag-eval_20260520T124927`（刚 spawn，分析 BoolQ/HellaSwag 结果）
+- Cron：已 reconcile，无活跃 cron
+
+### 3. 📊 当前状态
+收到 `exp-boolq-hellaswag-eval` 完成 cron 回调（进程正常退出）。刚 spawn Worker 去 SSH 读日志提取 metrics，**Worker 尚未返回**。
+
+Registry 状态：
+- `exp-boolq-hellaswag-eval` — PREPARING（cron 已转 ANALYZING 但 registry 未同步），跑了 `run_boolq_hellaswag_all.sh`，BoolQ+HellaSwag 全模型评估。**缺 hypothesis 和 parent 字段，需补填后才能转 DONE**
+- `exp-005` — PREPARING/killed（Wang zoo 无额外架构，已终止）
+- `exp-003-p2v2` — PREPARING/killed（HGRN2 monkey-patch 问题，已终止）
+- 其余 16 个实验全 DONE
+
+等待中：
+- Worker `worker_analysis_exp-boolq-hellaswag-eval_20260520T124927` 回调 → 拿到 metrics 后更新 registry、汇报 Director
+- D017 sprint 写作任务（W-CHECKLIST / W-OVERCLAIM / W-GENERAL / W-GDN / R3-POWER / Q1 / Q5 / W-ZOO / Author Response）— 需 Paper Agent 执行
+
+### 4. 📋 待办
+- Worker 回调到达 → 读 metrics，补 hypothesis（推荐：parent=exp-011，hypothesis="BoolQ 和 HellaSwag 的 per-example evaluation 数据用于扩展 multiplicity 分析到更多 benchmark"），更新 registry 到 DONE，汇报 Director
+- 如果 BoolQ/HellaSwag 有 log_samples per-example 数据 → 可做 Jaccard/multiplicity 分析（类似 exp-015 对 ARC-Easy 的分析），但需 Director 批准（D017 锁定写作冲刺）
+- D017 写作任务未完成 → 汇报 Director 后确认 Paper Agent 是否需要继续推进
+- GPU 空闲 → D017 期间无需算力，但若 Director 指示新实验，westb-48145:cuda:0 可用
+
+### 5. 🎯 战略上下文
+- **核心叙事**：Hybrid architectures 中 attention 产生 task-specific aggregate convergence（仅 LAMBADA）+ task-general per-example predictive multiplicity（LAMBADA α~0.30 + ARC-Easy α~0.21）。两者 decoupled，不是 co-evolution
+- **决策链关键节点**：D008（decoupling 叙事）→ D009（W1 统计策略，BCa CI 主导）→ D015（ARC-Easy 扩展 multiplicity）→ D017（May 25 deadline sprint）
+- **易错点**：
+  1. 不要把 BoolQ/HellaSwag aggregate 结果当新发现——exp-011 已做过且 negative。本次实验的价值在于是否有 per-example log_samples 数据可做 multiplicity 分析
+  2. 统计报告必须附原始数值（ρ=X, p=Y），"majority"/"most" 必须有计数（Director 硬约束）
+  3. RetNet-pure 1.3B logsamples 数据异常（全部 acc=0），cross-scale Jaccard 不可用——不要尝试用这个数据
+  4. exp-boolq-hellaswag-eval 的 registry 状态仍是 PREPARING，需要先正确更新（可能需要补 spec 字段才能转 RUNNING → DONE）
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "4bf96967-3b5f-4623-b430-4a45d5a95807",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T08:51:46.323Z_
+
+```json
+{
+  "parentUuid": "4bf96967-3b5f-4623-b430-4a45d5a95807",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9e6f89d0-1f3b-475f-8843-8d65f5cca035",
+  "timestamp": "2026-05-21T08:51:46.323Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T08:51:46.324Z_
+
+```json
+{
+  "parentUuid": "9e6f89d0-1f3b-475f-8843-8d65f5cca035",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1c109719-fa5b-4172-8af0-3305142db89a",
+  "timestamp": "2026-05-21T08:51:46.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-21T08:51:46.324Z_
+
+```json
+{
+  "parentUuid": "1c109719-fa5b-4172-8af0-3305142db89a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "260290e8-de9b-411f-acdd-891d88891454",
+  "timestamp": "2026-05-21T08:51:46.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze BoolQ/HellaSwag evaluation results and update registry",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-21T08:51:50.965Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by executing the session-start protocol: read registry, reconcile crons, read report.md, and read ROADMAP.md. But first, I need to acknowledge the handoff and confirm I've read the constraints.
+
+Let me load the necessary MCP tools first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "260290e8-de9b-411f-acdd-891d88891454",
+  "isSidechain": false,
+  "requestId": "req_011CbFRrJTvqDDeuE9NQ5D9T",
+  "type": "assistant",
+  "uuid": "6b2a9986-c818-4e68-bac2-948016d7e250",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9EfQ7VrgbNhkzKkfxjafT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26969,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-21T08:51:53.014Z_
+
+收到 Handoff。确认硬约束：仅用 westb-48145:cuda:0、fla 评估必须用 `run_lmeval_clean.py`、D017 写作冲刺锁定、framing 锁定 task-specific convergence (LAMBADA only)。当前等待 Worker `worker_analysis_exp-boolq-hellaswag-eval_20260520T124927` 回调。
+
+执行 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b2a9986-c818-4e68-bac2-948016d7e250",
+  "isSidechain": false,
+  "requestId": "req_011CbFRrJTvqDDeuE9NQ5D9T",
+  "type": "assistant",
+  "uuid": "61db002e-99c7-4109-9f5f-44bfef481946",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9EfQ7VrgbNhkzKkfxjafT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26969,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-21T08:51:53.781Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011bNLLqkSYBox893pXjTFQH`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61db002e-99c7-4109-9f5f-44bfef481946",
+  "isSidechain": false,
+  "requestId": "req_011CbFRrJTvqDDeuE9NQ5D9T",
+  "type": "assistant",
+  "uuid": "f0bb0114-d833-4b70-b16a-672b3df5782f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9EfQ7VrgbNhkzKkfxjafT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26969,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 335,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 335,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T08:51:53.788Z_
+
+<details><summary>↩ Tool result · `toolu_011bNLLqkSYBox893pXjTFQH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0bb0114-d833-4b70-b16a-672b3df5782f",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "5513929f-6c40-4bab-9fff-d32a0f6fdfd8",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "f0bb0114-d833-4b70-b16a-672b3df5782f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T08:51:56.693Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01U53YKCdSEbMgobUNnHMahm`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5513929f-6c40-4bab-9fff-d32a0f6fdfd8",
+  "isSidechain": false,
+  "requestId": "req_011CbFRrrQZ45ePWBCf1rSi8",
+  "type": "assistant",
+  "uuid": "11425323-fe34-49bd-8cbb-cc95a9fe9cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DzrwvHjPFiPwq197HogprT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 38810,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 38810,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T08:51:57.132Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01DTweuR9AbQw2esHDqqnZJ2`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11425323-fe34-49bd-8cbb-cc95a9fe9cef",
+  "isSidechain": false,
+  "requestId": "req_011CbFRrrQZ45ePWBCf1rSi8",
+  "type": "assistant",
+  "uuid": "6b6d9167-1d7b-4b47-8aa2-de581ad22557",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DzrwvHjPFiPwq197HogprT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 38810,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 38810,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T08:51:56.766Z_
+
+<details><summary>↩ Tool result · `toolu_01U53YKCdSEbMgobUNnHMahm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"w3-winogrande-piqa-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T08:28:29.577Z\", \"updated_at\": \"2026-05-21T08:28:29.577Z\"}, \"exp-boolq-hellaswag-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-20T13:05:00.607Z\", \"conclusion\": \"success\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}}, \"exp-015\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:05:29.020Z\", \"updated_at\": \"2026-05-20T10:06:09.562Z\", \"hypothesis\": \"Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence\", \"parent\": \"exp-arc-easy-eval\", \"conclusion\": \"success\", \"metrics\": {\"benchmark\": \"arc_easy\", \"n_samples\": 2376, \"convergence\": {\"spearman_rho\": -0.2, \"p_exact\": 0.783, \"significant\": false}, \"jaccard_range\": {\"helped\": [0.067, 0.117], \"hurt\": [0.079, 0.134]}, \"normalized_ES_range\": [0.035, 0.135], \"all_24_jaccard_above_null\": true, \"multiplicity_arc_easy\": {\"alpha_range\": [0.201, 0.226], \"delta_range\": [2.32, 3.12]}, \"multiplicity_lambada\": {\"alpha_range\": [0.294, 0.316], \"delta_range\": [0.53, 0.61]}, \"claim\": \"Claim 3: per-example predictive multiplicity is general\", \"artifacts\": [\"arc_easy_per_example.json\", \"arc_easy_jaccard_analysis.json\", \"formal_multiplicity_metrics.json\"]}}, \"exp-arc-easy-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:46:49.153Z\", \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"metrics\": {\"benchmark\": \"arc_easy\", \"n_samples\": 2376, \"models_completed\": \"15/15\", \"acc_range\": [0.6961, 0.7412], \"convergence\": {\"spearman_rho\": -0.2, \"p_exact\": 0.783, \"significant\": false, \"sigma_pure\": 0.0964, \"sigma_h3_1\": 0.099}, \"jaccard_range\": {\"helped\": [0.067, 0.117], \"hurt\": [0.079, 0.134]}, \"normalized_ES_range\": [0.035, 0.135], \"all_24_jaccard_above_null\": true, \"multiplicity\": {\"alpha_range\": [0.201, 0.226], \"delta_range\": [2.32, 3.12]}, \"lambada_multiplicity\": {\"alpha_range\": [0.294, 0.316], \"delta_range\": [0.53, 0.61]}, \"key_finding\": \"Per-example multiplicity exists on ARC-Easy (alpha~0.21, Jaccard~0.07-0.13) WITHOUT aggregate convergence (rho=-0.20,p=0.78). Combined with LAMBADA (alpha~0.30 WITH convergence), per-example multiplicity is a general property not tied to convergence.\", \"artifacts\": [\"arc_easy_per_example.json\", \"arc_easy_jaccard_analysis.json\", \"formal_multiplicity_metrics.json\"]}}, \"exp-005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:26:40.718Z\", \"updated_at\": \"2026-05-20T03:28:05.796Z\", \"hypothesis\": \"Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones\", \"conclusion\": \"killed\", \"metrics\": {\"cancel_reason\": \"Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认\"}}, \"exp-007\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T17:08:19.724Z\", \"updated_at\": \"2026-05-19T18:53:42.640Z\", \"hypothesis\": \"340M models show non-monotonic rebound in cross-architecture convergence at high attention ratios on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\", \"parent\": \"exp-001\", \"metrics\": {\"340m_cross_arch_std\": {\"pure\": 0.02481, \"h24-1\": 0.011647, \"h12-1\": 0.017833, \"h6-1\": 0.011035, \"h3-1\": 0.016004}, \"340m_spearman_rho\": -0.5, \"340m_spearman_perm_p\": 0.45, \"1.3b_spearman_rho_ref\": -1, \"1.3b_spearman_perm_p_ref\": 0.0167, \"rebound_h3_1_delta\": 0.004969, \"rebound_h12_1_delta\": 0.006186, \"340m_h3_1_helped_jaccard\": 0.0944, \"340m_h3_1_hurt_jaccard\": 0.0899, \"models_completed\": 26, \"models_skipped\": 1}, \"conclusion\": \"success\"}, \"exp-004-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:20.215Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"conclusion\": \"success\", \"metrics\": {\"helped_vs_hurt_entropy_diff\": {\"gdn\": -0.0009, \"retnet\": 0.0179, \"hgrn2\": 0.002}, \"helped_vs_hurt_last5_mass\": {\"gdn_helped\": 0.0834, \"gdn_hurt\": 0.0831, \"retnet_helped\": 0.1578, \"retnet_hurt\": 0.1591, \"hgrn2_helped\": 0.0453, \"hgrn2_hurt\": 0.0467}, \"cross_arch_similarity_mean\": {\"gdn_vs_retnet\": 0.905, \"gdn_vs_hgrn2\": 0.766, \"hgrn2_vs_retnet\": 0.698}, \"cross_arch_similarity_deep_layers\": {\"gdn_vs_retnet_L20\": 0.986, \"gdn_vs_hgrn2_L20\": 0.942, \"hgrn2_vs_retnet_L20\": 0.943}, \"cross_arch_similarity_early_layers\": {\"gdn_vs_retnet_L2\": 0.995, \"gdn_vs_hgrn2_L2\": 0.244, \"hgrn2_vs_retnet_L2\": 0.196}, \"finding\": \"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\", \"n_samples\": 5153, \"runtime_minutes\": 30, \"output_files\": [\"gdn_attention_patterns.pt\", \"gdn_attention_entropy.csv\", \"retnet_attention_patterns.pt\", \"retnet_attention_entropy.csv\", \"hgrn2_attention_patterns.pt\", \"hgrn2_attention_entropy.csv\", \"attention_analysis_summary.json\", \"cross_arch_attention_similarity.csv\", \"helped_vs_hurt_entropy.csv\"]}}, \"exp-011-xstorycloze\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:18:38.168Z\", \"updated_at\": \"2026-05-19T17:00:01.089Z\", \"hypothesis\": \"xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-011\", \"conclusion\": \"negative\", \"metrics\": {\"xstorycloze_en\": {\"rho\": -0.6, \"raw_p\": 0.35, \"bonferroni_adj_p_10\": 1, \"std_pure\": 0.0082, \"std_h3_1\": 0.0055, \"convergence_direction\": \"correct but weak\"}, \"ten_benchmark_bonferroni\": {\"significant_count\": \"0/10\", \"LAMBADA_adj_p\": 0.167, \"note\": \"No benchmark survives 10-benchmark Bonferroni\"}, \"method\": \"exact_permutation_test_two_tailed\", \"conclusion\": \"xstorycloze_en NOT a second anchor. Convergence is LAMBADA-specific. W1 unresolved via multi-benchmark approach.\"}}, \"exp-004\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:41:10.744Z\", \"updated_at\": \"2026-05-19T16:57:48.978Z\", \"hypothesis\": \"Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures.\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-011\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:37:27.600Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"conclusion\": \"negative\", \"metrics\": {\"boolq\": {\"rho\": 0.2, \"raw_p\": 0.7833, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0163, \"std_h3_1\": 0.0236, \"convergence\": false}, \"piqa\": {\"rho\": -0.5, \"raw_p\": 0.45, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0054, \"std_h3_1\": 0.0034, \"convergence\": false}, \"sciq\": {\"rho\": 0.1, \"raw_p\": 0.95, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0087, \"std_h3_1\": 0.0074, \"convergence\": false}, \"copa_supplementary\": {\"rho\": -0.67, \"raw_p\": 0.2667, \"std_pure\": 0.0262, \"std_h3_1\": 0.0047, \"convergence_ratio\": 5.57, \"note\": \"supplementary only (n=100), not in main Bonferroni\"}, \"LAMBADA_recomputed\": {\"rho\": -1, \"raw_p\": 0.0167, \"bonferroni_adj_p_6\": 0.1, \"bonferroni_adj_p_10\": 0.167, \"note\": \"6-Bonf=0.100 (D003 pre-registered); 10-Bonf=0.167; does not survive strict Bonferroni\"}, \"merged_10benchmark_significant_count\": \"0/10\", \"method\": \"exact_permutation_test_two_tailed\", \"D009_strategy\": \"BCa CI [-1.0,-0.7] as primary evidence; 6-Bonf adj_p=0.100 reported honestly; 10-benchmark negative -> task-specificity positive evidence (supplementary); underpowered caveat in Limitations\", \"D009_prohibited\": \"NO post-hoc 2-benchmark Bonferroni; NO post-hoc rho<0 subset correction\", \"conclusion\": \"No second anchor. Convergence LAMBADA-specific. W1 addressed via task-specificity reframing (D009).\"}}, \"exp-010\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:08:21.255Z\", \"updated_at\": \"2026-05-19T15:12:28.565Z\", \"hypothesis\": \"Aggregate convergence (cross-arch std decreasing with attention ratio) and per-example divergence (low Jaccard of helped/hurt sets) co-evolve as attention ratio increases on LAMBADA — demonstrating underspecification: architectures converge in aggregate performance while helping/hurting almost entirely different samples\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"metrics\": {\"aggregate_convergence\": {\"std_pure\": 0.024, \"std_h24_1\": 0.0162, \"std_h12_1\": 0.0136, \"std_h6_1\": 0.0061, \"std_h3_1\": 0.0049, \"reduction_ratio\": 0.8, \"note\": \"Cross-arch std drops 5x monotonically\"}, \"per_example_divergence\": {\"jaccard_helped_range\": [0.092, 0.1], \"jaccard_hurt_range\": [0.081, 0.099], \"net_asymmetry_range\": [0.013, 0.04], \"net_asymmetry_trend\": \"increasing with attention ratio\", \"note\": \"Jaccard saturates at ~0.095 by 4% attention (h24-1), flat thereafter\"}, \"co_evolution_spearman\": {\"std_vs_J_helped\": {\"rho\": -0.7, \"exact_p\": 0.23}, \"std_vs_J_hurt\": {\"rho\": -0.8, \"exact_p\": 0.13}, \"CAVEAT\": \"D008: rho inflated by pure=0 degeneracy (Jaccard=NaN->0). Excluding pure: rho=-0.40, p=0.75. NOT co-evolution.\"}, \"key_finding\": \"DECOUPLING (D008): minimal attention (4%) creates per-example specificity (Jaccard saturates ~0.095), gradual attention drives aggregate convergence (sigma 0.024->0.005). Two processes operate on different timescales. Net asymmetry INCREASES (0.013->0.040).\", \"narrative_constraints\": \"PROHIBITED: co-evolution, paradoxical coexistence, paradox. USE: decoupling, different timescales.\"}}, \"exp-001\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:32:43.793Z\", \"updated_at\": \"2026-05-19T15:00:43.856Z\", \"hypothesis\": \"Cross-architecture variance (std) on retrieval-dependent tasks decreases monotonically with attention ratio at 1.3B scale, while reasoning-dependent tasks show no convergence — establishing task-specificity as a principled feature of the equalizer effect, not a limitation\", \"conclusion\": \"success\", \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"p\": 0.0167, \"significant\": false, \"taxonomy\": \"retrieval-dependent\", \"note\": \"exact permutation two-tailed (was 0.008 one-tailed)\"}, \"HellaSwag\": {\"rho\": 0.3, \"p\": 0.6833, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-C\": {\"rho\": 0.6, \"p\": 0.35, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"Winogrande\": {\"rho\": 0.1, \"p\": 0.95, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-Easy\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"MMLU\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"significant_count\": \"0/6\", \"summary\": \"LAMBADA shows perfect negative correlation (rho=-1.0) but exact permutation two-tailed p=0.0167 (Bonferroni adj-p=0.100, not significant). Reasoning tasks show no convergence. Mixed tasks suggestive but underpowered (n=5).\", \"method\": \"exact_permutation_test_two_tailed\"}}, \"exp-008\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:12:33.026Z\", \"updated_at\": \"2026-05-19T14:28:33.593Z\", \"hypothesis\": \"Replacing scipy.stats.spearmanr asymptotic p-values with exact permutation tests (n=5, 120 permutations, two-tailed) corrects the spurious p=1.4e-24 bug; expected: LAMBADA raw p≈0.017, Bonferroni adj-p≈0.100 (not significant), confirming need for additional benchmarks\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"raw_p\": 0.0167, \"bonferroni_adj_p\": 0.1, \"bh_fdr_adj_p\": 0.1}, \"HellaSwag\": {\"rho\": 0.3, \"raw_p\": 0.6833, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.82}, \"WinoGrande\": {\"rho\": 0.1, \"raw_p\": 0.95, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.95}, \"ARC-Easy\": {\"rho\": -0.7, \"raw_p\": 0.2333, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.4667}, \"ARC-Challenge\": {\"rho\": 0.6, \"raw_p\": 0.35, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.525}, \"MMLU\": {\"rho\": -0.7, \"raw_p\": 0.2333, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.4667}, \"method\": \"exact_permutation_test_two_tailed\", \"n_permutations\": 120, \"bug_fixed\": \"scipy.stats.spearmanr asymptotic p replaced with exact permutation\", \"bootstrap_ci\": {\"benchmark\": \"LAMBADA\", \"method\": \"architecture_resampling_percentile\", \"ci_lower\": -1, \"ci_upper\": -0.7, \"crosses_zero\": false, \"n_bootstrap\": 10000, \"n_valid\": 8875, \"seed\": 42, \"p_rho_negative\": 1, \"p_rho_positive\": 0, \"bca_note\": \"BCa degenerate at rho=-1.0 boundary; percentile CI used\"}, \"gdn_excluded\": {\"LAMBADA\": {\"rho\": -0.7, \"exact_p\": 0.2333, \"direction\": \"WEAKER\"}, \"HellaSwag\": {\"rho\": 0.5, \"exact_p\": 0.45, \"direction\": \"STRONGER\"}, \"WinoGrande\": {\"rho\": 0.3, \"exact_p\": 0.6833, \"direction\": \"STRONGER\"}, \"ARC-Easy\": {\"rho\": -0.9, \"exact_p\": 0.0833, \"direction\": \"STRONGER\"}, \"ARC-Challenge\": {\"rho\": -0.2, \"exact_p\": 0.7833, \"direction\": \"WEAKER\"}, \"MMLU\": {\"rho\": 0.6, \"exact_p\": 0.35, \"direction\": \"WEAKER\"}, \"note\": \"ARC-Easy rho improves from -0.7 to -0.9 (p=0.0833) without GDN confound — suggestive second anchor\"}}}, \"exp-003-p2v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:13:12.772Z\", \"updated_at\": \"2026-05-19T14:20:24.378Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.\", \"parent\": \"exp-003-p2\", \"conclusion\": \"killed\"}, \"exp-003-p2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:52:59.192Z\", \"updated_at\": \"2026-05-19T14:06:41.114Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model was uncertain → attention helped), while hurt samples have lower pure-model perplexity (model was confident → attention interfered). This pattern is architecture-specific.\", \"parent\": \"exp-003\", \"conclusion\": \"negative\", \"metrics\": {\"GDN\": {\"U\": 148410, \"p\": 0.209189, \"r_rb\": -0.0447, \"helped_mean\": 3.3695, \"hurt_mean\": 3.3382}, \"RetNet\": {\"U\": 107210, \"p\": 0.659319, \"r_rb\": -0.0168, \"helped_mean\": 3.4432, \"hurt_mean\": 3.4207}, \"HGRN2\": {\"U\": 112999, \"p\": 0.247856, \"r_rb\": -0.0441, \"helped_mean\": 3.3775, \"hurt_mean\": 3.3538}, \"cross_arch_helped_KW_p\": 0.020136, \"cross_arch_hurt_KW_p\": 0.000498}}, \"exp-003\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:38:18.995Z\", \"updated_at\": \"2026-05-19T13:38:51.683Z\", \"hypothesis\": \"Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit\", \"conclusion\": \"negative\", \"metrics\": {\"GDN\": {\"helped\": 462, \"hurt\": 615, \"net\": -153, \"surface_features_significant\": false}, \"HGRN2\": {\"helped\": 548, \"hurt\": 395, \"net\": 153, \"surface_features_significant\": false}, \"RetNet\": {\"helped\": 426, \"hurt\": 495, \"net\": -69, \"context_length_p\": 0.012, \"context_length_r\": -0.096, \"unique_tokens_p\": 0.009, \"unique_tokens_r\": -0.099}, \"cross_arch_difference\": \"not_significant\", \"pass_fail\": \"FAIL — RetNet context_unique_tokens p=0.009 passes criterion 1 for one arch only; criterion 2 (cross-arch difference) fails\", \"summary\": \"Surface features do not explain helped/hurt identity. Rules out trivial explanations (frequency, length, diversity). RetNet shows weak context-length signal (p=0.012, r=-0.096).\"}}, \"exp-009\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:32:43.818Z\", \"updated_at\": \"2026-05-19T13:33:45.506Z\", \"hypothesis\": \"Our equalizer effect analysis provides fully novel contributions relative to Wang et al. (arXiv 2507.06457) across 4 dimensions: convergence quantification (Spearman ρ + permutation test vs qualitative observation), scale dependency (quantitative 1.3B vs 340M contrast vs binary statement), per-example mechanism (Jaccard + net effect analysis vs absent), and task-specificity (convergence-strength by task type vs ratio-sensitivity)\", \"conclusion\": \"success\"}, \"eval_340m_retnet_hgrn2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:03:58.762Z\", \"updated_at\": \"2026-05-19T04:32:37.289Z\", \"hypothesis\": \"340M RetNet and HGRN2 models will show the same architecture-dependent attention effect observed at 1.3B scale: HGRN2 benefits from attention while RetNet shows minimal benefit, with task-dependent equalizer effect on LAMBADA\", \"conclusion\": \"success\"}, \"hgrn2_eval_h3_1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:47:57.853Z\", \"updated_at\": \"2026-05-18T16:53:12.858Z\", \"conclusion\": \"success\", \"hypothesis\": \"HGRN2 hybrid-3-1 (highest attention ratio) will show less degradation on composition-heavy benchmarks compared to pure linear models, following the attention-ratio degradation pattern observed in GDN and RetNet families\"}, \"hgrn2_eval_1_3b_all\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T15:57:15.535Z\", \"updated_at\": \"2026-05-18T16:00:12.920Z\", \"conclusion\": \"killed\"}}, \"count\": 20, \"total\": 20, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0591}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11425323-fe34-49bd-8cbb-cc95a9fe9cef",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "bbe0fc3a-0878-4e83-a7a6-c0c03ef268fc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"w3-winogrande-piqa-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T08:28:29.577Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:28:29.577Z\\\"}, \\\"exp-boolq-hellaswag-eval\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-20T13:05:00.607Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}}, \\\"exp-015\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T10:05:29.020Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:06:09.562Z\\\", \\\"hypothesis\\\": \\\"Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence\\\", \\\"parent\\\": \\\"exp-arc-easy-eval\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"benchmark\\\": \\\"arc_easy\\\", \\\"n_samples\\\": 2376, \\\"convergence\\\": {\\\"spearman_rho\\\": -0.2, \\\"p_exact\\\": 0.783, \\\"significant\\\": false}, \\\"jaccard_range\\\": {\\\"helped\\\": [0.067, 0.117], \\\"hurt\\\": [0.079, 0.134]}, \\\"normalized_ES_range\\\": [0.035, 0.135], \\\"all_24_jaccard_above_null\\\": true, \\\"multiplicity_arc_easy\\\": {\\\"alpha_range\\\": [0.201, 0.226], \\\"delta_range\\\": [2.32, 3.12]}, \\\"multiplicity_lambada\\\": {\\\"alpha_range\\\": [0.294, 0.316], \\\"delta_range\\\": [0.53, 0.61]}, \\\"claim\\\": \\\"Claim 3: per-example predictive multiplicity is general\\\", \\\"artifacts\\\": [\\\"arc_easy_per_example.json\\\", \\\"arc_easy_jaccard_analysis.json\\\", \\\"formal_multiplicity_metrics.json\\\"]}}, \\\"exp-arc-easy-eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-20T06:08:47.284Z\\\", \\\"updated_at\\\": \\\"2026-05-20T09:46:49.153Z\\\", \\\"hypothesis\\\": \\\"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"benchmark\\\": \\\"arc_easy\\\", \\\"n_samples\\\": 2376, \\\"models_completed\\\": \\\"15/15\\\", \\\"acc_range\\\": [0.6961, 0.7412], \\\"convergence\\\": {\\\"spearman_rho\\\": -0.2, \\\"p_exact\\\": 0.783, \\\"significant\\\": false, \\\"sigma_pure\\\": 0.0964, \\\"sigma_h3_1\\\": 0.099}, \\\"jaccard_range\\\": {\\\"helped\\\": [0.067, 0.117], \\\"hurt\\\": [0.079, 0.134]}, \\\"normalized_ES_range\\\": [0.035, 0.135], \\\"all_24_jaccard_above_null\\\": true, \\\"multiplicity\\\": {\\\"alpha_range\\\": [0.201, 0.226], \\\"delta_range\\\": [2.32, 3.12]}, \\\"lambada_multiplicity\\\": {\\\"alpha_range\\\": [0.294, 0.316], \\\"delta_range\\\": [0.53, 0.61]}, \\\"key_finding\\\": \\\"Per-example multiplicity exists on ARC-Easy (alpha~0.21, Jaccard~0.07-0.13) WITHOUT aggregate convergence (rho=-0.20,p=0.78). Combined with LAMBADA (alpha~0.30 WITH convergence), per-example multiplicity is a general property not tied to convergence.\\\", \\\"artifacts\\\": [\\\"arc_easy_per_example.json\\\", \\\"arc_easy_jaccard_analysis.json\\\", \\\"formal_multiplicity_metrics.json\\\"]}}, \\\"exp-005\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-20T02:26:40.718Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:28:05.796Z\\\", \\\"hypothesis\\\": \\\"Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"metrics\\\": {\\\"cancel_reason\\\": \\\"Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认\\\"}}, \\\"exp-007\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T17:08:19.724Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:53:42.640Z\\\", \\\"hypothesis\\\": \\\"340M models show non-monotonic rebound in cross-architecture convergence at high attention ratios on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"metrics\\\": {\\\"340m_cross_arch_std\\\": {\\\"pure\\\": 0.02481, \\\"h24-1\\\": 0.011647, \\\"h12-1\\\": 0.017833, \\\"h6-1\\\": 0.011035, \\\"h3-1\\\": 0.016004}, \\\"340m_spearman_rho\\\": -0.5, \\\"340m_spearman_perm_p\\\": 0.45, \\\"1.3b_spearman_rho_ref\\\": -1, \\\"1.3b_spearman_perm_p_ref\\\": 0.0167, \\\"rebound_h3_1_delta\\\": 0.004969, \\\"rebound_h12_1_delta\\\": 0.006186, \\\"340m_h3_1_helped_jaccard\\\": 0.0944, \\\"340m_h3_1_hurt_jaccard\\\": 0.0899, \\\"models_completed\\\": 26, \\\"models_skipped\\\": 1}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T16:58:01.256Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:17:20.215Z\\\", \\\"hypothesis\\\": \\\"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"helped_vs_hurt_entropy_diff\\\": {\\\"gdn\\\": -0.0009, \\\"retnet\\\": 0.0179, \\\"hgrn2\\\": 0.002}, \\\"helped_vs_hurt_last5_mass\\\": {\\\"gdn_helped\\\": 0.0834, \\\"gdn_hurt\\\": 0.0831, \\\"retnet_helped\\\": 0.1578, \\\"retnet_hurt\\\": 0.1591, \\\"hgrn2_helped\\\": 0.0453, \\\"hgrn2_hurt\\\": 0.0467}, \\\"cross_arch_similarity_mean\\\": {\\\"gdn_vs_retnet\\\": 0.905, \\\"gdn_vs_hgrn2\\\": 0.766, \\\"hgrn2_vs_retnet\\\": 0.698}, \\\"cross_arch_similarity_deep_layers\\\": {\\\"gdn_vs_retnet_L20\\\": 0.986, \\\"gdn_vs_hgrn2_L20\\\": 0.942, \\\"hgrn2_vs_retnet_L20\\\": 0.943}, \\\"cross_arch_similarity_early_layers\\\": {\\\"gdn_vs_retnet_L2\\\": 0.995, \\\"gdn_vs_hgrn2_L2\\\": 0.244, \\\"hgrn2_vs_retnet_L2\\\": 0.196}, \\\"finding\\\": \\\"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\\\", \\\"n_samples\\\": 5153, \\\"runtime_minutes\\\": 30, \\\"output_files\\\": [\\\"gdn_attention_patterns.pt\\\", \\\"gdn_attention_entropy.csv\\\", \\\"retnet_attention_patterns.pt\\\", \\\"retnet_attention_entropy.csv\\\", \\\"hgrn2_attention_patterns.pt\\\", \\\"hgrn2_attention_entropy.csv\\\", \\\"attention_analysis_summary.json\\\", \\\"cross_arch_attention_similarity.csv\\\", \\\"helped_vs_hurt_entropy.csv\\\"]}}, \\\"exp-011-xstorycloze\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T16:18:38.168Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:00:01.089Z\\\", \\\"hypothesis\\\": \\\"xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction\\\", \\\"parent\\\": \\\"exp-011\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"xstorycloze_en\\\": {\\\"rho\\\": -0.6, \\\"raw_p\\\": 0.35, \\\"bonferroni_adj_p_10\\\": 1, \\\"std_pure\\\": 0.0082, \\\"std_h3_1\\\": 0.0055, \\\"convergence_direction\\\": \\\"correct but weak\\\"}, \\\"ten_benchmark_bonferroni\\\": {\\\"significant_count\\\": \\\"0/10\\\", \\\"LAMBADA_adj_p\\\": 0.167, \\\"note\\\": \\\"No benchmark survives 10-benchmark Bonferroni\\\"}, \\\"method\\\": \\\"exact_permutation_test_two_tailed\\\", \\\"conclusion\\\": \\\"xstorycloze_en NOT a second anchor. Convergence is LAMBADA-specific. W1 unresolved via multi-benchmark approach.\\\"}}, \\\"exp-004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T16:41:10.744Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:57:48.978Z\\\", \\\"hypothesis\\\": \\\"Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-011\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T14:12:29.428Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:37:27.600Z\\\", \\\"hypothesis\\\": \\\"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"boolq\\\": {\\\"rho\\\": 0.2, \\\"raw_p\\\": 0.7833, \\\"bonferroni_adj_p_9\\\": 1, \\\"std_pure\\\": 0.0163, \\\"std_h3_1\\\": 0.0236, \\\"convergence\\\": false}, \\\"piqa\\\": {\\\"rho\\\": -0.5, \\\"raw_p\\\": 0.45, \\\"bonferroni_adj_p_9\\\": 1, \\\"std_pure\\\": 0.0054, \\\"std_h3_1\\\": 0.0034, \\\"convergence\\\": false}, \\\"sciq\\\": {\\\"rho\\\": 0.1, \\\"raw_p\\\": 0.95, \\\"bonferroni_adj_p_9\\\": 1, \\\"std_pure\\\": 0.0087, \\\"std_h3_1\\\": 0.0074, \\\"convergence\\\": false}, \\\"copa_supplementary\\\": {\\\"rho\\\": -0.67, \\\"raw_p\\\": 0.2667, \\\"std_pure\\\": 0.0262, \\\"std_h3_1\\\": 0.0047, \\\"convergence_ratio\\\": 5.57, \\\"note\\\": \\\"supplementary only (n=100), not in main Bonferroni\\\"}, \\\"LAMBADA_recomputed\\\": {\\\"rho\\\": -1, \\\"raw_p\\\": 0.0167, \\\"bonferroni_adj_p_6\\\": 0.1, \\\"bonferroni_adj_p_10\\\": 0.167, \\\"note\\\": \\\"6-Bonf=0.100 (D003 pre-registered); 10-Bonf=0.167; does not survive strict Bonferroni\\\"}, \\\"merged_10benchmark_significant_count\\\": \\\"0/10\\\", \\\"method\\\": \\\"exact_permutation_test_two_tailed\\\", \\\"D009_strategy\\\": \\\"BCa CI [-1.0,-0.7] as primary evidence; 6-Bonf adj_p=0.100 reported honestly; 10-benchmark negative -> task-specificity positive evidence (supplementary); underpowered caveat in Limitations\\\", \\\"D009_prohibited\\\": \\\"NO post-hoc 2-benchmark Bonferroni; NO post-hoc rho<0 subset correction\\\", \\\"conclusion\\\": \\\"No second anchor. Convergence LAMBADA-specific. W1 addressed via task-specificity reframing (D009).\\\"}}, \\\"exp-010\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T15:08:21.255Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:12:28.565Z\\\", \\\"hypothesis\\\": \\\"Aggregate convergence (cross-arch std decreasing with attention ratio) and per-example divergence (low Jaccard of helped/hurt sets) co-evolve as attention ratio increases on LAMBADA — demonstrating underspecification: architectures converge in aggregate performance while helping/hurting almost entirely different samples\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"aggregate_convergence\\\": {\\\"std_pure\\\": 0.024, \\\"std_h24_1\\\": 0.0162, \\\"std_h12_1\\\": 0.0136, \\\"std_h6_1\\\": 0.0061, \\\"std_h3_1\\\": 0.0049, \\\"reduction_ratio\\\": 0.8, \\\"note\\\": \\\"Cross-arch std drops 5x monotonically\\\"}, \\\"per_example_divergence\\\": {\\\"jaccard_helped_range\\\": [0.092, 0.1], \\\"jaccard_hurt_range\\\": [0.081, 0.099], \\\"net_asymmetry_range\\\": [0.013, 0.04], \\\"net_asymmetry_trend\\\": \\\"increasing with attention ratio\\\", \\\"note\\\": \\\"Jaccard saturates at ~0.095 by 4% attention (h24-1), flat thereafter\\\"}, \\\"co_evolution_spearman\\\": {\\\"std_vs_J_helped\\\": {\\\"rho\\\": -0.7, \\\"exact_p\\\": 0.23}, \\\"std_vs_J_hurt\\\": {\\\"rho\\\": -0.8, \\\"exact_p\\\": 0.13}, \\\"CAVEAT\\\": \\\"D008: rho inflated by pure=0 degeneracy (Jaccard=NaN->0). Excluding pure: rho=-0.40, p=0.75. NOT co-evolution.\\\"}, \\\"key_finding\\\": \\\"DECOUPLING (D008): minimal attention (4%) creates per-example specificity (Jaccard saturates ~0.095), gradual attention drives aggregate convergence (sigma 0.024->0.005). Two processes operate on different timescales. Net asymmetry INCREASES (0.013->0.040).\\\", \\\"narrative_constraints\\\": \\\"PROHIBITED: co-evolution, paradoxical coexistence, paradox. USE: decoupling, different timescales.\\\"}}, \\\"exp-001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T13:32:43.793Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:00:43.856Z\\\", \\\"hypothesis\\\": \\\"Cross-architecture variance (std) on retrieval-dependent tasks decreases monotonically with attention ratio at 1.3B scale, while reasoning-dependent tasks show no convergence — establishing task-specificity as a principled feature of the equalizer effect, not a limitation\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"LAMBADA\\\": {\\\"rho\\\": -1, \\\"p\\\": 0.0167, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"retrieval-dependent\\\", \\\"note\\\": \\\"exact permutation two-tailed (was 0.008 one-tailed)\\\"}, \\\"HellaSwag\\\": {\\\"rho\\\": 0.3, \\\"p\\\": 0.6833, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"reasoning-dependent\\\"}, \\\"ARC-C\\\": {\\\"rho\\\": 0.6, \\\"p\\\": 0.35, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"reasoning-dependent\\\"}, \\\"Winogrande\\\": {\\\"rho\\\": 0.1, \\\"p\\\": 0.95, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"reasoning-dependent\\\"}, \\\"ARC-Easy\\\": {\\\"rho\\\": -0.7, \\\"p\\\": 0.2333, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"mixed\\\"}, \\\"MMLU\\\": {\\\"rho\\\": -0.7, \\\"p\\\": 0.2333, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"mixed\\\"}, \\\"significant_count\\\": \\\"0/6\\\", \\\"summary\\\": \\\"LAMBADA shows perfect negative correlation (rho=-1.0) but exact permutation two-tailed p=0.0167 (Bonferroni adj-p=0.100, not significant). Reasoning tasks show no convergence. Mixed tasks suggestive but underpowered (n=5).\\\", \\\"method\\\": \\\"exact_permutation_test_two_tailed\\\"}}, \\\"exp-008\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T14:12:33.026Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:28:33.593Z\\\", \\\"hypothesis\\\": \\\"Replacing scipy.stats.spearmanr asymptotic p-values with exact permutation tests (n=5, 120 permutations, two-tailed) corrects the spurious p=1.4e-24 bug; expected: LAMBADA raw p≈0.017, Bonferroni adj-p≈0.100 (not significant), confirming need for additional benchmarks\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"LAMBADA\\\": {\\\"rho\\\": -1, \\\"raw_p\\\": 0.0167, \\\"bonferroni_adj_p\\\": 0.1, \\\"bh_fdr_adj_p\\\": 0.1}, \\\"HellaSwag\\\": {\\\"rho\\\": 0.3, \\\"raw_p\\\": 0.6833, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.82}, \\\"WinoGrande\\\": {\\\"rho\\\": 0.1, \\\"raw_p\\\": 0.95, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.95}, \\\"ARC-Easy\\\": {\\\"rho\\\": -0.7, \\\"raw_p\\\": 0.2333, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.4667}, \\\"ARC-Challenge\\\": {\\\"rho\\\": 0.6, \\\"raw_p\\\": 0.35, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.525}, \\\"MMLU\\\": {\\\"rho\\\": -0.7, \\\"raw_p\\\": 0.2333, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.4667}, \\\"method\\\": \\\"exact_permutation_test_two_tailed\\\", \\\"n_permutations\\\": 120, \\\"bug_fixed\\\": \\\"scipy.stats.spearmanr asymptotic p replaced with exact permutation\\\", \\\"bootstrap_ci\\\": {\\\"benchmark\\\": \\\"LAMBADA\\\", \\\"method\\\": \\\"architecture_resampling_percentile\\\", \\\"ci_lower\\\": -1, \\\"ci_upper\\\": -0.7, \\\"crosses_zero\\\": false, \\\"n_bootstrap\\\": 10000, \\\"n_valid\\\": 8875, \\\"seed\\\": 42, \\\"p_rho_negative\\\": 1, \\\"p_rho_positive\\\": 0, \\\"bca_note\\\": \\\"BCa degenerate at rho=-1.0 boundary; percentile CI used\\\"}, \\\"gdn_excluded\\\": {\\\"LAMBADA\\\": {\\\"rho\\\": -0.7, \\\"exact_p\\\": 0.2333, \\\"direction\\\": \\\"WEAKER\\\"}, \\\"HellaSwag\\\": {\\\"rho\\\": 0.5, \\\"exact_p\\\": 0.45, \\\"direction\\\": \\\"STRONGER\\\"}, \\\"WinoGrande\\\": {\\\"rho\\\": 0.3, \\\"exact_p\\\": 0.6833, \\\"direction\\\": \\\"STRONGER\\\"}, \\\"ARC-Easy\\\": {\\\"rho\\\": -0.9, \\\"exact_p\\\": 0.0833, \\\"direction\\\": \\\"STRONGER\\\"}, \\\"ARC-Challenge\\\": {\\\"rho\\\": -0.2, \\\"exact_p\\\": 0.7833, \\\"direction\\\": \\\"WEAKER\\\"}, \\\"MMLU\\\": {\\\"rho\\\": 0.6, \\\"exact_p\\\": 0.35, \\\"direction\\\": \\\"WEAKER\\\"}, \\\"note\\\": \\\"ARC-Easy rho improves from -0.7 to -0.9 (p=0.0833) without GDN confound — suggestive second anchor\\\"}}}, \\\"exp-003-p2v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-19T14:13:12.772Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:20:24.378Z\\\", \\\"hypothesis\\\": \\\"Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.\\\", \\\"parent\\\": \\\"exp-003-p2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-003-p2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T13:52:59.192Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:06:41.114Z\\\", \\\"hypothesis\\\": \\\"Helped samples have higher pure-model perplexity (model was uncertain → attention helped), while hurt samples have lower pure-model perplexity (model was confident → attention interfered). This pattern is architecture-specific.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"GDN\\\": {\\\"U\\\": 148410, \\\"p\\\": 0.209189, \\\"r_rb\\\": -0.0447, \\\"helped_mean\\\": 3.3695, \\\"hurt_mean\\\": 3.3382}, \\\"RetNet\\\": {\\\"U\\\": 107210, \\\"p\\\": 0.659319, \\\"r_rb\\\": -0.0168, \\\"helped_mean\\\": 3.4432, \\\"hurt_mean\\\": 3.4207}, \\\"HGRN2\\\": {\\\"U\\\": 112999, \\\"p\\\": 0.247856, \\\"r_rb\\\": -0.0441, \\\"helped_mean\\\": 3.3775, \\\"hurt_mean\\\": 3.3538}, \\\"cross_arch_helped_KW_p\\\": 0.020136, \\\"cross_arch_hurt_KW_p\\\": 0.000498}}, \\\"exp-003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T13:38:18.995Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:38:51.683Z\\\", \\\"hypothesis\\\": \\\"Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"GDN\\\": {\\\"helped\\\": 462, \\\"hurt\\\": 615, \\\"net\\\": -153, \\\"surface_features_significant\\\": false}, \\\"HGRN2\\\": {\\\"helped\\\": 548, \\\"hurt\\\": 395, \\\"net\\\": 153, \\\"surface_features_significant\\\": false}, \\\"RetNet\\\": {\\\"helped\\\": 426, \\\"hurt\\\": 495, \\\"net\\\": -69, \\\"context_length_p\\\": 0.012, \\\"context_length_r\\\": -0.096, \\\"unique_tokens_p\\\": 0.009, \\\"unique_tokens_r\\\": -0.099}, \\\"cross_arch_difference\\\": \\\"not_significant\\\", \\\"pass_fail\\\": \\\"FAIL — RetNet context_unique_tokens p=0.009 passes criterion 1 for one arch only; criterion 2 (cross-arch difference) fails\\\", \\\"summary\\\": \\\"Surface features do not explain helped/hurt identity. Rules out trivial explanations (frequency, length, diversity). RetNet shows weak context-length signal (p=0.012, r=-0.096).\\\"}}, \\\"exp-009\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T13:32:43.818Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:33:45.506Z\\\", \\\"hypothesis\\\": \\\"Our equalizer effect analysis provides fully novel contributions relative to Wang et al. (arXiv 2507.06457) across 4 dimensions: convergence quantification (Spearman ρ + permutation test vs qualitative observation), scale dependency (quantitative 1.3B vs 340M contrast vs binary statement), per-example mechanism (Jaccard + net effect analysis vs absent), and task-specificity (convergence-strength by task type vs ratio-sensitivity)\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_340m_retnet_hgrn2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T04:03:58.762Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:32:37.289Z\\\", \\\"hypothesis\\\": \\\"340M RetNet and HGRN2 models will show the same architecture-dependent attention effect observed at 1.3B scale: HGRN2 benefits from attention while RetNet shows minimal benefit, with task-dependent equalizer effect on LAMBADA\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"hgrn2_eval_h3_1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T16:47:57.853Z\\\", \\\"updated_at\\\": \\\"2026-05-18T16:53:12.858Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"HGRN2 hybrid-3-1 (highest attention ratio) will show less degradation on composition-heavy benchmarks compared to pure linear models, following the attention-ratio degradation pattern observed in GDN and RetNet families\\\"}, \\\"hgrn2_eval_1_3b_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-18T15:57:15.535Z\\\", \\\"updated_at\\\": \\\"2026-05-18T16:00:12.920Z\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 20, \\\"total\\\": 20, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0591}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"w3-winogrande-piqa-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-21T08:28:29.577Z\", \"updated_at\": \"2026-05-21T08:28:29.577Z\"}, \"exp-boolq-hellaswag-eval\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-20T13:05:00.607Z\", \"conclusion\": \"success\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}}, \"exp-015\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T10:05:29.020Z\", \"updated_at\": \"2026-05-20T10:06:09.562Z\", \"hypothesis\": \"Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence\", \"parent\": \"exp-arc-easy-eval\", \"conclusion\": \"success\", \"metrics\": {\"benchmark\": \"arc_easy\", \"n_samples\": 2376, \"convergence\": {\"spearman_rho\": -0.2, \"p_exact\": 0.783, \"significant\": false}, \"jaccard_range\": {\"helped\": [0.067, 0.117], \"hurt\": [0.079, 0.134]}, \"normalized_ES_range\": [0.035, 0.135], \"all_24_jaccard_above_null\": true, \"multiplicity_arc_easy\": {\"alpha_range\": [0.201, 0.226], \"delta_range\": [2.32, 3.12]}, \"multiplicity_lambada\": {\"alpha_range\": [0.294, 0.316], \"delta_range\": [0.53, 0.61]}, \"claim\": \"Claim 3: per-example predictive multiplicity is general\", \"artifacts\": [\"arc_easy_per_example.json\", \"arc_easy_jaccard_analysis.json\", \"formal_multiplicity_metrics.json\"]}}, \"exp-arc-easy-eval\": {\"status\": \"DONE\", \"created_at\": \"2026-05-20T06:08:47.284Z\", \"updated_at\": \"2026-05-20T09:46:49.153Z\", \"hypothesis\": \"Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"metrics\": {\"benchmark\": \"arc_easy\", \"n_samples\": 2376, \"models_completed\": \"15/15\", \"acc_range\": [0.6961, 0.7412], \"convergence\": {\"spearman_rho\": -0.2, \"p_exact\": 0.783, \"significant\": false, \"sigma_pure\": 0.0964, \"sigma_h3_1\": 0.099}, \"jaccard_range\": {\"helped\": [0.067, 0.117], \"hurt\": [0.079, 0.134]}, \"normalized_ES_range\": [0.035, 0.135], \"all_24_jaccard_above_null\": true, \"multiplicity\": {\"alpha_range\": [0.201, 0.226], \"delta_range\": [2.32, 3.12]}, \"lambada_multiplicity\": {\"alpha_range\": [0.294, 0.316], \"delta_range\": [0.53, 0.61]}, \"key_finding\": \"Per-example multiplicity exists on ARC-Easy (alpha~0.21, Jaccard~0.07-0.13) WITHOUT aggregate convergence (rho=-0.20,p=0.78). Combined with LAMBADA (alpha~0.30 WITH convergence), per-example multiplicity is a general property not tied to convergence.\", \"artifacts\": [\"arc_easy_per_example.json\", \"arc_easy_jaccard_analysis.json\", \"formal_multiplicity_metrics.json\"]}}, \"exp-005\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-20T02:26:40.718Z\", \"updated_at\": \"2026-05-20T03:28:05.796Z\", \"hypothesis\": \"Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones\", \"conclusion\": \"killed\", \"metrics\": {\"cancel_reason\": \"Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认\"}}, \"exp-007\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T17:08:19.724Z\", \"updated_at\": \"2026-05-19T18:53:42.640Z\", \"hypothesis\": \"340M models show non-monotonic rebound in cross-architecture convergence at high attention ratios on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\", \"parent\": \"exp-001\", \"metrics\": {\"340m_cross_arch_std\": {\"pure\": 0.02481, \"h24-1\": 0.011647, \"h12-1\": 0.017833, \"h6-1\": 0.011035, \"h3-1\": 0.016004}, \"340m_spearman_rho\": -0.5, \"340m_spearman_perm_p\": 0.45, \"1.3b_spearman_rho_ref\": -1, \"1.3b_spearman_perm_p_ref\": 0.0167, \"rebound_h3_1_delta\": 0.004969, \"rebound_h12_1_delta\": 0.006186, \"340m_h3_1_helped_jaccard\": 0.0944, \"340m_h3_1_hurt_jaccard\": 0.0899, \"models_completed\": 26, \"models_skipped\": 1}, \"conclusion\": \"success\"}, \"exp-004-r2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:20.215Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"conclusion\": \"success\", \"metrics\": {\"helped_vs_hurt_entropy_diff\": {\"gdn\": -0.0009, \"retnet\": 0.0179, \"hgrn2\": 0.002}, \"helped_vs_hurt_last5_mass\": {\"gdn_helped\": 0.0834, \"gdn_hurt\": 0.0831, \"retnet_helped\": 0.1578, \"retnet_hurt\": 0.1591, \"hgrn2_helped\": 0.0453, \"hgrn2_hurt\": 0.0467}, \"cross_arch_similarity_mean\": {\"gdn_vs_retnet\": 0.905, \"gdn_vs_hgrn2\": 0.766, \"hgrn2_vs_retnet\": 0.698}, \"cross_arch_similarity_deep_layers\": {\"gdn_vs_retnet_L20\": 0.986, \"gdn_vs_hgrn2_L20\": 0.942, \"hgrn2_vs_retnet_L20\": 0.943}, \"cross_arch_similarity_early_layers\": {\"gdn_vs_retnet_L2\": 0.995, \"gdn_vs_hgrn2_L2\": 0.244, \"hgrn2_vs_retnet_L2\": 0.196}, \"finding\": \"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\", \"n_samples\": 5153, \"runtime_minutes\": 30, \"output_files\": [\"gdn_attention_patterns.pt\", \"gdn_attention_entropy.csv\", \"retnet_attention_patterns.pt\", \"retnet_attention_entropy.csv\", \"hgrn2_attention_patterns.pt\", \"hgrn2_attention_entropy.csv\", \"attention_analysis_summary.json\", \"cross_arch_attention_similarity.csv\", \"helped_vs_hurt_entropy.csv\"]}}, \"exp-011-xstorycloze\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:18:38.168Z\", \"updated_at\": \"2026-05-19T17:00:01.089Z\", \"hypothesis\": \"xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-011\", \"conclusion\": \"negative\", \"metrics\": {\"xstorycloze_en\": {\"rho\": -0.6, \"raw_p\": 0.35, \"bonferroni_adj_p_10\": 1, \"std_pure\": 0.0082, \"std_h3_1\": 0.0055, \"convergence_direction\": \"correct but weak\"}, \"ten_benchmark_bonferroni\": {\"significant_count\": \"0/10\", \"LAMBADA_adj_p\": 0.167, \"note\": \"No benchmark survives 10-benchmark Bonferroni\"}, \"method\": \"exact_permutation_test_two_tailed\", \"conclusion\": \"xstorycloze_en NOT a second anchor. Convergence is LAMBADA-specific. W1 unresolved via multi-benchmark approach.\"}}, \"exp-004\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T16:41:10.744Z\", \"updated_at\": \"2026-05-19T16:57:48.978Z\", \"hypothesis\": \"Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures.\", \"parent\": \"exp-003\", \"conclusion\": \"failed\"}, \"exp-011\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:37:27.600Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"conclusion\": \"negative\", \"metrics\": {\"boolq\": {\"rho\": 0.2, \"raw_p\": 0.7833, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0163, \"std_h3_1\": 0.0236, \"convergence\": false}, \"piqa\": {\"rho\": -0.5, \"raw_p\": 0.45, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0054, \"std_h3_1\": 0.0034, \"convergence\": false}, \"sciq\": {\"rho\": 0.1, \"raw_p\": 0.95, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0087, \"std_h3_1\": 0.0074, \"convergence\": false}, \"copa_supplementary\": {\"rho\": -0.67, \"raw_p\": 0.2667, \"std_pure\": 0.0262, \"std_h3_1\": 0.0047, \"convergence_ratio\": 5.57, \"note\": \"supplementary only (n=100), not in main Bonferroni\"}, \"LAMBADA_recomputed\": {\"rho\": -1, \"raw_p\": 0.0167, \"bonferroni_adj_p_6\": 0.1, \"bonferroni_adj_p_10\": 0.167, \"note\": \"6-Bonf=0.100 (D003 pre-registered); 10-Bonf=0.167; does not survive strict Bonferroni\"}, \"merged_10benchmark_significant_count\": \"0/10\", \"method\": \"exact_permutation_test_two_tailed\", \"D009_strategy\": \"BCa CI [-1.0,-0.7] as primary evidence; 6-Bonf adj_p=0.100 reported honestly; 10-benchmark negative -> task-specificity positive evidence (supplementary); underpowered caveat in Limitations\", \"D009_prohibited\": \"NO post-hoc 2-benchmark Bonferroni; NO post-hoc rho<0 subset correction\", \"conclusion\": \"No second anchor. Convergence LAMBADA-specific. W1 addressed via task-specificity reframing (D009).\"}}, \"exp-010\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T15:08:21.255Z\", \"updated_at\": \"2026-05-19T15:12:28.565Z\", \"hypothesis\": \"Aggregate convergence (cross-arch std decreasing with attention ratio) and per-example divergence (low Jaccard of helped/hurt sets) co-evolve as attention ratio increases on LAMBADA — demonstrating underspecification: architectures converge in aggregate performance while helping/hurting almost entirely different samples\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"metrics\": {\"aggregate_convergence\": {\"std_pure\": 0.024, \"std_h24_1\": 0.0162, \"std_h12_1\": 0.0136, \"std_h6_1\": 0.0061, \"std_h3_1\": 0.0049, \"reduction_ratio\": 0.8, \"note\": \"Cross-arch std drops 5x monotonically\"}, \"per_example_divergence\": {\"jaccard_helped_range\": [0.092, 0.1], \"jaccard_hurt_range\": [0.081, 0.099], \"net_asymmetry_range\": [0.013, 0.04], \"net_asymmetry_trend\": \"increasing with attention ratio\", \"note\": \"Jaccard saturates at ~0.095 by 4% attention (h24-1), flat thereafter\"}, \"co_evolution_spearman\": {\"std_vs_J_helped\": {\"rho\": -0.7, \"exact_p\": 0.23}, \"std_vs_J_hurt\": {\"rho\": -0.8, \"exact_p\": 0.13}, \"CAVEAT\": \"D008: rho inflated by pure=0 degeneracy (Jaccard=NaN->0). Excluding pure: rho=-0.40, p=0.75. NOT co-evolution.\"}, \"key_finding\": \"DECOUPLING (D008): minimal attention (4%) creates per-example specificity (Jaccard saturates ~0.095), gradual attention drives aggregate convergence (sigma 0.024->0.005). Two processes operate on different timescales. Net asymmetry INCREASES (0.013->0.040).\", \"narrative_constraints\": \"PROHIBITED: co-evolution, paradoxical coexistence, paradox. USE: decoupling, different timescales.\"}}, \"exp-001\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:32:43.793Z\", \"updated_at\": \"2026-05-19T15:00:43.856Z\", \"hypothesis\": \"Cross-architecture variance (std) on retrieval-dependent tasks decreases monotonically with attention ratio at 1.3B scale, while reasoning-dependent tasks show no convergence — establishing task-specificity as a principled feature of the equalizer effect, not a limitation\", \"conclusion\": \"success\", \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"p\": 0.0167, \"significant\": false, \"taxonomy\": \"retrieval-dependent\", \"note\": \"exact permutation two-tailed (was 0.008 one-tailed)\"}, \"HellaSwag\": {\"rho\": 0.3, \"p\": 0.6833, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-C\": {\"rho\": 0.6, \"p\": 0.35, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"Winogrande\": {\"rho\": 0.1, \"p\": 0.95, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-Easy\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"MMLU\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"significant_count\": \"0/6\", \"summary\": \"LAMBADA shows perfect negative correlation (rho=-1.0) but exact permutation two-tailed p=0.0167 (Bonferroni adj-p=0.100, not significant). Reasoning tasks show no convergence. Mixed tasks suggestive but underpowered (n=5).\", \"method\": \"exact_permutation_test_two_tailed\"}}, \"exp-008\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T14:12:33.026Z\", \"updated_at\": \"2026-05-19T14:28:33.593Z\", \"hypothesis\": \"Replacing scipy.stats.spearmanr asymptotic p-values with exact permutation tests (n=5, 120 permutations, two-tailed) corrects the spurious p=1.4e-24 bug; expected: LAMBADA raw p≈0.017, Bonferroni adj-p≈0.100 (not significant), confirming need for additional benchmarks\", \"parent\": \"exp-001\", \"conclusion\": \"success\", \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"raw_p\": 0.0167, \"bonferroni_adj_p\": 0.1, \"bh_fdr_adj_p\": 0.1}, \"HellaSwag\": {\"rho\": 0.3, \"raw_p\": 0.6833, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.82}, \"WinoGrande\": {\"rho\": 0.1, \"raw_p\": 0.95, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.95}, \"ARC-Easy\": {\"rho\": -0.7, \"raw_p\": 0.2333, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.4667}, \"ARC-Challenge\": {\"rho\": 0.6, \"raw_p\": 0.35, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.525}, \"MMLU\": {\"rho\": -0.7, \"raw_p\": 0.2333, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.4667}, \"method\": \"exact_permutation_test_two_tailed\", \"n_permutations\": 120, \"bug_fixed\": \"scipy.stats.spearmanr asymptotic p replaced with exact permutation\", \"bootstrap_ci\": {\"benchmark\": \"LAMBADA\", \"method\": \"architecture_resampling_percentile\", \"ci_lower\": -1, \"ci_upper\": -0.7, \"crosses_zero\": false, \"n_bootstrap\": 10000, \"n_valid\": 8875, \"seed\": 42, \"p_rho_negative\": 1, \"p_rho_positive\": 0, \"bca_note\": \"BCa degenerate at rho=-1.0 boundary; percentile CI used\"}, \"gdn_excluded\": {\"LAMBADA\": {\"rho\": -0.7, \"exact_p\": 0.2333, \"direction\": \"WEAKER\"}, \"HellaSwag\": {\"rho\": 0.5, \"exact_p\": 0.45, \"direction\": \"STRONGER\"}, \"WinoGrande\": {\"rho\": 0.3, \"exact_p\": 0.6833, \"direction\": \"STRONGER\"}, \"ARC-Easy\": {\"rho\": -0.9, \"exact_p\": 0.0833, \"direction\": \"STRONGER\"}, \"ARC-Challenge\": {\"rho\": -0.2, \"exact_p\": 0.7833, \"direction\": \"WEAKER\"}, \"MMLU\": {\"rho\": 0.6, \"exact_p\": 0.35, \"direction\": \"WEAKER\"}, \"note\": \"ARC-Easy rho improves from -0.7 to -0.9 (p=0.0833) without GDN confound — suggestive second anchor\"}}}, \"exp-003-p2v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-19T14:13:12.772Z\", \"updated_at\": \"2026-05-19T14:20:24.378Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.\", \"parent\": \"exp-003-p2\", \"conclusion\": \"killed\"}, \"exp-003-p2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:52:59.192Z\", \"updated_at\": \"2026-05-19T14:06:41.114Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model was uncertain → attention helped), while hurt samples have lower pure-model perplexity (model was confident → attention interfered). This pattern is architecture-specific.\", \"parent\": \"exp-003\", \"conclusion\": \"negative\", \"metrics\": {\"GDN\": {\"U\": 148410, \"p\": 0.209189, \"r_rb\": -0.0447, \"helped_mean\": 3.3695, \"hurt_mean\": 3.3382}, \"RetNet\": {\"U\": 107210, \"p\": 0.659319, \"r_rb\": -0.0168, \"helped_mean\": 3.4432, \"hurt_mean\": 3.4207}, \"HGRN2\": {\"U\": 112999, \"p\": 0.247856, \"r_rb\": -0.0441, \"helped_mean\": 3.3775, \"hurt_mean\": 3.3538}, \"cross_arch_helped_KW_p\": 0.020136, \"cross_arch_hurt_KW_p\": 0.000498}}, \"exp-003\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:38:18.995Z\", \"updated_at\": \"2026-05-19T13:38:51.683Z\", \"hypothesis\": \"Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit\", \"conclusion\": \"negative\", \"metrics\": {\"GDN\": {\"helped\": 462, \"hurt\": 615, \"net\": -153, \"surface_features_significant\": false}, \"HGRN2\": {\"helped\": 548, \"hurt\": 395, \"net\": 153, \"surface_features_significant\": false}, \"RetNet\": {\"helped\": 426, \"hurt\": 495, \"net\": -69, \"context_length_p\": 0.012, \"context_length_r\": -0.096, \"unique_tokens_p\": 0.009, \"unique_tokens_r\": -0.099}, \"cross_arch_difference\": \"not_significant\", \"pass_fail\": \"FAIL — RetNet context_unique_tokens p=0.009 passes criterion 1 for one arch only; criterion 2 (cross-arch difference) fails\", \"summary\": \"Surface features do not explain helped/hurt identity. Rules out trivial explanations (frequency, length, diversity). RetNet shows weak context-length signal (p=0.012, r=-0.096).\"}}, \"exp-009\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T13:32:43.818Z\", \"updated_at\": \"2026-05-19T13:33:45.506Z\", \"hypothesis\": \"Our equalizer effect analysis provides fully novel contributions relative to Wang et al. (arXiv 2507.06457) across 4 dimensions: convergence quantification (Spearman ρ + permutation test vs qualitative observation), scale dependency (quantitative 1.3B vs 340M contrast vs binary statement), per-example mechanism (Jaccard + net effect analysis vs absent), and task-specificity (convergence-strength by task type vs ratio-sensitivity)\", \"conclusion\": \"success\"}, \"eval_340m_retnet_hgrn2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-19T04:03:58.762Z\", \"updated_at\": \"2026-05-19T04:32:37.289Z\", \"hypothesis\": \"340M RetNet and HGRN2 models will show the same architecture-dependent attention effect observed at 1.3B scale: HGRN2 benefits from attention while RetNet shows minimal benefit, with task-dependent equalizer effect on LAMBADA\", \"conclusion\": \"success\"}, \"hgrn2_eval_h3_1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T16:47:57.853Z\", \"updated_at\": \"2026-05-18T16:53:12.858Z\", \"conclusion\": \"success\", \"hypothesis\": \"HGRN2 hybrid-3-1 (highest attention ratio) will show less degradation on composition-heavy benchmarks compared to pure linear models, following the attention-ratio degradation pattern observed in GDN and RetNet families\"}, \"hgrn2_eval_1_3b_all\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T15:57:15.535Z\", \"updated_at\": \"2026-05-18T16:00:12.920Z\", \"conclusion\": \"killed\"}}, \"count\": 20, \"total\": 20, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0591}}"
+    }
+  },
+  "sourceToolAssistantUUID": "11425323-fe34-49bd-8cbb-cc95a9fe9cef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T08:51:57.194Z_
+
+<details><summary>↩ Tool result · `toolu_01DTweuR9AbQw2esHDqqnZJ2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b6d9167-1d7b-4b47-8aa2-de581ad22557",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "3271aa06-28b8-4fee-ad1a-cfdb4ef28dbf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6b6d9167-1d7b-4b47-8aa2-de581ad22557",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T08:51:57.597Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Dih6t64a7X83rHD5bZKmcR`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3271aa06-28b8-4fee-ad1a-cfdb4ef28dbf",
+  "isSidechain": false,
+  "requestId": "req_011CbFRrrQZ45ePWBCf1rSi8",
+  "type": "assistant",
+  "uuid": "edea7501-b7a2-40af-af2e-aab4d9becb1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DzrwvHjPFiPwq197HogprT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 38810,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 38810,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T08:51:57.611Z_
+
+<details><summary>↩ Tool result · `toolu_01Dih6t64a7X83rHD5bZKmcR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T12:47:54Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 19 个实验 — DONE 16, PREPARING 3\\n**DONE 分布**: failed 1, killed 1, negative 4, success 10\\n\\n### GPU 占用\\n- **分配**: 1 张 — westb-48145:cuda:0\\n- **空闲（分配了没跑）**: westb-48145:cuda:0\\n\\n### 💾 磁盘余量\\n- **westb-48145**:\\n  - `/autodl-pub`: 7.7T/14T 可用（已用 46%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 397G/439G 可用（已用 5%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp-015` [success] — 2026-05-20T10:06:09\\n- `exp-arc-easy-eval` [success] — 2026-05-20T09:46:49\\n- `exp-007` [success] — 2026-05-19T18:53:42\\n- `exp-004-r2` [success] — 2026-05-19T17:17:20\\n- `exp-011-xstorycloze` [negative] — 2026-05-19T17:00:01\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-005: Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones（准备中）\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.（准备中）\\n\\n## 近期结论\\n- **exp-015** (success): Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence ← 基于 exp-arc-easy-eval\\n- **exp-arc-easy-eval** (success): Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent ← 基于 exp-001\\n- **exp-007** (success): 340M models show non-monotonic rebound in cross-architecture convergence at high attention ratios on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization ← 基于 exp-001\\n  [exp007_data_check](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_data_check.md) | [exp007_script_ready](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_script_ready.md) | [exp007_analysis_summary](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_analysis_summary.json) | [exp007_340m_analysis](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/data/exp007_340m_analysis.json)\\n\\n## 趋势\\n成功 10 / 负向 4 / 失败 1 / 共 16\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-48145: 无 GPU 信息\\n\\n## 告警\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\n- exp-004: 训练失败 — unknown\\n\", \"total_chars\": 3112, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "edea7501-b7a2-40af-af2e-aab4d9becb1e",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "b8d0ffc5-6011-487b-a189-f512ef94175b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T12:47:54Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 19 个实验 — DONE 16, PREPARING 3\\\\n**DONE 分布**: failed 1, killed 1, negative 4, success 10\\\\n\\\\n### GPU 占用\\\\n- **分配**: 1 张 — westb-48145:cuda:0\\\\n- **空闲（分配了没跑）**: westb-48145:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **westb-48145**:\\\\n  - `/autodl-pub`: 7.7T/14T 可用（已用 46%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 397G/439G 可用（已用 5%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp-015` [success] — 2026-05-20T10:06:09\\\\n- `exp-arc-easy-eval` [success] — 2026-05-20T09:46:49\\\\n- `exp-007` [success] — 2026-05-19T18:53:42\\\\n- `exp-004-r2` [success] — 2026-05-19T17:17:20\\\\n- `exp-011-xstorycloze` [negative] — 2026-05-19T17:00:01\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-20\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp-005: Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones（准备中）\\\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-015** (success): Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence ← 基于 exp-arc-easy-eval\\\\n- **exp-arc-easy-eval** (success): Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent ← 基于 exp-001\\\\n- **exp-007** (success): 340M models show non-monotonic rebound in cross-architecture convergence at high attention ratios on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization ← 基于 exp-001\\\\n  [exp007_data_check](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_data_check.md) | [exp007_script_ready](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_script_ready.md) | [exp007_analysis_summary](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_analysis_summary.json) | [exp007_340m_analysis](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/data/exp007_340m_analysis.json)\\\\n\\\\n## 趋势\\\\n成功 10 / 负向 4 / 失败 1 / 共 16\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestb-48145: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\\\n- exp-004: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 3112, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T12:47:54Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 19 个实验 — DONE 16, PREPARING 3\\n**DONE 分布**: failed 1, killed 1, negative 4, success 10\\n\\n### GPU 占用\\n- **分配**: 1 张 — westb-48145:cuda:0\\n- **空闲（分配了没跑）**: westb-48145:cuda:0\\n\\n### 💾 磁盘余量\\n- **westb-48145**:\\n  - `/autodl-pub`: 7.7T/14T 可用（已用 46%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 397G/439G 可用（已用 5%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp-015` [success] — 2026-05-20T10:06:09\\n- `exp-arc-easy-eval` [success] — 2026-05-20T09:46:49\\n- `exp-007` [success] — 2026-05-19T18:53:42\\n- `exp-004-r2` [success] — 2026-05-19T17:17:20\\n- `exp-011-xstorycloze` [negative] — 2026-05-19T17:00:01\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp-005: Wang et al. model zoo contains additional hybrid architectures beyond GDN/RetNet/HGRN2 that can be evaluated on LAMBADA to test whether cross-architecture convergence generalizes to a broader set of recurrent backbones（准备中）\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.（准备中）\\n\\n## 近期结论\\n- **exp-015** (success): Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence ← 基于 exp-arc-easy-eval\\n- **exp-arc-easy-eval** (success): Per-example divergence (low cross-architecture Jaccard of helped/hurt sets) exists on ARC-Easy as well as LAMBADA, establishing that per-example underspecification is not task-specific even when aggregate convergence is absent ← 基于 exp-001\\n- **exp-007** (success): 340M models show non-monotonic rebound in cross-architecture convergence at high attention ratios on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization ← 基于 exp-001\\n  [exp007_data_check](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_data_check.md) | [exp007_script_ready](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_script_ready.md) | [exp007_analysis_summary](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_analysis_summary.json) | [exp007_340m_analysis](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-007/data/exp007_340m_analysis.json)\\n\\n## 趋势\\n成功 10 / 负向 4 / 失败 1 / 共 16\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-48145: 无 GPU 信息\\n\\n## 告警\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\n- exp-004: 训练失败 — unknown\\n\", \"total_chars\": 3112, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "edea7501-b7a2-40af-af2e-aab4d9becb1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T08:51:57.601Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_016zBzGDUdy3SrJ8MtQVHrAa`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edea7501-b7a2-40af-af2e-aab4d9becb1e",
+  "isSidechain": false,
+  "requestId": "req_011CbFRrrQZ45ePWBCf1rSi8",
+  "type": "assistant",
+  "uuid": "98af12fe-a3d9-42b1-8ea7-7f7f8f402407",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DzrwvHjPFiPwq197HogprT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1213,
+      "cache_read_input_tokens": 38810,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 38810,
+          "cache_creation_input_tokens": 1213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T08:51:57.628Z_
+
+<details><summary>↩ Tool result · `toolu_016zBzGDUdy3SrJ8MtQVHrAa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-21 08:25 UTC | 更新原因: Round 5 审稿 Action Matrix 执行启动，三路并行（Agent W3 实验 + Paper Agent 压缩 + citations）\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Round 5 审稿收到（3.0 Findings），Action Matrix 执行中**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), 剩 4 天\\n\\n### Round 5 审稿关键问题 & 行动\\n| Issue | Severity | 行动 | 状态 |\\n|-------|----------|------|------|\\n| W1 Seed confound | Critical | Proxy argument (within-arch Jaccard 3× > cross-arch) | in_progress (Paper Agent) |\\n| W2 Convergence prominence | Critical | 收敛分析 + §4.2 移 appendix | in_progress (Paper Agent) |\\n| W3 Format confound | Major | WinoGrande + PIQA per-example α/Jaccard 实验 | in_progress (Agent, cuda:0) |\\n| W4 Novelty limited | Major | CV 机制 + Zoology recall 框架整合 | in_progress (Paper Agent) |\\n| W5 页数超限 8.2→≤8 | Major | 与 W2 联动压缩 | in_progress (Paper Agent) |\\n| W6 Missing refs | Major | 补 Zoology/Based/Samba | in_progress (Paper Agent) |\\n| W7-W9 Minor | Minor | Ensemble hedging + abstract 精简 | in_progress (Paper Agent) |\\n\\n### 数据\\n- **Main text**: LAMBADA (α=0.30) + ARC-Easy (α=0.21) + HellaSwag (α=0.10)\\n- **Appendix**: BoolQ (α≈0.45)\\n- **进行中**: WinoGrande + PIQA per-example 分析（W3 实验）\\n\\n## 近期任务\\n- [ ] W3 GPU 实验: WinoGrande/PIQA per-example α + Jaccard (Agent)\\n- [ ] 结构性压缩: 收敛→appendix + Related Work 精简 → ≤8 页 (Paper Agent)\\n- [ ] W1 seed proxy argument (Paper Agent)\\n- [ ] W6 补 Zoology/Based/Samba 引用 (Paper Agent)\\n- [ ] W7-W9 minor fixes (Paper Agent)\\n- [ ] 编译验证 ≤ 8 页\\n- [ ] 提交 Round 6 审稿\\n\\n## 论文状态\\n- 标题: \\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\"\\n- Target: **EMNLP 2026 via ARR May (deadline May 25)**\\n- 当前评分: 3.0 (Findings)\\n\\n## GPU 预算\\nwestb-48145: 1× GPU (cuda:0), W3 实验分配中\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D019 | 2026-05-21 | Round 5 审稿 Action Matrix 直接执行，不再等 Reviewer 独立审核 | exp-015, exp-arc-easy-eval |\\n| D018 | 2026-05-20 | D018: 4-benchmark multiplicity spectrum confirmed  | exp-boolq-hellaswag-eval |\\n| D017 | 2026-05-20 | D017: Deadline correction May 25 (not June 15) — 5 | — |\\n| D016 | 2026-05-20 | D016: ARC-Easy per-example 分析确认 D015 假设——per-examp | exp-arc-easy-eval |\\n| D015 | 2026-05-20 | D015: Round 2 仍 3.0 — 扩展 per-example 到 ARC-Easy +  | — |\\n| D014 | 2026-05-20 | D014: 审稿回应策略 — 3个系统性问题修复 + 标题缩窄 + predictive multi | — |\\n| D013 | 2026-05-20 | 撤销 D012：Confidence margin 类内对照写入论文（§4.3 一句 + Appen | exp-003, exp-003-p2 |\\n| D012 | 2026-05-20 | Confidence margin within-category 分析保留为 rebuttal 储 | exp-003, exp-003-p2 |\\n| D011 | 2026-05-19 | exp-007 confirms Claim 2: 340M rebound is capacity | exp-007, exp-010 |\\n| D010 | 2026-05-19 | 取消 exp-002（multi-benchmark per-example，20h GPU）：预期 | exp-002 |\\n\\n\\n\", \"lines\": 62}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98af12fe-a3d9-42b1-8ea7-7f7f8f402407",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "16e1a337-31ad-4170-a4f7-417140a8e803",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\\\", \\\"content\\\": \\\"# entrainment_gated_ft — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 08:25 UTC | 更新原因: Round 5 审稿 Action Matrix 执行启动，三路并行（Agent W3 实验 + Paper Agent 压缩 + citations）\\\\n\\\\n## 核心方向\\\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Round 5 审稿收到（3.0 Findings），Action Matrix 执行中**\\\\n\\\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), 剩 4 天\\\\n\\\\n### Round 5 审稿关键问题 & 行动\\\\n| Issue | Severity | 行动 | 状态 |\\\\n|-------|----------|------|------|\\\\n| W1 Seed confound | Critical | Proxy argument (within-arch Jaccard 3× > cross-arch) | in_progress (Paper Agent) |\\\\n| W2 Convergence prominence | Critical | 收敛分析 + §4.2 移 appendix | in_progress (Paper Agent) |\\\\n| W3 Format confound | Major | WinoGrande + PIQA per-example α/Jaccard 实验 | in_progress (Agent, cuda:0) |\\\\n| W4 Novelty limited | Major | CV 机制 + Zoology recall 框架整合 | in_progress (Paper Agent) |\\\\n| W5 页数超限 8.2→≤8 | Major | 与 W2 联动压缩 | in_progress (Paper Agent) |\\\\n| W6 Missing refs | Major | 补 Zoology/Based/Samba | in_progress (Paper Agent) |\\\\n| W7-W9 Minor | Minor | Ensemble hedging + abstract 精简 | in_progress (Paper Agent) |\\\\n\\\\n### 数据\\\\n- **Main text**: LAMBADA (α=0.30) + ARC-Easy (α=0.21) + HellaSwag (α=0.10)\\\\n- **Appendix**: BoolQ (α≈0.45)\\\\n- **进行中**: WinoGrande + PIQA per-example 分析（W3 实验）\\\\n\\\\n## 近期任务\\\\n- [ ] W3 GPU 实验: WinoGrande/PIQA per-example α + Jaccard (Agent)\\\\n- [ ] 结构性压缩: 收敛→appendix + Related Work 精简 → ≤8 页 (Paper Agent)\\\\n- [ ] W1 seed proxy argument (Paper Agent)\\\\n- [ ] W6 补 Zoology/Based/Samba 引用 (Paper Agent)\\\\n- [ ] W7-W9 minor fixes (Paper Agent)\\\\n- [ ] 编译验证 ≤ 8 页\\\\n- [ ] 提交 Round 6 审稿\\\\n\\\\n## 论文状态\\\\n- 标题: \\\\\\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\\\\\"\\\\n- Target: **EMNLP 2026 via ARR May (deadline May 25)**\\\\n- 当前评分: 3.0 (Findings)\\\\n\\\\n## GPU 预算\\\\nwestb-48145: 1× GPU (cuda:0), W3 实验分配中\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D019 | 2026-05-21 | Round 5 审稿 Action Matrix 直接执行，不再等 Reviewer 独立审核 | exp-015, exp-arc-easy-eval |\\\\n| D018 | 2026-05-20 | D018: 4-benchmark multiplicity spectrum confirmed  | exp-boolq-hellaswag-eval |\\\\n| D017 | 2026-05-20 | D017: Deadline correction May 25 (not June 15) — 5 | — |\\\\n| D016 | 2026-05-20 | D016: ARC-Easy per-example 分析确认 D015 假设——per-examp | exp-arc-easy-eval |\\\\n| D015 | 2026-05-20 | D015: Round 2 仍 3.0 — 扩展 per-example 到 ARC-Easy +  | — |\\\\n| D014 | 2026-05-20 | D014: 审稿回应策略 — 3个系统性问题修复 + 标题缩窄 + predictive multi | — |\\\\n| D013 | 2026-05-20 | 撤销 D012：Confidence margin 类内对照写入论文（§4.3 一句 + Appen | exp-003, exp-003-p2 |\\\\n| D012 | 2026-05-20 | Confidence margin within-category 分析保留为 rebuttal 储 | exp-003, exp-003-p2 |\\\\n| D011 | 2026-05-19 | exp-007 confirms Claim 2: 340M rebound is capacity | exp-007, exp-010 |\\\\n| D010 | 2026-05-19 | 取消 exp-002（multi-benchmark per-example，20h GPU）：预期 | exp-002 |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 62}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-21 08:25 UTC | 更新原因: Round 5 审稿 Action Matrix 执行启动，三路并行（Agent W3 实验 + Paper Agent 压缩 + citations）\\n\\n## 核心方向\\nHybrid recurrent architectures (GDN/RetNet/HGRN2) 中 attention 对 cross-architecture behavioral diversity 的 per-example 分析。Predictive multiplicity 框架（Marx 2020）。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Round 5 审稿收到（3.0 Findings），Action Matrix 执行中**\\n\\n### ⚠️ DEADLINE: 2026-05-25 (ARR May cycle), 剩 4 天\\n\\n### Round 5 审稿关键问题 & 行动\\n| Issue | Severity | 行动 | 状态 |\\n|-------|----------|------|------|\\n| W1 Seed confound | Critical | Proxy argument (within-arch Jaccard 3× > cross-arch) | in_progress (Paper Agent) |\\n| W2 Convergence prominence | Critical | 收敛分析 + §4.2 移 appendix | in_progress (Paper Agent) |\\n| W3 Format confound | Major | WinoGrande + PIQA per-example α/Jaccard 实验 | in_progress (Agent, cuda:0) |\\n| W4 Novelty limited | Major | CV 机制 + Zoology recall 框架整合 | in_progress (Paper Agent) |\\n| W5 页数超限 8.2→≤8 | Major | 与 W2 联动压缩 | in_progress (Paper Agent) |\\n| W6 Missing refs | Major | 补 Zoology/Based/Samba | in_progress (Paper Agent) |\\n| W7-W9 Minor | Minor | Ensemble hedging + abstract 精简 | in_progress (Paper Agent) |\\n\\n### 数据\\n- **Main text**: LAMBADA (α=0.30) + ARC-Easy (α=0.21) + HellaSwag (α=0.10)\\n- **Appendix**: BoolQ (α≈0.45)\\n- **进行中**: WinoGrande + PIQA per-example 分析（W3 实验）\\n\\n## 近期任务\\n- [ ] W3 GPU 实验: WinoGrande/PIQA per-example α + Jaccard (Agent)\\n- [ ] 结构性压缩: 收敛→appendix + Related Work 精简 → ≤8 页 (Paper Agent)\\n- [ ] W1 seed proxy argument (Paper Agent)\\n- [ ] W6 补 Zoology/Based/Samba 引用 (Paper Agent)\\n- [ ] W7-W9 minor fixes (Paper Agent)\\n- [ ] 编译验证 ≤ 8 页\\n- [ ] 提交 Round 6 审稿\\n\\n## 论文状态\\n- 标题: \\\"Per-Example Predictive Multiplicity in Hybrid Recurrent Architectures\\\"\\n- Target: **EMNLP 2026 via ARR May (deadline May 25)**\\n- 当前评分: 3.0 (Findings)\\n\\n## GPU 预算\\nwestb-48145: 1× GPU (cuda:0), W3 实验分配中\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D019 | 2026-05-21 | Round 5 审稿 Action Matrix 直接执行，不再等 Reviewer 独立审核 | exp-015, exp-arc-easy-eval |\\n| D018 | 2026-05-20 | D018: 4-benchmark multiplicity spectrum confirmed  | exp-boolq-hellaswag-eval |\\n| D017 | 2026-05-20 | D017: Deadline correction May 25 (not June 15) — 5 | — |\\n| D016 | 2026-05-20 | D016: ARC-Easy per-example 分析确认 D015 假设——per-examp | exp-arc-easy-eval |\\n| D015 | 2026-05-20 | D015: Round 2 仍 3.0 — 扩展 per-example 到 ARC-Easy +  | — |\\n| D014 | 2026-05-20 | D014: 审稿回应策略 — 3个系统性问题修复 + 标题缩窄 + predictive multi | — |\\n| D013 | 2026-05-20 | 撤销 D012：Confidence margin 类内对照写入论文（§4.3 一句 + Appen | exp-003, exp-003-p2 |\\n| D012 | 2026-05-20 | Confidence margin within-category 分析保留为 rebuttal 储 | exp-003, exp-003-p2 |\\n| D011 | 2026-05-19 | exp-007 confirms Claim 2: 340M rebound is capacity | exp-007, exp-010 |\\n| D010 | 2026-05-19 | 取消 exp-002（multi-benchmark per-example，20h GPU）：预期 | exp-002 |\\n\\n\\n\", \"lines\": 62}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "98af12fe-a3d9-42b1-8ea7-7f7f8f402407",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #2。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张） - 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wra…",
+  "leafUuid": "16e1a337-31ad-4170-a4f7-417140a8e803",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze BoolQ/HellaSwag evaluation results and update registry",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-21T08:52:16.695Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start complete. Let me analyze the current state:
+
+1. **Registry**: 20 experiments total. Key new entry: `w3-winogrande-piqa-eval` (PREPARING, just created 2026-05-21T08:28:29) — this is the W3 experiment for WinoGrande/PIQA per-example analysis.
+
+2. **exp-boolq-hellaswag-eval**: Still PREPARING status but has `conclusion: success` with full metrics. The Worker from Loop #1 apparently already returned and the metrics were recorded. The four-benchmark summary is already in the registry: HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49).
+   
+3. **Crons**: No active crons running. Round 5 review action matrix is underway with a May 25 deadline — W3 is focused on the WinoGrande/PIQA per-example α/Jaccard analysis currently in progress, while W1-W2 and W4-W9 are handling structural and fix work through the Paper Agent.
+
+4. **New experiment**: Created `w3-winogrande-piqa-eval` for the W3 reviewer, though there's a concern about format confounds.
+
+5. **GPU**: westb-48145:cuda:0 is available and allocated for W3.
+
+Now I'm seeing some critical issues that need immediate attention. The `exp-boolq-hellaswag-eval` experiment has full metrics and a success conclusion already recorded in the registry, but its status is still stuck on PREPARING instead of being marked DONE — the Worker must have returned with results but the status wasn't updated. Similarly, `w3-winogrande-piqa-eval` is in PREPARING state and I need to figure out what's happening with it. I should check if the Worker from the last loop has returned with results, then update the registry accordingly and report back to the Director.
+
+My immediate plan is to update `exp-boolq-hellaswag-eval` to DONE with the hypothesis filled in, investigate the `w3-winogrande-piqa-eval` experiment details, check on active workers, and then move forward with the current tasks. Let me pull up the tools I need to do this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16e1a337-31ad-4170-a4f7-417140a8e803",
+  "isSidechain": false,
+  "requestId": "req_011CbFRs8vyggURhxmLT25Ax",
+  "type": "assistant",
+  "uuid": "67ba1f57-5aff-4928-989a-3635d7459a75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EhQZmh6VJaHCVNSsvNKwth",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11367,
+      "cache_read_input_tokens": 40023,
+      "output_tokens": 1054,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11367,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1054,
+          "cache_read_input_tokens": 40023,
+          "cache_creation_input_tokens": 11367,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11367
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-21T08:52:19.035Z_
+
+Session-start 完成。关键发现：
+
+1. **exp-boolq-hellaswag-eval**: 已有完整 metrics 和 conclusion=success，但 status 仍是 PREPARING，需更新到 DONE
+2. **w3-winogrande-piqa-eval**: 新实验（今天 08:28 创建），PREPARING 状态——这是 W3 reviewer concern 的 WinoGrande/PIQA 实验
+3. **无活跃 cron**，GPU 空闲
+4. **ROADMAP**: Round 5 审稿 Action Matrix 执行中，deadline May 25（剩 4 天）
+
+先更新 exp-boolq-hellaswag-eval 到 DONE，同时检查 Workers 和 w3 实验详情。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "67ba1f57-5aff-4928-989a-3635d7459a75",
+  "isSidechain": false,
+  "requestId": "req_011CbFRs8vyggURhxmLT25Ax",
+  "type": "assistant",
+  "uuid": "8a074669-601c-410a-aae5-3ac74211c8d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EhQZmh6VJaHCVNSsvNKwth",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11367,
+      "cache_read_input_tokens": 40023,
+      "output_tokens": 1054,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11367,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1054,
+          "cache_read_input_tokens": 40023,
+          "cache_creation_input_tokens": 11367,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11367
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T08:52:20.151Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S2B2P9Wob1FFvNHNdReyQY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a074669-601c-410a-aae5-3ac74211c8d4",
+  "isSidechain": false,
+  "requestId": "req_011CbFRs8vyggURhxmLT25Ax",
+  "type": "assistant",
+  "uuid": "aa18eeb5-f92e-4f4a-bce4-0f8b16857ba0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EhQZmh6VJaHCVNSsvNKwth",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11367,
+      "cache_read_input_tokens": 40023,
+      "output_tokens": 1054,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11367,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1054,
+          "cache_read_input_tokens": 40023,
+          "cache_creation_input_tokens": 11367,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11367
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T08:52:20.159Z_
+
+<details><summary>↩ Tool result · `toolu_01S2B2P9Wob1FFvNHNdReyQY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa18eeb5-f92e-4f4a-bce4-0f8b16857ba0",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "3b4f6162-334b-4f58-ac5e-0725621da4a2",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__get_worker_status"
+    ],
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_worker_status",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "aa18eeb5-f92e-4f4a-bce4-0f8b16857ba0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T08:52:23.305Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01NbSvej9NBhewfZof7jN3Bb`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b4f6162-334b-4f58-ac5e-0725621da4a2",
+  "isSidechain": false,
+  "requestId": "req_011CbFRtoHauxuuFgPsDKCU6",
+  "type": "assistant",
+  "uuid": "3aa073bc-c8c0-41a8-baf4-7257682475f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YNmYT87ZCnPd5dAU5TnRN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2240,
+      "cache_read_input_tokens": 51390,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2240,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 51390,
+          "cache_creation_input_tokens": 2240,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2240
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T08:52:23.377Z_
+
+<details><summary>↩ Tool result · `toolu_01NbSvej9NBhewfZof7jN3Bb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_research_citation-verification_20260520T104340\", \"task_type\": \"research:citation-verification\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T10:43:40.545870+00:00\", \"ended_at\": \"2026-05-20T10:45:11.400664+00:00\"}, {\"worker_id\": \"worker_eval_boolq-hellaswag-probe_20260520T113034\", \"task_type\": \"eval:boolq-hellaswag-probe\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T11:30:34.432295+00:00\", \"ended_at\": \"2026-05-20T11:48:41.289769+00:00\"}, {\"worker_id\": \"worker_analysis_exp-boolq-hellaswag-eval_20260520T124927\", \"task_type\": \"analysis:exp-boolq-hellaswag-eval\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T12:49:27.542153+00:00\", \"ended_at\": \"2026-05-20T12:52:26.152268+00:00\"}, {\"worker_id\": \"worker_analysis_boolq-hellaswag-per-example_20260520T125150\", \"task_type\": \"analysis:boolq-hellaswag-per-example\", \"project\": \"entrainment_gated_ft\", \"status\": \"cancelled\", \"started_at\": \"2026-05-20T12:51:50.704456+00:00\", \"ended_at\": \"2026-05-20T12:54:31.896223+00:00\"}, {\"worker_id\": \"worker_analysis_boolq-hellaswag-v2_20260520T125546\", \"task_type\": \"analysis:boolq-hellaswag-v2\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T12:55:46.316381+00:00\", \"ended_at\": \"2026-05-20T13:03:59.226035+00:00\"}, {\"worker_id\": \"worker_analysis_cross-benchmark-confidence-margin_20260520T140423\", \"task_type\": \"analysis:cross-benchmark-confidence-margin\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T14:04:23.363436+00:00\", \"ended_at\": \"2026-05-20T14:09:45.316629+00:00\"}, {\"worker_id\": \"worker_analysis_boolq-confidence-margin_20260520T144742\", \"task_type\": \"analysis:boolq-confidence-margin\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T14:47:42.665367+00:00\", \"ended_at\": \"2026-05-20T14:49:29.110963+00:00\"}, {\"worker_id\": \"worker_analysis_loglik-range-diagnostic_20260520T173004\", \"task_type\": \"analysis:loglik-range-diagnostic\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T17:30:04.506045+00:00\", \"ended_at\": \"2026-05-20T17:34:47.808384+00:00\"}, {\"worker_id\": \"worker_analysis_w3-format-confound-eval_20260521T082404\", \"task_type\": \"analysis:w3-format-confound-eval\", \"project\": \"entrainment_gated_ft\", \"status\": \"cancelled\", \"started_at\": \"2026-05-21T08:24:04.969753+00:00\", \"ended_at\": \"2026-05-21T08:25:40.506850+00:00\"}, {\"worker_id\": \"worker_analysis_w3-format-confound-eval_20260521T082626\", \"task_type\": \"analysis:w3-format-confound-eval\", \"project\": \"entrainment_gated_ft\", \"status\": \"running\", \"started_at\": \"2026-05-21T08:26:26.844042+00:00\", \"ended_at\": null}], \"count\": 10}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3aa073bc-c8c0-41a8-baf4-7257682475f0",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "14c8fea9-f896-46a4-80ba-ee9e696e0156",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_research_citation-verification_20260520T104340\\\", \\\"task_type\\\": \\\"research:citation-verification\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T10:43:40.545870+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T10:45:11.400664+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_eval_boolq-hellaswag-probe_20260520T113034\\\", \\\"task_type\\\": \\\"eval:boolq-hellaswag-probe\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T11:30:34.432295+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T11:48:41.289769+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_exp-boolq-hellaswag-eval_20260520T124927\\\", \\\"task_type\\\": \\\"analysis:exp-boolq-hellaswag-eval\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T12:49:27.542153+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T12:52:26.152268+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_boolq-hellaswag-per-example_20260520T125150\\\", \\\"task_type\\\": \\\"analysis:boolq-hellaswag-per-example\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"cancelled\\\", \\\"started_at\\\": \\\"2026-05-20T12:51:50.704456+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T12:54:31.896223+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_boolq-hellaswag-v2_20260520T125546\\\", \\\"task_type\\\": \\\"analysis:boolq-hellaswag-v2\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T12:55:46.316381+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T13:03:59.226035+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_cross-benchmark-confidence-margin_20260520T140423\\\", \\\"task_type\\\": \\\"analysis:cross-benchmark-confidence-margin\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T14:04:23.363436+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T14:09:45.316629+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_boolq-confidence-margin_20260520T144742\\\", \\\"task_type\\\": \\\"analysis:boolq-confidence-margin\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T14:47:42.665367+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T14:49:29.110963+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_loglik-range-diagnostic_20260520T173004\\\", \\\"task_type\\\": \\\"analysis:loglik-range-diagnostic\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T17:30:04.506045+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T17:34:47.808384+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_w3-format-confound-eval_20260521T082404\\\", \\\"task_type\\\": \\\"analysis:w3-format-confound-eval\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"cancelled\\\", \\\"started_at\\\": \\\"2026-05-21T08:24:04.969753+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T08:25:40.506850+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_w3-format-confound-eval_20260521T082626\\\", \\\"task_type\\\": \\\"analysis:w3-format-confound-eval\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-21T08:26:26.844042+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 10}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_research_citation-verification_20260520T104340\", \"task_type\": \"research:citation-verification\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T10:43:40.545870+00:00\", \"ended_at\": \"2026-05-20T10:45:11.400664+00:00\"}, {\"worker_id\": \"worker_eval_boolq-hellaswag-probe_20260520T113034\", \"task_type\": \"eval:boolq-hellaswag-probe\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T11:30:34.432295+00:00\", \"ended_at\": \"2026-05-20T11:48:41.289769+00:00\"}, {\"worker_id\": \"worker_analysis_exp-boolq-hellaswag-eval_20260520T124927\", \"task_type\": \"analysis:exp-boolq-hellaswag-eval\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T12:49:27.542153+00:00\", \"ended_at\": \"2026-05-20T12:52:26.152268+00:00\"}, {\"worker_id\": \"worker_analysis_boolq-hellaswag-per-example_20260520T125150\", \"task_type\": \"analysis:boolq-hellaswag-per-example\", \"project\": \"entrainment_gated_ft\", \"status\": \"cancelled\", \"started_at\": \"2026-05-20T12:51:50.704456+00:00\", \"ended_at\": \"2026-05-20T12:54:31.896223+00:00\"}, {\"worker_id\": \"worker_analysis_boolq-hellaswag-v2_20260520T125546\", \"task_type\": \"analysis:boolq-hellaswag-v2\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T12:55:46.316381+00:00\", \"ended_at\": \"2026-05-20T13:03:59.226035+00:00\"}, {\"worker_id\": \"worker_analysis_cross-benchmark-confidence-margin_20260520T140423\", \"task_type\": \"analysis:cross-benchmark-confidence-margin\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T14:04:23.363436+00:00\", \"ended_at\": \"2026-05-20T14:09:45.316629+00:00\"}, {\"worker_id\": \"worker_analysis_boolq-confidence-margin_20260520T144742\", \"task_type\": \"analysis:boolq-confidence-margin\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T14:47:42.665367+00:00\", \"ended_at\": \"2026-05-20T14:49:29.110963+00:00\"}, {\"worker_id\": \"worker_analysis_loglik-range-diagnostic_20260520T173004\", \"task_type\": \"analysis:loglik-range-diagnostic\", \"project\": \"entrainment_gated_ft\", \"status\": \"done\", \"started_at\": \"2026-05-20T17:30:04.506045+00:00\", \"ended_at\": \"2026-05-20T17:34:47.808384+00:00\"}, {\"worker_id\": \"worker_analysis_w3-format-confound-eval_20260521T082404\", \"task_type\": \"analysis:w3-format-confound-eval\", \"project\": \"entrainment_gated_ft\", \"status\": \"cancelled\", \"started_at\": \"2026-05-21T08:24:04.969753+00:00\", \"ended_at\": \"2026-05-21T08:25:40.506850+00:00\"}, {\"worker_id\": \"worker_analysis_w3-format-confound-eval_20260521T082626\", \"task_type\": \"analysis:w3-format-confound-eval\", \"project\": \"entrainment_gated_ft\", \"status\": \"running\", \"started_at\": \"2026-05-21T08:26:26.844042+00:00\", \"ended_at\": null}], \"count\": 10}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3aa073bc-c8c0-41a8-baf4-7257682475f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T08:52:24.011Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UPZQatjRY5mfL8bEr78xSu`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "filters": {
+    "exp_id": "w3-winogrande-piqa-eval"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14c8fea9-f896-46a4-80ba-ee9e696e0156",
+  "isSidechain": false,
+  "requestId": "req_011CbFRtoHauxuuFgPsDKCU6",
+  "type": "assistant",
+  "uuid": "da167592-4a24-487d-97bb-9303734935bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018YNmYT87ZCnPd5dAU5TnRN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2240,
+      "cache_read_input_tokens": 51390,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2240,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 51390,
+          "cache_creation_input_tokens": 2240,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2240
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T08:52:24.115Z_
+
+<details><summary>↩ Tool result · `toolu_01UPZQatjRY5mfL8bEr78xSu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.095}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da167592-4a24-487d-97bb-9303734935bc",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "702be4c8-1836-48d7-9c33-f904c09a32f6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.095}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.095}}"
+    }
+  },
+  "sourceToolAssistantUUID": "da167592-4a24-487d-97bb-9303734935bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-21T08:52:24.118Z_
+
+```json
+{
+  "parentUuid": "702be4c8-1836-48d7-9c33-f904c09a32f6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3b29a5d8-0b04-4b9a-90af-f4ba0410c0f8",
+  "timestamp": "2026-05-21T08:52:24.118Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-21T08:52:44.384Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+
+1. **Workers**: There's an active running Worker `worker_analysis_w3-format-confound-eval_20260521T082626` — this is analyzing the W3 format confound (WinoGrande/PIQA). It's been running since 08:26 today. Another one with same task type was cancelled at 08:25.
+
+2. **exp-boolq-hellaswag-eval**: The analysis workers already completed (worker_analysis_boolq-hellaswag-v2 done at 13:03). 
+
+The metrics are already in the registry, but I need to add the hypothesis and parent fields before I can move the status from PREPARING to DONE. For the w3-winogrande-piqa-eval experiment, my filter didn't return results — I think the issue is that I'm filtering on exp_id as if it's a field, but it's actually the key itself. Let me check the registry again to verify the exact experiment ID.
+
+Looking back at the initial registry read, w3-winogrande-piqa-eval shows status PREPARING from 2026-05-21T08:28:29, and there's a worker actively processing it. So my plan is to first update exp-boolq-hellaswag-eval by adding the hypothesis and parent reference (exp-011 is the parent experiment), then change its status to DONE. After that I'll check on the w3 worker's progress and verify the resource-saturation skill before reporting back to the Director.
+
+For the status transition, I realize the experiment already has conclusion=success with full metrics, so I should be able to move it directly to DONE if I provide the required checkpoint_path and log_path fields. Let me prepare the hypothesis in Chinese about extending the per-example multiplicity analysis across different benchmark types, set exp-011 as the parent, and then attempt the status update.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b29a5d8-0b04-4b9a-90af-f4ba0410c0f8",
+  "isSidechain": false,
+  "requestId": "req_011CbFRu5ySEumYvREfcqTa4",
+  "type": "assistant",
+  "uuid": "8c27e4ea-6179-4550-863e-cbcb9ce97147",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g8XMKCLgdM3FDi7BZ6efN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 53630,
+      "output_tokens": 1389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1389,
+          "cache_read_input_tokens": 53630,
+          "cache_creation_input_tokens": 1744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-21T08:52:45.753Z_
+
+有一个 Worker 正在运行：`worker_analysis_w3-format-confound-eval_20260521T082626`（W3 实验准备）。exp-boolq-hellaswag-eval 的分析 Worker 已完成，metrics 已入 registry，但 status 仍是 PREPARING。
+
+先修复 exp-boolq-hellaswag-eval 的 registry 状态，同时查看 W3 Worker 进展。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c27e4ea-6179-4550-863e-cbcb9ce97147",
+  "isSidechain": false,
+  "requestId": "req_011CbFRu5ySEumYvREfcqTa4",
+  "type": "assistant",
+  "uuid": "b11672e2-0f37-4f8e-ad76-ff81b5cc1609",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g8XMKCLgdM3FDi7BZ6efN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 53630,
+      "output_tokens": 1389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1389,
+          "cache_read_input_tokens": 53630,
+          "cache_creation_input_tokens": 1744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T08:52:48.576Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017ALJSVkUHW94tLYxG3Pfcy`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "hypothesis",
+  "value": "BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b11672e2-0f37-4f8e-ad76-ff81b5cc1609",
+  "isSidechain": false,
+  "requestId": "req_011CbFRu5ySEumYvREfcqTa4",
+  "type": "assistant",
+  "uuid": "47d850c0-ae7c-4e9e-919f-e8759ade9c91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g8XMKCLgdM3FDi7BZ6efN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 53630,
+      "output_tokens": 1389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1389,
+          "cache_read_input_tokens": 53630,
+          "cache_creation_input_tokens": 1744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T08:52:48.693Z_
+
+<details><summary>↩ Tool result · `toolu_017ALJSVkUHW94tLYxG3Pfcy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:52:48.648Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1023}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47d850c0-ae7c-4e9e-919f-e8759ade9c91",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "cbd76f40-f273-4e6a-acfb-820191e8f397",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-boolq-hellaswag-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:52:48.648Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"653104\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:32:21.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T12:47:53.740Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T12:47:55.697105+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}, \\\"hypothesis\\\": \\\"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1023}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:52:48.648Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1023}}"
+    }
+  },
+  "sourceToolAssistantUUID": "47d850c0-ae7c-4e9e-919f-e8759ade9c91",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T08:52:49.108Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01WSi5JP4VXX2iENZWrTBHEo`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "parent",
+  "value": "exp-011",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbd76f40-f273-4e6a-acfb-820191e8f397",
+  "isSidechain": false,
+  "requestId": "req_011CbFRu5ySEumYvREfcqTa4",
+  "type": "assistant",
+  "uuid": "06a80bb3-b7c3-408c-85f7-3c9a7d5f06f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g8XMKCLgdM3FDi7BZ6efN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 53630,
+      "output_tokens": 1389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1389,
+          "cache_read_input_tokens": 53630,
+          "cache_creation_input_tokens": 1744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T08:52:49.215Z_
+
+<details><summary>↩ Tool result · `toolu_01WSi5JP4VXX2iENZWrTBHEo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:52:49.171Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0971}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06a80bb3-b7c3-408c-85f7-3c9a7d5f06f1",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "2c74d6ea-ba51-439e-b0bb-d004ddb6de8c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-boolq-hellaswag-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:52:49.171Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"653104\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:32:21.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T12:47:53.740Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T12:47:55.697105+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}, \\\"hypothesis\\\": \\\"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\\\", \\\"parent\\\": \\\"exp-011\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0971}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:52:49.171Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0971}}"
+    }
+  },
+  "sourceToolAssistantUUID": "06a80bb3-b7c3-408c-85f7-3c9a7d5f06f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T08:52:49.594Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status · `toolu_01UjwpMtnYyryyyYbCW3LG1z`</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_w3-format-confound-eval_20260521T082626",
+  "verbose": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c74d6ea-ba51-439e-b0bb-d004ddb6de8c",
+  "isSidechain": false,
+  "requestId": "req_011CbFRu5ySEumYvREfcqTa4",
+  "type": "assistant",
+  "uuid": "476fea16-11b7-44f6-9e8a-bd215b4e8df3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015g8XMKCLgdM3FDi7BZ6efN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 53630,
+      "output_tokens": 1389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1389,
+          "cache_read_input_tokens": 53630,
+          "cache_creation_input_tokens": 1744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T08:52:49.657Z_
+
+<details><summary>↩ Tool result · `toolu_01UjwpMtnYyryyyYbCW3LG1z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_w3-format-confound-eval_20260521T082626\", \"status\": \"running\", \"task_type\": \"analysis:w3-format-confound-eval\", \"project\": \"entrainment_gated_ft\", \"started_at\": \"2026-05-21T08:26:26.844042+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ToolSearch\", \"Monitor\"], \"last_text\": \"Monitor 已设置，每 30 秒检查进度。当前 12/30。等待完成通知后继续分析。\", \"turn_count\": 38}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "476fea16-11b7-44f6-9e8a-bd215b4e8df3",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "6df69d75-383e-4499-9aee-e8792dac3922",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_w3-format-confound-eval_20260521T082626\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"analysis:w3-format-confound-eval\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"started_at\\\": \\\"2026-05-21T08:26:26.844042+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ToolSearch\\\", \\\"Monitor\\\"], \\\"last_text\\\": \\\"Monitor 已设置，每 30 秒检查进度。当前 12/30。等待完成通知后继续分析。\\\", \\\"turn_count\\\": 38}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_w3-format-confound-eval_20260521T082626\", \"status\": \"running\", \"task_type\": \"analysis:w3-format-confound-eval\", \"project\": \"entrainment_gated_ft\", \"started_at\": \"2026-05-21T08:26:26.844042+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ToolSearch\", \"Monitor\"], \"last_text\": \"Monitor 已设置，每 30 秒检查进度。当前 12/30。等待完成通知后继续分析。\", \"turn_count\": 38}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "476fea16-11b7-44f6-9e8a-bd215b4e8df3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #2。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张） - 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wra…",
+  "leafUuid": "6df69d75-383e-4499-9aee-e8792dac3922",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze BoolQ/HellaSwag evaluation results and update registry",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-21T08:53:02.380Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+
+1. **exp-boolq-hellaswag-eval**: hypothesis and parent updated. Now need to transition status to DONE. The experiment already has spec, checkpoint_path, log_path, and conclusion=success. I need to transition through the states. Let me try to go PREPARING → RUNNING → ANALYZING → DONE. Actually, since it already has conclusion and metrics, maybe I can force it?
+
+Actually, looking at the spec, it was submitted via submit_training_job and has all the provenance. It went through the cron system (hook_events shows on_complete). The status just wasn't updated properly. Let me try to transition it step by step.
+
+
+2. **W3 Worker**: Currently running turn 38, executing WinoGrande and PIQA evaluations on GPU with 12 out of 30 models completed. The W3 experiment is actively progressing.
+
+3. **w3-winogrande-piqa-eval**: Just registered in PREPARING state while the Worker is actively running the evaluation.
+
+Now I'll attempt to update exp-boolq-hellaswag-eval's status. Since the spec already contains all required fields (command, server, gpu, pid), I should be able to transition it through the states to DONE.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6df69d75-383e-4499-9aee-e8792dac3922",
+  "isSidechain": false,
+  "requestId": "req_011CbFRvyFfrtoXNvkG3asHd",
+  "type": "assistant",
+  "uuid": "751657f5-fc7d-405a-899e-23a005f8ccda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125Y2VQoVfvc8omg6hwiNtu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4047,
+      "cache_read_input_tokens": 55374,
+      "output_tokens": 713,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 713,
+          "cache_read_input_tokens": 55374,
+          "cache_creation_input_tokens": 4047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-21T08:53:02.867Z_
+
+W3 Worker 在运行中（turn 38, 12/30 模型评估完成，正在 Monitor）。现在推进 exp-boolq-hellaswag-eval 的状态转换。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "751657f5-fc7d-405a-899e-23a005f8ccda",
+  "isSidechain": false,
+  "requestId": "req_011CbFRvyFfrtoXNvkG3asHd",
+  "type": "assistant",
+  "uuid": "da356b8a-f469-4bfc-9b7e-a5a2ad92869e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125Y2VQoVfvc8omg6hwiNtu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4047,
+      "cache_read_input_tokens": 55374,
+      "output_tokens": 713,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 713,
+          "cache_read_input_tokens": 55374,
+          "cache_creation_input_tokens": 4047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T08:53:05.719Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013zXVJV6kAoyAPz4trH3Qa8`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "entrainment_gated_ft",
+  "spec": {
+    "command": "bash run_boolq_hellaswag_all.sh",
+    "server": "westb-48145",
+    "data_path": "/root/entrainment_gated_ft/lm_eval_clean/",
+    "data_count": 13312,
+    "model_name": "GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)",
+    "seed": 42
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da356b8a-f469-4bfc-9b7e-a5a2ad92869e",
+  "isSidechain": false,
+  "requestId": "req_011CbFRvyFfrtoXNvkG3asHd",
+  "type": "assistant",
+  "uuid": "bcf1c365-0901-4320-8b3f-7a6f1250a717",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0125Y2VQoVfvc8omg6hwiNtu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4047,
+      "cache_read_input_tokens": 55374,
+      "output_tokens": 713,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 713,
+          "cache_read_input_tokens": 55374,
+          "cache_creation_input_tokens": 4047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T08:53:05.794Z_
+
+<details><summary>↩ Tool result · `toolu_013zXVJV6kAoyAPz4trH3Qa8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0581}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bcf1c365-0901-4320-8b3f-7a6f1250a717",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "104920fd-398b-4397-979b-41c323ad9966",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0581}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0581}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bcf1c365-0901-4320-8b3f-7a6f1250a717",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T08:53:12.088Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0129mxuMYE91gpHZ2vC3biHg`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "status",
+  "value": "PENDING",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "104920fd-398b-4397-979b-41c323ad9966",
+  "isSidechain": false,
+  "requestId": "req_011CbFRxAE19LEtfvwEhYDnm",
+  "type": "assistant",
+  "uuid": "7e73f9e7-5fef-4676-9442-86686714bad9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011uhvAgBETQynx5Ajqjp6Hp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 788,
+      "cache_read_input_tokens": 59421,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 59421,
+          "cache_creation_input_tokens": 788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T08:53:12.390Z_
+
+<details><summary>↩ Tool result · `toolu_0129mxuMYE91gpHZ2vC3biHg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:12.150Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2923}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e73f9e7-5fef-4676-9442-86686714bad9",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "b64c3271-d0b6-4a6f-8067-095f9eb13e96",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-boolq-hellaswag-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:53:12.150Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"653104\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:32:21.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T12:47:53.740Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T12:47:55.697105+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}, \\\"hypothesis\\\": \\\"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\\\", \\\"parent\\\": \\\"exp-011\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2923}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:12.150Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2923}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7e73f9e7-5fef-4676-9442-86686714bad9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T08:53:15.255Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01MhwsMxFRjqQwkbu4aF3RLg`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b64c3271-d0b6-4a6f-8067-095f9eb13e96",
+  "isSidechain": false,
+  "requestId": "req_011CbFRxeNfd1AxjZdBa8kNh",
+  "type": "assistant",
+  "uuid": "79ee6b5e-4d21-4ce5-8360-6259a6464420",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013sGtm5N1SBJxXGQfEZyrxy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1294,
+      "cache_read_input_tokens": 60209,
+      "output_tokens": 135,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1294,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 135,
+          "cache_read_input_tokens": 60209,
+          "cache_creation_input_tokens": 1294,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1294
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T08:53:15.535Z_
+
+<details><summary>↩ Tool result · `toolu_01MhwsMxFRjqQwkbu4aF3RLg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:15.318Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2705}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79ee6b5e-4d21-4ce5-8360-6259a6464420",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "0e16e96f-f7f5-41ad-9066-edec1ad8fe19",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-boolq-hellaswag-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:53:15.318Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"653104\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:32:21.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T12:47:53.740Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T12:47:55.697105+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}, \\\"hypothesis\\\": \\\"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\\\", \\\"parent\\\": \\\"exp-011\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2705}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:15.318Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2705}}"
+    }
+  },
+  "sourceToolAssistantUUID": "79ee6b5e-4d21-4ce5-8360-6259a6464420",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T08:53:18.558Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AtPYrDjDnPK1gidZRgazH3`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e16e96f-f7f5-41ad-9066-edec1ad8fe19",
+  "isSidechain": false,
+  "requestId": "req_011CbFRxsp46LGJvSjt65pBF",
+  "type": "assistant",
+  "uuid": "1a405de9-0224-48a4-94ef-d482e1d70ad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FPT1nMypyz2SsBHavusRd3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1296,
+      "cache_read_input_tokens": 61503,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1296,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 61503,
+          "cache_creation_input_tokens": 1296,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1296
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T08:53:18.872Z_
+
+<details><summary>↩ Tool result · `toolu_01AtPYrDjDnPK1gidZRgazH3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:18.648Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a405de9-0224-48a4-94ef-d482e1d70ad4",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "109876ea-f04a-4956-b563-08d42f1e2356",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-boolq-hellaswag-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:53:18.648Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\\\\\"\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"653104\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:32:21.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T12:47:53.740Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T12:47:55.697105+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}, \\\"hypothesis\\\": \\\"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\\\", \\\"parent\\\": \\\"exp-011\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:18.648Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\"\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1a405de9-0224-48a4-94ef-d482e1d70ad4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #2。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张） - 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wra…",
+  "leafUuid": "109876ea-f04a-4956-b563-08d42f1e2356",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze BoolQ/HellaSwag evaluation results and update registry",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-21T08:53:22.777Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_0192zJiqA3XR1K5Q4b1kgdT1`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "entrainment_gated_ft",
+  "spec": {
+    "command": "bash run_boolq_hellaswag_all.sh",
+    "server": "westb-48145",
+    "data_path": "/root/entrainment_gated_ft/lm_eval_clean/",
+    "data_count": 13312,
+    "model_name": "GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)",
+    "seed": 42
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "109876ea-f04a-4956-b563-08d42f1e2356",
+  "isSidechain": false,
+  "requestId": "req_011CbFRy89WtM8uU5Y4omwbW",
+  "type": "assistant",
+  "uuid": "2871bca5-4d39-49d6-9f9d-376959783658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQCFwQuENdbgdhb7G44h4V",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1293,
+      "cache_read_input_tokens": 62799,
+      "output_tokens": 252,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1293,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 252,
+          "cache_read_input_tokens": 62799,
+          "cache_creation_input_tokens": 1293,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1293
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T08:53:22.844Z_
+
+<details><summary>↩ Tool result · `toolu_0192zJiqA3XR1K5Q4b1kgdT1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.0579}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2871bca5-4d39-49d6-9f9d-376959783658",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "bce04297-a03a-476a-9e3a-09c621cec73e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0579}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.0579}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2871bca5-4d39-49d6-9f9d-376959783658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-21T08:53:22.848Z_
+
+```json
+{
+  "parentUuid": "bce04297-a03a-476a-9e3a-09c621cec73e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1515953e-4cd2-41b4-b47b-5f291dc6f1b7",
+  "timestamp": "2026-05-21T08:53:22.848Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-21T08:53:27.888Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013ixdS8CdUgKSrHH7brr18U`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "entrainment_gated_ft",
+  "spec": {
+    "command": "bash run_boolq_hellaswag_all.sh",
+    "server": "westb-48145",
+    "data_path": "/root/entrainment_gated_ft/lm_eval_clean/",
+    "data_count": 13312,
+    "model_name": "GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/models_1.3b/",
+    "eval_data": "BoolQ (3270 samples) + HellaSwag (10042 samples)"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1515953e-4cd2-41b4-b47b-5f291dc6f1b7",
+  "isSidechain": false,
+  "requestId": "req_011CbFRyR6yuubwr2s7kKsCG",
+  "type": "assistant",
+  "uuid": "74f95bec-56e2-4237-9b1f-5f244c0ad54d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FKdy9aEyjDDB1k2A64wQ18",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 445,
+      "cache_read_input_tokens": 64092,
+      "output_tokens": 301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 445,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 301,
+          "cache_read_input_tokens": 64092,
+          "cache_creation_input_tokens": 445,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 445
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T08:53:28.168Z_
+
+<details><summary>↩ Tool result · `toolu_013ixdS8CdUgKSrHH7brr18U`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:27.955Z\", \"spec\": {\"command\": \"bash run_boolq_hellaswag_all.sh\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/\", \"data_count\": 13312, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"BoolQ (3270 samples) + HellaSwag (10042 samples)\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2681}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74f95bec-56e2-4237-9b1f-5f244c0ad54d",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "b7d261de-9e4c-4943-8f8e-b654ff1b87ec",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-boolq-hellaswag-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:53:27.955Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_boolq_hellaswag_all.sh\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"653104\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:32:21.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/\\\", \\\"data_count\\\": 13312, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/\\\", \\\"eval_data\\\": \\\"BoolQ (3270 samples) + HellaSwag (10042 samples)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T12:47:53.740Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T12:47:55.697105+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}, \\\"hypothesis\\\": \\\"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\\\", \\\"parent\\\": \\\"exp-011\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2681}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:27.955Z\", \"spec\": {\"command\": \"bash run_boolq_hellaswag_all.sh\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/\", \"data_count\": 13312, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"BoolQ (3270 samples) + HellaSwag (10042 samples)\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2681}}"
+    }
+  },
+  "sourceToolAssistantUUID": "74f95bec-56e2-4237-9b1f-5f244c0ad54d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-21T08:53:34.795Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Xxt3WB1YV46oDyXfMEmt2j`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "status",
+  "value": "ANALYZING",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7d261de-9e4c-4943-8f8e-b654ff1b87ec",
+  "isSidechain": false,
+  "requestId": "req_011CbFRypDnQmfnuLgft6RZJ",
+  "type": "assistant",
+  "uuid": "50f1dab4-cd0d-4ff3-973c-5dc410f4d8c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLeQa8fnSH3hC2Zbw3HZfQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1512,
+      "cache_read_input_tokens": 64537,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 64537,
+          "cache_creation_input_tokens": 1512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T08:53:35.074Z_
+
+<details><summary>↩ Tool result · `toolu_01Xxt3WB1YV46oDyXfMEmt2j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:34.856Z\", \"spec\": {\"command\": \"bash run_boolq_hellaswag_all.sh\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/\", \"data_count\": 13312, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"BoolQ (3270 samples) + HellaSwag (10042 samples)\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2706}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50f1dab4-cd0d-4ff3-973c-5dc410f4d8c6",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "8c546f85-847b-4dba-b3b3-bde855a99267",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-boolq-hellaswag-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:53:34.856Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_boolq_hellaswag_all.sh\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"653104\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:32:21.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/\\\", \\\"data_count\\\": 13312, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/\\\", \\\"eval_data\\\": \\\"BoolQ (3270 samples) + HellaSwag (10042 samples)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T12:47:53.740Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T12:47:55.697105+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}, \\\"hypothesis\\\": \\\"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\\\", \\\"parent\\\": \\\"exp-011\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2706}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:34.856Z\", \"spec\": {\"command\": \"bash run_boolq_hellaswag_all.sh\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/\", \"data_count\": 13312, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"BoolQ (3270 samples) + HellaSwag (10042 samples)\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2706}}"
+    }
+  },
+  "sourceToolAssistantUUID": "50f1dab4-cd0d-4ff3-973c-5dc410f4d8c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-21T08:53:38.273Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01YTe7C2A2ZF6bbjhzK7cCG3`</summary>
+
+```json
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "field": "status",
+  "value": "DONE",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c546f85-847b-4dba-b3b3-bde855a99267",
+  "isSidechain": false,
+  "requestId": "req_011CbFRzL8ccBmorfZu7QxT1",
+  "type": "assistant",
+  "uuid": "a1b4cec9-11c6-48de-9403-fd439d21498b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y99LUjrhtWrwKwp9sVmU7L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1345,
+      "cache_read_input_tokens": 66049,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1345,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 66049,
+          "cache_creation_input_tokens": 1345,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1345
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T08:53:38.550Z_
+
+<details><summary>↩ Tool result · `toolu_01YTe7C2A2ZF6bbjhzK7cCG3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:38.336Z\", \"spec\": {\"command\": \"bash run_boolq_hellaswag_all.sh\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/\", \"data_count\": 13312, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"BoolQ (3270 samples) + HellaSwag (10042 samples)\", \"wall_clock_seconds\": 76877.0, \"gpu_hours\": 21.35}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\", \"completed_at\": \"2026-05-21T08:53:38.336Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2668}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1b4cec9-11c6-48de-9403-fd439d21498b",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "4b1b1b92-a7ab-47d7-946b-17e9dfce612a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-boolq-hellaswag-eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T11:32:21.428Z\\\", \\\"updated_at\\\": \\\"2026-05-21T08:53:38.336Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_boolq_hellaswag_all.sh\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"653104\\\", \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T11:32:21.381Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/\\\", \\\"data_count\\\": 13312, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/\\\", \\\"eval_data\\\": \\\"BoolQ (3270 samples) + HellaSwag (10042 samples)\\\", \\\"wall_clock_seconds\\\": 76877.0, \\\"gpu_hours\\\": 21.35}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T12:47:53.740Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T12:47:55.697105+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\\\", \\\"metrics\\\": {\\\"benchmarks\\\": [\\\"boolq\\\", \\\"hellaswag\\\"], \\\"boolq\\\": {\\\"n_samples\\\": 3270, \\\"ambiguity_alpha_mean\\\": 0.487, \\\"jaccard_helped_mean\\\": 0.103, \\\"jaccard_hurt_mean\\\": 0.098, \\\"convergence_rho\\\": 0.1, \\\"convergence_p\\\": 0.95, \\\"note\\\": \\\"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\\\"}, \\\"hellaswag\\\": {\\\"n_samples\\\": 10042, \\\"ambiguity_alpha_mean\\\": 0.098, \\\"jaccard_helped_mean\\\": 0.091, \\\"jaccard_hurt_mean\\\": 0.08, \\\"convergence_rho\\\": -0.8, \\\"convergence_p\\\": 0.133, \\\"note\\\": \\\"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\\\"}, \\\"four_benchmark_summary\\\": {\\\"spectrum\\\": \\\"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\\\", \\\"key_finding\\\": \\\"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\\\"}, \\\"artifacts\\\": [\\\"boolq_per_example.json\\\", \\\"boolq_jaccard_analysis.json\\\", \\\"hellaswag_per_example.json\\\", \\\"hellaswag_jaccard_analysis.json\\\"]}, \\\"hypothesis\\\": \\\"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\\\", \\\"parent\\\": \\\"exp-011\\\", \\\"completed_at\\\": \\\"2026-05-21T08:53:38.336Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2668}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-boolq-hellaswag-eval\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T11:32:21.428Z\", \"updated_at\": \"2026-05-21T08:53:38.336Z\", \"spec\": {\"command\": \"bash run_boolq_hellaswag_all.sh\", \"server\": \"westb-48145\", \"gpu\": [\"cuda:0\"], \"pid\": \"653104\", \"log_path\": \"~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log\", \"submitted_at\": \"2026-05-20T11:32:21.381Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/\", \"data_count\": 13312, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer (15 models)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"BoolQ (3270 samples) + HellaSwag (10042 samples)\", \"wall_clock_seconds\": 76877.0, \"gpu_hours\": 21.35}, \"reproduce\": {\"finished_at\": \"2026-05-20T12:47:53.740Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T12:47:55.697105+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq/ + /root/entrainment_gated_ft/lm_eval_clean/hellaswag/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\", \"metrics\": {\"benchmarks\": [\"boolq\", \"hellaswag\"], \"boolq\": {\"n_samples\": 3270, \"ambiguity_alpha_mean\": 0.487, \"jaccard_helped_mean\": 0.103, \"jaccard_hurt_mean\": 0.098, \"convergence_rho\": 0.1, \"convergence_p\": 0.95, \"note\": \"GDN h24-1 acc=0.489 (near random) is genuine model performance, not eval bug. Selective overlap: GDN-RetNet significant, but GDN-HGRN2 and RetNet-HGRN2 often not significant\"}, \"hellaswag\": {\"n_samples\": 10042, \"ambiguity_alpha_mean\": 0.098, \"jaccard_helped_mean\": 0.091, \"jaccard_hurt_mean\": 0.08, \"convergence_rho\": -0.8, \"convergence_p\": 0.133, \"note\": \"90% samples unanimous across architectures. All Jaccard p<0.001 but nES very small (0.05-0.11)\"}, \"four_benchmark_summary\": {\"spectrum\": \"HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\", \"key_finding\": \"Multiplicity varies dramatically by task (10%-49%) while Jaccard overlap stays consistently low (~0.08-0.10). Per-example divergence is universal but magnitude is task-dependent.\"}, \"artifacts\": [\"boolq_per_example.json\", \"boolq_jaccard_analysis.json\", \"hellaswag_per_example.json\", \"hellaswag_jaccard_analysis.json\"]}, \"hypothesis\": \"BoolQ 和 HellaSwag 的 per-example log_samples 数据扩展 multiplicity 分析到更多 benchmark，验证 per-example predictive multiplicity（α 和 cross-architecture Jaccard divergence）在不同任务类型上的普遍性——建立从 LAMBADA/ARC-Easy 到 4-benchmark spectrum 的泛化\", \"parent\": \"exp-011\", \"completed_at\": \"2026-05-21T08:53:38.336Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2668}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a1b4cec9-11c6-48de-9403-fd439d21498b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #2。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张） - 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wra…",
+  "leafUuid": "4b1b1b92-a7ab-47d7-946b-17e9dfce612a",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze BoolQ/HellaSwag evaluation results and update registry",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-21T08:53:44.272Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+exp-boolq-hellaswag-eval is now DONE. Now I need to:
+
+1. Read the resource-saturation skill before reporting to Director
+2. Report to Director about current status - session start, exp-boolq-hellaswag-eval closed, W3 Worker running
+3. Check what the W3 experiment status is - Worker is at turn 38, monitoring 12/30 models on GPU
+
+Let me read the resource-saturation skill and then report to Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b1b1b92-a7ab-47d7-946b-17e9dfce612a",
+  "isSidechain": false,
+  "requestId": "req_011CbFRzaFvXQh82yzzPuWcW",
+  "type": "assistant",
+  "uuid": "1fdfe78b-9f2b-49d7-a3b1-92b94a89973d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KcHopFxpQbce6DqNL7qc7D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 67394,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1426,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 67394,
+          "cache_creation_input_tokens": 1426,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1426
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-21T08:53:45.239Z_
+
+exp-boolq-hellaswag-eval 已转 DONE。现在读 resource-saturation skill 准备汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fdfe78b-9f2b-49d7-a3b1-92b94a89973d",
+  "isSidechain": false,
+  "requestId": "req_011CbFRzaFvXQh82yzzPuWcW",
+  "type": "assistant",
+  "uuid": "6e3139b6-03c4-4fbc-9f1c-a53e5468424e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KcHopFxpQbce6DqNL7qc7D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 67394,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1426,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 67394,
+          "cache_creation_input_tokens": 1426,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1426
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-21T08:53:46.410Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0186rWscQryjm1UySgosFLKT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/skills/resource-saturation.skill.md",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e3139b6-03c4-4fbc-9f1c-a53e5468424e",
+  "isSidechain": false,
+  "requestId": "req_011CbFRzaFvXQh82yzzPuWcW",
+  "type": "assistant",
+  "uuid": "cf03f891-6695-43bf-8e1f-e4f4a7ab14ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KcHopFxpQbce6DqNL7qc7D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 67394,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1426,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 67394,
+          "cache_creation_input_tokens": 1426,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1426
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-21T08:53:46.425Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0186rWscQryjm1UySgosFLKT`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf03f891-6695-43bf-8e1f-e4f4a7ab14ea",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "6083416d-ec25-427d-898c-bbd10b0c4d31",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c.",
+  "sourceToolAssistantUUID": "cf03f891-6695-43bf-8e1f-e4f4a7ab14ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-21T08:53:49.917Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01QMK1J8WM4cxhMPEr9rWnBP`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6083416d-ec25-427d-898c-bbd10b0c4d31",
+  "isSidechain": false,
+  "requestId": "req_011CbFS1APkyLLhxkQgYbTHE",
+  "type": "assistant",
+  "uuid": "fb3f911f-5db8-429b-873a-d14a515854e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fCmXSBERK2kqVsgGWJAk1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 352,
+      "cache_read_input_tokens": 68820,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 352,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 68820,
+          "cache_creation_input_tokens": 352,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 352
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-21T08:53:49.955Z_
+
+<details><summary>↩ Tool result · `toolu_01QMK1J8WM4cxhMPEr9rWnBP`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb3f911f-5db8-429b-873a-d14a515854e9",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "afcd2db6-1ccc-4704-9966-8f235f085565",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 33,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "fb3f911f-5db8-429b-873a-d14a515854e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-21T08:53:52.734Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01D6jvEpeY1vxUJ8VyjUk3cW`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afcd2db6-1ccc-4704-9966-8f235f085565",
+  "isSidechain": false,
+  "requestId": "req_011CbFS1R7nDKENm4BoysSNj",
+  "type": "assistant",
+  "uuid": "d4f23c7d-29e2-4699-a6e1-27b1ffd23dce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W4BCUHkT6H9eh5SWfs9FrN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 69172,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 69172,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T08:53:52.873Z_
+
+<details><summary>↩ Tool result · `toolu_01D6jvEpeY1vxUJ8VyjUk3cW`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4f23c7d-29e2-4699-a6e1-27b1ffd23dce",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "b29e5ed0-aac1-4039-9e7e-badf654ec2b5",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+    ],
+    "durationMs": 136,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "d4f23c7d-29e2-4699-a6e1-27b1ffd23dce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-21T08:53:55.401Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0124Bh1uAm4ijaokzuNvRezG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b29e5ed0-aac1-4039-9e7e-badf654ec2b5",
+  "isSidechain": false,
+  "requestId": "req_011CbFS1dVuvJ36LETfL49J2",
+  "type": "assistant",
+  "uuid": "c9596938-2822-42a4-a964-c60221b13c9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PZBWvHqhGvLCE3NKgYPkzv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 118,
+      "cache_read_input_tokens": 69280,
+      "output_tokens": 92,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 118,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 92,
+          "cache_read_input_tokens": 69280,
+          "cache_creation_input_tokens": 118,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 118
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-21T08:53:55.411Z_
+
+<details><summary>↩ Tool result · `toolu_0124Bh1uAm4ijaokzuNvRezG`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9596938-2822-42a4-a964-c60221b13c9e",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "1d8cdb13-272e-414b-bdef-e4386731a55e",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "c9596938-2822-42a4-a964-c60221b13c9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-21T08:54:15.901Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the resource-saturation requirements. Let me assess:
+
+**A. GPU**: 1 GPU allocated (westb-48145:cuda:0). Currently W3 Worker is running an evaluation on it (12/30 models done). So GPU is in use — not idle.
+
+**B. GPU Efficiency**: W3 eval is running, so GPU should be utilized.
+
+**C. Worker Pool**: Currently only 1 Worker running (worker_analysis_w3-format-confound-eval). That's < 2 = 失职. But it's doing the W3 experiment which is a GPU task. 
+
+I should spin up at least one more CPU Worker to handle parallel tasks. Looking at what's available, I could tackle the D017 sprint writing work, the literature scan for W4 around Zoology/Based/Samba integration, or prep for next steps. The ROADMAP shows several writing tasks marked in_progress under Paper Agent, but I don't see any active Paper Agent workers in the current list, so I need to check if those are actually running or stalled. Let me report to the Director on the session status—noting that exp-boolq-hellaswag-eval is now complete and W3 is progressing. experiment running (12/30 models)
+3. Worker pool at 1 (below threshold) — I should propose spawning a CPU Worker
+
+Actually, wait. Let me also consider: what's the most useful parallel work I can do right now?
+
+Given the ROADMAP:
+- W3 GPU experiment: in progress (Worker running)
+- W1 seed proxy: Paper Agent
+- W2 convergence → appendix: Paper Agent
+- W4 novelty: Paper Agent
+- W5 page limit: Paper Agent
+- W6 missing refs: Paper Agent
+- W7-W9 minor: Paper Agent
+
+The "Paper Agent" work seems to be a different system. Let me check if there are any Paper Agent workers running.
+
+Actually, looking at the Worker list, none of the recent workers seem to be paper-writing workers. The ROADMAP says these are "in_progress (Paper Agent)" but no actual workers are visible — this might be handled by a different session or the Director manages Paper Agents directly.
+
+For my domain, the key GPU task is W3, and on the CPU side I could either prepare analysis scripts for when W3 finishes or do a literature check relevant to W4. Let me report the current status to the Director and flag the worker pool concern, then check if there's a way to access project resource usage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d8cdb13-272e-414b-bdef-e4386731a55e",
+  "isSidechain": false,
+  "requestId": "req_011CbFS1pYC1deVVgdkFXsSd",
+  "type": "assistant",
+  "uuid": "752e1b31-e6c0-417a-b06f-29762cd717d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVbSevkiWBupqu2ecjUbqe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1164,
+      "cache_read_input_tokens": 69398,
+      "output_tokens": 1285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1164,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1285,
+          "cache_read_input_tokens": 69398,
+          "cache_creation_input_tokens": 1164,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1164
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-21T08:54:15.903Z_
+
+当前状况：W3 Worker 正在 GPU 上跑 WinoGrande/PIQA 评估（12/30），Worker 池只有 1 个（< 2 硬约束）。需要并行铺 CPU 任务。
+
+向 Director 汇报 session 启动状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "752e1b31-e6c0-417a-b06f-29762cd717d4",
+  "isSidechain": false,
+  "requestId": "req_011CbFS1pYC1deVVgdkFXsSd",
+  "type": "assistant",
+  "uuid": "43fec1b2-d608-46aa-8151-f5ffb8a42e6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVbSevkiWBupqu2ecjUbqe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1164,
+      "cache_read_input_tokens": 69398,
+      "output_tokens": 1285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1164,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1285,
+          "cache_read_input_tokens": 69398,
+          "cache_creation_input_tokens": 1164,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1164
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-21T08:54:25.202Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_018etzAHFwtSYzAZxu3vBTH8`</summary>
+
+```json
+{
+  "text": "[资源] GPU 1/1 在跑（westb-48145:cuda:0, W3 eval 12/30）| Worker 1 (GPU 1 / CPU 0)\n\n**Session 重启汇报**\n\n1. **exp-boolq-hellaswag-eval** 已关闭为 DONE(success)，补填了 hypothesis + parent(exp-011) + 完整 spec。4-benchmark multiplicity spectrum 已入 registry：HellaSwag(α=0.10) < ARC-Easy(α=0.21) < LAMBADA(α=0.30) < BoolQ(α=0.49)\n\n2. **W3 实验**（w3-winogrande-piqa-eval）Worker 正在执行 WinoGrande + PIQA 全模型评估，进度 12/30，预计 ~30min 完成。完成后将做 per-example α + Jaccard 分析\n\n3. **Worker 池 = 1**（仅 W3 GPU Worker），低于 2 的硬约束。请确认是否有 CPU 任务需要并行铺——例如：\n   - Paper Agent 的 W1/W2/W4/W5/W6/W7-W9 写作任务是否需要我这边 spawn Worker 推进？\n   - 还是 Paper Agent 独立执行中？\n\n4. **Registry 清理完成**：20 个实验，DONE 17，PREPARING 2（exp-005 killed, exp-003-p2v2 killed），w3-winogrande-piqa-eval PREPARING（运行中）\n\n等待 W3 Worker 回调和 Director 指示。",
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43fec1b2-d608-46aa-8151-f5ffb8a42e6f",
+  "isSidechain": false,
+  "requestId": "req_011CbFS1pYC1deVVgdkFXsSd",
+  "type": "assistant",
+  "uuid": "2fd1d4e5-e083-47bd-96a3-e93f4165e665",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QVbSevkiWBupqu2ecjUbqe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1164,
+      "cache_read_input_tokens": 69398,
+      "output_tokens": 1285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1164,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1285,
+          "cache_read_input_tokens": 69398,
+          "cache_creation_input_tokens": 1164,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1164
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T08:54:29.069Z_
+
+<details><summary>↩ Tool result · `toolu_018etzAHFwtSYzAZxu3vBTH8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fd1d4e5-e083-47bd-96a3-e93f4165e665",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "d5104b33-642a-4ad7-a967-9def8b1017be",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "2fd1d4e5-e083-47bd-96a3-e93f4165e665",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78 · 2026-05-21T08:54:29.075Z_
+
+```json
+{
+  "parentUuid": "d5104b33-642a-4ad7-a967-9def8b1017be",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "972fac07-b2ae-43dd-a2e3-04941534aba6",
+  "timestamp": "2026-05-21T08:54:29.075Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-21T08:54:37.342Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Director 汇报已发送。现在我需要等待：
+1. W3 Worker 回调（12/30 models, ~30min）
+2. Director 回复
+
+在等待期间，我可以更新 report.md 以反映 exp-boolq-hellaswag-eval 的 DONE 状态。
+
+Let me also check if I should load auto_build_provenance to update the report.md auto-facts section.
+
+Actually, let me just wait for the callbacks. The key work is:
+- W3 Worker will return with results
+
+
+- Director will respond about parallel tasks
+
+Since I shouldn't poll the Workers directly, I'll update report.md to reflect the current state while waiting for the callbacks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "972fac07-b2ae-43dd-a2e3-04941534aba6",
+  "isSidechain": false,
+  "requestId": "req_011CbFS4JuZF2G2VwdMJBJHF",
+  "type": "assistant",
+  "uuid": "c770683c-bd49-4b89-a180-ef0a3cd08dd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011DXiZbYmK1RSoFTmdu6hBv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 70562,
+      "output_tokens": 326,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 326,
+          "cache_read_input_tokens": 70562,
+          "cache_creation_input_tokens": 1461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-21T08:54:37.444Z_
+
+已向 Director 汇报。更新 report.md 反映当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c770683c-bd49-4b89-a180-ef0a3cd08dd1",
+  "isSidechain": false,
+  "requestId": "req_011CbFS4JuZF2G2VwdMJBJHF",
+  "type": "assistant",
+  "uuid": "a93ebfdd-74bd-439e-ae7f-9e02c6861576",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011DXiZbYmK1RSoFTmdu6hBv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 70562,
+      "output_tokens": 326,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 326,
+          "cache_read_input_tokens": 70562,
+          "cache_creation_input_tokens": 1461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-21T08:54:37.581Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HUQGBNn5eD43SFvDygyAgD`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a93ebfdd-74bd-439e-ae7f-9e02c6861576",
+  "isSidechain": false,
+  "requestId": "req_011CbFS4JuZF2G2VwdMJBJHF",
+  "type": "assistant",
+  "uuid": "0ea2d131-9401-4b5d-bb92-73e36531a0a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011DXiZbYmK1RSoFTmdu6hBv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1461,
+      "cache_read_input_tokens": 70562,
+      "output_tokens": 326,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1461,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 326,
+          "cache_read_input_tokens": 70562,
+          "cache_creation_input_tokens": 1461,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1461
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T08:54:37.585Z_
+
+<details><summary>↩ Tool result · `toolu_01HUQGBNn5eD43SFvDygyAgD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ea2d131-9401-4b5d-bb92-73e36531a0a7",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "ccd0e02d-7095-46c4-8af4-c8dd724fa883",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "0ea2d131-9401-4b5d-bb92-73e36531a0a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[HANDOFF] 你是 Main Agent，这是 Loop #2。  ## 上一轮交接 (task_context)  ### 1. 🔴 硬约束 / 红线 - 本项目只能用 westb-48145:cuda:0（gpu_ids 白名单仅此一张） - 所有 fla 模型评估必须用 `run_lmeval_clean.py`（它注入 `allow_neg_eigval=True`，用其他 wra…",
+  "leafUuid": "ccd0e02d-7095-46c4-8af4-c8dd724fa883",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze BoolQ/HellaSwag evaluation results and update registry",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-21T08:54:45.048Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+report.md is auto-generated, so I can't write it directly with save_project_file. Let me check if there's an auto_build tool for it.
+
+Actually, looking at the report.md content, it says "AUTO-FACTS-BEGIN (generated 2026-05-20T12:47:54Z; do not edit — regenerated by auto_build_report_facts)". So there's an auto_build_report_facts tool or similar. Let me check.
+
+Actually, the save_project_file description says "report.md → auto-generated". So I can't write it directly. 
+
+I need to find the auto_build tool that regenerates this file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccd0e02d-7095-46c4-8af4-c8dd724fa883",
+  "isSidechain": false,
+  "requestId": "req_011CbFS4wFbAPskatLFfXS7G",
+  "type": "assistant",
+  "uuid": "5dcb9aef-1f8a-446b-b45f-914b6ac5b2e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fou5MtiPBL1UNUzJefBSHH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 602,
+      "cache_read_input_tokens": 72023,
+      "output_tokens": 237,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 602,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 237,
+          "cache_read_input_tokens": 72023,
+          "cache_creation_input_tokens": 602,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 602
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-21T08:54:45.053Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DDZ918Y12nRRZwwjgsyqez`</summary>
+
+```json
+{
+  "query": "auto_build report",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dcb9aef-1f8a-446b-b45f-914b6ac5b2e7",
+  "isSidechain": false,
+  "requestId": "req_011CbFS4wFbAPskatLFfXS7G",
+  "type": "assistant",
+  "uuid": "24cf0e59-48d5-422d-a6bd-b5432b66c5d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fou5MtiPBL1UNUzJefBSHH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 602,
+      "cache_read_input_tokens": 72023,
+      "output_tokens": 237,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 602,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 237,
+          "cache_read_input_tokens": 72023,
+          "cache_creation_input_tokens": 602,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 602
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-21T08:54:45.073Z_
+
+<details><summary>↩ Tool result · `toolu_01DDZ918Y12nRRZwwjgsyqez`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__auto_build_provenance"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__compute_coverage_matrix"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "24cf0e59-48d5-422d-a6bd-b5432b66c5d8",
+  "isSidechain": false,
+  "promptId": "346a5f8c-625a-4f85-a944-53fc4f6714c9",
+  "type": "user",
+  "uuid": "fc8ff980-f199-479e-a847-6a375c5424ed",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__main_agent_post_to_director"
+    ],
+    "query": "auto_build report",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "24cf0e59-48d5-422d-a6bd-b5432b66c5d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze BoolQ/HellaSwag evaluation results and update registry",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 89 · 2026-05-22T01:27:02.685Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-22T01:27:02.685Z",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 90 · 2026-05-22T01:27:02.685Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-22T01:27:02.685Z",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 91 · 2026-05-22T01:27:02.676Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc8ff980-f199-479e-a847-6a375c5424ed",
+  "isSidechain": false,
+  "promptId": "6ce9f319-1dfb-4d82-a577-a1cb8c9da071",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "0f17fc8a-d966-4d75-86c7-4f64da05fbef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92 · 2026-05-22T01:27:02.676Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f17fc8a-d966-4d75-86c7-4f64da05fbef",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "9411cb08-eb6b-4cb6-99a9-b9a8a2f508e1",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "b53c8659-3d0f-4ae0-8802-819b1346ba93",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 93 · 2026-05-22T01:27:02.811Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9411cb08-eb6b-4cb6-99a9-b9a8a2f508e1",
+  "isSidechain": false,
+  "promptId": "6ce9f319-1dfb-4d82-a577-a1cb8c9da071",
+  "type": "user",
+  "uuid": "d4ef2e4d-1fbf-4ae8-a92c-454e91cfa202",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_755d769c",
+  "sessionId": "34ee26b9-3c9e-41a9-a60f-229863c98b8c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,1417 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-09 (UTC).** ## Original idea { "tit
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-1/51cc101a-f4af-41df-b8a3-35cf057dccbc.jsonl`
+- **Structured JSON:** [`bdd355c2017e1b4c709b.json`](../../sessions/bd/bdd355c2017e1b4c709b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-09T20:33:43.946Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-09T20:33:43.946Z",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-09 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Prompt-Only Thinking-Budget Classification for Per-Request thinking_token_budget Allocation in vLLM\",\n  \"core_problem\": \"Production deployments of reasoning models (DeepSeek-R1-Distill, Qwen3) in vLLM face two compounding serving inefficiencies rooted in one limitation: operators must set a UNIFORM thinking_token_budget ceiling for all requests at serving time, because vLLM's per-request thinking_token_budget sampling parameter has no automatic per-request prediction mechanism. First, a high uniform ceiling over-allocates compute for easy requests and — critically — holds KV cache pages through unnecessary thinking decode steps, slowing KV page release and reducing admission throughput for incoming requests. A low uniform ceiling forces vLLM to inject reasoning_end_str at the budget limit (probability=1 forced truncation), cutting off reasoning traces for hard problems and degrading accuracy. Second, in vLLM continuous batching, long-thinking stragglers hold KV cache pages for many more decode steps than short-thinking requests; this creates cascading preemption pressure confirmed in vLLM's own documentation ('long outputs compound the problem') and reduces effective batch size under heterogeneous workloads. The real serving problem is not padding waste — vLLM's PagedAttention + iteration-level scheduling eliminates cross-request padding — but KV cache admission pressure from heterogeneous thinking trace lengths combined with the inability to set thinking_token_budget appropriately per request.\",\n  \"opportunity\": \"A prompt-features-only classifier (no LLM forward pass required, no reasoning model fine-tuning, black-box compatible with any vLLM-served model) can predict thinking budget class {≤256/≤512/≤1024/>1024 tokens} from prompt text statistics alone in ~5ms CPU, and set vLLM's thinking_token_budget parameter per request at submission time. Easy requests get tight budgets — KV pages freed sooner, less preemption pressure, higher admission throughput. Hard requests get generous budgets — accuracy preserved, no forced truncation. This prompt-only approach is qualitatively different from all prior work: EGTP (arXiv:2602.11812, ICLR 2026) requires a full forward pass through the main LLM to extract final-layer hidden states (expensive, not black-box compatible), and predicts total output length rather than thinking budget specifically. Predictive Scheduling (arXiv:2602.01237) requires either LoRA fine-tuning of a 1.5B model or MLP on LLM hidden states — again requiring model access — and targets per-query accuracy optimization with no batch-level throughput integration. The prompt-only thinking-budget classifier fills a concrete gap: a deployable serving middleware that works as a black-box layer in front of any reasoning model API, uses vLLM's native per-request thinking_token_budget parameter as its control lever, and targets batch-level KV cache pressure reduction as its serving metric.\\n\\nThe hypothesis that thinking budget is predictable from prompt-only surface features rests on a critical mechanistic distinction between cross-domain classification and within-domain difficulty ranking. arXiv:2602.09924 ('LLMs Encode Their Failures', ICLR 2026 LIT Workshop) demonstrates that within-domain difficulty ranking — e.g., which math problem is harder among AMC problems — is poorly captured by surface features such as TF-IDF and question length; linear probes on pre-generation internal activations substantially outperform surface features for that task. However, our system primarily performs cross-domain classification: distinguishing math/code domains (where reasoning models allocate long thinking traces at 80–95% of total output regardless of specific problem difficulty) from factual/knowledge domains (where thinking is short regardless of answer length). Domain-type signals — mathematical notation, code syntax, question format, vocabulary patterns — are directly accessible from prompt text and are not confounded by model-internal representations. This means cross-domain thinking-budget classification is more tractable from surface features than within-domain difficulty ranking, even though the latter is what arXiv:2602.09924 evaluates. We treat this claim as a testable hypothesis, not an assumption: the ablation (thinking-budget classifier vs. total-output classifier on identical prompt features, evaluated on held-out mixed-domain test sets) serves as an explicit empirical go/no-go gate. If balanced accuracy falls below 70% on the mixed held-out set, we reframe the system as coarse binary domain routing (math/code → thinking_token_budget=1024, factual/knowledge → thinking_token_budget=256) rather than fine-grained 4-class prediction.\\n\\nMinimum accuracy threshold analysis: Let A = classifier balanced accuracy, u ≈ (1−A)/2 = under-prediction rate for a symmetric classifier, f_easy = 0.5 = fraction of easy requests in a mixed workload, S = 768 tokens = average KV savings per correctly classified easy request (class 1 budget=256 vs. uniform budget=1024), W ≈ 205 tokens = abort-and-requeue cost at 80%-of-budget trigger. The break-even condition A × f_easy × S > u × W solves to A_min ≈ 57% analytically; accounting for real-world abort latency overhead (network cancel + re-submit), the practical threshold rises to approximately 65–70% balanced accuracy. Key design choice: biasing classifier decision thresholds toward over-prediction (assigning the next higher budget class when predicted probability for the lower class falls below a configurable confidence margin) reduces abort-and-requeue overhead to near zero at the cost of slightly reduced throughput gains, and is the recommended production default. Scheduling the Unschedulable (arXiv:2604.06970) independently finds that systems with coarse magnitude token priors remain functional under up to 60% multiplicative prediction error, providing additional supporting evidence that approximate budget predictions yield practical serving gains.\",\n  \"landscape\": \"EGTP (arXiv:2602.11812, ICLR 2026) predicts total LLM output length via entropy-guided pooling of the main model's final-layer hidden states: it requires running the full reasoning model on each prompt to extract internal representations, produces a soft 20-bin regression over total output tokens (thinking + answer combined), and integrates with an SJF scheduler — not vLLM's per-request thinking_token_budget parameter; evaluated on ForeLen (23,556 prompts including CoT/RL tasks: GSM8K, MATH, LiveCodeBench), achieving 29.16% MAE reduction over best baseline with padding ratio improved from 0.51 to 0.18; three important gaps remain: (a) requires main model forward pass — not deployable as lightweight middleware, (b) predicts total output not thinking budget — misses the serving semantics of thinking_token_budget, (c) does not address KV cache admission pressure specifically. Predictive Scheduling (arXiv:2602.01237) estimates optimal per-query reasoning length using either MLP on transformer hidden states from layers 12-17 or LoRA fine-tuned DeepSeek-R1-Distill-Qwen-1.5B on raw question text — both options require model access; it uses 3 coarse difficulty classes and struggles specifically with the medium-difficulty category; evaluation is limited to GSM8K, yielding 7.9 percentage-point accuracy gain over uniform budgeting; it focuses on accuracy optimization under a fixed total token budget, not throughput or KV cache pressure, and does not set vLLM's thinking_token_budget parameter. LLMs Encode Their Failures (arXiv:2602.09924, ICLR 2026 LIT Workshop) shows that linear probes on pre-generation internal activations substantially outperform surface features (TF-IDF, question length) for within-domain difficulty ranking on math and coding tasks; human IRT difficulty is more linearly accessible (ρ = 0.83–0.87) than model difficulty (ρ = 0.40–0.64); critically, this paper evaluates within-domain difficulty ranking (which math problem is harder among AMC problems), not cross-domain classification — our system's primary task is cross-domain classification (math/code vs. factual/knowledge domains), which is fundamentally more tractable from prompt surface features because domain-type signals are directly encoded in vocabulary and structure. Scheduling the Unschedulable (arXiv:2604.06970, April 2026) proposes client-side scheduling of request ORDER for black-box LLM APIs using coarse total output token priors; its three-layer decomposition (adaptive DRR allocation, feasible-set ordering, admit/defer/reject overload control) operates outside the serving system and treats the LLM as a black box; key finding: coarse magnitude priors — not class labels alone — are the practical threshold for useful client control, with removal of magnitude inflating short-request P95 by 5.8×; a further finding is robustness to up to 60% multiplicative prediction error; architecturally distinct from our work in two ways: (a) they schedule request ORDER at a black-box API client layer, whereas we set the vLLM server-side thinking_token_budget parameter that directly controls how much thinking computation the model is allowed to perform — a different control plane entirely; (b) they predict total output tokens for general LLMs, whereas we predict thinking budget specifically using reasoning-model-specific features; their 60% error-tolerance finding supports our claim that coarse budget predictions yield practical serving gains even when imperfect. DAST (arXiv:2503.04472, EMNLP 2025 Industry Track) adapts thinking length at training time via budget-aware preference optimization — requires fine-tuning the reasoning model itself, is not a serving-side method. Dynamic Early Exit (arXiv:2504.15895) monitors confidence during generation to early-exit per request — per-request decoding-time method, no batch-level KV cache pressure optimization, does not set thinking_token_budget. Budget Guidance (arXiv:2506.13752) steers thinking length via a Gamma-distribution predictor applied during decoding — per-request constraint, no batch coordination, no thinking_token_budget integration. Optimizing Reasoning Efficiency through Prompt Difficulty Prediction (arXiv:2511.03808, NeurIPS 2025 Workshop) routes between fast/slow models based on prompt difficulty — model routing across model sizes, not thinking-budget setting within a single reasoning model. BucketServe (arXiv:2507.17120) groups requests into sequence-length buckets based on observed input/output lengths — reactive (not proactive), targets general LLMs without reasoning-specific features, no thinking_token_budget integration, no thinking/answer token distinction. Multi-Bin Batching (arXiv:2412.04504) provides queueing-theoretic proof that binning by predicted execution time is throughput-optimal — theoretical framework for general output length, no reasoning-specific prediction, no thinking_token_budget. Magnus (arXiv:2406.04785) predicts total generation length from input features (vocabulary entropy, prompt statistics) for SJF batch grouping, achieving 234% throughput gain — uses similar prompt-side features to ours but predicts total output length rather than thinking budget specifically, and uses SJF scheduling rather than vLLM's native thinking_token_budget parameter; for heterogeneous workloads, predicting total output conflates short-thinking/long-answer requests with long-thinking/short-answer requests, degrading thinking-budget bucket accuracy. When to Reason: Semantic Router for vLLM (arXiv:2510.08731) classifies queries for binary thinking/non-thinking routing using vLLM — establishes EMNLP Industry Track receptiveness to vLLM-integrated prompt routing; binary routing, no thinking-budget quantification or thinking_token_budget integration. Robust Batch-Level Query Routing (arXiv:2603.26796) optimizes batch assignment across model tiers under cost/capacity constraints — routes across model sizes, not thinking-budget buckets within a single fixed reasoning model. Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (IEEE ICDCS 2024) uses historical output length distributions for scheduling — reactive, no prompt-side difficulty features. Efficient LLM Scheduling by Learning to Rank (NeurIPS 2024) learns ranking functions for scheduling — general LLM scheduling, no reasoning-specific features. No published work proposes a prompt-only (no LLM forward pass) thinking-budget-specific classifier integrated with vLLM's per-request thinking_token_budget parameter for batch-level KV cache admission pressure reduction in production reasoning model serving.\",\n  \"approach\": \"We fine-tune a ModernBERT-base encoder (149M parameters) as a 4-class thinking-budget classifier predicting {≤256/≤512/≤1024/>1024 thinking tokens} using silver labels from 15,000 prompts drawn from MATH-500, GSM8K, AIME24, MMLU-Pro, and LiveCodeBench. Silver labels are generated by running DeepSeek-R1-Distill-Qwen-7B (chosen over 32B for labeling efficiency — 7B produces reliable thinking traces at approximately 1/4 the GPU cost) on each prompt and recording tokens inside &lt;think>...&lt;/think> tags. Input features to the classifier are PROMPT-ONLY: TF-IDF vocabulary entropy, spaCy dependency-parse depth, problem-type embedding (math/code/factual/knowledge), and token-count statistics — no main LLM forward pass is required, making this deployable as black-box middleware in front of any vLLM-served reasoning model. At serving time, each incoming request passes through the classifier in <5ms on CPU; the predicted class sets thinking_token_budget at the class ceiling in the vLLM API call (e.g., class 2 → thinking_token_budget=512). We use a single vLLM instance with continuous batching — no isolated pools, no cross-pool KV migration needed; per-request thinking_token_budget naturally controls when KV pages are freed, reducing straggler-induced admission pressure.\\n\\nClassifier threshold biasing: by default, we bias decision thresholds toward over-prediction (assigning the next higher budget class when the predicted probability for the lower class falls below a configurable confidence margin, default 0.65). This reduces abort-and-requeue overhead to near zero at the cost of slightly reduced throughput gains and is the recommended production configuration; aggressive (unbiased) mode is evaluated separately to characterize the accuracy-throughput trade-off.\\n\\nAbort-and-requeue fallback for under-predicted requests (active in aggressive mode): we monitor streaming output for the &lt;/think> token position; if absent at 80% of budget consumption, we cancel the request and resubmit with the next class ceiling budget (e.g., 512→1024); prefix caching handles prompt re-encoding cheaply, losing only the generated thinking trace; full mid-generation budget extension without losing the thinking trace is acknowledged as requiring future vLLM internal changes (thinking_token_budget cannot be modified post-submission in current vLLM).\\n\\nExplicit go/no-go gate: we derive the analytical break-even condition (A × f_easy × S > u × W, practical threshold A_min ≈ 65–70% balanced accuracy) before committing to the full serving benchmark. If 4-class balanced accuracy on the held-out mixed-domain test set falls below 70%, we switch to binary coarse routing (math/code prompts → thinking_token_budget=1024, factual/knowledge prompts → thinking_token_budget=256), which preserves the cross-domain efficiency gain while sacrificing within-domain granularity. This fallback variant is evaluated alongside the full 4-class system regardless.\\n\\nKey ablation — thinking-budget vs. total-output prediction: we train two ModernBERT-base classifiers on identical prompt features, one predicting thinking budget class and one predicting total-output-length class, and compare their thinking-budget bucket accuracy on a heterogeneous held-out test set mixing MATH-500 (hard math, thinking tokens ~80-95% of total) and MMLU-Pro (factual, thinking tokens ~40-60% of total); this directly validates the cross-domain classification hypothesis and the differentiation from Magnus and EGTP. Baselines: (1) uniform thinking_token_budget — standard vLLM deployment; (2) EGTP-predicted SJF scheduling (approximate, using published EGTP accuracy figures converted to thinking-budget bins); (3) Predictive Scheduling 3-class difficulty labels; (4) Magnus-style total-output SJF; (5) binary coarse domain routing. Evaluation metrics: output tokens/sec/GPU (throughput), KV cache preemption event count, abort-and-requeue rate, thinking-budget bucket accuracy, end-task accuracy (MATH-500, LiveCodeBench, MMLU-Pro) on heterogeneous mixed-workload streams. Cross-family generalization: test both DeepSeek-R1-Distill-Qwen-32B and Qwen3-32B. Target: 1.5–2.0× throughput improvement over uniform thinking_token_budget baseline with under 2% accuracy degradation on heterogeneous workloads.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~107h A100 (silver-label collection ~12h on 2×A100 using Qwen-7B, classifier training ~5h A100, classifier ablation A vs B ~10h A100, vLLM serving benchmark experiments ~60h on 4×A100, cross-family and feature ablations ~20h A100)\",\n      \"h100_equivalent\": \"~54 H100-hours (well within 200 H100-hour hard constraint)\",\n      \"gpu_utilization\": \"HIGH idle rate (~60%): GPU sits idle during human coding, debugging, paper writing, and iterative experiment design between runs\",\n      \"timeline\": \"25–30 days (comfortably within EMNLP 2026 Industry Track June 16 deadline; 38 days from May 9, 2026 — substantially more comfortable than the original May 25 ARR estimate)\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"~$160–200 (107h × $1.50/hr on RunPod/JarvisLabs A100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200h A100 (agent queues experiments continuously; adds broader classifier architecture search, multi-model generalization runs, and EGTP-comparison experiments beyond manual scope)\",\n      \"h100_equivalent\": \"~100 H100-hours (well within 200 H100-hour budget)\",\n      \"gpu_utilization\": \"Moderate (~65–75% active): agent pipelines data collection → training → evaluation without idle gaps between runs; human approval checkpoints (~2–3 per week) catch misdirected hyperparameter sweeps before full budget consumption\",\n      \"timeline\": \"20–25 days (feasible within 38-day EMNLP Industry Track window; leaves time for one iteration of the go/no-go gate check before committing to the full serving benchmark)\",\n      \"team\": \"1 researcher, ~20 min/day check-in for experiment approval and direction decisions\",\n      \"claude_api_cost\": \"~$150–250 (1,500–2,500 turns × ~$0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"~$300–350 (200h × $1.50/hr)\",\n      \"risk_note\": \"Medium-difficulty boundary-case prediction is the hardest classification challenge (confirmed limitation in Predictive Scheduling paper and arXiv:2602.09924); the go/no-go gate at 70% balanced accuracy must be checked before committing GPU to full serving benchmarks; human must verify abort-and-requeue hook correctness and monitor abort rate in the aggressive (unbiased threshold) configuration before full throughput sweep\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~400h A100 (3–4× experiment multiplier: full classifier architecture search, bucket boundary grid search, ablation of individual feature groups, multi-model generalization, thinking-budget vs total-output ablation sweep, throughput benchmark vs all baselines, threshold-bias sweep across confidence margins)\",\n      \"h100_equivalent\": \"~200 H100-hours (exactly at hard constraint limit)\",\n      \"gpu_utilization\": \"Near-zero idle: agent immediately queues next experiment on completion, running parallel jobs across GPU pool\",\n      \"timeline\": \"7–10 days with 4×A100 continuous access\",\n      \"team\": \"0 (initial setup ~3h: silver labeling pipeline, vLLM thinking_token_budget integration, evaluation harness wiring)\",\n      \"claude_api_cost\": \"~$400–600 (4,000–6,000 turns × ~$0.10/turn Opus for orchestration, analysis, paper drafting)\",\n      \"estimated_gpu_cost\": \"~$600 (400h × $1.50/hr)\",\n      \"risk_note\": \"Go/no-go gate at 70% balanced accuracy is the critical early checkpoint — if triggered, the agent must pivot to the binary coarse routing variant and re-run baselines accordingly; abort-and-requeue rate must be monitored — if it exceeds ~15% of requests in the aggressive configuration, threshold biasing toward over-prediction must be engaged; auto-research mode operates exactly at the 200 H100-hour budget, leaving no buffer for unexpected rerunning of corrupted experiments\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Industry Track (direct submission deadline June 16, 2026 — PRIMARY TARGET; this is a direct submission track, not via ARR; explicitly welcomes 'Efficient methods for training and inference', 'Implementation at optimised speed, scale and cost', 'Infrastructure for large-scale deployment', and 'language processing and generation systems in non-trivial real-world settings'; accepts negative results and lessons learned; stronger fit for a production serving middleware paper than the Main Conference ARR track; DAST at EMNLP 2025 Industry Track and Semantic Router for vLLM at arXiv:2510.08731 establish strong precedent for vLLM-integrated reasoning efficiency work at this venue)\",\n    \"MLSys 2027 (~December 2026 submission deadline — secondary target; natural home for LLM serving infrastructure work; systems framing: throughput-optimal per-request thinking budget allocation for production reasoning model deployments; broader impact framing positions well against OSDI/EuroSys-adjacent work on KV cache management)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Predicting LLM Output Length via Entropy-Guided Representations (arXiv:2602.11812, ICLR 2026)\",\n    \"Predictive Scheduling for Efficient Inference-Time Reasoning in Large Language Models (arXiv:2602.01237)\",\n    \"LLMs Encode Their Failures: Predicting Success from Pre-Generation Activations (arXiv:2602.09924, ICLR 2026 LIT Workshop)\",\n    \"Scheduling the Unschedulable: Taming Black-Box LLM Inference at Scale (arXiv:2604.06970, April 2026)\",\n    \"When to Reason: Semantic Router for vLLM (arXiv:2510.08731)\",\n    \"DAST: Difficulty-Adaptive Slow-Thinking for Large Reasoning Models (arXiv:2503.04472, EMNLP 2025 Industry Track)\",\n    \"Dynamic Early Exit in Reasoning Models (arXiv:2504.15895)\",\n    \"Steering LLM Thinking with Budget Guidance (arXiv:2506.13752)\",\n    \"Optimizing Reasoning Efficiency through Prompt Difficulty Prediction (arXiv:2511.03808, NeurIPS 2025 Workshop)\",\n    \"BucketServe: Bucket-Based Dynamic Batching for Smart and Efficient LLM Inference Serving (arXiv:2507.17120)\",\n    \"Multi-Bin Batching for Increasing LLM Inference Throughput (arXiv:2412.04504)\",\n    \"Magnus: Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (arXiv:2406.04785)\",\n    \"Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (IEEE ICDCS 2024)\",\n    \"Efficient LLM Scheduling by Learning to Rank (NeurIPS 2024)\",\n    \"Robust Batch-Level Query Routing for Large Language Models under Cost and Capacity Constraints (arXiv:2603.26796)\"\n  ],\n  \"description\": \"Production deployments of reasoning models (DeepSeek-R1-Distill, Qwen3) in vLLM suffer two compounding inefficiencies from heterogeneous thinking trace lengths: operators must set a uniform thinking_token_budget for all requests, either wasting compute and delaying KV page release for easy requests, or forcing hard truncation for difficult ones; and long-thinking stragglers cause cascading KV cache preemption that reduces admission throughput for new requests. This work proposes a prompt-features-only thinking-budget classifier (ModernBERT-base, 149M params, ~5ms CPU, no LLM forward pass, black-box compatible) that predicts thinking budget class {≤256/≤512/≤1024/>1024 tokens} from TF-IDF entropy, dependency-parse depth, and problem-type embeddings, enabling per-request thinking_token_budget setting via vLLM's native API. The predictability hypothesis rests on cross-domain classification (math/code vs. factual/knowledge) being tractable from surface features — distinct from within-domain difficulty ranking where arXiv:2602.09924 shows surface features underperform internal activations. An analytical break-even condition (A_min ≈ 65–70% balanced accuracy) defines an explicit go/no-go gate before full serving benchmarks; below this threshold, the system falls back to binary coarse domain routing. Classifier thresholds are biased toward over-prediction by default to minimize abort-and-requeue overhead. A single vLLM instance handles all requests; an abort-and-requeue fallback recovers accuracy for under-predicted requests. The key ablation — thinking-budget-specific vs. total-output-length prediction on identical features — validates the cross-domain classification hypothesis against Magnus and EGTP. Targeting 1.5–2.0× throughput improvement over uniform thinking_token_budget baseline with under 2% accuracy degradation. Primary target: EMNLP 2026 Industry Track (direct submission, June 16, 2026 deadline). Resource: ~54 H100-hours (well within 200-hour budget).\",\n  \"project_name\": \"difficulty_bucket_router\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"CRITICAL UNRESOLVED FROM ROUND 3 — Sonata (ICLR 2026, openreview.net/pdf?id=2i6Rp0gCq6) is still absent from both the landscape section and key_references in Round 4. Sonata uses a lightweight adapter on last-layer hidden representations during the prefilling stage to predict thinking budgets, achieving up to 60% reduction in thinking tokens on Qwen3-8B/32B/235B-A22B across AIME25, MATH500, LiveCodeBench, and GPQA. This is the most direct prior work — same target (per-request thinking budget allocation), same evaluation models, same benchmarks. Reviewers will flag this immediately. The differentiation is legitimate (prompt-only vs. last-layer hidden states; zero-overhead middleware vs. prefilling-stage adapter; any-model black-box vs. requires white-box access to final layer), but the comparison must be made explicitly. The generator was given this instruction in Round 3 with the exact text to use. It was not done. This is a blocking issue.\", \"SECONDARY UNRESOLVED FROM ROUND 3 — vLLM version not pinned in the approach or experimental setup. A confirmed bug exists: thinking_token_budget is silently ignored when passed via extra_args in vLLM 0.18.0 (see vLLM forum thread 'thinking_token_budget silently ignored when passed via extra_args in vLLM 0.18.0'). The paper must specify: 'We use vLLM v[X.Y] with thinking_token_budget set via SamplingParams (not extra_args); each experiment verifies enforcement before running.' This is a one-sentence fix but without it the reproducibility claim is fragile.\", \"NEW — BudgetThinker (arXiv:2508.17196, August 2025) should be briefly acknowledged in the landscape. It inserts explicit control tokens at budget-fraction positions and uses SFT + curriculum RL to train the model to follow token budgets — fundamentally different (requires model fine-tuning, cannot be black-box middleware). One sentence distinguishing it is sufficient: 'BudgetThinker [cite] conditions the reasoning model on explicit budget control tokens via SFT+RL fine-tuning — incompatible with black-box deployment and requiring reasoning-model access.' This prevents a reviewer objection that this paper was overlooked.\"]\nFeedback: Round 4 has correctly addressed all Round 1 and Round 2 issues: problem framing is accurate, EGTP is properly cited, venue targeting is correct (EMNLP 2026 Industry Track, June 16 deadline confirmed), Scheduling the Unschedulable is in the landscape, go/no-go gate is explicit, ModernBERT is 149M. The idea itself is technically sound and the differentiation logic is valid. Only two targeted actions are blocking a pass verdict:\n\n**Action 1 (CRITICAL — same as Round 3 Action 1, still not done):** Add Sonata (ICLR 2026) to the landscape section and key_references with the following differentiation text: 'Sonata (ICLR 2026) predicts thinking budgets from the reasoning model's last-layer hidden representations via a lightweight prefilling-stage adapter, achieving up to 60% reduction in thinking tokens on Qwen3-8B/32B/235B-A22B. Unlike Sonata, which requires white-box access to the reasoning model's final-layer activations and must be installed as an adapter on the deployed model, our classifier operates on prompt-surface features only (TF-IDF entropy, dependency-parse depth, problem-type embeddings), enabling deployment as a stateless middleware layer in front of any vLLM-served reasoning model without modifying or accessing the model's architecture, weights, or internal activations. This black-box property makes our method compatible with any OpenAI-compatible vLLM endpoint, including third-party APIs where white-box access is unavailable.' Add 'Sonata: Dynamic Thinking Budget Allocation for Reasoning Models (ICLR 2026, openreview.net/pdf?id=2i6Rp0gCq6)' to key_references.\n\n**Action 2 (Secondary — same as Round 3 Action 2, still not done):** Pin a specific vLLM version in the approach section. Add one sentence: 'We use vLLM v0.7.3 (or the specific version with PR #37112 merged) with thinking_token_budget passed via SamplingParams; each experimental run verifies the parameter is enforced correctly before collecting throughput measurements.' This blocks the reproducibility objection.\n\n**Action 3 (Minor, new):** Add one sentence on BudgetThinker (arXiv:2508.17196) to the landscape. This is the only new paper in the space since Round 3 that is worth acknowledging.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.2 到 3.5，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-09T20:33:43.950Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-09T20:33:43.950Z",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---
+
+## Round 1
+
+21 recorded events
+
+### User
+
+_source line 3 · 2026-05-09T20:33:43.974Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-09 (UTC).**
+
+## Original idea
+{
+  "title": "Prompt-Only Thinking-Budget Classification for Per-Request thinking_token_budget Allocation in vLLM",
+  "core_problem": "Production deployments of reasoning models (DeepSeek-R1-Distill, Qwen3) in vLLM face two compounding serving inefficiencies rooted in one limitation: operators must set a UNIFORM thinking_token_budget ceiling for all requests at serving time, because vLLM's per-request thinking_token_budget sampling parameter has no automatic per-request prediction mechanism. First, a high uniform ceiling over-allocates compute for easy requests and — critically — holds KV cache pages through unnecessary thinking decode steps, slowing KV page release and reducing admission throughput for incoming requests. A low uniform ceiling forces vLLM to inject reasoning_end_str at the budget limit (probability=1 forced truncation), cutting off reasoning traces for hard problems and degrading accuracy. Second, in vLLM continuous batching, long-thinking stragglers hold KV cache pages for many more decode steps than short-thinking requests; this creates cascading preemption pressure confirmed in vLLM's own documentation ('long outputs compound the problem') and reduces effective batch size under heterogeneous workloads. The real serving problem is not padding waste — vLLM's PagedAttention + iteration-level scheduling eliminates cross-request padding — but KV cache admission pressure from heterogeneous thinking trace lengths combined with the inability to set thinking_token_budget appropriately per request.",
+  "opportunity": "A prompt-features-only classifier (no LLM forward pass required, no reasoning model fine-tuning, black-box compatible with any vLLM-served model) can predict thinking budget class {≤256/≤512/≤1024/>1024 tokens} from prompt text statistics alone in ~5ms CPU, and set vLLM's thinking_token_budget parameter per request at submission time. Easy requests get tight budgets — KV pages freed sooner, less preemption pressure, higher admission throughput. Hard requests get generous budgets — accuracy preserved, no forced truncation. This prompt-only approach is qualitatively different from all prior work: EGTP (arXiv:2602.11812, ICLR 2026) requires a full forward pass through the main LLM to extract final-layer hidden states (expensive, not black-box compatible), and predicts total output length rather than thinking budget specifically. Predictive Scheduling (arXiv:2602.01237) requires either LoRA fine-tuning of a 1.5B model or MLP on LLM hidden states — again requiring model access — and targets per-query accuracy optimization with no batch-level throughput integration. The prompt-only thinking-budget classifier fills a concrete gap: a deployable serving middleware that works as a black-box layer in front of any reasoning model API, uses vLLM's native per-request thinking_token_budget parameter as its control lever, and targets batch-level KV cache pressure reduction as its serving metric.\n\nThe hypothesis that thinking budget is predictable from prompt-only surface features rests on a critical mechanistic distinction between cross-domain classification and within-domain difficulty ranking. arXiv:2602.09924 ('LLMs Encode Their Failures', ICLR 2026 LIT Workshop) demonstrates that within-domain difficulty ranking — e.g., which math problem is harder among AMC problems — is poorly captured by surface features such as TF-IDF and question length; linear probes on pre-generation internal activations substantially outperform surface features for that task. However, our system primarily performs cross-domain classification: distinguishing math/code domains (where reasoning models allocate long thinking traces at 80–95% of total output regardless of specific problem difficulty) from factual/knowledge domains (where thinking is short regardless of answer length). Domain-type signals — mathematical notation, code syntax, question format, vocabulary patterns — are directly accessible from prompt text and are not confounded by model-internal representations. This means cross-domain thinking-budget classification is more tractable from surface features than within-domain difficulty ranking, even though the latter is what arXiv:2602.09924 evaluates. We treat this claim as a testable hypothesis, not an assumption: the ablation (thinking-budget classifier vs. total-output classifier on identical prompt features, evaluated on held-out mixed-domain test sets) serves as an explicit empirical go/no-go gate. If balanced accuracy falls below 70% on the mixed held-out set, we reframe the system as coarse binary domain routing (math/code → thinking_token_budget=1024, factual/knowledge → thinking_token_budget=256) rather than fine-grained 4-class prediction.\n\nMinimum accuracy threshold analysis: Let A = classifier balanced accuracy, u ≈ (1−A)/2 = under-prediction rate for a symmetric classifier, f_easy = 0.5 = fraction of easy requests in a mixed workload, S = 768 tokens = average KV savings per correctly classified easy request (class 1 budget=256 vs. uniform budget=1024), W ≈ 205 tokens = abort-and-requeue cost at 80%-of-budget trigger. The break-even condition A × f_easy × S > u × W solves to A_min ≈ 57% analytically; accounting for real-world abort latency overhead (network cancel + re-submit), the practical threshold rises to approximately 65–70% balanced accuracy. Key design choice: biasing classifier decision thresholds toward over-prediction (assigning the next higher budget class when predicted probability for the lower class falls below a configurable confidence margin) reduces abort-and-requeue overhead to near zero at the cost of slightly reduced throughput gains, and is the recommended production default. Scheduling the Unschedulable (arXiv:2604.06970) independently finds that systems with coarse magnitude token priors remain functional under up to 60% multiplicative prediction error, providing additional supporting evidence that approximate budget predictions yield practical serving gains.",
+  "landscape": "EGTP (arXiv:2602.11812, ICLR 2026) predicts total LLM output length via entropy-guided pooling of the main model's final-layer hidden states: it requires running the full reasoning model on each prompt to extract internal representations, produces a soft 20-bin regression over total output tokens (thinking + answer combined), and integrates with an SJF scheduler — not vLLM's per-request thinking_token_budget parameter; evaluated on ForeLen (23,556 prompts including CoT/RL tasks: GSM8K, MATH, LiveCodeBench), achieving 29.16% MAE reduction over best baseline with padding ratio improved from 0.51 to 0.18; three important gaps remain: (a) requires main model forward pass — not deployable as lightweight middleware, (b) predicts total output not thinking budget — misses the serving semantics of thinking_token_budget, (c) does not address KV cache admission pressure specifically. Predictive Scheduling (arXiv:2602.01237) estimates optimal per-query reasoning length using either MLP on transformer hidden states from layers 12-17 or LoRA fine-tuned DeepSeek-R1-Distill-Qwen-1.5B on raw question text — both options require model access; it uses 3 coarse difficulty classes and struggles specifically with the medium-difficulty category; evaluation is limited to GSM8K, yielding 7.9 percentage-point accuracy gain over uniform budgeting; it focuses on accuracy optimization under a fixed total token budget, not throughput or KV cache pressure, and does not set vLLM's thinking_token_budget parameter. LLMs Encode Their Failures (arXiv:2602.09924, ICLR 2026 LIT Workshop) shows that linear probes on pre-generation internal activations substantially outperform surface features (TF-IDF, question length) for within-domain difficulty ranking on math and coding tasks; human IRT difficulty is more linearly accessible (ρ = 0.83–0.87) than model difficulty (ρ = 0.40–0.64); critically, this paper evaluates within-domain difficulty ranking (which math problem is harder among AMC problems), not cross-domain classification — our system's primary task is cross-domain classification (math/code vs. factual/knowledge domains), which is fundamentally more tractable from prompt surface features because domain-type signals are directly encoded in vocabulary and structure. Scheduling the Unschedulable (arXiv:2604.06970, April 2026) proposes client-side scheduling of request ORDER for black-box LLM APIs using coarse total output token priors; its three-layer decomposition (adaptive DRR allocation, feasible-set ordering, admit/defer/reject overload control) operates outside the serving system and treats the LLM as a black box; key finding: coarse magnitude priors — not class labels alone — are the practical threshold for useful client control, with removal of magnitude inflating short-request P95 by 5.8×; a further finding is robustness to up to 60% multiplicative prediction error; architecturally distinct from our work in two ways: (a) they schedule request ORDER at a black-box API client layer, whereas we set the vLLM server-side thinking_token_budget parameter that directly controls how much thinking computation the model is allowed to perform — a different control plane entirely; (b) they predict total output tokens for general LLMs, whereas we predict thinking budget specifically using reasoning-model-specific features; their 60% error-tolerance finding supports our claim that coarse budget predictions yield practical serving gains even when imperfect. DAST (arXiv:2503.04472, EMNLP 2025 Industry Track) adapts thinking length at training time via budget-aware preference optimization — requires fine-tuning the reasoning model itself, is not a serving-side method. Dynamic Early Exit (arXiv:2504.15895) monitors confidence during generation to early-exit per request — per-request decoding-time method, no batch-level KV cache pressure optimization, does not set thinking_token_budget. Budget Guidance (arXiv:2506.13752) steers thinking length via a Gamma-distribution predictor applied during decoding — per-request constraint, no batch coordination, no thinking_token_budget integration. Optimizing Reasoning Efficiency through Prompt Difficulty Prediction (arXiv:2511.03808, NeurIPS 2025 Workshop) routes between fast/slow models based on prompt difficulty — model routing across model sizes, not thinking-budget setting within a single reasoning model. BucketServe (arXiv:2507.17120) groups requests into sequence-length buckets based on observed input/output lengths — reactive (not proactive), targets general LLMs without reasoning-specific features, no thinking_token_budget integration, no thinking/answer token distinction. Multi-Bin Batching (arXiv:2412.04504) provides queueing-theoretic proof that binning by predicted execution time is throughput-optimal — theoretical framework for general output length, no reasoning-specific prediction, no thinking_token_budget. Magnus (arXiv:2406.04785) predicts total generation length from input features (vocabulary entropy, prompt statistics) for SJF batch grouping, achieving 234% throughput gain — uses similar prompt-side features to ours but predicts total output length rather than thinking budget specifically, and uses SJF scheduling rather than vLLM's native thinking_token_budget parameter; for heterogeneous workloads, predicting total output conflates short-thinking/long-answer requests with long-thinking/short-answer requests, degrading thinking-budget bucket accuracy. When to Reason: Semantic Router for vLLM (arXiv:2510.08731) classifies queries for binary thinking/non-thinking routing using vLLM — establishes EMNLP Industry Track receptiveness to vLLM-integrated prompt routing; binary routing, no thinking-budget quantification or thinking_token_budget integration. Robust Batch-Level Query Routing (arXiv:2603.26796) optimizes batch assignment across model tiers under cost/capacity constraints — routes across model sizes, not thinking-budget buckets within a single fixed reasoning model. Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (IEEE ICDCS 2024) uses historical output length distributions for scheduling — reactive, no prompt-side difficulty features. Efficient LLM Scheduling by Learning to Rank (NeurIPS 2024) learns ranking functions for scheduling — general LLM scheduling, no reasoning-specific features. No published work proposes a prompt-only (no LLM forward pass) thinking-budget-specific classifier integrated with vLLM's per-request thinking_token_budget parameter for batch-level KV cache admission pressure reduction in production reasoning model serving.",
+  "approach": "We fine-tune a ModernBERT-base encoder (149M parameters) as a 4-class thinking-budget classifier predicting {≤256/≤512/≤1024/>1024 thinking tokens} using silver labels from 15,000 prompts drawn from MATH-500, GSM8K, AIME24, MMLU-Pro, and LiveCodeBench. Silver labels are generated by running DeepSeek-R1-Distill-Qwen-7B (chosen over 32B for labeling efficiency — 7B produces reliable thinking traces at approximately 1/4 the GPU cost) on each prompt and recording tokens inside &lt;think>...&lt;/think> tags. Input features to the classifier are PROMPT-ONLY: TF-IDF vocabulary entropy, spaCy dependency-parse depth, problem-type embedding (math/code/factual/knowledge), and token-count statistics — no main LLM forward pass is required, making this deployable as black-box middleware in front of any vLLM-served reasoning model. At serving time, each incoming request passes through the classifier in <5ms on CPU; the predicted class sets thinking_token_budget at the class ceiling in the vLLM API call (e.g., class 2 → thinking_token_budget=512). We use a single vLLM instance with continuous batching — no isolated pools, no cross-pool KV migration needed; per-request thinking_token_budget naturally controls when KV pages are freed, reducing straggler-induced admission pressure.\n\nClassifier threshold biasing: by default, we bias decision thresholds toward over-prediction (assigning the next higher budget class when the predicted probability for the lower class falls below a configurable confidence margin, default 0.65). This reduces abort-and-requeue overhead to near zero at the cost of slightly reduced throughput gains and is the recommended production configuration; aggressive (unbiased) mode is evaluated separately to characterize the accuracy-throughput trade-off.\n\nAbort-and-requeue fallback for under-predicted requests (active in aggressive mode): we monitor streaming output for the &lt;/think> token position; if absent at 80% of budget consumption, we cancel the request and resubmit with the next class ceiling budget (e.g., 512→1024); prefix caching handles prompt re-encoding cheaply, losing only the generated thinking trace; full mid-generation budget extension without losing the thinking trace is acknowledged as requiring future vLLM internal changes (thinking_token_budget cannot be modified post-submission in current vLLM).\n\nExplicit go/no-go gate: we derive the analytical break-even condition (A × f_easy × S > u × W, practical threshold A_min ≈ 65–70% balanced accuracy) before committing to the full serving benchmark. If 4-class balanced accuracy on the held-out mixed-domain test set falls below 70%, we switch to binary coarse routing (math/code prompts → thinking_token_budget=1024, factual/knowledge prompts → thinking_token_budget=256), which preserves the cross-domain efficiency gain while sacrificing within-domain granularity. This fallback variant is evaluated alongside the full 4-class system regardless.\n\nKey ablation — thinking-budget vs. total-output prediction: we train two ModernBERT-base classifiers on identical prompt features, one predicting thinking budget class and one predicting total-output-length class, and compare their thinking-budget bucket accuracy on a heterogeneous held-out test set mixing MATH-500 (hard math, thinking tokens ~80-95% of total) and MMLU-Pro (factual, thinking tokens ~40-60% of total); this directly validates the cross-domain classification hypothesis and the differentiation from Magnus and EGTP. Baselines: (1) uniform thinking_token_budget — standard vLLM deployment; (2) EGTP-predicted SJF scheduling (approximate, using published EGTP accuracy figures converted to thinking-budget bins); (3) Predictive Scheduling 3-class difficulty labels; (4) Magnus-style total-output SJF; (5) binary coarse domain routing. Evaluation metrics: output tokens/sec/GPU (throughput), KV cache preemption event count, abort-and-requeue rate, thinking-budget bucket accuracy, end-task accuracy (MATH-500, LiveCodeBench, MMLU-Pro) on heterogeneous mixed-workload streams. Cross-family generalization: test both DeepSeek-R1-Distill-Qwen-32B and Qwen3-32B. Target: 1.5–2.0× throughput improvement over uniform thinking_token_budget baseline with under 2% accuracy degradation on heterogeneous workloads.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~107h A100 (silver-label collection ~12h on 2×A100 using Qwen-7B, classifier training ~5h A100, classifier ablation A vs B ~10h A100, vLLM serving benchmark experiments ~60h on 4×A100, cross-family and feature ablations ~20h A100)",
+      "h100_equivalent": "~54 H100-hours (well within 200 H100-hour hard constraint)",
+      "gpu_utilization": "HIGH idle rate (~60%): GPU sits idle during human coding, debugging, paper writing, and iterative experiment design between runs",
+      "timeline": "25–30 days (comfortably within EMNLP 2026 Industry Track June 16 deadline; 38 days from May 9, 2026 — substantially more comfortable than the original May 25 ARR estimate)",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$160–200 (107h × $1.50/hr on RunPod/JarvisLabs A100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200h A100 (agent queues experiments continuously; adds broader classifier architecture search, multi-model generalization runs, and EGTP-comparison experiments beyond manual scope)",
+      "h100_equivalent": "~100 H100-hours (well within 200 H100-hour budget)",
+      "gpu_utilization": "Moderate (~65–75% active): agent pipelines data collection → training → evaluation without idle gaps between runs; human approval checkpoints (~2–3 per week) catch misdirected hyperparameter sweeps before full budget consumption",
+      "timeline": "20–25 days (feasible within 38-day EMNLP Industry Track window; leaves time for one iteration of the go/no-go gate check before committing to the full serving benchmark)",
+      "team": "1 researcher, ~20 min/day check-in for experiment approval and direction decisions",
+      "claude_api_cost": "~$150–250 (1,500–2,500 turns × ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "~$300–350 (200h × $1.50/hr)",
+      "risk_note": "Medium-difficulty boundary-case prediction is the hardest classification challenge (confirmed limitation in Predictive Scheduling paper and arXiv:2602.09924); the go/no-go gate at 70% balanced accuracy must be checked before committing GPU to full serving benchmarks; human must verify abort-and-requeue hook correctness and monitor abort rate in the aggressive (unbiased threshold) configuration before full throughput sweep"
+    },
+    "auto_research": {
+      "gpu_hours": "~400h A100 (3–4× experiment multiplier: full classifier architecture search, bucket boundary grid search, ablation of individual feature groups, multi-model generalization, thinking-budget vs total-output ablation sweep, throughput benchmark vs all baselines, threshold-bias sweep across confidence margins)",
+      "h100_equivalent": "~200 H100-hours (exactly at hard constraint limit)",
+      "gpu_utilization": "Near-zero idle: agent immediately queues next experiment on completion, running parallel jobs across GPU pool",
+      "timeline": "7–10 days with 4×A100 continuous access",
+      "team": "0 (initial setup ~3h: silver labeling pipeline, vLLM thinking_token_budget integration, evaluation harness wiring)",
+      "claude_api_cost": "~$400–600 (4,000–6,000 turns × ~$0.10/turn Opus for orchestration, analysis, paper drafting)",
+      "estimated_gpu_cost": "~$600 (400h × $1.50/hr)",
+      "risk_note": "Go/no-go gate at 70% balanced accuracy is the critical early checkpoint — if triggered, the agent must pivot to the binary coarse routing variant and re-run baselines accordingly; abort-and-requeue rate must be monitored — if it exceeds ~15% of requests in the aggressive configuration, threshold biasing toward over-prediction must be engaged; auto-research mode operates exactly at the 200 H100-hour budget, leaving no buffer for unexpected rerunning of corrupted experiments"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Industry Track (direct submission deadline June 16, 2026 — PRIMARY TARGET; this is a direct submission track, not via ARR; explicitly welcomes 'Efficient methods for training and inference', 'Implementation at optimised speed, scale and cost', 'Infrastructure for large-scale deployment', and 'language processing and generation systems in non-trivial real-world settings'; accepts negative results and lessons learned; stronger fit for a production serving middleware paper than the Main Conference ARR track; DAST at EMNLP 2025 Industry Track and Semantic Router for vLLM at arXiv:2510.08731 establish strong precedent for vLLM-integrated reasoning efficiency work at this venue)",
+    "MLSys 2027 (~December 2026 submission deadline — secondary target; natural home for LLM serving infrastructure work; systems framing: throughput-optimal per-request thinking budget allocation for production reasoning model deployments; broader impact framing positions well against OSDI/EuroSys-adjacent work on KV cache management)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Predicting LLM Output Length via Entropy-Guided Representations (arXiv:2602.11812, ICLR 2026)",
+    "Predictive Scheduling for Efficient Inference-Time Reasoning in Large Language Models (arXiv:2602.01237)",
+    "LLMs Encode Their Failures: Predicting Success from Pre-Generation Activations (arXiv:2602.09924, ICLR 2026 LIT Workshop)",
+    "Scheduling the Unschedulable: Taming Black-Box LLM Inference at Scale (arXiv:2604.06970, April 2026)",
+    "When to Reason: Semantic Router for vLLM (arXiv:2510.08731)",
+    "DAST: Difficulty-Adaptive Slow-Thinking for Large Reasoning Models (arXiv:2503.04472, EMNLP 2025 Industry Track)",
+    "Dynamic Early Exit in Reasoning Models (arXiv:2504.15895)",
+    "Steering LLM Thinking with Budget Guidance (arXiv:2506.13752)",
+    "Optimizing Reasoning Efficiency through Prompt Difficulty Prediction (arXiv:2511.03808, NeurIPS 2025 Workshop)",
+    "BucketServe: Bucket-Based Dynamic Batching for Smart and Efficient LLM Inference Serving (arXiv:2507.17120)",
+    "Multi-Bin Batching for Increasing LLM Inference Throughput (arXiv:2412.04504)",
+    "Magnus: Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (arXiv:2406.04785)",
+    "Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (IEEE ICDCS 2024)",
+    "Efficient LLM Scheduling by Learning to Rank (NeurIPS 2024)",
+    "Robust Batch-Level Query Routing for Large Language Models under Cost and Capacity Constraints (arXiv:2603.26796)"
+  ],
+  "description": "Production deployments of reasoning models (DeepSeek-R1-Distill, Qwen3) in vLLM suffer two compounding inefficiencies from heterogeneous thinking trace lengths: operators must set a uniform thinking_token_budget for all requests, either wasting compute and delaying KV page release for easy requests, or forcing hard truncation for difficult ones; and long-thinking stragglers cause cascading KV cache preemption that reduces admission throughput for new requests. This work proposes a prompt-features-only thinking-budget classifier (ModernBERT-base, 149M params, ~5ms CPU, no LLM forward pass, black-box compatible) that predicts thinking budget class {≤256/≤512/≤1024/>1024 tokens} from TF-IDF entropy, dependency-parse depth, and problem-type embeddings, enabling per-request thinking_token_budget setting via vLLM's native API. The predictability hypothesis rests on cross-domain classification (math/code vs. factual/knowledge) being tractable from surface features — distinct from within-domain difficulty ranking where arXiv:2602.09924 shows surface features underperform internal activations. An analytical break-even condition (A_min ≈ 65–70% balanced accuracy) defines an explicit go/no-go gate before full serving benchmarks; below this threshold, the system falls back to binary coarse domain routing. Classifier thresholds are biased toward over-prediction by default to minimize abort-and-requeue overhead. A single vLLM instance handles all requests; an abort-and-requeue fallback recovers accuracy for under-predicted requests. The key ablation — thinking-budget-specific vs. total-output-length prediction on identical features — validates the cross-domain classification hypothesis against Magnus and EGTP. Targeting 1.5–2.0× throughput improvement over uniform thinking_token_budget baseline with under 2% accuracy degradation. Primary target: EMNLP 2026 Industry Track (direct submission, June 16, 2026 deadline). Resource: ~54 H100-hours (well within 200-hour budget).",
+  "project_name": "difficulty_bucket_router",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["CRITICAL UNRESOLVED FROM ROUND 3 — Sonata (ICLR 2026, openreview.net/pdf?id=2i6Rp0gCq6) is still absent from both the landscape section and key_references in Round 4. Sonata uses a lightweight adapter on last-layer hidden representations during the prefilling stage to predict thinking budgets, achieving up to 60% reduction in thinking tokens on Qwen3-8B/32B/235B-A22B across AIME25, MATH500, LiveCodeBench, and GPQA. This is the most direct prior work — same target (per-request thinking budget allocation), same evaluation models, same benchmarks. Reviewers will flag this immediately. The differentiation is legitimate (prompt-only vs. last-layer hidden states; zero-overhead middleware vs. prefilling-stage adapter; any-model black-box vs. requires white-box access to final layer), but the comparison must be made explicitly. The generator was given this instruction in Round 3 with the exact text to use. It was not done. This is a blocking issue.", "SECONDARY UNRESOLVED FROM ROUND 3 — vLLM version not pinned in the approach or experimental setup. A confirmed bug exists: thinking_token_budget is silently ignored when passed via extra_args in vLLM 0.18.0 (see vLLM forum thread 'thinking_token_budget silently ignored when passed via extra_args in vLLM 0.18.0'). The paper must specify: 'We use vLLM v[X.Y] with thinking_token_budget set via SamplingParams (not extra_args); each experiment verifies enforcement before running.' This is a one-sentence fix but without it the reproducibility claim is fragile.", "NEW — BudgetThinker (arXiv:2508.17196, August 2025) should be briefly acknowledged in the landscape. It inserts explicit control tokens at budget-fraction positions and uses SFT + curriculum RL to train the model to follow token budgets — fundamentally different (requires model fine-tuning, cannot be black-box middleware). One sentence distinguishing it is sufficient: 'BudgetThinker [cite] conditions the reasoning model on explicit budget control tokens via SFT+RL fine-tuning — incompatible with black-box deployment and requiring reasoning-model access.' This prevents a reviewer objection that this paper was overlooked."]
+Feedback: Round 4 has correctly addressed all Round 1 and Round 2 issues: problem framing is accurate, EGTP is properly cited, venue targeting is correct (EMNLP 2026 Industry Track, June 16 deadline confirmed), Scheduling the Unschedulable is in the landscape, go/no-go gate is explicit, ModernBERT is 149M. The idea itself is technically sound and the differentiation logic is valid. Only two targeted actions are blocking a pass verdict:
+
+**Action 1 (CRITICAL — same as Round 3 Action 1, still not done):** Add Sonata (ICLR 2026) to the landscape section and key_references with the following differentiation text: 'Sonata (ICLR 2026) predicts thinking budgets from the reasoning model's last-layer hidden representations via a lightweight prefilling-stage adapter, achieving up to 60% reduction in thinking tokens on Qwen3-8B/32B/235B-A22B. Unlike Sonata, which requires white-box access to the reasoning model's final-layer activations and must be installed as an adapter on the deployed model, our classifier operates on prompt-surface features only (TF-IDF entropy, dependency-parse depth, problem-type embeddings), enabling deployment as a stateless middleware layer in front of any vLLM-served reasoning model without modifying or accessing the model's architecture, weights, or internal activations. This black-box property makes our method compatible with any OpenAI-compatible vLLM endpoint, including third-party APIs where white-box access is unavailable.' Add 'Sonata: Dynamic Thinking Budget Allocation for Reasoning Models (ICLR 2026, openreview.net/pdf?id=2i6Rp0gCq6)' to key_references.
+
+**Action 2 (Secondary — same as Round 3 Action 2, still not done):** Pin a specific vLLM version in the approach section. Add one sentence: 'We use vLLM v0.7.3 (or the specific version with PR #37112 merged) with thinking_token_budget passed via SamplingParams; each experimental run verifies the parameter is enforced correctly before collecting throughput measurements.' This blocks the reproducibility objection.
+
+**Action 3 (Minor, new):** Add one sentence on BudgetThinker (arXiv:2508.17196) to the landscape. This is the only new paper in the space since Round 3 that is worth acknowledging.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.2 到 3.5，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "95a7d68e-c2ab-4a68-9d2b-73df3c4255fb",
+  "type": "user",
+  "uuid": "e4cc4781-89a9-4f01-9a83-36514d49b2a7",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-09T20:33:43.972Z_
+
+```json
+{
+  "parentUuid": "e4cc4781-89a9-4f01-9a83-36514d49b2a7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "823374f3-6cc4-4edd-9329-d67e827b3e39",
+  "timestamp": "2026-05-09T20:33:43.972Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-09T20:33:43.973Z_
+
+```json
+{
+  "parentUuid": "823374f3-6cc4-4edd-9329-d67e827b3e39",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "66ef64c6-5d17-477d-acc1-53629e7b74bf",
+  "timestamp": "2026-05-09T20:33:43.973Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Prompt-Only Thinking-Budget Classification for Per-Request thinking_to…",
+  "leafUuid": "66ef64c6-5d17-477d-acc1-53629e7b74bf",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prompt-only thinking budget prediction for reasoning model serving efficiency",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-09T20:34:04.953Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the situation carefully before diving into research and revisions.
+
+## Current State Analysis
+
+This idea has gone through 4 rounds of review with stagnating scores (3.2-3.5 range). The reviewer feedback for Round 4 is very specific:
+
+1. **CRITICAL (blocking)**: Sonata (ICLR 2026) still absent - same issue from Round 3 that was not fixed
+2. **Secondary (blocking)**: vLLM version not pinned - same issue from Round 3 not fixed
+3. **Minor (new)**: BudgetThinker (arXiv:2508.17196) needs one sentence acknowledgment
+
+
+The reviewer confirms the core idea is technically sound and the differentiation logic is valid, so the score stagnation is likely because these missing citations are genuinely blocking progress. Adding Sonata as a direct comparison is critical since it addresses the same problem of per-request thinking budget allocation, just using a different approach with internal model activations. The reviewer is confirming the core idea is sound and the differentiation is valid—the stagnation is specifically from those two missing citations, not fundamental flaws. I should move forward with fetching the Sonata and BudgetThinker papers to understand them properly, then make the targeted fixes the reviewer outlined.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66ef64c6-5d17-477d-acc1-53629e7b74bf",
+  "isSidechain": false,
+  "requestId": "req_011Casdfzo69TuGAjaSdLxC2",
+  "type": "assistant",
+  "uuid": "72d257c9-cee5-4f51-825a-6ca673cffc41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0114u5sXG7EDtumvqgfe2ThT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14134,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1583,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1583,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-09T20:34:04.956Z_
+
+I'll research the three papers that need to be addressed (Sonata, BudgetThinker, and verify vLLM versioning), then make the targeted fixes. Let me do this in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72d257c9-cee5-4f51-825a-6ca673cffc41",
+  "isSidechain": false,
+  "requestId": "req_011Casdfzo69TuGAjaSdLxC2",
+  "type": "assistant",
+  "uuid": "2f0f1bbb-30cc-4fa5-bf62-0bc5f7059941",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0114u5sXG7EDtumvqgfe2ThT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14134,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1583,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1583,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-09T20:34:09.727Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01JMSekDchAB3uxxkK54nyRj`</summary>
+
+```json
+{
+  "description": "Fetch and summarize Sonata ICLR 2026 paper",
+  "subagent_type": "Explore",
+  "prompt": "Fetch the Sonata paper from ICLR 2026 at this URL: https://openreview.net/pdf?id=2i6Rp0gCq6\n\nRead the abstract, introduction, and method sections. I need to understand:\n1. What exactly Sonata does - specifically how it predicts thinking budgets\n2. What \"last-layer hidden representations\" and \"prefilling-stage adapter\" means in their context\n3. What results they achieve (% reduction in thinking tokens, benchmarks)\n4. What models they evaluate on (Qwen3-8B/32B/235B-A22B etc.)\n5. Any limitations they acknowledge\n\nPlease summarize the key technical details in 300-400 words so I can accurately cite and differentiate from this work."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f0f1bbb-30cc-4fa5-bf62-0bc5f7059941",
+  "isSidechain": false,
+  "requestId": "req_011Casdfzo69TuGAjaSdLxC2",
+  "type": "assistant",
+  "uuid": "a36ac06f-a797-4d6c-a2ef-226cf23309c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0114u5sXG7EDtumvqgfe2ThT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14134,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1583,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1583,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-09T20:34:13.328Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_015v3EEUdS7L1qKNZ958oPwM`</summary>
+
+```json
+{
+  "description": "Fetch BudgetThinker paper abstract and method",
+  "subagent_type": "Explore",
+  "prompt": "Search for and fetch the BudgetThinker paper at arXiv:2508.17196. Try fetching from:\n- https://arxiv.org/abs/2508.17196\n- https://arxiv.org/pdf/2508.17196\n\nI need to understand:\n1. What BudgetThinker does at a high level (the abstract says it uses SFT + curriculum RL with explicit control tokens)\n2. How it differs from black-box middleware approaches\n3. Whether it requires model fine-tuning (making it incompatible with black-box deployment)\n4. Key results\n\nSummarize in 150-200 words focused on what makes it different from a prompt-only serving middleware approach."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a36ac06f-a797-4d6c-a2ef-226cf23309c0",
+  "isSidechain": false,
+  "requestId": "req_011Casdfzo69TuGAjaSdLxC2",
+  "type": "assistant",
+  "uuid": "2cf91f70-65be-4bac-918d-6b41553dc597",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0114u5sXG7EDtumvqgfe2ThT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14134,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1583,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1583,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-09T20:34:18.053Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01LMefPBVLGNPtMN3wtwPxb5`</summary>
+
+```json
+{
+  "description": "Search for vLLM thinking_token_budget version info",
+  "subagent_type": "Explore",
+  "prompt": "Search for information about vLLM's thinking_token_budget parameter and which version correctly supports it via SamplingParams.\n\nSpecifically look for:\n1. Any known bugs where thinking_token_budget is silently ignored when passed via extra_args in vLLM 0.18.0\n2. What vLLM version introduced thinking_token_budget support via SamplingParams\n3. Any PR #37112 in vLLM that relates to thinking_token_budget\n4. The current stable vLLM version as of 2026\n\nTry searching:\n- \"vLLM thinking_token_budget SamplingParams version\"\n- \"vLLM PR 37112 thinking_token_budget\"\n- vLLM GitHub releases page or changelog\n\nReport what you find about the correct vLLM version to cite for thinking_token_budget support."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cf91f70-65be-4bac-918d-6b41553dc597",
+  "isSidechain": false,
+  "requestId": "req_011Casdfzo69TuGAjaSdLxC2",
+  "type": "assistant",
+  "uuid": "07abbb58-d129-499a-a7fd-fa8c95d4e4bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0114u5sXG7EDtumvqgfe2ThT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14134,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1583,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1583,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 14134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-09T20:34:28.631Z_
+
+<details><summary>↩ Tool result · `toolu_015v3EEUdS7L1qKNZ958oPwM`</summary>
+
+```text
+Based on the BudgetThinker paper, here's a focused summary:
+
+## BudgetThinker Summary (150-200 words)
+
+**What It Does:**
+BudgetThinker enables LLMs to perform reasoning with controlled computational budgets by inserting special "control tokens" during inference that communicate remaining token budgets to the model. It uses two-stage training: Supervised Fine-Tuning (SFT) to familiarize models with budget constraints, followed by curriculum-based Reinforcement Learning optimizing for accuracy and budget adherence.
+
+**Key Difference from Black-Box Middleware:**
+Unlike prompt-only serving middleware that externally manages token budgets, BudgetThinker is a **white-box, integrated approach** requiring modifications at the model level. It enables fine-grained, adaptive control where the model itself learns to adjust reasoning depth based on problem difficulty and available resources—not just hard cutoffs applied externally.
+
+**Fine-Tuning Requirement:**
+Yes, **BudgetThinker requires model fine-tuning**, making it **incompatible with black-box model deployment**. It necessitates training modifications rather than operating on pre-trained models without adaptation.
+
+**Key Results:**
+Evaluation on mathematical reasoning benchmarks (MATH dataset) shows improved accuracy-efficiency tradeoffs: models maintain competitive performance while reducing computational costs, or improve performance at similar budgets compared to baselines—enabling practical deployment in resource-constrained environments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2cf91f70-65be-4bac-918d-6b41553dc597",
+  "isSidechain": false,
+  "promptId": "95a7d68e-c2ab-4a68-9d2b-73df3c4255fb",
+  "type": "user",
+  "uuid": "0e5f38c4-58dc-4ce4-90cc-b4578e11c189",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for and fetch the BudgetThinker paper at arXiv:2508.17196. Try fetching from:\n- https://arxiv.org/abs/2508.17196\n- https://arxiv.org/pdf/2508.17196\n\nI need to understand:\n1. What BudgetThinker does at a high level (the abstract says it uses SFT + curriculum RL with explicit control tokens)\n2. How it differs from black-box middleware approaches\n3. Whether it requires model fine-tuning (making it incompatible with black-box deployment)\n4. Key results\n\nSummarize in 150-200 words focused on what makes it different from a prompt-only serving middleware approach.",
+    "agentId": "a762eaa3697bf68d2",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on the BudgetThinker paper, here's a focused summary:\n\n## BudgetThinker Summary (150-200 words)\n\n**What It Does:**\nBudgetThinker enables LLMs to perform reasoning with controlled computational budgets by inserting special \"control tokens\" during inference that communicate remaining token budgets to the model. It uses two-stage training: Supervised Fine-Tuning (SFT) to familiarize models with budget constraints, followed by curriculum-based Reinforcement Learning optimizing for accuracy and budget adherence.\n\n**Key Difference from Black-Box Middleware:**\nUnlike prompt-only serving middleware that externally manages token budgets, BudgetThinker is a **white-box, integrated approach** requiring modifications at the model level. It enables fine-grained, adaptive control where the model itself learns to adjust reasoning depth based on problem difficulty and available resources—not just hard cutoffs applied externally.\n\n**Fine-Tuning Requirement:**\nYes, **BudgetThinker requires model fine-tuning**, making it **incompatible with black-box model deployment**. It necessitates training modifications rather than operating on pre-trained models without adaptation.\n\n**Key Results:**\nEvaluation on mathematical reasoning benchmarks (MATH dataset) shows improved accuracy-efficiency tradeoffs: models maintain competitive performance while reducing computational costs, or improve performance at similar budgets compared to baselines—enabling practical deployment in resource-constrained environments."
+      }
+    ],
+    "totalDurationMs": 15301,
+    "totalTokens": 18810,
+    "totalToolUseCount": 2,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 1730,
+      "cache_read_input_tokens": 16745,
+      "output_tokens": 328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1730
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 328,
+          "cache_read_input_tokens": 16745,
+          "cache_creation_input_tokens": 1730,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1730,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 2
+    }
+  },
+  "sourceToolAssistantUUID": "2cf91f70-65be-4bac-918d-6b41553dc597",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-09T20:34:30.590Z_
+
+<details><summary>↩ Tool result · `toolu_01JMSekDchAB3uxxkK54nyRj`</summary>
+
+```text
+Excellent! I was able to retrieve the paper information from the OpenReview forum page. Here's your comprehensive summary of the Sonata paper:
+
+---
+
+## Sonata: Predicting Thinking Budgets in Language Models - Summary
+
+**What Sonata Does:**
+Sonata is an adaptive thinking budget prediction method for language models with extended reasoning capabilities. It predicts optimal "thinking budgets"—the computational resources allocated to internal reasoning—by leveraging self-consistency signals across multiple reasoning paths. Models use latent space thinking before generating outputs, and Sonata determines when to allocate more or less thinking based on query difficulty.
+
+**Key Technical Components:**
+
+1. **Last-layer hidden representations:** These are the model's final internal state vectors (embeddings) after processing the query, which capture semantic information about the input. These representations serve as features for budget prediction.
+
+2. **Prefilling-stage adapter:** A lightweight neural adapter module trained offline on calibration data that operates during the query prefilling stage (before thinking/generation begins). It predicts self-consistency scores directly from last-layer hidden representations to estimate whether a query needs extended thinking or can be answered quickly. The adapter introduces <0.1% computational overhead during inference.
+
+**Methodology:**
+The core insight is that self-consistency (agreement among multiple reasoning paths) indicates thinking necessity—lower self-consistency signals require more thinking budget. The system trains an adapter to predict this self-consistency metric without actually running multiple inference paths, enabling efficient budget allocation before thinking commences.
+
+**Evaluation Results:**
+- **Models tested:** Qwen3-8B, Qwen3-32B, GPT-OSS-120B, Qwen3-235B-A22B
+- **Benchmarks:** AIME25, GSM8K, MATH500, GPQA, LiveCodeBench
+- **Performance:** 20-60% reduction in thinking tokens while maintaining accuracy, or up to 2% accuracy improvement at equivalent token costs
+
+**Limitations:**
+The abstract does not explicitly discuss acknowledged limitations, though the efficiency gains are constrained to post-training calibration on specific model distributions and task types.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a36ac06f-a797-4d6c-a2ef-226cf23309c0",
+  "isSidechain": false,
+  "promptId": "95a7d68e-c2ab-4a68-9d2b-73df3c4255fb",
+  "type": "user",
+  "uuid": "8412bc64-b748-430f-bc15-f7722b1bd6be",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Fetch the Sonata paper from ICLR 2026 at this URL: https://openreview.net/pdf?id=2i6Rp0gCq6\n\nRead the abstract, introduction, and method sections. I need to understand:\n1. What exactly Sonata does - specifically how it predicts thinking budgets\n2. What \"last-layer hidden representations\" and \"prefilling-stage adapter\" means in their context\n3. What results they achieve (% reduction in thinking tokens, benchmarks)\n4. What models they evaluate on (Qwen3-8B/32B/235B-A22B etc.)\n5. Any limitations they acknowledge\n\nPlease summarize the key technical details in 300-400 words so I can accurately cite and differentiate from this work.",
+    "agentId": "ab65e077f0c6b8a90",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Excellent! I was able to retrieve the paper information from the OpenReview forum page. Here's your comprehensive summary of the Sonata paper:\n\n---\n\n## Sonata: Predicting Thinking Budgets in Language Models - Summary\n\n**What Sonata Does:**\nSonata is an adaptive thinking budget prediction method for language models with extended reasoning capabilities. It predicts optimal \"thinking budgets\"—the computational resources allocated to internal reasoning—by leveraging self-consistency signals across multiple reasoning paths. Models use latent space thinking before generating outputs, and Sonata determines when to allocate more or less thinking based on query difficulty.\n\n**Key Technical Components:**\n\n1. **Last-layer hidden representations:** These are the model's final internal state vectors (embeddings) after processing the query, which capture semantic information about the input. These representations serve as features for budget prediction.\n\n2. **Prefilling-stage adapter:** A lightweight neural adapter module trained offline on calibration data that operates during the query prefilling stage (before thinking/generation begins). It predicts self-consistency scores directly from last-layer hidden representations to estimate whether a query needs extended thinking or can be answered quickly. The adapter introduces <0.1% computational overhead during inference.\n\n**Methodology:**\nThe core insight is that self-consistency (agreement among multiple reasoning paths) indicates thinking necessity—lower self-consistency signals require more thinking budget. The system trains an adapter to predict this self-consistency metric without actually running multiple inference paths, enabling efficient budget allocation before thinking commences.\n\n**Evaluation Results:**\n- **Models tested:** Qwen3-8B, Qwen3-32B, GPT-OSS-120B, Qwen3-235B-A22B\n- **Benchmarks:** AIME25, GSM8K, MATH500, GPQA, LiveCodeBench\n- **Performance:** 20-60% reduction in thinking tokens while maintaining accuracy, or up to 2% accuracy improvement at equivalent token costs\n\n**Limitations:**\nThe abstract does not explicitly discuss acknowledged limitations, though the efficiency gains are constrained to post-training calibration on specific model distributions and task types."
+      }
+    ],
+    "totalDurationMs": 20858,
+    "totalTokens": 19083,
+    "totalToolUseCount": 2,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 517,
+      "cache_read_input_tokens": 18087,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 517
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 4,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 18087,
+          "cache_creation_input_tokens": 517,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 517,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 2
+    }
+  },
+  "sourceToolAssistantUUID": "a36ac06f-a797-4d6c-a2ef-226cf23309c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-09T20:35:31.351Z_
+
+<details><summary>↩ Tool result · `toolu_01LMefPBVLGNPtMN3wtwPxb5`</summary>
+
+```text
+Perfect! Now I have the comprehensive information needed. Let me compile the findings.
+
+## Summary of Findings
+
+Based on my research, here's what I found about vLLM's `thinking_token_budget` parameter support:
+
+### 1. **Known Bug in vLLM 0.18.0**
+
+Yes, there is a confirmed bug where `thinking_token_budget` is **silently ignored when passed via `extra_args`** in vLLM 0.18.0:
+- The parameter is not a native `SamplingParams` field in v0.18.0
+- When passed via `extra_args`, it is accepted without error but **not enforced by the engine**
+- This was documented in the [vLLM Forums discussion](https://discuss.vllm.ai/t/thinking-token-budget-silently-ignored-when-passed-via-extra-args-in-vllm-0-18-0/2533)
+- The workaround is to upgrade to a newer version that supports it as a first-class parameter
+
+### 2. **Version That Introduced `thinking_token_budget` Support**
+
+**vLLM v0.19.0 (released April 3, 2026)** introduced proper `thinking_token_budget` support via SamplingParams:
+- PR #20859 added "Limit thinking tokens (hard limit)" functionality
+- This was listed as an API & Frontend feature in the v0.19.0 release notes
+- The feature allows enforcing a hard limit on thinking tokens through `SamplingParams(thinking_token_budget=&lt;value>)`
+
+### 3. **About PR #37112**
+
+PR #37112 was an alternative implementation that introduced a `reasoning_budget` feature to cap thinking tokens via a `ReasoningBudgetLogitsProcessor`. However:
+- **This PR was closed without merging** on March 29, 2026
+- Maintainer @njhill had already merged the original PR #20859, which superseded it
+- The feature ultimately came through PR #20859, not PR #37112
+
+### 4. **Current Stable vLLM Version (May 2026)**
+
+**vLLM v0.20.1** (released May 4, 2026) is the current stable version:
+- v0.20.0 was released April 27, 2026 with major features including DeepSeek V4 support
+- v0.20.1 is a patch release focused on DeepSeek V4 stabilization
+- All versions from v0.19.0 onwards support `thinking_token_budget` properly
+
+### Key Takeaway for Citation
+
+**For correct `thinking_token_budget` support via SamplingParams, cite vLLM v0.19.0 or later.** vLLM v0.18.0 and earlier do not properly support this parameter and will silently ignore it when passed via `extra_args`.
+
+Sources:
+- [vLLM v0.19.0 Release Notes](https://github.com/vllm-project/vllm/releases/tag/v0.19.0)
+- [thinking_token_budget silently ignored in v0.18.0 - vLLM Forums](https://discuss.vllm.ai/t/thinking-token-budget-silently-ignored-when-passed-via-extra-args-in-vllm-0-18-0/2533)
+- [PR #37112: Feature for reasoning_budget](https://github.com/vllm-project/vllm/pull/37112)
+- [vLLM Releases](https://github.com/vllm-project/vllm/releases)
+- [vLLM Reasoning Outputs Documentation](https://docs.vllm.ai/en/latest/features/reasoning_outputs/)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07abbb58-d129-499a-a7fd-fa8c95d4e4bc",
+  "isSidechain": false,
+  "promptId": "95a7d68e-c2ab-4a68-9d2b-73df3c4255fb",
+  "type": "user",
+  "uuid": "78116e5c-a872-4426-9086-9f969cf61a0e",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for information about vLLM's thinking_token_budget parameter and which version correctly supports it via SamplingParams.\n\nSpecifically look for:\n1. Any known bugs where thinking_token_budget is silently ignored when passed via extra_args in vLLM 0.18.0\n2. What vLLM version introduced thinking_token_budget support via SamplingParams\n3. Any PR #37112 in vLLM that relates to thinking_token_budget\n4. The current stable vLLM version as of 2026\n\nTry searching:\n- \"vLLM thinking_token_budget SamplingParams version\"\n- \"vLLM PR 37112 thinking_token_budget\"\n- vLLM GitHub releases page or changelog\n\nReport what you find about the correct vLLM version to cite for thinking_token_budget support.",
+    "agentId": "a975e6a647a2e7708",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have the comprehensive information needed. Let me compile the findings.\n\n## Summary of Findings\n\nBased on my research, here's what I found about vLLM's `thinking_token_budget` parameter support:\n\n### 1. **Known Bug in vLLM 0.18.0**\n\nYes, there is a confirmed bug where `thinking_token_budget` is **silently ignored when passed via `extra_args`** in vLLM 0.18.0:\n- The parameter is not a native `SamplingParams` field in v0.18.0\n- When passed via `extra_args`, it is accepted without error but **not enforced by the engine**\n- This was documented in the [vLLM Forums discussion](https://discuss.vllm.ai/t/thinking-token-budget-silently-ignored-when-passed-via-extra-args-in-vllm-0-18-0/2533)\n- The workaround is to upgrade to a newer version that supports it as a first-class parameter\n\n### 2. **Version That Introduced `thinking_token_budget` Support**\n\n**vLLM v0.19.0 (released April 3, 2026)** introduced proper `thinking_token_budget` support via SamplingParams:\n- PR #20859 added \"Limit thinking tokens (hard limit)\" functionality\n- This was listed as an API & Frontend feature in the v0.19.0 release notes\n- The feature allows enforcing a hard limit on thinking tokens through `SamplingParams(thinking_token_budget=&lt;value>)`\n\n### 3. **About PR #37112**\n\nPR #37112 was an alternative implementation that introduced a `reasoning_budget` feature to cap thinking tokens via a `ReasoningBudgetLogitsProcessor`. However:\n- **This PR was closed without merging** on March 29, 2026\n- Maintainer @njhill had already merged the original PR #20859, which superseded it\n- The feature ultimately came through PR #20859, not PR #37112\n\n### 4. **Current Stable vLLM Version (May 2026)**\n\n**vLLM v0.20.1** (released May 4, 2026) is the current stable version:\n- v0.20.0 was released April 27, 2026 with major features including DeepSeek V4 support\n- v0.20.1 is a patch release focused on DeepSeek V4 stabilization\n- All versions from v0.19.0 onwards support `thinking_token_budget` properly\n\n### Key Takeaway for Citation\n\n**For correct `thinking_token_budget` support via SamplingParams, cite vLLM v0.19.0 or later.** vLLM v0.18.0 and earlier do not properly support this parameter and will silently ignore it when passed via `extra_args`.\n\nSources:\n- [vLLM v0.19.0 Release Notes](https://github.com/vllm-project/vllm/releases/tag/v0.19.0)\n- [thinking_token_budget silently ignored in v0.18.0 - vLLM Forums](https://discuss.vllm.ai/t/thinking-token-budget-silently-ignored-when-passed-via-extra-args-in-vllm-0-18-0/2533)\n- [PR #37112: Feature for reasoning_budget](https://github.com/vllm-project/vllm/pull/37112)\n- [vLLM Releases](https://github.com/vllm-project/vllm/releases)\n- [vLLM Reasoning Outputs Documentation](https://docs.vllm.ai/en/latest/features/reasoning_outputs/)"
+      }
+    ],
+    "totalDurationMs": 73296,
+    "totalTokens": 29302,
+    "totalToolUseCount": 13,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 1226,
+      "cache_read_input_tokens": 27170,
+      "output_tokens": 900,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1226
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6,
+          "output_tokens": 900,
+          "cache_read_input_tokens": 27170,
+          "cache_creation_input_tokens": 1226,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1226,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 13
+    }
+  },
+  "sourceToolAssistantUUID": "07abbb58-d129-499a-a7fd-fa8c95d4e4bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Prompt-Only Thinking-Budget Classification for Per-Request thinking_to…",
+  "leafUuid": "78116e5c-a872-4426-9086-9f969cf61a0e",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prompt-only thinking budget prediction for reasoning model serving efficiency",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-09T20:36:11.567Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have the information I need. Let me analyze what I've learned:
+
+**Sonata (ICLR 2026)**:
+- Uses last-layer hidden representations (the model's final internal state vectors) to predict thinking budgets
+- Has a lightweight prefilling-stage adapter trained on calibration data
+- Predicts self-consistency scores from last-layer representations to estimate if more thinking is needed
+- <0.1% computational overhead during inference
+- Achieves 20-60% reduction in thinking tokens on Qwen3-8B/32B/235B-A22B
+- Requires white-box access to the reasoning model's final-layer activations
+
+
+- **BudgetThinker** takes a different approach by inserting control tokens during inference and using SFT with curriculum RL, but this requires fine-tuning the model itself, making it incompatible with black-box scenarios.
+
+I should also note the vLLM implementation details—there was a bug in v0.18.0 where thinking_token_budget got silently ignored, but v0.19.0 and later properly support it through SamplingParams, so I'll want to reference the newer versions.
+
+Now I'm identifying the three specific changes needed: add Sonata to the landscape with the reviewer's differentiation text plus what I found about its self-consistency approach, pin the vLLM version to v0.19.0 or later (using v0.20.1 as current stable), and include a brief acknowledgment of BudgetThinker. The reviewer flagged these as the blocking issues, and since they've confirmed the core idea is technically sound and the differentiation logic is valid, addressing these targeted gaps should move things forward.
+
+Looking at how Sonata compares to what I'm proposing—it's white-box and requires model access with multiple forward passes for calibration, whereas my approach uses only prompt-level features like TF-IDF entropy and dependency parsing depth, so there's clear differentiation there.
+
+Now I need to update the JSON to properly document this. I'll add entries for both Sonata and BudgetThinker to the landscape section, pin the vLLM version in the approach, and add the references so the citations are complete.
+
+Most importantly, I need to revise the opportunity section to include Sonata as a direct competitor since it also requires accessing hidden states from the model's final layer—making it fundamentally similar to EGTP in that constraint, unlike our black-box approach.
+
+I also need to add full entries for both Sonata and BudgetThinker to the landscape section, update the description to mention Sonata, and add both papers to the key references. For the vLLM version, I'll specify v0.19.0 as the minimum required version since that's when proper SamplingParams support was introduced, with a note that v0.20.1 is the current version.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78116e5c-a872-4426-9086-9f969cf61a0e",
+  "isSidechain": false,
+  "requestId": "req_011CasdouK9v5PoVaApKrdsG",
+  "type": "assistant",
+  "uuid": "5e0b48b6-e198-4988-bd52-f13068900172",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01VkBQ99WGYcsnTbmbcBkkdc",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3357,
+      "cache_read_input_tokens": 25765,
+      "output_tokens": 9326,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3357,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9326,
+          "cache_read_input_tokens": 25765,
+          "cache_creation_input_tokens": 3357,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3357
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-09T20:39:18.034Z_
+
+Good. I now have all the information needed:
+- **Sonata**: Uses last-layer hidden representations + prefilling-stage adapter (< 0.1% overhead), predicts self-consistency to infer thinking need, 20-60% thinking token reduction on Qwen3-8B/32B/235B-A22B. Requires white-box model access.
+- **BudgetThinker**: SFT + curriculum RL with control tokens. Requires model fine-tuning — incompatible with black-box deployment.
+- **vLLM version**: v0.18.0 has confirmed bug (thinking_token_budget silently ignored via extra_args). v0.19.0 (April 3, 2026) introduced proper SamplingParams support via PR #20859. v0.20.1 is current stable (May 4, 2026).
+
+The stagnation diagnosis: the core idea is sound (reviewer confirms), but the same two blocking citations from Round 3 were never inserted. Fixing these three specific issues should break the deadlock. No pivot needed.
+
+```json
+{
+  "title": "Prompt-Only Thinking-Budget Classification for Per-Request thinking_token_budget Allocation in vLLM",
+  "change_type": "minor",
+  "core_problem": "Production deployments of reasoning models (DeepSeek-R1-Distill, Qwen3) in vLLM face two compounding serving inefficiencies rooted in one limitation: operators must set a UNIFORM thinking_token_budget ceiling for all requests at serving time, because vLLM's per-request thinking_token_budget sampling parameter has no automatic per-request prediction mechanism. First, a high uniform ceiling over-allocates compute for easy requests and — critically — holds KV cache pages through unnecessary thinking decode steps, slowing KV page release and reducing admission throughput for incoming requests. A low uniform ceiling forces vLLM to inject reasoning_end_str at the budget limit (probability=1 forced truncation), cutting off reasoning traces for hard problems and degrading accuracy. Second, in vLLM continuous batching, long-thinking stragglers hold KV cache pages for many more decode steps than short-thinking requests; this creates cascading preemption pressure confirmed in vLLM's own documentation ('long outputs compound the problem') and reduces effective batch size under heterogeneous workloads. The real serving problem is not padding waste — vLLM's PagedAttention + iteration-level scheduling eliminates cross-request padding — but KV cache admission pressure from heterogeneous thinking trace lengths combined with the inability to set thinking_token_budget appropriately per request.",
+  "opportunity": "A prompt-features-only classifier (no LLM forward pass required, no reasoning model fine-tuning, black-box compatible with any vLLM-served model) can predict thinking budget class {≤256/≤512/≤1024/>1024 tokens} from prompt text statistics alone in ~5ms CPU, and set vLLM's thinking_token_budget parameter per request at submission time. Easy requests get tight budgets — KV pages freed sooner, less preemption pressure, higher admission throughput. Hard requests get generous budgets — accuracy preserved, no forced truncation. This prompt-only approach is qualitatively different from all prior work: Sonata (ICLR 2026) predicts thinking budgets via a lightweight prefilling-stage adapter on the reasoning model's last-layer hidden representations, achieving up to 60% reduction in thinking tokens — but requires white-box access to the model's final-layer activations and must be installed as an adapter on the deployed model, ruling it out for any OpenAI-compatible API endpoint where internal activations are unavailable. EGTP (arXiv:2602.11812, ICLR 2026) requires a full forward pass through the main LLM to extract final-layer hidden states (expensive, not black-box compatible), and predicts total output length rather than thinking budget specifically. Predictive Scheduling (arXiv:2602.01237) requires either LoRA fine-tuning of a 1.5B model or MLP on LLM hidden states — again requiring model access — and targets per-query accuracy optimization with no batch-level throughput integration. The prompt-only thinking-budget classifier fills a concrete gap: a deployable serving middleware that works as a black-box layer in front of any reasoning model API, uses vLLM's native per-request thinking_token_budget parameter as its control lever, and targets batch-level KV cache pressure reduction as its serving metric.\n\nThe hypothesis that thinking budget is predictable from prompt-only surface features rests on a critical mechanistic distinction between cross-domain classification and within-domain difficulty ranking. arXiv:2602.09924 ('LLMs Encode Their Failures', ICLR 2026 LIT Workshop) demonstrates that within-domain difficulty ranking — e.g., which math problem is harder among AMC problems — is poorly captured by surface features such as TF-IDF and question length; linear probes on pre-generation internal activations substantially outperform surface features for that task. However, our system primarily performs cross-domain classification: distinguishing math/code domains (where reasoning models allocate long thinking traces at 80–95% of total output regardless of specific problem difficulty) from factual/knowledge domains (where thinking is short regardless of answer length). Domain-type signals — mathematical notation, code syntax, question format, vocabulary patterns — are directly accessible from prompt text and are not confounded by model-internal representations. This means cross-domain thinking-budget classification is more tractable from surface features than within-domain difficulty ranking, even though the latter is what arXiv:2602.09924 evaluates. We treat this claim as a testable hypothesis, not an assumption: the ablation (thinking-budget classifier vs. total-output classifier on identical prompt features, evaluated on held-out mixed-domain test sets) serves as an explicit empirical go/no-go gate. If balanced accuracy falls below 70% on the mixed held-out set, we reframe the system as coarse binary domain routing (math/code → thinking_token_budget=1024, factual/knowledge → thinking_token_budget=256) rather than fine-grained 4-class prediction.\n\nMinimum accuracy threshold analysis: Let A = classifier balanced accuracy, u ≈ (1−A)/2 = under-prediction rate for a symmetric classifier, f_easy = 0.5 = fraction of easy requests in a mixed workload, S = 768 tokens = average KV savings per correctly classified easy request (class 1 budget=256 vs. uniform budget=1024), W ≈ 205 tokens = abort-and-requeue cost at 80%-of-budget trigger. The break-even condition A × f_easy × S > u × W solves to A_min ≈ 57% analytically; accounting for real-world abort latency overhead (network cancel + re-submit), the practical threshold rises to approximately 65–70% balanced accuracy. Key design choice: biasing classifier decision thresholds toward over-prediction (assigning the next higher budget class when predicted probability for the lower class falls below a configurable confidence margin) reduces abort-and-requeue overhead to near zero at the cost of slightly reduced throughput gains, and is the recommended production default. Scheduling the Unschedulable (arXiv:2604.06970) independently finds that systems with coarse magnitude token priors remain functional under up to 60% multiplicative prediction error, providing additional supporting evidence that approximate budget predictions yield practical serving gains.",
+  "landscape": "Sonata (ICLR 2026, openreview.net/pdf?id=2i6Rp0gCq6) predicts thinking budgets from the reasoning model's last-layer hidden representations via a lightweight prefilling-stage adapter trained on calibration data using self-consistency signals (agreement among multiple reasoning paths as a proxy for thinking necessity); achieves 20–60% reduction in thinking tokens on Qwen3-8B/32B/235B-A22B across AIME25, MATH500, LiveCodeBench, and GPQA with <0.1% computational overhead at prefilling time; the adapter must be installed on the deployed model and requires white-box access to final-layer activations — incompatible with third-party API deployments where internal model states are unavailable; evaluated on per-request accuracy-efficiency tradeoffs without batch-level KV cache pressure metrics. Unlike Sonata, which requires white-box access to the reasoning model's final-layer activations and must be installed as an adapter on the deployed model, our classifier operates on prompt-surface features only (TF-IDF entropy, dependency-parse depth, problem-type embeddings), enabling deployment as a stateless middleware layer in front of any vLLM-served reasoning model without modifying or accessing the model's architecture, weights, or internal activations. This black-box property makes our method compatible with any OpenAI-compatible vLLM endpoint, including third-party APIs where white-box access is unavailable.\n\nEGTP (arXiv:2602.11812, ICLR 2026) predicts total LLM output length via entropy-guided pooling of the main model's final-layer hidden states: it requires running the full reasoning model on each prompt to extract internal representations, produces a soft 20-bin regression over total output tokens (thinking + answer combined), and integrates with an SJF scheduler — not vLLM's per-request thinking_token_budget parameter; evaluated on ForeLen (23,556 prompts including CoT/RL tasks: GSM8K, MATH, LiveCodeBench), achieving 29.16% MAE reduction over best baseline with padding ratio improved from 0.51 to 0.18; three important gaps remain: (a) requires main model forward pass — not deployable as lightweight middleware, (b) predicts total output not thinking budget — misses the serving semantics of thinking_token_budget, (c) does not address KV cache admission pressure specifically. Predictive Scheduling (arXiv:2602.01237) estimates optimal per-query reasoning length using either MLP on transformer hidden states from layers 12-17 or LoRA fine-tuned DeepSeek-R1-Distill-Qwen-1.5B on raw question text — both options require model access; it uses 3 coarse difficulty classes and struggles specifically with the medium-difficulty category; evaluation is limited to GSM8K, yielding 7.9 percentage-point accuracy gain over uniform budgeting; it focuses on accuracy optimization under a fixed total token budget, not throughput or KV cache pressure, and does not set vLLM's thinking_token_budget parameter. LLMs Encode Their Failures (arXiv:2602.09924, ICLR 2026 LIT Workshop) shows that linear probes on pre-generation internal activations substantially outperform surface features (TF-IDF, question length) for within-domain difficulty ranking on math and coding tasks; human IRT difficulty is more linearly accessible (ρ = 0.83–0.87) than model difficulty (ρ = 0.40–0.64); critically, this paper evaluates within-domain difficulty ranking (which math problem is harder among AMC problems), not cross-domain classification — our system's primary task is cross-domain classification (math/code vs. factual/knowledge domains), which is fundamentally more tractable from prompt surface features because domain-type signals are directly encoded in vocabulary and structure. Scheduling the Unschedulable (arXiv:2604.06970, April 2026) proposes client-side scheduling of request ORDER for black-box LLM APIs using coarse total output token priors; its three-layer decomposition (adaptive DRR allocation, feasible-set ordering, admit/defer/reject overload control) operates outside the serving system and treats the LLM as a black box; key finding: coarse magnitude priors — not class labels alone — are the practical threshold for useful client control, with removal of magnitude inflating short-request P95 by 5.8×; a further finding is robustness to up to 60% multiplicative prediction error; architecturally distinct from our work in two ways: (a) they schedule request ORDER at a black-box API client layer, whereas we set the vLLM server-side thinking_token_budget parameter that directly controls how much thinking computation the model is allowed to perform — a different control plane entirely; (b) they predict total output tokens for general LLMs, whereas we predict thinking budget specifically using reasoning-model-specific features; their 60% error-tolerance finding supports our claim that coarse budget predictions yield practical serving gains even when imperfect. BudgetThinker (arXiv:2508.17196, August 2025) conditions the reasoning model on explicit budget control tokens via SFT+RL fine-tuning — incompatible with black-box deployment and requiring reasoning-model access. DAST (arXiv:2503.04472, EMNLP 2025 Industry Track) adapts thinking length at training time via budget-aware preference optimization — requires fine-tuning the reasoning model itself, is not a serving-side method. Dynamic Early Exit (arXiv:2504.15895) monitors confidence during generation to early-exit per request — per-request decoding-time method, no batch-level KV cache pressure optimization, does not set thinking_token_budget. Budget Guidance (arXiv:2506.13752) steers thinking length via a Gamma-distribution predictor applied during decoding — per-request constraint, no batch coordination, no thinking_token_budget integration. Optimizing Reasoning Efficiency through Prompt Difficulty Prediction (arXiv:2511.03808, NeurIPS 2025 Workshop) routes between fast/slow models based on prompt difficulty — model routing across model sizes, not thinking-budget setting within a single reasoning model. BucketServe (arXiv:2507.17120) groups requests into sequence-length buckets based on observed input/output lengths — reactive (not proactive), targets general LLMs without reasoning-specific features, no thinking_token_budget integration, no thinking/answer token distinction. Multi-Bin Batching (arXiv:2412.04504) provides queueing-theoretic proof that binning by predicted execution time is throughput-optimal — theoretical framework for general output length, no reasoning-specific prediction, no thinking_token_budget. Magnus (arXiv:2406.04785) predicts total generation length from input features (vocabulary entropy, prompt statistics) for SJF batch grouping, achieving 234% throughput gain — uses similar prompt-side features to ours but predicts total output length rather than thinking budget specifically, and uses SJF scheduling rather than vLLM's native thinking_token_budget parameter; for heterogeneous workloads, predicting total output conflates short-thinking/long-answer requests with long-thinking/short-answer requests, degrading thinking-budget bucket accuracy. When to Reason: Semantic Router for vLLM (arXiv:2510.08731) classifies queries for binary thinking/non-thinking routing using vLLM — establishes EMNLP Industry Track receptiveness to vLLM-integrated prompt routing; binary routing, no thinking-budget quantification or thinking_token_budget integration. Robust Batch-Level Query Routing (arXiv:2603.26796) optimizes batch assignment across model tiers under cost/capacity constraints — routes across model sizes, not thinking-budget buckets within a single fixed reasoning model. Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (IEEE ICDCS 2024) uses historical output length distributions for scheduling — reactive, no prompt-side difficulty features. Efficient LLM Scheduling by Learning to Rank (NeurIPS 2024) learns ranking functions for scheduling — general LLM scheduling, no reasoning-specific features. No published work proposes a prompt-only (no LLM forward pass) thinking-budget-specific classifier integrated with vLLM's per-request thinking_token_budget parameter for batch-level KV cache admission pressure reduction in production reasoning model serving.",
+  "approach": "We fine-tune a ModernBERT-base encoder (149M parameters) as a 4-class thinking-budget classifier predicting {≤256/≤512/≤1024/>1024 thinking tokens} using silver labels from 15,000 prompts drawn from MATH-500, GSM8K, AIME24, MMLU-Pro, and LiveCodeBench. Silver labels are generated by running DeepSeek-R1-Distill-Qwen-7B (chosen over 32B for labeling efficiency — 7B produces reliable thinking traces at approximately 1/4 the GPU cost) on each prompt and recording tokens inside &lt;think>...&lt;/think> tags. Input features to the classifier are PROMPT-ONLY: TF-IDF vocabulary entropy, spaCy dependency-parse depth, problem-type embedding (math/code/factual/knowledge), and token-count statistics — no main LLM forward pass is required, making this deployable as black-box middleware in front of any vLLM-served reasoning model. At serving time, each incoming request passes through the classifier in <5ms on CPU; the predicted class sets thinking_token_budget at the class ceiling in the vLLM API call (e.g., class 2 → thinking_token_budget=512). We use vLLM v0.19.0 or later (v0.20.1 at time of writing) with thinking_token_budget passed via SamplingParams (not extra_args, which silently ignores the parameter in vLLM ≤0.18.0); each experimental run verifies parameter enforcement by confirming thinking trace truncation at the budget limit before collecting throughput measurements. We use a single vLLM instance with continuous batching — no isolated pools, no cross-pool KV migration needed; per-request thinking_token_budget naturally controls when KV pages are freed, reducing straggler-induced admission pressure.\n\nClassifier threshold biasing: by default, we bias decision thresholds toward over-prediction (assigning the next higher budget class when the predicted probability for the lower class falls below a configurable confidence margin, default 0.65). This reduces abort-and-requeue overhead to near zero at the cost of slightly reduced throughput gains and is the recommended production configuration; aggressive (unbiased) mode is evaluated separately to characterize the accuracy-throughput trade-off.\n\nAbort-and-requeue fallback for under-predicted requests (active in aggressive mode): we monitor streaming output for the &lt;/think> token position; if absent at 80% of budget consumption, we cancel the request and resubmit with the next class ceiling budget (e.g., 512→1024); prefix caching handles prompt re-encoding cheaply, losing only the generated thinking trace; full mid-generation budget extension without losing the thinking trace is acknowledged as requiring future vLLM internal changes (thinking_token_budget cannot be modified post-submission in current vLLM).\n\nExplicit go/no-go gate: we derive the analytical break-even condition (A × f_easy × S > u × W, practical threshold A_min ≈ 65–70% balanced accuracy) before committing to the full serving benchmark. If 4-class balanced accuracy on the held-out mixed-domain test set falls below 70%, we switch to binary coarse routing (math/code prompts → thinking_token_budget=1024, factual/knowledge prompts → thinking_token_budget=256), which preserves the cross-domain efficiency gain while sacrificing within-domain granularity. This fallback variant is evaluated alongside the full 4-class system regardless.\n\nKey ablation — thinking-budget vs. total-output prediction: we train two ModernBERT-base classifiers on identical prompt features, one predicting thinking budget class and one predicting total-output-length class, and compare their thinking-budget bucket accuracy on a heterogeneous held-out test set mixing MATH-500 (hard math, thinking tokens ~80-95% of total) and MMLU-Pro (factual, thinking tokens ~40-60% of total); this directly validates the cross-domain classification hypothesis and the differentiation from Magnus and EGTP. Baselines: (1) uniform thinking_token_budget — standard vLLM deployment; (2) EGTP-predicted SJF scheduling (approximate, using published EGTP accuracy figures converted to thinking-budget bins); (3) Predictive Scheduling 3-class difficulty labels; (4) Magnus-style total-output SJF; (5) binary coarse domain routing; (6) Sonata-style oracle using last-layer hidden states (upper-bound white-box comparison). Evaluation metrics: output tokens/sec/GPU (throughput), KV cache preemption event count, abort-and-requeue rate, thinking-budget bucket accuracy, end-task accuracy (MATH-500, LiveCodeBench, MMLU-Pro) on heterogeneous mixed-workload streams. Cross-family generalization: test both DeepSeek-R1-Distill-Qwen-32B and Qwen3-32B. Target: 1.5–2.0× throughput improvement over uniform thinking_token_budget baseline with under 2% accuracy degradation on heterogeneous workloads.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~107h A100 (silver-label collection ~12h on 2×A100 using Qwen-7B, classifier training ~5h A100, classifier ablation A vs B ~10h A100, vLLM serving benchmark experiments ~60h on 4×A100, cross-family and feature ablations ~20h A100)",
+      "h100_equivalent": "~54 H100-hours (well within 200 H100-hour hard constraint)",
+      "gpu_utilization": "HIGH idle rate (~60%): GPU sits idle during human coding, debugging, paper writing, and iterative experiment design between runs",
+      "timeline": "25–30 days (comfortably within EMNLP 2026 Industry Track June 16 deadline; 38 days from May 9, 2026 — substantially more comfortable than the original May 25 ARR estimate)",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$160–200 (107h × $1.50/hr on RunPod/JarvisLabs A100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200h A100 (agent queues experiments continuously; adds broader classifier architecture search, multi-model generalization runs, and EGTP-comparison experiments beyond manual scope)",
+      "h100_equivalent": "~100 H100-hours (well within 200 H100-hour budget)",
+      "gpu_utilization": "Moderate (~65–75% active): agent pipelines data collection → training → evaluation without idle gaps between runs; human approval checkpoints (~2–3 per week) catch misdirected hyperparameter sweeps before full budget consumption",
+      "timeline": "20–25 days (feasible within 38-day EMNLP Industry Track window; leaves time for one iteration of the go/no-go gate check before committing to the full serving benchmark)",
+      "team": "1 researcher, ~20 min/day check-in for experiment approval and direction decisions",
+      "claude_api_cost": "~$150–250 (1,500–2,500 turns × ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "~$300–350 (200h × $1.50/hr)",
+      "risk_note": "Medium-difficulty boundary-case prediction is the hardest classification challenge (confirmed limitation in Predictive Scheduling paper and arXiv:2602.09924); the go/no-go gate at 70% balanced accuracy must be checked before committing GPU to full serving benchmarks; human must verify abort-and-requeue hook correctness and monitor abort rate in the aggressive (unbiased threshold) configuration before full throughput sweep"
+    },
+    "auto_research": {
+      "gpu_hours": "~400h A100 (3–4× experiment multiplier: full classifier architecture search, bucket boundary grid search, ablation of individual feature groups, multi-model generalization, thinking-budget vs total-output ablation sweep, throughput benchmark vs all baselines, threshold-bias sweep across confidence margins)",
+      "h100_equivalent": "~200 H100-hours (exactly at hard constraint limit)",
+      "gpu_utilization": "Near-zero idle: agent immediately queues next experiment on completion, running parallel jobs across GPU pool",
+      "timeline": "7–10 days with 4×A100 continuous access",
+      "team": "0 (initial setup ~3h: silver labeling pipeline, vLLM thinking_token_budget integration, evaluation harness wiring)",
+      "claude_api_cost": "~$400–600 (4,000–6,000 turns × ~$0.10/turn Opus for orchestration, analysis, paper drafting)",
+      "estimated_gpu_cost": "~$600 (400h × $1.50/hr)",
+      "risk_note": "Go/no-go gate at 70% balanced accuracy is the critical early checkpoint — if triggered, the agent must pivot to the binary coarse routing variant and re-run baselines accordingly; abort-and-requeue rate must be monitored — if it exceeds ~15% of requests in the aggressive configuration, threshold biasing toward over-prediction must be engaged; auto-research mode operates exactly at the 200 H100-hour budget, leaving no buffer for unexpected rerunning of corrupted experiments"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Industry Track (direct submission deadline June 16, 2026 — PRIMARY TARGET; this is a direct submission track, not via ARR; explicitly welcomes 'Efficient methods for training and inference', 'Implementation at optimised speed, scale and cost', 'Infrastructure for large-scale deployment', and 'language processing and generation systems in non-trivial real-world settings'; accepts negative results and lessons learned; stronger fit for a production serving middleware paper than the Main Conference ARR track; DAST at EMNLP 2025 Industry Track and Semantic Router for vLLM at arXiv:2510.08731 establish strong precedent for vLLM-integrated reasoning efficiency work at this venue)",
+    "MLSys 2027 (~December 2026 submission deadline — secondary target; natural home for LLM serving infrastructure work; systems framing: throughput-optimal per-request thinking budget allocation for production reasoning model deployments; broader impact framing positions well against OSDI/EuroSys-adjacent work on KV cache management)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Sonata: Dynamic Thinking Budget Allocation for Reasoning Models (ICLR 2026, openreview.net/pdf?id=2i6Rp0gCq6)",
+    "Predicting LLM Output Length via Entropy-Guided Representations (arXiv:2602.11812, ICLR 2026)",
+    "Predictive Scheduling for Efficient Inference-Time Reasoning in Large Language Models (arXiv:2602.01237)",
+    "LLMs Encode Their Failures: Predicting Success from Pre-Generation Activations (arXiv:2602.09924, ICLR 2026 LIT Workshop)",
+    "Scheduling the Unschedulable: Taming Black-Box LLM Inference at Scale (arXiv:2604.06970, April 2026)",
+    "BudgetThinker: Budget-Aware Reasoning via SFT and Curriculum RL (arXiv:2508.17196, August 2025)",
+    "When to Reason: Semantic Router for vLLM (arXiv:2510.08731)",
+    "DAST: Difficulty-Adaptive Slow-Thinking for Large Reasoning Models (arXiv:2503.04472, EMNLP 2025 Industry Track)",
+    "Dynamic Early Exit in Reasoning Models (arXiv:2504.15895)",
+    "Steering LLM Thinking with Budget Guidance (arXiv:2506.13752)",
+    "Optimizing Reasoning Efficiency through Prompt Difficulty Prediction (arXiv:2511.03808, NeurIPS 2025 Workshop)",
+    "BucketServe: Bucket-Based Dynamic Batching for Smart and Efficient LLM Inference Serving (arXiv:2507.17120)",
+    "Multi-Bin Batching for Increasing LLM Inference Throughput (arXiv:2412.04504)",
+    "Magnus: Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (arXiv:2406.04785)",
+    "Enabling Efficient Batch Serving for LMaaS via Generation Length Prediction (IEEE ICDCS 2024)",
+    "Efficient LLM Scheduling by Learning to Rank (NeurIPS 2024)",
+    "Robust Batch-Level Query Routing for Large Language Models under Cost and Capacity Constraints (arXiv:2603.26796)"
+  ],
+  "description": "Production deployments of reasoning models (DeepSeek-R1-Distill, Qwen3) in vLLM suffer two compounding inefficiencies from heterogeneous thinking trace lengths: operators must set a uniform thinking_token_budget for all requests, either wasting compute and delaying KV page release for easy requests, or forcing hard truncation for difficult ones; and long-thinking stragglers cause cascading KV cache preemption that reduces admission throughput for new requests. This work proposes a prompt-features-only thinking-budget classifier (ModernBERT-base, 149M params, ~5ms CPU, no LLM forward pass, black-box compatible) that predicts thinking budget class {≤256/≤512/≤1024/>1024 tokens} from TF-IDF entropy, dependency-parse depth, and problem-type embeddings, enabling per-request thinking_token_budget setting via vLLM's native API. Unlike Sonata (ICLR 2026) — which predicts thinking budgets from the reasoning model's last-layer hidden states via a prefilling-stage adapter and requires white-box model access — our classifier operates purely on prompt surface features, making it deployable as stateless middleware in front of any OpenAI-compatible vLLM endpoint where model internals are inaccessible. The predictability hypothesis rests on cross-domain classification (math/code vs. factual/knowledge) being tractable from surface features — distinct from within-domain difficulty ranking where arXiv:2602.09924 shows surface features underperform internal activations. An analytical break-even condition (A_min ≈ 65–70% balanced accuracy) defines an explicit go/no-go gate before full serving benchmarks; below this threshold, the system falls back to binary coarse domain routing. Classifier thresholds are biased toward over-prediction by default to minimize abort-and-requeue overhead. Experiments use vLLM v0.19.0+ with thinking_token_budget passed via SamplingParams; each run verifies enforcement before collecting measurements. A single vLLM instance handles all requests; an abort-and-requeue fallback recovers accuracy for under-predicted requests. The key ablation — thinking-budget-specific vs. total-output-length prediction on identical features — validates the cross-domain classification hypothesis against Magnus and EGTP. Targeting 1.5–2.0× throughput improvement over uniform thinking_token_budget baseline with under 2% accuracy degradation. Primary target: EMNLP 2026 Industry Track (direct submission, June 16, 2026 deadline). Resource: ~54 H100-hours (well within 200-hour budget).",
+  "project_name": "difficulty_bucket_router",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (all three blocking issues now addressed):**
+
+1. **Sonata added everywhere it needed to be** — `opportunity` section now opens with Sonata as the most direct comparison before mentioning EGTP/Predictive Scheduling; `landscape` section has a full Sonata entry as the first paragraph with the exact differentiation text the reviewer requested; `description` calls Sonata out by name; `key_references` lists it first; `approach` baselines add a Sonata-style oracle (upper-bound white-box comparison).
+
+2. **vLLM version pinned** — `approach` now specifies v0.19.0+ (v0.20.1 at time of writing), names the extra_args bug in vLLM ≤0.18.0, and requires per-run enforcement verification. Uses actual version numbers confirmed by research (PR #20859 merged into v0.19.0, April 3 2026).
+
+3. **BudgetThinker added** — one sentence in `landscape` distinguishing it as a fine-tuning-required approach incompatible with black-box deployment; added to `key_references`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e0b48b6-e198-4988-bd52-f13068900172",
+  "isSidechain": false,
+  "requestId": "req_011CasdouK9v5PoVaApKrdsG",
+  "type": "assistant",
+  "uuid": "76ce7566-59ad-42fc-af80-638bd0e0f168",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01VkBQ99WGYcsnTbmbcBkkdc",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3357,
+      "cache_read_input_tokens": 25765,
+      "output_tokens": 9326,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3357,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9326,
+          "cache_read_input_tokens": 25765,
+          "cache_creation_input_tokens": 3357,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3357
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Prompt-Only Thinking-Budget Classification for Per-Request thinking_to…",
+  "leafUuid": "76ce7566-59ad-42fc-af80-638bd0e0f168",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prompt-only thinking budget prediction for reasoning model serving efficiency",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"Prompt-Only Thinking-Budget Classification for Per-Request thinking_to…",
+  "leafUuid": "76ce7566-59ad-42fc-af80-638bd0e0f168",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prompt-only thinking budget prediction for reasoning model serving efficiency",
+  "sessionId": "51cc101a-f4af-41df-b8a3-35cf057dccbc"
+}
+```
+
+---

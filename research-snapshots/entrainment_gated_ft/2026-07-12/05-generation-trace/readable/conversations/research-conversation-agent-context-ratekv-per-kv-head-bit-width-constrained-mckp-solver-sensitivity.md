@@ -1,0 +1,6229 @@
+# Research conversation: <agent_context> 项目: ratekv — per-KV-head 非均匀 bit-width 分配研究。核心方法: constrained MCKP solver。核心发现: sensitivity heterogeneit
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 91
+- **Recorded user turns:** 1
+- **Tool calls:** 28
+- **Original source:** `logs/chats/exported-trajectories/account-1/58bdc259-e87b-4bcd-9240-582b3f124348.jsonl`
+- **Structured JSON:** [`63669f6a6067c616f3a0.json`](../../sessions/63/63669f6a6067c616f3a0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T18:56:39.861Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T18:56:39.861Z",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "content": "&lt;agent_context>\n项目: ratekv — per-KV-head 非均匀 bit-width 分配研究。核心方法: constrained MCKP solver。核心发现: sensitivity heterogeneity 的 distribution shape (spike vs spread) 决定效果，而非 GQA ratio。5 个模型验证：只有 Qwen (spread pattern) 受益，其余 4 个 (包括高 GQA 的 Yi-1.5 spike pattern) 均为 negative/marginal。\n&lt;/agent_context>\n\n&lt;project_context>\n# 项目: ratekv\n\n## 运行环境\n- 服务器名: westd-37397\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh westd-37397  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/ratekv\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：文献调研 — KV Cache 异质性分布形状 (Spike vs Spread)\n\n### 背景\n我们在做 per-KV-head mixed-precision quantization 研究。核心发现：MCKP 分配器的效果取决于 head sensitivity 异质性的\"分布形状\"，不仅仅是异质性的程度。具体发现：\n- Qwen2.5-7B (GQA 7:1): Layer-0 有 4 个 sensitive heads 组成 cluster (\"spread\" pattern, 26× dominance)。MCKP 可以差异化分配 → +27.3% PPL 改善\n- Yi-1.5-9B (GQA 8:1): L4H3 是单一极端 outlier (\"spike\" pattern, 34% of total delta)。尽管 GQA ratio 最高，MCKP 无法利用 → -1.3%\n\n关键洞察：GQA ratio 不是异质性的可靠 proxy。\"spike\"（单点集中）vs \"spread\"（cluster 分布）决定了 non-uniform 分配是否有效。\n\n### 调研目标\n搜索以下方向的相关文献：\n1. **KV cache quantization heterogeneity**: 是否有论文分析过 per-head 或 per-layer 量化 sensitivity 的分布特征？特别是 KIVI, GEAR, ARKV, RateQuant, FlexGen 等\n2. **Spike vs spread / outlier patterns in quantization**: 是否有论文讨论过单一 outlier vs 分散 cluster 对量化效果的不同影响？（不限于 KV cache，weight quantization 中也可能有类似讨论）\n3. **GQA ratio 与 quantization sensitivity 的关系**: 是否有论文研究过 GQA ratio 对量化友好性的影响？\n4. **Distribution shape metrics in sensitivity analysis**: 是否有论文用 concentration/Gini/CV 等指标来刻画量化 sensitivity 分布？\n\n### 输出要求\n产出文件写到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/spike_vs_spread_literature.md`，包含：\n- 每篇相关论文：标题、作者、年份、venue、与我们发现的关联\n- 分类：直接竞争者 / 方法组件 / 背景 / 评估\n- 结论：我们的 \"spike vs spread\" 分析是否有 novelty，还是已有先行者\n- 可引用的论文列表（供论文 related work 更新）\n\n### 搜索策略\n用 WebSearch 搜索：\n- \"KV cache quantization per-head sensitivity heterogeneity\"\n- \"mixed-precision quantization outlier distribution\"\n- \"GQA grouped query attention quantization\"\n- \"attention head importance distribution shape\"\n- arXiv 搜索 2023-2026 的相关论文"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T18:56:39.866Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T18:56:39.866Z",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+## Round 1
+
+89 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T18:56:39.899Z_
+
+&lt;agent_context>
+项目: ratekv — per-KV-head 非均匀 bit-width 分配研究。核心方法: constrained MCKP solver。核心发现: sensitivity heterogeneity 的 distribution shape (spike vs spread) 决定效果，而非 GQA ratio。5 个模型验证：只有 Qwen (spread pattern) 受益，其余 4 个 (包括高 GQA 的 Yi-1.5 spike pattern) 均为 negative/marginal。
+&lt;/agent_context>
+
+&lt;project_context>
+# 项目: ratekv
+
+## 运行环境
+- 服务器名: westd-37397
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh westd-37397  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/ratekv
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：文献调研 — KV Cache 异质性分布形状 (Spike vs Spread)
+
+### 背景
+我们在做 per-KV-head mixed-precision quantization 研究。核心发现：MCKP 分配器的效果取决于 head sensitivity 异质性的"分布形状"，不仅仅是异质性的程度。具体发现：
+- Qwen2.5-7B (GQA 7:1): Layer-0 有 4 个 sensitive heads 组成 cluster ("spread" pattern, 26× dominance)。MCKP 可以差异化分配 → +27.3% PPL 改善
+- Yi-1.5-9B (GQA 8:1): L4H3 是单一极端 outlier ("spike" pattern, 34% of total delta)。尽管 GQA ratio 最高，MCKP 无法利用 → -1.3%
+
+关键洞察：GQA ratio 不是异质性的可靠 proxy。"spike"（单点集中）vs "spread"（cluster 分布）决定了 non-uniform 分配是否有效。
+
+### 调研目标
+搜索以下方向的相关文献：
+1. **KV cache quantization heterogeneity**: 是否有论文分析过 per-head 或 per-layer 量化 sensitivity 的分布特征？特别是 KIVI, GEAR, ARKV, RateQuant, FlexGen 等
+2. **Spike vs spread / outlier patterns in quantization**: 是否有论文讨论过单一 outlier vs 分散 cluster 对量化效果的不同影响？（不限于 KV cache，weight quantization 中也可能有类似讨论）
+3. **GQA ratio 与 quantization sensitivity 的关系**: 是否有论文研究过 GQA ratio 对量化友好性的影响？
+4. **Distribution shape metrics in sensitivity analysis**: 是否有论文用 concentration/Gini/CV 等指标来刻画量化 sensitivity 分布？
+
+### 输出要求
+产出文件写到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/spike_vs_spread_literature.md`，包含：
+- 每篇相关论文：标题、作者、年份、venue、与我们发现的关联
+- 分类：直接竞争者 / 方法组件 / 背景 / 评估
+- 结论：我们的 "spike vs spread" 分析是否有 novelty，还是已有先行者
+- 可引用的论文列表（供论文 related work 更新）
+
+### 搜索策略
+用 WebSearch 搜索：
+- "KV cache quantization per-head sensitivity heterogeneity"
+- "mixed-precision quantization outlier distribution"
+- "GQA grouped query attention quantization"
+- "attention head importance distribution shape"
+- arXiv 搜索 2023-2026 的相关论文
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "9843a8b6-f3e8-422a-8336-bd681c935039",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T18:56:39.899Z_
+
+```json
+{
+  "parentUuid": "9843a8b6-f3e8-422a-8336-bd681c935039",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e8d060e6-6413-481a-90d5-9560e1764065",
+  "timestamp": "2026-05-14T18:56:39.899Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T18:56:39.899Z_
+
+```json
+{
+  "parentUuid": "e8d060e6-6413-481a-90d5-9560e1764065",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "ad6997e1-e0eb-4a71-bd34-b2ae86ab0bda",
+  "timestamp": "2026-05-14T18:56:39.899Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T18:56:39.899Z_
+
+```json
+{
+  "parentUuid": "ad6997e1-e0eb-4a71-bd34-b2ae86ab0bda",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "fdfca90e-1a6b-42c5-93ac-5fed9cd2dc70",
+  "timestamp": "2026-05-14T18:56:39.899Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T18:56:43.324Z_
+
+I'll conduct a literature survey on KV cache heterogeneity distribution shapes (spike vs spread) across multiple search queries in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fdfca90e-1a6b-42c5-93ac-5fed9cd2dc70",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yKFMDi7R2mxoVT1quw",
+  "type": "assistant",
+  "uuid": "bf4d1cb0-19c4-4d80-af21-c2e917f8ebd3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PbpZbGKYfhfAdMPGycVk2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12229,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12229,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12229,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12229
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T18:56:43.598Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KkRM1G7S5BnsnifTKf9DYk`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf4d1cb0-19c4-4d80-af21-c2e917f8ebd3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yKFMDi7R2mxoVT1quw",
+  "type": "assistant",
+  "uuid": "51f8e626-f1a5-4045-bf6a-5e60989b4842",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PbpZbGKYfhfAdMPGycVk2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12229,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12229,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 105,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12229,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12229
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T18:56:43.604Z_
+
+<details><summary>↩ Tool result · `toolu_01KkRM1G7S5BnsnifTKf9DYk`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51f8e626-f1a5-4045-bf6a-5e60989b4842",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "da3dbef1-b449-4da0-a13a-66152511f9f2",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "51f8e626-f1a5-4045-bf6a-5e60989b4842",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-14T18:56:46.890Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch multiple parallel web searches to cover the different aspects of the literature survey.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da3dbef1-b449-4da0-a13a-66152511f9f2",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yKXR7KJ81qAvpskv51",
+  "type": "assistant",
+  "uuid": "9ebf8795-b64d-403d-8fc1-4ac1b0951225",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nyrUs6nGscMjSf1BWkhhq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 633,
+      "cache_read_input_tokens": 24070,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 24070,
+          "cache_creation_input_tokens": 633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T18:56:47.611Z_
+
+Starting parallel literature searches across all four research directions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ebf8795-b64d-403d-8fc1-4ac1b0951225",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yKXR7KJ81qAvpskv51",
+  "type": "assistant",
+  "uuid": "37598745-cf68-4ca9-a46d-301b0a1e51dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nyrUs6nGscMjSf1BWkhhq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 633,
+      "cache_read_input_tokens": 24070,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 24070,
+          "cache_creation_input_tokens": 633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T18:56:47.898Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fk1DyJqbPuScHtEDQz3e9v`</summary>
+
+```json
+{
+  "query": "KV cache quantization per-head sensitivity heterogeneity mixed-precision"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "37598745-cf68-4ca9-a46d-301b0a1e51dd",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yKXR7KJ81qAvpskv51",
+  "type": "assistant",
+  "uuid": "2c5f140b-a3a0-453a-bab9-57c6d7ee2c75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nyrUs6nGscMjSf1BWkhhq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 633,
+      "cache_read_input_tokens": 24070,
+      "output_tokens": 112,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 633,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 112,
+          "cache_read_input_tokens": 24070,
+          "cache_creation_input_tokens": 633,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 633
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T18:56:57.901Z_
+
+<details><summary>↩ Tool result · `toolu_01Fk1DyJqbPuScHtEDQz3e9v`</summary>
+
+```text
+Web search results for query: "KV cache quantization per-head sensitivity heterogeneity mixed-precision"
+
+Links: [{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"KV Cache Optimization in Transformers","url":"https://www.emergentmind.com/topics/kv-cache-optimization"},{"title":"Optimizing Inference for Long Context and Large Batch Sizes with NVFP4 KV Cache | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/optimizing-inference-for-long-context-and-large-batch-sizes-with-nvfp4-kv-cache/"},{"title":"GitHub - cmd2001/KVTuner: KVTuner: Sensitivity-Aware Layer-wise Mixed Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://github.com/cmd2001/KVTuner"},{"title":"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://arxiv.org/html/2502.04420v5"},{"title":"Unlocking Longer Generation with Key-Value Cache Quantization","url":"https://huggingface.co/blog/kv-cache-quantization"},{"title":"[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/abs/2605.06675"},{"title":"Quantized KV Cache - vLLM","url":"https://docs.vllm.ai/en/latest/features/quantization/quantized_kvcache/"},{"title":"ICML Poster KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://icml.cc/virtual/2025/poster/43487"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"}]
+
+Based on the web search results, here's a comprehensive overview of the research on KV cache quantization with per-head sensitivity heterogeneity and mixed-precision approaches:
+
+## Key Findings on Per-Head Sensitivity Heterogeneity
+
+Current quantizers apply uniform bit-widths to every attention head, ignoring the well-documented heterogeneity of head importance. This heterogeneity presents both a challenge and an opportunity for optimization.
+
+## Mixed-Precision Approaches
+
+The rate-distortion framework formalizes mixed-precision KV quantization as weighted distortion minimization, and the achievable distortion reduction equals the ratio of arithmetic to geometric mean (AM/GM) of head sensitivities.
+
+Two notable methods exemplifying this approach are:
+
+**RateQuant:** All current quantizers assign the same bit-width to every attention head, and a natural idea is to allocate more bits to important heads and fewer to the rest. However, each quantizer follows a different distortion curve, and the decay rate varies from 3.6 to 5.3 across quantizer designs, so applying one quantizer's distortion model to another inverts the allocation order and makes performance worse than uniform quantization. Calibrated RateQuant reduces KIVI's perplexity at 2.5 bits from 49.3 to 14.9 (70% reduction).
+
+**KVTuner:** This framework adaptively searches for optimal hardware-friendly layer-wise KV quantization precision pairs, achieving nearly lossless 3.25-bit mixed precision KV cache quantization for Llama-3.1-8B-Instruct and 4.0-bit for sensitive models like Qwen2.5-7B-Instruct.
+
+## Key Insights on Sensitivity Patterns
+
+Heads with high KV cache quantization errors typically exhibit non-sparse attention patterns, and the key cache plays a more critical role than the value cache during quantization, which can be leveraged to optimize memory usage while maintaining model effectiveness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c5f140b-a3a0-453a-bab9-57c6d7ee2c75",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "50f3b9c2-7664-4401-a948-d08f4ee7cd15",
+  "toolUseResult": {
+    "query": "KV cache quantization per-head sensitivity heterogeneity mixed-precision",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0118RzNMvTXqBdFumC4UkvYA",
+        "content": [
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "KV Cache Optimization in Transformers",
+            "url": "https://www.emergentmind.com/topics/kv-cache-optimization"
+          },
+          {
+            "title": "Optimizing Inference for Long Context and Large Batch Sizes with NVFP4 KV Cache | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/optimizing-inference-for-long-context-and-large-batch-sizes-with-nvfp4-kv-cache/"
+          },
+          {
+            "title": "GitHub - cmd2001/KVTuner: KVTuner: Sensitivity-Aware Layer-wise Mixed Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://github.com/cmd2001/KVTuner"
+          },
+          {
+            "title": "KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://arxiv.org/html/2502.04420v5"
+          },
+          {
+            "title": "Unlocking Longer Generation with Key-Value Cache Quantization",
+            "url": "https://huggingface.co/blog/kv-cache-quantization"
+          },
+          {
+            "title": "[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/abs/2605.06675"
+          },
+          {
+            "title": "Quantized KV Cache - vLLM",
+            "url": "https://docs.vllm.ai/en/latest/features/quantization/quantized_kvcache/"
+          },
+          {
+            "title": "ICML Poster KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://icml.cc/virtual/2025/poster/43487"
+          },
+          {
+            "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"
+          }
+        ]
+      },
+      "Based on the web search results, here's a comprehensive overview of the research on KV cache quantization with per-head sensitivity heterogeneity and mixed-precision approaches:\n\n## Key Findings on Per-Head Sensitivity Heterogeneity\n\nCurrent quantizers apply uniform bit-widths to every attention head, ignoring the well-documented heterogeneity of head importance. This heterogeneity presents both a challenge and an opportunity for optimization.\n\n## Mixed-Precision Approaches\n\nThe rate-distortion framework formalizes mixed-precision KV quantization as weighted distortion minimization, and the achievable distortion reduction equals the ratio of arithmetic to geometric mean (AM/GM) of head sensitivities.\n\nTwo notable methods exemplifying this approach are:\n\n**RateQuant:** All current quantizers assign the same bit-width to every attention head, and a natural idea is to allocate more bits to important heads and fewer to the rest. However, each quantizer follows a different distortion curve, and the decay rate varies from 3.6 to 5.3 across quantizer designs, so applying one quantizer's distortion model to another inverts the allocation order and makes performance worse than uniform quantization. Calibrated RateQuant reduces KIVI's perplexity at 2.5 bits from 49.3 to 14.9 (70% reduction).\n\n**KVTuner:** This framework adaptively searches for optimal hardware-friendly layer-wise KV quantization precision pairs, achieving nearly lossless 3.25-bit mixed precision KV cache quantization for Llama-3.1-8B-Instruct and 4.0-bit for sensitive models like Qwen2.5-7B-Instruct.\n\n## Key Insights on Sensitivity Patterns\n\nHeads with high KV cache quantization errors typically exhibit non-sparse attention patterns, and the key cache plays a more critical role than the value cache during quantization, which can be leveraged to optimize memory usage while maintaining model effectiveness."
+    ],
+    "durationSeconds": 9.997916762
+  },
+  "sourceToolAssistantUUID": "2c5f140b-a3a0-453a-bab9-57c6d7ee2c75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T18:57:01.461Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019A1W4N35VVxeW8MLWx2ivt`</summary>
+
+```json
+{
+  "query": "KIVI GEAR ARKV per-head quantization sensitivity distribution analysis 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50f3b9c2-7664-4401-a948-d08f4ee7cd15",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yLaGnTBqnRzdhVgZDb",
+  "type": "assistant",
+  "uuid": "794b85fc-0036-4e42-a479-53e06e46fd11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Maqbjv6Qr8nzs5rtxXURWn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1230,
+      "cache_read_input_tokens": 24703,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1230,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 24703,
+          "cache_creation_input_tokens": 1230,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1230
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T18:57:08.743Z_
+
+<details><summary>↩ Tool result · `toolu_019A1W4N35VVxeW8MLWx2ivt`</summary>
+
+```text
+Web search results for query: "KIVI GEAR ARKV per-head quantization sensitivity distribution analysis 2024 2025"
+
+Links: [{"title":"[2402.02750] KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache","url":"https://arxiv.org/abs/2402.02750"},{"title":"GitHub - jy-yuan/KIVI: [ICML 2024] KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache · GitHub","url":"https://github.com/jy-yuan/KIVI"},{"title":"KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache","url":"https://arxiv.org/html/2402.02750v2"},{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"KIVI: a tuning-free asymmetric 2bit quantization for KV cache","url":"https://dl.acm.org/doi/10.5555/3692070.3693381"},{"title":"[PDF] KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache | Semantic Scholar","url":"https://www.semanticscholar.org/paper/KIVI:-A-Tuning-Free-Asymmetric-2bit-Quantization-KV-Liu-Yuan/a3e000e0d7f64c1d094c2a8bf6f43992cbabe91b"},{"title":"KITTY: ACCURATE AND EFFICIENT 2-BIT KV CACHE QUANTIZATION WITH","url":"https://www.arxiv.org/pdf/2511.18643"},{"title":"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://arxiv.org/html/2502.04420"},{"title":"[2402.02750v2] KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache","url":"https://arxiv.org/abs/2402.02750v2"},{"title":"(PDF) KIVI : Plug-and-play 2bit KV Cache Quantization with Streaming Asymmetric Quantization","url":"https://www.researchgate.net/publication/376831635_KIVI_Plug-and-play_2bit_KV_Cache_Quantization_with_Streaming_Asymmetric_Quantization"}]
+
+Based on the search results, I found information about KIVI and related quantization work, though I did not find specific results matching "ARKV" in the search. Here's what I found:
+
+## KIVI: Per-Head Quantization Sensitivity Analysis
+
+The KIVI research conducted a comprehensive study on the element distribution in KV cache of popular LLMs. The findings indicate that the key cache should be quantized per-channel, while the value cache should be quantized per-token. From this analysis, they developed a tuning-free 2bit KV cache quantization algorithm named KIVI.
+
+## Recent Related Work (2025)
+
+More recent research has expanded on KIVI's approach. Gradient-based head importance yields a 1.07 PPL improvement over activation-based importance at 3.5 bits. Additionally, per-head sensitivity for gradient-based methods shows a U-shaped pattern (early and late layers sensitive), while activation-based sensitivity is monotonically increasing.
+
+Channel-wise sensitivity is a principled and scalable approach to restoring accuracy under aggressive quantization, with channel-wise precision boost being an effective strategy to mitigate accuracy loss from aggressive KV quantization.
+
+**Note:** My search did not return specific results for "ARKV" mentioned in your query. If ARKV is a specific method or paper, you may want to search for it separately or provide additional context about what ARKV refers to.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "794b85fc-0036-4e42-a479-53e06e46fd11",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "ec0a225c-577f-462e-a750-066cb505d8ef",
+  "toolUseResult": {
+    "query": "KIVI GEAR ARKV per-head quantization sensitivity distribution analysis 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017nt6JPion3k3imzmw8gd4H",
+        "content": [
+          {
+            "title": "[2402.02750] KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache",
+            "url": "https://arxiv.org/abs/2402.02750"
+          },
+          {
+            "title": "GitHub - jy-yuan/KIVI: [ICML 2024] KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache · GitHub",
+            "url": "https://github.com/jy-yuan/KIVI"
+          },
+          {
+            "title": "KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache",
+            "url": "https://arxiv.org/html/2402.02750v2"
+          },
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "KIVI: a tuning-free asymmetric 2bit quantization for KV cache",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3693381"
+          },
+          {
+            "title": "[PDF] KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/KIVI:-A-Tuning-Free-Asymmetric-2bit-Quantization-KV-Liu-Yuan/a3e000e0d7f64c1d094c2a8bf6f43992cbabe91b"
+          },
+          {
+            "title": "KITTY: ACCURATE AND EFFICIENT 2-BIT KV CACHE QUANTIZATION WITH",
+            "url": "https://www.arxiv.org/pdf/2511.18643"
+          },
+          {
+            "title": "KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://arxiv.org/html/2502.04420"
+          },
+          {
+            "title": "[2402.02750v2] KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache",
+            "url": "https://arxiv.org/abs/2402.02750v2"
+          },
+          {
+            "title": "(PDF) KIVI : Plug-and-play 2bit KV Cache Quantization with Streaming Asymmetric Quantization",
+            "url": "https://www.researchgate.net/publication/376831635_KIVI_Plug-and-play_2bit_KV_Cache_Quantization_with_Streaming_Asymmetric_Quantization"
+          }
+        ]
+      },
+      "Based on the search results, I found information about KIVI and related quantization work, though I did not find specific results matching \"ARKV\" in the search. Here's what I found:\n\n## KIVI: Per-Head Quantization Sensitivity Analysis\n\nThe KIVI research conducted a comprehensive study on the element distribution in KV cache of popular LLMs. The findings indicate that the key cache should be quantized per-channel, while the value cache should be quantized per-token. From this analysis, they developed a tuning-free 2bit KV cache quantization algorithm named KIVI.\n\n## Recent Related Work (2025)\n\nMore recent research has expanded on KIVI's approach. Gradient-based head importance yields a 1.07 PPL improvement over activation-based importance at 3.5 bits. Additionally, per-head sensitivity for gradient-based methods shows a U-shaped pattern (early and late layers sensitive), while activation-based sensitivity is monotonically increasing.\n\nChannel-wise sensitivity is a principled and scalable approach to restoring accuracy under aggressive quantization, with channel-wise precision boost being an effective strategy to mitigate accuracy loss from aggressive KV quantization.\n\n**Note:** My search did not return specific results for \"ARKV\" mentioned in your query. If ARKV is a specific method or paper, you may want to search for it separately or provide additional context about what ARKV refers to."
+    ],
+    "durationSeconds": 7.277610165000002
+  },
+  "sourceToolAssistantUUID": "794b85fc-0036-4e42-a479-53e06e46fd11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ec0a225c-577f-462e-a750-066cb505d8ef",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T18:57:11.428Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016nLwsC2H9vfrvPQya7TR4c`</summary>
+
+```json
+{
+  "query": "mixed-precision quantization outlier distribution spike pattern weight activation 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec0a225c-577f-462e-a750-066cb505d8ef",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yMNnWEyRppeHQnDGo1",
+  "type": "assistant",
+  "uuid": "974bb3df-c2ba-431b-802d-dc671372aec6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018cJGzCPuHR581SQQasHeRM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1081,
+      "cache_read_input_tokens": 25933,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1081,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 25933,
+          "cache_creation_input_tokens": 1081,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1081
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T18:57:19.713Z_
+
+<details><summary>↩ Tool result · `toolu_016nLwsC2H9vfrvPQya7TR4c`</summary>
+
+```text
+Web search results for query: "mixed-precision quantization outlier distribution spike pattern weight activation 2024 2025"
+
+Links: [{"title":"Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models","url":"https://arxiv.org/html/2504.21553v1"},{"title":"Precision Where It Matters: A Novel Spike","url":"https://arxiv.org/pdf/2504.21553"},{"title":"Mixed-Precision Quantization for Language Models: Techniques and Prospects","url":"https://arxiv.org/html/2510.16805v1"},{"title":"MUXQ: Mixed-to-Uniform Precision MatriX Quantization via Low-Rank Outlier Decomposition","url":"https://arxiv.org/html/2604.04701"},{"title":"Channel-Wise Mixed-Precision Quantization for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=M8uf26TbrC"},{"title":"Channel-Wise Mixed-Precision Quantization for Large Language Models","url":"https://arxiv.org/html/2410.13056v3"},{"title":"[2410.13056] Channel-Wise Mixed-Precision Quantization for Large Language Models","url":"https://arxiv.org/abs/2410.13056"},{"title":"MPQ-DM: Mixed Precision Quantization for Extremely Low Bit Diffusion Models","url":"https://arxiv.org/html/2412.11549"},{"title":"GitHub - Zhen-Dong/Awesome-Quantization-Papers: List of papers related to neural network quantization in recent AI conferences and journals. · GitHub","url":"https://github.com/Zhen-Dong/Awesome-Quantization-Papers"},{"title":"IMPQ: Interaction-Aware Layerwise Mixed Precision Quantization for LLMs | Request PDF","url":"https://www.researchgate.net/publication/395709431_IMPQ_Interaction-Aware_Layerwise_Mixed_Precision_Quantization_for_LLMs"}]
+
+Here are the search results for mixed-precision quantization with focus on outlier distribution and spike patterns in weights and activations from 2024-2025:
+
+## Key Findings
+
+**Recent Research on Spike-Aware Quantization:**
+
+Recent work challenges existing assumptions about activation outliers in LLMs and proposes novel mixed-precision quantization approaches tailored for LLaMA-like models. A key observation is that activation spikes in LLaMA architectures are predominantly concentrated in specific projection layers.
+
+**Outlier Distribution Patterns:**
+
+Activations often exhibit outliers—extremely high compared to the typical range—and these outliers can distort the scale used for quantization, leading to significant information loss and degradation in model performance. Research shows that outliers exhibit a channel-wise pattern: if an outlier appears in a channel, it consistently occurs across all tokens.
+
+**Channel-Wise Mixed-Precision Approaches:**
+
+Channel-Wise Mixed-Precision Quantization (CMPQ) allocates quantization precision in a channel-wise pattern based on activation distributions and can adapt to any bit-width constraint by assigning different precision levels to different weight channels.
+
+**Outlier Handling Strategies:**
+
+Recent techniques include applying permutations and orthogonal transformations (such as randomized Hadamard matrices) to uniformly redistribute activation energy and suppress large outliers that typically impede low-bit quantization.
+
+The search results include multiple papers from late 2024 and early 2025 addressing spike patterns and outlier distribution in quantization, particularly for large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "974bb3df-c2ba-431b-802d-dc671372aec6",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "9b4b213f-74aa-439d-9fc0-3a0348b31a04",
+  "toolUseResult": {
+    "query": "mixed-precision quantization outlier distribution spike pattern weight activation 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WT9BR8Zz3wjZHd8QKpbJ6N",
+        "content": [
+          {
+            "title": "Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models",
+            "url": "https://arxiv.org/html/2504.21553v1"
+          },
+          {
+            "title": "Precision Where It Matters: A Novel Spike",
+            "url": "https://arxiv.org/pdf/2504.21553"
+          },
+          {
+            "title": "Mixed-Precision Quantization for Language Models: Techniques and Prospects",
+            "url": "https://arxiv.org/html/2510.16805v1"
+          },
+          {
+            "title": "MUXQ: Mixed-to-Uniform Precision MatriX Quantization via Low-Rank Outlier Decomposition",
+            "url": "https://arxiv.org/html/2604.04701"
+          },
+          {
+            "title": "Channel-Wise Mixed-Precision Quantization for Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=M8uf26TbrC"
+          },
+          {
+            "title": "Channel-Wise Mixed-Precision Quantization for Large Language Models",
+            "url": "https://arxiv.org/html/2410.13056v3"
+          },
+          {
+            "title": "[2410.13056] Channel-Wise Mixed-Precision Quantization for Large Language Models",
+            "url": "https://arxiv.org/abs/2410.13056"
+          },
+          {
+            "title": "MPQ-DM: Mixed Precision Quantization for Extremely Low Bit Diffusion Models",
+            "url": "https://arxiv.org/html/2412.11549"
+          },
+          {
+            "title": "GitHub - Zhen-Dong/Awesome-Quantization-Papers: List of papers related to neural network quantization in recent AI conferences and journals. · GitHub",
+            "url": "https://github.com/Zhen-Dong/Awesome-Quantization-Papers"
+          },
+          {
+            "title": "IMPQ: Interaction-Aware Layerwise Mixed Precision Quantization for LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/395709431_IMPQ_Interaction-Aware_Layerwise_Mixed_Precision_Quantization_for_LLMs"
+          }
+        ]
+      },
+      "Here are the search results for mixed-precision quantization with focus on outlier distribution and spike patterns in weights and activations from 2024-2025:\n\n## Key Findings\n\n**Recent Research on Spike-Aware Quantization:**\n\nRecent work challenges existing assumptions about activation outliers in LLMs and proposes novel mixed-precision quantization approaches tailored for LLaMA-like models. A key observation is that activation spikes in LLaMA architectures are predominantly concentrated in specific projection layers.\n\n**Outlier Distribution Patterns:**\n\nActivations often exhibit outliers—extremely high compared to the typical range—and these outliers can distort the scale used for quantization, leading to significant information loss and degradation in model performance. Research shows that outliers exhibit a channel-wise pattern: if an outlier appears in a channel, it consistently occurs across all tokens.\n\n**Channel-Wise Mixed-Precision Approaches:**\n\nChannel-Wise Mixed-Precision Quantization (CMPQ) allocates quantization precision in a channel-wise pattern based on activation distributions and can adapt to any bit-width constraint by assigning different precision levels to different weight channels.\n\n**Outlier Handling Strategies:**\n\nRecent techniques include applying permutations and orthogonal transformations (such as randomized Hadamard matrices) to uniformly redistribute activation energy and suppress large outliers that typically impede low-bit quantization.\n\nThe search results include multiple papers from late 2024 and early 2025 addressing spike patterns and outlier distribution in quantization, particularly for large language models."
+    ],
+    "durationSeconds": 8.281239070999996
+  },
+  "sourceToolAssistantUUID": "974bb3df-c2ba-431b-802d-dc671372aec6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T18:57:22.798Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016KjhwzZ3kPUhxJwUPhND1e`</summary>
+
+```json
+{
+  "query": "grouped query attention GQA quantization sensitivity relationship 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b4b213f-74aa-439d-9fc0-3a0348b31a04",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yNBW8HdQWuDHthP1WU",
+  "type": "assistant",
+  "uuid": "9c14ffa7-76ca-412d-9e48-f2c28054d416",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PnLyPdPDRpyoF5kAuQH7a",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 969,
+      "cache_read_input_tokens": 27014,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 969,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 27014,
+          "cache_creation_input_tokens": 969,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 969
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T18:57:31.460Z_
+
+<details><summary>↩ Tool result · `toolu_016KjhwzZ3kPUhxJwUPhND1e`</summary>
+
+```text
+Web search results for query: "grouped query attention GQA quantization sensitivity relationship 2024 2025"
+
+Links: [{"title":"What is grouped query attention (GQA)?","url":"https://www.ibm.com/think/topics/grouped-query-attention"},{"title":"Grouped Query Attention (GQA)","url":"https://www.intel.com/content/www/us/en/docs/onednn/developer-guide-reference/2025-2/grouped-query-attention-gqa.html"},{"title":"GQA: Training Generalized Multi-Query Transformer Models from","url":"https://arxiv.org/pdf/2305.13245"},{"title":"Grouped-Query Attention Overview","url":"https://www.emergentmind.com/topics/group-query-attention-gqa"},{"title":"[2305.13245] GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints","url":"https://arxiv.org/abs/2305.13245"},{"title":"Grouped-Query Attention (GQA) | Sebastian Raschka, PhD","url":"https://sebastianraschka.com/llms-from-scratch/ch04/04_gqa/"},{"title":"GQA: Grouped-Query Attention Mechanism","url":"https://www.emergentmind.com/topics/grouped-query-attention-gqa-acfc7925-cf00-49f8-9689-c36c53c77e10"},{"title":"Grouped Query Attention (GQA) - GeeksforGeeks","url":"https://www.geeksforgeeks.org/deep-learning/grouped-query-attention-gqa/"},{"title":"Attention Mechanisms in Transformers: Comparing MHA, MQA, and GQA | Yue Shui Blog","url":"https://syhya.github.io/posts/2025-01-16-group-query-attention/"},{"title":"Demystifying GQA — Grouped Query Attention for Efficient LLM Pre-training | by Bhavin Jawade, Ph.D | TDS Archive | Medium","url":"https://medium.com/data-science/demystifying-gqa-grouped-query-attention-3fb97b678e4a"}]
+
+I found comprehensive search results on Grouped Query Attention (GQA). Here's what the recent research shows about GQA and its relationship to quantization and other optimization techniques:
+
+## Overview of GQA
+
+Grouped query attention aims to balance the tradeoffs between standard multi-head attention and multi-query attention. Following the publication of "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints" in May 2023, many LLMs quickly adopted GQA, including Meta's Llama 2 models in July 2023 and Llama 3 models released in 2024.
+
+## GQA and Quantization Compatibility
+
+The search results indicate that GQA interacts well with further cache quantization, paging, and memory fragmentation avoidance, and can be combined with cross-layer attention or advanced memory scheduling. This suggests that GQA and quantization techniques are complementary approaches for model efficiency.
+
+## Recent Developments (2024-2025)
+
+Recent research has explored refinements to GQA's grouping mechanisms:
+
+- Quality- and Capacity-Aware Grouping (QCQA) employs an evolutionary algorithm to discover groupings that minimize loss in accuracy under a KV-cache constraint, achieving up to 20% higher accuracy at equal cache size to naive GQA, and up to 40% reduction in KV size for the same accuracy.
+
+- Key-Driven and Dynamic Grouped GQA (KDGQA/DGQA) mechanisms assign more queries to key heads with higher L₂ norm, interpreted as more "important".
+
+## Trade-offs
+
+The choice of the number of groups presents a trade-off: more groups (closer to MHA) result in higher quality but slower performance, whereas fewer groups (near to MQA) boost speed at the risk of sacrificing quality.
+
+The search results suggest that quantization techniques and GQA variants like QCQA represent the current frontier of research into sensitivity relationships and efficient model deployment in 2024-2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c14ffa7-76ca-412d-9e48-f2c28054d416",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "e1c61223-e5b0-4ae0-861a-90cb5b43beab",
+  "toolUseResult": {
+    "query": "grouped query attention GQA quantization sensitivity relationship 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TYWcKt1A2ZxCrhRMfgVTHJ",
+        "content": [
+          {
+            "title": "What is grouped query attention (GQA)?",
+            "url": "https://www.ibm.com/think/topics/grouped-query-attention"
+          },
+          {
+            "title": "Grouped Query Attention (GQA)",
+            "url": "https://www.intel.com/content/www/us/en/docs/onednn/developer-guide-reference/2025-2/grouped-query-attention-gqa.html"
+          },
+          {
+            "title": "GQA: Training Generalized Multi-Query Transformer Models from",
+            "url": "https://arxiv.org/pdf/2305.13245"
+          },
+          {
+            "title": "Grouped-Query Attention Overview",
+            "url": "https://www.emergentmind.com/topics/group-query-attention-gqa"
+          },
+          {
+            "title": "[2305.13245] GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints",
+            "url": "https://arxiv.org/abs/2305.13245"
+          },
+          {
+            "title": "Grouped-Query Attention (GQA) | Sebastian Raschka, PhD",
+            "url": "https://sebastianraschka.com/llms-from-scratch/ch04/04_gqa/"
+          },
+          {
+            "title": "GQA: Grouped-Query Attention Mechanism",
+            "url": "https://www.emergentmind.com/topics/grouped-query-attention-gqa-acfc7925-cf00-49f8-9689-c36c53c77e10"
+          },
+          {
+            "title": "Grouped Query Attention (GQA) - GeeksforGeeks",
+            "url": "https://www.geeksforgeeks.org/deep-learning/grouped-query-attention-gqa/"
+          },
+          {
+            "title": "Attention Mechanisms in Transformers: Comparing MHA, MQA, and GQA | Yue Shui Blog",
+            "url": "https://syhya.github.io/posts/2025-01-16-group-query-attention/"
+          },
+          {
+            "title": "Demystifying GQA — Grouped Query Attention for Efficient LLM Pre-training | by Bhavin Jawade, Ph.D | TDS Archive | Medium",
+            "url": "https://medium.com/data-science/demystifying-gqa-grouped-query-attention-3fb97b678e4a"
+          }
+        ]
+      },
+      "I found comprehensive search results on Grouped Query Attention (GQA). Here's what the recent research shows about GQA and its relationship to quantization and other optimization techniques:\n\n## Overview of GQA\n\nGrouped query attention aims to balance the tradeoffs between standard multi-head attention and multi-query attention. Following the publication of \"GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints\" in May 2023, many LLMs quickly adopted GQA, including Meta's Llama 2 models in July 2023 and Llama 3 models released in 2024.\n\n## GQA and Quantization Compatibility\n\nThe search results indicate that GQA interacts well with further cache quantization, paging, and memory fragmentation avoidance, and can be combined with cross-layer attention or advanced memory scheduling. This suggests that GQA and quantization techniques are complementary approaches for model efficiency.\n\n## Recent Developments (2024-2025)\n\nRecent research has explored refinements to GQA's grouping mechanisms:\n\n- Quality- and Capacity-Aware Grouping (QCQA) employs an evolutionary algorithm to discover groupings that minimize loss in accuracy under a KV-cache constraint, achieving up to 20% higher accuracy at equal cache size to naive GQA, and up to 40% reduction in KV size for the same accuracy.\n\n- Key-Driven and Dynamic Grouped GQA (KDGQA/DGQA) mechanisms assign more queries to key heads with higher L₂ norm, interpreted as more \"important\".\n\n## Trade-offs\n\nThe choice of the number of groups presents a trade-off: more groups (closer to MHA) result in higher quality but slower performance, whereas fewer groups (near to MQA) boost speed at the risk of sacrificing quality.\n\nThe search results suggest that quantization techniques and GQA variants like QCQA represent the current frontier of research into sensitivity relationships and efficient model deployment in 2024-2025."
+    ],
+    "durationSeconds": 8.656561374000004
+  },
+  "sourceToolAssistantUUID": "9c14ffa7-76ca-412d-9e48-f2c28054d416",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T18:57:37.885Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GYovnheDStPmNssRp1RSBo`</summary>
+
+```json
+{
+  "query": "attention head importance distribution Gini coefficient concentration metric quantization sensitivity"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1c61223-e5b0-4ae0-861a-90cb5b43beab",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yP3kKo33hXfmJeESUY",
+  "type": "assistant",
+  "uuid": "d4b5c260-46c5-4b37-9348-1675d567d15d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016cNKruBUQ6X2gaWksPriSm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1105,
+      "cache_read_input_tokens": 27983,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 27983,
+          "cache_creation_input_tokens": 1105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T18:57:46.037Z_
+
+<details><summary>↩ Tool result · `toolu_01GYovnheDStPmNssRp1RSBo`</summary>
+
+```text
+Web search results for query: "attention head importance distribution Gini coefficient concentration metric quantization sensitivity"
+
+Links: [{"title":"Mix-QViT: Mixed-Precision Vision Transformer Quantization Driven by Layer Importance and Quantization Sensitivity","url":"https://arxiv.org/html/2501.06357v1"},{"title":"(PDF) Exploring Layer-wise Information Effectiveness for ...","url":"https://arxiv.org/pdf/2508.03332"},{"title":"Gini Coefficient - an overview | ScienceDirect Topics","url":"https://www.sciencedirect.com/topics/social-sciences/gini-coefficient"},{"title":"APTQ: Attention-aware Post-Training Mixed-Precision ...","url":"https://dl.acm.org/doi/pdf/10.1145/3649329.3658498?download=true"},{"title":"Measuring inequality: what is the Gini coefficient? - Our World in Data","url":"https://ourworldindata.org/what-is-the-gini-coefficient"},{"title":"Predicting Attention Sparsity in Transformers","url":"https://aclanthology.org/2022.spnlp-1.7.pdf"},{"title":"FIT: A METRIC FOR MODEL SENSITIVITY","url":"https://openreview.net/pdf?id=PDG4-Y3aboN"},{"title":"Concentration indicators","url":"https://www.bis.org/ifc/events/6ifcconf/avilaetal.pdf"},{"title":"Mix-QSAM: Mixed-Precision Quantization of the Segment Anything Model","url":"https://openaccess.thecvf.com/content/CVPR2025W/eLVM/papers/Ranjan_Mix-QSAM_Mixed-Precision_Quantization_of_the_Segment_Anything_Model_CVPRW_2025_paper.pdf"},{"title":"Gini coefficient - Wikipedia","url":"https://en.wikipedia.org/wiki/Gini_coefficient"}]
+
+I've completed the web search for your query. Here are the key findings from the search results:
+
+## Results Summary
+
+The search returned relevant papers on attention head importance, quantization, and sensitivity metrics:
+
+### 1. **Attention-Aware Quantization Methods**
+Recent research proposes mixed-precision quantization strategies for Vision Transformers (ViTs) guided by two complementary scores: an explainability-based layer importance score (derived using Layer-wise Relevance Propagation), and a quantization sensitivity score that captures how each layer's performance changes under different bit configurations.
+
+### 2. **Information Concentration Metrics**
+Representational compactness provides a smooth, differentiable measure of information concentration: when singular values are uniformly distributed, compactness is high (indicating redundant representations), but when a few singular values dominate, compactness is low (suggesting concentrated, sensitive representations).
+
+### 3. **Gini Entropy in Attention Distributions**
+The α-entmax transformation generalizes the Shannon and Gini entropies, with different values of α allowing control over attention sparsity.
+
+### 4. **Quantization Sensitivity Analysis**
+Understanding which groups of parameters and activations are more sensitive to quantization than others is critical. Methods which explicitly capture the sensitivity or importance of layers in the network present improved performance, with previous works employing the Hessian as a sensitivity measure.
+
+### 5. **Gini Coefficient as a Concentration Metric**
+The Gini coefficient is a measure of inequality that quantifies the deviation of a distribution from perfect equality, ranging from 0 (complete equality) to 1 (complete inequality).
+
+These results show active research into measuring attention head importance through various concentration and sensitivity metrics for optimizing neural network quantization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4b5c260-46c5-4b37-9348-1675d567d15d",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "494b565b-ce8d-4731-a499-7932f29f0d25",
+  "toolUseResult": {
+    "query": "attention head importance distribution Gini coefficient concentration metric quantization sensitivity",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PAiDCq2hhw3Xx9U6ehqwZK",
+        "content": [
+          {
+            "title": "Mix-QViT: Mixed-Precision Vision Transformer Quantization Driven by Layer Importance and Quantization Sensitivity",
+            "url": "https://arxiv.org/html/2501.06357v1"
+          },
+          {
+            "title": "(PDF) Exploring Layer-wise Information Effectiveness for ...",
+            "url": "https://arxiv.org/pdf/2508.03332"
+          },
+          {
+            "title": "Gini Coefficient - an overview | ScienceDirect Topics",
+            "url": "https://www.sciencedirect.com/topics/social-sciences/gini-coefficient"
+          },
+          {
+            "title": "APTQ: Attention-aware Post-Training Mixed-Precision ...",
+            "url": "https://dl.acm.org/doi/pdf/10.1145/3649329.3658498?download=true"
+          },
+          {
+            "title": "Measuring inequality: what is the Gini coefficient? - Our World in Data",
+            "url": "https://ourworldindata.org/what-is-the-gini-coefficient"
+          },
+          {
+            "title": "Predicting Attention Sparsity in Transformers",
+            "url": "https://aclanthology.org/2022.spnlp-1.7.pdf"
+          },
+          {
+            "title": "FIT: A METRIC FOR MODEL SENSITIVITY",
+            "url": "https://openreview.net/pdf?id=PDG4-Y3aboN"
+          },
+          {
+            "title": "Concentration indicators",
+            "url": "https://www.bis.org/ifc/events/6ifcconf/avilaetal.pdf"
+          },
+          {
+            "title": "Mix-QSAM: Mixed-Precision Quantization of the Segment Anything Model",
+            "url": "https://openaccess.thecvf.com/content/CVPR2025W/eLVM/papers/Ranjan_Mix-QSAM_Mixed-Precision_Quantization_of_the_Segment_Anything_Model_CVPRW_2025_paper.pdf"
+          },
+          {
+            "title": "Gini coefficient - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Gini_coefficient"
+          }
+        ]
+      },
+      "I've completed the web search for your query. Here are the key findings from the search results:\n\n## Results Summary\n\nThe search returned relevant papers on attention head importance, quantization, and sensitivity metrics:\n\n### 1. **Attention-Aware Quantization Methods**\nRecent research proposes mixed-precision quantization strategies for Vision Transformers (ViTs) guided by two complementary scores: an explainability-based layer importance score (derived using Layer-wise Relevance Propagation), and a quantization sensitivity score that captures how each layer's performance changes under different bit configurations.\n\n### 2. **Information Concentration Metrics**\nRepresentational compactness provides a smooth, differentiable measure of information concentration: when singular values are uniformly distributed, compactness is high (indicating redundant representations), but when a few singular values dominate, compactness is low (suggesting concentrated, sensitive representations).\n\n### 3. **Gini Entropy in Attention Distributions**\nThe α-entmax transformation generalizes the Shannon and Gini entropies, with different values of α allowing control over attention sparsity.\n\n### 4. **Quantization Sensitivity Analysis**\nUnderstanding which groups of parameters and activations are more sensitive to quantization than others is critical. Methods which explicitly capture the sensitivity or importance of layers in the network present improved performance, with previous works employing the Hessian as a sensitivity measure.\n\n### 5. **Gini Coefficient as a Concentration Metric**\nThe Gini coefficient is a measure of inequality that quantifies the deviation of a distribution from perfect equality, ranging from 0 (complete equality) to 1 (complete inequality).\n\nThese results show active research into measuring attention head importance through various concentration and sensitivity metrics for optimizing neural network quantization."
+    ],
+    "durationSeconds": 8.14734855000001
+  },
+  "sourceToolAssistantUUID": "d4b5c260-46c5-4b37-9348-1675d567d15d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T18:57:48.566Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LTjYy7qi14cSDWqBCackuE`</summary>
+
+```json
+{
+  "query": "\"spike aware\" quantization LLM \"attention head\" importance outlier 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "494b565b-ce8d-4731-a499-7932f29f0d25",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yQ82aJ3isz9nWeoZzt",
+  "type": "assistant",
+  "uuid": "011540b4-38ce-4aca-9bce-b10342852ffa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012h9S9oqR7nkCXuv6mYJ4rZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 29088,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 983,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 29088,
+          "cache_creation_input_tokens": 983,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 983
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T18:57:58.314Z_
+
+<details><summary>↩ Tool result · `toolu_01LTjYy7qi14cSDWqBCackuE`</summary>
+
+```text
+Web search results for query: ""spike aware" quantization LLM "attention head" importance outlier 2025 2026"
+
+Links: [{"title":"Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models","url":"https://arxiv.org/html/2504.21553v1"},{"title":"Mitigating Quantization Errors Due to Activation Spikes in GLU-Based LLMs","url":"https://arxiv.org/pdf/2405.14428"},{"title":"Precision Where It Matters: A Novel Spike","url":"https://arxiv.org/pdf/2504.21553"},{"title":"Awesome-LLM-Quantization/README.md at main · pprp/Awesome-LLM-Quantization","url":"https://github.com/pprp/Awesome-LLM-Quantization/blob/main/README.md"},{"title":"Prefixing Attention Sinks can Mitigate Activation Outliers for Large Language Model Quantization","url":"https://arxiv.org/html/2406.12016"},{"title":"Outlier-Safe Pre-Training for Robust 4-Bit Quantization of Large Language Models","url":"https://arxiv.org/html/2506.19697v1"},{"title":"RotateKV: Accurate and Robust 2-Bit KV Cache Quantization","url":"https://www.ijcai.org/proceedings/2025/0690.pdf"},{"title":"GitHub - pprp/Awesome-LLM-Quantization: Awesome list for LLM quantization · GitHub","url":"https://github.com/pprp/Awesome-LLM-Quantization"},{"title":"Mitigating Quantization Errors Due to Activation Spikes in Gated Linear Unit-Based Large Language Models","url":"https://www.mdpi.com/1999-5903/17/4/185"},{"title":"PrefixQuant: Static Quantization Beats Dynamic through Prefixed Outliers in LLMs","url":"https://arxiv.org/html/2410.05265v1"}]
+
+I found relevant research on spike-aware quantization for LLMs from recent 2025-2026 papers. Here's what the search results reveal:
+
+## Key Research Findings
+
+A recent paper investigates quantization of LLMs focusing on the LLaMA architecture and proposes a novel mixed-precision quantization approach, leveraging the observation that activation spikes in LLaMA architectures are predominantly concentrated in specific projection layers. By applying higher precision (FP16 or FP8) to these layers while quantizing the rest of the model to lower bit-widths, superior performance is achieved compared to existing quantization techniques.
+
+Spikes are present across all layers of the input RMSNorm and post-attention RMSNorm, with the residual layer immediately preceding RMSNorm propagating spikes throughout the model. Experimental results on LLaMA2, LLaMA3, and Mistral models demonstrate significant improvements in perplexity and zero-shot accuracy, particularly for 8-bit per-tensor quantization.
+
+## Attention Head Importance and Outliers
+
+Outliers are found to allocate most of the attention scores on initial tokens of input, termed as pivot tokens, which are crucial to the performance of quantized LLMs. Recent work also explores the observation that outliers may originate from attention sinks—the "no-operation" tokens that receive much attention from other tokens.
+
+## 2026 Advances
+
+A recent framework prevents emergence of activation outliers during LLM training by replacing Adam with the Muon optimizer, adopting Single-Scale RMSNorm, and incorporating learnable embedding projections, achieving production-scale efficiency by training a 1.4B model on 1 trillion tokens with only 2% overhead compared to Adam.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "011540b4-38ce-4aca-9bce-b10342852ffa",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "8b3a07eb-f5e3-46a5-a5de-c1a25bbfcc17",
+  "toolUseResult": {
+    "query": "\"spike aware\" quantization LLM \"attention head\" importance outlier 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XFENsn6xC3e7JHCjEhd1EK",
+        "content": [
+          {
+            "title": "Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models",
+            "url": "https://arxiv.org/html/2504.21553v1"
+          },
+          {
+            "title": "Mitigating Quantization Errors Due to Activation Spikes in GLU-Based LLMs",
+            "url": "https://arxiv.org/pdf/2405.14428"
+          },
+          {
+            "title": "Precision Where It Matters: A Novel Spike",
+            "url": "https://arxiv.org/pdf/2504.21553"
+          },
+          {
+            "title": "Awesome-LLM-Quantization/README.md at main · pprp/Awesome-LLM-Quantization",
+            "url": "https://github.com/pprp/Awesome-LLM-Quantization/blob/main/README.md"
+          },
+          {
+            "title": "Prefixing Attention Sinks can Mitigate Activation Outliers for Large Language Model Quantization",
+            "url": "https://arxiv.org/html/2406.12016"
+          },
+          {
+            "title": "Outlier-Safe Pre-Training for Robust 4-Bit Quantization of Large Language Models",
+            "url": "https://arxiv.org/html/2506.19697v1"
+          },
+          {
+            "title": "RotateKV: Accurate and Robust 2-Bit KV Cache Quantization",
+            "url": "https://www.ijcai.org/proceedings/2025/0690.pdf"
+          },
+          {
+            "title": "GitHub - pprp/Awesome-LLM-Quantization: Awesome list for LLM quantization · GitHub",
+            "url": "https://github.com/pprp/Awesome-LLM-Quantization"
+          },
+          {
+            "title": "Mitigating Quantization Errors Due to Activation Spikes in Gated Linear Unit-Based Large Language Models",
+            "url": "https://www.mdpi.com/1999-5903/17/4/185"
+          },
+          {
+            "title": "PrefixQuant: Static Quantization Beats Dynamic through Prefixed Outliers in LLMs",
+            "url": "https://arxiv.org/html/2410.05265v1"
+          }
+        ]
+      },
+      "I found relevant research on spike-aware quantization for LLMs from recent 2025-2026 papers. Here's what the search results reveal:\n\n## Key Research Findings\n\nA recent paper investigates quantization of LLMs focusing on the LLaMA architecture and proposes a novel mixed-precision quantization approach, leveraging the observation that activation spikes in LLaMA architectures are predominantly concentrated in specific projection layers. By applying higher precision (FP16 or FP8) to these layers while quantizing the rest of the model to lower bit-widths, superior performance is achieved compared to existing quantization techniques.\n\nSpikes are present across all layers of the input RMSNorm and post-attention RMSNorm, with the residual layer immediately preceding RMSNorm propagating spikes throughout the model. Experimental results on LLaMA2, LLaMA3, and Mistral models demonstrate significant improvements in perplexity and zero-shot accuracy, particularly for 8-bit per-tensor quantization.\n\n## Attention Head Importance and Outliers\n\nOutliers are found to allocate most of the attention scores on initial tokens of input, termed as pivot tokens, which are crucial to the performance of quantized LLMs. Recent work also explores the observation that outliers may originate from attention sinks—the \"no-operation\" tokens that receive much attention from other tokens.\n\n## 2026 Advances\n\nA recent framework prevents emergence of activation outliers during LLM training by replacing Adam with the Muon optimizer, adopting Single-Scale RMSNorm, and incorporating learnable embedding projections, achieving production-scale efficiency by training a 1.4B model on 1 trillion tokens with only 2% overhead compared to Adam."
+    ],
+    "durationSeconds": 9.742621272999997
+  },
+  "sourceToolAssistantUUID": "011540b4-38ce-4aca-9bce-b10342852ffa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8b3a07eb-f5e3-46a5-a5de-c1a25bbfcc17",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T18:58:01.007Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W52JVATs3xEnHQSVAkWukZ`</summary>
+
+```json
+{
+  "query": "RateQuant rate-distortion KV cache mixed precision per-head bit allocation MCKP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b3a07eb-f5e3-46a5-a5de-c1a25bbfcc17",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yR2XTrtQX99y8zH8VQ",
+  "type": "assistant",
+  "uuid": "f0c1b721-390f-4d05-99bc-5c54695968bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVRNvcwyXkpBWzvKBxbZYf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1028,
+      "cache_read_input_tokens": 30071,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1028,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 30071,
+          "cache_creation_input_tokens": 1028,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1028
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T18:58:09.054Z_
+
+<details><summary>↩ Tool result · `toolu_01W52JVATs3xEnHQSVAkWukZ`</summary>
+
+```text
+Web search results for query: "RateQuant rate-distortion KV cache mixed precision per-head bit allocation MCKP"
+
+Links: [{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/abs/2605.06675"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"KITTY: ACCURATE AND EFFICIENT 2-BIT KV CACHE QUANTIZATION WITH","url":"https://www.arxiv.org/pdf/2511.18643"},{"title":"Towards 10 Million Context Length LLM Inference with KV ...","url":"https://www.stat.berkeley.edu/~mmahoney/pubs/neurips-2024-kvquant.pdf"},{"title":"Thought-Adaptive KV Cache Compression","url":"https://www.emergentmind.com/topics/thought-adaptive-kv-cache-compression"},{"title":"KV Cache is 1 Bit Per Channel: Efficient Large Language ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/05d6b5b6901fb57d2c287e1d3ce6d63c-Paper-Conference.pdf"},{"title":"GitHub - Aitherium/aitherkvcache: Near-optimal KV cache quantization for LLM inference. Sub-byte compression (2-4 bit) within 2.7x of information-theoretic optimum. arXiv:2504.19874 · GitHub","url":"https://github.com/Aitherium/aitherkvcache"},{"title":"OpenAI Agent Safety, RateQuant KV Cache, LLM Metacognition by Domain","url":"https://pminterviewprepclub.substack.com/p/openai-agent-safety-ratequant-kv"},{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs","url":"https://arxiv.org/html/2505.18610v1"}]
+
+Based on the search results, here's what I found about RateQuant and the related concepts:
+
+## RateQuant: Optimal Mixed-Precision KV Cache Quantization
+
+RateQuant is a method for optimal mixed-precision KV cache quantization that addresses the fact that large language models cache key-value pairs during generation, and while current quantizers assign the same bit-width to every attention head, there is large variation in head importance.
+
+### The Core Problem and Solution
+
+Each quantizer follows a different distortion curve where the decay rate varies from 3.6 to 5.3 across quantizer designs, and RateQuant resolves this distortion model mismatch by fitting a per-quantizer distortion model from calibration data.
+
+### Rate-Distortion Theory & Bit Allocation
+
+RateQuant fits a per-quantizer distortion model from a small calibration set, then solves the resulting bit-allocation problem in closed form via reverse waterfilling from rate-distortion theory. RateQuant operates at per-head granularity with closed-form allocation and supports arbitrary base quantizers through calibration.
+
+### MCKP Reference
+
+While the search results mention MCKP in the context of KV cache compression optimization, RL- or MCKP-based methods provide provable approximations but may incur unacceptably high latency in large prompt-serving systems.
+
+### Performance Results
+
+Calibrated RateQuant reduces KIVI's perplexity at 2.5 bits from 49.3 to 14.9 (70% reduction) with all gains coming with zero runtime overhead and less than 2 s of one-time calibration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0c1b721-390f-4d05-99bc-5c54695968bf",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "e7651d6f-05e5-4b4b-bb81-1b16550f9d32",
+  "toolUseResult": {
+    "query": "RateQuant rate-distortion KV cache mixed precision per-head bit allocation MCKP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LGvgy2Vk8r2GaSD5gqF7Un",
+        "content": [
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/abs/2605.06675"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "KITTY: ACCURATE AND EFFICIENT 2-BIT KV CACHE QUANTIZATION WITH",
+            "url": "https://www.arxiv.org/pdf/2511.18643"
+          },
+          {
+            "title": "Towards 10 Million Context Length LLM Inference with KV ...",
+            "url": "https://www.stat.berkeley.edu/~mmahoney/pubs/neurips-2024-kvquant.pdf"
+          },
+          {
+            "title": "Thought-Adaptive KV Cache Compression",
+            "url": "https://www.emergentmind.com/topics/thought-adaptive-kv-cache-compression"
+          },
+          {
+            "title": "KV Cache is 1 Bit Per Channel: Efficient Large Language ...",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/05d6b5b6901fb57d2c287e1d3ce6d63c-Paper-Conference.pdf"
+          },
+          {
+            "title": "GitHub - Aitherium/aitherkvcache: Near-optimal KV cache quantization for LLM inference. Sub-byte compression (2-4 bit) within 2.7x of information-theoretic optimum. arXiv:2504.19874 · GitHub",
+            "url": "https://github.com/Aitherium/aitherkvcache"
+          },
+          {
+            "title": "OpenAI Agent Safety, RateQuant KV Cache, LLM Metacognition by Domain",
+            "url": "https://pminterviewprepclub.substack.com/p/openai-agent-safety-ratequant-kv"
+          },
+          {
+            "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs",
+            "url": "https://arxiv.org/html/2505.18610v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about RateQuant and the related concepts:\n\n## RateQuant: Optimal Mixed-Precision KV Cache Quantization\n\nRateQuant is a method for optimal mixed-precision KV cache quantization that addresses the fact that large language models cache key-value pairs during generation, and while current quantizers assign the same bit-width to every attention head, there is large variation in head importance.\n\n### The Core Problem and Solution\n\nEach quantizer follows a different distortion curve where the decay rate varies from 3.6 to 5.3 across quantizer designs, and RateQuant resolves this distortion model mismatch by fitting a per-quantizer distortion model from calibration data.\n\n### Rate-Distortion Theory & Bit Allocation\n\nRateQuant fits a per-quantizer distortion model from a small calibration set, then solves the resulting bit-allocation problem in closed form via reverse waterfilling from rate-distortion theory. RateQuant operates at per-head granularity with closed-form allocation and supports arbitrary base quantizers through calibration.\n\n### MCKP Reference\n\nWhile the search results mention MCKP in the context of KV cache compression optimization, RL- or MCKP-based methods provide provable approximations but may incur unacceptably high latency in large prompt-serving systems.\n\n### Performance Results\n\nCalibrated RateQuant reduces KIVI's perplexity at 2.5 bits from 49.3 to 14.9 (70% reduction) with all gains coming with zero runtime overhead and less than 2 s of one-time calibration."
+    ],
+    "durationSeconds": 8.041119180999987
+  },
+  "sourceToolAssistantUUID": "f0c1b721-390f-4d05-99bc-5c54695968bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-14T18:58:09.056Z_
+
+```json
+{
+  "parentUuid": "e7651d6f-05e5-4b4b-bb81-1b16550f9d32",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7bc7e13b-4c49-4c49-a5bc-667c51cd8633",
+  "timestamp": "2026-05-14T18:58:09.056Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T18:58:11.735Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CbJd6Z9upansZcWDbJUUBK`</summary>
+
+```json
+{
+  "query": "KVQuant GEAR FlexGen per-head per-layer sensitivity analysis KV cache quantization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bc7e13b-4c49-4c49-a5bc-667c51cd8633",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yRpTCouXwXayHDPhzB",
+  "type": "assistant",
+  "uuid": "abcb2213-632c-4c8e-b512-63c847f22e6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011j5BhCyuAbP5A7VYizdVBm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1150,
+      "cache_read_input_tokens": 31099,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 31099,
+          "cache_creation_input_tokens": 1150,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1150
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T18:58:19.096Z_
+
+<details><summary>↩ Tool result · `toolu_01CbJd6Z9upansZcWDbJUUBK`</summary>
+
+```text
+Web search results for query: "KVQuant GEAR FlexGen per-head per-layer sensitivity analysis KV cache quantization"
+
+Links: [{"title":"[2401.18079] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization","url":"https://arxiv.org/abs/2401.18079"},{"title":"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization | alphaXiv","url":"https://www.alphaxiv.org/overview/2401.18079"},{"title":"Towards 10 Million Context Length LLM Inference with KV ...","url":"https://www.stat.berkeley.edu/~mmahoney/pubs/neurips-2024-kvquant.pdf"},{"title":"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization","url":"https://arxiv.org/html/2401.18079v3"},{"title":"KVQuant","url":"https://people.eecs.berkeley.edu/~ysshao/assets/papers/kvquant-neurips2024.pdf"},{"title":"ICML Poster KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://icml.cc/virtual/2025/poster/43487"},{"title":"More Tokens, Lower Precision: Towards the Optimal Token-Precision Trade-off in KV Cache Compression","url":"https://arxiv.org/html/2412.12706v1"},{"title":"FibQuant: Universal Vector Quantization for Random-Access KV-Cache Compression","url":"https://arxiv.org/html/2605.11478"},{"title":"GitHub - SqueezeAILab/KVQuant: [NeurIPS 2024] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization · GitHub","url":"https://github.com/SqueezeAILab/KVQuant"},{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"}]
+
+Based on the search results, here's what I found about KVQuant, GEAR, FlexGen, and per-head per-layer sensitivity analysis in KV cache quantization:
+
+## KVQuant's Approach
+
+KVQuant incorporates several novel methods including Non-Uniform KV Cache Quantization, where per-layer sensitivity-weighted non-uniform datatypes are derived to better represent the distributions. This is a key component of their low-precision quantization strategy.
+
+## GEAR Method
+
+GEAR uses low-rank approximation for quantization, offering an alternative approach to handling KV cache compression.
+
+## FlexGen Baseline
+
+ATOM and FlexGen use 4-bit quantization with group sizes of 128 and 64 with uniform quantization, respectively, which KVQuant extends to 3-bit and 2-bit quantization.
+
+## Per-Head Sensitivity Analysis
+
+More recent work has focused specifically on per-head sensitivity analysis. Current quantizers assign the same bit-width to every attention head, ignoring the large variation in head importance, though a natural idea is to allocate more bits to important heads and fewer to the rest. Additionally, several recent methods move toward mixed-precision allocation at the layer level, with approaches like KVTuner using Pareto search.
+
+The research landscape shows evolution from uniform quantization approaches (FlexGen) to layer-wise sensitivity analysis (KVQuant) and more recently toward per-head and per-layer sensitivity-aware methods for mixed-precision quantization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "abcb2213-632c-4c8e-b512-63c847f22e6b",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "730f2cd8-6efb-42d5-b473-59e1fd3c3a45",
+  "toolUseResult": {
+    "query": "KVQuant GEAR FlexGen per-head per-layer sensitivity analysis KV cache quantization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CexvHZyxMZBMb4HutLKy3o",
+        "content": [
+          {
+            "title": "[2401.18079] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization",
+            "url": "https://arxiv.org/abs/2401.18079"
+          },
+          {
+            "title": "KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2401.18079"
+          },
+          {
+            "title": "Towards 10 Million Context Length LLM Inference with KV ...",
+            "url": "https://www.stat.berkeley.edu/~mmahoney/pubs/neurips-2024-kvquant.pdf"
+          },
+          {
+            "title": "KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization",
+            "url": "https://arxiv.org/html/2401.18079v3"
+          },
+          {
+            "title": "KVQuant",
+            "url": "https://people.eecs.berkeley.edu/~ysshao/assets/papers/kvquant-neurips2024.pdf"
+          },
+          {
+            "title": "ICML Poster KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://icml.cc/virtual/2025/poster/43487"
+          },
+          {
+            "title": "More Tokens, Lower Precision: Towards the Optimal Token-Precision Trade-off in KV Cache Compression",
+            "url": "https://arxiv.org/html/2412.12706v1"
+          },
+          {
+            "title": "FibQuant: Universal Vector Quantization for Random-Access KV-Cache Compression",
+            "url": "https://arxiv.org/html/2605.11478"
+          },
+          {
+            "title": "GitHub - SqueezeAILab/KVQuant: [NeurIPS 2024] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization · GitHub",
+            "url": "https://github.com/SqueezeAILab/KVQuant"
+          },
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about KVQuant, GEAR, FlexGen, and per-head per-layer sensitivity analysis in KV cache quantization:\n\n## KVQuant's Approach\n\nKVQuant incorporates several novel methods including Non-Uniform KV Cache Quantization, where per-layer sensitivity-weighted non-uniform datatypes are derived to better represent the distributions. This is a key component of their low-precision quantization strategy.\n\n## GEAR Method\n\nGEAR uses low-rank approximation for quantization, offering an alternative approach to handling KV cache compression.\n\n## FlexGen Baseline\n\nATOM and FlexGen use 4-bit quantization with group sizes of 128 and 64 with uniform quantization, respectively, which KVQuant extends to 3-bit and 2-bit quantization.\n\n## Per-Head Sensitivity Analysis\n\nMore recent work has focused specifically on per-head sensitivity analysis. Current quantizers assign the same bit-width to every attention head, ignoring the large variation in head importance, though a natural idea is to allocate more bits to important heads and fewer to the rest. Additionally, several recent methods move toward mixed-precision allocation at the layer level, with approaches like KVTuner using Pareto search.\n\nThe research landscape shows evolution from uniform quantization approaches (FlexGen) to layer-wise sensitivity analysis (KVQuant) and more recently toward per-head and per-layer sensitivity-aware methods for mixed-precision quantization."
+    ],
+    "durationSeconds": 7.3583687789999965
+  },
+  "sourceToolAssistantUUID": "abcb2213-632c-4c8e-b512-63c847f22e6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T18:58:29.880Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RPqzvZ3gvZ3Hvwr1xZVHY5`</summary>
+
+```json
+{
+  "query": "MCKP multiple choice knapsack problem mixed precision quantization neural network bit allocation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "730f2cd8-6efb-42d5-b473-59e1fd3c3a45",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ySZRbxDQkvvp7DgkcS",
+  "type": "assistant",
+  "uuid": "45adac81-a4d9-4b05-9da2-b6fb964bdc1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WF72VtuYWKTiQqCxjaS9Vq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 32249,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 32249,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T18:58:37.610Z_
+
+<details><summary>↩ Tool result · `toolu_01RPqzvZ3gvZ3Hvwr1xZVHY5`</summary>
+
+```text
+Web search results for query: "MCKP multiple choice knapsack problem mixed precision quantization neural network bit allocation"
+
+Links: [{"title":"JointSQ: Joint Sparsification-Quantization for Distributed Learning","url":"https://openaccess.thecvf.com/content/CVPR2024/papers/Xie_JointSQ_Joint_Sparsification-Quantization_for_Distributed_Learning_CVPR_2024_paper.pdf"},{"title":"Mixed-Precision Neural Network Quantization via Learned Layer-wise Importance","url":"https://arxiv.org/pdf/2203.08368"},{"title":"Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv211006554C/abstract"},{"title":"[2110.06554v1] Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization","url":"https://arxiv.org/abs/2110.06554v1"},{"title":"[2110.06554] Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization","url":"https://arxiv.org/abs/2110.06554"},{"title":"Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization | Request PDF","url":"https://www.researchgate.net/publication/358921060_Towards_Mixed-Precision_Quantization_of_Neural_Networks_via_Constrained_Optimization"},{"title":"Automatic mixed precision for optimizing gained time with constrained loss mean-squared-error based on model partition to sequential sub-graphs","url":"https://arxiv.org/html/2505.13060"},{"title":"Efficient and Effective Methods for Mixed Precision Neural Network Quantization for Faster, Energy-efficient Inference","url":"https://arxiv.org/html/2301.13330v2"},{"title":"Efficient and Effective Methods for Mixed Precision Neural Network","url":"https://arxiv.org/pdf/2301.13330"},{"title":"Automatic Neural Network Compression by Sparsity-Quantization Joint","url":"https://openaccess.thecvf.com/content_CVPR_2020/papers/Yang_Automatic_Neural_Network_Compression_by_Sparsity-Quantization_Joint_Learning_A_Constrained_CVPR_2020_paper.pdf"}]
+
+Based on the search results, here's what I found about the connection between MCKP (Multiple Choice Knapsack Problem), mixed precision quantization, and neural network bit allocation:
+
+## Key Findings:
+
+**MCKP Formulation in Mixed Precision Quantization:**
+
+Mixed-precision quantization is formulated as a discrete constrained optimization problem, with the objective function approximated using second-order Taylor expansion and Hessian matrix computation, and the original problem can be reformulated as a Multiple-Choice Knapsack Problem (MCKP) solved with a greedy search algorithm.
+
+**Applications:**
+
+MPQCO proposes an efficient approach to compute the Hessian matrix and formulates a Multiple-Choice Knapsack Problem (MCKP) to determine the bit-widths assignment.
+
+A Greedy Allocation approach can be viewed as solving the Multiple-Choice Knapsack Problem (MCKP), which provides an initial allocation strategy based on gradient magnitudes.
+
+**Problem Structure:**
+
+Each choice of the quantization bitwidth is treated as an MCKP item, where the profit is the negative error and the weight relates to sparsity and the knapsack budget is the storage budget.
+
+**Solution Method:**
+
+The MCKP is NP-hard, but when the binary constraints are relaxed to continuous values, it becomes a Linear Programming problem that can be transformed into a fractional knapsack problem and solved efficiently with a greedy algorithm.
+
+The MCKP framework is particularly useful for automatically determining optimal bit-width allocations across neural network layers under computational or memory constraints.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45adac81-a4d9-4b05-9da2-b6fb964bdc1b",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "30bccaca-1095-4dd1-bc10-4ba9e18f57cc",
+  "toolUseResult": {
+    "query": "MCKP multiple choice knapsack problem mixed precision quantization neural network bit allocation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AM7KdH2RWFfVsej8xpmmin",
+        "content": [
+          {
+            "title": "JointSQ: Joint Sparsification-Quantization for Distributed Learning",
+            "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Xie_JointSQ_Joint_Sparsification-Quantization_for_Distributed_Learning_CVPR_2024_paper.pdf"
+          },
+          {
+            "title": "Mixed-Precision Neural Network Quantization via Learned Layer-wise Importance",
+            "url": "https://arxiv.org/pdf/2203.08368"
+          },
+          {
+            "title": "Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2021arXiv211006554C/abstract"
+          },
+          {
+            "title": "[2110.06554v1] Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization",
+            "url": "https://arxiv.org/abs/2110.06554v1"
+          },
+          {
+            "title": "[2110.06554] Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization",
+            "url": "https://arxiv.org/abs/2110.06554"
+          },
+          {
+            "title": "Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization | Request PDF",
+            "url": "https://www.researchgate.net/publication/358921060_Towards_Mixed-Precision_Quantization_of_Neural_Networks_via_Constrained_Optimization"
+          },
+          {
+            "title": "Automatic mixed precision for optimizing gained time with constrained loss mean-squared-error based on model partition to sequential sub-graphs",
+            "url": "https://arxiv.org/html/2505.13060"
+          },
+          {
+            "title": "Efficient and Effective Methods for Mixed Precision Neural Network Quantization for Faster, Energy-efficient Inference",
+            "url": "https://arxiv.org/html/2301.13330v2"
+          },
+          {
+            "title": "Efficient and Effective Methods for Mixed Precision Neural Network",
+            "url": "https://arxiv.org/pdf/2301.13330"
+          },
+          {
+            "title": "Automatic Neural Network Compression by Sparsity-Quantization Joint",
+            "url": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Yang_Automatic_Neural_Network_Compression_by_Sparsity-Quantization_Joint_Learning_A_Constrained_CVPR_2020_paper.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the connection between MCKP (Multiple Choice Knapsack Problem), mixed precision quantization, and neural network bit allocation:\n\n## Key Findings:\n\n**MCKP Formulation in Mixed Precision Quantization:**\n\nMixed-precision quantization is formulated as a discrete constrained optimization problem, with the objective function approximated using second-order Taylor expansion and Hessian matrix computation, and the original problem can be reformulated as a Multiple-Choice Knapsack Problem (MCKP) solved with a greedy search algorithm.\n\n**Applications:**\n\nMPQCO proposes an efficient approach to compute the Hessian matrix and formulates a Multiple-Choice Knapsack Problem (MCKP) to determine the bit-widths assignment.\n\nA Greedy Allocation approach can be viewed as solving the Multiple-Choice Knapsack Problem (MCKP), which provides an initial allocation strategy based on gradient magnitudes.\n\n**Problem Structure:**\n\nEach choice of the quantization bitwidth is treated as an MCKP item, where the profit is the negative error and the weight relates to sparsity and the knapsack budget is the storage budget.\n\n**Solution Method:**\n\nThe MCKP is NP-hard, but when the binary constraints are relaxed to continuous values, it becomes a Linear Programming problem that can be transformed into a fractional knapsack problem and solved efficiently with a greedy algorithm.\n\nThe MCKP framework is particularly useful for automatically determining optimal bit-width allocations across neural network layers under computational or memory constraints."
+    ],
+    "durationSeconds": 7.725638270999989
+  },
+  "sourceToolAssistantUUID": "45adac81-a4d9-4b05-9da2-b6fb964bdc1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T18:58:42.655Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016Lc5v7E77VdKovQSGFYmUh`</summary>
+
+```json
+{
+  "query": "arXiv \"KV cache\" \"per-head\" OR \"head-wise\" quantization sensitivity heterogeneity distribution 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30bccaca-1095-4dd1-bc10-4ba9e18f57cc",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yTvioCi6gbWRgVTTMK",
+  "type": "assistant",
+  "uuid": "5b086a5d-681a-4cc3-bce3-ec0ae3022a27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013cqewNYT6t6wrm4CeuLdPc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 33257,
+      "output_tokens": 87,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 87,
+          "cache_read_input_tokens": 33257,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T18:58:53.499Z_
+
+<details><summary>↩ Tool result · `toolu_016Lc5v7E77VdKovQSGFYmUh`</summary>
+
+```text
+Web search results for query: "arXiv "KV cache" "per-head" OR "head-wise" quantization sensitivity heterogeneity distribution 2024 2025 2026"
+
+Links: [{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs","url":"https://arxiv.org/html/2604.04722v1"},{"title":"GitHub - TreeAI-Lab/Awesome-KV-Cache-Management: This repository serves as a comprehensive survey of LLM development, featuring numerous research papers along with their corresponding code links. · GitHub","url":"https://github.com/treeai-lab/awesome-kv-cache-management"},{"title":"FibQuant: Universal Vector Quantization for Random-Access KV-Cache Compression","url":"https://arxiv.org/html/2605.11478"},{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview","url":"https://openreview.net/forum?id=Vem6FQvRvq"},{"title":"[2401.18079] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization","url":"https://arxiv.org/abs/2401.18079"},{"title":"[2605.11478] FibQuant: Universal Vector Quantization for Random-Access KV-Cache Compression","url":"https://arxiv.org/abs/2605.11478"},{"title":"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://arxiv.org/html/2502.04420v5"},{"title":"Accurate KV Cache Quantization with Outlier Tokens Tracing","url":"https://aclanthology.org/2025.acl-long.631.pdf"}]
+
+Based on the web search results, I found several relevant papers and research on KV cache quantization with per-head sensitivity and heterogeneity analysis. Here are the key findings:
+
+## Recent Research on Per-Head KV Cache Quantization
+
+All current quantizers apply uniform bit-widths to every attention head, ignoring the well-documented heterogeneity of head importance. This has motivated recent research efforts.
+
+### Key Methods and Approaches
+
+**RateQuant** (2026): RateQuant operates at per-head granularity with closed-form allocation and supports arbitrary base quantizers through calibration. Recent mixed-precision approaches relax this at the layer level (Chen et al., 2025a; Li et al., 2025b) or channel level (Liao and Wen, 2026; Wang et al., 2025).
+
+**Head-Specific Compression**: Different attention heads exhibit varying sensitivity to compression, and recent methods such as AdaKV (Feng et al., 2024) and PyramidKV (Cai et al., 2025a) adopt head-specific compression strategies.
+
+**Layer-Level Mixed-Precision**: At the layer level, KVmix (Chen et al., 2025a) assigns precision via gradient norms, KVTuner (Li et al., 2025b) uses Pareto search, and PM-KVQ (Chen et al., 2025b) applies integer programming.
+
+### Quantization Methods Overview
+
+KIVI applies per-channel symmetric keys and per-token asymmetric values; QuaRot suppresses outliers via Hadamard rotations; KVQuant handles outlier channels with non-uniform quantization; and TurboQuant introduces rotation-based vector quantization.
+
+These recent methods from 2024-2026 demonstrate growing attention to the heterogeneity of attention head sensitivity in KV cache quantization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b086a5d-681a-4cc3-bce3-ec0ae3022a27",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "b0503122-8806-40ef-bfbe-713fe5ff7846",
+  "toolUseResult": {
+    "query": "arXiv \"KV cache\" \"per-head\" OR \"head-wise\" quantization sensitivity heterogeneity distribution 2024 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Dnt3yvThN39FVCU8Q3ujLp",
+        "content": [
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs",
+            "url": "https://arxiv.org/html/2604.04722v1"
+          },
+          {
+            "title": "GitHub - TreeAI-Lab/Awesome-KV-Cache-Management: This repository serves as a comprehensive survey of LLM development, featuring numerous research papers along with their corresponding code links. · GitHub",
+            "url": "https://github.com/treeai-lab/awesome-kv-cache-management"
+          },
+          {
+            "title": "FibQuant: Universal Vector Quantization for Random-Access KV-Cache Compression",
+            "url": "https://arxiv.org/html/2605.11478"
+          },
+          {
+            "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=Vem6FQvRvq"
+          },
+          {
+            "title": "[2401.18079] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization",
+            "url": "https://arxiv.org/abs/2401.18079"
+          },
+          {
+            "title": "[2605.11478] FibQuant: Universal Vector Quantization for Random-Access KV-Cache Compression",
+            "url": "https://arxiv.org/abs/2605.11478"
+          },
+          {
+            "title": "KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://arxiv.org/html/2502.04420v5"
+          },
+          {
+            "title": "Accurate KV Cache Quantization with Outlier Tokens Tracing",
+            "url": "https://aclanthology.org/2025.acl-long.631.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and research on KV cache quantization with per-head sensitivity and heterogeneity analysis. Here are the key findings:\n\n## Recent Research on Per-Head KV Cache Quantization\n\nAll current quantizers apply uniform bit-widths to every attention head, ignoring the well-documented heterogeneity of head importance. This has motivated recent research efforts.\n\n### Key Methods and Approaches\n\n**RateQuant** (2026): RateQuant operates at per-head granularity with closed-form allocation and supports arbitrary base quantizers through calibration. Recent mixed-precision approaches relax this at the layer level (Chen et al., 2025a; Li et al., 2025b) or channel level (Liao and Wen, 2026; Wang et al., 2025).\n\n**Head-Specific Compression**: Different attention heads exhibit varying sensitivity to compression, and recent methods such as AdaKV (Feng et al., 2024) and PyramidKV (Cai et al., 2025a) adopt head-specific compression strategies.\n\n**Layer-Level Mixed-Precision**: At the layer level, KVmix (Chen et al., 2025a) assigns precision via gradient norms, KVTuner (Li et al., 2025b) uses Pareto search, and PM-KVQ (Chen et al., 2025b) applies integer programming.\n\n### Quantization Methods Overview\n\nKIVI applies per-channel symmetric keys and per-token asymmetric values; QuaRot suppresses outliers via Hadamard rotations; KVQuant handles outlier channels with non-uniform quantization; and TurboQuant introduces rotation-based vector quantization.\n\nThese recent methods from 2024-2026 demonstrate growing attention to the heterogeneity of attention head sensitivity in KV cache quantization."
+    ],
+    "durationSeconds": 10.840264694000012
+  },
+  "sourceToolAssistantUUID": "5b086a5d-681a-4cc3-bce3-ec0ae3022a27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "b0503122-8806-40ef-bfbe-713fe5ff7846",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T18:58:56.252Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019FaYyMdaFA4SB4KHhrFFak`</summary>
+
+```json
+{
+  "query": "\"non-uniform\" OR \"heterogeneous\" quantization sensitivity \"distribution shape\" OR \"concentration\" OR \"Gini\" attention heads 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0503122-8806-40ef-bfbe-713fe5ff7846",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yV6UT94UqFQCPPZMAv",
+  "type": "assistant",
+  "uuid": "2fa63f44-9955-4b47-809f-db3415314d73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UVZiDSUZcVYEKGfBW4cXPR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 34306,
+      "output_tokens": 84,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 84,
+          "cache_read_input_tokens": 34306,
+          "cache_creation_input_tokens": 1113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T18:59:04.023Z_
+
+<details><summary>↩ Tool result · `toolu_019FaYyMdaFA4SB4KHhrFFak`</summary>
+
+```text
+Web search results for query: ""non-uniform" OR "heterogeneous" quantization sensitivity "distribution shape" OR "concentration" OR "Gini" attention heads 2025"
+
+Links: [{"title":"Exploiting Information Redundancy in Attention Maps for Extreme","url":"https://openaccess.thecvf.com/content/ICCV2025W/BiVision/papers/Maisonnave_Exploiting_Information_Redundancy_in_Attention_Maps_for_Extreme_Quantization_of_ICCVW_2025_paper.pdf"},{"title":"SAGEATTENTION: ACCURATE 8-BIT ATTENTION FOR ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/b286c344d38e10d2466c0514b78e2f36-Paper-Conference.pdf"},{"title":"© 2025 Akshat Sharma - IDEALS - University of Illinois","url":"https://www.ideals.illinois.edu/items/136217/bitstreams/445287/data.pdf"},{"title":"Algorithmic Heterogeneous Quantization","url":"https://www.emergentmind.com/topics/algorithmic-heterogeneous-quantization"},{"title":"RotateKV: Accurate and Robust 2-Bit KV Cache Quantization","url":"https://www.ijcai.org/proceedings/2025/0690.pdf"},{"title":"Automated Fine-Grained Mixture-of-Experts Quantization","url":"https://aclanthology.org/2025.findings-acl.1386.pdf"},{"title":"ICML Poster SageAttention2: Efficient Attention with Thorough Outlier Smoothing and Per-thread INT4 Quantization","url":"https://icml.cc/virtual/2025/poster/44114"},{"title":"Survey of Quantization-Aware Training (QAT) Applications in Deep Learning Quantization | Proceedings of the 2025 International Symposium on Artificial Intelligence and Computational Social Sciences","url":"https://dl.acm.org/doi/10.1145/3776759.3776826"},{"title":"Efficient Mixed-Precision Large Language Model Inference with TurboMind","url":"https://arxiv.org/pdf/2508.15601"},{"title":"Artificial Intelligence Jan 2025","url":"https://arxiv.org/list/cs.AI/2025-01?skip=1575&show=2000"}]
+
+I've successfully performed a web search for your query. The search returned results about non-uniform and heterogeneous quantization approaches applied to attention heads and transformers in 2025. Here are the key findings:
+
+## Key Research Areas Found:
+
+**Non-Uniform Quantization Methods:**
+Other works adopted non-uniform quantization and mixed-precision quantization, where different bit widths are assigned to weights and activations based on their sensitivity.
+
+**Attention Head Quantization Sensitivity:**
+Entropy Attention Maps (EAM) of the CLS token can visualize differences between heads and the way they actually use information through attention, which relates to understanding distribution shapes and concentration across attention heads.
+
+**Heterogeneous Quantization Framework:**
+Different layers/blocks, or even parameters, exhibit varying sensitivity to quantization error, with lower layers often requiring higher precision while high-redundancy blocks or attention modules may tolerate more aggressive quantization.
+
+**Distribution Characteristics:**
+The statistics of weights and activations (e.g., outlier ratio, kurtosis, variance) differ across layers, impacting the suitability of different quantization schemes.
+
+**Outlier-Aware Approaches:**
+Outlier-aware rotation effectively enhances the adaptability of rotation to diverse outlier distributions in KV cache quantization research.
+
+Recent 2025 work includes papers on SageAttention, RotateKV, and frameworks addressing the heterogeneous nature of attention mechanisms and their differential sensitivity to quantization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fa63f44-9955-4b47-809f-db3415314d73",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "c3e9e004-dc85-41ac-8dc0-a187bf1ae064",
+  "toolUseResult": {
+    "query": "\"non-uniform\" OR \"heterogeneous\" quantization sensitivity \"distribution shape\" OR \"concentration\" OR \"Gini\" attention heads 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EGX7qdDRVYJVYQe7mM1uHS",
+        "content": [
+          {
+            "title": "Exploiting Information Redundancy in Attention Maps for Extreme",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025W/BiVision/papers/Maisonnave_Exploiting_Information_Redundancy_in_Attention_Maps_for_Extreme_Quantization_of_ICCVW_2025_paper.pdf"
+          },
+          {
+            "title": "SAGEATTENTION: ACCURATE 8-BIT ATTENTION FOR ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/b286c344d38e10d2466c0514b78e2f36-Paper-Conference.pdf"
+          },
+          {
+            "title": "© 2025 Akshat Sharma - IDEALS - University of Illinois",
+            "url": "https://www.ideals.illinois.edu/items/136217/bitstreams/445287/data.pdf"
+          },
+          {
+            "title": "Algorithmic Heterogeneous Quantization",
+            "url": "https://www.emergentmind.com/topics/algorithmic-heterogeneous-quantization"
+          },
+          {
+            "title": "RotateKV: Accurate and Robust 2-Bit KV Cache Quantization",
+            "url": "https://www.ijcai.org/proceedings/2025/0690.pdf"
+          },
+          {
+            "title": "Automated Fine-Grained Mixture-of-Experts Quantization",
+            "url": "https://aclanthology.org/2025.findings-acl.1386.pdf"
+          },
+          {
+            "title": "ICML Poster SageAttention2: Efficient Attention with Thorough Outlier Smoothing and Per-thread INT4 Quantization",
+            "url": "https://icml.cc/virtual/2025/poster/44114"
+          },
+          {
+            "title": "Survey of Quantization-Aware Training (QAT) Applications in Deep Learning Quantization | Proceedings of the 2025 International Symposium on Artificial Intelligence and Computational Social Sciences",
+            "url": "https://dl.acm.org/doi/10.1145/3776759.3776826"
+          },
+          {
+            "title": "Efficient Mixed-Precision Large Language Model Inference with TurboMind",
+            "url": "https://arxiv.org/pdf/2508.15601"
+          },
+          {
+            "title": "Artificial Intelligence Jan 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-01?skip=1575&show=2000"
+          }
+        ]
+      },
+      "I've successfully performed a web search for your query. The search returned results about non-uniform and heterogeneous quantization approaches applied to attention heads and transformers in 2025. Here are the key findings:\n\n## Key Research Areas Found:\n\n**Non-Uniform Quantization Methods:**\nOther works adopted non-uniform quantization and mixed-precision quantization, where different bit widths are assigned to weights and activations based on their sensitivity.\n\n**Attention Head Quantization Sensitivity:**\nEntropy Attention Maps (EAM) of the CLS token can visualize differences between heads and the way they actually use information through attention, which relates to understanding distribution shapes and concentration across attention heads.\n\n**Heterogeneous Quantization Framework:**\nDifferent layers/blocks, or even parameters, exhibit varying sensitivity to quantization error, with lower layers often requiring higher precision while high-redundancy blocks or attention modules may tolerate more aggressive quantization.\n\n**Distribution Characteristics:**\nThe statistics of weights and activations (e.g., outlier ratio, kurtosis, variance) differ across layers, impacting the suitability of different quantization schemes.\n\n**Outlier-Aware Approaches:**\nOutlier-aware rotation effectively enhances the adaptability of rotation to diverse outlier distributions in KV cache quantization research.\n\nRecent 2025 work includes papers on SageAttention, RotateKV, and frameworks addressing the heterogeneous nature of attention mechanisms and their differential sensitivity to quantization."
+    ],
+    "durationSeconds": 7.7675254859999985
+  },
+  "sourceToolAssistantUUID": "2fa63f44-9955-4b47-809f-db3415314d73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T18:59:07.375Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DGpPTHAEfMwCpg1X1Q8mdt`</summary>
+
+```json
+{
+  "query": "AdaKV PyramidKV head-specific compression KV cache attention head importance variation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3e9e004-dc85-41ac-8dc0-a187bf1ae064",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yVsT9ZLMswG6aVMuSU",
+  "type": "assistant",
+  "uuid": "f6735e11-d5e0-4a56-a31f-e5915f85a31f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgbmiqzpHCvL143LyNXYd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1050,
+      "cache_read_input_tokens": 35419,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1050,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 35419,
+          "cache_creation_input_tokens": 1050,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1050
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T18:59:16.143Z_
+
+<details><summary>↩ Tool result · `toolu_01DGpPTHAEfMwCpg1X1Q8mdt`</summary>
+
+```text
+Web search results for query: "AdaKV PyramidKV head-specific compression KV cache attention head importance variation"
+
+Links: [{"title":"Expected Attention: KV Cache Compression by Estimating Attention","url":"https://arxiv.org/pdf/2510.00636"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"GitHub - FFY0/AdaKV: The Official Implementation of Ada-KV [NeurIPS 2025] · GitHub","url":"https://github.com/FFY0/AdaKV"},{"title":"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget ...","url":"https://arxiv.org/pdf/2407.11550"},{"title":"AdaKV/README.md at main · FFY0/AdaKV","url":"https://github.com/FFY0/AdaKV/blob/main/README.md"},{"title":"GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub","url":"https://github.com/NVIDIA/kvpress"},{"title":"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling","url":"https://arxiv.org/html/2406.02069v1"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://arxiv.org/html/2410.19258v1"},{"title":"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling | OpenReview","url":"https://openreview.net/forum?id=jZVNmDiU86"},{"title":"KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head","url":"https://arxiv.org/html/2410.00161"}]
+
+I found relevant search results about AdaKV, PyramidKV, and head-specific KV cache compression. Here's what the search reveals:
+
+## Key Findings
+
+Recent methods such as AdaKV (Feng et al., 2024) and PyramidKV (Cai et al., 2025a) adopt head-specific compression strategies, recognizing that different attention heads exhibit varying sensitivity to compression.
+
+### AdaKV
+
+Adaptive budget allocation across attention heads (AdaKV) significantly improves budget utilization and post-eviction generation quality. Ada-KV leverages head-wise adaptive allocation to enhance cache eviction methods. Integrating AdaKV into SnapKV and PyramidKV yields substantial gains on the sub-tasks of the Ruler Benchmark.
+
+### PyramidKV
+
+PyramidKV addresses how LLMs aggregate information through Pyramidal Information Funneling where attention is scattering widely in lower layers, progressively consolidating within specific contexts, and ultimately focusing on critical tokens in higher layers. This approach dynamically adjusts the KV cache size across different layers, allocating more cache in lower layers and less in higher ones.
+
+PyramidKV consists of two steps: (1) Dynamically allocating different KV cache sizes/budgets across different layers; and (2) Selecting important KV vectors in each attention head for caching.
+
+### Head-Specific Importance Variation
+
+Different attention heads serve different roles in the model. Adaptive per-layer compression (Feng et al., 2024) accounts for this heterogeneity, allowing more important heads to retain more KV pairs. Recent work identified a key point of rigidity in prior methods–namely, a uniform compression rate across all the heads within each layer. One such approach develops variations of both SnapKV and PyramidKV that evict KVs across heads in each layer, potentially evicting a variable number of KVs per head, naming the new methods Ada-SnapKV and Ada-PyramidKV.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6735e11-d5e0-4a56-a31f-e5915f85a31f",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "2d58bee6-541b-4486-bad3-e3e7f019426e",
+  "toolUseResult": {
+    "query": "AdaKV PyramidKV head-specific compression KV cache attention head importance variation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013u5NyfTu4aG7xxBa56avjd",
+        "content": [
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention",
+            "url": "https://arxiv.org/pdf/2510.00636"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "GitHub - FFY0/AdaKV: The Official Implementation of Ada-KV [NeurIPS 2025] · GitHub",
+            "url": "https://github.com/FFY0/AdaKV"
+          },
+          {
+            "title": "Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget ...",
+            "url": "https://arxiv.org/pdf/2407.11550"
+          },
+          {
+            "title": "AdaKV/README.md at main · FFY0/AdaKV",
+            "url": "https://github.com/FFY0/AdaKV/blob/main/README.md"
+          },
+          {
+            "title": "GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub",
+            "url": "https://github.com/NVIDIA/kvpress"
+          },
+          {
+            "title": "PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling",
+            "url": "https://arxiv.org/html/2406.02069v1"
+          },
+          {
+            "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+            "url": "https://arxiv.org/html/2410.19258v1"
+          },
+          {
+            "title": "PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling | OpenReview",
+            "url": "https://openreview.net/forum?id=jZVNmDiU86"
+          },
+          {
+            "title": "KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head",
+            "url": "https://arxiv.org/html/2410.00161"
+          }
+        ]
+      },
+      "I found relevant search results about AdaKV, PyramidKV, and head-specific KV cache compression. Here's what the search reveals:\n\n## Key Findings\n\nRecent methods such as AdaKV (Feng et al., 2024) and PyramidKV (Cai et al., 2025a) adopt head-specific compression strategies, recognizing that different attention heads exhibit varying sensitivity to compression.\n\n### AdaKV\n\nAdaptive budget allocation across attention heads (AdaKV) significantly improves budget utilization and post-eviction generation quality. Ada-KV leverages head-wise adaptive allocation to enhance cache eviction methods. Integrating AdaKV into SnapKV and PyramidKV yields substantial gains on the sub-tasks of the Ruler Benchmark.\n\n### PyramidKV\n\nPyramidKV addresses how LLMs aggregate information through Pyramidal Information Funneling where attention is scattering widely in lower layers, progressively consolidating within specific contexts, and ultimately focusing on critical tokens in higher layers. This approach dynamically adjusts the KV cache size across different layers, allocating more cache in lower layers and less in higher ones.\n\nPyramidKV consists of two steps: (1) Dynamically allocating different KV cache sizes/budgets across different layers; and (2) Selecting important KV vectors in each attention head for caching.\n\n### Head-Specific Importance Variation\n\nDifferent attention heads serve different roles in the model. Adaptive per-layer compression (Feng et al., 2024) accounts for this heterogeneity, allowing more important heads to retain more KV pairs. Recent work identified a key point of rigidity in prior methods–namely, a uniform compression rate across all the heads within each layer. One such approach develops variations of both SnapKV and PyramidKV that evict KVs across heads in each layer, potentially evicting a variable number of KVs per head, naming the new methods Ada-SnapKV and Ada-PyramidKV."
+    ],
+    "durationSeconds": 8.735712574000004
+  },
+  "sourceToolAssistantUUID": "f6735e11-d5e0-4a56-a31f-e5915f85a31f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T18:59:21.361Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011kJey3NWVbta7v18xApqMX`</summary>
+
+```json
+{
+  "query": "arXiv \"arithmetic mean\" \"geometric mean\" sensitivity heterogeneity quantization AM/GM ratio head importance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d58bee6-541b-4486-bad3-e3e7f019426e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yWmPoLMtvqe5UMMJNK",
+  "type": "assistant",
+  "uuid": "d03564ce-39b1-4421-b3e5-63e0288ed2e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WeCVvESFHSro1aNQRnNqan",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1044,
+      "cache_read_input_tokens": 36469,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 36469,
+          "cache_creation_input_tokens": 1044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T18:59:28.235Z_
+
+<details><summary>↩ Tool result · `toolu_011kJey3NWVbta7v18xApqMX`</summary>
+
+```text
+Web search results for query: "arXiv "arithmetic mean" "geometric mean" sensitivity heterogeneity quantization AM/GM ratio head importance"
+
+Links: [{"title":"[2507.20673] Geometric-Mean Policy Optimization","url":"https://arxiv.org/abs/2507.20673"},{"title":"[2507.20673v1] Geometric-Mean Policy Optimization","url":"https://arxiv.org/abs/2507.20673v1"},{"title":"Geometric-Mean Policy Optimization","url":"https://arxiv.org/html/2507.20673v1"},{"title":"Geometric-Mean Policy Optimization Yuzhong Zhao1∗ Yue Liu1∗ Junpeng Liu2","url":"https://arxiv.org/pdf/2507.20673"},{"title":"[2111.03402] A Refinement of the arithmetic-geometric mean inequality and some more","url":"https://arxiv.org/abs/2111.03402"},{"title":"Exploring Layer-wise Information Effectiveness for Post-Training Quantization in Small Language Models","url":"https://arxiv.org/html/2508.03332"},{"title":"Zero-Shot Quantization via Weight-Space Arithmetic","url":"https://arxiv.org/html/2604.03420"},{"title":"Qua2SeDiMo: Quantifiable Quantization Sensitivity of Diffusion Models","url":"https://arxiv.org/html/2412.14628v1"},{"title":"ArXiv 8/26/15 Variance and the Inequality of Arithmetic and Geometric Means","url":"https://arxiv.org/pdf/1409.0162"},{"title":"Weighted Versions of the Arithmetic-Mean-Geometric Mean Inequality and Zaremba’s Function","url":"https://arxiv.org/html/2312.11661v1"}]
+
+Based on the search results, I found several relevant arXiv papers related to your query. Here are the most relevant findings:
+
+## Primary Result: Geometric-Mean Policy Optimization
+
+The most directly relevant paper is on Geometric-Mean Policy Optimization (GMPO), which addresses how the arithmetic mean of token-level rewards is sensitive to outliers, while the geometric mean is inherently less sensitive to outliers and maintains a more stable range of importance sampling ratio.
+
+## Related Work on Quantization Sensitivity
+
+There are also papers exploring quantization sensitivity and heterogeneity in neural networks:
+
+1. **Layer-wise Information Effectiveness**: Transformer layers exhibit heterogeneous saliency with some highly vulnerable to precision loss while others tolerate aggressive bit reduction, with sensitivity estimated via weight reconstruction error, Hessian eigenvalues, activation entropy, or direct layer-wise quantization.
+
+2. **Quantization Sensitivity in Diffusion Models**: Research addresses understanding the quantization sensitivity of different weight layers and operations in Transformer architectures through mixed-precision Post-Training Quantization frameworks.
+
+## Mathematical Foundation
+
+There are also theoretical papers on the arithmetic-geometric mean inequality itself, though they focus on mathematical properties rather than the specific application domains you mentioned.
+
+The GMPO paper (arXiv 2507.20673) appears to be the most relevant match for your specific query about using AM/GM ratios for sensitivity analysis and head importance in neural networks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d03564ce-39b1-4421-b3e5-63e0288ed2e7",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "fc5f3fe4-7f57-4627-ac29-14eb7dbce424",
+  "toolUseResult": {
+    "query": "arXiv \"arithmetic mean\" \"geometric mean\" sensitivity heterogeneity quantization AM/GM ratio head importance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WEr6jGrEcCdtYnHEyh43UZ",
+        "content": [
+          {
+            "title": "[2507.20673] Geometric-Mean Policy Optimization",
+            "url": "https://arxiv.org/abs/2507.20673"
+          },
+          {
+            "title": "[2507.20673v1] Geometric-Mean Policy Optimization",
+            "url": "https://arxiv.org/abs/2507.20673v1"
+          },
+          {
+            "title": "Geometric-Mean Policy Optimization",
+            "url": "https://arxiv.org/html/2507.20673v1"
+          },
+          {
+            "title": "Geometric-Mean Policy Optimization Yuzhong Zhao1∗ Yue Liu1∗ Junpeng Liu2",
+            "url": "https://arxiv.org/pdf/2507.20673"
+          },
+          {
+            "title": "[2111.03402] A Refinement of the arithmetic-geometric mean inequality and some more",
+            "url": "https://arxiv.org/abs/2111.03402"
+          },
+          {
+            "title": "Exploring Layer-wise Information Effectiveness for Post-Training Quantization in Small Language Models",
+            "url": "https://arxiv.org/html/2508.03332"
+          },
+          {
+            "title": "Zero-Shot Quantization via Weight-Space Arithmetic",
+            "url": "https://arxiv.org/html/2604.03420"
+          },
+          {
+            "title": "Qua2SeDiMo: Quantifiable Quantization Sensitivity of Diffusion Models",
+            "url": "https://arxiv.org/html/2412.14628v1"
+          },
+          {
+            "title": "ArXiv 8/26/15 Variance and the Inequality of Arithmetic and Geometric Means",
+            "url": "https://arxiv.org/pdf/1409.0162"
+          },
+          {
+            "title": "Weighted Versions of the Arithmetic-Mean-Geometric Mean Inequality and Zaremba’s Function",
+            "url": "https://arxiv.org/html/2312.11661v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant arXiv papers related to your query. Here are the most relevant findings:\n\n## Primary Result: Geometric-Mean Policy Optimization\n\nThe most directly relevant paper is on Geometric-Mean Policy Optimization (GMPO), which addresses how the arithmetic mean of token-level rewards is sensitive to outliers, while the geometric mean is inherently less sensitive to outliers and maintains a more stable range of importance sampling ratio.\n\n## Related Work on Quantization Sensitivity\n\nThere are also papers exploring quantization sensitivity and heterogeneity in neural networks:\n\n1. **Layer-wise Information Effectiveness**: Transformer layers exhibit heterogeneous saliency with some highly vulnerable to precision loss while others tolerate aggressive bit reduction, with sensitivity estimated via weight reconstruction error, Hessian eigenvalues, activation entropy, or direct layer-wise quantization.\n\n2. **Quantization Sensitivity in Diffusion Models**: Research addresses understanding the quantization sensitivity of different weight layers and operations in Transformer architectures through mixed-precision Post-Training Quantization frameworks.\n\n## Mathematical Foundation\n\nThere are also theoretical papers on the arithmetic-geometric mean inequality itself, though they focus on mathematical properties rather than the specific application domains you mentioned.\n\nThe GMPO paper (arXiv 2507.20673) appears to be the most relevant match for your specific query about using AM/GM ratios for sensitivity analysis and head importance in neural networks."
+    ],
+    "durationSeconds": 6.8708624929999935
+  },
+  "sourceToolAssistantUUID": "d03564ce-39b1-4421-b3e5-63e0288ed2e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T18:59:33.842Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019Rdd8LNKtawtX3Xfe8QAyD`</summary>
+
+```json
+{
+  "query": "KV cache quantization \"key head\" OR \"value head\" importance variation outlier \"single head\" dominance 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc5f3fe4-7f57-4627-ac29-14eb7dbce424",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yXeyN5rgFGtiUqzSSd",
+  "type": "assistant",
+  "uuid": "eb7c5d4c-55de-492f-8faf-d4c72f597bf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YDCJppkP426N4p1E3eNx9t",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 867,
+      "cache_read_input_tokens": 37513,
+      "output_tokens": 81,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 867,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 81,
+          "cache_read_input_tokens": 37513,
+          "cache_creation_input_tokens": 867,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 867
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T18:59:43.444Z_
+
+<details><summary>↩ Tool result · `toolu_019Rdd8LNKtawtX3Xfe8QAyD`</summary>
+
+```text
+Web search results for query: "KV cache quantization "key head" OR "value head" importance variation outlier "single head" dominance 2024 2025"
+
+Links: [{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"Accurate KV Cache Quantization with Outlier Tokens Tracing","url":"https://aclanthology.org/2025.acl-long.631.pdf"},{"title":"eOptShrinkQ: Near-Lossless KV Cache Compression Through Optimal Spectral Denoising and Quantization","url":"https://arxiv.org/html/2605.02905"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"Towards 10 Million Context Length LLM Inference with KV ...","url":"https://www.stat.berkeley.edu/~mmahoney/pubs/neurips-2024-kvquant.pdf"},{"title":"NeurIPS Poster KV Cache is 1 Bit Per Channel: Efficient Large Language Model Inference with Coupled Quantization","url":"https://neurips.cc/virtual/2024/poster/93558"},{"title":"Accurate KV Cache Quantization with Outlier Tokens Tracing","url":"https://arxiv.org/pdf/2505.10938"},{"title":"GitHub - SqueezeAILab/KVQuant: [NeurIPS 2024] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization · GitHub","url":"https://github.com/SqueezeAILab/KVQuant"},{"title":"KV Cache Optimization Strategies for Scalable and Efficient LLM Inference","url":"https://arxiv.org/html/2603.20397v1"},{"title":"CompressKV: Semantic Retrieval Heads Know What Tokens are Not Important Before Generation","url":"https://arxiv.org/html/2508.02401v1"}]
+
+I found several highly relevant research papers on KV cache quantization published in 2024-2025. Here's a summary of the search results:
+
+## Key Findings on KV Cache Quantization
+
+Current quantizers apply uniform bit-widths to every attention head, ignoring the well-documented heterogeneity of head importance. Recent work has begun addressing this:
+
+### Head-Level Heterogeneity and Mixed-Precision Approaches
+
+Recent mixed-precision approaches relax uniform quantization at the layer level or channel level, but each relies on heuristic allocation rules tied to a specific quantizer, limiting transferability and lacking theoretical guarantees. 
+
+RateQuant is the first to apply rate-distortion allocation to KV caches, addressing both the structural differences of heads forming natural quantization groups with distinct sensitivities, and keys and values having asymmetric error characteristics.
+
+### Outlier Handling and Single Head Dominance
+
+ChanMix clusters by dynamic range, KITTY boosts outlier keys, and MixKVQ scores channels via query-activation magnitude. The research shows that removing even a single dominant direction (rank-1 truncated SVD) demonstrates the value of spectral denoising with negligible bit overhead.
+
+### Head-Specific Compression Strategies
+
+Recent methods such as AdaKV and PyramidKV adopt head-specific compression strategies, recognizing that different attention heads exhibit varying sensitivity to compression. Additionally, when GQA groups are dominated by Streaming Heads, those heads have the largest influence on KV cache eviction, resulting in only the initial and last tokens' KV pairs being retained and leading to eviction of crucial tokens in the middle of a prompt.
+
+The search results reveal significant recent progress (2024-2025) on understanding and exploiting per-head importance variation in KV cache quantization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb7c5d4c-55de-492f-8faf-d4c72f597bf3",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "5b75f2eb-7b8c-4f0c-9b93-0b4220b337f7",
+  "toolUseResult": {
+    "query": "KV cache quantization \"key head\" OR \"value head\" importance variation outlier \"single head\" dominance 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012wMCyYF86GNPft7MQVs8GY",
+        "content": [
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "Accurate KV Cache Quantization with Outlier Tokens Tracing",
+            "url": "https://aclanthology.org/2025.acl-long.631.pdf"
+          },
+          {
+            "title": "eOptShrinkQ: Near-Lossless KV Cache Compression Through Optimal Spectral Denoising and Quantization",
+            "url": "https://arxiv.org/html/2605.02905"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "Towards 10 Million Context Length LLM Inference with KV ...",
+            "url": "https://www.stat.berkeley.edu/~mmahoney/pubs/neurips-2024-kvquant.pdf"
+          },
+          {
+            "title": "NeurIPS Poster KV Cache is 1 Bit Per Channel: Efficient Large Language Model Inference with Coupled Quantization",
+            "url": "https://neurips.cc/virtual/2024/poster/93558"
+          },
+          {
+            "title": "Accurate KV Cache Quantization with Outlier Tokens Tracing",
+            "url": "https://arxiv.org/pdf/2505.10938"
+          },
+          {
+            "title": "GitHub - SqueezeAILab/KVQuant: [NeurIPS 2024] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization · GitHub",
+            "url": "https://github.com/SqueezeAILab/KVQuant"
+          },
+          {
+            "title": "KV Cache Optimization Strategies for Scalable and Efficient LLM Inference",
+            "url": "https://arxiv.org/html/2603.20397v1"
+          },
+          {
+            "title": "CompressKV: Semantic Retrieval Heads Know What Tokens are Not Important Before Generation",
+            "url": "https://arxiv.org/html/2508.02401v1"
+          }
+        ]
+      },
+      "I found several highly relevant research papers on KV cache quantization published in 2024-2025. Here's a summary of the search results:\n\n## Key Findings on KV Cache Quantization\n\nCurrent quantizers apply uniform bit-widths to every attention head, ignoring the well-documented heterogeneity of head importance. Recent work has begun addressing this:\n\n### Head-Level Heterogeneity and Mixed-Precision Approaches\n\nRecent mixed-precision approaches relax uniform quantization at the layer level or channel level, but each relies on heuristic allocation rules tied to a specific quantizer, limiting transferability and lacking theoretical guarantees. \n\nRateQuant is the first to apply rate-distortion allocation to KV caches, addressing both the structural differences of heads forming natural quantization groups with distinct sensitivities, and keys and values having asymmetric error characteristics.\n\n### Outlier Handling and Single Head Dominance\n\nChanMix clusters by dynamic range, KITTY boosts outlier keys, and MixKVQ scores channels via query-activation magnitude. The research shows that removing even a single dominant direction (rank-1 truncated SVD) demonstrates the value of spectral denoising with negligible bit overhead.\n\n### Head-Specific Compression Strategies\n\nRecent methods such as AdaKV and PyramidKV adopt head-specific compression strategies, recognizing that different attention heads exhibit varying sensitivity to compression. Additionally, when GQA groups are dominated by Streaming Heads, those heads have the largest influence on KV cache eviction, resulting in only the initial and last tokens' KV pairs being retained and leading to eviction of crucial tokens in the middle of a prompt.\n\nThe search results reveal significant recent progress (2024-2025) on understanding and exploiting per-head importance variation in KV cache quantization."
+    ],
+    "durationSeconds": 9.597943839000013
+  },
+  "sourceToolAssistantUUID": "eb7c5d4c-55de-492f-8faf-d4c72f597bf3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "5b75f2eb-7b8c-4f0c-9b93-0b4220b337f7",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T18:59:46.223Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KkLeMH9WajF7fTn2XGwLth`</summary>
+
+```json
+{
+  "query": "PM-KVQ progressive mixed precision KV cache quantization long chain-of-thought 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b75f2eb-7b8c-4f0c-9b93-0b4220b337f7",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yYn2YmJcyBCSYikHrz",
+  "type": "assistant",
+  "uuid": "48bd1651-fa04-4d4d-9fc8-0e6f9596716e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYiGLYgxZmuz5bsreS1Kiu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1057,
+      "cache_read_input_tokens": 38380,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 38380,
+          "cache_creation_input_tokens": 1057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T18:59:54.134Z_
+
+<details><summary>↩ Tool result · `toolu_01KkLeMH9WajF7fTn2XGwLth`</summary>
+
+```text
+Web search results for query: "PM-KVQ progressive mixed precision KV cache quantization long chain-of-thought 2025"
+
+Links: [{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview","url":"https://openreview.net/forum?id=Vem6FQvRvq"},{"title":"GitHub - thu-nics/PM-KVQ: The official code implementation for paper \"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs\"","url":"https://github.com/thu-nics/PM-KVQ"},{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs","url":"https://arxiv.org/html/2505.18610v1"},{"title":"[2505.18610] PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs","url":"https://arxiv.org/abs/2505.18610"},{"title":"PM-KVQ: PROGRESSIVE MIXED-PRECISION KV CACHE ...","url":"https://openreview.net/pdf/aa856ae96a62b942c63e9f66b198e0a68f9601e8.pdf"},{"title":"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning","url":"https://arxiv.org/html/2512.19206v1"},{"title":"Progressive Mixed-precision KV Cache Quantization for ...","url":"https://nicsefc.ee.tsinghua.edu.cn/nics_file/pdf/716c42fa-d7f1-4fd9-b74d-ab279456d2d8.pdf"},{"title":"[2512.19206] MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning","url":"https://arxiv.org/abs/2512.19206"},{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | Request PDF","url":"https://www.researchgate.net/publication/392105885_PM-KVQ_Progressive_Mixed-precision_KV_Cache_Quantization_for_Long-CoT_LLMs"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/html/2510.01290v1"}]
+
+Based on the search results, here's what I found about PM-KVQ:
+
+## PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs
+
+PM-KVQ proposes progressive mixed-precision KV cache quantization with a progressive quantization strategy that gradually lowers the bit-width of KV Cache in each block to reduce cumulative error.
+
+### The Problem It Addresses
+
+Recent progress has been made in developing reasoning-capable Large Language Models (LLMs) through long Chain-of-Thought (CoT) techniques, but this long-CoT reasoning process imposes substantial memory overhead due to large Key-Value (KV) Cache memory overhead. Directly applying existing quantization methods to long-CoT LLMs causes significant performance degradation due to large cumulative error, as existing methods fail to adequately leverage available memory and directly quantize the KV Cache during each decoding step.
+
+### Key Techniques
+
+To reduce cumulative error, PM-KVQ designs a progressive quantization strategy to gradually lower the bit-width of KV Cache in each block, and proposes block-wise memory allocation to assign a higher bit-width to more sensitive transformer blocks. To address calibration issues, it proposes a new calibration strategy with positional interpolation that leverages short calibration data with positional interpolation to approximate the data distribution of long-context data.
+
+### Results
+
+Extensive experiments on 7B–70B long-CoT LLMs show that PM-KVQ improves reasoning benchmark performance by up to 8% over SOTA baselines under the same memory budget.
+
+The official code implementation is available on GitHub at https://github.com/thu-nics/PM-KVQ.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48bd1651-fa04-4d4d-9fc8-0e6f9596716e",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "f5acc213-ffe3-4e55-b9b8-fef00cb9b4ff",
+  "toolUseResult": {
+    "query": "PM-KVQ progressive mixed precision KV cache quantization long chain-of-thought 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Cxt7sTaQdpXQeJBE96EUMx",
+        "content": [
+          {
+            "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=Vem6FQvRvq"
+          },
+          {
+            "title": "GitHub - thu-nics/PM-KVQ: The official code implementation for paper \"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs\"",
+            "url": "https://github.com/thu-nics/PM-KVQ"
+          },
+          {
+            "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs",
+            "url": "https://arxiv.org/html/2505.18610v1"
+          },
+          {
+            "title": "[2505.18610] PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs",
+            "url": "https://arxiv.org/abs/2505.18610"
+          },
+          {
+            "title": "PM-KVQ: PROGRESSIVE MIXED-PRECISION KV CACHE ...",
+            "url": "https://openreview.net/pdf/aa856ae96a62b942c63e9f66b198e0a68f9601e8.pdf"
+          },
+          {
+            "title": "MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning",
+            "url": "https://arxiv.org/html/2512.19206v1"
+          },
+          {
+            "title": "Progressive Mixed-precision KV Cache Quantization for ...",
+            "url": "https://nicsefc.ee.tsinghua.edu.cn/nics_file/pdf/716c42fa-d7f1-4fd9-b74d-ab279456d2d8.pdf"
+          },
+          {
+            "title": "[2512.19206] MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning",
+            "url": "https://arxiv.org/abs/2512.19206"
+          },
+          {
+            "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | Request PDF",
+            "url": "https://www.researchgate.net/publication/392105885_PM-KVQ_Progressive_Mixed-precision_KV_Cache_Quantization_for_Long-CoT_LLMs"
+          },
+          {
+            "title": "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+            "url": "https://arxiv.org/html/2510.01290v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about PM-KVQ:\n\n## PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs\n\nPM-KVQ proposes progressive mixed-precision KV cache quantization with a progressive quantization strategy that gradually lowers the bit-width of KV Cache in each block to reduce cumulative error.\n\n### The Problem It Addresses\n\nRecent progress has been made in developing reasoning-capable Large Language Models (LLMs) through long Chain-of-Thought (CoT) techniques, but this long-CoT reasoning process imposes substantial memory overhead due to large Key-Value (KV) Cache memory overhead. Directly applying existing quantization methods to long-CoT LLMs causes significant performance degradation due to large cumulative error, as existing methods fail to adequately leverage available memory and directly quantize the KV Cache during each decoding step.\n\n### Key Techniques\n\nTo reduce cumulative error, PM-KVQ designs a progressive quantization strategy to gradually lower the bit-width of KV Cache in each block, and proposes block-wise memory allocation to assign a higher bit-width to more sensitive transformer blocks. To address calibration issues, it proposes a new calibration strategy with positional interpolation that leverages short calibration data with positional interpolation to approximate the data distribution of long-context data.\n\n### Results\n\nExtensive experiments on 7B–70B long-CoT LLMs show that PM-KVQ improves reasoning benchmark performance by up to 8% over SOTA baselines under the same memory budget.\n\nThe official code implementation is available on GitHub at https://github.com/thu-nics/PM-KVQ."
+    ],
+    "durationSeconds": 7.906345620000008
+  },
+  "sourceToolAssistantUUID": "48bd1651-fa04-4d4d-9fc8-0e6f9596716e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T18:59:57.746Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CWbdigRBcTPieGvoJGPCCp`</summary>
+
+```json
+{
+  "query": "MixKVQ query-aware mixed precision KV cache channel-wise head-wise sensitivity long context reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5acc213-ffe3-4e55-b9b8-fef00cb9b4ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yZZiuRz5WuRkcYvWDz",
+  "type": "assistant",
+  "uuid": "49f413f6-d1b9-4974-94e3-a14004cc565c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzbUXH8tLjmveNyoVzzLnh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1110,
+      "cache_read_input_tokens": 39437,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1110,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 39437,
+          "cache_creation_input_tokens": 1110,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1110
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T19:00:05.342Z_
+
+<details><summary>↩ Tool result · `toolu_01CWbdigRBcTPieGvoJGPCCp`</summary>
+
+```text
+Web search results for query: "MixKVQ query-aware mixed precision KV cache channel-wise head-wise sensitivity long context reasoning"
+
+Links: [{"title":"[2512.19206] MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning","url":"https://arxiv.org/abs/2512.19206"},{"title":"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning","url":"https://arxiv.org/html/2512.19206v1"},{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://arxiv.org/html/2502.04420"},{"title":"Cocktail: Chunk-Adaptive Mixed-Precision Quantization for ...","url":"https://arxiv.org/pdf/2503.23294"},{"title":"KIVI: Tuning-Free 2-Bit KV Cache Quantization","url":"https://www.emergentmind.com/papers/2402.02750"},{"title":"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache","url":"https://arxiv.org/html/2506.08018"},{"title":"GitHub - cmd2001/KVTuner: KVTuner: Sensitivity-Aware Layer-wise Mixed Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://github.com/cmd2001/KVTuner"},{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs","url":"https://arxiv.org/html/2505.18610v1"},{"title":"(PDF) MixKVQ: Query-Aware Mixed-Precision KV Cache ...","url":"https://www.researchgate.net/publication/398979546_MixKVQ_Query-Aware_Mixed-Precision_KV_Cache_Quantization_for_Long-Context_Reasoning"}]
+
+Based on the search results, I found comprehensive information about MixKVQ. Here's what the research reveals:
+
+## MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization
+
+MixKVQ addresses the challenge that while long Chain-of-Thought (CoT) reasoning has advanced LLM capabilities, it creates substantial memory and latency overhead from extensive Key-Value (KV) cache, though existing low-bit quantization methods often exhibit severe performance degradation on complex reasoning tasks.
+
+### Core Innovation
+
+The method is based on the finding that an effective low-bit KV cache quantization strategy must consider two factors: a key channel's intrinsic quantization difficulty and its relevance to the query.
+
+MixKVQ is a plug-and-play method that introduces a lightweight, query-aware algorithm to identify and preserve critical key channels that need higher precision, while applying per-token quantization for value cache.
+
+### Technical Approach
+
+The heuristic dynamically estimates the potential fidelity impact of quantizing each key channel by combining its intrinsic quantization difficulty with its relevance to the query. MixKVQ quantizes key cache per-channel with mixed precision and quantizes value cache per-token.
+
+### Performance
+
+Experiments on complex reasoning datasets demonstrate that the approach significantly outperforms existing low-bit methods, achieving performance comparable to a full-precision baseline at a substantially reduced memory footprint.
+
+At the channel level, MixKVQ scores channels via query-activation magnitude as part of the broader landscape of recent mixed-precision KV cache quantization techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49f413f6-d1b9-4974-94e3-a14004cc565c",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "c2f78dc4-e446-4871-9635-9e1555b4502f",
+  "toolUseResult": {
+    "query": "MixKVQ query-aware mixed precision KV cache channel-wise head-wise sensitivity long context reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014xWHptxsEXE929ZhAVUXaf",
+        "content": [
+          {
+            "title": "[2512.19206] MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning",
+            "url": "https://arxiv.org/abs/2512.19206"
+          },
+          {
+            "title": "MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning",
+            "url": "https://arxiv.org/html/2512.19206v1"
+          },
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://arxiv.org/html/2502.04420"
+          },
+          {
+            "title": "Cocktail: Chunk-Adaptive Mixed-Precision Quantization for ...",
+            "url": "https://arxiv.org/pdf/2503.23294"
+          },
+          {
+            "title": "KIVI: Tuning-Free 2-Bit KV Cache Quantization",
+            "url": "https://www.emergentmind.com/papers/2402.02750"
+          },
+          {
+            "title": "KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache",
+            "url": "https://arxiv.org/html/2506.08018"
+          },
+          {
+            "title": "GitHub - cmd2001/KVTuner: KVTuner: Sensitivity-Aware Layer-wise Mixed Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://github.com/cmd2001/KVTuner"
+          },
+          {
+            "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs",
+            "url": "https://arxiv.org/html/2505.18610v1"
+          },
+          {
+            "title": "(PDF) MixKVQ: Query-Aware Mixed-Precision KV Cache ...",
+            "url": "https://www.researchgate.net/publication/398979546_MixKVQ_Query-Aware_Mixed-Precision_KV_Cache_Quantization_for_Long-Context_Reasoning"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about MixKVQ. Here's what the research reveals:\n\n## MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization\n\nMixKVQ addresses the challenge that while long Chain-of-Thought (CoT) reasoning has advanced LLM capabilities, it creates substantial memory and latency overhead from extensive Key-Value (KV) cache, though existing low-bit quantization methods often exhibit severe performance degradation on complex reasoning tasks.\n\n### Core Innovation\n\nThe method is based on the finding that an effective low-bit KV cache quantization strategy must consider two factors: a key channel's intrinsic quantization difficulty and its relevance to the query.\n\nMixKVQ is a plug-and-play method that introduces a lightweight, query-aware algorithm to identify and preserve critical key channels that need higher precision, while applying per-token quantization for value cache.\n\n### Technical Approach\n\nThe heuristic dynamically estimates the potential fidelity impact of quantizing each key channel by combining its intrinsic quantization difficulty with its relevance to the query. MixKVQ quantizes key cache per-channel with mixed precision and quantizes value cache per-token.\n\n### Performance\n\nExperiments on complex reasoning datasets demonstrate that the approach significantly outperforms existing low-bit methods, achieving performance comparable to a full-precision baseline at a substantially reduced memory footprint.\n\nAt the channel level, MixKVQ scores channels via query-activation magnitude as part of the broader landscape of recent mixed-precision KV cache quantization techniques."
+    ],
+    "durationSeconds": 7.592139147999988
+  },
+  "sourceToolAssistantUUID": "49f413f6-d1b9-4974-94e3-a14004cc565c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-14T19:00:07.909Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019H2cNcip6UgYNVzrYoA68m`</summary>
+
+```json
+{
+  "query": "KVmix gradient layer importance mixed precision KV cache quantization key value asymmetric 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2f78dc4-e446-4871-9635-9e1555b4502f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yaPjRKsPFFfWchx8GN",
+  "type": "assistant",
+  "uuid": "0a214e5c-4eb1-4044-b0fe-9ffd0ebff2ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GWLKyYioU2HhhkqgBxoSWL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1028,
+      "cache_read_input_tokens": 40547,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1028,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 40547,
+          "cache_creation_input_tokens": 1028,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1028
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-14T19:00:22.740Z_
+
+<details><summary>↩ Tool result · `toolu_019H2cNcip6UgYNVzrYoA68m`</summary>
+
+```text
+Web search results for query: "KVmix gradient layer importance mixed precision KV cache quantization key value asymmetric 2025"
+
+Links: [{"title":"[2506.08018] KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache","url":"https://arxiv.org/abs/2506.08018"},{"title":"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache","url":"https://arxiv.org/html/2506.08018"},{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40422/44383"},{"title":"KV-Cache Quantization Techniques","url":"https://www.emergentmind.com/topics/kv-cache-quantization-4cf1d820-95b5-4aa4-a906-6619bb81d40a"},{"title":"[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/abs/2605.06675"},{"title":"Computer Science Jun 2025","url":"https://www.arxiv.org/list/cs/2025-06?skip=4250&show=100"},{"title":"Machine Learning Jun 2025","url":"https://www.arxiv.org/list/cs.LG/2025-06?skip=875&show=2000"},{"title":"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://arxiv.org/html/2502.04420"},{"title":"[2502.04420v2] KVTuner: Sensitivity-Aware Layer-wise Mixed Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://arxiv.org/abs/2502.04420v2"}]
+
+Based on the web search results, here's what I found about KVmix and related KV cache quantization research:
+
+## KVmix Overview
+
+KVmix leverages gradient-based importance analysis to evaluate how individual Key and Value projection matrices affect the model loss, enabling layer-specific bit-width allocation for mix-precision quantization.
+
+## Key Features
+
+KVmix dynamically prioritizes higher precision for important layers while aggressively quantizing less influential ones, achieving a tunable balance between accuracy and efficiency. 
+
+KVmix also introduces a dynamic long-context optimization strategy that adaptively keeps full-precision KV pairs for recent pivotal tokens and compresses older ones, achieving high-quality sequence generation with low memory usage.
+
+## Performance Results
+
+On LLMs such as Llama and Mistral, KVmix achieves near-lossless inference performance with extremely low quantization configuration (Key 2.19bit Value 2.38bit), while delivering a remarkable 4.9x memory compression and a 5.3x speedup in inference throughput.
+
+## Related Asymmetric Approaches
+
+The search results also revealed related work on asymmetric quantization: AsymKV observes that model output is more sensitive to errors in key quantization than value quantization. By quantizing keys at higher precision in early layers and using lower precision in later layers and for values, up to 75% of the KV cache can be stored at 1 bit without significant degradation.
+
+The paper was published on arXiv in May 2025 and represents recent advances in efficient LLM inference through sophisticated KV cache quantization techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a214e5c-4eb1-4044-b0fe-9ffd0ebff2ac",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "34529c00-b87e-45c6-b652-05c63ac4c714",
+  "toolUseResult": {
+    "query": "KVmix gradient layer importance mixed precision KV cache quantization key value asymmetric 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FsFRWRjFCqiW1jdwgUFSd5",
+        "content": [
+          {
+            "title": "[2506.08018] KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache",
+            "url": "https://arxiv.org/abs/2506.08018"
+          },
+          {
+            "title": "KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache",
+            "url": "https://arxiv.org/html/2506.08018"
+          },
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40422/44383"
+          },
+          {
+            "title": "KV-Cache Quantization Techniques",
+            "url": "https://www.emergentmind.com/topics/kv-cache-quantization-4cf1d820-95b5-4aa4-a906-6619bb81d40a"
+          },
+          {
+            "title": "[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/abs/2605.06675"
+          },
+          {
+            "title": "Computer Science Jun 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-06?skip=4250&show=100"
+          },
+          {
+            "title": "Machine Learning Jun 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-06?skip=875&show=2000"
+          },
+          {
+            "title": "KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://arxiv.org/html/2502.04420"
+          },
+          {
+            "title": "[2502.04420v2] KVTuner: Sensitivity-Aware Layer-wise Mixed Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://arxiv.org/abs/2502.04420v2"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about KVmix and related KV cache quantization research:\n\n## KVmix Overview\n\nKVmix leverages gradient-based importance analysis to evaluate how individual Key and Value projection matrices affect the model loss, enabling layer-specific bit-width allocation for mix-precision quantization.\n\n## Key Features\n\nKVmix dynamically prioritizes higher precision for important layers while aggressively quantizing less influential ones, achieving a tunable balance between accuracy and efficiency. \n\nKVmix also introduces a dynamic long-context optimization strategy that adaptively keeps full-precision KV pairs for recent pivotal tokens and compresses older ones, achieving high-quality sequence generation with low memory usage.\n\n## Performance Results\n\nOn LLMs such as Llama and Mistral, KVmix achieves near-lossless inference performance with extremely low quantization configuration (Key 2.19bit Value 2.38bit), while delivering a remarkable 4.9x memory compression and a 5.3x speedup in inference throughput.\n\n## Related Asymmetric Approaches\n\nThe search results also revealed related work on asymmetric quantization: AsymKV observes that model output is more sensitive to errors in key quantization than value quantization. By quantizing keys at higher precision in early layers and using lower precision in later layers and for values, up to 75% of the KV cache can be stored at 1 bit without significant degradation.\n\nThe paper was published on arXiv in May 2025 and represents recent advances in efficient LLM inference through sophisticated KV cache quantization techniques."
+    ],
+    "durationSeconds": 14.821537935999979
+  },
+  "sourceToolAssistantUUID": "0a214e5c-4eb1-4044-b0fe-9ffd0ebff2ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-14T19:00:22.744Z_
+
+```json
+{
+  "parentUuid": "34529c00-b87e-45c6-b652-05c63ac4c714",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2612fdb4-4f99-42e0-b7c7-cdca00960e94",
+  "timestamp": "2026-05-14T19:00:22.744Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T19:00:26.684Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01D5hXkbgeGRu52CXNWp3Y5H`</summary>
+
+```json
+{
+  "query": "\"Precision Where It Matters\" spike aware mixed precision quantization LLaMA activation spike projection layer 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2612fdb4-4f99-42e0-b7c7-cdca00960e94",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ybg2isKotx6HG9HEoL",
+  "type": "assistant",
+  "uuid": "a859d680-2786-45cc-aa83-f9e3c02467eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012sd2ziFE3czwrAoinfwwbK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1134,
+      "cache_read_input_tokens": 41575,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 41575,
+          "cache_creation_input_tokens": 1134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T19:00:34.357Z_
+
+<details><summary>↩ Tool result · `toolu_01D5hXkbgeGRu52CXNWp3Y5H`</summary>
+
+```text
+Web search results for query: ""Precision Where It Matters" spike aware mixed precision quantization LLaMA activation spike projection layer 2025"
+
+Links: [{"title":"Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models","url":"https://arxiv.org/html/2504.21553v1"},{"title":"[2504.21553] Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models","url":"https://arxiv.org/abs/2504.21553"},{"title":"Precision Where It Matters: A Novel Spike","url":"https://arxiv.org/pdf/2504.21553"},{"title":"Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-Based Language Models | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-981-96-7030-7_23"},{"title":"Mixed-Precision Quantization for Language Models: Techniques and Prospects","url":"https://arxiv.org/html/2510.16805v1"},{"title":"Olivier Bichler's scientific contributions","url":"https://www.researchgate.net/scientific-contributions/Olivier-Bichler-2284073499"},{"title":"Sensitivity Aware Mixed Precision Quantization V1","url":"https://huggingface.co/blog/badaoui/sensitivity-aware-mixed-precision-quantizer-v1"},{"title":"ALMP: Automatic Layer-By-Layer Mixed-Precision Quantization for Large Language Models | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-95-0014-7_13"},{"title":"ICML Poster ResQ: Mixed-Precision Quantization of Large Language Models with Low-Rank Residuals","url":"https://icml.cc/virtual/2025/poster/46466"},{"title":"MoQAE: Mixed-Precision Quantization for Long-Context ...","url":"https://aclanthology.org/2025.acl-long.531.pdf"}]
+
+I found search results for "Precision Where It Matters" - a research paper on spike-aware mixed-precision quantization for LLaMA models. Here's what the paper is about:
+
+## Overview
+
+The paper investigates quantization of LLMs, focusing on the LLaMA architecture and its derivatives, proposing a novel mixed-precision quantization approach tailored for LLaMA-like models.
+
+## Key Innovation
+
+The authors leverage the observation that spikes occur predominantly in two projection layers to develop a mixed-precision quantization pipeline, using a different coding format like FP8 for these layers exhibiting spikes, which allows them to quantize all linear layers in 8 bits without a significant drop of performance.
+
+## Specific Findings
+
+The LLaMA architecture exhibits activation spikes in the down projections of only two layers: one at the beginning and one at the end of the model. The method needs to manage significant spiking values that can reach up to 2500, consequently they opted for the E5M2 FP8 format, which has a maximum representable value of 57344.
+
+## Results
+
+The experimental results demonstrate the effectiveness of this approach across various LLaMA-based models, including LLaMA2, LLaMA3, and Mistral. The approach consistently outperforms perplexity of alternative schemes, particularly in 8-bit per-tensor quantization, where they observe a PPL reduction exceeding 30 for LLaMA3-8B.
+
+The paper was published on April 30, 2025, on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a859d680-2786-45cc-aa83-f9e3c02467eb",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "96a58278-9b57-4687-bdc3-878cf13ee10f",
+  "toolUseResult": {
+    "query": "\"Precision Where It Matters\" spike aware mixed precision quantization LLaMA activation spike projection layer 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LJwebFq4ERZDj3ft2N94fc",
+        "content": [
+          {
+            "title": "Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models",
+            "url": "https://arxiv.org/html/2504.21553v1"
+          },
+          {
+            "title": "[2504.21553] Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models",
+            "url": "https://arxiv.org/abs/2504.21553"
+          },
+          {
+            "title": "Precision Where It Matters: A Novel Spike",
+            "url": "https://arxiv.org/pdf/2504.21553"
+          },
+          {
+            "title": "Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-Based Language Models | SpringerLink",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-96-7030-7_23"
+          },
+          {
+            "title": "Mixed-Precision Quantization for Language Models: Techniques and Prospects",
+            "url": "https://arxiv.org/html/2510.16805v1"
+          },
+          {
+            "title": "Olivier Bichler's scientific contributions",
+            "url": "https://www.researchgate.net/scientific-contributions/Olivier-Bichler-2284073499"
+          },
+          {
+            "title": "Sensitivity Aware Mixed Precision Quantization V1",
+            "url": "https://huggingface.co/blog/badaoui/sensitivity-aware-mixed-precision-quantizer-v1"
+          },
+          {
+            "title": "ALMP: Automatic Layer-By-Layer Mixed-Precision Quantization for Large Language Models | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-95-0014-7_13"
+          },
+          {
+            "title": "ICML Poster ResQ: Mixed-Precision Quantization of Large Language Models with Low-Rank Residuals",
+            "url": "https://icml.cc/virtual/2025/poster/46466"
+          },
+          {
+            "title": "MoQAE: Mixed-Precision Quantization for Long-Context ...",
+            "url": "https://aclanthology.org/2025.acl-long.531.pdf"
+          }
+        ]
+      },
+      "I found search results for \"Precision Where It Matters\" - a research paper on spike-aware mixed-precision quantization for LLaMA models. Here's what the paper is about:\n\n## Overview\n\nThe paper investigates quantization of LLMs, focusing on the LLaMA architecture and its derivatives, proposing a novel mixed-precision quantization approach tailored for LLaMA-like models.\n\n## Key Innovation\n\nThe authors leverage the observation that spikes occur predominantly in two projection layers to develop a mixed-precision quantization pipeline, using a different coding format like FP8 for these layers exhibiting spikes, which allows them to quantize all linear layers in 8 bits without a significant drop of performance.\n\n## Specific Findings\n\nThe LLaMA architecture exhibits activation spikes in the down projections of only two layers: one at the beginning and one at the end of the model. The method needs to manage significant spiking values that can reach up to 2500, consequently they opted for the E5M2 FP8 format, which has a maximum representable value of 57344.\n\n## Results\n\nThe experimental results demonstrate the effectiveness of this approach across various LLaMA-based models, including LLaMA2, LLaMA3, and Mistral. The approach consistently outperforms perplexity of alternative schemes, particularly in 8-bit per-tensor quantization, where they observe a PPL reduction exceeding 30 for LLaMA3-8B.\n\nThe paper was published on April 30, 2025, on arXiv."
+    ],
+    "durationSeconds": 7.66808035600002
+  },
+  "sourceToolAssistantUUID": "a859d680-2786-45cc-aa83-f9e3c02467eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "96a58278-9b57-4687-bdc3-878cf13ee10f",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T19:00:36.935Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M5KPt4SxhLGqJLRkXK9Td3`</summary>
+
+```json
+{
+  "query": "KITTY 2-bit KV cache quantization outlier key boost channel clustering 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96a58278-9b57-4687-bdc3-878cf13ee10f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ycXfxmt45NngtrfvCr",
+  "type": "assistant",
+  "uuid": "6b9e3e80-2280-4960-b8af-1df4cdcf8df6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015seqKfeB1WZsv3jnjcTEPR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 994,
+      "cache_read_input_tokens": 42709,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 994,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 42709,
+          "cache_creation_input_tokens": 994,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 994
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T19:00:45.626Z_
+
+<details><summary>↩ Tool result · `toolu_01M5KPt4SxhLGqJLRkXK9Td3`</summary>
+
+```text
+Web search results for query: "KITTY 2-bit KV cache quantization outlier key boost channel clustering 2025"
+
+Links: [{"title":"[2511.18643] Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost","url":"https://arxiv.org/abs/2511.18643"},{"title":"KITTY: ACCURATE AND EFFICIENT 2-BIT KV CACHE QUANTIZATION WITH","url":"https://www.arxiv.org/pdf/2511.18643"},{"title":"GitHub - Summer-Summer/Kitty: Algorithm-System Co-design: accurate and efficient 2-bit KV cache quantization for LLM Inference..","url":"https://github.com/Summer-Summer/Kitty"},{"title":"(PDF) Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost","url":"https://www.researchgate.net/publication/397934403_Kitty_Accurate_and_Efficient_2-bit_KV_Cache_Quantization_with_Dynamic_Channel-wise_Precision_Boost"},{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"PolarQuant: Leveraging Polar Transformation for Key ...","url":"https://openreview.net/pdf?id=JCTTLKEBza"},{"title":"RotateKV: Accurate and Robust 2-Bit KV Cache Quantization","url":"https://www.ijcai.org/proceedings/2025/0690.pdf"},{"title":"1 Introduction","url":"https://arxiv.org/html/2511.18643v1"},{"title":"KV-Cache Quantization Techniques","url":"https://www.emergentmind.com/topics/kv-cache-quantization-4cf1d820-95b5-4aa4-a906-6619bb81d40a"},{"title":"Accurate KV Cache Quantization with Outlier Tokens Tracing","url":"https://aclanthology.org/2025.acl-long.631.pdf"}]
+
+Based on the web search results, here's what I found about KITTY and 2-bit KV cache quantization:
+
+## Overview
+
+KITTY is an algorithm-system co-design for mixed-precision KV caching, which addresses the challenge of maintaining accuracy in extremely low-bit quantization. 
+
+## Key Technical Approach
+
+The core innovation is Dynamic Channel-wise Precision Boost, which ranks Key-cache channels by sensitivity and keeps only a small fraction at higher precision, maintaining near-zero loss in accuracy drop while approaching 2-bit memory.
+
+Channel-wise precision boost preserves only critical channels in higher precision while aggressively compressing the remainder, motivated by the observation that certain critical channels within the key cache play a disproportionately important role in maintaining model accuracy.
+
+## System Design
+
+The main challenge is handling dynamic 4-bit channel boosts while keeping the page layout coalesced and the dequantization uniform. KITTY addresses these issues by decomposing each mixed-precision Key page into two tensors with unified 2-bit precision, providing a page-centric KV layout and Triton-compatible page dequantization kernels.
+
+## Performance Context
+
+The KV cache is a dominant memory bottleneck for LLM inference. While 4-bit KV quantization preserves accuracy, 2-bit often degrades it, especially on long-context reasoning.
+
+KITTY is a plug-and-play KV-cache system for HuggingFace Transformers, enabling accurate 2-bit KV-cache quantization. The paper was submitted on November 23, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b9e3e80-2280-4960-b8af-1df4cdcf8df6",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "8fc00898-122c-4c82-a2a2-f61bb8da29be",
+  "toolUseResult": {
+    "query": "KITTY 2-bit KV cache quantization outlier key boost channel clustering 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ToPA9Ct58f4f94d3C4NLj1",
+        "content": [
+          {
+            "title": "[2511.18643] Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost",
+            "url": "https://arxiv.org/abs/2511.18643"
+          },
+          {
+            "title": "KITTY: ACCURATE AND EFFICIENT 2-BIT KV CACHE QUANTIZATION WITH",
+            "url": "https://www.arxiv.org/pdf/2511.18643"
+          },
+          {
+            "title": "GitHub - Summer-Summer/Kitty: Algorithm-System Co-design: accurate and efficient 2-bit KV cache quantization for LLM Inference..",
+            "url": "https://github.com/Summer-Summer/Kitty"
+          },
+          {
+            "title": "(PDF) Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost",
+            "url": "https://www.researchgate.net/publication/397934403_Kitty_Accurate_and_Efficient_2-bit_KV_Cache_Quantization_with_Dynamic_Channel-wise_Precision_Boost"
+          },
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "PolarQuant: Leveraging Polar Transformation for Key ...",
+            "url": "https://openreview.net/pdf?id=JCTTLKEBza"
+          },
+          {
+            "title": "RotateKV: Accurate and Robust 2-Bit KV Cache Quantization",
+            "url": "https://www.ijcai.org/proceedings/2025/0690.pdf"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2511.18643v1"
+          },
+          {
+            "title": "KV-Cache Quantization Techniques",
+            "url": "https://www.emergentmind.com/topics/kv-cache-quantization-4cf1d820-95b5-4aa4-a906-6619bb81d40a"
+          },
+          {
+            "title": "Accurate KV Cache Quantization with Outlier Tokens Tracing",
+            "url": "https://aclanthology.org/2025.acl-long.631.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about KITTY and 2-bit KV cache quantization:\n\n## Overview\n\nKITTY is an algorithm-system co-design for mixed-precision KV caching, which addresses the challenge of maintaining accuracy in extremely low-bit quantization. \n\n## Key Technical Approach\n\nThe core innovation is Dynamic Channel-wise Precision Boost, which ranks Key-cache channels by sensitivity and keeps only a small fraction at higher precision, maintaining near-zero loss in accuracy drop while approaching 2-bit memory.\n\nChannel-wise precision boost preserves only critical channels in higher precision while aggressively compressing the remainder, motivated by the observation that certain critical channels within the key cache play a disproportionately important role in maintaining model accuracy.\n\n## System Design\n\nThe main challenge is handling dynamic 4-bit channel boosts while keeping the page layout coalesced and the dequantization uniform. KITTY addresses these issues by decomposing each mixed-precision Key page into two tensors with unified 2-bit precision, providing a page-centric KV layout and Triton-compatible page dequantization kernels.\n\n## Performance Context\n\nThe KV cache is a dominant memory bottleneck for LLM inference. While 4-bit KV quantization preserves accuracy, 2-bit often degrades it, especially on long-context reasoning.\n\nKITTY is a plug-and-play KV-cache system for HuggingFace Transformers, enabling accurate 2-bit KV-cache quantization. The paper was submitted on November 23, 2025."
+    ],
+    "durationSeconds": 8.683932637999998
+  },
+  "sourceToolAssistantUUID": "6b9e3e80-2280-4960-b8af-1df4cdcf8df6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T19:00:48.382Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014xiodxbZuRvQjKMH1wGXDi`</summary>
+
+```json
+{
+  "query": "CMPQ channel-wise mixed precision quantization activation outlier pattern per-channel allocation 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fc00898-122c-4c82-a2a2-f61bb8da29be",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ydMw6ogTABsxwhy7XD",
+  "type": "assistant",
+  "uuid": "4ddbac18-237c-40f1-bd43-47ce20399e78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bnnj7CkCCNUjMoxbmLcVE9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1015,
+      "cache_read_input_tokens": 43703,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 43703,
+          "cache_creation_input_tokens": 1015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T19:00:55.410Z_
+
+<details><summary>↩ Tool result · `toolu_014xiodxbZuRvQjKMH1wGXDi`</summary>
+
+```text
+Web search results for query: "CMPQ channel-wise mixed precision quantization activation outlier pattern per-channel allocation 2024"
+
+Links: [{"title":"Channel-Wise Mixed-Precision Quantization for Large Language Models","url":"https://arxiv.org/html/2410.13056v1"},{"title":"[2410.13056] Channel-Wise Mixed-Precision Quantization for Large Language Models","url":"https://arxiv.org/abs/2410.13056"},{"title":"Channel-Wise Mixed-Precision Quantization for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=M8uf26TbrC"},{"title":"CHANNEL-WISE MIXED-PRECISION QUANTIZATION","url":"https://openreview.net/pdf/532f259ca1a1d0c16bb4dfa53833769fa641253e.pdf"},{"title":"(PDF) Channel-Wise Mixed-Precision Quantization for Large Language Models","url":"https://www.researchgate.net/publication/385010242_Channel-Wise_Mixed-Precision_Quantization_for_Large_Language_Models"},{"title":"Channel-Wise Mixed-Precision Quantization for LLMs","url":"https://openreview.net/pdf/b07b253222e750c2e41846900210614af45ee4f6.pdf"},{"title":"MPQ-DM: Mixed Precision Quantization for Extremely Low Bit Diffusion Models","url":"https://arxiv.org/html/2412.11549"},{"title":"[PDF] Channel-Wise Mixed-Precision Quantization for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Channel-Wise-Mixed-Precision-Quantization-for-Large-Chen-Xie/0953d6c8494bb7facd0c111a44135272875b103d"},{"title":"MUXQ: Mixed-to-Uniform Precision MatriX Quantization via Low-Rank Outlier Decomposition","url":"https://arxiv.org/html/2604.04701"},{"title":"MPQ-DM: Mixed Precision Quantization for Extremely Low Bit Diffusion Models","url":"https://ojs.aaai.org/index.php/AAAI/article/download/33823/35978"}]
+
+Based on the search results, here's what I found about CMPQ (Channel-Wise Mixed-Precision Quantization):
+
+## Overview
+
+CMPQ is a novel mixed-precision quantization method that allocates quantization precision in a channel-wise pattern based on activation distributions.
+
+## Key Characteristics
+
+CMPQ employs a non-uniform quantization strategy and incorporates two outlier extraction techniques that collaboratively preserve the critical information, thereby minimizing the quantization loss. The two outlier types are activation-based and quantization-based outliers.
+
+## Activation Outlier Handling
+
+The method addresses activation outlier patterns through per-channel allocation. The overhead associated with this decomposition is minimal, as the number of outlier values is relatively small, typically around 0.5% of the total values.
+
+## Performance Results
+
+Experimental results showed that CMPQ harnessed the potential of mixed-precision quantization in two key ways: (1) it achieved superior performance in integer-bit quantization tasks, and (2) it delivered significant performance improvements with only a modest increase in memory requirements.
+
+## Practical Advantages
+
+CMPQ has minimal reliance on the calibration set, as it only measures the L2-norm per channel, thereby mitigating the risk of overfitting. Additionally, CMPQ only requires forward propagation and does not depend on backpropagation, which is necessary for many existing quantization techniques.
+
+The research paper was published in October 2024 and focuses on applying this technique to Large Language Models (LLMs).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4ddbac18-237c-40f1-bd43-47ce20399e78",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "51c7ab06-c22e-44a0-8719-1970cb8c3f23",
+  "toolUseResult": {
+    "query": "CMPQ channel-wise mixed precision quantization activation outlier pattern per-channel allocation 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FgMfXHrQqRkLSEPdPHfqqQ",
+        "content": [
+          {
+            "title": "Channel-Wise Mixed-Precision Quantization for Large Language Models",
+            "url": "https://arxiv.org/html/2410.13056v1"
+          },
+          {
+            "title": "[2410.13056] Channel-Wise Mixed-Precision Quantization for Large Language Models",
+            "url": "https://arxiv.org/abs/2410.13056"
+          },
+          {
+            "title": "Channel-Wise Mixed-Precision Quantization for Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=M8uf26TbrC"
+          },
+          {
+            "title": "CHANNEL-WISE MIXED-PRECISION QUANTIZATION",
+            "url": "https://openreview.net/pdf/532f259ca1a1d0c16bb4dfa53833769fa641253e.pdf"
+          },
+          {
+            "title": "(PDF) Channel-Wise Mixed-Precision Quantization for Large Language Models",
+            "url": "https://www.researchgate.net/publication/385010242_Channel-Wise_Mixed-Precision_Quantization_for_Large_Language_Models"
+          },
+          {
+            "title": "Channel-Wise Mixed-Precision Quantization for LLMs",
+            "url": "https://openreview.net/pdf/b07b253222e750c2e41846900210614af45ee4f6.pdf"
+          },
+          {
+            "title": "MPQ-DM: Mixed Precision Quantization for Extremely Low Bit Diffusion Models",
+            "url": "https://arxiv.org/html/2412.11549"
+          },
+          {
+            "title": "[PDF] Channel-Wise Mixed-Precision Quantization for Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Channel-Wise-Mixed-Precision-Quantization-for-Large-Chen-Xie/0953d6c8494bb7facd0c111a44135272875b103d"
+          },
+          {
+            "title": "MUXQ: Mixed-to-Uniform Precision MatriX Quantization via Low-Rank Outlier Decomposition",
+            "url": "https://arxiv.org/html/2604.04701"
+          },
+          {
+            "title": "MPQ-DM: Mixed Precision Quantization for Extremely Low Bit Diffusion Models",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/33823/35978"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CMPQ (Channel-Wise Mixed-Precision Quantization):\n\n## Overview\n\nCMPQ is a novel mixed-precision quantization method that allocates quantization precision in a channel-wise pattern based on activation distributions.\n\n## Key Characteristics\n\nCMPQ employs a non-uniform quantization strategy and incorporates two outlier extraction techniques that collaboratively preserve the critical information, thereby minimizing the quantization loss. The two outlier types are activation-based and quantization-based outliers.\n\n## Activation Outlier Handling\n\nThe method addresses activation outlier patterns through per-channel allocation. The overhead associated with this decomposition is minimal, as the number of outlier values is relatively small, typically around 0.5% of the total values.\n\n## Performance Results\n\nExperimental results showed that CMPQ harnessed the potential of mixed-precision quantization in two key ways: (1) it achieved superior performance in integer-bit quantization tasks, and (2) it delivered significant performance improvements with only a modest increase in memory requirements.\n\n## Practical Advantages\n\nCMPQ has minimal reliance on the calibration set, as it only measures the L2-norm per channel, thereby mitigating the risk of overfitting. Additionally, CMPQ only requires forward propagation and does not depend on backpropagation, which is necessary for many existing quantization techniques.\n\nThe research paper was published in October 2024 and focuses on applying this technique to Large Language Models (LLMs)."
+    ],
+    "durationSeconds": 7.023486838000012
+  },
+  "sourceToolAssistantUUID": "4ddbac18-237c-40f1-bd43-47ce20399e78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-14T19:00:58.077Z_
+
+Now let me search for a few more specific topics to round out the survey.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51c7ab06-c22e-44a0-8719-1970cb8c3f23",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ye5i4drJaNnNYXdjae",
+  "type": "assistant",
+  "uuid": "cfc32ed8-a2dc-4e6e-ad13-8b5de7aa456d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019dWSPBbzkmD1u7pwUdBS6V",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1025,
+      "cache_read_input_tokens": 44718,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 44718,
+          "cache_creation_input_tokens": 1025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-14T19:00:58.873Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U6RXMRfrwPCh8J3cd5Qx4x`</summary>
+
+```json
+{
+  "query": "RateQuant arxiv 2605.06675 AM/GM ratio head sensitivity spike spread distribution shape"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfc32ed8-a2dc-4e6e-ad13-8b5de7aa456d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ye5i4drJaNnNYXdjae",
+  "type": "assistant",
+  "uuid": "14da66ce-bdcf-450a-84df-921ded12cf08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019dWSPBbzkmD1u7pwUdBS6V",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1025,
+      "cache_read_input_tokens": 44718,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1025,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 44718,
+          "cache_creation_input_tokens": 1025,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1025
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-14T19:01:05.505Z_
+
+<details><summary>↩ Tool result · `toolu_01U6RXMRfrwPCh8J3cd5Qx4x`</summary>
+
+```text
+Web search results for query: "RateQuant arxiv 2605.06675 AM/GM ratio head sensitivity spike spread distribution shape"
+
+Links: [{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/abs/2605.06675"},{"title":"[2605.13390] Sensitivity Quantification for Distribution System State Estimation","url":"https://arxiv.org/abs/2605.13390"},{"title":"Stochastic Ordering under Weaker Likelihood-Ratio Shape Conditions","url":"https://arxiv.org/html/2605.11973"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"[2605.11973] Stochastic Ordering under Weaker Likelihood-Ratio Shape Conditions","url":"https://arxiv.org/abs/2605.11973"},{"title":"[2605.09264] Nested Sensitivity Envelopes for Transported Quantile Treatment Effects","url":"https://arxiv.org/abs/2605.09264"},{"title":"Sensitivity Analysis in the Face of Rare Events","url":"https://arxiv.org/html/2605.09148"},{"title":"[2605.09770] Encoding and Decoding Temporal Signals with Spiking Bandpass Wavelets","url":"https://arxiv.org/abs/2605.09770"},{"title":"[2605.09148] Sensitivity Analysis in the Face of Rare Events","url":"https://arxiv.org/abs/2605.09148"}]
+
+I found the RateQuant paper. Here's what the search results reveal about the key concepts you mentioned:
+
+**AM/GM Ratio (Arithmetic Mean/Geometric Mean):**
+The achievable distortion reduction equals the ratio of arithmetic to geometric mean (AM/GM) of head sensitivities, which can be computed without any quantization and serves as a cheap [metric].
+
+**Head Sensitivity:**
+Gradient-based head importance yields a 1.07 PPL improvement over activation-based importance at 3.5 bits, indicating that the choice of sensitivity proxy is important for determining which attention heads should receive more quantization bits.
+
+**Spike/Spread Distribution Shape:**
+While the search results don't contain explicit discussion of "spike" and "spread" distribution shapes in the RateQuant paper, each quantizer follows a different distortion curve D(b)=alpha*beta^{-b}, and the decay rate beta varies from 3.6 to 5.3 across quantizer designs, indicating that different quantizers have fundamentally different distortion characteristics that must be matched to the allocation strategy.
+
+The paper emphasizes that keys and values require separate bit budgets: for KIVI at 2.5 bits, allocating 2.85 bits to keys and 2.15 bits to values reduces PPL by 70%, showing how the distribution of bits across different components affects performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14da66ce-bdcf-450a-84df-921ded12cf08",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "5fa9756a-73c1-4c91-a199-2f6b8ade84a9",
+  "toolUseResult": {
+    "query": "RateQuant arxiv 2605.06675 AM/GM ratio head sensitivity spike spread distribution shape",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RQfWKs5mnbbWVuHhbksEUT",
+        "content": [
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/abs/2605.06675"
+          },
+          {
+            "title": "[2605.13390] Sensitivity Quantification for Distribution System State Estimation",
+            "url": "https://arxiv.org/abs/2605.13390"
+          },
+          {
+            "title": "Stochastic Ordering under Weaker Likelihood-Ratio Shape Conditions",
+            "url": "https://arxiv.org/html/2605.11973"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "[2605.11973] Stochastic Ordering under Weaker Likelihood-Ratio Shape Conditions",
+            "url": "https://arxiv.org/abs/2605.11973"
+          },
+          {
+            "title": "[2605.09264] Nested Sensitivity Envelopes for Transported Quantile Treatment Effects",
+            "url": "https://arxiv.org/abs/2605.09264"
+          },
+          {
+            "title": "Sensitivity Analysis in the Face of Rare Events",
+            "url": "https://arxiv.org/html/2605.09148"
+          },
+          {
+            "title": "[2605.09770] Encoding and Decoding Temporal Signals with Spiking Bandpass Wavelets",
+            "url": "https://arxiv.org/abs/2605.09770"
+          },
+          {
+            "title": "[2605.09148] Sensitivity Analysis in the Face of Rare Events",
+            "url": "https://arxiv.org/abs/2605.09148"
+          }
+        ]
+      },
+      "I found the RateQuant paper. Here's what the search results reveal about the key concepts you mentioned:\n\n**AM/GM Ratio (Arithmetic Mean/Geometric Mean):**\nThe achievable distortion reduction equals the ratio of arithmetic to geometric mean (AM/GM) of head sensitivities, which can be computed without any quantization and serves as a cheap [metric].\n\n**Head Sensitivity:**\nGradient-based head importance yields a 1.07 PPL improvement over activation-based importance at 3.5 bits, indicating that the choice of sensitivity proxy is important for determining which attention heads should receive more quantization bits.\n\n**Spike/Spread Distribution Shape:**\nWhile the search results don't contain explicit discussion of \"spike\" and \"spread\" distribution shapes in the RateQuant paper, each quantizer follows a different distortion curve D(b)=alpha*beta^{-b}, and the decay rate beta varies from 3.6 to 5.3 across quantizer designs, indicating that different quantizers have fundamentally different distortion characteristics that must be matched to the allocation strategy.\n\nThe paper emphasizes that keys and values require separate bit budgets: for KIVI at 2.5 bits, allocating 2.85 bits to keys and 2.15 bits to values reduces PPL by 70%, showing how the distribution of bits across different components affects performance."
+    ],
+    "durationSeconds": 6.628881944000023
+  },
+  "sourceToolAssistantUUID": "14da66ce-bdcf-450a-84df-921ded12cf08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-14T19:01:08.424Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VYDJu4aFuEWawth2tmNhKS`</summary>
+
+```json
+{
+  "query": "\"Not All Heads Matter\" head-level KV cache compression integrated retrieval reasoning 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5fa9756a-73c1-4c91-a199-2f6b8ade84a9",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yept7nK3wHCm1JtjSv",
+  "type": "assistant",
+  "uuid": "eb69a507-fb9c-4bd5-8568-963a41842d83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014CQHKbntTMi7CmVJWMiSZd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 876,
+      "cache_read_input_tokens": 45743,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 876,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 45743,
+          "cache_creation_input_tokens": 876,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 876
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-14T19:01:15.202Z_
+
+<details><summary>↩ Tool result · `toolu_01VYDJu4aFuEWawth2tmNhKS`</summary>
+
+```text
+Web search results for query: ""Not All Heads Matter" head-level KV cache compression integrated retrieval reasoning 2024"
+
+Links: [{"title":"[2410.19258] Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://arxiv.org/abs/2410.19258"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning | OpenReview","url":"https://openreview.net/forum?id=FJFVmeXusW"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://arxiv.org/html/2410.19258v1"},{"title":"(PDF) Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://www.researchgate.net/publication/385291406_Not_All_Heads_Matter_A_Head-Level_KV_Cache_Compression_Method_with_Integrated_Retrieval_and_Reasoning"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/not-all-heads-matter-a-head-level-kv-cache-compression-method-with-integrated-retrieval-and-reasoning/"},{"title":"GitHub - FYYFU/HeadKV: [ICLR2025] Code and data for paper: Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://github.com/fyyfu/headkv"},{"title":"[Quick Review] Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://liner.com/review/not-all-heads-matter-a-headlevel-kv-cache-compression-method"},{"title":"dblp: Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning.","url":"https://dblp.org/rec/journals/corr/abs-2410-19258.html"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression","url":"https://arxiv.org/html/2510.08525"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning | alphaXiv","url":"https://www.alphaxiv.org/overview/2410.19258v3"}]
+
+I found comprehensive information about the paper "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning." Here's what I found:
+
+## Overview
+
+The paper proposes HeadKV, a head-level KV cache compression method, and HeadKV-R2, which leverages a novel contextual reasoning ability estimation for compression.
+
+## Core Problem and Approach
+
+Key-Value (KV) caching is a common technique to enhance the computational efficiency of Large Language Models (LLMs), but its memory overhead grows rapidly with input length. Prior work has shown that not all tokens are equally important for text generation, proposing layer-level KV cache compression to selectively retain key information.
+
+## Key Innovation
+
+The approach operates at the level of individual heads, estimating their importance for contextual QA tasks that require both retrieval and reasoning capabilities. The proposed head-level KV cache compression method consists of two steps: (1) Head-Level Importance Score Estimation: important heads that contribute to the contextual reasoning ability are identified using Needle-in-a-Haystack tests, and (2) Head-Level KV Cache Allocation: KV cache budgets for each head during the prefilling phase are allocated based on the importance score distribution identified in the first step.
+
+## Performance Results
+
+Extensive experiments across diverse benchmarks (LongBench, LooGLE), model architectures (e.g., Llama-3-8B-Instruct, Mistral-7B-Instruct), and long-context abilities tests demonstrate that the head-level KV cache compression significantly outperforms strong baselines, particularly in low-resource settings (KV size = 64 & 128). Notably, the method retains just 1.5% of the KV cache while achieving 97% of the performance of the full KV cache on the contextual question answering benchmark.
+
+The paper was submitted to arXiv in October 2024 and has been accepted to ICLR 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb69a507-fb9c-4bd5-8568-963a41842d83",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "40a9d2e5-cb09-4ab0-8fec-047a73762595",
+  "toolUseResult": {
+    "query": "\"Not All Heads Matter\" head-level KV cache compression integrated retrieval reasoning 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016sZLG9dKhSLs7TmEGoDtL8",
+        "content": [
+          {
+            "title": "[2410.19258] Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+            "url": "https://arxiv.org/abs/2410.19258"
+          },
+          {
+            "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=FJFVmeXusW"
+          },
+          {
+            "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+            "url": "https://arxiv.org/html/2410.19258v1"
+          },
+          {
+            "title": "(PDF) Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+            "url": "https://www.researchgate.net/publication/385291406_Not_All_Heads_Matter_A_Head-Level_KV_Cache_Compression_Method_with_Integrated_Retrieval_and_Reasoning"
+          },
+          {
+            "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/not-all-heads-matter-a-head-level-kv-cache-compression-method-with-integrated-retrieval-and-reasoning/"
+          },
+          {
+            "title": "GitHub - FYYFU/HeadKV: [ICLR2025] Code and data for paper: Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+            "url": "https://github.com/fyyfu/headkv"
+          },
+          {
+            "title": "[Quick Review] Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+            "url": "https://liner.com/review/not-all-heads-matter-a-headlevel-kv-cache-compression-method"
+          },
+          {
+            "title": "dblp: Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2410-19258.html"
+          },
+          {
+            "title": "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression",
+            "url": "https://arxiv.org/html/2510.08525"
+          },
+          {
+            "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2410.19258v3"
+          }
+        ]
+      },
+      "I found comprehensive information about the paper \"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning.\" Here's what I found:\n\n## Overview\n\nThe paper proposes HeadKV, a head-level KV cache compression method, and HeadKV-R2, which leverages a novel contextual reasoning ability estimation for compression.\n\n## Core Problem and Approach\n\nKey-Value (KV) caching is a common technique to enhance the computational efficiency of Large Language Models (LLMs), but its memory overhead grows rapidly with input length. Prior work has shown that not all tokens are equally important for text generation, proposing layer-level KV cache compression to selectively retain key information.\n\n## Key Innovation\n\nThe approach operates at the level of individual heads, estimating their importance for contextual QA tasks that require both retrieval and reasoning capabilities. The proposed head-level KV cache compression method consists of two steps: (1) Head-Level Importance Score Estimation: important heads that contribute to the contextual reasoning ability are identified using Needle-in-a-Haystack tests, and (2) Head-Level KV Cache Allocation: KV cache budgets for each head during the prefilling phase are allocated based on the importance score distribution identified in the first step.\n\n## Performance Results\n\nExtensive experiments across diverse benchmarks (LongBench, LooGLE), model architectures (e.g., Llama-3-8B-Instruct, Mistral-7B-Instruct), and long-context abilities tests demonstrate that the head-level KV cache compression significantly outperforms strong baselines, particularly in low-resource settings (KV size = 64 & 128). Notably, the method retains just 1.5% of the KV cache while achieving 97% of the performance of the full KV cache on the contextual question answering benchmark.\n\nThe paper was submitted to arXiv in October 2024 and has been accepted to ICLR 2025."
+    ],
+    "durationSeconds": 6.773019212000014
+  },
+  "sourceToolAssistantUUID": "eb69a507-fb9c-4bd5-8568-963a41842d83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "40a9d2e5-cb09-4ab0-8fec-047a73762595",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-14T19:01:21.337Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JBYdwPZLXCLL1FPhhdsVAP`</summary>
+
+```json
+{
+  "query": "\"KV-Compress\" variable compression rate per attention head paged KV cache 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40a9d2e5-cb09-4ab0-8fec-047a73762595",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yfYHG8CwYKtLwgCjpa",
+  "type": "assistant",
+  "uuid": "5046518b-e465-4af6-81e5-ffebb11d4989",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019S6UPcnbqUDFjRGHTVZmdp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1216,
+      "cache_read_input_tokens": 46619,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1216,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 46619,
+          "cache_creation_input_tokens": 1216,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1216
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T19:01:29.663Z_
+
+<details><summary>↩ Tool result · `toolu_01JBYdwPZLXCLL1FPhhdsVAP`</summary>
+
+```text
+Web search results for query: ""KV-Compress" variable compression rate per attention head paged KV cache 2024"
+
+Links: [{"title":"[2410.00161] KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head","url":"https://arxiv.org/abs/2410.00161"},{"title":"KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head","url":"https://arxiv.org/html/2410.00161v1"},{"title":"GitHub - IsaacRe/vllm-kvcompress: KV cache compression for high-throughput LLM inference · GitHub","url":"https://github.com/IsaacRe/vllm-kvcompress"},{"title":"KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head · ggml-org/llama.cpp · Discussion #9749","url":"https://github.com/ggml-org/llama.cpp/discussions/9749"},{"title":"KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/kv-compress-paged-kv-cache-compression-variable"},{"title":"(PDF) KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head","url":"https://www.researchgate.net/publication/384563456_KV-Compress_Paged_KV-Cache_Compression_with_Variable_Compression_Rates_per_Attention_Head"},{"title":"GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).","url":"https://github.com/October2001/Awesome-KV-Cache-Compression"},{"title":"KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head | alphaXiv","url":"https://www.alphaxiv.org/abs/2410.00161"},{"title":"Compress Key-Value Caches with KV-Compress: Variable Compression Rates for Attention Heads - DEV Community","url":"https://dev.to/aimodels-fyi/compress-key-value-caches-with-kv-compress-variable-compression-rates-for-attention-heads-2h41"},{"title":"GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub","url":"https://github.com/NVIDIA/kvpress"}]
+
+I found comprehensive information about KV-Compress. Here's what the search revealed:
+
+## Overview
+
+KV-Compress is a novel compression method that evicts contiguous KV blocks within a PagedAttention framework, reducing the memory footprint of the KV cache proportionally to the theoretical compression rate.
+
+## Key Innovation: Variable Compression Rates
+
+Higher theoretical compression rates can be achieved when the number of removed KVs varies across attention heads, but application of such a strategy within existing inference frameworks adds fragmentation and cannot realize the theoretical compression rates in physical memory. KV-Compress solves this problem by designing a modification of PagedAttention that can handle the KV cache fragmentation introduced by variable-head-rate compression and reduce memory footprint proportionally to the theoretical compression rate.
+
+## Technical Approach
+
+KV-Compress is a modification of Ada-SnapKV that evicts KV blocks–rather than single KVs–making it compatible with the paged-attention framework. Additionally, the method proposes query-group-compression, a simple yet effective method to compress the KV cache of GQA models without repeating it into the dimension of total query heads, yielding an additional 4x compression over existing methods on Mistral and Llama-3.1 benchmarks.
+
+## Performance Results
+
+Evaluations on Llama-3.1-8B-Instruct and Llama-3.1-70B-Instruct-FP8 achieve compression rates up to 8x with negligible impact on performance, and up to 64x while retaining over 90% of full-cache performance for all but three of the suite's subsets. The method increases total throughput by up to 5.18x by enabling larger decoding batches when integrated with vLLM.
+
+The paper was authored by Isaac Rehg and published in October 2024 (arXiv:2410.00161).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5046518b-e465-4af6-81e5-ffebb11d4989",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "af8004f5-9a9f-4e56-b07b-d34960e30f61",
+  "toolUseResult": {
+    "query": "\"KV-Compress\" variable compression rate per attention head paged KV cache 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ToEoWWtzmtu54nYEkmvgdc",
+        "content": [
+          {
+            "title": "[2410.00161] KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head",
+            "url": "https://arxiv.org/abs/2410.00161"
+          },
+          {
+            "title": "KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head",
+            "url": "https://arxiv.org/html/2410.00161v1"
+          },
+          {
+            "title": "GitHub - IsaacRe/vllm-kvcompress: KV cache compression for high-throughput LLM inference · GitHub",
+            "url": "https://github.com/IsaacRe/vllm-kvcompress"
+          },
+          {
+            "title": "KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head · ggml-org/llama.cpp · Discussion #9749",
+            "url": "https://github.com/ggml-org/llama.cpp/discussions/9749"
+          },
+          {
+            "title": "KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/kv-compress-paged-kv-cache-compression-variable"
+          },
+          {
+            "title": "(PDF) KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head",
+            "url": "https://www.researchgate.net/publication/384563456_KV-Compress_Paged_KV-Cache_Compression_with_Variable_Compression_Rates_per_Attention_Head"
+          },
+          {
+            "title": "GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).",
+            "url": "https://github.com/October2001/Awesome-KV-Cache-Compression"
+          },
+          {
+            "title": "KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2410.00161"
+          },
+          {
+            "title": "Compress Key-Value Caches with KV-Compress: Variable Compression Rates for Attention Heads - DEV Community",
+            "url": "https://dev.to/aimodels-fyi/compress-key-value-caches-with-kv-compress-variable-compression-rates-for-attention-heads-2h41"
+          },
+          {
+            "title": "GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub",
+            "url": "https://github.com/NVIDIA/kvpress"
+          }
+        ]
+      },
+      "I found comprehensive information about KV-Compress. Here's what the search revealed:\n\n## Overview\n\nKV-Compress is a novel compression method that evicts contiguous KV blocks within a PagedAttention framework, reducing the memory footprint of the KV cache proportionally to the theoretical compression rate.\n\n## Key Innovation: Variable Compression Rates\n\nHigher theoretical compression rates can be achieved when the number of removed KVs varies across attention heads, but application of such a strategy within existing inference frameworks adds fragmentation and cannot realize the theoretical compression rates in physical memory. KV-Compress solves this problem by designing a modification of PagedAttention that can handle the KV cache fragmentation introduced by variable-head-rate compression and reduce memory footprint proportionally to the theoretical compression rate.\n\n## Technical Approach\n\nKV-Compress is a modification of Ada-SnapKV that evicts KV blocks–rather than single KVs–making it compatible with the paged-attention framework. Additionally, the method proposes query-group-compression, a simple yet effective method to compress the KV cache of GQA models without repeating it into the dimension of total query heads, yielding an additional 4x compression over existing methods on Mistral and Llama-3.1 benchmarks.\n\n## Performance Results\n\nEvaluations on Llama-3.1-8B-Instruct and Llama-3.1-70B-Instruct-FP8 achieve compression rates up to 8x with negligible impact on performance, and up to 64x while retaining over 90% of full-cache performance for all but three of the suite's subsets. The method increases total throughput by up to 5.18x by enabling larger decoding batches when integrated with vLLM.\n\nThe paper was authored by Isaac Rehg and published in October 2024 (arXiv:2410.00161)."
+    ],
+    "durationSeconds": 8.319993697000028
+  },
+  "sourceToolAssistantUUID": "5046518b-e465-4af6-81e5-ffebb11d4989",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-14T19:01:33.136Z_
+
+Now I have enough material. Let me read the RateQuant paper more carefully since it's the closest competitor, and then compile the literature survey.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af8004f5-9a9f-4e56-b07b-d34960e30f61",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ygcACQZ9aYRFJYFcsY",
+  "type": "assistant",
+  "uuid": "b80f72ba-f1c3-4a64-820d-aa8bb4779cbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyXw6HMTGLHuMYxHbYz9St",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1184,
+      "cache_read_input_tokens": 47835,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1184,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 47835,
+          "cache_creation_input_tokens": 1184,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1184
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T19:01:34.251Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xh8wfNPbEn7dcSg2NnrcAw`</summary>
+
+```json
+{
+  "query": "RateQuant arxiv 2605.06675 head sensitivity distribution AM GM heterogeneity Qwen Yi Llama model comparison"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b80f72ba-f1c3-4a64-820d-aa8bb4779cbf",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ygcACQZ9aYRFJYFcsY",
+  "type": "assistant",
+  "uuid": "329107aa-3ef1-456c-b62a-4ee9fdf9ec25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyXw6HMTGLHuMYxHbYz9St",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1184,
+      "cache_read_input_tokens": 47835,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1184,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 47835,
+          "cache_creation_input_tokens": 1184,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1184
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T19:01:42.395Z_
+
+<details><summary>↩ Tool result · `toolu_01Xh8wfNPbEn7dcSg2NnrcAw`</summary>
+
+```text
+Web search results for query: "RateQuant arxiv 2605.06675 head sensitivity distribution AM GM heterogeneity Qwen Yi Llama model comparison"
+
+Links: [{"title":"[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/abs/2605.06675"},{"title":"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory","url":"https://arxiv.org/html/2605.06675"},{"title":"Machine Learning","url":"https://arxiv.org/list/cs.LG/new"},{"title":"[2605.13390] Sensitivity Quantification for Distribution System State Estimation","url":"https://arxiv.org/abs/2605.13390"},{"title":"Nested Sensitivity Envelopes for Transported Quantile Treatment Effects","url":"https://arxiv.org/html/2605.09264"},{"title":"[2605.09264] Nested Sensitivity Envelopes for Transported Quantile Treatment Effects","url":"https://arxiv.org/abs/2605.09264"},{"title":"Sensitivity Analysis in the Face of Rare Events","url":"https://arxiv.org/html/2605.09148"},{"title":"[2605.09148] Sensitivity Analysis in the Face of Rare Events","url":"https://arxiv.org/abs/2605.09148"},{"title":"[2605.13659] Calorimetric approach to paleo-detection of dark matter","url":"https://arxiv.org/abs/2605.13659"},{"title":"[2605.07993] Bayesian Sensitivity of Causal Inference Estimators under Evidence-Based Priors","url":"https://arxiv.org/abs/2605.07993"}]
+
+Based on the search results, I found comprehensive information about the RateQuant paper (arxiv 2605.06675). Here's what the research contains:
+
+## Overview
+
+RateQuant addresses the problem that large language models cache all previously computed key-value (KV) pairs during generation, making KV cache a primary memory bottleneck, and while quantizing the KV cache reduces cost, all current quantizers assign the same bit-width to every attention head, ignoring the large variation in head importance.
+
+## Key Technical Findings
+
+The research shows that each quantizer follows a different distortion curve with decay rate beta varying from 3.6 to 5.3 across quantizer designs, and applying one quantizer's distortion model to another inverts the allocation order and makes performance worse than uniform quantization.
+
+## Head Sensitivity and AM/GM
+
+The achievable distortion reduction equals the ratio of arithmetic to geometric mean (AM/GM) of head sensitivities, which can be computed without any quantization. The sensitivity proxy is decisive: gradient-based head importance yields a 1.07 PPL improvement over activation-based importance at 3.5 bits.
+
+## Model Comparisons
+
+On Qwen3-8B at 2.5 average bits, calibrated RateQuant reduces KIVI's perplexity from 49.3 to 14.9 (70% reduction) and improves QuaRot by 6.6 PPL. On TurboQuant at 4.0 bits, RateQuant recovers 66% of the quantization-induced degradation across three Qwen3 models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "329107aa-3ef1-456c-b62a-4ee9fdf9ec25",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "f27c07a3-ac3f-4f2d-8458-6fb7dfbbaa6d",
+  "toolUseResult": {
+    "query": "RateQuant arxiv 2605.06675 head sensitivity distribution AM GM heterogeneity Qwen Yi Llama model comparison",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QcGCeehg3fBoQQ11Tk6VwB",
+        "content": [
+          {
+            "title": "[2605.06675] RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/abs/2605.06675"
+          },
+          {
+            "title": "RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory",
+            "url": "https://arxiv.org/html/2605.06675"
+          },
+          {
+            "title": "Machine Learning",
+            "url": "https://arxiv.org/list/cs.LG/new"
+          },
+          {
+            "title": "[2605.13390] Sensitivity Quantification for Distribution System State Estimation",
+            "url": "https://arxiv.org/abs/2605.13390"
+          },
+          {
+            "title": "Nested Sensitivity Envelopes for Transported Quantile Treatment Effects",
+            "url": "https://arxiv.org/html/2605.09264"
+          },
+          {
+            "title": "[2605.09264] Nested Sensitivity Envelopes for Transported Quantile Treatment Effects",
+            "url": "https://arxiv.org/abs/2605.09264"
+          },
+          {
+            "title": "Sensitivity Analysis in the Face of Rare Events",
+            "url": "https://arxiv.org/html/2605.09148"
+          },
+          {
+            "title": "[2605.09148] Sensitivity Analysis in the Face of Rare Events",
+            "url": "https://arxiv.org/abs/2605.09148"
+          },
+          {
+            "title": "[2605.13659] Calorimetric approach to paleo-detection of dark matter",
+            "url": "https://arxiv.org/abs/2605.13659"
+          },
+          {
+            "title": "[2605.07993] Bayesian Sensitivity of Causal Inference Estimators under Evidence-Based Priors",
+            "url": "https://arxiv.org/abs/2605.07993"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the RateQuant paper (arxiv 2605.06675). Here's what the research contains:\n\n## Overview\n\nRateQuant addresses the problem that large language models cache all previously computed key-value (KV) pairs during generation, making KV cache a primary memory bottleneck, and while quantizing the KV cache reduces cost, all current quantizers assign the same bit-width to every attention head, ignoring the large variation in head importance.\n\n## Key Technical Findings\n\nThe research shows that each quantizer follows a different distortion curve with decay rate beta varying from 3.6 to 5.3 across quantizer designs, and applying one quantizer's distortion model to another inverts the allocation order and makes performance worse than uniform quantization.\n\n## Head Sensitivity and AM/GM\n\nThe achievable distortion reduction equals the ratio of arithmetic to geometric mean (AM/GM) of head sensitivities, which can be computed without any quantization. The sensitivity proxy is decisive: gradient-based head importance yields a 1.07 PPL improvement over activation-based importance at 3.5 bits.\n\n## Model Comparisons\n\nOn Qwen3-8B at 2.5 average bits, calibrated RateQuant reduces KIVI's perplexity from 49.3 to 14.9 (70% reduction) and improves QuaRot by 6.6 PPL. On TurboQuant at 4.0 bits, RateQuant recovers 66% of the quantization-induced degradation across three Qwen3 models."
+    ],
+    "durationSeconds": 8.141009706000041
+  },
+  "sourceToolAssistantUUID": "329107aa-3ef1-456c-b62a-4ee9fdf9ec25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T19:01:45.054Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XMy39AgTAd1beyMdeJiDfF`</summary>
+
+```json
+{
+  "query": "MPQCO mixed precision quantization constrained optimization Hessian bit-width assignment knapsack 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f27c07a3-ac3f-4f2d-8458-6fb7dfbbaa6d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yhYbQz77gwxeDXKEQ8",
+  "type": "assistant",
+  "uuid": "e3895703-195f-4c0d-8903-81f2961a8f11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDo9QwSudFPdf4jwm2VD4r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 49019,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 960,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 49019,
+          "cache_creation_input_tokens": 960,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 960
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T19:01:51.382Z_
+
+<details><summary>↩ Tool result · `toolu_01XMy39AgTAd1beyMdeJiDfF`</summary>
+
+```text
+Web search results for query: "MPQCO mixed precision quantization constrained optimization Hessian bit-width assignment knapsack 2021"
+
+Links: [{"title":"Mixed-Precision Neural Network Quantization via Learned Layer-wise Importance","url":"https://arxiv.org/pdf/2203.08368"},{"title":"Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv211006554C/abstract"},{"title":"Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization | Request PDF","url":"https://www.researchgate.net/publication/358921060_Towards_Mixed-Precision_Quantization_of_Neural_Networks_via_Constrained_Optimization"},{"title":"Mixed-Precision Quantization for Deep Vision Models with Integer Quadratic Programming Accepted in Proceedings of the 62nd Annual Design Automation Conference. 2025.","url":"https://arxiv.org/html/2307.05657"},{"title":"ICCV 2021 Open Access Repository","url":"https://openaccess.thecvf.com/content/ICCV2021/html/Chen_Towards_Mixed-Precision_Quantization_of_Neural_Networks_via_Constrained_Optimization_ICCV_2021_paper.html"},{"title":"[2508.04753] InfoQ: Mixed-Precision Quantization via Global Information Flow","url":"https://arxiv.org/abs/2508.04753"},{"title":"[2110.06554v1] Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization","url":"https://arxiv.org/abs/2110.06554v1"},{"title":"InfoQ: Mixed-Precision Quantization via Global Information Flow","url":"https://arxiv.org/html/2508.04753"},{"title":"[2110.06554] Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization","url":"https://arxiv.org/abs/2110.06554"},{"title":"Where and How to Enhance: Discovering Bit-Width Contribution for Mixed Precision Quantization","url":"https://arxiv.org/html/2508.03002"}]
+
+Based on the search results, I found comprehensive information about MPQCO. Here are the key findings:
+
+## MPQCO Overview
+
+MPQCO formulates mixed-precision quantization as a discrete constrained optimization problem, then approximates the objective function with second-order Taylor expansion and proposes an efficient approach to compute its Hessian matrix.
+
+## Key Technical Approach
+
+The original problem can be reformulated as a Multiple-Choice Knapsack Problem (MCKP) and solved with a greedy search algorithm. MPQCO proposes an efficient approach to compute the Hessian matrix and formulate a Multiple-Choice Knapsack Problem (MCKP) to determine the bit-widths assignment.
+
+## Publication Details
+
+MPQCO was authored by Weihan Chen, Peisong Wang, and Jian Cheng, with the work titled "Towards mixed-precision quantization of neural networks via constrained optimization," published in the International Conference on Computer Vision, pages 5350–5359, 2021.
+
+## Performance and Efficiency
+
+MPQCO is the fastest one, taking 5-10 minutes for its sensitivity estimation. Compared with existing mixed-precision quantization works, the method is derived in a principled way and much more computationally efficient.
+
+The paper is a significant contribution to mixed-precision neural network quantization, providing a principled and efficient framework for determining optimal bit-width assignments across network layers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3895703-195f-4c0d-8903-81f2961a8f11",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "6aa3c0ab-f8b9-4b8b-b419-c07cb3f6a2c8",
+  "toolUseResult": {
+    "query": "MPQCO mixed precision quantization constrained optimization Hessian bit-width assignment knapsack 2021",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Qok6khV8QjGrjExXY1Cpcw",
+        "content": [
+          {
+            "title": "Mixed-Precision Neural Network Quantization via Learned Layer-wise Importance",
+            "url": "https://arxiv.org/pdf/2203.08368"
+          },
+          {
+            "title": "Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2021arXiv211006554C/abstract"
+          },
+          {
+            "title": "Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization | Request PDF",
+            "url": "https://www.researchgate.net/publication/358921060_Towards_Mixed-Precision_Quantization_of_Neural_Networks_via_Constrained_Optimization"
+          },
+          {
+            "title": "Mixed-Precision Quantization for Deep Vision Models with Integer Quadratic Programming Accepted in Proceedings of the 62nd Annual Design Automation Conference. 2025.",
+            "url": "https://arxiv.org/html/2307.05657"
+          },
+          {
+            "title": "ICCV 2021 Open Access Repository",
+            "url": "https://openaccess.thecvf.com/content/ICCV2021/html/Chen_Towards_Mixed-Precision_Quantization_of_Neural_Networks_via_Constrained_Optimization_ICCV_2021_paper.html"
+          },
+          {
+            "title": "[2508.04753] InfoQ: Mixed-Precision Quantization via Global Information Flow",
+            "url": "https://arxiv.org/abs/2508.04753"
+          },
+          {
+            "title": "[2110.06554v1] Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization",
+            "url": "https://arxiv.org/abs/2110.06554v1"
+          },
+          {
+            "title": "InfoQ: Mixed-Precision Quantization via Global Information Flow",
+            "url": "https://arxiv.org/html/2508.04753"
+          },
+          {
+            "title": "[2110.06554] Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization",
+            "url": "https://arxiv.org/abs/2110.06554"
+          },
+          {
+            "title": "Where and How to Enhance: Discovering Bit-Width Contribution for Mixed Precision Quantization",
+            "url": "https://arxiv.org/html/2508.03002"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about MPQCO. Here are the key findings:\n\n## MPQCO Overview\n\nMPQCO formulates mixed-precision quantization as a discrete constrained optimization problem, then approximates the objective function with second-order Taylor expansion and proposes an efficient approach to compute its Hessian matrix.\n\n## Key Technical Approach\n\nThe original problem can be reformulated as a Multiple-Choice Knapsack Problem (MCKP) and solved with a greedy search algorithm. MPQCO proposes an efficient approach to compute the Hessian matrix and formulate a Multiple-Choice Knapsack Problem (MCKP) to determine the bit-widths assignment.\n\n## Publication Details\n\nMPQCO was authored by Weihan Chen, Peisong Wang, and Jian Cheng, with the work titled \"Towards mixed-precision quantization of neural networks via constrained optimization,\" published in the International Conference on Computer Vision, pages 5350–5359, 2021.\n\n## Performance and Efficiency\n\nMPQCO is the fastest one, taking 5-10 minutes for its sensitivity estimation. Compared with existing mixed-precision quantization works, the method is derived in a principled way and much more computationally efficient.\n\nThe paper is a significant contribution to mixed-precision neural network quantization, providing a principled and efficient framework for determining optimal bit-width assignments across network layers."
+    ],
+    "durationSeconds": 6.324012220000033
+  },
+  "sourceToolAssistantUUID": "e3895703-195f-4c0d-8903-81f2961a8f11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79 · 2026-05-14T19:01:51.390Z_
+
+```json
+{
+  "parentUuid": "6aa3c0ab-f8b9-4b8b-b419-c07cb3f6a2c8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0fec4fba-3c95-4445-9f3d-abe7bb9e35e8",
+  "timestamp": "2026-05-14T19:01:51.390Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-14T19:01:57.865Z_
+
+Now let me check if there's an existing artifacts directory and compile the literature survey.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fec4fba-3c95-4445-9f3d-abe7bb9e35e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yiD6S1L4bAQnFMB4EW",
+  "type": "assistant",
+  "uuid": "0e036f52-dbd9-4e6f-b4a8-aa658a728587",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoQQUzNPgMAoxCobCy4CJi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1090,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 1090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-14T19:01:59.864Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01WzfFVkx5DjGbeS8bfuZ177`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/ 2>/dev/null | head -20",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e036f52-dbd9-4e6f-b4a8-aa658a728587",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yiD6S1L4bAQnFMB4EW",
+  "type": "assistant",
+  "uuid": "6a6c7ff4-ea26-4df0-ab8a-b6594df4ae97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoQQUzNPgMAoxCobCy4CJi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1090,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1090,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 1090,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1090
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T19:02:00.138Z_
+
+<details><summary>↩ Tool result · `toolu_01WzfFVkx5DjGbeS8bfuZ177`</summary>
+
+```text
+_project
+budget_sweep
+c4_cross_dataset_eval
+compounding_sweep
+compounding_sweep_k10_12
+dream_reports
+figures
+full_bitwidth_profiler.py
+generate_figures.py
+greedy_cardinality_ablation
+head_sensitivity_viz
+hires_mckp_reeval
+hires_reeval
+llama_k_ablation
+manifest.yaml
+mistral_heuristic_k4
+mistral_k_ablation
+multi_seed_lowres
+paper_patch_audit.md
+plan_011
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a6c7ff4-ea26-4df0-ab8a-b6594df4ae97",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "b1ef9ea9-8187-4e37-af82-f67556ef9bae",
+  "toolUseResult": {
+    "stdout": "_project\nbudget_sweep\nc4_cross_dataset_eval\ncompounding_sweep\ncompounding_sweep_k10_12\ndream_reports\nfigures\nfull_bitwidth_profiler.py\ngenerate_figures.py\ngreedy_cardinality_ablation\nhead_sensitivity_viz\nhires_mckp_reeval\nhires_reeval\nllama_k_ablation\nmanifest.yaml\nmistral_heuristic_k4\nmistral_k_ablation\nmulti_seed_lowres\npaper_patch_audit.md\nplan_011",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "6a6c7ff4-ea26-4df0-ab8a-b6594df4ae97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "b1ef9ea9-8187-4e37-af82-f67556ef9bae",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-14T19:04:09.807Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01XYFBnyGojvSaKB5hTcbmrZ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/spike_vs_spread_literature.md",
+  "content": "# Literature Survey: KV Cache Heterogeneity Distribution Shape (Spike vs Spread)\n\n**Date**: 2026-05-14\n**Context**: RateKV project — per-KV-head non-uniform bit-width allocation via constrained MCKP solver. Core finding: sensitivity heterogeneity distribution shape (spike vs spread) determines MCKP allocator effectiveness, not GQA ratio.\n\n---\n\n## 1. Direct Competitors (Per-Head Mixed-Precision KV Cache Quantization)\n\n### 1.1 RateQuant (2026)\n- **Title**: RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\n- **Authors**: (arXiv:2605.06675)\n- **Venue**: arXiv preprint, May 2026\n- **Category**: **Direct competitor**\n- **Summary**: First to apply rate-distortion theory to per-head KV cache bit allocation. Uses reverse waterfilling for closed-form allocation. Fits per-quantizer distortion model D(b)=α·β^{-b}, with β varying 3.6–5.3 across quantizers. Key metric: AM/GM ratio of head sensitivities predicts achievable distortion reduction without any quantization. Gradient-based importance yields 1.07 PPL improvement over activation-based at 3.5 bits.\n- **Results**: On Qwen3-8B at 2.5 bits, reduces KIVI PPL from 49.3 to 14.9 (70% reduction). On TurboQuant at 4.0 bits, recovers 66% of quantization-induced degradation.\n- **Relation to our work**: **Closest competitor**. RateQuant uses AM/GM ratio as a scalar heterogeneity metric but does NOT analyze the distribution *shape* (spike vs spread). Their AM/GM captures heterogeneity magnitude, not whether it comes from one extreme outlier (spike) or a distributed cluster (spread). Our contribution: explaining *why* some models benefit from non-uniform allocation and others don't, through distribution shape analysis. RateQuant would predict benefit whenever AM/GM > 1 but cannot explain the Yi-1.5 failure case (high AM/GM from spike pattern, yet negative returns).\n\n### 1.2 KVTuner (2025)\n- **Title**: KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference\n- **Authors**: Li et al.\n- **Venue**: ICML 2025\n- **Category**: **Direct competitor** (layer-level, not head-level)\n- **Summary**: Uses Pareto search over hardware-friendly layer-wise K/V precision pairs. Achieves nearly lossless 3.25-bit for Llama-3.1-8B, 4.0-bit for Qwen2.5-7B. Gradient-based sensitivity shows U-shaped pattern (early+late layers sensitive); activation-based is monotonically increasing.\n- **Relation to our work**: Operates at layer granularity, not head granularity. Does not analyze within-layer head heterogeneity distribution shape. Notes that Qwen2.5-7B requires higher precision → consistent with our finding of Qwen's spread pattern requiring differentiated allocation.\n\n### 1.3 PM-KVQ (2025)\n- **Title**: PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs\n- **Authors**: Chen et al.\n- **Venue**: arXiv:2505.18610\n- **Category**: **Method component**\n- **Summary**: Progressive quantization strategy that gradually lowers bit-width over decoding steps. Block-wise memory allocation assigns higher bits to sensitive transformer blocks. Uses integer programming for allocation.\n- **Relation to our work**: Temporal dimension (progressive) is orthogonal to our spatial (per-head) analysis. Does not analyze head-level heterogeneity distribution shapes.\n\n### 1.4 MixKVQ (2025)\n- **Title**: MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\n- **Authors**: (arXiv:2512.19206)\n- **Venue**: arXiv, Dec 2025\n- **Category**: **Method component**\n- **Summary**: Query-aware algorithm identifies critical key channels needing higher precision. Combines intrinsic quantization difficulty with query relevance. Per-channel mixed precision for keys, per-token for values.\n- **Relation to our work**: Operates at channel granularity within heads, not across heads. The \"intrinsic quantization difficulty\" concept relates to sensitivity heterogeneity but is measured per-channel, not per-head.\n\n### 1.5 KVmix (2025)\n- **Title**: KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\n- **Authors**: (arXiv:2506.08018; AAAI 2026)\n- **Venue**: AAAI 2026\n- **Category**: **Direct competitor** (layer-level)\n- **Summary**: Gradient-based importance analysis for layer-specific K/V bit-width allocation. Achieves K 2.19-bit / V 2.38-bit with 4.9× compression. Introduces dynamic long-context optimization for recent pivotal tokens.\n- **Relation to our work**: Layer-level, not head-level. Confirms K/V asymmetric sensitivity (consistent with our K/V separation findings).\n\n---\n\n## 2. Spike vs Spread / Outlier Pattern Analysis\n\n### 2.1 \"Precision Where It Matters\" — Spike-Aware Quantization (2025)\n- **Title**: Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models\n- **Authors**: (arXiv:2504.21553)\n- **Venue**: Springer, April 2025\n- **Category**: **Background — spike pattern in activations (not heads)**\n- **Summary**: Identifies activation spikes concentrated in down projections of exactly 2 layers (one early, one late) in LLaMA. Spikes reach values up to 2500. Solution: FP8 for spiking layers, INT8 for rest. 30+ PPL reduction on LLaMA3-8B.\n- **Relation to our work**: Uses \"spike\" terminology for activation outliers, not head sensitivity distribution. The spike/spread dichotomy is analogous but operates at a different level (activation magnitude within layers vs. sensitivity distribution across heads). Supports the broader idea that spike-like concentration has different optimization implications than spread-like distributions.\n\n### 2.2 CMPQ — Channel-Wise Mixed-Precision Quantization (2024)\n- **Title**: Channel-Wise Mixed-Precision Quantization for Large Language Models\n- **Authors**: Chen & Xie et al.\n- **Venue**: arXiv:2410.13056, Oct 2024\n- **Category**: **Background — channel-level outlier patterns**\n- **Summary**: Allocates precision per-channel based on activation distribution. Distinguishes activation-based outliers (persistent in specific channels) from quantization-based outliers. ~0.5% of values are outliers. Uses L2-norm per channel for allocation.\n- **Relation to our work**: Channel-level analogue of our head-level analysis. The observation that outlier concentration varies by channel parallels our head-level spike vs spread finding, but at finer granularity and for weight/activation quantization, not KV cache.\n\n### 2.3 KITTY — Dynamic Channel-wise Precision Boost (2025)\n- **Title**: Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost\n- **Authors**: (arXiv:2511.18643)\n- **Venue**: arXiv, Nov 2025\n- **Category**: **Method component**\n- **Summary**: Ranks Key-cache channels by sensitivity; keeps small fraction at higher precision. \"Critical channels play a disproportionately important role.\" Decomposes mixed-precision Key pages into two uniform 2-bit tensors for hardware efficiency.\n- **Relation to our work**: Channel-level analogue within keys. The finding that \"critical channels play disproportionately important roles\" is consistent with our heterogeneity thesis, but KITTY does not analyze whether the critical channel distribution is spike-like or spread-like.\n\n### 2.4 MUXQ — Low-Rank Outlier Decomposition (2026)\n- **Title**: MUXQ: Mixed-to-Uniform Precision Matrix Quantization via Low-Rank Outlier Decomposition\n- **Authors**: (arXiv:2604.04701)\n- **Venue**: arXiv, April 2026\n- **Category**: **Background**\n- **Summary**: Decomposes outlier channels into a low-rank matrix to convert mixed-precision quantization into uniform precision. Applies rotation/permutation to redistribute outlier energy.\n- **Relation to our work**: Addresses outliers via decomposition rather than differentiated allocation. Different philosophy: eliminate heterogeneity (smoothing) vs. exploit heterogeneity (our approach).\n\n---\n\n## 3. Head-Specific KV Cache Compression (Eviction-based, not Quantization)\n\n### 3.1 HeadKV / \"Not All Heads Matter\" (2024)\n- **Title**: Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\n- **Authors**: Fu et al.\n- **Venue**: ICLR 2025 (arXiv:2410.19258)\n- **Category**: **Background — head importance for eviction**\n- **Summary**: Head-level KV cache budget allocation based on importance scores from Needle-in-a-Haystack probing. Retains 1.5% KV cache with 97% performance. Different heads serve retrieval vs reasoning roles.\n- **Relation to our work**: Confirms head-level importance heterogeneity exists and is exploitable. Does not analyze the distribution shape of this heterogeneity. Eviction-based, not quantization-based.\n\n### 3.2 AdaKV (2024)\n- **Title**: Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation\n- **Authors**: Feng et al.\n- **Venue**: NeurIPS 2025 (arXiv:2407.11550)\n- **Category**: **Background — adaptive head budget**\n- **Summary**: Adaptive per-head budget allocation for KV eviction. Extends SnapKV/PyramidKV with head-wise adaptive allocation. Key insight: uniform compression rate across heads is a \"rigidity\" that hurts performance.\n- **Relation to our work**: Directly supports our thesis that head-level heterogeneity matters. But AdaKV addresses eviction budgets (how many tokens to keep per head), not quantization bit-width. Does not analyze spike vs spread patterns.\n\n### 3.3 KV-Compress (2024)\n- **Title**: KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head\n- **Authors**: Rehg\n- **Venue**: arXiv:2410.00161, Oct 2024\n- **Category**: **Background — variable-rate per-head compression**\n- **Summary**: Variable compression rates across attention heads within PagedAttention framework. Proposes query-group-compression for GQA models yielding additional 4× compression. 8× compression with negligible impact on Llama-3.1.\n- **Relation to our work**: Confirms per-head heterogeneity is exploitable for compression. Addresses GQA grouping explicitly. Does not analyze why some heads/models benefit more (no spike vs spread analysis).\n\n### 3.4 PyramidKV (2024)\n- **Title**: PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\n- **Authors**: Cai et al.\n- **Venue**: arXiv:2406.02069\n- **Category**: **Background**\n- **Summary**: Attention scatters widely in lower layers, consolidates in higher layers → pyramidal budget allocation (more cache for lower layers). Layer-level, not head-level.\n- **Relation to our work**: Layer-level heterogeneity analysis. Complementary perspective but no head-level distribution shape analysis.\n\n---\n\n## 4. GQA Ratio and Quantization Sensitivity\n\n### 4.1 GQA Original Paper (2023)\n- **Title**: GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints\n- **Authors**: Ainslie et al.\n- **Venue**: EMNLP 2023 (arXiv:2305.13245)\n- **Category**: **Background**\n- **Summary**: Proposes GQA as interpolation between MHA and MQA. Does not discuss quantization sensitivity implications of GQA ratio.\n- **Relation to our work**: Foundational paper. Our finding that GQA ratio is NOT a reliable proxy for heterogeneity is novel — the original paper does not address this.\n\n### 4.2 QCQA — Quality-and-Capacity-Aware Grouping (2025)\n- **Title**: Quality- and Capacity-Aware Grouped Query Attention\n- **Venue**: 2025\n- **Category**: **Background — GQA grouping optimization**\n- **Summary**: Evolutionary algorithm to discover optimal query-head groupings that minimize accuracy loss under KV-cache constraints. Achieves 20% higher accuracy at equal cache size vs naive GQA, or 40% KV reduction at same accuracy.\n- **Relation to our work**: Addresses the grouping structure of GQA but not quantization. Supports the idea that the default GQA grouping may not be optimal, which is related to our finding about GQA ratio being a poor proxy.\n\n---\n\n## 5. MCKP / Constrained Optimization for Bit Allocation\n\n### 5.1 MPQCO (2021)\n- **Title**: Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization\n- **Authors**: Chen, Wang, Cheng\n- **Venue**: ICCV 2021\n- **Category**: **Method component — MCKP formulation origin**\n- **Summary**: Formulates mixed-precision quantization as MCKP. Uses second-order Taylor expansion + Hessian for sensitivity. Greedy solver. 5–10 min calibration. Principled and efficient.\n- **Relation to our work**: We use the same MCKP formulation. MPQCO applies it to weight quantization layer-wise; we apply it to KV cache head-wise. MPQCO does not analyze when MCKP allocation fails (i.e., no spike vs spread analysis).\n\n### 5.2 JointSQ (2024)\n- **Title**: JointSQ: Joint Sparsification-Quantization for Distributed Learning\n- **Authors**: Xie et al.\n- **Venue**: CVPR 2024\n- **Category**: **Background**\n- **Summary**: Joint sparsity-quantization optimization via MCKP where profit = -error, weight = storage.\n- **Relation to our work**: Uses MCKP but for sparsity+quantization jointly, not for KV cache head-level allocation.\n\n---\n\n## 6. Foundational KV Cache Quantization Methods\n\n### 6.1 KIVI (2024)\n- **Title**: KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache\n- **Authors**: Liu & Yuan et al.\n- **Venue**: ICML 2024 (arXiv:2402.02750)\n- **Category**: **Evaluation baseline**\n- **Summary**: Per-channel symmetric quantization for keys, per-token asymmetric for values. Tuning-free 2-bit. Establishes K/V asymmetry as important principle.\n- **Relation to our work**: Baseline quantizer. Our MCKP allocator can sit on top of KIVI. KIVI applies uniform bit-width — our work addresses its limitation.\n\n### 6.2 KVQuant (2024)\n- **Title**: KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\n- **Authors**: (arXiv:2401.18079)\n- **Venue**: NeurIPS 2024\n- **Category**: **Evaluation baseline**\n- **Summary**: Per-layer sensitivity-weighted non-uniform datatypes. Handles outlier channels. Extends to 3-bit and 2-bit from FlexGen's 4-bit.\n- **Relation to our work**: Layer-level non-uniform datatype design, not head-level bit allocation. Pioneered per-layer sensitivity analysis for KV cache.\n\n### 6.3 RotateKV (2025)\n- **Title**: RotateKV: Accurate and Robust 2-Bit KV Cache Quantization\n- **Venue**: IJCAI 2025\n- **Category**: **Evaluation baseline**\n- **Summary**: Outlier-aware rotation to enhance quantization adaptability across diverse outlier distributions.\n- **Relation to our work**: Smoothing-based approach (eliminate heterogeneity) vs our exploitation-based approach (allocate to heterogeneity).\n\n---\n\n## 7. Distribution Shape Metrics\n\n### 7.1 Mix-QViT — Layer Importance + Quantization Sensitivity (2025)\n- **Title**: Mix-QViT: Mixed-Precision Vision Transformer Quantization Driven by Layer Importance and Quantization Sensitivity\n- **Authors**: (arXiv:2501.06357)\n- **Venue**: arXiv, Jan 2025\n- **Category**: **Background — sensitivity metrics for ViTs**\n- **Summary**: Dual scoring: explainability-based layer importance (via LRP) + quantization sensitivity per layer. Uses these scores for mixed-precision allocation in Vision Transformers.\n- **Relation to our work**: Uses sensitivity metrics for allocation but does not analyze distribution shape. Applied to ViTs, not LLMs.\n\n### 7.2 Representational Compactness via Singular Values\n- **Category**: **Background — concentration metric**\n- **Summary**: Singular value distribution as a measure of information concentration: uniform SVs → high compactness (redundant); few dominant SVs → low compactness (concentrated/sensitive).\n- **Relation to our work**: SVD-based concentration measurement is related to our Gini/CV analysis of head sensitivity distributions. The \"few dominant SVs\" scenario parallels our \"spike\" pattern.\n\n---\n\n## 8. Novelty Assessment\n\n### What already exists:\n1. **Head-level heterogeneity is well-documented**: HeadKV, AdaKV, KV-Compress, RateQuant all confirm heads have varying importance\n2. **MCKP for mixed-precision allocation**: MPQCO (2021) established the formulation; RateQuant (2026) applies rate-distortion allocation to KV cache per-head\n3. **AM/GM ratio as heterogeneity scalar**: RateQuant proposes this as a predictor of allocation benefit\n4. **Spike-aware quantization for activations**: \"Precision Where It Matters\" addresses spike patterns in activation magnitudes\n\n### What is NOVEL in our work:\n1. **Distribution shape analysis (spike vs spread)**: No prior work explicitly analyzes how the *shape* of the head sensitivity distribution determines allocation effectiveness. RateQuant's AM/GM is a scalar that captures magnitude but not shape — two distributions with identical AM/GM can have very different shapes (one spike outlier vs distributed cluster)\n2. **GQA ratio ≠ heterogeneity proxy**: No prior work has shown that GQA ratio fails to predict allocation benefit. Yi-1.5-9B (highest GQA 8:1) with spike pattern yields negative returns despite high heterogeneity magnitude — this finding is absent from all surveyed papers\n3. **Failure mode characterization**: Prior work reports when mixed-precision helps; we characterize *when and why it fails* (spike pattern concentrates sensitivity in a single head that cannot be further differentiated by allocation)\n4. **Cross-model shape taxonomy**: Systematic classification of 5 models into spike/spread patterns with predictive power for MCKP effectiveness\n\n### Positioning relative to RateQuant:\nRateQuant is the closest competitor (same per-head granularity, similar MCKP-style allocation). Our contribution is **complementary and deeper**: RateQuant provides the allocation mechanism; we explain *when allocation mechanisms work*. RateQuant's AM/GM metric would incorrectly predict benefit for Yi-1.5-9B (high AM/GM from spike pattern). Our spike vs spread analysis provides a more informative predictor.\n\n---\n\n## 9. Papers to Cite (by section)\n\n### Related Work — KV Cache Quantization\n- KIVI (Liu & Yuan et al., ICML 2024)\n- KVQuant (NeurIPS 2024)\n- RotateKV (IJCAI 2025)\n- KITTY (arXiv 2511.18643, 2025)\n\n### Related Work — Mixed-Precision KV Cache\n- KVTuner (Li et al., ICML 2025)\n- KVmix (AAAI 2026)\n- PM-KVQ (Chen et al., 2025)\n- MixKVQ (arXiv 2512.19206, 2025)\n- RateQuant (arXiv 2605.06675, 2026)\n\n### Related Work — Head Importance Heterogeneity\n- HeadKV / \"Not All Heads Matter\" (Fu et al., ICLR 2025)\n- AdaKV (Feng et al., NeurIPS 2025)\n- KV-Compress (Rehg, 2024)\n- PyramidKV (Cai et al., 2024)\n\n### Related Work — MCKP for Bit Allocation\n- MPQCO (Chen et al., ICCV 2021)\n\n### Related Work — Outlier/Spike Patterns\n- \"Precision Where It Matters\" (arXiv 2504.21553, 2025)\n- CMPQ (Chen & Xie et al., 2024)\n- MUXQ (arXiv 2604.04701, 2026)\n\n### Related Work — GQA\n- GQA (Ainslie et al., EMNLP 2023)\n- QCQA (2025)\n\n---\n\n## 10. Summary\n\nThe spike vs spread distribution shape analysis is **novel**. While head-level heterogeneity is well-documented and exploited by multiple recent methods (RateQuant, HeadKV, AdaKV), no prior work has:\n1. Analyzed the *shape* of sensitivity distributions (beyond scalar metrics like AM/GM)\n2. Explained why MCKP/allocation-based methods fail for certain models\n3. Shown that GQA ratio is a poor proxy for allocation benefit\n4. Provided a predictive taxonomy (spike → negative returns, spread → positive returns)\n\nThis positions our work as providing **diagnostic insight** that complements allocation methods like RateQuant, explaining their failure modes and suggesting when non-uniform allocation should (and should not) be applied.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1ef9ea9-8187-4e37-af82-f67556ef9bae",
+  "isSidechain": false,
+  "requestId": "req_011Cb2yirWhvWFT8uqp8X1mS",
+  "type": "assistant",
+  "uuid": "c131052d-f833-4f4d-9a33-36f3b6aa542e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011JjerQtZxak66k8StqEB2T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 272,
+      "cache_read_input_tokens": 51069,
+      "output_tokens": 5774,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5774,
+          "cache_read_input_tokens": 51069,
+          "cache_creation_input_tokens": 272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T19:04:09.844Z_
+
+<details><summary>↩ Tool result · `toolu_01XYFBnyGojvSaKB5hTcbmrZ`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/spike_vs_spread_literature.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c131052d-f833-4f4d-9a33-36f3b6aa542e",
+  "isSidechain": false,
+  "promptId": "d8e75658-fa65-4cc0-919c-f9c22f9ee8e6",
+  "type": "user",
+  "uuid": "ff749961-3e4a-44d1-a6f5-95518ca72198",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/spike_vs_spread_literature.md",
+    "content": "# Literature Survey: KV Cache Heterogeneity Distribution Shape (Spike vs Spread)\n\n**Date**: 2026-05-14\n**Context**: RateKV project — per-KV-head non-uniform bit-width allocation via constrained MCKP solver. Core finding: sensitivity heterogeneity distribution shape (spike vs spread) determines MCKP allocator effectiveness, not GQA ratio.\n\n---\n\n## 1. Direct Competitors (Per-Head Mixed-Precision KV Cache Quantization)\n\n### 1.1 RateQuant (2026)\n- **Title**: RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\n- **Authors**: (arXiv:2605.06675)\n- **Venue**: arXiv preprint, May 2026\n- **Category**: **Direct competitor**\n- **Summary**: First to apply rate-distortion theory to per-head KV cache bit allocation. Uses reverse waterfilling for closed-form allocation. Fits per-quantizer distortion model D(b)=α·β^{-b}, with β varying 3.6–5.3 across quantizers. Key metric: AM/GM ratio of head sensitivities predicts achievable distortion reduction without any quantization. Gradient-based importance yields 1.07 PPL improvement over activation-based at 3.5 bits.\n- **Results**: On Qwen3-8B at 2.5 bits, reduces KIVI PPL from 49.3 to 14.9 (70% reduction). On TurboQuant at 4.0 bits, recovers 66% of quantization-induced degradation.\n- **Relation to our work**: **Closest competitor**. RateQuant uses AM/GM ratio as a scalar heterogeneity metric but does NOT analyze the distribution *shape* (spike vs spread). Their AM/GM captures heterogeneity magnitude, not whether it comes from one extreme outlier (spike) or a distributed cluster (spread). Our contribution: explaining *why* some models benefit from non-uniform allocation and others don't, through distribution shape analysis. RateQuant would predict benefit whenever AM/GM > 1 but cannot explain the Yi-1.5 failure case (high AM/GM from spike pattern, yet negative returns).\n\n### 1.2 KVTuner (2025)\n- **Title**: KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference\n- **Authors**: Li et al.\n- **Venue**: ICML 2025\n- **Category**: **Direct competitor** (layer-level, not head-level)\n- **Summary**: Uses Pareto search over hardware-friendly layer-wise K/V precision pairs. Achieves nearly lossless 3.25-bit for Llama-3.1-8B, 4.0-bit for Qwen2.5-7B. Gradient-based sensitivity shows U-shaped pattern (early+late layers sensitive); activation-based is monotonically increasing.\n- **Relation to our work**: Operates at layer granularity, not head granularity. Does not analyze within-layer head heterogeneity distribution shape. Notes that Qwen2.5-7B requires higher precision → consistent with our finding of Qwen's spread pattern requiring differentiated allocation.\n\n### 1.3 PM-KVQ (2025)\n- **Title**: PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs\n- **Authors**: Chen et al.\n- **Venue**: arXiv:2505.18610\n- **Category**: **Method component**\n- **Summary**: Progressive quantization strategy that gradually lowers bit-width over decoding steps. Block-wise memory allocation assigns higher bits to sensitive transformer blocks. Uses integer programming for allocation.\n- **Relation to our work**: Temporal dimension (progressive) is orthogonal to our spatial (per-head) analysis. Does not analyze head-level heterogeneity distribution shapes.\n\n### 1.4 MixKVQ (2025)\n- **Title**: MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\n- **Authors**: (arXiv:2512.19206)\n- **Venue**: arXiv, Dec 2025\n- **Category**: **Method component**\n- **Summary**: Query-aware algorithm identifies critical key channels needing higher precision. Combines intrinsic quantization difficulty with query relevance. Per-channel mixed precision for keys, per-token for values.\n- **Relation to our work**: Operates at channel granularity within heads, not across heads. The \"intrinsic quantization difficulty\" concept relates to sensitivity heterogeneity but is measured per-channel, not per-head.\n\n### 1.5 KVmix (2025)\n- **Title**: KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\n- **Authors**: (arXiv:2506.08018; AAAI 2026)\n- **Venue**: AAAI 2026\n- **Category**: **Direct competitor** (layer-level)\n- **Summary**: Gradient-based importance analysis for layer-specific K/V bit-width allocation. Achieves K 2.19-bit / V 2.38-bit with 4.9× compression. Introduces dynamic long-context optimization for recent pivotal tokens.\n- **Relation to our work**: Layer-level, not head-level. Confirms K/V asymmetric sensitivity (consistent with our K/V separation findings).\n\n---\n\n## 2. Spike vs Spread / Outlier Pattern Analysis\n\n### 2.1 \"Precision Where It Matters\" — Spike-Aware Quantization (2025)\n- **Title**: Precision Where It Matters: A Novel Spike Aware Mixed-Precision Quantization Strategy for LLaMA-based Language Models\n- **Authors**: (arXiv:2504.21553)\n- **Venue**: Springer, April 2025\n- **Category**: **Background — spike pattern in activations (not heads)**\n- **Summary**: Identifies activation spikes concentrated in down projections of exactly 2 layers (one early, one late) in LLaMA. Spikes reach values up to 2500. Solution: FP8 for spiking layers, INT8 for rest. 30+ PPL reduction on LLaMA3-8B.\n- **Relation to our work**: Uses \"spike\" terminology for activation outliers, not head sensitivity distribution. The spike/spread dichotomy is analogous but operates at a different level (activation magnitude within layers vs. sensitivity distribution across heads). Supports the broader idea that spike-like concentration has different optimization implications than spread-like distributions.\n\n### 2.2 CMPQ — Channel-Wise Mixed-Precision Quantization (2024)\n- **Title**: Channel-Wise Mixed-Precision Quantization for Large Language Models\n- **Authors**: Chen & Xie et al.\n- **Venue**: arXiv:2410.13056, Oct 2024\n- **Category**: **Background — channel-level outlier patterns**\n- **Summary**: Allocates precision per-channel based on activation distribution. Distinguishes activation-based outliers (persistent in specific channels) from quantization-based outliers. ~0.5% of values are outliers. Uses L2-norm per channel for allocation.\n- **Relation to our work**: Channel-level analogue of our head-level analysis. The observation that outlier concentration varies by channel parallels our head-level spike vs spread finding, but at finer granularity and for weight/activation quantization, not KV cache.\n\n### 2.3 KITTY — Dynamic Channel-wise Precision Boost (2025)\n- **Title**: Kitty: Accurate and Efficient 2-bit KV Cache Quantization with Dynamic Channel-wise Precision Boost\n- **Authors**: (arXiv:2511.18643)\n- **Venue**: arXiv, Nov 2025\n- **Category**: **Method component**\n- **Summary**: Ranks Key-cache channels by sensitivity; keeps small fraction at higher precision. \"Critical channels play a disproportionately important role.\" Decomposes mixed-precision Key pages into two uniform 2-bit tensors for hardware efficiency.\n- **Relation to our work**: Channel-level analogue within keys. The finding that \"critical channels play disproportionately important roles\" is consistent with our heterogeneity thesis, but KITTY does not analyze whether the critical channel distribution is spike-like or spread-like.\n\n### 2.4 MUXQ — Low-Rank Outlier Decomposition (2026)\n- **Title**: MUXQ: Mixed-to-Uniform Precision Matrix Quantization via Low-Rank Outlier Decomposition\n- **Authors**: (arXiv:2604.04701)\n- **Venue**: arXiv, April 2026\n- **Category**: **Background**\n- **Summary**: Decomposes outlier channels into a low-rank matrix to convert mixed-precision quantization into uniform precision. Applies rotation/permutation to redistribute outlier energy.\n- **Relation to our work**: Addresses outliers via decomposition rather than differentiated allocation. Different philosophy: eliminate heterogeneity (smoothing) vs. exploit heterogeneity (our approach).\n\n---\n\n## 3. Head-Specific KV Cache Compression (Eviction-based, not Quantization)\n\n### 3.1 HeadKV / \"Not All Heads Matter\" (2024)\n- **Title**: Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\n- **Authors**: Fu et al.\n- **Venue**: ICLR 2025 (arXiv:2410.19258)\n- **Category**: **Background — head importance for eviction**\n- **Summary**: Head-level KV cache budget allocation based on importance scores from Needle-in-a-Haystack probing. Retains 1.5% KV cache with 97% performance. Different heads serve retrieval vs reasoning roles.\n- **Relation to our work**: Confirms head-level importance heterogeneity exists and is exploitable. Does not analyze the distribution shape of this heterogeneity. Eviction-based, not quantization-based.\n\n### 3.2 AdaKV (2024)\n- **Title**: Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation\n- **Authors**: Feng et al.\n- **Venue**: NeurIPS 2025 (arXiv:2407.11550)\n- **Category**: **Background — adaptive head budget**\n- **Summary**: Adaptive per-head budget allocation for KV eviction. Extends SnapKV/PyramidKV with head-wise adaptive allocation. Key insight: uniform compression rate across heads is a \"rigidity\" that hurts performance.\n- **Relation to our work**: Directly supports our thesis that head-level heterogeneity matters. But AdaKV addresses eviction budgets (how many tokens to keep per head), not quantization bit-width. Does not analyze spike vs spread patterns.\n\n### 3.3 KV-Compress (2024)\n- **Title**: KV-Compress: Paged KV-Cache Compression with Variable Compression Rates per Attention Head\n- **Authors**: Rehg\n- **Venue**: arXiv:2410.00161, Oct 2024\n- **Category**: **Background — variable-rate per-head compression**\n- **Summary**: Variable compression rates across attention heads within PagedAttention framework. Proposes query-group-compression for GQA models yielding additional 4× compression. 8× compression with negligible impact on Llama-3.1.\n- **Relation to our work**: Confirms per-head heterogeneity is exploitable for compression. Addresses GQA grouping explicitly. Does not analyze why some heads/models benefit more (no spike vs spread analysis).\n\n### 3.4 PyramidKV (2024)\n- **Title**: PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\n- **Authors**: Cai et al.\n- **Venue**: arXiv:2406.02069\n- **Category**: **Background**\n- **Summary**: Attention scatters widely in lower layers, consolidates in higher layers → pyramidal budget allocation (more cache for lower layers). Layer-level, not head-level.\n- **Relation to our work**: Layer-level heterogeneity analysis. Complementary perspective but no head-level distribution shape analysis.\n\n---\n\n## 4. GQA Ratio and Quantization Sensitivity\n\n### 4.1 GQA Original Paper (2023)\n- **Title**: GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints\n- **Authors**: Ainslie et al.\n- **Venue**: EMNLP 2023 (arXiv:2305.13245)\n- **Category**: **Background**\n- **Summary**: Proposes GQA as interpolation between MHA and MQA. Does not discuss quantization sensitivity implications of GQA ratio.\n- **Relation to our work**: Foundational paper. Our finding that GQA ratio is NOT a reliable proxy for heterogeneity is novel — the original paper does not address this.\n\n### 4.2 QCQA — Quality-and-Capacity-Aware Grouping (2025)\n- **Title**: Quality- and Capacity-Aware Grouped Query Attention\n- **Venue**: 2025\n- **Category**: **Background — GQA grouping optimization**\n- **Summary**: Evolutionary algorithm to discover optimal query-head groupings that minimize accuracy loss under KV-cache constraints. Achieves 20% higher accuracy at equal cache size vs naive GQA, or 40% KV reduction at same accuracy.\n- **Relation to our work**: Addresses the grouping structure of GQA but not quantization. Supports the idea that the default GQA grouping may not be optimal, which is related to our finding about GQA ratio being a poor proxy.\n\n---\n\n## 5. MCKP / Constrained Optimization for Bit Allocation\n\n### 5.1 MPQCO (2021)\n- **Title**: Towards Mixed-Precision Quantization of Neural Networks via Constrained Optimization\n- **Authors**: Chen, Wang, Cheng\n- **Venue**: ICCV 2021\n- **Category**: **Method component — MCKP formulation origin**\n- **Summary**: Formulates mixed-precision quantization as MCKP. Uses second-order Taylor expansion + Hessian for sensitivity. Greedy solver. 5–10 min calibration. Principled and efficient.\n- **Relation to our work**: We use the same MCKP formulation. MPQCO applies it to weight quantization layer-wise; we apply it to KV cache head-wise. MPQCO does not analyze when MCKP allocation fails (i.e., no spike vs spread analysis).\n\n### 5.2 JointSQ (2024)\n- **Title**: JointSQ: Joint Sparsification-Quantization for Distributed Learning\n- **Authors**: Xie et al.\n- **Venue**: CVPR 2024\n- **Category**: **Background**\n- **Summary**: Joint sparsity-quantization optimization via MCKP where profit = -error, weight = storage.\n- **Relation to our work**: Uses MCKP but for sparsity+quantization jointly, not for KV cache head-level allocation.\n\n---\n\n## 6. Foundational KV Cache Quantization Methods\n\n### 6.1 KIVI (2024)\n- **Title**: KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache\n- **Authors**: Liu & Yuan et al.\n- **Venue**: ICML 2024 (arXiv:2402.02750)\n- **Category**: **Evaluation baseline**\n- **Summary**: Per-channel symmetric quantization for keys, per-token asymmetric for values. Tuning-free 2-bit. Establishes K/V asymmetry as important principle.\n- **Relation to our work**: Baseline quantizer. Our MCKP allocator can sit on top of KIVI. KIVI applies uniform bit-width — our work addresses its limitation.\n\n### 6.2 KVQuant (2024)\n- **Title**: KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\n- **Authors**: (arXiv:2401.18079)\n- **Venue**: NeurIPS 2024\n- **Category**: **Evaluation baseline**\n- **Summary**: Per-layer sensitivity-weighted non-uniform datatypes. Handles outlier channels. Extends to 3-bit and 2-bit from FlexGen's 4-bit.\n- **Relation to our work**: Layer-level non-uniform datatype design, not head-level bit allocation. Pioneered per-layer sensitivity analysis for KV cache.\n\n### 6.3 RotateKV (2025)\n- **Title**: RotateKV: Accurate and Robust 2-Bit KV Cache Quantization\n- **Venue**: IJCAI 2025\n- **Category**: **Evaluation baseline**\n- **Summary**: Outlier-aware rotation to enhance quantization adaptability across diverse outlier distributions.\n- **Relation to our work**: Smoothing-based approach (eliminate heterogeneity) vs our exploitation-based approach (allocate to heterogeneity).\n\n---\n\n## 7. Distribution Shape Metrics\n\n### 7.1 Mix-QViT — Layer Importance + Quantization Sensitivity (2025)\n- **Title**: Mix-QViT: Mixed-Precision Vision Transformer Quantization Driven by Layer Importance and Quantization Sensitivity\n- **Authors**: (arXiv:2501.06357)\n- **Venue**: arXiv, Jan 2025\n- **Category**: **Background — sensitivity metrics for ViTs**\n- **Summary**: Dual scoring: explainability-based layer importance (via LRP) + quantization sensitivity per layer. Uses these scores for mixed-precision allocation in Vision Transformers.\n- **Relation to our work**: Uses sensitivity metrics for allocation but does not analyze distribution shape. Applied to ViTs, not LLMs.\n\n### 7.2 Representational Compactness via Singular Values\n- **Category**: **Background — concentration metric**\n- **Summary**: Singular value distribution as a measure of information concentration: uniform SVs → high compactness (redundant); few dominant SVs → low compactness (concentrated/sensitive).\n- **Relation to our work**: SVD-based concentration measurement is related to our Gini/CV analysis of head sensitivity distributions. The \"few dominant SVs\" scenario parallels our \"spike\" pattern.\n\n---\n\n## 8. Novelty Assessment\n\n### What already exists:\n1. **Head-level heterogeneity is well-documented**: HeadKV, AdaKV, KV-Compress, RateQuant all confirm heads have varying importance\n2. **MCKP for mixed-precision allocation**: MPQCO (2021) established the formulation; RateQuant (2026) applies rate-distortion allocation to KV cache per-head\n3. **AM/GM ratio as heterogeneity scalar**: RateQuant proposes this as a predictor of allocation benefit\n4. **Spike-aware quantization for activations**: \"Precision Where It Matters\" addresses spike patterns in activation magnitudes\n\n### What is NOVEL in our work:\n1. **Distribution shape analysis (spike vs spread)**: No prior work explicitly analyzes how the *shape* of the head sensitivity distribution determines allocation effectiveness. RateQuant's AM/GM is a scalar that captures magnitude but not shape — two distributions with identical AM/GM can have very different shapes (one spike outlier vs distributed cluster)\n2. **GQA ratio ≠ heterogeneity proxy**: No prior work has shown that GQA ratio fails to predict allocation benefit. Yi-1.5-9B (highest GQA 8:1) with spike pattern yields negative returns despite high heterogeneity magnitude — this finding is absent from all surveyed papers\n3. **Failure mode characterization**: Prior work reports when mixed-precision helps; we characterize *when and why it fails* (spike pattern concentrates sensitivity in a single head that cannot be further differentiated by allocation)\n4. **Cross-model shape taxonomy**: Systematic classification of 5 models into spike/spread patterns with predictive power for MCKP effectiveness\n\n### Positioning relative to RateQuant:\nRateQuant is the closest competitor (same per-head granularity, similar MCKP-style allocation). Our contribution is **complementary and deeper**: RateQuant provides the allocation mechanism; we explain *when allocation mechanisms work*. RateQuant's AM/GM metric would incorrectly predict benefit for Yi-1.5-9B (high AM/GM from spike pattern). Our spike vs spread analysis provides a more informative predictor.\n\n---\n\n## 9. Papers to Cite (by section)\n\n### Related Work — KV Cache Quantization\n- KIVI (Liu & Yuan et al., ICML 2024)\n- KVQuant (NeurIPS 2024)\n- RotateKV (IJCAI 2025)\n- KITTY (arXiv 2511.18643, 2025)\n\n### Related Work — Mixed-Precision KV Cache\n- KVTuner (Li et al., ICML 2025)\n- KVmix (AAAI 2026)\n- PM-KVQ (Chen et al., 2025)\n- MixKVQ (arXiv 2512.19206, 2025)\n- RateQuant (arXiv 2605.06675, 2026)\n\n### Related Work — Head Importance Heterogeneity\n- HeadKV / \"Not All Heads Matter\" (Fu et al., ICLR 2025)\n- AdaKV (Feng et al., NeurIPS 2025)\n- KV-Compress (Rehg, 2024)\n- PyramidKV (Cai et al., 2024)\n\n### Related Work — MCKP for Bit Allocation\n- MPQCO (Chen et al., ICCV 2021)\n\n### Related Work — Outlier/Spike Patterns\n- \"Precision Where It Matters\" (arXiv 2504.21553, 2025)\n- CMPQ (Chen & Xie et al., 2024)\n- MUXQ (arXiv 2604.04701, 2026)\n\n### Related Work — GQA\n- GQA (Ainslie et al., EMNLP 2023)\n- QCQA (2025)\n\n---\n\n## 10. Summary\n\nThe spike vs spread distribution shape analysis is **novel**. While head-level heterogeneity is well-documented and exploited by multiple recent methods (RateQuant, HeadKV, AdaKV), no prior work has:\n1. Analyzed the *shape* of sensitivity distributions (beyond scalar metrics like AM/GM)\n2. Explained why MCKP/allocation-based methods fail for certain models\n3. Shown that GQA ratio is a poor proxy for allocation benefit\n4. Provided a predictive taxonomy (spike → negative returns, spread → positive returns)\n\nThis positions our work as providing **diagnostic insight** that complements allocation methods like RateQuant, explaining their failure modes and suggesting when non-uniform allocation should (and should not) be applied.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "c131052d-f833-4f4d-9a33-36f3b6aa542e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ff749961-3e4a-44d1-a6f5-95518ca72198",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-14T19:04:19.840Z_
+
+文献调研完成。产出文件：`artifacts/spike_vs_spread_literature.md`
+
+**核心结论**：
+
+**Spike vs spread 分析具有 novelty。** 已有工作（RateQuant, HeadKV, AdaKV 等）均确认 head-level heterogeneity 存在且可利用，但无一分析异质性的**分布形状**如何决定分配效果。
+
+**最近的竞争者是 RateQuant（arXiv:2605.06675, 2026年5月）**——同样做 per-head bit allocation，提出 AM/GM ratio 作为标量异质性度量。但 AM/GM 只捕捉异质性大小，不区分 spike vs spread。我们的 Yi-1.5-9B case（高 AM/GM 但 spike pattern → 负收益）正是 RateQuant 无法解释的 failure mode。
+
+**我们的独特贡献**：
+1. 分布形状分析（spike/spread 分类法），超越标量度量
+2. GQA ratio ≠ heterogeneity proxy 的实证反例
+3. MCKP 分配器的 failure mode 刻画（spike 集中在单一 head 时无法差异化）
+4. 跨 5 个模型的 shape taxonomy 与 MCKP 效果的预测关系
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff749961-3e4a-44d1-a6f5-95518ca72198",
+  "isSidechain": false,
+  "requestId": "req_011Cb2ytR7mA6TezMVQnXKwj",
+  "type": "assistant",
+  "uuid": "0683bfbf-9159-457b-807d-bc9f84b4b688",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KgJvPSveZ5FHJti6pY94kC",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5828,
+      "cache_read_input_tokens": 51341,
+      "output_tokens": 380,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 380,
+          "cache_read_input_tokens": 51341,
+          "cache_creation_input_tokens": 5828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 90_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0683bfbf-9159-457b-807d-bc9f84b4b688",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Literature survey on spike vs spread distribution in KV cache quantization",
+  "sessionId": "58bdc259-e87b-4bcd-9240-582b3f124348"
+}
+```
+
+---

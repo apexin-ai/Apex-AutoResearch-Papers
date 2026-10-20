@@ -1,0 +1,1961 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp-007 - pr
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-3/4412c4f4-9718-4512-af60-c44bd9ff5f76.jsonl`
+- **Structured JSON:** [`8ea67c04889027cbfa5f.json`](../../sessions/8e/8ea67c04889027cbfa5f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T18:49:45.120Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T18:49:45.120Z",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp-007\n- project: entrainment_gated_ft\n- server: westb-48145\n- log_path: ~/runs/entrainment_gated_ft/exp-007.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T18:49:45.123Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T18:49:45.123Z",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76"
+}
+```
+
+---
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T18:49:45.164Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp-007
+- project: entrainment_gated_ft
+- server: westb-48145
+- log_path: ~/runs/entrainment_gated_ft/exp-007.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "eb5135fa-5f40-4f27-a67f-c5e39323d9b9",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T18:49:45.163Z_
+
+```json
+{
+  "parentUuid": "eb5135fa-5f40-4f27-a67f-c5e39323d9b9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b33845a4-74e9-4635-97e2-3bc152175219",
+  "timestamp": "2026-05-19T18:49:45.163Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T18:49:45.163Z_
+
+```json
+{
+  "parentUuid": "b33845a4-74e9-4635-97e2-3bc152175219",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c7d2a81c-9ae4-49b9-a717-f32ee0d8a7ea",
+  "timestamp": "2026-05-19T18:49:45.163Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T18:49:45.163Z_
+
+```json
+{
+  "parentUuid": "c7d2a81c-9ae4-49b9-a717-f32ee0d8a7ea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f1d197b4-3e31-40b7-9bfd-d38372604630",
+  "timestamp": "2026-05-19T18:49:45.163Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T18:49:49.659Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到 exp-007 的实验完成回调，需要按 session-start 和 on-experiment-done 流程处理。
+
+先执行 session-start 初始化，然后分析 exp-007 的结果。
+
+让我并行执行初始化步骤。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1d197b4-3e31-40b7-9bfd-d38372604630",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqFkBWBrvLdqxjNv5D",
+  "type": "assistant",
+  "uuid": "6ee56baa-ae03-47a1-b886-c2af0b228a23",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKwxpmEgaDzcqFsaVFXti5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25107,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25107,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25107,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25107
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T18:49:50.220Z_
+
+收到 exp-007 完成回调，先执行 session-start 初始化，再分析实验结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ee56baa-ae03-47a1-b886-c2af0b228a23",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqFkBWBrvLdqxjNv5D",
+  "type": "assistant",
+  "uuid": "d309c9c5-6091-4088-8952-91c04095d114",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKwxpmEgaDzcqFsaVFXti5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25107,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25107,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25107,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25107
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T18:49:51.755Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EsZeZXuL5SU6JADgupsxLL`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d309c9c5-6091-4088-8952-91c04095d114",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqFkBWBrvLdqxjNv5D",
+  "type": "assistant",
+  "uuid": "02b9cae2-497f-4706-afc1-9938ae6b36d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKwxpmEgaDzcqFsaVFXti5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25107,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25107,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 254,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25107,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25107
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T18:49:51.763Z_
+
+<details><summary>↩ Tool result · `toolu_01EsZeZXuL5SU6JADgupsxLL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02b9cae2-497f-4706-afc1-9938ae6b36d0",
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "f65a5060-e460-4e7a-9fa1-8d9f250bc143",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "02b9cae2-497f-4706-afc1-9938ae6b36d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T18:49:55.161Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me execute the session-start initialization steps in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f65a5060-e460-4e7a-9fa1-8d9f250bc143",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqk1JCEjzhjTRh21md",
+  "type": "assistant",
+  "uuid": "9f67a5fc-2087-456a-ab35-16e82928408f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYyCTHykgYHxhJJpgyJac1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 36948,
+      "output_tokens": 272,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 272,
+          "cache_read_input_tokens": 36948,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T18:49:55.608Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01MGCiW3p4sB9fVZMByGd6Gb`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f67a5fc-2087-456a-ab35-16e82928408f",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqk1JCEjzhjTRh21md",
+  "type": "assistant",
+  "uuid": "cb5f7e4b-1bf8-413d-938a-ef1ced4777eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYyCTHykgYHxhJJpgyJac1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 36948,
+      "output_tokens": 272,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 272,
+          "cache_read_input_tokens": 36948,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T18:49:55.614Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01SmsTXfT144pzGRBsb4epy7`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb5f7e4b-1bf8-413d-938a-ef1ced4777eb",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqk1JCEjzhjTRh21md",
+  "type": "assistant",
+  "uuid": "b3d41fbe-4e09-4691-b361-0a6928a38c6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYyCTHykgYHxhJJpgyJac1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 36948,
+      "output_tokens": 272,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 272,
+          "cache_read_input_tokens": 36948,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T18:49:55.674Z_
+
+<details><summary>↩ Tool result · `toolu_01MGCiW3p4sB9fVZMByGd6Gb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-007\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:08:19.724Z\", \"updated_at\": \"2026-05-19T18:49:39.379Z\", \"hypothesis\": \"340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash run_exp007_logsamples.sh (run_lmeval_clean.py with allow_neg_eigval=True, --log_samples, --tasks lambada_openai)\", \"server\": \"westb-48145\", \"gpu\": \"cuda:0\", \"pid\": 530432, \"log_path\": \"~/runs/entrainment_gated_ft/exp-007.log\", \"submitted_at\": \"2026-05-19T17:51:40.355Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lambada_openai (lm-eval built-in)\", \"data_count\": \"5153 per model x 27 models\", \"model_name\": \"340M x16 + 1.3B x11 (GDN/RetNet/HGRN2 hybrids + Transformer)\", \"seed\": \"default\", \"checkpoint_source\": \"m-a-p pretrained (340M: /root/autodl-tmp/models/, 1.3B: /root/autodl-tmp/models_1.3b/)\", \"eval_data\": \"lambada_openai (lm-eval built-in, 5153 samples)\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T18:49:39.310Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:49:41.012664+00:00\"}]}}, \"exp-004-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:20.215Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"spec\": {\"command\": \"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\", \"server\": \"westb-48145\", \"data_path\": \"EleutherAI/lambada_openai (default, split=test, cached)\", \"data_count\": 5153, \"model_name\": \"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\", \"seed\": 0, \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\", \"log_path\": \"/tmp/exp004.log\", \"pid\": 517172, \"output_dir\": \"/root/entrainment_gated_ft/analysis/attention_weights/\", \"progress\": \"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\", \"session\": \"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/attention_weights/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:17:10.232Z\", \"metrics\": {\"helped_vs_hurt_entropy_diff\": {\"gdn\": -0.0009, \"retnet\": 0.0179, \"hgrn2\": 0.002}, \"helped_vs_hurt_last5_mass\": {\"gdn_helped\": 0.0834, \"gdn_hurt\": 0.0831, \"retnet_helped\": 0.1578, \"retnet_hurt\": 0.1591, \"hgrn2_helped\": 0.0453, \"hgrn2_hurt\": 0.0467}, \"cross_arch_similarity_mean\": {\"gdn_vs_retnet\": 0.905, \"gdn_vs_hgrn2\": 0.766, \"hgrn2_vs_retnet\": 0.698}, \"cross_arch_similarity_deep_layers\": {\"gdn_vs_retnet_L20\": 0.986, \"gdn_vs_hgrn2_L20\": 0.942, \"hgrn2_vs_retnet_L20\": 0.943}, \"cross_arch_similarity_early_layers\": {\"gdn_vs_retnet_L2\": 0.995, \"gdn_vs_hgrn2_L2\": 0.244, \"hgrn2_vs_retnet_L2\": 0.196}, \"finding\": \"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\", \"n_samples\": 5153, \"runtime_minutes\": 30, \"output_files\": [\"gdn_attention_patterns.pt\", \"gdn_attention_entropy.csv\", \"retnet_attention_patterns.pt\", \"retnet_attention_entropy.csv\", \"hgrn2_attention_patterns.pt\", \"hgrn2_attention_entropy.csv\", \"attention_analysis_summary.json\", \"cross_arch_attention_similarity.csv\", \"helped_vs_hurt_entropy.csv\"]}}, \"exp-011-xstorycloze\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:18:38.168Z\", \"updated_at\": \"2026-05-19T17:00:01.089Z\", \"hypothesis\": \"xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-011\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_xstorycloze_batch.sh (PID 497694)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained)\", \"eval_data\": \"xstorycloze_en (juletxara/xstory_cloze, en split)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/\", \"log_path\": \"/root/entrainment_gated_ft/nohup.out\", \"completed_at\": \"2026-05-19T16:32:04.959Z\", \"metrics\": {\"xstorycloze_en\": {\"rho\": -0.6, \"raw_p\": 0.35, \"bonferroni_adj_p_10\": 1, \"std_pure\": 0.0082, \"std_h3_1\": 0.0055, \"convergence_direction\": \"correct but weak\"}, \"ten_benchmark_bonferroni\": {\"significant_count\": \"0/10\", \"LAMBADA_adj_p\": 0.167, \"note\": \"No benchmark survives 10-benchmark Bonferroni\"}, \"method\": \"exact_permutation_test_two_tailed\", \"conclusion\": \"xstorycloze_en NOT a second anchor. Convergence is LAMBADA-specific. W1 unresolved via multi-benchmark approach.\"}}, \"exp-004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:41:10.744Z\", \"updated_at\": \"2026-05-19T16:57:48.978Z\", \"hypothesis\": \"Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"python extract_attention_weights.py (forward hooks on Q,K, manual softmax(QK^T/√d) with GQA expansion)\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/lambada_openai per-example data\", \"data_count\": 5153, \"model_name\": \"GDN-h3-1, RetNet-h3-1, HGRN2-h3-1 (1.3B)\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"Wang et al. pretrained weights\", \"eval_data\": \"lambada_openai (5153 examples)\", \"log_path\": \"/tmp/exp004.log (process died after Worker exited - nohup orphan)\", \"checkpoint_path\": \"N/A - process crashed before completion\", \"failure_reason\": \"Worker used nohup instead of submit_training_job/tmux; PID 515917 died after Worker exit. GPU idle since ~16:47 UTC.\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T16:57:48.978Z\"}, \"exp-011\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:37:27.600Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\", \"completed_at\": \"2026-05-19T16:14:41.324Z\", \"metrics\": {\"boolq\": {\"rho\": 0.2, \"raw_p\": 0.7833, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0163, \"std_h3_1\": 0.0236, \"convergence\": false}, \"piqa\": {\"rho\": -0.5, \"raw_p\": 0.45, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0054, \"std_h3_1\": 0.0034, \"convergence\": false}, \"sciq\": {\"rho\": 0.1, \"raw_p\": 0.95, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0087, \"std_h3_1\": 0.0074, \"convergence\": false}, \"copa_supplementary\": {\"rho\": -0.67, \"raw_p\": 0.2667, \"std_pure\": 0.0262, \"std_h3_1\": 0.0047, \"convergence_ratio\": 5.57, \"note\": \"supplementary only (n=100), not in main Bonferroni\"}, \"LAMBADA_recomputed\": {\"rho\": -1, \"raw_p\": 0.0167, \"bonferroni_adj_p_6\": 0.1, \"bonferroni_adj_p_10\": 0.167, \"note\": \"6-Bonf=0.100 (D003 pre-registered); 10-Bonf=0.167; does not survive strict Bonferroni\"}, \"merged_10benchmark_significant_count\": \"0/10\", \"method\": \"exact_permutation_test_two_tailed\", \"D009_strategy\": \"BCa CI [-1.0,-0.7] as primary evidence; 6-Bonf adj_p=0.100 reported honestly; 10-benchmark negative -> task-specificity positive evidence (supplementary); underpowered caveat in Limitations\", \"D009_prohibited\": \"NO post-hoc 2-benchmark Bonferroni; NO post-hoc rho<0 subset correction\", \"conclusion\": \"No second anchor. Convergence LAMBADA-specific. W1 addressed via task-specificity reframing (D009).\"}}, \"exp-010\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:08:21.255Z\", \"updated_at\": \"2026-05-19T15:12:28.565Z\", \"hypothesis\": \"Aggregate convergence (cross-arch std decreasing with attention ratio) and per-example divergence (low Jaccard of helped/hurt sets) co-evolve as attention ratio increases on LAMBADA — demonstrating underspecification: architectures converge in aggregate performance while helping/hurting almost entirely different samples\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"python3 /root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/\", \"data_count\": 5153, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios (1.3B)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained)\", \"eval_data\": \"LAMBADA OpenAI per-example logprob (5153 samples)\"}, \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/exp010_bridge_results.csv\", \"log_path\": \"/root/entrainment_gated_ft/analysis/exp010_bridge_summary.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:09:01.266Z\", \"metrics\": {\"aggregate_convergence\": {\"std_pure\": 0.024, \"std_h24_1\": 0.0162, \"std_h12_1\": 0.0136, \"std_h6_1\": 0.0061, \"std_h3_1\": 0.0049, \"reduction_ratio\": 0.8, \"note\": \"Cross-arch std drops 5x monotonically\"}, \"per_example_divergence\": {\"jaccard_helped_range\": [0.092, 0.1], \"jaccard_hurt_range\": [0.081, 0.099], \"net_asymmetry_range\": [0.013, 0.04], \"net_asymmetry_trend\": \"increasing with attention ratio\", \"note\": \"Jaccard saturates at ~0.095 by 4% attention (h24-1), flat thereafter\"}, \"co_evolution_spearman\": {\"std_vs_J_helped\": {\"rho\": -0.7, \"exact_p\": 0.23}, \"std_vs_J_hurt\": {\"rho\": -0.8, \"exact_p\": 0.13}, \"CAVEAT\": \"D008: rho inflated by pure=0 degeneracy (Jaccard=NaN->0). Excluding pure: rho=-0.40, p=0.75. NOT co-evolution.\"}, \"key_finding\": \"DECOUPLING (D008): minimal attention (4%) creates per-example specificity (Jaccard saturates ~0.095), gradual attention drives aggregate convergence (sigma 0.024->0.005). Two processes operate on different timescales. Net asymmetry INCREASES (0.013->0.040).\", \"narrative_constraints\": \"PROHIBITED: co-evolution, paradoxical coexistence, paradox. USE: decoupling, different timescales.\"}}, \"exp-001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:32:43.793Z\", \"updated_at\": \"2026-05-19T15:00:43.856Z\", \"hypothesis\": \"Cross-architecture variance (std) on retrieval-dependent tasks decreases monotonically with attention ratio at 1.3B scale, while reasoning-dependent tasks show no convergence — establishing task-specificity as a principled feature of the equalizer effect, not a limitation\", \"spec\": {\"command\": \"python analysis: compute cross-arch std + Spearman rho for 6 benchmarks x 5 attention ratios\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/ (summary_all_1.3b.csv + 340M results)\", \"data_count\": 26, \"model_name\": \"16x1.3B + 10x340M (GDN/RetNet/HGRN2)\", \"seed\": 0}, \"checkpoint_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/exp-001/data/task_specificity_results.csv\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_wang_differentiation_20260519T130431.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T13:33:45.162Z\", \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"p\": 0.0167, \"significant\": false, \"taxonomy\": \"retrieval-dependent\", \"note\": \"exact permutation two-tailed (was 0.008 one-tailed)\"}, \"HellaSwag\": {\"rho\": 0.3, \"p\": 0.6833, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-C\": {\"rho\": 0.6, \"p\": 0.35, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"Winogrande\": {\"rho\": 0.1, \"p\": 0.95, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-Easy\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"MMLU\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"significant_count\": \"0/6\", \"summary\": \"LAMBADA shows perfect negative correlation (rho=-1.0) but exact permutation two-tailed p=0.0167 (Bonferroni adj-p=0.100, not significant). Reasoning tasks show no convergence. Mixed tasks suggestive but underpowered (n=5).\", \"method\": \"exact_permutation_test_two_tailed\"}}, \"exp-008\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:33.026Z\", \"updated_at\": \"2026-05-19T14:28:33.593Z\", \"hypothesis\": \"Replacing scipy.stats.spearmanr asymptotic p-values with exact permutation tests (n=5, 120 permutations, two-tailed) corrects the spurious p=1.4e-24 bug; expected: LAMBADA raw p≈0.017, Bonferroni adj-p≈0.100 (not significant), confirming need for additional benchmarks\", \"parent\": \"exp-001\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/robustness_results.csv\", \"log_path\": \"/root/entrainment_gated_ft/analysis/robustness_summary.md\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python3 /root/entrainment_gated_ft/analysis/statistical_robustness.py\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\", \"data_count\": 15, \"model_name\": \"GDN/HGRN2/RetNet 1.3B (5 attn ratios x 3 archs)\", \"seed\": 42, \"checkpoint_source\": \"/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\", \"eval_data\": \"6 benchmarks x 15 model configs (summary_all_1.3b.csv)\"}, \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"raw_p\": 0.0167, \"bonferroni_adj_p\": 0.1, \"bh_fdr_adj_p\": 0.1}, \"HellaSwag\": {\"rho\": 0.3, \"raw_p\": 0.6833, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.82}, \"WinoGrande\": {\"rho\": 0.1, \"raw_p\": 0.95, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.95}, \"ARC-Easy\": {\"rho\": -0.7, \"raw_p\": 0.2333, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.4667}, \"ARC-Challenge\": {\"rho\": 0.6, \"raw_p\": 0.35, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.525}, \"MMLU\": {\"rho\": -0.7, \"raw_p\": 0.2333, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.4667}, \"method\": \"exact_permutation_test_two_tailed\", \"n_permutations\": 120, \"bug_fixed\": \"scipy.stats.spearmanr asymptotic p replaced with exact permutation\", \"bootstrap_ci\": {\"benchmark\": \"LAMBADA\", \"method\": \"architecture_resampling_percentile\", \"ci_lower\": -1, \"ci_upper\": -0.7, \"crosses_zero\": false, \"n_bootstrap\": 10000, \"n_valid\": 8875, \"seed\": 42, \"p_rho_negative\": 1, \"p_rho_positive\": 0, \"bca_note\": \"BCa degenerate at rho=-1.0 boundary; percentile CI used\"}, \"gdn_excluded\": {\"LAMBADA\": {\"rho\": -0.7, \"exact_p\": 0.2333, \"direction\": \"WEAKER\"}, \"HellaSwag\": {\"rho\": 0.5, \"exact_p\": 0.45, \"direction\": \"STRONGER\"}, \"WinoGrande\": {\"rho\": 0.3, \"exact_p\": 0.6833, \"direction\": \"STRONGER\"}, \"ARC-Easy\": {\"rho\": -0.9, \"exact_p\": 0.0833, \"direction\": \"STRONGER\"}, \"ARC-Challenge\": {\"rho\": -0.2, \"exact_p\": 0.7833, \"direction\": \"WEAKER\"}, \"MMLU\": {\"rho\": 0.6, \"exact_p\": 0.35, \"direction\": \"WEAKER\"}, \"note\": \"ARC-Easy rho improves from -0.7 to -0.9 (p=0.0833) without GDN confound — suggestive second anchor\"}}, \"completed_at\": \"2026-05-19T14:18:07.535Z\"}, \"exp-003-p2v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:13:12.772Z\", \"updated_at\": \"2026-05-19T14:20:24.378Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.\", \"parent\": \"exp-003-p2\", \"conclusion\": \"killed\"}, \"exp-003-p2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:52:59.192Z\", \"updated_at\": \"2026-05-19T14:06:41.114Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model was uncertain → attention helped), while hurt samples have lower pure-model perplexity (model was confident → attention interfered). This pattern is architecture-specific.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"python3 /root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean\", \"data_count\": 5153, \"model_name\": \"GDN-pure, RetNet-pure, HGRN2-pure (1.3B)\", \"seed\": \"N/A\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/{GDN,RetNet,HGRN2}-pure\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/entrainment_gated_ft/analysis/sample_perplexity_summary.json\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/sample_perplexity_results.csv\", \"completed_at\": \"2026-05-19T14:06:38.461Z\", \"metrics\": {\"GDN\": {\"U\": 148410, \"p\": 0.209189, \"r_rb\": -0.0447, \"helped_mean\": 3.3695, \"hurt_mean\": 3.3382}, \"RetNet\": {\"U\": 107210, \"p\": 0.659319, \"r_rb\": -0.0168, \"helped_mean\": 3.4432, \"hurt_mean\": 3.4207}, \"HGRN2\": {\"U\": 112999, \"p\": 0.247856, \"r_rb\": -0.0441, \"helped_mean\": 3.3775, \"hurt_mean\": 3.3538}, \"cross_arch_helped_KW_p\": 0.020136, \"cross_arch_hurt_KW_p\": 0.000498}}, \"exp-003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:38:18.995Z\", \"updated_at\": \"2026-05-19T13:38:51.683Z\", \"hypothesis\": \"Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit\", \"spec\": {\"command\": \"python analysis/sample_characterization.py — surface feature analysis of helped/hurt samples\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/ (per-example logprob data)\", \"data_count\": 5153, \"model_name\": \"GDN/HGRN2/RetNet 1.3B h3-1 vs pure\", \"seed\": 0}, \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/sample_characterization_results.csv\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp_003_sample_characterization_20260519T131141.log\", \"conclusion\": \"negative\", \"metrics\": {\"GDN\": {\"helped\": 462, \"hurt\": 615, \"net\": -153, \"surface_features_significant\": false}, \"HGRN2\": {\"helped\": 548, \"hurt\": 395, \"net\": 153, \"surface_features_significant\": false}, \"RetNet\": {\"helped\": 426, \"hurt\": 495, \"net\": -69, \"context_length_p\": 0.012, \"context_length_r\": -0.096, \"unique_tokens_p\": 0.009, \"unique_tokens_r\": -0.099}, \"cross_arch_difference\": \"not_significant\", \"pass_fail\": \"FAIL — RetNet context_unique_tokens p=0.009 passes criterion 1 for one arch only; criterion 2 (cross-arch difference) fails\", \"summary\": \"Surface features do not explain helped/hurt identity. Rules out trivial explanations (frequency, length, diversity). RetNet shows weak context-length signal (p=0.012, r=-0.096).\"}, \"completed_at\": \"2026-05-19T13:38:51.683Z\"}, \"exp-009\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:32:43.818Z\", \"updated_at\": \"2026-05-19T13:33:45.506Z\", \"hypothesis\": \"Our equalizer effect analysis provides fully novel contributions relative to Wang et al. (arXiv 2507.06457) across 4 dimensions: convergence quantification (Spearman ρ + permutation test vs qualitative observation), scale dependency (quantitative 1.3B vs 340M contrast vs binary statement), per-example mechanism (Jaccard + net effect analysis vs absent), and task-specificity (convergence-strength by task type vs ratio-sensitivity)\", \"spec\": {\"command\": \"literature analysis: extract Wang et al. (2507.06457) exact claims, compare 4 differentiation dimensions\", \"server\": \"local + westb-48145\", \"data_path\": \"Wang et al. arXiv 2507.06457 + task_specificity_results.csv\", \"data_count\": 1, \"model_name\": \"N/A (literature analysis)\", \"seed\": 0}, \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_exp_009_wang_differentiation_20260519T131120.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T13:33:45.506Z\"}, \"eval_340m_retnet_hgrn2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:03:58.762Z\", \"updated_at\": \"2026-05-19T04:32:37.289Z\", \"hypothesis\": \"340M RetNet and HGRN2 models will show the same architecture-dependent attention effect observed at 1.3B scale: HGRN2 benefits from attention while RetNet shows minimal benefit, with task-dependent equalizer effect on LAMBADA\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_all_340m_eval.sh\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models/\", \"data_count\": 10, \"model_name\": \"340M RetNet×5 + HGRN2×5\", \"seed\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/340m/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/340m/run_all.log\", \"completed_at\": \"2026-05-19T04:32:37.289Z\"}, \"hgrn2_eval_h3_1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:47:57.853Z\", \"updated_at\": \"2026-05-18T16:53:12.858Z\", \"spec\": {\"command\": \"HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python run_lmeval_clean.py --model_path 1.3B-100B-HGRN2-hybrid-3-1 --tasks 6tasks --batch_size 8\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/1.3B-100B-HGRN2-hybrid-3-1\", \"data_count\": 1, \"model_name\": \"HGRN2-1.3B-hybrid-3-1\", \"seed\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\", \"log_path\": \"/tmp/hgrn2_eval_h3_1.log\", \"hypothesis\": \"HGRN2 hybrid-3-1 (highest attention ratio) will show less degradation on composition-heavy benchmarks compared to pure linear models, following the attention-ratio degradation pattern observed in GDN and RetNet families\", \"completed_at\": \"2026-05-18T16:53:12.858Z\"}, \"hgrn2_eval_1_3b_all\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:57:15.535Z\", \"updated_at\": \"2026-05-18T16:00:12.920Z\", \"spec\": {\"command\": \"python run_lmeval_clean.py --model_path {MODEL} --tasks lambada_openai,hellaswag,winogrande,arc_easy,arc_challenge,mmlu --output_dir lm_eval_clean/ --batch_size 8 (x3 models: hybrid-12-1, hybrid-24-1, hybrid-3-1)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/\", \"data_count\": 3, \"model_name\": \"HGRN2-1.3B (3 hybrid variants)\", \"seed\": 0}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T16:00:12.920Z\"}}, \"count\": 15, \"total\": 15, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0485}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb5f7e4b-1bf8-413d-938a-ef1ced4777eb",
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "ef68b22d-9b49-41f9-a14c-40d997ad2632",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-007\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T17:08:19.724Z\\\", \\\"updated_at\\\": \\\"2026-05-19T18:49:39.379Z\\\", \\\"hypothesis\\\": \\\"340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_exp007_logsamples.sh (run_lmeval_clean.py with allow_neg_eigval=True, --log_samples, --tasks lambada_openai)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 530432, \\\"log_path\\\": \\\"~/runs/entrainment_gated_ft/exp-007.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T17:51:40.355Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"lambada_openai (lm-eval built-in)\\\", \\\"data_count\\\": \\\"5153 per model x 27 models\\\", \\\"model_name\\\": \\\"340M x16 + 1.3B x11 (GDN/RetNet/HGRN2 hybrids + Transformer)\\\", \\\"seed\\\": \\\"default\\\", \\\"checkpoint_source\\\": \\\"m-a-p pretrained (340M: /root/autodl-tmp/models/, 1.3B: /root/autodl-tmp/models_1.3b/)\\\", \\\"eval_data\\\": \\\"lambada_openai (lm-eval built-in, 5153 samples)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T18:49:39.310Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T18:49:41.012664+00:00\\\"}]}}, \\\"exp-004-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:58:01.256Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:17:20.215Z\\\", \\\"hypothesis\\\": \\\"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"EleutherAI/lambada_openai (default, split=test, cached)\\\", \\\"data_count\\\": 5153, \\\"model_name\\\": \\\"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\\\", \\\"seed\\\": 0, \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/\\\", \\\"eval_data\\\": \\\"LAMBADA OpenAI (5153 samples)\\\", \\\"log_path\\\": \\\"/tmp/exp004.log\\\", \\\"pid\\\": 517172, \\\"output_dir\\\": \\\"/root/entrainment_gated_ft/analysis/attention_weights/\\\", \\\"progress\\\": \\\"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\\\", \\\"session\\\": \\\"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/analysis/attention_weights/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T17:17:10.232Z\\\", \\\"metrics\\\": {\\\"helped_vs_hurt_entropy_diff\\\": {\\\"gdn\\\": -0.0009, \\\"retnet\\\": 0.0179, \\\"hgrn2\\\": 0.002}, \\\"helped_vs_hurt_last5_mass\\\": {\\\"gdn_helped\\\": 0.0834, \\\"gdn_hurt\\\": 0.0831, \\\"retnet_helped\\\": 0.1578, \\\"retnet_hurt\\\": 0.1591, \\\"hgrn2_helped\\\": 0.0453, \\\"hgrn2_hurt\\\": 0.0467}, \\\"cross_arch_similarity_mean\\\": {\\\"gdn_vs_retnet\\\": 0.905, \\\"gdn_vs_hgrn2\\\": 0.766, \\\"hgrn2_vs_retnet\\\": 0.698}, \\\"cross_arch_similarity_deep_layers\\\": {\\\"gdn_vs_retnet_L20\\\": 0.986, \\\"gdn_vs_hgrn2_L20\\\": 0.942, \\\"hgrn2_vs_retnet_L20\\\": 0.943}, \\\"cross_arch_similarity_early_layers\\\": {\\\"gdn_vs_retnet_L2\\\": 0.995, \\\"gdn_vs_hgrn2_L2\\\": 0.244, \\\"hgrn2_vs_retnet_L2\\\": 0.196}, \\\"finding\\\": \\\"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\\\", \\\"n_samples\\\": 5153, \\\"runtime_minutes\\\": 30, \\\"output_files\\\": [\\\"gdn_attention_patterns.pt\\\", \\\"gdn_attention_entropy.csv\\\", \\\"retnet_attention_patterns.pt\\\", \\\"retnet_attention_entropy.csv\\\", \\\"hgrn2_attention_patterns.pt\\\", \\\"hgrn2_attention_entropy.csv\\\", \\\"attention_analysis_summary.json\\\", \\\"cross_arch_attention_similarity.csv\\\", \\\"helped_vs_hurt_entropy.csv\\\"]}}, \\\"exp-011-xstorycloze\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:18:38.168Z\\\", \\\"updated_at\\\": \\\"2026-05-19T17:00:01.089Z\\\", \\\"hypothesis\\\": \\\"xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction\\\", \\\"parent\\\": \\\"exp-011\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/entrainment_gated_ft/run_xstorycloze_batch.sh (PID 497694)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models_1.3b/ (16 models)\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained)\\\", \\\"eval_data\\\": \\\"xstorycloze_en (juletxara/xstory_cloze, en split)\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/nohup.out\\\", \\\"completed_at\\\": \\\"2026-05-19T16:32:04.959Z\\\", \\\"metrics\\\": {\\\"xstorycloze_en\\\": {\\\"rho\\\": -0.6, \\\"raw_p\\\": 0.35, \\\"bonferroni_adj_p_10\\\": 1, \\\"std_pure\\\": 0.0082, \\\"std_h3_1\\\": 0.0055, \\\"convergence_direction\\\": \\\"correct but weak\\\"}, \\\"ten_benchmark_bonferroni\\\": {\\\"significant_count\\\": \\\"0/10\\\", \\\"LAMBADA_adj_p\\\": 0.167, \\\"note\\\": \\\"No benchmark survives 10-benchmark Bonferroni\\\"}, \\\"method\\\": \\\"exact_permutation_test_two_tailed\\\", \\\"conclusion\\\": \\\"xstorycloze_en NOT a second anchor. Convergence is LAMBADA-specific. W1 unresolved via multi-benchmark approach.\\\"}}, \\\"exp-004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:41:10.744Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:57:48.978Z\\\", \\\"hypothesis\\\": \\\"Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"python extract_attention_weights.py (forward hooks on Q,K, manual softmax(QK^T/√d) with GQA expansion)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/lambada_openai per-example data\\\", \\\"data_count\\\": 5153, \\\"model_name\\\": \\\"GDN-h3-1, RetNet-h3-1, HGRN2-h3-1 (1.3B)\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"checkpoint_source\\\": \\\"Wang et al. pretrained weights\\\", \\\"eval_data\\\": \\\"lambada_openai (5153 examples)\\\", \\\"log_path\\\": \\\"/tmp/exp004.log (process died after Worker exited - nohup orphan)\\\", \\\"checkpoint_path\\\": \\\"N/A - process crashed before completion\\\", \\\"failure_reason\\\": \\\"Worker used nohup instead of submit_training_job/tmux; PID 515917 died after Worker exit. GPU idle since ~16:47 UTC.\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-19T16:57:48.978Z\\\"}, \\\"exp-011\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:12:29.428Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:37:27.600Z\\\", \\\"hypothesis\\\": \\\"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models_1.3b/ (16 models)\\\", \\\"data_count\\\": 16, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\\\", \\\"seed\\\": 0, \\\"eval_data\\\": \\\"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\\\", \\\"gpu\\\": \\\"cuda:0 (RTX PRO 6000)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\\\", \\\"completed_at\\\": \\\"2026-05-19T16:14:41.324Z\\\", \\\"metrics\\\": {\\\"boolq\\\": {\\\"rho\\\": 0.2, \\\"raw_p\\\": 0.7833, \\\"bonferroni_adj_p_9\\\": 1, \\\"std_pure\\\": 0.0163, \\\"std_h3_1\\\": 0.0236, \\\"convergence\\\": false}, \\\"piqa\\\": {\\\"rho\\\": -0.5, \\\"raw_p\\\": 0.45, \\\"bonferroni_adj_p_9\\\": 1, \\\"std_pure\\\": 0.0054, \\\"std_h3_1\\\": 0.0034, \\\"convergence\\\": false}, \\\"sciq\\\": {\\\"rho\\\": 0.1, \\\"raw_p\\\": 0.95, \\\"bonferroni_adj_p_9\\\": 1, \\\"std_pure\\\": 0.0087, \\\"std_h3_1\\\": 0.0074, \\\"convergence\\\": false}, \\\"copa_supplementary\\\": {\\\"rho\\\": -0.67, \\\"raw_p\\\": 0.2667, \\\"std_pure\\\": 0.0262, \\\"std_h3_1\\\": 0.0047, \\\"convergence_ratio\\\": 5.57, \\\"note\\\": \\\"supplementary only (n=100), not in main Bonferroni\\\"}, \\\"LAMBADA_recomputed\\\": {\\\"rho\\\": -1, \\\"raw_p\\\": 0.0167, \\\"bonferroni_adj_p_6\\\": 0.1, \\\"bonferroni_adj_p_10\\\": 0.167, \\\"note\\\": \\\"6-Bonf=0.100 (D003 pre-registered); 10-Bonf=0.167; does not survive strict Bonferroni\\\"}, \\\"merged_10benchmark_significant_count\\\": \\\"0/10\\\", \\\"method\\\": \\\"exact_permutation_test_two_tailed\\\", \\\"D009_strategy\\\": \\\"BCa CI [-1.0,-0.7] as primary evidence; 6-Bonf adj_p=0.100 reported honestly; 10-benchmark negative -> task-specificity positive evidence (supplementary); underpowered caveat in Limitations\\\", \\\"D009_prohibited\\\": \\\"NO post-hoc 2-benchmark Bonferroni; NO post-hoc rho<0 subset correction\\\", \\\"conclusion\\\": \\\"No second anchor. Convergence LAMBADA-specific. W1 addressed via task-specificity reframing (D009).\\\"}}, \\\"exp-010\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T15:08:21.255Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:12:28.565Z\\\", \\\"hypothesis\\\": \\\"Aggregate convergence (cross-arch std decreasing with attention ratio) and per-example divergence (low Jaccard of helped/hurt sets) co-evolve as attention ratio increases on LAMBADA — demonstrating underspecification: architectures converge in aggregate performance while helping/hurting almost entirely different samples\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 /root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/\\\", \\\"data_count\\\": 5153, \\\"model_name\\\": \\\"GDN/RetNet/HGRN2 x 5 ratios (1.3B)\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained)\\\", \\\"eval_data\\\": \\\"LAMBADA OpenAI per-example logprob (5153 samples)\\\"}, \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/analysis/exp010_bridge_results.csv\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/analysis/exp010_bridge_summary.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T15:09:01.266Z\\\", \\\"metrics\\\": {\\\"aggregate_convergence\\\": {\\\"std_pure\\\": 0.024, \\\"std_h24_1\\\": 0.0162, \\\"std_h12_1\\\": 0.0136, \\\"std_h6_1\\\": 0.0061, \\\"std_h3_1\\\": 0.0049, \\\"reduction_ratio\\\": 0.8, \\\"note\\\": \\\"Cross-arch std drops 5x monotonically\\\"}, \\\"per_example_divergence\\\": {\\\"jaccard_helped_range\\\": [0.092, 0.1], \\\"jaccard_hurt_range\\\": [0.081, 0.099], \\\"net_asymmetry_range\\\": [0.013, 0.04], \\\"net_asymmetry_trend\\\": \\\"increasing with attention ratio\\\", \\\"note\\\": \\\"Jaccard saturates at ~0.095 by 4% attention (h24-1), flat thereafter\\\"}, \\\"co_evolution_spearman\\\": {\\\"std_vs_J_helped\\\": {\\\"rho\\\": -0.7, \\\"exact_p\\\": 0.23}, \\\"std_vs_J_hurt\\\": {\\\"rho\\\": -0.8, \\\"exact_p\\\": 0.13}, \\\"CAVEAT\\\": \\\"D008: rho inflated by pure=0 degeneracy (Jaccard=NaN->0). Excluding pure: rho=-0.40, p=0.75. NOT co-evolution.\\\"}, \\\"key_finding\\\": \\\"DECOUPLING (D008): minimal attention (4%) creates per-example specificity (Jaccard saturates ~0.095), gradual attention drives aggregate convergence (sigma 0.024->0.005). Two processes operate on different timescales. Net asymmetry INCREASES (0.013->0.040).\\\", \\\"narrative_constraints\\\": \\\"PROHIBITED: co-evolution, paradoxical coexistence, paradox. USE: decoupling, different timescales.\\\"}}, \\\"exp-001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:32:43.793Z\\\", \\\"updated_at\\\": \\\"2026-05-19T15:00:43.856Z\\\", \\\"hypothesis\\\": \\\"Cross-architecture variance (std) on retrieval-dependent tasks decreases monotonically with attention ratio at 1.3B scale, while reasoning-dependent tasks show no convergence — establishing task-specificity as a principled feature of the equalizer effect, not a limitation\\\", \\\"spec\\\": {\\\"command\\\": \\\"python analysis: compute cross-arch std + Spearman rho for 6 benchmarks x 5 attention ratios\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/ (summary_all_1.3b.csv + 340M results)\\\", \\\"data_count\\\": 26, \\\"model_name\\\": \\\"16x1.3B + 10x340M (GDN/RetNet/HGRN2)\\\", \\\"seed\\\": 0}, \\\"checkpoint_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/exp-001/data/task_specificity_results.csv\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_wang_differentiation_20260519T130431.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T13:33:45.162Z\\\", \\\"metrics\\\": {\\\"LAMBADA\\\": {\\\"rho\\\": -1, \\\"p\\\": 0.0167, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"retrieval-dependent\\\", \\\"note\\\": \\\"exact permutation two-tailed (was 0.008 one-tailed)\\\"}, \\\"HellaSwag\\\": {\\\"rho\\\": 0.3, \\\"p\\\": 0.6833, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"reasoning-dependent\\\"}, \\\"ARC-C\\\": {\\\"rho\\\": 0.6, \\\"p\\\": 0.35, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"reasoning-dependent\\\"}, \\\"Winogrande\\\": {\\\"rho\\\": 0.1, \\\"p\\\": 0.95, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"reasoning-dependent\\\"}, \\\"ARC-Easy\\\": {\\\"rho\\\": -0.7, \\\"p\\\": 0.2333, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"mixed\\\"}, \\\"MMLU\\\": {\\\"rho\\\": -0.7, \\\"p\\\": 0.2333, \\\"significant\\\": false, \\\"taxonomy\\\": \\\"mixed\\\"}, \\\"significant_count\\\": \\\"0/6\\\", \\\"summary\\\": \\\"LAMBADA shows perfect negative correlation (rho=-1.0) but exact permutation two-tailed p=0.0167 (Bonferroni adj-p=0.100, not significant). Reasoning tasks show no convergence. Mixed tasks suggestive but underpowered (n=5).\\\", \\\"method\\\": \\\"exact_permutation_test_two_tailed\\\"}}, \\\"exp-008\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:12:33.026Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:28:33.593Z\\\", \\\"hypothesis\\\": \\\"Replacing scipy.stats.spearmanr asymptotic p-values with exact permutation tests (n=5, 120 permutations, two-tailed) corrects the spurious p=1.4e-24 bug; expected: LAMBADA raw p≈0.017, Bonferroni adj-p≈0.100 (not significant), confirming need for additional benchmarks\\\", \\\"parent\\\": \\\"exp-001\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/analysis/robustness_results.csv\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/analysis/robustness_summary.md\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 /root/entrainment_gated_ft/analysis/statistical_robustness.py\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\\\", \\\"data_count\\\": 15, \\\"model_name\\\": \\\"GDN/HGRN2/RetNet 1.3B (5 attn ratios x 3 archs)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\\\", \\\"eval_data\\\": \\\"6 benchmarks x 15 model configs (summary_all_1.3b.csv)\\\"}, \\\"metrics\\\": {\\\"LAMBADA\\\": {\\\"rho\\\": -1, \\\"raw_p\\\": 0.0167, \\\"bonferroni_adj_p\\\": 0.1, \\\"bh_fdr_adj_p\\\": 0.1}, \\\"HellaSwag\\\": {\\\"rho\\\": 0.3, \\\"raw_p\\\": 0.6833, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.82}, \\\"WinoGrande\\\": {\\\"rho\\\": 0.1, \\\"raw_p\\\": 0.95, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.95}, \\\"ARC-Easy\\\": {\\\"rho\\\": -0.7, \\\"raw_p\\\": 0.2333, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.4667}, \\\"ARC-Challenge\\\": {\\\"rho\\\": 0.6, \\\"raw_p\\\": 0.35, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.525}, \\\"MMLU\\\": {\\\"rho\\\": -0.7, \\\"raw_p\\\": 0.2333, \\\"bonferroni_adj_p\\\": 1, \\\"bh_fdr_adj_p\\\": 0.4667}, \\\"method\\\": \\\"exact_permutation_test_two_tailed\\\", \\\"n_permutations\\\": 120, \\\"bug_fixed\\\": \\\"scipy.stats.spearmanr asymptotic p replaced with exact permutation\\\", \\\"bootstrap_ci\\\": {\\\"benchmark\\\": \\\"LAMBADA\\\", \\\"method\\\": \\\"architecture_resampling_percentile\\\", \\\"ci_lower\\\": -1, \\\"ci_upper\\\": -0.7, \\\"crosses_zero\\\": false, \\\"n_bootstrap\\\": 10000, \\\"n_valid\\\": 8875, \\\"seed\\\": 42, \\\"p_rho_negative\\\": 1, \\\"p_rho_positive\\\": 0, \\\"bca_note\\\": \\\"BCa degenerate at rho=-1.0 boundary; percentile CI used\\\"}, \\\"gdn_excluded\\\": {\\\"LAMBADA\\\": {\\\"rho\\\": -0.7, \\\"exact_p\\\": 0.2333, \\\"direction\\\": \\\"WEAKER\\\"}, \\\"HellaSwag\\\": {\\\"rho\\\": 0.5, \\\"exact_p\\\": 0.45, \\\"direction\\\": \\\"STRONGER\\\"}, \\\"WinoGrande\\\": {\\\"rho\\\": 0.3, \\\"exact_p\\\": 0.6833, \\\"direction\\\": \\\"STRONGER\\\"}, \\\"ARC-Easy\\\": {\\\"rho\\\": -0.9, \\\"exact_p\\\": 0.0833, \\\"direction\\\": \\\"STRONGER\\\"}, \\\"ARC-Challenge\\\": {\\\"rho\\\": -0.2, \\\"exact_p\\\": 0.7833, \\\"direction\\\": \\\"WEAKER\\\"}, \\\"MMLU\\\": {\\\"rho\\\": 0.6, \\\"exact_p\\\": 0.35, \\\"direction\\\": \\\"WEAKER\\\"}, \\\"note\\\": \\\"ARC-Easy rho improves from -0.7 to -0.9 (p=0.0833) without GDN confound — suggestive second anchor\\\"}}, \\\"completed_at\\\": \\\"2026-05-19T14:18:07.535Z\\\"}, \\\"exp-003-p2v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T14:13:12.772Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:20:24.378Z\\\", \\\"hypothesis\\\": \\\"Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.\\\", \\\"parent\\\": \\\"exp-003-p2\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp-003-p2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:52:59.192Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:06:41.114Z\\\", \\\"hypothesis\\\": \\\"Helped samples have higher pure-model perplexity (model was uncertain → attention helped), while hurt samples have lower pure-model perplexity (model was confident → attention interfered). This pattern is architecture-specific.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 /root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean\\\", \\\"data_count\\\": 5153, \\\"model_name\\\": \\\"GDN-pure, RetNet-pure, HGRN2-pure (1.3B)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models_1.3b/{GDN,RetNet,HGRN2}-pure\\\", \\\"eval_data\\\": \\\"LAMBADA OpenAI (5153 samples)\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/analysis/sample_perplexity_summary.json\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/analysis/sample_perplexity_results.csv\\\", \\\"completed_at\\\": \\\"2026-05-19T14:06:38.461Z\\\", \\\"metrics\\\": {\\\"GDN\\\": {\\\"U\\\": 148410, \\\"p\\\": 0.209189, \\\"r_rb\\\": -0.0447, \\\"helped_mean\\\": 3.3695, \\\"hurt_mean\\\": 3.3382}, \\\"RetNet\\\": {\\\"U\\\": 107210, \\\"p\\\": 0.659319, \\\"r_rb\\\": -0.0168, \\\"helped_mean\\\": 3.4432, \\\"hurt_mean\\\": 3.4207}, \\\"HGRN2\\\": {\\\"U\\\": 112999, \\\"p\\\": 0.247856, \\\"r_rb\\\": -0.0441, \\\"helped_mean\\\": 3.3775, \\\"hurt_mean\\\": 3.3538}, \\\"cross_arch_helped_KW_p\\\": 0.020136, \\\"cross_arch_hurt_KW_p\\\": 0.000498}}, \\\"exp-003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:38:18.995Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:38:51.683Z\\\", \\\"hypothesis\\\": \\\"Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit\\\", \\\"spec\\\": {\\\"command\\\": \\\"python analysis/sample_characterization.py — surface feature analysis of helped/hurt samples\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/ (per-example logprob data)\\\", \\\"data_count\\\": 5153, \\\"model_name\\\": \\\"GDN/HGRN2/RetNet 1.3B h3-1 vs pure\\\", \\\"seed\\\": 0}, \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/analysis/sample_characterization_results.csv\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp_003_sample_characterization_20260519T131141.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"GDN\\\": {\\\"helped\\\": 462, \\\"hurt\\\": 615, \\\"net\\\": -153, \\\"surface_features_significant\\\": false}, \\\"HGRN2\\\": {\\\"helped\\\": 548, \\\"hurt\\\": 395, \\\"net\\\": 153, \\\"surface_features_significant\\\": false}, \\\"RetNet\\\": {\\\"helped\\\": 426, \\\"hurt\\\": 495, \\\"net\\\": -69, \\\"context_length_p\\\": 0.012, \\\"context_length_r\\\": -0.096, \\\"unique_tokens_p\\\": 0.009, \\\"unique_tokens_r\\\": -0.099}, \\\"cross_arch_difference\\\": \\\"not_significant\\\", \\\"pass_fail\\\": \\\"FAIL — RetNet context_unique_tokens p=0.009 passes criterion 1 for one arch only; criterion 2 (cross-arch difference) fails\\\", \\\"summary\\\": \\\"Surface features do not explain helped/hurt identity. Rules out trivial explanations (frequency, length, diversity). RetNet shows weak context-length signal (p=0.012, r=-0.096).\\\"}, \\\"completed_at\\\": \\\"2026-05-19T13:38:51.683Z\\\"}, \\\"exp-009\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:32:43.818Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:33:45.506Z\\\", \\\"hypothesis\\\": \\\"Our equalizer effect analysis provides fully novel contributions relative to Wang et al. (arXiv 2507.06457) across 4 dimensions: convergence quantification (Spearman ρ + permutation test vs qualitative observation), scale dependency (quantitative 1.3B vs 340M contrast vs binary statement), per-example mechanism (Jaccard + net effect analysis vs absent), and task-specificity (convergence-strength by task type vs ratio-sensitivity)\\\", \\\"spec\\\": {\\\"command\\\": \\\"literature analysis: extract Wang et al. (2507.06457) exact claims, compare 4 differentiation dimensions\\\", \\\"server\\\": \\\"local + westb-48145\\\", \\\"data_path\\\": \\\"Wang et al. arXiv 2507.06457 + task_specificity_results.csv\\\", \\\"data_count\\\": 1, \\\"model_name\\\": \\\"N/A (literature analysis)\\\", \\\"seed\\\": 0}, \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_exp_009_wang_differentiation_20260519T131120.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T13:33:45.506Z\\\"}, \\\"eval_340m_retnet_hgrn2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T04:03:58.762Z\\\", \\\"updated_at\\\": \\\"2026-05-19T04:32:37.289Z\\\", \\\"hypothesis\\\": \\\"340M RetNet and HGRN2 models will show the same architecture-dependent attention effect observed at 1.3B scale: HGRN2 benefits from attention while RetNet shows minimal benefit, with task-dependent equalizer effect on LAMBADA\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/entrainment_gated_ft/run_all_340m_eval.sh\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models/\\\", \\\"data_count\\\": 10, \\\"model_name\\\": \\\"340M RetNet×5 + HGRN2×5\\\", \\\"seed\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/340m/\\\", \\\"log_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/340m/run_all.log\\\", \\\"completed_at\\\": \\\"2026-05-19T04:32:37.289Z\\\"}, \\\"hgrn2_eval_h3_1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:47:57.853Z\\\", \\\"updated_at\\\": \\\"2026-05-18T16:53:12.858Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python run_lmeval_clean.py --model_path 1.3B-100B-HGRN2-hybrid-3-1 --tasks 6tasks --batch_size 8\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models_1.3b/1.3B-100B-HGRN2-hybrid-3-1\\\", \\\"data_count\\\": 1, \\\"model_name\\\": \\\"HGRN2-1.3B-hybrid-3-1\\\", \\\"seed\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\\\", \\\"log_path\\\": \\\"/tmp/hgrn2_eval_h3_1.log\\\", \\\"hypothesis\\\": \\\"HGRN2 hybrid-3-1 (highest attention ratio) will show less degradation on composition-heavy benchmarks compared to pure linear models, following the attention-ratio degradation pattern observed in GDN and RetNet families\\\", \\\"completed_at\\\": \\\"2026-05-18T16:53:12.858Z\\\"}, \\\"hgrn2_eval_1_3b_all\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T15:57:15.535Z\\\", \\\"updated_at\\\": \\\"2026-05-18T16:00:12.920Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_lmeval_clean.py --model_path {MODEL} --tasks lambada_openai,hellaswag,winogrande,arc_easy,arc_challenge,mmlu --output_dir lm_eval_clean/ --batch_size 8 (x3 models: hybrid-12-1, hybrid-24-1, hybrid-3-1)\\\", \\\"server\\\": \\\"westb-48145\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/models_1.3b/\\\", \\\"data_count\\\": 3, \\\"model_name\\\": \\\"HGRN2-1.3B (3 hybrid variants)\\\", \\\"seed\\\": 0}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-18T16:00:12.920Z\\\"}}, \\\"count\\\": 15, \\\"total\\\": 15, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0485}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-007\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:08:19.724Z\", \"updated_at\": \"2026-05-19T18:49:39.379Z\", \"hypothesis\": \"340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash run_exp007_logsamples.sh (run_lmeval_clean.py with allow_neg_eigval=True, --log_samples, --tasks lambada_openai)\", \"server\": \"westb-48145\", \"gpu\": \"cuda:0\", \"pid\": 530432, \"log_path\": \"~/runs/entrainment_gated_ft/exp-007.log\", \"submitted_at\": \"2026-05-19T17:51:40.355Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"lambada_openai (lm-eval built-in)\", \"data_count\": \"5153 per model x 27 models\", \"model_name\": \"340M x16 + 1.3B x11 (GDN/RetNet/HGRN2 hybrids + Transformer)\", \"seed\": \"default\", \"checkpoint_source\": \"m-a-p pretrained (340M: /root/autodl-tmp/models/, 1.3B: /root/autodl-tmp/models_1.3b/)\", \"eval_data\": \"lambada_openai (lm-eval built-in, 5153 samples)\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T18:49:39.310Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:49:41.012664+00:00\"}]}}, \"exp-004-r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:58:01.256Z\", \"updated_at\": \"2026-05-19T17:17:20.215Z\", \"hypothesis\": \"Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)\", \"parent\": \"exp-004\", \"spec\": {\"command\": \"python -u analysis/extract_attention_weights.py --arch {gdn,retnet,hgrn2} --device cuda:0 (sequential per arch)\", \"server\": \"westb-48145\", \"data_path\": \"EleutherAI/lambada_openai (default, split=test, cached)\", \"data_count\": 5153, \"model_name\": \"1.3B-100B-{GatedDeltaNet,RetNet,HGRN2}-hybrid-3-1\", \"seed\": 0, \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\", \"log_path\": \"/tmp/exp004.log\", \"pid\": 517172, \"output_dir\": \"/root/entrainment_gated_ft/analysis/attention_weights/\", \"progress\": \"gdn=DONE, retnet=42% running (PID 517172), hgrn2=PENDING\", \"session\": \"process detached with fd redirect to /tmp/exp004.log; tmux unavailable on server; screen available for hgrn2\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/attention_weights/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T17:17:10.232Z\", \"metrics\": {\"helped_vs_hurt_entropy_diff\": {\"gdn\": -0.0009, \"retnet\": 0.0179, \"hgrn2\": 0.002}, \"helped_vs_hurt_last5_mass\": {\"gdn_helped\": 0.0834, \"gdn_hurt\": 0.0831, \"retnet_helped\": 0.1578, \"retnet_hurt\": 0.1591, \"hgrn2_helped\": 0.0453, \"hgrn2_hurt\": 0.0467}, \"cross_arch_similarity_mean\": {\"gdn_vs_retnet\": 0.905, \"gdn_vs_hgrn2\": 0.766, \"hgrn2_vs_retnet\": 0.698}, \"cross_arch_similarity_deep_layers\": {\"gdn_vs_retnet_L20\": 0.986, \"gdn_vs_hgrn2_L20\": 0.942, \"hgrn2_vs_retnet_L20\": 0.943}, \"cross_arch_similarity_early_layers\": {\"gdn_vs_retnet_L2\": 0.995, \"gdn_vs_hgrn2_L2\": 0.244, \"hgrn2_vs_retnet_L2\": 0.196}, \"finding\": \"Attention entropy does NOT differentiate helped vs hurt samples — differences are negligible across all 3 architectures. Cross-arch: GDN and RetNet highly similar throughout; HGRN2 diverges in early layers but converges in deep layers (>0.94 at L20). The per-example effect is not visible at the attention pattern level.\", \"n_samples\": 5153, \"runtime_minutes\": 30, \"output_files\": [\"gdn_attention_patterns.pt\", \"gdn_attention_entropy.csv\", \"retnet_attention_patterns.pt\", \"retnet_attention_entropy.csv\", \"hgrn2_attention_patterns.pt\", \"hgrn2_attention_entropy.csv\", \"attention_analysis_summary.json\", \"cross_arch_attention_similarity.csv\", \"helped_vs_hurt_entropy.csv\"]}}, \"exp-011-xstorycloze\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:18:38.168Z\", \"updated_at\": \"2026-05-19T17:00:01.089Z\", \"hypothesis\": \"xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-011\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_xstorycloze_batch.sh (PID 497694)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained)\", \"eval_data\": \"xstorycloze_en (juletxara/xstory_cloze, en split)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/\", \"log_path\": \"/root/entrainment_gated_ft/nohup.out\", \"completed_at\": \"2026-05-19T16:32:04.959Z\", \"metrics\": {\"xstorycloze_en\": {\"rho\": -0.6, \"raw_p\": 0.35, \"bonferroni_adj_p_10\": 1, \"std_pure\": 0.0082, \"std_h3_1\": 0.0055, \"convergence_direction\": \"correct but weak\"}, \"ten_benchmark_bonferroni\": {\"significant_count\": \"0/10\", \"LAMBADA_adj_p\": 0.167, \"note\": \"No benchmark survives 10-benchmark Bonferroni\"}, \"method\": \"exact_permutation_test_two_tailed\", \"conclusion\": \"xstorycloze_en NOT a second anchor. Convergence is LAMBADA-specific. W1 unresolved via multi-benchmark approach.\"}}, \"exp-004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:41:10.744Z\", \"updated_at\": \"2026-05-19T16:57:48.978Z\", \"hypothesis\": \"Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"python extract_attention_weights.py (forward hooks on Q,K, manual softmax(QK^T/√d) with GQA expansion)\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/lambada_openai per-example data\", \"data_count\": 5153, \"model_name\": \"GDN-h3-1, RetNet-h3-1, HGRN2-h3-1 (1.3B)\", \"seed\": 42, \"gpu\": \"cuda:0\", \"checkpoint_source\": \"Wang et al. pretrained weights\", \"eval_data\": \"lambada_openai (5153 examples)\", \"log_path\": \"/tmp/exp004.log (process died after Worker exited - nohup orphan)\", \"checkpoint_path\": \"N/A - process crashed before completion\", \"failure_reason\": \"Worker used nohup instead of submit_training_job/tmux; PID 515917 died after Worker exit. GPU idle since ~16:47 UTC.\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T16:57:48.978Z\"}, \"exp-011\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:29.428Z\", \"updated_at\": \"2026-05-19T16:37:27.600Z\", \"hypothesis\": \"Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/ (16 models)\", \"data_count\": 16, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)\", \"seed\": 0, \"eval_data\": \"boolq, copa, piqa, sciq (4 benchmarks x 16 models)\", \"gpu\": \"cuda:0 (RTX PRO 6000)\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log\", \"completed_at\": \"2026-05-19T16:14:41.324Z\", \"metrics\": {\"boolq\": {\"rho\": 0.2, \"raw_p\": 0.7833, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0163, \"std_h3_1\": 0.0236, \"convergence\": false}, \"piqa\": {\"rho\": -0.5, \"raw_p\": 0.45, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0054, \"std_h3_1\": 0.0034, \"convergence\": false}, \"sciq\": {\"rho\": 0.1, \"raw_p\": 0.95, \"bonferroni_adj_p_9\": 1, \"std_pure\": 0.0087, \"std_h3_1\": 0.0074, \"convergence\": false}, \"copa_supplementary\": {\"rho\": -0.67, \"raw_p\": 0.2667, \"std_pure\": 0.0262, \"std_h3_1\": 0.0047, \"convergence_ratio\": 5.57, \"note\": \"supplementary only (n=100), not in main Bonferroni\"}, \"LAMBADA_recomputed\": {\"rho\": -1, \"raw_p\": 0.0167, \"bonferroni_adj_p_6\": 0.1, \"bonferroni_adj_p_10\": 0.167, \"note\": \"6-Bonf=0.100 (D003 pre-registered); 10-Bonf=0.167; does not survive strict Bonferroni\"}, \"merged_10benchmark_significant_count\": \"0/10\", \"method\": \"exact_permutation_test_two_tailed\", \"D009_strategy\": \"BCa CI [-1.0,-0.7] as primary evidence; 6-Bonf adj_p=0.100 reported honestly; 10-benchmark negative -> task-specificity positive evidence (supplementary); underpowered caveat in Limitations\", \"D009_prohibited\": \"NO post-hoc 2-benchmark Bonferroni; NO post-hoc rho<0 subset correction\", \"conclusion\": \"No second anchor. Convergence LAMBADA-specific. W1 addressed via task-specificity reframing (D009).\"}}, \"exp-010\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:08:21.255Z\", \"updated_at\": \"2026-05-19T15:12:28.565Z\", \"hypothesis\": \"Aggregate convergence (cross-arch std decreasing with attention ratio) and per-example divergence (low Jaccard of helped/hurt sets) co-evolve as attention ratio increases on LAMBADA — demonstrating underspecification: architectures converge in aggregate performance while helping/hurting almost entirely different samples\", \"parent\": \"exp-001\", \"spec\": {\"command\": \"python3 /root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/\", \"data_count\": 5153, \"model_name\": \"GDN/RetNet/HGRN2 x 5 ratios (1.3B)\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained)\", \"eval_data\": \"LAMBADA OpenAI per-example logprob (5153 samples)\"}, \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/exp010_bridge_results.csv\", \"log_path\": \"/root/entrainment_gated_ft/analysis/exp010_bridge_summary.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:09:01.266Z\", \"metrics\": {\"aggregate_convergence\": {\"std_pure\": 0.024, \"std_h24_1\": 0.0162, \"std_h12_1\": 0.0136, \"std_h6_1\": 0.0061, \"std_h3_1\": 0.0049, \"reduction_ratio\": 0.8, \"note\": \"Cross-arch std drops 5x monotonically\"}, \"per_example_divergence\": {\"jaccard_helped_range\": [0.092, 0.1], \"jaccard_hurt_range\": [0.081, 0.099], \"net_asymmetry_range\": [0.013, 0.04], \"net_asymmetry_trend\": \"increasing with attention ratio\", \"note\": \"Jaccard saturates at ~0.095 by 4% attention (h24-1), flat thereafter\"}, \"co_evolution_spearman\": {\"std_vs_J_helped\": {\"rho\": -0.7, \"exact_p\": 0.23}, \"std_vs_J_hurt\": {\"rho\": -0.8, \"exact_p\": 0.13}, \"CAVEAT\": \"D008: rho inflated by pure=0 degeneracy (Jaccard=NaN->0). Excluding pure: rho=-0.40, p=0.75. NOT co-evolution.\"}, \"key_finding\": \"DECOUPLING (D008): minimal attention (4%) creates per-example specificity (Jaccard saturates ~0.095), gradual attention drives aggregate convergence (sigma 0.024->0.005). Two processes operate on different timescales. Net asymmetry INCREASES (0.013->0.040).\", \"narrative_constraints\": \"PROHIBITED: co-evolution, paradoxical coexistence, paradox. USE: decoupling, different timescales.\"}}, \"exp-001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:32:43.793Z\", \"updated_at\": \"2026-05-19T15:00:43.856Z\", \"hypothesis\": \"Cross-architecture variance (std) on retrieval-dependent tasks decreases monotonically with attention ratio at 1.3B scale, while reasoning-dependent tasks show no convergence — establishing task-specificity as a principled feature of the equalizer effect, not a limitation\", \"spec\": {\"command\": \"python analysis: compute cross-arch std + Spearman rho for 6 benchmarks x 5 attention ratios\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/ (summary_all_1.3b.csv + 340M results)\", \"data_count\": 26, \"model_name\": \"16x1.3B + 10x340M (GDN/RetNet/HGRN2)\", \"seed\": 0}, \"checkpoint_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/exp-001/data/task_specificity_results.csv\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_wang_differentiation_20260519T130431.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T13:33:45.162Z\", \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"p\": 0.0167, \"significant\": false, \"taxonomy\": \"retrieval-dependent\", \"note\": \"exact permutation two-tailed (was 0.008 one-tailed)\"}, \"HellaSwag\": {\"rho\": 0.3, \"p\": 0.6833, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-C\": {\"rho\": 0.6, \"p\": 0.35, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"Winogrande\": {\"rho\": 0.1, \"p\": 0.95, \"significant\": false, \"taxonomy\": \"reasoning-dependent\"}, \"ARC-Easy\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"MMLU\": {\"rho\": -0.7, \"p\": 0.2333, \"significant\": false, \"taxonomy\": \"mixed\"}, \"significant_count\": \"0/6\", \"summary\": \"LAMBADA shows perfect negative correlation (rho=-1.0) but exact permutation two-tailed p=0.0167 (Bonferroni adj-p=0.100, not significant). Reasoning tasks show no convergence. Mixed tasks suggestive but underpowered (n=5).\", \"method\": \"exact_permutation_test_two_tailed\"}}, \"exp-008\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:12:33.026Z\", \"updated_at\": \"2026-05-19T14:28:33.593Z\", \"hypothesis\": \"Replacing scipy.stats.spearmanr asymptotic p-values with exact permutation tests (n=5, 120 permutations, two-tailed) corrects the spurious p=1.4e-24 bug; expected: LAMBADA raw p≈0.017, Bonferroni adj-p≈0.100 (not significant), confirming need for additional benchmarks\", \"parent\": \"exp-001\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/robustness_results.csv\", \"log_path\": \"/root/entrainment_gated_ft/analysis/robustness_summary.md\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python3 /root/entrainment_gated_ft/analysis/statistical_robustness.py\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\", \"data_count\": 15, \"model_name\": \"GDN/HGRN2/RetNet 1.3B (5 attn ratios x 3 archs)\", \"seed\": 42, \"checkpoint_source\": \"/root/entrainment_gated_ft/lm_eval_clean/summary_all_1.3b.csv\", \"eval_data\": \"6 benchmarks x 15 model configs (summary_all_1.3b.csv)\"}, \"metrics\": {\"LAMBADA\": {\"rho\": -1, \"raw_p\": 0.0167, \"bonferroni_adj_p\": 0.1, \"bh_fdr_adj_p\": 0.1}, \"HellaSwag\": {\"rho\": 0.3, \"raw_p\": 0.6833, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.82}, \"WinoGrande\": {\"rho\": 0.1, \"raw_p\": 0.95, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.95}, \"ARC-Easy\": {\"rho\": -0.7, \"raw_p\": 0.2333, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.4667}, \"ARC-Challenge\": {\"rho\": 0.6, \"raw_p\": 0.35, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.525}, \"MMLU\": {\"rho\": -0.7, \"raw_p\": 0.2333, \"bonferroni_adj_p\": 1, \"bh_fdr_adj_p\": 0.4667}, \"method\": \"exact_permutation_test_two_tailed\", \"n_permutations\": 120, \"bug_fixed\": \"scipy.stats.spearmanr asymptotic p replaced with exact permutation\", \"bootstrap_ci\": {\"benchmark\": \"LAMBADA\", \"method\": \"architecture_resampling_percentile\", \"ci_lower\": -1, \"ci_upper\": -0.7, \"crosses_zero\": false, \"n_bootstrap\": 10000, \"n_valid\": 8875, \"seed\": 42, \"p_rho_negative\": 1, \"p_rho_positive\": 0, \"bca_note\": \"BCa degenerate at rho=-1.0 boundary; percentile CI used\"}, \"gdn_excluded\": {\"LAMBADA\": {\"rho\": -0.7, \"exact_p\": 0.2333, \"direction\": \"WEAKER\"}, \"HellaSwag\": {\"rho\": 0.5, \"exact_p\": 0.45, \"direction\": \"STRONGER\"}, \"WinoGrande\": {\"rho\": 0.3, \"exact_p\": 0.6833, \"direction\": \"STRONGER\"}, \"ARC-Easy\": {\"rho\": -0.9, \"exact_p\": 0.0833, \"direction\": \"STRONGER\"}, \"ARC-Challenge\": {\"rho\": -0.2, \"exact_p\": 0.7833, \"direction\": \"WEAKER\"}, \"MMLU\": {\"rho\": 0.6, \"exact_p\": 0.35, \"direction\": \"WEAKER\"}, \"note\": \"ARC-Easy rho improves from -0.7 to -0.9 (p=0.0833) without GDN confound — suggestive second anchor\"}}, \"completed_at\": \"2026-05-19T14:18:07.535Z\"}, \"exp-003-p2v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:13:12.772Z\", \"updated_at\": \"2026-05-19T14:20:24.378Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.\", \"parent\": \"exp-003-p2\", \"conclusion\": \"killed\"}, \"exp-003-p2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:52:59.192Z\", \"updated_at\": \"2026-05-19T14:06:41.114Z\", \"hypothesis\": \"Helped samples have higher pure-model perplexity (model was uncertain → attention helped), while hurt samples have lower pure-model perplexity (model was confident → attention interfered). This pattern is architecture-specific.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"python3 /root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean\", \"data_count\": 5153, \"model_name\": \"GDN-pure, RetNet-pure, HGRN2-pure (1.3B)\", \"seed\": \"N/A\", \"checkpoint_source\": \"/root/autodl-tmp/models_1.3b/{GDN,RetNet,HGRN2}-pure\", \"eval_data\": \"LAMBADA OpenAI (5153 samples)\"}, \"conclusion\": \"negative\", \"log_path\": \"/root/entrainment_gated_ft/analysis/sample_perplexity_summary.json\", \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/sample_perplexity_results.csv\", \"completed_at\": \"2026-05-19T14:06:38.461Z\", \"metrics\": {\"GDN\": {\"U\": 148410, \"p\": 0.209189, \"r_rb\": -0.0447, \"helped_mean\": 3.3695, \"hurt_mean\": 3.3382}, \"RetNet\": {\"U\": 107210, \"p\": 0.659319, \"r_rb\": -0.0168, \"helped_mean\": 3.4432, \"hurt_mean\": 3.4207}, \"HGRN2\": {\"U\": 112999, \"p\": 0.247856, \"r_rb\": -0.0441, \"helped_mean\": 3.3775, \"hurt_mean\": 3.3538}, \"cross_arch_helped_KW_p\": 0.020136, \"cross_arch_hurt_KW_p\": 0.000498}}, \"exp-003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:38:18.995Z\", \"updated_at\": \"2026-05-19T13:38:51.683Z\", \"hypothesis\": \"Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit\", \"spec\": {\"command\": \"python analysis/sample_characterization.py — surface feature analysis of helped/hurt samples\", \"server\": \"westb-48145\", \"data_path\": \"/root/entrainment_gated_ft/lm_eval_clean/ (per-example logprob data)\", \"data_count\": 5153, \"model_name\": \"GDN/HGRN2/RetNet 1.3B h3-1 vs pure\", \"seed\": 0}, \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/sample_characterization_results.csv\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp_003_sample_characterization_20260519T131141.log\", \"conclusion\": \"negative\", \"metrics\": {\"GDN\": {\"helped\": 462, \"hurt\": 615, \"net\": -153, \"surface_features_significant\": false}, \"HGRN2\": {\"helped\": 548, \"hurt\": 395, \"net\": 153, \"surface_features_significant\": false}, \"RetNet\": {\"helped\": 426, \"hurt\": 495, \"net\": -69, \"context_length_p\": 0.012, \"context_length_r\": -0.096, \"unique_tokens_p\": 0.009, \"unique_tokens_r\": -0.099}, \"cross_arch_difference\": \"not_significant\", \"pass_fail\": \"FAIL — RetNet context_unique_tokens p=0.009 passes criterion 1 for one arch only; criterion 2 (cross-arch difference) fails\", \"summary\": \"Surface features do not explain helped/hurt identity. Rules out trivial explanations (frequency, length, diversity). RetNet shows weak context-length signal (p=0.012, r=-0.096).\"}, \"completed_at\": \"2026-05-19T13:38:51.683Z\"}, \"exp-009\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:32:43.818Z\", \"updated_at\": \"2026-05-19T13:33:45.506Z\", \"hypothesis\": \"Our equalizer effect analysis provides fully novel contributions relative to Wang et al. (arXiv 2507.06457) across 4 dimensions: convergence quantification (Spearman ρ + permutation test vs qualitative observation), scale dependency (quantitative 1.3B vs 340M contrast vs binary statement), per-example mechanism (Jaccard + net effect analysis vs absent), and task-specificity (convergence-strength by task type vs ratio-sensitivity)\", \"spec\": {\"command\": \"literature analysis: extract Wang et al. (2507.06457) exact claims, compare 4 differentiation dimensions\", \"server\": \"local + westb-48145\", \"data_path\": \"Wang et al. arXiv 2507.06457 + task_specificity_results.csv\", \"data_count\": 1, \"model_name\": \"N/A (literature analysis)\", \"seed\": 0}, \"checkpoint_path\": \"/root/entrainment_gated_ft/analysis/wang_et_al_differentiation.md\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_research_exp_009_wang_differentiation_20260519T131120.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T13:33:45.506Z\"}, \"eval_340m_retnet_hgrn2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T04:03:58.762Z\", \"updated_at\": \"2026-05-19T04:32:37.289Z\", \"hypothesis\": \"340M RetNet and HGRN2 models will show the same architecture-dependent attention effect observed at 1.3B scale: HGRN2 benefits from attention while RetNet shows minimal benefit, with task-dependent equalizer effect on LAMBADA\", \"spec\": {\"command\": \"bash /root/entrainment_gated_ft/run_all_340m_eval.sh\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models/\", \"data_count\": 10, \"model_name\": \"340M RetNet×5 + HGRN2×5\", \"seed\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/340m/\", \"log_path\": \"/root/entrainment_gated_ft/lm_eval_clean/340m/run_all.log\", \"completed_at\": \"2026-05-19T04:32:37.289Z\"}, \"hgrn2_eval_h3_1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:47:57.853Z\", \"updated_at\": \"2026-05-18T16:53:12.858Z\", \"spec\": {\"command\": \"HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python run_lmeval_clean.py --model_path 1.3B-100B-HGRN2-hybrid-3-1 --tasks 6tasks --batch_size 8\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/1.3B-100B-HGRN2-hybrid-3-1\", \"data_count\": 1, \"model_name\": \"HGRN2-1.3B-hybrid-3-1\", \"seed\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json\", \"log_path\": \"/tmp/hgrn2_eval_h3_1.log\", \"hypothesis\": \"HGRN2 hybrid-3-1 (highest attention ratio) will show less degradation on composition-heavy benchmarks compared to pure linear models, following the attention-ratio degradation pattern observed in GDN and RetNet families\", \"completed_at\": \"2026-05-18T16:53:12.858Z\"}, \"hgrn2_eval_1_3b_all\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T15:57:15.535Z\", \"updated_at\": \"2026-05-18T16:00:12.920Z\", \"spec\": {\"command\": \"python run_lmeval_clean.py --model_path {MODEL} --tasks lambada_openai,hellaswag,winogrande,arc_easy,arc_challenge,mmlu --output_dir lm_eval_clean/ --batch_size 8 (x3 models: hybrid-12-1, hybrid-24-1, hybrid-3-1)\", \"server\": \"westb-48145\", \"data_path\": \"/root/autodl-tmp/models_1.3b/\", \"data_count\": 3, \"model_name\": \"HGRN2-1.3B (3 hybrid variants)\", \"seed\": 0}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T16:00:12.920Z\"}}, \"count\": 15, \"total\": 15, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0485}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cb5f7e4b-1bf8-413d-938a-ef1ced4777eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T18:49:55.725Z_
+
+<details><summary>↩ Tool result · `toolu_01SmsTXfT144pzGRBsb4epy7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b3d41fbe-4e09-4691-b361-0a6928a38c6f",
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "048ecc4a-27b8-46ef-842d-1ac5a0258f08",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b3d41fbe-4e09-4691-b361-0a6928a38c6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T18:49:56.473Z_
+
+<details><summary>↩ Tool result · `toolu_01QaZp7S2BPBy8NKSCHeu8mp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:49:40Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 15 个实验 — ANALYZING 1, DONE 13, PREPARING 1\\n**DONE 分布**: failed 1, killed 1, negative 4, success 7\\n\\n### GPU 占用\\n- **分配**: 1 张 — westb-48145:cuda:0\\n- **空闲（分配了没跑）**: westb-48145:cuda:0\\n\\n### 💾 磁盘余量\\n- **westb-48145**:\\n  - `/autodl-pub`: 7.8T/14T 可用（已用 45%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp-004-r2` [success] — 2026-05-19T17:17:20\\n- `exp-011-xstorycloze` [negative] — 2026-05-19T17:00:01\\n- `exp-004` [failed] — 2026-05-19T16:57:48\\n- `exp-011` [negative] — 2026-05-19T16:37:27\\n- `exp-010` [success] — 2026-05-19T15:12:28\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp-004`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-007 | 340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization | — | — | — |\\n\\n## 待处理\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.（准备中）\\n\\n## 近期结论\\n- **exp-004-r2** (success): Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3) ← 基于 exp-004\\n- **exp-011-xstorycloze** (negative): xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction ← 基于 exp-011\\n- **exp-004** (failed): Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures. ← 基于 exp-003\\n  [exp-004 attention extraction script](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-004/intermediate/extract_attention_weights.py)\\n\\n## 趋势\\n成功 7 / 负向 4 / 失败 1 / 共 13\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-48145: 无 GPU 信息\\n\\n## 告警\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\n- exp-004: 训练失败 — unknown\\n\", \"total_chars\": 2951, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "273a93bc-a8f7-48f5-bba5-3ec4100ccb30",
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "e30cdf9a-555b-4a38-a75b-6ca1e0c2074e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:49:40Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 15 个实验 — ANALYZING 1, DONE 13, PREPARING 1\\\\n**DONE 分布**: failed 1, killed 1, negative 4, success 7\\\\n\\\\n### GPU 占用\\\\n- **分配**: 1 张 — westb-48145:cuda:0\\\\n- **空闲（分配了没跑）**: westb-48145:cuda:0\\\\n\\\\n### 💾 磁盘余量\\\\n- **westb-48145**:\\\\n  - `/autodl-pub`: 7.8T/14T 可用（已用 45%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp-004-r2` [success] — 2026-05-19T17:17:20\\\\n- `exp-011-xstorycloze` [negative] — 2026-05-19T17:00:01\\\\n- `exp-004` [failed] — 2026-05-19T16:57:48\\\\n- `exp-011` [negative] — 2026-05-19T16:37:27\\\\n- `exp-010` [success] — 2026-05-19T15:12:28\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp-004`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-19\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp-007 | 340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-004-r2** (success): Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3) ← 基于 exp-004\\\\n- **exp-011-xstorycloze** (negative): xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction ← 基于 exp-011\\\\n- **exp-004** (failed): Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures. ← 基于 exp-003\\\\n  [exp-004 attention extraction script](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-004/intermediate/extract_attention_weights.py)\\\\n\\\\n## 趋势\\\\n成功 7 / 负向 4 / 失败 1 / 共 13\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestb-48145: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\\\n- exp-004: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 2951, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:49:40Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 15 个实验 — ANALYZING 1, DONE 13, PREPARING 1\\n**DONE 分布**: failed 1, killed 1, negative 4, success 7\\n\\n### GPU 占用\\n- **分配**: 1 张 — westb-48145:cuda:0\\n- **空闲（分配了没跑）**: westb-48145:cuda:0\\n\\n### 💾 磁盘余量\\n- **westb-48145**:\\n  - `/autodl-pub`: 7.8T/14T 可用（已用 45%）\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp-004-r2` [success] — 2026-05-19T17:17:20\\n- `exp-011-xstorycloze` [negative] — 2026-05-19T17:00:01\\n- `exp-004` [failed] — 2026-05-19T16:57:48\\n- `exp-011` [negative] — 2026-05-19T16:37:27\\n- `exp-010` [success] — 2026-05-19T15:12:28\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp-004`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-007 | 340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization | — | — | — |\\n\\n## 待处理\\n- exp-003-p2v2: Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.（准备中）\\n\\n## 近期结论\\n- **exp-004-r2** (success): Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3) ← 基于 exp-004\\n- **exp-011-xstorycloze** (negative): xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction ← 基于 exp-011\\n- **exp-004** (failed): Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures. ← 基于 exp-003\\n  [exp-004 attention extraction script](/api/workspace-files/projects/entrainment_gated_ft/artifacts/exp-004/intermediate/extract_attention_weights.py)\\n\\n## 趋势\\n成功 7 / 负向 4 / 失败 1 / 共 13\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-48145: 无 GPU 信息\\n\\n## 告警\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\n- exp-004: 训练失败 — unknown\\n\", \"total_chars\": 2951, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e6330627-6b1f-4816-ae9a-44ef45fa152a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T18:49:56.461Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01QaZp7S2BPBy8NKSCHeu8mp`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "048ecc4a-27b8-46ef-842d-1ac5a0258f08",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqk1JCEjzhjTRh21md",
+  "type": "assistant",
+  "uuid": "e6330627-6b1f-4816-ae9a-44ef45fa152a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYyCTHykgYHxhJJpgyJac1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 36948,
+      "output_tokens": 272,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 272,
+          "cache_read_input_tokens": 36948,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T18:49:56.465Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01HWtHGscy7Fm7jXgCys1gbC`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6330627-6b1f-4816-ae9a-44ef45fa152a",
+  "isSidechain": false,
+  "requestId": "req_011CbCRqk1JCEjzhjTRh21md",
+  "type": "assistant",
+  "uuid": "273a93bc-a8f7-48f5-bba5-3ec4100ccb30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYyCTHykgYHxhJJpgyJac1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 36948,
+      "output_tokens": 272,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 272,
+          "cache_read_input_tokens": 36948,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T18:49:56.489Z_
+
+<details><summary>↩ Tool result · `toolu_01HWtHGscy7Fm7jXgCys1gbC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-19 17:54 UTC | 更新原因: exp-007 正确启动 + Paper Agent 写作进行中 + 图表就绪\\n\\n## 核心方向\\n**Task-specific convergence + per-example decoupling in hybrid recurrent architectures**. Attention 使不同 recurrent 架构在 LAMBADA（纯上下文预测）上显著趋同（BCa CI [-1.0, -0.7]），10 benchmark 中仅此一个——task-specificity 是核心发现。Per-example Jaccard ~0.10 与 aggregate convergence 解耦（D008）。Decoupling 应为 title-level contribution。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research + Writing 并行** — exp-007 RUNNING，Paper Agent 写作中\\n\\n## 战略状态\\n- Claim 评分：C1: 2.5, C2: 2.0, C3: 3.5 → 基线 2.5，目标 3.0 (Findings)\\n- **最大 leverage = Related Work**（0 GPU cost，解决 W2，直接提升评分）\\n- DDL: ARR June 2026 (~June 15)，距今 ~27 天\\n- Paper Agent 已激活，writing_plan.yaml 已批准\\n\\n## 实验完成度\\n- ✅ exp-001: Task-specificity (LAMBADA ρ=-1.0, BCa CI [-1.0, -0.7])\\n- ✅ exp-003 + exp-003-p2: Sample characterization (within-arch negative, cross-arch KW p=0.0005)\\n- ✅ exp-004-r2: Attention weight extraction (GDN↔RetNet L2=0.995, HGRN2 L2≈0.20 at shallow)\\n- ✅ exp-008: Statistical robustness (Bonferroni adj-p=0.100, GDN-excluded sensitivity)\\n- ✅ exp-009: Wang et al. differentiation (4-point increment documented)\\n- ✅ exp-010: Decoupling (D008, Jaccard saturates at 4% attention, σ drops gradually)\\n- ✅ exp-011 + xstorycloze: 10-benchmark survey (all negative → task-specificity evidence)\\n- 🔄 **exp-007: 340M rebound mechanism — RUNNING** (~2h, 27 models LAMBADA log_samples)\\n- ❌ exp-002: 已取消 (D010)\\n- ❌ exp-006: 已取消 (7B 不可用)\\n\\n## 论文写作进度\\n- ✅ writing_plan.yaml 批准\\n- ✅ fig1_decoupling_hero (PDF+PNG)\\n- ✅ fig2_task_specificity (PDF+PNG, BoolQ 颜色待修)\\n- 🔄 Paper Agent Step 3: Literature Gap-Fill / Step 4: 正文写作\\n- ⏳ exp-007 完成后 → Patch §4.2 (340M per-example data)\\n\\n## 近期任务\\n- [ ] 等 exp-007 完成（~2h），分析 340M rebound per-example 数据\\n- [ ] Paper Agent 完成初稿\\n- [ ] 修复 fig2 BoolQ 颜色分类（comprehension，非 retrieval）\\n- [ ] Dream 重新模拟（D009/D010 后验证新 framing，低优先级）\\n\\n## GPU 预算\\n- 分配：westb-48145 cuda:0\\n- 当前：exp-007 RUNNING\\n- 已消耗：~15h (MVP + exp-011 + xstorycloze + exp-004)\\n- 剩余 P0：exp-007 ~2h（进行中）\\n- 剩余可用：~630h\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D010 | 2026-05-19 | 取消 exp-002（multi-benchmark per-example，20h GPU）：预期 | exp-002 |\\n| D009 | 2026-05-19 | W1 多 benchmark 路径关闭：转向 BCa CI 主导 + task-specificit | exp-011 |\\n| D008 | 2026-05-19 | exp-010 \\\"co-evolution\\\" → \\\"decoupling\\\" framing：per- | exp-010 |\\n| D007 | 2026-05-19 | MMLU blacklisted from convergence evidence — GDN-e | exp-008 |\\n| D006 | 2026-05-19 | Dream best case 2.5/5 → 重大 framing 调整：放弃 \\\"paradox\\\" | exp-001, exp-003 |\\n| D005 | 2026-05-19 | MVP 原始 entrainment 假设 FAIL，pivot to Equalizer Effe | eval_340m_retnet_hgrn2, hgrn2_eval_h3_1 |\\n| D004 | 2026-05-18 | GDN hybrid-3-1 存在 attn.num_heads confound（16 vs 32 | — |\\n| D003 | 2026-05-18 | 预注册 benchmark composition depth 赋值（结果出来前锁定，不可事后调整） | — |\\n| D002 | 2026-05-18 | 1.3B 也无 function composition ICL 能力，MVP 从 syntheti | — |\\n| D001 | 2026-05-18 | MVP Direct variant 340M 全模型 random-chance → 先跑 log | — |\\n\\n\\n\\n\", \"lines\": 66}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "273a93bc-a8f7-48f5-bba5-3ec4100ccb30",
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "fa82cecd-5bf9-4dbe-928c-f59c41856da7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\\\", \\\"content\\\": \\\"# entrainment_gated_ft — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 17:54 UTC | 更新原因: exp-007 正确启动 + Paper Agent 写作进行中 + 图表就绪\\\\n\\\\n## 核心方向\\\\n**Task-specific convergence + per-example decoupling in hybrid recurrent architectures**. Attention 使不同 recurrent 架构在 LAMBADA（纯上下文预测）上显著趋同（BCa CI [-1.0, -0.7]），10 benchmark 中仅此一个——task-specificity 是核心发现。Per-example Jaccard ~0.10 与 aggregate convergence 解耦（D008）。Decoupling 应为 title-level contribution。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Research + Writing 并行** — exp-007 RUNNING，Paper Agent 写作中\\\\n\\\\n## 战略状态\\\\n- Claim 评分：C1: 2.5, C2: 2.0, C3: 3.5 → 基线 2.5，目标 3.0 (Findings)\\\\n- **最大 leverage = Related Work**（0 GPU cost，解决 W2，直接提升评分）\\\\n- DDL: ARR June 2026 (~June 15)，距今 ~27 天\\\\n- Paper Agent 已激活，writing_plan.yaml 已批准\\\\n\\\\n## 实验完成度\\\\n- ✅ exp-001: Task-specificity (LAMBADA ρ=-1.0, BCa CI [-1.0, -0.7])\\\\n- ✅ exp-003 + exp-003-p2: Sample characterization (within-arch negative, cross-arch KW p=0.0005)\\\\n- ✅ exp-004-r2: Attention weight extraction (GDN↔RetNet L2=0.995, HGRN2 L2≈0.20 at shallow)\\\\n- ✅ exp-008: Statistical robustness (Bonferroni adj-p=0.100, GDN-excluded sensitivity)\\\\n- ✅ exp-009: Wang et al. differentiation (4-point increment documented)\\\\n- ✅ exp-010: Decoupling (D008, Jaccard saturates at 4% attention, σ drops gradually)\\\\n- ✅ exp-011 + xstorycloze: 10-benchmark survey (all negative → task-specificity evidence)\\\\n- 🔄 **exp-007: 340M rebound mechanism — RUNNING** (~2h, 27 models LAMBADA log_samples)\\\\n- ❌ exp-002: 已取消 (D010)\\\\n- ❌ exp-006: 已取消 (7B 不可用)\\\\n\\\\n## 论文写作进度\\\\n- ✅ writing_plan.yaml 批准\\\\n- ✅ fig1_decoupling_hero (PDF+PNG)\\\\n- ✅ fig2_task_specificity (PDF+PNG, BoolQ 颜色待修)\\\\n- 🔄 Paper Agent Step 3: Literature Gap-Fill / Step 4: 正文写作\\\\n- ⏳ exp-007 完成后 → Patch §4.2 (340M per-example data)\\\\n\\\\n## 近期任务\\\\n- [ ] 等 exp-007 完成（~2h），分析 340M rebound per-example 数据\\\\n- [ ] Paper Agent 完成初稿\\\\n- [ ] 修复 fig2 BoolQ 颜色分类（comprehension，非 retrieval）\\\\n- [ ] Dream 重新模拟（D009/D010 后验证新 framing，低优先级）\\\\n\\\\n## GPU 预算\\\\n- 分配：westb-48145 cuda:0\\\\n- 当前：exp-007 RUNNING\\\\n- 已消耗：~15h (MVP + exp-011 + xstorycloze + exp-004)\\\\n- 剩余 P0：exp-007 ~2h（进行中）\\\\n- 剩余可用：~630h\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D010 | 2026-05-19 | 取消 exp-002（multi-benchmark per-example，20h GPU）：预期 | exp-002 |\\\\n| D009 | 2026-05-19 | W1 多 benchmark 路径关闭：转向 BCa CI 主导 + task-specificit | exp-011 |\\\\n| D008 | 2026-05-19 | exp-010 \\\\\\\"co-evolution\\\\\\\" → \\\\\\\"decoupling\\\\\\\" framing：per- | exp-010 |\\\\n| D007 | 2026-05-19 | MMLU blacklisted from convergence evidence — GDN-e | exp-008 |\\\\n| D006 | 2026-05-19 | Dream best case 2.5/5 → 重大 framing 调整：放弃 \\\\\\\"paradox\\\\\\\" | exp-001, exp-003 |\\\\n| D005 | 2026-05-19 | MVP 原始 entrainment 假设 FAIL，pivot to Equalizer Effe | eval_340m_retnet_hgrn2, hgrn2_eval_h3_1 |\\\\n| D004 | 2026-05-18 | GDN hybrid-3-1 存在 attn.num_heads confound（16 vs 32 | — |\\\\n| D003 | 2026-05-18 | 预注册 benchmark composition depth 赋值（结果出来前锁定，不可事后调整） | — |\\\\n| D002 | 2026-05-18 | 1.3B 也无 function composition ICL 能力，MVP 从 syntheti | — |\\\\n| D001 | 2026-05-18 | MVP Direct variant 340M 全模型 random-chance → 先跑 log | — |\\\\n\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 66}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/ROADMAP.md\", \"content\": \"# entrainment_gated_ft — Research Dashboard\\n\\n> 最后更新: 2026-05-19 17:54 UTC | 更新原因: exp-007 正确启动 + Paper Agent 写作进行中 + 图表就绪\\n\\n## 核心方向\\n**Task-specific convergence + per-example decoupling in hybrid recurrent architectures**. Attention 使不同 recurrent 架构在 LAMBADA（纯上下文预测）上显著趋同（BCa CI [-1.0, -0.7]），10 benchmark 中仅此一个——task-specificity 是核心发现。Per-example Jaccard ~0.10 与 aggregate convergence 解耦（D008）。Decoupling 应为 title-level contribution。详见 paper_framing.md。\\n\\n## 当前阶段\\n**Research + Writing 并行** — exp-007 RUNNING，Paper Agent 写作中\\n\\n## 战略状态\\n- Claim 评分：C1: 2.5, C2: 2.0, C3: 3.5 → 基线 2.5，目标 3.0 (Findings)\\n- **最大 leverage = Related Work**（0 GPU cost，解决 W2，直接提升评分）\\n- DDL: ARR June 2026 (~June 15)，距今 ~27 天\\n- Paper Agent 已激活，writing_plan.yaml 已批准\\n\\n## 实验完成度\\n- ✅ exp-001: Task-specificity (LAMBADA ρ=-1.0, BCa CI [-1.0, -0.7])\\n- ✅ exp-003 + exp-003-p2: Sample characterization (within-arch negative, cross-arch KW p=0.0005)\\n- ✅ exp-004-r2: Attention weight extraction (GDN↔RetNet L2=0.995, HGRN2 L2≈0.20 at shallow)\\n- ✅ exp-008: Statistical robustness (Bonferroni adj-p=0.100, GDN-excluded sensitivity)\\n- ✅ exp-009: Wang et al. differentiation (4-point increment documented)\\n- ✅ exp-010: Decoupling (D008, Jaccard saturates at 4% attention, σ drops gradually)\\n- ✅ exp-011 + xstorycloze: 10-benchmark survey (all negative → task-specificity evidence)\\n- 🔄 **exp-007: 340M rebound mechanism — RUNNING** (~2h, 27 models LAMBADA log_samples)\\n- ❌ exp-002: 已取消 (D010)\\n- ❌ exp-006: 已取消 (7B 不可用)\\n\\n## 论文写作进度\\n- ✅ writing_plan.yaml 批准\\n- ✅ fig1_decoupling_hero (PDF+PNG)\\n- ✅ fig2_task_specificity (PDF+PNG, BoolQ 颜色待修)\\n- 🔄 Paper Agent Step 3: Literature Gap-Fill / Step 4: 正文写作\\n- ⏳ exp-007 完成后 → Patch §4.2 (340M per-example data)\\n\\n## 近期任务\\n- [ ] 等 exp-007 完成（~2h），分析 340M rebound per-example 数据\\n- [ ] Paper Agent 完成初稿\\n- [ ] 修复 fig2 BoolQ 颜色分类（comprehension，非 retrieval）\\n- [ ] Dream 重新模拟（D009/D010 后验证新 framing，低优先级）\\n\\n## GPU 预算\\n- 分配：westb-48145 cuda:0\\n- 当前：exp-007 RUNNING\\n- 已消耗：~15h (MVP + exp-011 + xstorycloze + exp-004)\\n- 剩余 P0：exp-007 ~2h（进行中）\\n- 剩余可用：~630h\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D010 | 2026-05-19 | 取消 exp-002（multi-benchmark per-example，20h GPU）：预期 | exp-002 |\\n| D009 | 2026-05-19 | W1 多 benchmark 路径关闭：转向 BCa CI 主导 + task-specificit | exp-011 |\\n| D008 | 2026-05-19 | exp-010 \\\"co-evolution\\\" → \\\"decoupling\\\" framing：per- | exp-010 |\\n| D007 | 2026-05-19 | MMLU blacklisted from convergence evidence — GDN-e | exp-008 |\\n| D006 | 2026-05-19 | Dream best case 2.5/5 → 重大 framing 调整：放弃 \\\"paradox\\\" | exp-001, exp-003 |\\n| D005 | 2026-05-19 | MVP 原始 entrainment 假设 FAIL，pivot to Equalizer Effe | eval_340m_retnet_hgrn2, hgrn2_eval_h3_1 |\\n| D004 | 2026-05-18 | GDN hybrid-3-1 存在 attn.num_heads confound（16 vs 32 | — |\\n| D003 | 2026-05-18 | 预注册 benchmark composition depth 赋值（结果出来前锁定，不可事后调整） | — |\\n| D002 | 2026-05-18 | 1.3B 也无 function composition ICL 能力，MVP 从 syntheti | — |\\n| D001 | 2026-05-18 | MVP Direct variant 340M 全模型 random-chance → 先跑 log | — |\\n\\n\\n\\n\", \"lines\": 66}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "273a93bc-a8f7-48f5-bba5-3ec4100ccb30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: exp-007 - project: entrainment_gated_ft - server: westb-48145 - log_path: ~/runs/entrainmen…",
+  "leafUuid": "fa82cecd-5bf9-4dbe-928c-f59c41856da7",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark as done",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76"
+}
+```
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-19T18:50:07.595Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the full context now. Let me analyze exp-007:
+
+**exp-007 details:**
+- Status: ANALYZING (process exited cleanly)
+- Hypothesis: "340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization"
+- Parent: exp-001
+- Server: westb-48145
+
+
+- Log: ~/runs/entrainment_gated_ft/exp-007.log
+- Spec: bash run_exp007_logsamples.sh (run_lmeval_clean.py with allow_neg_eigval=True, --log_samples, --tasks lambada_openai)
+- Data: 5153 per model x 27 models (340M x16 + 1.3B x11, GDN/RetNet/HGRN2 hybrids + Transformer)
+
+This eval experiment ran LAMBADA with per-example logging across 27 models at both 340M and 1.3B scales to investigate the capacity-limited interaction hypothesis. Now I need to spawn a Worker to process this data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa82cecd-5bf9-4dbe-928c-f59c41856da7",
+  "isSidechain": false,
+  "requestId": "req_011CbCRr6ByxWhrPu36u6VUj",
+  "type": "assistant",
+  "uuid": "bcdd997f-6b2d-429d-92e7-664091ae164e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FAAzPsQ6VEVoMeQNEtDbfC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13581,
+      "cache_read_input_tokens": 38080,
+      "output_tokens": 582,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 582,
+          "cache_read_input_tokens": 38080,
+          "cache_creation_input_tokens": 13581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-19T18:50:07.640Z_
+
+Session 初始化完成。exp-007 (340M rebound mechanism) 已进入 ANALYZING，需要 Worker 分析结果。让我加载必要工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcdd997f-6b2d-429d-92e7-664091ae164e",
+  "isSidechain": false,
+  "requestId": "req_011CbCRr6ByxWhrPu36u6VUj",
+  "type": "assistant",
+  "uuid": "b5ae79ba-4432-48f0-aa50-6752ff07ef47",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FAAzPsQ6VEVoMeQNEtDbfC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13581,
+      "cache_read_input_tokens": 38080,
+      "output_tokens": 582,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 582,
+          "cache_read_input_tokens": 38080,
+          "cache_creation_input_tokens": 13581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T18:50:08.865Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JoWMXiWmw5XQZrs3o6MMRC`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5ae79ba-4432-48f0-aa50-6752ff07ef47",
+  "isSidechain": false,
+  "requestId": "req_011CbCRr6ByxWhrPu36u6VUj",
+  "type": "assistant",
+  "uuid": "b7abc564-b915-41d3-8f5d-dda041c7bec9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FAAzPsQ6VEVoMeQNEtDbfC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13581,
+      "cache_read_input_tokens": 38080,
+      "output_tokens": 582,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13581,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 582,
+          "cache_read_input_tokens": 38080,
+          "cache_creation_input_tokens": 13581,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13581
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T18:50:08.876Z_
+
+<details><summary>↩ Tool result · `toolu_01JoWMXiWmw5XQZrs3o6MMRC`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b7abc564-b915-41d3-8f5d-dda041c7bec9",
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "6d59c83b-4685-41f7-b579-c1730e894bab",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "b7abc564-b915-41d3-8f5d-dda041c7bec9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-19T18:50:13.224Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to spawn a Worker to analyze exp-007 results. The experiment ran LAMBADA with --log_samples on 27 models (340M x16 + 1.3B x11). The hypothesis is about 340M non-monotonic rebound in cross-architecture convergence.
+
+Let me also check current workers and read the resource-saturation skill as required.
+
+Let me spawn the analysis Worker and check workers in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d59c83b-4685-41f7-b579-c1730e894bab",
+  "isSidechain": false,
+  "requestId": "req_011CbCRs1KaAkpvJeimfCdSV",
+  "type": "assistant",
+  "uuid": "5324c0fc-a830-46a3-a69d-277b320810da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FoHrGJMo8vjwtGxWbVtywn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3015,
+      "cache_read_input_tokens": 51661,
+      "output_tokens": 1961,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1961,
+          "cache_read_input_tokens": 51661,
+          "cache_creation_input_tokens": 3015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-19T18:50:13.812Z_
+
+派 Worker 分析 exp-007 结果，同时检查当前 Worker 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5324c0fc-a830-46a3-a69d-277b320810da",
+  "isSidechain": false,
+  "requestId": "req_011CbCRs1KaAkpvJeimfCdSV",
+  "type": "assistant",
+  "uuid": "3a0b52b3-3284-4a90-aa44-88a1817b68c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FoHrGJMo8vjwtGxWbVtywn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3015,
+      "cache_read_input_tokens": 51661,
+      "output_tokens": 1961,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1961,
+          "cache_read_input_tokens": 51661,
+          "cache_creation_input_tokens": 3015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T18:50:43.654Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01SMwZctUrR6A5FfCqdEmRwe`</summary>
+
+```json
+{
+  "task_type": "analysis:exp-007",
+  "project": "entrainment_gated_ft",
+  "task_prompt": "## 任务：分析 exp-007 (340M rebound mechanism) 实验结果\n\n### 背景\nexp-007 在 westb-48145 上运行完成，进程已正常退出。这是一个 LAMBADA 评测实验，对 27 个模型（340M x16 + 1.3B x11）跑了 lambada_openai with --log_samples。\n\n**核心 hypothesis**: \"340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization\"\n\n**parent**: exp-001（Task-specificity 分析，1.3B 显示 LAMBADA ρ=-1.0）\n\n### 实验规格\n- 命令：bash run_exp007_logsamples.sh (run_lmeval_clean.py with allow_neg_eigval=True, --log_samples, --tasks lambada_openai)\n- 服务器：westb-48145\n- 数据：lambada_openai (5153 samples per model x 27 models)\n- 模型：340M x16 + 1.3B x11 (GDN/RetNet/HGRN2 hybrids + Transformer)\n- Checkpoint source: m-a-p pretrained (340M: /root/autodl-tmp/models/, 1.3B: /root/autodl-tmp/models_1.3b/)\n\n### 你需要做的\n\n**Step 1: 收集原始数据**\n1. SSH 到 westb-48145，读取实验日志：`~/runs/entrainment_gated_ft/exp-007.log`\n2. 找到所有 27 个模型的 LAMBADA 评测结果（accuracy/perplexity）\n3. 找到 --log_samples 输出的 per-example 数据文件位置（通常在 lm_eval_clean/ 下的 JSON 文件中）\n4. 检查是否有报错或异常\n\n**Step 2: 计算核心指标**\n对 340M 和 1.3B 分别计算：\n1. 每个模型在 LAMBADA 上的 acc（accuracy）\n2. 按 attention ratio 分组（pure, h24-1, h12-1, h6-1, h3-1），计算每组的 cross-architecture std（跨 GDN/RetNet/HGRN2 的标准差）\n3. 计算 Spearman ρ（attention ratio vs cross-arch std）分别对 340M 和 1.3B\n4. 用 exact permutation test (two-tailed, n=5 ratios) 计算 p-value\n5. **关键**: 检查 340M 在 h3-1（attn=8）处是否出现 rebound（std 上升而非继续下降）\n\n**Step 3: Per-example 分析（340M）**\n如果 --log_samples 产出了 per-example 数据：\n1. 对 340M 的 h3-1 模型，计算 helped/hurt samples（对比 pure 模型）\n2. 计算 cross-architecture Jaccard similarity（GDN vs RetNet vs HGRN2 的 helped/hurt 集合重叠度）\n3. 与 1.3B 的 Jaccard 对比（exp-010 数据：Jaccard ~0.095）\n\n**Step 4: 写分析报告**\n在服务器上创建 `/root/entrainment_gated_ft/analysis/exp007_analysis_summary.json`，包含：\n- 所有模型的 LAMBADA acc\n- 340M 和 1.3B 的 cross-arch std by attention ratio\n- Spearman ρ 和 p-value\n- rebound 是否存在及其量化\n- helped/hurt 分析结果\n- conclusion: hypothesis 是否被支持\n\n**Step 5: 更新 registry**\n用 update_registry 更新 exp-007：\n- metrics: 包含上述核心指标\n- conclusion: success（如果 rebound 确实存在）或 negative（如果没有 rebound）\n- checkpoint_path: per-example 数据文件所在目录\n- log_path: 实验日志路径\n- status: DONE\n\n### 注意事项\n- 用 ssh_read_only 读数据，只在需要运行分析脚本时用 ssh_execute\n- 如果需要写分析脚本，在服务器上创建并运行\n- 所有数字必须从实际数据中提取，不要猜测\n- 结果需要与 exp-001 的 1.3B 数据对比：1.3B LAMBADA ρ=-1.0, raw_p=0.0167\n- 340M 之前的数据（来自 eval_340m_retnet_hgrn2）显示了 rebound pattern，本实验用 allow_neg_eigval=True 重跑并加了 log_samples\n\n### 服务器环境\n- westb-48145，用 root 账户\n- Python 环境：conda base (/root/miniconda3/)\n- 项目路径：/root/entrainment_gated_ft/\n- 模型路径：340M=/root/autodl-tmp/models/, 1.3B=/root/autodl-tmp/models_1.3b/\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "context": "exp-001 1.3B 结果参考：LAMBADA ρ=-1.0, cross-arch std: pure=0.024, h24-1=0.016, h12-1=0.014, h6-1=0.006, h3-1=0.005。单调递减。\nexp-010 per-example 参考：Jaccard helped ~0.092-0.100, hurt ~0.081-0.099, net asymmetry 0.013-0.040 increasing with attention ratio。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a0b52b3-3284-4a90-aa44-88a1817b68c6",
+  "isSidechain": false,
+  "requestId": "req_011CbCRs1KaAkpvJeimfCdSV",
+  "type": "assistant",
+  "uuid": "a5105de6-8162-41df-a90c-56301673b2ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FoHrGJMo8vjwtGxWbVtywn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3015,
+      "cache_read_input_tokens": 51661,
+      "output_tokens": 1961,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1961,
+          "cache_read_input_tokens": 51661,
+          "cache_creation_input_tokens": 3015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T18:50:43.786Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01EnFMahNEHYhtG3jFKT8jaK`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5105de6-8162-41df-a90c-56301673b2ea",
+  "isSidechain": false,
+  "requestId": "req_011CbCRs1KaAkpvJeimfCdSV",
+  "type": "assistant",
+  "uuid": "af3ed5ca-3e7a-498c-9044-b997fd19b80f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FoHrGJMo8vjwtGxWbVtywn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3015,
+      "cache_read_input_tokens": 51661,
+      "output_tokens": 1961,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1961,
+          "cache_read_input_tokens": 51661,
+          "cache_creation_input_tokens": 3015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T18:50:46.602Z_
+
+<details><summary>↩ Tool result · `toolu_01SMwZctUrR6A5FfCqdEmRwe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp-007_20260519T185044\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp-007_20260519T185044.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp-007_20260519T185044 started. Use get_worker_status('worker_analysis_exp-007_20260519T185044') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a5105de6-8162-41df-a90c-56301673b2ea",
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "848383bd-3214-46cc-b856-b87e2c29cce0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp-007_20260519T185044\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp-007_20260519T185044.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp-007_20260519T185044 started. Use get_worker_status('worker_analysis_exp-007_20260519T185044') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp-007_20260519T185044\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp-007_20260519T185044.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp-007_20260519T185044 started. Use get_worker_status('worker_analysis_exp-007_20260519T185044') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a5105de6-8162-41df-a90c-56301673b2ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T18:50:46.673Z_
+
+<details><summary>↩ Tool result · `toolu_01EnFMahNEHYhtG3jFKT8jaK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_paper_research_lit_cluster_2_linear_recurrent_20260519T184333\", \"task_type\": \"paper_research:lit_cluster_2_linear_recurrent\", \"project\": \"entrainment_gated_ft\", \"status\": \"running\", \"started_at\": \"2026-05-19T18:43:33.733738+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_analysis_exp-007_20260519T185044\", \"task_type\": \"analysis:exp-007\", \"project\": \"entrainment_gated_ft\", \"status\": \"running\", \"started_at\": \"2026-05-19T18:50:44.396277+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af3ed5ca-3e7a-498c-9044-b997fd19b80f",
+  "isSidechain": false,
+  "promptId": "16dc2c0b-bd7e-4c7d-b9da-0c718c47d75a",
+  "type": "user",
+  "uuid": "70d5a2f1-b615-4dad-98a2-d4a21007a446",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_paper_research_lit_cluster_2_linear_recurrent_20260519T184333\\\", \\\"task_type\\\": \\\"paper_research:lit_cluster_2_linear_recurrent\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-19T18:43:33.733738+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_analysis_exp-007_20260519T185044\\\", \\\"task_type\\\": \\\"analysis:exp-007\\\", \\\"project\\\": \\\"entrainment_gated_ft\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-19T18:50:44.396277+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_paper_research_lit_cluster_2_linear_recurrent_20260519T184333\", \"task_type\": \"paper_research:lit_cluster_2_linear_recurrent\", \"project\": \"entrainment_gated_ft\", \"status\": \"running\", \"started_at\": \"2026-05-19T18:43:33.733738+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_analysis_exp-007_20260519T185044\", \"task_type\": \"analysis:exp-007\", \"project\": \"entrainment_gated_ft\", \"status\": \"running\", \"started_at\": \"2026-05-19T18:50:44.396277+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "af3ed5ca-3e7a-498c-9044-b997fd19b80f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-19T18:50:46.679Z_
+
+```json
+{
+  "parentUuid": "70d5a2f1-b615-4dad-98a2-d4a21007a446",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c4cea613-3471-4046-a76d-7105ae02a327",
+  "timestamp": "2026-05-19T18:50:46.679Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/agent_1dde1527",
+  "sessionId": "4412c4f4-9718-4512-af60-c44bd9ff5f76",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---

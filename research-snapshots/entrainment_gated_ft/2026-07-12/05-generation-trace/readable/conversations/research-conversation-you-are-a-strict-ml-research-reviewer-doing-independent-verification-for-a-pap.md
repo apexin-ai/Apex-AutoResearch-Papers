@@ -1,0 +1,1966 @@
+# Research conversation: You are a strict ML research reviewer doing independent verification for a paper review. The paper being reviewed propos
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-a2b2f1b4f6cb16f8e.jsonl`
+- **Structured JSON:** [`ae7acf6d1c8e8cea0842.json`](../../sessions/ae/ae7acf6d1c8e8cea0842.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+29 recorded events
+
+### User
+
+_source line 1 · 2026-05-09T19:35:37.106Z_
+
+You are a strict ML research reviewer doing independent verification for a paper review. The paper being reviewed proposes "Retrospective Importance Cascade" (RIC), a training-free KV cache compression method for reasoning LLMs that triggers at the &lt;/think> boundary and uses the final N=128 "conclusion tokens" as proxy queries to score thinking-phase KV importance via a pre-RoPE attention pass.
+
+Please search for the following and report findings:
+
+1. Search for "ThinKV ICLR 2026 oral" and "ThinKV thought-adaptive KV cache" to verify if ThinKV (arXiv:2510.01290) is actually an ICLR 2026 Oral paper. Check the ICLR 2026 proceedings or OpenReview.
+
+2. Search for "DapQ arXiv 2603.11564" and "position-aware pseudo queries KV cache" to verify this paper exists and is accurately characterized.
+
+3. Search for "KV cache compression reasoning models 2026" and "thinking phase KV cache eviction" to find any recent papers not cited in the proposal.
+
+4. Search for "SnapKV observation window proxy queries" to understand how this foundational precedent is established.
+
+5. Search for "pre-RoPE attention KV cache importance scoring" to find any competitive approaches to RIC's pre-RoPE design.
+
+6. Search for "conclusion tokens attention importance reasoning LLM" to check if anyone else has tried using conclusion/summary tokens as query proxies.
+
+7. Search for "boundary triggered KV compression reasoning model 2026" to find any similar boundary-triggered approaches.
+
+For each search, report what you find including paper titles, venues, and whether the claims match what's in the proposal. Be specific about discrepancies.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "e75f1b80-2722-4be3-87ea-8a6adec29d2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-09T19:35:38.645Z_
+
+I'll conduct a systematic search to verify the claims in this RIC paper. Let me start with multiple parallel searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e75f1b80-2722-4be3-87ea-8a6adec29d2b",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZExNZwSrG4zQawSpms",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "9548ed5b-3695-4139-b87d-8117ff8f7ff1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01791mVT4XwoXsenc1U5zgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16989,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16989,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-09T19:35:38.861Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KiSxbZG7TkSH6akeLjC1oJ`</summary>
+
+```json
+{
+  "query": "ThinKV ICLR 2026 oral thought-adaptive KV cache"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9548ed5b-3695-4139-b87d-8117ff8f7ff1",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZExNZwSrG4zQawSpms",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "898dd3a7-7b8b-4fec-a4e3-103af69d26a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01791mVT4XwoXsenc1U5zgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16989,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16989,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-09T19:35:39.068Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JYk1WBYw3FYFLALjyhbWK1`</summary>
+
+```json
+{
+  "query": "ThinKV arXiv 2510.01290"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "898dd3a7-7b8b-4fec-a4e3-103af69d26a0",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZExNZwSrG4zQawSpms",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "8c069a19-8498-42fa-8022-1077ffab30ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01791mVT4XwoXsenc1U5zgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16989,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16989,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-09T19:35:39.824Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018kFMEZt8kQCimzrMumYviK`</summary>
+
+```json
+{
+  "query": "DapQ arXiv 2603.11564 position-aware pseudo queries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c069a19-8498-42fa-8022-1077ffab30ce",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZExNZwSrG4zQawSpms",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "e24013c4-0831-4009-a289-76a23b9a2b9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01791mVT4XwoXsenc1U5zgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16989,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16989,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-09T19:35:40.055Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ti8EUtQA39pDTgNo7KroSU`</summary>
+
+```json
+{
+  "query": "KV cache compression reasoning models 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e24013c4-0831-4009-a289-76a23b9a2b9e",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZExNZwSrG4zQawSpms",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "45d26bd3-d281-4d90-bd39-5a5d29c300b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01791mVT4XwoXsenc1U5zgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16989,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16989,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-09T19:35:40.243Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DF1SED2pJGwyYFChWyun3X`</summary>
+
+```json
+{
+  "query": "SnapKV observation window proxy queries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45d26bd3-d281-4d90-bd39-5a5d29c300b3",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZExNZwSrG4zQawSpms",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "c2e5cb07-1796-4010-b840-bac778bcf2ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01791mVT4XwoXsenc1U5zgxL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16989,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16989,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-09T19:35:45.883Z_
+
+<details><summary>↩ Tool result · `toolu_01KiSxbZG7TkSH6akeLjC1oJ`</summary>
+
+```text
+Web search results for query: "ThinKV ICLR 2026 oral thought-adaptive KV cache"
+
+Links: [{"title":"ICLR Oral ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://iclr.cc/virtual/2026/oral/10009981"},{"title":"[2510.01290] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/abs/2510.01290"},{"title":"THINKV: THOUGHT-ADAPTIVE KV CACHE COM","url":"https://openreview.net/pdf/5a0b384d276bc1880a15c32900457bd0e5efc366.pdf"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=M3CeHnZKNC"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/html/2510.01290v1"},{"title":"Utilizing KV Cache for Sampling and Reasoning","url":"https://arxiv.org/pdf/2601.20326"},{"title":"[2510.01290v1] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/abs/2510.01290v1"},{"title":"ICLR 2026 Orals","url":"https://iclr.cc/virtual/2026/events/oral"},{"title":"ICLR 2026 Schedule","url":"https://iclr.cc/virtual/2026/calendar"},{"title":"(PDF) ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://www.researchgate.net/publication/396142746_ThinKV_Thought-Adaptive_KV_Cache_Compression_for_Efficient_Reasoning_Models"}]
+
+I found comprehensive information about ThinKV. Here's what I discovered:
+
+## ThinKV: Thought-Adaptive KV Cache Compression
+
+ThinKV was presented as an oral at ICLR 2026 on Friday, April 24, 2026, from 11:15 AM – 11:25 AM PDT in the Amphitheater.
+
+### Overview
+
+ThinKV is a thought-adaptive KV cache compression framework based on the observation that attention sparsity reveals distinct thought types with varying importance within the CoT (chain of thought).
+
+### Key Contributions
+
+ThinKV applies a hybrid quantization–eviction strategy, assigning token precision by thought importance and progressively evicting tokens from less critical thoughts as reasoning trajectories evolve. To implement ThinKV, the authors design a kernel that extends PagedAttention to enable efficient reuse of evicted tokens' memory slots, eliminating compaction overheads.
+
+### Performance Results
+
+Extensive experiments on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason across mathematics and coding benchmarks show that ThinKV achieves near-lossless accuracy with less than 5% of the original KV cache, while improving performance with up to 5.8x higher inference throughput over state-of-the-art baselines.
+
+### Authors
+
+The paper was authored by Akshat Ramachandran, Marina Neseem, Charbel Sakr, Rangharajan Venkatesan, Brucek Khailany, and Tushar Krishna.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "898dd3a7-7b8b-4fec-a4e3-103af69d26a0",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "d50a524e-b8e9-41f3-ab0b-e878fe02b46c",
+  "sourceToolAssistantUUID": "898dd3a7-7b8b-4fec-a4e3-103af69d26a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-09T19:35:46.174Z_
+
+<details><summary>↩ Tool result · `toolu_01DF1SED2pJGwyYFChWyun3X`</summary>
+
+```text
+Web search results for query: "SnapKV observation window proxy queries"
+
+Links: [{"title":"SnapKV: LLM Knows What You are Looking for Before Generation | Request PDF","url":"https://www.researchgate.net/publication/397201904_SnapKV_LLM_Knows_What_You_are_Looking_for_Before_Generation"},{"title":"kvpress/kvpress/presses/snapkv_press.py at main · NVIDIA/kvpress","url":"https://github.com/NVIDIA/kvpress/blob/main/kvpress/presses/snapkv_press.py"},{"title":"Lookahead Q-Cache: Achieving More Consistent KV Cache Eviction via Pseudo Query","url":"https://arxiv.org/pdf/2505.20334"},{"title":"[Literature Review] SnapKV: LLM Knows What You are Looking for Before Generation","url":"https://www.themoonlight.io/en/review/snapkv-llm-knows-what-you-are-looking-for-before-generation"},{"title":"SnapKV: Cache compression technique for faster LLM generation with less compute and memory | by SACHIN KUMAR | Medium","url":"https://medium.com/@techsachin/snapkv-cache-compression-technique-for-faster-llm-generation-with-less-compute-and-memory-516ac599c8ee"},{"title":"How to permanently set proxy in Snap? - snapd - snapcraft.io","url":"https://forum.snapcraft.io/t/how-to-permanently-set-proxy-in-snap/23535"},{"title":"microk8 snap installation with snap proxy configuration · Issue #3858 · canonical/microk8s","url":"https://github.com/canonical/microk8s/issues/3858"},{"title":"Table 1: Comparison of SnapKV (compress to 1024 tokens ...","url":"https://openreview.net/attachment?id=Ma4iDJzNX1&name=pdf"},{"title":"NeurIPS Poster SnapKV: LLM Knows What You are Looking for Before Generation","url":"https://neurips.cc/virtual/2024/poster/93531"},{"title":"SnapKV: LLM Knows What You are Looking for Before Generation Yuhong Li1∗","url":"https://arxiv.org/pdf/2404.14469"}]
+
+Based on the search results, here's information about SnapKV's observation window and proxy queries:
+
+## Observation Window in SnapKV
+
+The observation window is located at the end of the prompts, and SnapKV computes the attention weights for queries from the observation window (the last segment of the input). The observation window size is a hyperparameter that can be customized (in typical configurations, it uses a size of 16).
+
+## Key Function of the Observation Window
+
+SnapKV achieves more accurate KV cache importance estimation by leveraging an observation window. The approach works by having a tensor (C) created by summing attention weights, from which the top (k) most important features are selected.
+
+## Proxy Queries
+
+Pseudo queries are introduced to probe the importance of cached keys and values. This concept relates to approaches like lookahead queries, where queries look ahead to better inform KV cache eviction decisions.
+
+The core insight behind SnapKV is that each attention head in the model consistently focuses on specific prompt attention features during generation, and SnapKV automatically compresses KV caches by selecting clustered important KV positions for each attention head.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2e5cb07-1796-4010-b840-bac778bcf2ef",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "be88e8b8-cfe6-4593-b9fa-c0a737ef16dc",
+  "sourceToolAssistantUUID": "c2e5cb07-1796-4010-b840-bac778bcf2ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-09T19:35:46.369Z_
+
+<details><summary>↩ Tool result · `toolu_01JYk1WBYw3FYFLALjyhbWK1`</summary>
+
+```text
+Web search results for query: "ThinKV arXiv 2510.01290"
+
+Links: [{"title":"[2510.01290] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/abs/2510.01290"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/html/2510.01290"},{"title":"[2510.01290v1] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/abs/2510.01290v1"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2510.01290"},{"title":"(PDF) ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://www.researchgate.net/publication/396142746_ThinKV_Thought-Adaptive_KV_Cache_Compression_for_Efficient_Reasoning_Models"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/new?skip=75&show=250"},{"title":"[2511.01290] Seamless Phase I--II Cancer Clinical Trials Using Kernel-Based Covariate Similarity","url":"https://arxiv.org/abs/2511.01290"},{"title":"[2310.01290] Knowledge Crosswords: Geometric Knowledge Reasoning with Large Language Models","url":"https://arxiv.org/abs/2310.01290"},{"title":"[1510.01290] Total positivity in Markov structures","url":"https://arxiv.org/abs/1510.01290"},{"title":"[2407.21018] ThinK: Thinner Key Cache by Query-Driven Pruning","url":"https://arxiv.org/abs/2407.21018"}]
+
+## Search Results for ThinKV arXiv 2510.01290
+
+I found detailed information about this paper. Here's a summary:
+
+**ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models** is a paper by Akshat Ramachandran and 5 other authors, submitted on October 1, 2025.
+
+### Problem & Solution
+The paper addresses how long-output context generation of large reasoning models enables extended chain of thought (CoT) but also drives rapid growth of the key-value (KV) cache, quickly overwhelming GPU memory. To address this challenge, they propose ThinKV, a thought-adaptive KV cache compression framework based on the observation that attention sparsity reveals distinct thought types with varying importance within the CoT.
+
+### Technical Approach
+It applies a hybrid quantization-eviction strategy, assigning token precision by thought importance and progressively evicting tokens from less critical thoughts as reasoning trajectories evolve. To implement ThinKV, they design a kernel that extends PagedAttention to enable efficient reuse of evicted tokens' memory slots, eliminating compaction overheads.
+
+### Results
+Extensive experiments on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason across mathematics and coding benchmarks show that ThinKV achieves near-lossless accuracy with less than 5% of the original KV cache, while improving performance with up to 5.8x higher inference throughput over state-of-the-art baselines.
+
+You can access the full paper at: https://arxiv.org/abs/2510.01290
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c069a19-8498-42fa-8022-1077ffab30ce",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "b089fd1e-843b-4ebf-b4e2-87dd5c97c23e",
+  "sourceToolAssistantUUID": "8c069a19-8498-42fa-8022-1077ffab30ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-09T19:35:46.554Z_
+
+<details><summary>↩ Tool result · `toolu_018kFMEZt8kQCimzrMumYviK`</summary>
+
+```text
+Web search results for query: "DapQ arXiv 2603.11564 position-aware pseudo queries"
+
+Links: [{"title":"[2603.11564] Where Matters More Than What: Decoding-aligned KV Cache Compression via Position-aware Pseudo Queries","url":"https://arxiv.org/abs/2603.11564"},{"title":"Where Matters More Than What: Decoding-aligned KV Cache Compression via Position-aware Pseudo Queries","url":"https://arxiv.org/html/2603.11564"},{"title":"Papers","url":"https://www.cs.princeton.edu/~danqic/papers.html"},{"title":"Distribution-Aware Companding Quantization of Large Language Models","url":"https://arxiv.org/html/2603.00364v1"},{"title":"PosIR: Position-Aware Heterogeneous Information Retrieval Benchmark","url":"https://arxiv.org/html/2601.08363v1/"},{"title":"Agentic SPARQL: Evaluating SPARQL-MCP-powered Intelligent Agents on the Federated KGQA Benchmark","url":"https://arxiv.org/html/2603.06582"},{"title":"Location Aware Embedding for Geotargeting in Sponsored Search Advertising","url":"https://arxiv.org/html/2603.13997"},{"title":"An Empirical Study of Position Bias in Modern Information Retrieval","url":"https://arxiv.org/html/2505.13950v2"},{"title":"[2603.06587] Autonomous AI Agents for Option Hedging: Enhancing Financial Stability through Shortfall Aware Reinforcement Learning","url":"https://arxiv.org/abs/2603.06587"},{"title":"[2603.14994] DP-S4S: Accurate and Scalable Select-Join-Aggregate Query Processing with User-Level Differential Privacy","url":"https://arxiv.org/abs/2603.14994"}]
+
+Based on the search results, here's what I found about DapQ and arXiv paper 2603.11564:
+
+## Overview
+
+The paper is titled "Where Matters More Than What: Decoding-aligned KV Cache Compression via Position-aware Pseudo Queries" and was submitted on March 12, 2026.
+
+## Key Concept
+
+The Key-Value (KV) cache is crucial for efficient Large Language Models (LLMs) inference, but excessively long contexts drastically increase KV cache memory footprint. Existing KV cache compression methods typically rely on input-side attention patterns within a prompt observation window to estimate token importance during the prefill stage, but they fail to preserve critical tokens for future generation since these assessments are not derived from the decoding process.
+
+## The DapQ Approach
+
+The paper finds that positional information plays a more critical role than semantic content for constructing pseudo queries, and proposes decoding-aligned KV cache compression via position-aware pseudo queries (DapQ), a novel and lightweight eviction framework. DapQ constructs pseudo queries using future positional encodings to accurately simulate the output tokens.
+
+## Performance
+
+DapQ achieves superior performance, particularly under strict memory constraints (e.g., up to nearly lossless performance 99.5% on NIAH with 3% KV cache budgets).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e24013c4-0831-4009-a289-76a23b9a2b9e",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "ae0d4473-ee42-4fd2-9dfb-52399770f701",
+  "sourceToolAssistantUUID": "e24013c4-0831-4009-a289-76a23b9a2b9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-09T19:35:47.500Z_
+
+<details><summary>↩ Tool result · `toolu_01Ti8EUtQA39pDTgNo7KroSU`</summary>
+
+```text
+Web search results for query: "KV cache compression reasoning models 2026"
+
+Links: [{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"[2505.24133] R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://arxiv.org/abs/2505.24133"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=HGdg76iVo6"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=2jwAjomEDB"},{"title":"LongFlow: Efficient KV Cache Compression for Reasoning Models","url":"https://arxiv.org/html/2603.11504"},{"title":"LongFlow: Efficient KV Cache Compression for Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=rz6WybXjgk"},{"title":"Mamba Compression, LLM KV Cache Efficiency, Reasoning Models' Presuppositions","url":"https://pminterviewprepclub.substack.com/p/mamba-compression-llm-kv-cache-efficiency"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://arxiv.org/html/2505.24133"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=M3CeHnZKNC"},{"title":"1 A Survey on Large Language Model Acceleration based on KV Cache Management","url":"https://arxiv.org/pdf/2412.19442"}]
+
+Based on the search results, here's what I found about KV cache compression for reasoning models in 2026:
+
+## Key Research Developments
+
+The 2026 research frontier is moving toward latent-space compaction (Attention Matching, 50× compaction) and reasoning-aware compression (TriAttention, 10.7× memory reduction on AIME25 at matched accuracy).
+
+## Notable Methods Targeting Reasoning Models
+
+Several specialized approaches have emerged:
+
+**R-KV (Redundancy-aware KV Cache Compression):** This method preserves nearly 100% of the full KV cache performance using only 10% of the KV cache, substantially outperforming existing KV cache baselines, which reach only 60% of the performance. This KV-cache reduction also leads to a 50% memory saving and a 2x speedup over standard chain-of-thought reasoning inference.
+
+**LongFlow:** This method can achieve an 11.8x increase in throughput with an 80% compression of the KV cache while incurring negligible loss in model accuracy.
+
+**ThinKV:** ThinKV achieves near-lossless accuracy with less than 5% of the original KV cache, while improving performance with up to 5.8x higher inference throughput over state-of-the-art baselines.
+
+## Core Challenges
+
+A key drawback of reasoning models is their tendency to generate a large number of output tokens, which substantially inflates the KV cache and leads to severe memory and bandwidth bottlenecks during attention computation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45d26bd3-d281-4d90-bd39-5a5d29c300b3",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "c10a815d-5222-4277-b0eb-67167eef2b0c",
+  "sourceToolAssistantUUID": "45d26bd3-d281-4d90-bd39-5a5d29c300b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-09T19:35:48.506Z_
+
+Now let me search for the remaining topics:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c10a815d-5222-4277-b0eb-67167eef2b0c",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZFijK5esGNURoQBJVy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "0a42b434-f985-42e5-92b1-402223a94622",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LLMHesPqJUEKoL8mWKt5gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 888,
+      "cache_creation_input_tokens": 4686,
+      "cache_read_input_tokens": 16989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4686,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-09T19:35:48.988Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G43pQ9V6FzmdhJaoRfPc9n`</summary>
+
+```json
+{
+  "query": "pre-RoPE attention KV cache importance scoring"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a42b434-f985-42e5-92b1-402223a94622",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZFijK5esGNURoQBJVy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "3af89c0d-f841-4495-9769-11e68f1b615d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LLMHesPqJUEKoL8mWKt5gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 888,
+      "cache_creation_input_tokens": 4686,
+      "cache_read_input_tokens": 16989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4686,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-09T19:35:49.167Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CFSaUQRToeTsPreYm4SrMx`</summary>
+
+```json
+{
+  "query": "conclusion tokens attention importance reasoning LLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3af89c0d-f841-4495-9769-11e68f1b615d",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZFijK5esGNURoQBJVy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "1f1f75f3-49fb-4d91-9830-5c8ec993a4f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LLMHesPqJUEKoL8mWKt5gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 888,
+      "cache_creation_input_tokens": 4686,
+      "cache_read_input_tokens": 16989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4686,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-09T19:35:49.390Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01239NuHCSXDZ7ykZnoCXq7T`</summary>
+
+```json
+{
+  "query": "boundary triggered KV compression reasoning model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f1f75f3-49fb-4d91-9830-5c8ec993a4f4",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZFijK5esGNURoQBJVy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "1baad43d-0440-45d5-ad33-cce7585e13bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LLMHesPqJUEKoL8mWKt5gi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 888,
+      "cache_creation_input_tokens": 4686,
+      "cache_read_input_tokens": 16989,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4686,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-09T19:35:49.588Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CixSuStRSR3hq2Lt4tGgtM`</summary>
+
+```json
+{
+  "query": "\"thinking phase\" KV cache eviction reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1baad43d-0440-45d5-ad33-cce7585e13bd",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZFijK5esGNURoQBJVy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "f8b86b28-0bc9-4db2-a1d8-256a6261e915",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LLMHesPqJUEKoL8mWKt5gi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 888,
+      "cache_creation_input_tokens": 4686,
+      "cache_read_input_tokens": 16989,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4686
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 888,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 16989,
+          "cache_creation_input_tokens": 4686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4686,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-09T19:35:56.170Z_
+
+<details><summary>↩ Tool result · `toolu_01CixSuStRSR3hq2Lt4tGgtM`</summary>
+
+```text
+Web search results for query: ""thinking phase" KV cache eviction reasoning"
+
+No links found.
+
+I performed a web search for your query, but unfortunately the search didn't return any results. This suggests that there may not be significant publicly available content specifically discussing the intersection of "thinking phase," KV cache eviction, and reasoning together.
+
+This could be because:
+1. This is a relatively specialized or emerging topic in AI/ML research
+2. The specific combination of these terms may not be commonly discussed in indexed web content
+3. The terminology or framing might differ in how this concept is typically discussed online
+
+If you're researching a specific paper, project, or implementation related to these concepts, you might try:
+- Searching for more general terms like "KV cache optimization" or "language model reasoning"
+- Looking directly at AI research repositories like arXiv
+- Checking documentation for specific AI models or frameworks
+- Breaking down the query into separate searches for each concept
+
+Would you like me to try a different search query or search for any of these component topics individually?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8b86b28-0bc9-4db2-a1d8-256a6261e915",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "4a3debc2-f796-489e-b927-78528c00aee2",
+  "sourceToolAssistantUUID": "f8b86b28-0bc9-4db2-a1d8-256a6261e915",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-09T19:35:56.743Z_
+
+<details><summary>↩ Tool result · `toolu_01239NuHCSXDZ7ykZnoCXq7T`</summary>
+
+```text
+Web search results for query: "boundary triggered KV compression reasoning model 2026"
+
+Links: [{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"Bottlenecked Transformers: Periodic KV Cache Consolidation for Generalised Reasoning","url":"https://arxiv.org/html/2505.16950"},{"title":"GitHub - Zefan-Cai/R-KV: [Neurips 2025] R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://github.com/Zefan-Cai/R-KV"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=HGdg76iVo6"},{"title":"Beyond RAG: Task-Aware KV Cache Compression for Comprehensive Knowledge Reasoning","url":"https://arxiv.org/html/2503.04973v1"},{"title":"Paper page - TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://huggingface.co/papers/2604.04921"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/html/2510.01290v1"},{"title":"LongFlow: Efficient KV Cache Compression for Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=rz6WybXjgk"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=2jwAjomEDB"},{"title":"[2505.24133] R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://arxiv.org/abs/2505.24133"}]
+
+Based on the search results, here's what I found about boundary triggered KV compression for reasoning models in 2026:
+
+## Key Research Developments
+
+The Bottlenecked Transformer is a model that augments LLMs with a Cache Processor, an auxiliary Transformer that performs periodic, non-causal, in-place KV rewrites at newline-delimited reasoning step boundaries. This approach uses Information Bottleneck (IB) theory, which posits that model generalization emerges from an optimal balance between input information compression and retention of predictive information in latent representations.
+
+## Other Notable Reasoning-Focused Compression Methods
+
+The search reveals several complementary approaches to KV compression for reasoning models in 2026:
+
+- The 2026 research frontier is moving toward latent-space compaction (Attention Matching, 50× compaction) and reasoning-aware compression (TriAttention, 10.7× memory reduction on AIME25 at matched accuracy)
+
+- ThinKV is a thought-adaptive KV cache compression framework based on the observation that attention sparsity reveals distinct thought types with varying importance within chain-of-thought, applying a hybrid quantization–eviction strategy
+
+- R-KV solves reasoning-specific compression by ranking tokens on-the-fly for both importance and non-redundancy, retaining only the informative, diverse ones
+
+These methods represent a shift toward compression techniques specifically designed for reasoning models, addressing the challenges of long-context chain-of-thought generation during inference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1baad43d-0440-45d5-ad33-cce7585e13bd",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "a489a335-321a-4eeb-944e-bb20647a08fe",
+  "sourceToolAssistantUUID": "1baad43d-0440-45d5-ad33-cce7585e13bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-09T19:35:57.203Z_
+
+<details><summary>↩ Tool result · `toolu_01CFSaUQRToeTsPreYm4SrMx`</summary>
+
+```text
+Web search results for query: "conclusion tokens attention importance reasoning LLM"
+
+Links: [{"title":"Extending Token Computation for LLM Reasoning","url":"https://arxiv.org/html/2403.14932v3"},{"title":"Extending Token Computation for LLM Reasoning | Proceedings of the 2024 8th International Conference on Computer Science and Artificial Intelligence","url":"https://dl.acm.org/doi/10.1145/3709026.3709050"},{"title":"Demystifying Reasoning Dynamics with Mutual Information: Thinking Tokens are Information Peaks in LLM Reasoning | OpenReview","url":"https://openreview.net/forum?id=E1FrjgaG1J"},{"title":"Do LLMs Encode Functional Importance of Reasoning Tokens ?","url":"https://arxiv.org/html/2601.03066"},{"title":"Attention-Driven Reasoning: Unlocking the Potential of Large Language Models","url":"https://arxiv.org/html/2403.14932v1"},{"title":"Do LLMs Encode Functional Importance of Reasoning Tokens ? Janvijay Singh","url":"https://www.arxiv.org/pdf/2601.03066"},{"title":"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning","url":"https://arxiv.org/html/2506.15969v1"},{"title":"[2403.14932] Extending Token Computation for LLM Reasoning","url":"https://arxiv.org/abs/2403.14932"},{"title":"Attention Illuminates LLM Reasoning: The Preplan-and-Anchor Rhythm Enables Fine-Grained Policy Optimization","url":"https://arxiv.org/html/2510.13554"},{"title":"Not All Tokens Matter: Towards Efficient LLM Reasoning via Token Significance in Reinforcement Learning","url":"https://arxiv.org/html/2506.08125"}]
+
+Based on the search results, I found several important research areas related to tokens, attention, reasoning, and LLMs:
+
+## Key Findings:
+
+**Attention Distribution and Reasoning**
+
+Large Language Models often struggle with complex reasoning tasks due to inefficient attention distributions. Recent work aims to refocus the LLM's attention towards semantically important tokens by modifying its attention distribution.
+
+**"Thinking Tokens" and Their Importance**
+
+Recent research has identified specific tokens that are particularly important for reasoning. MI peaks often correspond to tokens expressing reflection or transition, such as "Hmm", "Wait" and "Therefore," which are termed as thinking tokens, and these thinking tokens are crucial for LRM's reasoning performance, while other tokens have minimal impacts.
+
+**Functional Token Importance**
+
+Research investigates whether LLMs encode token-level functional importance for answer generation within their reasoning chains, showing that models can systematically compress reasoning while retaining information critical for answer generation. Models encode internal signals of reasoning-token importance that are strongly predictable from attention patterns.
+
+**Token Recurrence in Reasoning**
+
+Specific tokens exhibit recurrent attention patterns during reasoning tasks, where these recurring tokens often represent foundational formulations or intermediate conclusions which are crucial for maintaining knowledge continuity in multi-step reasoning.
+
+**Inefficiencies from Non-Semantic Tokens**
+
+Inefficiencies in attention are caused by non-semantic tokens with outlier high attention scores.
+
+These findings suggest that understanding which tokens matter most—particularly "thinking tokens" and conclusion/transition tokens—is essential for improving LLM reasoning efficiency and performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f1f75f3-49fb-4d91-9830-5c8ec993a4f4",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "9b1a4818-af42-441c-9646-07d5ef830c34",
+  "sourceToolAssistantUUID": "1f1f75f3-49fb-4d91-9830-5c8ec993a4f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-09T19:35:57.788Z_
+
+<details><summary>↩ Tool result · `toolu_01G43pQ9V6FzmdhJaoRfPc9n`</summary>
+
+```text
+Web search results for query: "pre-RoPE attention KV cache importance scoring"
+
+Links: [{"title":"TriAttention | Efficient KV Cache Compression for Long-Context Reasoning","url":"https://weianmao.github.io/tri-attention-project-page/"},{"title":"[2604.04921] TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://arxiv.org/abs/2604.04921"},{"title":"Researchers from MIT, NVIDIA, and Zhejiang University Propose TriAttention: A KV Cache Compression Method That Matches Full Attention at 2.5× Higher Throughput - MarkTechPost","url":"https://www.marktechpost.com/2026/04/11/researchers-from-mit-nvidia-and-zhejiang-university-propose-triattention-a-kv-cache-compression-method-that-matches-full-attention-at-2-5x-higher-throughput/"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention","url":"https://arxiv.org/pdf/2510.00636"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"Paper page - TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://huggingface.co/papers/2604.04921"},{"title":"TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://arxiv.org/html/2604.04921v1"},{"title":"kvpress/kvpress/presses/expected_attention_press.py at main · NVIDIA/kvpress","url":"https://github.com/NVIDIA/kvpress/blob/main/kvpress/presses/expected_attention_press.py"},{"title":"On the Limits of Learned Importance Scoring for KV Cache Compression","url":"https://arxiv.org/html/2601.14279"},{"title":"[2510.00636] Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/abs/2510.00636"}]
+
+Based on the search results, here's what I found about pre-RoPE attention KV cache importance scoring:
+
+## Key Findings
+
+TriAttention uses stable pre-RoPE structure to score KV importance for long-context reasoning. This represents a significant advancement in KV cache compression methods.
+
+### The Core Problem with Post-RoPE Methods
+
+Leading KV cache compression methods estimate KV importance using attention scores from recent post-RoPE queries. However, queries rotate with position during RoPE, making representative queries very few, leading to poor top-key selection and unstable reasoning.
+
+### The Pre-RoPE Solution
+
+In the pre-RoPE space, Q and K vectors are highly concentrated around fixed non-zero centers and remain stable across positions—Q/K concentration. This concentration has important implications: queries preferentially attend to keys at specific distances, with the centers determining which distances are preferred via a trigonometric series. TriAttention uses the distance preference characterized by these centers to score keys according to their positions, and also leverages Q/K norms as an additional signal for importance estimation.
+
+### Performance Results
+
+On AIME25 with 32K-token generation, TriAttention matches Full Attention reasoning accuracy while achieving 2.5× higher throughput or 10.7× KV memory reduction, whereas leading baselines achieve only about half the accuracy at the same efficiency.
+
+The key innovation is that pre-RoPE Query and Key vectors cluster around stable, fixed centers across nearly all attention heads, which holds regardless of input content, token position, or domain, and is consistent across Qwen3, Qwen2.5, Llama3, and even Multi-head Latent Attention architectures like GLM-4.7-Flash.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3af89c0d-f841-4495-9769-11e68f1b615d",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "a9e495a3-9003-4592-9563-07fafeec26a6",
+  "sourceToolAssistantUUID": "3af89c0d-f841-4495-9769-11e68f1b615d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-09T19:35:58.960Z_
+
+Now let me search for more related methods and verify some specific technical claims:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9e495a3-9003-4592-9563-07fafeec26a6",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZGUjDnicoS3hDq9a3V",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "9821d925-c95c-4943-bfd8-d81ccc032370",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0139gqysuEmJwSZCog8VK3aR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2108,
+      "cache_creation_input_tokens": 2189,
+      "cache_read_input_tokens": 21675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2189,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-09T19:35:59.176Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EC2Knbn3MHcyooUbCxmXud`</summary>
+
+```json
+{
+  "query": "Lookahead Q-Cache pseudo query KV compression"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9821d925-c95c-4943-bfd8-d81ccc032370",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZGUjDnicoS3hDq9a3V",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "16827fb0-c04d-4a76-8dc1-55cdd797fc37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0139gqysuEmJwSZCog8VK3aR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2108,
+      "cache_creation_input_tokens": 2189,
+      "cache_read_input_tokens": 21675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2189,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-09T19:35:59.594Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RaNML5ZNS9mhi31C1foM9x`</summary>
+
+```json
+{
+  "query": "Bottlenecked Transformers Cache Processor reasoning boundary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16827fb0-c04d-4a76-8dc1-55cdd797fc37",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZGUjDnicoS3hDq9a3V",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "8c055f7b-c785-4542-866c-e60f4dc2a85d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0139gqysuEmJwSZCog8VK3aR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2108,
+      "cache_creation_input_tokens": 2189,
+      "cache_read_input_tokens": 21675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2189,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-09T19:35:59.748Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MNdJgU9vSLfvZBrGNFYoxW`</summary>
+
+```json
+{
+  "query": "LazyEviction attention pattern KV cache reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c055f7b-c785-4542-866c-e60f4dc2a85d",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZGUjDnicoS3hDq9a3V",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "17d89611-0521-43fb-848e-d043f571a0a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0139gqysuEmJwSZCog8VK3aR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2108,
+      "cache_creation_input_tokens": 2189,
+      "cache_read_input_tokens": 21675,
+      "output_tokens": 170,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2189
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2108,
+          "output_tokens": 170,
+          "cache_read_input_tokens": 21675,
+          "cache_creation_input_tokens": 2189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2189,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-09T19:36:05.382Z_
+
+<details><summary>↩ Tool result · `toolu_01EC2Knbn3MHcyooUbCxmXud`</summary>
+
+```text
+Web search results for query: "Lookahead Q-Cache pseudo query KV compression"
+
+Links: [{"title":"[2505.20334] Lookahead Q-Cache: Achieving More Consistent KV Cache Eviction via Pseudo Query","url":"https://arxiv.org/abs/2505.20334"},{"title":"Lookahead Q-Cache: Achieving More Consistent KV Cache Eviction via Pseudo Query","url":"https://arxiv.org/html/2505.20334"},{"title":"Lookahead Q-Cache: Achieving More Consistent KV Cache Eviction via Pseudo Query - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1732/"},{"title":"GitHub - noforit/Lookahead_Q-Cache: Implementation of EMNLP 2025 paper Lookahead Q-Cache: Achieving More Consistent KV Cache Eviction via Pseudo Query","url":"https://github.com/noforit/Lookahead_Q-Cache"},{"title":"Paper page - Lookahead Q-Cache: Achieving More Consistent KV Cache Eviction via Pseudo Query","url":"https://huggingface.co/papers/2505.20334"},{"title":"Paper page - KVzip: Query-Agnostic KV Cache Compression with Context Reconstruction","url":"https://huggingface.co/papers/2505.23416"},{"title":"Where Matters More Than What: Decoding-aligned KV Cache Compression via Position-aware Pseudo Queries","url":"https://arxiv.org/html/2603.11564"},{"title":"Achieving More Consistent KV Cache Eviction via Pseudo ...","url":"https://www.researchgate.net/publication/397421216_Lookahead_Q-Cache_Achieving_More_Consistent_KV_Cache_Eviction_via_Pseudo_Query"},{"title":"LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation","url":"https://arxiv.org/html/2603.10899"},{"title":"Illustration of the differences between the proposed Lookahead approach... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/llustration-of-the-differences-between-the-proposed-Lookahead-approach-and-existing_fig1_392132413"}]
+
+Based on the search results, here's what I found about Lookahead Q-Cache:
+
+## Overview
+
+Lookahead Q-Cache (LAQ) is a novel eviction framework that generates low-cost pseudo lookahead queries to better approximate the true decoding-stage queries.
+
+## The Problem It Addresses
+
+KV cache memory usage grows substantially with longer text sequences, and existing KV cache eviction methods prune tokens using prefilling-stage attention scores, causing inconsistency with actual inference queries, especially under tight memory budgets.
+
+## How It Works
+
+By using these lookahead queries as the observation window for importance estimation, LAQ achieves more consistent and accurate KV cache eviction aligned with real inference scenarios. Once the lookahead queries are cached, they are used as the observation window for importance estimation, and then standard KV cache eviction proceeds.
+
+## Performance Results
+
+Experimental results on LongBench and Needle-in-a-Haystack benchmarks show that LAQ outperforms existing methods across various budget levels, achieving a 1-4 point improvement on LongBench under limited cache budget. The method can be integrated with existing methods to yield orthogonal improvements.
+
+The paper was published at EMNLP 2025, and the authors have made code available on GitHub for the community to use and build upon.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "16827fb0-c04d-4a76-8dc1-55cdd797fc37",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "70ca6cc1-dedb-4772-be6c-ffc17f1a3601",
+  "sourceToolAssistantUUID": "16827fb0-c04d-4a76-8dc1-55cdd797fc37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-09T19:36:06.464Z_
+
+<details><summary>↩ Tool result · `toolu_01RaNML5ZNS9mhi31C1foM9x`</summary>
+
+```text
+Web search results for query: "Bottlenecked Transformers Cache Processor reasoning boundary"
+
+Links: [{"title":"[2505.16950] Bottlenecked Transformers: Periodic KV Cache Consolidation for Generalised Reasoning","url":"https://arxiv.org/abs/2505.16950"},{"title":"Bottlenecked Transformers: Periodic KV Cache Consolidation for Generalised Reasoning","url":"https://arxiv.org/html/2505.16950"},{"title":"How Much Cache Does Reasoning Need? Depth–Cache Tradeoffs in KV-Compressed Transformers","url":"https://arxiv.org/html/2604.17935v1"},{"title":"Bottlenecked Transformers: Periodic KV Cache Abstraction for Generalised Reasoning","url":"https://arxiv.org/html/2505.16950v1"},{"title":"Bottlenecked Transformers: Periodic KV Cache Consolidation for Generalised Reasoning | OpenReview","url":"https://openreview.net/forum?id=fWgKnl4itC"},{"title":"[2604.17935v1] How Much Cache Does Reasoning Need? Depth-Cache Tradeoffs in KV-Compressed Transformers","url":"https://arxiv.org/abs/2604.17935v1"},{"title":"(PDF) Bottlenecked Transformers: Periodic KV Cache Abstraction for Generalised Reasoning","url":"https://www.researchgate.net/publication/391991496_Bottlenecked_Transformers_Periodic_KV_Cache_Abstraction_for_Generalised_Reasoning"},{"title":"Bottlenecked Transformers: Periodic KV Cache Abstraction for Generalised Reasoning","url":"https://www.catalyzex.com/paper/bottlenecked-transformers-periodic-kv-cache"},{"title":"1 Introduction","url":"https://arxiv.org/html/2510.17098"},{"title":"[Literature Review] Bottlenecked Transformers: Periodic KV Cache Abstraction for Generalised Reasoning","url":"https://www.themoonlight.io/en/review/bottlenecked-transformers-periodic-kv-cache-abstraction-for-generalised-reasoning"}]
+
+Based on the search results, here's an overview of **Bottlenecked Transformers**, Cache Processor, and reasoning boundary:
+
+## Core Concept
+
+The Bottlenecked Transformer augments a backbone LLM with a Cache Processor, an auxiliary Transformer that performs periodic, non-causal, in-place KV rewrites at newline-delimited reasoning step boundaries.
+
+## Theoretical Foundation
+
+The work uses Information Bottleneck (IB) theory, which posits that model generalisation emerges from an optimal balance between input information compression and retention of predictive information in latent representations. 
+
+In decoder-only Transformers, the key-value (KV)-cache functions as a critical information bottleneck between input history and future predictions, and standard training objectives push this bottleneck to retain rather than filter information, promoting memorisation over abstraction.
+
+## Reasoning Step Boundaries
+
+The Cache Processor is invoked each time a newline token is generated (marking the end of a reasoning step). This design allows the system to consolidate memory at natural reasoning boundaries in chains of thought.
+
+## Purpose and Results
+
+The Bottlenecked Transformer is a model augmented with a periodic Cache Processor that globally rewrites the KV cache to optimise for future prediction without retaining irrelevant context. The model delivers substantial gains on mathematical reasoning benchmarks, outperforming both vanilla Transformers with up to 3.5x more parameters, as well as heuristic-driven pruning mechanisms for cache compression.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c055f7b-c785-4542-866c-e60f4dc2a85d",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "c76c59dd-389b-4bd4-b3d3-4b0f31d28e34",
+  "sourceToolAssistantUUID": "8c055f7b-c785-4542-866c-e60f4dc2a85d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-09T19:36:06.925Z_
+
+<details><summary>↩ Tool result · `toolu_01MNdJgU9vSLfvZBrGNFYoxW`</summary>
+
+```text
+Web search results for query: "LazyEviction attention pattern KV cache reasoning"
+
+Links: [{"title":"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning","url":"https://arxiv.org/html/2506.15969v1"},{"title":"[2506.15969] LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning","url":"https://arxiv.org/abs/2506.15969"},{"title":"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for Efficient Long Reasoning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250615969Z/abstract"},{"title":"LazyEviction: Lagged KV Eviction with Attention Pattern Observation for","url":"https://www.arxiv.org/pdf/2506.15969v3"},{"title":"SAGE-KV: Self-Attention Guided KV Cache Eviction","url":"https://www.emergentmind.com/papers/2503.08879"},{"title":"THINKV: THOUGHT-ADAPTIVE KV CACHE COM- PRESSION FOR EFFICIENT REASONING MODELS","url":"https://arxiv.org/pdf/2510.01290v1"},{"title":"TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://arxiv.org/html/2604.04921v1"},{"title":"Computation and Language Jun 2025","url":"https://www.arxiv.org/list/cs.CL/2025-06?skip=2250&show=250"},{"title":"ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution","url":"https://arxiv.org/html/2602.03203"},{"title":"LLMs Know What to Drop: Self-Attention Guided KV Cache Eviction for Efficient Long-Context Inference","url":"https://arxiv.org/html/2503.08879"}]
+
+Based on the search results, here's what I found about LazyEviction:
+
+## Overview
+
+LazyEviction is a Lagged KV Eviction scheme integrating temporal observation window and recurrence interval tracking. It's designed to address memory efficiency challenges in long reasoning tasks with large language models.
+
+## Key Innovation: Token Importance Recurrence
+
+The core insight behind LazyEviction is a Token Importance Recurrence phenomenon where a large proportion of tokens regain high attention after multiple decoding steps. In reasoning tasks, specific tokens exhibit recurrent attention patterns (being re-activated after multiple decoding steps), and these recurring tokens often represent foundational formulations or intermediate conclusions which are crucial for maintaining knowledge continuity in multi-step reasoning.
+
+## How It Works
+
+The framework enables prediction of future token importance, thereby preventing premature eviction of recurring tokens. LazyEviction is an observation window-based lagged eviction framework retaining latent recurring tokens by prioritized eviction based on tokens' recurrence patterns.
+
+## Performance
+
+The method can maintain comparable performance while reducing 50% KV budget, surpassing the state-of-the-art KV cache compression methods. LazyEviction has been implemented on the latest large reasoning models such as DeepSeek-R1-Distill-Qwen and DeepSeek-R1-Distill-Llama.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "17d89611-0521-43fb-848e-d043f571a0a0",
+  "isSidechain": true,
+  "promptId": "e6c754f3-e7fe-4ef3-97b9-62cf4ea66e35",
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "type": "user",
+  "uuid": "1207fcea-b037-4dba-8a16-1732eec4199b",
+  "sourceToolAssistantUUID": "17d89611-0521-43fb-848e-d043f571a0a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-09T19:36:38.438Z_
+
+## Verification Report: RIC Paper Claims
+
+Based on my systematic search, I can now provide findings for each of your verification requests:
+
+---
+
+### 1. ThinKV ICLR 2026 Oral Status - **VERIFIED**
+
+**Finding:** ThinKV is indeed confirmed as an ICLR 2026 Oral paper.
+
+**Details:**
+- Paper: "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models"
+- arXiv ID: 2510.01290 (submitted October 1, 2025)
+- Venue: ICLR 2026 Oral (confirmed on official ICLR schedule)
+- Session Date: Friday, April 24, 2026, 11:15 AM – 11:25 AM PDT
+- Available on: OpenReview (forum ID: M3CeHnZKNC) and ICLR virtual portal
+- Authors: Akshat Ramachandran, Marina Neseem, Charbel Sakr, and others
+- Technical Approach: Hybrid quantization-eviction strategy using thought-type importance scoring; uses PagedAttention kernel extension
+- Results: <5% of original KV cache with near-lossless accuracy; up to 5.8x throughput improvement
+
+**Claim Accuracy:** The RIC proposal's citation of ThinKV as an ICLR 2026 oral paper is accurate.
+
+Sources:
+- [ICLR 2026 Oral ThinKV](https://iclr.cc/virtual/2026/oral/10009981)
+- [arXiv 2510.01290](https://arxiv.org/abs/2510.01290)
+
+---
+
+### 2. DapQ arXiv 2603.11564 - **VERIFIED**
+
+**Finding:** DapQ exists and the characterization is accurate.
+
+**Paper Title:** "Where Matters More Than What: Decoding-aligned KV Cache Compression via Position-aware Pseudo Queries"
+- arXiv ID: 2603.11564 (submitted March 12, 2026)
+- Core Claim: Position information matters more than semantic content for KV importance estimation
+- Key Innovation: Uses future positional encodings as pseudo queries to simulate output tokens during prefilling
+- Performance: Up to 99.5% performance with only 3% KV cache budget on NIAH benchmarks
+- Technical Foundation: Decoding-aligned approach addressing the mismatch between prefill and decode stage importance estimation
+
+**Claim Accuracy:** The RIC proposal's characterization of DapQ using "position-aware pseudo queries" is accurate.
+
+Sources:
+- [DapQ arXiv 2603.11564](https://arxiv.org/abs/2603.11564)
+
+---
+
+### 3. Recent KV Cache Compression for Reasoning (2026) - **NEW PAPERS FOUND**
+
+**Critical Finding:** Multiple papers not mentioned in typical summaries were found:
+
+**TriAttention (arXiv 2604.04921):**
+- Pre-RoPE attention-based KV cache importance scoring
+- Key insight: Pre-RoPE Q and K vectors cluster around stable centers across positions
+- Results: Matches full attention accuracy on AIME25 with 2.5× higher throughput or 10.7× KV memory reduction
+- From: MIT, NVIDIA, Zhejiang University collaboration
+
+**R-KV (arXiv 2505.24133):**
+- NeurIPS 2025 paper
+- Redundancy-aware KV cache compression for reasoning
+- Results: 100% performance preservation with 10% KV cache (vs. 60% for baselines); 2× speedup
+- OpenReview: forum ID 2jwAjomEDB
+
+**LongFlow (OpenReview):**
+- Achieves 11.8× throughput increase with 80% KV compression
+- Negligible accuracy loss on reasoning tasks
+
+**Bottlenecked Transformers (arXiv 2505.16950):**
+- Boundary-triggered compression at newline-delimited reasoning step boundaries
+- Uses Cache Processor auxiliary Transformer for periodic KV rewrites
+- Information Bottleneck theory foundation
+- Up to 3.5× parameter advantage in mathematical reasoning
+
+**LazyEviction (arXiv 2506.15969):**
+- Token Importance Recurrence phenomenon for reasoning
+- Observes that critical tokens regain attention after multiple decoding steps
+- Achieves 50% KV reduction with comparable performance
+- Tested on DeepSeek-R1 models
+
+**Potential RIC Limitation:** These papers suggest the RIC proposal may not be aware of or adequately discussing TriAttention's pre-RoPE approach, which directly competes with the proposed "pre-RoPE attention pass" design.
+
+Sources:
+- [TriAttention 2604.04921](https://arxiv.org/abs/2604.04921)
+- [R-KV 2505.24133](https://arxiv.org/abs/2505.24133)
+- [Bottlenecked Transformers 2505.16950](https://arxiv.org/abs/2505.16950)
+- [LazyEviction 2506.15969](https://arxiv.org/abs/2506.15969)
+
+---
+
+### 4. SnapKV Observation Window & Proxy Queries - **VERIFIED**
+
+**Finding:** SnapKV is foundational for observation-window-based proxy query approaches.
+
+**Paper:** "SnapKV: LLM Knows What You are Looking for Before Generation" (NeurIPS 2024 Poster)
+- arXiv: 2404.14469
+- Core Design: Uses observation window (last segment of input, typically 16 tokens)
+- Mechanism: Computes attention from observation window queries to select top-k important KVs per head
+- Key Insight: Each attention head consistently focuses on specific prompt features during generation
+- Automatic compression of KV cache by selecting clustered important positions
+
+**Related Work - Lookahead Q-Cache (EMNLP 2025):**
+- arXiv 2505.20334
+- Extends pseudo query concept with lookahead queries for more consistent eviction
+- Achieves 1-4 point improvement on LongBench under memory constraints
+
+**Claim Accuracy:** RIC's characterization of SnapKV as establishing the observation window precedent is accurate. However, SnapKV uses the observation window itself as queries, not as a basis for "conclusion tokens" specifically.
+
+Sources:
+- [SnapKV NeurIPS 2024 Poster](https://neurips.cc/virtual/2024/poster/93531)
+- [SnapKV arXiv 2404.14469](https://arxiv.org/pdf/2404.14469)
+- [Lookahead Q-Cache EMNLP 2025](https://aclanthology.org/2025.emnlp-main.1732/)
+
+---
+
+### 5. Pre-RoPE Attention KV Cache Scoring - **CRITICAL FINDING**
+
+**Major Discrepancy Identified:** TriAttention (arXiv 2604.04921) already proposes a pre-RoPE attention-based KV importance scoring method and appears to be directly competitive with RIC's claimed novelty.
+
+**TriAttention's Pre-RoPE Approach:**
+- **Key Finding:** Pre-RoPE Q and K vectors remain stable across positions, clustering around fixed centers
+- **Distance Preference:** Uses trigonometric series to characterize which distances are preferred
+- **Scoring Method:** Positions keys based on distance preference derived from Q/K centers, plus Q/K norms
+- **Advantage:** Queries rotate with RoPE, making post-RoPE queries poor for importance estimation; pre-RoPE space has stable structure
+- **Performance:** 2.5× higher throughput at matched accuracy on AIME25; 10.7× memory reduction
+- **Generality:** Verified across Qwen3, Qwen2.5, Llama3, GLM-4.7-Flash
+
+**Critical Question for RIC Review:** RIC proposes using "final N=128 conclusion tokens as proxy queries" in a "pre-RoPE attention pass." TriAttention uses a different approach (distance preference from Q/K centers) but also operates in pre-RoPE space. The RIC proposal should explicitly compare or differentiate from TriAttention's pre-RoPE design.
+
+Sources:
+- [TriAttention 2604.04921](https://arxiv.org/abs/2604.04921)
+- [TriAttention Project Page](https://weianmao.github.io/tri-attention-project-page/)
+
+---
+
+### 6. Conclusion/Summary Tokens as Query Proxies - **MIXED FINDINGS**
+
+**What Exists:**
+- Research on "thinking tokens" and their importance in reasoning (tokens like "Hmm", "Wait", "Therefore")
+- Evidence that specific tokens are "information peaks" in reasoning
+- Papers show models encode functional importance of reasoning tokens in attention patterns
+- Token recurrence phenomenon where intermediate conclusions regain attention
+
+**What Does NOT Exist with RIC's Specificity:**
+No papers found that specifically propose using final "conclusion tokens" (N=128) as proxy queries for pre-RoPE importance scoring in KV cache compression. This appears to be RIC's novel contribution.
+
+**Related Concepts:**
+- DapQ uses "future positional encodings" as proxy queries
+- SnapKV uses observation window tokens as queries
+- Lookahead Q-Cache uses lookahead pseudo queries
+- LazyEviction tracks token recurrence patterns
+
+**Assessment:** RIC's specific approach of using conclusion tokens appears novel, but the underlying proxy query paradigm is well-established.
+
+Sources:
+- [Extending Token Computation for LLM Reasoning 2403.14932](https://arxiv.org/abs/2403.14932)
+- [Demystifying Reasoning Dynamics with MI](https://openreview.net/forum?id=E1FrjgaG1J)
+- [Do LLMs Encode Functional Importance 2601.03066](https://arxiv.org/pdf/2601.03066)
+
+---
+
+### 7. Boundary-Triggered KV Compression - **SIGNIFICANT PRECEDENT FOUND**
+
+**Critical Finding:** Bottlenecked Transformers (arXiv 2505.16950) proposes boundary-triggered KV compression at reasoning step boundaries, directly similar to RIC's "&lt;/think> boundary" trigger.
+
+**Bottlenecked Transformers:**
+- Triggers compression at **newline-delimited reasoning step boundaries** (marks end of each reasoning step)
+- Uses auxiliary Cache Processor Transformer for periodic KV rewrites
+- Information Bottleneck theory foundation
+- Results: Substantial gains on mathematical reasoning; outperforms vanilla Transformers with 3.5× parameters
+
+**Key Difference from RIC:**
+- Bottlenecked uses newline boundaries (general reasoning steps)
+- RIC proposes &lt;/think> boundary (specific to explicit reasoning phase markers)
+- Bottlenecked applies **learned rewrites** via auxiliary Transformer
+- RIC proposes **lightweight pre-RoPE attention scoring** at boundary
+
+**Assessment:** While Bottlenecked Transformers is a precedent for boundary-triggered compression in reasoning, RIC's specific application to the &lt;/think> token boundary and use of conclusion tokens as proxy queries in pre-RoPE space appears novel. However, this should be discussed as related work.
+
+Sources:
+- [Bottlenecked Transformers 2505.16950](https://arxiv.org/abs/2505.16950)
+
+---
+
+## Summary of Critical Issues for Reviewer
+
+1. **TriAttention Comparison Missing:** TriAttention (2604.04921) already proposes pre-RoPE attention-based KV scoring. RIC must explicitly compare methodologies and explain advantages.
+
+2. **Boundary-Triggered Precedent:** Bottlenecked Transformers (2505.16950) proposes newline-boundary triggers for reasoning compression. This should be discussed in related work.
+
+3. **Proxy Query Paradigm:** While RIC's specific use of "conclusion tokens" appears novel, the proxy query approach (DapQ, SnapKV, Lookahead Q-Cache) is well-established. RIC should position its contribution clearly within this landscape.
+
+4. **Training-Free Claim:** Multiple recent methods (TriAttention, R-KV, LazyEviction) also claim training-free or lightweight approaches. Comparison on efficiency metrics would strengthen RIC's positioning.
+
+5. **Benchmark Gaps:** R-KV, LongFlow, LazyEviction all target reasoning models specifically. RIC should provide head-to-head comparisons on standard reasoning benchmarks (AIME25, mathematical reasoning, coding).
+
+6. **Novel Aspects to Highlight:**
+   - Specific use of N=128 conclusion tokens (not previously seen)
+   - Triggering specifically at &lt;/think> boundary (vs. general reasoning steps)
+   - Lightweight pre-RoPE scoring (vs. TriAttention's distance preference approach)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1207fcea-b037-4dba-8a16-1732eec4199b",
+  "isSidechain": true,
+  "agentId": "a2b2f1b4f6cb16f8e",
+  "requestId": "req_011CasZH9oxmisGDQFVPBRr6",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "a5df72c7-2183-487d-8c0f-cb701bc3b1d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e6cef37a-a6f7-4d5f-810c-21937921f9c8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_014VHPBbQYjvWtY3bsbmQvu4",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 4993,
+      "cache_read_input_tokens": 23864,
+      "output_tokens": 3119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4993
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 3119,
+          "cache_read_input_tokens": 23864,
+          "cache_creation_input_tokens": 4993,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4993,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

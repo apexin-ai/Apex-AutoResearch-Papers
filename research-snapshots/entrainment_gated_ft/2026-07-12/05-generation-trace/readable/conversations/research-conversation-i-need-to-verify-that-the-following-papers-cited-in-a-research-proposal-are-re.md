@@ -1,0 +1,1866 @@
+# Research conversation: I need to verify that the following papers cited in a research proposal are real. For each paper, use WebSearch to confi
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-a93f6e9dea4617407.jsonl`
+- **Structured JSON:** [`2692490bfb54667f014d.json`](../../sessions/26/2692490bfb54667f014d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 1 · 2026-05-11T21:23:34.608Z_
+
+I need to verify that the following papers cited in a research proposal are real. For each paper, use WebSearch to confirm:
+- The paper exists on arxiv at the stated ID
+- The title and venue/year are correct
+- Report the actual title, authors, and date
+
+Papers to verify:
+1. "Attention Matching" - arxiv 2602.16284 - claimed: "constructs compact KV pairs preserving attention output and attention mass, achieving 50x compaction in seconds"
+2. "CacheTTL" - arxiv 2511.02230 - claimed: "introduces a TTL window for KV cache retention in multi-turn agent scheduling"
+3. "PBKV" - arxiv 2605.06472 (May 2026) - claimed: "fuses historical and contextual workflow signals to predict future agent invocations, achieving 1.85x speedup over LRU"
+4. "CacheClip" - arxiv 2510.10129 - claimed: "uses auxiliary models for selective KV recomputation in RAG"
+
+For each, search for "[paper name] arxiv [ID]" and report what you find. If you cannot verify a paper, say so clearly. Also search for the paper titles directly to see if they exist under different IDs.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "f51eb514-d6e2-4d0a-a788-29781e75c6b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T21:23:34.614Z_
+
+```json
+{
+  "parentUuid": "f51eb514-d6e2-4d0a-a788-29781e75c6b2",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6017000b-bee6-4415-ab71-e7ec8037f0de",
+  "timestamp": "2026-05-11T21:23:34.614Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-11T21:23:37.404Z_
+
+
+
+I'll search for all four papers in parallel to verify their existence and details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6017000b-bee6-4415-ab71-e7ec8037f0de",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV6H1Yb7yTnHasF73wL",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5337fc8e-94fb-48e4-bb3a-058b1f8cdc53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99NK1S61h6HunhpT9bGw7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 7304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 821,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-11T21:23:37.515Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CjLtZdrP8XRKP17hWQ2C3R`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5337fc8e-94fb-48e4-bb3a-058b1f8cdc53",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV6H1Yb7yTnHasF73wL",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b728626d-478e-4e65-a146-fcef8bdfae7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B99NK1S61h6HunhpT9bGw7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 7304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 821,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-11T21:23:37.518Z_
+
+<details><summary>↩ Tool result · `toolu_01CjLtZdrP8XRKP17hWQ2C3R`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b728626d-478e-4e65-a146-fcef8bdfae7f",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "83073f5b-cbba-4726-ad79-d88f2a2fa6c3",
+  "sourceToolAssistantUUID": "b728626d-478e-4e65-a146-fcef8bdfae7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-11T21:23:40.877Z_
+
+
+
+Now let me search for all four papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83073f5b-cbba-4726-ad79-d88f2a2fa6c3",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV6Vh2voizR4ifSHU57",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0ec7a786-0ae2-47c7-9052-20d8e3365d80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014YVEvwubhQr9P1bDK6WPkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 8125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-11T21:23:41.416Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QxK9DRRz6iCCX3bAG8nZZf`</summary>
+
+```json
+{
+  "query": "Attention Matching arxiv 2602.16284"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ec7a786-0ae2-47c7-9052-20d8e3365d80",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV6Vh2voizR4ifSHU57",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a51f9b36-ec6c-4a6f-8520-10daf9b06105",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014YVEvwubhQr9P1bDK6WPkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 8125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-11T21:23:42.357Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EgoGQKGwNa8GPRMot4hTgk`</summary>
+
+```json
+{
+  "query": "CacheTTL arxiv 2511.02230"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a51f9b36-ec6c-4a6f-8520-10daf9b06105",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV6Vh2voizR4ifSHU57",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "84c69b85-a0ac-40e8-b189-8b7bce169600",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014YVEvwubhQr9P1bDK6WPkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 8125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-11T21:23:42.828Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CD3LVTUYZ6rhL5QrdZTcT7`</summary>
+
+```json
+{
+  "query": "PBKV arxiv 2605.06472"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84c69b85-a0ac-40e8-b189-8b7bce169600",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV6Vh2voizR4ifSHU57",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e389d215-34fb-4d51-9699-15e1a58d1107",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014YVEvwubhQr9P1bDK6WPkJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 8125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T21:23:43.156Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TRYxFqGT2EdJnxEsxPqZig`</summary>
+
+```json
+{
+  "query": "CacheClip arxiv 2510.10129"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e389d215-34fb-4d51-9699-15e1a58d1107",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV6Vh2voizR4ifSHU57",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9f76f99b-1085-4411-bf58-4e91da9e0667",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014YVEvwubhQr9P1bDK6WPkJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 8125,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1410
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 8125,
+          "cache_creation_input_tokens": 1410,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1410,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-11T21:23:48.217Z_
+
+<details><summary>↩ Tool result · `toolu_01CD3LVTUYZ6rhL5QrdZTcT7`</summary>
+
+```text
+Web search results for query: "PBKV arxiv 2605.06472"
+
+Links: [{"title":"[2604.06472] Data-Driven Constraints on Magnetar Population: No Evidence for a Distinct White Dwarf Channel","url":"https://arxiv.org/abs/2604.06472"},{"title":"[2601.06472] StablePDENet: Enhancing Stability of Operator Learning for Solving Differential Equations","url":"https://arxiv.org/abs/2601.06472"},{"title":"[2405.06472] Renormalization Flow of Nonlinear Electrodynamics","url":"https://arxiv.org/abs/2405.06472"},{"title":"[2605.01172] A Theory of Generalization in Deep Learning","url":"https://arxiv.org/abs/2605.01172"},{"title":"[1605.06472] Reconfigurable swarms of colloidal particles electrophoretically drivenin nematic liquid crystals","url":"https://arxiv.org/abs/1605.06472"},{"title":"[2602.06472] Distributed Circumferential Coverage Control in Non-Convex Annulus Environments","url":"https://arxiv.org/abs/2602.06472"},{"title":"[1501.06472] Condensation phenomena in two-flavor scalar QED at finite chemical potential","url":"https://arxiv.org/abs/1501.06472"},{"title":"[1910.06472] Generic properties of dispersion relations for discrete periodic operators","url":"https://arxiv.org/abs/1910.06472"},{"title":"[1805.06472] Survival probability in Generalized Rosenzweig-Porter random matrix ensemble","url":"https://arxiv.org/abs/1805.06472"},{"title":"[2304.06472] Binary Interaction with Multiple Fluid Type Cosmology Under Modified Gravity Frame","url":"https://arxiv.org/abs/2304.06472"}]
+
+The search didn't return a direct result for arxiv 2605.06472. The closest results show papers with similar ID numbers but different prefixes (2604.06472, 2601.06472, etc.). 
+
+The arxiv ID format you provided (2605.06472) would correspond to a paper submitted in May 2026, which is the current date. It's possible that:
+
+1. The paper may not yet be indexed by search engines
+2. The arxiv ID might have a typo
+3. The paper might be very recently uploaded and not yet widely discoverable
+
+If you're looking for a specific paper, you could try:
+- Visiting arxiv.org directly and searching for 2605.06472
+- Checking if "PBKV" is the author name or acronym and searching for that with other details
+- Verifying the exact arxiv ID number
+
+Would you like me to search for "PBKV" with different search terms, or do you have any additional information about the paper?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e389d215-34fb-4d51-9699-15e1a58d1107",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "a3457db3-df7d-433d-b3fc-fefab914b9c3",
+  "sourceToolAssistantUUID": "e389d215-34fb-4d51-9699-15e1a58d1107",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-11T21:23:48.742Z_
+
+<details><summary>↩ Tool result · `toolu_01QxK9DRRz6iCCX3bAG8nZZf`</summary>
+
+```text
+Web search results for query: "Attention Matching arxiv 2602.16284"
+
+Links: [{"title":"[2602.16284] Fast KV Compaction via Attention Matching","url":"https://arxiv.org/abs/2602.16284"},{"title":"Fast KV Compaction via Attention Matching","url":"https://arxiv.org/html/2602.16284"},{"title":"[2602.16284v1] Fast KV Compaction via Attention Matching","url":"https://arxiv.org/abs/2602.16284v1"},{"title":"Fast KV Compaction via Attention Matching","url":"https://www.emergentmind.com/papers/2602.16284"},{"title":"Paper page - Fast KV Compaction via Attention Matching","url":"https://huggingface.co/papers/2602.16284"},{"title":"Fast KV Compaction via Attention Matching | alphaXiv","url":"https://www.alphaxiv.org/resources/2602.16284"},{"title":"Understanding and Optimizing Attention-Based Sparse Matching for Diverse Local Features","url":"https://arxiv.org/html/2602.08430"},{"title":"Understanding and Optimizing Attention-Based Sparse Matching for Diverse","url":"https://arxiv.org/pdf/2602.08430"},{"title":"[2602.08430] Understanding and Optimizing Attention-Based Sparse Matching for Diverse Local Features","url":"https://arxiv.org/abs/2602.08430"},{"title":"Token Sparse Attention: Efficient Long-Context Inference with Interleaved Token Selection","url":"https://arxiv.org/html/2602.03216v1"}]
+
+Based on the search results, I found information about arxiv paper 2602.16284:
+
+## Fast KV Compaction via Attention Matching
+
+This work describes an approach for fast context compaction in latent space through Attention Matching, which constructs compact keys and values to reproduce attention outputs and preserve attention mass at a per-KV-head level.
+
+**Authors:** Adam Zweiger, Xinghong Fu, Han Guo, and Yoon Kim
+
+**Submission Date:** February 18, 2026
+
+**Problem Context:** Scaling language models to long contexts is often bottlenecked by the size of the key-value (KV) cache. In deployed settings, long contexts are typically managed through compaction in token space via summarization. However, summarization can be highly lossy, substantially harming downstream performance. Recent work on Cartridges has shown that it is possible to train highly compact KV caches in latent space that closely match full-context performance, but at the cost of slow and expensive end-to-end optimization.
+
+**Key Contribution:** This formulation naturally decomposes into simple subproblems, some of which admit efficient closed-form solutions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a51f9b36-ec6c-4a6f-8520-10daf9b06105",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "7171e85a-759b-464f-b62d-9605b5967b76",
+  "sourceToolAssistantUUID": "a51f9b36-ec6c-4a6f-8520-10daf9b06105",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-11T21:23:49.596Z_
+
+<details><summary>↩ Tool result · `toolu_01EgoGQKGwNa8GPRMot4hTgk`</summary>
+
+```text
+Web search results for query: "CacheTTL arxiv 2511.02230"
+
+Links: [{"title":"CacheTTL: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV","url":"https://arxiv.org/pdf/2511.02230"},{"title":"CacheTTL: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live","url":"https://arxiv.org/html/2511.02230"},{"title":"[2511.02230] Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live","url":"https://arxiv.org/abs/2511.02230"},{"title":"Paper page - Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live","url":"https://huggingface.co/papers/2511.02230"},{"title":"Empowering Sparse-Input Neural Radiance Fields with Dual-Level Semantic Guidance from Dense Novel Views","url":"https://arxiv.org/html/2503.02230"},{"title":"algorithm","url":"https://arxiv.org/html/2407.02230"},{"title":"Statistical properties and lensing effect on the repeating ...","url":"https://arxiv.org/pdf/2307.02230"},{"title":"[2512.02230] Benchmarking LLM Agents for Wealth-Management Workflows","url":"https://arxiv.org/abs/2512.02230"},{"title":"dblp: Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live.","url":"https://dblp.org/rec/journals/corr/abs-2511-02230.html"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1822&show=1000"}]
+
+Based on the search results, here's information about CacheTTL (arxiv 2511.02230):
+
+## Overview
+
+CacheTTL is a serving system to optimize job completion time for multi-turn agent workloads by introducing time-to-live mechanism for KV cache retention.
+
+## Key Problem
+
+Existing inference engines evict finished requests' KV cache if new requests are waiting, but this policy breaks for agentic workloads, which interleave LLM calls with tools, introducing pauses that prevent effective KV reuse across turns.
+
+## Core Mechanism
+
+For requests that generate tool calls, CacheTTL selectively pins the KV cache in GPU memory with a time-to-live value determined by the reload cost and potential queueing delay induced by eviction. When the TTL expires, the KV cache can be automatically evicted to free up GPU memory, providing robust performance under edge cases.
+
+## Results
+
+Evaluations on real-world agents (SWE-Bench, BFCL, OpenHand) with Llama-3.1 8B/70B, Gemma-3 12B, and GLM-4.5 355B shows that CacheTTL improves the average job completion times by over 8x while improving throughput.
+
+The paper was authored by researchers from UC Berkeley, Stanford University, Tensormesh, and Tsinghua University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84c69b85-a0ac-40e8-b189-8b7bce169600",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "8d7d0204-523b-4831-8b6c-9a457de147c9",
+  "sourceToolAssistantUUID": "84c69b85-a0ac-40e8-b189-8b7bce169600",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-11T21:23:51.108Z_
+
+<details><summary>↩ Tool result · `toolu_01TRYxFqGT2EdJnxEsxPqZig`</summary>
+
+```text
+Web search results for query: "CacheClip arxiv 2510.10129"
+
+Links: [{"title":"[2510.10129] CacheClip: Accelerating RAG with Effective KV Cache Reuse","url":"https://arxiv.org/abs/2510.10129"},{"title":"CacheClip: Accelerating RAG with Effective KV Cache Reuse","url":"https://arxiv.org/html/2510.10129v1"},{"title":"CacheClip: Accelerating RAG with Effective KV Cache Reuse","url":"https://www.researchgate.net/publication/396458373_CacheClip_Accelerating_RAG_with_Effective_KV_Cache_Reuse"},{"title":"[PDF] CacheClip: Accelerating RAG with Effective KV Cache Reuse | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CacheClip:-Accelerating-RAG-with-Effective-KV-Cache-Yang-Leng/ce9587ac624800977c412c8e19d995141fded68d"},{"title":"An experimental study of KV cache reuse strategies in chunk-level caching systems","url":"https://arxiv.org/html/2603.20218v1"},{"title":"KV Cache Reuse","url":"https://www.aussieai.com/research/kv-reuse"},{"title":"ProphetKV: User-Query-Driven Selective Recomputation for Efficient KV Cache Reuse in Retrieval-Augmented Generation","url":"https://arxiv.org/html/2602.02579v1"},{"title":"RAG Caching","url":"https://www.aussieai.com/research/rag-caching"},{"title":"[2512.10129] Elementary embeddings into ultrapower $\\mathrm{II}_1$ factors without a UCP lift","url":"https://arxiv.org/abs/2512.10129"},{"title":"arXiv:2501.10129v1 [cs.CV] 17 Jan 2025","url":"https://arxiv.org/pdf/2501.10129"}]
+
+Based on the search results, here's what I found about the paper CacheClip (arxiv 2510.10129):
+
+## Paper Overview
+
+CacheClip is a novel framework that achieves both fast TTFT and high generation quality in Retrieval-Augmented Generation (RAG) systems.
+
+## The Problem
+
+Retrieval-Augmented Generation (RAG) systems suffer from severe time-to-first-token (TTFT) bottlenecks due to long input sequences. Existing KV cache reuse methods face a fundamental trade-off: prefix caching requires identical prefixes that rarely occur in RAG scenarios, while direct precomputation sacrifices quality due to missing inter-chunk attention and repeated attention sinks.
+
+## Key Innovation
+
+Small auxiliary LLMs exhibit similar last-layer attention distributions to primary LLMs (the target model for generation), enabling efficient identification of tokens critical for restoring inter-chunk attention.
+
+## Methodology
+
+CacheClip integrates three techniques: (1) auxiliary-model-guided token selection for selective KV cache recomputation, where the auxiliary model is finetuned to improve selection accuracy, (2) shared prefixes to eliminate redundant attention sinks, and (3) grouping strategy to maintain local coherence during partial KV cache updates.
+
+## Performance Results
+
+Experiments show CacheClip retains up to 94.8% and 85.0% of full-attention performance on NIAH and LongBench, outperforming APE and CacheBlend by 25.2% and 35.1% on NIAH (with reomp% = 20%). Meanwhile, CacheClip accelerates LLM inference by up to 1.92x in prefill time.
+
+The paper was published on October 11, 2025, with authors Bin Yang, Qiuyu Leng, Jun Zeng, and Zhenhua Wu.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f76f99b-1085-4411-bf58-4e91da9e0667",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "4b2b4ea5-6d49-4595-bf95-aa365232741e",
+  "sourceToolAssistantUUID": "9f76f99b-1085-4411-bf58-4e91da9e0667",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-11T21:23:54.824Z_
+
+Now let me do additional searches to get more details on the papers that were found, and to search for PBKV by title since the arxiv ID didn't match.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b2b4ea5-6d49-4595-bf95-aa365232741e",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV7VCJKeWmgtGT7XLZN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "24f93b32-7b93-4f7c-abbf-2787a1db5694",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8YU3i1rotk8id1eg8zwBC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3537,
+      "cache_read_input_tokens": 9535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3537,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-11T21:23:55.359Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019D8caibbXt68CX4e5fVi5c`</summary>
+
+```json
+{
+  "query": "PBKV predictive KV cache agent invocation arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24f93b32-7b93-4f7c-abbf-2787a1db5694",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV7VCJKeWmgtGT7XLZN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7c0e382d-78b5-45d4-993c-4fe4f92a2800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8YU3i1rotk8id1eg8zwBC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3537,
+      "cache_read_input_tokens": 9535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3537,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-11T21:23:56.456Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VfoBP3nEFEKVaPrANcFpgC`</summary>
+
+```json
+{
+  "query": "\"PBKV\" KV cache predict future agent invocations LRU speedup arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c0e382d-78b5-45d4-993c-4fe4f92a2800",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV7VCJKeWmgtGT7XLZN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "50e4ca10-35b8-4cf2-a258-378355ef3de5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8YU3i1rotk8id1eg8zwBC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3537,
+      "cache_read_input_tokens": 9535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3537,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-11T21:23:57.834Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FSXibT831Tm8mw5dPGNTAC`</summary>
+
+```json
+{
+  "query": "arxiv 2511.02230 Continuum CacheTTL title authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50e4ca10-35b8-4cf2-a258-378355ef3de5",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV7VCJKeWmgtGT7XLZN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ddd42877-bd67-4795-849b-60e6b385eccd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8YU3i1rotk8id1eg8zwBC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3537,
+      "cache_read_input_tokens": 9535,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3537,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-11T21:23:58.102Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0171msiSz9EKaiXQ5p3XHUoM`</summary>
+
+```json
+{
+  "query": "arxiv 2602.16284 \"Attention Matching\" authors compaction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddd42877-bd67-4795-849b-60e6b385eccd",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV7VCJKeWmgtGT7XLZN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8aa333ee-8ad6-4849-8b7e-a0567059bc77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T8YU3i1rotk8id1eg8zwBC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3537,
+      "cache_read_input_tokens": 9535,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3537
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 9535,
+          "cache_creation_input_tokens": 3537,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3537,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-11T21:24:02.551Z_
+
+<details><summary>↩ Tool result · `toolu_019D8caibbXt68CX4e5fVi5c`</summary>
+
+```text
+Web search results for query: "PBKV predictive KV cache agent invocation arxiv 2026"
+
+Links: [{"title":"Efficient Serving for Dynamic Agent Workflows with Prediction-based KV-Cache Management","url":"https://arxiv.org/html/2605.06472v1"},{"title":"Predictive Multi-Tier Memory Management for KV Cache in Large-Scale GPU Inference","url":"https://arxiv.org/html/2604.26968"},{"title":"[2604.26968] Predictive Multi-Tier Memory Management for KV Cache in Large-Scale GPU Inference","url":"https://arxiv.org/abs/2604.26968"},{"title":"Predictive Multi-Tier Memory Management for KV Cache in ...","url":"https://arxiv.org/pdf/2604.26968"},{"title":"[2604.25975] Rethinking KV Cache Eviction via a Unified Information-Theoretic Objective","url":"https://arxiv.org/abs/2604.25975"},{"title":"KVFlow: Efficient Prefix Caching for Accelerating LLM-Based Multi-Agent Workflows","url":"https://arxiv.org/html/2507.07400"},{"title":"[2603.04428] Agent Memory Below the Prompt: Persistent Q4 KV Cache for Multi-Agent LLM Inference on Edge Devices","url":"https://arxiv.org/abs/2603.04428"},{"title":"Sequential KV Cache Compression via Probabilistic Language Tries: Beyond the Per-Vector Shannon Limit","url":"https://arxiv.org/html/2604.15356"},{"title":"KVCache Cache in the Wild: Characterizing and Optimizing KVCache Cache at a Large Cloud Provider","url":"https://arxiv.org/html/2506.02634v5"},{"title":"Utilizing KV Cache for Sampling and Reasoning","url":"https://arxiv.org/pdf/2601.20326"}]
+
+Based on the web search results, I found relevant information about PBKV (Prediction-Based KV-Cache Management):
+
+PBKV (Prediction-Based KV-Cache Management) is a system built to serve dynamic LLM-based agent workflows efficiently. For each workflow, PBKV predicts the agent invocations in several future steps by fusing guidance from historical workflows and context of the target workflow, and based on the predictions, estimates the reuse potential of cache entries while keeping high-potential entries in GPU memory.
+
+PBKV consists of three components: (i) a predictor that produces a multi-step forecast for each active workflow, (ii) a set of KV-Cache management policies that translate the forecasts into eviction and prefetching decisions, and (iii) a two-tier KV-Cache storage organized as a Radix Tree on GPU memory and HiCache on host memory.
+
+The predictor fuses two complementary signals: graph-level agent transition patterns shared across requests, and produces K probability distributions over upcoming agent invocations, rather than only the next one, preventing myopic eviction. The KV-Cache management policies consist of an eviction policy and a prefetching policy that share a common reuse scoring mechanism and design philosophy of embedding deterministic guardrails within a probabilistic system.
+
+The paper appears to be from arXiv 2605.06472 (May 2026), addressing the challenge of managing KV caches in dynamic agent workflows where the sequence of invoked agents varies based on task context.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c0e382d-78b5-45d4-993c-4fe4f92a2800",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "9612f642-4780-4a10-8320-31dc6d220803",
+  "sourceToolAssistantUUID": "7c0e382d-78b5-45d4-993c-4fe4f92a2800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-11T21:24:02.919Z_
+
+<details><summary>↩ Tool result · `toolu_01FSXibT831Tm8mw5dPGNTAC`</summary>
+
+```text
+Web search results for query: "arxiv 2511.02230 Continuum CacheTTL title authors"
+
+Links: [{"title":"[2511.02230] Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live","url":"https://arxiv.org/abs/2511.02230"},{"title":"CacheTTL: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live","url":"https://arxiv.org/html/2511.02230"},{"title":"Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live","url":"https://arxiv.org/html/2511.02230v2"},{"title":"CacheTTL: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV","url":"https://arxiv.org/pdf/2511.02230"},{"title":"Paper page - Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live","url":"https://huggingface.co/papers/2511.02230"},{"title":"dblp: Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live.","url":"https://dblp.org/rec/journals/corr/abs-2511-02230.html"},{"title":"(PDF) Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live","url":"https://www.researchgate.net/publication/397279804_Continuum_Efficient_and_Robust_Multi-Turn_LLM_Agent_Scheduling_with_KV_Cache_Time-to-Live"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/recent?skip=1192&show=2000"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1259&show=1000"},{"title":"Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv251102230L/abstract"}]
+
+Based on the search results, here is the information about arxiv 2511.02230:
+
+**Title:** Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live
+
+**Authors:** Hanchen Li, Runyuan He, Qiuyang Mang, Qizheng Zhang, Huanzhi Mao, Xiaokun Chen, Hangrui Zhou, Alvin Cheung, Joseph Gonzalez, Ion Stoica
+
+**Related Name:** The paper is also referred to as CacheTTL, a serving system to optimize job completion time for multi-turn agent workloads by introducing time-to-live mechanism for KV cache retention.
+
+The paper addresses KV cache management for efficient LLM inference in agentic workloads that involve multiple turns of tool calls and LLM interactions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddd42877-bd67-4795-849b-60e6b385eccd",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "7951299a-f006-43b8-af8a-628325f8a8eb",
+  "sourceToolAssistantUUID": "ddd42877-bd67-4795-849b-60e6b385eccd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-11T21:24:03.298Z_
+
+<details><summary>↩ Tool result · `toolu_01VfoBP3nEFEKVaPrANcFpgC`</summary>
+
+```text
+Web search results for query: ""PBKV" KV cache predict future agent invocations LRU speedup arxiv"
+
+Links: [{"title":"Efficient Serving for Dynamic Agent Workflows with Prediction-based KV-Cache Management","url":"https://arxiv.org/html/2605.06472v1"},{"title":"KVFlow: Efficient Prefix Caching for Accelerating LLM-Based Multi-Agent Workflows","url":"https://arxiv.org/html/2507.07400v1"},{"title":"KVFlow: Efficient Prefix Caching for Accelerating LLM- ...","url":"https://arxiv.org/pdf/2507.07400"},{"title":"[2507.07400] KVFlow: Efficient Prefix Caching for Accelerating LLM-Based Multi-Agent Workflows","url":"https://arxiv.org/abs/2507.07400"},{"title":"SAGA: Workflow-Atomic Scheduling for AI Agent Inference on GPU Clusters","url":"https://arxiv.org/html/2605.00528"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"KVFlow: Efficient Prefix Caching for Accelerating LLM-Based Multi-Agent Workflows | OpenReview","url":"https://openreview.net/forum?id=5Iw1nDtYmT"},{"title":"[2603.10899] LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation","url":"https://arxiv.org/abs/2603.10899"},{"title":"PaFu-KV: Past & Future-Informed Cache Policy","url":"https://www.emergentmind.com/topics/past-and-future-informed-kv-cache-policy-pafu-kv"},{"title":"LookaheadKV: Fast and Accurate KV Cache Eviction by ...","url":"https://arxiv.org/pdf/2603.10899"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## PBKV Paper
+
+The most recent result is "Efficient Serving for Dynamic Agent Workflows with Prediction-based KV-Cache Management," which introduces PBKV, a system that delivers substantial gains in both system efficiency and quality of service for managing KV caches in agent workflows.
+
+### Key Features of PBKV
+
+PBKV uses lifecycle-aware eviction to prevent mistakenly evicting active cache that will still be reused, unlike LRU and KVFlow. Additionally, PBKV performs cross-workflow reuse aggregation, aggregating the predicted reuse contribution from every active workflow accessing a cache node.
+
+### Performance Results
+
+PBKV achieves speedups over LRU, with PBKV-HE achieving a KV-cache hit rate of 66.01% through assessment of reuse value via cross-workflow aggregation and multi-step lookahead. Full PBKV, which introduces speculative prefetching, attains a hit rate of 69.10%.
+
+The paper was published very recently (within 4 days ago based on the metadata) on arXiv as paper 2605.06472.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50e4ca10-35b8-4cf2-a258-378355ef3de5",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "5219c02b-cd3a-4438-b119-5b302cc440fd",
+  "sourceToolAssistantUUID": "50e4ca10-35b8-4cf2-a258-378355ef3de5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-11T21:24:05.987Z_
+
+<details><summary>↩ Tool result · `toolu_0171msiSz9EKaiXQ5p3XHUoM`</summary>
+
+```text
+Web search results for query: "arxiv 2602.16284 "Attention Matching" authors compaction"
+
+Links: [{"title":"[2602.16284] Fast KV Compaction via Attention Matching","url":"https://arxiv.org/abs/2602.16284"},{"title":"Fast KV Compaction via Attention Matching","url":"https://arxiv.org/pdf/2602.16284"},{"title":"[2602.16284v1] Fast KV Compaction via Attention Matching","url":"https://arxiv.org/abs/2602.16284v1"},{"title":"Paper page - Fast KV Compaction via Attention Matching","url":"https://huggingface.co/papers/2602.16284"},{"title":"Fast KV Compaction via Attention Matching","url":"https://www.emergentmind.com/papers/2602.16284"},{"title":"Fast KV Compaction via Attention Matching | alphaXiv","url":"https://www.alphaxiv.org/resources/2602.16284"},{"title":"Fast KV Compaction via Attention Matching | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/fast-kv-compaction-via-attention-matching"},{"title":"[2505.16284] Only Large Weights (And Not Skip Connections) Can Prevent the Perils of Rank Collapse","url":"https://arxiv.org/abs/2505.16284"},{"title":"Understanding and Optimizing Attention-Based Sparse Matching for Diverse Local Features","url":"https://arxiv.org/html/2602.08430"},{"title":"Gradually Compacting Large Language Models for Reasoning Like a Boiling Frog","url":"https://arxiv.org/html/2602.04919v1"}]
+
+Based on the search results, here's the information about arxiv paper 2602.16284:
+
+**Paper Title:** Fast KV Compaction via Attention Matching
+
+**Authors:** Adam Zweiger, Xinghong Fu, Han Guo, and Yoon Kim
+
+**Main Contribution:** The work describes an approach for fast context compaction in latent space through Attention Matching, which constructs compact keys and values to reproduce attention outputs and preserve attention mass at a per-KV-head level.
+
+**Key Results:** The attention-matching methods exceed the performance of Cartridges while being 2 orders of magnitude faster, and Attention Matching consistently outperforms other approaches across compaction ratios, while matching Cartridges' performance.
+
+The paper addresses the problem of scaling language models to long contexts, which is often limited by key-value (KV) cache size.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8aa333ee-8ad6-4849-8b7e-a0567059bc77",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "d03a016d-d243-4a7e-99d0-107a6734ce5a",
+  "sourceToolAssistantUUID": "8aa333ee-8ad6-4849-8b7e-a0567059bc77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-11T21:24:12.036Z_
+
+Now let me get a few more details to complete the verification -- specifically for CacheClip's authors and PBKV's full details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d03a016d-d243-4a7e-99d0-107a6734ce5a",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV8aoAzjd6LiXCAb9vC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ed2b1296-12fc-4dfe-8aee-39ae2987843e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015pej9bstB8JqUPd1ZWJPTV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3565,
+      "cache_read_input_tokens": 13072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-11T21:24:12.579Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019KCdFLf4jUQz63p4YtmrXj`</summary>
+
+```json
+{
+  "query": "arxiv 2510.10129 CacheClip authors date RAG KV cache recomputation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed2b1296-12fc-4dfe-8aee-39ae2987843e",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV8aoAzjd6LiXCAb9vC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0591a03f-1847-4923-b60e-9223d95985dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015pej9bstB8JqUPd1ZWJPTV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3565,
+      "cache_read_input_tokens": 13072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-11T21:24:13.269Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019XfGAbENkRv56bEzme7Yp3`</summary>
+
+```json
+{
+  "query": "arxiv 2605.06472 PBKV authors \"prediction-based\" agent workflow KV cache title"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0591a03f-1847-4923-b60e-9223d95985dc",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV8aoAzjd6LiXCAb9vC",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6f748f9f-1364-4e97-962b-fff8360b1554",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015pej9bstB8JqUPd1ZWJPTV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3565,
+      "cache_read_input_tokens": 13072,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-11T21:24:18.634Z_
+
+<details><summary>↩ Tool result · `toolu_019XfGAbENkRv56bEzme7Yp3`</summary>
+
+```text
+Web search results for query: "arxiv 2605.06472 PBKV authors "prediction-based" agent workflow KV cache title"
+
+Links: [{"title":"[2605.01172] A Theory of Generalization in Deep Learning","url":"https://arxiv.org/abs/2605.01172"},{"title":"[2604.06472] Data-Driven Constraints on Magnetar Population: No Evidence for a Distinct White Dwarf Channel","url":"https://arxiv.org/abs/2604.06472"},{"title":"[2601.06472] StablePDENet: Enhancing Stability of Operator Learning for Solving Differential Equations","url":"https://arxiv.org/abs/2601.06472"},{"title":"[2602.06472] Distributed Circumferential Coverage Control in Non-Convex Annulus Environments","url":"https://arxiv.org/abs/2602.06472"},{"title":"[1605.06472] Reconfigurable swarms of colloidal particles electrophoretically drivenin nematic liquid crystals","url":"https://arxiv.org/abs/1605.06472"},{"title":"Top arXiv papers","url":"https://scirate.com/?date=2026-06-19&page=13&range=56"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=1259&show=1000"},{"title":"[2511.06472] Simulated Affection, Engineered Trust: How Anthropomorphic AI Benefits Surveillance Capitalism","url":"https://arxiv.org/abs/2511.06472"},{"title":"Cost-Efficient LLM Training with Lifetime-Aware Tensor Offloading via GPUDirect Storage","url":"https://arxiv.org/html/2506.06472"},{"title":"[2101.06472] Self-interacting Inelastic Dark Matter in the light of XENON1T excess","url":"https://arxiv.org/abs/2101.06472"}]
+
+Perfect! I found the paper in the search results. Based on the information from the ScitaRate page (search result index 6), here's what I found:
+
+The paper arxiv:2605.06472 is about PBKV (Prediction-Based KV-Cache Management), which predicts agent invocations in several future steps by fusing guidance from historical workflows and context of the target workflow.
+
+The research addresses how LLM-based workflows compose specialized agents to execute complex tasks where agents share substantial context, allowing KV-Cache reuse to save computation, but practical workflows are typically dynamic where the sequence of invoked agents and thus induced cache reuse opportunities depend on the context of each task.
+
+Unfortunately, the search results don't provide the full list of authors for this paper. To get that information, you would need to visit the full paper page on arXiv at https://arxiv.org/abs/2605.06472.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f748f9f-1364-4e97-962b-fff8360b1554",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "83ea9c09-201b-48e7-9bdf-f536cbc80585",
+  "sourceToolAssistantUUID": "6f748f9f-1364-4e97-962b-fff8360b1554",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-11T21:24:18.746Z_
+
+<details><summary>↩ Tool result · `toolu_019KCdFLf4jUQz63p4YtmrXj`</summary>
+
+```text
+Web search results for query: "arxiv 2510.10129 CacheClip authors date RAG KV cache recomputation"
+
+Links: [{"title":"[2510.10129] CacheClip: Accelerating RAG with Effective KV Cache Reuse","url":"https://arxiv.org/abs/2510.10129"},{"title":"CacheClip: Accelerating RAG with Effective KV Cache Reuse","url":"https://arxiv.org/html/2510.10129v1"},{"title":"[PDF] CacheClip: Accelerating RAG with Effective KV Cache Reuse | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CacheClip:-Accelerating-RAG-with-Effective-KV-Cache-Yang-Leng/ce9587ac624800977c412c8e19d995141fded68d"},{"title":"CacheClip: Accelerating RAG with Effective KV Cache Reuse","url":"https://www.researchgate.net/publication/396458373_CacheClip_Accelerating_RAG_with_Effective_KV_Cache_Reuse"},{"title":"KV Cache Reuse","url":"https://www.aussieai.com/research/kv-reuse"},{"title":"RAG Caching","url":"https://www.aussieai.com/research/rag-caching"},{"title":"LMCache: An Efficient KV Cache Layer for Enterprise","url":"https://www.facebook.com/james24plus1/photos/lmcache-an-efficient-kv-cache-layer-for-enterprise-scale-llm-inference-httpsarxi/1375993941221803/"},{"title":"[2510.09665] LMCache: An Efficient KV Cache Layer for Enterprise-Scale LLM Inference","url":"https://arxiv.org/abs/2510.09665"},{"title":"Yuhan Liu","url":"https://scholar.google.com/citations?user=MISIP-oAAAAJ&hl=en"},{"title":"GitHub - LMCache/LMCache: Supercharge Your LLM with the Fastest KV Cache Layer · GitHub","url":"https://github.com/lmcache/lmcache"}]
+
+Based on the search results, here is the information about arXiv paper 2510.10129:
+
+**Paper Title:** CacheClip: Accelerating RAG with Effective KV Cache Reuse
+
+**Authors:** Bin Yang, Qiuyu Leng, Jun Zeng, and Zhenhua Wu
+
+**Publication Date:** October 11, 2025
+
+**Overview:** CacheClip is a novel framework that achieves both fast TTFT (time-to-first-token) and high generation quality. CacheClip integrates three techniques: (1) auxiliary-model-guided token selection for selective KV cache recomputation, where the auxiliary model is finetuned to improve selection accuracy, (2) shared prefixes to eliminate redundant attention sinks, and (3) grouping strategy to maintain local coherence during partial KV cache updates.
+
+**Performance Results:** Experiments show CacheClip retains up to 94.8% and 85.0% of full-attention performance on NIAH and LongBench, outperforming APE and CacheBlend by 25.2% and 35.1% on NIAH (with reomp% = 20%), while accelerating LLM inference by up to 1.92x in prefill time.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0591a03f-1847-4923-b60e-9223d95985dc",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "0df09909-2902-4134-876d-f9acafcdadc5",
+  "sourceToolAssistantUUID": "0591a03f-1847-4923-b60e-9223d95985dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-11T21:24:21.516Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0125zU2c5F5p6dC5m1s3AyL6`</summary>
+
+```json
+{
+  "query": "site:arxiv.org 2605.06472 \"Efficient Serving for Dynamic Agent Workflows\" authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0df09909-2902-4134-876d-f9acafcdadc5",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawV9XHcTghxs7hGMw435",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b3c0783e-d984-43d1-a34f-4eedc3f1b106",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SrUBsZQw3jJ9QrPFarbHGe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 744,
+      "cache_creation_input_tokens": 1062,
+      "cache_read_input_tokens": 16637,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1062
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 744,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 16637,
+          "cache_creation_input_tokens": 1062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1062,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-11T21:24:25.728Z_
+
+<details><summary>↩ Tool result · `toolu_0125zU2c5F5p6dC5m1s3AyL6`</summary>
+
+```text
+Web search results for query: "site:arxiv.org 2605.06472 "Efficient Serving for Dynamic Agent Workflows" authors"
+
+Links: [{"title":"Efficient Serving for Dynamic Agent Workflows with Prediction-based KV-Cache Management","url":"https://arxiv.org/html/2605.06472v1"},{"title":"Nalar: A Serving Framework for Agent Workflows","url":"https://arxiv.org/html/2601.05109v1"},{"title":"[2605.06110] On Time, Within Budget: Constraint-Driven Online Resource Allocation for Agentic Workflows","url":"https://arxiv.org/abs/2605.06110"},{"title":"Murakkab: Resource-Efficient Agentic Workflow Orchestration in Cloud Platforms","url":"https://arxiv.org/pdf/2508.18298"},{"title":"PARNESS: A Paper Harness for End-to-End Automated Scientific Research with Dynamic Workflows, Full-Text Indexing, and Cross-Run Knowledge Accumulation","url":"https://arxiv.org/html/2605.05258"},{"title":"From Intent to Execution: Composing Agentic Workflows with Agent Recommendation","url":"https://arxiv.org/html/2605.03986"},{"title":"AAFLOW: Scalable Patterns for Agentic AI Workflows","url":"https://arxiv.org/html/2605.02162v1"},{"title":"Efficient LLM Serving for Agentic Workflows: A Data Systems Perspective (Extended)","url":"https://arxiv.org/html/2603.16104v1"},{"title":"Optimizing Agentic Workflows using Meta-tools","url":"https://arxiv.org/html/2601.22037v2"},{"title":"[2512.09548] Supporting Dynamic Agentic Workloads: How Data and Agents Interact","url":"https://arxiv.org/abs/2512.09548"}]
+
+Based on the search results, I found the paper you're looking for. The authors of "Efficient Serving for Dynamic Agent Workflows" (arXiv:2605.06472) are Haoyu Zheng, Fangcheng Fu, Jia Wu, Binhang Yuan, Yongqiang Zhang, Hao Wang, Yuanyuan Zhu, Xiao Yan, and Jiawei Jiang from institutions including Wuhan University, Dameng Database, Shanghai Jiao Tong University, Macquarie University, and HKUST.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b3c0783e-d984-43d1-a34f-4eedc3f1b106",
+  "isSidechain": true,
+  "promptId": "9d92b139-0e57-4366-ae79-a6326d2c2517",
+  "agentId": "a93f6e9dea4617407",
+  "type": "user",
+  "uuid": "5f0ccfca-6042-43d4-aa98-b3f80bcbf979",
+  "sourceToolAssistantUUID": "b3c0783e-d984-43d1-a34f-4eedc3f1b106",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-11T21:25:03.097Z_
+
+Here are the verification results for all four papers:
+
+---
+
+## Paper 1: "Attention Matching" -- arxiv 2602.16284
+
+**VERIFIED -- with caveats on the name.**
+
+- **Actual Title:** "Fast KV Compaction via Attention Matching"
+- **Authors:** Adam Zweiger, Xinghong Fu, Han Guo, and Yoon Kim
+- **Date:** February 18, 2026
+- **Claim check:** The claim that it "constructs compact KV pairs preserving attention output and attention mass, achieving 50x compaction in seconds" is broadly consistent with the paper's description. The paper constructs compact keys and values to reproduce attention outputs and preserve attention mass at a per-KV-head level, and claims to be 2 orders of magnitude faster than prior work (Cartridges). The "50x compaction" figure would need to be checked against the actual paper, but the general framing is plausible.
+- **Verdict:** The paper is real. The arxiv ID, topic, and general claims align. The proposal cites it as just "Attention Matching" but the full title is "Fast KV Compaction via Attention Matching."
+
+---
+
+## Paper 2: "CacheTTL" -- arxiv 2511.02230
+
+**VERIFIED -- but the actual title is different.**
+
+- **Actual Title:** "Continuum: Efficient and Robust Multi-Turn LLM Agent Scheduling with KV Cache Time-to-Live"
+- **Authors:** Hanchen Li, Runyuan He, Qiuyang Mang, Qizheng Zhang, Huanzhi Mao, Xiaokun Chen, Hangrui Zhou, Alvin Cheung, Joseph Gonzalez, Ion Stoica (UC Berkeley, Stanford, Tensormesh, Tsinghua)
+- **Date:** November 2025
+- **Claim check:** The claim that it "introduces a TTL window for KV cache retention in multi-turn agent scheduling" is accurate. The paper introduces a time-to-live mechanism for KV cache retention in agentic workloads that interleave LLM calls with tool use. Results show 8x improvement in job completion time.
+- **Verdict:** The paper is real. The proposal refers to it as "CacheTTL," which appears to be an informal/alternate name -- the system is described as a "CacheTTL" mechanism within the paper, but the official paper title is "Continuum." The arxiv ID and technical claims are correct.
+
+---
+
+## Paper 3: "PBKV" -- arxiv 2605.06472
+
+**VERIFIED -- with caveats on title and recency.**
+
+- **Actual Title:** "Efficient Serving for Dynamic Agent Workflows with Prediction-based KV-Cache Management"
+- **Authors:** Haoyu Zheng, Fangcheng Fu, Jia Wu, Binhang Yuan, Yongqiang Zhang, Hao Wang, Yuanyuan Zhu, Xiao Yan, Jiawei Jiang (Wuhan University, Dameng Database, Shanghai Jiao Tong University, Macquarie University, HKUST)
+- **Date:** May 2026 (very recent -- within the last few days)
+- **Claim check:** The claim that it "fuses historical and contextual workflow signals to predict future agent invocations" is accurate. PBKV fuses graph-level agent transition patterns (historical) and context of the target workflow to produce multi-step forecasts of agent invocations. The claim of "1.85x speedup over LRU" could not be precisely verified from search snippets alone (the paper does report speedups over LRU but the exact figure would need to be confirmed from the full paper), though the general approach matches.
+- **Verdict:** The paper is real and the arxiv ID is correct. "PBKV" is a shorthand for the system name (Prediction-Based KV-cache management). The paper is extremely recent (May 2026), which is worth noting.
+
+---
+
+## Paper 4: "CacheClip" -- arxiv 2510.10129
+
+**VERIFIED.**
+
+- **Actual Title:** "CacheClip: Accelerating RAG with Effective KV Cache Reuse"
+- **Authors:** Bin Yang, Qiuyu Leng, Jun Zeng, and Zhenhua Wu
+- **Date:** October 11, 2025
+- **Claim check:** The claim that it "uses auxiliary models for selective KV recomputation in RAG" is accurate. CacheClip's core innovation is that small auxiliary LLMs exhibit similar attention distributions to the primary LLM, enabling efficient identification of tokens critical for restoring inter-chunk attention. It uses auxiliary-model-guided token selection for selective KV cache recomputation.
+- **Verdict:** The paper is real. Title, arxiv ID, and technical claims all match.
+
+---
+
+## Summary
+
+| Paper | Arxiv ID | Exists? | Title Accurate? | Claims Consistent? |
+|-------|----------|---------|-----------------|-------------------|
+| Attention Matching | 2602.16284 | Yes | Partial -- full title is "Fast KV Compaction via Attention Matching" | Yes |
+| CacheTTL | 2511.02230 | Yes | Misleading -- actual title is "Continuum: ..." | Yes |
+| PBKV | 2605.06472 | Yes | Partial -- full title is "Efficient Serving for Dynamic Agent Workflows with Prediction-based KV-Cache Management" | Yes (speedup figure unconfirmed) |
+| CacheClip | 2510.10129 | Yes | Yes | Yes |
+
+All four papers are real and exist at the stated arxiv IDs. The technical claims in the proposal are broadly consistent with the actual papers. The main discrepancies are in paper naming: "CacheTTL" is actually titled "Continuum," and "Attention Matching" and "PBKV" are shortened from their full titles.
+
+Sources:
+- [Fast KV Compaction via Attention Matching (2602.16284)](https://arxiv.org/abs/2602.16284)
+- [Continuum / CacheTTL (2511.02230)](https://arxiv.org/abs/2511.02230)
+- [PBKV - Efficient Serving for Dynamic Agent Workflows (2605.06472)](https://arxiv.org/html/2605.06472v1)
+- [CacheClip (2510.10129)](https://arxiv.org/abs/2510.10129)
+- [PBKV on HuggingFace Papers](https://huggingface.co/papers/2602.16284)
+- [Continuum on DBLP](https://dblp.org/rec/journals/corr/abs-2511-02230.html)
+- [CacheClip on Semantic Scholar](https://www.semanticscholar.org/paper/CacheClip:-Accelerating-RAG-with-Effective-KV-Cache-Yang-Leng/ce9587ac624800977c412c8e19d995141fded68d)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f0ccfca-6042-43d4-aa98-b3f80bcbf979",
+  "isSidechain": true,
+  "agentId": "a93f6e9dea4617407",
+  "requestId": "req_011CawVA3BTJdxGbCdRm4yUM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2dd5f142-8587-484c-8d87-e1f527c71fcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "a61503d0-f477-4b98-9571-97202616b706",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKG5UtXC8PYnyPopCVPR6x",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1465,
+      "cache_read_input_tokens": 17699,
+      "output_tokens": 1716,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1465
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1716,
+          "cache_read_input_tokens": 17699,
+          "cache_creation_input_tokens": 1465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1465,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

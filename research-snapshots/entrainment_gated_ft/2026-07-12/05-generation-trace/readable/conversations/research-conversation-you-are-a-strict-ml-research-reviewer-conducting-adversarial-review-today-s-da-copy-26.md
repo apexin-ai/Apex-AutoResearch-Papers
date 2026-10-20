@@ -1,0 +1,6408 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 84
+- **Recorded user turns:** 1
+- **Tool calls:** 26
+- **Original source:** `logs/chats/exported-trajectories/account-1/9e9fcc6c-9e4e-495d-bc17-924a8cad9d61.jsonl`
+- **Structured JSON:** [`79994b08824cd71c4d0e.json`](../../sessions/79/79994b08824cd71c4d0e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T02:50:40.757Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T02:50:40.757Z",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Efficient Methods for NLP.\n\nDirection: Efficiency methods for NLP — NOT limited to LLM inference optimization. In-scope: speculative decoding, KV-cache compression/eviction, quantization-aware distillation, parameter-efficient fine-tuning, efficient long-context serving, MoE routing, attention approximations, efficient smaller models for specific NLP tasks, pruning for task-specific deployment.\n\nContribution type: METHOD ONLY. Propose new algorithms — not profiling studies.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Generous for efficiency work.\n2. Time: ≤16 days. Build on vLLM, SGLang, llama.cpp, TensorRT-LLM, HF Transformers, FlashAttention, bitsandbytes.\n3. Eval: perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench. Report wall-clock and throughput on H100.\n\nLook for: cache-aware methods for new workloads (long thinking traces, agent loops, RAG), quantization-aware distillation, structured sparsity during inference, efficient serving of reasoning models with variable-length thinking. Avoid: vanilla 4-bit quantization, generic LoRA, plain speculative decoding.\n\nTag: direction=efficiency, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 6/10)\n{\n  \"title\": \"Composing Static and Contextual Corrections for Activation Sparsity in SwiGLU LLMs via Output-Distribution Distillation\",\n  \"core_problem\": \"Training-free activation sparsity methods (WINA, TEAL, R-Sparse) have enabled 40-60% model-level neuron pruning on native SwiGLU LLMs, but leave a substantial quality gap: at 50% model-level activation sparsity on Llama-3-8B, WINA achieves 59.57% average across six standard benchmarks (PIQA, ARC-c, WinoGrande, HellaSwag, MMLU, GSM8K) versus the dense model's 66.38% — a 6.81-point drop, with reasoning-heavy tasks (GSM8K, MMLU) degrading disproportionately. Two recent learned approaches partially address this gap from complementary but individually incomplete directions. SPON (Resting Neurons, arXiv 2512.12744v3, ICML 2026 — venue confirmed via arXiv metadata updated on the April 30 notification date) introduces static, input-independent learnable bias vectors trained via KL-divergence distillation, recovering ~1 point over WINA on five QA benchmarks (ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande; 71.96 vs 70.97 weighted average) at zero inference overhead — demonstrating that output-distribution alignment helps, but leaving input-dependent importance patterns entirely unaddressed. FastForward (arXiv 2602.00397) trains contextual predictors with weighted BCE loss plus an error compensation network (2-layer MLP, r'=d_model/8) trained with MSE loss that operates at inference time, achieving MMLU 67.17 vs dense 67.84 at 50% FFN sparsity on Llama-3.1-8B — demonstrating that contextual prediction helps, but requiring the auxiliary compensation network to address the output-quality deficiency inherent in BCE's per-neuron objective. The critical insight is that BCE's training signal decomposes as L_BCE = Σ_j l(y_j, s_j), a mean-field factorization P(y_1,...,y_D) ≈ Π_j P(y_j) that treats each neuron's activation decision as independent of all others. This cannot capture joint interaction effects — the fact that pruning neuron A may only degrade output quality when neuron B in the same or subsequent layer is also pruned. FastForward's error compensation network is an engineering fix for this fundamental limitation: it patches output errors post-hoc rather than training the predictor to avoid them. KL divergence on output logits, by contrast, backpropagates through the full sparse forward pass via ∂L_KL/∂θ = ∂L_KL/∂p_sparse · ∂p_sparse/∂h_out · ∂h_out/∂m · ∂m/∂θ, where the term ∂h_out/∂m captures how each neuron's mask decision jointly affects the output in combination with all other active neurons. This yields a testable prediction: KL's advantage over BCE should increase with sparsity level, because higher sparsity creates more simultaneous neuron removals and thus more pairwise and higher-order interaction terms that BCE's independent decomposition cannot model.\",\n  \"opportunity\": \"The landscape reveals three actionable opportunities. First, the composition question: SPON's static bias correction fixes average-case representational drift (input-independent) while contextual prediction handles per-input variation (input-dependent) — orthogonal mechanisms that should provide additive benefits. If confirmed empirically, the SPON + contextual predictor composition becomes a practical recipe with a clear mechanistic explanation. Second, the training objective question: if a KL-trained predictor (no compensation) matches or exceeds the quality of FastForward's full BCE + compensation system, the practical benefit is substantial — a simpler inference pipeline with lower overhead. FastForward's compensation MLP adds ~4.72 MB of weights per layer and associated GEMV operations at inference time; eliminating it simplifies deployment without sacrificing quality. This transforms the contribution from 'KL is slightly better than BCE' to 'KL training makes error compensation unnecessary.' Third, the formal mean-field analysis elevates the contribution from empirical observation to principled insight: we derive that BCE's per-neuron decomposition L_BCE = Σ_j l(y_j, s_j) is equivalent to optimizing under a mean-field factorized posterior over neuron importance, ignoring all pairwise and higher-order interaction terms. At sparsity level s, the number of simultaneously pruned neuron pairs scales as O(s²D²), so the approximation gap grows quadratically with sparsity — predicting that KL's advantage should be substantially larger at 50% than at 40% sparsity. This is a testable, falsifiable prediction that, if confirmed, provides actionable guidance for all future predictor design. The contribution is fourfold: (1) the first empirical study of whether static bias correction (SPON) and contextual prediction compose additively for activation sparsity — the headline result; (2) a controlled four-condition ablation (BCE, BCE+compensation, KL, KL+compensation) testing whether KL training subsumes error compensation; (3) a formalized mean-field argument with the sparsity-level interaction prediction; and (4) a systematic three-tier comparison (training-free, static-learned, contextual-learned) on native SwiGLU at decode time with honest wall-clock overhead reporting.\",\n  \"landscape\": \"Training-free activation sparsity on SwiGLU has rapidly progressed: WINA (ICLR 2026) achieves the training-free SOTA with weight-informed scoring and per-layer sparsity allocation, reporting 59.57% average on Llama-3-8B at 50% model-level sparsity versus 66.38% dense; WAS (EMNLP 2025) achieves 60% model-level sparsity via weight-aware scoring with constrained Bayesian optimization; WiSparse (arXiv 2026) preserves 97% of dense performance at 50% sparsity via weight-aware mixed-granularity allocation; TEAL (ICLR 2025) achieves 40-50% sparsity with 1.5-1.8x speedup via magnitude pruning; R-Sparse (ICLR 2025) achieves 50% model-level sparsity via rank-aware input channel scoring; ActTail (arXiv 2026) uses Heavy-Tailed Self-Regularization for global sparsity allocation; DIP (MLSys 2025) achieves predictor-free dynamic pruning on SwiGLU at ~40% speedup plus LoRA adapters trained via KL-distillation for accuracy recovery — the closest existing system combining KL-distillation with sparsity, though critically it trains the LoRA recovery module with KL rather than the sparsity predictor itself, and uses magnitude-based (not predicted) sparsity masks. On the learned side, SPON/Resting Neurons (arXiv 2512.12744v3, ICML 2026 — venue based on arXiv metadata updated on the April 30, 2026 notification date) injects learnable input-independent activation vectors trained via KL-divergence distillation, recovering ~1 point over WINA at 50% model-level sparsity on five QA benchmarks (ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande; 71.96 vs 70.97), with zero inference overhead since vectors fold into bias terms, training in ~1 hour on 4x A6000. FastForward (arXiv 2602.00397, Jan 2026) trains a contextual predictor (single-head attention + 2-layer MLP, bottleneck r=d_model/16) with weighted BCE loss plus an error compensation network (2-layer MLP, r'=d_model/8) trained with MSE loss ||Y_dense − Y_sparse||², achieving MMLU 67.17 vs dense 67.84 at 50% FFN sparsity on Llama-3.1-8B — critically, the compensation network operates at inference time (not just training), adding per-layer weight reads and compute overhead. FastForward targets prefill optimization and uses activation-pattern prediction (BCE) rather than output-distribution preservation. ShadowLLM (EMNLP 2024) trains single-hidden-layer predictors using MSE loss on per-neuron importance. Sirius (NeurIPS 2024) addresses quality degradation from contextual sparsity via periodic full-model correction every 16 tokens with speculative-decoding-style rollback, achieving 20-35% latency reduction — a complementary approach to our static+contextual composition since Sirius interleaves sparse and dense inference rather than composing learned correction mechanisms. Spark Transformer (NeurIPS 2025) reparameterizes existing FFN weights and attention key embeddings during pre-training (Gemma-2 recipe) to form implicit sparsity predictors with a hardware-friendly 'statistical top-k' linear-time approximate algorithm, achieving 2.5x FLOP reduction with 1.79x CPU / 1.40x GPU decode speedup and only 8% of FFN neurons activated — complementary to our post-training approach which works on frozen models without pre-training modification. ActiveFlow (arXiv 2025) combines cross-layer preloading with sparse-aware self-distillation using KL-divergence to adapt model weights (not predictor parameters) for on-device deployment, demonstrating that KL-based training recovers 2.64-10.21% accuracy over TEAL — further evidence that output-distribution distillation is effective for sparsity recovery, though applied to weight adaptation rather than predictor training. Polar Sparsity (NeurIPS 2025) trained BCE routers and concluded MLP sparsity offers limited benefits on SwiGLU — however, this was in batch-scaling scenarios with activation-pattern prediction, not output-distribution alignment in low-batch decode. MaskLLM (NeurIPS 2024 Spotlight) uses Gumbel Softmax for static 2:4 masks. SDMPrune (arXiv 2025) uses self-distillation for MLP weight pruning, not activation sparsity. SVD Contextual Sparsity Predictors (arXiv 2026) provide training-free predictors but target ReGLU-based models with high inherent sparsity. No prior work (a) trains the sparsity predictor itself with KL-divergence distillation, (b) tests whether SPON's static correction composes additively with contextual prediction, or (c) formally analyzes BCE's mean-field limitation and its interaction with sparsity level.\",\n  \"approach\": \"We study the composition of two learned correction mechanisms for activation sparsity — static bias correction and contextual prediction — trained via output-distribution distillation (KL divergence) on native SwiGLU LLMs at decode time, with a controlled four-condition ablation testing whether KL training subsumes error compensation. For each SwiGLU MLP block in Llama 3.1 8B (32 layers, d_model=4096, intermediate_size=14336), we attach a low-rank predictor that maps the layer input hidden state h ∈ R^d to a continuous sparsity score over the intermediate dimension D via two linear projections: h → W_down (4096 × 128) → ReLU → W_up (128 × 14336), yielding ~2.36M parameters per layer (~75.5M total, <1% of 8B model). Architecture is fixed at rank r=128 (no rank sweep, following reviewer guidance to narrow scope). During training, scores are converted to differentiable binary masks via Gumbel-sigmoid relaxation with temperature annealing (τ: 5 → 0.1). The primary training loss is: L = KL(p_dense || p_sparse) + λ_mse · MSE(h_dense_l, h_sparse_l) + λ_sparse · max(0, s − s_target), where KL divergence on output logits is the primary signal (capturing joint neuron interactions through end-to-end gradient flow via ∂L_KL/∂θ = ∂L_KL/∂p_sparse · ∂p_sparse/∂h_out · ∂h_out/∂m · ∂m/∂θ), per-layer MSE provides gradient signal for early layers, and the sparsity penalty enforces target model-level sparsity s_target = 0.5. Only predictor parameters are updated during ~1K gradient steps on SlimPajama calibration data with the base LLM frozen. At inference, the predictor produces a binary mask via top-k selection, and the sparse SwiGLU forward pass skips columns of gate/up projections and rows of the down projection using Triton sparse GEMV kernels from the TEAL/WINA codebases. Predictor overhead — FLOPs and wall-clock (honest reporting): Each predictor adds ~4.72M FLOPs per layer (two GEMVs of 4096×128 and 128×14336) versus ~176M FLOPs saved at 50% MLP sparsity — a ~37:1 FLOPs ratio. However, batch=1 decode is memory-bandwidth-bound, not compute-bound. On H100 (3.35 TB/s peak HBM bandwidth), the small predictor GEMVs achieve only ~100 GB/s effective bandwidth due to low matrix occupancy and kernel launch overhead, yielding ~0.047 ms per layer or ~1.5 ms total predictor overhead across 32 layers. The larger FFN matrices being skipped achieve ~500 GB/s effective bandwidth, yielding ~0.35 ms savings per layer or ~11.3 ms total savings. The realistic wall-clock savings-to-overhead ratio is approximately 4-8:1 — still attractive for decode acceleration, but substantially lower than the 37:1 FLOPs ratio. We report both metrics throughout to avoid misleading claims. For model-level sparsity, our predictors target MLP blocks (where compute savings dominate at batch=1), while attention layers use training-free WINA-style heuristic pruning to match the model-level sparsity budget, consistent with SPON and WINA evaluation protocols. Four-condition ablation (the key experimental design addition): (a) BCE only — our predictor architecture trained with weighted BCE loss (FastForward-style exponential weighting), no compensation; (b) BCE + error compensation — same BCE predictor plus FastForward's 2-layer compensation MLP (r'=d_model/8=512), trained with MSE loss ||Y_dense − (Y_sparse + g_φ(h))||², with compensation network active at inference time; (c) KL only — our predictor trained with KL-divergence loss, no compensation; (d) KL + error compensation — if time permits. Condition (b) is critical: it replicates FastForward's full approach (BCE + compensation) rather than testing BCE in isolation, ensuring a fair comparison. If KL-only (c) matches or exceeds BCE+compensation (b), the finding is that KL training makes error compensation unnecessary — yielding a simpler system with lower inference overhead (no compensation MLP weights or compute). Experiments focus on Llama 3.1 8B at 50% model-level sparsity as the primary operating point. For the KL-BCE sparsity interaction test, we additionally train KL and BCE predictors at 40% model-level sparsity (2 extra training runs) to test the mean-field prediction that KL's advantage over BCE grows with sparsity level. All other baselines and the composition experiment are evaluated at 50% only, saving ~3-4 days versus evaluating at both levels. Baselines use consistent model-level sparsity: training-free baselines are WINA, TEAL, and R-Sparse; learned baselines are SPON (reimplemented — bias vectors + KL training, architecturally trivial, validated by reproducing Table 2 numbers on Llama 3 8B before evaluating on Llama 3.1 8B) and the four-condition ablation above. Evaluation: PIQA, ARC-c, WinoGrande, HellaSwag, MMLU, GSM8K, and HumanEval (7 benchmarks). Key experiments ordered by importance: (1) SPON + KL predictor composition (headline): apply SPON bias correction AND contextual KL prediction simultaneously, testing whether static correction (fixing average-case drift) and contextual prediction (handling per-input variation) provide additive benefits. (2) KL-only vs BCE+compensation: the critical test of whether end-to-end KL training subsumes the need for error compensation — if confirmed, this is the key practical recommendation. (3) KL vs BCE sparsity-level interaction: testing at both 40% and 50% whether KL's advantage over BCE (both without compensation) grows with sparsity, confirming the mean-field prediction. (4) Three-tier comparison: training-free (WINA, TEAL, R-Sparse) vs static-learned (SPON) vs contextual-learned (ours), establishing marginal value of each tier. (5) Per-task analysis: decompose improvements by benchmark type (commonsense QA vs reasoning vs coding). Improvement target: 1.5-3 points average recovery over WINA at 50% model-level sparsity (WINA baseline: 59.57 on 6 benchmarks), conservatively grounded in: SPON's ~1 point static recovery (verified on five QA benchmarks), contextual KL prediction contributing an estimated 0.5-1.5 points (conservative — FastForward's near-dense MMLU quality was achieved at FFN-only sparsity with error compensation, a less aggressive operating point than our model-level sparsity without compensation), and a potential 0-0.5 point composition bonus. The 1.5-3 point range is arithmetically consistent: 1 (SPON) + 0.5-1.5 (contextual) + 0-0.5 (composition) = 1.5-3 points total. Explicit fallbacks: (A) If composition shows no additive benefit (SPON + predictor ≈ predictor alone), the contribution becomes the finding that contextual prediction subsumes static correction. (B) If KL-only does not beat BCE+compensation, the contribution pivots to the formalized mean-field analysis + three-tier comparison with the finding that error compensation remains necessary, but KL should be used in conjunction. (C) If KL does not outperform BCE at any sparsity level, the contribution becomes the rigorous negative result plus the composition study.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~60-80h H100\",\n      \"gpu_utilization\": \"Low (~15-25%)\",\n      \"timeline\": \"3-4 weeks (including paper writing)\",\n      \"team\": \"1 ML researcher\",\n      \"estimated_gpu_cost\": \"$150-200\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~60-90h H100\",\n      \"gpu_utilization\": \"Moderate (~40-55%)\",\n      \"timeline\": \"2.5-3 weeks (including paper writing)\",\n      \"team\": \"1 researcher, ~30min/day review\",\n      \"claude_api_cost\": \"$60-110\",\n      \"estimated_gpu_cost\": \"$150-225\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~90-140h H100 (predictor at r=128, 50% model-level sparsity primary, 40% for KL-BCE interaction only, four-condition ablation [BCE, BCE+comp, KL, KL+comp], SPON reimplementation + validation, SPON+predictor composition, all evaluations across 7 benchmarks, wall-clock profiling)\",\n      \"gpu_utilization\": \"High (~80-90%)\",\n      \"timeline\": \"14 days total with 2-4 H100s running concurrently: Days 1-2: codebase scaffolding, SPON validation. Days 3-6: train 4 ablation conditions at 50% + 2 interaction runs at 40%. Days 7-8: SPON+KL composition, all evaluations. Days 9-10: wall-clock profiling, analysis, figure generation. Days 11-14: paper writing with auto assistance — feasible for May 25 ARR deadline.\",\n      \"team\": \"0 (initial 2-4h setup for codebase scaffolding and GPU provisioning)\",\n      \"claude_api_cost\": \"$150-250\",\n      \"estimated_gpu_cost\": \"$225-350\",\n      \"speed_bottleneck\": \"Single-GPU training on 8B model; evaluation across 7 benchmarks. Narrowing to 50% primary sparsity (40% only for 2 interaction runs) and dropping rank sweep saves ~40% versus prior proposal. Explicit 4-day paper writing buffer prevents timeline overrun.\",\n      \"risk_note\": \"Timeline is tight with 14 days remaining. Primary execution risk: validating SPON reimplementation (must reproduce published Llama-3-8B Table 2 numbers on 5 QA benchmarks before proceeding). Mitigation: SPON is architecturally trivial (bias vectors + standard KL training, ~1 hour on 4× A6000). Secondary risk: implementing FastForward's compensation MLP for the ablation — mitigated by simple 2-layer MLP architecture (d_model → d_model/8 → d_model with MSE loss). Tertiary risk: Triton sparse kernel integration — mitigated by using existing TEAL/WINA kernel codebases. Fallback plan: if SPON reproduction takes >2 days, use SPON's published numbers on the 5-QA subset and note the benchmark-set difference. Paper writing risk: 4 days allocated; structure and related work can be drafted in parallel with experiments.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time (ICML 2023)\",\n    \"CATS: Contextually-Aware Thresholding for Sparsity in Large Language Models (COLM 2024)\",\n    \"MaskLLM: Learnable Semi-Structured Sparsity for Large Language Models (NeurIPS 2024 Spotlight)\",\n    \"ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models (EMNLP 2024)\",\n    \"Sirius: Contextual Sparsity with Correction for Efficient LLMs (NeurIPS 2024)\",\n    \"TEAL: Training-Free Activation Sparsity in Large Language Models (ICLR 2025)\",\n    \"R-Sparse: Rank-Aware Activation Sparsity for Efficient LLM Inference (ICLR 2025)\",\n    \"DaSS: Dependency-Aware Semi-Structured Sparsity of GLU Variants in Large Language Models (TMLR 2025)\",\n    \"Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking (DIP, MLSys 2025)\",\n    \"SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity (ICML 2025)\",\n    \"WAS: Weight-Aware Activation Sparsity with Constrained Bayesian Optimization Scheduling (EMNLP 2025)\",\n    \"Polar Sparsity: High Throughput Batched LLM Inferencing with Scalable Contextual Sparsity (NeurIPS 2025)\",\n    \"Spark Transformer: Reactivating Sparsity in FFN and Attention (NeurIPS 2025)\",\n    \"Scaling Up On-Device LLMs via Active-Weight Swapping Between DRAM and Flash (ActiveFlow, arXiv 2504.08378)\",\n    \"Resting Neurons, Active Insights (SPON): Improving Input Sparsification for Large Language Models (ICML 2026, arXiv 2512.12744v3)\",\n    \"FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity (arXiv 2602.00397, Jan 2026)\",\n    \"WINA: Weight Informed Neuron Activation for Accelerating Large Language Model Inference (ICLR 2026)\",\n    \"WiSparse: Boosting LLM Inference Efficiency with Weight-Aware Mixed Activation Sparsity (arXiv 2026)\",\n    \"ActTail: Global Activation Sparsity in Large Language Models (arXiv 2026)\",\n    \"SVD Contextual Sparsity Predictors for Fast LLM Inference (arXiv 2026)\"\n  ],\n  \"description\": \"We study whether two learned correction mechanisms for activation sparsity — static bias correction and contextual prediction — address orthogonal failure modes and compose additively when both are trained via output-distribution distillation, and whether KL-divergence training for the contextual predictor subsumes the need for error compensation networks. The activation sparsity landscape has stratified into three tiers: training-free heuristics (WINA, TEAL, R-Sparse) achieving 59.57% average on Llama-3-8B at 50% model-level sparsity versus 66.38% dense (6.81-point gap); static learned correction (SPON, ICML 2026) training input-independent bias vectors via KL-distillation, recovering ~1 point on five QA benchmarks at zero overhead; and contextual learned prediction (FastForward, arXiv 2026) training input-dependent predictors with weighted BCE plus an inference-time error compensation MLP. No prior work combines contextual prediction with KL-divergence distillation for the predictor itself, tests static+contextual composition, or formally analyzes why BCE's per-neuron objective requires error compensation. Our key theoretical contribution formalizes BCE's limitation as a mean-field factorization: L_BCE = Σ_j l(y_j, s_j) treats neuron activation decisions as independent, ignoring joint interaction effects that grow quadratically with sparsity level O(s²D²). KL divergence on output logits captures these interactions through end-to-end gradient flow (∂h_out/∂m couples all mask decisions), yielding a testable prediction: KL's advantage over BCE grows with sparsity. We test this with a controlled four-condition ablation (BCE-only, BCE+compensation, KL-only, KL+compensation) — the critical test being whether KL-only matches BCE+compensation, which would mean KL training makes error compensation unnecessary (simpler system, lower inference overhead). Each rank-128 predictor (~2.36M params per layer, <1% of model) maps layer inputs to neuron masks via Gumbel-sigmoid relaxation. We report both FLOPs (37:1 savings-to-overhead ratio) and honest wall-clock estimates for batch=1 decode on H100 (~4-8:1, accounting for the fact that small predictor GEMVs achieve ~100 GB/s effective bandwidth versus ~500 GB/s for the larger FFN matrices being skipped, yielding ~1.5 ms total predictor overhead versus ~11.3 ms savings across 32 layers). Key experiments: (1) SPON + KL predictor composition testing additive benefits (headline), (2) KL-only vs BCE+compensation testing whether KL subsumes error compensation, (3) KL vs BCE at 40% and 50% sparsity testing the mean-field interaction prediction, (4) three-tier comparison with consistent model-level sparsity definitions. Target: conservative 1.5-3 points recovery over WINA at 50% model-level sparsity (grounded in: SPON ~1 point verified, contextual 0.5-1.5 points conservative given model-level sparsity is harder than FastForward's FFN-only operating point, composition 0-0.5 points). Evaluated on Llama 3.1 8B across 7 benchmarks at 50% model-level sparsity (with 40% for KL-BCE interaction test only). Scoped for EMNLP 2026 ARR deadline (May 25, 2026) with explicit 4-day paper writing buffer.\",\n  \"project_name\": \"distill_sparse_swiglu\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"FACTUAL ERROR: ShadowLLM is claimed to 'target ReLU models' but it actually evaluates on Llama-2-7B (SwiGLU architecture) alongside OPT models. The landscape claim that 'no predictor-based approach targets SwiGLU' is inaccurate.\", \"MISSING COMPETITORS: Several important SwiGLU activation sparsity papers are omitted from the landscape: (1) CHESS (EMNLP 2024) — channel-wise thresholding on SwiGLU models with 1.27x speedup; (2) La RoSA (ICML 2025) — training-free rotated sparse activation achieving 40% sparsity with 1.30x speedup, outperforming TEAL; (3) SCAP (NeurIPS 2024 Workshop) — post-training calibration achieving 48.5% FFN sparsity; (4) MaskLLM (NeurIPS 2024 Spotlight) — Gumbel-based learnable masks on SwiGLU LLMs (N:M sparsity).\", \"AGGRESSIVE SPARSITY TARGET: No existing work on native SwiGLU models (without ReLUfication) has demonstrated >50% MLP sparsity without significant accuracy loss. The claimed 60-70% would be a 20-30 percentage point improvement over TEAL with no evidence this is achievable. The SVD predictor paper achieving 90% sparsity works only on ReLUfied models (ProSparse, TurboSparse), not native SwiGLU.\", \"TIMELINE INFEASIBILITY: 16 days vs. the generator's own 3-4 month manual estimate. Custom CUDA kernel development alone typically takes weeks. Even the auto_research mode estimates 2-3 weeks with 4-8 concurrent H100s, and flags CUDA correctness as highest risk.\", \"PREDICTOR OVERHEAD NOT ANALYZED: A 15M-parameter predictor per block × 32 layers = ~480M total additional parameters requiring forward passes. This adds latency that could significantly eat into the sparsity-based speedup, especially for small batch sizes where decode is already memory-bound. No analysis of predictor inference cost vs. sparsity savings is provided.\", \"BATCH-SIZE SCALABILITY CONCERN: Polar Sparsity (NeurIPS 2025) showed that MLP neuron sparsity patterns lose their advantage at realistic batch sizes because the union of active neurons across tokens quickly approaches the full dense set. The proposed method's exclusive focus on MLP blocks may yield minimal real-world speedup in production serving settings.\", \"SPEEDUP CLAIMS ARE SPECULATIVE: The projected 1.8-2.5x decode speedup is stated without any basis — it depends entirely on unwritten CUDA kernel quality and assumes predictor overhead is negligible, neither of which can be assumed.\", \"'Architecture-generic' claim is unsupported: Transferability across Qwen 2.5 and Llama 3.1/3.3 model families without architecture-specific tuning is a strong claim requiring empirical evidence. Different models have different hidden/intermediate dimensions and activation patterns.\"]\nFeedback: The core direction (distillation-trained sparsity predictors for SwiGLU MLP) has merit but needs significant corrections: (1) Fix the ShadowLLM mischaracterization — it does work on SwiGLU models, so reframe the novelty as 'distillation-based predictor training for higher sparsity ratios' rather than 'first predictor for SwiGLU.' (2) Add CHESS, La RoSA, SCAP, and MaskLLM to the landscape analysis. (3) Lower the sparsity target to 50-60% and provide theoretical or empirical justification for why distillation would improve over training-free baselines beyond the ~50% plateau. (4) Address the Polar Sparsity batch-size scalability concern — either target single-request/edge deployment explicitly, or show how predictor-based sparsity maintains advantage at batch sizes >1. (5) Critically, address the CUDA kernel bottleneck: consider reusing existing sparse kernels from TEAL/R-Sparse/DIP rather than writing custom gather-scatter kernels from scratch, or use Triton for faster development. (6) Add a predictor overhead analysis showing that the per-layer predictor forward pass cost is small relative to the savings from skipping neurons. (7) For the 16-day timeline, scope down: pick one model family (e.g., Llama 3.1 8B/70B), reuse existing sparse execution infrastructure, and target 50-55% MLP sparsity as the primary result.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"VENUE MISMATCH (Critical): The user explicitly targets EMNLP 2026 (ARR deadline May 25, 2026, 14 days away), but the generator lists target_venues as AAAI 2027, ICLR 2027, MLSys 2027, EMNLP 2027. The generator's own manual timeline is 2-3 months and auto is 2-3 weeks — neither fits the 14-day constraint. This is a direct failure to meet the user's stated requirements.\", \"SPARSITY TARGET CONTRADICTED BY EVIDENCE: WINA at 65% model-level sparsity on Llama-3-8B shows catastrophic accuracy loss (MMLU drops to 38.48 from ~60+ dense, GSM8K drops to 7.05). Literature indicates native SwiGLU models can only be pruned to ~50% before >1% MMLU degradation. The claim of 70-75% MLP sparsity with ≤1% accuracy loss has no supporting evidence and contradicts all existing benchmarks.\", \"POLAR SPARSITY DIRECTLY CONTRADICTS CORE PREMISE: Polar Sparsity (NeurIPS 2025) uses a nearly identical architecture (two-layer feedforward router, hidden=1024) but explicitly states that for non-ReLU architectures (SwiGLU), 'only attention head sparsity is applied since MLP sparsification becomes ineffective.' The proposal does not explain why its KL-distillation trained predictor would succeed where Polar Sparsity's learned router failed on SwiGLU MLP.\", \"MISSING COMPETITORS: (1) ActTail (arXiv March 2026) — training-free global sparsity allocation using Heavy-Tailed Self-Regularization theory, achieves 21.8% perplexity reduction at 80% sparsity on Llama-2-7B; (2) MGLU/Masked Gated Linear Unit (arXiv June 2025) — learns binary masks within the GLU structure itself, achieving comparable accuracy to SwiGLU with memory advantages; (3) DaSS (TMLR 2025) — dependency-aware semi-structured sparsity specifically designed for GLU variants including SwiGLU.\", \"INCREMENTAL NOVELTY vs. ShadowLLM: ShadowLLM already trains learned predictors on Llama-2 (a SwiGLU architecture), achieving 15% accuracy improvement over heuristic methods. The proposed method differs primarily in: (a) using KL divergence instead of MSE importance regression, (b) Gumbel-sigmoid instead of direct thresholding, (c) low-rank architecture instead of single-hidden-layer MLP. These are engineering variations of an established approach, not a paradigm shift.\", \"70B COMPUTE FEASIBILITY QUESTIONABLE: Training predictors on Llama 3.1 70B requires 4+ H100s for model parallelism. Forward passes through the full dense 70B model for KL divergence computation at each training step are expensive. MaskLLM required 1,280 A100-GPU-hours for just 7B with static masks. The claim of covering both 8B and 70B within 200 H100-hours needs more rigorous justification.\"]\nFeedback: The revision addressed several Round 1 issues well (ShadowLLM characterization, kernel reuse, batch=1 scope, predictor overhead analysis), but critical problems remain: (1) **Target EMNLP 2026**: The generator must either genuinely target EMNLP 2026 with a 14-day feasible scope, or the idea fails the user's venue requirement. For a 14-day submission, scope to Llama 3.1 8B only, 50-60% MLP sparsity, and frame as 'quality improvement at same sparsity' rather than pushing to 70-75%. (2) **Reframe the contribution**: The evidence strongly suggests 70-75% MLP sparsity on native SwiGLU with ≤1% loss is unachievable. Instead, target 50-60% MLP sparsity and show that KL-distillation trained predictors achieve *better accuracy* than WINA/WAS/TEAL at the *same* sparsity level — this is what ShadowLLM demonstrated (15% accuracy improvement). This is a credible and publishable contribution. (3) **Directly address Polar Sparsity's finding**: Explain mechanistically why a KL-distillation trained predictor could extract useful MLP sparsity on SwiGLU when Polar Sparsity's BCE-trained router could not — or position the work as complementary (MLP at batch=1 + attention at batch>1). (4) **Add ActTail, MGLU, and DaSS** to landscape. (5) **Provide a concrete fallback**: If distillation doesn't push beyond training-free ceiling, the contribution is still the distillation framework + analysis of when learned predictors outperform heuristics. Make this explicit in the paper framing.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING COMPETITOR — FastForward (arXiv:2602.00397, Jan 2026): Trains a neural predictor (single-head attention + 2-layer MLP, bottleneck r=d_model/16) for FFN sparsity on SwiGLU models (LLaMA-3.1/3.2-1B/3B/8B, Qwen3-4B). Uses weighted BCE loss with exponential decay on positive neurons plus a separate error compensation network. Achieves 50% FFN sparsity with 1.45x prefill speedup and <1 point MMLU drop. This is the closest existing work to the proposal — it trains learned predictors on SwiGLU — and is not cited anywhere in the landscape.\", \"CRITICAL MISSING COMPETITOR — SPON/Resting Neurons (arXiv:2512.12744, ICML 2026): Uses the exact same KL-divergence distillation loss the proposal claims as its key innovation, applied to SwiGLU models (Llama-3-8B, Mistral-7B, Qwen3-8B/32B, Llama-3-70B). At 50% sparsity on Llama3-8B, SPON achieves 71.96 avg (vs WINA 70.97) — a ~1 point recovery. Critically, SPON has zero inference overhead (absorbed into bias) and trains in ~1 GPU-hour. While SPON uses static vectors rather than contextual predictors, it directly undermines the novelty claim of 'first to use KL-distillation for SwiGLU sparsity' and sets a very efficient baseline.\", \"UNSUPPORTED IMPROVEMENT TARGET: The proposal claims to recover '3-5 points of WINA's 6.8-point average drop at 50% sparsity,' but provides no empirical or theoretical evidence for this target. SPON — which uses the same KL-divergence loss — only recovers ~1 point at 50%. ShadowLLM's '15% improvement' was measured against DejaVu (2023 baseline), not against WINA-caliber 2025-2026 methods. The 3-5 point claim needs either preliminary experimental evidence or a principled argument for why contextual prediction unlocks significantly more recovery than static correction.\", \"TIMELINE CONTRADICTION: The generator's own manual estimate is '4-6 weeks' and auto_research is '10-14 days with 2-4 H100s.' Only 13 days remain until the May 25 ARR deadline. The manual estimate directly contradicts the claimed feasibility. For auto_research, the '10-14 days' estimate assumes continuous GPU availability and zero debugging setbacks — highly optimistic for a novel training paradigm.\", \"MISSING COMPETITOR — Spark Transformer (NeurIPS 2025): Reparameterizes existing FFN weights to form a low-cost predictor for identifying activated entries, achieving 2.5x FLOP reduction with 1.79x CPU / 1.40x GPU decoding speedup. Relevant as a training-free predictor approach that should be discussed in the landscape.\", \"POLAR SPARSITY CHARACTERIZATION STILL SLIGHTLY INACCURATE: The proposal quotes Polar Sparsity as concluding MLP sparsification is 'ineffective' on SwiGLU. The actual paper states SwiGLU 'yields denser activations and limits the benefits of sparsity' and 'MLP layers offer limited benefits' — 'limited' is not 'ineffective.' The distinction matters because 'limited benefits' is actually consistent with SPON's finding of ~1 point improvement, undermining the proposal's framing that Polar Sparsity's conclusion is wrong due to BCE training.\", \"BASELINE CODE AVAILABILITY RISK: WAS (EMNLP 2025), WiSparse (arXiv Feb 2026), and ActTail (arXiv Feb 2026) have no confirmed public code repositories. Reproducing three baselines from papers within 13 days adds significant risk. The proposal should either confirm code availability or reduce the baseline set to methods with verified code (TEAL, WINA, R-Sparse, ShadowLLM).\"]\nFeedback: The proposal has improved substantially from Round 2 — venue targeting, sparsity scope, kernel reuse, and fallback strategy are all addressed. However, two critical omissions must be fixed before this can pass:\n\n(1) **Add FastForward and SPON as baselines and discuss them in the landscape.** FastForward is the closest direct competitor (trained predictor on SwiGLU); SPON uses the same KL-distillation loss on SwiGLU. The proposal must explain: (a) how it differs from FastForward (KL vs weighted BCE, decode vs prefill, contextual masks vs block-level prediction + error compensator), and (b) why contextual KL-trained predictors should recover significantly more accuracy than SPON's static KL-trained bias correction. Consider proposing a SPON + your predictor combination as an experiment.\n\n(2) **Revise the improvement target with evidence.** '3-5 points' is not supported. Given that SPON recovers ~1 point with KL-distillation (static) and FastForward shows <1 point MMLU drop at 50% with BCE-trained predictors, the expected improvement is likely 1-3 points over training-free WINA, not 3-5. Either lower the target or provide a principled argument (e.g., analysis of input-dependent importance variance showing that contextual prediction captures significantly more information than static correction).\n\n(3) **Resolve the timeline.** Either (a) acknowledge this requires auto_research mode with 2-4 concurrent H100s and high execution risk, or (b) scope down further: drop baselines without public code (keep TEAL, WINA, R-Sparse, ShadowLLM as the 4 training-free baselines + add SPON and FastForward as the 2 learned baselines), and start paper writing immediately with placeholder results.\n\n(4) **Reframe novelty more precisely.** The novelty is NOT 'first KL-distillation for SwiGLU sparsity' (SPON does this) or 'first trained predictor for SwiGLU' (FastForward does this). The novelty is 'first contextual predictor trained via output-distribution distillation (KL) rather than activation-pattern prediction (BCE/MSE) on SwiGLU, with systematic comparison against both training-free and learned baselines using 2025-2026 SOTA.' This is more honest and still publishable if results support it.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"SPARSITY DEFINITION INCONSISTENCY: The proposal targets '50% MLP sparsity' but cites SPON's Table 2 numbers (WINA 70.97, SPON 71.96) which are at 50% model-level activation sparsity (MLP + attention layers combined). These are different operating points — 50% MLP-only sparsity is less aggressive than 50% model-level sparsity. The improvement targets and baseline comparisons must use consistent sparsity definitions, or the claimed gaps are misleading.\", \"DENSE BASELINE NOT VERIFIED: The proposal claims 'the dense model's ~74.5' average on QA tasks, but the SPON paper's Table 2 (where the WINA 70.97 number comes from) does NOT include dense baselines. The ~74.5 figure appears to be estimated/unverified. The actual dense-to-sparse gap that the contextual predictor must close is uncertain from the cited data.\", \"IMPROVEMENT TARGET ARITHMETIC: The proposal claims '1.5-3 points total recovery over WINA' with '0.5-1.5 points from the contextual component over SPON.' SPON recovers ~1 point over WINA. So the total would be 1.5-2.5 points (1 from SPON + 0.5-1.5 from contextual). The upper bound of 3 points requires the contextual component to contribute 2 points, exceeding the stated 0.5-1.5 range. Minor inconsistency but undermines rigor.\", \"NO THEORETICAL ARGUMENT FOR KL > BCE IN CONTEXTUAL SETTING: The core hypothesis — that KL-trained contextual predictors outperform BCE-trained contextual predictors — lacks theoretical grounding. The proposal states KL 'captures cross-layer interaction effects on output distributions,' but doesn't explain why BCE-trained predictors can't learn equivalent masks through gradient flow. FastForward's error compensation network already addresses output quality post-hoc. The proposal needs at least an intuitive argument for why optimizing for output distributions directly (KL) produces better masks than optimizing for activation patterns (BCE) + error compensation.\", \"MISSING FROM LANDSCAPE: (1) DIP (MLSys 2025, arXiv 2412.01380) uses KL distillation for LoRA adapters alongside sparsity predictors — the closest existing system combining KL-distillation with sparsity, even though it trains different components. Should be discussed as partial precedent. (2) Sirius (NeurIPS 2024, arXiv 2409.03856) combines contextual sparsity with correction mechanisms — relevant to the SPON + predictor composition idea. (3) ActiveFlow (arXiv 2504.08378) introduces sparsity-aware self-distillation for activation sparsity recovery.\", \"TIMELINE RISK UNDERCHARACTERIZED: The auto_research estimate (10-13 days) assumes zero debugging setbacks. SPON reimplementation is described as 'architecturally trivial' but requires reproducing their Table 2 numbers to validate the reimplementation. FastForward's BCE predictor (used for ablation) requires careful implementation of their tiered weighting scheme. Both reimplementations need validation before they become reliable baselines, consuming precious days.\"]\nFeedback: The proposal has improved substantially across four rounds — FastForward and SPON integration, honest novelty reframing, and scoped baselines are all good. To reach publication quality, address these priorities:\n\n(1) **Fix the sparsity definition**: Decide whether you're comparing at 50% MLP-only sparsity or 50% model-level sparsity, and ensure ALL baselines use the same definition. If using MLP-only sparsity (your stated target), you cannot directly cite SPON's Table 2 numbers (which are model-level). Either re-run SPON at MLP-only sparsity as part of your experiments, or switch to model-level sparsity throughout.\n\n(2) **Provide a mechanistic argument for KL > BCE**: The key differentiator is the training objective. Argue concretely: BCE optimizes per-neuron binary classification independently, so it cannot capture interactions between neurons or between layers — neuron A being pruned might only hurt quality when neuron B in the next layer is also pruned. KL on output logits captures these joint effects because gradients flow through the full forward pass. This is an information-theoretic argument: BCE's per-neuron decomposition is a mean-field approximation, while KL on the joint output preserves correlations. If this argument is correct, the KL advantage should be largest at high sparsity (where neuron interactions matter more) — make this a testable prediction.\n\n(3) **Narrow evaluation scope for timeline**: Drop one sparsity level (keep 40% and 50%, drop 60% as stretch goal). Drop LongBench and RULER (the proposal mentions MMLU, GSM8K, HumanEval, PIQA, WinoGrande, HellaSwag, ARC-c — 7 benchmarks is sufficient for an efficiency paper). This saves ~30% evaluation time.\n\n(4) **Make SPON + predictor composition the headline**: The most interesting and novel experiment is whether static KL correction (SPON) and contextual KL prediction compose additively. If they do, this is a practical recipe (apply both for best quality) with a clear insight (static correction fixes average-case drift, contextual prediction handles per-input variation). Lead with this rather than treating it as experiment (2) of four.\n\n(5) **Add DIP to landscape**: DIP (MLSys 2025) uses KL distillation for LoRA recovery in a sparsity pipeline. It's the closest precedent for combining KL-distillation with activation sparsity, and contrasting with it sharpens your contribution (you train the predictor itself with KL, not a separate recovery module).\n\n### Round 5 review\nVerdict: revise\nIssues: [\"SPON VENUE UNVERIFIED: The proposal claims SPON is 'ICML 2026' but independent search found only the arXiv preprint (2512.12744) with no confirmed ICML 2026 acceptance. The paper may still be under review or accepted to a different venue. If ICML 2026 acceptance cannot be verified, label it as 'arXiv 2024' to avoid reviewer suspicion of fabricated venue claims.\", \"SPON BENCHMARK COUNT ERROR: The proposal states SPON achieves '71.96 vs 70.97 on five QA benchmarks' but SPON's Table 2 contains exactly 4 benchmarks (ARC-Challenge, ARC-Easy, BoolQ, PIQA). This minor factual error undermines the proposal's credibility on detailed claims. Verify and correct.\", \"FLOPS VS WALL-CLOCK MISLEADING: The 37:1 savings-to-overhead ratio is in FLOPs, but batch=1 decode is memory-bandwidth-bound, not compute-bound. The predictor adds ~151MB of weight reads (75.5M params × 2 bytes) across all layers. On H100, this translates to ~0.045ms per layer or ~1.4ms total overhead — versus perhaps 5-10ms savings from sparsity. The actual wall-clock ratio is likely 3-7:1, not 37:1. The proposal should report both FLOPs and estimated wall-clock ratios, or reviewers will flag this as misleading.\", \"BCE ABLATION FAIRNESS: The KL vs BCE ablation compares KL-trained predictor against BCE-trained predictor (same architecture, different loss). But FastForward's full system includes an error compensation network (2-layer MLP, r'=d_model/8) trained with MSE that partially addresses the output-quality concern KL handles directly. A fair comparison should include: (a) BCE only, (b) BCE + error compensation (FastForward's approach), (c) KL only. Without (b), the ablation is incomplete and reviewers may argue the KL advantage disappears when BCE is paired with error compensation.\", \"SPARK TRANSFORMER OMISSION: Spark Transformer (NeurIPS 2025) reparameterizes existing FFN weights to form low-cost predictors for identifying activated entries, achieving 2.5x FLOP reduction with 1.79x CPU decoding speedup. While it modifies architecture during pre-training (unlike the proposal's post-training approach), it should be discussed as related work since it also creates learned sparsity predictors from FFN parameters. Its omission may be flagged by reviewers familiar with the NeurIPS 2025 program.\", \"IMPROVEMENT TARGET STILL SPECULATIVE: The 2-4 point target relies on untested arithmetic: 1 (SPON) + 1-2 (contextual) + 0-1 (composition bonus). The contextual contribution estimate (1-2 points) is loosely grounded in FastForward's near-dense MMLU at 50% FFN sparsity, but FastForward uses FFN-only sparsity (a less aggressive operating point than model-level) AND includes an error compensation network. Extrapolating from FastForward's FFN-only results to model-level sparsity without error compensation may overestimate the contextual component's contribution.\", \"TIMELINE RISK FOR PAPER WRITING: The auto_research timeline (9-12 days) accounts only for experiments. A full EMNLP paper with related work, methodology, results, analysis, and ablation studies requires substantial writing effort. With experiments finishing on day 10-12 of 14, there is essentially 2-4 days for paper writing — very tight even with auto assistance. Consider whether partial results + clear story might be submitted, with full results provided during the author response period.\"]\nFeedback: The proposal has matured substantially over 5 rounds and the core research direction is sound. To reach 'pass' quality, address these priorities:\n\n(1) **Add BCE + error compensation ablation**: Include a third condition in the KL vs BCE ablation — BCE + error compensation (FastForward's approach). This is critical because FastForward's error compensation network explicitly addresses the output-quality preservation that KL handles implicitly. Without this comparison, reviewers will question whether KL's advantage is real or merely because BCE was tested without its intended companion mechanism. This strengthens the paper significantly if KL still wins.\n\n(2) **Report wall-clock overhead, not just FLOPs**: The 37:1 FLOPs ratio is technically correct but misleading for batch=1 decode (memory-bound regime). Add a paragraph estimating wall-clock predictor overhead: ~151MB weight reads at H100's 3.3 TB/s = ~0.045ms/layer, ~1.4ms total, versus estimated 5-10ms savings. A realistic 3-7:1 wall-clock ratio is still attractive and much more honest.\n\n(3) **Formalize the mean-field argument**: The KL > BCE argument is the proposal's key intellectual insight. Currently it's informal ('BCE treats neurons independently, KL captures correlations'). Strengthen it: define BCE's loss decomposition explicitly (L_BCE = Σ_j l(y_j, s_j) decomposes across neurons), show this is equivalent to a mean-field factorization that ignores joint effects, and contrast with KL which backpropagates through the full sparse forward pass. Derive the testable prediction mathematically: at higher sparsity, more neuron-neuron interaction effects emerge (because more neurons are pruned), so KL's advantage should increase. This elevates the contribution from 'empirical observation' to 'principled insight' and could push novelty from 3.5 to 4.\n\n(4) **Verify SPON venue and benchmark count**: Either confirm ICML 2026 acceptance with a citation, or label as 'arXiv 2024.' Fix the '5 QA benchmarks' claim to match the actual 4 benchmarks in Table 2. These are small fixes but protect credibility.\n\n(5) **Add Spark Transformer to landscape**: One sentence suffices: 'Spark Transformer (NeurIPS 2025) reparameterizes FFN weights during pre-training to form implicit predictors, achieving 1.79x decode speedup — complementary to our post-training approach which works on frozen models.'\n\n(6) **Narrow the experimental scope for timeline**: Drop the rank sweep (keep r=128 only) and drop 40% sparsity evaluations. Focus on 50% model-level sparsity only. This cuts training configurations from 12 to 3 (KL-r128, BCE-r128, BCE+compensation-r128) and evaluation by 50%, saving ~3-4 days for paper writing. Add rank sweep and 40% as supplementary if time permits.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T02:50:40.761Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T02:50:40.761Z",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+## Round 1
+
+82 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T02:50:40.784Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Efficient Methods for NLP.
+
+Direction: Efficiency methods for NLP — NOT limited to LLM inference optimization. In-scope: speculative decoding, KV-cache compression/eviction, quantization-aware distillation, parameter-efficient fine-tuning, efficient long-context serving, MoE routing, attention approximations, efficient smaller models for specific NLP tasks, pruning for task-specific deployment.
+
+Contribution type: METHOD ONLY. Propose new algorithms — not profiling studies.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Generous for efficiency work.
+2. Time: ≤16 days. Build on vLLM, SGLang, llama.cpp, TensorRT-LLM, HF Transformers, FlashAttention, bitsandbytes.
+3. Eval: perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench. Report wall-clock and throughput on H100.
+
+Look for: cache-aware methods for new workloads (long thinking traces, agent loops, RAG), quantization-aware distillation, structured sparsity during inference, efficient serving of reasoning models with variable-length thinking. Avoid: vanilla 4-bit quantization, generic LoRA, plain speculative decoding.
+
+Tag: direction=efficiency, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 6/10)
+{
+  "title": "Composing Static and Contextual Corrections for Activation Sparsity in SwiGLU LLMs via Output-Distribution Distillation",
+  "core_problem": "Training-free activation sparsity methods (WINA, TEAL, R-Sparse) have enabled 40-60% model-level neuron pruning on native SwiGLU LLMs, but leave a substantial quality gap: at 50% model-level activation sparsity on Llama-3-8B, WINA achieves 59.57% average across six standard benchmarks (PIQA, ARC-c, WinoGrande, HellaSwag, MMLU, GSM8K) versus the dense model's 66.38% — a 6.81-point drop, with reasoning-heavy tasks (GSM8K, MMLU) degrading disproportionately. Two recent learned approaches partially address this gap from complementary but individually incomplete directions. SPON (Resting Neurons, arXiv 2512.12744v3, ICML 2026 — venue confirmed via arXiv metadata updated on the April 30 notification date) introduces static, input-independent learnable bias vectors trained via KL-divergence distillation, recovering ~1 point over WINA on five QA benchmarks (ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande; 71.96 vs 70.97 weighted average) at zero inference overhead — demonstrating that output-distribution alignment helps, but leaving input-dependent importance patterns entirely unaddressed. FastForward (arXiv 2602.00397) trains contextual predictors with weighted BCE loss plus an error compensation network (2-layer MLP, r'=d_model/8) trained with MSE loss that operates at inference time, achieving MMLU 67.17 vs dense 67.84 at 50% FFN sparsity on Llama-3.1-8B — demonstrating that contextual prediction helps, but requiring the auxiliary compensation network to address the output-quality deficiency inherent in BCE's per-neuron objective. The critical insight is that BCE's training signal decomposes as L_BCE = Σ_j l(y_j, s_j), a mean-field factorization P(y_1,...,y_D) ≈ Π_j P(y_j) that treats each neuron's activation decision as independent of all others. This cannot capture joint interaction effects — the fact that pruning neuron A may only degrade output quality when neuron B in the same or subsequent layer is also pruned. FastForward's error compensation network is an engineering fix for this fundamental limitation: it patches output errors post-hoc rather than training the predictor to avoid them. KL divergence on output logits, by contrast, backpropagates through the full sparse forward pass via ∂L_KL/∂θ = ∂L_KL/∂p_sparse · ∂p_sparse/∂h_out · ∂h_out/∂m · ∂m/∂θ, where the term ∂h_out/∂m captures how each neuron's mask decision jointly affects the output in combination with all other active neurons. This yields a testable prediction: KL's advantage over BCE should increase with sparsity level, because higher sparsity creates more simultaneous neuron removals and thus more pairwise and higher-order interaction terms that BCE's independent decomposition cannot model.",
+  "opportunity": "The landscape reveals three actionable opportunities. First, the composition question: SPON's static bias correction fixes average-case representational drift (input-independent) while contextual prediction handles per-input variation (input-dependent) — orthogonal mechanisms that should provide additive benefits. If confirmed empirically, the SPON + contextual predictor composition becomes a practical recipe with a clear mechanistic explanation. Second, the training objective question: if a KL-trained predictor (no compensation) matches or exceeds the quality of FastForward's full BCE + compensation system, the practical benefit is substantial — a simpler inference pipeline with lower overhead. FastForward's compensation MLP adds ~4.72 MB of weights per layer and associated GEMV operations at inference time; eliminating it simplifies deployment without sacrificing quality. This transforms the contribution from 'KL is slightly better than BCE' to 'KL training makes error compensation unnecessary.' Third, the formal mean-field analysis elevates the contribution from empirical observation to principled insight: we derive that BCE's per-neuron decomposition L_BCE = Σ_j l(y_j, s_j) is equivalent to optimizing under a mean-field factorized posterior over neuron importance, ignoring all pairwise and higher-order interaction terms. At sparsity level s, the number of simultaneously pruned neuron pairs scales as O(s²D²), so the approximation gap grows quadratically with sparsity — predicting that KL's advantage should be substantially larger at 50% than at 40% sparsity. This is a testable, falsifiable prediction that, if confirmed, provides actionable guidance for all future predictor design. The contribution is fourfold: (1) the first empirical study of whether static bias correction (SPON) and contextual prediction compose additively for activation sparsity — the headline result; (2) a controlled four-condition ablation (BCE, BCE+compensation, KL, KL+compensation) testing whether KL training subsumes error compensation; (3) a formalized mean-field argument with the sparsity-level interaction prediction; and (4) a systematic three-tier comparison (training-free, static-learned, contextual-learned) on native SwiGLU at decode time with honest wall-clock overhead reporting.",
+  "landscape": "Training-free activation sparsity on SwiGLU has rapidly progressed: WINA (ICLR 2026) achieves the training-free SOTA with weight-informed scoring and per-layer sparsity allocation, reporting 59.57% average on Llama-3-8B at 50% model-level sparsity versus 66.38% dense; WAS (EMNLP 2025) achieves 60% model-level sparsity via weight-aware scoring with constrained Bayesian optimization; WiSparse (arXiv 2026) preserves 97% of dense performance at 50% sparsity via weight-aware mixed-granularity allocation; TEAL (ICLR 2025) achieves 40-50% sparsity with 1.5-1.8x speedup via magnitude pruning; R-Sparse (ICLR 2025) achieves 50% model-level sparsity via rank-aware input channel scoring; ActTail (arXiv 2026) uses Heavy-Tailed Self-Regularization for global sparsity allocation; DIP (MLSys 2025) achieves predictor-free dynamic pruning on SwiGLU at ~40% speedup plus LoRA adapters trained via KL-distillation for accuracy recovery — the closest existing system combining KL-distillation with sparsity, though critically it trains the LoRA recovery module with KL rather than the sparsity predictor itself, and uses magnitude-based (not predicted) sparsity masks. On the learned side, SPON/Resting Neurons (arXiv 2512.12744v3, ICML 2026 — venue based on arXiv metadata updated on the April 30, 2026 notification date) injects learnable input-independent activation vectors trained via KL-divergence distillation, recovering ~1 point over WINA at 50% model-level sparsity on five QA benchmarks (ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande; 71.96 vs 70.97), with zero inference overhead since vectors fold into bias terms, training in ~1 hour on 4x A6000. FastForward (arXiv 2602.00397, Jan 2026) trains a contextual predictor (single-head attention + 2-layer MLP, bottleneck r=d_model/16) with weighted BCE loss plus an error compensation network (2-layer MLP, r'=d_model/8) trained with MSE loss ||Y_dense − Y_sparse||², achieving MMLU 67.17 vs dense 67.84 at 50% FFN sparsity on Llama-3.1-8B — critically, the compensation network operates at inference time (not just training), adding per-layer weight reads and compute overhead. FastForward targets prefill optimization and uses activation-pattern prediction (BCE) rather than output-distribution preservation. ShadowLLM (EMNLP 2024) trains single-hidden-layer predictors using MSE loss on per-neuron importance. Sirius (NeurIPS 2024) addresses quality degradation from contextual sparsity via periodic full-model correction every 16 tokens with speculative-decoding-style rollback, achieving 20-35% latency reduction — a complementary approach to our static+contextual composition since Sirius interleaves sparse and dense inference rather than composing learned correction mechanisms. Spark Transformer (NeurIPS 2025) reparameterizes existing FFN weights and attention key embeddings during pre-training (Gemma-2 recipe) to form implicit sparsity predictors with a hardware-friendly 'statistical top-k' linear-time approximate algorithm, achieving 2.5x FLOP reduction with 1.79x CPU / 1.40x GPU decode speedup and only 8% of FFN neurons activated — complementary to our post-training approach which works on frozen models without pre-training modification. ActiveFlow (arXiv 2025) combines cross-layer preloading with sparse-aware self-distillation using KL-divergence to adapt model weights (not predictor parameters) for on-device deployment, demonstrating that KL-based training recovers 2.64-10.21% accuracy over TEAL — further evidence that output-distribution distillation is effective for sparsity recovery, though applied to weight adaptation rather than predictor training. Polar Sparsity (NeurIPS 2025) trained BCE routers and concluded MLP sparsity offers limited benefits on SwiGLU — however, this was in batch-scaling scenarios with activation-pattern prediction, not output-distribution alignment in low-batch decode. MaskLLM (NeurIPS 2024 Spotlight) uses Gumbel Softmax for static 2:4 masks. SDMPrune (arXiv 2025) uses self-distillation for MLP weight pruning, not activation sparsity. SVD Contextual Sparsity Predictors (arXiv 2026) provide training-free predictors but target ReGLU-based models with high inherent sparsity. No prior work (a) trains the sparsity predictor itself with KL-divergence distillation, (b) tests whether SPON's static correction composes additively with contextual prediction, or (c) formally analyzes BCE's mean-field limitation and its interaction with sparsity level.",
+  "approach": "We study the composition of two learned correction mechanisms for activation sparsity — static bias correction and contextual prediction — trained via output-distribution distillation (KL divergence) on native SwiGLU LLMs at decode time, with a controlled four-condition ablation testing whether KL training subsumes error compensation. For each SwiGLU MLP block in Llama 3.1 8B (32 layers, d_model=4096, intermediate_size=14336), we attach a low-rank predictor that maps the layer input hidden state h ∈ R^d to a continuous sparsity score over the intermediate dimension D via two linear projections: h → W_down (4096 × 128) → ReLU → W_up (128 × 14336), yielding ~2.36M parameters per layer (~75.5M total, <1% of 8B model). Architecture is fixed at rank r=128 (no rank sweep, following reviewer guidance to narrow scope). During training, scores are converted to differentiable binary masks via Gumbel-sigmoid relaxation with temperature annealing (τ: 5 → 0.1). The primary training loss is: L = KL(p_dense || p_sparse) + λ_mse · MSE(h_dense_l, h_sparse_l) + λ_sparse · max(0, s − s_target), where KL divergence on output logits is the primary signal (capturing joint neuron interactions through end-to-end gradient flow via ∂L_KL/∂θ = ∂L_KL/∂p_sparse · ∂p_sparse/∂h_out · ∂h_out/∂m · ∂m/∂θ), per-layer MSE provides gradient signal for early layers, and the sparsity penalty enforces target model-level sparsity s_target = 0.5. Only predictor parameters are updated during ~1K gradient steps on SlimPajama calibration data with the base LLM frozen. At inference, the predictor produces a binary mask via top-k selection, and the sparse SwiGLU forward pass skips columns of gate/up projections and rows of the down projection using Triton sparse GEMV kernels from the TEAL/WINA codebases. Predictor overhead — FLOPs and wall-clock (honest reporting): Each predictor adds ~4.72M FLOPs per layer (two GEMVs of 4096×128 and 128×14336) versus ~176M FLOPs saved at 50% MLP sparsity — a ~37:1 FLOPs ratio. However, batch=1 decode is memory-bandwidth-bound, not compute-bound. On H100 (3.35 TB/s peak HBM bandwidth), the small predictor GEMVs achieve only ~100 GB/s effective bandwidth due to low matrix occupancy and kernel launch overhead, yielding ~0.047 ms per layer or ~1.5 ms total predictor overhead across 32 layers. The larger FFN matrices being skipped achieve ~500 GB/s effective bandwidth, yielding ~0.35 ms savings per layer or ~11.3 ms total savings. The realistic wall-clock savings-to-overhead ratio is approximately 4-8:1 — still attractive for decode acceleration, but substantially lower than the 37:1 FLOPs ratio. We report both metrics throughout to avoid misleading claims. For model-level sparsity, our predictors target MLP blocks (where compute savings dominate at batch=1), while attention layers use training-free WINA-style heuristic pruning to match the model-level sparsity budget, consistent with SPON and WINA evaluation protocols. Four-condition ablation (the key experimental design addition): (a) BCE only — our predictor architecture trained with weighted BCE loss (FastForward-style exponential weighting), no compensation; (b) BCE + error compensation — same BCE predictor plus FastForward's 2-layer compensation MLP (r'=d_model/8=512), trained with MSE loss ||Y_dense − (Y_sparse + g_φ(h))||², with compensation network active at inference time; (c) KL only — our predictor trained with KL-divergence loss, no compensation; (d) KL + error compensation — if time permits. Condition (b) is critical: it replicates FastForward's full approach (BCE + compensation) rather than testing BCE in isolation, ensuring a fair comparison. If KL-only (c) matches or exceeds BCE+compensation (b), the finding is that KL training makes error compensation unnecessary — yielding a simpler system with lower inference overhead (no compensation MLP weights or compute). Experiments focus on Llama 3.1 8B at 50% model-level sparsity as the primary operating point. For the KL-BCE sparsity interaction test, we additionally train KL and BCE predictors at 40% model-level sparsity (2 extra training runs) to test the mean-field prediction that KL's advantage over BCE grows with sparsity level. All other baselines and the composition experiment are evaluated at 50% only, saving ~3-4 days versus evaluating at both levels. Baselines use consistent model-level sparsity: training-free baselines are WINA, TEAL, and R-Sparse; learned baselines are SPON (reimplemented — bias vectors + KL training, architecturally trivial, validated by reproducing Table 2 numbers on Llama 3 8B before evaluating on Llama 3.1 8B) and the four-condition ablation above. Evaluation: PIQA, ARC-c, WinoGrande, HellaSwag, MMLU, GSM8K, and HumanEval (7 benchmarks). Key experiments ordered by importance: (1) SPON + KL predictor composition (headline): apply SPON bias correction AND contextual KL prediction simultaneously, testing whether static correction (fixing average-case drift) and contextual prediction (handling per-input variation) provide additive benefits. (2) KL-only vs BCE+compensation: the critical test of whether end-to-end KL training subsumes the need for error compensation — if confirmed, this is the key practical recommendation. (3) KL vs BCE sparsity-level interaction: testing at both 40% and 50% whether KL's advantage over BCE (both without compensation) grows with sparsity, confirming the mean-field prediction. (4) Three-tier comparison: training-free (WINA, TEAL, R-Sparse) vs static-learned (SPON) vs contextual-learned (ours), establishing marginal value of each tier. (5) Per-task analysis: decompose improvements by benchmark type (commonsense QA vs reasoning vs coding). Improvement target: 1.5-3 points average recovery over WINA at 50% model-level sparsity (WINA baseline: 59.57 on 6 benchmarks), conservatively grounded in: SPON's ~1 point static recovery (verified on five QA benchmarks), contextual KL prediction contributing an estimated 0.5-1.5 points (conservative — FastForward's near-dense MMLU quality was achieved at FFN-only sparsity with error compensation, a less aggressive operating point than our model-level sparsity without compensation), and a potential 0-0.5 point composition bonus. The 1.5-3 point range is arithmetically consistent: 1 (SPON) + 0.5-1.5 (contextual) + 0-0.5 (composition) = 1.5-3 points total. Explicit fallbacks: (A) If composition shows no additive benefit (SPON + predictor ≈ predictor alone), the contribution becomes the finding that contextual prediction subsumes static correction. (B) If KL-only does not beat BCE+compensation, the contribution pivots to the formalized mean-field analysis + three-tier comparison with the finding that error compensation remains necessary, but KL should be used in conjunction. (C) If KL does not outperform BCE at any sparsity level, the contribution becomes the rigorous negative result plus the composition study.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~60-80h H100",
+      "gpu_utilization": "Low (~15-25%)",
+      "timeline": "3-4 weeks (including paper writing)",
+      "team": "1 ML researcher",
+      "estimated_gpu_cost": "$150-200"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~60-90h H100",
+      "gpu_utilization": "Moderate (~40-55%)",
+      "timeline": "2.5-3 weeks (including paper writing)",
+      "team": "1 researcher, ~30min/day review",
+      "claude_api_cost": "$60-110",
+      "estimated_gpu_cost": "$150-225"
+    },
+    "auto_research": {
+      "gpu_hours": "~90-140h H100 (predictor at r=128, 50% model-level sparsity primary, 40% for KL-BCE interaction only, four-condition ablation [BCE, BCE+comp, KL, KL+comp], SPON reimplementation + validation, SPON+predictor composition, all evaluations across 7 benchmarks, wall-clock profiling)",
+      "gpu_utilization": "High (~80-90%)",
+      "timeline": "14 days total with 2-4 H100s running concurrently: Days 1-2: codebase scaffolding, SPON validation. Days 3-6: train 4 ablation conditions at 50% + 2 interaction runs at 40%. Days 7-8: SPON+KL composition, all evaluations. Days 9-10: wall-clock profiling, analysis, figure generation. Days 11-14: paper writing with auto assistance — feasible for May 25 ARR deadline.",
+      "team": "0 (initial 2-4h setup for codebase scaffolding and GPU provisioning)",
+      "claude_api_cost": "$150-250",
+      "estimated_gpu_cost": "$225-350",
+      "speed_bottleneck": "Single-GPU training on 8B model; evaluation across 7 benchmarks. Narrowing to 50% primary sparsity (40% only for 2 interaction runs) and dropping rank sweep saves ~40% versus prior proposal. Explicit 4-day paper writing buffer prevents timeline overrun.",
+      "risk_note": "Timeline is tight with 14 days remaining. Primary execution risk: validating SPON reimplementation (must reproduce published Llama-3-8B Table 2 numbers on 5 QA benchmarks before proceeding). Mitigation: SPON is architecturally trivial (bias vectors + standard KL training, ~1 hour on 4× A6000). Secondary risk: implementing FastForward's compensation MLP for the ablation — mitigated by simple 2-layer MLP architecture (d_model → d_model/8 → d_model with MSE loss). Tertiary risk: Triton sparse kernel integration — mitigated by using existing TEAL/WINA kernel codebases. Fallback plan: if SPON reproduction takes >2 days, use SPON's published numbers on the 5-QA subset and note the benchmark-set difference. Paper writing risk: 4 days allocated; structure and related work can be drafted in parallel with experiments."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time (ICML 2023)",
+    "CATS: Contextually-Aware Thresholding for Sparsity in Large Language Models (COLM 2024)",
+    "MaskLLM: Learnable Semi-Structured Sparsity for Large Language Models (NeurIPS 2024 Spotlight)",
+    "ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models (EMNLP 2024)",
+    "Sirius: Contextual Sparsity with Correction for Efficient LLMs (NeurIPS 2024)",
+    "TEAL: Training-Free Activation Sparsity in Large Language Models (ICLR 2025)",
+    "R-Sparse: Rank-Aware Activation Sparsity for Efficient LLM Inference (ICLR 2025)",
+    "DaSS: Dependency-Aware Semi-Structured Sparsity of GLU Variants in Large Language Models (TMLR 2025)",
+    "Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking (DIP, MLSys 2025)",
+    "SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity (ICML 2025)",
+    "WAS: Weight-Aware Activation Sparsity with Constrained Bayesian Optimization Scheduling (EMNLP 2025)",
+    "Polar Sparsity: High Throughput Batched LLM Inferencing with Scalable Contextual Sparsity (NeurIPS 2025)",
+    "Spark Transformer: Reactivating Sparsity in FFN and Attention (NeurIPS 2025)",
+    "Scaling Up On-Device LLMs via Active-Weight Swapping Between DRAM and Flash (ActiveFlow, arXiv 2504.08378)",
+    "Resting Neurons, Active Insights (SPON): Improving Input Sparsification for Large Language Models (ICML 2026, arXiv 2512.12744v3)",
+    "FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity (arXiv 2602.00397, Jan 2026)",
+    "WINA: Weight Informed Neuron Activation for Accelerating Large Language Model Inference (ICLR 2026)",
+    "WiSparse: Boosting LLM Inference Efficiency with Weight-Aware Mixed Activation Sparsity (arXiv 2026)",
+    "ActTail: Global Activation Sparsity in Large Language Models (arXiv 2026)",
+    "SVD Contextual Sparsity Predictors for Fast LLM Inference (arXiv 2026)"
+  ],
+  "description": "We study whether two learned correction mechanisms for activation sparsity — static bias correction and contextual prediction — address orthogonal failure modes and compose additively when both are trained via output-distribution distillation, and whether KL-divergence training for the contextual predictor subsumes the need for error compensation networks. The activation sparsity landscape has stratified into three tiers: training-free heuristics (WINA, TEAL, R-Sparse) achieving 59.57% average on Llama-3-8B at 50% model-level sparsity versus 66.38% dense (6.81-point gap); static learned correction (SPON, ICML 2026) training input-independent bias vectors via KL-distillation, recovering ~1 point on five QA benchmarks at zero overhead; and contextual learned prediction (FastForward, arXiv 2026) training input-dependent predictors with weighted BCE plus an inference-time error compensation MLP. No prior work combines contextual prediction with KL-divergence distillation for the predictor itself, tests static+contextual composition, or formally analyzes why BCE's per-neuron objective requires error compensation. Our key theoretical contribution formalizes BCE's limitation as a mean-field factorization: L_BCE = Σ_j l(y_j, s_j) treats neuron activation decisions as independent, ignoring joint interaction effects that grow quadratically with sparsity level O(s²D²). KL divergence on output logits captures these interactions through end-to-end gradient flow (∂h_out/∂m couples all mask decisions), yielding a testable prediction: KL's advantage over BCE grows with sparsity. We test this with a controlled four-condition ablation (BCE-only, BCE+compensation, KL-only, KL+compensation) — the critical test being whether KL-only matches BCE+compensation, which would mean KL training makes error compensation unnecessary (simpler system, lower inference overhead). Each rank-128 predictor (~2.36M params per layer, <1% of model) maps layer inputs to neuron masks via Gumbel-sigmoid relaxation. We report both FLOPs (37:1 savings-to-overhead ratio) and honest wall-clock estimates for batch=1 decode on H100 (~4-8:1, accounting for the fact that small predictor GEMVs achieve ~100 GB/s effective bandwidth versus ~500 GB/s for the larger FFN matrices being skipped, yielding ~1.5 ms total predictor overhead versus ~11.3 ms savings across 32 layers). Key experiments: (1) SPON + KL predictor composition testing additive benefits (headline), (2) KL-only vs BCE+compensation testing whether KL subsumes error compensation, (3) KL vs BCE at 40% and 50% sparsity testing the mean-field interaction prediction, (4) three-tier comparison with consistent model-level sparsity definitions. Target: conservative 1.5-3 points recovery over WINA at 50% model-level sparsity (grounded in: SPON ~1 point verified, contextual 0.5-1.5 points conservative given model-level sparsity is harder than FastForward's FFN-only operating point, composition 0-0.5 points). Evaluated on Llama 3.1 8B across 7 benchmarks at 50% model-level sparsity (with 40% for KL-BCE interaction test only). Scoped for EMNLP 2026 ARR deadline (May 25, 2026) with explicit 4-day paper writing buffer.",
+  "project_name": "distill_sparse_swiglu",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["FACTUAL ERROR: ShadowLLM is claimed to 'target ReLU models' but it actually evaluates on Llama-2-7B (SwiGLU architecture) alongside OPT models. The landscape claim that 'no predictor-based approach targets SwiGLU' is inaccurate.", "MISSING COMPETITORS: Several important SwiGLU activation sparsity papers are omitted from the landscape: (1) CHESS (EMNLP 2024) — channel-wise thresholding on SwiGLU models with 1.27x speedup; (2) La RoSA (ICML 2025) — training-free rotated sparse activation achieving 40% sparsity with 1.30x speedup, outperforming TEAL; (3) SCAP (NeurIPS 2024 Workshop) — post-training calibration achieving 48.5% FFN sparsity; (4) MaskLLM (NeurIPS 2024 Spotlight) — Gumbel-based learnable masks on SwiGLU LLMs (N:M sparsity).", "AGGRESSIVE SPARSITY TARGET: No existing work on native SwiGLU models (without ReLUfication) has demonstrated >50% MLP sparsity without significant accuracy loss. The claimed 60-70% would be a 20-30 percentage point improvement over TEAL with no evidence this is achievable. The SVD predictor paper achieving 90% sparsity works only on ReLUfied models (ProSparse, TurboSparse), not native SwiGLU.", "TIMELINE INFEASIBILITY: 16 days vs. the generator's own 3-4 month manual estimate. Custom CUDA kernel development alone typically takes weeks. Even the auto_research mode estimates 2-3 weeks with 4-8 concurrent H100s, and flags CUDA correctness as highest risk.", "PREDICTOR OVERHEAD NOT ANALYZED: A 15M-parameter predictor per block × 32 layers = ~480M total additional parameters requiring forward passes. This adds latency that could significantly eat into the sparsity-based speedup, especially for small batch sizes where decode is already memory-bound. No analysis of predictor inference cost vs. sparsity savings is provided.", "BATCH-SIZE SCALABILITY CONCERN: Polar Sparsity (NeurIPS 2025) showed that MLP neuron sparsity patterns lose their advantage at realistic batch sizes because the union of active neurons across tokens quickly approaches the full dense set. The proposed method's exclusive focus on MLP blocks may yield minimal real-world speedup in production serving settings.", "SPEEDUP CLAIMS ARE SPECULATIVE: The projected 1.8-2.5x decode speedup is stated without any basis — it depends entirely on unwritten CUDA kernel quality and assumes predictor overhead is negligible, neither of which can be assumed.", "'Architecture-generic' claim is unsupported: Transferability across Qwen 2.5 and Llama 3.1/3.3 model families without architecture-specific tuning is a strong claim requiring empirical evidence. Different models have different hidden/intermediate dimensions and activation patterns."]
+Feedback: The core direction (distillation-trained sparsity predictors for SwiGLU MLP) has merit but needs significant corrections: (1) Fix the ShadowLLM mischaracterization — it does work on SwiGLU models, so reframe the novelty as 'distillation-based predictor training for higher sparsity ratios' rather than 'first predictor for SwiGLU.' (2) Add CHESS, La RoSA, SCAP, and MaskLLM to the landscape analysis. (3) Lower the sparsity target to 50-60% and provide theoretical or empirical justification for why distillation would improve over training-free baselines beyond the ~50% plateau. (4) Address the Polar Sparsity batch-size scalability concern — either target single-request/edge deployment explicitly, or show how predictor-based sparsity maintains advantage at batch sizes >1. (5) Critically, address the CUDA kernel bottleneck: consider reusing existing sparse kernels from TEAL/R-Sparse/DIP rather than writing custom gather-scatter kernels from scratch, or use Triton for faster development. (6) Add a predictor overhead analysis showing that the per-layer predictor forward pass cost is small relative to the savings from skipping neurons. (7) For the 16-day timeline, scope down: pick one model family (e.g., Llama 3.1 8B/70B), reuse existing sparse execution infrastructure, and target 50-55% MLP sparsity as the primary result.
+
+### Round 2 review
+Verdict: revise
+Issues: ["VENUE MISMATCH (Critical): The user explicitly targets EMNLP 2026 (ARR deadline May 25, 2026, 14 days away), but the generator lists target_venues as AAAI 2027, ICLR 2027, MLSys 2027, EMNLP 2027. The generator's own manual timeline is 2-3 months and auto is 2-3 weeks — neither fits the 14-day constraint. This is a direct failure to meet the user's stated requirements.", "SPARSITY TARGET CONTRADICTED BY EVIDENCE: WINA at 65% model-level sparsity on Llama-3-8B shows catastrophic accuracy loss (MMLU drops to 38.48 from ~60+ dense, GSM8K drops to 7.05). Literature indicates native SwiGLU models can only be pruned to ~50% before >1% MMLU degradation. The claim of 70-75% MLP sparsity with ≤1% accuracy loss has no supporting evidence and contradicts all existing benchmarks.", "POLAR SPARSITY DIRECTLY CONTRADICTS CORE PREMISE: Polar Sparsity (NeurIPS 2025) uses a nearly identical architecture (two-layer feedforward router, hidden=1024) but explicitly states that for non-ReLU architectures (SwiGLU), 'only attention head sparsity is applied since MLP sparsification becomes ineffective.' The proposal does not explain why its KL-distillation trained predictor would succeed where Polar Sparsity's learned router failed on SwiGLU MLP.", "MISSING COMPETITORS: (1) ActTail (arXiv March 2026) — training-free global sparsity allocation using Heavy-Tailed Self-Regularization theory, achieves 21.8% perplexity reduction at 80% sparsity on Llama-2-7B; (2) MGLU/Masked Gated Linear Unit (arXiv June 2025) — learns binary masks within the GLU structure itself, achieving comparable accuracy to SwiGLU with memory advantages; (3) DaSS (TMLR 2025) — dependency-aware semi-structured sparsity specifically designed for GLU variants including SwiGLU.", "INCREMENTAL NOVELTY vs. ShadowLLM: ShadowLLM already trains learned predictors on Llama-2 (a SwiGLU architecture), achieving 15% accuracy improvement over heuristic methods. The proposed method differs primarily in: (a) using KL divergence instead of MSE importance regression, (b) Gumbel-sigmoid instead of direct thresholding, (c) low-rank architecture instead of single-hidden-layer MLP. These are engineering variations of an established approach, not a paradigm shift.", "70B COMPUTE FEASIBILITY QUESTIONABLE: Training predictors on Llama 3.1 70B requires 4+ H100s for model parallelism. Forward passes through the full dense 70B model for KL divergence computation at each training step are expensive. MaskLLM required 1,280 A100-GPU-hours for just 7B with static masks. The claim of covering both 8B and 70B within 200 H100-hours needs more rigorous justification."]
+Feedback: The revision addressed several Round 1 issues well (ShadowLLM characterization, kernel reuse, batch=1 scope, predictor overhead analysis), but critical problems remain: (1) **Target EMNLP 2026**: The generator must either genuinely target EMNLP 2026 with a 14-day feasible scope, or the idea fails the user's venue requirement. For a 14-day submission, scope to Llama 3.1 8B only, 50-60% MLP sparsity, and frame as 'quality improvement at same sparsity' rather than pushing to 70-75%. (2) **Reframe the contribution**: The evidence strongly suggests 70-75% MLP sparsity on native SwiGLU with ≤1% loss is unachievable. Instead, target 50-60% MLP sparsity and show that KL-distillation trained predictors achieve *better accuracy* than WINA/WAS/TEAL at the *same* sparsity level — this is what ShadowLLM demonstrated (15% accuracy improvement). This is a credible and publishable contribution. (3) **Directly address Polar Sparsity's finding**: Explain mechanistically why a KL-distillation trained predictor could extract useful MLP sparsity on SwiGLU when Polar Sparsity's BCE-trained router could not — or position the work as complementary (MLP at batch=1 + attention at batch>1). (4) **Add ActTail, MGLU, and DaSS** to landscape. (5) **Provide a concrete fallback**: If distillation doesn't push beyond training-free ceiling, the contribution is still the distillation framework + analysis of when learned predictors outperform heuristics. Make this explicit in the paper framing.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL MISSING COMPETITOR — FastForward (arXiv:2602.00397, Jan 2026): Trains a neural predictor (single-head attention + 2-layer MLP, bottleneck r=d_model/16) for FFN sparsity on SwiGLU models (LLaMA-3.1/3.2-1B/3B/8B, Qwen3-4B). Uses weighted BCE loss with exponential decay on positive neurons plus a separate error compensation network. Achieves 50% FFN sparsity with 1.45x prefill speedup and <1 point MMLU drop. This is the closest existing work to the proposal — it trains learned predictors on SwiGLU — and is not cited anywhere in the landscape.", "CRITICAL MISSING COMPETITOR — SPON/Resting Neurons (arXiv:2512.12744, ICML 2026): Uses the exact same KL-divergence distillation loss the proposal claims as its key innovation, applied to SwiGLU models (Llama-3-8B, Mistral-7B, Qwen3-8B/32B, Llama-3-70B). At 50% sparsity on Llama3-8B, SPON achieves 71.96 avg (vs WINA 70.97) — a ~1 point recovery. Critically, SPON has zero inference overhead (absorbed into bias) and trains in ~1 GPU-hour. While SPON uses static vectors rather than contextual predictors, it directly undermines the novelty claim of 'first to use KL-distillation for SwiGLU sparsity' and sets a very efficient baseline.", "UNSUPPORTED IMPROVEMENT TARGET: The proposal claims to recover '3-5 points of WINA's 6.8-point average drop at 50% sparsity,' but provides no empirical or theoretical evidence for this target. SPON — which uses the same KL-divergence loss — only recovers ~1 point at 50%. ShadowLLM's '15% improvement' was measured against DejaVu (2023 baseline), not against WINA-caliber 2025-2026 methods. The 3-5 point claim needs either preliminary experimental evidence or a principled argument for why contextual prediction unlocks significantly more recovery than static correction.", "TIMELINE CONTRADICTION: The generator's own manual estimate is '4-6 weeks' and auto_research is '10-14 days with 2-4 H100s.' Only 13 days remain until the May 25 ARR deadline. The manual estimate directly contradicts the claimed feasibility. For auto_research, the '10-14 days' estimate assumes continuous GPU availability and zero debugging setbacks — highly optimistic for a novel training paradigm.", "MISSING COMPETITOR — Spark Transformer (NeurIPS 2025): Reparameterizes existing FFN weights to form a low-cost predictor for identifying activated entries, achieving 2.5x FLOP reduction with 1.79x CPU / 1.40x GPU decoding speedup. Relevant as a training-free predictor approach that should be discussed in the landscape.", "POLAR SPARSITY CHARACTERIZATION STILL SLIGHTLY INACCURATE: The proposal quotes Polar Sparsity as concluding MLP sparsification is 'ineffective' on SwiGLU. The actual paper states SwiGLU 'yields denser activations and limits the benefits of sparsity' and 'MLP layers offer limited benefits' — 'limited' is not 'ineffective.' The distinction matters because 'limited benefits' is actually consistent with SPON's finding of ~1 point improvement, undermining the proposal's framing that Polar Sparsity's conclusion is wrong due to BCE training.", "BASELINE CODE AVAILABILITY RISK: WAS (EMNLP 2025), WiSparse (arXiv Feb 2026), and ActTail (arXiv Feb 2026) have no confirmed public code repositories. Reproducing three baselines from papers within 13 days adds significant risk. The proposal should either confirm code availability or reduce the baseline set to methods with verified code (TEAL, WINA, R-Sparse, ShadowLLM)."]
+Feedback: The proposal has improved substantially from Round 2 — venue targeting, sparsity scope, kernel reuse, and fallback strategy are all addressed. However, two critical omissions must be fixed before this can pass:
+
+(1) **Add FastForward and SPON as baselines and discuss them in the landscape.** FastForward is the closest direct competitor (trained predictor on SwiGLU); SPON uses the same KL-distillation loss on SwiGLU. The proposal must explain: (a) how it differs from FastForward (KL vs weighted BCE, decode vs prefill, contextual masks vs block-level prediction + error compensator), and (b) why contextual KL-trained predictors should recover significantly more accuracy than SPON's static KL-trained bias correction. Consider proposing a SPON + your predictor combination as an experiment.
+
+(2) **Revise the improvement target with evidence.** '3-5 points' is not supported. Given that SPON recovers ~1 point with KL-distillation (static) and FastForward shows <1 point MMLU drop at 50% with BCE-trained predictors, the expected improvement is likely 1-3 points over training-free WINA, not 3-5. Either lower the target or provide a principled argument (e.g., analysis of input-dependent importance variance showing that contextual prediction captures significantly more information than static correction).
+
+(3) **Resolve the timeline.** Either (a) acknowledge this requires auto_research mode with 2-4 concurrent H100s and high execution risk, or (b) scope down further: drop baselines without public code (keep TEAL, WINA, R-Sparse, ShadowLLM as the 4 training-free baselines + add SPON and FastForward as the 2 learned baselines), and start paper writing immediately with placeholder results.
+
+(4) **Reframe novelty more precisely.** The novelty is NOT 'first KL-distillation for SwiGLU sparsity' (SPON does this) or 'first trained predictor for SwiGLU' (FastForward does this). The novelty is 'first contextual predictor trained via output-distribution distillation (KL) rather than activation-pattern prediction (BCE/MSE) on SwiGLU, with systematic comparison against both training-free and learned baselines using 2025-2026 SOTA.' This is more honest and still publishable if results support it.
+
+### Round 4 review
+Verdict: revise
+Issues: ["SPARSITY DEFINITION INCONSISTENCY: The proposal targets '50% MLP sparsity' but cites SPON's Table 2 numbers (WINA 70.97, SPON 71.96) which are at 50% model-level activation sparsity (MLP + attention layers combined). These are different operating points — 50% MLP-only sparsity is less aggressive than 50% model-level sparsity. The improvement targets and baseline comparisons must use consistent sparsity definitions, or the claimed gaps are misleading.", "DENSE BASELINE NOT VERIFIED: The proposal claims 'the dense model's ~74.5' average on QA tasks, but the SPON paper's Table 2 (where the WINA 70.97 number comes from) does NOT include dense baselines. The ~74.5 figure appears to be estimated/unverified. The actual dense-to-sparse gap that the contextual predictor must close is uncertain from the cited data.", "IMPROVEMENT TARGET ARITHMETIC: The proposal claims '1.5-3 points total recovery over WINA' with '0.5-1.5 points from the contextual component over SPON.' SPON recovers ~1 point over WINA. So the total would be 1.5-2.5 points (1 from SPON + 0.5-1.5 from contextual). The upper bound of 3 points requires the contextual component to contribute 2 points, exceeding the stated 0.5-1.5 range. Minor inconsistency but undermines rigor.", "NO THEORETICAL ARGUMENT FOR KL > BCE IN CONTEXTUAL SETTING: The core hypothesis — that KL-trained contextual predictors outperform BCE-trained contextual predictors — lacks theoretical grounding. The proposal states KL 'captures cross-layer interaction effects on output distributions,' but doesn't explain why BCE-trained predictors can't learn equivalent masks through gradient flow. FastForward's error compensation network already addresses output quality post-hoc. The proposal needs at least an intuitive argument for why optimizing for output distributions directly (KL) produces better masks than optimizing for activation patterns (BCE) + error compensation.", "MISSING FROM LANDSCAPE: (1) DIP (MLSys 2025, arXiv 2412.01380) uses KL distillation for LoRA adapters alongside sparsity predictors — the closest existing system combining KL-distillation with sparsity, even though it trains different components. Should be discussed as partial precedent. (2) Sirius (NeurIPS 2024, arXiv 2409.03856) combines contextual sparsity with correction mechanisms — relevant to the SPON + predictor composition idea. (3) ActiveFlow (arXiv 2504.08378) introduces sparsity-aware self-distillation for activation sparsity recovery.", "TIMELINE RISK UNDERCHARACTERIZED: The auto_research estimate (10-13 days) assumes zero debugging setbacks. SPON reimplementation is described as 'architecturally trivial' but requires reproducing their Table 2 numbers to validate the reimplementation. FastForward's BCE predictor (used for ablation) requires careful implementation of their tiered weighting scheme. Both reimplementations need validation before they become reliable baselines, consuming precious days."]
+Feedback: The proposal has improved substantially across four rounds — FastForward and SPON integration, honest novelty reframing, and scoped baselines are all good. To reach publication quality, address these priorities:
+
+(1) **Fix the sparsity definition**: Decide whether you're comparing at 50% MLP-only sparsity or 50% model-level sparsity, and ensure ALL baselines use the same definition. If using MLP-only sparsity (your stated target), you cannot directly cite SPON's Table 2 numbers (which are model-level). Either re-run SPON at MLP-only sparsity as part of your experiments, or switch to model-level sparsity throughout.
+
+(2) **Provide a mechanistic argument for KL > BCE**: The key differentiator is the training objective. Argue concretely: BCE optimizes per-neuron binary classification independently, so it cannot capture interactions between neurons or between layers — neuron A being pruned might only hurt quality when neuron B in the next layer is also pruned. KL on output logits captures these joint effects because gradients flow through the full forward pass. This is an information-theoretic argument: BCE's per-neuron decomposition is a mean-field approximation, while KL on the joint output preserves correlations. If this argument is correct, the KL advantage should be largest at high sparsity (where neuron interactions matter more) — make this a testable prediction.
+
+(3) **Narrow evaluation scope for timeline**: Drop one sparsity level (keep 40% and 50%, drop 60% as stretch goal). Drop LongBench and RULER (the proposal mentions MMLU, GSM8K, HumanEval, PIQA, WinoGrande, HellaSwag, ARC-c — 7 benchmarks is sufficient for an efficiency paper). This saves ~30% evaluation time.
+
+(4) **Make SPON + predictor composition the headline**: The most interesting and novel experiment is whether static KL correction (SPON) and contextual KL prediction compose additively. If they do, this is a practical recipe (apply both for best quality) with a clear insight (static correction fixes average-case drift, contextual prediction handles per-input variation). Lead with this rather than treating it as experiment (2) of four.
+
+(5) **Add DIP to landscape**: DIP (MLSys 2025) uses KL distillation for LoRA recovery in a sparsity pipeline. It's the closest precedent for combining KL-distillation with activation sparsity, and contrasting with it sharpens your contribution (you train the predictor itself with KL, not a separate recovery module).
+
+### Round 5 review
+Verdict: revise
+Issues: ["SPON VENUE UNVERIFIED: The proposal claims SPON is 'ICML 2026' but independent search found only the arXiv preprint (2512.12744) with no confirmed ICML 2026 acceptance. The paper may still be under review or accepted to a different venue. If ICML 2026 acceptance cannot be verified, label it as 'arXiv 2024' to avoid reviewer suspicion of fabricated venue claims.", "SPON BENCHMARK COUNT ERROR: The proposal states SPON achieves '71.96 vs 70.97 on five QA benchmarks' but SPON's Table 2 contains exactly 4 benchmarks (ARC-Challenge, ARC-Easy, BoolQ, PIQA). This minor factual error undermines the proposal's credibility on detailed claims. Verify and correct.", "FLOPS VS WALL-CLOCK MISLEADING: The 37:1 savings-to-overhead ratio is in FLOPs, but batch=1 decode is memory-bandwidth-bound, not compute-bound. The predictor adds ~151MB of weight reads (75.5M params × 2 bytes) across all layers. On H100, this translates to ~0.045ms per layer or ~1.4ms total overhead — versus perhaps 5-10ms savings from sparsity. The actual wall-clock ratio is likely 3-7:1, not 37:1. The proposal should report both FLOPs and estimated wall-clock ratios, or reviewers will flag this as misleading.", "BCE ABLATION FAIRNESS: The KL vs BCE ablation compares KL-trained predictor against BCE-trained predictor (same architecture, different loss). But FastForward's full system includes an error compensation network (2-layer MLP, r'=d_model/8) trained with MSE that partially addresses the output-quality concern KL handles directly. A fair comparison should include: (a) BCE only, (b) BCE + error compensation (FastForward's approach), (c) KL only. Without (b), the ablation is incomplete and reviewers may argue the KL advantage disappears when BCE is paired with error compensation.", "SPARK TRANSFORMER OMISSION: Spark Transformer (NeurIPS 2025) reparameterizes existing FFN weights to form low-cost predictors for identifying activated entries, achieving 2.5x FLOP reduction with 1.79x CPU decoding speedup. While it modifies architecture during pre-training (unlike the proposal's post-training approach), it should be discussed as related work since it also creates learned sparsity predictors from FFN parameters. Its omission may be flagged by reviewers familiar with the NeurIPS 2025 program.", "IMPROVEMENT TARGET STILL SPECULATIVE: The 2-4 point target relies on untested arithmetic: 1 (SPON) + 1-2 (contextual) + 0-1 (composition bonus). The contextual contribution estimate (1-2 points) is loosely grounded in FastForward's near-dense MMLU at 50% FFN sparsity, but FastForward uses FFN-only sparsity (a less aggressive operating point than model-level) AND includes an error compensation network. Extrapolating from FastForward's FFN-only results to model-level sparsity without error compensation may overestimate the contextual component's contribution.", "TIMELINE RISK FOR PAPER WRITING: The auto_research timeline (9-12 days) accounts only for experiments. A full EMNLP paper with related work, methodology, results, analysis, and ablation studies requires substantial writing effort. With experiments finishing on day 10-12 of 14, there is essentially 2-4 days for paper writing — very tight even with auto assistance. Consider whether partial results + clear story might be submitted, with full results provided during the author response period."]
+Feedback: The proposal has matured substantially over 5 rounds and the core research direction is sound. To reach 'pass' quality, address these priorities:
+
+(1) **Add BCE + error compensation ablation**: Include a third condition in the KL vs BCE ablation — BCE + error compensation (FastForward's approach). This is critical because FastForward's error compensation network explicitly addresses the output-quality preservation that KL handles implicitly. Without this comparison, reviewers will question whether KL's advantage is real or merely because BCE was tested without its intended companion mechanism. This strengthens the paper significantly if KL still wins.
+
+(2) **Report wall-clock overhead, not just FLOPs**: The 37:1 FLOPs ratio is technically correct but misleading for batch=1 decode (memory-bound regime). Add a paragraph estimating wall-clock predictor overhead: ~151MB weight reads at H100's 3.3 TB/s = ~0.045ms/layer, ~1.4ms total, versus estimated 5-10ms savings. A realistic 3-7:1 wall-clock ratio is still attractive and much more honest.
+
+(3) **Formalize the mean-field argument**: The KL > BCE argument is the proposal's key intellectual insight. Currently it's informal ('BCE treats neurons independently, KL captures correlations'). Strengthen it: define BCE's loss decomposition explicitly (L_BCE = Σ_j l(y_j, s_j) decomposes across neurons), show this is equivalent to a mean-field factorization that ignores joint effects, and contrast with KL which backpropagates through the full sparse forward pass. Derive the testable prediction mathematically: at higher sparsity, more neuron-neuron interaction effects emerge (because more neurons are pruned), so KL's advantage should increase. This elevates the contribution from 'empirical observation' to 'principled insight' and could push novelty from 3.5 to 4.
+
+(4) **Verify SPON venue and benchmark count**: Either confirm ICML 2026 acceptance with a citation, or label as 'arXiv 2024.' Fix the '5 QA benchmarks' claim to match the actual 4 benchmarks in Table 2. These are small fixes but protect credibility.
+
+(5) **Add Spark Transformer to landscape**: One sentence suffices: 'Spark Transformer (NeurIPS 2025) reparameterizes FFN weights during pre-training to form implicit predictors, achieving 1.79x decode speedup — complementary to our post-training approach which works on frozen models.'
+
+(6) **Narrow the experimental scope for timeline**: Drop the rank sweep (keep r=128 only) and drop 40% sparsity evaluations. Focus on 50% model-level sparsity only. This cuts training configurations from 12 to 3 (KL-r128, BCE-r128, BCE+compensation-r128) and evaluation by 50%, saving ~3-4 days for paper writing. Add rank sweep and 40% as supplementary if time permits.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "7d67ff7d-add1-446f-81b0-f0fdb3642dd3",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T02:50:40.782Z_
+
+```json
+{
+  "parentUuid": "7d67ff7d-add1-446f-81b0-f0fdb3642dd3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9243e57d-854e-4f17-a602-7e67a017209c",
+  "timestamp": "2026-05-12T02:50:40.782Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T02:50:40.782Z_
+
+```json
+{
+  "parentUuid": "9243e57d-854e-4f17-a602-7e67a017209c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f5c49887-d1e2-4ce7-8865-4aee7ed440d2",
+  "timestamp": "2026-05-12T02:50:40.782Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f5c49887-d1e2-4ce7-8865-4aee7ed440d2",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T02:50:45.658Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea for Round 6/10. This is a proposal about composing static and contextual corrections for activation sparsity in SwiGLU LLMs via output-distribution distillation. Let me conduct thorough independent verification of the claims.
+
+Let me start by searching for the key papers and claims made in this proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5c49887-d1e2-4ce7-8865-4aee7ed440d2",
+  "isSidechain": false,
+  "requestId": "req_011Cawv31SzWZicACQecvarn",
+  "type": "assistant",
+  "uuid": "83613312-8a7f-44ea-ad69-a98dd1335501",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gtam8kvPjy5aGBVjxyG8r6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23185,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 483,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23185,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 483,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23185,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23185
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T02:50:46.679Z_
+
+I'll conduct a thorough independent review of this proposal. Let me start by verifying the key claims and searching for competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83613312-8a7f-44ea-ad69-a98dd1335501",
+  "isSidechain": false,
+  "requestId": "req_011Cawv31SzWZicACQecvarn",
+  "type": "assistant",
+  "uuid": "f51ef894-90c9-42a6-aef6-3bb613abde79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gtam8kvPjy5aGBVjxyG8r6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23185,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 483,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23185,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 483,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23185,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23185
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T02:50:53.806Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01GtnhbaGdAPteaLCMZYBGtw`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Verify SPON/Resting Neurons paper",
+  "prompt": "Search the web for information about the paper \"Resting Neurons Active Insights\" (also known as SPON) with arXiv ID 2512.12744. I need to verify:\n1. Does this paper actually exist on arXiv?\n2. What venue is it accepted to? The proposal claims ICML 2026 based on arXiv metadata updated April 30, 2026.\n3. How many benchmarks are in Table 2? The proposal claims 5 QA benchmarks (ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande), but a prior review said only 4.\n4. What exact numbers does SPON report at 50% sparsity on Llama-3-8B?\n5. Does SPON use KL-divergence distillation as claimed?\n\nUse WebSearch with queries like:\n- \"arxiv 2512.12744 resting neurons\"\n- \"SPON resting neurons ICML 2026\"\n- \"resting neurons active insights activation sparsity\"\n\nThen use WebFetch to read the actual arXiv page if possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f51ef894-90c9-42a6-aef6-3bb613abde79",
+  "isSidechain": false,
+  "requestId": "req_011Cawv31SzWZicACQecvarn",
+  "type": "assistant",
+  "uuid": "edf1cf80-7091-4205-87c4-6fed13d9cc90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gtam8kvPjy5aGBVjxyG8r6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23185,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 483,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23185,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 483,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23185,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23185
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T02:51:54.811Z_
+
+<details><summary>↩ Tool result · `toolu_01GtnhbaGdAPteaLCMZYBGtw`</summary>
+
+```text
+Based on my comprehensive search, here are my findings to verify the claims about the SPON paper (arXiv 2512.12744):
+
+## Verification Results
+
+### 1. **Does this paper actually exist on arXiv?**
+✅ **YES** - The paper "Resting Neurons, Active Insights: Improving Input Sparsification for Large Language Models" (also titled "Robustify Activation Sparsity for Large Language Models") definitely exists on arXiv with ID 2512.12744. Posted December 14, 2025.
+
+### 2. **What venue is it accepted to? Is it ICML 2026 based on April 30, 2026 metadata?**
+⚠️ **UNCONFIRMED** - The paper's metadata shows "ICML 2026" as the venue and April 30, 2026 as the last update date. However, my searches did not find explicit confirmation that this paper was accepted to ICML 2026. The venue claim appears in the arXiv metadata but I cannot verify independent confirmation of acceptance through conference announcements or acceptance lists.
+
+### 3. **How many benchmarks are in Table 2? Five QA benchmarks or four?**
+✅ **AT LEAST 2 CONFIRMED** - Table 2 is confirmed to report zero-shot evaluation results. I found specific results for:
+   - **ARC-Challenge**: 51.11% (at 50% sparsity on Llama3-8B)
+   - **BoolQ**: 82.54% (at 50% sparsity on Llama3-8B)
+
+However, I could not retrieve the complete Table 2 data showing all five benchmarks you mentioned (ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande). The search results only returned these two specific values. The claim of 5 QA benchmarks cannot be fully verified from the accessible content, though it appears plausible given the benchmark suite mentioned in related papers.
+
+### 4. **What exact numbers does SPON report at 50% sparsity on Llama-3-8B?**
+✅ **PARTIALLY VERIFIED** - The paper reports at 50% sparsity on Llama3-8B:
+   - **ARC-Challenge**: 51.11%
+   - **BoolQ**: 82.54%
+   - **Overall improvement**: Approximately 1.178% relative improvement on average across diverse tasks
+   - **Inference speedup**: Up to 1.6× maintained at 50% sparsity
+
+### 5. **Does SPON use KL-divergence distillation as claimed?**
+✅ **YES** - The paper explicitly uses **KL-divergence minimization** as its training mechanism. The mechanism is described as "trained via KL-divergence minimization to align the sparse model's output distribution with the dense model's." This is a form of distribution matching/distillation using KL-divergence.
+
+## Summary
+The paper does exist on arXiv and uses KL-divergence training. The April 30, 2026 metadata update and ICML 2026 venue claim are present in the arXiv metadata but cannot be independently verified. At least two of the five QA benchmarks you mentioned are confirmed in Table 2, though the complete table data wasn't accessible.
+
+Sources:
+- [arXiv 2512.12744 Abstract](https://arxiv.org/abs/2512.12744)
+- [arXiv 2512.12744 HTML Version](https://arxiv.org/html/2512.12744)
+- [ResearchGate Publication](https://www.researchgate.net/publication/398719812_Resting_Neurons_Active_Insights_Improving_Input_Sparsification_for_Large_Language_Models)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "edf1cf80-7091-4205-87c4-6fed13d9cc90",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "5f4bdc7b-0a63-469a-af27-baae269d93ce",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for information about the paper \"Resting Neurons Active Insights\" (also known as SPON) with arXiv ID 2512.12744. I need to verify:\n1. Does this paper actually exist on arXiv?\n2. What venue is it accepted to? The proposal claims ICML 2026 based on arXiv metadata updated April 30, 2026.\n3. How many benchmarks are in Table 2? The proposal claims 5 QA benchmarks (ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande), but a prior review said only 4.\n4. What exact numbers does SPON report at 50% sparsity on Llama-3-8B?\n5. Does SPON use KL-divergence distillation as claimed?\n\nUse WebSearch with queries like:\n- \"arxiv 2512.12744 resting neurons\"\n- \"SPON resting neurons ICML 2026\"\n- \"resting neurons active insights activation sparsity\"\n\nThen use WebFetch to read the actual arXiv page if possible.",
+    "agentId": "a94bd8117f121e3c1",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my comprehensive search, here are my findings to verify the claims about the SPON paper (arXiv 2512.12744):\n\n## Verification Results\n\n### 1. **Does this paper actually exist on arXiv?**\n✅ **YES** - The paper \"Resting Neurons, Active Insights: Improving Input Sparsification for Large Language Models\" (also titled \"Robustify Activation Sparsity for Large Language Models\") definitely exists on arXiv with ID 2512.12744. Posted December 14, 2025.\n\n### 2. **What venue is it accepted to? Is it ICML 2026 based on April 30, 2026 metadata?**\n⚠️ **UNCONFIRMED** - The paper's metadata shows \"ICML 2026\" as the venue and April 30, 2026 as the last update date. However, my searches did not find explicit confirmation that this paper was accepted to ICML 2026. The venue claim appears in the arXiv metadata but I cannot verify independent confirmation of acceptance through conference announcements or acceptance lists.\n\n### 3. **How many benchmarks are in Table 2? Five QA benchmarks or four?**\n✅ **AT LEAST 2 CONFIRMED** - Table 2 is confirmed to report zero-shot evaluation results. I found specific results for:\n   - **ARC-Challenge**: 51.11% (at 50% sparsity on Llama3-8B)\n   - **BoolQ**: 82.54% (at 50% sparsity on Llama3-8B)\n\nHowever, I could not retrieve the complete Table 2 data showing all five benchmarks you mentioned (ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande). The search results only returned these two specific values. The claim of 5 QA benchmarks cannot be fully verified from the accessible content, though it appears plausible given the benchmark suite mentioned in related papers.\n\n### 4. **What exact numbers does SPON report at 50% sparsity on Llama-3-8B?**\n✅ **PARTIALLY VERIFIED** - The paper reports at 50% sparsity on Llama3-8B:\n   - **ARC-Challenge**: 51.11%\n   - **BoolQ**: 82.54%\n   - **Overall improvement**: Approximately 1.178% relative improvement on average across diverse tasks\n   - **Inference speedup**: Up to 1.6× maintained at 50% sparsity\n\n### 5. **Does SPON use KL-divergence distillation as claimed?**\n✅ **YES** - The paper explicitly uses **KL-divergence minimization** as its training mechanism. The mechanism is described as \"trained via KL-divergence minimization to align the sparse model's output distribution with the dense model's.\" This is a form of distribution matching/distillation using KL-divergence.\n\n## Summary\nThe paper does exist on arXiv and uses KL-divergence training. The April 30, 2026 metadata update and ICML 2026 venue claim are present in the arXiv metadata but cannot be independently verified. At least two of the five QA benchmarks you mentioned are confirmed in Table 2, though the complete table data wasn't accessible.\n\nSources:\n- [arXiv 2512.12744 Abstract](https://arxiv.org/abs/2512.12744)\n- [arXiv 2512.12744 HTML Version](https://arxiv.org/html/2512.12744)\n- [ResearchGate Publication](https://www.researchgate.net/publication/398719812_Resting_Neurons_Active_Insights_Improving_Input_Sparsification_for_Large_Language_Models)"
+      }
+    ],
+    "totalDurationMs": 60999,
+    "totalTokens": 27223,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 1623,
+      "cache_read_input_tokens": 24690,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1623
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 24690,
+          "cache_creation_input_tokens": 1623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1623,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "edf1cf80-7091-4205-87c4-6fed13d9cc90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-12T02:52:02.224Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0129w7wPGSrcgz2Rhro9tJju`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Verify FastForward paper claims",
+  "prompt": "Search the web for the paper \"FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity\" with arXiv ID 2602.00397. I need to verify:\n1. Does this paper exist on arXiv?\n2. Does it use weighted BCE loss for training + an error compensation network?\n3. What MMLU score does it achieve at 50% FFN sparsity on Llama-3.1-8B? (The proposal claims 67.17 vs dense 67.84)\n4. Does the compensation network use a 2-layer MLP with r'=d_model/8?\n5. Does it target prefill optimization specifically?\n\nUse WebSearch with queries:\n- \"arxiv 2602.00397 FastForward\"\n- \"FastForward LLM prefill FFN sparsity predictive\"\n- \"FastForward accelerating LLM prefill sparsity 2026\"\n\nThen WebFetch the arXiv page to verify specifics."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f4bdc7b-0a63-469a-af27-baae269d93ce",
+  "isSidechain": false,
+  "requestId": "req_011Cawv8TVYiRerqKHotoxfM",
+  "type": "assistant",
+  "uuid": "034d2be6-ad4c-4f74-8000-1aca0af5f525",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmM3BZ18V4MUSvUgxhoK4Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 35026,
+      "output_tokens": 332,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 332,
+          "cache_read_input_tokens": 35026,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T02:52:34.752Z_
+
+<details><summary>↩ Tool result · `toolu_0129w7wPGSrcgz2Rhro9tJju`</summary>
+
+```text
+Perfect! I found the specific details. Let me verify the dense baseline comparison score to complete the picture.
+
+Based on my search and verification, here are the answers to your questions about the paper "FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity" (arXiv ID 2602.00397):
+
+## Verification Results
+
+**1. Does this paper exist on arXiv?**
+✓ **Yes** - The paper exists and is available at https://arxiv.org/abs/2602.00397. It was submitted on January 30, 2026.
+
+**2. Does it use weighted BCE loss for training + an error compensation network?**
+✓ **Yes** - The paper uses weighted BCE loss during training and includes a compensation network to recover information from skipped computations.
+
+**3. What MMLU score does it achieve at 50% FFN sparsity on Llama-3.1-8B?**
+✓ **Yes, exactly 67.17%** - The paper reports MMLU accuracy of 67.17% at 50% FFN sparsity on Llama-3.1-8B with the compensation network, compared to the dense baseline of 67.84% (as you specified).
+
+**4. Does the compensation network use a 2-layer MLP with r'=d_model/8?**
+✓ **Yes** - The compensation network MLP uses r'=d_model/8 as specified in the paper.
+
+**5. Does it target prefill optimization specifically?**
+✓ **Yes** - The paper explicitly addresses the prefill stage bottleneck, where FFNs dominate computational cost at short-to-moderate context lengths (1K-16K tokens). FastForward achieves up to 1.45× compute-bound speedup at 50% FFN sparsity with <6% accuracy loss on LongBench.
+
+All five verification points are confirmed.
+
+Sources:
+- [arXiv Abstract: Fast Forward - Accelerating LLM Prefill with Predictive FFN Sparsity](https://arxiv.org/abs/2602.00397)
+- [arXiv HTML Version: FastForward](https://arxiv.org/html/2602.00397)
+- [arXiv PDF: Fast Forward Paper](https://arxiv.org/pdf/2602.00397)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "034d2be6-ad4c-4f74-8000-1aca0af5f525",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "adfd7158-3812-4229-b73d-050cfc5e014d",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for the paper \"FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity\" with arXiv ID 2602.00397. I need to verify:\n1. Does this paper exist on arXiv?\n2. Does it use weighted BCE loss for training + an error compensation network?\n3. What MMLU score does it achieve at 50% FFN sparsity on Llama-3.1-8B? (The proposal claims 67.17 vs dense 67.84)\n4. Does the compensation network use a 2-layer MLP with r'=d_model/8?\n5. Does it target prefill optimization specifically?\n\nUse WebSearch with queries:\n- \"arxiv 2602.00397 FastForward\"\n- \"FastForward LLM prefill FFN sparsity predictive\"\n- \"FastForward accelerating LLM prefill sparsity 2026\"\n\nThen WebFetch the arXiv page to verify specifics.",
+    "agentId": "a7b00e6a9472c1ad9",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! I found the specific details. Let me verify the dense baseline comparison score to complete the picture.\n\nBased on my search and verification, here are the answers to your questions about the paper \"FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity\" (arXiv ID 2602.00397):\n\n## Verification Results\n\n**1. Does this paper exist on arXiv?**\n✓ **Yes** - The paper exists and is available at https://arxiv.org/abs/2602.00397. It was submitted on January 30, 2026.\n\n**2. Does it use weighted BCE loss for training + an error compensation network?**\n✓ **Yes** - The paper uses weighted BCE loss during training and includes a compensation network to recover information from skipped computations.\n\n**3. What MMLU score does it achieve at 50% FFN sparsity on Llama-3.1-8B?**\n✓ **Yes, exactly 67.17%** - The paper reports MMLU accuracy of 67.17% at 50% FFN sparsity on Llama-3.1-8B with the compensation network, compared to the dense baseline of 67.84% (as you specified).\n\n**4. Does the compensation network use a 2-layer MLP with r'=d_model/8?**\n✓ **Yes** - The compensation network MLP uses r'=d_model/8 as specified in the paper.\n\n**5. Does it target prefill optimization specifically?**\n✓ **Yes** - The paper explicitly addresses the prefill stage bottleneck, where FFNs dominate computational cost at short-to-moderate context lengths (1K-16K tokens). FastForward achieves up to 1.45× compute-bound speedup at 50% FFN sparsity with <6% accuracy loss on LongBench.\n\nAll five verification points are confirmed.\n\nSources:\n- [arXiv Abstract: Fast Forward - Accelerating LLM Prefill with Predictive FFN Sparsity](https://arxiv.org/abs/2602.00397)\n- [arXiv HTML Version: FastForward](https://arxiv.org/html/2602.00397)\n- [arXiv PDF: Fast Forward Paper](https://arxiv.org/pdf/2602.00397)"
+      }
+    ],
+    "totalDurationMs": 32525,
+    "totalTokens": 22425,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 549,
+      "cache_read_input_tokens": 21315,
+      "output_tokens": 555,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 549
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6,
+          "output_tokens": 555,
+          "cache_read_input_tokens": 21315,
+          "cache_creation_input_tokens": 549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 549,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "034d2be6-ad4c-4f74-8000-1aca0af5f525",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-12T02:52:43.349Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_011dDsweoCjMEQBR661FCKsR`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Search for concurrent/competing work",
+  "prompt": "Search the web for recent papers (2025-2026) that combine KL-divergence distillation with activation sparsity predictors for LLMs. I need to find any work the proposal may have missed. Search with these queries:\n\n1. \"KL divergence activation sparsity predictor LLM 2025 2026 site:arxiv.org\"\n2. \"output distribution distillation sparsity predictor SwiGLU\"\n3. \"contextual sparsity predictor KL distillation transformer\"\n4. \"learned activation sparsity SwiGLU LLM inference 2026\"\n5. \"sparsity predictor training loss KL divergence neuron pruning\"\n6. \"activation sparsity compose static contextual correction\"\n\nAlso search for any very recent papers (March-May 2026) on activation sparsity:\n7. \"activation sparsity LLM 2026 arxiv\"\n8. \"SwiGLU sparsity efficient inference 2026\"\n\nReport all relevant papers found, especially any that train sparsity predictors with KL-divergence loss or combine static and contextual corrections."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "adfd7158-3812-4229-b73d-050cfc5e014d",
+  "isSidechain": false,
+  "requestId": "req_011CawvBQDg8cbpsqjZCaAA2",
+  "type": "assistant",
+  "uuid": "0a337c04-b1df-4899-ada7-7978fbd4bd30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ETEj9g1rpsJmJrcExeZyS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 36422,
+      "output_tokens": 359,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 895,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 359,
+          "cache_read_input_tokens": 36422,
+          "cache_creation_input_tokens": 895,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 895
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T02:53:09.358Z_
+
+<details><summary>↩ Tool result · `toolu_011dDsweoCjMEQBR661FCKsR`</summary>
+
+```text
+## Summary of Relevant Papers Found
+
+Based on my comprehensive search, here are the key papers and findings related to KL-divergence distillation with activation sparsity predictors for LLMs:
+
+### Directly Relevant: Sparsity Predictors with Training
+
+1. **SparseInfer: Training-free Prediction of Activation Sparsity for Fast LLM Inference** (November 2024)
+   - Introduces a simple, lightweight, training-free predictor for activation sparsity in ReLU-fied LLMs
+   - Predicts sparsity by comparing sign bits of inputs and weights
+   - https://arxiv.org/html/2411.12692
+
+2. **A Sparsity Predicting Approach for Large Language Models via Activation Pattern Clustering** (July 2025)
+   - Addresses scalable prediction of activation patterns in LLMs
+   - Focuses on efficient utilization of inherent sparsity through pattern prediction
+   - https://arxiv.org/html/2507.14179v1
+
+3. **ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models** (June 2024)
+   - Develops predictor-based methods for contextual sparsity
+   - https://arxiv.org/html/2406.16635v1
+
+### Static + Contextual Correction (Highly Relevant)
+
+4. **Sirius: Contextual Sparsity with Correction for Efficient LLMs** (September 2024)
+   - Combines contextual sparsity with a correction mechanism
+   - Addresses reasoning task degradation through hybrid static-contextual approach
+   - Shows 11% token correction recovers original model performance
+   - https://arxiv.org/html/2409.03856v1
+   - https://arxiv.org/abs/2409.03856
+
+### KL Divergence Estimation & Distillation
+
+5. **Better Estimation of the KL Divergence Between Language Models** (April 2025)
+   - Introduces Rao-Blackwellized estimator for KL divergence between language models
+   - Reduces variance in KL divergence estimation
+   - https://arxiv.org/abs/2504.10637
+
+### Recent 2026 Papers on Activation Sparsity
+
+6. **To 2:4 Sparsity and Beyond: Neuron-level Activation Function to Accelerate LLM Pre-Training** (February 2026)
+   - Applies hardware-accelerated structured sparsity to FFN layers
+   - https://arxiv.org/abs/2602.06183
+
+7. **Universal Properties of Activation Sparsity in Modern Large Language Models** (September 2025)
+   - Systematic investigation revealing universal sparsity properties across model families
+   - Shows sparsity potential grows with model scale
+   - https://arxiv.org/abs/2509.00454
+
+8. **WiSparse: Weight-Aware Mixed Activation Sparsity** (February 2026)
+   - Combines activation and weight information for adaptive sparsity
+   - Achieves 21.4% acceleration at 50% sparsity on Llama3.1
+   - https://arxiv.org/abs/2602.14452
+
+9. **ActTail: Global Activation Sparsity in Large Language Models** (March 2026)
+   - TopK magnitude-based activation sparsity grounded in Heavy-Tailed Self-Regularization theory
+   - https://arxiv.org/abs/2603.12272
+
+### SwiGLU-Specific Challenges
+
+10. **Turbo Sparse: Achieving LLM SOTA Performance with Minimal Activated Parameters** (June 2024)
+    - Addresses sparse activation patterns for ReLU-fied networks
+    - Highlights why SwiGLU lacks natural sparsity
+    - https://arxiv.org/html/2406.05955v2
+
+11. **ReLU2 Wins: Discovering Efficient Activation Functions for Sparse LLMs** (February 2024)
+    - Proposes replacing SwiGLU with ReLU2 for better sparsity properties
+    - https://arxiv.org/pdf/2402.03804
+
+12. **Mixture-of-Channels: Exploiting Sparse FFNs for Efficient LLMs** (November 2024)
+    - Activates only top-K channels per token, guided by SwiGLU gating
+    - Improves memory efficiency through selective channel activation
+    - https://arxiv.org/html/2511.09323
+
+### Training Methods
+
+13. **Training-Free Activation Sparsity in Large Language Models (TEAL)** (August 2024)
+    - Simple magnitude-based activation sparsity without training
+    - Achieves 40-50% model-wide sparsity with minimal performance loss
+    - https://arxiv.org/html/2408.14690v1
+
+### Additional Relevant Work
+
+14. **Activation Sparsity Opportunities for Compressing General Large Language Models** (January 2025)
+    - Verifies predictability of activation patterns in recent LLMs
+    - https://arxiv.org/html/2412.12178
+
+15. **Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time** (October 2023)
+    - Foundational work on contextual activation sparsity
+    - https://arxiv.org/pdf/2310.17157
+
+### Key Gap in Literature
+
+**Note:** My searches did not find any papers that explicitly combine KL-divergence distillation loss with learned sparsity predictors. While there are papers on:
+- Sparsity predictors (SparseInfer, A Sparsity Predicting Approach)
+- KL divergence in distillation and estimation
+- Static + contextual correction (Sirius)
+
+The specific combination of **training sparsity predictors with KL-divergence loss** appears to be novel. Most papers either use training-free methods (TEAL, SparseInfer) or focus on contextual sparsity patterns without explicit predictor training using KL divergence.
+
+Sources:
+- [SparseInfer](https://arxiv.org/html/2411.12692)
+- [A Sparsity Predicting Approach](https://arxiv.org/html/2507.14179v1)
+- [ShadowLLM](https://arxiv.org/html/2406.16635v1)
+- [Sirius](https://arxiv.org/html/2409.03856v1)
+- [Better Estimation of KL Divergence](https://arxiv.org/abs/2504.10637)
+- [To 2:4 Sparsity and Beyond](https://arxiv.org/abs/2602.06183)
+- [Universal Properties of Activation Sparsity](https://arxiv.org/abs/2509.00454)
+- [WiSparse](https://arxiv.org/abs/2602.14452)
+- [ActTail](https://arxiv.org/abs/2603.12272)
+- [Turbo Sparse](https://arxiv.org/html/2406.05955v2)
+- [ReLU2 Wins](https://arxiv.org/pdf/2402.03804)
+- [Mixture-of-Channels](https://arxiv.org/html/2511.09323)
+- [TEAL](https://arxiv.org/html/2408.14690v1)
+- [Activation Sparsity Opportunities](https://arxiv.org/html/2412.12178)
+- [Deja Vu](https://arxiv.org/pdf/2310.17157)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a337c04-b1df-4899-ada7-7978fbd4bd30",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "758e23ad-60e3-4246-934f-f949c2e0b529",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for recent papers (2025-2026) that combine KL-divergence distillation with activation sparsity predictors for LLMs. I need to find any work the proposal may have missed. Search with these queries:\n\n1. \"KL divergence activation sparsity predictor LLM 2025 2026 site:arxiv.org\"\n2. \"output distribution distillation sparsity predictor SwiGLU\"\n3. \"contextual sparsity predictor KL distillation transformer\"\n4. \"learned activation sparsity SwiGLU LLM inference 2026\"\n5. \"sparsity predictor training loss KL divergence neuron pruning\"\n6. \"activation sparsity compose static contextual correction\"\n\nAlso search for any very recent papers (March-May 2026) on activation sparsity:\n7. \"activation sparsity LLM 2026 arxiv\"\n8. \"SwiGLU sparsity efficient inference 2026\"\n\nReport all relevant papers found, especially any that train sparsity predictors with KL-divergence loss or combine static and contextual corrections.",
+    "agentId": "af7e047fbd962edd8",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Relevant Papers Found\n\nBased on my comprehensive search, here are the key papers and findings related to KL-divergence distillation with activation sparsity predictors for LLMs:\n\n### Directly Relevant: Sparsity Predictors with Training\n\n1. **SparseInfer: Training-free Prediction of Activation Sparsity for Fast LLM Inference** (November 2024)\n   - Introduces a simple, lightweight, training-free predictor for activation sparsity in ReLU-fied LLMs\n   - Predicts sparsity by comparing sign bits of inputs and weights\n   - https://arxiv.org/html/2411.12692\n\n2. **A Sparsity Predicting Approach for Large Language Models via Activation Pattern Clustering** (July 2025)\n   - Addresses scalable prediction of activation patterns in LLMs\n   - Focuses on efficient utilization of inherent sparsity through pattern prediction\n   - https://arxiv.org/html/2507.14179v1\n\n3. **ShadowLLM: Predictor-based Contextual Sparsity for Large Language Models** (June 2024)\n   - Develops predictor-based methods for contextual sparsity\n   - https://arxiv.org/html/2406.16635v1\n\n### Static + Contextual Correction (Highly Relevant)\n\n4. **Sirius: Contextual Sparsity with Correction for Efficient LLMs** (September 2024)\n   - Combines contextual sparsity with a correction mechanism\n   - Addresses reasoning task degradation through hybrid static-contextual approach\n   - Shows 11% token correction recovers original model performance\n   - https://arxiv.org/html/2409.03856v1\n   - https://arxiv.org/abs/2409.03856\n\n### KL Divergence Estimation & Distillation\n\n5. **Better Estimation of the KL Divergence Between Language Models** (April 2025)\n   - Introduces Rao-Blackwellized estimator for KL divergence between language models\n   - Reduces variance in KL divergence estimation\n   - https://arxiv.org/abs/2504.10637\n\n### Recent 2026 Papers on Activation Sparsity\n\n6. **To 2:4 Sparsity and Beyond: Neuron-level Activation Function to Accelerate LLM Pre-Training** (February 2026)\n   - Applies hardware-accelerated structured sparsity to FFN layers\n   - https://arxiv.org/abs/2602.06183\n\n7. **Universal Properties of Activation Sparsity in Modern Large Language Models** (September 2025)\n   - Systematic investigation revealing universal sparsity properties across model families\n   - Shows sparsity potential grows with model scale\n   - https://arxiv.org/abs/2509.00454\n\n8. **WiSparse: Weight-Aware Mixed Activation Sparsity** (February 2026)\n   - Combines activation and weight information for adaptive sparsity\n   - Achieves 21.4% acceleration at 50% sparsity on Llama3.1\n   - https://arxiv.org/abs/2602.14452\n\n9. **ActTail: Global Activation Sparsity in Large Language Models** (March 2026)\n   - TopK magnitude-based activation sparsity grounded in Heavy-Tailed Self-Regularization theory\n   - https://arxiv.org/abs/2603.12272\n\n### SwiGLU-Specific Challenges\n\n10. **Turbo Sparse: Achieving LLM SOTA Performance with Minimal Activated Parameters** (June 2024)\n    - Addresses sparse activation patterns for ReLU-fied networks\n    - Highlights why SwiGLU lacks natural sparsity\n    - https://arxiv.org/html/2406.05955v2\n\n11. **ReLU2 Wins: Discovering Efficient Activation Functions for Sparse LLMs** (February 2024)\n    - Proposes replacing SwiGLU with ReLU2 for better sparsity properties\n    - https://arxiv.org/pdf/2402.03804\n\n12. **Mixture-of-Channels: Exploiting Sparse FFNs for Efficient LLMs** (November 2024)\n    - Activates only top-K channels per token, guided by SwiGLU gating\n    - Improves memory efficiency through selective channel activation\n    - https://arxiv.org/html/2511.09323\n\n### Training Methods\n\n13. **Training-Free Activation Sparsity in Large Language Models (TEAL)** (August 2024)\n    - Simple magnitude-based activation sparsity without training\n    - Achieves 40-50% model-wide sparsity with minimal performance loss\n    - https://arxiv.org/html/2408.14690v1\n\n### Additional Relevant Work\n\n14. **Activation Sparsity Opportunities for Compressing General Large Language Models** (January 2025)\n    - Verifies predictability of activation patterns in recent LLMs\n    - https://arxiv.org/html/2412.12178\n\n15. **Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time** (October 2023)\n    - Foundational work on contextual activation sparsity\n    - https://arxiv.org/pdf/2310.17157\n\n### Key Gap in Literature\n\n**Note:** My searches did not find any papers that explicitly combine KL-divergence distillation loss with learned sparsity predictors. While there are papers on:\n- Sparsity predictors (SparseInfer, A Sparsity Predicting Approach)\n- KL divergence in distillation and estimation\n- Static + contextual correction (Sirius)\n\nThe specific combination of **training sparsity predictors with KL-divergence loss** appears to be novel. Most papers either use training-free methods (TEAL, SparseInfer) or focus on contextual sparsity patterns without explicit predictor training using KL divergence.\n\nSources:\n- [SparseInfer](https://arxiv.org/html/2411.12692)\n- [A Sparsity Predicting Approach](https://arxiv.org/html/2507.14179v1)\n- [ShadowLLM](https://arxiv.org/html/2406.16635v1)\n- [Sirius](https://arxiv.org/html/2409.03856v1)\n- [Better Estimation of KL Divergence](https://arxiv.org/abs/2504.10637)\n- [To 2:4 Sparsity and Beyond](https://arxiv.org/abs/2602.06183)\n- [Universal Properties of Activation Sparsity](https://arxiv.org/abs/2509.00454)\n- [WiSparse](https://arxiv.org/abs/2602.14452)\n- [ActTail](https://arxiv.org/abs/2603.12272)\n- [Turbo Sparse](https://arxiv.org/html/2406.05955v2)\n- [ReLU2 Wins](https://arxiv.org/pdf/2402.03804)\n- [Mixture-of-Channels](https://arxiv.org/html/2511.09323)\n- [TEAL](https://arxiv.org/html/2408.14690v1)\n- [Activation Sparsity Opportunities](https://arxiv.org/html/2412.12178)\n- [Deja Vu](https://arxiv.org/pdf/2310.17157)"
+      }
+    ],
+    "totalDurationMs": 26006,
+    "totalTokens": 27439,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 2756,
+      "cache_creation_input_tokens": 5973,
+      "cache_read_input_tokens": 16844,
+      "output_tokens": 1866,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5973
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2756,
+          "output_tokens": 1866,
+          "cache_read_input_tokens": 16844,
+          "cache_creation_input_tokens": 5973,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5973,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "0a337c04-b1df-4899-ada7-7978fbd4bd30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "758e23ad-60e3-4246-934f-f949c2e0b529",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-12T02:53:20.190Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_016rf3ihJ4rUzZ4R6bZCkVca`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Verify WINA baseline numbers",
+  "prompt": "Search the web for the paper \"WINA: Weight Informed Neuron Activation\" (ICLR 2026). I need to verify:\n1. WINA's reported accuracy on Llama-3-8B at 50% model-level sparsity — the proposal claims 59.57% average across PIQA, ARC-c, WinoGrande, HellaSwag, MMLU, GSM8K\n2. The dense baseline accuracy — the proposal claims 66.38%\n3. Whether WINA reports model-level sparsity (MLP + attention) or MLP-only sparsity\n\nUse these searches:\n- \"WINA weight informed neuron activation ICLR 2026\"\n- \"arxiv WINA activation sparsity Llama\"\n- \"WINA Llama-3-8B 50% sparsity MMLU accuracy\"\n\nThen WebFetch the paper to check Table results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "758e23ad-60e3-4246-934f-f949c2e0b529",
+  "isSidechain": false,
+  "requestId": "req_011CawvDxDpsqwzqGwwVEVVi",
+  "type": "assistant",
+  "uuid": "4fd136ca-e7b5-425c-a3ea-81d4bf3c1c81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MZPPfwjtNcwS1igdoiNDo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2233,
+      "cache_read_input_tokens": 37317,
+      "output_tokens": 318,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 318,
+          "cache_read_input_tokens": 37317,
+          "cache_creation_input_tokens": 2233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T02:53:44.486Z_
+
+<details><summary>↩ Tool result · `toolu_016rf3ihJ4rUzZ4R6bZCkVca`</summary>
+
+```text
+Perfect! I've successfully verified all three claims from the WINA paper. Here are the findings:
+
+## Verification Results
+
+**1. WINA's Reported Accuracy on Llama-3-8B at 50% Model-Level Sparsity**
+
+✓ **CONFIRMED: 59.57% average accuracy**
+
+The individual benchmark results are:
+- PIQA: 78.35%
+- Arc-c: 49.06%
+- WinoGrande: 70.32%
+- HellaSwag: 75.12%
+- MMLU: 55.26%
+- GSM8K: 29.34%
+
+**2. Dense Baseline Accuracy**
+
+✓ **CONFIRMED: 66.38% average**
+
+This is the performance of the unsparsified Llama-3-8B model across the same six benchmarks.
+
+**3. Sparsity Type**
+
+✓ **CONFIRMED: Model-Level Sparsity (MLP + Attention)**
+
+The paper explicitly applies sparsification to both attention and MLP components across all layers. The methodology specifies enforcement of constraints on key projection matrices in self-attention layers (Wk) and gate projection matrices in MLP layers (Wgate), confirming this is not MLP-only sparsity but full model-level sparsification.
+
+All three claims in the proposal are accurate and match the paper's reported results.
+
+Sources:
+- [WINA: Weight Informed Neuron Activation - arXiv PDF](https://arxiv.org/pdf/2505.19427)
+- [WINA: Weight Informed Neuron Activation - arXiv HTML](https://arxiv.org/html/2505.19427v1)
+- [WINA Paper on OpenReview](https://openreview.net/pdf?id=l7Vb3yxmuz)
+- [WINA GitHub Repository](https://github.com/microsoft/wina)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4fd136ca-e7b5-425c-a3ea-81d4bf3c1c81",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "15a5d343-92fe-4fb5-b528-fa8c3a3944a9",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for the paper \"WINA: Weight Informed Neuron Activation\" (ICLR 2026). I need to verify:\n1. WINA's reported accuracy on Llama-3-8B at 50% model-level sparsity — the proposal claims 59.57% average across PIQA, ARC-c, WinoGrande, HellaSwag, MMLU, GSM8K\n2. The dense baseline accuracy — the proposal claims 66.38%\n3. Whether WINA reports model-level sparsity (MLP + attention) or MLP-only sparsity\n\nUse these searches:\n- \"WINA weight informed neuron activation ICLR 2026\"\n- \"arxiv WINA activation sparsity Llama\"\n- \"WINA Llama-3-8B 50% sparsity MMLU accuracy\"\n\nThen WebFetch the paper to check Table results.",
+    "agentId": "a3a2ad7f0d5740e46",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! I've successfully verified all three claims from the WINA paper. Here are the findings:\n\n## Verification Results\n\n**1. WINA's Reported Accuracy on Llama-3-8B at 50% Model-Level Sparsity**\n\n✓ **CONFIRMED: 59.57% average accuracy**\n\nThe individual benchmark results are:\n- PIQA: 78.35%\n- Arc-c: 49.06%\n- WinoGrande: 70.32%\n- HellaSwag: 75.12%\n- MMLU: 55.26%\n- GSM8K: 29.34%\n\n**2. Dense Baseline Accuracy**\n\n✓ **CONFIRMED: 66.38% average**\n\nThis is the performance of the unsparsified Llama-3-8B model across the same six benchmarks.\n\n**3. Sparsity Type**\n\n✓ **CONFIRMED: Model-Level Sparsity (MLP + Attention)**\n\nThe paper explicitly applies sparsification to both attention and MLP components across all layers. The methodology specifies enforcement of constraints on key projection matrices in self-attention layers (Wk) and gate projection matrices in MLP layers (Wgate), confirming this is not MLP-only sparsity but full model-level sparsification.\n\nAll three claims in the proposal are accurate and match the paper's reported results.\n\nSources:\n- [WINA: Weight Informed Neuron Activation - arXiv PDF](https://arxiv.org/pdf/2505.19427)\n- [WINA: Weight Informed Neuron Activation - arXiv HTML](https://arxiv.org/html/2505.19427v1)\n- [WINA Paper on OpenReview](https://openreview.net/pdf?id=l7Vb3yxmuz)\n- [WINA GitHub Repository](https://github.com/microsoft/wina)"
+      }
+    ],
+    "totalDurationMs": 24292,
+    "totalTokens": 21828,
+    "totalToolUseCount": 5,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 460,
+      "cache_read_input_tokens": 20898,
+      "output_tokens": 464,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 460
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6,
+          "output_tokens": 464,
+          "cache_read_input_tokens": 20898,
+          "cache_creation_input_tokens": 460,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 460,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 5
+    }
+  },
+  "sourceToolAssistantUUID": "4fd136ca-e7b5-425c-a3ea-81d4bf3c1c81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-12T02:53:55.790Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_011vXeZXx5rAzhTZnGTdN5cK`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Search for mean-field BCE analysis",
+  "prompt": "Search for papers that analyze BCE (binary cross-entropy) loss limitations for neuron pruning, sparsity prediction, or mask learning. The proposal claims that BCE's per-neuron decomposition is a \"mean-field factorization\" that ignores joint neuron interactions, and that KL-divergence on output logits is better because it captures these interactions. I need to check:\n\n1. Has anyone else made this observation about BCE vs KL for sparsity prediction?\n2. Are there papers analyzing mean-field approximations in the context of neural network pruning?\n3. Has anyone formally compared BCE vs KL for training sparsity masks/predictors?\n\nSearch queries:\n- \"BCE loss mean field approximation pruning sparsity\"\n- \"binary cross entropy vs KL divergence sparsity mask training\"\n- \"per-neuron independence assumption pruning neural network\"\n- \"joint neuron interaction sparsity prediction training loss\"\n- \"output distribution distillation vs activation prediction sparsity\"\n- \"Gumbel sigmoid sparsity mask KL divergence training\"\n\nReport any papers that make similar arguments or empirical comparisons."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15a5d343-92fe-4fb5-b528-fa8c3a3944a9",
+  "isSidechain": false,
+  "requestId": "req_011CawvGYNCrfMmQUg7m9BNr",
+  "type": "assistant",
+  "uuid": "b5b8291e-9a0c-4fbf-a901-d97f73222c4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YNMaJyN1khNJWBpZeUorek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 790,
+      "cache_read_input_tokens": 39550,
+      "output_tokens": 350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 790,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 350,
+          "cache_read_input_tokens": 39550,
+          "cache_creation_input_tokens": 790,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 790
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T02:54:19.053Z_
+
+<details><summary>↩ Tool result · `toolu_011vXeZXx5rAzhTZnGTdN5cK`</summary>
+
+```text
+Based on my comprehensive search, I found **limited direct evidence** of papers making the specific argument about BCE's per-neuron decomposition as a mean-field factorization being inferior to KL-divergence for sparsity prediction. However, I did uncover several relevant findings:
+
+## Key Findings
+
+### 1. **BCE Loss Limitations for Sparse Data**
+The search identified that **conventional reconstruction losses like BCE are poorly suited for sparse binary data** because they can achieve deceptively low loss by trivially predicting the dominant zeros while failing to capture rare but informative non-zero entries. This aligns with your concern about BCE's limitations, though not specifically framed as mean-field approximation.
+
+Sources: [Sparsity in Deep Learning: Pruning and growth for efficient inference](https://www.jmlr.org/papers/volume22/21-0366/21-0366.pdf)
+
+### 2. **Gumbel-Sigmoid with Temperature Annealing for Sparsity Masks**
+I found extensive work on **Gumbel-Sigmoid relaxation for differentiable binary masks** during training, which includes:
+- Temperature annealing schedules that transition from soft to hard binary masks
+- Use of KL divergence in the objective function (though the papers note KL divergence is "not well defined between continuous and discrete distributions")
+- GFSNetwork (Differentiable Feature Selection via Gumbel-Sigmoid Relaxation) specifically addresses this problem space
+
+Sources: [GFSNetwork: Differentiable Feature Selection via Gumbel-Sigmoid Relaxation](https://arxiv.org/html/2503.13304v1), [A Review of the Gumbel-max Trick](https://arxiv.org/pdf/2110.01515)
+
+### 3. **Knowledge Distillation with KL Divergence vs. Activation-Based Approaches**
+The search revealed papers comparing:
+- **Output distribution distillation** using KL divergence on logits (soft-target distillation)
+- **Activation prediction** using L1 penalties on sparse activations
+- Recent work integrating both: "sparsity-aware distillation" that treats distribution matching loss and sparsity as integrated strategies rather than separate post-hoc optimizations
+
+Sources: [Knowledge Distillation Tutorial — PyTorch](https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html), [A Comprehensive Survey on Knowledge Distillation](https://arxiv.org/pdf/2503.12067)
+
+### 4. **Joint Neuron Interaction Research**
+I found papers examining:
+- **Neuron output correlation**: "neuron outputs are highly correlated, and the small fraction of neurons that activate for each given input is not random but follows specific patterns"
+- **Efficient Sparsity**: Weight-sparse and activity-sparse approaches complement each other multiplicatively
+- **Joint Training Across Multiple Activation Sparsity Regimes** (arXiv:2603.03131)
+
+Sources: [Joint Training Across Multiple Activation Sparsity Regimes](https://arxiv.org/abs/2603.03131), [Weight-sparse transformers have interpretable circuits](https://cdn.openai.com/pdf/41df8f28-d4ef-43e9-aed2-823f9393e470/circuit-sparsity-paper.pdf)
+
+## Gaps in Literature
+
+The searches did **not return papers that explicitly**:
+1. Frame BCE loss as a "mean-field factorization" in the pruning context
+2. Directly compare BCE vs. KL-divergence for training sparsity masks with theoretical justification about per-neuron independence
+3. Formally argue that per-neuron independence assumptions ignore joint neuron interactions in the loss formulation
+
+This suggests your proposal about **framing the comparison through mean-field approximation theory** may be a novel theoretical contribution. The field has explored Gumbel-Sigmoid approaches and distillation-based sparsity, but the specific connection between mean-field factorization in BCE and why KL-divergence on output logits better captures joint interactions appears understudied.
+
+---
+
+Sources:
+- [Sparsity in Deep Learning: Pruning and growth for efficient inference and training in neural networks](https://www.jmlr.org/papers/volume22/21-0366/21-0366.pdf)
+- [GFSNetwork: Differentiable Feature Selection via Gumbel-Sigmoid Relaxation](https://arxiv.org/html/2503.13304v1)
+- [A Review of the Gumbel-max Trick and its Extensions](https://arxiv.org/pdf/2110.01515)
+- [Knowledge Distillation Tutorial — PyTorch](https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html)
+- [A Comprehensive Survey on Knowledge Distillation](https://arxiv.org/pdf/2503.12067)
+- [Joint Training Across Multiple Activation Sparsity Regimes](https://arxiv.org/abs/2603.03131)
+- [Weight-sparse transformers have interpretable circuits](https://cdn.openai.com/pdf/41df8f28-d4ef-43e9-aed2-823f9393e470/circuit-sparsity-paper.pdf)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b5b8291e-9a0c-4fbf-a901-d97f73222c4a",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "cf078726-f91f-473c-8a99-c50d5329d443",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for papers that analyze BCE (binary cross-entropy) loss limitations for neuron pruning, sparsity prediction, or mask learning. The proposal claims that BCE's per-neuron decomposition is a \"mean-field factorization\" that ignores joint neuron interactions, and that KL-divergence on output logits is better because it captures these interactions. I need to check:\n\n1. Has anyone else made this observation about BCE vs KL for sparsity prediction?\n2. Are there papers analyzing mean-field approximations in the context of neural network pruning?\n3. Has anyone formally compared BCE vs KL for training sparsity masks/predictors?\n\nSearch queries:\n- \"BCE loss mean field approximation pruning sparsity\"\n- \"binary cross entropy vs KL divergence sparsity mask training\"\n- \"per-neuron independence assumption pruning neural network\"\n- \"joint neuron interaction sparsity prediction training loss\"\n- \"output distribution distillation vs activation prediction sparsity\"\n- \"Gumbel sigmoid sparsity mask KL divergence training\"\n\nReport any papers that make similar arguments or empirical comparisons.",
+    "agentId": "a0390834c6de44e53",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my comprehensive search, I found **limited direct evidence** of papers making the specific argument about BCE's per-neuron decomposition as a mean-field factorization being inferior to KL-divergence for sparsity prediction. However, I did uncover several relevant findings:\n\n## Key Findings\n\n### 1. **BCE Loss Limitations for Sparse Data**\nThe search identified that **conventional reconstruction losses like BCE are poorly suited for sparse binary data** because they can achieve deceptively low loss by trivially predicting the dominant zeros while failing to capture rare but informative non-zero entries. This aligns with your concern about BCE's limitations, though not specifically framed as mean-field approximation.\n\nSources: [Sparsity in Deep Learning: Pruning and growth for efficient inference](https://www.jmlr.org/papers/volume22/21-0366/21-0366.pdf)\n\n### 2. **Gumbel-Sigmoid with Temperature Annealing for Sparsity Masks**\nI found extensive work on **Gumbel-Sigmoid relaxation for differentiable binary masks** during training, which includes:\n- Temperature annealing schedules that transition from soft to hard binary masks\n- Use of KL divergence in the objective function (though the papers note KL divergence is \"not well defined between continuous and discrete distributions\")\n- GFSNetwork (Differentiable Feature Selection via Gumbel-Sigmoid Relaxation) specifically addresses this problem space\n\nSources: [GFSNetwork: Differentiable Feature Selection via Gumbel-Sigmoid Relaxation](https://arxiv.org/html/2503.13304v1), [A Review of the Gumbel-max Trick](https://arxiv.org/pdf/2110.01515)\n\n### 3. **Knowledge Distillation with KL Divergence vs. Activation-Based Approaches**\nThe search revealed papers comparing:\n- **Output distribution distillation** using KL divergence on logits (soft-target distillation)\n- **Activation prediction** using L1 penalties on sparse activations\n- Recent work integrating both: \"sparsity-aware distillation\" that treats distribution matching loss and sparsity as integrated strategies rather than separate post-hoc optimizations\n\nSources: [Knowledge Distillation Tutorial — PyTorch](https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html), [A Comprehensive Survey on Knowledge Distillation](https://arxiv.org/pdf/2503.12067)\n\n### 4. **Joint Neuron Interaction Research**\nI found papers examining:\n- **Neuron output correlation**: \"neuron outputs are highly correlated, and the small fraction of neurons that activate for each given input is not random but follows specific patterns\"\n- **Efficient Sparsity**: Weight-sparse and activity-sparse approaches complement each other multiplicatively\n- **Joint Training Across Multiple Activation Sparsity Regimes** (arXiv:2603.03131)\n\nSources: [Joint Training Across Multiple Activation Sparsity Regimes](https://arxiv.org/abs/2603.03131), [Weight-sparse transformers have interpretable circuits](https://cdn.openai.com/pdf/41df8f28-d4ef-43e9-aed2-823f9393e470/circuit-sparsity-paper.pdf)\n\n## Gaps in Literature\n\nThe searches did **not return papers that explicitly**:\n1. Frame BCE loss as a \"mean-field factorization\" in the pruning context\n2. Directly compare BCE vs. KL-divergence for training sparsity masks with theoretical justification about per-neuron independence\n3. Formally argue that per-neuron independence assumptions ignore joint neuron interactions in the loss formulation\n\nThis suggests your proposal about **framing the comparison through mean-field approximation theory** may be a novel theoretical contribution. The field has explored Gumbel-Sigmoid approaches and distillation-based sparsity, but the specific connection between mean-field factorization in BCE and why KL-divergence on output logits better captures joint interactions appears understudied.\n\n---\n\nSources:\n- [Sparsity in Deep Learning: Pruning and growth for efficient inference and training in neural networks](https://www.jmlr.org/papers/volume22/21-0366/21-0366.pdf)\n- [GFSNetwork: Differentiable Feature Selection via Gumbel-Sigmoid Relaxation](https://arxiv.org/html/2503.13304v1)\n- [A Review of the Gumbel-max Trick and its Extensions](https://arxiv.org/pdf/2110.01515)\n- [Knowledge Distillation Tutorial — PyTorch](https://docs.pytorch.org/tutorials/beginner/knowledge_distillation_tutorial.html)\n- [A Comprehensive Survey on Knowledge Distillation](https://arxiv.org/pdf/2503.12067)\n- [Joint Training Across Multiple Activation Sparsity Regimes](https://arxiv.org/abs/2603.03131)\n- [Weight-sparse transformers have interpretable circuits](https://cdn.openai.com/pdf/41df8f28-d4ef-43e9-aed2-823f9393e470/circuit-sparsity-paper.pdf)"
+      }
+    ],
+    "totalDurationMs": 23259,
+    "totalTokens": 24738,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 6643,
+      "cache_read_input_tokens": 16834,
+      "output_tokens": 1254,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6643
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1254,
+          "cache_read_input_tokens": 16834,
+          "cache_creation_input_tokens": 6643,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6643,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "b5b8291e-9a0c-4fbf-a901-d97f73222c4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-12T02:54:28.296Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01UkXHckrqYSL4V7jGQosHAp`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Search DIP MLSys 2025 details",
+  "prompt": "Search the web for the paper \"DIP: Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking\" (MLSys 2025, arXiv 2412.01380). I need to verify:\n1. Does DIP use KL-divergence distillation for any component (the proposal claims it trains LoRA adapters with KL)?\n2. Does DIP use magnitude-based sparsity masks (not predicted masks)?\n3. What speedup does DIP achieve?\n4. Is this paper accepted at MLSys 2025?\n\nSearch queries:\n- \"DIP dynamic input pruning cache-aware masking MLSys 2025\"\n- \"arxiv 2412.01380 DIP LLM inference\"\n- \"dynamic input pruning KL distillation LoRA sparsity\"\n\nWebFetch the arXiv page to verify the KL/LoRA claim."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf078726-f91f-473c-8a99-c50d5329d443",
+  "isSidechain": false,
+  "requestId": "req_011CawvK6CgeuiwNkZWpsjN4",
+  "type": "assistant",
+  "uuid": "e67c2bd4-c207-41b7-91f3-c0ace5bd5118",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KzSEZ1dzRHKvyhPXbQQjb8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1612,
+      "cache_read_input_tokens": 40340,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1612,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 40340,
+          "cache_creation_input_tokens": 1612,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1612
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T02:55:23.058Z_
+
+<details><summary>↩ Tool result · `toolu_01UkXHckrqYSL4V7jGQosHAp`</summary>
+
+```text
+Based on my comprehensive search and document review, here are my findings regarding the DIP paper (arxiv 2412.01380):
+
+## Verification Results
+
+### 1. **KL-Divergence Distillation for LoRA Adapters**
+**CLAIM NOT VERIFIED**: The paper documentation I accessed does not mention KL-divergence distillation for training LoRA adapters. The paper states that DIP "can further use lightweight LoRA adapters to regain some performance lost during sparsification" and that "LoRA adapters are added to the sparsified up, gate and down MLP matrices to compensate for approximation error." However, no KL-divergence loss function is mentioned in the available descriptions. The LoRA training objective is not explicitly detailed in the publicly available summaries.
+
+### 2. **Magnitude-Based Sparsity Masks**
+**CONFIRMED**: Yes, DIP uses magnitude-based sparsity. The paper explicitly states that "SwiGLU activations can be pruned based on magnitude" and uses "per-token topK thresholding" to prune both MLP input activations and intermediate GLU outputs. This is a predictor-free approach that directly selects based on magnitude rather than using predicted masks.
+
+### 3. **Speedup Achievement**
+**CONFIRMED**: DIP achieves significant speedups:
+- **40% increase in throughput** on Phi-3-Medium (with <0.1 perplexity loss)
+- Additional results show **55% and 93% faster throughput** at higher perplexity budgets (0.2 and 0.5 loss respectively)
+- **46% reduction in DRAM memory footprint**
+
+### 4. **MLSys 2025 Acceptance**
+**CONFIRMED**: The paper is accepted at MLSys 2025. The paper appears in the MLSys 2025 proceedings as a conference paper with a poster presentation (poster ID 3251). The official citation shows it as published in "Proceedings of Machine Learning and Systems 7" (MLSys 2025).
+
+## Summary
+The main claim about KL-divergence distillation for LoRA training cannot be verified from available documentation. The paper does use magnitude-based sparsity and achieves strong speedups, and is confirmed as accepted at MLSys 2025.
+
+Sources:
+- [arXiv 2412.01380](https://arxiv.org/abs/2412.01380)
+- [MLSys 2025 Poster](https://mlsys.org/virtual/2025/poster/3251)
+- [arXiv HTML Version](https://arxiv.org/html/2412.01380)
+- [MLSys 2025 Proceedings](https://proceedings.mlsys.org/paper_files/paper/2025)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e67c2bd4-c207-41b7-91f3-c0ace5bd5118",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "824a299c-f463-444d-aadc-7a9a395abdd6",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web for the paper \"DIP: Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking\" (MLSys 2025, arXiv 2412.01380). I need to verify:\n1. Does DIP use KL-divergence distillation for any component (the proposal claims it trains LoRA adapters with KL)?\n2. Does DIP use magnitude-based sparsity masks (not predicted masks)?\n3. What speedup does DIP achieve?\n4. Is this paper accepted at MLSys 2025?\n\nSearch queries:\n- \"DIP dynamic input pruning cache-aware masking MLSys 2025\"\n- \"arxiv 2412.01380 DIP LLM inference\"\n- \"dynamic input pruning KL distillation LoRA sparsity\"\n\nWebFetch the arXiv page to verify the KL/LoRA claim.",
+    "agentId": "a3d5194420758ad85",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my comprehensive search and document review, here are my findings regarding the DIP paper (arxiv 2412.01380):\n\n## Verification Results\n\n### 1. **KL-Divergence Distillation for LoRA Adapters**\n**CLAIM NOT VERIFIED**: The paper documentation I accessed does not mention KL-divergence distillation for training LoRA adapters. The paper states that DIP \"can further use lightweight LoRA adapters to regain some performance lost during sparsification\" and that \"LoRA adapters are added to the sparsified up, gate and down MLP matrices to compensate for approximation error.\" However, no KL-divergence loss function is mentioned in the available descriptions. The LoRA training objective is not explicitly detailed in the publicly available summaries.\n\n### 2. **Magnitude-Based Sparsity Masks**\n**CONFIRMED**: Yes, DIP uses magnitude-based sparsity. The paper explicitly states that \"SwiGLU activations can be pruned based on magnitude\" and uses \"per-token topK thresholding\" to prune both MLP input activations and intermediate GLU outputs. This is a predictor-free approach that directly selects based on magnitude rather than using predicted masks.\n\n### 3. **Speedup Achievement**\n**CONFIRMED**: DIP achieves significant speedups:\n- **40% increase in throughput** on Phi-3-Medium (with <0.1 perplexity loss)\n- Additional results show **55% and 93% faster throughput** at higher perplexity budgets (0.2 and 0.5 loss respectively)\n- **46% reduction in DRAM memory footprint**\n\n### 4. **MLSys 2025 Acceptance**\n**CONFIRMED**: The paper is accepted at MLSys 2025. The paper appears in the MLSys 2025 proceedings as a conference paper with a poster presentation (poster ID 3251). The official citation shows it as published in \"Proceedings of Machine Learning and Systems 7\" (MLSys 2025).\n\n## Summary\nThe main claim about KL-divergence distillation for LoRA training cannot be verified from available documentation. The paper does use magnitude-based sparsity and achieves strong speedups, and is confirmed as accepted at MLSys 2025.\n\nSources:\n- [arXiv 2412.01380](https://arxiv.org/abs/2412.01380)\n- [MLSys 2025 Poster](https://mlsys.org/virtual/2025/poster/3251)\n- [arXiv HTML Version](https://arxiv.org/html/2412.01380)\n- [MLSys 2025 Proceedings](https://proceedings.mlsys.org/paper_files/paper/2025)"
+      }
+    ],
+    "totalDurationMs": 54758,
+    "totalTokens": 26321,
+    "totalToolUseCount": 12,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 2211,
+      "cache_read_input_tokens": 23446,
+      "output_tokens": 658,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2211
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6,
+          "output_tokens": 658,
+          "cache_read_input_tokens": 23446,
+          "cache_creation_input_tokens": 2211,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2211,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 12
+    }
+  },
+  "sourceToolAssistantUUID": "e67c2bd4-c207-41b7-91f3-c0ace5bd5118",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-12T02:55:31.803Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01HK7PXZW5KNXxbmxCGMZz9G`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Search for very recent competing work",
+  "prompt": "Search for very recent papers (March-May 2026) on activation sparsity for LLMs that might be concurrent work to this proposal. Focus on:\n\n1. Any papers that combine static and contextual sparsity correction\n2. Any papers training sparsity predictors with distillation losses\n3. Any papers composing multiple correction mechanisms\n\nSearch queries:\n- \"activation sparsity correction composition LLM 2026 arxiv\"\n- \"sparsity predictor distillation training SwiGLU 2026\"\n- \"static contextual sparsity correction LLM\"\n- \"site:arxiv.org activation sparsity predictor training 2026\"\n- \"composing corrections activation sparsity transformer\"\n- \"bias correction contextual prediction sparsity LLM\"\n- \"Joint Training Across Multiple Activation Sparsity Regimes arxiv 2603\"\n\nAlso check for:\n- \"SVD contextual sparsity predictor 2026\"  \n- any updates or follow-up work to SPON, FastForward, or WINA published in 2026\n\nReport all relevant findings."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "824a299c-f463-444d-aadc-7a9a395abdd6",
+  "isSidechain": false,
+  "requestId": "req_011CawvPoq5Qv2PzCQMMDQPz",
+  "type": "assistant",
+  "uuid": "ba1d27c4-ec75-4152-a71d-e43cd6210cbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FjAyJUWKYZX8Gw2g77wxVe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 980,
+      "cache_read_input_tokens": 41952,
+      "output_tokens": 351,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 980,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 351,
+          "cache_read_input_tokens": 41952,
+          "cache_creation_input_tokens": 980,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 980
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-12T02:56:10.641Z_
+
+<details><summary>↩ Tool result · `toolu_01HK7PXZW5KNXxbmxCGMZz9G`</summary>
+
+```text
+## Summary of Recent Activation Sparsity Research (March-May 2026)
+
+Based on comprehensive web search, I've identified several highly relevant papers and follow-up work concurrent with your proposal. Here are the key findings organized by research direction:
+
+### 1. **Static and Contextual Sparsity Combination**
+
+**SVD Contextual Sparsity Predictors for Fast LLM Inference** (2603.14110, March 14, 2026)
+- Combines lightweight SVD-based predictors with bias correction terms for contextual sparsity
+- Provides training-free method using truncation-aware SVD of gate projection matrices
+- Introduces neuron-specific bias thresholds for accuracy mitigation
+- Achieves 1.8x decoding speedup at 90% FFN sparsity with <1% accuracy loss
+- Directly addresses composition of static (SVD) and contextual (input-dependent) correction
+
+### 2. **Sparsity Predictor Training with Distillation**
+
+**FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity** (2602.00397, January 30, 2026)
+- Combines lightweight expert predictor with error compensation network
+- Uses layer-wise sparsity scheduler for adaptive allocation
+- Achieves 1.45x compute speedup at 50% FFN sparsity
+- Key innovation: error compensation network mitigates sparsity-induced errors
+- Addresses prefill stage where FFNs dominate computation
+
+**Joint Training Across Multiple Activation Sparsity Regimes** (2603.03131, March 3, 2026)
+- Trains models across multiple sparsity budgets simultaneously
+- Uses progressive compression with periodic resets
+- Tests robust representations across both dense and sparse regimes
+- Novel approach to composition through multi-regime training
+
+### 3. **Composing Multiple Correction Mechanisms**
+
+**Sirius: Contextual Sparsity with Correction for Efficient LLMs** (2409.03856, September 2024, NeurIPS 2024)
+- Introduces selective token correction mechanism for contextual sparse models
+- Recovers performance on reasoning tasks while maintaining efficiency
+- Demonstrates that sparse models retain general problem-solving logic
+- Composes sparse FFN skipping with strategic token corrections
+
+**SPON: Resting Neurons, Active Insights** (2512.12744)
+- Lightweight correction mechanism using learnable, input-independent activation vectors
+- Acts as representational anchors for sparse computation
+- Trained via distribution matching and absorbed into bias terms
+- Addresses representational instability in activation-sparse inference
+
+### 4. **Advanced Activation Sparsity Methods (Related)**
+
+**WINA: Weight Informed Neuron Activation** (2505.19427, May 26, 2025, ICLR 2026)
+- Training-free sparse activation framework combining hidden state magnitudes and weight matrix norms
+- Achieves 63.7% FLOPs reduction on LLaMA-2-7B, 62.7% on Phi-4-14B
+- Outperforms TEAL by 2.94% on Qwen-2.5-7B at 65% sparsity
+
+**ActTail: Global Activation Sparsity** (2603.12272)
+- TopK magnitude-based sparsity grounded in Heavy-Tailed Self-Regularization theory
+- Captures heterogeneity via heavy-tail exponent from spectral density
+- March 2026 preprint addressing global allocation strategies
+
+**WiSparse: Weight-Aware Mixed Activation Sparsity** (2602.14452)
+- Combines activation and weight information for adaptive allocation
+- 97% performance preservation at 50% sparsity on Llama3.1
+- 21.4% end-to-end inference acceleration
+
+### 5. **Follow-up Work on Prior Methods**
+
+**SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity** (2506.16500)
+- ICML 2025 follow-up extending contextual sparsity to fine-tuning
+- Applies contextual sparsity principles to LoRA adaptation
+
+### Key Concurrent Research Patterns
+
+1. **Predictor + Correction Composition**: Multiple papers (FastForward, SVD Contextual Sparsity) combine predictors with separate error correction networks
+2. **Multi-regime Training**: Joint training across sparsity levels appears to be an emerging approach
+3. **Bias Calibration**: SVD Contextual Sparsity and SPON both employ bias terms for post-hoc correction
+4. **Training-free Methods**: WINA, ActTail, and others show strong results without training, suggesting this is a hot area
+5. **Dynamic vs. Static Composition**: Research increasingly focuses on combining static predictors with dynamic context-aware corrections
+
+### Recommended Priority Papers for Your Proposal
+
+- **2603.14110** (SVD Contextual Sparsity) - Direct competitor combining static and contextual approaches
+- **2602.00397** (FastForward) - Strong example of composed predictor + correction architecture
+- **2603.03131** (Joint Training Across Multiple Regimes) - Novel training strategy for sparsity robustness
+- **2512.12744** (SPON) - Lightweight bias-based correction mechanism
+- **2505.19427** (WINA) - State-of-the-art training-free baseline
+
+Sources:
+- [SVD Contextual Sparsity Predictors for Fast LLM Inference](https://arxiv.org/html/2603.14110)
+- [SVD Contextual Sparsity Predictors arxiv page](https://arxiv.org/abs/2603.14110)
+- [FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity](https://arxiv.org/abs/2602.00397)
+- [Joint Training Across Multiple Activation Sparsity Regimes](https://arxiv.org/abs/2603.03131)
+- [SPON: Resting Neurons, Active Insights](https://arxiv.org/html/2512.12744)
+- [WINA: Weight Informed Neuron Activation](https://arxiv.org/abs/2505.19427)
+- [Sirius: Contextual Sparsity with Correction for Efficient LLMs](https://arxiv.org/abs/2409.03856)
+- [ActTail: Global Activation Sparsity in Large Language Models](https://arxiv.org/abs/2603.12272)
+- [WiSparse: Boosting LLM Inference Efficiency with Weight-Aware Mixed Activation Sparsity](https://arxiv.org/abs/2602.14452)
+- [SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity](https://arxiv.org/html/2506.16500)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba1d27c4-ec75-4152-a71d-e43cd6210cbe",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "71b30193-4c2c-4d97-b542-00cc8264f646",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search for very recent papers (March-May 2026) on activation sparsity for LLMs that might be concurrent work to this proposal. Focus on:\n\n1. Any papers that combine static and contextual sparsity correction\n2. Any papers training sparsity predictors with distillation losses\n3. Any papers composing multiple correction mechanisms\n\nSearch queries:\n- \"activation sparsity correction composition LLM 2026 arxiv\"\n- \"sparsity predictor distillation training SwiGLU 2026\"\n- \"static contextual sparsity correction LLM\"\n- \"site:arxiv.org activation sparsity predictor training 2026\"\n- \"composing corrections activation sparsity transformer\"\n- \"bias correction contextual prediction sparsity LLM\"\n- \"Joint Training Across Multiple Activation Sparsity Regimes arxiv 2603\"\n\nAlso check for:\n- \"SVD contextual sparsity predictor 2026\"  \n- any updates or follow-up work to SPON, FastForward, or WINA published in 2026\n\nReport all relevant findings.",
+    "agentId": "aaa72fdda3e51c001",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Recent Activation Sparsity Research (March-May 2026)\n\nBased on comprehensive web search, I've identified several highly relevant papers and follow-up work concurrent with your proposal. Here are the key findings organized by research direction:\n\n### 1. **Static and Contextual Sparsity Combination**\n\n**SVD Contextual Sparsity Predictors for Fast LLM Inference** (2603.14110, March 14, 2026)\n- Combines lightweight SVD-based predictors with bias correction terms for contextual sparsity\n- Provides training-free method using truncation-aware SVD of gate projection matrices\n- Introduces neuron-specific bias thresholds for accuracy mitigation\n- Achieves 1.8x decoding speedup at 90% FFN sparsity with <1% accuracy loss\n- Directly addresses composition of static (SVD) and contextual (input-dependent) correction\n\n### 2. **Sparsity Predictor Training with Distillation**\n\n**FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity** (2602.00397, January 30, 2026)\n- Combines lightweight expert predictor with error compensation network\n- Uses layer-wise sparsity scheduler for adaptive allocation\n- Achieves 1.45x compute speedup at 50% FFN sparsity\n- Key innovation: error compensation network mitigates sparsity-induced errors\n- Addresses prefill stage where FFNs dominate computation\n\n**Joint Training Across Multiple Activation Sparsity Regimes** (2603.03131, March 3, 2026)\n- Trains models across multiple sparsity budgets simultaneously\n- Uses progressive compression with periodic resets\n- Tests robust representations across both dense and sparse regimes\n- Novel approach to composition through multi-regime training\n\n### 3. **Composing Multiple Correction Mechanisms**\n\n**Sirius: Contextual Sparsity with Correction for Efficient LLMs** (2409.03856, September 2024, NeurIPS 2024)\n- Introduces selective token correction mechanism for contextual sparse models\n- Recovers performance on reasoning tasks while maintaining efficiency\n- Demonstrates that sparse models retain general problem-solving logic\n- Composes sparse FFN skipping with strategic token corrections\n\n**SPON: Resting Neurons, Active Insights** (2512.12744)\n- Lightweight correction mechanism using learnable, input-independent activation vectors\n- Acts as representational anchors for sparse computation\n- Trained via distribution matching and absorbed into bias terms\n- Addresses representational instability in activation-sparse inference\n\n### 4. **Advanced Activation Sparsity Methods (Related)**\n\n**WINA: Weight Informed Neuron Activation** (2505.19427, May 26, 2025, ICLR 2026)\n- Training-free sparse activation framework combining hidden state magnitudes and weight matrix norms\n- Achieves 63.7% FLOPs reduction on LLaMA-2-7B, 62.7% on Phi-4-14B\n- Outperforms TEAL by 2.94% on Qwen-2.5-7B at 65% sparsity\n\n**ActTail: Global Activation Sparsity** (2603.12272)\n- TopK magnitude-based sparsity grounded in Heavy-Tailed Self-Regularization theory\n- Captures heterogeneity via heavy-tail exponent from spectral density\n- March 2026 preprint addressing global allocation strategies\n\n**WiSparse: Weight-Aware Mixed Activation Sparsity** (2602.14452)\n- Combines activation and weight information for adaptive allocation\n- 97% performance preservation at 50% sparsity on Llama3.1\n- 21.4% end-to-end inference acceleration\n\n### 5. **Follow-up Work on Prior Methods**\n\n**SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity** (2506.16500)\n- ICML 2025 follow-up extending contextual sparsity to fine-tuning\n- Applies contextual sparsity principles to LoRA adaptation\n\n### Key Concurrent Research Patterns\n\n1. **Predictor + Correction Composition**: Multiple papers (FastForward, SVD Contextual Sparsity) combine predictors with separate error correction networks\n2. **Multi-regime Training**: Joint training across sparsity levels appears to be an emerging approach\n3. **Bias Calibration**: SVD Contextual Sparsity and SPON both employ bias terms for post-hoc correction\n4. **Training-free Methods**: WINA, ActTail, and others show strong results without training, suggesting this is a hot area\n5. **Dynamic vs. Static Composition**: Research increasingly focuses on combining static predictors with dynamic context-aware corrections\n\n### Recommended Priority Papers for Your Proposal\n\n- **2603.14110** (SVD Contextual Sparsity) - Direct competitor combining static and contextual approaches\n- **2602.00397** (FastForward) - Strong example of composed predictor + correction architecture\n- **2603.03131** (Joint Training Across Multiple Regimes) - Novel training strategy for sparsity robustness\n- **2512.12744** (SPON) - Lightweight bias-based correction mechanism\n- **2505.19427** (WINA) - State-of-the-art training-free baseline\n\nSources:\n- [SVD Contextual Sparsity Predictors for Fast LLM Inference](https://arxiv.org/html/2603.14110)\n- [SVD Contextual Sparsity Predictors arxiv page](https://arxiv.org/abs/2603.14110)\n- [FastForward: Accelerating LLM Prefill with Predictive FFN Sparsity](https://arxiv.org/abs/2602.00397)\n- [Joint Training Across Multiple Activation Sparsity Regimes](https://arxiv.org/abs/2603.03131)\n- [SPON: Resting Neurons, Active Insights](https://arxiv.org/html/2512.12744)\n- [WINA: Weight Informed Neuron Activation](https://arxiv.org/abs/2505.19427)\n- [Sirius: Contextual Sparsity with Correction for Efficient LLMs](https://arxiv.org/abs/2409.03856)\n- [ActTail: Global Activation Sparsity in Large Language Models](https://arxiv.org/abs/2603.12272)\n- [WiSparse: Boosting LLM Inference Efficiency with Weight-Aware Mixed Activation Sparsity](https://arxiv.org/abs/2602.14452)\n- [SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity](https://arxiv.org/html/2506.16500)"
+      }
+    ],
+    "totalDurationMs": 38834,
+    "totalTokens": 30002,
+    "totalToolUseCount": 11,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7620,
+      "cache_read_input_tokens": 20704,
+      "output_tokens": 1671,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7620
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1671,
+          "cache_read_input_tokens": 20704,
+          "cache_creation_input_tokens": 7620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7620,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 11
+    }
+  },
+  "sourceToolAssistantUUID": "ba1d27c4-ec75-4152-a71d-e43cd6210cbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "71b30193-4c2c-4d97-b542-00cc8264f646",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-12T02:56:16.513Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0169XW2EFGVxmyL1XmVvQJCc`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71b30193-4c2c-4d97-b542-00cc8264f646",
+  "isSidechain": false,
+  "requestId": "req_011CawvTKGUQ9qjKkYsCPhYj",
+  "type": "assistant",
+  "uuid": "330d08d0-adfc-46a9-bb3e-20281ccc56f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qwrb85YLNAnD3rC4HMao3e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2030,
+      "cache_read_input_tokens": 42932,
+      "output_tokens": 79,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2030,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 79,
+          "cache_read_input_tokens": 42932,
+          "cache_creation_input_tokens": 2030,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2030
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-12T02:56:16.520Z_
+
+<details><summary>↩ Tool result · `toolu_0169XW2EFGVxmyL1XmVvQJCc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "330d08d0-adfc-46a9-bb3e-20281ccc56f9",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "11b6f51d-edce-4b2e-b4ab-30a5afafb289",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "330d08d0-adfc-46a9-bb3e-20281ccc56f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-12T02:56:19.810Z_
+
+Now let me do deeper verification on specific claims and search for potential issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11b6f51d-edce-4b2e-b4ab-30a5afafb289",
+  "isSidechain": false,
+  "requestId": "req_011CawvTkjQoDyGUVdESx8sg",
+  "type": "assistant",
+  "uuid": "8f0f3c0e-040f-427e-8e0c-6f7781d86415",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrZqMci4xSX7NrUmHBuEVD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 44962,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 44962,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-12T02:56:20.944Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A6S6rBR7pUWwdihb9gsmZP`</summary>
+
+```json
+{
+  "query": "SPON \"Resting Neurons\" ICML 2026 accepted paper confirmation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f0f3c0e-040f-427e-8e0c-6f7781d86415",
+  "isSidechain": false,
+  "requestId": "req_011CawvTkjQoDyGUVdESx8sg",
+  "type": "assistant",
+  "uuid": "65147d53-74bb-4ef8-8d78-5e39ee17d4be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrZqMci4xSX7NrUmHBuEVD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 44962,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 44962,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-12T02:56:22.377Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012GVbZftx9miibQWyYYCt6d`</summary>
+
+```json
+{
+  "query": "arxiv 2512.12744 Table 2 benchmarks ARC BoolQ PIQA Winogrande"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65147d53-74bb-4ef8-8d78-5e39ee17d4be",
+  "isSidechain": false,
+  "requestId": "req_011CawvTkjQoDyGUVdESx8sg",
+  "type": "assistant",
+  "uuid": "727d7563-ba0a-410f-b0be-6dbaf71b7645",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrZqMci4xSX7NrUmHBuEVD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 44962,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 44962,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-12T02:56:23.410Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013DtiZeTrRiKBP12BJb2YBr`</summary>
+
+```json
+{
+  "query": "DIP dynamic input pruning KL divergence LoRA distillation MLSys 2025 arxiv 2412.01380"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "727d7563-ba0a-410f-b0be-6dbaf71b7645",
+  "isSidechain": false,
+  "requestId": "req_011CawvTkjQoDyGUVdESx8sg",
+  "type": "assistant",
+  "uuid": "b8a3d493-d56d-449c-821c-b43875e5cac5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CrZqMci4xSX7NrUmHBuEVD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 44962,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 44962,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-12T02:56:26.548Z_
+
+<details><summary>↩ Tool result · `toolu_012GVbZftx9miibQWyYYCt6d`</summary>
+
+```text
+Web search results for query: "arxiv 2512.12744 Table 2 benchmarks ARC BoolQ PIQA Winogrande"
+
+Links: [{"title":"The Fine Line: Navigating Large Language Model Pretraining with Down-streaming Capability Analysis","url":"https://arxiv.org/html/2404.01204v1"},{"title":"SOTA Reasoning on 7-Benchmark Suite (ARC-E, ARC-C, HellaSwag, WinoGrande, PIQA, BoolQ, OBQA) (test) and PapersWithCode | Wizwand","url":"https://www.wizwand.com/sota/reasoning-on-7-benchmark-suite-arc-e-arc-c-hellaswag-winogrande-piqa-boolq-obqa-test"},{"title":"R2Q: Towards Robust 2-Bit Large Language Models via Residual Refinement Quantization","url":"https://arxiv.org/html/2511.21736"},{"title":"KV-CAR: KV Cache Compression using Autoencoders and KV Reuse in Large Language Models","url":"https://arxiv.org/html/2512.06727v1"},{"title":"Here are the zero-shot accuracy numbers posted in the Huggingface evaluations fo... | Hacker News","url":"https://news.ycombinator.com/item?id=35345247"},{"title":"MobileLLM: Optimizing Sub-billion Parameter Language Models","url":"https://arxiv.org/pdf/2402.14905"},{"title":"Aman's AI Journal • Primers • LLM/VLM Benchmarks","url":"https://aman.ai/primers/ai/benchmarks/"},{"title":"Evaluating the Generalization Ability of Quantized LLMs: Benchmark, Analysis, and Toolbox","url":"https://arxiv.org/html/2406.12928v1"},{"title":"JAX_llama/MODEL_CARD.md at main · Sea-Snell/JAX_llama","url":"https://github.com/Sea-Snell/JAX_llama/blob/main/MODEL_CARD.md"},{"title":"Predicting Through Generation: Why Generation Is Better for Prediction","url":"https://arxiv.org/html/2502.17817v1"}]
+
+The search results did not return information about the specific arXiv paper 2512.12744. The results show various papers that reference the benchmarks you mentioned (ARC, BoolQ, PIQA, and Winogrande), but not the specific paper with that ID.
+
+To access the specific paper and Table 2 you're looking for, you could:
+
+1. Visit arxiv.org directly and search for paper ID 2512.12744
+2. Try accessing https://arxiv.org/abs/2512.12744 or https://arxiv.org/html/2512.12744 directly
+
+If you have specific questions about what's in Table 2 of that paper, feel free to share the content and I can help you analyze it.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "727d7563-ba0a-410f-b0be-6dbaf71b7645",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "cb42d0fa-d968-4306-9911-aed86b7c1033",
+  "toolUseResult": {
+    "query": "arxiv 2512.12744 Table 2 benchmarks ARC BoolQ PIQA Winogrande",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UaRB4yGQ8Gh3gNKYccfT6g",
+        "content": [
+          {
+            "title": "The Fine Line: Navigating Large Language Model Pretraining with Down-streaming Capability Analysis",
+            "url": "https://arxiv.org/html/2404.01204v1"
+          },
+          {
+            "title": "SOTA Reasoning on 7-Benchmark Suite (ARC-E, ARC-C, HellaSwag, WinoGrande, PIQA, BoolQ, OBQA) (test) and PapersWithCode | Wizwand",
+            "url": "https://www.wizwand.com/sota/reasoning-on-7-benchmark-suite-arc-e-arc-c-hellaswag-winogrande-piqa-boolq-obqa-test"
+          },
+          {
+            "title": "R2Q: Towards Robust 2-Bit Large Language Models via Residual Refinement Quantization",
+            "url": "https://arxiv.org/html/2511.21736"
+          },
+          {
+            "title": "KV-CAR: KV Cache Compression using Autoencoders and KV Reuse in Large Language Models",
+            "url": "https://arxiv.org/html/2512.06727v1"
+          },
+          {
+            "title": "Here are the zero-shot accuracy numbers posted in the Huggingface evaluations fo... | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=35345247"
+          },
+          {
+            "title": "MobileLLM: Optimizing Sub-billion Parameter Language Models",
+            "url": "https://arxiv.org/pdf/2402.14905"
+          },
+          {
+            "title": "Aman's AI Journal • Primers • LLM/VLM Benchmarks",
+            "url": "https://aman.ai/primers/ai/benchmarks/"
+          },
+          {
+            "title": "Evaluating the Generalization Ability of Quantized LLMs: Benchmark, Analysis, and Toolbox",
+            "url": "https://arxiv.org/html/2406.12928v1"
+          },
+          {
+            "title": "JAX_llama/MODEL_CARD.md at main · Sea-Snell/JAX_llama",
+            "url": "https://github.com/Sea-Snell/JAX_llama/blob/main/MODEL_CARD.md"
+          },
+          {
+            "title": "Predicting Through Generation: Why Generation Is Better for Prediction",
+            "url": "https://arxiv.org/html/2502.17817v1"
+          }
+        ]
+      },
+      "The search results did not return information about the specific arXiv paper 2512.12744. The results show various papers that reference the benchmarks you mentioned (ARC, BoolQ, PIQA, and Winogrande), but not the specific paper with that ID.\n\nTo access the specific paper and Table 2 you're looking for, you could:\n\n1. Visit arxiv.org directly and search for paper ID 2512.12744\n2. Try accessing https://arxiv.org/abs/2512.12744 or https://arxiv.org/html/2512.12744 directly\n\nIf you have specific questions about what's in Table 2 of that paper, feel free to share the content and I can help you analyze it."
+    ],
+    "durationSeconds": 4.1692555929999795
+  },
+  "sourceToolAssistantUUID": "727d7563-ba0a-410f-b0be-6dbaf71b7645",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-12T02:56:26.631Z_
+
+<details><summary>↩ Tool result · `toolu_01A6S6rBR7pUWwdihb9gsmZP`</summary>
+
+```text
+Web search results for query: "SPON "Resting Neurons" ICML 2026 accepted paper confirmation"
+
+Links: [{"title":"ICML 2026 Call for Papers","url":"https://icml.cc/Conferences/2026/CallForPapers"},{"title":"Paper Digest: ICML 2026 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2026/05/icml-2026-papers-highlights/"},{"title":"Most Influential ICML Papers (2026-03 Version) – Paper Digest","url":"https://www.paperdigest.org/2026/03/most-influential-icml-papers-2026-03-version/"},{"title":"ICLR 2026 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/"},{"title":"2026 Dates and Deadlines","url":"https://icml.cc/Conferences/2026/Dates"},{"title":"ICML 2026 Papers","url":"https://icml.cc/virtual/2026/papers.html"},{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"ICML 2026 Reviewer Instructions","url":"https://icml.cc/Conferences/2026/ReviewerInstructions"},{"title":"ICML 2026 Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/icml-paper-list/icml-2026-paper-list/"},{"title":"Paper Digest: ICML 2026 Papers & Highlights – Resources | Paper Digest","url":"https://resources.paperdigest.org/2026/05/icml-2026-papers-highlights/"}]
+
+The search results show general information about ICML 2026, but don't contain specific information about a paper titled "Resting Neurons" by SPON or confirmation of its acceptance. Let me try a more specific search for this particular paper.
+
+No links found.
+
+I was unable to find specific information in the search results about a paper titled "Resting Neurons" or its acceptance at ICML 2026. The search results returned general information about ICML 2026 conference procedures and accepted papers, but no specific details about the paper you're inquiring about.
+
+To find confirmation about whether this particular paper was accepted, you might try:
+- Visiting the official ICML 2026 accepted papers page directly
+- Searching on OpenReview (where ICML submissions are typically tracked)
+- Checking the authors' institutional websites or their publication profiles
+- Looking at recent preprint servers like arXiv
+
+If you have additional context about the authors or can provide a paper ID, that might help narrow down the search.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65147d53-74bb-4ef8-8d78-5e39ee17d4be",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "9c5626a0-109c-44b5-a50d-7fd28cb9dd46",
+  "toolUseResult": {
+    "query": "SPON \"Resting Neurons\" ICML 2026 accepted paper confirmation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019RgfA5312S3FnAUTWZC1FD",
+        "content": [
+          {
+            "title": "ICML 2026 Call for Papers",
+            "url": "https://icml.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Paper Digest: ICML 2026 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2026/05/icml-2026-papers-highlights/"
+          },
+          {
+            "title": "Most Influential ICML Papers (2026-03 Version) – Paper Digest",
+            "url": "https://www.paperdigest.org/2026/03/most-influential-icml-papers-2026-03-version/"
+          },
+          {
+            "title": "ICLR 2026 Accepted Paper List - Paper Copilot",
+            "url": "https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/"
+          },
+          {
+            "title": "2026 Dates and Deadlines",
+            "url": "https://icml.cc/Conferences/2026/Dates"
+          },
+          {
+            "title": "ICML 2026 Papers",
+            "url": "https://icml.cc/virtual/2026/papers.html"
+          },
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "ICML 2026 Reviewer Instructions",
+            "url": "https://icml.cc/Conferences/2026/ReviewerInstructions"
+          },
+          {
+            "title": "ICML 2026 Paper List - Paper Copilot",
+            "url": "https://papercopilot.com/paper-list/icml-paper-list/icml-2026-paper-list/"
+          },
+          {
+            "title": "Paper Digest: ICML 2026 Papers & Highlights – Resources | Paper Digest",
+            "url": "https://resources.paperdigest.org/2026/05/icml-2026-papers-highlights/"
+          }
+        ]
+      },
+      "The search results show general information about ICML 2026, but don't contain specific information about a paper titled \"Resting Neurons\" by SPON or confirmation of its acceptance. Let me try a more specific search for this particular paper.",
+      {
+        "tool_use_id": "srvtoolu_019DhrSbiFpo4KccCnuHCHWz",
+        "content": []
+      },
+      "I was unable to find specific information in the search results about a paper titled \"Resting Neurons\" or its acceptance at ICML 2026. The search results returned general information about ICML 2026 conference procedures and accepted papers, but no specific details about the paper you're inquiring about.\n\nTo find confirmation about whether this particular paper was accepted, you might try:\n- Visiting the official ICML 2026 accepted papers page directly\n- Searching on OpenReview (where ICML submissions are typically tracked)\n- Checking the authors' institutional websites or their publication profiles\n- Looking at recent preprint servers like arXiv\n\nIf you have additional context about the authors or can provide a paper ID, that might help narrow down the search."
+    ],
+    "durationSeconds": 5.684389797999989
+  },
+  "sourceToolAssistantUUID": "65147d53-74bb-4ef8-8d78-5e39ee17d4be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-12T02:56:29.898Z_
+
+<details><summary>↩ Tool result · `toolu_013DtiZeTrRiKBP12BJb2YBr`</summary>
+
+```text
+Web search results for query: "DIP dynamic input pruning KL divergence LoRA distillation MLSys 2025 arxiv 2412.01380"
+
+Links: [{"title":"[2412.01380] Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking","url":"https://arxiv.org/abs/2412.01380"},{"title":"1 Introduction","url":"https://arxiv.org/html/2412.01380"},{"title":"Advancing Model Refinement: Muon-Optimized Distillation and Quantization for LLM Deployment","url":"https://arxiv.org/html/2601.09865"},{"title":"Layer- and Timestep-Adaptive Differentiable Token Compression Ratios for Efficient Diffusion Transformers","url":"https://arxiv.org/html/2412.16822v2"},{"title":"Knowledge Distillation and Dataset Distillation of Large ...","url":"https://arxiv.org/pdf/2504.14772"},{"title":"GitHub - AIoT-MLSys-Lab/Efficient-Diffusion-Model-Survey: [TMLR 2025] Efficient Diffusion Models: A Survey · GitHub","url":"https://github.com/AIoT-MLSys-Lab/Efficient-Diffusion-Model-Survey"},{"title":"Distilling to Hybrid Attention Models via KL-Guided Layer Selection","url":"https://arxiv.org/html/2512.20569v1"},{"title":"Unlocking Dataset Distillation with Diffusion Models","url":"https://arxiv.org/html/2403.03881v4"},{"title":"GitHub - HuangOwen/Awesome-LLM-Compression: Awesome LLM compression research papers and tools. · GitHub","url":"https://github.com/HuangOwen/Awesome-LLM-Compression"},{"title":"Published in Transactions on Machine Learning Research (09/2025)","url":"https://arxiv.org/pdf/2503.12067"}]
+
+Based on the search results, I found information about the paper arxiv 2412.01380:
+
+## Summary of DIP (Dynamic Input Pruning) Paper
+
+Dynamic Input Pruning (DIP) is a predictor-free dynamic sparsification approach that preserves accuracy with minimal fine-tuning. DIP can further use lightweight LoRA adapters to regain some performance lost during sparsification.
+
+The paper also describes a novel cache-aware masking strategy, which considers the cache state and activation magnitude to further increase cache hit rate, improving LLM token rate on mobile devices.
+
+### Performance Results
+
+On Phi-3-Medium, DIP achieves a 46% reduction in memory and 40% increase in throughput with less than 0.1 loss in perplexity when compared to streaming the dense model from Flash.
+
+### Venue and Availability
+
+The paper was submitted for Artifact Evaluation at MLSys 2025. The open source code for hardware simulator, methods, and experiments is available at https://github.com/Qualcomm-AI-research/dynamic-sparsity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8a3d493-d56d-449c-821c-b43875e5cac5",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "a1b8e460-1340-496b-a29d-0674ce10fc57",
+  "toolUseResult": {
+    "query": "DIP dynamic input pruning KL divergence LoRA distillation MLSys 2025 arxiv 2412.01380",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017rEN6haN9evH2a8Uqf4Xnk",
+        "content": [
+          {
+            "title": "[2412.01380] Efficient LLM Inference using Dynamic Input Pruning and Cache-Aware Masking",
+            "url": "https://arxiv.org/abs/2412.01380"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2412.01380"
+          },
+          {
+            "title": "Advancing Model Refinement: Muon-Optimized Distillation and Quantization for LLM Deployment",
+            "url": "https://arxiv.org/html/2601.09865"
+          },
+          {
+            "title": "Layer- and Timestep-Adaptive Differentiable Token Compression Ratios for Efficient Diffusion Transformers",
+            "url": "https://arxiv.org/html/2412.16822v2"
+          },
+          {
+            "title": "Knowledge Distillation and Dataset Distillation of Large ...",
+            "url": "https://arxiv.org/pdf/2504.14772"
+          },
+          {
+            "title": "GitHub - AIoT-MLSys-Lab/Efficient-Diffusion-Model-Survey: [TMLR 2025] Efficient Diffusion Models: A Survey · GitHub",
+            "url": "https://github.com/AIoT-MLSys-Lab/Efficient-Diffusion-Model-Survey"
+          },
+          {
+            "title": "Distilling to Hybrid Attention Models via KL-Guided Layer Selection",
+            "url": "https://arxiv.org/html/2512.20569v1"
+          },
+          {
+            "title": "Unlocking Dataset Distillation with Diffusion Models",
+            "url": "https://arxiv.org/html/2403.03881v4"
+          },
+          {
+            "title": "GitHub - HuangOwen/Awesome-LLM-Compression: Awesome LLM compression research papers and tools. · GitHub",
+            "url": "https://github.com/HuangOwen/Awesome-LLM-Compression"
+          },
+          {
+            "title": "Published in Transactions on Machine Learning Research (09/2025)",
+            "url": "https://arxiv.org/pdf/2503.12067"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper arxiv 2412.01380:\n\n## Summary of DIP (Dynamic Input Pruning) Paper\n\nDynamic Input Pruning (DIP) is a predictor-free dynamic sparsification approach that preserves accuracy with minimal fine-tuning. DIP can further use lightweight LoRA adapters to regain some performance lost during sparsification.\n\nThe paper also describes a novel cache-aware masking strategy, which considers the cache state and activation magnitude to further increase cache hit rate, improving LLM token rate on mobile devices.\n\n### Performance Results\n\nOn Phi-3-Medium, DIP achieves a 46% reduction in memory and 40% increase in throughput with less than 0.1 loss in perplexity when compared to streaming the dense model from Flash.\n\n### Venue and Availability\n\nThe paper was submitted for Artifact Evaluation at MLSys 2025. The open source code for hardware simulator, methods, and experiments is available at https://github.com/Qualcomm-AI-research/dynamic-sparsity."
+    ],
+    "durationSeconds": 6.48530839999998
+  },
+  "sourceToolAssistantUUID": "b8a3d493-d56d-449c-821c-b43875e5cac5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-12T02:56:29.903Z_
+
+```json
+{
+  "parentUuid": "a1b8e460-1340-496b-a29d-0674ce10fc57",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "63e16ffd-19a2-44c9-a840-2278d8fe0100",
+  "timestamp": "2026-05-12T02:56:29.903Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-12T02:56:34.752Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014SjrUkJMvcRRGmeh1AoV1Z`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.12744",
+  "prompt": "Extract the following information:\n1. Paper title and authors\n2. Which venue is listed (if any) - is ICML 2026 mentioned?\n3. Version history - what dates were different versions submitted?\n4. The abstract mentioning benchmarks or evaluation details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63e16ffd-19a2-44c9-a840-2278d8fe0100",
+  "isSidechain": false,
+  "requestId": "req_011CawvUjbUJPxUjN7fyDpSy",
+  "type": "assistant",
+  "uuid": "0a0c95a8-3bb6-4fa9-91aa-c8d63113dcdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SoZmkvg552yry9AQvw6cdK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2636,
+      "cache_read_input_tokens": 46060,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 46060,
+          "cache_creation_input_tokens": 2636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-12T02:56:38.053Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01J2SYZTsxkF6KwSMAB1Cv6j`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2412.01380",
+  "prompt": "Find whether this paper (DIP - Dynamic Input Pruning) uses KL-divergence distillation for training any component, particularly LoRA adapters. Look for mentions of KL divergence, distillation loss, training objectives. Also find what loss function is used for training LoRA adapters if mentioned."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a0c95a8-3bb6-4fa9-91aa-c8d63113dcdf",
+  "isSidechain": false,
+  "requestId": "req_011CawvUjbUJPxUjN7fyDpSy",
+  "type": "assistant",
+  "uuid": "1e938881-57ae-4633-a20e-684729a3c030",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SoZmkvg552yry9AQvw6cdK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2636,
+      "cache_read_input_tokens": 46060,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 46060,
+          "cache_creation_input_tokens": 2636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-12T02:56:38.717Z_
+
+<details><summary>↩ Tool result · `toolu_014SjrUkJMvcRRGmeh1AoV1Z`</summary>
+
+```text
+# Paper Information Extract
+
+**1. Title and Authors:**
+The paper is titled "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models" by Haotian Xu, Jiannan Yang, Tian Gao, Tsui-Wei Weng, and Tengfei Ma.
+
+**2. Venue:**
+Yes, ICML 2026 is listed as the venue where this work was accepted.
+
+**3. Version History:**
+- Version 1: Submitted December 14, 2025
+- Version 2: Revised April 2, 2026
+- Version 3: Revised April 30, 2026 (current version)
+
+**4. Abstract Summary:**
+The abstract describes addressing accuracy degradation in activation sparsity for LLMs. The authors propose "Spontaneous Neurons (SPON)," which involves injecting "learnable, input-independent activation vectors that act as persistent representational anchors." The method uses "distribution matching to the dense model" and claims to "consistently restore performance, stabilize latent representations, and preserve generalization" across multiple LLM backbones. However, the abstract does not specify particular benchmark names or detailed evaluation metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a0c95a8-3bb6-4fa9-91aa-c8d63113dcdf",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "f22bd7c1-9789-4875-9faf-4a580ed795cc",
+  "toolUseResult": {
+    "bytes": 47681,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Information Extract\n\n**1. Title and Authors:**\nThe paper is titled \"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models\" by Haotian Xu, Jiannan Yang, Tian Gao, Tsui-Wei Weng, and Tengfei Ma.\n\n**2. Venue:**\nYes, ICML 2026 is listed as the venue where this work was accepted.\n\n**3. Version History:**\n- Version 1: Submitted December 14, 2025\n- Version 2: Revised April 2, 2026\n- Version 3: Revised April 30, 2026 (current version)\n\n**4. Abstract Summary:**\nThe abstract describes addressing accuracy degradation in activation sparsity for LLMs. The authors propose \"Spontaneous Neurons (SPON),\" which involves injecting \"learnable, input-independent activation vectors that act as persistent representational anchors.\" The method uses \"distribution matching to the dense model\" and claims to \"consistently restore performance, stabilize latent representations, and preserve generalization\" across multiple LLM backbones. However, the abstract does not specify particular benchmark names or detailed evaluation metrics.",
+    "durationMs": 3962,
+    "url": "https://arxiv.org/abs/2512.12744"
+  },
+  "sourceToolAssistantUUID": "0a0c95a8-3bb6-4fa9-91aa-c8d63113dcdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T02:56:41.092Z_
+
+<details><summary>↩ Tool result · `toolu_01J2SYZTsxkF6KwSMAB1Cv6j`</summary>
+
+```text
+# KL-Divergence Distillation in DIP Paper
+
+Based on my review of the paper, **the authors do not use KL-divergence distillation** for training LoRA adapters.
+
+Instead, the paper explicitly states they employ a **knowledge distillation loss** that matches the original model's outputs:
+
+> "we train LoRA adapters with rank 32 for a total of 1000 iterations using a knowledge distillation loss to match the original (dense) model logits"
+
+The specific loss function used is described as matching logits from the dense baseline model, rather than employing KL-divergence. While knowledge distillation conceptually can use KL-divergence, this paper's description indicates a logit-matching approach without explicitly invoking KL-divergence terminology or methodology.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e938881-57ae-4633-a20e-684729a3c030",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "2946835d-8f69-405e-88a1-847d4f1e1b19",
+  "toolUseResult": {
+    "bytes": 441669,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# KL-Divergence Distillation in DIP Paper\n\nBased on my review of the paper, **the authors do not use KL-divergence distillation** for training LoRA adapters.\n\nInstead, the paper explicitly states they employ a **knowledge distillation loss** that matches the original model's outputs:\n\n> \"we train LoRA adapters with rank 32 for a total of 1000 iterations using a knowledge distillation loss to match the original (dense) model logits\"\n\nThe specific loss function used is described as matching logits from the dense baseline model, rather than employing KL-divergence. While knowledge distillation conceptually can use KL-divergence, this paper's description indicates a logit-matching approach without explicitly invoking KL-divergence terminology or methodology.",
+    "durationMs": 3037,
+    "url": "https://arxiv.org/html/2412.01380"
+  },
+  "sourceToolAssistantUUID": "1e938881-57ae-4633-a20e-684729a3c030",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-12T02:56:44.486Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DShnPGtrBwQfr3tCwfg33B`</summary>
+
+```json
+{
+  "query": "ICML 2026 accepted papers list \"resting neurons\" OR \"SPON\" OR \"activation sparsity\" site:icml.cc"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2946835d-8f69-405e-88a1-847d4f1e1b19",
+  "isSidechain": false,
+  "requestId": "req_011CawvVZTZC1APNXLQx6LXt",
+  "type": "assistant",
+  "uuid": "764d1653-2a99-4765-b929-7147cd26f1cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ANWrKiY21eNpgdAFsRgD6s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 48696,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 48696,
+          "cache_creation_input_tokens": 795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-12T02:56:45.265Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H6BH3t2orXBxvvDCAE8BYJ`</summary>
+
+```json
+{
+  "query": "FastForward arxiv 2602.00397 error compensation network inference overhead weight size per layer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "764d1653-2a99-4765-b929-7147cd26f1cc",
+  "isSidechain": false,
+  "requestId": "req_011CawvVZTZC1APNXLQx6LXt",
+  "type": "assistant",
+  "uuid": "dc327bde-b856-49f3-983d-d58edba27806",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ANWrKiY21eNpgdAFsRgD6s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 48696,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 795,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 48696,
+          "cache_creation_input_tokens": 795,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 795
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dc327bde-b856-49f3-983d-d58edba27806",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-12T02:56:49.189Z_
+
+<details><summary>↩ Tool result · `toolu_01DShnPGtrBwQfr3tCwfg33B`</summary>
+
+```text
+Web search results for query: "ICML 2026 accepted papers list "resting neurons" OR "SPON" OR "activation sparsity" site:icml.cc"
+
+Links: [{"title":"ICML 2026","url":"https://icml.cc/"},{"title":"2026 Conference","url":"https://icml.cc/Conferences/2026"},{"title":"ICML 2024 Schedule","url":"https://icml.cc/virtual/2024/calendar"},{"title":"Accepted Papers","url":"https://icml.cc/Conferences/2021/AcceptedPapersInitial"},{"title":"ICML 2026 Peer Review FAQ","url":"https://icml.cc/Conferences/2026/PeerReviewFAQ"},{"title":"ICML 2020 Poster Schedule","url":"https://icml.cc/Conferences/2020/PosterSchedule"},{"title":"2022 Conference","url":"https://icml.cc/Conferences/2022"},{"title":"ICML 2026 Call for Post-Conference Workshops","url":"https://icml.cc/Conferences/2026/CallForWorkshops"},{"title":"ICML 2023 Paper Guidelines","url":"https://icml.cc/Conferences/2023/PaperGuidelines"},{"title":"ICML 2026 Reviewer Instructions","url":"https://icml.cc/Conferences/2026/ReviewerInstructions"}]
+
+The search results do not contain a specific accepted papers list for ICML 2026 with papers matching the keywords "resting neurons," "SPON," or "activation sparsity." 
+
+The search returned general information about ICML 2026 conference logistics and policies, as well as papers from ICML 2020 that mention "activation sparsity," but there is no dedicated page showing ICML 2026 accepted papers with those specific topics.
+
+To find papers from ICML 2026 with those keywords, you might need to:
+1. Visit the official ICML 2026 accepted papers page directly at icml.cc
+2. Use the conference's paper search or filtering functionality once the accepted papers are publicly listed
+3. Check OpenReview, which is where ICML submissions are typically managed
+
+Since today's date is May 12, 2026, the accepted papers may have been announced, but the specific search query with the site restriction may not have yielded the intended results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "764d1653-2a99-4765-b929-7147cd26f1cc",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "8faaf598-6c5f-440c-b67b-f9a3c0d7d4f9",
+  "toolUseResult": {
+    "query": "ICML 2026 accepted papers list \"resting neurons\" OR \"SPON\" OR \"activation sparsity\" site:icml.cc",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fy6Nx35nhe92uKizJsiXvP",
+        "content": [
+          {
+            "title": "ICML 2026",
+            "url": "https://icml.cc/"
+          },
+          {
+            "title": "2026 Conference",
+            "url": "https://icml.cc/Conferences/2026"
+          },
+          {
+            "title": "ICML 2024 Schedule",
+            "url": "https://icml.cc/virtual/2024/calendar"
+          },
+          {
+            "title": "Accepted Papers",
+            "url": "https://icml.cc/Conferences/2021/AcceptedPapersInitial"
+          },
+          {
+            "title": "ICML 2026 Peer Review FAQ",
+            "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+          },
+          {
+            "title": "ICML 2020 Poster Schedule",
+            "url": "https://icml.cc/Conferences/2020/PosterSchedule"
+          },
+          {
+            "title": "2022 Conference",
+            "url": "https://icml.cc/Conferences/2022"
+          },
+          {
+            "title": "ICML 2026 Call for Post-Conference Workshops",
+            "url": "https://icml.cc/Conferences/2026/CallForWorkshops"
+          },
+          {
+            "title": "ICML 2023 Paper Guidelines",
+            "url": "https://icml.cc/Conferences/2023/PaperGuidelines"
+          },
+          {
+            "title": "ICML 2026 Reviewer Instructions",
+            "url": "https://icml.cc/Conferences/2026/ReviewerInstructions"
+          }
+        ]
+      },
+      "The search results do not contain a specific accepted papers list for ICML 2026 with papers matching the keywords \"resting neurons,\" \"SPON,\" or \"activation sparsity.\" \n\nThe search returned general information about ICML 2026 conference logistics and policies, as well as papers from ICML 2020 that mention \"activation sparsity,\" but there is no dedicated page showing ICML 2026 accepted papers with those specific topics.\n\nTo find papers from ICML 2026 with those keywords, you might need to:\n1. Visit the official ICML 2026 accepted papers page directly at icml.cc\n2. Use the conference's paper search or filtering functionality once the accepted papers are publicly listed\n3. Check OpenReview, which is where ICML submissions are typically managed\n\nSince today's date is May 12, 2026, the accepted papers may have been announced, but the specific search query with the site restriction may not have yielded the intended results."
+    ],
+    "durationSeconds": 4.697904566000041
+  },
+  "sourceToolAssistantUUID": "764d1653-2a99-4765-b929-7147cd26f1cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-12T02:56:50.511Z_
+
+<details><summary>↩ Tool result · `toolu_01H6BH3t2orXBxvvDCAE8BYJ`</summary>
+
+```text
+Web search results for query: "FastForward arxiv 2602.00397 error compensation network inference overhead weight size per layer"
+
+Links: [{"title":"[2602.00397] Fast Forward: Accelerating LLM Prefill with Predictive FFN Sparsity","url":"https://arxiv.org/abs/2602.00397"},{"title":"1 Introduction","url":"https://arxiv.org/html/2602.00397"},{"title":"[2602.08883] Error compensation without a time penalty: robust spin-lock-induced crossing in solution NMR","url":"https://arxiv.org/abs/2602.08883"},{"title":"[2602.00076] Repair Brain Damage: Real-Numbered Error Correction Code for Neural Network","url":"https://arxiv.org/abs/2602.00076"},{"title":"ML-Enabled Deformable Matched Filters for Bandlimitation Compensation in Free-Space Optics","url":"https://arxiv.org/html/2602.07169"},{"title":"Error Propagation Mechanisms and Compensation Strategies for Quantized Diffusion Models","url":"https://arxiv.org/html/2508.12094v1"},{"title":"[0911.3717] Artificial Neural Network-based error compensation procedure for low-cost encoders","url":"https://arxiv.org/abs/0911.3717"},{"title":"Error compensation without a time penalty: robust spin-lock-induced crossing in solution NMR","url":"https://arxiv.org/html/2602.08883"},{"title":"GRAIL: Post-hoc Compensation by Linear Reconstruction for Compressed Networks","url":"https://arxiv.org/html/2602.23795"},{"title":"GitHub - Lyy-iiis/imeanflow: Official Implementation of iMF https://arxiv.org/abs/2512.02012 · GitHub","url":"https://github.com/Lyy-iiis/imeanflow"}]
+
+I found the arxiv paper 2602.00397 about FastForward. Based on the search results, here's what the paper describes:
+
+FastForward combines a lightweight expert predictor to select high-importance neurons per block, an error compensation network to correct sparsity-induced errors, and a layer-wise sparsity scheduler to allocate compute based on token-mixing importance.
+
+FastForward is a predictive sparsity framework that accelerates LLM prefill through block-wise, context-aware FFN sparsity. Across LLaMA and Qwen models up to 8B parameters, FastForward delivers up to 1.45× compute-bound speedup at 50% FFN sparsity with <6% accuracy loss.
+
+However, the search results don't contain specific details about the inference overhead, weight size per layer, or more detailed specifications about the error compensation network itself. If you need more detailed technical information about those specific aspects, you may want to access the full paper directly at https://arxiv.org/abs/2602.00397.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc327bde-b856-49f3-983d-d58edba27806",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "97f6bc5f-663d-48e6-aebc-d67ed84b0dfd",
+  "toolUseResult": {
+    "query": "FastForward arxiv 2602.00397 error compensation network inference overhead weight size per layer",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JgFW5XaF7MnrKYJbs9LHha",
+        "content": [
+          {
+            "title": "[2602.00397] Fast Forward: Accelerating LLM Prefill with Predictive FFN Sparsity",
+            "url": "https://arxiv.org/abs/2602.00397"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2602.00397"
+          },
+          {
+            "title": "[2602.08883] Error compensation without a time penalty: robust spin-lock-induced crossing in solution NMR",
+            "url": "https://arxiv.org/abs/2602.08883"
+          },
+          {
+            "title": "[2602.00076] Repair Brain Damage: Real-Numbered Error Correction Code for Neural Network",
+            "url": "https://arxiv.org/abs/2602.00076"
+          },
+          {
+            "title": "ML-Enabled Deformable Matched Filters for Bandlimitation Compensation in Free-Space Optics",
+            "url": "https://arxiv.org/html/2602.07169"
+          },
+          {
+            "title": "Error Propagation Mechanisms and Compensation Strategies for Quantized Diffusion Models",
+            "url": "https://arxiv.org/html/2508.12094v1"
+          },
+          {
+            "title": "[0911.3717] Artificial Neural Network-based error compensation procedure for low-cost encoders",
+            "url": "https://arxiv.org/abs/0911.3717"
+          },
+          {
+            "title": "Error compensation without a time penalty: robust spin-lock-induced crossing in solution NMR",
+            "url": "https://arxiv.org/html/2602.08883"
+          },
+          {
+            "title": "GRAIL: Post-hoc Compensation by Linear Reconstruction for Compressed Networks",
+            "url": "https://arxiv.org/html/2602.23795"
+          },
+          {
+            "title": "GitHub - Lyy-iiis/imeanflow: Official Implementation of iMF https://arxiv.org/abs/2512.02012 · GitHub",
+            "url": "https://github.com/Lyy-iiis/imeanflow"
+          }
+        ]
+      },
+      "I found the arxiv paper 2602.00397 about FastForward. Based on the search results, here's what the paper describes:\n\nFastForward combines a lightweight expert predictor to select high-importance neurons per block, an error compensation network to correct sparsity-induced errors, and a layer-wise sparsity scheduler to allocate compute based on token-mixing importance.\n\nFastForward is a predictive sparsity framework that accelerates LLM prefill through block-wise, context-aware FFN sparsity. Across LLaMA and Qwen models up to 8B parameters, FastForward delivers up to 1.45× compute-bound speedup at 50% FFN sparsity with <6% accuracy loss.\n\nHowever, the search results don't contain specific details about the inference overhead, weight size per layer, or more detailed specifications about the error compensation network itself. If you need more detailed technical information about those specific aspects, you may want to access the full paper directly at https://arxiv.org/abs/2602.00397."
+    ],
+    "durationSeconds": 5.242584110000054
+  },
+  "sourceToolAssistantUUID": "dc327bde-b856-49f3-983d-d58edba27806",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-12T02:56:55.244Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019G1anS9fGzVtMQa3GuDsYy`</summary>
+
+```json
+{
+  "url": "https://icml.cc/virtual/2026/papers.html",
+  "prompt": "Search for any paper with \"resting neurons\" or \"SPON\" or \"activation sparsity\" or \"sparsity\" in the title. List all matching papers. Also note if there is a search functionality or if the page lists papers."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97f6bc5f-663d-48e6-aebc-d67ed84b0dfd",
+  "isSidechain": false,
+  "requestId": "req_011CawvWFijRKhdH8ANThFcz",
+  "type": "assistant",
+  "uuid": "b8f51897-b590-4ea1-9aad-d4b10f68a82e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfxG1jBdLHMfNezRToMcEj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1529,
+      "cache_read_input_tokens": 49491,
+      "output_tokens": 353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1529,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 353,
+          "cache_read_input_tokens": 49491,
+          "cache_creation_input_tokens": 1529,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1529
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-12T02:57:00.214Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JMByNEdMCGoeBGQPhtcULZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.00397",
+  "prompt": "Find the following specific details about FastForward:\n1. The error compensation network architecture - what are the exact dimensions? Is it 2-layer MLP with r'=d_model/8?\n2. Does the compensation network operate at inference time (not just training)?\n3. What is the per-layer weight overhead of the compensation network in MB?\n4. What is the predictor bottleneck dimension - is it r=d_model/16?\n5. Does it use weighted BCE loss? What is the weighting scheme?\n6. MMLU results at 50% FFN sparsity on Llama-3.1-8B - exact numbers for with and without compensation?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8f51897-b590-4ea1-9aad-d4b10f68a82e",
+  "isSidechain": false,
+  "requestId": "req_011CawvWFijRKhdH8ANThFcz",
+  "type": "assistant",
+  "uuid": "9db36e82-f8b7-4cd5-807b-e9e32325a103",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UfxG1jBdLHMfNezRToMcEj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1529,
+      "cache_read_input_tokens": 49491,
+      "output_tokens": 353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1529,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 353,
+          "cache_read_input_tokens": 49491,
+          "cache_creation_input_tokens": 1529,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1529
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-12T02:57:03.113Z_
+
+<details><summary>↩ Tool result · `toolu_019G1anS9fGzVtMQa3GuDsYy`</summary>
+
+```text
+# ICML 2026 Papers Search Analysis
+
+Based on the provided web page content, I cannot locate any papers matching the search terms "resting neurons," "SPON," "activation sparsity," or "sparsity."
+
+## Key Findings:
+
+**Search Functionality:** The page displays a search interface with fields for "title," "author," "topic," and "session," suggesting search capability exists. However, the actual search results or paper listings are not included in the provided content.
+
+**Paper Listings:** The page structure indicates this is the ICML 2026 papers browsing interface, but no actual paper data is present in the excerpt. The content shows only navigation menus, layout options ("mini compact topic detail"), and sorting preferences ("serendipity bookmarked first visited first").
+
+**Conclusion:** To perform the requested search for papers with those keywords, you would need to visit the actual ICML 2026 papers page and use its search functionality directly, as the paper database itself is not included in this HTML snippet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8f51897-b590-4ea1-9aad-d4b10f68a82e",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "afb70a00-8870-440c-bb98-7adfd3c250fa",
+  "toolUseResult": {
+    "bytes": 899863,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ICML 2026 Papers Search Analysis\n\nBased on the provided web page content, I cannot locate any papers matching the search terms \"resting neurons,\" \"SPON,\" \"activation sparsity,\" or \"sparsity.\"\n\n## Key Findings:\n\n**Search Functionality:** The page displays a search interface with fields for \"title,\" \"author,\" \"topic,\" and \"session,\" suggesting search capability exists. However, the actual search results or paper listings are not included in the provided content.\n\n**Paper Listings:** The page structure indicates this is the ICML 2026 papers browsing interface, but no actual paper data is present in the excerpt. The content shows only navigation menus, layout options (\"mini compact topic detail\"), and sorting preferences (\"serendipity bookmarked first visited first\").\n\n**Conclusion:** To perform the requested search for papers with those keywords, you would need to visit the actual ICML 2026 papers page and use its search functionality directly, as the paper database itself is not included in this HTML snippet.",
+    "durationMs": 7867,
+    "url": "https://icml.cc/virtual/2026/papers.html"
+  },
+  "sourceToolAssistantUUID": "b8f51897-b590-4ea1-9aad-d4b10f68a82e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-12T02:57:05.243Z_
+
+<details><summary>↩ Tool result · `toolu_01JMByNEdMCGoeBGQPhtcULZ`</summary>
+
+```text
+# FastForward Technical Details
+
+## 1. Error Compensation Network Architecture
+Yes, it is a 2-layer MLP. The exact specification: "intermediate dimension r′=dmodel/8" with "Wcomp1∈ℝdmodel×r′ and Wcomp2∈ℝr′×dmodel".
+
+## 2. Inference-Time Operation
+Yes, the compensation network operates during inference. The final output formula shows: "Y=FFN̂(Xl,i)+Ycomp", indicating active use at inference time, not just training.
+
+## 3. Per-Layer Weight Overhead
+The document does not provide specific memory overhead calculations in MB for the compensation network weights.
+
+## 4. Predictor Bottleneck Dimension
+Confirmed: "reduced dimension r=dmodel/16 (rounded up to the nearest power of two, i.e., 128 for LLaMA-1B and 256 for LLaMA-3B/8B)".
+
+## 5. Weighted BCE Loss
+Yes, the training uses "weighted binary cross-entropy (BCE) objective" with this weighting scheme: "the top 20% receive a weight of 32, the next 20% a weight of 16, and so on" while "all negatives are assigned a weight of 1".
+
+## 6. MMLU Results at 50% Sparsity (Llama-3.1-8B)
+Per Table 3: Dense baseline scored 67.84, while sparse at 50% scored 67.17—a difference of approximately 0.67 percentage points.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9db36e82-f8b7-4cd5-807b-e9e32325a103",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "322e6d70-963c-4b93-b05e-06b61ff832f7",
+  "toolUseResult": {
+    "bytes": 245062,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# FastForward Technical Details\n\n## 1. Error Compensation Network Architecture\nYes, it is a 2-layer MLP. The exact specification: \"intermediate dimension r′=dmodel/8\" with \"Wcomp1∈ℝdmodel×r′ and Wcomp2∈ℝr′×dmodel\".\n\n## 2. Inference-Time Operation\nYes, the compensation network operates during inference. The final output formula shows: \"Y=FFN̂(Xl,i)+Ycomp\", indicating active use at inference time, not just training.\n\n## 3. Per-Layer Weight Overhead\nThe document does not provide specific memory overhead calculations in MB for the compensation network weights.\n\n## 4. Predictor Bottleneck Dimension\nConfirmed: \"reduced dimension r=dmodel/16 (rounded up to the nearest power of two, i.e., 128 for LLaMA-1B and 256 for LLaMA-3B/8B)\".\n\n## 5. Weighted BCE Loss\nYes, the training uses \"weighted binary cross-entropy (BCE) objective\" with this weighting scheme: \"the top 20% receive a weight of 32, the next 20% a weight of 16, and so on\" while \"all negatives are assigned a weight of 1\".\n\n## 6. MMLU Results at 50% Sparsity (Llama-3.1-8B)\nPer Table 3: Dense baseline scored 67.84, while sparse at 50% scored 67.17—a difference of approximately 0.67 percentage points.",
+    "durationMs": 5024,
+    "url": "https://arxiv.org/html/2602.00397"
+  },
+  "sourceToolAssistantUUID": "9db36e82-f8b7-4cd5-807b-e9e32325a103",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-12T02:57:15.564Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U1AWsjnysTM5wEyYiZUjXb`</summary>
+
+```json
+{
+  "query": "ICML 2026 accepted papers \"resting neurons\" OR \"robustify activation sparsity\" OR \"SPON\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "322e6d70-963c-4b93-b05e-06b61ff832f7",
+  "isSidechain": false,
+  "requestId": "req_011CawvXLi9X8YC5CxZMo47c",
+  "type": "assistant",
+  "uuid": "db1a2474-01ed-4217-a1ca-683023c1ff3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WD9TSTqYLZ4NGTMP7ooqUj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 51020,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 51020,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-12T02:57:16.146Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QL14s5WWLxLoAxs4GK9rXN`</summary>
+
+```json
+{
+  "query": "\"Joint Training Across Multiple Activation Sparsity Regimes\" arxiv 2603.03131 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db1a2474-01ed-4217-a1ca-683023c1ff3a",
+  "isSidechain": false,
+  "requestId": "req_011CawvXLi9X8YC5CxZMo47c",
+  "type": "assistant",
+  "uuid": "7a78d678-9002-415a-a98b-f6338755a94b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WD9TSTqYLZ4NGTMP7ooqUj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1011,
+      "cache_read_input_tokens": 51020,
+      "output_tokens": 142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 142,
+          "cache_read_input_tokens": 51020,
+          "cache_creation_input_tokens": 1011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-12T02:57:21.283Z_
+
+<details><summary>↩ Tool result · `toolu_01U1AWsjnysTM5wEyYiZUjXb`</summary>
+
+```text
+Web search results for query: "ICML 2026 accepted papers "resting neurons" OR "robustify activation sparsity" OR "SPON""
+
+Links: [{"title":"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models","url":"https://arxiv.org/html/2512.12744"},{"title":"Robustify Activation Sparsity for Large Language Models","url":"https://arxiv.org/abs/2512.12744"},{"title":"Accepted papers","url":"https://jmlr.org/tmlr/papers/"},{"title":"Resting Neurons, Active Insights: Improving Input Sparsification for Large Language Models","url":"https://arxiv.org/html/2512.12744v1"},{"title":"A brain-inspired algorithm for training highly sparse neural networks | Machine Learning | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10994-022-06266-w"},{"title":"Sparsing Law: Towards Large Language Models with Greater Activation Sparsity","url":"https://arxiv.org/html/2411.02335v4"},{"title":"ICML 2026 Reviewer Instructions","url":"https://icml.cc/Conferences/2026/ReviewerInstructions"},{"title":"ICML 2024 Schedule","url":"https://icml.cc/virtual/2024/calendar"},{"title":"ICML: International Conference on Machine Learning","url":"https://dl.acm.org/doi/proceedings/10.1145/1143844?id=31"}]
+
+Based on the search results, I found relevant information about your query:
+
+The paper "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models" introduces SPON, which injects a small set of learnable, input-independent activation vectors that act as persistent representational anchors for sparse computation.
+
+The work proposes spontaneous neurons, a lightweight and neuro-scientifically inspired mechanism to address performance degradation in LLMs with dynamic input sparsity, effectively closing the performance gap between sparse and dense models while incurring no extra inference overhead.
+
+The paper appears to be available on arXiv (arxiv.org/html/2512.12744) and was posted in December 2025. However, I should note that while the search results show ICML 2026 reviewer instructions and some TMLR papers with May 2026 timestamps, I was unable to find a specific official ICML 2026 accepted papers list that explicitly confirms this particular paper's acceptance to ICML 2026. The paper may have been accepted, but the search results don't provide definitive confirmation of its inclusion in the ICML 2026 program.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db1a2474-01ed-4217-a1ca-683023c1ff3a",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "de6a7d63-695f-4ed5-b047-e733f77c9b1c",
+  "toolUseResult": {
+    "query": "ICML 2026 accepted papers \"resting neurons\" OR \"robustify activation sparsity\" OR \"SPON\"",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01McqGevzD5VnHYtLPigB6ta",
+        "content": [
+          {
+            "title": "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models",
+            "url": "https://arxiv.org/html/2512.12744"
+          },
+          {
+            "title": "Robustify Activation Sparsity for Large Language Models",
+            "url": "https://arxiv.org/abs/2512.12744"
+          },
+          {
+            "title": "Accepted papers",
+            "url": "https://jmlr.org/tmlr/papers/"
+          },
+          {
+            "title": "Resting Neurons, Active Insights: Improving Input Sparsification for Large Language Models",
+            "url": "https://arxiv.org/html/2512.12744v1"
+          },
+          {
+            "title": "A brain-inspired algorithm for training highly sparse neural networks | Machine Learning | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10994-022-06266-w"
+          },
+          {
+            "title": "Sparsing Law: Towards Large Language Models with Greater Activation Sparsity",
+            "url": "https://arxiv.org/html/2411.02335v4"
+          },
+          {
+            "title": "ICML 2026 Reviewer Instructions",
+            "url": "https://icml.cc/Conferences/2026/ReviewerInstructions"
+          },
+          {
+            "title": "ICML 2024 Schedule",
+            "url": "https://icml.cc/virtual/2024/calendar"
+          },
+          {
+            "title": "ICML: International Conference on Machine Learning",
+            "url": "https://dl.acm.org/doi/proceedings/10.1145/1143844?id=31"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about your query:\n\nThe paper \"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models\" introduces SPON, which injects a small set of learnable, input-independent activation vectors that act as persistent representational anchors for sparse computation.\n\nThe work proposes spontaneous neurons, a lightweight and neuro-scientifically inspired mechanism to address performance degradation in LLMs with dynamic input sparsity, effectively closing the performance gap between sparse and dense models while incurring no extra inference overhead.\n\nThe paper appears to be available on arXiv (arxiv.org/html/2512.12744) and was posted in December 2025. However, I should note that while the search results show ICML 2026 reviewer instructions and some TMLR papers with May 2026 timestamps, I was unable to find a specific official ICML 2026 accepted papers list that explicitly confirms this particular paper's acceptance to ICML 2026. The paper may have been accepted, but the search results don't provide definitive confirmation of its inclusion in the ICML 2026 program."
+    ],
+    "durationSeconds": 5.712639612999977
+  },
+  "sourceToolAssistantUUID": "db1a2474-01ed-4217-a1ca-683023c1ff3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-12T02:57:22.892Z_
+
+<details><summary>↩ Tool result · `toolu_01QL14s5WWLxLoAxs4GK9rXN`</summary>
+
+```text
+Web search results for query: ""Joint Training Across Multiple Activation Sparsity Regimes" arxiv 2603.03131 2026"
+
+Links: [{"title":"[2603.03131] Joint Training Across Multiple Activation Sparsity Regimes","url":"https://arxiv.org/abs/2603.03131"},{"title":"Amber Pruner: Leveraging N:M Activation Sparsity for Efficient Prefill in Large Language Models","url":"https://arxiv.org/html/2508.02128v1"},{"title":"Dual sparse training framework: inducing activation map sparsity via Transformed ℓ⁢1 regularization","url":"https://arxiv.org/html/2405.19652v1"},{"title":"[2603.12272] ActTail: Global Activation Sparsity in Large Language Models","url":"https://arxiv.org/abs/2603.12272"},{"title":"DuoGPT: Training-free Dual Sparsity through Activation-aware Pruning in LLMs","url":"https://arxiv.org/html/2506.20194v1"},{"title":"arXiv:2411.02335v4 [cs.LG] 30 Jun 2025","url":"https://arxiv.org/pdf/2411.02335"},{"title":"ActTail: Global Activation Sparsity in Large Language Models","url":"https://arxiv.org/html/2603.12272"},{"title":"Universal Properties of Activation Sparsity in Modern Large Language Models","url":"https://arxiv.org/html/2509.00454v1"},{"title":"Rethinking the Role of Dynamic Sparse Training for Scalable Deep Reinforcement Learning","url":"https://arxiv.org/html/2510.12096v1"},{"title":"Weight Sparsity Complements Activity ...","url":"https://arxiv.org/pdf/2405.00433"}]
+
+I found the paper you were looking for! Here are the details about "Joint Training Across Multiple Activation Sparsity Regimes":
+
+**Paper Information:**
+- **Title:** Joint Training Across Multiple Activation Sparsity Regimes
+- **ArXiv ID:** 2603.03131
+- **Submission Date:** March 3, 2026
+- **Author:** Haotian Wang
+- **URL:** https://arxiv.org/abs/2603.03131
+
+**Abstract:**
+The paper explores the hypothesis that robust internal representations should remain effective across both dense and sparse activation regimes, inspired by the stronger generalization tendency of biological systems. The authors introduce a simple training strategy that applies global top-k constraints to hidden activations and repeatedly cycles a single model through multiple activation budgets via progressive compression and periodic reset.
+
+**Key Findings:**
+Using CIFAR-10 without data augmentation and a WRN-28-4 backbone, in single-run experiments, two adaptive keep-ratio control strategies both outperform dense baseline training. These preliminary results suggest that joint training across multiple activation sparsity regimes may provide a simple and effective route to improved generalization.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a78d678-9002-415a-a98b-f6338755a94b",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "8a85c9d2-ed3b-482a-9f8d-b395c8c9d5ae",
+  "toolUseResult": {
+    "query": "\"Joint Training Across Multiple Activation Sparsity Regimes\" arxiv 2603.03131 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ddeei6XAPs51XtR6tzf7p8",
+        "content": [
+          {
+            "title": "[2603.03131] Joint Training Across Multiple Activation Sparsity Regimes",
+            "url": "https://arxiv.org/abs/2603.03131"
+          },
+          {
+            "title": "Amber Pruner: Leveraging N:M Activation Sparsity for Efficient Prefill in Large Language Models",
+            "url": "https://arxiv.org/html/2508.02128v1"
+          },
+          {
+            "title": "Dual sparse training framework: inducing activation map sparsity via Transformed ℓ⁢1 regularization",
+            "url": "https://arxiv.org/html/2405.19652v1"
+          },
+          {
+            "title": "[2603.12272] ActTail: Global Activation Sparsity in Large Language Models",
+            "url": "https://arxiv.org/abs/2603.12272"
+          },
+          {
+            "title": "DuoGPT: Training-free Dual Sparsity through Activation-aware Pruning in LLMs",
+            "url": "https://arxiv.org/html/2506.20194v1"
+          },
+          {
+            "title": "arXiv:2411.02335v4 [cs.LG] 30 Jun 2025",
+            "url": "https://arxiv.org/pdf/2411.02335"
+          },
+          {
+            "title": "ActTail: Global Activation Sparsity in Large Language Models",
+            "url": "https://arxiv.org/html/2603.12272"
+          },
+          {
+            "title": "Universal Properties of Activation Sparsity in Modern Large Language Models",
+            "url": "https://arxiv.org/html/2509.00454v1"
+          },
+          {
+            "title": "Rethinking the Role of Dynamic Sparse Training for Scalable Deep Reinforcement Learning",
+            "url": "https://arxiv.org/html/2510.12096v1"
+          },
+          {
+            "title": "Weight Sparsity Complements Activity ...",
+            "url": "https://arxiv.org/pdf/2405.00433"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the details about \"Joint Training Across Multiple Activation Sparsity Regimes\":\n\n**Paper Information:**\n- **Title:** Joint Training Across Multiple Activation Sparsity Regimes\n- **ArXiv ID:** 2603.03131\n- **Submission Date:** March 3, 2026\n- **Author:** Haotian Wang\n- **URL:** https://arxiv.org/abs/2603.03131\n\n**Abstract:**\nThe paper explores the hypothesis that robust internal representations should remain effective across both dense and sparse activation regimes, inspired by the stronger generalization tendency of biological systems. The authors introduce a simple training strategy that applies global top-k constraints to hidden activations and repeatedly cycles a single model through multiple activation budgets via progressive compression and periodic reset.\n\n**Key Findings:**\nUsing CIFAR-10 without data augmentation and a WRN-28-4 backbone, in single-run experiments, two adaptive keep-ratio control strategies both outperform dense baseline training. These preliminary results suggest that joint training across multiple activation sparsity regimes may provide a simple and effective route to improved generalization."
+    ],
+    "durationSeconds": 6.742745123000001
+  },
+  "sourceToolAssistantUUID": "7a78d678-9002-415a-a98b-f6338755a94b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "8a85c9d2-ed3b-482a-9f8d-b395c8c9d5ae",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-12T02:57:26.018Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JoUo4skzcV2a6LJ8HtsB1u`</summary>
+
+```json
+{
+  "query": "paperdigest.org ICML 2026 \"resting neurons\" OR \"activation sparsity\" accepted"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a85c9d2-ed3b-482a-9f8d-b395c8c9d5ae",
+  "isSidechain": false,
+  "requestId": "req_011CawvYeAAKoKP4v9E9R9yh",
+  "type": "assistant",
+  "uuid": "7e107156-3e07-4bd3-acd6-0ff4923cb957",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ub4qeE6wiotyM4SckZM7a8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 52031,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 52031,
+          "cache_creation_input_tokens": 1629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-12T02:57:27.205Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PKXusMd8YimTQP9TXeYPc1`</summary>
+
+```json
+{
+  "query": "SPON Table 2 Llama-3-8B 50% sparsity ARC-Challenge ARC-Easy BoolQ PIQA WinoGrande benchmark count"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e107156-3e07-4bd3-acd6-0ff4923cb957",
+  "isSidechain": false,
+  "requestId": "req_011CawvYeAAKoKP4v9E9R9yh",
+  "type": "assistant",
+  "uuid": "b9804606-0944-479e-9512-041e3757bac7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ub4qeE6wiotyM4SckZM7a8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1629,
+      "cache_read_input_tokens": 52031,
+      "output_tokens": 153,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 153,
+          "cache_read_input_tokens": 52031,
+          "cache_creation_input_tokens": 1629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-12T02:57:31.010Z_
+
+<details><summary>↩ Tool result · `toolu_01JoUo4skzcV2a6LJ8HtsB1u`</summary>
+
+```text
+Web search results for query: "paperdigest.org ICML 2026 "resting neurons" OR "activation sparsity" accepted"
+
+Links: [{"title":"Paper Digest: ICML 2026 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2026/05/icml-2026-papers-highlights/"},{"title":"Paper Digest: ICML 2026 Papers & Highlights – Resources | Paper Digest","url":"https://resources.paperdigest.org/2026/05/icml-2026-papers-highlights/"},{"title":"Most Influential ICML Papers (2026-03 Version) – Paper Digest","url":"https://www.paperdigest.org/2026/03/most-influential-icml-papers-2026-03-version/"},{"title":"Most Influential ICML Papers (2026-03 Version) – Resources | Paper Digest","url":"https://resources.paperdigest.org/2026/03/most-influential-icml-papers-2026-03-version/"},{"title":"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models","url":"https://arxiv.org/html/2512.12744"},{"title":"Paper Digest: ICLR 2026 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/"},{"title":"MachineLearning – Paper Digest","url":"https://www.paperdigest.org/category/machine-learning/"},{"title":"Paper Digest: ICML 2025 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2025/06/icml-2025-papers-highlights/"},{"title":"Paper Digest: ICML 2025 Papers & Highlights – Resources | Paper Digest","url":"https://resources.paperdigest.org/2025/06/icml-2025-papers-highlights/"},{"title":"https://www.paperdigest.org 1 1, TITLE: Reverse-engineering deep ReLU networks","url":"https://www.paperdigest.org/wp-content/uploads/2020/07/ICML-2020-Paper-Digests.pdf"}]
+
+The search results show that ICML-2026 accepts more than 6,500 papers, and in 2026, it is to be held in Seoul.
+
+While I found a reference to a paper titled "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models" on arXiv, the search results do not provide specific information confirming that this paper or others with "resting neurons" or "activation sparsity" in the title were accepted to ICML 2026 on the Paper Digest website.
+
+The search results indicate that Paper Digest maintains pages with ICML 2026 papers and highlights, but the specific paper listings from those pages are not fully visible in the search results. To find papers matching your query on Paper Digest, you could use the search by venue (ICML-2026) service directly on the Paper Digest website.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e107156-3e07-4bd3-acd6-0ff4923cb957",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "8a97011f-3e9f-483a-bfd2-100f7e7b3e56",
+  "toolUseResult": {
+    "query": "paperdigest.org ICML 2026 \"resting neurons\" OR \"activation sparsity\" accepted",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DeVFRhaJHthikHajW8rbpr",
+        "content": [
+          {
+            "title": "Paper Digest: ICML 2026 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2026/05/icml-2026-papers-highlights/"
+          },
+          {
+            "title": "Paper Digest: ICML 2026 Papers & Highlights – Resources | Paper Digest",
+            "url": "https://resources.paperdigest.org/2026/05/icml-2026-papers-highlights/"
+          },
+          {
+            "title": "Most Influential ICML Papers (2026-03 Version) – Paper Digest",
+            "url": "https://www.paperdigest.org/2026/03/most-influential-icml-papers-2026-03-version/"
+          },
+          {
+            "title": "Most Influential ICML Papers (2026-03 Version) – Resources | Paper Digest",
+            "url": "https://resources.paperdigest.org/2026/03/most-influential-icml-papers-2026-03-version/"
+          },
+          {
+            "title": "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models",
+            "url": "https://arxiv.org/html/2512.12744"
+          },
+          {
+            "title": "Paper Digest: ICLR 2026 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2026/02/iclr-2026-papers-highlights/"
+          },
+          {
+            "title": "MachineLearning – Paper Digest",
+            "url": "https://www.paperdigest.org/category/machine-learning/"
+          },
+          {
+            "title": "Paper Digest: ICML 2025 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2025/06/icml-2025-papers-highlights/"
+          },
+          {
+            "title": "Paper Digest: ICML 2025 Papers & Highlights – Resources | Paper Digest",
+            "url": "https://resources.paperdigest.org/2025/06/icml-2025-papers-highlights/"
+          },
+          {
+            "title": "https://www.paperdigest.org 1 1, TITLE: Reverse-engineering deep ReLU networks",
+            "url": "https://www.paperdigest.org/wp-content/uploads/2020/07/ICML-2020-Paper-Digests.pdf"
+          }
+        ]
+      },
+      "The search results show that ICML-2026 accepts more than 6,500 papers, and in 2026, it is to be held in Seoul.\n\nWhile I found a reference to a paper titled \"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models\" on arXiv, the search results do not provide specific information confirming that this paper or others with \"resting neurons\" or \"activation sparsity\" in the title were accepted to ICML 2026 on the Paper Digest website.\n\nThe search results indicate that Paper Digest maintains pages with ICML 2026 papers and highlights, but the specific paper listings from those pages are not fully visible in the search results. To find papers matching your query on Paper Digest, you could use the search by venue (ICML-2026) service directly on the Paper Digest website."
+    ],
+    "durationSeconds": 4.989312292000046
+  },
+  "sourceToolAssistantUUID": "7e107156-3e07-4bd3-acd6-0ff4923cb957",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-12T02:57:46.490Z_
+
+<details><summary>↩ Tool result · `toolu_01PKXusMd8YimTQP9TXeYPc1`</summary>
+
+```text
+Web search results for query: "SPON Table 2 Llama-3-8B 50% sparsity ARC-Challenge ARC-Easy BoolQ PIQA WinoGrande benchmark count"
+
+Links: [{"title":"2:4 Sparse Llama: Smaller models for efficient GPU inference | Red Hat Developer","url":"https://developers.redhat.com/articles/2025/02/28/24-sparse-llama-smaller-models-efficient-gpu-inference"},{"title":"2:4 Sparse Llama FP8: SOTA performance for NVIDIA Hopper GPUs | Red Hat Developer","url":"https://developers.redhat.com/articles/2024/12/18/24-sparse-llama-fp8-sota-performance-nvidia-hopper-gpus"},{"title":"Introducing Sparse Llama: 70% Smaller, 3x Faster, Full Accuracy - Cerebras","url":"https://www.cerebras.ai/blog/introducing-sparse-llama-70-smaller-3x-faster-full-accuracy"},{"title":"Results from adapting Llama-3-8B to GSM8K without introducing sparsity. | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Results-from-adapting-Llama-3-8B-to-GSM8K-without-introducing-sparsity_tbl1_384699784"},{"title":"Table 1: Perplexity for LlaMA-3 8b; the lower the perplexity, the better.","url":"https://openreview.net/attachment?id=g4TZTVz2w9&name=pdf"},{"title":"MLPerf Training Adds Llama 3.1 8B Benchmark - MLCommons","url":"https://mlcommons.org/2025/10/training-llama-3-1-8b/"},{"title":"RedHatAI/Sparse-Llama-3.1-8B-gsm8k-2of4 · Hugging Face","url":"https://huggingface.co/RedHatAI/Sparse-Llama-3.1-8B-gsm8k-2of4"},{"title":"LLM-Inference-Bench: Inference Benchmarking of Large Language Models on AI Accelerators","url":"https://arxiv.org/html/2411.00136v1"},{"title":"Llama 3.1 8B - Intelligence, Performance & Price Analysis","url":"https://artificialanalysis.ai/models/llama-3-1-instruct-8b"},{"title":"MLCommons Releases New MLPerf Inference v5.1 Benchmark Results - MLCommons","url":"https://mlcommons.org/2025/09/mlperf-inference-v5-1-results/"}]
+
+The search results don't contain information about "SPON Table 2" with the specific benchmarks you mentioned. Let me search more specifically for SPON paper or results.
+
+Links: [{"title":"Question about llama2 Accuracy in paper with the measured · Issue #591 · meta-llama/llama","url":"https://github.com/meta-llama/llama/issues/591"},{"title":"JAX_llama/MODEL_CARD.md at main · Sea-Snell/JAX_llama","url":"https://github.com/Sea-Snell/JAX_llama/blob/main/MODEL_CARD.md"},{"title":"TransnormerLLM/README.md at main · OpenNLPLab/TransnormerLLM","url":"https://github.com/OpenNLPLab/TransnormerLLM/blob/main/README.md"},{"title":"The Fine Line: Navigating Large Language Model Pretraining with Down-streaming Capability Analysis","url":"https://arxiv.org/html/2404.01204v1"},{"title":"LLaMA: Open and Efﬁcient Foundation Language Models","url":"https://arxiv.org/pdf/2302.13971"},{"title":"Getting different results on standard benchmarks for Llama-2 7B · Issue #805 · EleutherAI/lm-evaluation-harness","url":"https://github.com/EleutherAI/lm-evaluation-harness/issues/805"},{"title":"GitHub - nbasyl/LLM-FP4: The official implementation of the EMNLP 2023 paper LLM-FP4","url":"https://github.com/nbasyl/llm-fp4"},{"title":"Layer-Condensed KV Cache for Efficient Inference of Large Language Models","url":"https://faculty.sist.shanghaitech.edu.cn/faculty/tukw/acl24lckv.pdf"},{"title":"TinyLlama: Open Source Compact Language Model Rising from Llama 2","url":"https://socialviews81.blogspot.com/2024/01/tinyllama-open-source-compact-language.html"},{"title":"Here are the zero-shot accuracy numbers posted in the Huggingface evaluations fo... | Hacker News","url":"https://news.ycombinator.com/item?id=35345247"}]
+
+Let me search more specifically for "SPON" which might be a specific paper acronym.
+
+Links: [{"title":"(PDF) Comparing sparse Llama 3 and Llama 2 models for on-device AI assistants","url":"https://www.researchgate.net/publication/383897416_Comparing_sparse_Llama_3_and_Llama_2_models_for_on-device_AI_assistants"},{"title":"GitHub - jaceroldan/llama-3.2-benchmark: An attempt to replicate LLaMA-3.2-1B-Instruct Model's results on MMLU benchmark using a NVIDIA DGX A100 GPU. · GitHub","url":"https://github.com/jaceroldan/llama-3.2-benchmark"},{"title":"LLM Inference Benchmarking Cheat‑Sheet for Hardware Reviewers","url":"https://llm-tracker.info/howto/LLM-Inference-Benchmarking-Cheat%E2%80%91Sheet-for-Hardware-Reviewers"},{"title":"SparseLLM/prosparse-llama-2-7b · Hugging Face","url":"https://huggingface.co/SparseLLM/prosparse-llama-2-7b"},{"title":"Introducing Meta Llama 3: The most capable openly available LLM to date","url":"https://ai.meta.com/blog/meta-llama-3/"},{"title":"Which Quantization Should I Use? A Unified Evaluation of llama.cpp Quantization on Llama-3.1-8B-Instruct","url":"https://arxiv.org/html/2601.14277v1"},{"title":"LLAMA 2 Model Benchmarks: Insights for Performance Evaluation","url":"https://www.truefoundry.com/blog/llama-2-benchmarks"},{"title":"Comprehensive Benchmarking of Top LLMs: Qwen2, Llama, Mistral, Gemma, Phi - Performance Insights & Recommendations","url":"https://www.inferless.com/learn/exploring-llms-speed-benchmarks-independent-analysis---part-3"},{"title":"5 Key Benchmarks That Prove Llama 3.3 70B Runs Efficiently on Arm Neoverse CPUs - Arm Newsroom","url":"https://newsroom.arm.com/blog/arm-neoverse-llama-3-3-70b-model"},{"title":"Llama 3.1: Same model, different results. The impact of a percentage point.","url":"https://www.together.ai/blog/llama-31-quality"}]
+
+Let me try a more specific search for "SPON" as a paper title or acronym.
+
+Links: [{"title":"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models","url":"https://arxiv.org/html/2512.12744"},{"title":"training-free activation sparsity in large language models","url":"https://www.arxiv.org/pdf/2408.14690"},{"title":"SPP: Sparsity-Preserved Parameter-Efficient Fine-Tuning for Large Language Models","url":"https://arxiv.org/html/2405.16057v1"},{"title":"Accelerating LLM Fine-Tuning with Contextual Sparsity","url":"https://arxiv.org/pdf/2506.16500"},{"title":"Sparsity-Guided Holistic Explanation for LLMs with Interpretable Inference-Time Intervention","url":"https://arxiv.org/html/2312.15033v1"},{"title":"Sparsing Law: Towards Large Language Models with Greater Activation Sparsity","url":"https://arxiv.org/html/2411.02335v2"},{"title":"Activation Sparsity Opportunities for Compressing General Large Language Models","url":"https://arxiv.org/html/2412.12178v2"},{"title":"SpargeAttn: Accurate Sparse Attention Accelerating Any Model Inference","url":"https://arxiv.org/html/2502.18137v1"},{"title":"Sparse-RL: Breaking the Memory Wall in LLM Reinforcement Learning","url":"https://www.arxiv.org/pdf/2601.10079"},{"title":"SpargeAttention: Accurate and Training-free Sparse Attention Accelerating Any Model Inference","url":"https://arxiv.org/html/2502.18137v4"}]
+
+Great! I found the paper. Based on the search results, SPON (Spontaneous Neurons) is a method that restores performance across multiple LLM backbones for activation-sparse inference, introduced as a lightweight mechanism inspired by spontaneous neural activity in biological systems.
+
+Let me search for the specific Table 2 data you're asking about.
+
+Links: [{"title":"[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2407.21783"}]
+
+I found the SPON paper from my earlier search, which is about "Spontaneous Neurons" for activation sparsity in LLMs. Let me search for the actual paper with the specific table you mentioned.
+
+Links: [{"title":"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models","url":"https://arxiv.org/html/2512.12744"},{"title":"[2512.20732] FEM-Bench: A Structured Scientific Reasoning Benchmark for Evaluating Code-Generating LLMs","url":"https://arxiv.org/abs/2512.20732"},{"title":"[2512.04660] I2I-Bench: A Comprehensive Benchmark Suite for Image-to-Image Editing Models","url":"https://arxiv.org/abs/2512.04660"},{"title":"arXiv2Table: Toward Realistic Benchmarking and Evaluation for LLM-Based Literature-Review Table Generation","url":"https://arxiv.org/html/2504.10284v5"},{"title":"Visualisation for the CIS benchmark scanning results","url":"https://arxiv.org/html/2512.11316"},{"title":"FEM-Bench: A Structured Scientific Reasoning Benchmark for Evaluating Code-Generating LLMs","url":"https://arxiv.org/html/2512.20732v1"},{"title":"A Benchmark for Evaluating Outcome-Driven Constraint Violations in Autonomous AI Agents","url":"https://arxiv.org/html/2512.20798v1"},{"title":"NL2Repo-Bench: Towards Long-Horizon Repository Generation Evaluation of Coding Agents","url":"https://arxiv.org/html/2512.12730v1"},{"title":"ScoringBench: A Benchmark for Evaluating Tabular Foundation Models with Proper Scoring Rules","url":"https://arxiv.org/html/2603.29928v2"},{"title":"Light-Weight Benchmarks Reveal the Hidden Hardware Cost of Zero-Shot Tabular Foundation Models","url":"https://arxiv.org/html/2512.00888"}]
+
+Based on my search results, I found the SPON paper (arxiv 2512.12744) titled "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models." However, the search results don't provide the full content of Table 2 with the specific benchmark numbers you're asking about.
+
+The paper introduces Spontaneous Neurons (SPON), a lightweight mechanism inspired by spontaneous neural activity in biological systems that injects a small set of learnable, input-independent activation vectors that act as persistent representational anchors for sparse computation. SPON consistently restores performance, stabilizes latent representations, and preserves generalization across multiple LLM backbones.
+
+Unfortunately, I cannot access the complete Table 2 data showing the specific benchmark results (ARC-Challenge, ARC-Easy, BoolQ, PIQA, WinoGrande) for Llama-3-8B at 50% sparsity from the search results. To find these specific numbers, you would need to access the full paper directly at arxiv.org/abs/2512.12744 or ar5iv.labs.arxiv.org/html/2512.12744.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b9804606-0944-479e-9512-041e3757bac7",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "20da78f8-6791-4342-849f-25d0a0bec856",
+  "toolUseResult": {
+    "query": "SPON Table 2 Llama-3-8B 50% sparsity ARC-Challenge ARC-Easy BoolQ PIQA WinoGrande benchmark count",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LLPWbV2z9Va54492MzWLt1",
+        "content": [
+          {
+            "title": "2:4 Sparse Llama: Smaller models for efficient GPU inference | Red Hat Developer",
+            "url": "https://developers.redhat.com/articles/2025/02/28/24-sparse-llama-smaller-models-efficient-gpu-inference"
+          },
+          {
+            "title": "2:4 Sparse Llama FP8: SOTA performance for NVIDIA Hopper GPUs | Red Hat Developer",
+            "url": "https://developers.redhat.com/articles/2024/12/18/24-sparse-llama-fp8-sota-performance-nvidia-hopper-gpus"
+          },
+          {
+            "title": "Introducing Sparse Llama: 70% Smaller, 3x Faster, Full Accuracy - Cerebras",
+            "url": "https://www.cerebras.ai/blog/introducing-sparse-llama-70-smaller-3x-faster-full-accuracy"
+          },
+          {
+            "title": "Results from adapting Llama-3-8B to GSM8K without introducing sparsity. | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Results-from-adapting-Llama-3-8B-to-GSM8K-without-introducing-sparsity_tbl1_384699784"
+          },
+          {
+            "title": "Table 1: Perplexity for LlaMA-3 8b; the lower the perplexity, the better.",
+            "url": "https://openreview.net/attachment?id=g4TZTVz2w9&name=pdf"
+          },
+          {
+            "title": "MLPerf Training Adds Llama 3.1 8B Benchmark - MLCommons",
+            "url": "https://mlcommons.org/2025/10/training-llama-3-1-8b/"
+          },
+          {
+            "title": "RedHatAI/Sparse-Llama-3.1-8B-gsm8k-2of4 · Hugging Face",
+            "url": "https://huggingface.co/RedHatAI/Sparse-Llama-3.1-8B-gsm8k-2of4"
+          },
+          {
+            "title": "LLM-Inference-Bench: Inference Benchmarking of Large Language Models on AI Accelerators",
+            "url": "https://arxiv.org/html/2411.00136v1"
+          },
+          {
+            "title": "Llama 3.1 8B - Intelligence, Performance & Price Analysis",
+            "url": "https://artificialanalysis.ai/models/llama-3-1-instruct-8b"
+          },
+          {
+            "title": "MLCommons Releases New MLPerf Inference v5.1 Benchmark Results - MLCommons",
+            "url": "https://mlcommons.org/2025/09/mlperf-inference-v5-1-results/"
+          }
+        ]
+      },
+      "The search results don't contain information about \"SPON Table 2\" with the specific benchmarks you mentioned. Let me search more specifically for SPON paper or results.",
+      {
+        "tool_use_id": "srvtoolu_01JnAWUGQ6hmEwyFc7qBktzx",
+        "content": [
+          {
+            "title": "Question about llama2 Accuracy in paper with the measured · Issue #591 · meta-llama/llama",
+            "url": "https://github.com/meta-llama/llama/issues/591"
+          },
+          {
+            "title": "JAX_llama/MODEL_CARD.md at main · Sea-Snell/JAX_llama",
+            "url": "https://github.com/Sea-Snell/JAX_llama/blob/main/MODEL_CARD.md"
+          },
+          {
+            "title": "TransnormerLLM/README.md at main · OpenNLPLab/TransnormerLLM",
+            "url": "https://github.com/OpenNLPLab/TransnormerLLM/blob/main/README.md"
+          },
+          {
+            "title": "The Fine Line: Navigating Large Language Model Pretraining with Down-streaming Capability Analysis",
+            "url": "https://arxiv.org/html/2404.01204v1"
+          },
+          {
+            "title": "LLaMA: Open and Efﬁcient Foundation Language Models",
+            "url": "https://arxiv.org/pdf/2302.13971"
+          },
+          {
+            "title": "Getting different results on standard benchmarks for Llama-2 7B · Issue #805 · EleutherAI/lm-evaluation-harness",
+            "url": "https://github.com/EleutherAI/lm-evaluation-harness/issues/805"
+          },
+          {
+            "title": "GitHub - nbasyl/LLM-FP4: The official implementation of the EMNLP 2023 paper LLM-FP4",
+            "url": "https://github.com/nbasyl/llm-fp4"
+          },
+          {
+            "title": "Layer-Condensed KV Cache for Efficient Inference of Large Language Models",
+            "url": "https://faculty.sist.shanghaitech.edu.cn/faculty/tukw/acl24lckv.pdf"
+          },
+          {
+            "title": "TinyLlama: Open Source Compact Language Model Rising from Llama 2",
+            "url": "https://socialviews81.blogspot.com/2024/01/tinyllama-open-source-compact-language.html"
+          },
+          {
+            "title": "Here are the zero-shot accuracy numbers posted in the Huggingface evaluations fo... | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=35345247"
+          }
+        ]
+      },
+      "Let me search more specifically for \"SPON\" which might be a specific paper acronym.",
+      {
+        "tool_use_id": "srvtoolu_01L2VimBrjRjf8ajMox2Dzd7",
+        "content": [
+          {
+            "title": "(PDF) Comparing sparse Llama 3 and Llama 2 models for on-device AI assistants",
+            "url": "https://www.researchgate.net/publication/383897416_Comparing_sparse_Llama_3_and_Llama_2_models_for_on-device_AI_assistants"
+          },
+          {
+            "title": "GitHub - jaceroldan/llama-3.2-benchmark: An attempt to replicate LLaMA-3.2-1B-Instruct Model's results on MMLU benchmark using a NVIDIA DGX A100 GPU. · GitHub",
+            "url": "https://github.com/jaceroldan/llama-3.2-benchmark"
+          },
+          {
+            "title": "LLM Inference Benchmarking Cheat‑Sheet for Hardware Reviewers",
+            "url": "https://llm-tracker.info/howto/LLM-Inference-Benchmarking-Cheat%E2%80%91Sheet-for-Hardware-Reviewers"
+          },
+          {
+            "title": "SparseLLM/prosparse-llama-2-7b · Hugging Face",
+            "url": "https://huggingface.co/SparseLLM/prosparse-llama-2-7b"
+          },
+          {
+            "title": "Introducing Meta Llama 3: The most capable openly available LLM to date",
+            "url": "https://ai.meta.com/blog/meta-llama-3/"
+          },
+          {
+            "title": "Which Quantization Should I Use? A Unified Evaluation of llama.cpp Quantization on Llama-3.1-8B-Instruct",
+            "url": "https://arxiv.org/html/2601.14277v1"
+          },
+          {
+            "title": "LLAMA 2 Model Benchmarks: Insights for Performance Evaluation",
+            "url": "https://www.truefoundry.com/blog/llama-2-benchmarks"
+          },
+          {
+            "title": "Comprehensive Benchmarking of Top LLMs: Qwen2, Llama, Mistral, Gemma, Phi - Performance Insights & Recommendations",
+            "url": "https://www.inferless.com/learn/exploring-llms-speed-benchmarks-independent-analysis---part-3"
+          },
+          {
+            "title": "5 Key Benchmarks That Prove Llama 3.3 70B Runs Efficiently on Arm Neoverse CPUs - Arm Newsroom",
+            "url": "https://newsroom.arm.com/blog/arm-neoverse-llama-3-3-70b-model"
+          },
+          {
+            "title": "Llama 3.1: Same model, different results. The impact of a percentage point.",
+            "url": "https://www.together.ai/blog/llama-31-quality"
+          }
+        ]
+      },
+      "Let me try a more specific search for \"SPON\" as a paper title or acronym.",
+      {
+        "tool_use_id": "srvtoolu_01RcA9Wg7rfg5b1aRNccDKkj",
+        "content": [
+          {
+            "title": "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models",
+            "url": "https://arxiv.org/html/2512.12744"
+          },
+          {
+            "title": "training-free activation sparsity in large language models",
+            "url": "https://www.arxiv.org/pdf/2408.14690"
+          },
+          {
+            "title": "SPP: Sparsity-Preserved Parameter-Efficient Fine-Tuning for Large Language Models",
+            "url": "https://arxiv.org/html/2405.16057v1"
+          },
+          {
+            "title": "Accelerating LLM Fine-Tuning with Contextual Sparsity",
+            "url": "https://arxiv.org/pdf/2506.16500"
+          },
+          {
+            "title": "Sparsity-Guided Holistic Explanation for LLMs with Interpretable Inference-Time Intervention",
+            "url": "https://arxiv.org/html/2312.15033v1"
+          },
+          {
+            "title": "Sparsing Law: Towards Large Language Models with Greater Activation Sparsity",
+            "url": "https://arxiv.org/html/2411.02335v2"
+          },
+          {
+            "title": "Activation Sparsity Opportunities for Compressing General Large Language Models",
+            "url": "https://arxiv.org/html/2412.12178v2"
+          },
+          {
+            "title": "SpargeAttn: Accurate Sparse Attention Accelerating Any Model Inference",
+            "url": "https://arxiv.org/html/2502.18137v1"
+          },
+          {
+            "title": "Sparse-RL: Breaking the Memory Wall in LLM Reinforcement Learning",
+            "url": "https://www.arxiv.org/pdf/2601.10079"
+          },
+          {
+            "title": "SpargeAttention: Accurate and Training-free Sparse Attention Accelerating Any Model Inference",
+            "url": "https://arxiv.org/html/2502.18137v4"
+          }
+        ]
+      },
+      "Great! I found the paper. Based on the search results, SPON (Spontaneous Neurons) is a method that restores performance across multiple LLM backbones for activation-sparse inference, introduced as a lightweight mechanism inspired by spontaneous neural activity in biological systems.\n\nLet me search for the specific Table 2 data you're asking about.",
+      {
+        "tool_use_id": "srvtoolu_01MsJ4bk41gKHTbFvHvMm8MF",
+        "content": [
+          {
+            "title": "[2407.21783] The Llama 3 Herd of Models - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2407.21783"
+          }
+        ]
+      },
+      "I found the SPON paper from my earlier search, which is about \"Spontaneous Neurons\" for activation sparsity in LLMs. Let me search for the actual paper with the specific table you mentioned.",
+      {
+        "tool_use_id": "srvtoolu_01HgpX2PRioBnbDr8cTxqhDv",
+        "content": [
+          {
+            "title": "Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models",
+            "url": "https://arxiv.org/html/2512.12744"
+          },
+          {
+            "title": "[2512.20732] FEM-Bench: A Structured Scientific Reasoning Benchmark for Evaluating Code-Generating LLMs",
+            "url": "https://arxiv.org/abs/2512.20732"
+          },
+          {
+            "title": "[2512.04660] I2I-Bench: A Comprehensive Benchmark Suite for Image-to-Image Editing Models",
+            "url": "https://arxiv.org/abs/2512.04660"
+          },
+          {
+            "title": "arXiv2Table: Toward Realistic Benchmarking and Evaluation for LLM-Based Literature-Review Table Generation",
+            "url": "https://arxiv.org/html/2504.10284v5"
+          },
+          {
+            "title": "Visualisation for the CIS benchmark scanning results",
+            "url": "https://arxiv.org/html/2512.11316"
+          },
+          {
+            "title": "FEM-Bench: A Structured Scientific Reasoning Benchmark for Evaluating Code-Generating LLMs",
+            "url": "https://arxiv.org/html/2512.20732v1"
+          },
+          {
+            "title": "A Benchmark for Evaluating Outcome-Driven Constraint Violations in Autonomous AI Agents",
+            "url": "https://arxiv.org/html/2512.20798v1"
+          },
+          {
+            "title": "NL2Repo-Bench: Towards Long-Horizon Repository Generation Evaluation of Coding Agents",
+            "url": "https://arxiv.org/html/2512.12730v1"
+          },
+          {
+            "title": "ScoringBench: A Benchmark for Evaluating Tabular Foundation Models with Proper Scoring Rules",
+            "url": "https://arxiv.org/html/2603.29928v2"
+          },
+          {
+            "title": "Light-Weight Benchmarks Reveal the Hidden Hardware Cost of Zero-Shot Tabular Foundation Models",
+            "url": "https://arxiv.org/html/2512.00888"
+          }
+        ]
+      },
+      "Based on my search results, I found the SPON paper (arxiv 2512.12744) titled \"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models.\" However, the search results don't provide the full content of Table 2 with the specific benchmark numbers you're asking about.\n\nThe paper introduces Spontaneous Neurons (SPON), a lightweight mechanism inspired by spontaneous neural activity in biological systems that injects a small set of learnable, input-independent activation vectors that act as persistent representational anchors for sparse computation. SPON consistently restores performance, stabilizes latent representations, and preserves generalization across multiple LLM backbones.\n\nUnfortunately, I cannot access the complete Table 2 data showing the specific benchmark results (ARC-Challenge, ARC-Easy, BoolQ, PIQA, WinoGrande) for Llama-3-8B at 50% sparsity from the search results. To find these specific numbers, you would need to access the full paper directly at arxiv.org/abs/2512.12744 or ar5iv.labs.arxiv.org/html/2512.12744."
+    ],
+    "durationSeconds": 19.281390017999975
+  },
+  "sourceToolAssistantUUID": "b9804606-0944-479e-9512-041e3757bac7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62 · 2026-05-12T02:57:46.494Z_
+
+```json
+{
+  "parentUuid": "20da78f8-6791-4342-849f-25d0a0bec856",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3e6ab246-7f2f-4a96-985f-e815dce95ed6",
+  "timestamp": "2026-05-12T02:57:46.494Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-12T02:57:53.991Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Q1887Vp2vUBhmM9xLL9jh5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2512.12744",
+  "prompt": "Find Table 2 in this paper. I need to know:\n1. How many benchmarks are in Table 2? List all benchmark names.\n2. What are SPON's exact numbers on Llama-3-8B at 50% sparsity?\n3. What are WINA's exact numbers on the same benchmarks?\n4. Is there a dense baseline row?\n5. Is this 50% model-level sparsity or MLP-only sparsity?\n6. Does the paper mention ICML 2026 anywhere in the text?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e6ab246-7f2f-4a96-985f-e815dce95ed6",
+  "isSidechain": false,
+  "requestId": "req_011CawvaP5c8zekjL2LibhRa",
+  "type": "assistant",
+  "uuid": "9b295219-27d9-4d99-b186-c92298657e86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsK4MsjcjDb3G6F8Q9Eksg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4410,
+      "cache_read_input_tokens": 53660,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4410,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 53660,
+          "cache_creation_input_tokens": 4410,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4410
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-12T02:57:54.452Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LyRL8qbwttwMyxBMyFSwXK`</summary>
+
+```json
+{
+  "query": "activation sparsity BCE vs KL divergence training loss comparison predictor neuron pruning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b295219-27d9-4d99-b186-c92298657e86",
+  "isSidechain": false,
+  "requestId": "req_011CawvaP5c8zekjL2LibhRa",
+  "type": "assistant",
+  "uuid": "5b44b827-ef61-4a9f-bdec-c5ef35418ecc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PsK4MsjcjDb3G6F8Q9Eksg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4410,
+      "cache_read_input_tokens": 53660,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4410,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 53660,
+          "cache_creation_input_tokens": 4410,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4410
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5b44b827-ef61-4a9f-bdec-c5ef35418ecc",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-12T02:57:58.562Z_
+
+<details><summary>↩ Tool result · `toolu_01Q1887Vp2vUBhmM9xLL9jh5`</summary>
+
+```text
+# Analysis of Table 2
+
+**1. Number of benchmarks and names:**
+Table 2 contains 5 benchmarks: ARC-Challenge, ARC-Easy, BoolQ, PiQA, and Winogrande.
+
+**2. SPON's exact numbers on Llama3-8B at 50% sparsity:**
+The table displays results at 50% sparsity. SPON achieves: ARC-Challenge 51.11%, ARC-Easy 76.89%, BoolQ 82.54%, PiQA 78.40%, Winogrande 70.88%.
+
+**3. WINA's exact numbers on the same benchmarks:**
+WINA results for Llama3-8B: ARC-Challenge 48.81%, ARC-Easy 75.00%, BoolQ 81.25%, PiQA 79.16%, Winogrande 70.64%.
+
+**4. Dense baseline row:**
+No dense baseline appears in Table 2. The table compares only sparse methods (LaRoSA, WINA, R-sparse, WAS, and SPON).
+
+**5. Sparsity type:**
+The paper specifies "50% activation sparsity," applying to the entire model rather than MLP-only operations.
+
+**6. ICML 2026 mention:**
+The paper does not mention ICML 2026. The document header indicates "arXiv:2512.12744v3 [cs.LG] 30 Apr 2026" but references no specific conference name.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b295219-27d9-4d99-b186-c92298657e86",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "668090b5-b173-433d-9dbc-3b6ba5c3ec0c",
+  "toolUseResult": {
+    "bytes": 395022,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of Table 2\n\n**1. Number of benchmarks and names:**\nTable 2 contains 5 benchmarks: ARC-Challenge, ARC-Easy, BoolQ, PiQA, and Winogrande.\n\n**2. SPON's exact numbers on Llama3-8B at 50% sparsity:**\nThe table displays results at 50% sparsity. SPON achieves: ARC-Challenge 51.11%, ARC-Easy 76.89%, BoolQ 82.54%, PiQA 78.40%, Winogrande 70.88%.\n\n**3. WINA's exact numbers on the same benchmarks:**\nWINA results for Llama3-8B: ARC-Challenge 48.81%, ARC-Easy 75.00%, BoolQ 81.25%, PiQA 79.16%, Winogrande 70.64%.\n\n**4. Dense baseline row:**\nNo dense baseline appears in Table 2. The table compares only sparse methods (LaRoSA, WINA, R-sparse, WAS, and SPON).\n\n**5. Sparsity type:**\nThe paper specifies \"50% activation sparsity,\" applying to the entire model rather than MLP-only operations.\n\n**6. ICML 2026 mention:**\nThe paper does not mention ICML 2026. The document header indicates \"arXiv:2512.12744v3 [cs.LG] 30 Apr 2026\" but references no specific conference name.",
+    "durationMs": 4567,
+    "url": "https://arxiv.org/html/2512.12744"
+  },
+  "sourceToolAssistantUUID": "9b295219-27d9-4d99-b186-c92298657e86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-12T02:58:01.361Z_
+
+<details><summary>↩ Tool result · `toolu_01LyRL8qbwttwMyxBMyFSwXK`</summary>
+
+```text
+Web search results for query: "activation sparsity BCE vs KL divergence training loss comparison predictor neuron pruning"
+
+Links: [{"title":"Sparsity in Deep Learning: Pruning and growth for efficient ...","url":"https://htor.inf.ethz.ch/publications/img/hoefler-sparsity-in-deep-learning.pdf"},{"title":"Sparsity-Aware Pruning via Dying Neuron Reactivation in ...","url":"https://openreview.net/pdf?id=ymUjGCNPYa"},{"title":"GitHub - IParraMartin/Sparse-Autoencoder: A PyTorch implementation of a Sparse Auto Encoder (SAE) using MSE loss and KL Divergence penalty · GitHub","url":"https://github.com/IParraMartin/Sparse-Autoencoder"},{"title":"“Calculation of Activation Probability in Sparse Autoencoder’s KL-Divergence” | by Sumaiya Afridi. | Medium","url":"https://medium.com/@sumaiya.afridi/calculation-of-activation-probability-in-sparse-autoencoders-kl-divergence-503009d16c7b"},{"title":"Autoencoders Explained. Part 3: KL-divergence | by om pramod | Medium","url":"https://medium.com/@ompramod9921/autoencoders-explained-872f77de0d79"},{"title":"VAE Loss Function: Reconstruction & KL Divergence","url":"https://apxml.com/courses/applied-autoencoders-feature-extraction/chapter-6-variational-autoencoders-structured-latent-spaces/vae-loss-function-reconstruction-kl-divergence"},{"title":"CS294A Lecture notes Andrew Ng Sparse autoencoder 1 Introduction","url":"https://web.stanford.edu/class/cs294a/sparseAutoencoder.pdf"},{"title":"Sparse Autoencoders using KL Divergence with PyTorch","url":"https://debuggercafe.com/sparse-autoencoders-using-kl-divergence-with-pytorch/"},{"title":"Training-Free Activation Sparsity in Large Language Models","url":"https://arxiv.org/html/2408.14690v1"},{"title":"Sparsity in Deep Learning: Pruning and growth for efficient ...","url":"https://www.jmlr.org/papers/volume22/21-0366/21-0366.pdf"}]
+
+Based on the search results, here's what I found regarding activation sparsity, BCE vs KL divergence training loss comparison, and predictor neuron pruning:
+
+## Key Findings
+
+**KL Divergence in Sparsity Enforcement:**
+KL divergence in a sparse autoencoder helps to enforce sparsity by penalizing the difference between the desired sparsity level and the actual activation probabilities of the hidden units. The KL-divergence reaches its minimum of 0 when the measured sparsity equals the target sparsity, and minimizing this penalty term has the effect of causing the measured sparsity to be close to the target sparsity.
+
+**Neuron Pruning with KL Divergence:**
+A proposed dying neuron reactivation based pruning method leverages the DNR metric—a composite measure that encapsulates both the reduction in weight entropy and the increase in KL divergence—to dynamically prune dying neurons during training. DNR-Pruning jointly considers both entropy reduction and KL divergence increase to assess neuron redundancy, ensuring that neurons selected for removal are not just low-variance but also statistically uninformative relative to the data distribution.
+
+**BCE Loss for Sparse Autoencoders:**
+Sparse autoencoder implementations use MSE plus a penalty using KL divergence for the loss. The search results indicate that BCE (Binary Cross-Entropy) and KL divergence serve different roles—BCE is typically used for reconstruction loss in binary or probabilistic settings, while KL divergence is used as a regularization term to enforce sparsity constraints.
+
+**Training Dynamics:**
+The additional sparsity penalty is added during training but not during validation, causing training loss to be higher than validation loss.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b44b827-ef61-4a9f-bdec-c5ef35418ecc",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "8f3bc969-d4cc-4a53-b3b7-8f6dc823d258",
+  "toolUseResult": {
+    "query": "activation sparsity BCE vs KL divergence training loss comparison predictor neuron pruning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QE7swBoAtcsJULZS331xdv",
+        "content": [
+          {
+            "title": "Sparsity in Deep Learning: Pruning and growth for efficient ...",
+            "url": "https://htor.inf.ethz.ch/publications/img/hoefler-sparsity-in-deep-learning.pdf"
+          },
+          {
+            "title": "Sparsity-Aware Pruning via Dying Neuron Reactivation in ...",
+            "url": "https://openreview.net/pdf?id=ymUjGCNPYa"
+          },
+          {
+            "title": "GitHub - IParraMartin/Sparse-Autoencoder: A PyTorch implementation of a Sparse Auto Encoder (SAE) using MSE loss and KL Divergence penalty · GitHub",
+            "url": "https://github.com/IParraMartin/Sparse-Autoencoder"
+          },
+          {
+            "title": "“Calculation of Activation Probability in Sparse Autoencoder’s KL-Divergence” | by Sumaiya Afridi. | Medium",
+            "url": "https://medium.com/@sumaiya.afridi/calculation-of-activation-probability-in-sparse-autoencoders-kl-divergence-503009d16c7b"
+          },
+          {
+            "title": "Autoencoders Explained. Part 3: KL-divergence | by om pramod | Medium",
+            "url": "https://medium.com/@ompramod9921/autoencoders-explained-872f77de0d79"
+          },
+          {
+            "title": "VAE Loss Function: Reconstruction & KL Divergence",
+            "url": "https://apxml.com/courses/applied-autoencoders-feature-extraction/chapter-6-variational-autoencoders-structured-latent-spaces/vae-loss-function-reconstruction-kl-divergence"
+          },
+          {
+            "title": "CS294A Lecture notes Andrew Ng Sparse autoencoder 1 Introduction",
+            "url": "https://web.stanford.edu/class/cs294a/sparseAutoencoder.pdf"
+          },
+          {
+            "title": "Sparse Autoencoders using KL Divergence with PyTorch",
+            "url": "https://debuggercafe.com/sparse-autoencoders-using-kl-divergence-with-pytorch/"
+          },
+          {
+            "title": "Training-Free Activation Sparsity in Large Language Models",
+            "url": "https://arxiv.org/html/2408.14690v1"
+          },
+          {
+            "title": "Sparsity in Deep Learning: Pruning and growth for efficient ...",
+            "url": "https://www.jmlr.org/papers/volume22/21-0366/21-0366.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding activation sparsity, BCE vs KL divergence training loss comparison, and predictor neuron pruning:\n\n## Key Findings\n\n**KL Divergence in Sparsity Enforcement:**\nKL divergence in a sparse autoencoder helps to enforce sparsity by penalizing the difference between the desired sparsity level and the actual activation probabilities of the hidden units. The KL-divergence reaches its minimum of 0 when the measured sparsity equals the target sparsity, and minimizing this penalty term has the effect of causing the measured sparsity to be close to the target sparsity.\n\n**Neuron Pruning with KL Divergence:**\nA proposed dying neuron reactivation based pruning method leverages the DNR metric—a composite measure that encapsulates both the reduction in weight entropy and the increase in KL divergence—to dynamically prune dying neurons during training. DNR-Pruning jointly considers both entropy reduction and KL divergence increase to assess neuron redundancy, ensuring that neurons selected for removal are not just low-variance but also statistically uninformative relative to the data distribution.\n\n**BCE Loss for Sparse Autoencoders:**\nSparse autoencoder implementations use MSE plus a penalty using KL divergence for the loss. The search results indicate that BCE (Binary Cross-Entropy) and KL divergence serve different roles—BCE is typically used for reconstruction loss in binary or probabilistic settings, while KL divergence is used as a regularization term to enforce sparsity constraints.\n\n**Training Dynamics:**\nThe additional sparsity penalty is added during training but not during validation, causing training loss to be higher than validation loss."
+    ],
+    "durationSeconds": 6.90630385299999
+  },
+  "sourceToolAssistantUUID": "5b44b827-ef61-4a9f-bdec-c5ef35418ecc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-12T03:01:43.534Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have substantial information to verify the claims. Let me compile my findings:
+
+## Key verification results:
+
+### 1. SPON/Resting Neurons venue:
+- arXiv metadata says v3 was updated April 30, 2026
+- The arXiv page lists it under ICML 2026, but the paper text itself doesn't mention ICML 2026
+- I couldn't independently confirm ICML 2026 acceptance through official ICML lists
+- The proposal says "ICML 2026 — venue confirmed via arXiv metadata updated on the April 30 notification date"
+- This is plausible (ICML 2026 notifications were around April 30, and v3 update coincides), but not independently confirmed
+
+
+### 2. SPON benchmark count:
+- Table 2 shows five benchmarks: ARC-Challenge, ARC-Easy, BoolQ, PiQA, and WinoGrande
+- The proposal correctly identifies these five QA benchmarks with the weighted average of 71.96 vs 70.97, which contradicts the earlier Round 3 review that mistakenly counted only four
+- I'm now checking the weighted averages against the individual SPON scores from the table
+
+: 51.11, 76.89, 82.54, 78.40, and 70.88, which average to 71.964, matching the proposal's claim of 71.96, and the WINA scores similarly compute to 70.972, confirming both reported numbers are accurate
+
+### 3. FastForward verification:
+- The paper exists as arXiv 2602.00397 from January 2026 and employs a weighted BCE loss with tiered weighting where the top 20% of instances receive a weight of 32, the next tier gets 16, and so on
+- It includes an error compensation network built as a 2-layer MLP that operates during inference with a bottleneck dimension of d_model/8
+- On Llama-3.1-8B at 50% FFN sparsity, it achieves 67.17 MMLU compared to the dense baseline of 67.84, and uses a predictor bottleneck of d_model/16
+
+### 4. WINA verification:
+- The method reaches 59.57% average across 6 benchmarks at 50% model-level sparsity on Llama-3-8B, with a dense baseline of 66.38%, applying sparsity to both MLP and attention layers
+
+### 5. DIP verification:
+- Published at MLSys 2025, and the proposal mentions it uses KL-distillation for accuracy recovery through LoRA adapters. The DIP paper specifically trains LoRA modules with knowledge distillation loss to match the original model's logits—this is KL divergence on logits, which is equivalent to logit-matching. The proposal correctly distinguishes that DIP trains the LoRA recovery module with KL rather than the sparsity predictor itself.
+
+### 6. Sparsity definition consistency:
+- The proposal now consistently uses "50% model-level sparsity" across all methods, matching WINA and SPON's definitions
+
+### 7. Dense baseline:
+- Checking SPON's table
+
+, it doesn't include a dense baseline, so the proposal correctly cites the 66.38% dense result from WINA's separate evaluation (which uses 6 benchmarks) and distinguishes it from SPON's 5-benchmark evaluation set with the 71.96 vs 70.97 comparison
+
+### 8. Mean-field argument:
+- The mean-field factorization argument for BCE sparsity prediction doesn't appear in prior work, so this looks like a novel theoretical contribution
+
+### 9. Timeline assessment:
+- ARR deadline is May 25, 2026
+
+, which gives me 14 days from today
+- With auto_research mode on 2-4 H100s, I have 14 days total including a 4-day buffer for writing
+- The scope is manageable: single model (Llama 3.1 8B), fixed 50% sparsity, rank 128, plus 4 ablations and SPON composition
+
+### 10. Improvement target:
+- Aiming for 1.5-3 points over WINA at 50% sparsity, which breaks down as roughly 1 point from SPON (verified), 0.5-1.5 from contextual improvements, and 0-0.5 from composition
+- The math checks out internally, though the contextual component is still speculative
+
+—though FastForward's results suggest it could be conservative, showing MMLU gains of 0.67 points with FFN-only sparsity and compensation
+
+### 11. Four-condition ablation:
+- I'm planning BCE only, BCE + compensation, KL only, and KL + compensation (time permitting), which directly addresses the fairness concerns from the prior review
+
+### 12. Checking for missing competitors:
+- SVD Contextual Sparsity Predictors and Sirius, ActiveFlow, and DIP are all accounted for in the landscape
+- Joint Training Across Multiple Activation Sparsity Regimes isn't mentioned, but it's preliminary work on CIFAR-10 so not a direct threat
+- Still need to verify Spark's relevance
+
+Transformer, MaskLLM, and ShadowLLM are all covered...
+
+### 13. Wall-clock analysis:
+The proposal now includes realistic timing estimates showing predictor overhead of ~1.5 ms across 32 layers and FFN savings of ~11.3 ms, yielding a 4-8:1 practical speedup ratio versus the inflated 37:1 FLOPs ratio—this directly addresses the prior review's concern about misleading efficiency claims.
+
+### 14. Issues to flag:
+
+**a) SPON ICML 2026 venue claim:**
+The arXiv metadata lists ICML 2026, but I can't independently verify this through official ICML channels, and the paper itself doesn't mention the venue.
+
+**b) SPON benchmark count:**
+The proposal correctly lists five QA benchmarks—ARC-Challenge, ARC-Easy, BoolQ, PIQA, Winogrande—which matches Table 2, so the Round 3 review claiming only four was mistaken.
+
+**c) The mean-field argument:**
+This appears to be a novel theoretical contribution that I haven't seen elsewhere in the literature.
+
+**d) FastForward compensation network overhead:**
+The proposal claims approximately 4.72 MB...
+
+Calculating the parameter count: with d_model = 4096 and r' = 512, the two weight matrices (Wcomp1 and Wcomp2) should give around 8 MB per layer in fp16, but the proposal states 4.72 MB, so I need to verify this discrepancy more carefully. Looking at the actual numbers, the proposal's estimate of ~4.72 MB appears to be counting only one of the two weight matrices in FP16, when the full compensation MLP should be around 8 MB per layer with both directions included. But this actually strengthens the proposal's argument since it means there's even more overhead to eliminate. I should verify the model dimensions though — for Llama-3.1-8B, d_model is 4096 and the compensation network uses a bottleneck of 512, which tracks with the calculations. Rather than getting bogged down in these specifics, the real question is whether the core proposal holds up scientifically. Looking at the DIP training objective, the proposal characterizes it as KL-distillation for accuracy recovery, and the actual DIP paper describes logit matching which is essentially equivalent to KL divergence with temperature, so that characterization seems sound.
+
+The proposal also correctly identifies that DIP trains the LoRA recovery module with KL rather than the sparsity predictor itself, and uses magnitude-based masks instead of predicted ones — that's an important distinction. Now examining the novelty claims: training the sparsity predictor itself with KL-divergence is genuinely novel compared to DIP's recovery-only approach and SPON's static biases, and combining static plus contextual corrections hasn't been done before. The mean-field formalization of BCE's limitations is also new. These contributions are verified as original, though they're somewhat incremental since SPON already uses KL for static correction, FastForward already trains contextual predictors, and the jump from BCE to KL for the predictor is a relatively natural extension.
+
+On feasibility, the 14-day timeline with 2-4 H100s is tight but workable — the scope is narrowed to Llama 3.1 8B at 50% sparsity with fixed r=128, covering 4 ablations plus SPON composition across 7 benchmarks. Training each predictor takes around 1K steps which is fast, SPON reimplementation is straightforward with just bias vectors and KL, and they can leverage existing Triton kernels from prior work, leaving a 4-day buffer for writing. The main risks are the SPON reimplementation and the compressed timeline, but it's achievable for auto_research mode.
+
+The proposal itself is exceptionally well-articulated — the experimental design is precise with clear ablation conditions, the wall-clock analysis is honest, improvement targets have arithmetic backing, fallback strategies are explicit, and the landscape is well-characterized with ~20 references. On impact though, while the finding that KL training eliminates the need for error compensation would be practically elegant and the mean-field analysis provides theoretical grounding, the contribution is fairly narrow — it's really just comparing training objectives in a specific setting. Averaging across novelty, feasibility, clarity, and impact gives around 3.8, which falls short of the 4.0 bar, but I should reconsider given this is Round 6 of 10.
+
+Looking more carefully: the mean-field formalization is genuinely novel theoretical work, training the predictor with KL rather than static biases is a clear methodological choice, the composition study testing SPON plus contextual is the first of its kind, and the four-condition ablation directly answers an unanswered question. The steps are individually incremental and combine two existing ideas, so I'd rate novelty at 3.5. On feasibility, the proposal has been substantially scoped down from earlier iterations.
+
+For feasibility, the fixed rank and single model keep things manageable, the SPON reimplementation is architecturally straightforward and quick to implement, and while 14 days is tight, the explicit writing buffer and parallelization plan make it realistic—I'd give this 3.5 as well, with timeline being the main constraint. The clarity here is genuinely exceptional: the proposal precisely specifies every experimental condition, provides honest wall-clock estimates with reasoning, grounds improvement targets in verified arithmetic, lists explicit fallbacks for each potential negative result, and correctly characterizes the dense/sparse landscape with proper citations. That's a 4.
+
+For impact, this addresses important questions for the activation sparsity community—whether KL training eliminates the need for error compensation, whether static and contextual corrections compose, and the mean-field analysis offers guidance for future predictor design. But the scope is narrow with just one model, one sparsity level, and decode-only focus, so I'm settling on 3.5.
+
+That gives me an average of 3.75, which falls short of the 4.0 threshold, so this needs revision. I'm trying to identify what specific improvements would actually push this over the line. Looking at the issues that stand out, there's the SPON ICML 2026 venue question that's incomplete here.
+
+The arXiv metadata does show ICML 2026 with a v3 update on April 30 matching notification dates, which is reasonable evidence. The proposal is transparent about this basis, so I won't flag it as a major problem. There's also a minor factual error in the compensation network weight calculation—the proposal claims ~4.72 MB per layer but it should be closer to ~8 MB for two 4096×512 matrices in FP16. Ironically this error actually makes their argument stronger. The improvement target of 1.5-3 points is plausible but entirely speculative, grounded only in arithmetic over estimates rather than empirical data. And there's no preliminary results to ground any of these claims.
+
+For a paper due in two weeks, the lack of preliminary results is genuinely risky. The sparsity-level interaction prediction is well-scoped though—they correctly identify that testing it requires just 2 extra training runs at different sparsity levels, which is manageable. On the FastForward comparison, they acknowledge the difference in settings but don't fully explore what it means: FastForward achieved 67.17 on MMLU at 50% FFN-only sparsity during prefill, whereas this proposal targets 50% model-level sparsity during decode—these are fundamentally different scenarios.
+
+A bigger gap is that the proposal doesn't specify how the 50% sparsity budget splits between attention and MLP layers when using WINA-style pruning. This allocation matters for understanding the actual operating point. Looking at what would strengthen the novelty and impact scores from 3.5 to 4, the theoretical contribution needs more rigor—the mean-field argument is intuitive but would benefit from formal derivation rather than informal reasoning.
+
+For impact, broader evaluation across multiple models would help, though that conflicts with the timeline constraints. The real question is whether this passes at all. After five rounds of revision addressing major concerns, the remaining issues are fairly minor. The ablation study is well-designed, the mean-field theory is novel, and the practical finding about KL training potentially eliminating compensation networks is useful. This feels like a solid contribution for EMNLP Findings in the Efficient Methods track, but I'm still weighing whether it reaches the bar for acceptance.
+
+The key distinction is venue: this would work well for Findings, but Main would require stronger empirical results. Since we're at round six of ten and the proposal has been systematically improved, I'm leaning toward one more revision to clean up the minor issues—the compensation network calculation, the MLP versus attention sparsity distinction, and more careful labeling of SPON's venue. Though honestly, these are small enough that I might be overthinking it. Let me reassess the novelty score: the mean-field formalization and the specific four-condition ablation do constitute novel contributions, and the composition study is genuinely the first of its kind, which should be sufficient for EMNLP's Efficient Methods track. Looking at the issues I flagged, none are actually deal-breakers—the proposal is transparent about its limitations and has solid fallbacks. Comparing this to recent EMNLP Efficient Methods papers like WAS, CHESS, and ShadowLLM, the controlled ablations, mean-field analysis, and composition study feel genuinely novel, plus the honest reporting of wall-clock times is a strength. I'm leaning toward this passing for Findings, though Main track acceptance is less certain.
+
+Scoring it out: novelty and feasibility both sit around 3.5 given the tight timeline and method combining existing techniques, but the clarity is exceptional at 4.5, while impact lands at 3.5 due to the narrow scope within activation sparsity. That averages to 3.75, which puts it in revise territory, but the gaps are small enough that focused feedback could push it over. The key improvements would be nailing down the compensation network calculation, being explicit about how the 50% sparsity budget splits between MLP and attention layers, and clarifying one more aspect I was just considering.
+
+Let me double-check the Sirius characterization—the proposal frames it as interleaving sparse and dense inference with periodic full-model correction every 16 tokens, which is indeed complementary to their static composition approach. That checks out. I should also verify the claim about SVD contextual sparsity predictors being training-free but limited to ReGLU models.
+
+Looking back at what I found earlier, the SVD paper achieves 1.8x speedup at 90% FFN sparsity with minimal accuracy loss, which strongly suggests it targets models with inherently high sparsity like ReGLU or ReLU variants—so the proposal's characterization seems accurate. Now I'm thinking through the core hypothesis: whether KL-trained predictors outperform BCE-trained ones because they capture joint neuron interactions, whether combining SPON with contextual predictors addresses orthogonal failure modes, and whether KL training is the right approach overall.
+
+The mean-field argument makes sense—BCE treats each neuron independently while KL on output logits captures the full joint distribution, and at higher sparsity levels where more neurons get pruned simultaneously, those interaction effects become more pronounced. The real question is whether the effect size justifies the added complexity, but that's fundamentally an empirical question the proposal is set up to answer.
+
+The main concern I keep coming back to is the average score of 3.75, which falls just short of the 4.0 threshold, so the proposal would need to strengthen either its novelty or impact by about half a point to cross that bar.
+
+Now I'm double-checking the FLOP calculation the proposal claims. Let me work through the two matrix-vector multiplications: the first one multiplies the hidden state against the down-projection matrix, and the second multiplies the resulting bottleneck against the up-projection matrix back to the full dimension. Adding those up...
+
+Actually, the math checks out—the predictor overhead is indeed around 4.72M FLOPs per layer. And for the savings side, I'm verifying the SwiGLU MLP cost across its three projections and confirming that 50% sparsity would save roughly 176M FLOPs. The ratio between savings and overhead comes out to about 37:1, which validates the efficiency claim.
+
+Now I'm working through the compensation network weight overhead—two projection matrices totaling about 4.2M parameters in FP16, which translates to roughly 8MB. But the proposal mentions ~4.72MB, and I'm trying to figure out where that number comes from since my calculation gives double that. Let me reconsider whether they're using a different precision or counting method.
+
+Actually, looking at the predictor weights instead—the down and up projections—those come to about 2.36M parameters, which in FP16 would be around 4.5MB. That's closer to 4.72MB but still not quite matching. I need to read more carefully to see what exactly they're measuring. Looking back at the proposal more carefully, I see the predictor uses a more sophisticated architecture—single-head attention plus a 2-layer MLP with bottleneck r=256—rather than just a simple MLP. The compensation network is the simpler 2-layer MLP with r'=512, which accounts for roughly 4.2M parameters or about 8.4 MB in FP16, so the 4.72 MB figure in the paper might be referring to something else or there's a discrepancy in how they're counting the overhead. So the compensation network is actually around 8 MB per layer, not 4.72 MB as stated—this is a clear calculation error in the proposal. Interestingly, this mistake actually strengthens their argument since the overhead is even larger than they claimed, making the KL-without-compensation approach look more attractive by comparison.
+
+Now I'm reconsidering my scores, particularly novelty. The mean-field argument is genuinely original with no prior work I can find, and while the KL-based training predictor builds on SPON's static correction approach, extending it to contextual prediction feels like a meaningful contribution. The composition study and four-condition ablation are both novel and well-executed experiments. The "expected combination" criticism is somewhat mitigated by the theoretical contributions here, so I'm settling on a novelty score of 3.5.
+
+For feasibility, the 14-day timeline is tight but manageable given their existing infrastructure with Triton kernels and the fact that SPON is straightforward to reimplement. The main vulnerability is validating that SPON reimplementation correctly. Clarity is exceptional—the experimental design is transparent and citations check out despite those minor errors. Impact is solid at 3.5 since it addresses real practitioner concerns and provides theoretical guidance, though the scope is limited to a single model in decode-only settings.
+
+My average comes to 3.75, which suggests revision is the right call. I'd focus on three concrete improvements: correcting that compensation network weight calculation, adding specifics about MLP and attention allocation, and potentially strengthening the theoretical contribution with a more rigorous derivation.
+
+Actually, wait—I need to check this against the user's specific requirements. The target venue and timeline work, the efficient methods track is right, and the compute budget of 90-140 H100-hours fits within their 200-hour limit. But there's a mismatch on evaluation: they're proposing PIQA, ARC-c, and WinoGrande, when the requirements call for perplexity, MMLU, HumanEval, LongBench, RULER, and MT-Bench. The proposal only covers 2 of the 6 required benchmarks—MMLU and HumanEval—while missing perplexity on Wiki/C4, LongBench, RULER, and MT-Bench entirely. The other benchmarks included (PIQA, ARC-c, WinoGrande, HellaSwag, GSM8K) follow standard practice in the sparsity literature but weren't requested, so there's a real mismatch between what the user needs and what's being proposed.
+
+The missing benchmarks are actually critical for this work: perplexity is fundamental for any language model evaluation, and LongBench and RULER are especially important since they'd reveal whether a sparsity predictor trained on short sequences generalizes to longer contexts—a potential failure mode that needs testing. MT-Bench would round out the evaluation with instruction-following quality. This is a significant gap I should flag.
+
+The proposal does mention H100 throughput metrics, which is good, but it doesn't address the user's emphasis on long-context serving and agent loops—it's focused on standard decode-time acceleration instead. Given the benchmark misalignment with requirements and the other issues I've identified, this needs revision.
+
+The remaining problems are the weight calculation discrepancy, unclear sparsity allocation across model layers, lack of preliminary experimental validation, and the questionable venue claim based on timing alone.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f3bc969-d4cc-4a53-b3b7-8f6dc823d258",
+  "isSidechain": false,
+  "requestId": "req_011CawvbUeW1pAbzcwJPkcFo",
+  "type": "assistant",
+  "uuid": "8da19ec9-078b-4570-a668-b62dd7d129b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A1NZGG3yWk5LY5AQVFQ9cE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1706,
+      "cache_read_input_tokens": 58070,
+      "output_tokens": 9916,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1706,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9916,
+          "cache_read_input_tokens": 58070,
+          "cache_creation_input_tokens": 1706,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1706
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-12T03:01:43.536Z_
+
+Now let me verify the SPON Table 2 benchmark count (which was disputed in prior rounds) and check a couple more things.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8da19ec9-078b-4570-a668-b62dd7d129b9",
+  "isSidechain": false,
+  "requestId": "req_011CawvbUeW1pAbzcwJPkcFo",
+  "type": "assistant",
+  "uuid": "56344d2f-6069-484f-9ccd-f8d1ea464d33",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A1NZGG3yWk5LY5AQVFQ9cE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1706,
+      "cache_read_input_tokens": 58070,
+      "output_tokens": 9916,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1706,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9916,
+          "cache_read_input_tokens": 58070,
+          "cache_creation_input_tokens": 1706,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1706
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-12T03:01:44.256Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0156TmJRyApab8yjkhG74YPe`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026 efficient methods NLP track"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56344d2f-6069-484f-9ccd-f8d1ea464d33",
+  "isSidechain": false,
+  "requestId": "req_011CawvbUeW1pAbzcwJPkcFo",
+  "type": "assistant",
+  "uuid": "d8eaf02e-f758-42b6-97b9-8f2130c09dee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A1NZGG3yWk5LY5AQVFQ9cE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1706,
+      "cache_read_input_tokens": 58070,
+      "output_tokens": 9916,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1706,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9916,
+          "cache_read_input_tokens": 58070,
+          "cache_creation_input_tokens": 1706,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1706
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-12T03:01:44.866Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SLGo8hksCM2AMCEbErHNGc`</summary>
+
+```json
+{
+  "query": "\"SVD contextual sparsity\" arxiv 2603.14110 ReGLU SwiGLU models evaluated"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8eaf02e-f758-42b6-97b9-8f2130c09dee",
+  "isSidechain": false,
+  "requestId": "req_011CawvbUeW1pAbzcwJPkcFo",
+  "type": "assistant",
+  "uuid": "9d776539-c2c3-4c51-9a86-66fa321ff4fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A1NZGG3yWk5LY5AQVFQ9cE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1706,
+      "cache_read_input_tokens": 58070,
+      "output_tokens": 9916,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1706,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9916,
+          "cache_read_input_tokens": 58070,
+          "cache_creation_input_tokens": 1706,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1706
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "9d776539-c2c3-4c51-9a86-66fa321ff4fc",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-12T03:01:49.463Z_
+
+<details><summary>↩ Tool result · `toolu_0156TmJRyApab8yjkhG74YPe`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026 efficient methods NLP track"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=883"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"}]
+
+Based on the search results, here's the key information about EMNLP 2026:
+
+## ARR Submission Deadline
+
+The ARR submission deadline for long and short papers is May 25, 2026.
+
+## Efficient Methods for NLP Track
+
+Efficient Methods for NLP is listed as one of the relevant topics for the conference, which is one of the key research areas accepted for EMNLP 2026.
+
+## Submission Process
+
+EMNLP 2026 will use ACL Rolling Review (ARR) as a reviewing system, with authors following a two-step process: authors submit articles to ARR where submissions receive reviews and meta-reviews, and then authors commit their reviewed articles to the conference where final acceptance decisions are made.
+
+## Additional Important Dates
+
+The reviewer registration deadline for all authors is May 27, 2026, author response and author-reviewer discussion runs July 7-13, 2026, meta reviews are released July 30, 2026, the EMNLP commitment deadline is August 2, 2026, and notification of acceptance is August 20, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8eaf02e-f758-42b6-97b9-8f2130c09dee",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "df9a1ddb-f1f2-4a77-8e84-0df9e8dbcb1a",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May 2026 efficient methods NLP track",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01758AjQLxiarHbWp9H65uVJ",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP: Empirical Methods in Natural Language Processing 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=883"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about EMNLP 2026:\n\n## ARR Submission Deadline\n\nThe ARR submission deadline for long and short papers is May 25, 2026.\n\n## Efficient Methods for NLP Track\n\nEfficient Methods for NLP is listed as one of the relevant topics for the conference, which is one of the key research areas accepted for EMNLP 2026.\n\n## Submission Process\n\nEMNLP 2026 will use ACL Rolling Review (ARR) as a reviewing system, with authors following a two-step process: authors submit articles to ARR where submissions receive reviews and meta-reviews, and then authors commit their reviewed articles to the conference where final acceptance decisions are made.\n\n## Additional Important Dates\n\nThe reviewer registration deadline for all authors is May 27, 2026, author response and author-reviewer discussion runs July 7-13, 2026, meta reviews are released July 30, 2026, the EMNLP commitment deadline is August 2, 2026, and notification of acceptance is August 20, 2026."
+    ],
+    "durationSeconds": 5.200512088999967
+  },
+  "sourceToolAssistantUUID": "d8eaf02e-f758-42b6-97b9-8f2130c09dee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-12T03:01:51.913Z_
+
+<details><summary>↩ Tool result · `toolu_01SLGo8hksCM2AMCEbErHNGc`</summary>
+
+```text
+Web search results for query: ""SVD contextual sparsity" arxiv 2603.14110 ReGLU SwiGLU models evaluated"
+
+Links: [{"title":"[2603.14110] SVD Contextual Sparsity Predictors for Fast LLM Inference","url":"https://arxiv.org/abs/2603.14110"},{"title":"SVD Contextual Sparsity Predictors for Fast LLM Inference","url":"https://arxiv.org/html/2603.14110"},{"title":"Dependency-Aware Semi-Structured Sparsity of GLU Variants in Large Language Models","url":"https://arxiv.org/html/2405.01943v1"},{"title":"Turbo Sparse: Achieving LLM SOTA Performance with Minimal Activated Parameters","url":"https://arxiv.org/pdf/2406.05955"},{"title":"SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity","url":"https://arxiv.org/html/2506.16500"},{"title":"ELAS: Efficient Pre-Training of Low-Rank Large Language Models via 2:4 Activation Sparsity","url":"https://arxiv.org/html/2605.03667"},{"title":"1 Introduction","url":"https://arxiv.org/html/2412.01380v1"},{"title":"Published as a conference paper at ICLR 2024 RELU STRIKES BACK:","url":"https://openreview.net/pdf?id=osoWxY8q2E"},{"title":"Dual Path Attribution: Efficient Attribution for SwiGLU-Transformers through Layer-Wise Target Propagation","url":"https://arxiv.org/html/2603.19742"},{"title":"training-free activation sparsity in large language models","url":"https://www.arxiv.org/pdf/2408.14690"}]
+
+Based on the search results, I found the arxiv paper you're looking for:
+
+The paper presents a framework for accelerating inference of ReGLU-based feed-forward networks (FFNs) within LLMs. The proposed framework provides a fast, training-free method for building sparse pattern predictors using truncation-aware singular value decomposition (SVD) of the gate projection matrix, along with a threshold calibration algorithm, and inference executors supporting conditional computation on CUDA and CANN devices.
+
+The approach leverages low-rank singular value decomposition (SVD) to predict sparse patterns, thereby enabling significant inference acceleration in ReGLU-based LLMs.
+
+**Key Results:** Experiments on three sparse LLMs with an average activation sparsity level of 90% in the FFNs demonstrate up to a 1.8x reduction in end-to-end decoding time while maintaining less than 1% degradation in benchmark scores.
+
+**Technical Approach:** The methodology employs low-rank approximations of gate projection weight matrices in each layer as lightweight predictors of the FFN block sparsity mask during generation. Unlike existing contextual sparsity prediction methods, the approach provides theoretical guarantees regarding prediction accuracy.
+
+The paper specifically focuses on ReGLU-based models. While SwiGLU is mentioned in related work, the primary evaluation and framework targets ReGLU architectures, which naturally exhibit the contextual sparsity properties that enable this SVD-based approach to be effective.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d776539-c2c3-4c51-9a86-66fa321ff4fc",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "b2b38b0e-8357-4b6b-b0fb-bdacba2f6a9b",
+  "toolUseResult": {
+    "query": "\"SVD contextual sparsity\" arxiv 2603.14110 ReGLU SwiGLU models evaluated",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QJHbQz1ECZEjQ2eye78KM9",
+        "content": [
+          {
+            "title": "[2603.14110] SVD Contextual Sparsity Predictors for Fast LLM Inference",
+            "url": "https://arxiv.org/abs/2603.14110"
+          },
+          {
+            "title": "SVD Contextual Sparsity Predictors for Fast LLM Inference",
+            "url": "https://arxiv.org/html/2603.14110"
+          },
+          {
+            "title": "Dependency-Aware Semi-Structured Sparsity of GLU Variants in Large Language Models",
+            "url": "https://arxiv.org/html/2405.01943v1"
+          },
+          {
+            "title": "Turbo Sparse: Achieving LLM SOTA Performance with Minimal Activated Parameters",
+            "url": "https://arxiv.org/pdf/2406.05955"
+          },
+          {
+            "title": "SparseLoRA: Accelerating LLM Fine-Tuning with Contextual Sparsity",
+            "url": "https://arxiv.org/html/2506.16500"
+          },
+          {
+            "title": "ELAS: Efficient Pre-Training of Low-Rank Large Language Models via 2:4 Activation Sparsity",
+            "url": "https://arxiv.org/html/2605.03667"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2412.01380v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 RELU STRIKES BACK:",
+            "url": "https://openreview.net/pdf?id=osoWxY8q2E"
+          },
+          {
+            "title": "Dual Path Attribution: Efficient Attribution for SwiGLU-Transformers through Layer-Wise Target Propagation",
+            "url": "https://arxiv.org/html/2603.19742"
+          },
+          {
+            "title": "training-free activation sparsity in large language models",
+            "url": "https://www.arxiv.org/pdf/2408.14690"
+          }
+        ]
+      },
+      "Based on the search results, I found the arxiv paper you're looking for:\n\nThe paper presents a framework for accelerating inference of ReGLU-based feed-forward networks (FFNs) within LLMs. The proposed framework provides a fast, training-free method for building sparse pattern predictors using truncation-aware singular value decomposition (SVD) of the gate projection matrix, along with a threshold calibration algorithm, and inference executors supporting conditional computation on CUDA and CANN devices.\n\nThe approach leverages low-rank singular value decomposition (SVD) to predict sparse patterns, thereby enabling significant inference acceleration in ReGLU-based LLMs.\n\n**Key Results:** Experiments on three sparse LLMs with an average activation sparsity level of 90% in the FFNs demonstrate up to a 1.8x reduction in end-to-end decoding time while maintaining less than 1% degradation in benchmark scores.\n\n**Technical Approach:** The methodology employs low-rank approximations of gate projection weight matrices in each layer as lightweight predictors of the FFN block sparsity mask during generation. Unlike existing contextual sparsity prediction methods, the approach provides theoretical guarantees regarding prediction accuracy.\n\nThe paper specifically focuses on ReGLU-based models. While SwiGLU is mentioned in related work, the primary evaluation and framework targets ReGLU architectures, which naturally exhibit the contextual sparsity properties that enable this SVD-based approach to be effective."
+    ],
+    "durationSeconds": 7.0442148210000015
+  },
+  "sourceToolAssistantUUID": "9d776539-c2c3-4c51-9a86-66fa321ff4fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-12T03:01:54.776Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013jBHL1SMTYnXkoGrAMDoKZ`</summary>
+
+```json
+{
+  "query": "Llama 3.1 8B perplexity wikitext C4 activation sparsity benchmark evaluation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b2b38b0e-8357-4b6b-b0fb-bdacba2f6a9b",
+  "isSidechain": false,
+  "requestId": "req_011CawvtUMcNSsajxXLQgSbL",
+  "type": "assistant",
+  "uuid": "e5980fdf-cf82-4ed9-b159-13fa2c416390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PUvkZ9qHJ8d2Kj1d4AVzNy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11568,
+      "cache_read_input_tokens": 59776,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11568,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 59776,
+          "cache_creation_input_tokens": 11568,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11568
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-12T03:02:01.347Z_
+
+<details><summary>↩ Tool result · `toolu_013jBHL1SMTYnXkoGrAMDoKZ`</summary>
+
+```text
+Web search results for query: "Llama 3.1 8B perplexity wikitext C4 activation sparsity benchmark evaluation"
+
+Links: [{"title":"Table 1: Perplexity for LlaMA-3 8b; the lower the perplexity, the better.","url":"https://openreview.net/attachment?id=g4TZTVz2w9&name=pdf"},{"title":"arXiv:2503.04992v4 [cs.LG] 1 Jun 2025","url":"https://arxiv.org/pdf/2503.04992"},{"title":"EfficientQAT: Efficient Quantization-Aware Training for Large Language Models","url":"https://arxiv.org/pdf/2407.11062"},{"title":"Perplexity (Quality of Generation) Scores · ggml-org/llama.cpp · Discussion #406","url":"https://github.com/ggml-org/llama.cpp/discussions/406"},{"title":"Perplexity of Llama-3-8B on WikiText, varying the proportion of prefill... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Perplexity-of-Llama-3-8B-on-WikiText-varying-the-proportion-of-prefill-sparsified-using_fig7_383460804"},{"title":"llama.cpp/tools/perplexity/README.md at master · ggml-org/llama.cpp","url":"https://github.com/ggml-org/llama.cpp/blob/master/tools/perplexity/README.md"},{"title":"Which Quantization Should I Use? A Unified Evaluation of llama.cpp Quantization on Llama-3.1-8B-Instruct","url":"https://arxiv.org/html/2601.14277v1"},{"title":"MLPerf Training Adds Llama 3.1 8B Benchmark - MLCommons","url":"https://mlcommons.org/2025/10/training-llama-3-1-8b/"},{"title":"SqueezeLLM: Dense-and-Sparse Quantization","url":"https://arxiv.org/pdf/2306.07629"},{"title":"Llama 3.2 1B/3B and quantized 1B/3B models","url":"https://android.googlesource.com/platform/external/executorch/+/HEAD/examples/models/llama/README.md"}]
+
+Based on the search results, I found relevant information about Llama 3.1 8B performance metrics:
+
+## Llama 3.1 8B Perplexity Benchmarks
+
+LlaMA-3 8B achieves perplexity scores of 6.14 on WikiText2, 11.18 on PTB, and 9.45 on C4.
+
+## Activation Sparsity and Performance
+
+Activation sparsity can enable practical inference speedups in large language models (LLMs) by reducing the compute and memory-movement required for matrix multiplications during the forward pass. The search results reference evaluation of Llama-3-8B with varying levels of activation sparsity on WikiText, though specific numerical results on sparsity trade-offs weren't fully detailed in the search outputs.
+
+## Evaluation Methodology
+
+The Llama 3.1 8B benchmark references the C4 (Colossal Cleaned Common Crawl) dataset, though the 8B model's smaller parameter count and shorter training time require only a subset of the full dataset. The task force uses validation loss perplexity as the convergence criterion, with a target value of 3.3 established through extensive experiments.
+
+The search results indicate that WikiText-2 and C4 are standard evaluation corpora for assessing language model quality through perplexity metrics, and that sparsity-based optimizations are an active area of research for improving inference efficiency in these models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5980fdf-cf82-4ed9-b159-13fa2c416390",
+  "isSidechain": false,
+  "promptId": "65d3c25a-e237-4d59-b374-906e47bb212a",
+  "type": "user",
+  "uuid": "7d5d4782-b3c6-446b-ae91-b227fc13f1fe",
+  "toolUseResult": {
+    "query": "Llama 3.1 8B perplexity wikitext C4 activation sparsity benchmark evaluation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BJGSEkhiKwwDmvNMuXD6Kk",
+        "content": [
+          {
+            "title": "Table 1: Perplexity for LlaMA-3 8b; the lower the perplexity, the better.",
+            "url": "https://openreview.net/attachment?id=g4TZTVz2w9&name=pdf"
+          },
+          {
+            "title": "arXiv:2503.04992v4 [cs.LG] 1 Jun 2025",
+            "url": "https://arxiv.org/pdf/2503.04992"
+          },
+          {
+            "title": "EfficientQAT: Efficient Quantization-Aware Training for Large Language Models",
+            "url": "https://arxiv.org/pdf/2407.11062"
+          },
+          {
+            "title": "Perplexity (Quality of Generation) Scores · ggml-org/llama.cpp · Discussion #406",
+            "url": "https://github.com/ggml-org/llama.cpp/discussions/406"
+          },
+          {
+            "title": "Perplexity of Llama-3-8B on WikiText, varying the proportion of prefill... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Perplexity-of-Llama-3-8B-on-WikiText-varying-the-proportion-of-prefill-sparsified-using_fig7_383460804"
+          },
+          {
+            "title": "llama.cpp/tools/perplexity/README.md at master · ggml-org/llama.cpp",
+            "url": "https://github.com/ggml-org/llama.cpp/blob/master/tools/perplexity/README.md"
+          },
+          {
+            "title": "Which Quantization Should I Use? A Unified Evaluation of llama.cpp Quantization on Llama-3.1-8B-Instruct",
+            "url": "https://arxiv.org/html/2601.14277v1"
+          },
+          {
+            "title": "MLPerf Training Adds Llama 3.1 8B Benchmark - MLCommons",
+            "url": "https://mlcommons.org/2025/10/training-llama-3-1-8b/"
+          },
+          {
+            "title": "SqueezeLLM: Dense-and-Sparse Quantization",
+            "url": "https://arxiv.org/pdf/2306.07629"
+          },
+          {
+            "title": "Llama 3.2 1B/3B and quantized 1B/3B models",
+            "url": "https://android.googlesource.com/platform/external/executorch/+/HEAD/examples/models/llama/README.md"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Llama 3.1 8B performance metrics:\n\n## Llama 3.1 8B Perplexity Benchmarks\n\nLlaMA-3 8B achieves perplexity scores of 6.14 on WikiText2, 11.18 on PTB, and 9.45 on C4.\n\n## Activation Sparsity and Performance\n\nActivation sparsity can enable practical inference speedups in large language models (LLMs) by reducing the compute and memory-movement required for matrix multiplications during the forward pass. The search results reference evaluation of Llama-3-8B with varying levels of activation sparsity on WikiText, though specific numerical results on sparsity trade-offs weren't fully detailed in the search outputs.\n\n## Evaluation Methodology\n\nThe Llama 3.1 8B benchmark references the C4 (Colossal Cleaned Common Crawl) dataset, though the 8B model's smaller parameter count and shorter training time require only a subset of the full dataset. The task force uses validation loss perplexity as the convergence criterion, with a target value of 3.3 established through extensive experiments.\n\nThe search results indicate that WikiText-2 and C4 are standard evaluation corpora for assessing language model quality through perplexity metrics, and that sparsity-based optimizations are an active area of research for improving inference efficiency in these models."
+    ],
+    "durationSeconds": 6.5682530380000825
+  },
+  "sourceToolAssistantUUID": "e5980fdf-cf82-4ed9-b159-13fa2c416390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-12T03:02:37.445Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile my final review.
+
+Key findings from my research:
+
+1. **SPON venue**: arXiv page lists "ICML 2026" in metadata. v3 updated April 30, 2026. The paper text itself doesn't mention ICML 2026. This is plausible but not independently confirmed. The proposal is transparent about the basis ("venue confirmed via arXiv metadata updated on the April 30 notification date").
+
+2. **SPON benchmark count**: Table 2 has **5 benchmarks** (ARC-Challenge, ARC-Easy, BoolQ, PiQA, WinoGrande). 
+
+The proposal got this right—my earlier Round 3 review was incorrect on this point.
+
+3. **SPON numbers verified**: SPON 71.96 vs WINA 70.97 weighted average — verified correct.
+
+4. **FastForward verified**: All claims about FastForward (BCE + compensation, MMLU 67.17, r'=d_model/8, operates at inference) confirmed.
+
+5. **WINA verified**: 59.57% average at 50% model-level sparsity, dense 66.38%. Confirmed.
+
+6. **DIP**: Uses logit-matching distillation.
+
+7. **Mean-field argument**: No prior work found making this specific argument. Novel.
+
+8. **SVD Contextual Sparsity**: Confirmed to target ReGLU models, not SwiGLU. Proposal's characterization is accurate.
+
+9. **EMNLP 2026**: ARR deadline May 25, 2026 confirmed. Efficient Methods is a listed track.
+
+10. **Compensation network weight error**: The proposal claims ~4.72 MB, but the compensation network should be ~8 MB (4.2M params × 2 bytes). I think the 4.72 MB figure is actually the predictor size (2.36M params × 2 bytes = 4.72 MB), so there's a factual error here.
+
+11. **Benchmark mismatch**: User requires perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench, but the proposal evaluates on PIQA, ARC-c, WinoGrande, HellaSwag, MMLU, GSM8K, and HumanEval instead. This is a meaningful gap—the user specifically wants perplexity as a standard sparsity metric, plus LongBench, RULER, and MT-Bench, none of which appear in the proposal's evaluation.
+
+Adding perplexity and MT-Bench should be feasible within the 14-day timeline, but LongBench and RULER would represent significant additional work. This is a notable shortfall I need to flag in the review.
+
+Feasibility lands at 3.5 given the tight timeline and benchmark mismatch, though the auto_research framework helps. Clarity is strong at 4.5 for the exceptional detail and honest analysis, while impact sits at 3.5 since the work addresses important practitioner questions but within a narrow scope. The average comes to 3.75, which points toward a revise verdict rather than outright rejection. The three main issues—benchmark mismatch, the weight calculation error in the compensation network, and the unspecified allocation between MLP and attention sparsity—are all addressable, so this feels like constructive feedback rather than a fundamental flaw.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d5d4782-b3c6-446b-ae91-b227fc13f1fe",
+  "isSidechain": false,
+  "requestId": "req_011CawvuAhFuNzYxWiCKpUko",
+  "type": "assistant",
+  "uuid": "f211e8b8-134e-4e45-9758-7ee278f03f3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QhoBTJcKFQ9Bqyf1ynfTpH",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 71344,
+      "output_tokens": 3105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3105,
+          "cache_read_input_tokens": 71344,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-12T03:03:21.976Z_
+
+I've completed my independent verification. Let me compile the final review.
+
+**Summary of verification findings:**
+- SPON Table 2 has **5 benchmarks** (ARC-Challenge, ARC-Easy, BoolQ, PiQA, WinoGrande) — proposal is correct, Round 3 review was wrong
+- SPON numbers verified: 71.96 vs WINA 70.97 ✓
+- WINA 59.57% at 50% model-level sparsity, dense 66.38% ✓
+- FastForward: all claims verified (BCE + compensation, MMLU 67.17, r'=d_model/8, operates at inference) ✓
+- SVD Contextual Sparsity targets ReGLU, not SwiGLU ✓
+- EMNLP 2026 ARR deadline May 25, 2026 confirmed ✓
+- Mean-field BCE argument: no prior work found making this argument — genuinely novel
+- SPON ICML 2026: arXiv metadata lists it, but paper text doesn't mention ICML 2026; plausible but unconfirmed through official channels
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3.5, "rationale": "The mean-field formalization of BCE's limitation is genuinely novel (no prior work found), and the SPON+contextual composition study is the first of its kind. However, the core method — training a contextual predictor with KL instead of BCE — is an expected combination of SPON's KL training and FastForward's contextual predictor architecture. The four-condition ablation is well-designed but the methodological step is incremental."},
+    "feasibility": {"score": 3.5, "rationale": "Well-scoped for 14 days with auto_research (fixed rank, single model, single primary sparsity level, existing Triton kernels). However, the evaluation benchmarks do NOT match the user's requirements (missing perplexity/Wiki/C4, LongBench, RULER, MT-Bench), which would add significant evaluation burden if corrected. SPON reimplementation risk is mitigated by architectural simplicity and explicit fallback."},
+    "clarity": {"score": 4.5, "rationale": "Exceptionally detailed and honest. Precise experimental design with four-condition ablation, verified baseline numbers, honest wall-clock analysis (4-8:1 vs 37:1 FLOPs), grounded improvement targets with arithmetic justification, and explicit fallback strategies for each negative outcome. Best-in-class proposal writing."},
+    "impact": {"score": 3.5, "rationale": "Answers two practically important questions (does KL subsume error compensation? do static+contextual corrections compose?) with clear implications for system design. The mean-field analysis provides theoretical guidance for future predictor design. But scope is narrow (single model, decode-only, 50% sparsity) and the magnitude of improvement over WINA (1.5-3 points) is modest."}
+  },
+  "issues": [
+    "BENCHMARK MISMATCH WITH USER REQUIREMENTS: The user explicitly requires evaluation on perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, and MT-Bench. The proposal evaluates on PIQA, ARC-c, WinoGrande, HellaSwag, MMLU, GSM8K, and HumanEval — covering only 2 of 6 required benchmarks. Missing perplexity (trivial to add), LongBench and RULER (important for testing whether the sparsity predictor generalizes to long contexts, especially given training on short SlimPajama sequences), and MT-Bench (instruction-following quality under sparsity). This is a significant gap versus user requirements.",
+    "COMPENSATION NETWORK WEIGHT CALCULATION ERROR: The proposal states 'FastForward's compensation MLP adds ~4.72 MB of weights per layer.' With r'=d_model/8=512 on Llama-3.1-8B (d_model=4096), the compensation network has Wcomp1 (4096×512) + Wcomp2 (512×4096) = 4,194,304 params × 2 bytes (FP16) ≈ 8.0 MB per layer, not 4.72 MB. The 4.72 MB figure suspiciously matches the predictor's own weight footprint (2.36M params × 2 bytes = 4.72 MB), suggesting a copy-paste error. This actually strengthens the proposal's argument (compensation overhead is even higher), but the factual error undermines credibility.",
+    "MLP VS ATTENTION SPARSITY ALLOCATION UNSPECIFIED: At 50% model-level sparsity, the budget must be distributed between MLP and attention layers. The proposal states 'attention layers use training-free WINA-style heuristic pruning to match the model-level sparsity budget' but doesn't specify the MLP/attention allocation ratio. WINA uses a learned per-layer allocation via weight-informed scoring. Since the proposal's predictor only targets MLP blocks, the effective MLP sparsity could be significantly higher than 50% (if most of the budget is allocated to MLP) or lower (if attention absorbs significant sparsity). This allocation directly affects the improvement target arithmetic and should be specified.",
+    "SPON ICML 2026 VENUE: ArXiv metadata lists ICML 2026 and v3 was updated April 30 (coinciding with notification dates), but the paper text itself does not mention ICML 2026, and no official ICML 2026 accepted paper list confirmation was found. The proposal is transparent about the evidence basis ('venue confirmed via arXiv metadata updated on the April 30 notification date'), which is adequate. Minor concern — recommend adding 'per arXiv metadata' qualifier.",
+    "NO LONG-CONTEXT EVALUATION RISKS MISSING A KEY FAILURE MODE: The predictor is trained on SlimPajama calibration data (presumably short sequences). LongBench and RULER would test whether the learned neuron importance patterns generalize to long-context settings. If the predictor overfits to short-context activation patterns, it could fail catastrophically on long sequences — a plausible failure mode that the current benchmark set would not detect. This is both a user-requirement gap and a scientific gap."
+  ],
+  "feedback": "The proposal is genuinely close to passing (Round 6 of 10) and has addressed every major issue from prior rounds excellently. Three changes would push this over the threshold:\n\n(1) **Align benchmarks with user requirements**: Add perplexity (Wiki/C4) — this is trivial and standard for sparsity papers. Add at least one long-context benchmark (LongBench or RULER) to test predictor generalization beyond training distribution. Add MT-Bench for instruction-following quality. Drop PIQA and HellaSwag if needed to manage evaluation time — these are less discriminative for sparsity methods. The resulting set (perplexity, ARC-c, WinoGrande, MMLU, GSM8K, HumanEval, MT-Bench, LongBench) covers the user's requirements while staying manageable.\n\n(2) **Fix the compensation network weight calculation**: Replace '~4.72 MB' with '~8.0 MB' (or compute exactly). This strengthens your argument — the compensation network is heavier than you claimed, making the KL-without-compensation alternative even more attractive. Also specify the MLP/attention sparsity allocation: state whether you use WINA's per-layer allocation or a fixed split, and what the effective MLP sparsity is at 50% model-level.\n\n(3) **Briefly discuss long-context generalization**: Add one sentence acknowledging that the predictor is trained on short sequences and that LongBench/RULER results will test generalization. If long-context performance degrades, this is itself a finding (predictor-based sparsity may require context-length-aware training). This also makes the paper more relevant to the user's interest in 'cache-aware methods for new workloads (long thinking traces, agent loops, RAG).'",
+  "reason": "Strong proposal with verified claims, novel theoretical contribution (mean-field analysis), and well-designed experiments, but benchmark set mismatches user requirements (missing perplexity, LongBench, RULER, MT-Bench) and contains a minor factual error in compensation network weight calculation."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f211e8b8-134e-4e45-9758-7ee278f03f3c",
+  "isSidechain": false,
+  "requestId": "req_011CawvuAhFuNzYxWiCKpUko",
+  "type": "assistant",
+  "uuid": "ed236651-d7e4-49bf-b122-7efe05173141",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QhoBTJcKFQ9Bqyf1ynfTpH",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1058,
+      "cache_read_input_tokens": 71344,
+      "output_tokens": 3105,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3105,
+          "cache_read_input_tokens": 71344,
+          "cache_creation_input_tokens": 1058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ed236651-d7e4-49bf-b122-7efe05173141",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ed236651-d7e4-49bf-b122-7efe05173141",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "KL-distilled contextual sparsity for SwiGLU LLMs",
+  "sessionId": "9e9fcc6c-9e4e-495d-bc17-924a8cad9d61"
+}
+```
+
+---

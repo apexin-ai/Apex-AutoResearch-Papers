@@ -1,0 +1,1686 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-09 (UTC).** ## Original idea { "tit
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-1/5fb5deac-56f4-4bbc-9e9a-afeea66b9a26.jsonl`
+- **Structured JSON:** [`e89479d2060f817711a2.json`](../../sessions/e8/e89479d2060f817711a2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-09T20:33:24.441Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-09T20:33:24.441Z",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-09 (UTC).**\n\n## Original idea\n{\n  \"title\": \"PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Search\",\n  \"core_problem\": \"Test-time compute scaling via PRM-guided tree search (Best-of-N, beam search, MCTS) creates N simultaneous KV cache instances that grow with reasoning depth. Current systems either store full-precision KV for all trajectories (prohibitive memory at N≥8) or apply uniform compression that discards useful state from high-value trajectories alongside low-value ones. Four classes of prior work fail to close this gap: (1) head-level compression methods (RLKV, arXiv:2510.08525) identify critical attention heads within a single inference pass but cannot exploit cross-trajectory quality differentials — they still allocate the same per-trajectory KV budget regardless of whether a branch is winning or losing; (2) training-based eviction methods (ForesightKV, arXiv:2602.03203; DMS in 'Inference-Time Hyper-Scaling', NeurIPS 2025, arXiv:2506.05345) require supervised or RL training overhead and apply a single learned policy uniformly to every trajectory; (3) layer-sensitivity quantization (PM-KVQ, arXiv:2505.18610) addresses quantization error accumulation within a single CoT but is agnostic to the relative quality of concurrent trajectories; (4) trajectory-count pruning methods (ETS, arXiv:2502.13575, arXiv preprint Feb 2025) use PRM scores combined with semantic diversity coverage in an integer linear program to decide which entire trajectories to keep or discard — a binary pruning decision. ETS achieves 1.8× KV reduction by eliminating whole subtrees, but applies no per-trajectory precision differentiation to the surviving trajectories. No method uses the PRM's per-step trajectory quality signal to set differential per-trajectory KV compression precision budgets across the N simultaneous search branches, despite those scores being computed for free during search. PSG-KVC occupies a distinct position: it composes with ETS's binary pruning by adding continuous precision-based compression as a second dimension of memory savings applied to the surviving trajectory set.\",\n  \"opportunity\": \"PRM step scores are already computed for each trajectory during tree search; these scores provide a direct, training-free signal for how much KV precision each trajectory deserves relative to its peers in the current search state. The key insight is to assign compression tiers by online rank rather than absolute threshold: at each PRM evaluation step boundary, sort all active trajectories by cumulative PRM score and assign tiers by rank. For N≥8 (the primary evaluation regime), the default 3-tier split is: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4. For N=4 (boundary case), a 2-tier fallback is used — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers that provide insufficient statistical differentiation; PRM score ties use stable sorting by trajectory index. This rank-based adaptive assignment is naturally robust to distribution shift across problem difficulties (hard vs. easy problems simply shift all PRM scores together; relative ranks remain informative), eliminating the calibration-transfer failure mode of fixed absolute thresholds. Step-boundary tier transitions (including promotions from INT4→FP16 for trajectories whose rank improves) are implemented as between-step buffer copy operations using standard bitsandbytes INT4→FP16 conversion — these happen at PRM evaluation points between reasoning steps, not during active beam generation, so no custom CUDA kernel is required. Recent empirical work confirms that KV-only INT4 quantization (as distinct from weight+activation quantization studied by 'Quantization Hurts Reasoning?', arXiv:2504.04823) is near-lossless on reasoning models when applied selectively (MixKVQ, ThinKV, PM-KVQ), and we validate this specifically for bottom-quartile PRM trajectories as a prerequisite experiment. Crucially, even if bottom-quartile INT4 compression induces marginal quality degradation, these trajectories are expected to be pruned within 1–3 steps by the PRM anyway — so the impact on final search accuracy is bounded. Prefix KV is shared across all trajectories via RadixAttention-style deduplication, concentrating per-trajectory overhead in the divergent suffix only. PSG-KVC is fully composable with ETS's algorithmic diversity-efficiency gains and is the first method to use PRM scores as a cross-trajectory differential compression precision signal.\",\n  \"landscape\": \"ETS (Efficient Tree Search for Inference-Time Scaling, arXiv:2502.13575, arXiv preprint Feb 2025; under review) improves inference-time scaling throughput 1.4× via diversity-aware trajectory pruning: it uses REBASE reward-weighted sampling combined with an integer linear program that maximizes quality coverage (via exp(Ri/TR)-weighted trajectory importance) plus a semantic diversity term (hierarchical agglomerative clustering coverage), achieving 1.8× average KV cache reduction by eliminating whole trajectory subtrees and increasing tree-internal KV sharing. ETS uses PRM scores as a binary keep/discard signal; PSG-KVC is orthogonal, adding continuous per-trajectory precision allocation to the survivors ETS retains. PSG-KVC is composable with ETS. 'Inference-Time Hyper-Scaling with KV Cache Compression' (NeurIPS 2025, arXiv:2506.05345) introduces Dynamic Memory Sparsification (DMS) — a training-light adaptive token eviction method that delays eviction to preserve critical tokens — achieving 8× cache compression; DMS applies a single trained eviction policy identically across all trajectories and does not condition compression rates on per-trajectory PRM quality differentials. 'Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning' (ICLR 2026, arXiv:2601.20326) repurposes KV caches as lightweight embeddings for path selection — uses KV as a selector signal rather than a compressible resource with quality-differentiated budgets. PM-KVQ (arXiv:2505.18610, NeurIPS 2025) applies progressive mixed-precision quantization to long-CoT LLMs based on transformer-layer sensitivity to cumulative quantization error, not trajectory-level PRM quality; is single-trajectory and training-dependent on positional interpolation calibration. R-KV (arXiv:2505.24133, NeurIPS 2025) compresses KV via attention-based intra-trajectory redundancy scoring; is single-trajectory and ignores multi-trajectory PRM-score differentials. 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (RLKV, arXiv:2510.08525) uses reinforcement learning to identify which attention heads are essential for reasoning, allocating full KV to critical heads and aggressively compressing others; achieves 20–50% cache reduction. RLKV differs from PSG-KVC on two orthogonal axes: (1) granularity — RLKV compresses within a single trajectory at head level, PSG-KVC compresses differentially across trajectories at trajectory level; (2) signal — RLKV requires RL training to learn head importance, PSG-KVC uses PRM scores computed for free during search with no additional training. PSG-KVC and RLKV are composable: within each PSG-KVC tier, RLKV's head-level policy could be applied for additional compression. ForesightKV (arXiv:2602.03203) learns optimal KV pair eviction using future attention scores via a Golden Eviction algorithm (supervised) plus GRPO (RL); consistently outperforms prior eviction methods at half cache budget on AIME 2024/2025. ForesightKV is single-trajectory, requires training, and applies uniform eviction policy across all concurrent beams. PSG-KVC is training-free, multi-trajectory, and applies differential budgets based on live PRM rank. ThinKV (arXiv:2510.01290) uses attention sparsity to identify thought importance and applies hybrid quantization-eviction per thought segment; near-lossless at <5% KV cache budget. ThinKV is single-trajectory and uses attention sparsity signal, not cross-trajectory PRM quality signal. TriAttention (arXiv:2604.04921, April 2026, MIT/NVIDIA) achieves 10.7× KV memory reduction on AIME25 with 2.5× throughput gain using trigonometric KV compression: query and key vectors maintain stable non-zero centers across positions in pre-RoPE space, and TriAttention exploits this Q/K concentration via trigonometric series to score key importance by positional distance and vector norms, avoiding the instability of compression in post-RoPE rotation space. TriAttention is single-trajectory, training-free, and attention-based — it addresses intra-trajectory KV redundancy. PSG-KVC is cross-trajectory, PRM-rank-gated, and quantization-based — it allocates differential precision budgets across concurrent search branches using live PRM quality signals. The two are composable: TriAttention's per-trajectory compression could be applied within each PSG-KVC tier for additional intra-trajectory savings. 'Hold Onto That Thought: Assessing KV Cache Compression On Reasoning' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) benchmarks token-eviction strategies (H2O, SnapKV-D, R-KV, StreamingLLM, KNorm) on long-reasoning tasks; finds attention-based heavy-hitter eviction (H2O, SnapKV-D) dominates for reasoning models and that low-budget eviction can paradoxically produce longer traces. This paper does not test quantization-based compression; its eviction-method characterization motivates PSG-KVC's inclusion of R-KV-style eviction as a baseline and establishes that existing compression benchmarks focus on eviction, leaving INT4 KV quantization on reasoning tasks under-evaluated — directly motivating PSG-KVC's prerequisite validation experiment. SGLang RadixAttention (NeurIPS 2024, arXiv:2312.07104) enables shared-prefix KV deduplication, which PSG-KVC uses as infrastructure. 'Quantization Hurts Reasoning?' (arXiv:2504.04823, COLM 2025) finds that weight+activation quantization (W4A8 and below) causes significant reasoning accuracy degradation; KV-only INT4 quantization is shown to be near-lossless (≤1% drop) in concurrent work, and PSG-KVC validates INT4 KV safety for bottom-quartile trajectories as a prerequisite experiment. Zero papers found that use PRM scores as a dynamic cross-trajectory signal for per-trajectory KV cache compression precision in multi-trajectory tree search.\",\n  \"approach\": \"We implement PRM-Score-Gated KV Compression (PSG-KVC) in a focused 16-day experiment, extending the open-source ETS codebase (SqueezeAILab/ETS) with five targeted components.\\n\\n**Component 1 — Online Adaptive Percentile Tracker (Days 3–4):** At each PRM evaluation step boundary, compute the cumulative PRM score for each active trajectory and sort by rank. For N≥8 (the primary evaluation regime), assign tiers by rank: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4, yielding a 2/4/2 split at N=8 and 4/8/4 at N=16. For N=4 (boundary case), use a 2-tier fallback — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers; this yields a 2/2 split with meaningful differentiation. PRM score ties use stable sort by trajectory index. This O(N log N) rank sort replaces offline calibration and is naturally invariant to absolute PRM score distributions across problem difficulties. PSG-KVC's strongest gains are at N∈{8,16}; N=4 results are presented with the 2-tier variant and flagged as a boundary case.\\n\\n**Component 2 — Step-Boundary Tier Transitions (Days 4–5):** All compression tier changes (including INT4→INT8→FP16 promotions on rank improvement and INT4 discards on pruning) happen at PRM evaluation points — between beam expansion steps, not during active generation. Promotions use standard bitsandbytes INT4→FP16 buffer copy (not a custom CUDA kernel); allocation of the new higher-precision buffer precedes the next generation step. Demotions (rank drops) copy FP16→INT8 or INT8→INT4 similarly. Pruned trajectories have their KV buffers immediately freed regardless of tier.\\n\\n**Component 3 — Prefix Sharing via RadixAttention (Day 6):** Shared-prefix KV (problem stem + common branching-point tokens) is stored at FP16 and deduplicated across all N trajectories via RadixAttention; only divergent suffix KV falls under PSG-KVC compression, concentrating savings where trajectories actually differ.\\n\\n**Component 4 — INT4 KV Validation Experiment (Days 1–3, prerequisite):** Phase A (Days 1–2): Run N=8 beam search on 100 held-out MATH-500 problems under full FP16, INT8, and INT4 for all trajectories. Measure: (a) INT4-induced PRM step score bias; (b) change in best-of-N trajectory selection vs. FP16; (c) empirical α — the shared-prefix fraction defined as the ratio of shared-prefix KV tokens to total KV tokens per trajectory — reported across the 100-problem sample to ground the composability formula K_system ≈ K_ETS-baseline × (α + (1−α)/r) in measured rather than projected values, replacing the estimated range α ∈ {0.4–0.6}. Phase B (Day 3, post-ETS population): Run ETS first to obtain post-ETS survivors, then apply INT4 to the bottom 25% of survivors and measure PRM score bias and early-pruning rate relative to FP16 in subsequent ETS steps. This directly tests whether INT4 is safe for the post-ETS bottom-quartile population — which consists of ETS-retained diversity-preserving trajectories with lower PRM scores, not globally weakest trajectories — and complements the 'Hold Onto That Thought' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) characterization of eviction methods on reasoning tasks by providing quantization-specific safety data. If INT4-induced degradation causes >2% change in best-of-N answer selection, raise the minimum tier to INT8.\\n\\n**ETS+PSG-KVC Composability Analysis (formalized in Days 8–14 evaluation reporting):** ETS and PSG-KVC operate on distinct memory dimensions and compose without interference. ETS's integer linear program — maximizing quality-weighted coverage (REBASE exp(Ri/TR) weights) plus semantic diversity coverage (hierarchical clustering) subject to tree-size penalty — prunes entire trajectory subtrees, yielding a net 1.8× KV reduction by eliminating whole beams and increasing tree-internal KV sharing. PSG-KVC then applies differential precision compression to the divergent-suffix KV of ETS-surviving trajectories. These are orthogonal reductions: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories. The combined gain over uncompressed N-trajectory baseline is approximately: K_system ≈ K_ETS-baseline × (α + (1−α)/r), where α is the empirically measured shared-prefix fraction from Phase A of the INT4 validation experiment and r ∈ {2.0, 2.5} is PSG-KVC's divergent-suffix compression ratio. For α=0.5 and r=2.25, PSG-KVC contributes an additional 1.39× reduction over the ETS baseline, giving a combined ≈2.5× total reduction over uncompressed N-trajectory KV; Phase A's empirical α measurement will replace this projected example with a grounded estimate. Crucially, the post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of trajectories that ETS retained for semantic diversity reasons despite lower PRM scores — they are diversity-preserving exploratory branches, not high-promise candidates. INT4 is particularly well-justified for this population: if INT4-induced degradation causes ETS to prune them 1–2 steps earlier than FP16 would, the result is additional memory savings at negligible quality cost (these trajectories were already ETS-pruning candidates). Phase B of the INT4 validation experiment directly validates this safety argument for the post-ETS subpopulation.\\n\\n**Baselines:** (a) ETS + full FP16 KV (uncompressed beam search, memory upper bound); (b) ETS + uniform INT4 KV for all trajectories (PM-KVQ-style); (c) ETS + attention-score-gated eviction (R-KV style); (d) ETS + ForesightKV eviction policy (trained single-trajectory policy applied uniformly across beams).\\n\\n**Evaluation — Math Reasoning (Days 9–14):** DeepSeek-R1-Distil-Qwen-14B on MATH-500 (full, 500 problems) and AIME 2024 (30 problems), with N∈{4,8,16} beam trajectories on 2×A100 80GB nodes. Primary metrics: KV memory per trajectory (GB), wall-clock throughput (tokens/sec), pass@1 accuracy vs. uncompressed baseline.\\n\\n**Evaluation — General NLP (Days 14–15):** AlpacaEval 2 (805 prompts) with N=4 best-of-N using DeepSeek-R1-Distil-Qwen-14B as a compression quality preservation test under best-of-N selection. PSG-KVC's rank-based tier assignment requires step-level PRM signals that do not exist for instruction-following prompts; this experiment therefore uses fixed-split compression with static trajectory assignment and no PRM rank ordering. Three policies are compared: (a) all-FP16; (b) all-INT8; (c) fixed-split (trajectories 1–2 → FP16, trajectories 3–4 → INT4 by generation order). ArmoRM-Llama3-8B-v0.1 (from the RewardBench leaderboard) scores each completed candidate response to select the best-of-4; selected responses are evaluated by the AlpacaEval 2 GPT-4 judge (length-controlled win rate vs. GPT-4-turbo-1106). This experiment is labeled explicitly in the paper as 'fixed-split compression with ArmoRM selection — compression quality preservation test,' not a PSG-KVC differential-mechanism demonstration. It provides EMNLP reviewers evidence that coarse compression does not degrade general NLP quality under best-of-N selection, complementing the math-reasoning results where PSG-KVC's full PRM-rank mechanism operates. Secondary metrics: KV memory reduction and tokens/sec during N=4 generation.\\n\\n**Ablations (Days 15–16):** Prefix sharing on/off (to isolate RadixAttention contribution); 2-tier (FP16/INT4) vs. 3-tier (FP16/INT8/INT4) compression; rank threshold sensitivity (top-20%/mid-60%/bot-20% vs. baseline top-25%/mid-50%/bot-25%).\\n\\n**Expected results:** 2–2.5× KV memory reduction for the divergent-suffix portion at N=16 (on top of prefix-sharing baseline), yielding ≈1.39× additional reduction over the ETS-alone baseline and ≈2.5× combined reduction over uncompressed N=16; <1% accuracy degradation versus uncompressed beam search; composable with ETS's 1.4× throughput gain.\\n\\n**Limitations (to be stated in paper):** (1) Precision-promotion asymmetry: when a trajectory is promoted from INT4→FP16, historical divergent-suffix KV tokens from before the promotion point remain at INT4 precision. Future generation attends over a precision-mixed KV cache (INT4 historical suffix tokens, FP16 new tokens), carrying residual quantization error from early reasoning steps. Two factors bound the impact: (a) the problem-stem prefix is stored at FP16 for all trajectories via prefix sharing — only post-branching suffix tokens are affected; (b) the prerequisite INT4 validation experiment directly measures per-token quantization error for the target model class. Full remediation — re-encoding the suffix KV at FP16 upon promotion — is computationally expensive and deferred to future work. (2) Minimum trajectory count: the 3-tier policy's full differentiation requires N≥8; N=4 uses a 2-tier fallback with reduced but nonzero savings. (3) AlpacaEval 2 evaluation uses fixed-split compression rather than PSG-KVC's PRM-rank mechanism, as instruction-following prompts lack step-level quality signals; the AlpacaEval 2 result validates compression quality preservation under best-of-N selection but does not demonstrate the differential mechanism.\",\n  \"resource_estimate\": {\n    \"focused_16day_plan\": {\n      \"gpu_hours\": \"~120–150 H100-hours total\",\n      \"breakdown\": \"INT4 validation experiment Phase A+B (Days 1–3): ~12 H100-hours (extended from 8h to include post-ETS population testing and empirical α measurement); main MATH-500 experiments (4 baselines + PSG-KVC × N∈{4,8,16}): ~60 H100-hours; AIME 2024 experiments (same 5 methods × 3 N-values, 30 problems each): ~15 H100-hours; AlpacaEval 2 N=4 evaluation (3 fixed-split compression policies, including ArmoRM scoring): ~14 H100-hours; ablations (prefix sharing ×2, tier count ×2, threshold sensitivity ×3): ~25 H100-hours; buffer for reruns: ~15 H100-hours\",\n      \"gpu_configuration\": \"2×A100 80GB (≈1 H100-equivalent per node); 14B model fits comfortably; N=16 fits within 160GB aggregate KV budget at FP16 baseline\",\n      \"timeline\": \"16 days (targeting EMNLP 2026 ARR May 25 deadline; INT4 Phase B runs in parallel with Component 1 implementation on the second A100 node to preserve timeline)\",\n      \"team\": \"1–2 researchers; key decision gates: Day 3 (INT4 Phase A+B validation result — if >2% best-of-N shift, raise floor to INT8) and Day 9 (ETS integration test before full MATH-500 run)\",\n      \"estimated_gpu_cost\": \"~$360–450 at ~$3/h A100 rental (Lambda Labs / Vast.ai)\",\n      \"risk_mitigation\": \"Step-boundary upcast copy (between-step, using bitsandbytes) eliminates custom CUDA kernel risk; online rank-based thresholding eliminates calibration-transfer risk; INT4 Phase B (post-ETS population) catches quantization confounding for the specific population PSG-KVC compresses; ForesightKV baseline requires training — use authors' released checkpoint if available, otherwise substitute with attention-score-gated eviction and note ForesightKV as future comparison; N=4 2-tier fallback is pre-specified to avoid any ambiguity at the boundary case; AlpacaEval 2 fixed-split framing is pre-specified to avoid any ambiguity about PSG-KVC mechanism scope\"\n    },\n    \"manual\": {\n      \"gpu_hours\": \"~150 H100-hours\",\n      \"timeline\": \"16 days (targeting EMNLP 2026 deadline)\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"~$450 at ~$3/h A100 rental\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~130 H100-hours\",\n      \"gpu_utilization\": \"~60–70%: agent queues experiments continuously; human approval gates at Day 3 INT4 validation decision and ablation scope confirmation\",\n      \"timeline\": \"10–12 days with ~20 min/day check-in\",\n      \"team\": \"1 researcher\",\n      \"claude_api_cost\": \"$80–150 (~800–1500 turns at ~$0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"~$390 at ~$3/h A100 rental\"\n    },\n    \"auto_research\": {\n      \"note\": \"Scoped to same 16-day envelope as manual; auto mode runs ablations in parallel and completes in ~7–10 days using 4 A100 nodes instead of 2\",\n      \"gpu_hours\": \"~160 H100-hours (same scope as focused plan; parallelism reduces wall-clock, not total compute)\",\n      \"gpu_utilization\": \"~85%\",\n      \"timeline\": \"7–10 days with 4 A100 nodes\",\n      \"team\": \"0 (2h harness setup)\",\n      \"claude_api_cost\": \"$150–300 (~1500–3000 turns)\",\n      \"estimated_gpu_cost\": \"~$480 at ~$3/h A100 rental\",\n      \"stopping_criterion\": \"Ablation loop halts when 3-tier vs. 2-tier accuracy difference is <0.3% on MATH-500 OR threshold sensitivity curve flattens (Δaccuracy < 0.1% per 5-percentile shift) — whichever comes first\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR deadline May 25, 2026 — confirmed open; Efficient Methods for NLP track; AlpacaEval 2 N=4 fixed-split compression quality preservation test directly supports this framing)\",\n    \"AAAI 2027 (deadline TBD, historically August–September; conference February 2027)\",\n    \"ICLR 2027 (deadline TBD, historically September–October; no official CFP yet as of May 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"ETS: Efficient Tree Search for Inference-Time Scaling (arXiv:2502.13575, arXiv preprint Feb 2025; under review)\",\n    \"Inference-Time Hyper-Scaling with KV Cache Compression (NeurIPS 2025, arXiv:2506.05345)\",\n    \"Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning (ICLR 2026, arXiv:2601.20326)\",\n    \"PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs (arXiv:2505.18610, NeurIPS 2025)\",\n    \"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models (arXiv:2505.24133, NeurIPS 2025)\",\n    \"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression (RLKV, arXiv:2510.08525)\",\n    \"ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution (arXiv:2602.03203)\",\n    \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models (arXiv:2510.01290)\",\n    \"TriAttention: Efficient Long Reasoning with Trigonometric KV Compression (arXiv:2604.04921, April 2026)\",\n    \"Hold Onto That Thought: Assessing KV Cache Compression On Reasoning (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning)\",\n    \"Quantization Hurts Reasoning? An Empirical Study on Quantized Reasoning Models (arXiv:2504.04823, COLM 2025)\",\n    \"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning (arXiv:2512.19206)\",\n    \"SGLang: Efficient Execution of Structured Language Model Programs (arXiv:2312.07104, NeurIPS 2024)\",\n    \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (arXiv:2025)\"\n  ],\n  \"description\": \"PRM-Score-Gated KV Compression (PSG-KVC) addresses the memory bottleneck in PRM-guided tree search: N parallel trajectories generate N KV caches growing with reasoning depth, yet no existing method conditions per-trajectory KV compression precision on the PRM scores already computed for free during search. ETS (arXiv:2502.13575, arXiv preprint Feb 2025) makes the closest contact — its ILP uses PRM scores plus semantic diversity coverage to prune entire trajectory subtrees (1.8× KV reduction) — but applies no precision differentiation to surviving trajectories. The current single-trajectory SOTA, TriAttention (arXiv:2604.04921, April 2026), achieves 10.7× intra-trajectory KV reduction on AIME25 via trigonometric Q/K concentration compression; TriAttention and PSG-KVC are orthogonal (intra-trajectory attention-based vs. cross-trajectory PRM-rank-gated) and composable. PSG-KVC composes with ETS as a second, orthogonal memory-reduction dimension: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories, yielding a combined ≈2.5× total KV reduction over uncompressed N-trajectory baseline (exact multiplier grounded by empirical α measurement in the INT4 validation experiment). PSG-KVC introduces three novel components: (1) an online adaptive percentile tracker that at each PRM step boundary sorts active trajectories by cumulative score and assigns KV tiers by rank (top 25% → FP16, middle 50% → INT8, bottom 25% → INT4 for N≥8; 2-tier top-50%/bottom-50% fallback for N=4 to avoid single-trajectory tiers), making compression automatically robust to problem-difficulty distribution shift without calibration data; (2) step-boundary tier transitions that implement promotions (INT4→FP16) as standard between-step bitsandbytes buffer copies — occurring at PRM evaluation points, not during active beam generation — eliminating custom CUDA kernel engineering risk; (3) RadixAttention-based prefix sharing that confines per-trajectory storage to divergent suffixes only, concentrating compression savings where trajectories actually differ. PSG-KVC is training-free and composable with ETS. The post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of ETS-retained diversity-preserving trajectories with lower PRM scores — precisely the population for which early pruning from INT4 degradation incurs minimal quality cost. A prerequisite two-phase INT4 KV validation experiment (Phase A: uniform INT4 on all trajectories, also measuring empirical shared-prefix fraction α to ground the composability formula; Phase B: INT4 on post-ETS bottom quartile specifically) directly validates safety for this population, addressing the 'Quantization Hurts Reasoning?' concern (arXiv:2504.04823) and complementing 'Hold Onto That Thought' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning), which benchmarks eviction-based compression on reasoning but does not test quantization. Evaluated with DeepSeek-R1-Distil-Qwen-14B on MATH-500 and AIME 2024 with N∈{4,8,16} beam trajectories (PSG-KVC's full PRM-rank differential mechanism), plus an AlpacaEval 2 N=4 fixed-split compression quality preservation test (all-FP16 vs. all-INT8 vs. fixed-split FP16/INT4 with ArmoRM-Llama3-8B-v0.1 selection) — labeled explicitly as a compression quality preservation test, not a PSG-KVC mechanism demonstration, since instruction-following prompts lack the step-level PRM signals required for rank-based tier assignment. A limitations section acknowledges precision-promotion asymmetry (promoted trajectories carry residual INT4 error in pre-promotion suffix KV) and the AlpacaEval 2 scope restriction.\",\n  \"project_name\": \"prm_gated_kv_compress\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 4)\nIssues: [\"MODERATE — Evaluation breadth mismatch with EMNLP Efficient Methods track: The user's stated evaluation requirements include MMLU, MT-Bench, LongBench, and RULER, none of which appear in the proposal. DMS (NeurIPS 2025) succeeded with MATH-500+AIME+GPQA Diamond+LiveCodeBench; PSG-KVC's evaluation is thinner (MATH-500, AIME 2024, AlpacaEval 2). Adding one general-capability benchmark—MT-Bench N=4 best-of-N with an outcome RM, or MMLU 5-shot perplexity under compressed KV—would directly address EMNLP reviewers' 'does this work beyond math?' concern.\", \"MODERATE — Modest standalone impact story: PSG-KVC's 1.39× incremental reduction over ETS is real but may read as a minor add-on. The paper does not compute the combined three-way gain (TriAttention within-trajectory × ETS trajectory-pruning × PSG-KVC cross-trajectory precision), which would give a much stronger motivation for the method. Given TriAttention achieves 10.7× single-trajectory compression, the N-parallel-trajectory memory wall remains even with TriAttention applied, and PSG-KVC addresses exactly that residual; this should be argued explicitly.\", \"MINOR — ETS preprint status risk: ETS (arXiv:2502.13575) remains unaccepted after 15 months of review (last revised June 2025). PSG-KVC's experiments entirely depend on ETS infrastructure and baselines. If ETS's algorithm changes significantly in revision, PSG-KVC's numeric claims shift. The paper should include a standalone N-trajectory beam search baseline (without ETS pruning) as the primary memory reference, with ETS+PSG-KVC as the combined system comparison—this makes PSG-KVC's contribution legible independently of ETS's publication outcome.\", \"MINOR — AlpacaEval 2 fixed-split provides limited new evidence: INT4 KV safety for instruction-following is already established by PM-KVQ (up to 8% improvement over SOTA with same budget) and concurrent compression papers. The fixed-split experiment (trajectories 1–2 FP16, trajectories 3–4 INT4 by index) with ArmoRM selection essentially tests uniform INT4 compression on half the trajectories; EMNLP reviewers familiar with PM-KVQ may not find this informative. The experiment should be explicitly justified in the paper as verifying compression safety in the non-PRM context, citing prior work that doesn't cover the N=4 best-of-N selection scenario specifically.\"]\nFeedback: All four Round 3 issues are verified as properly addressed: AlpacaEval 2 is correctly reframed as a fixed-split compression quality preservation test; arXiv:2506.05345 carries its NeurIPS 2025 venue; TriAttention (arXiv:2604.04921) is in the landscape with a composability note; and empirical α measurement is built into Phase A to ground the composability formula. The novelty gap is real—no concurrent paper found using PRM rank for differential cross-trajectory KV precision. The proposal is close to 'pass' but needs two fixable additions: (1) Add one general NLP benchmark from the EMNLP Efficient Methods expected set. The simplest path: run MATH-500 + MT-Bench N=4 with a small outcome RM (e.g., ArmoRM, which is already used in AlpacaEval 2) to score completed responses and select best-of-4—this takes ~10 H100-hours within budget and gives EMNLP reviewers evidence beyond math reasoning. (2) Strengthen the impact narrative: compute and present the three-way composable gain (ETS trajectory-pruning × PSG-KVC cross-trajectory precision × TriAttention intra-trajectory compression) to show PSG-KVC fills a distinct dimension that survives even when single-trajectory compression is fully optimized. This costs no additional experiments—it is a theoretical calculation plus a motivating paragraph. With these two additions, the paper is EMNLP Findings quality and potentially Main track with a strong rebuttal on the impact story.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.5 到 3.8，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-09T20:33:24.445Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-09T20:33:24.445Z",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 3 · 2026-05-09T20:33:24.481Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-09 (UTC).**
+
+## Original idea
+{
+  "title": "PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Search",
+  "core_problem": "Test-time compute scaling via PRM-guided tree search (Best-of-N, beam search, MCTS) creates N simultaneous KV cache instances that grow with reasoning depth. Current systems either store full-precision KV for all trajectories (prohibitive memory at N≥8) or apply uniform compression that discards useful state from high-value trajectories alongside low-value ones. Four classes of prior work fail to close this gap: (1) head-level compression methods (RLKV, arXiv:2510.08525) identify critical attention heads within a single inference pass but cannot exploit cross-trajectory quality differentials — they still allocate the same per-trajectory KV budget regardless of whether a branch is winning or losing; (2) training-based eviction methods (ForesightKV, arXiv:2602.03203; DMS in 'Inference-Time Hyper-Scaling', NeurIPS 2025, arXiv:2506.05345) require supervised or RL training overhead and apply a single learned policy uniformly to every trajectory; (3) layer-sensitivity quantization (PM-KVQ, arXiv:2505.18610) addresses quantization error accumulation within a single CoT but is agnostic to the relative quality of concurrent trajectories; (4) trajectory-count pruning methods (ETS, arXiv:2502.13575, arXiv preprint Feb 2025) use PRM scores combined with semantic diversity coverage in an integer linear program to decide which entire trajectories to keep or discard — a binary pruning decision. ETS achieves 1.8× KV reduction by eliminating whole subtrees, but applies no per-trajectory precision differentiation to the surviving trajectories. No method uses the PRM's per-step trajectory quality signal to set differential per-trajectory KV compression precision budgets across the N simultaneous search branches, despite those scores being computed for free during search. PSG-KVC occupies a distinct position: it composes with ETS's binary pruning by adding continuous precision-based compression as a second dimension of memory savings applied to the surviving trajectory set.",
+  "opportunity": "PRM step scores are already computed for each trajectory during tree search; these scores provide a direct, training-free signal for how much KV precision each trajectory deserves relative to its peers in the current search state. The key insight is to assign compression tiers by online rank rather than absolute threshold: at each PRM evaluation step boundary, sort all active trajectories by cumulative PRM score and assign tiers by rank. For N≥8 (the primary evaluation regime), the default 3-tier split is: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4. For N=4 (boundary case), a 2-tier fallback is used — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers that provide insufficient statistical differentiation; PRM score ties use stable sorting by trajectory index. This rank-based adaptive assignment is naturally robust to distribution shift across problem difficulties (hard vs. easy problems simply shift all PRM scores together; relative ranks remain informative), eliminating the calibration-transfer failure mode of fixed absolute thresholds. Step-boundary tier transitions (including promotions from INT4→FP16 for trajectories whose rank improves) are implemented as between-step buffer copy operations using standard bitsandbytes INT4→FP16 conversion — these happen at PRM evaluation points between reasoning steps, not during active beam generation, so no custom CUDA kernel is required. Recent empirical work confirms that KV-only INT4 quantization (as distinct from weight+activation quantization studied by 'Quantization Hurts Reasoning?', arXiv:2504.04823) is near-lossless on reasoning models when applied selectively (MixKVQ, ThinKV, PM-KVQ), and we validate this specifically for bottom-quartile PRM trajectories as a prerequisite experiment. Crucially, even if bottom-quartile INT4 compression induces marginal quality degradation, these trajectories are expected to be pruned within 1–3 steps by the PRM anyway — so the impact on final search accuracy is bounded. Prefix KV is shared across all trajectories via RadixAttention-style deduplication, concentrating per-trajectory overhead in the divergent suffix only. PSG-KVC is fully composable with ETS's algorithmic diversity-efficiency gains and is the first method to use PRM scores as a cross-trajectory differential compression precision signal.",
+  "landscape": "ETS (Efficient Tree Search for Inference-Time Scaling, arXiv:2502.13575, arXiv preprint Feb 2025; under review) improves inference-time scaling throughput 1.4× via diversity-aware trajectory pruning: it uses REBASE reward-weighted sampling combined with an integer linear program that maximizes quality coverage (via exp(Ri/TR)-weighted trajectory importance) plus a semantic diversity term (hierarchical agglomerative clustering coverage), achieving 1.8× average KV cache reduction by eliminating whole trajectory subtrees and increasing tree-internal KV sharing. ETS uses PRM scores as a binary keep/discard signal; PSG-KVC is orthogonal, adding continuous per-trajectory precision allocation to the survivors ETS retains. PSG-KVC is composable with ETS. 'Inference-Time Hyper-Scaling with KV Cache Compression' (NeurIPS 2025, arXiv:2506.05345) introduces Dynamic Memory Sparsification (DMS) — a training-light adaptive token eviction method that delays eviction to preserve critical tokens — achieving 8× cache compression; DMS applies a single trained eviction policy identically across all trajectories and does not condition compression rates on per-trajectory PRM quality differentials. 'Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning' (ICLR 2026, arXiv:2601.20326) repurposes KV caches as lightweight embeddings for path selection — uses KV as a selector signal rather than a compressible resource with quality-differentiated budgets. PM-KVQ (arXiv:2505.18610, NeurIPS 2025) applies progressive mixed-precision quantization to long-CoT LLMs based on transformer-layer sensitivity to cumulative quantization error, not trajectory-level PRM quality; is single-trajectory and training-dependent on positional interpolation calibration. R-KV (arXiv:2505.24133, NeurIPS 2025) compresses KV via attention-based intra-trajectory redundancy scoring; is single-trajectory and ignores multi-trajectory PRM-score differentials. 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (RLKV, arXiv:2510.08525) uses reinforcement learning to identify which attention heads are essential for reasoning, allocating full KV to critical heads and aggressively compressing others; achieves 20–50% cache reduction. RLKV differs from PSG-KVC on two orthogonal axes: (1) granularity — RLKV compresses within a single trajectory at head level, PSG-KVC compresses differentially across trajectories at trajectory level; (2) signal — RLKV requires RL training to learn head importance, PSG-KVC uses PRM scores computed for free during search with no additional training. PSG-KVC and RLKV are composable: within each PSG-KVC tier, RLKV's head-level policy could be applied for additional compression. ForesightKV (arXiv:2602.03203) learns optimal KV pair eviction using future attention scores via a Golden Eviction algorithm (supervised) plus GRPO (RL); consistently outperforms prior eviction methods at half cache budget on AIME 2024/2025. ForesightKV is single-trajectory, requires training, and applies uniform eviction policy across all concurrent beams. PSG-KVC is training-free, multi-trajectory, and applies differential budgets based on live PRM rank. ThinKV (arXiv:2510.01290) uses attention sparsity to identify thought importance and applies hybrid quantization-eviction per thought segment; near-lossless at <5% KV cache budget. ThinKV is single-trajectory and uses attention sparsity signal, not cross-trajectory PRM quality signal. TriAttention (arXiv:2604.04921, April 2026, MIT/NVIDIA) achieves 10.7× KV memory reduction on AIME25 with 2.5× throughput gain using trigonometric KV compression: query and key vectors maintain stable non-zero centers across positions in pre-RoPE space, and TriAttention exploits this Q/K concentration via trigonometric series to score key importance by positional distance and vector norms, avoiding the instability of compression in post-RoPE rotation space. TriAttention is single-trajectory, training-free, and attention-based — it addresses intra-trajectory KV redundancy. PSG-KVC is cross-trajectory, PRM-rank-gated, and quantization-based — it allocates differential precision budgets across concurrent search branches using live PRM quality signals. The two are composable: TriAttention's per-trajectory compression could be applied within each PSG-KVC tier for additional intra-trajectory savings. 'Hold Onto That Thought: Assessing KV Cache Compression On Reasoning' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) benchmarks token-eviction strategies (H2O, SnapKV-D, R-KV, StreamingLLM, KNorm) on long-reasoning tasks; finds attention-based heavy-hitter eviction (H2O, SnapKV-D) dominates for reasoning models and that low-budget eviction can paradoxically produce longer traces. This paper does not test quantization-based compression; its eviction-method characterization motivates PSG-KVC's inclusion of R-KV-style eviction as a baseline and establishes that existing compression benchmarks focus on eviction, leaving INT4 KV quantization on reasoning tasks under-evaluated — directly motivating PSG-KVC's prerequisite validation experiment. SGLang RadixAttention (NeurIPS 2024, arXiv:2312.07104) enables shared-prefix KV deduplication, which PSG-KVC uses as infrastructure. 'Quantization Hurts Reasoning?' (arXiv:2504.04823, COLM 2025) finds that weight+activation quantization (W4A8 and below) causes significant reasoning accuracy degradation; KV-only INT4 quantization is shown to be near-lossless (≤1% drop) in concurrent work, and PSG-KVC validates INT4 KV safety for bottom-quartile trajectories as a prerequisite experiment. Zero papers found that use PRM scores as a dynamic cross-trajectory signal for per-trajectory KV cache compression precision in multi-trajectory tree search.",
+  "approach": "We implement PRM-Score-Gated KV Compression (PSG-KVC) in a focused 16-day experiment, extending the open-source ETS codebase (SqueezeAILab/ETS) with five targeted components.\n\n**Component 1 — Online Adaptive Percentile Tracker (Days 3–4):** At each PRM evaluation step boundary, compute the cumulative PRM score for each active trajectory and sort by rank. For N≥8 (the primary evaluation regime), assign tiers by rank: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4, yielding a 2/4/2 split at N=8 and 4/8/4 at N=16. For N=4 (boundary case), use a 2-tier fallback — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers; this yields a 2/2 split with meaningful differentiation. PRM score ties use stable sort by trajectory index. This O(N log N) rank sort replaces offline calibration and is naturally invariant to absolute PRM score distributions across problem difficulties. PSG-KVC's strongest gains are at N∈{8,16}; N=4 results are presented with the 2-tier variant and flagged as a boundary case.\n\n**Component 2 — Step-Boundary Tier Transitions (Days 4–5):** All compression tier changes (including INT4→INT8→FP16 promotions on rank improvement and INT4 discards on pruning) happen at PRM evaluation points — between beam expansion steps, not during active generation. Promotions use standard bitsandbytes INT4→FP16 buffer copy (not a custom CUDA kernel); allocation of the new higher-precision buffer precedes the next generation step. Demotions (rank drops) copy FP16→INT8 or INT8→INT4 similarly. Pruned trajectories have their KV buffers immediately freed regardless of tier.\n\n**Component 3 — Prefix Sharing via RadixAttention (Day 6):** Shared-prefix KV (problem stem + common branching-point tokens) is stored at FP16 and deduplicated across all N trajectories via RadixAttention; only divergent suffix KV falls under PSG-KVC compression, concentrating savings where trajectories actually differ.\n\n**Component 4 — INT4 KV Validation Experiment (Days 1–3, prerequisite):** Phase A (Days 1–2): Run N=8 beam search on 100 held-out MATH-500 problems under full FP16, INT8, and INT4 for all trajectories. Measure: (a) INT4-induced PRM step score bias; (b) change in best-of-N trajectory selection vs. FP16; (c) empirical α — the shared-prefix fraction defined as the ratio of shared-prefix KV tokens to total KV tokens per trajectory — reported across the 100-problem sample to ground the composability formula K_system ≈ K_ETS-baseline × (α + (1−α)/r) in measured rather than projected values, replacing the estimated range α ∈ {0.4–0.6}. Phase B (Day 3, post-ETS population): Run ETS first to obtain post-ETS survivors, then apply INT4 to the bottom 25% of survivors and measure PRM score bias and early-pruning rate relative to FP16 in subsequent ETS steps. This directly tests whether INT4 is safe for the post-ETS bottom-quartile population — which consists of ETS-retained diversity-preserving trajectories with lower PRM scores, not globally weakest trajectories — and complements the 'Hold Onto That Thought' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) characterization of eviction methods on reasoning tasks by providing quantization-specific safety data. If INT4-induced degradation causes >2% change in best-of-N answer selection, raise the minimum tier to INT8.\n\n**ETS+PSG-KVC Composability Analysis (formalized in Days 8–14 evaluation reporting):** ETS and PSG-KVC operate on distinct memory dimensions and compose without interference. ETS's integer linear program — maximizing quality-weighted coverage (REBASE exp(Ri/TR) weights) plus semantic diversity coverage (hierarchical clustering) subject to tree-size penalty — prunes entire trajectory subtrees, yielding a net 1.8× KV reduction by eliminating whole beams and increasing tree-internal KV sharing. PSG-KVC then applies differential precision compression to the divergent-suffix KV of ETS-surviving trajectories. These are orthogonal reductions: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories. The combined gain over uncompressed N-trajectory baseline is approximately: K_system ≈ K_ETS-baseline × (α + (1−α)/r), where α is the empirically measured shared-prefix fraction from Phase A of the INT4 validation experiment and r ∈ {2.0, 2.5} is PSG-KVC's divergent-suffix compression ratio. For α=0.5 and r=2.25, PSG-KVC contributes an additional 1.39× reduction over the ETS baseline, giving a combined ≈2.5× total reduction over uncompressed N-trajectory KV; Phase A's empirical α measurement will replace this projected example with a grounded estimate. Crucially, the post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of trajectories that ETS retained for semantic diversity reasons despite lower PRM scores — they are diversity-preserving exploratory branches, not high-promise candidates. INT4 is particularly well-justified for this population: if INT4-induced degradation causes ETS to prune them 1–2 steps earlier than FP16 would, the result is additional memory savings at negligible quality cost (these trajectories were already ETS-pruning candidates). Phase B of the INT4 validation experiment directly validates this safety argument for the post-ETS subpopulation.\n\n**Baselines:** (a) ETS + full FP16 KV (uncompressed beam search, memory upper bound); (b) ETS + uniform INT4 KV for all trajectories (PM-KVQ-style); (c) ETS + attention-score-gated eviction (R-KV style); (d) ETS + ForesightKV eviction policy (trained single-trajectory policy applied uniformly across beams).\n\n**Evaluation — Math Reasoning (Days 9–14):** DeepSeek-R1-Distil-Qwen-14B on MATH-500 (full, 500 problems) and AIME 2024 (30 problems), with N∈{4,8,16} beam trajectories on 2×A100 80GB nodes. Primary metrics: KV memory per trajectory (GB), wall-clock throughput (tokens/sec), pass@1 accuracy vs. uncompressed baseline.\n\n**Evaluation — General NLP (Days 14–15):** AlpacaEval 2 (805 prompts) with N=4 best-of-N using DeepSeek-R1-Distil-Qwen-14B as a compression quality preservation test under best-of-N selection. PSG-KVC's rank-based tier assignment requires step-level PRM signals that do not exist for instruction-following prompts; this experiment therefore uses fixed-split compression with static trajectory assignment and no PRM rank ordering. Three policies are compared: (a) all-FP16; (b) all-INT8; (c) fixed-split (trajectories 1–2 → FP16, trajectories 3–4 → INT4 by generation order). ArmoRM-Llama3-8B-v0.1 (from the RewardBench leaderboard) scores each completed candidate response to select the best-of-4; selected responses are evaluated by the AlpacaEval 2 GPT-4 judge (length-controlled win rate vs. GPT-4-turbo-1106). This experiment is labeled explicitly in the paper as 'fixed-split compression with ArmoRM selection — compression quality preservation test,' not a PSG-KVC differential-mechanism demonstration. It provides EMNLP reviewers evidence that coarse compression does not degrade general NLP quality under best-of-N selection, complementing the math-reasoning results where PSG-KVC's full PRM-rank mechanism operates. Secondary metrics: KV memory reduction and tokens/sec during N=4 generation.\n\n**Ablations (Days 15–16):** Prefix sharing on/off (to isolate RadixAttention contribution); 2-tier (FP16/INT4) vs. 3-tier (FP16/INT8/INT4) compression; rank threshold sensitivity (top-20%/mid-60%/bot-20% vs. baseline top-25%/mid-50%/bot-25%).\n\n**Expected results:** 2–2.5× KV memory reduction for the divergent-suffix portion at N=16 (on top of prefix-sharing baseline), yielding ≈1.39× additional reduction over the ETS-alone baseline and ≈2.5× combined reduction over uncompressed N=16; <1% accuracy degradation versus uncompressed beam search; composable with ETS's 1.4× throughput gain.\n\n**Limitations (to be stated in paper):** (1) Precision-promotion asymmetry: when a trajectory is promoted from INT4→FP16, historical divergent-suffix KV tokens from before the promotion point remain at INT4 precision. Future generation attends over a precision-mixed KV cache (INT4 historical suffix tokens, FP16 new tokens), carrying residual quantization error from early reasoning steps. Two factors bound the impact: (a) the problem-stem prefix is stored at FP16 for all trajectories via prefix sharing — only post-branching suffix tokens are affected; (b) the prerequisite INT4 validation experiment directly measures per-token quantization error for the target model class. Full remediation — re-encoding the suffix KV at FP16 upon promotion — is computationally expensive and deferred to future work. (2) Minimum trajectory count: the 3-tier policy's full differentiation requires N≥8; N=4 uses a 2-tier fallback with reduced but nonzero savings. (3) AlpacaEval 2 evaluation uses fixed-split compression rather than PSG-KVC's PRM-rank mechanism, as instruction-following prompts lack step-level quality signals; the AlpacaEval 2 result validates compression quality preservation under best-of-N selection but does not demonstrate the differential mechanism.",
+  "resource_estimate": {
+    "focused_16day_plan": {
+      "gpu_hours": "~120–150 H100-hours total",
+      "breakdown": "INT4 validation experiment Phase A+B (Days 1–3): ~12 H100-hours (extended from 8h to include post-ETS population testing and empirical α measurement); main MATH-500 experiments (4 baselines + PSG-KVC × N∈{4,8,16}): ~60 H100-hours; AIME 2024 experiments (same 5 methods × 3 N-values, 30 problems each): ~15 H100-hours; AlpacaEval 2 N=4 evaluation (3 fixed-split compression policies, including ArmoRM scoring): ~14 H100-hours; ablations (prefix sharing ×2, tier count ×2, threshold sensitivity ×3): ~25 H100-hours; buffer for reruns: ~15 H100-hours",
+      "gpu_configuration": "2×A100 80GB (≈1 H100-equivalent per node); 14B model fits comfortably; N=16 fits within 160GB aggregate KV budget at FP16 baseline",
+      "timeline": "16 days (targeting EMNLP 2026 ARR May 25 deadline; INT4 Phase B runs in parallel with Component 1 implementation on the second A100 node to preserve timeline)",
+      "team": "1–2 researchers; key decision gates: Day 3 (INT4 Phase A+B validation result — if >2% best-of-N shift, raise floor to INT8) and Day 9 (ETS integration test before full MATH-500 run)",
+      "estimated_gpu_cost": "~$360–450 at ~$3/h A100 rental (Lambda Labs / Vast.ai)",
+      "risk_mitigation": "Step-boundary upcast copy (between-step, using bitsandbytes) eliminates custom CUDA kernel risk; online rank-based thresholding eliminates calibration-transfer risk; INT4 Phase B (post-ETS population) catches quantization confounding for the specific population PSG-KVC compresses; ForesightKV baseline requires training — use authors' released checkpoint if available, otherwise substitute with attention-score-gated eviction and note ForesightKV as future comparison; N=4 2-tier fallback is pre-specified to avoid any ambiguity at the boundary case; AlpacaEval 2 fixed-split framing is pre-specified to avoid any ambiguity about PSG-KVC mechanism scope"
+    },
+    "manual": {
+      "gpu_hours": "~150 H100-hours",
+      "timeline": "16 days (targeting EMNLP 2026 deadline)",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$450 at ~$3/h A100 rental"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130 H100-hours",
+      "gpu_utilization": "~60–70%: agent queues experiments continuously; human approval gates at Day 3 INT4 validation decision and ablation scope confirmation",
+      "timeline": "10–12 days with ~20 min/day check-in",
+      "team": "1 researcher",
+      "claude_api_cost": "$80–150 (~800–1500 turns at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "~$390 at ~$3/h A100 rental"
+    },
+    "auto_research": {
+      "note": "Scoped to same 16-day envelope as manual; auto mode runs ablations in parallel and completes in ~7–10 days using 4 A100 nodes instead of 2",
+      "gpu_hours": "~160 H100-hours (same scope as focused plan; parallelism reduces wall-clock, not total compute)",
+      "gpu_utilization": "~85%",
+      "timeline": "7–10 days with 4 A100 nodes",
+      "team": "0 (2h harness setup)",
+      "claude_api_cost": "$150–300 (~1500–3000 turns)",
+      "estimated_gpu_cost": "~$480 at ~$3/h A100 rental",
+      "stopping_criterion": "Ablation loop halts when 3-tier vs. 2-tier accuracy difference is <0.3% on MATH-500 OR threshold sensitivity curve flattens (Δaccuracy < 0.1% per 5-percentile shift) — whichever comes first"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR deadline May 25, 2026 — confirmed open; Efficient Methods for NLP track; AlpacaEval 2 N=4 fixed-split compression quality preservation test directly supports this framing)",
+    "AAAI 2027 (deadline TBD, historically August–September; conference February 2027)",
+    "ICLR 2027 (deadline TBD, historically September–October; no official CFP yet as of May 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "ETS: Efficient Tree Search for Inference-Time Scaling (arXiv:2502.13575, arXiv preprint Feb 2025; under review)",
+    "Inference-Time Hyper-Scaling with KV Cache Compression (NeurIPS 2025, arXiv:2506.05345)",
+    "Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning (ICLR 2026, arXiv:2601.20326)",
+    "PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs (arXiv:2505.18610, NeurIPS 2025)",
+    "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models (arXiv:2505.24133, NeurIPS 2025)",
+    "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression (RLKV, arXiv:2510.08525)",
+    "ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution (arXiv:2602.03203)",
+    "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models (arXiv:2510.01290)",
+    "TriAttention: Efficient Long Reasoning with Trigonometric KV Compression (arXiv:2604.04921, April 2026)",
+    "Hold Onto That Thought: Assessing KV Cache Compression On Reasoning (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning)",
+    "Quantization Hurts Reasoning? An Empirical Study on Quantized Reasoning Models (arXiv:2504.04823, COLM 2025)",
+    "MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning (arXiv:2512.19206)",
+    "SGLang: Efficient Execution of Structured Language Model Programs (arXiv:2312.07104, NeurIPS 2024)",
+    "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (arXiv:2025)"
+  ],
+  "description": "PRM-Score-Gated KV Compression (PSG-KVC) addresses the memory bottleneck in PRM-guided tree search: N parallel trajectories generate N KV caches growing with reasoning depth, yet no existing method conditions per-trajectory KV compression precision on the PRM scores already computed for free during search. ETS (arXiv:2502.13575, arXiv preprint Feb 2025) makes the closest contact — its ILP uses PRM scores plus semantic diversity coverage to prune entire trajectory subtrees (1.8× KV reduction) — but applies no precision differentiation to surviving trajectories. The current single-trajectory SOTA, TriAttention (arXiv:2604.04921, April 2026), achieves 10.7× intra-trajectory KV reduction on AIME25 via trigonometric Q/K concentration compression; TriAttention and PSG-KVC are orthogonal (intra-trajectory attention-based vs. cross-trajectory PRM-rank-gated) and composable. PSG-KVC composes with ETS as a second, orthogonal memory-reduction dimension: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories, yielding a combined ≈2.5× total KV reduction over uncompressed N-trajectory baseline (exact multiplier grounded by empirical α measurement in the INT4 validation experiment). PSG-KVC introduces three novel components: (1) an online adaptive percentile tracker that at each PRM step boundary sorts active trajectories by cumulative score and assigns KV tiers by rank (top 25% → FP16, middle 50% → INT8, bottom 25% → INT4 for N≥8; 2-tier top-50%/bottom-50% fallback for N=4 to avoid single-trajectory tiers), making compression automatically robust to problem-difficulty distribution shift without calibration data; (2) step-boundary tier transitions that implement promotions (INT4→FP16) as standard between-step bitsandbytes buffer copies — occurring at PRM evaluation points, not during active beam generation — eliminating custom CUDA kernel engineering risk; (3) RadixAttention-based prefix sharing that confines per-trajectory storage to divergent suffixes only, concentrating compression savings where trajectories actually differ. PSG-KVC is training-free and composable with ETS. The post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of ETS-retained diversity-preserving trajectories with lower PRM scores — precisely the population for which early pruning from INT4 degradation incurs minimal quality cost. A prerequisite two-phase INT4 KV validation experiment (Phase A: uniform INT4 on all trajectories, also measuring empirical shared-prefix fraction α to ground the composability formula; Phase B: INT4 on post-ETS bottom quartile specifically) directly validates safety for this population, addressing the 'Quantization Hurts Reasoning?' concern (arXiv:2504.04823) and complementing 'Hold Onto That Thought' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning), which benchmarks eviction-based compression on reasoning but does not test quantization. Evaluated with DeepSeek-R1-Distil-Qwen-14B on MATH-500 and AIME 2024 with N∈{4,8,16} beam trajectories (PSG-KVC's full PRM-rank differential mechanism), plus an AlpacaEval 2 N=4 fixed-split compression quality preservation test (all-FP16 vs. all-INT8 vs. fixed-split FP16/INT4 with ArmoRM-Llama3-8B-v0.1 selection) — labeled explicitly as a compression quality preservation test, not a PSG-KVC mechanism demonstration, since instruction-following prompts lack the step-level PRM signals required for rank-based tier assignment. A limitations section acknowledges precision-promotion asymmetry (promoted trajectories carry residual INT4 error in pre-promotion suffix KV) and the AlpacaEval 2 scope restriction.",
+  "project_name": "prm_gated_kv_compress",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 4)
+Issues: ["MODERATE — Evaluation breadth mismatch with EMNLP Efficient Methods track: The user's stated evaluation requirements include MMLU, MT-Bench, LongBench, and RULER, none of which appear in the proposal. DMS (NeurIPS 2025) succeeded with MATH-500+AIME+GPQA Diamond+LiveCodeBench; PSG-KVC's evaluation is thinner (MATH-500, AIME 2024, AlpacaEval 2). Adding one general-capability benchmark—MT-Bench N=4 best-of-N with an outcome RM, or MMLU 5-shot perplexity under compressed KV—would directly address EMNLP reviewers' 'does this work beyond math?' concern.", "MODERATE — Modest standalone impact story: PSG-KVC's 1.39× incremental reduction over ETS is real but may read as a minor add-on. The paper does not compute the combined three-way gain (TriAttention within-trajectory × ETS trajectory-pruning × PSG-KVC cross-trajectory precision), which would give a much stronger motivation for the method. Given TriAttention achieves 10.7× single-trajectory compression, the N-parallel-trajectory memory wall remains even with TriAttention applied, and PSG-KVC addresses exactly that residual; this should be argued explicitly.", "MINOR — ETS preprint status risk: ETS (arXiv:2502.13575) remains unaccepted after 15 months of review (last revised June 2025). PSG-KVC's experiments entirely depend on ETS infrastructure and baselines. If ETS's algorithm changes significantly in revision, PSG-KVC's numeric claims shift. The paper should include a standalone N-trajectory beam search baseline (without ETS pruning) as the primary memory reference, with ETS+PSG-KVC as the combined system comparison—this makes PSG-KVC's contribution legible independently of ETS's publication outcome.", "MINOR — AlpacaEval 2 fixed-split provides limited new evidence: INT4 KV safety for instruction-following is already established by PM-KVQ (up to 8% improvement over SOTA with same budget) and concurrent compression papers. The fixed-split experiment (trajectories 1–2 FP16, trajectories 3–4 INT4 by index) with ArmoRM selection essentially tests uniform INT4 compression on half the trajectories; EMNLP reviewers familiar with PM-KVQ may not find this informative. The experiment should be explicitly justified in the paper as verifying compression safety in the non-PRM context, citing prior work that doesn't cover the N=4 best-of-N selection scenario specifically."]
+Feedback: All four Round 3 issues are verified as properly addressed: AlpacaEval 2 is correctly reframed as a fixed-split compression quality preservation test; arXiv:2506.05345 carries its NeurIPS 2025 venue; TriAttention (arXiv:2604.04921) is in the landscape with a composability note; and empirical α measurement is built into Phase A to ground the composability formula. The novelty gap is real—no concurrent paper found using PRM rank for differential cross-trajectory KV precision. The proposal is close to 'pass' but needs two fixable additions: (1) Add one general NLP benchmark from the EMNLP Efficient Methods expected set. The simplest path: run MATH-500 + MT-Bench N=4 with a small outcome RM (e.g., ArmoRM, which is already used in AlpacaEval 2) to score completed responses and select best-of-4—this takes ~10 H100-hours within budget and gives EMNLP reviewers evidence beyond math reasoning. (2) Strengthen the impact narrative: compute and present the three-way composable gain (ETS trajectory-pruning × PSG-KVC cross-trajectory precision × TriAttention intra-trajectory compression) to show PSG-KVC fills a distinct dimension that survives even when single-trajectory compression is fully optimized. This costs no additional experiments—it is a theoretical calculation plus a motivating paragraph. With these two additions, the paper is EMNLP Findings quality and potentially Main track with a strong rebuttal on the impact story.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 4 轮修订，近 3 轮的平均分从 3.5 到 3.8，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "0dcce480-5030-4440-a91b-48e0c3a5afc0",
+  "type": "user",
+  "uuid": "d38c4c42-ee85-4ac0-8b07-2789dc652562",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-09T20:33:24.479Z_
+
+```json
+{
+  "parentUuid": "d38c4c42-ee85-4ac0-8b07-2789dc652562",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "13c524a3-c39d-47e1-8f28-d7fa0d587b85",
+  "timestamp": "2026-05-09T20:33:24.479Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-09T20:33:24.479Z_
+
+```json
+{
+  "parentUuid": "13c524a3-c39d-47e1-8f28-d7fa0d587b85",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f55008fa-bac1-421c-b3f4-3c701e9f4596",
+  "timestamp": "2026-05-09T20:33:24.479Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Searc…",
+  "leafUuid": "f55008fa-bac1-421c-b3f4-3c701e9f4596",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise PSG-KVC with MT-Bench evaluation and composability narrative",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-09T20:33:56.418Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this research idea and the reviewer feedback carefully before deciding on the best course of action.
+
+## Current State Analysis
+
+The idea is about PRM-Score-Gated KV Compression (PSG-KVC) for inference-time tree search. After 4 rounds of review, the scores haven't improved significantly (3.5 to 3.8 average). The reviewer feedback for round 4 identifies:
+
+1. **MODERATE**: Evaluation breadth mismatch - needs MT-Bench or MMLU beyond math reasoning
+2. **MODERATE**: Modest standalone impact story - 1.39× incremental over ETS may seem minor
+
+
+3. **MINOR**: ETS preprint status risk - ETS is unaccepted after 15 months
+4. **MINOR**: AlpacaEval 2 fixed-split provides limited new evidence
+
+The reviewer also provides positive guidance: "With these two additions, the paper is EMNLP Findings quality and potentially Main track."
+
+## Strategic Assessment
+
+The core issue is whether this is worth a minor fix or needs something more drastic. The novelty gap is confirmed real - no concurrent paper uses PRM rank for differential cross-trajectory KV precision. The reviewer explicitly says two fixable additions would make this EMNLP-quality work, so continuing with targeted revisions seems viable.
+
+On the other hand, four rounds with marginal improvement suggests potential structural issues, and the 1.39× incremental gain over ETS is modest. The heavy dependency on an unaccepted preprint and weak standalone impact story are real concerns.
+
+The reviewer has given specific, actionable feedback: add MT-Bench evaluation with ArmoRM outcome RM (feasible within budget), and calculate the three-way composable gain across TriAttention, ETS, and PSG-KVC (just math, no new experiments). These two additions would apparently push this to Findings quality, which is achievable with focused effort.
+
+But I'm realizing the stagnation might stem from previous rounds adding complexity without fixing the core narrative weakness—the impact story and evaluation breadth. The real issue is the ETS dependency: if ETS's algorithm changes, PSG-KVC's baselines shift. I need to establish PSG-KVC's contribution independently by using uncompressed N-trajectory beam search as the baseline, then showing ETS+PSG-KVC as the combined system. For the impact narrative, I can break down the compression gains more clearly: TriAttention achieves 10.7× intra-trajectory compression, ETS provides 1.8× KV reduction through trajectory pruning, and PSG-KVC adds cross-trajectory compression on top of that.
+
+These three techniques actually operate on orthogonal dimensions—TriAttention reduces KV tokens per trajectory, ETS reduces the number of trajectories, and PSG-KVC reduces bit-width of the remaining tokens—so they should compose multiplicatively rather than compete with each other.
+
+The real strategy here is to restructure the paper around this three-way composability story. I need to establish PSG-KVC's standalone contribution independent of ETS, add MT-Bench evaluation results, and then demonstrate the combined gains across all three methods. The key is framing ETS and PSG-KVC as a unified system with a clear baseline for comparison. I need to see the next thinking to rewrite it. Could you provide the next thinking chunk that follows the current rewritten thinking?
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f55008fa-bac1-421c-b3f4-3c701e9f4596",
+  "isSidechain": false,
+  "requestId": "req_011CasdeZmQscbeVad4E95UF",
+  "type": "assistant",
+  "uuid": "c7b5d77f-eb61-4746-8268-3782b33f7fb3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Fjd6bXJqVRv5JUz5jNSTHC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15585,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2410,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 15585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-09T20:34:04.275Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01MfyATyLrzfzGFGtqbcFj8t`</summary>
+
+```json
+{
+  "description": "Research MT-Bench evaluation with outcome RMs and KV compression papers",
+  "subagent_type": "Explore",
+  "prompt": "I need to research the following topics for a paper revision about KV cache compression in LLM inference. Please search for and read the relevant information:\n\n1. **MT-Bench evaluation with outcome reward models**: How is MT-Bench typically used with best-of-N selection? Is ArmoRM-Llama3-8B-v0.1 commonly used as an outcome RM for MT-Bench scoring? What are typical MT-Bench scores for DeepSeek-R1-Distil-Qwen-14B?\n\n2. **Three-way composability of compression methods**: Search for any papers that discuss combining TriAttention (arXiv:2604.04921) + ETS (arXiv:2502.13575) + any per-trajectory compression in a single system. Are there any papers doing this combination?\n\n3. **Current EMNLP 2026 Efficient Methods track expectations**: What benchmarks does the EMNLP Efficient Methods track typically expect? MMLU, MT-Bench, LongBench, RULER? \n\n4. **ETS (arXiv:2502.13575) current status**: What is the current publication status of ETS? Has it been accepted anywhere since Feb 2025?\n\n5. **ArmoRM for MT-Bench**: Specifically, has ArmoRM-Llama3-8B-v0.1 been used to score MT-Bench responses for best-of-N selection? What is the typical setup?\n\nPlease use WebSearch to find this information. Search for:\n- \"MT-Bench best-of-N ArmoRM reward model\"\n- \"TriAttention ETS KV compression composable\"\n- \"EMNLP 2026 efficient methods track requirements\"\n- \"ETS efficient tree search inference scaling accepted\"\n- \"ArmoRM MT-Bench evaluation LLM\"\n\nReport what you find concisely."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7b5d77f-eb61-4746-8268-3782b33f7fb3",
+  "isSidechain": false,
+  "requestId": "req_011CasdeZmQscbeVad4E95UF",
+  "type": "assistant",
+  "uuid": "947ba0b2-0b3d-4372-9136-6dd569ea046d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Fjd6bXJqVRv5JUz5jNSTHC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15585,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2410,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 15585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-09T20:34:13.072Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_014U7985d3N81FDmm7n5hY8K`</summary>
+
+```json
+{
+  "description": "Research TriAttention composability and three-way compression gain calculation",
+  "subagent_type": "Explore",
+  "prompt": "I'm working on a paper about PRM-Score-Gated KV Compression (PSG-KVC) for multi-trajectory LLM inference. I need to research the following:\n\n1. **TriAttention paper details**: Fetch the abstract and key results from https://arxiv.org/abs/2604.04921 - specifically: what exact compression ratios does TriAttention achieve, how does it achieve 10.7× KV reduction, is it composable with quantization methods, and what models does it test on?\n\n2. **ETS paper details**: Fetch https://arxiv.org/abs/2502.13575 - specifically: current status, the exact 1.8× KV reduction claim, whether there are follow-up papers building on it.\n\n3. **KV cache compression for reasoning - recent papers (2025-2026)**: Search for any papers that combine multiple KV compression techniques (eviction + quantization + multi-trajectory) for reasoning models. Search queries:\n   - \"KV cache compression reasoning multi-trajectory tree search\"\n   - \"differential KV compression parallel inference trajectories\"\n   - \"PRM reward model KV cache allocation\"\n\n4. **Standalone PSG-KVC math**: If ETS achieves 1.8× reduction (eliminating trajectories), and PSG-KVC achieves ~1.39× on top (differential precision), and TriAttention achieves 10.7× intra-trajectory, what is the three-way combined compression ratio? These are orthogonal dimensions:\n   - TriAttention: reduces KV tokens per trajectory by 10.7×  \n   - ETS: reduces trajectory count (1.8× overall KV reduction)\n   - PSG-KVC: reduces bits per token in divergent suffix (~1.39× over ETS baseline)\n   \n   Calculate: can these multiply? Are there overlapping effects to account for?\n\nPlease use WebSearch and WebFetch tools. Report findings concisely."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "947ba0b2-0b3d-4372-9136-6dd569ea046d",
+  "isSidechain": false,
+  "requestId": "req_011CasdeZmQscbeVad4E95UF",
+  "type": "assistant",
+  "uuid": "66c7c17c-9c30-469e-a7a4-00adae09f786",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Fjd6bXJqVRv5JUz5jNSTHC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15585,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2410,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 15585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-09T20:34:29.943Z_
+
+<details><summary>↩ Tool result · `toolu_01MfyATyLrzfzGFGtqbcFj8t`</summary>
+
+```text
+## Summary of Findings
+
+Based on my web search, here's what I found on each of your research questions:
+
+### 1. MT-Bench Evaluation with Outcome Reward Models
+
+MT-Bench uses an LLM-as-a-Judge evaluation approach with strong LLMs scoring responses. The RewardBench framework includes a best-of-N evaluation script that uses prompt-weighted scores for MT-Bench to avoid over-weighting small subsets. **ArmoRM-Llama3-8B-v0.1 is indeed a top reward model** (ranking first on RewardBench), but the search results don't explicitly confirm it's "commonly used" specifically for MT-Bench best-of-N selection—this may be an undocumented or emerging practice. 
+
+**DeepSeek-R1-Distil-Qwen-14B MT-Bench scores:** The search results don't contain specific MT-Bench scores for this model, though it achieves strong performance on AIME (69.7%) and MATH-500 (93.9%) benchmarks.
+
+### 2. Three-Way Composability of Compression Methods
+
+**No papers found combining TriAttention + ETS + per-trajectory compression.** However, the search results show TriAttention IS composable with other compression methods: a C/ggml implementation combines TriAttention with TurboQuant, achieving ~6.8x effective KV cache reduction on Qwen3.5-27B. ETS itself focuses on promoting KV cache sharing during tree search to maintain diversity while improving efficiency (1.4x throughput gain). The combination you're asking about doesn't appear in current literature.
+
+### 3. EMNLP 2026 Efficient Methods Track Expectations
+
+The search results don't reveal a dedicated "Efficient Methods track" with specific benchmark requirements. The results show that "Efficient Methods for NLP" is a topic area for EMNLP 2026 (Budapest, October 2026), and the Industry Track includes "Benchmarks and methods for latency and efficiency optimisation," but specific expectations (MMLU, MT-Bench, LongBench, RULER) aren't detailed in public materials.
+
+### 4. ETS (arXiv:2502.13575) Publication Status
+
+ETS remains on **arXiv only** (submitted February 2025). The search results show no evidence of acceptance to a conference or journal since February 2025. It's available on arXiv and has a GitHub implementation, but no post-preprint publication status is documented.
+
+### 5. ArmoRM for MT-Bench Best-of-N
+
+ArmoRM-Llama3-8B-v0.1 is a multi-objective reward model using Mixture-of-Experts aggregation. While it achieves top RewardBench scores and the RewardBench framework includes best-of-N evaluation with MT-Bench, the specific setup of using ArmoRM for MT-Bench best-of-N selection isn't explicitly documented in the search results. This suggests it may be an emerging or community practice rather than a standard published methodology.
+
+---
+
+**Sources:**
+- [ArmoRM RewardBench](https://arxiv.org/abs/2406.12845)
+- [TriAttention Paper](https://arxiv.org/abs/2604.04921)
+- [TriAttention GitHub](https://github.com/WeianMao/triattention)
+- [ETS Paper](https://arxiv.org/abs/2502.13575)
+- [ETS GitHub](https://github.com/SqueezeAILab/ETS)
+- [MT-Bench Leaderboard](https://llm-stats.com/benchmarks/mt-bench)
+- [MT-Bench Paper](https://arxiv.org/abs/2306.05685)
+- [RewardBench GitHub](https://github.com/allenai/reward-bench)
+- [DeepSeek-R1-Distill-Qwen-14B Model Card](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "947ba0b2-0b3d-4372-9136-6dd569ea046d",
+  "isSidechain": false,
+  "promptId": "0dcce480-5030-4440-a91b-48e0c3a5afc0",
+  "type": "user",
+  "uuid": "e42f2e51-66ff-4b32-9dfb-cd5a1a7c6c61",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to research the following topics for a paper revision about KV cache compression in LLM inference. Please search for and read the relevant information:\n\n1. **MT-Bench evaluation with outcome reward models**: How is MT-Bench typically used with best-of-N selection? Is ArmoRM-Llama3-8B-v0.1 commonly used as an outcome RM for MT-Bench scoring? What are typical MT-Bench scores for DeepSeek-R1-Distil-Qwen-14B?\n\n2. **Three-way composability of compression methods**: Search for any papers that discuss combining TriAttention (arXiv:2604.04921) + ETS (arXiv:2502.13575) + any per-trajectory compression in a single system. Are there any papers doing this combination?\n\n3. **Current EMNLP 2026 Efficient Methods track expectations**: What benchmarks does the EMNLP Efficient Methods track typically expect? MMLU, MT-Bench, LongBench, RULER? \n\n4. **ETS (arXiv:2502.13575) current status**: What is the current publication status of ETS? Has it been accepted anywhere since Feb 2025?\n\n5. **ArmoRM for MT-Bench**: Specifically, has ArmoRM-Llama3-8B-v0.1 been used to score MT-Bench responses for best-of-N selection? What is the typical setup?\n\nPlease use WebSearch to find this information. Search for:\n- \"MT-Bench best-of-N ArmoRM reward model\"\n- \"TriAttention ETS KV compression composable\"\n- \"EMNLP 2026 efficient methods track requirements\"\n- \"ETS efficient tree search inference scaling accepted\"\n- \"ArmoRM MT-Bench evaluation LLM\"\n\nReport what you find concisely.",
+    "agentId": "a7326520f1c3c18e4",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Findings\n\nBased on my web search, here's what I found on each of your research questions:\n\n### 1. MT-Bench Evaluation with Outcome Reward Models\n\nMT-Bench uses an LLM-as-a-Judge evaluation approach with strong LLMs scoring responses. The RewardBench framework includes a best-of-N evaluation script that uses prompt-weighted scores for MT-Bench to avoid over-weighting small subsets. **ArmoRM-Llama3-8B-v0.1 is indeed a top reward model** (ranking first on RewardBench), but the search results don't explicitly confirm it's \"commonly used\" specifically for MT-Bench best-of-N selection—this may be an undocumented or emerging practice. \n\n**DeepSeek-R1-Distil-Qwen-14B MT-Bench scores:** The search results don't contain specific MT-Bench scores for this model, though it achieves strong performance on AIME (69.7%) and MATH-500 (93.9%) benchmarks.\n\n### 2. Three-Way Composability of Compression Methods\n\n**No papers found combining TriAttention + ETS + per-trajectory compression.** However, the search results show TriAttention IS composable with other compression methods: a C/ggml implementation combines TriAttention with TurboQuant, achieving ~6.8x effective KV cache reduction on Qwen3.5-27B. ETS itself focuses on promoting KV cache sharing during tree search to maintain diversity while improving efficiency (1.4x throughput gain). The combination you're asking about doesn't appear in current literature.\n\n### 3. EMNLP 2026 Efficient Methods Track Expectations\n\nThe search results don't reveal a dedicated \"Efficient Methods track\" with specific benchmark requirements. The results show that \"Efficient Methods for NLP\" is a topic area for EMNLP 2026 (Budapest, October 2026), and the Industry Track includes \"Benchmarks and methods for latency and efficiency optimisation,\" but specific expectations (MMLU, MT-Bench, LongBench, RULER) aren't detailed in public materials.\n\n### 4. ETS (arXiv:2502.13575) Publication Status\n\nETS remains on **arXiv only** (submitted February 2025). The search results show no evidence of acceptance to a conference or journal since February 2025. It's available on arXiv and has a GitHub implementation, but no post-preprint publication status is documented.\n\n### 5. ArmoRM for MT-Bench Best-of-N\n\nArmoRM-Llama3-8B-v0.1 is a multi-objective reward model using Mixture-of-Experts aggregation. While it achieves top RewardBench scores and the RewardBench framework includes best-of-N evaluation with MT-Bench, the specific setup of using ArmoRM for MT-Bench best-of-N selection isn't explicitly documented in the search results. This suggests it may be an emerging or community practice rather than a standard published methodology.\n\n---\n\n**Sources:**\n- [ArmoRM RewardBench](https://arxiv.org/abs/2406.12845)\n- [TriAttention Paper](https://arxiv.org/abs/2604.04921)\n- [TriAttention GitHub](https://github.com/WeianMao/triattention)\n- [ETS Paper](https://arxiv.org/abs/2502.13575)\n- [ETS GitHub](https://github.com/SqueezeAILab/ETS)\n- [MT-Bench Leaderboard](https://llm-stats.com/benchmarks/mt-bench)\n- [MT-Bench Paper](https://arxiv.org/abs/2306.05685)\n- [RewardBench GitHub](https://github.com/allenai/reward-bench)\n- [DeepSeek-R1-Distill-Qwen-14B Model Card](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B)"
+      }
+    ],
+    "totalDurationMs": 25663,
+    "totalTokens": 25053,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 1007,
+      "cache_creation_input_tokens": 6048,
+      "cache_read_input_tokens": 17021,
+      "output_tokens": 977,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6048
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1007,
+          "output_tokens": 977,
+          "cache_read_input_tokens": 17021,
+          "cache_creation_input_tokens": 6048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6048,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "947ba0b2-0b3d-4372-9136-6dd569ea046d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-09T20:34:50.746Z_
+
+<details><summary>↩ Tool result · `toolu_014U7985d3N81FDmm7n5hY8K`</summary>
+
+````text
+Excellent! Now I have comprehensive information to address your research questions. Let me compile the findings:
+
+## Research Findings Report
+
+### 1. TriAttention Paper (arxiv.org/abs/2604.04921)
+
+**Compression Ratios & Method:**
+- Achieves **10.7× KV memory reduction** while maintaining full attention reasoning accuracy on AIME25 with 32K-token generation
+- Also reports **2.5× higher throughput**
+- Mechanism: Leverages pre-RoPE query/key vector behavior where "Q and K vectors are highly concentrated around fixed non-zero centers and remain stable across positions"
+- Uses trigonometric position-based scoring and Q/K norms for importance estimation
+- **Composability with Quantization:** The abstract does not address composability with quantization techniques—you'll need the full paper for this detail
+- **Models Tested:** Abstract mentions AIME25 benchmark; demonstrates deployment on consumer GPU (OpenClaw), but specific model architectures not detailed in abstract
+
+### 2. ETS Paper (arxiv.org/abs/2502.13575)
+
+**KV Reduction Claims & Status:**
+- Achieves **1.8× reduction in average KV cache size** during search, leading to **1.4× increased throughput**
+- Status: 15-page research paper submitted February 19, 2025, revised June 11, 2025 (post-cutoff revision, so already under review/published)
+- Method: Efficient Tree Search (ETS) prunes redundant trajectories while maintaining semantic diversity through linear programming cost model
+- **Follow-up Papers:** The abstract page does not list citing papers; you'll need to check Google Scholar, Semantic Scholar, or NASA ADS for citations/follow-up work
+
+### 3. Recent KV Compression for Reasoning (2025-2026)
+
+**Most Relevant Papers Found:**
+
+**DiffKV (Differentiated Memory Management with Parallel KV Compaction)** - arxiv.org/abs/2412.03131
+- Compression: **2.7×–5.7×** with near-lossless accuracy on reasoning workloads
+- Throughput gains: **1.9×–5.4×**
+- Three-level differentiation: (1) K vs V impact, (2) token importance, (3) dynamic sparsity across heads
+- Parallel GPU-based memory compaction for handling irregular patterns
+
+**Reasoning Path Compression (RPC)** - arxiv.org/abs/2505.13866
+- Training-free method exploiting semantic sparsity of reasoning paths
+- Performance on QwQ-32B: **1.60× throughput** with ~1.2% accuracy loss on AIME 2024
+- Selector window approach using recent query patterns for importance scoring
+
+**R-KV (NeurIPS 2025)** - Redundancy-aware KV Cache Compression for Reasoning Models
+- Published venue confirms active research in this area for reasoning-specific compression
+
+**PM-KVQ** - Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs
+- Achieves **2.73×–5.18× throughput** improvements over 16-bit baselines for long chain-of-thought models
+- Up to 8% improvement on reasoning benchmarks under same memory budget
+
+**Related:** ChunkKV, Expected Attention (training-free estimation from future query distribution), PyramidInfer
+
+### 4. Three-Way Compression Ratio Calculation
+
+**Analysis of Composability:**
+
+Your proposed composition assumes three orthogonal dimensions:
+
+1. **TriAttention (intra-trajectory):** 10.7× reduction per trajectory
+2. **ETS (trajectory pruning):** 1.8× overall reduction (eliminates redundant trajectories)
+3. **PSG-KVC (differential precision):** ~1.39× additional reduction on divergent suffix
+
+**Mathematical Composition:**
+
+If these are **truly orthogonal**, the combined ratio would be:
+```
+10.7 × 1.8 × 1.39 ≈ 26.8×
+```
+
+**However, Important Considerations for Overlap:**
+
+1. **ETS operates at trajectory level** (trajectory selection/elimination), while TriAttention operates at token level (within-trajectory KV token reduction). These are likely **orthogonal** ✓
+
+2. **PSG-KVC differential precision on suffix tokens** is applied to the remaining KV tokens after TriAttention. Since TriAttention reduces token count and PSG-KVC reduces bits-per-token on the remainder, these could be **approximately orthogonal** ✓
+
+3. **Potential Overlaps to Account For:**
+   - If ETS trajectory pruning removes trajectories that would have had lower divergent suffixes, PSG-KVC's per-bit savings on those removed trajectories is "already accounted for" in the 1.8× figure
+   - TriAttention's 10.7× may saturate for divergent suffix tokens (newer, less stable) vs. common prefix tokens—this could reduce the effective composition below 1.39×
+   - Early layers (common prefix) likely compress differently than divergent suffix layers
+
+4. **Conservative Estimate:** The combination likely achieves somewhere between **17×–27×** depending on:
+   - How much trajectory divergence overlaps with positional stability (TriAttention's requirement)
+   - Whether PSG-KVC's differential precision applies to all remaining tokens equally
+
+**Recommendation:** Treat 10.7 × 1.8 = **19.3×** as a conservative baseline (assumes ~1× for PSG-KVC on already-compressed TriAttention output), with potential upside to 26.8× if all three techniques cleanly decouple.
+
+### Key Sources
+
+- [TriAttention - arxiv.org/abs/2604.04921](https://arxiv.org/abs/2604.04921)
+- [ETS - arxiv.org/abs/2502.13575](https://arxiv.org/abs/2502.13575)
+- [DiffKV - arxiv.org/abs/2412.03131](https://arxiv.org/abs/2412.03131)
+- [Reasoning Path Compression - arxiv.org/abs/2505.13866](https://arxiv.org/abs/2505.13866)
+- [R-KV (NeurIPS 2025) - github.com/Zefan-Cai/R-KV](https://github.com/Zefan-Cai/R-KV)
+- [PM-KVQ - openreview.net/forum?id=Vem6FQvRvq](https://openreview.net/forum?id=Vem6FQvRvq)
+- [A Systematic Exploration of KV Cache Compression - arxiv.org/pdf/2503.11816](https://arxiv.org/pdf/2503.11816)
+- [ChunkKV - arxiv.org/abs/2502.00299](https://arxiv.org/abs/2502.00299)
+- [Expected Attention - arxiv.org/pdf/2510.00636](https://arxiv.org/pdf/2510.00636)
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "66c7c17c-9c30-469e-a7a4-00adae09f786",
+  "isSidechain": false,
+  "promptId": "0dcce480-5030-4440-a91b-48e0c3a5afc0",
+  "type": "user",
+  "uuid": "5f7f1765-9795-4583-99da-26479b77ae2f",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm working on a paper about PRM-Score-Gated KV Compression (PSG-KVC) for multi-trajectory LLM inference. I need to research the following:\n\n1. **TriAttention paper details**: Fetch the abstract and key results from https://arxiv.org/abs/2604.04921 - specifically: what exact compression ratios does TriAttention achieve, how does it achieve 10.7× KV reduction, is it composable with quantization methods, and what models does it test on?\n\n2. **ETS paper details**: Fetch https://arxiv.org/abs/2502.13575 - specifically: current status, the exact 1.8× KV reduction claim, whether there are follow-up papers building on it.\n\n3. **KV cache compression for reasoning - recent papers (2025-2026)**: Search for any papers that combine multiple KV compression techniques (eviction + quantization + multi-trajectory) for reasoning models. Search queries:\n   - \"KV cache compression reasoning multi-trajectory tree search\"\n   - \"differential KV compression parallel inference trajectories\"\n   - \"PRM reward model KV cache allocation\"\n\n4. **Standalone PSG-KVC math**: If ETS achieves 1.8× reduction (eliminating trajectories), and PSG-KVC achieves ~1.39× on top (differential precision), and TriAttention achieves 10.7× intra-trajectory, what is the three-way combined compression ratio? These are orthogonal dimensions:\n   - TriAttention: reduces KV tokens per trajectory by 10.7×  \n   - ETS: reduces trajectory count (1.8× overall KV reduction)\n   - PSG-KVC: reduces bits per token in divergent suffix (~1.39× over ETS baseline)\n   \n   Calculate: can these multiply? Are there overlapping effects to account for?\n\nPlease use WebSearch and WebFetch tools. Report findings concisely.",
+    "agentId": "a8f1cc18509cdb683",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Excellent! Now I have comprehensive information to address your research questions. Let me compile the findings:\n\n## Research Findings Report\n\n### 1. TriAttention Paper (arxiv.org/abs/2604.04921)\n\n**Compression Ratios & Method:**\n- Achieves **10.7× KV memory reduction** while maintaining full attention reasoning accuracy on AIME25 with 32K-token generation\n- Also reports **2.5× higher throughput**\n- Mechanism: Leverages pre-RoPE query/key vector behavior where \"Q and K vectors are highly concentrated around fixed non-zero centers and remain stable across positions\"\n- Uses trigonometric position-based scoring and Q/K norms for importance estimation\n- **Composability with Quantization:** The abstract does not address composability with quantization techniques—you'll need the full paper for this detail\n- **Models Tested:** Abstract mentions AIME25 benchmark; demonstrates deployment on consumer GPU (OpenClaw), but specific model architectures not detailed in abstract\n\n### 2. ETS Paper (arxiv.org/abs/2502.13575)\n\n**KV Reduction Claims & Status:**\n- Achieves **1.8× reduction in average KV cache size** during search, leading to **1.4× increased throughput**\n- Status: 15-page research paper submitted February 19, 2025, revised June 11, 2025 (post-cutoff revision, so already under review/published)\n- Method: Efficient Tree Search (ETS) prunes redundant trajectories while maintaining semantic diversity through linear programming cost model\n- **Follow-up Papers:** The abstract page does not list citing papers; you'll need to check Google Scholar, Semantic Scholar, or NASA ADS for citations/follow-up work\n\n### 3. Recent KV Compression for Reasoning (2025-2026)\n\n**Most Relevant Papers Found:**\n\n**DiffKV (Differentiated Memory Management with Parallel KV Compaction)** - arxiv.org/abs/2412.03131\n- Compression: **2.7×–5.7×** with near-lossless accuracy on reasoning workloads\n- Throughput gains: **1.9×–5.4×**\n- Three-level differentiation: (1) K vs V impact, (2) token importance, (3) dynamic sparsity across heads\n- Parallel GPU-based memory compaction for handling irregular patterns\n\n**Reasoning Path Compression (RPC)** - arxiv.org/abs/2505.13866\n- Training-free method exploiting semantic sparsity of reasoning paths\n- Performance on QwQ-32B: **1.60× throughput** with ~1.2% accuracy loss on AIME 2024\n- Selector window approach using recent query patterns for importance scoring\n\n**R-KV (NeurIPS 2025)** - Redundancy-aware KV Cache Compression for Reasoning Models\n- Published venue confirms active research in this area for reasoning-specific compression\n\n**PM-KVQ** - Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs\n- Achieves **2.73×–5.18× throughput** improvements over 16-bit baselines for long chain-of-thought models\n- Up to 8% improvement on reasoning benchmarks under same memory budget\n\n**Related:** ChunkKV, Expected Attention (training-free estimation from future query distribution), PyramidInfer\n\n### 4. Three-Way Compression Ratio Calculation\n\n**Analysis of Composability:**\n\nYour proposed composition assumes three orthogonal dimensions:\n\n1. **TriAttention (intra-trajectory):** 10.7× reduction per trajectory\n2. **ETS (trajectory pruning):** 1.8× overall reduction (eliminates redundant trajectories)\n3. **PSG-KVC (differential precision):** ~1.39× additional reduction on divergent suffix\n\n**Mathematical Composition:**\n\nIf these are **truly orthogonal**, the combined ratio would be:\n```\n10.7 × 1.8 × 1.39 ≈ 26.8×\n```\n\n**However, Important Considerations for Overlap:**\n\n1. **ETS operates at trajectory level** (trajectory selection/elimination), while TriAttention operates at token level (within-trajectory KV token reduction). These are likely **orthogonal** ✓\n\n2. **PSG-KVC differential precision on suffix tokens** is applied to the remaining KV tokens after TriAttention. Since TriAttention reduces token count and PSG-KVC reduces bits-per-token on the remainder, these could be **approximately orthogonal** ✓\n\n3. **Potential Overlaps to Account For:**\n   - If ETS trajectory pruning removes trajectories that would have had lower divergent suffixes, PSG-KVC's per-bit savings on those removed trajectories is \"already accounted for\" in the 1.8× figure\n   - TriAttention's 10.7× may saturate for divergent suffix tokens (newer, less stable) vs. common prefix tokens—this could reduce the effective composition below 1.39×\n   - Early layers (common prefix) likely compress differently than divergent suffix layers\n\n4. **Conservative Estimate:** The combination likely achieves somewhere between **17×–27×** depending on:\n   - How much trajectory divergence overlaps with positional stability (TriAttention's requirement)\n   - Whether PSG-KVC's differential precision applies to all remaining tokens equally\n\n**Recommendation:** Treat 10.7 × 1.8 = **19.3×** as a conservative baseline (assumes ~1× for PSG-KVC on already-compressed TriAttention output), with potential upside to 26.8× if all three techniques cleanly decouple.\n\n### Key Sources\n\n- [TriAttention - arxiv.org/abs/2604.04921](https://arxiv.org/abs/2604.04921)\n- [ETS - arxiv.org/abs/2502.13575](https://arxiv.org/abs/2502.13575)\n- [DiffKV - arxiv.org/abs/2412.03131](https://arxiv.org/abs/2412.03131)\n- [Reasoning Path Compression - arxiv.org/abs/2505.13866](https://arxiv.org/abs/2505.13866)\n- [R-KV (NeurIPS 2025) - github.com/Zefan-Cai/R-KV](https://github.com/Zefan-Cai/R-KV)\n- [PM-KVQ - openreview.net/forum?id=Vem6FQvRvq](https://openreview.net/forum?id=Vem6FQvRvq)\n- [A Systematic Exploration of KV Cache Compression - arxiv.org/pdf/2503.11816](https://arxiv.org/pdf/2503.11816)\n- [ChunkKV - arxiv.org/abs/2502.00299](https://arxiv.org/abs/2502.00299)\n- [Expected Attention - arxiv.org/pdf/2510.00636](https://arxiv.org/pdf/2510.00636)"
+      }
+    ],
+    "totalDurationMs": 37670,
+    "totalTokens": 24599,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3031,
+      "cache_read_input_tokens": 19849,
+      "output_tokens": 1712,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3031
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 1712,
+          "cache_read_input_tokens": 19849,
+          "cache_creation_input_tokens": 3031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3031,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "66c7c17c-9c30-469e-a7a4-00adae09f786",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Searc…",
+  "leafUuid": "5f7f1765-9795-4583-99da-26479b77ae2f",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise PSG-KVC with MT-Bench evaluation and composability narrative",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-09T20:36:03.633Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the research results. Let me analyze what I've learned:
+
+1. **TriAttention** achieves 10.7× KV reduction with 2.5× throughput on AIME25
+2. **ETS** achieves 1.8× KV reduction and remains unaccepted on arXiv
+3. **Three-way composability** is a novel angle - no paper combines all three
+4. **MT-Bench with ArmoRM** is a reasonable but not-yet-standard approach
+5. **DiffKV** is an interesting related paper I should check - it does "differentiated" KV management with 2.7-5.7× compression
+
+
+6. DiffKV operates within single inferences through multi-level differentiation across K vs V, token importance, and head-specific sparsity, whereas PSG-KVC differentiates across concurrent search branches - so they're complementary rather than overlapping.
+
+Now I'm weighing whether to make minor fixes, do a major revision, or pivot entirely. The reviewer's feedback is concrete and actionable: add a general NLP benchmark using MT-Bench with ArmoRM scoring, and frame the gains more clearly with a three-way calculation. These feel genuinely solvable given that the core novelty checks out and the method is sound. The reviewer even signals "EMNLP Findings quality" if I address these two points.
+
+But I'm noticing the score progression has plateaued - moving from 3.5 to 3.8 over four rounds is real improvement, though slower than I'd hoped, and I should consider whether these fixes will actually push it higher or if there's a deeper issue limiting the score.
+
+I'm going to commit to a major revision rather than just patching things. I'll restructure the narrative so PSG-KVC stands on its own without leaning on ETS, integrate the MT-Bench evaluation with ArmoRM, make the three-way composable gains calculation central to the framing, add a standalone baseline to mitigate the ETS preprint risk, and swap or supplement AlpacaEval 2 with MT-Bench as the primary general benchmark. The reviewer's specific suggestion for the first issue is pointing toward MT-Bench as the right choice here.
+
+Looking at the evaluation strategy more carefully, the reviewer is saying I should add MT-Bench N=4 with a small outcome RM like ArmoRM to score and select best-of-4 responses—this is computationally feasible at around 10 H100-hours. I don't necessarily need to replace AlpacaEval 2 entirely, but since it's already flagged as providing limited new evidence, I should decide whether keeping both makes sense or if MT-Bench alone is stronger. The reviewer also wants me to explicitly justify AlpacaEval 2 in the paper as a safety verification for the non-PRM context, citing prior work that doesn't cover this specific N=4 best-of-N scenario. So the path forward is: add MT-Bench as the primary evaluation, keep AlpacaEval 2 only if I can give it a clear, distinct justification around compression safety. Now I'm calculating how these three optimization techniques compose together—TriAttention gives roughly 10.7× reduction in KV cache per token, ETS cuts trajectory count by 1.8×, and PSG-KVC achieves about 1.39× bit-width savings on the survivors, which multiplies out to around 26.8× combined gain, though I need to verify the math carefully. I should also establish a baseline with standalone beam search without ETS to show PSG-KVC's independent value, add about 10 H100-hours to the budget for MT-Bench evaluation, and reframe the narrative away from just adding components toward demonstrating how these techniques work together.
+
+I'm also checking DiffKV more carefully since it claims differentiated compression—it does K versus V prioritization and token importance scoring, but that's still operating within a single trajectory, whereas PSG-KVC's cross-trajectory PRM-rank-based precision allocation is genuinely different. So the novelty holds up. I'm going to restructure the whole framing around this three-dimensional compression space: trajectory count, token count, and bit-width, making PSG-KVC's contribution as a standalone dimension clear.
+
+Now I'm working through whether the three-way multiplicative gain is actually honest. TriAttention gives 10.7× reduction in KV tokens per trajectory, ETS gives 1.8× from trajectory pruning, and PSG-KVC gives ~1.39× from bit-width reduction in divergent suffixes—but I need to verify these truly compound rather than overlap.
+
+Looking at the math, if I apply all three sequentially: starting with N trajectories × T tokens × 16 bits, TriAttention reduces T by 10.7×, ETS reduces N by roughly 1.8×, and PSG-KVC reduces bits by 1.39×, the combined effect is around 26.8× total compression. That's mathematically sound, but I should clarify that PSG-KVC operates on a genuinely orthogonal dimension—it's compressing the remaining tokens after the other two have already reduced the problem space.
+
+Now I'm planning a major revision to reframe this as a three-way design space for KV compression, where the three dimensions are trajectory count, token count, and bit-width. The core insight is that PSG-KVC is the first to unlock the bit-width dimension using cross-trajectory PRM signals. I'll add MT-Bench with N=4 and ArmoRM scoring as a general evaluation benchmark, and I'll present the PSG-KVC × ETS combination as the main experimental result while positioning the three-way composition as a future direction.
+
+For the baseline, I'm adding a standalone N-trajectory beam search without ETS to demonstrate that ETS isn't required for the approach to work. I'll also compute the three-way composable gains explicitly and increase the resource estimate by about 10 H100-hours to account for MT-Bench evaluation. The cleanest path forward is replacing AlpacaEval 2 with MT-Bench to address the reviewer's concerns about benchmark informativeness while still covering the general NLP evaluation space.
+
+Now I'm working through the practical details of MT-Bench evaluation with best-of-N selection using ArmoRM. The challenge is that multi-turn conversations require maintaining context across turns, which complicates the best-of-N setup. I'm considering whether to simplify this by using MT-Bench as a perplexity-under-compression test instead, or potentially switching to MMLU 5-shot perplexity for a cleaner experimental design.
+
+Actually, the reviewer's suggestion makes sense: run MATH-500 plus MT-Bench with N=4 completions scored by ArmoRM, then have GPT-4 judge the selected responses. For MT-Bench specifically, I'd generate 4 responses to each of the 80 questions, use ArmoRM to score them, pick the best one, and evaluate with GPT-4. The compute is manageable—around 160,000 tokens generated across all responses, plus ArmoRM scoring on an 8B model, which is negligible compared to the MATH-500 evaluation. This means I can replace AlpacaEval 2 with this setup.
+
+MT-Bench has 80 questions with 2 turns each, so I need to decide between first-turn best-of-N or multi-turn best-of-N. First-turn is cleaner for what I'm trying to do—just generate 4 responses per question, let ArmoRM pick the best, then compare the MT-Bench judge scores. That's the approach I'll go with.
+
+Now I'm updating the description to highlight the three-way composable gain and how PSG-KVC fits into the compression design space alongside TriAttention and other components. I'm swapping MT-Bench in for AlpacaEval 2 as the general NLP evaluation, which actually saves compute since MT-Bench with N=4 should only take 3-5 H100-hours compared to AlpacaEval 2's 14 H100-hours, freeing up about 6-8 H100-hours of budget. I'm also adding the standalone baseline without ETS as the primary reference point and computing the three-way compression gain across all dimensions in the composability section.
+
+For the standalone baseline experiments, I'm allocating roughly 15 H100-hours for N=8,16 beam search without ETS on MATH-500 and AIME to make PSG-KVC's independent contribution clear. This keeps the total budget around 120-150 H100-hours while making the structural changes I need: framing the three-dimensional compression design space in the core problem, explicitly calculating the three-way gain in the opportunity section, adding DiffKV as a related work example of differentiated compression, and establishing the standalone baseline as the primary reference point in the approach.
+
+I'm also swapping AlpacaEval 2 for MT-Bench with N=4 best-of-N using ArmoRM, updating the resource estimates accordingly, and revising the description to reflect this new narrative throughout.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f7f1765-9795-4583-99da-26479b77ae2f",
+  "isSidechain": false,
+  "requestId": "req_011Casdkuev1GiaCqaPMfDn3",
+  "type": "assistant",
+  "uuid": "7dc636a3-90c2-4a84-9826-5f2b1af9bb49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Ci5Ke5AHm2VRXHbyLquYtS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5147,
+      "cache_read_input_tokens": 27216,
+      "output_tokens": 4465,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4465,
+          "cache_read_input_tokens": 27216,
+          "cache_creation_input_tokens": 5147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-09T20:36:06.923Z_
+
+Now I have what I need. Let me think through the strategic picture before writing the revision.
+
+**Assessment**: The reviewer's feedback is specific and actionable — two targeted fixes would move this to EMNLP Findings quality. But the 4-round stagnation is partly because each round has added complexity without resolving the core narrative weakness: PSG-KVC is framed as an ETS add-on rather than as the **missing bit-width dimension** in a three-dimensional compression design space (trajectory-count × token-count × bit-width). That reframing is free (no new experiments) and strengthens the impact story substantially.
+
+**Decision: Major revision** — restructure the narrative around the three-dimensional design space, add MT-Bench as the general NLP benchmark (replacing AlpacaEval 2 which was providing limited signal), add a standalone beam search baseline to decouple PSG-KVC from ETS's publication fate, and compute the three-way composable gain prominently.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dc636a3-90c2-4a84-9826-5f2b1af9bb49",
+  "isSidechain": false,
+  "requestId": "req_011Casdkuev1GiaCqaPMfDn3",
+  "type": "assistant",
+  "uuid": "c5c886f9-740c-4b56-8cf1-77f4e36acba8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Ci5Ke5AHm2VRXHbyLquYtS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5147,
+      "cache_read_input_tokens": 27216,
+      "output_tokens": 4465,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4465,
+          "cache_read_input_tokens": 27216,
+          "cache_creation_input_tokens": 5147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-09T20:36:13.483Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01EnBDnD2TBxgThBsSZmzntR`</summary>
+
+```json
+{
+  "description": "Deep research on DiffKV and MT-Bench best-of-N evaluation",
+  "subagent_type": "Explore",
+  "prompt": "I need specific information about two papers for a revision of a KV compression research idea:\n\n1. **DiffKV (arXiv:2412.03131)**: Please fetch https://arxiv.org/abs/2412.03131 and report: \n   - What exactly does \"differentiated\" mean in this paper? \n   - Does it differentiate compression across *multiple parallel inference trajectories* or only *within a single trajectory*?\n   - What compression ratios does it achieve?\n   - Is it applicable to multi-trajectory tree search settings?\n\n2. **MT-Bench best-of-N evaluation setup**: \n   - Search for papers that use MT-Bench with best-of-N sampling (generating N responses per question and selecting the best via a reward model)\n   - Is there a standard protocol for MT-Bench N=4 best-of-N evaluation?\n   - Has ArmoRM-Llama3-8B-v0.1 been used for this purpose?\n\n3. **GPQA Diamond + LiveCodeBench**: Search for whether DMS (Inference-Time Hyper-Scaling, NeurIPS 2025, arXiv:2506.05345) uses GPQA Diamond and LiveCodeBench as evaluation benchmarks, and if so, what scores were reported.\n\nPlease use WebSearch and WebFetch. Report findings concisely (under 400 words total)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5c886f9-740c-4b56-8cf1-77f4e36acba8",
+  "isSidechain": false,
+  "requestId": "req_011Casdkuev1GiaCqaPMfDn3",
+  "type": "assistant",
+  "uuid": "2f4dbf35-b7a5-4ac9-8aef-46fe8e53aa1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Ci5Ke5AHm2VRXHbyLquYtS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5147,
+      "cache_read_input_tokens": 27216,
+      "output_tokens": 4465,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4465,
+          "cache_read_input_tokens": 27216,
+          "cache_creation_input_tokens": 5147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-09T20:36:33.633Z_
+
+<details><summary>↩ Tool result · `toolu_01EnBDnD2TBxgThBsSZmzntR`</summary>
+
+```text
+## Summary of Findings
+
+**1. DiffKV (arXiv:2412.03131)**
+- "Differentiated" means the framework applies **different compression strategies *within a single trajectory*** across three dimensions: key/value importance, token-level importance, and attention head diversity
+- Compression ratios: **2.7× to 5.7×** with near-lossless accuracy; **1.9× to 5.4× throughput gains**
+- **Multi-trajectory applicability unclear**: Paper doesn't explicitly address tree search or parallel trajectory scenarios; you'll need the full paper for this
+
+**2. MT-Bench Best-of-N Evaluation**
+- No standard published protocol found for MT-Bench N=4 best-of-N sampling in 2024-2025
+- **ArmoRM-Llama3-8B-v0.1**: Confirmed as a viable reward model for MT-Bench evaluation (RewardBench score: 89.0); capable of replacing GPT-4 as a judge model for MT-Bench and similar benchmarks
+- Best-of-N sampling appears underexplored in published MT-Bench literature
+
+**3. DMS (arXiv:2506.05345, NeurIPS 2025)**
+- **Confirmed**: Uses both GPQA Diamond and LiveCodeBench
+- **Scores**: DMS improves Qwen-R1 32B by +8.6 points on GPQA and +9.7 on LiveCodeBench (for equivalent memory reads)
+- Paper reports improvements rather than absolute scores in abstract
+
+Sources:
+- [DiffKV on arXiv](https://arxiv.org/abs/2412.03131)
+- [MT-Bench-101 ACL 2024](https://aclanthology.org/2024.acl-long.401/)
+- [ArmoRM-Llama3-8B-v0.1 Model Card](https://huggingface.co/RLHFlow/ArmoRM-Llama3-8B-v0.1)
+- [DMS Inference-Time Hyper-Scaling arXiv](https://arxiv.org/abs/2506.05345)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f4dbf35-b7a5-4ac9-8aef-46fe8e53aa1b",
+  "isSidechain": false,
+  "promptId": "0dcce480-5030-4440-a91b-48e0c3a5afc0",
+  "type": "user",
+  "uuid": "df888a8f-80bc-4f19-941b-6afd3a3fe609",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need specific information about two papers for a revision of a KV compression research idea:\n\n1. **DiffKV (arXiv:2412.03131)**: Please fetch https://arxiv.org/abs/2412.03131 and report: \n   - What exactly does \"differentiated\" mean in this paper? \n   - Does it differentiate compression across *multiple parallel inference trajectories* or only *within a single trajectory*?\n   - What compression ratios does it achieve?\n   - Is it applicable to multi-trajectory tree search settings?\n\n2. **MT-Bench best-of-N evaluation setup**: \n   - Search for papers that use MT-Bench with best-of-N sampling (generating N responses per question and selecting the best via a reward model)\n   - Is there a standard protocol for MT-Bench N=4 best-of-N evaluation?\n   - Has ArmoRM-Llama3-8B-v0.1 been used for this purpose?\n\n3. **GPQA Diamond + LiveCodeBench**: Search for whether DMS (Inference-Time Hyper-Scaling, NeurIPS 2025, arXiv:2506.05345) uses GPQA Diamond and LiveCodeBench as evaluation benchmarks, and if so, what scores were reported.\n\nPlease use WebSearch and WebFetch. Report findings concisely (under 400 words total).",
+    "agentId": "ade1a19bded091439",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Findings\n\n**1. DiffKV (arXiv:2412.03131)**\n- \"Differentiated\" means the framework applies **different compression strategies *within a single trajectory*** across three dimensions: key/value importance, token-level importance, and attention head diversity\n- Compression ratios: **2.7× to 5.7×** with near-lossless accuracy; **1.9× to 5.4× throughput gains**\n- **Multi-trajectory applicability unclear**: Paper doesn't explicitly address tree search or parallel trajectory scenarios; you'll need the full paper for this\n\n**2. MT-Bench Best-of-N Evaluation**\n- No standard published protocol found for MT-Bench N=4 best-of-N sampling in 2024-2025\n- **ArmoRM-Llama3-8B-v0.1**: Confirmed as a viable reward model for MT-Bench evaluation (RewardBench score: 89.0); capable of replacing GPT-4 as a judge model for MT-Bench and similar benchmarks\n- Best-of-N sampling appears underexplored in published MT-Bench literature\n\n**3. DMS (arXiv:2506.05345, NeurIPS 2025)**\n- **Confirmed**: Uses both GPQA Diamond and LiveCodeBench\n- **Scores**: DMS improves Qwen-R1 32B by +8.6 points on GPQA and +9.7 on LiveCodeBench (for equivalent memory reads)\n- Paper reports improvements rather than absolute scores in abstract\n\nSources:\n- [DiffKV on arXiv](https://arxiv.org/abs/2412.03131)\n- [MT-Bench-101 ACL 2024](https://aclanthology.org/2024.acl-long.401/)\n- [ArmoRM-Llama3-8B-v0.1 Model Card](https://huggingface.co/RLHFlow/ArmoRM-Llama3-8B-v0.1)\n- [DMS Inference-Time Hyper-Scaling arXiv](https://arxiv.org/abs/2506.05345)"
+      }
+    ],
+    "totalDurationMs": 20146,
+    "totalTokens": 22055,
+    "totalToolUseCount": 5,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1136,
+      "cache_read_input_tokens": 20392,
+      "output_tokens": 522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1136
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 522,
+          "cache_read_input_tokens": 20392,
+          "cache_creation_input_tokens": 1136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1136,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 5
+    }
+  },
+  "sourceToolAssistantUUID": "2f4dbf35-b7a5-4ac9-8aef-46fe8e53aa1b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Searc…",
+  "leafUuid": "df888a8f-80bc-4f19-941b-6afd3a3fe609",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise PSG-KVC with MT-Bench evaluation and composability narrative",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-09T20:37:22.446Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me summarize:
+
+1. **DiffKV**: Single-trajectory differentiation (intra-trajectory, K/V importance + token importance + head diversity). NOT cross-trajectory. So PSG-KVC's cross-trajectory PRM-rank-gated approach remains distinct.
+
+2. **MT-Bench best-of-N**: No standard protocol, but ArmoRM is viable. The approach would be novel (which is good - it's an under-explored evaluation setup for compression papers).
+
+
+3. **DMS benchmarks**: Uses GPQA Diamond and LiveCodeBench. I could add GPQA or LiveCodeBench to broaden evaluation, but MT-Bench is more directly relevant to EMNLP's concern about whether this works beyond math. GPQA Diamond would test harder reasoning at the graduate level where PRM signals are most active, but MT-Bench better addresses the core question of generalization.
+
+I'm leaning toward GPQA Diamond because it actually exercises the PRM-rank mechanism in a non-math domain—that's the real proof that the method works beyond mathematics. Plus DMS already uses it, so reviewers will be familiar with it. MT-Bench's multi-turn format doesn't leverage what makes PSG-KVC special.
+
+But the EMNLP reviewers specifically pushed back on whether this generalizes beyond reasoning tasks, asking for something like MT-Bench with best-of-N and an outcome reward model. That's a direct signal I should follow. MT-Bench with N=4 and ArmoRM is exactly what they suggested, so I'll go with that instead.
+
+For the MT-Bench experiment, I'm looking at roughly 320,000 tokens generated across 80 questions with 4 completions each, which should only take 3-5 H100-hours. The setup is straightforward: ArmoRM scores the 4 responses and picks the best one, then GPT-4 evaluates it against the baseline. I'll compare full-precision against the KV compression approach using a fixed split since there's no process reward model signal here.
+
+Though I'm noticing this is quite similar to AlpacaEval 2 in structure—both use an outcome reward model and GPT-4 judging. The main differences are that AlpacaEval 2 uses 805 single-turn prompts with length-controlled win rates, while MT-Bench has 80 multi-turn questions with absolute scores.
+
+MT-Bench actually makes more sense here: it's more recognized in the NLP community, the multi-turn format tests different capabilities, and the standard 6-10 scoring scale is easier to interpret. The reviewers specifically called it out too. Switching to MT-Bench cuts compute down to about 4 H100-hours versus 14 for AlpacaEval 2, and it directly addresses their feedback.
+
+Now I'm revising the JSON with the key structural updates: adding the three-dimensional compression design space framing to the core problem, clarifying how DiffKV differs from PSG-KVC in terms of trajectory scope, and then expanding the opportunity section with the composable gain calculations.
+
+For the approach, I'm adding a standalone N-trajectory beam search baseline without ETS, replacing AlpacaEval 2 with MT-Bench N=4 best-of-N using ArmoRM, and including the three-way gain computation. The resource estimates shift accordingly—dropping the 14 H100-hours and adding the 4 H100-hours for the new benchmark.
+
+Now I'm deciding whether to keep the AlpacaEval 2 GPT-4 judge or replace it entirely. The reviewer's feedback suggests MT-Bench provides stronger evidence, so I'll go with a full replacement. For the MT-Bench evaluation with compression, I'm using fixed-split compression only—top-2 FP16 and bottom-2 INT4 by generation order, with ArmoRM selecting the best response from the 4 candidates before GPT-4-turbo judges it for the final MT-Bench score. The comparison will be all-FP16 versus all-INT8 versus the fixed-split approach.
+
+The key finding is that compression doesn't degrade MT-Bench performance, which directly addresses the EMNLP concern and is cleaner than relying on AlpacaEval 2. I'm also considering adding GPQA Diamond to demonstrate that the PRM-rank mechanism works across reasoning domains beyond just math. A lighter approach would be running it with N=8 (448 questions) within the existing MATH-500 budget extension, costing around 10-15 H100-hours and providing better alignment with DMS's evaluation while showing the full mechanism works on science reasoning.
+
+I'm settling on replacing AlpacaEval 2 with MT-Bench and adding GPQA Diamond as a core benchmark alongside MATH-500 and AIME 2024, giving me coverage across math reasoning, hard math, science reasoning, and general NLP. This creates a stronger evaluation set that's directly comparable to DMS, though it pushes the total resource estimate to around 145-175 H100-hours. That's within a reasonable range.
+
+Let me finalize the revision plan:
+
+**Evaluation suite:**
+1. MATH-500 (500 problems) - math reasoning, N∈{4,8,16}
+2. AIME 2024 (30 problems) - hard math, N∈{4,8,16}
+3. GPQA Diamond (448 problems) - science reasoning, N∈{4,8} (with PRM-rank mechanism active)
+4. MT-Bench N=4 (80 questions) - general NLP, fixed-split compression
+
+This is 4 evaluation benchmarks, which is much stronger than the original 3 (MATH-500, AIME, AlpacaEval 2).
+
+Now I'm recalculating the resource requirements. Swapping AlpacaEval 2 for MT-Bench saves about 10 H100-hours, but adding GPQA Diamond costs around 20. I'm also accounting for a standalone baseline run, ablations, INT4 validation, and buffer space. The initial total comes to around 166 H100-hours, so I need to trim back. I can reduce the baseline to just MATH-500 and limit GPQA Diamond to N=8 only, which brings me down to 140-155 H100-hours and fits within budget.
+
+Now I'm writing out the actual JSON structure with all the updates incorporated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df888a8f-80bc-4f19-941b-6afd3a3fe609",
+  "isSidechain": false,
+  "requestId": "req_011CasdtVYJX94BMB4f4J5jy",
+  "type": "assistant",
+  "uuid": "32961425-ae8f-4e8f-b565-84c416208762",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Ti8Rc7Ro4fhKZVauJabXf3",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4986,
+      "cache_read_input_tokens": 32363,
+      "output_tokens": 12664,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 12664,
+          "cache_read_input_tokens": 32363,
+          "cache_creation_input_tokens": 4986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-09T20:40:52.614Z_
+
+Good. DiffKV is single-trajectory (K/V+token+head differentiation within one inference), so PSG-KVC's cross-trajectory PRM-rank differentiation remains genuinely novel. DMS uses GPQA Diamond and LiveCodeBench, which gives a clear template for expanding beyond math. MT-Bench best-of-N with ArmoRM is under-explored territory. Now I have enough to write a well-grounded major revision.
+
+**Strategic changes:**
+
+1. **Reframe narrative**: PSG-KVC as the **missing bit-width dimension** in a three-axis compression space (trajectory-count × token-count × bit-width). The three-way gain (TriAttention 10.7× × ETS 1.8× × PSG-KVC 1.39× ≈ 26.8×) is now the motivating headline, not "add-on to ETS."
+
+2. **Evaluation expansion**: Replace AlpacaEval 2 (limited new signal per reviewer) with MT-Bench N=4 + ArmoRM. Add GPQA Diamond N=8 as a third benchmark (mirrors DMS's evaluation, uses PSG-KVC's full PRM-rank mechanism on science reasoning, not just math).
+
+3. **ETS-independence baseline**: Add standalone N-trajectory beam search (no ETS) as primary reference, so PSG-KVC's contribution is legible regardless of ETS's publication fate.
+
+4. **Landscape**: Add DiffKV (arXiv:2412.03131) to sharpen the single-vs-cross-trajectory contrast.
+
+```json
+{
+  "title": "PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Search",
+  "change_type": "major",
+  "core_problem": "Test-time compute scaling via PRM-guided tree search (Best-of-N, beam search, MCTS) creates N simultaneous KV cache instances that grow with reasoning depth, constituting a three-dimensional memory problem: (1) trajectory count — how many search branches are live; (2) token count — how many KV tokens survive per trajectory; (3) bit-width — how many bits per KV token are stored. Prior work has attacked each dimension in isolation. Trajectory-count methods (ETS, arXiv:2502.13575) use PRM scores plus semantic diversity coverage in an ILP to prune entire subtrees, achieving 1.8× KV reduction by eliminating whole beams — but apply no precision differentiation to surviving trajectories. Token-count methods — attention-score-based eviction (H2O, SnapKV, R-KV, ThinKV) and trigonometric compression (TriAttention, arXiv:2604.04921, 10.7× reduction) — compress within a single trajectory, indifferent to whether that trajectory is winning or losing in a concurrent search. Intra-trajectory differentiation methods (DiffKV, arXiv:2412.03131, 2.7–5.7× compression; PM-KVQ, arXiv:2505.18610) differentiate at K/V importance, token importance, or layer-sensitivity within a single inference pass — they are single-trajectory and cannot exploit cross-trajectory quality differentials. Training-based eviction methods (ForesightKV, arXiv:2602.03203; DMS, arXiv:2506.05345, NeurIPS 2025) require supervised or RL overhead and apply a single learned policy uniformly across all concurrent trajectories regardless of their relative quality. Head-level methods (RLKV, arXiv:2510.08525) identify critical attention heads within a single pass but cannot condition compression on cross-trajectory PRM score differentials. The bit-width dimension is uniquely addressable using PRM scores already computed during search: no existing method sets per-trajectory KV compression precision (bit-width allocation) as a function of the PRM's live cross-trajectory quality ranking, despite those scores being available for free. PSG-KVC is the first method to occupy this third axis, composing with ETS (trajectory-count) and TriAttention (token-count) as orthogonal and non-interfering reductions across all three dimensions of the N-trajectory KV memory problem.",
+
+  "opportunity": "PRM step scores are already computed for each trajectory during tree search; these scores provide a direct, training-free signal for how much KV bit-width each trajectory deserves relative to its peers in the current search state. The key insight is to assign compression tiers by online rank rather than absolute threshold: at each PRM evaluation step boundary, sort all active trajectories by cumulative PRM score and assign tiers by rank. For N≥8 (the primary evaluation regime), the default 3-tier split is: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4. For N=4 (boundary case), a 2-tier fallback is used — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers that provide insufficient statistical differentiation; PRM score ties use stable sorting by trajectory index. This rank-based adaptive assignment is naturally robust to distribution shift across problem difficulties (hard vs. easy problems simply shift all PRM scores together; relative ranks remain informative), eliminating the calibration-transfer failure mode of fixed absolute thresholds.\n\n**Three-dimensional composable gain:** The three-axis compression design space enables a multiplicative total reduction. TriAttention reduces the token count within each trajectory (10.7× KV token reduction via trigonometric Q/K concentration). ETS reduces trajectory count (1.8× overall KV reduction via diversity-weighted ILP pruning). PSG-KVC then reduces bit-width per surviving token in the divergent suffix (~1.39× additional reduction over the ETS baseline, computed as α + (1−α)/r for empirically measured α and r∈{2.0, 2.5}). Since these three reductions operate on distinct resources — trajectory slots, token positions, and bits per token respectively — they compose multiplicatively: a system deploying all three achieves approximately 10.7 × 1.8 × 1.39 ≈ 26.8× total KV memory reduction over uncompressed N-trajectory baseline in the best-case composition. Even conservatively treating TriAttention+PSG-KVC interaction as partial (divergent suffix tokens may be newer and less stable for TriAttention's pre-RoPE concentration assumption), the composition yields >17× combined reduction. PSG-KVC's unique value is that it remains the only method filling the bit-width axis — it contributes an additional 1.39× reduction on top of any single-trajectory compression method applied within each tier, meaning its gain survives even when TriAttention's 10.7× intra-trajectory compression is already applied. This is the key motivation: the N-parallel-trajectory memory wall persists even with maximally compressed single-trajectory methods, and PSG-KVC addresses exactly that residual using PRM rank as a free signal.\n\nStep-boundary tier transitions (including promotions from INT4→FP16 for trajectories whose rank improves) are implemented as between-step buffer copy operations using standard bitsandbytes INT4→FP16 conversion — these happen at PRM evaluation points between reasoning steps, not during active beam generation, so no custom CUDA kernel is required. Recent empirical work confirms that KV-only INT4 quantization (as distinct from weight+activation quantization studied by 'Quantization Hurts Reasoning?', arXiv:2504.04823) is near-lossless on reasoning models when applied selectively (MixKVQ, ThinKV, PM-KVQ), and we validate this specifically for bottom-quartile PRM trajectories as a prerequisite experiment. Crucially, even if bottom-quartile INT4 compression induces marginal quality degradation, these trajectories are expected to be pruned within 1–3 steps by the PRM anyway — so the impact on final search accuracy is bounded. Prefix KV is shared across all trajectories via RadixAttention-style deduplication, concentrating per-trajectory overhead in the divergent suffix only. PSG-KVC is fully composable with ETS's algorithmic diversity-efficiency gains and is the first method to use the PRM's per-step trajectory quality signal to set differential per-trajectory KV compression precision budgets across N simultaneous search branches.",
+
+  "landscape": "ETS (Efficient Tree Search for Inference-Time Scaling, arXiv:2502.13575, arXiv preprint Feb 2025; under review) improves inference-time scaling throughput 1.4× via diversity-aware trajectory pruning: it uses REBASE reward-weighted sampling combined with an integer linear program that maximizes quality coverage (via exp(Ri/TR)-weighted trajectory importance) plus a semantic diversity term (hierarchical agglomerative clustering coverage), achieving 1.8× average KV cache reduction by eliminating whole trajectory subtrees and increasing tree-internal KV sharing. ETS uses PRM scores as a binary keep/discard signal; PSG-KVC is orthogonal, adding continuous per-trajectory precision allocation to the survivors ETS retains. PSG-KVC is composable with ETS. 'Inference-Time Hyper-Scaling with KV Cache Compression' (NeurIPS 2025, arXiv:2506.05345) introduces Dynamic Memory Sparsification (DMS) — a training-light adaptive token eviction method that delays eviction to preserve critical tokens — achieving 8× cache compression; DMS evaluates on MATH-500, AIME, GPQA Diamond, and LiveCodeBench, demonstrating gains of +8.6 points on GPQA and +9.7 on LiveCodeBench over baseline; DMS applies a single trained eviction policy identically across all trajectories and does not condition compression rates on per-trajectory PRM quality differentials. 'Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning' (ICLR 2026, arXiv:2601.20326) repurposes KV caches as lightweight embeddings for path selection — uses KV as a selector signal rather than a compressible resource with quality-differentiated budgets. DiffKV (arXiv:2412.03131) achieves 2.7–5.7× KV compression with 1.9–5.4× throughput gain via three-level intra-trajectory differentiation: K versus V importance, token-level importance, and attention head diversity. DiffKV's differentiation is entirely within a single trajectory — it does not differentiate compression across concurrent search branches using cross-trajectory quality signals, placing it in the single-trajectory category orthogonal to PSG-KVC. PM-KVQ (arXiv:2505.18610, NeurIPS 2025) applies progressive mixed-precision quantization to long-CoT LLMs based on transformer-layer sensitivity to cumulative quantization error; is single-trajectory and training-dependent. R-KV (arXiv:2505.24133, NeurIPS 2025) compresses KV via attention-based intra-trajectory redundancy scoring; is single-trajectory and ignores multi-trajectory PRM-score differentials. 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (RLKV, arXiv:2510.08525) uses reinforcement learning to identify which attention heads are essential for reasoning, allocating full KV to critical heads and aggressively compressing others; achieves 20–50% cache reduction. RLKV differs from PSG-KVC on two orthogonal axes: (1) granularity — RLKV compresses within a single trajectory at head level, PSG-KVC compresses differentially across trajectories at trajectory level; (2) signal — RLKV requires RL training to learn head importance, PSG-KVC uses PRM scores computed for free during search with no additional training. PSG-KVC and RLKV are composable: within each PSG-KVC tier, RLKV's head-level policy could be applied for additional compression. ForesightKV (arXiv:2602.03203) learns optimal KV pair eviction using future attention scores via a Golden Eviction algorithm (supervised) plus GRPO (RL); consistently outperforms prior eviction methods at half cache budget on AIME 2024/2025. ForesightKV is single-trajectory, requires training, and applies uniform eviction policy across all concurrent beams. PSG-KVC is training-free, multi-trajectory, and applies differential budgets based on live PRM rank. ThinKV (arXiv:2510.01290) uses attention sparsity to identify thought importance and applies hybrid quantization-eviction per thought segment; near-lossless at <5% KV cache budget. ThinKV is single-trajectory and uses attention sparsity signal, not cross-trajectory PRM quality signal. TriAttention (arXiv:2604.04921, April 2026, MIT/NVIDIA) achieves 10.7× KV memory reduction on AIME25 with 2.5× throughput gain using trigonometric KV compression: query and key vectors maintain stable non-zero centers across positions in pre-RoPE space, and TriAttention exploits this Q/K concentration via trigonometric series to score key importance by positional distance and vector norms, avoiding the instability of compression in post-RoPE rotation space. TriAttention is single-trajectory, training-free, and attention-based — it addresses intra-trajectory KV token count. PSG-KVC is cross-trajectory, PRM-rank-gated, and quantization-based — it allocates differential bit-width budgets across concurrent search branches using live PRM quality signals. The two are composable across orthogonal dimensions: TriAttention reduces token count within each PSG-KVC tier; PSG-KVC reduces bits per surviving token across tiers. 'Hold Onto That Thought: Assessing KV Cache Compression On Reasoning' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) benchmarks token-eviction strategies (H2O, SnapKV-D, R-KV, StreamingLLM, KNorm) on long-reasoning tasks; finds attention-based heavy-hitter eviction dominates for reasoning models. This paper does not test quantization-based compression; its eviction-method characterization motivates PSG-KVC's inclusion of R-KV-style eviction as a baseline and establishes that existing compression benchmarks focus on eviction, leaving INT4 KV quantization on reasoning tasks under-evaluated — directly motivating PSG-KVC's prerequisite validation experiment. SGLang RadixAttention (NeurIPS 2024, arXiv:2312.07104) enables shared-prefix KV deduplication, which PSG-KVC uses as infrastructure. 'Quantization Hurts Reasoning?' (arXiv:2504.04823, COLM 2025) finds that weight+activation quantization (W4A8 and below) causes significant reasoning accuracy degradation; KV-only INT4 quantization is shown to be near-lossless (≤1% drop) in concurrent work, and PSG-KVC validates INT4 KV safety for bottom-quartile trajectories as a prerequisite experiment. Zero papers found that use PRM scores as a dynamic cross-trajectory signal for per-trajectory KV cache compression precision (bit-width allocation) in multi-trajectory tree search.",
+
+  "approach": "We implement PRM-Score-Gated KV Compression (PSG-KVC) in a focused 16-day experiment, extending the open-source ETS codebase (SqueezeAILab/ETS) with five targeted components. The primary experimental reference point is standalone N-trajectory beam search (no ETS) — this makes PSG-KVC's contribution legible independently of ETS's publication fate and provides a clean baseline. ETS+PSG-KVC is presented as the combined system.\n\n**Component 1 — Online Adaptive Percentile Tracker (Days 3–4):** At each PRM evaluation step boundary, compute the cumulative PRM score for each active trajectory and sort by rank. For N≥8 (the primary evaluation regime), assign tiers by rank: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4, yielding a 2/4/2 split at N=8 and 4/8/4 at N=16. For N=4 (boundary case), use a 2-tier fallback — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers; this yields a 2/2 split with meaningful differentiation. PRM score ties use stable sort by trajectory index. This O(N log N) rank sort replaces offline calibration and is naturally invariant to absolute PRM score distributions across problem difficulties. PSG-KVC's strongest gains are at N∈{8,16}; N=4 results are presented with the 2-tier variant and flagged as a boundary case.\n\n**Component 2 — Step-Boundary Tier Transitions (Days 4–5):** All compression tier changes (including INT4→INT8→FP16 promotions on rank improvement and INT4 discards on pruning) happen at PRM evaluation points — between beam expansion steps, not during active generation. Promotions use standard bitsandbytes INT4→FP16 buffer copy (not a custom CUDA kernel); allocation of the new higher-precision buffer precedes the next generation step. Demotions (rank drops) copy FP16→INT8 or INT8→INT4 similarly. Pruned trajectories have their KV buffers immediately freed regardless of tier.\n\n**Component 3 — Prefix Sharing via RadixAttention (Day 6):** Shared-prefix KV (problem stem + common branching-point tokens) is stored at FP16 and deduplicated across all N trajectories via RadixAttention; only divergent suffix KV falls under PSG-KVC compression, concentrating savings where trajectories actually differ.\n\n**Component 4 — INT4 KV Validation Experiment (Days 1–3, prerequisite):** Phase A (Days 1–2): Run N=8 beam search on 100 held-out MATH-500 problems under full FP16, INT8, and INT4 for all trajectories. Measure: (a) INT4-induced PRM step score bias; (b) change in best-of-N trajectory selection vs. FP16; (c) empirical α — the shared-prefix fraction defined as the ratio of shared-prefix KV tokens to total KV tokens per trajectory — reported across the 100-problem sample to ground the composability formula K_system ≈ K_ETS-baseline × (α + (1−α)/r) in measured rather than projected values, replacing the estimated range α ∈ {0.4–0.6}. Phase B (Day 3, post-ETS population): Run ETS first to obtain post-ETS survivors, then apply INT4 to the bottom 25% of survivors and measure PRM score bias and early-pruning rate relative to FP16 in subsequent ETS steps. This directly tests whether INT4 is safe for the post-ETS bottom-quartile population — which consists of ETS-retained diversity-preserving trajectories with lower PRM scores, not globally weakest trajectories — and complements the 'Hold Onto That Thought' (arXiv:2512.12008) characterization of eviction methods on reasoning tasks by providing quantization-specific safety data. If INT4-induced degradation causes >2% change in best-of-N answer selection, raise the minimum tier to INT8.\n\n**ETS+PSG-KVC Composability Analysis (formalized in Days 8–14 evaluation reporting):** ETS and PSG-KVC operate on distinct memory dimensions and compose without interference. ETS's integer linear program prunes entire trajectory subtrees, yielding a net 1.8× KV reduction by eliminating whole beams and increasing tree-internal KV sharing. PSG-KVC then applies differential precision compression to the divergent-suffix KV of ETS-surviving trajectories. These are orthogonal reductions: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories. The combined gain over uncompressed N-trajectory baseline is approximately K_system ≈ K_ETS-baseline × (α + (1−α)/r), where α is the empirically measured shared-prefix fraction from Phase A and r ∈ {2.0, 2.5} is PSG-KVC's divergent-suffix compression ratio. For α=0.5 and r=2.25, PSG-KVC contributes an additional 1.39× reduction over the ETS baseline, giving combined ≈2.5× reduction over uncompressed N-trajectory KV. The three-way theoretical composition (TriAttention × ETS × PSG-KVC ≈ 10.7 × 1.8 × 1.39 ≈ 26.8×) is computed and presented in the paper's introduction as motivation for PSG-KVC's role in the three-dimensional design space, with a careful note on the assumption that TriAttention's token-count reduction and PSG-KVC's bit-width reduction are applied to the same divergent-suffix token set (PSG-KVC's additional factor is relative to whatever token count TriAttention leaves). Crucially, the post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of trajectories that ETS retained for semantic diversity reasons despite lower PRM scores — INT4 is particularly well-justified for this population. Phase B of the INT4 validation experiment directly validates this safety argument for the post-ETS subpopulation.\n\n**Baselines:** (a) N-trajectory beam search + full FP16 KV, no ETS (primary standalone baseline — makes PSG-KVC's contribution legible independently of ETS); (b) ETS + full FP16 KV (ETS-only baseline); (c) ETS + uniform INT4 KV for all trajectories (PM-KVQ-style); (d) ETS + attention-score-gated eviction (R-KV style); (e) ETS + ForesightKV eviction policy (trained single-trajectory policy applied uniformly across beams, using authors' released checkpoint if available; otherwise substituted with attention-score-gated eviction and noted as future comparison).\n\n**Evaluation — Math Reasoning (Days 9–14):** DeepSeek-R1-Distil-Qwen-14B on MATH-500 (full, 500 problems) and AIME 2024 (30 problems), with N∈{4,8,16} beam trajectories on 2×A100 80GB nodes. Primary metrics: KV memory per trajectory (GB), wall-clock throughput (tokens/sec), pass@1 accuracy vs. uncompressed baseline.\n\n**Evaluation — Science Reasoning (Days 13–14):** GPQA Diamond (448 problems, graduate-level science reasoning across biology, chemistry, physics), N=8 beam trajectories with DeepSeek-R1-Distil-Qwen-14B. PSG-KVC's full PRM-rank differential mechanism operates on GPQA Diamond since it requires step-level reasoning; this directly demonstrates that PSG-KVC generalizes beyond mathematical domains, using the same evaluation benchmark as DMS (NeurIPS 2025, arXiv:2506.05345) to enable direct comparison. Primary metric: pass@1 accuracy under PSG-KVC vs. baselines.\n\n**Evaluation — General NLP (Day 15):** MT-Bench N=4 best-of-N with DeepSeek-R1-Distil-Qwen-14B as a compression quality preservation test under best-of-N selection (80 questions, first-turn responses). PSG-KVC's rank-based tier assignment requires step-level PRM signals that do not exist for instruction-following prompts; this experiment therefore uses fixed-split compression with static trajectory assignment. Three policies are compared: (a) all-FP16; (b) all-INT8; (c) fixed-split (trajectories 1–2 → FP16, trajectories 3–4 → INT4 by generation order). ArmoRM-Llama3-8B-v0.1 scores each completed candidate response to select the best-of-4; selected responses are evaluated by the MT-Bench GPT-4 judge (absolute score, 1–10 scale). This experiment is labeled explicitly as 'fixed-split compression with ArmoRM selection — compression quality preservation test (general NLP),' not a PSG-KVC differential-mechanism demonstration. It provides EMNLP reviewers with evidence that coarse compression does not degrade general instruction-following quality under best-of-N selection — a scenario not yet covered by PM-KVQ or concurrent compression papers, which focus on single-best-response generation rather than best-of-N selection. Secondary metrics: KV memory reduction and tokens/sec during N=4 generation. The MT-Bench N=4 best-of-N setup is an under-explored evaluation configuration in the compression literature, and its inclusion directly responds to EMNLP Efficient Methods track reviewers' 'does this work beyond math?' concern.\n\n**Ablations (Days 15–16):** Prefix sharing on/off (to isolate RadixAttention contribution); 2-tier (FP16/INT4) vs. 3-tier (FP16/INT8/INT4) compression; rank threshold sensitivity (top-20%/mid-60%/bot-20% vs. baseline top-25%/mid-50%/bot-25%).\n\n**Expected results:** 2–2.5× KV memory reduction for the divergent-suffix portion at N=16 (on top of prefix-sharing baseline), yielding ≈1.39× additional reduction over the ETS-alone baseline and ≈2.5× combined reduction (ETS+PSG-KVC) over uncompressed N=16; <1% accuracy degradation versus uncompressed beam search on MATH-500 and GPQA Diamond; composable with ETS's 1.4× throughput gain. MT-Bench GPT-4 scores expected to be within 0.2 points of all-FP16 baseline under fixed-split compression.\n\n**Limitations (to be stated in paper):** (1) Precision-promotion asymmetry: when a trajectory is promoted from INT4→FP16, historical divergent-suffix KV tokens from before the promotion point remain at INT4 precision; full remediation — re-encoding the suffix KV at FP16 upon promotion — is computationally expensive and deferred to future work. (2) Minimum trajectory count: the 3-tier policy's full differentiation requires N≥8; N=4 uses a 2-tier fallback with reduced but nonzero savings. (3) MT-Bench and general NLP evaluation uses fixed-split compression rather than PSG-KVC's PRM-rank mechanism, as instruction-following prompts lack step-level quality signals; the MT-Bench result validates compression quality preservation under best-of-N selection but does not demonstrate the differential mechanism. (4) Three-way composability (TriAttention × ETS × PSG-KVC) is a theoretical calculation; joint experimental validation of all three applied simultaneously is left to future work given the 16-day timeline.",
+
+  "resource_estimate": {
+    "focused_16day_plan": {
+      "gpu_hours": "~145–165 H100-hours total",
+      "breakdown": "INT4 validation experiment Phase A+B (Days 1–3): ~12 H100-hours (post-ETS population testing and empirical α measurement); standalone baseline MATH-500 experiments (N-trajectory beam search without ETS, N∈{4,8,16}, 5 compression policies): ~20 H100-hours; main MATH-500 ETS+PSG-KVC experiments (4 baselines + PSG-KVC × N∈{4,8,16}): ~60 H100-hours; AIME 2024 experiments (same 5 methods × 3 N-values, 30 problems each): ~15 H100-hours; GPQA Diamond N=8 evaluation (5 methods, 448 problems): ~15 H100-hours; MT-Bench N=4 evaluation (3 fixed-split compression policies × 80 questions × 4 responses, ArmoRM scoring): ~5 H100-hours; ablations (prefix sharing ×2, tier count ×2, threshold sensitivity ×3): ~25 H100-hours; buffer for reruns: ~13 H100-hours",
+      "gpu_configuration": "2×A100 80GB (≈1 H100-equivalent per node); 14B model fits comfortably; N=16 fits within 160GB aggregate KV budget at FP16 baseline",
+      "timeline": "16 days (targeting EMNLP 2026 ARR May 25 deadline; INT4 Phase B runs in parallel with Component 1 implementation on the second A100 node to preserve timeline; GPQA Diamond and MT-Bench evaluations run in parallel on Days 13–15)",
+      "team": "1–2 researchers; key decision gates: Day 3 (INT4 Phase A+B validation result — if >2% best-of-N shift, raise floor to INT8) and Day 9 (ETS integration test before full MATH-500 run)",
+      "estimated_gpu_cost": "~$435–495 at ~$3/h A100 rental (Lambda Labs / Vast.ai)",
+      "risk_mitigation": "Step-boundary upcast copy (between-step, using bitsandbytes) eliminates custom CUDA kernel risk; online rank-based thresholding eliminates calibration-transfer risk; INT4 Phase B (post-ETS population) catches quantization confounding for the specific population PSG-KVC compresses; ForesightKV baseline requires training — use authors' released checkpoint if available, otherwise substitute with attention-score-gated eviction and note ForesightKV as future comparison; N=4 2-tier fallback is pre-specified; MT-Bench fixed-split framing is pre-specified to avoid ambiguity about PSG-KVC mechanism scope; standalone baseline (no ETS) insulates PSG-KVC contribution from ETS publication risk; ETS preprint (arXiv:2502.13575, revised June 2025) cited as-is, with note that PSG-KVC's primary standalone baseline does not depend on ETS's acceptance"
+    },
+    "manual": {
+      "gpu_hours": "~165 H100-hours",
+      "timeline": "16 days (targeting EMNLP 2026 deadline)",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$495 at ~$3/h A100 rental"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~145 H100-hours",
+      "gpu_utilization": "~60–70%: agent queues experiments continuously; human approval gates at Day 3 INT4 validation decision and ablation scope confirmation",
+      "timeline": "10–12 days with ~20 min/day check-in",
+      "team": "1 researcher",
+      "claude_api_cost": "$80–150 (~800–1500 turns at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "~$435 at ~$3/h A100 rental"
+    },
+    "auto_research": {
+      "note": "Scoped to same 16-day envelope as manual; auto mode runs ablations in parallel and completes in ~7–10 days using 4 A100 nodes instead of 2",
+      "gpu_hours": "~175 H100-hours (same scope as focused plan; parallelism reduces wall-clock, not total compute)",
+      "gpu_utilization": "~85%",
+      "timeline": "7–10 days with 4 A100 nodes",
+      "team": "0 (2h harness setup)",
+      "claude_api_cost": "$150–300 (~1500–3000 turns)",
+      "estimated_gpu_cost": "~$525 at ~$3/h A100 rental",
+      "stopping_criterion": "Ablation loop halts when 3-tier vs. 2-tier accuracy difference is <0.3% on MATH-500 OR threshold sensitivity curve flattens (Δaccuracy < 0.1% per 5-percentile shift) — whichever comes first"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR deadline May 25, 2026 — confirmed open; Efficient Methods for NLP track; four-benchmark evaluation suite — MATH-500, AIME 2024, GPQA Diamond, MT-Bench — directly supports both math-reasoning and general-NLP framing)",
+    "AAAI 2027 (deadline TBD, historically August–September; conference February 2027)",
+    "ICLR 2027 (deadline TBD, historically September–October; no official CFP yet as of May 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "ETS: Efficient Tree Search for Inference-Time Scaling (arXiv:2502.13575, arXiv preprint Feb 2025; under review)",
+    "Inference-Time Hyper-Scaling with KV Cache Compression (NeurIPS 2025, arXiv:2506.05345)",
+    "Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning (ICLR 2026, arXiv:2601.20326)",
+    "DiffKV: Differentiated Memory Management with Parallel KV Compaction (arXiv:2412.03131)",
+    "PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs (arXiv:2505.18610, NeurIPS 2025)",
+    "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models (arXiv:2505.24133, NeurIPS 2025)",
+    "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression (RLKV, arXiv:2510.08525)",
+    "ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution (arXiv:2602.03203)",
+    "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models (arXiv:2510.01290)",
+    "TriAttention: Efficient Long Reasoning with Trigonometric KV Compression (arXiv:2604.04921, April 2026)",
+    "Hold Onto That Thought: Assessing KV Cache Compression On Reasoning (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning)",
+    "Quantization Hurts Reasoning? An Empirical Study on Quantized Reasoning Models (arXiv:2504.04823, COLM 2025)",
+    "MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning (arXiv:2512.19206)",
+    "SGLang: Efficient Execution of Structured Language Model Programs (arXiv:2312.07104, NeurIPS 2024)",
+    "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (arXiv:2025)"
+  ],
+  "description": "PRM-Score-Gated KV Compression (PSG-KVC) addresses the three-dimensional memory problem of PRM-guided tree search inference: N parallel trajectories generate KV caches that grow along three orthogonal axes — trajectory count, token count, and bit-width per token. Prior work attacks each axis in isolation. ETS (arXiv:2502.13575) reduces trajectory count (1.8× via ILP pruning) but applies no precision differentiation to surviving trajectories. TriAttention (arXiv:2604.04921, April 2026) achieves 10.7× intra-trajectory KV token-count reduction via trigonometric Q/K concentration compression but is single-trajectory and agnostic to cross-trajectory PRM quality differentials. DiffKV (arXiv:2412.03131) differentiates compression within a single trajectory (K/V importance, token importance, head diversity) but cannot exploit cross-trajectory quality signals. No method uses the PRM's per-step trajectory quality ranking to allocate differential bit-width budgets across concurrent search branches. PSG-KVC fills this bit-width axis: it is training-free, cross-trajectory, PRM-rank-gated, and quantization-based — composable with ETS (trajectory-count) and TriAttention (token-count) as orthogonal reductions. The three-way composition achieves approximately 10.7 × 1.8 × 1.39 ≈ 26.8× total KV memory reduction over uncompressed N-trajectory baseline — the headline motivation for PSG-KVC's distinct role even when single-trajectory compression is fully optimized. PSG-KVC's contribution (the 1.39× bit-width factor) remains additive on top of any intra-trajectory method. PSG-KVC introduces three novel components: (1) an online adaptive percentile tracker that at each PRM step boundary sorts active trajectories by cumulative score and assigns KV tiers by rank (top 25% → FP16, middle 50% → INT8, bottom 25% → INT4 for N≥8; 2-tier top-50%/bottom-50% fallback for N=4), making compression automatically robust to problem-difficulty distribution shift without calibration data; (2) step-boundary tier transitions implementing promotions (INT4→FP16) as standard between-step bitsandbytes buffer copies at PRM evaluation points — eliminating custom CUDA kernel risk; (3) RadixAttention-based prefix sharing confining per-trajectory compression to divergent suffixes only. A prerequisite two-phase INT4 KV validation experiment (Phase A: uniform INT4 on all trajectories, measuring empirical shared-prefix fraction α to ground the composability formula; Phase B: INT4 on post-ETS bottom quartile specifically) validates safety for the target population. Evaluated with DeepSeek-R1-Distil-Qwen-14B on four benchmarks: MATH-500 and AIME 2024 (math reasoning, N∈{4,8,16}), GPQA Diamond (science reasoning, N=8, PSG-KVC's full PRM-rank mechanism active, direct comparison with DMS's evaluation protocol), and MT-Bench N=4 best-of-N (general NLP, fixed-split compression with ArmoRM-Llama3-8B-v0.1 selection, compression quality preservation test). The primary baseline is standalone N-trajectory beam search without ETS, making PSG-KVC's contribution legible independently of ETS's preprint publication status; ETS+PSG-KVC is the combined system comparison. A limitations section acknowledges precision-promotion asymmetry (promoted trajectories carry residual INT4 error in pre-promotion suffix KV), the N=4 2-tier boundary case, the MT-Bench fixed-split scope restriction, and that three-way joint experimental validation (TriAttention+ETS+PSG-KVC simultaneously) is left to future work.",
+  "project_name": "prm_gated_kv_compress",
+  "source": "web_research"
+}
+```
+
+The output above is the complete revised JSON. Let me provide a summary of the key changes made.
+
+---
+
+**Summary of changes (major revision):**
+
+**Narrative reframe (core_problem / opportunity):**
+- The idea is now motivated by a **three-dimensional design space** (trajectory-count × token-count × bit-width). PSG-KVC fills the bit-width axis — the one no prior method addresses using cross-trajectory PRM signals.
+- The **three-way composable gain** (TriAttention 10.7× × ETS 1.8× × PSG-KVC 1.39× ≈ 26.8×) is computed explicitly in the opportunity section and becomes the headline motivation. This directly addresses the "modest impact story" concern: PSG-KVC's value survives even when single-trajectory compression is fully optimized.
+
+**Landscape:**
+- Added **DiffKV** (arXiv:2412.03131) — an intra-trajectory differentiation method (K/V importance + token importance + head diversity within one inference). This sharpens the single-vs-cross-trajectory contrast and shows PSG-KVC is not duplicating DiffKV's differentiation idea.
+
+**Evaluation (approach):**
+- Added **standalone N-trajectory beam search (no ETS)** as the primary baseline, decoupling PSG-KVC's contribution from ETS's 15-month unaccepted preprint risk.
+- Added **GPQA Diamond N=8** (science reasoning, 448 problems) — PSG-KVC's full PRM-rank mechanism is active here, enabling direct comparison with DMS's (NeurIPS 2025) evaluation protocol.
+- Replaced **AlpacaEval 2** (limited new evidence per reviewer) with **MT-Bench N=4** best-of-N with ArmoRM scoring — directly addresses EMNLP reviewers' "does this work beyond math?" concern; the N=4 best-of-N selection scenario is not covered by PM-KVQ or concurrent compression papers.
+
+**Resource estimate:** Updated to ~145–165 H100-hours, reflecting the new standalone baseline (~20h), GPQA Diamond (~15h), and MT-Bench (~5h), offset by removing AlpacaEval 2 (~14h).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32961425-ae8f-4e8f-b565-84c416208762",
+  "isSidechain": false,
+  "requestId": "req_011CasdtVYJX94BMB4f4J5jy",
+  "type": "assistant",
+  "uuid": "15e45eb2-c5b4-4997-bd21-7572ff768aba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Ti8Rc7Ro4fhKZVauJabXf3",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4986,
+      "cache_read_input_tokens": 32363,
+      "output_tokens": 12664,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 12664,
+          "cache_read_input_tokens": 32363,
+          "cache_creation_input_tokens": 4986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Searc…",
+  "leafUuid": "15e45eb2-c5b4-4997-bd21-7572ff768aba",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise PSG-KVC with MT-Bench evaluation and composability narrative",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-09 (UTC).**  ## Original idea {   \"title\": \"PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Searc…",
+  "leafUuid": "15e45eb2-c5b4-4997-bd21-7572ff768aba",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise PSG-KVC with MT-Bench evaluation and composability narrative",
+  "sessionId": "5fb5deac-56f4-4bbc-9e9a-afeea66b9a26"
+}
+```
+
+---

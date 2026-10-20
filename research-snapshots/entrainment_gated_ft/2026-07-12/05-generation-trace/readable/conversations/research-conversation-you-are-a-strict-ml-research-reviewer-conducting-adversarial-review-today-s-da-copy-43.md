@@ -1,0 +1,4478 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-09 (UTC).** Your job: indep
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-1/c117efd2-4e28-4c5e-a52c-5d7fcdc79df3.jsonl`
+- **Structured JSON:** [`08a973394b4f06eeafed.json`](../../sessions/08/08a973394b4f06eeafed.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-09T20:11:54.733Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-09T20:11:54.733Z",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-09 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Efficient Methods for NLP.\n\nDirection: Efficiency methods for NLP — NOT limited to LLM inference optimization. In-scope: speculative decoding, KV-cache compression/eviction, quantization-aware distillation, parameter-efficient fine-tuning, efficient long-context serving, MoE routing, attention approximations, efficient smaller models for specific NLP tasks, pruning for task-specific deployment.\n\nContribution type: METHOD ONLY. Propose new algorithms — not profiling studies.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Generous for efficiency work.\n2. Time: ≤16 days. Build on vLLM, SGLang, llama.cpp, TensorRT-LLM, HF Transformers, FlashAttention, bitsandbytes.\n3. Eval: perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench. Report wall-clock and throughput on H100.\n\nLook for: cache-aware methods for new workloads (long thinking traces, agent loops, RAG), quantization-aware distillation, structured sparsity during inference, efficient serving of reasoning models with variable-length thinking. Avoid: vanilla 4-bit quantization, generic LoRA, plain speculative decoding.\n\nTag: direction=efficiency, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-09?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Search\",\n  \"core_problem\": \"Test-time compute scaling via PRM-guided tree search (Best-of-N, beam search, MCTS) creates N simultaneous KV cache instances that grow with reasoning depth. Current systems either store full-precision KV for all trajectories (prohibitive memory at N≥8) or apply uniform compression that discards useful state from high-value trajectories alongside low-value ones. Four classes of prior work fail to close this gap: (1) head-level compression methods (RLKV, arXiv:2510.08525) identify critical attention heads within a single inference pass but cannot exploit cross-trajectory quality differentials — they still allocate the same per-trajectory KV budget regardless of whether a branch is winning or losing; (2) training-based eviction methods (ForesightKV, arXiv:2602.03203; DMS in 'Inference-Time Hyper-Scaling', arXiv:2506.05345) require supervised or RL training overhead and apply a single learned policy uniformly to every trajectory; (3) layer-sensitivity quantization (PM-KVQ, arXiv:2505.18610) addresses quantization error accumulation within a single CoT but is agnostic to the relative quality of concurrent trajectories; (4) trajectory-count pruning methods (ETS, arXiv:2502.13575, arXiv preprint Feb 2025) use PRM scores combined with semantic diversity coverage in an integer linear program to decide which entire trajectories to keep or discard — a binary pruning decision. ETS achieves 1.8× KV reduction by eliminating whole subtrees, but applies no per-trajectory precision differentiation to the surviving trajectories. No method uses the PRM's per-step trajectory quality signal to set differential per-trajectory KV compression precision budgets across the N simultaneous search branches, despite those scores being computed for free during search. PSG-KVC occupies a distinct position: it composes with ETS's binary pruning by adding continuous precision-based compression as a second dimension of memory savings applied to the surviving trajectory set.\",\n  \"opportunity\": \"PRM step scores are already computed for each trajectory during tree search; these scores provide a direct, training-free signal for how much KV precision each trajectory deserves relative to its peers in the current search state. The key insight is to assign compression tiers by online rank rather than absolute threshold: at each PRM evaluation step boundary, sort all active trajectories by cumulative PRM score and assign tiers by rank. For N≥8 (the primary evaluation regime), the default 3-tier split is: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4. For N=4 (boundary case), a 2-tier fallback is used — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers that provide insufficient statistical differentiation; PRM score ties use stable sorting by trajectory index. This rank-based adaptive assignment is naturally robust to distribution shift across problem difficulties (hard vs. easy problems simply shift all PRM scores together; relative ranks remain informative), eliminating the calibration-transfer failure mode of fixed absolute thresholds. Step-boundary tier transitions (including promotions from INT4→FP16 for trajectories whose rank improves) are implemented as between-step buffer copy operations using standard bitsandbytes INT4→FP16 conversion — these happen at PRM evaluation points between reasoning steps, not during active beam generation, so no custom CUDA kernel is required. Recent empirical work confirms that KV-only INT4 quantization (as distinct from weight+activation quantization studied by 'Quantization Hurts Reasoning?', arXiv:2504.04823) is near-lossless on reasoning models when applied selectively (MixKVQ, ThinKV, PM-KVQ), and we validate this specifically for bottom-quartile PRM trajectories as a prerequisite experiment. Crucially, even if bottom-quartile INT4 compression induces marginal quality degradation, these trajectories are expected to be pruned within 1–3 steps by the PRM anyway — so the impact on final search accuracy is bounded. Prefix KV is shared across all trajectories via RadixAttention-style deduplication, concentrating per-trajectory overhead in the divergent suffix only. PSG-KVC is fully composable with ETS's algorithmic diversity-efficiency gains and is the first method to use PRM scores as a cross-trajectory differential compression precision signal.\",\n  \"landscape\": \"ETS (Efficient Tree Search for Inference-Time Scaling, arXiv:2502.13575, arXiv preprint Feb 2025; under review) improves inference-time scaling throughput 1.4× via diversity-aware trajectory pruning: it uses REBASE reward-weighted sampling combined with an integer linear program that maximizes quality coverage (via exp(Ri/TR)-weighted trajectory importance) plus a semantic diversity term (hierarchical agglomerative clustering coverage), achieving 1.8× average KV cache reduction by eliminating whole trajectory subtrees and increasing tree-internal KV sharing. ETS uses PRM scores as a binary keep/discard signal; PSG-KVC is orthogonal, adding continuous per-trajectory precision allocation to the survivors ETS retains. PSG-KVC is composable with ETS. 'Inference-Time Hyper-Scaling with KV Cache Compression' (arXiv:2506.05345) introduces Dynamic Memory Sparsification (DMS) — a training-light adaptive token eviction method that delays eviction to preserve critical tokens — achieving 8× cache compression; DMS applies a single trained eviction policy identically across all trajectories and does not condition compression rates on per-trajectory PRM quality differentials. 'Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning' (ICLR 2026, arXiv:2601.20326) repurposes KV caches as lightweight embeddings for path selection — uses KV as a selector signal rather than a compressible resource with quality-differentiated budgets. PM-KVQ (arXiv:2505.18610, NeurIPS 2025) applies progressive mixed-precision quantization to long-CoT LLMs based on transformer-layer sensitivity to cumulative quantization error, not trajectory-level PRM quality; is single-trajectory and training-dependent on positional interpolation calibration. R-KV (arXiv:2505.24133, NeurIPS 2025) compresses KV via attention-based intra-trajectory redundancy scoring; is single-trajectory and ignores multi-trajectory PRM-score differentials. 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (RLKV, arXiv:2510.08525) uses reinforcement learning to identify which attention heads are essential for reasoning, allocating full KV to critical heads and aggressively compressing others; achieves 20–50% cache reduction. RLKV differs from PSG-KVC on two orthogonal axes: (1) granularity — RLKV compresses within a single trajectory at head level, PSG-KVC compresses differentially across trajectories at trajectory level; (2) signal — RLKV requires RL training to learn head importance, PSG-KVC uses PRM scores computed for free during search with no additional training. PSG-KVC and RLKV are composable: within each PSG-KVC tier, RLKV's head-level policy could be applied for additional compression. ForesightKV (arXiv:2602.03203) learns optimal KV pair eviction using future attention scores via a Golden Eviction algorithm (supervised) plus GRPO (RL); consistently outperforms prior eviction methods at half cache budget on AIME 2024/2025. ForesightKV is single-trajectory, requires training, and applies uniform eviction policy across all concurrent beams. PSG-KVC is training-free, multi-trajectory, and applies differential budgets based on live PRM rank. ThinKV (arXiv:2510.01290) uses attention sparsity to identify thought importance and applies hybrid quantization-eviction per thought segment; near-lossless at <5% KV cache budget. ThinKV is single-trajectory and uses attention sparsity signal, not cross-trajectory PRM quality signal. 'Hold Onto That Thought: Assessing KV Cache Compression On Reasoning' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) benchmarks token-eviction strategies (H2O, SnapKV-D, R-KV, StreamingLLM, KNorm) on long-reasoning tasks; finds attention-based heavy-hitter eviction (H2O, SnapKV-D) dominates for reasoning models and that low-budget eviction can paradoxically produce longer traces. This paper does not test quantization-based compression; its eviction-method characterization motivates PSG-KVC's inclusion of R-KV-style eviction as a baseline and establishes that existing compression benchmarks focus on eviction, leaving INT4 KV quantization on reasoning tasks under-evaluated — directly motivating PSG-KVC's prerequisite validation experiment. SGLang RadixAttention (NeurIPS 2024, arXiv:2312.07104) enables shared-prefix KV deduplication, which PSG-KVC uses as infrastructure. 'Quantization Hurts Reasoning?' (arXiv:2504.04823, COLM 2025) finds that weight+activation quantization (W4A8 and below) causes significant reasoning accuracy degradation; KV-only INT4 quantization is shown to be near-lossless (≤1% drop) in concurrent work, and PSG-KVC validates INT4 KV safety for bottom-quartile trajectories as a prerequisite experiment. Zero papers found that use PRM scores as a dynamic cross-trajectory signal for per-trajectory KV cache compression precision in multi-trajectory tree search.\",\n  \"approach\": \"We implement PRM-Score-Gated KV Compression (PSG-KVC) in a focused 16-day experiment, extending the open-source ETS codebase (SqueezeAILab/ETS) with five targeted components.\\n\\n**Component 1 — Online Adaptive Percentile Tracker (Days 3–4):** At each PRM evaluation step boundary, compute the cumulative PRM score for each active trajectory and sort by rank. For N≥8 (the primary evaluation regime), assign tiers by rank: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4, yielding a 2/4/2 split at N=8 and 4/8/4 at N=16. For N=4 (boundary case), use a 2-tier fallback — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers; this yields a 2/2 split with meaningful differentiation. PRM score ties use stable sort by trajectory index. This O(N log N) rank sort replaces offline calibration and is naturally invariant to absolute PRM score distributions across problem difficulties. PSG-KVC's strongest gains are at N∈{8,16}; N=4 results are presented with the 2-tier variant and flagged as a boundary case.\\n\\n**Component 2 — Step-Boundary Tier Transitions (Days 4–5):** All compression tier changes (including INT4→INT8→FP16 promotions on rank improvement and INT4 discards on pruning) happen at PRM evaluation points — between beam expansion steps, not during active generation. Promotions use standard bitsandbytes INT4→FP16 buffer copy (not a custom CUDA kernel); allocation of the new higher-precision buffer precedes the next generation step. Demotions (rank drops) copy FP16→INT8 or INT8→INT4 similarly. Pruned trajectories have their KV buffers immediately freed regardless of tier.\\n\\n**Component 3 — Prefix Sharing via RadixAttention (Day 6):** Shared-prefix KV (problem stem + common branching-point tokens) is stored at FP16 and deduplicated across all N trajectories via RadixAttention; only divergent suffix KV falls under PSG-KVC compression, concentrating savings where trajectories actually differ.\\n\\n**Component 4 — INT4 KV Validation Experiment (Days 1–3, prerequisite):** Phase A (Days 1–2): Run N=8 beam search on 100 held-out MATH-500 problems under full FP16, INT8, and INT4 for all trajectories. Measure: (a) INT4-induced PRM step score bias; (b) change in best-of-N trajectory selection vs. FP16. Phase B (Day 3, post-ETS population): Run ETS first to obtain post-ETS survivors, then apply INT4 to the bottom 25% of survivors and measure PRM score bias and early-pruning rate relative to FP16 in subsequent ETS steps. This directly tests whether INT4 is safe for the post-ETS bottom-quartile population — which consists of ETS-retained diversity-preserving trajectories with lower PRM scores, not globally weakest trajectories — and complements the 'Hold Onto That Thought' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) characterization of eviction methods on reasoning tasks by providing quantization-specific safety data. If INT4-induced degradation causes >2% change in best-of-N answer selection, raise the minimum tier to INT8.\\n\\n**ETS+PSG-KVC Composability Analysis (formalized in Days 8–14 evaluation reporting):** ETS and PSG-KVC operate on distinct memory dimensions and compose without interference. ETS's integer linear program — maximizing quality-weighted coverage (REBASE exp(Ri/TR) weights) plus semantic diversity coverage (hierarchical clustering) subject to tree-size penalty — prunes entire trajectory subtrees, yielding a net 1.8× KV reduction by eliminating whole beams and increasing tree-internal KV sharing. PSG-KVC then applies differential precision compression to the divergent-suffix KV of ETS-surviving trajectories. These are orthogonal reductions: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories. The combined gain over uncompressed N-trajectory baseline is approximately: K_system ≈ K_ETS-baseline × (α + (1−α)/r), where α is the shared-prefix fraction (typically 0.4–0.6 for MATH-500 problems) and r ∈ {2.0, 2.5} is PSG-KVC's divergent-suffix compression ratio. For α=0.5 and r=2.25, PSG-KVC contributes an additional 1.39× reduction over the ETS baseline, giving a combined ≈2.5× total reduction over uncompressed N-trajectory KV. Crucially, the post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of trajectories that ETS retained for semantic diversity reasons despite lower PRM scores — they are diversity-preserving exploratory branches, not high-promise candidates. INT4 is particularly well-justified for this population: if INT4-induced degradation causes ETS to prune them 1–2 steps earlier than FP16 would, the result is additional memory savings at negligible quality cost (these trajectories were already ETS-pruning candidates). Phase B of the INT4 validation experiment directly validates this safety argument for the post-ETS subpopulation.\\n\\n**Baselines:** (a) ETS + full FP16 KV (uncompressed beam search, memory upper bound); (b) ETS + uniform INT4 KV for all trajectories (PM-KVQ-style); (c) ETS + attention-score-gated eviction (R-KV style); (d) ETS + ForesightKV eviction policy (trained single-trajectory policy applied uniformly across beams).\\n\\n**Evaluation — Math Reasoning (Days 9–14):** DeepSeek-R1-Distil-Qwen-14B on MATH-500 (full, 500 problems) and AIME 2024 (30 problems), with N∈{4,8,16} beam trajectories on 2×A100 80GB nodes. Primary metrics: KV memory per trajectory (GB), wall-clock throughput (tokens/sec), pass@1 accuracy vs. uncompressed baseline.\\n\\n**Evaluation — General NLP (Days 14–15):** AlpacaEval 2 (805 prompts) with best-of-N=4 using DeepSeek-R1-Distil-Qwen-14B. Four candidate responses are generated per prompt under each policy — (a) uncompressed FP16, (b) uniform INT8, (c) PSG-KVC N=4 (2-tier fallback: top-50% FP16, bottom-50% INT4) — and an open-source outcome reward model (ArmoRM-Llama3-8B-v0.1 from the RewardBench leaderboard) scores each candidate to select the best-of-4. Selected responses are evaluated by the standard AlpacaEval 2 GPT-4 judge (length-controlled win rate vs. GPT-4-turbo-1106). Secondary metrics: KV memory reduction and tokens/sec during N=4 generation. This replaces the prior N=1 MT-Bench evaluation, which was tier-agnostic (single trajectory cannot exercise PSG-KVC's differential compression) and provided weak evidence for the EMNLP 'Efficient Methods for NLP' framing. The AlpacaEval 2 N=4 setup exercises PSG-KVC in its intended multi-trajectory mode on a general NLP benchmark, giving EMNLP reviewers direct evidence beyond math reasoning.\\n\\n**Ablations (Days 15–16):** Prefix sharing on/off (to isolate RadixAttention contribution); 2-tier (FP16/INT4) vs. 3-tier (FP16/INT8/INT4) compression; rank threshold sensitivity (top-20%/mid-60%/bot-20% vs. baseline top-25%/mid-50%/bot-25%).\\n\\n**Expected results:** 2–2.5× KV memory reduction for the divergent-suffix portion at N=16 (on top of prefix-sharing baseline), yielding ≈1.39× additional reduction over the ETS-alone baseline and ≈2.5× combined reduction over uncompressed N=16; <1% accuracy degradation versus uncompressed beam search; composable with ETS's 1.4× throughput gain.\\n\\n**Limitations (to be stated in paper):** (1) Precision-promotion asymmetry: when a trajectory is promoted from INT4→FP16, historical divergent-suffix KV tokens from before the promotion point remain at INT4 precision. Future generation attends over a precision-mixed KV cache (INT4 historical suffix tokens, FP16 new tokens), carrying residual quantization error from early reasoning steps. Two factors bound the impact: (a) the problem-stem prefix is stored at FP16 for all trajectories via prefix sharing — only post-branching suffix tokens are affected; (b) the prerequisite INT4 validation experiment directly measures per-token quantization error for the target model class. Full remediation — re-encoding the suffix KV at FP16 upon promotion — is computationally expensive and deferred to future work. (2) Minimum trajectory count: the 3-tier policy's full differentiation requires N≥8; N=4 uses a 2-tier fallback with reduced but nonzero savings.\",\n  \"resource_estimate\": {\n    \"focused_16day_plan\": {\n      \"gpu_hours\": \"~120–150 H100-hours total\",\n      \"breakdown\": \"INT4 validation experiment Phase A+B (Days 1–3): ~12 H100-hours (extended from 8h to include post-ETS population testing); main MATH-500 experiments (4 baselines + PSG-KVC × N∈{4,8,16}): ~60 H100-hours; AIME 2024 experiments (same 5 methods × 3 N-values, 30 problems each): ~15 H100-hours; AlpacaEval 2 N=4 evaluation (3 policies, including ArmoRM scoring): ~14 H100-hours; ablations (prefix sharing ×2, tier count ×2, threshold sensitivity ×3): ~25 H100-hours; buffer for reruns: ~15 H100-hours\",\n      \"gpu_configuration\": \"2×A100 80GB (≈1 H100-equivalent per node); 14B model fits comfortably; N=16 fits within 160GB aggregate KV budget at FP16 baseline\",\n      \"timeline\": \"16 days (targeting EMNLP 2026 ARR May 25 deadline; INT4 Phase B runs in parallel with Component 1 implementation on the second A100 node to preserve timeline)\",\n      \"team\": \"1–2 researchers; key decision gates: Day 3 (INT4 Phase A+B validation result — if >2% best-of-N shift, raise floor to INT8) and Day 9 (ETS integration test before full MATH-500 run)\",\n      \"estimated_gpu_cost\": \"~$360–450 at ~$3/h A100 rental (Lambda Labs / Vast.ai)\",\n      \"risk_mitigation\": \"Step-boundary upcast copy (between-step, using bitsandbytes) eliminates custom CUDA kernel risk; online rank-based thresholding eliminates calibration-transfer risk; INT4 Phase B (post-ETS population) catches quantization confounding for the specific population PSG-KVC compresses; ForesightKV baseline requires training — use authors' released checkpoint if available, otherwise substitute with attention-score-gated eviction and note ForesightKV as future comparison; N=4 2-tier fallback is pre-specified to avoid any ambiguity at the boundary case\"\n    },\n    \"manual\": {\n      \"gpu_hours\": \"~150 H100-hours\",\n      \"timeline\": \"16 days (targeting EMNLP 2026 deadline)\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"~$450 at ~$3/h A100 rental\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~130 H100-hours\",\n      \"gpu_utilization\": \"~60–70%: agent queues experiments continuously; human approval gates at Day 3 INT4 validation decision and ablation scope confirmation\",\n      \"timeline\": \"10–12 days with ~20 min/day check-in\",\n      \"team\": \"1 researcher\",\n      \"claude_api_cost\": \"$80–150 (~800–1500 turns at ~$0.10/turn Opus)\",\n      \"estimated_gpu_cost\": \"~$390 at ~$3/h A100 rental\"\n    },\n    \"auto_research\": {\n      \"note\": \"Scoped to same 16-day envelope as manual; auto mode runs ablations in parallel and completes in ~7–10 days using 4 A100 nodes instead of 2\",\n      \"gpu_hours\": \"~160 H100-hours (same scope as focused plan; parallelism reduces wall-clock, not total compute)\",\n      \"gpu_utilization\": \"~85%\",\n      \"timeline\": \"7–10 days with 4 A100 nodes\",\n      \"team\": \"0 (2h harness setup)\",\n      \"claude_api_cost\": \"$150–300 (~1500–3000 turns)\",\n      \"estimated_gpu_cost\": \"~$480 at ~$3/h A100 rental\",\n      \"stopping_criterion\": \"Ablation loop halts when 3-tier vs. 2-tier accuracy difference is <0.3% on MATH-500 OR threshold sensitivity curve flattens (Δaccuracy < 0.1% per 5-percentile shift) — whichever comes first\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR deadline May 25, 2026 — confirmed open; Efficient Methods for NLP track; AlpacaEval 2 N=4 evaluation directly supports this framing)\",\n    \"AAAI 2027 (deadline TBD, historically August–September; conference February 2027)\",\n    \"ICLR 2027 (deadline TBD, historically September–October; no official CFP yet as of May 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"ETS: Efficient Tree Search for Inference-Time Scaling (arXiv:2502.13575, arXiv preprint Feb 2025; under review)\",\n    \"Inference-Time Hyper-Scaling with KV Cache Compression (arXiv:2506.05345)\",\n    \"Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning (ICLR 2026, arXiv:2601.20326)\",\n    \"PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs (arXiv:2505.18610, NeurIPS 2025)\",\n    \"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models (arXiv:2505.24133, NeurIPS 2025)\",\n    \"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression (RLKV, arXiv:2510.08525)\",\n    \"ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution (arXiv:2602.03203)\",\n    \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models (arXiv:2510.01290)\",\n    \"Hold Onto That Thought: Assessing KV Cache Compression On Reasoning (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning)\",\n    \"Quantization Hurts Reasoning? An Empirical Study on Quantized Reasoning Models (arXiv:2504.04823, COLM 2025)\",\n    \"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning (arXiv:2512.19206)\",\n    \"SGLang: Efficient Execution of Structured Language Model Programs (arXiv:2312.07104, NeurIPS 2024)\",\n    \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (arXiv:2025)\"\n  ],\n  \"description\": \"PRM-Score-Gated KV Compression (PSG-KVC) addresses the memory bottleneck in PRM-guided tree search: N parallel trajectories generate N KV caches growing with reasoning depth, yet no existing method conditions per-trajectory KV compression precision on the PRM scores already computed for free during search. ETS (arXiv:2502.13575, arXiv preprint Feb 2025) makes the closest contact — its ILP uses PRM scores plus semantic diversity coverage to prune entire trajectory subtrees (1.8× KV reduction) — but applies no precision differentiation to surviving trajectories. PSG-KVC composes with ETS as a second, orthogonal memory-reduction dimension: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories, yielding a combined ≈2.5× total KV reduction over uncompressed N-trajectory baseline. PSG-KVC introduces three novel components: (1) an online adaptive percentile tracker that at each PRM step boundary sorts active trajectories by cumulative score and assigns KV tiers by rank (top 25% → FP16, middle 50% → INT8, bottom 25% → INT4 for N≥8; 2-tier top-50%/bottom-50% fallback for N=4 to avoid single-trajectory tiers), making compression automatically robust to problem-difficulty distribution shift without calibration data; (2) step-boundary tier transitions that implement promotions (INT4→FP16) as standard between-step bitsandbytes buffer copies — occurring at PRM evaluation points, not during active beam generation — eliminating custom CUDA kernel engineering risk; (3) RadixAttention-based prefix sharing that confines per-trajectory storage to divergent suffixes only, concentrating compression savings where trajectories actually differ. PSG-KVC is training-free and composable with ETS. The post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of ETS-retained diversity-preserving trajectories with lower PRM scores — precisely the population for which early pruning from INT4 degradation incurs minimal quality cost. A prerequisite two-phase INT4 KV validation experiment (Phase A: uniform INT4 on all trajectories; Phase B: INT4 on post-ETS bottom quartile specifically) directly validates safety for this population, addressing the 'Quantization Hurts Reasoning?' concern (arXiv:2504.04823) and complementing 'Hold Onto That Thought' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning), which benchmarks eviction-based compression on reasoning but does not test quantization. Evaluated with DeepSeek-R1-Distil-Qwen-14B on MATH-500, AIME 2024, and AlpacaEval 2 (N=4 best-of-N with ArmoRM-Llama3-8B-v0.1 as trajectory ranker) with N∈{4,8,16} beam trajectories, targeting 2–2.5× divergent-suffix KV reduction at N=16 with <1% accuracy loss versus uncompressed beam search, within a focused 16-day/~120–150 H100-hour budget satisfying the EMNLP 2026 May 25 ARR deadline. AlpacaEval 2 N=4 replaces the prior N=1 MT-Bench evaluation, which was tier-agnostic and did not exercise PSG-KVC's differential compression. A limitations section acknowledges precision-promotion asymmetry: promoted trajectories carry residual INT4 error in their pre-promotion divergent suffix KV, partially mitigated by FP16 prefix sharing and the INT4 validation bounds.\",\n  \"project_name\": \"prm_gated_kv_compress\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL — Timeline-compute conflict: The generator's own resource estimates show that no single mode satisfies both constraints simultaneously. Manual/HIL modes satisfy ≤200 H100-hours but take 3-5 months or 4-6 weeks (far beyond 16 days). Auto research mode fits 1-2 weeks but uses ~600 A100-hours ≈ 240-300 H100-hours, exceeding the 200 H100-hour hard constraint. The generator must either (a) redesign the experiment scope so a 16-day manual effort uses <200 H100-hours, or (b) explicitly acknowledge the tradeoff and propose a minimal-viable experiment set.\", \"CRITICAL — INT4 quantization accuracy risk for reasoning: 'Quantization Hurts Reasoning? An Empirical Study on Quantized Reasoning Models' (arXiv:2504.04823) finds that below W8A8/W4A16, reasoning accuracy degrades significantly with KV quantization. The PSG-KVC proposal applies INT4 to bottom-quartile trajectories and claims <1% accuracy loss — but this claim is unvalidated. If INT4 causes reasoning collapse even for trajectories expected to be pruned, those trajectories may be discarded prematurely rather than through legitimate low PRM scores, creating a confound in the accuracy measurements.\", \"Uncited related work — RL-Guided KV Cache Compression: 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (arXiv:2510.08525) uses a quality-signal-based differential KV compression strategy for reasoning models, allocating full precision to critical heads and aggressively compressing others. This is closer to PSG-KVC conceptually than any paper in the landscape section. The generator must differentiate PSG-KVC from this work (the key difference is trajectory-level vs. head-level allocation, and PRM signal vs. RL signal) or risk reviewer rejection for insufficient novelty discussion.\", \"Calibration transfer problem: Fixed score-percentile thresholds are calibrated on MATH-500 (median difficulty ~AMC/AIME-12 level) and applied zero-shot to AIME 2024/2025 (much harder). PRM score distributions will be dramatically different — on hard problems, all trajectories may fall into 'bottom quartile' by MATH-500 thresholds, triggering universal INT4 compression. The generator proposes no adaptive thresholding mechanism to handle distribution shift.\", \"Missing baseline: ForesightKV (arXiv:2602.03203) uses supervised/RL learning to predict optimal KV eviction for reasoning models and achieves strong results. This is a stronger baseline than R-KV-style attention-score eviction and should be included to fairly benchmark the value of the PRM signal versus learned eviction predictors.\", \"Engineering risk underestimated: Lazy dequantization on mid-search promotion (INT4→FP16 upcasting at an arbitrary search step) requires modifying the KV cache buffer in-place during active beam expansion. This is not a standard bitsandbytes operation — it requires custom CUDA kernel work that could easily consume 5-7 of the 16 available days to get numerically correct. The proposal treats this as a known-difficulty item but does not account for the debugging time in any mode's timeline.\", \"Venue-contribution fit: The paper's primary contribution is a systems-engineering method (a threshold oracle + compression tier assignment). EMNLP Efficient Methods track historically accepts papers with strong empirical NLP task evaluations (MMLU, MT-Bench, LongBench per the user's requirements), not just math reasoning (MATH-500, AIME). The generator should add at least one general NLP task evaluation to support the 'Efficient Methods for NLP' framing.\"]\nFeedback: The core idea (PRM-score-gated per-trajectory KV quantization in tree search) is novel and the literature gap is real. To get to 'pass', the generator must address four things: (1) Resolve the timeline-compute conflict by designing a focused 16-day experiment plan that uses ≤200 H100-hours — concretely, cut the auto-research mode's ablation scope to N∈{4,8,16} on MATH-500 + one AIME split only, targeting ~120 H100-hours; (2) Add an empirical validation that INT4 KV cache quantization is acceptable for low-PRM-score reasoning trajectories — the 'Quantization Hurts Reasoning?' paper (arXiv:2504.04823) is a direct challenge that must be addressed with a preliminary INT4 accuracy characterization; (3) Add 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (arXiv:2510.08525) to the landscape and explicitly differentiate PSG-KVC (trajectory-level + PRM signal) from head-level + RL-signal approaches; (4) Replace the fixed calibration thresholds with a simple online percentile tracker that adapts to the empirical PRM score distribution at each search step — this costs one day of implementation and eliminates the distribution-shift failure mode. Additionally, add one general NLP task evaluation (e.g., MT-Bench with DeepSeek-R1-Distill-Qwen-14B) to satisfy the EMNLP Efficient Methods track framing. The method is publishable in Findings if these issues are addressed; Main track requires the impact case to be stronger.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"ETS venue factual error: Generator cites arXiv:2502.13575 as 'NeurIPS 2024' — this is factually impossible since the paper was submitted to arXiv in February 2025, after NeurIPS 2024 would have concluded. No venue is confirmed; the paper should be cited as an arXiv preprint until a venue can be verified. EMNLP reviewers will flag this.\", \"ETS+PSG-KVC interaction unanalyzed: ETS already uses a PRM-signal-based linear programming cost model to prune low-quality trajectories, achieving 1.8x KV reduction by eliminating whole beams. The trajectories that survive ETS pruning and form PSG-KVC's 'bottom quartile' are therefore survivors of a quality-based filter — they are not the weakest trajectories overall, but the weakest among those ETS judged worth retaining. The proposal does not address whether INT4 is still safe for this post-ETS bottom quartile, nor does it analyze the additive gain structure (ETS prunes trajectory count; PSG-KVC compresses surviving trajectories' precision — the interaction needs explicit modeling).\", \"MT-Bench N=1 does not test core contribution: The only general NLP evaluation runs MT-Bench with N=1, which exercises single-trajectory inference. In this mode, PSG-KVC is tier-agnostic (no rank differentiation is possible with one trajectory) and the experiment only tests prefix-sharing and uniform INT8 effect. This is weak evidence for the EMNLP 'Efficient Methods for NLP' framing. A multi-trajectory NLP evaluation (e.g., N=4 on MT-Bench with diverse prompt types) is needed to actually demonstrate the method on NLP tasks.\", \"Small-N tier granularity: At N=4, the 25/50/25 percentile split yields only 1 trajectory in FP16, 2 in INT8, and 1 in INT4. The proposal does not discuss the minimum N for meaningful tier differentiation or how it handles ties in PRM scores with such small trajectory counts. N=4 is one of the three primary evaluation settings (N∈{4,8,16}).\", \"Missing relevant benchmark paper: 'Hold Onto That Thought: Assessing KV Cache Compression On Reasoning' (arXiv:2512.12008, NeurIPS 2025) directly benchmarks KV compression strategies on long-reasoning tasks and should be cited as directly relevant to the INT4 validation rationale and baseline comparison choices.\", \"Precision promotion does not undo early-token quantization error: When a trajectory improves in rank (INT4→INT8→FP16 promotion), the future tokens are generated at higher precision, but the already-quantized early-reasoning tokens in the KV cache remain at INT4 precision. The cumulative effect on reasoning quality for promoted trajectories (which by definition showed initial promise then improved) is not analyzed or bounded.\"]\nFeedback: The round 2 revision addresses all six round 1 issues competently. To reach 'pass', three changes are needed: (1) Fix the ETS citation — remove 'NeurIPS 2024' and replace with 'arXiv preprint, Feb 2025' or verify the actual venue; (2) Add a brief analysis section addressing the ETS+PSG-KVC interaction — specifically, show that PSG-KVC's 'bottom quartile' (post-ETS-pruning) is still safe for INT4, either via the INT4 validation experiment extending to the post-ETS population or via theoretical argument; frame the additive gain explicitly (e.g., ETS reduces trajectory count N×→kN, PSG-KVC then reduces per-trajectory KV bytes within remaining k trajectories); (3) Replace or augment MT-Bench N=1 with a multi-trajectory NLP evaluation that actually exercises PSG-KVC — e.g., run N=4 beam search on MT-Bench with a general instruction-following PRM proxy (such as a trained outcome reward model on MT-Bench score), or use AlpacaEval/Arena-Hard with N=4 best-of-N. This gives EMNLP reviewers direct evidence that PSG-KVC works on NLP tasks, not just math reasoning. Also cite arXiv:2512.12008 in the INT4-validation justification. Fix the small-N discussion (minimum N recommendation). The precision-promotion asymmetry (issue 6) is a minor limitation that can be acknowledged in a limitations section rather than requiring new experiments.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-09T20:11:54.738Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-09T20:11:54.738Z",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+## Round 1
+
+60 recorded events
+
+### User
+
+_source line 3 · 2026-05-09T20:11:54.769Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-09 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Efficient Methods for NLP.
+
+Direction: Efficiency methods for NLP — NOT limited to LLM inference optimization. In-scope: speculative decoding, KV-cache compression/eviction, quantization-aware distillation, parameter-efficient fine-tuning, efficient long-context serving, MoE routing, attention approximations, efficient smaller models for specific NLP tasks, pruning for task-specific deployment.
+
+Contribution type: METHOD ONLY. Propose new algorithms — not profiling studies.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Generous for efficiency work.
+2. Time: ≤16 days. Build on vLLM, SGLang, llama.cpp, TensorRT-LLM, HF Transformers, FlashAttention, bitsandbytes.
+3. Eval: perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench. Report wall-clock and throughput on H100.
+
+Look for: cache-aware methods for new workloads (long thinking traces, agent loops, RAG), quantization-aware distillation, structured sparsity during inference, efficient serving of reasoning models with variable-length thinking. Avoid: vanilla 4-bit quantization, generic LoRA, plain speculative decoding.
+
+Tag: direction=efficiency, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-09?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Search",
+  "core_problem": "Test-time compute scaling via PRM-guided tree search (Best-of-N, beam search, MCTS) creates N simultaneous KV cache instances that grow with reasoning depth. Current systems either store full-precision KV for all trajectories (prohibitive memory at N≥8) or apply uniform compression that discards useful state from high-value trajectories alongside low-value ones. Four classes of prior work fail to close this gap: (1) head-level compression methods (RLKV, arXiv:2510.08525) identify critical attention heads within a single inference pass but cannot exploit cross-trajectory quality differentials — they still allocate the same per-trajectory KV budget regardless of whether a branch is winning or losing; (2) training-based eviction methods (ForesightKV, arXiv:2602.03203; DMS in 'Inference-Time Hyper-Scaling', arXiv:2506.05345) require supervised or RL training overhead and apply a single learned policy uniformly to every trajectory; (3) layer-sensitivity quantization (PM-KVQ, arXiv:2505.18610) addresses quantization error accumulation within a single CoT but is agnostic to the relative quality of concurrent trajectories; (4) trajectory-count pruning methods (ETS, arXiv:2502.13575, arXiv preprint Feb 2025) use PRM scores combined with semantic diversity coverage in an integer linear program to decide which entire trajectories to keep or discard — a binary pruning decision. ETS achieves 1.8× KV reduction by eliminating whole subtrees, but applies no per-trajectory precision differentiation to the surviving trajectories. No method uses the PRM's per-step trajectory quality signal to set differential per-trajectory KV compression precision budgets across the N simultaneous search branches, despite those scores being computed for free during search. PSG-KVC occupies a distinct position: it composes with ETS's binary pruning by adding continuous precision-based compression as a second dimension of memory savings applied to the surviving trajectory set.",
+  "opportunity": "PRM step scores are already computed for each trajectory during tree search; these scores provide a direct, training-free signal for how much KV precision each trajectory deserves relative to its peers in the current search state. The key insight is to assign compression tiers by online rank rather than absolute threshold: at each PRM evaluation step boundary, sort all active trajectories by cumulative PRM score and assign tiers by rank. For N≥8 (the primary evaluation regime), the default 3-tier split is: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4. For N=4 (boundary case), a 2-tier fallback is used — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers that provide insufficient statistical differentiation; PRM score ties use stable sorting by trajectory index. This rank-based adaptive assignment is naturally robust to distribution shift across problem difficulties (hard vs. easy problems simply shift all PRM scores together; relative ranks remain informative), eliminating the calibration-transfer failure mode of fixed absolute thresholds. Step-boundary tier transitions (including promotions from INT4→FP16 for trajectories whose rank improves) are implemented as between-step buffer copy operations using standard bitsandbytes INT4→FP16 conversion — these happen at PRM evaluation points between reasoning steps, not during active beam generation, so no custom CUDA kernel is required. Recent empirical work confirms that KV-only INT4 quantization (as distinct from weight+activation quantization studied by 'Quantization Hurts Reasoning?', arXiv:2504.04823) is near-lossless on reasoning models when applied selectively (MixKVQ, ThinKV, PM-KVQ), and we validate this specifically for bottom-quartile PRM trajectories as a prerequisite experiment. Crucially, even if bottom-quartile INT4 compression induces marginal quality degradation, these trajectories are expected to be pruned within 1–3 steps by the PRM anyway — so the impact on final search accuracy is bounded. Prefix KV is shared across all trajectories via RadixAttention-style deduplication, concentrating per-trajectory overhead in the divergent suffix only. PSG-KVC is fully composable with ETS's algorithmic diversity-efficiency gains and is the first method to use PRM scores as a cross-trajectory differential compression precision signal.",
+  "landscape": "ETS (Efficient Tree Search for Inference-Time Scaling, arXiv:2502.13575, arXiv preprint Feb 2025; under review) improves inference-time scaling throughput 1.4× via diversity-aware trajectory pruning: it uses REBASE reward-weighted sampling combined with an integer linear program that maximizes quality coverage (via exp(Ri/TR)-weighted trajectory importance) plus a semantic diversity term (hierarchical agglomerative clustering coverage), achieving 1.8× average KV cache reduction by eliminating whole trajectory subtrees and increasing tree-internal KV sharing. ETS uses PRM scores as a binary keep/discard signal; PSG-KVC is orthogonal, adding continuous per-trajectory precision allocation to the survivors ETS retains. PSG-KVC is composable with ETS. 'Inference-Time Hyper-Scaling with KV Cache Compression' (arXiv:2506.05345) introduces Dynamic Memory Sparsification (DMS) — a training-light adaptive token eviction method that delays eviction to preserve critical tokens — achieving 8× cache compression; DMS applies a single trained eviction policy identically across all trajectories and does not condition compression rates on per-trajectory PRM quality differentials. 'Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning' (ICLR 2026, arXiv:2601.20326) repurposes KV caches as lightweight embeddings for path selection — uses KV as a selector signal rather than a compressible resource with quality-differentiated budgets. PM-KVQ (arXiv:2505.18610, NeurIPS 2025) applies progressive mixed-precision quantization to long-CoT LLMs based on transformer-layer sensitivity to cumulative quantization error, not trajectory-level PRM quality; is single-trajectory and training-dependent on positional interpolation calibration. R-KV (arXiv:2505.24133, NeurIPS 2025) compresses KV via attention-based intra-trajectory redundancy scoring; is single-trajectory and ignores multi-trajectory PRM-score differentials. 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (RLKV, arXiv:2510.08525) uses reinforcement learning to identify which attention heads are essential for reasoning, allocating full KV to critical heads and aggressively compressing others; achieves 20–50% cache reduction. RLKV differs from PSG-KVC on two orthogonal axes: (1) granularity — RLKV compresses within a single trajectory at head level, PSG-KVC compresses differentially across trajectories at trajectory level; (2) signal — RLKV requires RL training to learn head importance, PSG-KVC uses PRM scores computed for free during search with no additional training. PSG-KVC and RLKV are composable: within each PSG-KVC tier, RLKV's head-level policy could be applied for additional compression. ForesightKV (arXiv:2602.03203) learns optimal KV pair eviction using future attention scores via a Golden Eviction algorithm (supervised) plus GRPO (RL); consistently outperforms prior eviction methods at half cache budget on AIME 2024/2025. ForesightKV is single-trajectory, requires training, and applies uniform eviction policy across all concurrent beams. PSG-KVC is training-free, multi-trajectory, and applies differential budgets based on live PRM rank. ThinKV (arXiv:2510.01290) uses attention sparsity to identify thought importance and applies hybrid quantization-eviction per thought segment; near-lossless at <5% KV cache budget. ThinKV is single-trajectory and uses attention sparsity signal, not cross-trajectory PRM quality signal. 'Hold Onto That Thought: Assessing KV Cache Compression On Reasoning' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) benchmarks token-eviction strategies (H2O, SnapKV-D, R-KV, StreamingLLM, KNorm) on long-reasoning tasks; finds attention-based heavy-hitter eviction (H2O, SnapKV-D) dominates for reasoning models and that low-budget eviction can paradoxically produce longer traces. This paper does not test quantization-based compression; its eviction-method characterization motivates PSG-KVC's inclusion of R-KV-style eviction as a baseline and establishes that existing compression benchmarks focus on eviction, leaving INT4 KV quantization on reasoning tasks under-evaluated — directly motivating PSG-KVC's prerequisite validation experiment. SGLang RadixAttention (NeurIPS 2024, arXiv:2312.07104) enables shared-prefix KV deduplication, which PSG-KVC uses as infrastructure. 'Quantization Hurts Reasoning?' (arXiv:2504.04823, COLM 2025) finds that weight+activation quantization (W4A8 and below) causes significant reasoning accuracy degradation; KV-only INT4 quantization is shown to be near-lossless (≤1% drop) in concurrent work, and PSG-KVC validates INT4 KV safety for bottom-quartile trajectories as a prerequisite experiment. Zero papers found that use PRM scores as a dynamic cross-trajectory signal for per-trajectory KV cache compression precision in multi-trajectory tree search.",
+  "approach": "We implement PRM-Score-Gated KV Compression (PSG-KVC) in a focused 16-day experiment, extending the open-source ETS codebase (SqueezeAILab/ETS) with five targeted components.\n\n**Component 1 — Online Adaptive Percentile Tracker (Days 3–4):** At each PRM evaluation step boundary, compute the cumulative PRM score for each active trajectory and sort by rank. For N≥8 (the primary evaluation regime), assign tiers by rank: top 25% → FP16, middle 50% → INT8, bottom 25% → INT4, yielding a 2/4/2 split at N=8 and 4/8/4 at N=16. For N=4 (boundary case), use a 2-tier fallback — top 50% → FP16, bottom 50% → INT4 — to avoid single-trajectory tiers; this yields a 2/2 split with meaningful differentiation. PRM score ties use stable sort by trajectory index. This O(N log N) rank sort replaces offline calibration and is naturally invariant to absolute PRM score distributions across problem difficulties. PSG-KVC's strongest gains are at N∈{8,16}; N=4 results are presented with the 2-tier variant and flagged as a boundary case.\n\n**Component 2 — Step-Boundary Tier Transitions (Days 4–5):** All compression tier changes (including INT4→INT8→FP16 promotions on rank improvement and INT4 discards on pruning) happen at PRM evaluation points — between beam expansion steps, not during active generation. Promotions use standard bitsandbytes INT4→FP16 buffer copy (not a custom CUDA kernel); allocation of the new higher-precision buffer precedes the next generation step. Demotions (rank drops) copy FP16→INT8 or INT8→INT4 similarly. Pruned trajectories have their KV buffers immediately freed regardless of tier.\n\n**Component 3 — Prefix Sharing via RadixAttention (Day 6):** Shared-prefix KV (problem stem + common branching-point tokens) is stored at FP16 and deduplicated across all N trajectories via RadixAttention; only divergent suffix KV falls under PSG-KVC compression, concentrating savings where trajectories actually differ.\n\n**Component 4 — INT4 KV Validation Experiment (Days 1–3, prerequisite):** Phase A (Days 1–2): Run N=8 beam search on 100 held-out MATH-500 problems under full FP16, INT8, and INT4 for all trajectories. Measure: (a) INT4-induced PRM step score bias; (b) change in best-of-N trajectory selection vs. FP16. Phase B (Day 3, post-ETS population): Run ETS first to obtain post-ETS survivors, then apply INT4 to the bottom 25% of survivors and measure PRM score bias and early-pruning rate relative to FP16 in subsequent ETS steps. This directly tests whether INT4 is safe for the post-ETS bottom-quartile population — which consists of ETS-retained diversity-preserving trajectories with lower PRM scores, not globally weakest trajectories — and complements the 'Hold Onto That Thought' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning) characterization of eviction methods on reasoning tasks by providing quantization-specific safety data. If INT4-induced degradation causes >2% change in best-of-N answer selection, raise the minimum tier to INT8.\n\n**ETS+PSG-KVC Composability Analysis (formalized in Days 8–14 evaluation reporting):** ETS and PSG-KVC operate on distinct memory dimensions and compose without interference. ETS's integer linear program — maximizing quality-weighted coverage (REBASE exp(Ri/TR) weights) plus semantic diversity coverage (hierarchical clustering) subject to tree-size penalty — prunes entire trajectory subtrees, yielding a net 1.8× KV reduction by eliminating whole beams and increasing tree-internal KV sharing. PSG-KVC then applies differential precision compression to the divergent-suffix KV of ETS-surviving trajectories. These are orthogonal reductions: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories. The combined gain over uncompressed N-trajectory baseline is approximately: K_system ≈ K_ETS-baseline × (α + (1−α)/r), where α is the shared-prefix fraction (typically 0.4–0.6 for MATH-500 problems) and r ∈ {2.0, 2.5} is PSG-KVC's divergent-suffix compression ratio. For α=0.5 and r=2.25, PSG-KVC contributes an additional 1.39× reduction over the ETS baseline, giving a combined ≈2.5× total reduction over uncompressed N-trajectory KV. Crucially, the post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of trajectories that ETS retained for semantic diversity reasons despite lower PRM scores — they are diversity-preserving exploratory branches, not high-promise candidates. INT4 is particularly well-justified for this population: if INT4-induced degradation causes ETS to prune them 1–2 steps earlier than FP16 would, the result is additional memory savings at negligible quality cost (these trajectories were already ETS-pruning candidates). Phase B of the INT4 validation experiment directly validates this safety argument for the post-ETS subpopulation.\n\n**Baselines:** (a) ETS + full FP16 KV (uncompressed beam search, memory upper bound); (b) ETS + uniform INT4 KV for all trajectories (PM-KVQ-style); (c) ETS + attention-score-gated eviction (R-KV style); (d) ETS + ForesightKV eviction policy (trained single-trajectory policy applied uniformly across beams).\n\n**Evaluation — Math Reasoning (Days 9–14):** DeepSeek-R1-Distil-Qwen-14B on MATH-500 (full, 500 problems) and AIME 2024 (30 problems), with N∈{4,8,16} beam trajectories on 2×A100 80GB nodes. Primary metrics: KV memory per trajectory (GB), wall-clock throughput (tokens/sec), pass@1 accuracy vs. uncompressed baseline.\n\n**Evaluation — General NLP (Days 14–15):** AlpacaEval 2 (805 prompts) with best-of-N=4 using DeepSeek-R1-Distil-Qwen-14B. Four candidate responses are generated per prompt under each policy — (a) uncompressed FP16, (b) uniform INT8, (c) PSG-KVC N=4 (2-tier fallback: top-50% FP16, bottom-50% INT4) — and an open-source outcome reward model (ArmoRM-Llama3-8B-v0.1 from the RewardBench leaderboard) scores each candidate to select the best-of-4. Selected responses are evaluated by the standard AlpacaEval 2 GPT-4 judge (length-controlled win rate vs. GPT-4-turbo-1106). Secondary metrics: KV memory reduction and tokens/sec during N=4 generation. This replaces the prior N=1 MT-Bench evaluation, which was tier-agnostic (single trajectory cannot exercise PSG-KVC's differential compression) and provided weak evidence for the EMNLP 'Efficient Methods for NLP' framing. The AlpacaEval 2 N=4 setup exercises PSG-KVC in its intended multi-trajectory mode on a general NLP benchmark, giving EMNLP reviewers direct evidence beyond math reasoning.\n\n**Ablations (Days 15–16):** Prefix sharing on/off (to isolate RadixAttention contribution); 2-tier (FP16/INT4) vs. 3-tier (FP16/INT8/INT4) compression; rank threshold sensitivity (top-20%/mid-60%/bot-20% vs. baseline top-25%/mid-50%/bot-25%).\n\n**Expected results:** 2–2.5× KV memory reduction for the divergent-suffix portion at N=16 (on top of prefix-sharing baseline), yielding ≈1.39× additional reduction over the ETS-alone baseline and ≈2.5× combined reduction over uncompressed N=16; <1% accuracy degradation versus uncompressed beam search; composable with ETS's 1.4× throughput gain.\n\n**Limitations (to be stated in paper):** (1) Precision-promotion asymmetry: when a trajectory is promoted from INT4→FP16, historical divergent-suffix KV tokens from before the promotion point remain at INT4 precision. Future generation attends over a precision-mixed KV cache (INT4 historical suffix tokens, FP16 new tokens), carrying residual quantization error from early reasoning steps. Two factors bound the impact: (a) the problem-stem prefix is stored at FP16 for all trajectories via prefix sharing — only post-branching suffix tokens are affected; (b) the prerequisite INT4 validation experiment directly measures per-token quantization error for the target model class. Full remediation — re-encoding the suffix KV at FP16 upon promotion — is computationally expensive and deferred to future work. (2) Minimum trajectory count: the 3-tier policy's full differentiation requires N≥8; N=4 uses a 2-tier fallback with reduced but nonzero savings.",
+  "resource_estimate": {
+    "focused_16day_plan": {
+      "gpu_hours": "~120–150 H100-hours total",
+      "breakdown": "INT4 validation experiment Phase A+B (Days 1–3): ~12 H100-hours (extended from 8h to include post-ETS population testing); main MATH-500 experiments (4 baselines + PSG-KVC × N∈{4,8,16}): ~60 H100-hours; AIME 2024 experiments (same 5 methods × 3 N-values, 30 problems each): ~15 H100-hours; AlpacaEval 2 N=4 evaluation (3 policies, including ArmoRM scoring): ~14 H100-hours; ablations (prefix sharing ×2, tier count ×2, threshold sensitivity ×3): ~25 H100-hours; buffer for reruns: ~15 H100-hours",
+      "gpu_configuration": "2×A100 80GB (≈1 H100-equivalent per node); 14B model fits comfortably; N=16 fits within 160GB aggregate KV budget at FP16 baseline",
+      "timeline": "16 days (targeting EMNLP 2026 ARR May 25 deadline; INT4 Phase B runs in parallel with Component 1 implementation on the second A100 node to preserve timeline)",
+      "team": "1–2 researchers; key decision gates: Day 3 (INT4 Phase A+B validation result — if >2% best-of-N shift, raise floor to INT8) and Day 9 (ETS integration test before full MATH-500 run)",
+      "estimated_gpu_cost": "~$360–450 at ~$3/h A100 rental (Lambda Labs / Vast.ai)",
+      "risk_mitigation": "Step-boundary upcast copy (between-step, using bitsandbytes) eliminates custom CUDA kernel risk; online rank-based thresholding eliminates calibration-transfer risk; INT4 Phase B (post-ETS population) catches quantization confounding for the specific population PSG-KVC compresses; ForesightKV baseline requires training — use authors' released checkpoint if available, otherwise substitute with attention-score-gated eviction and note ForesightKV as future comparison; N=4 2-tier fallback is pre-specified to avoid any ambiguity at the boundary case"
+    },
+    "manual": {
+      "gpu_hours": "~150 H100-hours",
+      "timeline": "16 days (targeting EMNLP 2026 deadline)",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$450 at ~$3/h A100 rental"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~130 H100-hours",
+      "gpu_utilization": "~60–70%: agent queues experiments continuously; human approval gates at Day 3 INT4 validation decision and ablation scope confirmation",
+      "timeline": "10–12 days with ~20 min/day check-in",
+      "team": "1 researcher",
+      "claude_api_cost": "$80–150 (~800–1500 turns at ~$0.10/turn Opus)",
+      "estimated_gpu_cost": "~$390 at ~$3/h A100 rental"
+    },
+    "auto_research": {
+      "note": "Scoped to same 16-day envelope as manual; auto mode runs ablations in parallel and completes in ~7–10 days using 4 A100 nodes instead of 2",
+      "gpu_hours": "~160 H100-hours (same scope as focused plan; parallelism reduces wall-clock, not total compute)",
+      "gpu_utilization": "~85%",
+      "timeline": "7–10 days with 4 A100 nodes",
+      "team": "0 (2h harness setup)",
+      "claude_api_cost": "$150–300 (~1500–3000 turns)",
+      "estimated_gpu_cost": "~$480 at ~$3/h A100 rental",
+      "stopping_criterion": "Ablation loop halts when 3-tier vs. 2-tier accuracy difference is <0.3% on MATH-500 OR threshold sensitivity curve flattens (Δaccuracy < 0.1% per 5-percentile shift) — whichever comes first"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR deadline May 25, 2026 — confirmed open; Efficient Methods for NLP track; AlpacaEval 2 N=4 evaluation directly supports this framing)",
+    "AAAI 2027 (deadline TBD, historically August–September; conference February 2027)",
+    "ICLR 2027 (deadline TBD, historically September–October; no official CFP yet as of May 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "ETS: Efficient Tree Search for Inference-Time Scaling (arXiv:2502.13575, arXiv preprint Feb 2025; under review)",
+    "Inference-Time Hyper-Scaling with KV Cache Compression (arXiv:2506.05345)",
+    "Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning (ICLR 2026, arXiv:2601.20326)",
+    "PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs (arXiv:2505.18610, NeurIPS 2025)",
+    "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models (arXiv:2505.24133, NeurIPS 2025)",
+    "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression (RLKV, arXiv:2510.08525)",
+    "ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution (arXiv:2602.03203)",
+    "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models (arXiv:2510.01290)",
+    "Hold Onto That Thought: Assessing KV Cache Compression On Reasoning (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning)",
+    "Quantization Hurts Reasoning? An Empirical Study on Quantized Reasoning Models (arXiv:2504.04823, COLM 2025)",
+    "MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning (arXiv:2512.19206)",
+    "SGLang: Efficient Execution of Structured Language Model Programs (arXiv:2312.07104, NeurIPS 2024)",
+    "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning (arXiv:2025)"
+  ],
+  "description": "PRM-Score-Gated KV Compression (PSG-KVC) addresses the memory bottleneck in PRM-guided tree search: N parallel trajectories generate N KV caches growing with reasoning depth, yet no existing method conditions per-trajectory KV compression precision on the PRM scores already computed for free during search. ETS (arXiv:2502.13575, arXiv preprint Feb 2025) makes the closest contact — its ILP uses PRM scores plus semantic diversity coverage to prune entire trajectory subtrees (1.8× KV reduction) — but applies no precision differentiation to surviving trajectories. PSG-KVC composes with ETS as a second, orthogonal memory-reduction dimension: ETS reduces trajectory count; PSG-KVC reduces per-token bit-width within remaining trajectories, yielding a combined ≈2.5× total KV reduction over uncompressed N-trajectory baseline. PSG-KVC introduces three novel components: (1) an online adaptive percentile tracker that at each PRM step boundary sorts active trajectories by cumulative score and assigns KV tiers by rank (top 25% → FP16, middle 50% → INT8, bottom 25% → INT4 for N≥8; 2-tier top-50%/bottom-50% fallback for N=4 to avoid single-trajectory tiers), making compression automatically robust to problem-difficulty distribution shift without calibration data; (2) step-boundary tier transitions that implement promotions (INT4→FP16) as standard between-step bitsandbytes buffer copies — occurring at PRM evaluation points, not during active beam generation — eliminating custom CUDA kernel engineering risk; (3) RadixAttention-based prefix sharing that confines per-trajectory storage to divergent suffixes only, concentrating compression savings where trajectories actually differ. PSG-KVC is training-free and composable with ETS. The post-ETS bottom quartile (PSG-KVC's INT4 tier) consists of ETS-retained diversity-preserving trajectories with lower PRM scores — precisely the population for which early pruning from INT4 degradation incurs minimal quality cost. A prerequisite two-phase INT4 KV validation experiment (Phase A: uniform INT4 on all trajectories; Phase B: INT4 on post-ETS bottom quartile specifically) directly validates safety for this population, addressing the 'Quantization Hurts Reasoning?' concern (arXiv:2504.04823) and complementing 'Hold Onto That Thought' (arXiv:2512.12008, NeurIPS 2025 Workshop on Efficient Reasoning), which benchmarks eviction-based compression on reasoning but does not test quantization. Evaluated with DeepSeek-R1-Distil-Qwen-14B on MATH-500, AIME 2024, and AlpacaEval 2 (N=4 best-of-N with ArmoRM-Llama3-8B-v0.1 as trajectory ranker) with N∈{4,8,16} beam trajectories, targeting 2–2.5× divergent-suffix KV reduction at N=16 with <1% accuracy loss versus uncompressed beam search, within a focused 16-day/~120–150 H100-hour budget satisfying the EMNLP 2026 May 25 ARR deadline. AlpacaEval 2 N=4 replaces the prior N=1 MT-Bench evaluation, which was tier-agnostic and did not exercise PSG-KVC's differential compression. A limitations section acknowledges precision-promotion asymmetry: promoted trajectories carry residual INT4 error in their pre-promotion divergent suffix KV, partially mitigated by FP16 prefix sharing and the INT4 validation bounds.",
+  "project_name": "prm_gated_kv_compress",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL — Timeline-compute conflict: The generator's own resource estimates show that no single mode satisfies both constraints simultaneously. Manual/HIL modes satisfy ≤200 H100-hours but take 3-5 months or 4-6 weeks (far beyond 16 days). Auto research mode fits 1-2 weeks but uses ~600 A100-hours ≈ 240-300 H100-hours, exceeding the 200 H100-hour hard constraint. The generator must either (a) redesign the experiment scope so a 16-day manual effort uses <200 H100-hours, or (b) explicitly acknowledge the tradeoff and propose a minimal-viable experiment set.", "CRITICAL — INT4 quantization accuracy risk for reasoning: 'Quantization Hurts Reasoning? An Empirical Study on Quantized Reasoning Models' (arXiv:2504.04823) finds that below W8A8/W4A16, reasoning accuracy degrades significantly with KV quantization. The PSG-KVC proposal applies INT4 to bottom-quartile trajectories and claims <1% accuracy loss — but this claim is unvalidated. If INT4 causes reasoning collapse even for trajectories expected to be pruned, those trajectories may be discarded prematurely rather than through legitimate low PRM scores, creating a confound in the accuracy measurements.", "Uncited related work — RL-Guided KV Cache Compression: 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (arXiv:2510.08525) uses a quality-signal-based differential KV compression strategy for reasoning models, allocating full precision to critical heads and aggressively compressing others. This is closer to PSG-KVC conceptually than any paper in the landscape section. The generator must differentiate PSG-KVC from this work (the key difference is trajectory-level vs. head-level allocation, and PRM signal vs. RL signal) or risk reviewer rejection for insufficient novelty discussion.", "Calibration transfer problem: Fixed score-percentile thresholds are calibrated on MATH-500 (median difficulty ~AMC/AIME-12 level) and applied zero-shot to AIME 2024/2025 (much harder). PRM score distributions will be dramatically different — on hard problems, all trajectories may fall into 'bottom quartile' by MATH-500 thresholds, triggering universal INT4 compression. The generator proposes no adaptive thresholding mechanism to handle distribution shift.", "Missing baseline: ForesightKV (arXiv:2602.03203) uses supervised/RL learning to predict optimal KV eviction for reasoning models and achieves strong results. This is a stronger baseline than R-KV-style attention-score eviction and should be included to fairly benchmark the value of the PRM signal versus learned eviction predictors.", "Engineering risk underestimated: Lazy dequantization on mid-search promotion (INT4→FP16 upcasting at an arbitrary search step) requires modifying the KV cache buffer in-place during active beam expansion. This is not a standard bitsandbytes operation — it requires custom CUDA kernel work that could easily consume 5-7 of the 16 available days to get numerically correct. The proposal treats this as a known-difficulty item but does not account for the debugging time in any mode's timeline.", "Venue-contribution fit: The paper's primary contribution is a systems-engineering method (a threshold oracle + compression tier assignment). EMNLP Efficient Methods track historically accepts papers with strong empirical NLP task evaluations (MMLU, MT-Bench, LongBench per the user's requirements), not just math reasoning (MATH-500, AIME). The generator should add at least one general NLP task evaluation to support the 'Efficient Methods for NLP' framing."]
+Feedback: The core idea (PRM-score-gated per-trajectory KV quantization in tree search) is novel and the literature gap is real. To get to 'pass', the generator must address four things: (1) Resolve the timeline-compute conflict by designing a focused 16-day experiment plan that uses ≤200 H100-hours — concretely, cut the auto-research mode's ablation scope to N∈{4,8,16} on MATH-500 + one AIME split only, targeting ~120 H100-hours; (2) Add an empirical validation that INT4 KV cache quantization is acceptable for low-PRM-score reasoning trajectories — the 'Quantization Hurts Reasoning?' paper (arXiv:2504.04823) is a direct challenge that must be addressed with a preliminary INT4 accuracy characterization; (3) Add 'Which Heads Matter for Reasoning? RL-Guided KV Cache Compression' (arXiv:2510.08525) to the landscape and explicitly differentiate PSG-KVC (trajectory-level + PRM signal) from head-level + RL-signal approaches; (4) Replace the fixed calibration thresholds with a simple online percentile tracker that adapts to the empirical PRM score distribution at each search step — this costs one day of implementation and eliminates the distribution-shift failure mode. Additionally, add one general NLP task evaluation (e.g., MT-Bench with DeepSeek-R1-Distill-Qwen-14B) to satisfy the EMNLP Efficient Methods track framing. The method is publishable in Findings if these issues are addressed; Main track requires the impact case to be stronger.
+
+### Round 2 review
+Verdict: revise
+Issues: ["ETS venue factual error: Generator cites arXiv:2502.13575 as 'NeurIPS 2024' — this is factually impossible since the paper was submitted to arXiv in February 2025, after NeurIPS 2024 would have concluded. No venue is confirmed; the paper should be cited as an arXiv preprint until a venue can be verified. EMNLP reviewers will flag this.", "ETS+PSG-KVC interaction unanalyzed: ETS already uses a PRM-signal-based linear programming cost model to prune low-quality trajectories, achieving 1.8x KV reduction by eliminating whole beams. The trajectories that survive ETS pruning and form PSG-KVC's 'bottom quartile' are therefore survivors of a quality-based filter — they are not the weakest trajectories overall, but the weakest among those ETS judged worth retaining. The proposal does not address whether INT4 is still safe for this post-ETS bottom quartile, nor does it analyze the additive gain structure (ETS prunes trajectory count; PSG-KVC compresses surviving trajectories' precision — the interaction needs explicit modeling).", "MT-Bench N=1 does not test core contribution: The only general NLP evaluation runs MT-Bench with N=1, which exercises single-trajectory inference. In this mode, PSG-KVC is tier-agnostic (no rank differentiation is possible with one trajectory) and the experiment only tests prefix-sharing and uniform INT8 effect. This is weak evidence for the EMNLP 'Efficient Methods for NLP' framing. A multi-trajectory NLP evaluation (e.g., N=4 on MT-Bench with diverse prompt types) is needed to actually demonstrate the method on NLP tasks.", "Small-N tier granularity: At N=4, the 25/50/25 percentile split yields only 1 trajectory in FP16, 2 in INT8, and 1 in INT4. The proposal does not discuss the minimum N for meaningful tier differentiation or how it handles ties in PRM scores with such small trajectory counts. N=4 is one of the three primary evaluation settings (N∈{4,8,16}).", "Missing relevant benchmark paper: 'Hold Onto That Thought: Assessing KV Cache Compression On Reasoning' (arXiv:2512.12008, NeurIPS 2025) directly benchmarks KV compression strategies on long-reasoning tasks and should be cited as directly relevant to the INT4 validation rationale and baseline comparison choices.", "Precision promotion does not undo early-token quantization error: When a trajectory improves in rank (INT4→INT8→FP16 promotion), the future tokens are generated at higher precision, but the already-quantized early-reasoning tokens in the KV cache remain at INT4 precision. The cumulative effect on reasoning quality for promoted trajectories (which by definition showed initial promise then improved) is not analyzed or bounded."]
+Feedback: The round 2 revision addresses all six round 1 issues competently. To reach 'pass', three changes are needed: (1) Fix the ETS citation — remove 'NeurIPS 2024' and replace with 'arXiv preprint, Feb 2025' or verify the actual venue; (2) Add a brief analysis section addressing the ETS+PSG-KVC interaction — specifically, show that PSG-KVC's 'bottom quartile' (post-ETS-pruning) is still safe for INT4, either via the INT4 validation experiment extending to the post-ETS population or via theoretical argument; frame the additive gain explicitly (e.g., ETS reduces trajectory count N×→kN, PSG-KVC then reduces per-trajectory KV bytes within remaining k trajectories); (3) Replace or augment MT-Bench N=1 with a multi-trajectory NLP evaluation that actually exercises PSG-KVC — e.g., run N=4 beam search on MT-Bench with a general instruction-following PRM proxy (such as a trained outcome reward model on MT-Bench score), or use AlpacaEval/Arena-Hard with N=4 best-of-N. This gives EMNLP reviewers direct evidence that PSG-KVC works on NLP tasks, not just math reasoning. Also cite arXiv:2512.12008 in the INT4-validation justification. Fix the small-N discussion (minimum N recommendation). The precision-promotion asymmetry (issue 6) is a minor limitation that can be acknowledged in a limitations section rather than requiring new experiments.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "a88832e1-fb70-42db-a662-20aa3a519e64",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-09T20:11:54.765Z_
+
+```json
+{
+  "parentUuid": "a88832e1-fb70-42db-a662-20aa3a519e64",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "f0c348ec-ee50-4b49-b260-d165e6c22acc",
+  "timestamp": "2026-05-09T20:11:54.765Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-09T20:11:54.765Z_
+
+```json
+{
+  "parentUuid": "f0c348ec-ee50-4b49-b260-d165e6c22acc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0aabb202-1f56-44cc-a5cc-3ac9d3014587",
+  "timestamp": "2026-05-09T20:11:54.765Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0aabb202-1f56-44cc-a5cc-3ac9d3014587",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify PSG-KVC feasibility and novelty via independent research",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-09T20:12:13.531Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this paper idea "PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Search" in round 3 of 10. I need to independently verify claims, search for competing work, and assess the changes made from round 2.
+
+First, let me understand what changed from round 2 to round 3:
+
+Round 2 issues that needed to be addressed:
+1. ETS venue factual error (citing as NeurIPS 2024) - FIXED: Now cited as "arXiv preprint Feb 2025; under review"
+
+
+2. ETS+PSG-KVC interaction unanalyzed - FIXED: Added extensive analysis of composability, with explicit framing of additive gains, and INT4 Phase B validation on post-ETS population
+3. MT-Bench N=1 doesn't test core contribution - FIXED: Replaced with AlpacaEval 2 N=4 with ArmoRM-Llama3-8B-v0.1 as trajectory ranker
+4. Small-N tier granularity - FIXED: Added 2-tier fallback for N=4, with rationale
+5. Missing 'Hold Onto That Thought' benchmark paper - FIXED: Added as reference and integrated into INT4 validation rationale
+6. Precision promotion asymmetry - FIXED: Added to limitations section
+
+Now I need to independently verify the core claims by checking whether ETS actually exists and what it proposes, looking for competing work that might overlap with PSG-KVC's contributions, validating the novelty of PRM-gated differential quantization, assessing whether the resource estimates hold up, and surveying recent advances in KV cache compression for reasoning and tree search applications.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0aabb202-1f56-44cc-a5cc-3ac9d3014587",
+  "isSidechain": false,
+  "requestId": "req_011Casc1VPLjWNdUwGojsTBf",
+  "type": "assistant",
+  "uuid": "fbc1dd86-0f0c-466a-82e6-e91741bf8fc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01VpuvQnQhhPudmJCYnSEpWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18931,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-09T20:12:13.538Z_
+
+I'll conduct independent research to verify the claims in this round 3 submission, focusing on novelty verification, competing work, and whether round 2 issues were fully addressed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbc1dd86-0f0c-466a-82e6-e91741bf8fc4",
+  "isSidechain": false,
+  "requestId": "req_011Casc1VPLjWNdUwGojsTBf",
+  "type": "assistant",
+  "uuid": "80054265-16fc-42a8-be08-c343bc173fd6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01VpuvQnQhhPudmJCYnSEpWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18931,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-09T20:12:13.558Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ScYTvdeqb91jwW7oB2BHst`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80054265-16fc-42a8-be08-c343bc173fd6",
+  "isSidechain": false,
+  "requestId": "req_011Casc1VPLjWNdUwGojsTBf",
+  "type": "assistant",
+  "uuid": "5b3fb124-db6a-48e4-a4d9-f08b4d2a9c46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01VpuvQnQhhPudmJCYnSEpWf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18931,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 564,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 564,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-09T20:12:13.563Z_
+
+<details><summary>↩ Tool result · `toolu_01ScYTvdeqb91jwW7oB2BHst`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b3fb124-db6a-48e4-a4d9-f08b4d2a9c46",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "edd65270-b52f-4fa3-bb2d-c29d3cb240e4",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "5b3fb124-db6a-48e4-a4d9-f08b4d2a9c46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-09T20:12:16.527Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'll conduct parallel searches to verify the key claims in this paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edd65270-b52f-4fa3-bb2d-c29d3cb240e4",
+  "isSidechain": false,
+  "requestId": "req_011Casc2sYd1h48GHuGF9auq",
+  "type": "assistant",
+  "uuid": "0a8723c5-3355-4cd0-bd30-8d6cc1b3ddba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BUgNnVSoRb5bXe8NVE4edr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1585,
+      "cache_read_input_tokens": 30562,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 30562,
+          "cache_creation_input_tokens": 1585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-09T20:12:17.745Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WqFz5gaYXry8g7son3GdEg`</summary>
+
+```json
+{
+  "query": "PRM score KV cache compression tree search inference time scaling 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a8723c5-3355-4cd0-bd30-8d6cc1b3ddba",
+  "isSidechain": false,
+  "requestId": "req_011Casc2sYd1h48GHuGF9auq",
+  "type": "assistant",
+  "uuid": "9fa21d7e-6c05-4bc4-89c7-0af0fe0f59a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BUgNnVSoRb5bXe8NVE4edr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1585,
+      "cache_read_input_tokens": 30562,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 30562,
+          "cache_creation_input_tokens": 1585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-09T20:12:18.141Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NLZ5f7PvTaESwszpZnhc6F`</summary>
+
+```json
+{
+  "query": "ETS efficient tree search inference time scaling arXiv 2502.13575"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fa21d7e-6c05-4bc4-89c7-0af0fe0f59a1",
+  "isSidechain": false,
+  "requestId": "req_011Casc2sYd1h48GHuGF9auq",
+  "type": "assistant",
+  "uuid": "24da76de-12a9-41d7-a27e-8a9dfdffd021",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BUgNnVSoRb5bXe8NVE4edr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1585,
+      "cache_read_input_tokens": 30562,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 30562,
+          "cache_creation_input_tokens": 1585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-09T20:12:18.700Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XNPEb87QAsGvkiHU3SButA`</summary>
+
+```json
+{
+  "query": "differential KV cache quantization multi-trajectory beam search reasoning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24da76de-12a9-41d7-a27e-8a9dfdffd021",
+  "isSidechain": false,
+  "requestId": "req_011Casc2sYd1h48GHuGF9auq",
+  "type": "assistant",
+  "uuid": "d6b53c18-b473-4012-b1eb-37c801bde4f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BUgNnVSoRb5bXe8NVE4edr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1585,
+      "cache_read_input_tokens": 30562,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1585,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 30562,
+          "cache_creation_input_tokens": 1585,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1585
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-09T20:12:26.383Z_
+
+<details><summary>↩ Tool result · `toolu_01NLZ5f7PvTaESwszpZnhc6F`</summary>
+
+```text
+Web search results for query: "ETS efficient tree search inference time scaling arXiv 2502.13575"
+
+Links: [{"title":"[2502.13575] ETS: Efficient Tree Search for Inference-Time Scaling","url":"https://arxiv.org/abs/2502.13575"},{"title":"ETS: Efficient Tree Search for Inference-Time Scaling","url":"https://arxiv.org/pdf/2502.13575"},{"title":"GitHub - SqueezeAILab/ETS: ETS: Efficient Tree Search for Inference-Time Scaling","url":"https://github.com/SqueezeAILab/ETS"},{"title":"(PDF) ETS: Efficient Tree Search for Inference-Time Scaling","url":"https://www.arxiv.org/pdf/2502.13575v1"},{"title":"ETS: Efficient Tree Search for Inference-Time Scaling – UC Berkeley SLICE Lab","url":"https://slice.eecs.berkeley.edu/papers/ets-efficient-tree-search-for-inference-time-scaling/"},{"title":"Unifying Tree Search Algorithm and Reward Design for LLM Reasoning: A Survey","url":"https://arxiv.org/html/2510.09988v1"},{"title":"Inference-time Scaling of Diffusion Models through Classical Search","url":"https://arxiv.org/html/2505.23614"},{"title":"Wider or Deeper? Scaling LLM Inference-Time Compute with Adaptive Branching Tree Search","url":"https://arxiv.org/html/2503.04412v1"},{"title":"Efficient Multi-Agent System Training with Data Influence- Oriented Tree Search","url":"https://arxiv.org/html/2502.00955"},{"title":"[2503.04412] Wider or Deeper? Scaling LLM Inference-Time Compute with Adaptive Branching Tree Search","url":"https://arxiv.org/abs/2503.04412"}]
+
+I found the paper! Here's what I found about **ETS: Efficient Tree Search for Inference-Time Scaling** (arXiv 2502.13575):
+
+## Overview
+
+Test-time compute scaling has emerged as a new axis along which to improve model accuracy, where additional computation is used at inference time to allow the model to think longer for more challenging problems.
+
+## Core Problem
+
+A key challenge with existing tree search methods is the trade-off between efficiency and accuracy; high accuracy with tree search necessitates diverse trajectories, but retaining diverse trajectories leads to high inference costs due to reduced KV cache sharing in the tree.
+
+## Proposed Approach
+
+One promising approach for test-time compute scaling is search against a process reward model, where a model generates multiple potential candidates at each step of the search, and these partial trajectories are then scored by a separate reward model in order to guide the search process.
+
+## Key Results
+
+The method observes 1.4× increased throughput relative to the baseline REBASE method, demonstrating how the increased KV cache sharing from their algorithm translates to higher throughput, without requiring any custom kernels.
+
+## Authors and Affiliation
+
+The paper is authored by Coleman Hooper, Sehoon Kim, Suhong Moon, Kerem Dilmen, Monishwaran Maheswaran, Nicholas Lee, Michael W. Mahoney, Yakun Sophia Shao, Kurt Keutzer, and Amir Gholami from UC Berkeley and affiliated institutions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "24da76de-12a9-41d7-a27e-8a9dfdffd021",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "6d6eca7b-2448-42d4-8134-722989f57c02",
+  "toolUseResult": {
+    "query": "ETS efficient tree search inference time scaling arXiv 2502.13575",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K2FgTYrYarfXnF7KpUK96X",
+        "content": [
+          {
+            "title": "[2502.13575] ETS: Efficient Tree Search for Inference-Time Scaling",
+            "url": "https://arxiv.org/abs/2502.13575"
+          },
+          {
+            "title": "ETS: Efficient Tree Search for Inference-Time Scaling",
+            "url": "https://arxiv.org/pdf/2502.13575"
+          },
+          {
+            "title": "GitHub - SqueezeAILab/ETS: ETS: Efficient Tree Search for Inference-Time Scaling",
+            "url": "https://github.com/SqueezeAILab/ETS"
+          },
+          {
+            "title": "(PDF) ETS: Efficient Tree Search for Inference-Time Scaling",
+            "url": "https://www.arxiv.org/pdf/2502.13575v1"
+          },
+          {
+            "title": "ETS: Efficient Tree Search for Inference-Time Scaling – UC Berkeley SLICE Lab",
+            "url": "https://slice.eecs.berkeley.edu/papers/ets-efficient-tree-search-for-inference-time-scaling/"
+          },
+          {
+            "title": "Unifying Tree Search Algorithm and Reward Design for LLM Reasoning: A Survey",
+            "url": "https://arxiv.org/html/2510.09988v1"
+          },
+          {
+            "title": "Inference-time Scaling of Diffusion Models through Classical Search",
+            "url": "https://arxiv.org/html/2505.23614"
+          },
+          {
+            "title": "Wider or Deeper? Scaling LLM Inference-Time Compute with Adaptive Branching Tree Search",
+            "url": "https://arxiv.org/html/2503.04412v1"
+          },
+          {
+            "title": "Efficient Multi-Agent System Training with Data Influence- Oriented Tree Search",
+            "url": "https://arxiv.org/html/2502.00955"
+          },
+          {
+            "title": "[2503.04412] Wider or Deeper? Scaling LLM Inference-Time Compute with Adaptive Branching Tree Search",
+            "url": "https://arxiv.org/abs/2503.04412"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about **ETS: Efficient Tree Search for Inference-Time Scaling** (arXiv 2502.13575):\n\n## Overview\n\nTest-time compute scaling has emerged as a new axis along which to improve model accuracy, where additional computation is used at inference time to allow the model to think longer for more challenging problems.\n\n## Core Problem\n\nA key challenge with existing tree search methods is the trade-off between efficiency and accuracy; high accuracy with tree search necessitates diverse trajectories, but retaining diverse trajectories leads to high inference costs due to reduced KV cache sharing in the tree.\n\n## Proposed Approach\n\nOne promising approach for test-time compute scaling is search against a process reward model, where a model generates multiple potential candidates at each step of the search, and these partial trajectories are then scored by a separate reward model in order to guide the search process.\n\n## Key Results\n\nThe method observes 1.4× increased throughput relative to the baseline REBASE method, demonstrating how the increased KV cache sharing from their algorithm translates to higher throughput, without requiring any custom kernels.\n\n## Authors and Affiliation\n\nThe paper is authored by Coleman Hooper, Sehoon Kim, Suhong Moon, Kerem Dilmen, Monishwaran Maheswaran, Nicholas Lee, Michael W. Mahoney, Yakun Sophia Shao, Kurt Keutzer, and Amir Gholami from UC Berkeley and affiliated institutions."
+    ],
+    "durationSeconds": 8.238921974999997
+  },
+  "sourceToolAssistantUUID": "24da76de-12a9-41d7-a27e-8a9dfdffd021",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-09T20:12:26.537Z_
+
+<details><summary>↩ Tool result · `toolu_01WqFz5gaYXry8g7son3GdEg`</summary>
+
+```text
+Web search results for query: "PRM score KV cache compression tree search inference time scaling 2025 2026"
+
+Links: [{"title":"Inference-Time Hyper-Scaling with KV Cache Compression","url":"https://arxiv.org/html/2506.05345v1"},{"title":"[2506.05345] Inference-Time Hyper-Scaling with KV Cache Compression","url":"https://arxiv.org/abs/2506.05345"},{"title":"Inference-Time Hyper-Scaling with KV Cache Compression Adrian Ła´ncucki†","url":"https://openreview.net/pdf?id=8ZiElzQxf1"},{"title":"Inference-Time Hyper-Scaling with KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=8ZiElzQxf1"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference | OpenReview","url":"https://openreview.net/forum?id=20JDhbJqn3"},{"title":"ETS: Efficient Tree Search for Inference-Time Scaling","url":"https://arxiv.org/pdf/2502.13575"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention From Future Queries Distribution | OpenReview","url":"https://openreview.net/forum?id=VmojW15eRc"},{"title":"LMCACHE: AN EFFICIENT KV CACHE LAYER FOR ENTERPRISE-SCALE LLM INFERENCE","url":"https://lmcache.ai/tech_report.pdf"}]
+
+I found several relevant research papers and resources on this topic. Here's what the search revealed:
+
+## Key Findings
+
+### Inference-Time Hyper-Scaling with KV Cache Compression
+
+A recent approach introduces inference-time hyper-scaling by compressing the key-value cache of Transformer LLMs via sparse attention to improve downstream reasoning accuracy by enabling longer token sequences or more parallel sequences at the same compute budget.
+
+**PRM and Tree Search Integration:**
+While some strategies involve guiding exploration through a Process Reward Model (PRM) by scoring each reasoning step, recent systematic comparisons established that simpler PRM-free strategies such as majority voting remain the most competitive. However, if adopting PRM strategies, the verifier's complexity is quadratic in sequence length, and to complement the benefits of KV cache compression, the PRM would need to be accelerated by prefilling-time sparse attention methods, such as MInference.
+
+### Efficient Tree Search (ETS)
+
+A key challenge with existing tree search methods is the trade-off between efficiency and accuracy; high accuracy with tree search necessitates diverse trajectories, but retaining diverse trajectories leads to high inference costs due to reduced KV cache sharing in the tree. One approach demonstrates 1.4× increased throughput relative to baseline methods through increased KV cache sharing.
+
+### Recent 2025-2026 Compression Advances
+
+The 2026 research frontier is moving toward latent-space compaction (Attention Matching, 50× compaction) and reasoning-aware compression (TriAttention, 10.7× memory reduction on AIME25 at matched accuracy).
+
+The search results include papers from NeurIPS 2025 and recent 2026 publications addressing the intersection of KV cache compression, tree search efficiency, and inference-time scaling for reasoning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9fa21d7e-6c05-4bc4-89c7-0af0fe0f59a1",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "f846717f-7aa9-45b6-9c07-9b20acbb5550",
+  "toolUseResult": {
+    "query": "PRM score KV cache compression tree search inference time scaling 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QWaKheMH9TqkzJfDbLqNz6",
+        "content": [
+          {
+            "title": "Inference-Time Hyper-Scaling with KV Cache Compression",
+            "url": "https://arxiv.org/html/2506.05345v1"
+          },
+          {
+            "title": "[2506.05345] Inference-Time Hyper-Scaling with KV Cache Compression",
+            "url": "https://arxiv.org/abs/2506.05345"
+          },
+          {
+            "title": "Inference-Time Hyper-Scaling with KV Cache Compression Adrian Ła´ncucki†",
+            "url": "https://openreview.net/pdf?id=8ZiElzQxf1"
+          },
+          {
+            "title": "Inference-Time Hyper-Scaling with KV Cache Compression | OpenReview",
+            "url": "https://openreview.net/forum?id=8ZiElzQxf1"
+          },
+          {
+            "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference | OpenReview",
+            "url": "https://openreview.net/forum?id=20JDhbJqn3"
+          },
+          {
+            "title": "ETS: Efficient Tree Search for Inference-Time Scaling",
+            "url": "https://arxiv.org/pdf/2502.13575"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention From Future Queries Distribution | OpenReview",
+            "url": "https://openreview.net/forum?id=VmojW15eRc"
+          },
+          {
+            "title": "LMCACHE: AN EFFICIENT KV CACHE LAYER FOR ENTERPRISE-SCALE LLM INFERENCE",
+            "url": "https://lmcache.ai/tech_report.pdf"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources on this topic. Here's what the search revealed:\n\n## Key Findings\n\n### Inference-Time Hyper-Scaling with KV Cache Compression\n\nA recent approach introduces inference-time hyper-scaling by compressing the key-value cache of Transformer LLMs via sparse attention to improve downstream reasoning accuracy by enabling longer token sequences or more parallel sequences at the same compute budget.\n\n**PRM and Tree Search Integration:**\nWhile some strategies involve guiding exploration through a Process Reward Model (PRM) by scoring each reasoning step, recent systematic comparisons established that simpler PRM-free strategies such as majority voting remain the most competitive. However, if adopting PRM strategies, the verifier's complexity is quadratic in sequence length, and to complement the benefits of KV cache compression, the PRM would need to be accelerated by prefilling-time sparse attention methods, such as MInference.\n\n### Efficient Tree Search (ETS)\n\nA key challenge with existing tree search methods is the trade-off between efficiency and accuracy; high accuracy with tree search necessitates diverse trajectories, but retaining diverse trajectories leads to high inference costs due to reduced KV cache sharing in the tree. One approach demonstrates 1.4× increased throughput relative to baseline methods through increased KV cache sharing.\n\n### Recent 2025-2026 Compression Advances\n\nThe 2026 research frontier is moving toward latent-space compaction (Attention Matching, 50× compaction) and reasoning-aware compression (TriAttention, 10.7× memory reduction on AIME25 at matched accuracy).\n\nThe search results include papers from NeurIPS 2025 and recent 2026 publications addressing the intersection of KV cache compression, tree search efficiency, and inference-time scaling for reasoning tasks."
+    ],
+    "durationSeconds": 8.787742840000003
+  },
+  "sourceToolAssistantUUID": "9fa21d7e-6c05-4bc4-89c7-0af0fe0f59a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-09T20:12:27.009Z_
+
+<details><summary>↩ Tool result · `toolu_01XNPEb87QAsGvkiHU3SButA`</summary>
+
+```text
+Web search results for query: "differential KV cache quantization multi-trajectory beam search reasoning 2025 2026"
+
+Links: [{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview","url":"https://openreview.net/forum?id=Vem6FQvRvq"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"Utilizing KV Cache for Sampling and Reasoning","url":"https://arxiv.org/pdf/2601.20326"},{"title":"Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs","url":"https://arxiv.org/html/2604.04722v1"},{"title":"ICML Poster KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://icml.cc/virtual/2025/poster/43487"},{"title":"Accurate KV Cache Quantization with Outlier Tokens Tracing","url":"https://aclanthology.org/2025.acl-long.631.pdf"},{"title":"GitHub - junhuihe-hjh/A2ATS: [ACL 2025 Findings] A2ATS: Retrieval-Based KV Cache Reduction via Windowed Rotary Position Embedding and Query-Aware Vector Quantization · GitHub","url":"https://github.com/junhuihe-hjh/A2ATS"},{"title":"Is KV Cache Quantization Sabotaging Your Context? — We test the impact of quantizing caches on long-horizon agentic coding workloads.","url":"https://dasroot.net/posts/2026/05/kv-cache-quantization-agentic-coding-long-horizon/"},{"title":"KV Cache Quantization for Self-Forcing Video Generation: A 33-Method Empirical Study","url":"https://arxiv.org/html/2603.27469v1"},{"title":"Published as a conference paper at ICLR 2026 KV CACHE TRANSFORM CODING","url":"https://openreview.net/pdf/1cef9774f0f0cf7bb9e4b167882e3ad3ef8cde16.pdf"}]
+
+Based on the search results, I found several relevant research papers and articles from 2025-2026 addressing KV cache quantization and reasoning in large language models:
+
+## Key Research Areas
+
+**Progressive Mixed-Precision KV Cache Quantization (PM-KVQ)**
+
+PM-KVQ improves reasoning benchmark performance by up to 8% over SOTA baselines under the same memory budget and achieves 2.73–5.18× throughput over the original 16-bit LLMs on long-CoT LLMs from 7B–70B parameters. The approach proposes block-wise memory allocation to assign higher bit-width to more sensitive transformer blocks.
+
+**Adaptive KV-Cache Quantization**
+
+A learned policy assigns bit-width proportional to token importance by extracting lightweight token-level features including token frequency, quality score, attention variance, and entropy-based uncertainty, feeding them into a compact data-driven controller that dynamically selects KV precision from {2-bit, 4-bit, 8-bit, FP16} during decoding.
+
+**KV Cache Compression for Reasoning**
+
+The 2026 research frontier is moving toward latent-space compaction and reasoning-aware compression, with TriAttention achieving 10.7× memory reduction on AIME25 at matched accuracy.
+
+**Advanced Techniques**
+
+KVTuner achieves nearly lossless 3.25-bit mixed precision KV cache quantization for LLMs like Llama-3.1-8B-Instruct and 4.0-bit for sensitive models like Qwen2.5-7B-Instruct on mathematical reasoning tasks.
+
+The research emphasizes balancing memory efficiency with maintaining accuracy for complex reasoning tasks, particularly in long-context scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6b53c18-b473-4012-b1eb-37c801bde4f4",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "0562552e-4612-49da-91fd-9969df6c5c29",
+  "toolUseResult": {
+    "query": "differential KV cache quantization multi-trajectory beam search reasoning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DBJ1YSW2BCSEmWuCjA8sSJ",
+        "content": [
+          {
+            "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=Vem6FQvRvq"
+          },
+          {
+            "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"
+          },
+          {
+            "title": "Utilizing KV Cache for Sampling and Reasoning",
+            "url": "https://arxiv.org/pdf/2601.20326"
+          },
+          {
+            "title": "Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs",
+            "url": "https://arxiv.org/html/2604.04722v1"
+          },
+          {
+            "title": "ICML Poster KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference",
+            "url": "https://icml.cc/virtual/2025/poster/43487"
+          },
+          {
+            "title": "Accurate KV Cache Quantization with Outlier Tokens Tracing",
+            "url": "https://aclanthology.org/2025.acl-long.631.pdf"
+          },
+          {
+            "title": "GitHub - junhuihe-hjh/A2ATS: [ACL 2025 Findings] A2ATS: Retrieval-Based KV Cache Reduction via Windowed Rotary Position Embedding and Query-Aware Vector Quantization · GitHub",
+            "url": "https://github.com/junhuihe-hjh/A2ATS"
+          },
+          {
+            "title": "Is KV Cache Quantization Sabotaging Your Context? — We test the impact of quantizing caches on long-horizon agentic coding workloads.",
+            "url": "https://dasroot.net/posts/2026/05/kv-cache-quantization-agentic-coding-long-horizon/"
+          },
+          {
+            "title": "KV Cache Quantization for Self-Forcing Video Generation: A 33-Method Empirical Study",
+            "url": "https://arxiv.org/html/2603.27469v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 KV CACHE TRANSFORM CODING",
+            "url": "https://openreview.net/pdf/1cef9774f0f0cf7bb9e4b167882e3ad3ef8cde16.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant research papers and articles from 2025-2026 addressing KV cache quantization and reasoning in large language models:\n\n## Key Research Areas\n\n**Progressive Mixed-Precision KV Cache Quantization (PM-KVQ)**\n\nPM-KVQ improves reasoning benchmark performance by up to 8% over SOTA baselines under the same memory budget and achieves 2.73–5.18× throughput over the original 16-bit LLMs on long-CoT LLMs from 7B–70B parameters. The approach proposes block-wise memory allocation to assign higher bit-width to more sensitive transformer blocks.\n\n**Adaptive KV-Cache Quantization**\n\nA learned policy assigns bit-width proportional to token importance by extracting lightweight token-level features including token frequency, quality score, attention variance, and entropy-based uncertainty, feeding them into a compact data-driven controller that dynamically selects KV precision from {2-bit, 4-bit, 8-bit, FP16} during decoding.\n\n**KV Cache Compression for Reasoning**\n\nThe 2026 research frontier is moving toward latent-space compaction and reasoning-aware compression, with TriAttention achieving 10.7× memory reduction on AIME25 at matched accuracy.\n\n**Advanced Techniques**\n\nKVTuner achieves nearly lossless 3.25-bit mixed precision KV cache quantization for LLMs like Llama-3.1-8B-Instruct and 4.0-bit for sensitive models like Qwen2.5-7B-Instruct on mathematical reasoning tasks.\n\nThe research emphasizes balancing memory efficiency with maintaining accuracy for complex reasoning tasks, particularly in long-context scenarios."
+    ],
+    "durationSeconds": 8.307072682999998
+  },
+  "sourceToolAssistantUUID": "d6b53c18-b473-4012-b1eb-37c801bde4f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0562552e-4612-49da-91fd-9969df6c5c29",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify PSG-KVC feasibility and novelty via independent research",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-09T20:12:30.248Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search more specifically for concurrent work that might overlap with PSG-KVC's core contribution, including recent 2026 papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0562552e-4612-49da-91fd-9969df6c5c29",
+  "isSidechain": false,
+  "requestId": "req_011Casc3rcb7bH9ui5vkjb1W",
+  "type": "assistant",
+  "uuid": "036e1f93-6eda-468c-841e-f30f18ce2882",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Xe4zqEop1wAWTaaLx4PWMb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3193,
+      "cache_read_input_tokens": 32147,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3193,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 32147,
+          "cache_creation_input_tokens": 3193,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3193
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-09T20:12:31.101Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017iakeoqBnDTJSjK23pHWco`</summary>
+
+```json
+{
+  "query": "KV cache compression inference time compute scaling per-trajectory quality signal 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "036e1f93-6eda-468c-841e-f30f18ce2882",
+  "isSidechain": false,
+  "requestId": "req_011Casc3rcb7bH9ui5vkjb1W",
+  "type": "assistant",
+  "uuid": "8ec601dd-926c-4c8d-8fa0-9c3aa748b5d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Xe4zqEop1wAWTaaLx4PWMb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3193,
+      "cache_read_input_tokens": 32147,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3193,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 32147,
+          "cache_creation_input_tokens": 3193,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3193
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-09T20:12:32.098Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RrWxaNW9X5HfHEVcaYxXNm`</summary>
+
+```json
+{
+  "query": "TriAttention reasoning KV cache memory reduction AIME 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ec601dd-926c-4c8d-8fa0-9c3aa748b5d0",
+  "isSidechain": false,
+  "requestId": "req_011Casc3rcb7bH9ui5vkjb1W",
+  "type": "assistant",
+  "uuid": "eea0bdca-76dd-4b5d-92e2-b2d510f7a336",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Xe4zqEop1wAWTaaLx4PWMb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3193,
+      "cache_read_input_tokens": 32147,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3193,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 32147,
+          "cache_creation_input_tokens": 3193,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3193
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-09T20:12:32.146Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0131yovUeGkCAVevguFhaAhe`</summary>
+
+```json
+{
+  "query": "adaptive KV cache quantization token importance quality score beam search 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eea0bdca-76dd-4b5d-92e2-b2d510f7a336",
+  "isSidechain": false,
+  "requestId": "req_011Casc3rcb7bH9ui5vkjb1W",
+  "type": "assistant",
+  "uuid": "ccafb5d0-b21e-4a4d-ba93-8b27ceaefa8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Xe4zqEop1wAWTaaLx4PWMb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3193,
+      "cache_read_input_tokens": 32147,
+      "output_tokens": 216,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3193,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 216,
+          "cache_read_input_tokens": 32147,
+          "cache_creation_input_tokens": 3193,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3193
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-09T20:12:38.623Z_
+
+<details><summary>↩ Tool result · `toolu_017iakeoqBnDTJSjK23pHWco`</summary>
+
+```text
+Web search results for query: "KV cache compression inference time compute scaling per-trajectory quality signal 2026 arxiv"
+
+Links: [{"title":"[2506.05345] Inference-Time Hyper-Scaling with KV Cache Compression","url":"https://arxiv.org/abs/2506.05345"},{"title":"Inference-Time Hyper-Scaling with KV Cache Compression","url":"https://arxiv.org/html/2506.05345v1"},{"title":"A Survey on Large Language Model Acceleration based on KV Cache Management","url":"https://arxiv.org/html/2412.19442v3"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"KV Cache Quantization for Self-Forcing Video Generation: A 33-Method Empirical Study","url":"https://arxiv.org/html/2603.27469v1"},{"title":"KV Cache Compression for Inference Efficiency in LLMs: A Review","url":"https://arxiv.org/html/2508.06297v1"},{"title":"Utilizing KV Cache for Sampling and Reasoning","url":"https://arxiv.org/pdf/2601.20326"},{"title":"[2604.10235] CodeComp: Structural KV Cache Compression for Agentic Coding","url":"https://arxiv.org/abs/2604.10235"},{"title":"Beyond RAG: Task-Aware KV Cache Compression for Comprehensive Knowledge Reasoning","url":"https://arxiv.org/html/2503.04973v1"},{"title":"KV Cache Compression for Inference Efficiency in LLMs: A Review | Proceedings of the 4th International Conference on Artificial Intelligence and Intelligent Information Processing","url":"https://dl.acm.org/doi/10.1145/3778534.3778567"}]
+
+I found several relevant research papers on KV cache compression and inference-time scaling. Here are the key findings:
+
+## Primary Result: Inference-Time Hyper-Scaling with KV Cache Compression
+
+The most directly relevant paper is "Inference-Time Hyper-Scaling with KV Cache Compression" by Adrian Łańcucki and colleagues. It addresses how inference-time scaling trades efficiency for increased reasoning accuracy by generating longer or more parallel sequences. However, in Transformer LLMs, generation cost is bottlenecked by the size of the key-value (KV) cache rather than the number of generated tokens. The work explores inference-time hyper-scaling by compressing the KV cache to generate more tokens within the same compute budget and further improve the accuracy of scaled inference.
+
+The paper introduces Dynamic Memory Sparsification (DMS), a novel method for sparsifying KV caches that only requires 1K training steps to achieve 8× compression while maintaining better accuracy than training-free sparsification approaches.
+
+The method enhances Qwen-R1 32B by 12.0 points on AIME 24, 8.6 on GPQA, and 9.7 on LiveCodeBench on average for an equivalent number of memory reads.
+
+## Additional Related Research
+
+The search also returned several other 2025-2026 papers on KV cache compression techniques, including:
+- Expected Attention method for estimating KV pair importance
+- Task-aware KV cache compression for knowledge reasoning
+- Structural KV cache compression for agentic coding (CodeComp)
+- Various survey papers reviewing KV cache optimization strategies
+
+The arxiv paper 2506.05345 appears to be the most relevant match to your specific query about KV cache compression, inference-time compute scaling, and quality signals for trajectory-based reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ec601dd-926c-4c8d-8fa0-9c3aa748b5d0",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "f0c4f2e9-81b0-4772-937b-ad31e8024cde",
+  "toolUseResult": {
+    "query": "KV cache compression inference time compute scaling per-trajectory quality signal 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FgjrwE7tjMvoosTAYvReX9",
+        "content": [
+          {
+            "title": "[2506.05345] Inference-Time Hyper-Scaling with KV Cache Compression",
+            "url": "https://arxiv.org/abs/2506.05345"
+          },
+          {
+            "title": "Inference-Time Hyper-Scaling with KV Cache Compression",
+            "url": "https://arxiv.org/html/2506.05345v1"
+          },
+          {
+            "title": "A Survey on Large Language Model Acceleration based on KV Cache Management",
+            "url": "https://arxiv.org/html/2412.19442v3"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "KV Cache Quantization for Self-Forcing Video Generation: A 33-Method Empirical Study",
+            "url": "https://arxiv.org/html/2603.27469v1"
+          },
+          {
+            "title": "KV Cache Compression for Inference Efficiency in LLMs: A Review",
+            "url": "https://arxiv.org/html/2508.06297v1"
+          },
+          {
+            "title": "Utilizing KV Cache for Sampling and Reasoning",
+            "url": "https://arxiv.org/pdf/2601.20326"
+          },
+          {
+            "title": "[2604.10235] CodeComp: Structural KV Cache Compression for Agentic Coding",
+            "url": "https://arxiv.org/abs/2604.10235"
+          },
+          {
+            "title": "Beyond RAG: Task-Aware KV Cache Compression for Comprehensive Knowledge Reasoning",
+            "url": "https://arxiv.org/html/2503.04973v1"
+          },
+          {
+            "title": "KV Cache Compression for Inference Efficiency in LLMs: A Review | Proceedings of the 4th International Conference on Artificial Intelligence and Intelligent Information Processing",
+            "url": "https://dl.acm.org/doi/10.1145/3778534.3778567"
+          }
+        ]
+      },
+      "I found several relevant research papers on KV cache compression and inference-time scaling. Here are the key findings:\n\n## Primary Result: Inference-Time Hyper-Scaling with KV Cache Compression\n\nThe most directly relevant paper is \"Inference-Time Hyper-Scaling with KV Cache Compression\" by Adrian Łańcucki and colleagues. It addresses how inference-time scaling trades efficiency for increased reasoning accuracy by generating longer or more parallel sequences. However, in Transformer LLMs, generation cost is bottlenecked by the size of the key-value (KV) cache rather than the number of generated tokens. The work explores inference-time hyper-scaling by compressing the KV cache to generate more tokens within the same compute budget and further improve the accuracy of scaled inference.\n\nThe paper introduces Dynamic Memory Sparsification (DMS), a novel method for sparsifying KV caches that only requires 1K training steps to achieve 8× compression while maintaining better accuracy than training-free sparsification approaches.\n\nThe method enhances Qwen-R1 32B by 12.0 points on AIME 24, 8.6 on GPQA, and 9.7 on LiveCodeBench on average for an equivalent number of memory reads.\n\n## Additional Related Research\n\nThe search also returned several other 2025-2026 papers on KV cache compression techniques, including:\n- Expected Attention method for estimating KV pair importance\n- Task-aware KV cache compression for knowledge reasoning\n- Structural KV cache compression for agentic coding (CodeComp)\n- Various survey papers reviewing KV cache optimization strategies\n\nThe arxiv paper 2506.05345 appears to be the most relevant match to your specific query about KV cache compression, inference-time compute scaling, and quality signals for trajectory-based reasoning."
+    ],
+    "durationSeconds": 7.518283605000004
+  },
+  "sourceToolAssistantUUID": "8ec601dd-926c-4c8d-8fa0-9c3aa748b5d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-09T20:12:39.084Z_
+
+<details><summary>↩ Tool result · `toolu_01RrWxaNW9X5HfHEVcaYxXNm`</summary>
+
+```text
+Web search results for query: "TriAttention reasoning KV cache memory reduction AIME 2026"
+
+Links: [{"title":"GitHub - WeianMao/triattention: TriAttention — Efficient long reasoning with trigonometric KV cache compression. Enables OpenClaw local deployment on memory-constrained GPUs.","url":"https://github.com/WeianMao/triattention"},{"title":"[2604.04921] TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://arxiv.org/abs/2604.04921"},{"title":"Researchers from MIT, NVIDIA, and Zhejiang University Propose TriAttention: A KV Cache Compression Method That Matches Full Attention at 2.5× Higher Throughput - MarkTechPost","url":"https://www.marktechpost.com/2026/04/11/researchers-from-mit-nvidia-and-zhejiang-university-propose-triattention-a-kv-cache-compression-method-that-matches-full-attention-at-2-5x-higher-throughput/"},{"title":"Paper page - TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://huggingface.co/papers/2604.04921"},{"title":"TriAttention | Efficient KV Cache Compression for Long-Context Reasoning","url":"https://weianmao.github.io/tri-attention-project-page/"},{"title":"[2604.04921v1] TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://arxiv.org/abs/2604.04921v1"},{"title":"🔥 Introducing TriAttention: A New KV Cache Compression Technique | by Mayur Jain | MLWorks | Apr, 2026 | Medium","url":"https://medium.com/mlworks/introducing-triattention-a-new-kv-cache-compression-technique-60d1215f5af2"},{"title":"TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://arxiv.org/html/2604.04921v1"},{"title":"TriAttention KV Cache Compression: How to Stop Long AI Chats from Slowing Down and Speed Up Long-Context Reasoning","url":"https://www.intelligentliving.co/triattention-kv-cache-compression/"},{"title":"TriAttention: Efficient Long Reasoning with Trigonometric KV Compression: Analysis, Review & Summary | Paperium","url":"https://paperium.net/article/article/16602/triattention-efficient-long-reasoning-with-trigonometric-kv-compression"}]
+
+Based on the search results, here's what I found about TriAttention:
+
+## Overview
+
+TriAttention matches Full Attention reasoning accuracy while achieving 2.5x higher throughput or 10.7x KV memory reduction on AIME25 with 32K-token generation.
+
+## How It Works
+
+In the pre-RoPE space, Q and K vectors are highly concentrated around fixed non-zero centers and remain stable across positions, and this concentration causes queries to preferentially attend to keys at specific distances, with the centers determining which distances are preferred via a trigonometric series.
+
+Via the trigonometric series, the method uses the distance preference characterized by these centers to score keys according to their positions, and also leverages Q/K norms as an additional signal for importance estimation.
+
+## Performance on AIME
+
+On the AIME25 mathematical reasoning benchmark with 32K-token generation, TriAttention matches Full Attention accuracy while achieving 2.5× higher throughput or 10.7× KV memory reduction. It nearly doubles R-KV's accuracy at the same memory budget across both AIME24 and AIME25.
+
+## Practical Deployment
+
+TriAttention enables OpenClaw deployment on a single consumer GPU, where long context would otherwise cause out-of-memory with Full Attention. A community C/ggml port for llama.cpp (HIP/ROCm) enables TriAttention on AMD GPUs via llama.cpp, with ~6.8× KV reduction when composed with TurboQuant.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eea0bdca-76dd-4b5d-92e2-b2d510f7a336",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "d660aca4-6732-4b46-9d19-7f0143e34bc2",
+  "toolUseResult": {
+    "query": "TriAttention reasoning KV cache memory reduction AIME 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0189s1AFQTmBhQWbvfSpmMc3",
+        "content": [
+          {
+            "title": "GitHub - WeianMao/triattention: TriAttention — Efficient long reasoning with trigonometric KV cache compression. Enables OpenClaw local deployment on memory-constrained GPUs.",
+            "url": "https://github.com/WeianMao/triattention"
+          },
+          {
+            "title": "[2604.04921] TriAttention: Efficient Long Reasoning with Trigonometric KV Compression",
+            "url": "https://arxiv.org/abs/2604.04921"
+          },
+          {
+            "title": "Researchers from MIT, NVIDIA, and Zhejiang University Propose TriAttention: A KV Cache Compression Method That Matches Full Attention at 2.5× Higher Throughput - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/11/researchers-from-mit-nvidia-and-zhejiang-university-propose-triattention-a-kv-cache-compression-method-that-matches-full-attention-at-2-5x-higher-throughput/"
+          },
+          {
+            "title": "Paper page - TriAttention: Efficient Long Reasoning with Trigonometric KV Compression",
+            "url": "https://huggingface.co/papers/2604.04921"
+          },
+          {
+            "title": "TriAttention | Efficient KV Cache Compression for Long-Context Reasoning",
+            "url": "https://weianmao.github.io/tri-attention-project-page/"
+          },
+          {
+            "title": "[2604.04921v1] TriAttention: Efficient Long Reasoning with Trigonometric KV Compression",
+            "url": "https://arxiv.org/abs/2604.04921v1"
+          },
+          {
+            "title": "🔥 Introducing TriAttention: A New KV Cache Compression Technique | by Mayur Jain | MLWorks | Apr, 2026 | Medium",
+            "url": "https://medium.com/mlworks/introducing-triattention-a-new-kv-cache-compression-technique-60d1215f5af2"
+          },
+          {
+            "title": "TriAttention: Efficient Long Reasoning with Trigonometric KV Compression",
+            "url": "https://arxiv.org/html/2604.04921v1"
+          },
+          {
+            "title": "TriAttention KV Cache Compression: How to Stop Long AI Chats from Slowing Down and Speed Up Long-Context Reasoning",
+            "url": "https://www.intelligentliving.co/triattention-kv-cache-compression/"
+          },
+          {
+            "title": "TriAttention: Efficient Long Reasoning with Trigonometric KV Compression: Analysis, Review & Summary | Paperium",
+            "url": "https://paperium.net/article/article/16602/triattention-efficient-long-reasoning-with-trigonometric-kv-compression"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about TriAttention:\n\n## Overview\n\nTriAttention matches Full Attention reasoning accuracy while achieving 2.5x higher throughput or 10.7x KV memory reduction on AIME25 with 32K-token generation.\n\n## How It Works\n\nIn the pre-RoPE space, Q and K vectors are highly concentrated around fixed non-zero centers and remain stable across positions, and this concentration causes queries to preferentially attend to keys at specific distances, with the centers determining which distances are preferred via a trigonometric series.\n\nVia the trigonometric series, the method uses the distance preference characterized by these centers to score keys according to their positions, and also leverages Q/K norms as an additional signal for importance estimation.\n\n## Performance on AIME\n\nOn the AIME25 mathematical reasoning benchmark with 32K-token generation, TriAttention matches Full Attention accuracy while achieving 2.5× higher throughput or 10.7× KV memory reduction. It nearly doubles R-KV's accuracy at the same memory budget across both AIME24 and AIME25.\n\n## Practical Deployment\n\nTriAttention enables OpenClaw deployment on a single consumer GPU, where long context would otherwise cause out-of-memory with Full Attention. A community C/ggml port for llama.cpp (HIP/ROCm) enables TriAttention on AMD GPUs via llama.cpp, with ~6.8× KV reduction when composed with TurboQuant."
+    ],
+    "durationSeconds": 6.981802149000003
+  },
+  "sourceToolAssistantUUID": "eea0bdca-76dd-4b5d-92e2-b2d510f7a336",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-09T20:12:40.172Z_
+
+<details><summary>↩ Tool result · `toolu_0131yovUeGkCAVevguFhaAhe`</summary>
+
+```text
+Web search results for query: "adaptive KV cache quantization token importance quality score beam search 2025 2026"
+
+Links: [{"title":"Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs","url":"https://arxiv.org/html/2604.04722v1"},{"title":"QAQ: Quality Adaptive Quantization for LLM KV Cache Wen Cheng*","url":"https://openaccess.thecvf.com/content/ICCV2025W/U&ME/papers/Cheng_QAQ_Quality_Adaptive_Quantization_for_LLM_KV_Cache_ICCVW_2025_paper.pdf"},{"title":"ICML Poster Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models","url":"https://icml.cc/virtual/2025/poster/46067"},{"title":"Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models","url":"https://arxiv.org/html/2501.19392v1"},{"title":"Accurate KV Cache Quantization with Outlier Tokens Tracing","url":"https://aclanthology.org/2025.acl-long.631.pdf"},{"title":"[2604.04722] Don't Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs","url":"https://arxiv.org/abs/2604.04722"},{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview","url":"https://openreview.net/forum?id=Vem6FQvRvq"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=COowwJOAZi&noteId=eSHMRqb2AD"}]
+
+Based on the search results, I found several recent papers and research on adaptive KV cache quantization with token importance and quality scores from 2025-2026:
+
+## Key Findings
+
+### **QAQ: Quality Adaptive Quantization for LLM KV Cache (2025)**
+QAQ is a quality adaptive quantization method for LLM KV cache published in 2025. The method incorporates token importance measures through the persistence of importance theory, which posits that the attention scores of each token remain relatively constant throughout the process of token generation.
+
+### **AQUA-KV: Adaptive Key-Value Quantization (2025)**
+AQUA-KV is an adaptive quantization for Key-Value caches that relies on compact adapters to exploit existing dependencies between Keys and Values. On Llama 3.2 LLMs, it achieves near-lossless inference at 2-2.5 bits per value with under 1% relative error in perplexity and LongBench scores.
+
+### **Adaptive KV-Cache Quantization with Token-Level Features (2026)**
+A framework extracts lightweight token-level features, including token frequency, quality score, attention variance, and entropy-based uncertainty, and feeds them into a compact data-driven controller that dynamically selects KV precision from {2-bit, 4-bit, 8-bit, FP16} during decoding.
+
+### **Cutting-Edge Methods (2026)**
+TurboQuant is Google Research's latest contribution accepted at ICLR 2026, addressing systematic bias in quantization through a two-stage pipeline where the first stage, PolarQuant, applies a random orthogonal rotation to each key and value vector before quantization.
+
+These methods collectively represent the current frontier in combining adaptive precision allocation with token importance scoring for efficient LLM inference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ccafb5d0-b21e-4a4d-ba93-8b27ceaefa8b",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "23435fb7-3bf4-4703-9c3f-872fbfc6a91a",
+  "toolUseResult": {
+    "query": "adaptive KV cache quantization token importance quality score beam search 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013Ubc1LcKHPjNhxCL7hiwWK",
+        "content": [
+          {
+            "title": "Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs",
+            "url": "https://arxiv.org/html/2604.04722v1"
+          },
+          {
+            "title": "QAQ: Quality Adaptive Quantization for LLM KV Cache Wen Cheng*",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025W/U&ME/papers/Cheng_QAQ_Quality_Adaptive_Quantization_for_LLM_KV_Cache_ICCVW_2025_paper.pdf"
+          },
+          {
+            "title": "ICML Poster Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models",
+            "url": "https://icml.cc/virtual/2025/poster/46067"
+          },
+          {
+            "title": "Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models",
+            "url": "https://arxiv.org/html/2501.19392v1"
+          },
+          {
+            "title": "Accurate KV Cache Quantization with Outlier Tokens Tracing",
+            "url": "https://aclanthology.org/2025.acl-long.631.pdf"
+          },
+          {
+            "title": "[2604.04722] Don't Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs",
+            "url": "https://arxiv.org/abs/2604.04722"
+          },
+          {
+            "title": "PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=Vem6FQvRvq"
+          },
+          {
+            "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=COowwJOAZi&noteId=eSHMRqb2AD"
+          }
+        ]
+      },
+      "Based on the search results, I found several recent papers and research on adaptive KV cache quantization with token importance and quality scores from 2025-2026:\n\n## Key Findings\n\n### **QAQ: Quality Adaptive Quantization for LLM KV Cache (2025)**\nQAQ is a quality adaptive quantization method for LLM KV cache published in 2025. The method incorporates token importance measures through the persistence of importance theory, which posits that the attention scores of each token remain relatively constant throughout the process of token generation.\n\n### **AQUA-KV: Adaptive Key-Value Quantization (2025)**\nAQUA-KV is an adaptive quantization for Key-Value caches that relies on compact adapters to exploit existing dependencies between Keys and Values. On Llama 3.2 LLMs, it achieves near-lossless inference at 2-2.5 bits per value with under 1% relative error in perplexity and LongBench scores.\n\n### **Adaptive KV-Cache Quantization with Token-Level Features (2026)**\nA framework extracts lightweight token-level features, including token frequency, quality score, attention variance, and entropy-based uncertainty, and feeds them into a compact data-driven controller that dynamically selects KV precision from {2-bit, 4-bit, 8-bit, FP16} during decoding.\n\n### **Cutting-Edge Methods (2026)**\nTurboQuant is Google Research's latest contribution accepted at ICLR 2026, addressing systematic bias in quantization through a two-stage pipeline where the first stage, PolarQuant, applies a random orthogonal rotation to each key and value vector before quantization.\n\nThese methods collectively represent the current frontier in combining adaptive precision allocation with token importance scoring for efficient LLM inference."
+    ],
+    "durationSeconds": 8.024135394000005
+  },
+  "sourceToolAssistantUUID": "ccafb5d0-b21e-4a4d-ba93-8b27ceaefa8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-09T20:12:44.433Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me continue searching for more specific competing work and verify the novelty of PSG-KVC's core claim - using PRM scores to set differential per-trajectory KV compression precision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23435fb7-3bf4-4703-9c3f-872fbfc6a91a",
+  "isSidechain": false,
+  "requestId": "req_011Casc4pswQ4eQAk9bAo56F",
+  "type": "assistant",
+  "uuid": "b93f8bb3-c5e9-4883-8fe9-f429a9b8efaa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Jr5u5xMHmh8mYijQxaCRUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3309,
+      "cache_read_input_tokens": 35340,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3309,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 35340,
+          "cache_creation_input_tokens": 3309,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3309
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-09T20:12:47.078Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019kwiDjV5yLPhACZTTaKaTK`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.04722",
+  "prompt": "What is the core method? Does it use any quality signal (like PRM scores, reward scores) across multiple beam search trajectories to decide compression precision? Does it apply different quantization levels to different trajectories?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b93f8bb3-c5e9-4883-8fe9-f429a9b8efaa",
+  "isSidechain": false,
+  "requestId": "req_011Casc4pswQ4eQAk9bAo56F",
+  "type": "assistant",
+  "uuid": "23016cca-a2b7-4884-8a5f-0afea73f1fec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Jr5u5xMHmh8mYijQxaCRUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3309,
+      "cache_read_input_tokens": 35340,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3309,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 35340,
+          "cache_creation_input_tokens": 3309,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3309
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-09T20:12:47.447Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FMt5HWGnccdzLtqdDBu72S`</summary>
+
+```json
+{
+  "query": "process reward model guided KV cache budget allocation tree search beam search 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23016cca-a2b7-4884-8a5f-0afea73f1fec",
+  "isSidechain": false,
+  "requestId": "req_011Casc4pswQ4eQAk9bAo56F",
+  "type": "assistant",
+  "uuid": "00cbc2cf-c5ec-442e-b548-5c5d2748d27c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Jr5u5xMHmh8mYijQxaCRUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3309,
+      "cache_read_input_tokens": 35340,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3309,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 35340,
+          "cache_creation_input_tokens": 3309,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3309
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-09T20:12:47.881Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011VDDSZbmyxwGy99DBUDs8w`</summary>
+
+```json
+{
+  "query": "ForesightKV KV cache eviction reasoning arXiv 2602.03203 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00cbc2cf-c5ec-442e-b548-5c5d2748d27c",
+  "isSidechain": false,
+  "requestId": "req_011Casc4pswQ4eQAk9bAo56F",
+  "type": "assistant",
+  "uuid": "d08a532f-db6d-49a5-831b-bb0b88e091c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Jr5u5xMHmh8mYijQxaCRUr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3309,
+      "cache_read_input_tokens": 35340,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3309,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 35340,
+          "cache_creation_input_tokens": 3309,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3309
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d08a532f-db6d-49a5-831b-bb0b88e091c3",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify PSG-KVC feasibility and novelty via independent research",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-09T20:12:51.458Z_
+
+<details><summary>↩ Tool result · `toolu_019kwiDjV5yLPhACZTTaKaTK`</summary>
+
+```text
+# Core Method Analysis
+
+Based on the provided arXiv page, the core method is **adaptive KV-cache quantization** that dynamically assigns precision levels to individual tokens during LLM decoding.
+
+## Method Details
+
+The approach uses "a learned policy that assigns bit-width proportional to token importance" inspired by Huffman coding principles. Rather than fixed precision, it selects from {2-bit, 4-bit, 8-bit, FP16} during decoding.
+
+## Quality Signals Used
+
+The method extracts "token-level features, including token frequency, quality score, attention variance, and entropy-based uncertainty" to feed into a controller that makes precision decisions.
+
+## Beam Search Application
+
+**No**, the document does not mention beam search trajectories or differential quantization across multiple search paths. The method appears to operate on a single decoding sequence, assigning precision per-token based on lightweight features extracted during inference.
+
+The focus is on reducing memory and latency for on-device LLM inference on smaller models (SmolLM-135M through SmolLM-1.7B), not on multi-trajectory sampling or beam search optimization.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23016cca-a2b7-4884-8a5f-0afea73f1fec",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "38c6dfc7-b878-48b6-b038-7b6e826c453b",
+  "toolUseResult": {
+    "bytes": 47424,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Core Method Analysis\n\nBased on the provided arXiv page, the core method is **adaptive KV-cache quantization** that dynamically assigns precision levels to individual tokens during LLM decoding.\n\n## Method Details\n\nThe approach uses \"a learned policy that assigns bit-width proportional to token importance\" inspired by Huffman coding principles. Rather than fixed precision, it selects from {2-bit, 4-bit, 8-bit, FP16} during decoding.\n\n## Quality Signals Used\n\nThe method extracts \"token-level features, including token frequency, quality score, attention variance, and entropy-based uncertainty\" to feed into a controller that makes precision decisions.\n\n## Beam Search Application\n\n**No**, the document does not mention beam search trajectories or differential quantization across multiple search paths. The method appears to operate on a single decoding sequence, assigning precision per-token based on lightweight features extracted during inference.\n\nThe focus is on reducing memory and latency for on-device LLM inference on smaller models (SmolLM-135M through SmolLM-1.7B), not on multi-trajectory sampling or beam search optimization.",
+    "durationMs": 4369,
+    "url": "https://arxiv.org/abs/2604.04722"
+  },
+  "sourceToolAssistantUUID": "23016cca-a2b7-4884-8a5f-0afea73f1fec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-09T20:12:54.535Z_
+
+<details><summary>↩ Tool result · `toolu_01FMt5HWGnccdzLtqdDBu72S`</summary>
+
+```text
+Web search results for query: "process reward model guided KV cache budget allocation tree search beam search 2025 2026 arxiv"
+
+Links: [{"title":"Utilizing KV Cache for Sampling and Reasoning","url":"https://arxiv.org/pdf/2601.20326"},{"title":"ETS: Efficient Tree Search for Inference-Time Scaling","url":"https://arxiv.org/pdf/2502.13575"},{"title":"A Survey on Large Language Model Acceleration based on KV Cache Management","url":"https://arxiv.org/html/2412.19442v3"},{"title":"KV Cache Optimization Strategies for Scalable and Efficient LLM Inference","url":"https://arxiv.org/html/2603.20397v1"},{"title":"Stop Overthinking: A Survey on Efficient Reasoning for Large Language Models","url":"https://arxiv.org/pdf/2503.16419"},{"title":"Dynamic Parallel Tree Search for Efficient LLM Reasoning","url":"https://aclanthology.org/2025.acl-long.550.pdf"},{"title":"KVCache Cache in the Wild: Characterizing and Optimizing KVCache Cache at a Large Cloud Provider","url":"https://arxiv.org/html/2506.02634v1"},{"title":"Beyond RAG: Task-Aware KV Cache Compression for Comprehensive Knowledge Reasoning","url":"https://arxiv.org/html/2503.04973v1"},{"title":"1 A Survey on Large Language Model Acceleration based on KV Cache Management","url":"https://arxiv.org/pdf/2412.19442"},{"title":"randomization boosts kv caching, learning balances query ...","url":"https://arxiv.org/pdf/2601.18999"}]
+
+Based on the search results, here's what I found regarding process reward models, KV cache budget allocation, tree search, and beam search in recent arxiv papers:
+
+## Key Research Areas
+
+**Process Reward Model-Guided Search:**
+
+PATS performs process-level switching via process reward models with beam search, enabling step-wise fast/slow adaptation with bad-step penalties. Additionally, the OpenAI o1 model is speculated to employ a tree-based search approach, such as Monte Carlo Tree Search (MCTS), combined with a Process Reward Model (PRM) to explore reasoning paths and determine optimal solutions through guided simulations.
+
+**KV Cache Budget Allocation:**
+
+KV cache budget allocation dynamically distributes memory resources across tokens to ensure efficient cache utilization under limited memory. KV cache budget allocation addresses this challenge by intelligently distributing memory resources based on each component's importance to prediction accuracy, thereby optimizing memory utilization while minimizing accuracy degradation.
+
+**Efficient Tree Search Methods:**
+
+An objective function contains one term which retains the highest priority trajectories, as well as a second term that promotes KV sharing by penalizing the size of the retained tree. This approach combines diversity and efficiency considerations in search algorithms.
+
+**Recent Developments:**
+
+The papers indicate active research in 2025-2026 on integrating these techniques, with focus on reducing memory overhead while maintaining search effectiveness for LLM reasoning and inference tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00cbc2cf-c5ec-442e-b548-5c5d2748d27c",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "704de5b2-6b97-4eb2-9e67-f7e4733983f4",
+  "toolUseResult": {
+    "query": "process reward model guided KV cache budget allocation tree search beam search 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NqFatzgQ4jRqLME8tXoHtB",
+        "content": [
+          {
+            "title": "Utilizing KV Cache for Sampling and Reasoning",
+            "url": "https://arxiv.org/pdf/2601.20326"
+          },
+          {
+            "title": "ETS: Efficient Tree Search for Inference-Time Scaling",
+            "url": "https://arxiv.org/pdf/2502.13575"
+          },
+          {
+            "title": "A Survey on Large Language Model Acceleration based on KV Cache Management",
+            "url": "https://arxiv.org/html/2412.19442v3"
+          },
+          {
+            "title": "KV Cache Optimization Strategies for Scalable and Efficient LLM Inference",
+            "url": "https://arxiv.org/html/2603.20397v1"
+          },
+          {
+            "title": "Stop Overthinking: A Survey on Efficient Reasoning for Large Language Models",
+            "url": "https://arxiv.org/pdf/2503.16419"
+          },
+          {
+            "title": "Dynamic Parallel Tree Search for Efficient LLM Reasoning",
+            "url": "https://aclanthology.org/2025.acl-long.550.pdf"
+          },
+          {
+            "title": "KVCache Cache in the Wild: Characterizing and Optimizing KVCache Cache at a Large Cloud Provider",
+            "url": "https://arxiv.org/html/2506.02634v1"
+          },
+          {
+            "title": "Beyond RAG: Task-Aware KV Cache Compression for Comprehensive Knowledge Reasoning",
+            "url": "https://arxiv.org/html/2503.04973v1"
+          },
+          {
+            "title": "1 A Survey on Large Language Model Acceleration based on KV Cache Management",
+            "url": "https://arxiv.org/pdf/2412.19442"
+          },
+          {
+            "title": "randomization boosts kv caching, learning balances query ...",
+            "url": "https://arxiv.org/pdf/2601.18999"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding process reward models, KV cache budget allocation, tree search, and beam search in recent arxiv papers:\n\n## Key Research Areas\n\n**Process Reward Model-Guided Search:**\n\nPATS performs process-level switching via process reward models with beam search, enabling step-wise fast/slow adaptation with bad-step penalties. Additionally, the OpenAI o1 model is speculated to employ a tree-based search approach, such as Monte Carlo Tree Search (MCTS), combined with a Process Reward Model (PRM) to explore reasoning paths and determine optimal solutions through guided simulations.\n\n**KV Cache Budget Allocation:**\n\nKV cache budget allocation dynamically distributes memory resources across tokens to ensure efficient cache utilization under limited memory. KV cache budget allocation addresses this challenge by intelligently distributing memory resources based on each component's importance to prediction accuracy, thereby optimizing memory utilization while minimizing accuracy degradation.\n\n**Efficient Tree Search Methods:**\n\nAn objective function contains one term which retains the highest priority trajectories, as well as a second term that promotes KV sharing by penalizing the size of the retained tree. This approach combines diversity and efficiency considerations in search algorithms.\n\n**Recent Developments:**\n\nThe papers indicate active research in 2025-2026 on integrating these techniques, with focus on reducing memory overhead while maintaining search effectiveness for LLM reasoning and inference tasks."
+    ],
+    "durationSeconds": 7.084303471999999
+  },
+  "sourceToolAssistantUUID": "00cbc2cf-c5ec-442e-b548-5c5d2748d27c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-09T20:12:54.627Z_
+
+<details><summary>↩ Tool result · `toolu_011VDDSZbmyxwGy99DBUDs8w`</summary>
+
+```text
+Web search results for query: "ForesightKV KV cache eviction reasoning arXiv 2602.03203 2026"
+
+Links: [{"title":"[2602.03203] ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution","url":"https://arxiv.org/abs/2602.03203"},{"title":"ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution","url":"https://arxiv.org/html/2602.03203"},{"title":"ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution | OpenReview","url":"https://openreview.net/forum?id=k5h29Qv7GN"},{"title":"Learning to Evict from Key-Value Cache","url":"https://arxiv.org/html/2602.10238"},{"title":"[2604.25975] Rethinking KV Cache Eviction via a Unified Information-Theoretic Objective","url":"https://arxiv.org/abs/2604.25975"},{"title":"LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation","url":"https://arxiv.org/html/2603.10899v1"},{"title":"Rethinking KV Cache Eviction via a Unified Information-Theoretic Objective","url":"https://arxiv.org/html/2604.25975"},{"title":"Paper page - LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation","url":"https://huggingface.co/papers/2603.10899"},{"title":"[2602.10238] Learning to Evict from Key-Value Cache","url":"https://arxiv.org/abs/2602.10238"},{"title":"[2603.10899v1] LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation","url":"https://arxiv.org/abs/2603.10899v1"}]
+
+I found the paper! Here are the key findings about ForesightKV:
+
+## ForesightKV Overview
+
+ForesightKV is a training-based KV cache eviction framework that learns to predict which KV pairs to evict during long-text generations. As sequence length grows, the key-value (KV) cache expands linearly, incurring significant memory and computation costs, and existing KV cache eviction methods often fail to capture complex KV dependencies, resulting in performance degradation.
+
+## Technical Approach
+
+ForesightKV designs a Golden Eviction algorithm that identifies the optimal eviction KV pairs at each step using future attention scores, with these traces and scores then distilled via supervised training with a Pairwise Ranking Loss. Furthermore, cache eviction is formulated as a Markov Decision Process with the GRPO algorithm applied to mitigate the significant language modeling loss increase on low-entropy tokens.
+
+## Results
+
+Experiments on AIME2024 and AIME2025 benchmarks of three reasoning models demonstrate that ForesightKV consistently outperforms prior methods under only half the cache budget, while benefiting synergistically from both supervised and reinforcement learning approaches.
+
+The paper was submitted to arXiv on February 3, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d08a532f-db6d-49a5-831b-bb0b88e091c3",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "6c4acb4e-9e8c-4e4f-aa43-80ba9b3265cf",
+  "toolUseResult": {
+    "query": "ForesightKV KV cache eviction reasoning arXiv 2602.03203 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mh1fYropTKnihqo4EGvji6",
+        "content": [
+          {
+            "title": "[2602.03203] ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution",
+            "url": "https://arxiv.org/abs/2602.03203"
+          },
+          {
+            "title": "ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution",
+            "url": "https://arxiv.org/html/2602.03203"
+          },
+          {
+            "title": "ForesightKV: Optimizing KV Cache Eviction for Reasoning Models by Learning Long-Term Contribution | OpenReview",
+            "url": "https://openreview.net/forum?id=k5h29Qv7GN"
+          },
+          {
+            "title": "Learning to Evict from Key-Value Cache",
+            "url": "https://arxiv.org/html/2602.10238"
+          },
+          {
+            "title": "[2604.25975] Rethinking KV Cache Eviction via a Unified Information-Theoretic Objective",
+            "url": "https://arxiv.org/abs/2604.25975"
+          },
+          {
+            "title": "LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation",
+            "url": "https://arxiv.org/html/2603.10899v1"
+          },
+          {
+            "title": "Rethinking KV Cache Eviction via a Unified Information-Theoretic Objective",
+            "url": "https://arxiv.org/html/2604.25975"
+          },
+          {
+            "title": "Paper page - LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation",
+            "url": "https://huggingface.co/papers/2603.10899"
+          },
+          {
+            "title": "[2602.10238] Learning to Evict from Key-Value Cache",
+            "url": "https://arxiv.org/abs/2602.10238"
+          },
+          {
+            "title": "[2603.10899v1] LookaheadKV: Fast and Accurate KV Cache Eviction by Glimpsing into the Future without Generation",
+            "url": "https://arxiv.org/abs/2603.10899v1"
+          }
+        ]
+      },
+      "I found the paper! Here are the key findings about ForesightKV:\n\n## ForesightKV Overview\n\nForesightKV is a training-based KV cache eviction framework that learns to predict which KV pairs to evict during long-text generations. As sequence length grows, the key-value (KV) cache expands linearly, incurring significant memory and computation costs, and existing KV cache eviction methods often fail to capture complex KV dependencies, resulting in performance degradation.\n\n## Technical Approach\n\nForesightKV designs a Golden Eviction algorithm that identifies the optimal eviction KV pairs at each step using future attention scores, with these traces and scores then distilled via supervised training with a Pairwise Ranking Loss. Furthermore, cache eviction is formulated as a Markov Decision Process with the GRPO algorithm applied to mitigate the significant language modeling loss increase on low-entropy tokens.\n\n## Results\n\nExperiments on AIME2024 and AIME2025 benchmarks of three reasoning models demonstrate that ForesightKV consistently outperforms prior methods under only half the cache budget, while benefiting synergistically from both supervised and reinforcement learning approaches.\n\nThe paper was submitted to arXiv on February 3, 2026."
+    ],
+    "durationSeconds": 6.743728665000003
+  },
+  "sourceToolAssistantUUID": "d08a532f-db6d-49a5-831b-bb0b88e091c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-09T20:12:54.630Z_
+
+```json
+{
+  "parentUuid": "6c4acb4e-9e8c-4e4f-aa43-80ba9b3265cf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "973e0d62-f341-472d-a4cb-0b49c21ea742",
+  "timestamp": "2026-05-09T20:12:54.630Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-09T20:13:12.365Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings so far. Let me also verify:
+1. Whether "Inference-Time Hyper-Scaling" (arXiv:2506.05345) is a real paper (note: the arxiv id starts with 2506 which means June 2025, but the generator lists it as a reference - this seems problematic since it's from the future as of the submission date)
+2. The "Beyond Speedup: Utilizing KV Cache for Sampling and Reasoning" at ICLR 2026 (arXiv:2601.20326)
+3. TriAttention as a potential competing paper
+
+Key issue I notice: The generator cites arXiv:2506.05345 as a key reference. The paper ID "2506" suggests June 2025 (arXiv uses YYMM format). 
+
+Actually, the EMNLP 2026 ARR deadline is May 25, 2026, so a June 2025 publication is well within the acceptable reference window—and I can confirm this paper was already cited in the landscape section as "Inference-Time Hyper-Scaling with KV Cache Compression." Let me verify the other arxiv IDs more carefully: the February 2026 and January 2026 papers are both feasible, though I should double-check the exact formatting of the remaining ID.
+
+The real question is whether anyone else has already combined PRM scores with cross-trajectory differential compression precision in multi-trajectory search—my initial searches haven't turned up clear evidence of this specific approach. I'm also noticing TriAttention from April 2026 achieves impressive 10.7x KV reduction on AIME25, so I need to determine if it handles multi-trajectory scenarios or just single-trajectory compression. I should also investigate "Don't Waste Bits" and scan for any other close competitors in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "973e0d62-f341-472d-a4cb-0b49c21ea742",
+  "isSidechain": false,
+  "requestId": "req_011Casc5tfvLbGZVQEvK6kgM",
+  "type": "assistant",
+  "uuid": "21b70f11-0621-4a2f-913c-e5ab6ce5eeb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01YaPYFvuPhXkjvdZiUv7fzC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 38649,
+      "output_tokens": 835,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 835,
+          "cache_read_input_tokens": 38649,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-09T20:13:12.812Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Pgv1GG1mmTgBTTTmSKEXwQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.04921",
+  "prompt": "Does TriAttention address multi-trajectory or beam search KV compression? Does it use any quality signal across parallel trajectories to assign different compression budgets? Or is it purely single-trajectory KV compression?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21b70f11-0621-4a2f-913c-e5ab6ce5eeb2",
+  "isSidechain": false,
+  "requestId": "req_011Casc5tfvLbGZVQEvK6kgM",
+  "type": "assistant",
+  "uuid": "1ad40ee9-5da5-4ca1-99f4-27b5c85f1b89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01YaPYFvuPhXkjvdZiUv7fzC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 38649,
+      "output_tokens": 835,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 835,
+          "cache_read_input_tokens": 38649,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-09T20:13:13.641Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DZnNuFsdbSZDGRDPoTN6vu`</summary>
+
+```json
+{
+  "query": "reward-guided memory allocation inference time compute best-of-N sampling KV compression 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ad40ee9-5da5-4ca1-99f4-27b5c85f1b89",
+  "isSidechain": false,
+  "requestId": "req_011Casc5tfvLbGZVQEvK6kgM",
+  "type": "assistant",
+  "uuid": "9d894712-bf41-4ec8-8bce-17ac3f5251ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01YaPYFvuPhXkjvdZiUv7fzC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 38649,
+      "output_tokens": 835,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 835,
+          "cache_read_input_tokens": 38649,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-09T20:13:13.975Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015WVq2KBaZLJ1Qoux9zhemg`</summary>
+
+```json
+{
+  "query": "inference time scaling KV cache quantization per-trajectory precision allocation 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d894712-bf41-4ec8-8bce-17ac3f5251ee",
+  "isSidechain": false,
+  "requestId": "req_011Casc5tfvLbGZVQEvK6kgM",
+  "type": "assistant",
+  "uuid": "cde52998-568c-468d-b348-8178d3f6f0c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01YaPYFvuPhXkjvdZiUv7fzC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 38649,
+      "output_tokens": 835,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 835,
+          "cache_read_input_tokens": 38649,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-09T20:13:16.511Z_
+
+<details><summary>↩ Tool result · `toolu_01Pgv1GG1mmTgBTTTmSKEXwQ`</summary>
+
+```text
+# TriAttention and Multi-Trajectory KV Compression
+
+Based on the provided abstract and documentation, there is **no information about multi-trajectory or beam search KV compression** in TriAttention.
+
+The paper describes TriAttention as focusing on "key importance by leveraging these centers" and using "the distance preference characterized by these centers to score keys according to their positions." However, the abstract makes no mention of:
+
+- Handling multiple parallel decoding trajectories
+- Allocating different compression budgets across beam search branches
+- Any cross-trajectory quality signals
+
+The description appears limited to **single-sequence KV compression**, where the method estimates individual key importance using positional distances and Q/K vector norms within a standard attention framework. The emphasis on "long reasoning" and "extended reasoning in large language models" does not address the complexity of managing KV caches across divergent decoding paths.
+
+To definitively answer whether TriAttention addresses these advanced scenarios, consulting the full paper would be necessary, as the abstract provided does not cover these implementation details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ad40ee9-5da5-4ca1-99f4-27b5c85f1b89",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "9f61a845-32df-4ae9-84ad-375f9319cb58",
+  "toolUseResult": {
+    "bytes": 46638,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# TriAttention and Multi-Trajectory KV Compression\n\nBased on the provided abstract and documentation, there is **no information about multi-trajectory or beam search KV compression** in TriAttention.\n\nThe paper describes TriAttention as focusing on \"key importance by leveraging these centers\" and using \"the distance preference characterized by these centers to score keys according to their positions.\" However, the abstract makes no mention of:\n\n- Handling multiple parallel decoding trajectories\n- Allocating different compression budgets across beam search branches\n- Any cross-trajectory quality signals\n\nThe description appears limited to **single-sequence KV compression**, where the method estimates individual key importance using positional distances and Q/K vector norms within a standard attention framework. The emphasis on \"long reasoning\" and \"extended reasoning in large language models\" does not address the complexity of managing KV caches across divergent decoding paths.\n\nTo definitively answer whether TriAttention addresses these advanced scenarios, consulting the full paper would be necessary, as the abstract provided does not cover these implementation details.",
+    "durationMs": 3693,
+    "url": "https://arxiv.org/abs/2604.04921"
+  },
+  "sourceToolAssistantUUID": "1ad40ee9-5da5-4ca1-99f4-27b5c85f1b89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-09T20:13:21.965Z_
+
+<details><summary>↩ Tool result · `toolu_01DZnNuFsdbSZDGRDPoTN6vu`</summary>
+
+```text
+Web search results for query: "reward-guided memory allocation inference time compute best-of-N sampling KV compression 2026"
+
+Links: [{"title":"[2506.05345] Inference-Time Hyper-Scaling with KV Cache Compression","url":"https://arxiv.org/abs/2506.05345"},{"title":"Inference-Time Hyper-Scaling with KV Cache Compression","url":"https://arxiv.org/html/2506.05345v1"},{"title":"LLM Inference Optimization Techniques | Clarifai Guide","url":"https://www.clarifai.com/blog/llm-inference-optimization/"},{"title":"A Survey on Large Language Model Acceleration based on KV Cache Management","url":"https://arxiv.org/html/2412.19442v3"},{"title":"Inference-Time Hyper-Scaling with KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=8ZiElzQxf1"},{"title":"Inference-Time Hyper-Scaling with KV Cache Compression Adrian Ła´ncucki†","url":"https://openreview.net/pdf?id=8ZiElzQxf1"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"LLM Inference: Prefill, Decode, KV Cache & Cost Guide (2026) | Morph","url":"https://www.morphllm.com/llm-inference"},{"title":"LLM Inference Optimization: Quantization, KV Cache, and Serving at Scale - Perivitta Rajendran","url":"https://pr-peri.github.io/blogpost/2026/03/25/blogpost-llm-quantization-kv-cache.html"},{"title":"BaKlaVa - Budgeted Allocation of KV cache for Long-context Inference","url":"https://arxiv.org/html/2502.13176v2"}]
+
+I found several relevant research papers and resources addressing your search query. Here are the key results:
+
+## Main Research Areas Found:
+
+**1. Inference-Time Hyper-Scaling with KV Cache Compression**
+By compressing the KV cache, more tokens can be generated within the same compute budget and accuracy of scaled inference can be improved. Recent work explores guiding inference exploration through Process Reward Models (PRMs) by scoring each reasoning step, though simpler PRM-free strategies like majority voting remain competitive.
+
+**2. KV Cache Optimization Methods**
+Token-level optimization methods are categorized into five main types: KV cache selection, KV cache budget allocation, KV cache merging, KV cache quantization, and KV cache low-rank decomposition.
+
+**3. Memory Allocation and Budgeting**
+BaKlaVa is a method to allocate optimal memory for individual KV-caches across the model by estimating the importance of each KV-cache, using a one-time profiling approach to assign optimal memory budgets to each KV-cache.
+
+**4. Best-of-N Sampling and Scaling**
+Scaling can be achieved in two ways: increasing the maximum length for chains of reasoning (sequential scaling) or increasing their number (parallel scaling), with these quantities controlled to set a 'token budget' for inference-time computation.
+
+**5. 2026 Trends**
+Three approaches are reducing cache memory in 2026: quantizing cache values to 4-bit floating point with less than 1% accuracy loss versus BF16, and halving cache memory with native H100/H200 hardware support.
+
+The search returned recent papers (2025-2026) from arXiv and modern inference optimization guides addressing your combined query terms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d894712-bf41-4ec8-8bce-17ac3f5251ee",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "e1600124-9e57-4243-a211-d88f4d205c97",
+  "toolUseResult": {
+    "query": "reward-guided memory allocation inference time compute best-of-N sampling KV compression 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015LkJwdWSqCJimNeD6ZqJ7M",
+        "content": [
+          {
+            "title": "[2506.05345] Inference-Time Hyper-Scaling with KV Cache Compression",
+            "url": "https://arxiv.org/abs/2506.05345"
+          },
+          {
+            "title": "Inference-Time Hyper-Scaling with KV Cache Compression",
+            "url": "https://arxiv.org/html/2506.05345v1"
+          },
+          {
+            "title": "LLM Inference Optimization Techniques | Clarifai Guide",
+            "url": "https://www.clarifai.com/blog/llm-inference-optimization/"
+          },
+          {
+            "title": "A Survey on Large Language Model Acceleration based on KV Cache Management",
+            "url": "https://arxiv.org/html/2412.19442v3"
+          },
+          {
+            "title": "Inference-Time Hyper-Scaling with KV Cache Compression | OpenReview",
+            "url": "https://openreview.net/forum?id=8ZiElzQxf1"
+          },
+          {
+            "title": "Inference-Time Hyper-Scaling with KV Cache Compression Adrian Ła´ncucki†",
+            "url": "https://openreview.net/pdf?id=8ZiElzQxf1"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "LLM Inference: Prefill, Decode, KV Cache & Cost Guide (2026) | Morph",
+            "url": "https://www.morphllm.com/llm-inference"
+          },
+          {
+            "title": "LLM Inference Optimization: Quantization, KV Cache, and Serving at Scale - Perivitta Rajendran",
+            "url": "https://pr-peri.github.io/blogpost/2026/03/25/blogpost-llm-quantization-kv-cache.html"
+          },
+          {
+            "title": "BaKlaVa - Budgeted Allocation of KV cache for Long-context Inference",
+            "url": "https://arxiv.org/html/2502.13176v2"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources addressing your search query. Here are the key results:\n\n## Main Research Areas Found:\n\n**1. Inference-Time Hyper-Scaling with KV Cache Compression**\nBy compressing the KV cache, more tokens can be generated within the same compute budget and accuracy of scaled inference can be improved. Recent work explores guiding inference exploration through Process Reward Models (PRMs) by scoring each reasoning step, though simpler PRM-free strategies like majority voting remain competitive.\n\n**2. KV Cache Optimization Methods**\nToken-level optimization methods are categorized into five main types: KV cache selection, KV cache budget allocation, KV cache merging, KV cache quantization, and KV cache low-rank decomposition.\n\n**3. Memory Allocation and Budgeting**\nBaKlaVa is a method to allocate optimal memory for individual KV-caches across the model by estimating the importance of each KV-cache, using a one-time profiling approach to assign optimal memory budgets to each KV-cache.\n\n**4. Best-of-N Sampling and Scaling**\nScaling can be achieved in two ways: increasing the maximum length for chains of reasoning (sequential scaling) or increasing their number (parallel scaling), with these quantities controlled to set a 'token budget' for inference-time computation.\n\n**5. 2026 Trends**\nThree approaches are reducing cache memory in 2026: quantizing cache values to 4-bit floating point with less than 1% accuracy loss versus BF16, and halving cache memory with native H100/H200 hardware support.\n\nThe search returned recent papers (2025-2026) from arXiv and modern inference optimization guides addressing your combined query terms."
+    ],
+    "durationSeconds": 8.320924985999998
+  },
+  "sourceToolAssistantUUID": "9d894712-bf41-4ec8-8bce-17ac3f5251ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e1600124-9e57-4243-a211-d88f4d205c97",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify PSG-KVC feasibility and novelty via independent research",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-09T20:13:23.324Z_
+
+<details><summary>↩ Tool result · `toolu_015WVq2KBaZLJ1Qoux9zhemg`</summary>
+
+```text
+Web search results for query: "inference time scaling KV cache quantization per-trajectory precision allocation 2025 2026 arxiv"
+
+Links: [{"title":"Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs","url":"https://arxiv.org/html/2604.04722v1"},{"title":"A Survey on Large Language Model Acceleration based on KV Cache Management","url":"https://arxiv.org/html/2412.19442v3"},{"title":"Inference-Time Hyper-Scaling with KV Cache Compression","url":"https://arxiv.org/html/2506.05345v1"},{"title":"[2506.05345] Inference-Time Hyper-Scaling with KV Cache Compression","url":"https://arxiv.org/abs/2506.05345"},{"title":"1 A Survey on Large Language Model Acceleration based on KV Cache Management","url":"https://arxiv.org/pdf/2412.19442"},{"title":"KV Cache Quantization for Self-Forcing Video Generation: A 33-Method Empirical Study","url":"https://arxiv.org/html/2603.27469v1"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"KV Cache Compression for Inference Efficiency in LLMs: A Review","url":"https://arxiv.org/html/2508.06297v1"},{"title":"GPU-Accelerated INT8 Quantization for KV Cache Compression in Large Language Models","url":"https://arxiv.org/html/2601.04719v1"},{"title":"GPU-Accelerated INT8 Quantization for KV Cache Compression in","url":"https://arxiv.org/pdf/2601.04719"}]
+
+Based on the web search results, I found several highly relevant papers from 2025-2026 on arXiv related to inference-time scaling, KV cache quantization, and precision allocation:
+
+## Key Papers Found:
+
+1. **"Don't Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs"** (April 2026)
+   - This paper introduces a data-driven framework for adaptive KV-cache quantization that predicts token importance and assigns token-wise precision during decoding, employing a compact controller that learns to dynamically assign KV precision from {2-bit, 4-bit, 8-bit, FP16} based on lightweight token-level features.
+   - The framework extracts token-level features including token frequency, quality score, attention variance, and entropy-based uncertainty.
+
+2. **"Inference-Time Hyper-Scaling with KV Cache Compression"** (June 2025, updated November 2025)
+   - This paper addresses inference-time scaling which trades efficiency for increased reasoning accuracy by generating longer or more parallel sequences, with generation cost bottlenecked by the key-value cache size.
+
+3. **"A Survey on Large Language Model Acceleration based on KV Cache Management"** (July 2025)
+   - Discusses KV cache budget allocation which dynamically distributes memory resources across tokens to ensure efficient cache utilization under limited memory.
+   - Token-level strategies include KV cache selection, budget allocation, merging, quantization, and low-rank decomposition.
+
+4. **"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution"** (October 2025)
+   - NQKV partitions the cache into blocks for quantization and processes them separately.
+
+5. **"KV Cache Compression for Inference Efficiency in LLMs: A Review"** (August 2025)
+   - Provides comprehensive coverage of KV cache optimization techniques including quantization strategies.
+
+These papers collectively address the intersection of inference-time scaling, adaptive precision allocation, and KV cache management that your query focuses on.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cde52998-568c-468d-b348-8178d3f6f0c8",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "9c124c14-e8f8-471f-bc6b-5e63e65e0895",
+  "toolUseResult": {
+    "query": "inference time scaling KV cache quantization per-trajectory precision allocation 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019vuzixxpAwnyxymik6eRXq",
+        "content": [
+          {
+            "title": "Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs",
+            "url": "https://arxiv.org/html/2604.04722v1"
+          },
+          {
+            "title": "A Survey on Large Language Model Acceleration based on KV Cache Management",
+            "url": "https://arxiv.org/html/2412.19442v3"
+          },
+          {
+            "title": "Inference-Time Hyper-Scaling with KV Cache Compression",
+            "url": "https://arxiv.org/html/2506.05345v1"
+          },
+          {
+            "title": "[2506.05345] Inference-Time Hyper-Scaling with KV Cache Compression",
+            "url": "https://arxiv.org/abs/2506.05345"
+          },
+          {
+            "title": "1 A Survey on Large Language Model Acceleration based on KV Cache Management",
+            "url": "https://arxiv.org/pdf/2412.19442"
+          },
+          {
+            "title": "KV Cache Quantization for Self-Forcing Video Generation: A 33-Method Empirical Study",
+            "url": "https://arxiv.org/html/2603.27469v1"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "KV Cache Compression for Inference Efficiency in LLMs: A Review",
+            "url": "https://arxiv.org/html/2508.06297v1"
+          },
+          {
+            "title": "GPU-Accelerated INT8 Quantization for KV Cache Compression in Large Language Models",
+            "url": "https://arxiv.org/html/2601.04719v1"
+          },
+          {
+            "title": "GPU-Accelerated INT8 Quantization for KV Cache Compression in",
+            "url": "https://arxiv.org/pdf/2601.04719"
+          }
+        ]
+      },
+      "Based on the web search results, I found several highly relevant papers from 2025-2026 on arXiv related to inference-time scaling, KV cache quantization, and precision allocation:\n\n## Key Papers Found:\n\n1. **\"Don't Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs\"** (April 2026)\n   - This paper introduces a data-driven framework for adaptive KV-cache quantization that predicts token importance and assigns token-wise precision during decoding, employing a compact controller that learns to dynamically assign KV precision from {2-bit, 4-bit, 8-bit, FP16} based on lightweight token-level features.\n   - The framework extracts token-level features including token frequency, quality score, attention variance, and entropy-based uncertainty.\n\n2. **\"Inference-Time Hyper-Scaling with KV Cache Compression\"** (June 2025, updated November 2025)\n   - This paper addresses inference-time scaling which trades efficiency for increased reasoning accuracy by generating longer or more parallel sequences, with generation cost bottlenecked by the key-value cache size.\n\n3. **\"A Survey on Large Language Model Acceleration based on KV Cache Management\"** (July 2025)\n   - Discusses KV cache budget allocation which dynamically distributes memory resources across tokens to ensure efficient cache utilization under limited memory.\n   - Token-level strategies include KV cache selection, budget allocation, merging, quantization, and low-rank decomposition.\n\n4. **\"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution\"** (October 2025)\n   - NQKV partitions the cache into blocks for quantization and processes them separately.\n\n5. **\"KV Cache Compression for Inference Efficiency in LLMs: A Review\"** (August 2025)\n   - Provides comprehensive coverage of KV cache optimization techniques including quantization strategies.\n\nThese papers collectively address the intersection of inference-time scaling, adaptive precision allocation, and KV cache management that your query focuses on."
+    ],
+    "durationSeconds": 9.345568577999991
+  },
+  "sourceToolAssistantUUID": "cde52998-568c-468d-b348-8178d3f6f0c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-09T20:13:41.865Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. So far, I haven't found a paper that specifically uses PRM scores as a cross-trajectory differential compression signal for multi-trajectory tree search. The idea in PSG-KVC appears to be novel in that specific axis. The existing adaptive quantization works (QAQ, AQUA-KV, Don't Waste Bits) use token-level importance features within a single trajectory.
+
+Let me now look into some more specific issues:
+
+1. AlpacaEval 2 N=4 evaluation - The generator replaced MT-Bench N=1 with AlpacaEval 2 N=4. 
+
+I'm wondering whether ArmoRM-Llama3-8B-v0.1 is the right choice as a trajectory ranker for general NLP evaluation. Also, I need to verify the arxiv ID for the "Inference-Time Hyper-Scaling" paper—2506.05345 suggests June 2025, which would make it a future reference for a May 2026 submission, but I should double-check the actual publication date.
+
+Actually, let me reconsider the arxiv dating system. Since we're in May 2026 and arxiv uses YYMM format, papers from 2506 (June 2025), 2602 (February 2026), 2601 (January 2026), 2505 (May 2025), 2510 (October 2025), and 2502 (February 2025) are all legitimately published before this submission date.
+
+The more pressing question is whether TriAttention from April 2026 represents a competing approach. Looking at it more closely, it's a single-trajectory compression method rather than multi-trajectory, so it's not directly competing with PSG-KVC's core differential compression claim across trajectories—though it should probably be mentioned as related work showing state-of-the-art single-trajectory compression on reasoning benchmarks. I should also dig deeper into the "Inference-Time Hyper-Scaling" paper and verify the ETS paper's venue claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c124c14-e8f8-471f-bc6b-5e63e65e0895",
+  "isSidechain": false,
+  "requestId": "req_011Casc81P3icyprfvj9mfRQ",
+  "type": "assistant",
+  "uuid": "680d4bc5-7751-42cb-93ef-8f9181425f49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QLUK7AN4bWXrycbRPRtMbe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3020,
+      "cache_read_input_tokens": 40962,
+      "output_tokens": 888,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3020,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 888,
+          "cache_read_input_tokens": 40962,
+          "cache_creation_input_tokens": 3020,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3020
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-09T20:13:42.538Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013JFnjDFSP7YX4zqpy328Mv`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2502.13575",
+  "prompt": "What is the current venue/publication status of this paper? Was it accepted to NeurIPS 2024, NeurIPS 2025, ICML 2025, ICLR 2026, or is it still an arXiv preprint? What is the submission date?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "680d4bc5-7751-42cb-93ef-8f9181425f49",
+  "isSidechain": false,
+  "requestId": "req_011Casc81P3icyprfvj9mfRQ",
+  "type": "assistant",
+  "uuid": "8b7c3e17-4a36-4ac7-afbc-3f0a1bb6336c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QLUK7AN4bWXrycbRPRtMbe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3020,
+      "cache_read_input_tokens": 40962,
+      "output_tokens": 888,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3020,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 888,
+          "cache_read_input_tokens": 40962,
+          "cache_creation_input_tokens": 3020,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3020
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-09T20:13:43.099Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y8PAncEhxQLZbzNfR2FoPR`</summary>
+
+```json
+{
+  "query": "AlpacaEval 2 best-of-N outcome reward model ArmoRM trajectory selection evaluation validity 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b7c3e17-4a36-4ac7-afbc-3f0a1bb6336c",
+  "isSidechain": false,
+  "requestId": "req_011Casc81P3icyprfvj9mfRQ",
+  "type": "assistant",
+  "uuid": "477915d3-ea3d-441d-a6f7-d771d2aaedce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01QLUK7AN4bWXrycbRPRtMbe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3020,
+      "cache_read_input_tokens": 40962,
+      "output_tokens": 888,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3020,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 888,
+          "cache_read_input_tokens": 40962,
+          "cache_creation_input_tokens": 3020,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3020
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-09T20:13:44.861Z_
+
+<details><summary>↩ Tool result · `toolu_013JFnjDFSP7YX4zqpy328Mv`</summary>
+
+```text
+# Publication Status of ETS Paper
+
+Based on the webpage content provided, this paper is **currently an arXiv preprint only**. There is no indication it has been accepted to NeurIPS 2024, NeurIPS 2025, ICML 2025, ICLR 2026, or any other venue.
+
+**Submission Timeline:**
+- **Initial submission:** February 19, 2025
+- **Latest revision:** June 11, 2025 (version 2)
+
+The paper maintains the arXiv identifier 2502.13575 and is categorized under "Machine Learning (cs.LG)." The abstract and metadata suggest it remains a preprint without a published venue announcement.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b7c3e17-4a36-4ac7-afbc-3f0a1bb6336c",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "08bf2481-e795-498e-8125-fb509d6bc060",
+  "toolUseResult": {
+    "bytes": 49518,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Publication Status of ETS Paper\n\nBased on the webpage content provided, this paper is **currently an arXiv preprint only**. There is no indication it has been accepted to NeurIPS 2024, NeurIPS 2025, ICML 2025, ICLR 2026, or any other venue.\n\n**Submission Timeline:**\n- **Initial submission:** February 19, 2025\n- **Latest revision:** June 11, 2025 (version 2)\n\nThe paper maintains the arXiv identifier 2502.13575 and is categorized under \"Machine Learning (cs.LG).\" The abstract and metadata suggest it remains a preprint without a published venue announcement.",
+    "durationMs": 2318,
+    "url": "https://arxiv.org/abs/2502.13575"
+  },
+  "sourceToolAssistantUUID": "8b7c3e17-4a36-4ac7-afbc-3f0a1bb6336c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-09T20:13:50.220Z_
+
+<details><summary>↩ Tool result · `toolu_01Y8PAncEhxQLZbzNfR2FoPR`</summary>
+
+```text
+Web search results for query: "AlpacaEval 2 best-of-N outcome reward model ArmoRM trajectory selection evaluation validity 2025"
+
+Links: [{"title":"GitHub - tatsu-lab/alpaca_eval: An automatic evaluator for instruction-following language models. Human-validated, high-quality, cheap, and fast. · GitHub","url":"https://github.com/tatsu-lab/alpaca_eval"},{"title":"AlpacaEval 2.0: Scalable LLM Evaluation","url":"https://www.emergentmind.com/topics/alpacaeval-2-0"},{"title":"Experiment results on AlpacaEval 2 (Li et al., 2023), Arena-Hard (Li et... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Experiment-results-on-AlpacaEval-2-Li-et-al-2023-Arena-Hard-Li-et-al-2024-and_tbl4_392766863"},{"title":"AlpacaEval: LLM Evaluation Benchmark","url":"https://www.emergentmind.com/topics/alpacaeval"},{"title":"GitHub - allenai/reward-bench: RewardBench: the first evaluation tool for reward models. · GitHub","url":"https://github.com/allenai/reward-bench"},{"title":"AlpacaEval Leaderboard","url":"https://tatsu-lab.github.io/alpaca_eval/"},{"title":"RewardBench 2: Advancing Reward Model Evaluation","url":"https://arxiv.org/html/2506.01937"},{"title":"Oumi - Evaluation with AlpacaEval 2.0.ipynb","url":"https://colab.research.google.com/github/oumi-ai/oumi/blob/main/notebooks/Oumi%20-%20Evaluation%20with%20AlpacaEval%202.0.ipynb"},{"title":"Length-Controlled AlpacaEval: A Simple Debiasing of Automatic Evaluators | OpenReview","url":"https://openreview.net/forum?id=CybBmzWBX0"},{"title":"[2404.04475] Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators","url":"https://arxiv.org/abs/2404.04475"}]
+
+Based on the search results, I found relevant information about AlpacaEval 2, best-of-N sampling with reward models, and evaluation validity. Here are the key findings:
+
+## Best-of-N Outcome Reward Models on AlpacaEval 2
+
+RewardBench 2's correlation with downstream performance was investigated by examining best-of-N (BoN) inference time sampling and RLHF training use cases, with evaluation conducted across several domains including AlpacaEval 2. The benchmark was found to be strongly predictive of reward model performance in best-of-N sampling.
+
+## Trajectory Selection and Evaluation Validity
+
+The search results indicate that standardization of listwise and tuple-based (rather than pairwise) preference sampling is an ongoing priority to maximize information extracted from scarce human annotations and optimize resource allocation in large-scale evaluations.
+
+Regarding ArmoRM specifically, the search results show it mentioned in comparison studies. ArmoRM was referenced in research comparing different reward models like PairRM and Llama3-8B-Instruct on benchmarks including AlpacaEval 2.
+
+## Debiasing and Evaluation Robustness (2025)
+
+An important consideration for AlpacaEval 2 validity is that length-controlling improved robustness and increased the Spearman correlation with LMSYS Chatbot Arena from 0.94 to 0.98, addressing concerns about length bias in automatic evaluation.
+
+If you need more specific technical details about ArmoRM's trajectory selection methodology or particular 2025 findings, I can conduct additional searches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "477915d3-ea3d-441d-a6f7-d771d2aaedce",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "83517d7e-a1f4-491e-a787-c1995a86ab51",
+  "toolUseResult": {
+    "query": "AlpacaEval 2 best-of-N outcome reward model ArmoRM trajectory selection evaluation validity 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AwHBVWeao8HYbewzD2UZQc",
+        "content": [
+          {
+            "title": "GitHub - tatsu-lab/alpaca_eval: An automatic evaluator for instruction-following language models. Human-validated, high-quality, cheap, and fast. · GitHub",
+            "url": "https://github.com/tatsu-lab/alpaca_eval"
+          },
+          {
+            "title": "AlpacaEval 2.0: Scalable LLM Evaluation",
+            "url": "https://www.emergentmind.com/topics/alpacaeval-2-0"
+          },
+          {
+            "title": "Experiment results on AlpacaEval 2 (Li et al., 2023), Arena-Hard (Li et... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Experiment-results-on-AlpacaEval-2-Li-et-al-2023-Arena-Hard-Li-et-al-2024-and_tbl4_392766863"
+          },
+          {
+            "title": "AlpacaEval: LLM Evaluation Benchmark",
+            "url": "https://www.emergentmind.com/topics/alpacaeval"
+          },
+          {
+            "title": "GitHub - allenai/reward-bench: RewardBench: the first evaluation tool for reward models. · GitHub",
+            "url": "https://github.com/allenai/reward-bench"
+          },
+          {
+            "title": "AlpacaEval Leaderboard",
+            "url": "https://tatsu-lab.github.io/alpaca_eval/"
+          },
+          {
+            "title": "RewardBench 2: Advancing Reward Model Evaluation",
+            "url": "https://arxiv.org/html/2506.01937"
+          },
+          {
+            "title": "Oumi - Evaluation with AlpacaEval 2.0.ipynb",
+            "url": "https://colab.research.google.com/github/oumi-ai/oumi/blob/main/notebooks/Oumi%20-%20Evaluation%20with%20AlpacaEval%202.0.ipynb"
+          },
+          {
+            "title": "Length-Controlled AlpacaEval: A Simple Debiasing of Automatic Evaluators | OpenReview",
+            "url": "https://openreview.net/forum?id=CybBmzWBX0"
+          },
+          {
+            "title": "[2404.04475] Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators",
+            "url": "https://arxiv.org/abs/2404.04475"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about AlpacaEval 2, best-of-N sampling with reward models, and evaluation validity. Here are the key findings:\n\n## Best-of-N Outcome Reward Models on AlpacaEval 2\n\nRewardBench 2's correlation with downstream performance was investigated by examining best-of-N (BoN) inference time sampling and RLHF training use cases, with evaluation conducted across several domains including AlpacaEval 2. The benchmark was found to be strongly predictive of reward model performance in best-of-N sampling.\n\n## Trajectory Selection and Evaluation Validity\n\nThe search results indicate that standardization of listwise and tuple-based (rather than pairwise) preference sampling is an ongoing priority to maximize information extracted from scarce human annotations and optimize resource allocation in large-scale evaluations.\n\nRegarding ArmoRM specifically, the search results show it mentioned in comparison studies. ArmoRM was referenced in research comparing different reward models like PairRM and Llama3-8B-Instruct on benchmarks including AlpacaEval 2.\n\n## Debiasing and Evaluation Robustness (2025)\n\nAn important consideration for AlpacaEval 2 validity is that length-controlling improved robustness and increased the Spearman correlation with LMSYS Chatbot Arena from 0.94 to 0.98, addressing concerns about length bias in automatic evaluation.\n\nIf you need more specific technical details about ArmoRM's trajectory selection methodology or particular 2025 findings, I can conduct additional searches."
+    ],
+    "durationSeconds": 7.118482694999999
+  },
+  "sourceToolAssistantUUID": "477915d3-ea3d-441d-a6f7-d771d2aaedce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-09T20:16:15.069Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. So ETS (arXiv:2502.13575) is still an arXiv preprint (as of June 2025), and the generator has now correctly cited it as "arXiv preprint Feb 2025; under review" - this addresses the round 2 citation issue.
+
+Now let me think about the key remaining issues:
+
+1. **ETS citation**: Fixed - now cited as arXiv preprint
+2. **ETS+PSG-KVC interaction analysis**: Fixed - now has extensive analysis with Phase B post-ETS population testing
+3. **MT-Bench N=1 replaced**: Fixed with AlpacaEval 2 N=4 with ArmoRM as trajectory ranker
+
+
+4. **Small-N discussion**: Fixed with 2-tier fallback for N=4
+5. **'Hold Onto That Thought' citation**: Added
+6. **Precision promotion asymmetry**: Added to limitations
+
+Now I'm checking what's left to address. The AlpacaEval 2 N=4 replacement with ArmoRM-Llama3-8B-v0.1 as the trajectory ranker is a solid improvement over the single MT-Bench evaluation, better suited for showing how PSG-KVC handles differential compression across multiple trajectories.
+
+I notice TriAttention from April 2026 achieves 10.7x KV memory reduction on AIME25 using a single-trajectory approach, which doesn't directly compete with the multi-trajectory focus here, but it's worth acknowledging as related work that the paper should cite.
+
+Looking at the core novelty claim about using PRM scores as a dynamic cross-trajectory signal for per-trajectory KV cache compression precision—this appears to be genuinely novel. The existing landscape covers single-trajectory quantization methods, cross-trajectory pruning with binary keep/discard decisions, learned eviction policies, and head-level compression, but none of them combine PRM scores with differential precision budgets across multiple trajectories the way PSG-KVC proposes. The novelty seems solid.
+
+Now I'm checking the Inference-Time Hyper-Scaling paper with arXiv ID 2506.05345, which appears to be from June 2025 based on the identifier. The OpenReview link suggests it's under review at a specific venue, so I need to verify the submission status and venue. I'm also evaluating whether the resource estimates are realistic—particularly the claim about running N=16 beam search with a 14B model on 2×A100 80GB GPUs and the total compute budget of 120-150 H100 equivalent hours.
+
+Let me work through the memory calculations for DeepSeek-R1-Distill-Qwen-14B at FP16. The model weights take up about 28 GB, and the KV cache is the real bottleneck here. Based on Qwen2.5-14B's architecture with 48 layers, 8 GQA heads, and 128-dimensional head embeddings, each token requires roughly 192 KB of KV cache across all layers. For reasoning tasks generating around 4K tokens per trajectory with N=16 parallel beams, that's about 12.3 GB of KV cache. Combined with the model weights, we're looking at roughly 40 GB total, which fits comfortably across two 80GB A100s with 160 GB aggregate memory. This estimate seems reasonable, especially if we apply INT4 or INT8 quantization to compress the KV cache further.
+
+Now looking at the computational requirements, the throughput estimates for MATH-500 seem plausible. With 500 problems and roughly 2000 tokens per problem at N=16, that's about 16 million tokens total. At around 10K tokens per second on FP16 with an A100 and batching, a full MATH-500 run takes about 27 minutes. Running 5 different methods across 4 baselines plus PSG-KVC gives us 5 runs, totaling roughly 2.5 hours. Expanding to N values of 4, 8, and 16 across 5 methods means 15 runs total, which comes to about 10 hours. For AIME 2024 with only 30 problems but much longer reasoning traces of around 10K tokens each, we're looking at 75 million tokens across all runs, though the throughput will be lower for these longer sequences.
+
+Accounting for the reduced throughput on longer sequences, the AIME evaluation would take around 4 hours. So the overall estimate of 60 H100 hours for MATH-500 and 15 H100 hours for AIME seems reasonable, though it might be tight given how much longer the reasoning traces are.
+
+The round 3 revision has successfully addressed all the issues from round 2: the ETS citation is fixed, the ETS and PSG-KVC interaction is analyzed with Phase B validation added, AlpacaEval 2 with N=4 replaces MT-Bench, the 2-tier fallback is specified for N=4, 'Hold Onto That Thought' is cited, and the precision-promotion asymmetry is acknowledged in the limitations. There are still some remaining concerns, starting with TriAttention.
+
+TriAttention from April 2026 achieves significant KV memory reduction on AIME25 for single-trajectory inference and should be included in the landscape section as relevant recent work, even though it's not a direct competitor since it handles single rather than multi-trajectory scenarios. There's also a methodological question about using ArmoRM-Llama3-8B-v0.1 as a proxy for process reward modeling in the AlpacaEval 2 setup—it's really an outcome reward model, so PSG-KVC is effectively operating in a best-of-N regime with outcome rewards rather than true process-guided selection.
+
+The composability analysis might be overstating the combined gains. The claimed 2.5× total reduction assumes multiplicative improvements between ETS and PSG-KVC, but ETS's 1.8× reduction already includes increased KV sharing within the tree, and PSG-KVC's 1.39× applies only to the divergent suffix KV of surviving trajectories. The combined formula relies on assumptions about the shared-prefix fraction that may not hold across all scenarios.
+
+For scoring, the novelty is solid at 3.5/5—the core insight about using PRM scores as precision signals is clever, but it's fundamentally an incremental combination of existing techniques applied to a specific setting. On feasibility, the plan looks realistic with 120-150 H100 hours fitting within the budget and each component being relatively straightforward, though the aggressive 16-day timeline and ETS codebase integration present some risk.
+
+The description itself is detailed and well-organized with explicit composability analysis and honest limitations, earning a 4/5 for clarity. For impact, the method addresses a real problem but the practical gains are modest—the 1.39x reduction over ETS on the divergent suffix is smaller than the 2.5x combined claim, which will likely prompt questions from reviewers about the actual contribution of this specific approach.
+
+Averaging the scores gives 3.5, which falls short of the 4.0 pass threshold, so I'd recommend revise with targeted feedback. But let me think through whether there are blocking issues that prevent passing. Looking at the revision history across three rounds, many concerns were addressed, though I'm identifying what critical problems remain.
+
+The TriAttention citation is minor, but there's a more fundamental methodological issue: AlpacaEval 2 uses ArmoRM, an outcome reward model, to rank candidates, but PSG-KVC is designed to leverage step-level PRM scores during generation itself. Since AlpacaEval 2 doesn't provide step-level PRM data, the compression mechanism can't actually function as intended in that evaluation setup. be assigned during generation. This is a fundamental incompatibility.
+
+Wait, let me re-read the approach. In the AlpacaEval 2 N=4 setup, the paper says:
+- "Four candidate responses are generated per prompt under each policy — (a) uncompressed FP16, (b) uniform INT8, (c) PSG-KVC N=4 (2-tier fallback: top-50% FP16, bottom-50% INT4)"
+
+But if you're generating responses and then using ArmoRM to select the best one, how does PSG-KVC assign tiers during generation? For a general instruction-following task, there's no PRM providing step-level scores during generation. The PSG-KVC mechanism requires PRM step scores at each beam expansion step to rank trajectories - but for AlpacaEval 2 prompts, what PRM is used during generation?
+
+This reveals a critical gap: the experiment conflates post-hoc trajectory selection via ArmoRM with the actual tier assignment that should happen during generation via step-level PRM scores. Without a process reward model running during decoding, there's no mechanism to assign the "top-50% FP16, bottom-50% INT4" split that PSG-KVC claims to use. The evaluation seems to only apply ArmoRM after generation for final selection, which doesn't actually demonstrate the core PSG-KVC mechanism at all. not for the compression tier assignment mechanism.
+
+Actually wait - re-reading more carefully: "an open-source outcome reward model (ArmoRM-Llama3-8B-v0.1 from the RewardBench leaderboard) scores each candidate to select the best-of-4."
+
+The setup seems to be: generate 4 candidates under PSG-KVC (where compression tiers are assigned somehow during generation), then use ArmoRM to select the best one, then evaluate that selected response with AlpacaEval 2's GPT-4 judge.
+
+But the compression tier assignment during generation for AlpacaEval 2 prompts is unclear. Without a step-level PRM during generation, PSG-KVC can't function as designed. For best-of-N generation (not tree search with step-level branching), each of the 4 trajectories is independent from start to finish - you can't rank them mid-generation without intermediate quality signals. This is a fundamental mismatch: PSG-KVC requires step-by-step tree search with PRM scores at each decision point, but AlpacaEval 2 is just standard best-of-N generation where the outcome reward model only selects among completed responses. The compression tier assignment mechanism during generation isn't actually demonstrated here, only the final selection mechanism. Instead, it demonstrates "best-of-N selection using an outcome RM" with some KV compression applied (presumably uniform, since there's no step-level PRM to drive differential compression). This is a significant methodological issue.
+
+Unless the generator is planning to use ArmoRM as a *proxy step-level PRM* during generation for AlpacaEval 2 - but this would require running ArmoRM at each step of generation, which is computationally expensive and methodologically questionable.
+
+This is a legitimate remaining critical issue that Round 2 review identified as "Replace or augment MT-Bench N=1 with a multi-trajectory NLP evaluation that actually exercises PSG-KVC" - the generator replaced MT-Bench with AlpacaEval 2, but the design doesn't actually exercise PSG-KVC's differential compression mechanism for general NLP tasks.
+
+The reviewer suggested running N=4 beam search on MT-Bench with a general instruction-following PRM proxy, which is essentially what they're attempting with ArmoRM. But here's the problem: ArmoRM is a Bradley-Terry outcome reward model designed to score complete responses, not partial trajectories. So using it as an intermediate scoring signal at sentence boundaries or fixed intervals to rank trajectories and assign compression tiers doesn't align with how the model actually works. score partial completions during generation would be methodologically dubious.
+
+The experiment description doesn't clarify how compression tiers are assigned during AlpacaEval 2 generation. This is a critical ambiguity that needs to be resolved.
+
+OK so here's my overall assessment:
+
+**Critical remaining issue**: The AlpacaEval 2 N=4 evaluation design is ambiguous about how PSG-KVC's compression tier assignment operates during generation for a non-PRM task. If ArmoRM is used only for post-hoc selection (not for tier assignment during generation), the experiment reduces to "run 4 trajectories with some KV compression, then pick the best with ArmoRM" - this doesn't demonstrate PSG-KVC's differential compression. If ArmoRM is used for intermediate scoring during generation, this needs to be explicitly designed and validated.
+
+**Minor remaining issue**: TriAttention achieves 10.7x KV memory reduction on reasoning tasks with single-trajectory compression and should be cited in the landscape section.
+
+These issues prevent a "pass" verdict but the core novelty remains valid. Looking at the scoring now: the specific combination of PRM rank-based differential quantization across concurrent search trajectories is genuinely novel, with a real gap between ETS's binary approach and PSG-KVC's continuous precision differentiation. The AlpacaEval 2 evaluation design issue undermines general NLP evaluation credibility, though core math reasoning experiments are feasible within budget. The main clarity problem is the ambiguous compression tier assignment mechanism in AlpacaEval 2.
+
+The practical memory savings are modest but real at 1.39x additional over ETS-alone baseline on divergent suffix, and the training-free, composable nature is attractive. The EMNLP framing is supported but AlpacaEval 2 evidence is weak.
+
+Averaging the scores: novelty 4/5, feasibility 3.5/5, clarity 3.5/5, impact 3.5/5 gives 3.625, which falls below the 4.0 threshold for a pass verdict.
+
+The key feedback is to clarify what proxy step-level PRM is used during AlpacaEval 2 generation, or if this experiment actually just shows uniform compression with ArmoRM for selection only - in which case the "PSG-KVC" label is misleading and should be renamed to distinguish it from the math reasoning experiments.
+
+The composability arithmetic is explicitly shown and the 3-tier/2-tier policy is well-specified, which are strengths.
+
+I'm reconsidering whether the AlpacaEval 2 issue is a critical blocker or just needs clarification. The reviewer asked for a multi-trajectory NLP evaluation that actually exercises PSG-KVC, but the current AlpacaEval 2 design doesn't clearly demonstrate differential compression during generation. This is substantive because it means only the math reasoning evaluation (MATH-500, AIME) actually shows PSG-KVC in action, while the general NLP evaluation is effectively just N=4 best-of-N with some compression applied. I should propose either a simpler instruction-following task with step-level PRM scoring at paragraph boundaries, or cite TriAttention (arXiv:2604.04921) in the landscape section to strengthen the positioning.
+
+The core issue hinges on implementation details: if ArmoRM runs after each paragraph or sentence during the 4 parallel generations to assign tiers, then PSG-KVC can function properly. But the generator hasn't made this clear, so this is legitimate feedback worth flagging as the primary revision point.
+
+I'm also checking for other missed issues and noticed the KV Cache Compression paper (arXiv:2506.05345) has an OpenReview link, suggesting it was submitted to a venue with open review. I'm noticing the paper with ID 8ZiElzQxf1 appears on OpenReview, which suggests it may have been accepted somewhere, though the generator doesn't specify the venue for the arXiv version. Let me search more directly to confirm whether this was accepted to ICLR 2026 or another conference. The ForesightKV baseline is a concern since it requires training and might not be available, so I'd need to fall back on attention-score gating as a substitute—something EMNLP reviewers would likely notice. As for ArmoRM-Llama3-8B-v0.1, it does exist on RewardBench, but the real question is whether it can actually function as a step-level reward model during generation, which is a different problem than just availability.
+
+The core issue is that the AlpacaEval 2 evaluation doesn't specify how PSG-KVC would assign compression tiers during generation—either it runs uniform compression with ArmoRM selecting afterward (which doesn't demonstrate the mechanism), or it calls ArmoRM on partial completions at step boundaries (which is methodologically shaky and expensive). Neither approach clearly shows PSG-KVC working on NLP tasks. I should also note that TriAttention is the current SOTA for single-trajectory KV compression on reasoning tasks and needs to be cited. This warrants a revision.
+
+That said, at round 3 of 10, the core concept is solid and round 2 feedback has been mostly addressed. There's a straightforward fix: either use a simpler NLP metric with a step-level PRM at natural boundaries like paragraphs, or be transparent that AlpacaEval 2 uses uniform INT8/INT4 compression during generation with ArmoRM for selection—reframing it as "PSG-KVC on math plus uniform compression on NLP" to show memory savings don't hurt performance. The second approach is actually more honest and would likely be acceptable to EMNLP reviewers.
+
+Looking at the scores now: novelty is solid at 4/5 despite being an incremental combination, but feasibility drops to 3.5/5 due to that AlpacaEval 2 ambiguity, clarity is also 3.5/5 because tier assignment during generation isn't clear, and impact is 3.5/5 since the 1.39x improvement over the ETS baseline is fairly modest. That averages to 3.625, so revision is needed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83517d7e-a1f4-491e-a787-c1995a86ab51",
+  "isSidechain": false,
+  "requestId": "req_011Casc9zNLEcDpyvtMmXNtJ",
+  "type": "assistant",
+  "uuid": "65935414-f6b8-490f-bad1-1e8623eae358",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016BXuvu7pjnLujnk6r2vVdw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2076,
+      "cache_read_input_tokens": 43982,
+      "output_tokens": 6942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6942,
+          "cache_read_input_tokens": 43982,
+          "cache_creation_input_tokens": 2076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-09T20:16:15.146Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JsktYzTdpHAEaoTR94NQLW`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=8ZiElzQxf1",
+  "prompt": "What venue/conference is this paper submitted to? What is the current review status - accepted, rejected, under review? Is this ICLR 2026, NeurIPS 2025, or another conference?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65935414-f6b8-490f-bad1-1e8623eae358",
+  "isSidechain": false,
+  "requestId": "req_011Casc9zNLEcDpyvtMmXNtJ",
+  "type": "assistant",
+  "uuid": "bd2d0abf-09c9-45be-8dad-22c55d482d8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016BXuvu7pjnLujnk6r2vVdw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2076,
+      "cache_read_input_tokens": 43982,
+      "output_tokens": 6942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6942,
+          "cache_read_input_tokens": 43982,
+          "cache_creation_input_tokens": 2076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-09T20:16:15.548Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ss3EciT3KKmYxgLf2GjX9j`</summary>
+
+```json
+{
+  "query": "outcome reward model partial completion intermediate scoring step-level proxy PRM instruction following 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bd2d0abf-09c9-45be-8dad-22c55d482d8f",
+  "isSidechain": false,
+  "requestId": "req_011Casc9zNLEcDpyvtMmXNtJ",
+  "type": "assistant",
+  "uuid": "7f56f445-f850-4543-9b3b-ad3881fd8456",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016BXuvu7pjnLujnk6r2vVdw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2076,
+      "cache_read_input_tokens": 43982,
+      "output_tokens": 6942,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6942,
+          "cache_read_input_tokens": 43982,
+          "cache_creation_input_tokens": 2076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7f56f445-f850-4543-9b3b-ad3881fd8456",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify PSG-KVC feasibility and novelty via independent research",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-09T20:16:20.567Z_
+
+<details><summary>↩ Tool result · `toolu_01JsktYzTdpHAEaoTR94NQLW`</summary>
+
+```text
+# Paper Venue and Status
+
+**Conference:** This paper was submitted to **NeurIPS 2025**.
+
+**Review Status:** The paper has been **accepted** as a poster presentation. The page indicates "Published: 18 Sept 2025" and lists it as a "NeurIPS 2025 poster," confirming its acceptance to the conference.
+
+The paper, titled "Inference-Time Hyper-Scaling with KV Cache Compression," introduces a method called Dynamic Memory Sparsification (DMS) to compress key-value caches in large language models, enabling improved reasoning accuracy during inference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd2d0abf-09c9-45be-8dad-22c55d482d8f",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "e26d8fa9-b9f6-4622-8016-8e131135c6e8",
+  "toolUseResult": {
+    "bytes": 69917,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Venue and Status\n\n**Conference:** This paper was submitted to **NeurIPS 2025**.\n\n**Review Status:** The paper has been **accepted** as a poster presentation. The page indicates \"Published: 18 Sept 2025\" and lists it as a \"NeurIPS 2025 poster,\" confirming its acceptance to the conference.\n\nThe paper, titled \"Inference-Time Hyper-Scaling with KV Cache Compression,\" introduces a method called Dynamic Memory Sparsification (DMS) to compress key-value caches in large language models, enabling improved reasoning accuracy during inference.",
+    "durationMs": 5416,
+    "url": "https://openreview.net/forum?id=8ZiElzQxf1"
+  },
+  "sourceToolAssistantUUID": "bd2d0abf-09c9-45be-8dad-22c55d482d8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-09T20:16:22.150Z_
+
+<details><summary>↩ Tool result · `toolu_01Ss3EciT3KKmYxgLf2GjX9j`</summary>
+
+```text
+Web search results for query: "outcome reward model partial completion intermediate scoring step-level proxy PRM instruction following 2025 2026"
+
+Links: [{"title":"[2501.07301] The Lessons of Developing Process Reward Models in Mathematical Reasoning","url":"https://arxiv.org/abs/2501.07301"},{"title":"Process Reward Models: Step-Level Feedback for LLMs","url":"https://www.emergentmind.com/topics/process-reward-models-prm"},{"title":"The Lessons of Developing Process Reward Models in ...","url":"https://arxiv.org/pdf/2501.07301"},{"title":"Process-supervised Reward Models (PRMs)","url":"https://www.emergentmind.com/topics/process-supervised-reward-models-prm"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/html/2510.08049v3"},{"title":"Process Reward Models - Stephen Diehl","url":"https://www.stephendiehl.com/posts/process_reward/"},{"title":"Process Reward Model with Q-value Rankings | OpenReview","url":"https://openreview.net/forum?id=wQEdh2cgEk"},{"title":"Reward Models | RLHF Book by Nathan Lambert","url":"https://rlhfbook.com/c/05-reward-models"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process","url":"https://arxiv.org/pdf/2510.08049"},{"title":"Reward Modeling for Reinforcement Learning-Based LLM ...","url":"https://openreview.net/pdf?id=TDfrN1TbGH"}]
+
+Based on the search results, here's what I found regarding outcome reward models, process reward models, and related concepts in 2025-2026:
+
+## Key Findings
+
+**Process Reward Models (PRMs) vs. Outcome Reward Models (ORMs):**
+
+Process Reward Models (PRMs) are designed to assess the correctness of each intermediate step within a multi-step reasoning trajectory generated by an LLM, whereas Outcome Reward Models (ORMs) provide a reward signal only for the final output, typically mapping an entire output sequence to a scalar reward.
+
+**Recent Development on Process-to-Outcome Shift:**
+
+Some PRMs' performance in Best-of-N evaluation is predominantly determined by final answer scores rather than intermediate reasoning steps, indicating a model degradation from process-based to outcome-oriented assessment, and optimizing solely for the BoN evaluation has made current PRMs perform more like ORMs in practice.
+
+**Step-Level and Intermediate Scoring Approaches:**
+
+Common granularities of PRMs include step-level and token-level supervision, with step-level PRMs assigning rewards to discrete reasoning steps, typically corresponding to intermediate conclusions or equations, enabling models to identify and correct faulty logic during multi-step reasoning.
+
+**Data Construction Methods:**
+
+Recent approaches have made PRM training more tractable via automated labeling using LLM-based labelers and Monte Carlo estimation, where the expected accuracy of an intermediate step is estimated by sampling many continuations and measuring the proportion that produce a correct final answer.
+
+The research demonstrates significant active development in this area during 2025-2026, with focus on improving step-level supervision while addressing the challenge of preventing degradation to outcome-based assessment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f56f445-f850-4543-9b3b-ad3881fd8456",
+  "isSidechain": false,
+  "promptId": "d5401843-8bf5-4f38-bd64-cb2192f47983",
+  "type": "user",
+  "uuid": "fb4016c4-e337-40ed-9f6f-b613d26df6b4",
+  "toolUseResult": {
+    "query": "outcome reward model partial completion intermediate scoring step-level proxy PRM instruction following 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NuiARMttsdASDUATtpxNyP",
+        "content": [
+          {
+            "title": "[2501.07301] The Lessons of Developing Process Reward Models in Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2501.07301"
+          },
+          {
+            "title": "Process Reward Models: Step-Level Feedback for LLMs",
+            "url": "https://www.emergentmind.com/topics/process-reward-models-prm"
+          },
+          {
+            "title": "The Lessons of Developing Process Reward Models in ...",
+            "url": "https://arxiv.org/pdf/2501.07301"
+          },
+          {
+            "title": "Process-supervised Reward Models (PRMs)",
+            "url": "https://www.emergentmind.com/topics/process-supervised-reward-models-prm"
+          },
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models",
+            "url": "https://arxiv.org/html/2510.08049v3"
+          },
+          {
+            "title": "Process Reward Models - Stephen Diehl",
+            "url": "https://www.stephendiehl.com/posts/process_reward/"
+          },
+          {
+            "title": "Process Reward Model with Q-value Rankings | OpenReview",
+            "url": "https://openreview.net/forum?id=wQEdh2cgEk"
+          },
+          {
+            "title": "Reward Models | RLHF Book by Nathan Lambert",
+            "url": "https://rlhfbook.com/c/05-reward-models"
+          },
+          {
+            "title": "A Survey of Process Reward Models: From Outcome Signals to Process",
+            "url": "https://arxiv.org/pdf/2510.08049"
+          },
+          {
+            "title": "Reward Modeling for Reinforcement Learning-Based LLM ...",
+            "url": "https://openreview.net/pdf?id=TDfrN1TbGH"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding outcome reward models, process reward models, and related concepts in 2025-2026:\n\n## Key Findings\n\n**Process Reward Models (PRMs) vs. Outcome Reward Models (ORMs):**\n\nProcess Reward Models (PRMs) are designed to assess the correctness of each intermediate step within a multi-step reasoning trajectory generated by an LLM, whereas Outcome Reward Models (ORMs) provide a reward signal only for the final output, typically mapping an entire output sequence to a scalar reward.\n\n**Recent Development on Process-to-Outcome Shift:**\n\nSome PRMs' performance in Best-of-N evaluation is predominantly determined by final answer scores rather than intermediate reasoning steps, indicating a model degradation from process-based to outcome-oriented assessment, and optimizing solely for the BoN evaluation has made current PRMs perform more like ORMs in practice.\n\n**Step-Level and Intermediate Scoring Approaches:**\n\nCommon granularities of PRMs include step-level and token-level supervision, with step-level PRMs assigning rewards to discrete reasoning steps, typically corresponding to intermediate conclusions or equations, enabling models to identify and correct faulty logic during multi-step reasoning.\n\n**Data Construction Methods:**\n\nRecent approaches have made PRM training more tractable via automated labeling using LLM-based labelers and Monte Carlo estimation, where the expected accuracy of an intermediate step is estimated by sampling many continuations and measuring the proportion that produce a correct final answer.\n\nThe research demonstrates significant active development in this area during 2025-2026, with focus on improving step-level supervision while addressing the challenge of preventing degradation to outcome-based assessment."
+    ],
+    "durationSeconds": 6.598310396000016
+  },
+  "sourceToolAssistantUUID": "7f56f445-f850-4543-9b3b-ad3881fd8456",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-09T20:16:58.418Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have an important finding: "Inference-Time Hyper-Scaling with KV Cache Compression" (arXiv:2506.05345) was actually **accepted to NeurIPS 2025** (published September 18, 2025). The generator describes it in the landscape section as "arXiv:2506.05345" without noting its NeurIPS 2025 acceptance. This is a minor factual gap (not citing the venue) but not a critical issue.
+
+More importantly, I now need to assess the search results about PRMs vs ORMs:
+
+
+The research shows that PRMs in best-of-N settings often collapse to ORMs in practice, and there's no established method for using outcome reward models like ArmoRM as step-level PRMs for instruction-following tasks. This confirms what I suspected: in the AlpacaEval 2 N=4 evaluation, ArmoRM functions as an outcome reward model for post-hoc selection rather than for step-level compression tier assignment during generation. So PSG-KVC's differential compression mechanism isn't actually being tested in the AlpacaEval 2 experiment.
+
+The AlpacaEval 2 setup generates N=4 responses with either uniform INT8 or 2-tier compression, then uses ArmoRM to pick the best one and evaluates it with GPT-4. But PSG-KVC requires step-level PRM scores during generation to assign compression tiers to competing trajectories. Since AlpacaEval 2 is general instruction-following rather than math reasoning, there's no step-level PRM available—so PSG-KVC would have to assign compression tiers randomly or heuristically, neither of which actually demonstrates the method's core contribution. This means the AlpacaEval 2 experiment doesn't genuinely test PSG-KVC's capabilities.
+
+Wait, let me reconsider whether ArmoRM could be used at intermediate steps during generation. Re-reading the approach, it says ArmoRM "scores each candidate" to "select the best-of-4"—which sounds like post-generation evaluation, not intermediate scoring.
+
+So for the PSG-KVC policy with its 2-tier compression scheme, there's no explanation of how compression tiers get assigned during generation if there's no step-level PRM involved. This seems like a critical gap: without step-level scoring during generation, the tier assignment can't be rank-based and would have to be random or predetermined.
+
+This is a fundamental flaw in how AlpacaEval 2 evaluates PSG-KVC—it doesn't actually test the differential compression mechanism because ArmoRM only scores completed responses, not individual generation steps.
+
+The experiment needs clarification: either it should explicitly state that compression tiers are assigned uniformly by some fixed rule (not by PRM rank), reframing this as a compression-plus-selection quality test, or it should use a step-level proxy like running ArmoRM on paragraph prefixes at fixed points, though that's methodologically questionable and computationally expensive.
+
+I also need to update the citation for "Inference-Time Hyper-Scaling with KV Cache Compression" to reflect its NeurIPS 2025 acceptance, and add TriAttention (April 2026) to the landscape section since it achieves significant KV memory reduction on reasoning tasks and reviewers will expect to see it mentioned.
+
+The novelty scores around 4/5 for the PRM-as-differential-compression-signal contribution, though feasibility sits at 3.5/5 given the implementation challenges.
+
+Looking at the full evaluation, the clarity and impact scores both come in at 3.5/5 — the compression gains over ETS alone are real but incremental, and there's a mechanism gap in how compression tiers get assigned during AlpacaEval 2 generation that weakens the empirical evidence. The average lands at 3.625, which falls short of the 4.0 threshold, so the approach needs revision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb4016c4-e337-40ed-9f6f-b613d26df6b4",
+  "isSidechain": false,
+  "requestId": "req_011CascMBvutNu2hjdErHPv6",
+  "type": "assistant",
+  "uuid": "82e6e96b-0983-42b8-bdca-c607e554cdf7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BGEJCdE9iQSRqNcM9LAbL1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7954,
+      "cache_read_input_tokens": 46058,
+      "output_tokens": 3447,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3447,
+          "cache_read_input_tokens": 46058,
+          "cache_creation_input_tokens": 7954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-09T20:17:35.315Z_
+
+Based on my independent research, I now have sufficient findings to issue my verdict. Here is my assessment:
+
+**Key findings from independent verification:**
+- ETS (arXiv:2502.13575) confirmed as arXiv-only preprint (submitted Feb 2025, revised Jun 2025) — citation now correct
+- "Inference-Time Hyper-Scaling" (arXiv:2506.05345) is confirmed accepted at **NeurIPS 2025** (published Sept 18, 2025) — generator doesn't note the venue
+- TriAttention (arXiv:2604.04921, April 2026) achieves 10.7× KV reduction on AIME25 — not cited by generator, though it's single-trajectory and non-competing
+- No paper found that uses PRM scores as cross-trajectory differential precision signals — novelty gap confirmed
+- ArmoRM-Llama3-8B-v0.1 is an **outcome** reward model (scores completed responses), not a step-level PRM — critical issue for the AlpacaEval 2 design
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 4,
+      "rationale": "The PRM-rank-gated differential precision allocation across concurrent search trajectories is genuinely novel; no existing work (ETS, PM-KVQ, TriAttention, Don't Waste Bits, RLKV) uses PRM step scores as a cross-trajectory compression precision signal. The gap is real and verified by independent search."
+    },
+    "feasibility": {
+      "score": 3,
+      "rationale": "Math reasoning experiments (MATH-500, AIME) are feasible within the 120–150 H100-hour budget, but the AlpacaEval 2 N=4 evaluation has a fundamental mechanism gap: ArmoRM is an outcome RM that scores completed responses and cannot drive step-level tier assignment during generation, making the 'PSG-KVC N=4' label for that experiment misleading."
+    },
+    "clarity": {
+      "score": 3,
+      "rationale": "The math reasoning methodology is well-specified with explicit tier splits, fallback rules, and composability arithmetic, but the AlpacaEval 2 experiment critically omits how compression tiers are assigned to the 4 concurrent trajectories during generation (no step-level PRM is available for instruction-following prompts)."
+    },
+    "impact": {
+      "score": 3,
+      "rationale": "The 1.39× additional divergent-suffix compression over ETS-alone baseline is real but modest; the combined 2.5× claim vs. uncompressed baseline leans heavily on ETS's contribution, and the only NLP-task evidence (AlpacaEval 2) does not demonstrate the differential compression mechanism."
+    }
+  },
+  "issues": [
+    "CRITICAL — AlpacaEval 2 mechanism gap: ArmoRM-Llama3-8B-v0.1 is an outcome reward model that scores *completed* responses; it cannot provide step-level scores during generation to drive PSG-KVC's rank-based tier assignment. Without a step-level PRM during AlpacaEval 2 generation, 'PSG-KVC N=4 (2-tier fallback: top-50% FP16, bottom-50% INT4)' cannot assign tiers by rank — there are no intermediate quality scores to rank. The current design effectively runs uniform-assignment compression with ArmoRM used only for post-hoc response selection, which does not demonstrate PSG-KVC's core mechanism. The generator must either: (a) reframe the AlpacaEval 2 experiment explicitly as 'fixed-assignment compression + ArmoRM selection' (top-2 by trajectory index get FP16, bottom-2 get INT4, no rank-ordering) and label it accordingly as a quality-preservation test rather than a PSG-KVC demonstration; or (b) use a step-level proxy signal at paragraph/sentence boundaries during generation (e.g., partial-completion ArmoRM scoring every 100 tokens), which is methodologically nonstandard and expensive but would actually exercise the differential mechanism.",
+    "Venue citation error — 'Inference-Time Hyper-Scaling with KV Cache Compression' (arXiv:2506.05345) was accepted to NeurIPS 2025 (published September 18, 2025). The landscape section and key_references list do not include the venue. This should read 'NeurIPS 2025, arXiv:2506.05345'. EMNLP reviewers will notice a prominent NeurIPS 2025 paper cited without its venue.",
+    "Missing recent concurrent work — TriAttention (arXiv:2604.04921, April 2026, MIT/NVIDIA/ZJU) achieves 10.7× KV memory reduction on AIME25 with 2.5× throughput gain using trigonometric KV compression for single-trajectory reasoning. It is the current single-trajectory SOTA for reasoning tasks and must be cited in the landscape section with a brief differentiation note (TriAttention is single-trajectory, training-free attention-based compression; PSG-KVC is cross-trajectory PRM-rank-gated quantization). EMNLP 2026 reviewers familiar with this April 2026 work will expect it to appear.",
+    "Composability gain arithmetic sensitivity: The combined ≈2.5× claim relies on α (shared-prefix fraction) = 0.4–0.6 and r (divergent-suffix compression ratio) ∈ {2.0, 2.5} — both quantities that are estimated rather than measured. The prerequisite INT4 validation experiment should also report the empirical α on MATH-500 so the composability formula can be grounded, not just projected."
+  ],
+  "feedback": "The round 3 revision competently addresses all six round 2 issues: ETS citation fixed, ETS+PSG-KVC composability explicitly modeled with Phase B validation, N=4 2-tier fallback specified, 'Hold Onto That Thought' cited, and precision-promotion asymmetry acknowledged in limitations. The core novelty gap is verified as real. To reach pass, one critical fix and two minor additions are needed: (1) CRITICAL: Resolve the AlpacaEval 2 mechanism gap. The simplest fix is to reframe the AlpacaEval 2 experiment as a 'compression + selection quality preservation test' — generate N=4 completions under three fixed compression schemes (FP16, uniform INT8, fixed-split FP16/INT4 where trajectories 1-2 get FP16 and 3-4 get INT4 by static assignment), use ArmoRM to select the best-of-4, and evaluate the selected response on AlpacaEval 2. Name this 'fixed-split compression with ArmoRM selection' rather than 'PSG-KVC N=4' in the paper — PSG-KVC's differential mechanism requires step-level PRM signals that don't exist for instruction-following prompts. This reframing is honest: it shows that even coarse compression does not hurt general NLP quality under best-of-N selection. (2) Add NeurIPS 2025 venue for arXiv:2506.05345 in the landscape and key_references. (3) Add TriAttention (arXiv:2604.04921, April 2026) to the landscape with one sentence differentiating it as single-trajectory, attention-based, training-free compression vs. PSG-KVC's cross-trajectory PRM-rank-gated quantization. These are all revision-level changes, not redesigns.",
+  "reason": "AlpacaEval 2 evaluation design cannot demonstrate PSG-KVC's differential compression (ArmoRM is post-hoc outcome RM, not step-level PRM), creating a labeled experiment that misrepresents what is actually being measured; fixable by reframing the experiment as a quality-preservation test under fixed-split compression."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82e6e96b-0983-42b8-bdca-c607e554cdf7",
+  "isSidechain": false,
+  "requestId": "req_011CascMBvutNu2hjdErHPv6",
+  "type": "assistant",
+  "uuid": "dbb9275b-dab4-4904-b73b-f4b011a03a9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01BGEJCdE9iQSRqNcM9LAbL1",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7954,
+      "cache_read_input_tokens": 46058,
+      "output_tokens": 3447,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3447,
+          "cache_read_input_tokens": 46058,
+          "cache_creation_input_tokens": 7954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dbb9275b-dab4-4904-b73b-f4b011a03a9f",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify PSG-KVC feasibility and novelty via independent research",
+  "sessionId": "c117efd2-4e28-4c5e-a52c-5d7fcdc79df3"
+}
+```
+
+---

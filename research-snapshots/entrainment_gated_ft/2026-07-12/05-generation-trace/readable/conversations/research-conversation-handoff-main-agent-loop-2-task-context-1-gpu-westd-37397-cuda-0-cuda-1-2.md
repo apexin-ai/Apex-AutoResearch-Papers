@@ -1,0 +1,412 @@
+# Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #2。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-37397 的 cuda:0 和 cuda:1（2×
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 7
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/6dca1f0d-5cd9-459a-896a-5eff4dcb3f6b.jsonl`
+- **Structured JSON:** [`eb42f7a15bf2026201e6.json`](../../sessions/eb/eb42f7a15bf2026201e6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T23:57:20.843Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T23:57:20.843Z",
+  "sessionId": "6dca1f0d-5cd9-459a-896a-5eff4dcb3f6b",
+  "content": "[HANDOFF] 你是 Main Agent，这是 Loop #2。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-37397 的 cuda:0 和 cuda:1（2× RTX PRO 6000 Blackwell 96GB）\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（tmux 用 sh 执行，source/conda activate 会 127）\n- tmux 非交互 shell 不加载 .bashrc，每条命令前必须 `source /etc/network_turbo && export HF_ENDPOINT=https://hf-mirror.com && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt`\n- transformers 4.57.6 的 Qwen2 模型 `use_cache=False` 时必须传 `cache_position=torch.arange(seq_len, device=device)`，否则 IndexError\n- Eviction 路径已被 3 个实验彻底 falsify——不要再尝试任何 eviction 相关实验\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-37397，工作目录 `/root/ratekv/`\n- Python：`/root/miniconda3/bin/python`（conda base，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- Python 3.12.3, PyTorch 2.10.0+cu128, CUDA 12.8 (Driver 595.58, CUDA Version 13.2)\n- 7B 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B`（路径含 `___` 但 7B 能正常加载）\n- 1.5B 模型：`/root/autodl-tmp/models/Qwen2.5-1.5B`（干净路径，之前 ModelScope `___` 路径会 HFValidationError）\n- Calibration 数据：`/root/ratekv/calibration_data.json`（20 条，每条 ≥1000 tokens，WikiText-103 拼接）\n- 活跃进程：**无**（两卡空闲 0% util）。Worker `worker_infra_read-expb-results_20260513T235027` 正在读日志\n\n### 3. 📊 当前状态\n**正在等待 Worker 回调**：`worker_infra_read-expb-results` 正在拉取 Exp B（go/no-go 决策实验）的完整结果日志。Exp B Worker 已完成代码编写 + 1.5B smoke test + 7B 完整实验，产出了 `full_bitwidth_results.json` 和多个 log 文件，但 Worker 只返回了文件列表未贴数据。\n\nRegistry 状态：\n- `exp_b_hires_quant` PREPARING — go/no-go 决策实验（PPL-guided quant-only MCKP, {2,4,8,16}-bit action space）。Worker 已跑完，结果待读取\n- 所有其他实验 DONE：mvp_001-004 (failed/negative), sanity_001-004 (failed/success), p0_1_ppl_fast (negative), p0_2_cliff_1.5B/7B (success), exp_a_targeted_hybrid (negative)\n\n### 4. 📋 待办\n- `worker_infra_read-expb-results` 回调到达 → 读完整结果 → 更新 `exp_b_hires_quant` registry → 向 Director 汇报完整 PPL 对比表 + Pass/Fail 判定\n- 如果 Exp B **PASS**（non-uniform MCKP PPL < uniform 4-bit 15.45 by ≥0.5）→ 项目继续，进入 research 阶段，写 paper_framing.md + experiment_plan.yaml\n- 如果 Exp B **FAIL**（≈ uniform）→ 项目需 Director 决策是否 archive\n- 如果 Worker 回调数据不完整 → 再派 Worker 读 `/root/ratekv/full_bitwidth.log` + `budget_matched.log` + `manual_test.log`\n- Exp B 结果出来后 → 更新 memory.md 记录最终结论\n\n### 5. 🎯 战略上下文\n**项目在 go/no-go 决策点**。核心假设经历了三次 pivot：\n1. MSE distortion → falsified（MSE-guided PPL 比 uniform 差 70×）\n2. PPL distortion + eviction → falsified（eviction compounding effect + Layer 0 无法承受任何 eviction）\n3. PPL-guided per-head bit-width allocation（{2,4,8,16}-bit, quant-only）→ **结果待读取**\n\n**关键洞察**（已确认的事实）：\n- Per-head quantization sensitivity 高度不均匀：Layer 0 heads 2-bit 导致 +32% PPL (7B)，大部分 L1-L27 heads 2-bit 仅 0-2%\n- 4-bit 和 8-bit 对所有 head 安全（zero cliff）\n- Quant-only MCKP 之前 = uniform 是因为 action space 只有 {4-bit}（tautology），不是因为 non-uniform 没价值\n- Exp B 的 {2,4,8,16}-bit action space 是第一次真正测试 non-uniform quantization\n\n**易错点**：\n- 不要混淆 \"quant-only MCKP = uniform\" 的历史结果（tautology）和 Exp B 的结果（真正的 non-uniform 测试）\n- calibration PPL delta 和 full WikiText-2 eval PPL 之间可能存在 gap（eviction 已踩过这个坑，quantization 是否也有此问题待观察）\n- Exp B Worker 产出了多个 log 文件（full_bitwidth.log, manual_test.log, budget_matched.log），需要全部读取才能完整判断\n\n## 项目硬约束 (memory.md 节选)\n\n## 环境经验 (westd-37397)\n\n- **tmux 不加载 .bashrc**: 非交互 shell 必须显式 `source /etc/network_turbo` + 设置全部 proxy 环境变量\n- **cache_position 必需**: transformers 4.57.6 的 Qwen2 需要 `cache_position=torch.arange(seq_len, device=device)` 在 `use_cache=False` 时\n- **ModelScope 路径含 `___`**: 导致 HFValidationError，需下载到干净路径\n- **calibration 数据长度**: WikiText-103 原始段落平均 ~165 tokens，必须拼接至 ≥4000 chars\n- **profiler 缓存 profiles.json**: 换模型/数据时必须删除\n- **submit_training_job 命令必须 bash -c 包裹**: tmux 用 sh 执行\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T23:57:20.846Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T23:57:20.846Z",
+  "sessionId": "6dca1f0d-5cd9-459a-896a-5eff4dcb3f6b"
+}
+```
+
+---
+
+## Round 1
+
+5 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T23:57:20.880Z_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #2。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westd-37397 的 cuda:0 和 cuda:1（2× RTX PRO 6000 Blackwell 96GB）
+- submit_training_job 命令必须 `bash -c "..."` 包裹（tmux 用 sh 执行，source/conda activate 会 127）
+- tmux 非交互 shell 不加载 .bashrc，每条命令前必须 `source /etc/network_turbo && export HF_ENDPOINT=https://hf-mirror.com && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt`
+- transformers 4.57.6 的 Qwen2 模型 `use_cache=False` 时必须传 `cache_position=torch.arange(seq_len, device=device)`，否则 IndexError
+- Eviction 路径已被 3 个实验彻底 falsify——不要再尝试任何 eviction 相关实验
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-37397，工作目录 `/root/ratekv/`
+- Python：`/root/miniconda3/bin/python`（conda base，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- Python 3.12.3, PyTorch 2.10.0+cu128, CUDA 12.8 (Driver 595.58, CUDA Version 13.2)
+- 7B 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B`（路径含 `___` 但 7B 能正常加载）
+- 1.5B 模型：`/root/autodl-tmp/models/Qwen2.5-1.5B`（干净路径，之前 ModelScope `___` 路径会 HFValidationError）
+- Calibration 数据：`/root/ratekv/calibration_data.json`（20 条，每条 ≥1000 tokens，WikiText-103 拼接）
+- 活跃进程：**无**（两卡空闲 0% util）。Worker `worker_infra_read-expb-results_20260513T235027` 正在读日志
+
+### 3. 📊 当前状态
+**正在等待 Worker 回调**：`worker_infra_read-expb-results` 正在拉取 Exp B（go/no-go 决策实验）的完整结果日志。Exp B Worker 已完成代码编写 + 1.5B smoke test + 7B 完整实验，产出了 `full_bitwidth_results.json` 和多个 log 文件，但 Worker 只返回了文件列表未贴数据。
+
+Registry 状态：
+- `exp_b_hires_quant` PREPARING — go/no-go 决策实验（PPL-guided quant-only MCKP, {2,4,8,16}-bit action space）。Worker 已跑完，结果待读取
+- 所有其他实验 DONE：mvp_001-004 (failed/negative), sanity_001-004 (failed/success), p0_1_ppl_fast (negative), p0_2_cliff_1.5B/7B (success), exp_a_targeted_hybrid (negative)
+
+### 4. 📋 待办
+- `worker_infra_read-expb-results` 回调到达 → 读完整结果 → 更新 `exp_b_hires_quant` registry → 向 Director 汇报完整 PPL 对比表 + Pass/Fail 判定
+- 如果 Exp B **PASS**（non-uniform MCKP PPL < uniform 4-bit 15.45 by ≥0.5）→ 项目继续，进入 research 阶段，写 paper_framing.md + experiment_plan.yaml
+- 如果 Exp B **FAIL**（≈ uniform）→ 项目需 Director 决策是否 archive
+- 如果 Worker 回调数据不完整 → 再派 Worker 读 `/root/ratekv/full_bitwidth.log` + `budget_matched.log` + `manual_test.log`
+- Exp B 结果出来后 → 更新 memory.md 记录最终结论
+
+### 5. 🎯 战略上下文
+**项目在 go/no-go 决策点**。核心假设经历了三次 pivot：
+1. MSE distortion → falsified（MSE-guided PPL 比 uniform 差 70×）
+2. PPL distortion + eviction → falsified（eviction compounding effect + Layer 0 无法承受任何 eviction）
+3. PPL-guided per-head bit-width allocation（{2,4,8,16}-bit, quant-only）→ **结果待读取**
+
+**关键洞察**（已确认的事实）：
+- Per-head quantization sensitivity 高度不均匀：Layer 0 heads 2-bit 导致 +32% PPL (7B)，大部分 L1-L27 heads 2-bit 仅 0-2%
+- 4-bit 和 8-bit 对所有 head 安全（zero cliff）
+- Quant-only MCKP 之前 = uniform 是因为 action space 只有 {4-bit}（tautology），不是因为 non-uniform 没价值
+- Exp B 的 {2,4,8,16}-bit action space 是第一次真正测试 non-uniform quantization
+
+**易错点**：
+- 不要混淆 "quant-only MCKP = uniform" 的历史结果（tautology）和 Exp B 的结果（真正的 non-uniform 测试）
+- calibration PPL delta 和 full WikiText-2 eval PPL 之间可能存在 gap（eviction 已踩过这个坑，quantization 是否也有此问题待观察）
+- Exp B Worker 产出了多个 log 文件（full_bitwidth.log, manual_test.log, budget_matched.log），需要全部读取才能完整判断
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境经验 (westd-37397)
+
+- **tmux 不加载 .bashrc**: 非交互 shell 必须显式 `source /etc/network_turbo` + 设置全部 proxy 环境变量
+- **cache_position 必需**: transformers 4.57.6 的 Qwen2 需要 `cache_position=torch.arange(seq_len, device=device)` 在 `use_cache=False` 时
+- **ModelScope 路径含 `___`**: 导致 HFValidationError，需下载到干净路径
+- **calibration 数据长度**: WikiText-103 原始段落平均 ~165 tokens，必须拼接至 ≥4000 chars
+- **profiler 缓存 profiles.json**: 换模型/数据时必须删除
+- **submit_training_job 命令必须 bash -c 包裹**: tmux 用 sh 执行
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "e507b3e2-81c5-480a-b372-bc4f4b507620",
+  "type": "user",
+  "uuid": "90e722a3-d34c-4ad5-9dad-1f69f87d4281",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_01ae092a",
+  "sessionId": "6dca1f0d-5cd9-459a-896a-5eff4dcb3f6b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T23:57:20.880Z_
+
+```json
+{
+  "parentUuid": "90e722a3-d34c-4ad5-9dad-1f69f87d4281",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "cc095245-4c3c-4c38-a166-edbedfd3e28a",
+  "timestamp": "2026-05-13T23:57:20.880Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_01ae092a",
+  "sessionId": "6dca1f0d-5cd9-459a-896a-5eff4dcb3f6b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T23:57:20.880Z_
+
+```json
+{
+  "parentUuid": "cc095245-4c3c-4c38-a166-edbedfd3e28a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "72dac330-5897-4500-84e5-4b4c4b25b6b4",
+  "timestamp": "2026-05-13T23:57:20.880Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_01ae092a",
+  "sessionId": "6dca1f0d-5cd9-459a-896a-5eff4dcb3f6b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-13T23:57:20.880Z_
+
+```json
+{
+  "parentUuid": "72dac330-5897-4500-84e5-4b4c4b25b6b4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7a16a125-5de4-4968-b0ea-f990715a979b",
+  "timestamp": "2026-05-13T23:57:20.880Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_01ae092a",
+  "sessionId": "6dca1f0d-5cd9-459a-896a-5eff4dcb3f6b",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Wait for Exp B results and make go/no-go decision",
+  "sessionId": "6dca1f0d-5cd9-459a-896a-5eff4dcb3f6b"
+}
+```
+
+---

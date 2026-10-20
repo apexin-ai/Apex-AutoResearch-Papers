@@ -1,0 +1,1065 @@
+# Research conversation: Please verify the following via WebSearch: 1. Search: "EMNLP 2026 ARR submission deadline May 2026" - confirm the ARR de
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-a52a064463419c03c.jsonl`
+- **Structured JSON:** [`9a371c7a8b77c3fcfc50.json`](../../sessions/9a/9a371c7a8b77c3fcfc50.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+17 recorded events
+
+### User
+
+_source line 1 · 2026-05-11T23:36:44.090Z_
+
+Please verify the following via WebSearch:
+
+1. Search: "EMNLP 2026 ARR submission deadline May 2026" - confirm the ARR deadline for EMNLP 2026 is indeed May 25, 2026
+2. Search: "ACL Rolling Review May 2026 deadline" - verify ARR May 2026 cycle details
+3. Search: "phase-aware activation sparsity reasoning model 2026 arxiv" - any very recent (2026) competing work
+4. Search: "compute sparsity profiling reasoning chain of thought 2026" - any concurrent work on compute sparsity profiling during reasoning
+5. Search: "attention MLP interaction sparsity transformer inference 2026" - any work on attention-MLP interaction during sparsity
+
+Report findings concisely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "adb29825-742d-40c1-aacd-587611a850ec",
+  "agentId": "a52a064463419c03c",
+  "type": "user",
+  "uuid": "e48a35f8-9dd6-4232-a77d-e75e1dd1cf67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T23:36:44.093Z_
+
+```json
+{
+  "parentUuid": "e48a35f8-9dd6-4232-a77d-e75e1dd1cf67",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "034daf0b-4d7c-45be-8b3c-f6e6c474dfd3",
+  "timestamp": "2026-05-11T23:36:44.093Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-11T23:36:51.413Z_
+
+
+
+I'll load the WebSearch tool schema first, then run all five searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "034daf0b-4d7c-45be-8b3c-f6e6c474dfd3",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfFD6oiqQFUjzbn5N8g",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "72359f24-4948-4e2d-998c-4307f1016ab0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oTdhduTnphRWrYk7r3cy1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 737,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-11T23:36:51.822Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01K82J732soiCXVcPpZ1GtF2`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72359f24-4948-4e2d-998c-4307f1016ab0",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfFD6oiqQFUjzbn5N8g",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "082a39ae-f14d-44a3-8134-94e6eb7418a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oTdhduTnphRWrYk7r3cy1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 737,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 737,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-11T23:36:51.824Z_
+
+<details><summary>↩ Tool result · `toolu_01K82J732soiCXVcPpZ1GtF2`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "082a39ae-f14d-44a3-8134-94e6eb7418a1",
+  "isSidechain": true,
+  "promptId": "adb29825-742d-40c1-aacd-587611a850ec",
+  "agentId": "a52a064463419c03c",
+  "type": "user",
+  "uuid": "7b93f17c-a310-4c8c-a8fc-b31d9a7307c7",
+  "sourceToolAssistantUUID": "082a39ae-f14d-44a3-8134-94e6eb7418a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-11T23:36:54.349Z_
+
+
+
+Now let me run all five searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b93f17c-a310-4c8c-a8fc-b31d9a7307c7",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfFnahjA9muwm7XypzW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c0063563-017a-438c-a7d0-ef94a1582911",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6gT4Bp8uYE2zUPZhs7X1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 8960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1412,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-11T23:36:54.913Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ds9wK4a5HHZV2BRV7E8oFU`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0063563-017a-438c-a7d0-ef94a1582911",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfFnahjA9muwm7XypzW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "871375c1-da59-41ec-8b19-e86cc8df7b30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6gT4Bp8uYE2zUPZhs7X1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 8960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1412,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-11T23:36:55.363Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DujpNXfYK96eNt3TtHXUt5`</summary>
+
+```json
+{
+  "query": "ACL Rolling Review May 2026 deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "871375c1-da59-41ec-8b19-e86cc8df7b30",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfFnahjA9muwm7XypzW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6b57f5be-966d-49b5-8251-6f73bb9b963a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6gT4Bp8uYE2zUPZhs7X1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 8960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1412,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-11T23:36:56.311Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C8gpynFGttV4VaaRs2P7Rx`</summary>
+
+```json
+{
+  "query": "phase-aware activation sparsity reasoning model 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b57f5be-966d-49b5-8251-6f73bb9b963a",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfFnahjA9muwm7XypzW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3af5fa5f-e7cf-4a9f-b1f0-95a00aeb5269",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6gT4Bp8uYE2zUPZhs7X1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 8960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1412,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T23:36:56.776Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012nU7ESKcUencpRivUcobUs`</summary>
+
+```json
+{
+  "query": "compute sparsity profiling reasoning chain of thought 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3af5fa5f-e7cf-4a9f-b1f0-95a00aeb5269",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfFnahjA9muwm7XypzW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "329cdfe1-afbf-4d49-a75e-a6342a5aa596",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6gT4Bp8uYE2zUPZhs7X1D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 8960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1412,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-11T23:36:57.308Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011M22jbSVHokJzgZVUL8fJy`</summary>
+
+```json
+{
+  "query": "attention MLP interaction sparsity transformer inference 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "329cdfe1-afbf-4d49-a75e-a6342a5aa596",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfFnahjA9muwm7XypzW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "30323156-6970-445b-b2bf-2bb5609a0df4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6gT4Bp8uYE2zUPZhs7X1D",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1412,
+      "cache_read_input_tokens": 8960,
+      "output_tokens": 266,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1412
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 266,
+          "cache_read_input_tokens": 8960,
+          "cache_creation_input_tokens": 1412,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1412,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-11T23:36:59.489Z_
+
+<details><summary>↩ Tool result · `toolu_01Ds9wK4a5HHZV2BRV7E8oFU`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"}]
+
+Based on the search results, here is the information about the EMNLP 2026 ARR submission deadline in May 2026:
+
+## EMNLP 2026 ARR Submission Deadline
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+### Additional Important Dates
+
+The reviewer registration deadline for all authors is May 27, 2026. This means that after submitting your paper, you must complete the author registration form by this date.
+
+### Important Policy Note
+
+Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026.
+
+Other key dates include:
+- Author response and author-reviewer discussion: July 7-13, 2026
+- Meta review released: July 30, 2026
+- EMNLP commitment deadline: August 2, 2026
+- Notification of acceptance: August 20, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "871375c1-da59-41ec-8b19-e86cc8df7b30",
+  "isSidechain": true,
+  "promptId": "adb29825-742d-40c1-aacd-587611a850ec",
+  "agentId": "a52a064463419c03c",
+  "type": "user",
+  "uuid": "3c5b7bf8-6764-4ca3-85c6-6d783b3d5553",
+  "sourceToolAssistantUUID": "871375c1-da59-41ec-8b19-e86cc8df7b30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-11T23:37:00.034Z_
+
+<details><summary>↩ Tool result · `toolu_01DujpNXfYK96eNt3TtHXUt5`</summary>
+
+```text
+Web search results for query: "ACL Rolling Review May 2026 deadline"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"https://aclrollingreview.org/"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"}]
+
+Based on the search results, I found information about the ACL Rolling Review (ARR) in May 2026. However, I should note that the most specific deadline information I found relates to the January 2026 ARR cycle rather than May 2026.
+
+The ACL Peer Review Committee recommended switching from 8-week to 10-week review cycles, with the new schedule beginning in May 2025. This means there are generally 5 review cycles per year instead of 6.
+
+For recent ARR deadlines, the submission deadline for papers to be submitted to ARR for the January 2026 cycle was January 5, 2026. The search results reference submission deadlines following a pattern where "the submission deadline is always the 15th of the month".
+
+If you're looking for information about a specific May 2026 ARR submission deadline, the typical submission deadline would fall around the 15th of May, following the standard ARR schedule. However, the search results do not contain explicit confirmation of the exact May 2026 deadline. For the most up-to-date and accurate deadline information, I'd recommend checking the official ACL Rolling Review website at aclrollingreview.org.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b57f5be-966d-49b5-8251-6f73bb9b963a",
+  "isSidechain": true,
+  "promptId": "adb29825-742d-40c1-aacd-587611a850ec",
+  "agentId": "a52a064463419c03c",
+  "type": "user",
+  "uuid": "c35b0978-f9dd-4a8c-a9ef-2d82fee1336d",
+  "sourceToolAssistantUUID": "6b57f5be-966d-49b5-8251-6f73bb9b963a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-11T23:37:03.979Z_
+
+<details><summary>↩ Tool result · `toolu_01C8gpynFGttV4VaaRs2P7Rx`</summary>
+
+```text
+Web search results for query: "phase-aware activation sparsity reasoning model 2026 arxiv"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2602.03152"},{"title":"Universal Properties of Activation Sparsity in Modern Large Language Models","url":"https://arxiv.org/html/2509.00454v1"},{"title":"Training-Free Activation Sparsity in Large Language Models","url":"https://arxiv.org/html/2408.14690v1"},{"title":"training-free activation sparsity in large language models","url":"https://www.arxiv.org/pdf/2408.14690"},{"title":"Amber Pruner: Leveraging N:M Activation Sparsity for Efficient Prefill in Large Language Models","url":"https://arxiv.org/html/2508.02128v1"},{"title":"Sparsing Law: Towards Large Language Models with Greater Activation Sparsity","url":"https://arxiv.org/html/2411.02335v1"},{"title":"Validation-Free Sparse Learning: A Phase Transition Approach to Feature Selection","url":"https://arxiv.org/html/2411.17180"},{"title":"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs","url":"https://arxiv.org/pdf/2504.17768"},{"title":"R-Sparse: Rank-Aware Activation Sparsity for Efficient LLM Inference","url":"https://arxiv.org/html/2504.19449v1"},{"title":"[2411.02335] Sparsing Law: Towards Large Language Models with Greater Activation Sparsity","url":"https://arxiv.org/abs/2411.02335"}]
+
+I found several relevant papers on activation sparsity in language models from arXiv. Here are the key results:
+
+## Most Relevant Match
+
+The top result appears to be about FASA (Frequency-Aware Sparse Attention), which is rooted in the observation that differential frequencies within RoPE (Rotary Position Embedding) induce functional sparsity among frequency chunks. The research identifies that only a sparse subset of these frequency chunks, termed dominant FCs, contribute significantly to contextual awareness, while others construct robust positional patterns. These dominant FCs are sparse, universal, and task-agnostic.
+
+FASA employs a two-stage framework for efficient inference, with the first stage being Token Importance Prediction, which harnesses dominant FCs to dynamically estimate attention scores and obtain critical tokens. The method achieves performance comparable to full KV cache with less than 0.7% reduction, while FASA-M provides 8× compression of the KV cache and FASA-C delivers 2.6× speedups with 25% of FCs selected.
+
+## Other Related Papers
+
+Several other papers on activation sparsity were also found:
+
+- Papers on universal activation sparsity properties note that while reasoning models aren't tested directly, the consistency of findings across instruction-tuned and diffusion LLMs strongly suggests activation sparsity benefits reasoning models.
+
+- Research on training-free activation sparsity methods and rank-aware sparsity approaches for efficient LLM inference.
+
+The first result (arxiv 2602.03152) published at ICLR 2026 appears to be the most closely aligned with your search query about phase-aware and activation sparsity in reasoning models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3af5fa5f-e7cf-4a9f-b1f0-95a00aeb5269",
+  "isSidechain": true,
+  "promptId": "adb29825-742d-40c1-aacd-587611a850ec",
+  "agentId": "a52a064463419c03c",
+  "type": "user",
+  "uuid": "2d416ac3-7b77-4f56-9091-825e524ed682",
+  "sourceToolAssistantUUID": "3af5fa5f-e7cf-4a9f-b1f0-95a00aeb5269",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-11T23:37:04.149Z_
+
+<details><summary>↩ Tool result · `toolu_011M22jbSVHokJzgZVUL8fJy`</summary>
+
+```text
+Web search results for query: "attention MLP interaction sparsity transformer inference 2026"
+
+Links: [{"title":"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs","url":"https://arxiv.org/html/2504.17768v2"},{"title":"FAR: Function-preserving Attention Replacement for IMC-friendly Inference","url":"https://arxiv.org/html/2505.21535"},{"title":"Is Attention Required for Transformer Inference? Explore Function-preserving Attention Replacement","url":"https://arxiv.org/html/2505.21535v2"},{"title":"Sparse Attention Post-Training for Mechanistic Interpretability","url":"https://arxiv.org/html/2512.05865v1"},{"title":"Weight-sparse transformers have interpretable circuits","url":"https://cdn.openai.com/pdf/41df8f28-d4ef-43e9-aed2-823f9393e470/circuit-sparsity-paper.pdf"},{"title":"[2402.15055] Interpreting Context Look-ups in Transformers: Investigating Attention-MLP Interactions","url":"https://arxiv.org/abs/2402.15055"},{"title":"Interpreting Context Look-ups in Transformers: Investigating Attention-MLP Interactions","url":"https://arxiv.org/html/2402.15055v2"},{"title":"Sparse attention cuts transformer O(n²) complexity | PatSnap","url":"https://www.patsnap.com/resources/blog/articles/sparse-attention-cuts-transformer-on%C2%B2-complexity/"},{"title":"Approximating Multiple Attention Heads Using an MLP for Efficient Transformer Inference | by Micheal Bee | Medium","url":"https://medium.com/@mbonsign/approximating-multiple-attention-heads-using-an-mlp-for-efficient-transformer-inference-b7105c224817"},{"title":"[2512.05865] Sparse Attention Post-Training for Mechanistic Interpretability","url":"https://arxiv.org/abs/2512.05865"}]
+
+Based on the web search results, here are the key findings related to attention, MLP interaction, sparsity, and transformer inference in 2026:
+
+## Sparse Attention in Transformer Inference
+
+Over 150 papers with "sparse attention" in the title were submitted to arXiv between January 2025 and January 2026, indicating significant research activity in this area.
+
+Attention scales quadratically while other components like MLP and embeddings scale linearly with sequence length, meaning attention dominates at longer contexts—yielding greater benefits from sparsification.
+
+## Practical Implementation
+
+Large-scale empirical analysis of training-free sparse attention methods covering model families like Qwen 2.5, Llama 3.1, and Gemma 3 with sizes between 4B and 72B parameters shows that sparse attention is effective—larger sparse models outperform smaller dense ones at equivalent cost.
+
+A two-level sparsity strategy applies sparsification to both attention and MLP sublayers, which compound-reduces the total FLOPs consumed per inference step.
+
+## Attention-MLP Interactions
+
+While attention mechanisms and multi-layer perceptrons have been studied independently, research investigates how attention heads and next-token neurons interact in LLMs to predict new words.
+
+## Sparsity for Interpretability
+
+Recent work shows it's possible to retain original pretraining loss while reducing attention connectivity to approximately 0.4% of its edges, and task-specific circuits involve far fewer components with up to 100x fewer edges connecting attention heads and MLPs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30323156-6970-445b-b2bf-2bb5609a0df4",
+  "isSidechain": true,
+  "promptId": "adb29825-742d-40c1-aacd-587611a850ec",
+  "agentId": "a52a064463419c03c",
+  "type": "user",
+  "uuid": "4c5a79b1-b3dd-494c-9ae4-9f9b2b7facb2",
+  "sourceToolAssistantUUID": "30323156-6970-445b-b2bf-2bb5609a0df4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-11T23:37:04.675Z_
+
+<details><summary>↩ Tool result · `toolu_012nU7ESKcUencpRivUcobUs`</summary>
+
+```text
+Web search results for query: "compute sparsity profiling reasoning chain of thought 2026"
+
+Links: [{"title":"[2507.22928] How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://arxiv.org/abs/2507.22928"},{"title":"Rethinking Dense Sequential Chains: Reasoning Language Models Can Extract Answers from Sparse, Order-Shuffling Chain-of-Thoughts","url":"https://arxiv.org/html/2605.07307"},{"title":"How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://arxiv.org/html/2507.22928v1"},{"title":"Verifying Chain-of-Thought Reasoning via Its Computational Graph","url":"https://arxiv.org/html/2510.09312v1"},{"title":"Graph-Based Chain-of-Thought Pruning for Reducing Redundant Reflections in Reasoning LLMs | OpenReview","url":"https://openreview.net/forum?id=r1gwpbib03"},{"title":"Reducing Reasoning Costs - The Path of Optimization for Chain of Thought via Sparse Attention Mechanism | OpenReview","url":"https://openreview.net/forum?id=3OMJxXKvmS"},{"title":"Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction | OpenReview","url":"https://openreview.net/forum?id=tyGfwG6xTh"},{"title":"(PDF) How does Chain of Thought Think? Mechanistic Interpretability of Chain-of-Thought Reasoning with Sparse Autoencoding","url":"https://www.researchgate.net/publication/394174965_How_does_Chain_of_Thought_Think_Mechanistic_Interpretability_of_Chain-of-Thought_Reasoning_with_Sparse_Autoencoding"},{"title":"How does Chain of Thought Think? Mechanistic ...","url":"https://arxiv.org/pdf/2507.22928"},{"title":"Reducing Reasoning Costs - The Path of Optimization for Chain of Thought via Sparse Attention Mechanism | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/reducing-reasoning-costs-path-optimization-chain-thought"}]
+
+Based on the web search results, here's what recent research shows about compute sparsity, profiling, and reasoning chain of thought in 2026:
+
+## Key Research Areas
+
+### Sparse Autoencoding for CoT Interpretability
+
+Recent research combines sparse autoencoders with activation patching to extract monosemantic features from language models while they tackle math problems under chain-of-thought prompting. This approach reveals that chain-of-thought prompting leads to significantly higher activation sparsity and feature interpretability scores in larger models, signaling more modular internal computation.
+
+### Reasoning-Aware Compression
+
+Reasoning language models such as DeepSeek-R1 produce long chain-of-thought traces during inference time which make them costly to deploy at scale. A technique called Reasoning-Aware Compression (RAC) reconstructs activations from both the input and the model's on-policy chain-of-thought traces, integrating seamlessly into existing pruning workflows like SparseGPT.
+
+### Sparse Attention Mechanisms
+
+Research proposes using sparse attention mechanisms that focus on only relevant tokens to address chain-of-thought inference cost surges, with results highlighting sparse attention's potential to significantly reduce computational costs.
+
+### Sparsity in Answer Extraction
+
+Research shows that removing all alphabetic characters from a mathematical reasoning chain costs only 1.3 percentage points of accuracy, indicating natural-language prose is not the key element for answer extraction in this setting.
+
+These developments highlight 2026's focus on optimizing computational efficiency in reasoning models through sparsity techniques while maintaining reasoning quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "329cdfe1-afbf-4d49-a75e-a6342a5aa596",
+  "isSidechain": true,
+  "promptId": "adb29825-742d-40c1-aacd-587611a850ec",
+  "agentId": "a52a064463419c03c",
+  "type": "user",
+  "uuid": "bde1383b-e8d3-4838-850d-dde689356cd0",
+  "sourceToolAssistantUUID": "329cdfe1-afbf-4d49-a75e-a6342a5aa596",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-11T23:37:44.666Z_
+
+Here are the consolidated findings from all five searches:
+
+---
+
+**1. EMNLP 2026 ARR Submission Deadline**
+
+**Confirmed: The ARR submission deadline for EMNLP 2026 is May 25, 2026.** This is verified via the official EMNLP 2026 Call for Papers and their X/Twitter announcement. Additional key dates: reviewer registration by May 27, author response July 7-13, meta-review July 30, commitment deadline August 2, acceptance notification August 20. Important caveat: since EMNLP and AACL share the ARR May cycle, authors must declare their target conference at submission time and the choice is binding.
+
+**2. ACL Rolling Review May 2026 Cycle**
+
+The ARR system moved to 10-week review cycles starting May 2025 (5 cycles/year instead of 6). The standard ARR submission deadline follows the 15th-of-the-month pattern, so the May 2026 cycle deadline would be around May 15, 2026. However, search results did not return an explicit, independently confirmed May 2026 ARR deadline page -- only the EMNLP 2026 CFP confirms May 25 as the relevant submission date for that venue. Check [aclrollingreview.org/dates](http://aclrollingreview.org/dates) for the canonical schedule.
+
+**3. Phase-Aware Activation Sparsity + Reasoning (Competing Work)**
+
+No exact match for "phase-aware activation sparsity" in reasoning models was found. The closest hit is:
+- **FASA** (Frequency-Aware Sparse Attention, arxiv 2602.03152, ICLR 2026): exploits RoPE frequency chunks to identify sparse dominant frequency components for efficient KV cache compression (8x compression, 2.6x speedup). This is frequency-aware, not phase-aware in the reasoning-phase sense.
+- **R-Sparse** (Rank-Aware Activation Sparsity, arxiv 2504.19449): rank-aware, not phase-aware.
+- **Sparsing Law** (arxiv 2411.02335): studies universal activation sparsity properties but does not address reasoning phases.
+
+**No directly competing work on phase-aware (thinking vs. answering phase) activation sparsity in reasoning models was found.** This appears to be a novel angle.
+
+**4. Compute Sparsity Profiling During Reasoning**
+
+Several related but distinct lines of work exist:
+- **CoT + Sparse Autoencoders** (arxiv 2507.22928): uses sparse autoencoders for mechanistic interpretability of CoT, finding that CoT prompting yields higher activation sparsity. This is interpretability-focused, not compute optimization.
+- **Reasoning-Aware Compression (RAC)**: reconstructs activations from on-policy CoT traces for pruning (integrates with SparseGPT). This compresses the model given reasoning traces but does not profile sparsity dynamics across reasoning phases.
+- **Sparse Attention for CoT cost reduction** (OpenReview): focuses on token-level sparse attention during reasoning, not layer-level activation sparsity profiling.
+- **Sparse CoT answer extraction** (arxiv 2605.07307): shows removing alphabetic characters from CoT costs only 1.3pp accuracy -- but this is about token-level redundancy, not compute sparsity.
+
+**No work was found that profiles how activation sparsity changes dynamically across reasoning phases (e.g., exploration vs. verification vs. summarization).** This confirms a gap.
+
+**5. Attention-MLP Interaction + Sparsity**
+
+Active area but no work combining it with reasoning-phase analysis:
+- **The Sparse Frontier** (arxiv 2504.17768): large-scale empirical study of sparse attention; notes attention dominates at long contexts, MLP scales linearly.
+- **FAR** (arxiv 2505.21535): replaces attention with function-preserving alternatives, suggesting attention can be approximated by MLPs.
+- **Attention-MLP interaction** (arxiv 2402.15055): studies how attention heads and MLP neurons interact for next-token prediction, but is interpretability-focused (2024 paper).
+- **Circuit sparsity** (OpenAI, arxiv 2512.05865): reduces attention connectivity to ~0.4% of edges while retaining loss; shows task circuits involve far fewer attention-MLP connections.
+
+**No work was found that studies attention-MLP interaction sparsity specifically during reasoning inference or across reasoning phases.** Two-level sparsity (attention + MLP sublayers) has been explored for general inference speedup but not in a phase-aware or reasoning-specific manner.
+
+---
+
+**Bottom line:** The May 25, 2026 EMNLP ARR deadline is confirmed. Across searches 3-5, no directly competing work was found on the specific combination of (a) phase-aware activation sparsity, (b) profiling sparsity dynamics during chain-of-thought reasoning, or (c) attention-MLP interaction sparsity tied to reasoning phases. Related work exists on activation sparsity, sparse attention for CoT, and attention-MLP interactions individually, but the intersection -- dynamically profiling and exploiting sparsity across distinct reasoning phases -- appears to be a novel contribution space.
+
+Sources:
+- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)
+- [EMNLP 2026 Twitter Announcement](https://x.com/emnlpmeeting/status/2029508292637061462)
+- [EMNLP 2026 AACL Shared Cycle Update](https://x.com/emnlpmeeting/status/2047754845919031450)
+- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)
+- [FASA - ICLR 2026 (arxiv 2602.03152)](https://arxiv.org/pdf/2602.03152)
+- [R-Sparse (arxiv 2504.19449)](https://arxiv.org/html/2504.19449v1)
+- [Sparsing Law (arxiv 2411.02335)](https://arxiv.org/abs/2411.02335)
+- [CoT Sparse Autoencoding (arxiv 2507.22928)](https://arxiv.org/abs/2507.22928)
+- [Sparse CoT Answer Extraction (arxiv 2605.07307)](https://arxiv.org/html/2605.07307)
+- [Reducing Reasoning Costs via Sparse Attention](https://openreview.net/forum?id=3OMJxXKvmS)
+- [The Sparse Frontier (arxiv 2504.17768)](https://arxiv.org/html/2504.17768v2)
+- [FAR: Function-preserving Attention Replacement (arxiv 2505.21535)](https://arxiv.org/html/2505.21535v2)
+- [Attention-MLP Interactions (arxiv 2402.15055)](https://arxiv.org/abs/2402.15055)
+- [Circuit Sparsity (arxiv 2512.05865)](https://arxiv.org/abs/2512.05865)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bde1383b-e8d3-4838-850d-dde689356cd0",
+  "isSidechain": true,
+  "agentId": "a52a064463419c03c",
+  "requestId": "req_011CawfGj6snY9XhM97rTuvw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c11be070-d024-4cc5-a70d-069dc2711a5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "aebee51c-c868-4321-83fa-0353616d45fb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsAgisD5Y61xgPEfXnkF9p",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 912,
+      "cache_creation_input_tokens": 3743,
+      "cache_read_input_tokens": 10372,
+      "output_tokens": 1766,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3743
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 912,
+          "output_tokens": 1766,
+          "cache_read_input_tokens": 10372,
+          "cache_creation_input_tokens": 3743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3743,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,5949 @@
+# Research conversation: <project_context> # 项目: entrainment_gated_ft ## 运行环境 - 服务器名: westb-48145 - SSH 账户: root（调用 ssh_execute / submit_training
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 88
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-1/4c20f481-8d13-42ad-8e55-2436ee5f0e6a.jsonl`
+- **Structured JSON:** [`e920227eb83ab716cba5.json`](../../sessions/e9/e920227eb83ab716cba5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-23T19:16:38.647Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-23T19:16:38.647Z",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "content": "&lt;project_context>\n# 项目: entrainment_gated_ft\n\n## 运行环境\n- 服务器名: westb-48145\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh westb-48145  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/entrainment_gated_ft\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: GPU 白名单: 仅允许使用 cuda:0 (westb-48145)（原因：项目仅分配 1 张 RTX PRO 6000 (cuda:0)，防止误用其他 GPU）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n论文 ARR 提交前数据正确性核查——Appendix 部分。\n\n## 任务\n系统性核查论文 Appendix 中的所有数值，验证准确性、可追溯性、与主文的内部一致性。\n\n## 文件位置\n- 论文 appendix: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/appendix.tex\n- 论文主文（用于交叉验证）: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/ 下的 main.tex, experiments.tex, introduction.tex 等\n- 本地 artifacts: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/\n- 服务器源数据: westb-48145:/root/entrainment_gated_ft/results/\n\n## 核查步骤\n\n### Step 1: 读取 appendix.tex 全文\n读取完整的 appendix.tex，提取所有数值型 claim。Appendix 通常包含：\n- 补充表格（Table 3-30+）：各架构在各 benchmark 的详细 accuracy/perplexity\n- 统计检验详细结果（Spearman、permutation test、bootstrap CI）\n- Confidence margin 详细数据\n- Routing 实验补充数据\n- Pythia seed calibration 数据\n- 5-arch/4-benchmark 扩展详细数据\n- Shapiro-Wilk 检验数据\n- AI disclosure\n\n### Step 2: Appendix 内部一致性\n- Appendix 中同一数字在不同表/段落出现时是否一致\n- 四舍五入是否统一\n\n### Step 3: Appendix ↔ 主文一致性\n重点检查：\n- 主文 Table 1/2 引用的数字 → Appendix 详细表中对应值是否一致\n- 主文 \"see Appendix X\" 引用 → Appendix X 中的数据是否支持主文 claim\n- Abstract 中的数字 → Appendix 中是否有更详细的分解且不矛盾\n\n### Step 4: 可追溯性\n对 Appendix 中的关键表格数据，SSH 到 westb-48145 验证源数据：\n\n重点核查的 Appendix 表格：\n1. **Table 30 (DeltaNet 数据)** — 之前修正过，确认修正值正确\n   ```\n   # 在服务器上找 DeltaNet 相关结果\n   find /root/entrainment_gated_ft/results/ -name \"*deltanet*\" -o -name \"*DeltaNet*\" | head -10\n   ```\n\n2. **5-arch Jaccard 详细表** — 10 pairs × 4 benchmarks 的 J_helped/J_hurt/z 值\n   ```\n   cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json | python3 -m json.tool | head -200\n   ```\n\n3. **Pythia seed calibration 表** — within-seed vs cross-arch Jaccard\n   ```\n   find /root/entrainment_gated_ft/results/ -name \"*pythia*\" -o -name \"*seed*\" | head -10\n   ```\n\n4. **340M multi-benchmark α 值**\n   ```\n   find /root/entrainment_gated_ft/results/ -name \"*340m*\" -o -name \"*multi*bench*\" | head -10\n   ```\n\n5. **Confidence margin Cohen's d 和 AUC 详细值**\n   ```\n   find /root/entrainment_gated_ft/results/ -name \"*confidence*\" -o -name \"*margin*\" -o -name \"*cohen*\" | head -10\n   ```\n\n6. **Shapiro-Wilk 检验数据** — W 统计量和 p-value\n   ```\n   find /root/entrainment_gated_ft/results/ -name \"*shapiro*\" -o -name \"*normality*\" | head -10\n   ```\n\n### Step 5: Figure 数据追溯\nAppendix 中如有 Figure，检查其数据来源。\n```\nfind /root/entrainment_gated_ft/results/figures/ -name \"*.pdf\" -o -name \"*.png\" | head -20\nfind /root/entrainment_gated_ft/ -name \"gen_*.py\" -o -name \"plot_*.py\" | head -20\n```\n\n## 输出格式\n```\n## 数据自查报告 — Appendix\n\n### ✅ 已核对一致\n- [数字] ← [来源文件]\n\n### ⚠️ 发现的不一致\n- [问题] → [旧值/新值]\n\n### ❌ 待人工确认\n- [无法追溯的数字]\n```\n\n**重要：发现不一致时只记录，不要修改论文文件。**"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-23T19:16:38.651Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-23T19:16:38.651Z",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+## Round 1
+
+86 recorded events
+
+### User
+
+_source line 3 · 2026-05-23T19:16:38.685Z_
+
+&lt;project_context>
+# 项目: entrainment_gated_ft
+
+## 运行环境
+- 服务器名: westb-48145
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh westb-48145  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/entrainment_gated_ft
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: GPU 白名单: 仅允许使用 cuda:0 (westb-48145)（原因：项目仅分配 1 张 RTX PRO 6000 (cuda:0)，防止误用其他 GPU）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+论文 ARR 提交前数据正确性核查——Appendix 部分。
+
+## 任务
+系统性核查论文 Appendix 中的所有数值，验证准确性、可追溯性、与主文的内部一致性。
+
+## 文件位置
+- 论文 appendix: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/appendix.tex
+- 论文主文（用于交叉验证）: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/ 下的 main.tex, experiments.tex, introduction.tex 等
+- 本地 artifacts: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/
+- 服务器源数据: westb-48145:/root/entrainment_gated_ft/results/
+
+## 核查步骤
+
+### Step 1: 读取 appendix.tex 全文
+读取完整的 appendix.tex，提取所有数值型 claim。Appendix 通常包含：
+- 补充表格（Table 3-30+）：各架构在各 benchmark 的详细 accuracy/perplexity
+- 统计检验详细结果（Spearman、permutation test、bootstrap CI）
+- Confidence margin 详细数据
+- Routing 实验补充数据
+- Pythia seed calibration 数据
+- 5-arch/4-benchmark 扩展详细数据
+- Shapiro-Wilk 检验数据
+- AI disclosure
+
+### Step 2: Appendix 内部一致性
+- Appendix 中同一数字在不同表/段落出现时是否一致
+- 四舍五入是否统一
+
+### Step 3: Appendix ↔ 主文一致性
+重点检查：
+- 主文 Table 1/2 引用的数字 → Appendix 详细表中对应值是否一致
+- 主文 "see Appendix X" 引用 → Appendix X 中的数据是否支持主文 claim
+- Abstract 中的数字 → Appendix 中是否有更详细的分解且不矛盾
+
+### Step 4: 可追溯性
+对 Appendix 中的关键表格数据，SSH 到 westb-48145 验证源数据：
+
+重点核查的 Appendix 表格：
+1. **Table 30 (DeltaNet 数据)** — 之前修正过，确认修正值正确
+   ```
+   # 在服务器上找 DeltaNet 相关结果
+   find /root/entrainment_gated_ft/results/ -name "*deltanet*" -o -name "*DeltaNet*" | head -10
+   ```
+
+2. **5-arch Jaccard 详细表** — 10 pairs × 4 benchmarks 的 J_helped/J_hurt/z 值
+   ```
+   cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json | python3 -m json.tool | head -200
+   ```
+
+3. **Pythia seed calibration 表** — within-seed vs cross-arch Jaccard
+   ```
+   find /root/entrainment_gated_ft/results/ -name "*pythia*" -o -name "*seed*" | head -10
+   ```
+
+4. **340M multi-benchmark α 值**
+   ```
+   find /root/entrainment_gated_ft/results/ -name "*340m*" -o -name "*multi*bench*" | head -10
+   ```
+
+5. **Confidence margin Cohen's d 和 AUC 详细值**
+   ```
+   find /root/entrainment_gated_ft/results/ -name "*confidence*" -o -name "*margin*" -o -name "*cohen*" | head -10
+   ```
+
+6. **Shapiro-Wilk 检验数据** — W 统计量和 p-value
+   ```
+   find /root/entrainment_gated_ft/results/ -name "*shapiro*" -o -name "*normality*" | head -10
+   ```
+
+### Step 5: Figure 数据追溯
+Appendix 中如有 Figure，检查其数据来源。
+```
+find /root/entrainment_gated_ft/results/figures/ -name "*.pdf" -o -name "*.png" | head -20
+find /root/entrainment_gated_ft/ -name "gen_*.py" -o -name "plot_*.py" | head -20
+```
+
+## 输出格式
+```
+## 数据自查报告 — Appendix
+
+### ✅ 已核对一致
+- [数字] ← [来源文件]
+
+### ⚠️ 发现的不一致
+- [问题] → [旧值/新值]
+
+### ❌ 待人工确认
+- [无法追溯的数字]
+```
+
+**重要：发现不一致时只记录，不要修改论文文件。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "e8249c02-b5e1-45de-8cae-1c4ed9134de8",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-23T19:16:38.684Z_
+
+```json
+{
+  "parentUuid": "e8249c02-b5e1-45de-8cae-1c4ed9134de8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3b41d2d9-00a3-48e9-8eb0-bc1147d679d4",
+  "timestamp": "2026-05-23T19:16:38.684Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-23T19:16:38.684Z_
+
+```json
+{
+  "parentUuid": "3b41d2d9-00a3-48e9-8eb0-bc1147d679d4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c777fa56-e4d4-4474-8bfb-38f8eb44b3ec",
+  "timestamp": "2026-05-23T19:16:38.684Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-23T19:16:38.684Z_
+
+```json
+{
+  "parentUuid": "c777fa56-e4d4-4474-8bfb-38f8eb44b3ec",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "024dd457-08de-4f89-b6a6-fa9467dfc21e",
+  "timestamp": "2026-05-23T19:16:38.684Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-23T19:16:42.170Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to systematically verify all numerical claims in the appendix of their paper, checking internal consistency, cross-referencing with the main text, and tracing data back to source files on the server. Let me start by reading the appendix and main paper files, then SSH to verify source data.
+
+Let me begin by reading the appendix and key main text files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "024dd457-08de-4f89-b6a6-fa9467dfc21e",
+  "isSidechain": false,
+  "requestId": "req_011CbL37rqrjUS6fejryfZai",
+  "type": "assistant",
+  "uuid": "5cd14423-1280-4b0c-98ff-46d483753eae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YH3d65BhanWxmLtHegXVmw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12873,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-23T19:16:43.285Z_
+
+开始核查 Appendix 数据正确性。先并行读取 appendix 和主文关键文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cd14423-1280-4b0c-98ff-46d483753eae",
+  "isSidechain": false,
+  "requestId": "req_011CbL37rqrjUS6fejryfZai",
+  "type": "assistant",
+  "uuid": "b640997d-c6ec-4f4e-97be-22d177391240",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YH3d65BhanWxmLtHegXVmw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12873,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-23T19:16:45.315Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Pk22AxfzZRNToXis2BHfgP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b640997d-c6ec-4f4e-97be-22d177391240",
+  "isSidechain": false,
+  "requestId": "req_011CbL37rqrjUS6fejryfZai",
+  "type": "assistant",
+  "uuid": "2387f821-1c68-48e2-920f-b880b2b9eaae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YH3d65BhanWxmLtHegXVmw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12873,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T19:16:46.738Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01G9VqRYmvF3qCmPU8puNVSU`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86680036-9072-4e17-9ea2-57a33f92ab80",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "8b10be0c-412d-4350-a542-c0b63e098579",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft.",
+  "sourceToolAssistantUUID": "86680036-9072-4e17-9ea2-57a33f92ab80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T19:16:45.331Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Pk22AxfzZRNToXis2BHfgP`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2387f821-1c68-48e2-920f-b880b2b9eaae",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "a903f82a-182d-4875-8bbc-80535f1f96ba",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft.",
+  "sourceToolAssistantUUID": "2387f821-1c68-48e2-920f-b880b2b9eaae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T19:16:45.879Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014XQSKN4RJAqUVz7w7Atc3G`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a903f82a-182d-4875-8bbc-80535f1f96ba",
+  "isSidechain": false,
+  "requestId": "req_011CbL37rqrjUS6fejryfZai",
+  "type": "assistant",
+  "uuid": "22af94de-9762-45ea-90ef-1e0d88cffeb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YH3d65BhanWxmLtHegXVmw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12873,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T19:16:45.886Z_
+
+<details><summary>↩ Tool result · `toolu_014XQSKN4RJAqUVz7w7Atc3G`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{booktabs}
+12	\usepackage{amsmath}
+13	\usepackage{amssymb}
+14	\usepackage{multirow}
+15	\usepackage{xcolor}
+16	\usepackage{caption}
+17	
+18	\title{Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures}
+19	
+20	\author{Anonymous}
+21	
+22	\begin{document}
+23	\maketitle
+24	
+25	\begin{abstract}
+26	Practitioners select among hybrid linear recurrent architectures using aggregate benchmarks, but these scores can mask which specific examples each architecture gets right. Across three controlled designs, adding attention affects substantially different examples per architecture (Jaccard $\approx$ 0.10, approximately twice the independence baseline); validation across five architectures and ten pairwise comparisons confirms this on all four benchmarks (all $p < .01$). Using the model zoo of \citet{wang2025hybrid} (three architectures, five attention ratios, two scales), we decompose per-example effects and find that this predictive multiplicity \citep{marx2020predictive} depends on task type ($\alpha = 0.14$--$0.30$) more than attention dose. Aggregate trends do not reach statistical significance ($n = 5$; Bonferroni-adjusted $p = .170$), yet per-example overlap saturates at 4\% attention and remains flat across all four benchmarks. Majority vote fails to exploit this complementarity, confirming that configurations interchangeable by aggregate metrics carry hidden per-example consequences. Confidence-informed routing extracts 36\% of oracle complementarity on LAMBADA ($+5.3$\,pp vs.\ majority vote), suggesting these differences are partially actionable.
+27	\end{abstract}
+28	
+29	\input{sections/introduction}
+30	
+31	\input{sections/related_work}
+32	
+33	\input{sections/method}
+34	
+35	\input{sections/experiments}
+36	
+37	\input{sections/conclusion}
+38	
+39	\section*{Limitations}
+40	
+41	\paragraph{Single training runs.} Each configuration corresponds to a single training run, so we cannot fully disentangle architectural from seed-specific effects. The $3\times$ within- vs.\ cross-architecture Jaccard gap and Pythia 70M seed calibration (within-seed $J$ is 2.7--4.3$\times$ higher; Appendix~\ref{app:seed_calibration}) provide proxy evidence, and the consistency of significant Jaccard across all 40 architecture--benchmark combinations (all $p < .01$) would be unlikely under seed noise alone. With $n = 5$ attention ratios, the minimum achievable $p$ is 0.017, so LAMBADA's Bonferroni-adjusted $p = .170$ does not reach conventional significance.
+42	
+43	\paragraph{Coverage.} We examine three primary architectures (plus two extended) from one model zoo, four main benchmarks, and two scale points. Generalization to Mamba, RWKV, other hybrid families, and generation tasks remains open. Results at larger scales (e.g., 7B+) may differ, particularly as attention mechanisms become more expressive with increased capacity.
+44	
+45	\paragraph{Pre-training only.} All evaluations use pretrained checkpoints without fine-tuning; per-example effects may not persist after task-specific adaptation.
+46	
+47	\section*{Code and Data Availability}
+48	
+49	All models are from the publicly available model zoo of \citet{wang2025hybrid}. Our analysis code and per-example evaluation outputs will be released upon publication.
+50	
+51	\bibliography{references}
+52	
+53	\appendix
+54	\input{sections/appendix}
+55	
+56	\end{document}
+57	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "22af94de-9762-45ea-90ef-1e0d88cffeb0",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "21016830-fee4-4a37-a0f4-cd6fa6e4fc65",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{caption}\n\n\\title{Per-Example Predictive Multiplicity in Hybrid Linear Recurrent Architectures}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nPractitioners select among hybrid linear recurrent architectures using aggregate benchmarks, but these scores can mask which specific examples each architecture gets right. Across three controlled designs, adding attention affects substantially different examples per architecture (Jaccard $\\approx$ 0.10, approximately twice the independence baseline); validation across five architectures and ten pairwise comparisons confirms this on all four benchmarks (all $p < .01$). Using the model zoo of \\citet{wang2025hybrid} (three architectures, five attention ratios, two scales), we decompose per-example effects and find that this predictive multiplicity \\citep{marx2020predictive} depends on task type ($\\alpha = 0.14$--$0.30$) more than attention dose. Aggregate trends do not reach statistical significance ($n = 5$; Bonferroni-adjusted $p = .170$), yet per-example overlap saturates at 4\\% attention and remains flat across all four benchmarks. Majority vote fails to exploit this complementarity, confirming that configurations interchangeable by aggregate metrics carry hidden per-example consequences. Confidence-informed routing extracts 36\\% of oracle complementarity on LAMBADA ($+5.3$\\,pp vs.\\ majority vote), suggesting these differences are partially actionable.\n\\end{abstract}\n\n\\input{sections/introduction}\n\n\\input{sections/related_work}\n\n\\input{sections/method}\n\n\\input{sections/experiments}\n\n\\input{sections/conclusion}\n\n\\section*{Limitations}\n\n\\paragraph{Single training runs.} Each configuration corresponds to a single training run, so we cannot fully disentangle architectural from seed-specific effects. The $3\\times$ within- vs.\\ cross-architecture Jaccard gap and Pythia 70M seed calibration (within-seed $J$ is 2.7--4.3$\\times$ higher; Appendix~\\ref{app:seed_calibration}) provide proxy evidence, and the consistency of significant Jaccard across all 40 architecture--benchmark combinations (all $p < .01$) would be unlikely under seed noise alone. With $n = 5$ attention ratios, the minimum achievable $p$ is 0.017, so LAMBADA's Bonferroni-adjusted $p = .170$ does not reach conventional significance.\n\n\\paragraph{Coverage.} We examine three primary architectures (plus two extended) from one model zoo, four main benchmarks, and two scale points. Generalization to Mamba, RWKV, other hybrid families, and generation tasks remains open. Results at larger scales (e.g., 7B+) may differ, particularly as attention mechanisms become more expressive with increased capacity.\n\n\\paragraph{Pre-training only.} All evaluations use pretrained checkpoints without fine-tuning; per-example effects may not persist after task-specific adaptation.\n\n\\section*{Code and Data Availability}\n\nAll models are from the publicly available model zoo of \\citet{wang2025hybrid}. Our analysis code and per-example evaluation outputs will be released upon publication.\n\n\\bibliography{references}\n\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}\n",
+      "numLines": 57,
+      "startLine": 1,
+      "totalLines": 57
+    }
+  },
+  "sourceToolAssistantUUID": "22af94de-9762-45ea-90ef-1e0d88cffeb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T19:16:46.372Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01R3s24cHRUcibmGoaJUCg3x`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21016830-fee4-4a37-a0f4-cd6fa6e4fc65",
+  "isSidechain": false,
+  "requestId": "req_011CbL37rqrjUS6fejryfZai",
+  "type": "assistant",
+  "uuid": "ddbd7f63-297a-4c7c-a37f-0dcb313be716",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YH3d65BhanWxmLtHegXVmw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12873,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T19:16:46.381Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01R3s24cHRUcibmGoaJUCg3x`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddbd7f63-297a-4c7c-a37f-0dcb313be716",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "9433552a-f574-4762-b51d-8127b4a90fad",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft.",
+  "sourceToolAssistantUUID": "ddbd7f63-297a-4c7c-a37f-0dcb313be716",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T19:16:46.735Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01G9VqRYmvF3qCmPU8puNVSU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9433552a-f574-4762-b51d-8127b4a90fad",
+  "isSidechain": false,
+  "requestId": "req_011CbL37rqrjUS6fejryfZai",
+  "type": "assistant",
+  "uuid": "86680036-9072-4e17-9ea2-57a33f92ab80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YH3d65BhanWxmLtHegXVmw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12873,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 440,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12873,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 440,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12873,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12873
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8b10be0c-412d-4350-a542-c0b63e098579",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-23T19:16:49.885Z_
+
+Appendix 在 `sections/appendix.tex`，主文各节也在 `sections/` 下。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b10be0c-412d-4350-a542-c0b63e098579",
+  "isSidechain": false,
+  "requestId": "req_011CbL38TRUUEyqt7K2KvHKJ",
+  "type": "assistant",
+  "uuid": "7a50da60-3d76-43b1-8368-edcd5912f65b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XAk7T9WJkkueSZf2YrZvL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1713,
+      "cache_read_input_tokens": 24714,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1713,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 24714,
+          "cache_creation_input_tokens": 1713,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1713
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T19:16:50.504Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01VCvdBKiyWX8UVBDkQnJNN6`</summary>
+
+```json
+{
+  "pattern": "docs/paper/sections/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a50da60-3d76-43b1-8368-edcd5912f65b",
+  "isSidechain": false,
+  "requestId": "req_011CbL38TRUUEyqt7K2KvHKJ",
+  "type": "assistant",
+  "uuid": "ba46cc7f-aa36-4380-a4f6-8f259aae695c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016XAk7T9WJkkueSZf2YrZvL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1713,
+      "cache_read_input_tokens": 24714,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1713,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 24714,
+          "cache_creation_input_tokens": 1713,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1713
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T19:16:50.532Z_
+
+<details><summary>↩ Tool result · `toolu_01VCvdBKiyWX8UVBDkQnJNN6`</summary>
+
+```text
+docs/paper/sections/method.tex
+docs/paper/sections/related_work.tex
+docs/paper/sections/introduction.tex
+docs/paper/sections/experiments.tex
+docs/paper/sections/appendix.tex
+docs/paper/sections/conclusion.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba46cc7f-aa36-4380-a4f6-8f259aae695c",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "177aeb6e-8977-4cd3-9bde-a38807e59c3c",
+  "toolUseResult": {
+    "filenames": [
+      "docs/paper/sections/method.tex",
+      "docs/paper/sections/related_work.tex",
+      "docs/paper/sections/introduction.tex",
+      "docs/paper/sections/experiments.tex",
+      "docs/paper/sections/appendix.tex",
+      "docs/paper/sections/conclusion.tex"
+    ],
+    "durationMs": 23,
+    "numFiles": 6,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "ba46cc7f-aa36-4380-a4f6-8f259aae695c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T19:16:52.568Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LUKW9xDpZZMdz7p3AfEzF2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "177aeb6e-8977-4cd3-9bde-a38807e59c3c",
+  "isSidechain": false,
+  "requestId": "req_011CbL38jMgPpHRZALKxotVp",
+  "type": "assistant",
+  "uuid": "b6c32f6f-0490-430d-b4db-b2339c60bded",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y358bsD9G83YBVhTkmjYK1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 208,
+      "cache_read_input_tokens": 26427,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 26427,
+          "cache_creation_input_tokens": 208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T19:16:52.843Z_
+
+<details><summary>↩ Tool result · `toolu_01LUKW9xDpZZMdz7p3AfEzF2`</summary>
+
+```text
+1	% Appendix sections for the paper.
+2	
+3	\section{Confirmatory and Exploratory Analyses}\label{app:benchmark_details}
+4	
+5	The task taxonomy used in \S\ref{ssec:task_taxonomy} was defined prior to running any convergence analyses. Each benchmark was assigned to exactly one of four categories based on the primary cognitive demand of the task:
+6	
+7	\begin{itemize}
+8	    \item \textbf{Retrieval}: tasks requiring prediction from long-range context without multi-step reasoning (LAMBADA).
+9	    \item \textbf{Comprehension}: reading comprehension with explicit passage support (BoolQ).
+10	    \item \textbf{Reasoning}: tasks requiring commonsense inference or multi-step reasoning (HellaSwag, ARC-Challenge, WinoGrande, PIQA).
+11	    \item \textbf{Mixed}: tasks combining retrieval, comprehension, and reasoning demands (ARC-Easy, MMLU, SciQ, XStoryCloze).
+12	\end{itemize}
+13	
+14	\paragraph{Confirmatory benchmark set.} Six benchmarks were designated as confirmatory for Bonferroni correction: LAMBADA, HellaSwag, ARC-Challenge, WinoGrande, ARC-Easy, and MMLU. These were selected as representative of retrieval, reasoning, and mixed categories before any convergence analysis was performed. The taxonomy and benchmark selection were fixed before analysis as an informal pre-analysis plan; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The main text applies the more conservative all-10-benchmark correction (Bonferroni-adjusted $p = .017 \times 10 = .170$). \textbf{Sensitivity:} correcting across only the six confirmatory benchmarks yields adjusted $p = .017 \times 6 = .100$, still above conventional significance.
+15	
+16	\paragraph{One-sided test.} If one adopts the prior that attention should reduce cross-architecture variance, the one-sided permutation $p$-value for LAMBADA is $1/120 \approx 0.0083$. Under 10-benchmark Bonferroni correction, this yields an adjusted $p = 0.083$, above the conventional threshold. We report two-sided tests throughout the main text as the more conservative choice; the one-sided result is noted here for completeness.
+17	
+18	\paragraph{Exploratory benchmarks.} Four additional benchmarks (BoolQ, PIQA, SciQ, XStoryCloze) were added as exploratory tests. All benchmarks share the same 10-benchmark correction (adjusted threshold $\alpha / 10 = 0.005$) and the four exploratory benchmarks are labeled as such throughout the paper. The all-10 Bonferroni correction reported in the main text is the only correction used for inference; the exploratory 6-benchmark subset correction in this appendix is provided for transparency.
+19	
+20	\paragraph{Supplementary benchmark.} COPA ($n = 100$) is treated as supplementary due to its small sample size. It is excluded from both correction families and reported separately with the $\dagger$ annotation in Table~\ref{tab:convergence}.
+21	
+22	\section{Convergence Detail}\label{app:convergence_detail}
+23	
+24	% Figure moved to main text (\S\ref{ssec:decoupling}).
+25	
+26	Beyond LAMBADA ($\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\rho = -0.67$ with a large $\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.
+27	
+28	Several benchmarks show positive or near-zero $\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.4$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \citep{arora2024zoology,arora2024based} rather than multi-step inference.
+29	
+30	\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a $5\times$ $\sigma$ compression ($0.024 \to 0.005$). However, three observations argue against a purely statistical artifact. First, the $5\times$ reduction in cross-architecture $\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\S\ref{ssec:per_example}) reveals architecture-specific patterns: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.
+31	
+32	\section{Scale-Dependent Convergence}\label{app:scale_convergence}
+33	
+34	At 1.3B parameters, LAMBADA convergence is monotonic: $\sigma$ decreases at every attention level from 0\% through 25\% ($\rho = -1.0$). At 340M, convergence is partial: $\sigma$ reaches a maximum reduction of 56\% at intermediate attention ratios but rebounds at h3-1, yielding a net endpoint reduction of 36\%. The trajectory is non-monotonic, and the highest-attention model does not achieve the lowest cross-architecture variance. One possible interpretation is that at smaller scale, the capacity overhead of attention layers creates interference that offsets the retrieval benefit.
+35	
+36	This contrast is a preliminary observation from two data points (not a scaling law). Despite the aggregate divergence at 340M, mean pairwise Jaccard is similar at both scales ($J \approx 0.09$), extending the decoupling observation (\S\ref{ssec:decoupling}) to the scale dimension.
+37	
+38	\section{Sensitivity Analyses}\label{app:sensitivity}
+39	
+40	\subsection{Bootstrap Confidence Intervals}
+41	
+42	We construct 95\% bootstrap confidence intervals for the Spearman $\rho$ between attention ratio and cross-architecture $\sigma$ on LAMBADA using 10{,}000 resamples at the architecture level ($n = 3$ architectures). Of these resamples, 11.25\% are degenerate: they consist of same-architecture triplicates, which produce a constant $\sigma$ vector and therefore an undefined $\rho$ (division by zero in the rank correlation formula). These are excluded from the confidence interval computation because they carry no information about the correlation, not because they represent $\rho = 0$.
+43	
+44	The BCa (bias-corrected and accelerated) correction degenerates at the $\rho = -1.0$ boundary because the acceleration parameter requires finite jackknife variance, which collapses when the point estimate is at the distributional limit. We therefore report percentile confidence intervals instead. From the 88.75\% informative resamples, the 95\% percentile CI is $[-1.0,\,-0.7]$, which excludes zero.
+45	
+46	\subsection{GDN Exclusion Sensitivity}
+47	
+48	The GDN h3-1 configuration uses 16 attention heads rather than 32 (see Appendix~\ref{app:gdn_confound}). To assess the influence of this confound, we recompute all convergence correlations after excluding GDN, leaving two architectures (RetNet, HGRN2) at five attention ratios.
+49	
+50	Table~\ref{tab:gdn_sensitivity} reports the results for benchmarks where the correlation changes by $|\Delta\rho| \geq 0.3$. LAMBADA weakens from $\rho = -1.0$ to $\rho = -0.7$ ($p = .233$), consistent with GDN contributing to the convergence signal. MMLU reverses from $\rho = -0.7$ to $\rho = +0.6$, confirming that the moderate negative correlation on MMLU depends on GDN's inclusion and should not be interpreted as evidence of convergence.
+51	
+52	\begin{table}[ht]
+53	\centering
+54	\small
+55	\caption{Effect of GDN exclusion on Spearman $\rho$ (attention ratio vs.\ cross-architecture $\sigma$) at 1.3B scale. Only benchmarks with $|\Delta\rho| \geq 0.3$ shown.}
+56	\label{tab:gdn_sensitivity}
+57	\begin{tabular}{lrrrr}
+58	\toprule
+59	Benchmark & $\rho_{\text{all}}$ & $\rho_{\text{no-GDN}}$ & $\Delta\rho$ & $p_{\text{no-GDN}}$ \\
+60	\midrule
+61	LAMBADA & $-1.0$ & $-0.7$ & $+0.3$ & .233 \\
+62	MMLU & $-0.7$ & $+0.6$ & $+1.3$ & .350 \\
+63	\bottomrule
+64	\end{tabular}
+65	\end{table}
+66	
+67	\section{GDN Attention Head Confound}\label{app:gdn_confound}
+68	
+69	In the \citet{wang2025hybrid} model zoo, the GDN h3-1 configuration at 1.3B scale uses 16 attention heads per attention layer, while all other hybrid configurations (across GDN, RetNet, and HGRN2) use 32 attention heads. This is a design choice in the original model zoo, not an error. The reduced head count changes the per-head dimension and may affect the attention capacity of GDN h3-1 relative to other configurations.
+70	
+71	This confound is relevant because the convergence analysis measures cross-architecture $\sigma$ at each attention ratio. At the h3-1 ratio (25\% attention), GDN's attention layers have a different internal structure than those of RetNet and HGRN2, which could contribute to variance reduction (or inflation) for reasons unrelated to the recurrent--attention interaction under study.
+72	
+73	The sensitivity analysis in Appendix~\ref{app:sensitivity} shows that removing GDN weakens the LAMBADA convergence correlation from $\rho = -1.0$ to $\rho = -0.7$. This weakening is partially attributable to the reduced sample size ($n = 2$ architectures) and partially to the confound itself. We cannot separate these two effects with the available data.
+74	
+75	\section{Attention Weight Analysis}\label{app:attention_patterns}
+76	
+77	We extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.
+78	
+79	\subsection{Cross-Architecture Cosine Similarity}
+80	
+81	Table~\ref{tab:attn_cosine} reports cosine similarity between mean attention distributions at selected layers and averaged across all layers.
+82	
+83	\begin{table}[ht]
+84	\centering
+85	\caption{Cosine similarity between mean attention weight distributions of architecture pairs at selected layers (1.3B h3-1 models on LAMBADA).}
+86	\label{tab:attn_cosine}
+87	\resizebox{\columnwidth}{!}{%
+88	\begin{tabular}{lrrr}
+89	\toprule
+90	Layer & GDN--RetNet & GDN--HGRN2 & HGRN2--RetNet \\
+91	\midrule
+92	L2 (early) & 0.995 & 0.244 & 0.196 \\
+93	L20 (deep) & 0.986 & 0.942 & 0.943 \\
+94	\midrule
+95	Mean (all layers) & 0.905 & 0.766 & 0.698 \\
+96	\bottomrule
+97	\end{tabular}%
+98	}
+99	\end{table}
+100	
+101	At layer 2, GDN and RetNet produce nearly identical attention distributions (cosine 0.995), while HGRN2 diverges from both (cosine $< 0.25$). By layer 20, all three architectures converge to similar attention patterns (cosine $> 0.94$). The layer-wise trajectory suggests that early-layer attention patterns are shaped by the preceding recurrent layers (which differ across architectures), while deeper layers converge regardless of the recurrent substrate.
+102	
+103	\subsection{Helped vs.\ Hurt Attention Entropy}
+104	
+105	To test whether the attention mechanism itself differs between helped and hurt examples, we compute the Shannon entropy of the attention distribution for each example at each attention layer and compare the mean entropy of helped examples against hurt examples within each architecture.
+106	
+107	\begin{table}[ht]
+108	\centering
+109	\caption{Mean attention entropy difference (helped $-$ hurt) averaged across attention layers (1.3B h3-1 models on LAMBADA). Values near zero indicate that the attention mechanism does not discriminate between helped and hurt examples.}
+110	\label{tab:attn_entropy}
+111	\begin{tabular}{lr}
+112	\toprule
+113	Architecture & $\Delta H$ (helped $-$ hurt) \\
+114	\midrule
+115	GDN & $-0.0009$ \\
+116	RetNet & $+0.0179$ \\
+117	HGRN2 & $+0.0020$ \\
+118	\bottomrule
+119	\end{tabular}
+120	\end{table}
+121	
+122	GDN and HGRN2 show negligible entropy differences ($|\Delta H| \leq 0.002$). RetNet's $\Delta H = +0.018$ is small in absolute terms but slightly larger; helped examples receive marginally more diffuse attention in RetNet. Across all three architectures, the differences are insufficient to explain the per-example divergence, consistent with per-example effects not being explained by attention weight patterns and likely originating in the recurrent layers.
+123	
+124	\subsection{Last-5 Attention Mass}
+125	
+126	We also measure the fraction of attention mass allocated to the last five tokens, which captures whether the attention mechanism concentrates differently on recent context for helped vs.\ hurt examples.
+127	
+128	\begin{table}[ht]
+129	\centering
+130	\caption{Mean attention mass on last-5 tokens for helped and hurt examples, averaged across attention layers (1.3B h3-1 models on LAMBADA).}
+131	\label{tab:attn_last5}
+132	\begin{tabular}{lrr}
+133	\toprule
+134	Architecture & Helped & Hurt \\
+135	\midrule
+136	GDN & 0.0834 & 0.0831 \\
+137	RetNet & 0.1578 & 0.1591 \\
+138	HGRN2 & 0.0453 & 0.0467 \\
+139	\bottomrule
+140	\end{tabular}
+141	\end{table}
+142	
+143	No architecture shows a meaningful difference in last-5 attention mass between helped and hurt examples (Table~\ref{tab:attn_last5}). This further supports the conclusion that the per-example divergence is not driven by differential attention allocation.
+144	
+145	\section{Cross-Scale Per-Example Comparisons}\label{app:cross_scale}
+146	
+147	\subsection{Within-Scale Pairwise Jaccard}
+148	
+149	Table~\ref{tab:within_scale_jaccard} reports the within-scale pairwise Jaccard similarity between architectures' helped and hurt sets at both scales. Mean values are similar across scales (340M: 0.094/0.090; 1.3B: 0.100/0.093), confirming that per-example architecture specificity is approximately scale-robust.
+150	
+151	\begin{table}[ht]
+152	\centering
+153	\small
+154	\caption{Within-scale pairwise Jaccard similarity of per-example effects (pure $\to$ h3-1) on LAMBADA. Each row compares the helped (or hurt) sets of two architectures at the same scale.}
+155	\label{tab:within_scale_jaccard}
+156	\begin{tabular}{llcc}
+157	\toprule
+158	Scale & Pair & $J_{\text{helped}}$ & $J_{\text{hurt}}$ \\
+159	\midrule
+160	\multirow{4}{*}{340M} & GDN--RetNet & 0.092 & 0.109 \\
+161	& GDN--HGRN2 & 0.084 & 0.075 \\
+162	& RetNet--HGRN2 & 0.108 & 0.085 \\
+163	& \textit{Mean} & \textit{0.094} & \textit{0.090} \\
+164	\midrule
+165	\multirow{4}{*}{1.3B} & GDN--RetNet & 0.092 & 0.103 \\
+166	& GDN--HGRN2 & 0.100 & 0.089 \\
+167	& RetNet--HGRN2 & 0.108 & 0.087 \\
+168	& \textit{Mean} & \textit{0.100} & \textit{0.093} \\
+169	\bottomrule
+170	\end{tabular}
+171	\end{table}
+172	
+173	\subsection{Cross-Scale Pairwise Jaccard}
+174	
+175	For each architecture, we compare the helped and hurt sets of the pure $\to$ h3-1 transition at 340M and 1.3B scale on LAMBADA.
+176	The comparison uses the same classification scheme as \S\ref{ssec:per_example}: an example is ``helped'' if it is correct only in the hybrid variant and ``hurt'' if correct only in the pure baseline.
+177	All pairwise Jaccard values fall below 0.10, indicating that scale produces per-example predictive multiplicity analogous to the cross-architecture effect reported in \S\ref{ssec:per_example}.
+178	
+179	\begin{table}[ht]
+180	\centering
+181	\caption{Cross-scale pairwise Jaccard similarity of per-example effects (pure $\to$ h3-1) between 340M and 1.3B on LAMBADA. All values below 0.10.}
+182	\label{tab:cross_scale_jaccard}
+183	\begin{tabular}{llcc}
+184	\toprule
+185	Architecture & Scale Pair & $J_{\text{helped}}$ & $J_{\text{hurt}}$ \\
+186	\midrule
+187	GDN & 340M $\leftrightarrow$ 1.3B & 0.047 & 0.087 \\
+188	RetNet & 340M $\leftrightarrow$ 1.3B & 0.059 & 0.073 \\
+189	HGRN2 & 340M $\leftrightarrow$ 1.3B & 0.089 & 0.055 \\
+190	\midrule
+191	Mean & & 0.065 & 0.072 \\
+192	\bottomrule
+193	\end{tabular}
+194	\end{table}
+195	
+196	\section{Per-Example Effect Counts}\label{app:per_example_counts}
+197	
+198	Table~\ref{tab:per_example} reports the full per-example effect counts for each architecture at 1.3B scale.
+199	
+200	\begin{table}[ht]
+201	\centering
+202	\caption{Per-example effects of attention (pure $\to$ h3-1) on 5{,}153 LAMBADA examples at 1.3B scale. $\bar{J}$: mean pairwise Jaccard similarity with other architectures across helped and hurt sets.}
+203	\label{tab:per_example}
+204	\begin{tabular}{lrrrr}
+205	\toprule
+206	Architecture & Helped & Hurt & Net & $\bar{J}$ \\
+207	\midrule
+208	GDN & 462 & 615 & $-$153 & .096 \\
+209	RetNet & 426 & 495 & $-$69 & .100 \\
+210	HGRN2 & 548 & 395 & $+$153 & .104 \\
+211	\bottomrule
+212	\end{tabular}
+213	\end{table}
+214	
+215	\section{Normalized Jaccard Effect Size}\label{app:normalized_es}
+216	
+217	To assess whether low observed Jaccard reflects a floor effect imposed by unequal set sizes, we compute the theoretical upper bound $J_{\max} = \min(|A|,|B|) / \max(|A|,|B|)$ and the normalized effect size $(J_{\text{obs}} - J_{\text{null}}) / (J_{\max} - J_{\text{null}})$, which measures observed overlap as a fraction of the achievable range above chance. Table~\ref{tab:normalized_es} reports per-pair results.
+218	
+219	\begin{table}[ht]
+220	\centering
+221	\small
+222	\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}
+223	\label{tab:normalized_es}
+224	\resizebox{\columnwidth}{!}{%
+225	\begin{tabular}{llcccc}
+226	\toprule
+227	Category & Pair & $J_{\text{obs}}$ & $J_{\max}$ & $J_{\text{null}}$ & Norm.\ ES \\
+228	\midrule
+229	Helped & GDN--RetNet & .086 & .922 & .048 & .044 \\
+230	 & GDN--HGRN2 & .099 & .843 & .050 & .062 \\
+231	 & RetNet--HGRN2 & .108 & .777 & .042 & .090 \\
+232	 & \textit{Mean} & \textit{.098} & \textit{.847} & \textit{.047} & \textit{.065} \\
+233	\midrule
+234	Hurt & GDN--RetNet & .092 & .805 & .056 & .048 \\
+235	 & GDN--HGRN2 & .070 & .642 & .043 & .045 \\
+236	 & RetNet--HGRN2 & .087 & .798 & .050 & .049 \\
+237	 & \textit{Mean} & \textit{.083} & \textit{.748} & \textit{.050} & \textit{.047} \\
+238	\bottomrule
+239	\end{tabular}%
+240	}
+241	\end{table}
+242	
+243	All normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.
+244	
+245	\section{ARC-Easy Per-Example Analysis}\label{app:arceasy}
+246	
+247	Table~\ref{tab:arceasy_effects} reports per-example effect counts on ARC-Easy ($N = 2{,}376$) at 1.3B scale for each attention ratio. Unlike LAMBADA, ARC-Easy shows no aggregate convergence ($\rho = -0.20$, $p = .783$). HGRN2 is net positive at all ratios; GDN and RetNet are mixed.
+248	
+249	\begin{table}[ht]
+250	\centering
+251	\small
+252	\caption{Per-example effects on ARC-Easy at 1.3B scale. Net = helped $-$ hurt.}
+253	\label{tab:arceasy_effects}
+254	\resizebox{\columnwidth}{!}{%
+255	\begin{tabular}{llrrr}
+256	\toprule
+257	Architecture & Ratio & Helped & Hurt & Net \\
+258	\midrule
+259	\multirow{4}{*}{GDN} & h24-1 & 178 & 185 & $-$7 \\
+260	& h12-1 & 176 & 206 & $-$30 \\
+261	& h6-1 & 170 & 157 & $+$13 \\
+262	& h3-1 & 171 & 180 & $-$9 \\
+263	\midrule
+264	\multirow{4}{*}{RetNet} & h24-1 & 158 & 168 & $-$10 \\
+265	& h12-1 & 163 & 146 & $+$17 \\
+266	& h6-1 & 159 & 147 & $+$12 \\
+267	& h3-1 & 144 & 184 & $-$40 \\
+268	\midrule
+269	\multirow{4}{*}{HGRN2} & h24-1 & 160 & 119 & $+$41 \\
+270	& h12-1 & 159 & 111 & $+$48 \\
+271	& h6-1 & 185 & 118 & $+$67 \\
+272	& h3-1 & 164 & 146 & $+$18 \\
+273	\bottomrule
+274	\end{tabular}%
+275	}
+276	\end{table}
+277	
+278	Table~\ref{tab:arceasy_ambiguity} reports the ambiguity $\alpha$ \citep{marx2020predictive} at each attention ratio for all four main benchmarks. Within-benchmark ranges are 0.004 (HellaSwag), 0.011 (PIQA), 0.025 (ARC-Easy), and 0.022 (LAMBADA), all below the 0.03 threshold reported in \S\ref{ssec:per_example}.
+279	
+280	\begin{table}[ht]
+281	\centering
+282	\caption{Ambiguity $\alpha$ across attention ratios (1.3B scale). 95\% CI: BCa bootstrap (10{,}000 resamples) at the pure-recurrent configuration.}
+283	\label{tab:arceasy_ambiguity}
+284	\resizebox{\columnwidth}{!}{%
+285	\begin{tabular}{lcccccc}
+286	\toprule
+287	Benchmark & Pure & h24-1 & h12-1 & h6-1 & h3-1 & 95\% CI (pure) \\
+288	\midrule
+289	PIQA & .143 & .138 & .132 & .143 & .140 & $[.127,\,.159]$ \\
+290	HellaSwag & .148 & .150 & .148 & .146 & .150 & $[.141,\,.155]$ \\
+291	ARC-Easy & .205 & .226 & .223 & .201 & .210 & $[.189,\,.221]$ \\
+292	LAMBADA & .307 & .300 & .316 & .294 & .296 & $[.294,\,.319]$ \\
+293	\bottomrule
+294	\end{tabular}%
+295	}
+296	\end{table}
+297	
+298	\section{Jaccard Permutation Test}\label{app:jaccard_permutation}
+299	
+300	To assess whether the observed pairwise Jaccard similarities exceed what would be expected under independence, we perform a permutation test. For each architecture pair at 1.3B h3-1, we hold the helped (or hurt) set sizes fixed and randomly assign example indices to each set (10{,}000 permutations, seed 42). Table~\ref{tab:jaccard_perm} reports the observed $J$, the null baseline $J_{\text{null}}$ (mean over permutations), and the $z$-score.
+301	
+302	\begin{table}[ht]
+303	\centering
+304	\caption{Permutation test for pairwise Jaccard similarity (1.3B h3-1 on LAMBADA, 10{,}000 permutations). All observed values significantly exceed the independence baseline.}
+305	\label{tab:jaccard_perm}
+306	\resizebox{\columnwidth}{!}{%
+307	\begin{tabular}{llcccc}
+308	\toprule
+309	Category & Pair & $J_{\text{obs}}$ & $J_{\text{null}}$ & $z$ & $p$ \\
+310	\midrule
+311	Helped & GDN--HGRN2 & .100 & .051 & 7.11 & $<$.0001 \\
+312	 & GDN--RetNet & .092 & .045 & 6.75 & $<$.0001 \\
+313	 & HGRN2--RetNet & .108 & .049 & 8.61 & $<$.0001 \\
+314	\midrule
+315	Hurt & GDN--HGRN2 & .088 & .049 & 5.91 & $<$.0001 \\
+316	 & GDN--RetNet & .103 & .056 & 6.85 & $<$.0001 \\
+317	 & HGRN2--RetNet & .087 & .045 & 6.05 & $<$.0001 \\
+318	\bottomrule
+319	\end{tabular}%
+320	}
+321	\end{table}
+322	
+323	All six comparisons yield $z > 5.9$ ($p < .0001$). The null baseline averages $J_{\text{null}} \approx 0.049$; observed values are approximately twice this level. The overlap between architectures' per-example effect sets is therefore structured rather than a product of random set overlap given the set sizes.
+324	
+325	\section{Transformer Entrainment Comparison}\label{app:transformer_entrainment}
+326	
+327	To test whether attention layers make hybrid models' per-example behavior converge toward a pure Transformer, we compare the correct-example sets of each architecture's pure and h3-1 variants against a 1.3B Transformer baseline (accuracy 48.1\%) on LAMBADA. Table~\ref{tab:transformer_jaccard} reports the Jaccard similarity between each model's correct set and the Transformer's correct set.
+328	
+329	\begin{table}[ht]
+330	\centering
+331	\caption{Jaccard similarity between each model's correct set and the Transformer correct set on LAMBADA (1.3B scale). All three h3-1 hybrids are more similar to the Transformer than their pure counterparts.}
+332	\label{tab:transformer_jaccard}
+333	\small
+334	\begin{tabular}{lccc}
+335	\toprule
+336	Architecture & $J_{\text{pure,T}}$ & $J_{\text{h3-1,T}}$ & $\Delta$ \\
+337	\midrule
+338	GDN & 0.645 & 0.649 & $+$0.005 \\
+339	RetNet & 0.679 & 0.694 & $+$0.015 \\
+340	HGRN2 & 0.672 & 0.701 & $+$0.029 \\
+341	\bottomrule
+342	\end{tabular}
+343	\end{table}
+344	
+345	All three architectures show positive $\Delta$: the h3-1 correct set is more similar to the Transformer correct set than the pure correct set is. The effect is strongest for HGRN2 ($+$0.029) and weakest for GDN ($+$0.005). This ordering is consistent with HGRN2 being the only architecture with a positive net per-example effect from attention (Table~\ref{tab:per_example}). The Transformer itself achieves the lowest accuracy among all models, so the convergence is not explained by hybrid models degrading toward Transformer-level performance; rather, adding attention shifts which specific examples the hybrid gets correct toward the Transformer's pattern.
+346	
+347	\section{Within-Architecture Per-Example Stability}\label{app:within_arch_stability}
+348	
+349	Per-example effect sets exhibit a three-tier Jaccard hierarchy on LAMBADA (1.3B scale). Under independence (permutation baseline), pairwise Jaccard is $J \approx 0.05$. Cross-architecture comparisons (different architectures at the same attention ratio) yield $J \approx 0.10$, approximately $2\times$ baseline. Within-architecture comparisons (same architecture across different attention ratios) yield $J \approx 0.33$, approximately $7\times$ baseline and $3\times$ the cross-architecture level. Architecture identity therefore has approximately three times the influence of attention dose on per-example effects.
+350	
+351	Table~\ref{tab:within_arch_summary} reports mean within-architecture Jaccard for each architecture. HGRN2 shows the highest helped overlap and lowest hurt overlap, consistent with its monotonically increasing helped count across ratios (479 $\to$ 548).
+352	
+353	\begin{table}[ht]
+354	\centering
+355	\caption{Mean within-architecture pairwise Jaccard similarity across attention ratios (1.3B, LAMBADA). Each mean is computed over all six ratio pairs per architecture.}
+356	\label{tab:within_arch_summary}
+357	\begin{tabular}{lcc}
+358	\toprule
+359	Architecture & $\bar{J}_{\text{helped}}$ & $\bar{J}_{\text{hurt}}$ \\
+360	\midrule
+361	GDN & 0.338 & 0.319 \\
+362	RetNet & 0.333 & 0.321 \\
+363	HGRN2 & 0.373 & 0.291 \\
+364	\midrule
+365	\textit{Overall mean} & \textit{0.348} & \textit{0.310} \\
+366	\bottomrule
+367	\end{tabular}
+368	\end{table}
+369	
+370	Table~\ref{tab:within_arch_pairwise} reports the full pairwise Jaccard matrix. Attention ratios are denoted by their h$k$-1 labels: h24-1 (4\%), h12-1 (7.7\%), h6-1 (14.3\%), h3-1 (25\%).
+371	
+372	\begin{table}[ht]
+373	\centering
+374	\small
+375	\caption{Within-architecture pairwise Jaccard similarity between helped and hurt sets at different attention ratios (1.3B, LAMBADA). Each cell compares the per-example effect sets of two attention configurations within the same architecture.}
+376	\label{tab:within_arch_pairwise}
+377	\resizebox{\columnwidth}{!}{%
+378	\begin{tabular}{llcccccc}
+379	\toprule
+380	 & & \multicolumn{6}{c}{Ratio pair} \\
+381	\cmidrule(lr){3-8}
+382	Arch & Cat & h24--h12 & h24--h6 & h24--h3 & h12--h6 & h12--h3 & h6--h3 \\
+383	\midrule
+384	\multirow{2}{*}{GDN} & Helped & .345 & .335 & .311 & .344 & .341 & .352 \\
+385	 & Hurt & .310 & .328 & .320 & .331 & .281 & .345 \\
+386	\midrule
+387	\multirow{2}{*}{RetNet} & Helped & .354 & .314 & .334 & .322 & .330 & .345 \\
+388	 & Hurt & .316 & .334 & .307 & .301 & .324 & .343 \\
+389	\midrule
+390	\multirow{2}{*}{HGRN2} & Helped & .359 & .369 & .375 & .368 & .378 & .388 \\
+391	 & Hurt & .292 & .289 & .298 & .273 & .309 & .287 \\
+392	\bottomrule
+393	\end{tabular}%
+394	}
+395	\end{table}
+396	
+397	Adjacent ratio pairs (e.g., h24-1 vs.\ h12-1) do not exhibit systematically higher Jaccard than non-adjacent pairs (e.g., h24-1 vs.\ h3-1). Across all architectures, the mean Jaccard for adjacent pairs is 0.353 (helped) and 0.311 (hurt), compared with 0.343 (helped) and 0.310 (hurt) for non-adjacent pairs. The negligible difference indicates that the mapping from attention dose to per-example effects is non-smooth: doubling the attention ratio does not produce a proportionally more similar set of affected examples.
+398	
+399	\section{Cross-Benchmark Jaccard Trajectories}\label{app:cross_bench_jaccard}
+400	
+401	To test whether Jaccard saturation is specific to LAMBADA or a general property, we compute mean pairwise Jaccard trajectories across all four hybrid attention ratios on all four main benchmarks. Table~\ref{tab:cross_bench_jaccard} reports the results. On every benchmark, Jaccard shows no statistically significant trend with attention ratio (all $\rho \leq 0.80$, $p \geq 0.333$), with values uniformly between 0.08 and 0.11. The saturation at the first attention level observed on LAMBADA (\S\ref{ssec:decoupling}) thus generalizes: once any attention is present, each architecture's per-example response is largely fixed regardless of attention dose.
+402	
+403	\begin{table}[ht]
+404	\centering
+405	\small
+406	\caption{Mean pairwise Jaccard (helped sets, 3 architecture pairs) across attention ratios and benchmarks (1.3B scale). $\rho$: Spearman correlation between attention ratio and $\bar{J}$. All $p \geq 0.333$.}
+407	\label{tab:cross_bench_jaccard}
+408	\begin{tabular}{@{}lcccccc@{}}
+409	\toprule
+410	Benchmark & h24-1 & h12-1 & h6-1 & h3-1 & $\rho$ & $p$ \\
+411	\midrule
+412	LAMBADA & .091 & .088 & .096 & .097 & 0.80 & .333 \\
+413	HellaSwag & .084 & .081 & .091 & .086 & 0.60 & .417 \\
+414	PIQA & .089 & .096 & .089 & .095 & 0.00 & 1.00 \\
+415	ARC-Easy & .084 & .099 & .091 & .109 & 0.80 & .333 \\
+416	\bottomrule
+417	\end{tabular}
+418	\end{table}
+419	
+420	\section{Continuous-Threshold Jaccard Analysis}\label{app:continuous_jaccard}
+421	
+422	The main text binarizes per-example effects at the correctness boundary. To verify that low cross-architecture Jaccard is not an artifact of this binarization, we compute Jaccard similarity using a continuous confidence threshold $\tau$: two architectures' effect sets are defined as the examples whose target-token $|\log p|$ changes by more than $\tau$ when attention is added. On LAMBADA, mean pairwise Jaccard decreases monotonically from 0.26 ($\tau = 0.00$, any change) to 0.05 ($\tau = 0.30$, large changes only). ARC-Easy and PIQA show the same monotonic decrease. The binary threshold ($\tau = 0$, correctness flip) thus represents the upper end of cross-architecture overlap; restricting to confident transitions further reduces agreement, confirming that low Jaccard is robust to the choice of binarization threshold.
+423	
+424	\section{Target-Token Confidence Margin}
+425	\label{app:confidence_margin}
+426	
+427	We analyze whether pure-model confidence on the target token predicts whether attention will help or hurt on a given example.
+428	We define confidence as $|\log p_{\text{pure}}(y^*)|$, where $y^*$ is the target token: lower values indicate higher probability (near-correct).
+429	We initially tested raw perplexity as a predictor of helped/hurt status, but found that within-category controls (C1/C2) are necessary to isolate attention effects from the definitional confound between pure-correct and pure-wrong populations.
+430	
+431	Table~\ref{tab:cm_c1} compares hurt versus stayed-right samples (both pure-correct): hurt samples have significantly lower target-token probability (higher $|\log p|$), confirming that weakly-correct predictions are vulnerable to attention disruption.
+432	Table~\ref{tab:cm_c2} compares helped versus stayed-wrong samples (both pure-wrong): helped samples have higher target-token probability (lower $|\log p|$), confirming that near-miss errors are rescuable.
+433	This pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings---within-architecture predictability coexists with cross-architecture divergence.
+434	
+435	\begin{table}[ht]
+436	\centering
+437	\caption{Control 1: Pure-correct samples---hurt vs.\ stayed-right. Higher mean $|\log p|$ indicates lower target-token probability (less confident correct).}
+438	\label{tab:cm_c1}
+439	\resizebox{\columnwidth}{!}{%
+440	\begin{tabular}{lrrrrr}
+441	\toprule
+442	Architecture & $n_{\text{hurt}}$ & $n_{\text{stay}}$ & Hurt mean & Stay mean & Cohen's $d$ \\
+443	\midrule
+444	GDN (h12-1) & 519 & 2281 & 1.049 & 0.576 & 0.87 \\
+445	RetNet (h3-1) & 497 & 2169 & 1.293 & 0.785 & 0.83 \\
+446	HGRN2 (h3-1) & 392 & 2102 & 1.481 & 0.899 & 0.92 \\
+447	\bottomrule
+448	\end{tabular}
+449	}
+450	\end{table}
+451	
+452	\begin{table}[ht]
+453	\centering
+454	\caption{Control 2: Pure-wrong samples---helped vs.\ stayed-wrong. Lower mean $|\log p|$ indicates higher target-token probability (near-miss error).}
+455	\label{tab:cm_c2}
+456	\resizebox{\columnwidth}{!}{%
+457	\begin{tabular}{lrrrrr}
+458	\toprule
+459	Architecture & $n_{\text{help}}$ & $n_{\text{stay}}$ & Help mean & Stay mean & Cohen's $d$ \\
+460	\midrule
+461	GDN (h12-1) & 480 & 1873 & 2.459 & 4.189 & $-$0.75 \\
+462	RetNet (h3-1) & 420 & 2067 & 2.478 & 4.103 & $-$0.73 \\
+463	HGRN2 (h3-1) & 548 & 2111 & 2.500 & 4.112 & $-$0.77 \\
+464	\bottomrule
+465	\end{tabular}
+466	}
+467	\end{table}
+468	
+469	\subsection{Cross-Benchmark Extension}\label{app:cm_cross}
+470	
+471	The confidence margin pattern extends beyond LAMBADA to multiple-choice benchmarks, though with smaller effect sizes. Table~\ref{tab:cm_cross_c2} reports the rescue analysis (helped vs.\ stayed-wrong) on HellaSwag and ARC-Easy. All nine comparisons (three benchmarks $\times$ three architectures) are significant, confirming that attention consistently rescues near-miss errors regardless of task type. Effect sizes range from small on HellaSwag ($d = 0.13$--$0.17$) to medium on ARC-Easy ($d = 0.51$--$0.60$), compared to large on LAMBADA ($d = 0.73$--$0.77$); the attenuation on HellaSwag reflects noisier confidence proxies under length-normalized scoring. Table~\ref{tab:cm_cross_c1} reports the disruption analysis (hurt vs.\ stayed-right); two of six comparisons are significant (all on ARC-Easy) with small effect sizes ($d = 0.13$--$0.26$), indicating that the disruption signal is weaker on multiple-choice tasks and absent on HellaSwag under \texttt{acc\_norm}. The asymmetry between rescue and disruption reflects task structure: near-miss errors are an intrinsic sample property (the model almost produced the correct answer regardless of format), while borderline correctness in multiple-choice settings depends on relative option ranking rather than absolute confidence, reducing the raw log-likelihood margin's predictive power for vulnerability.
+472	
+473	\begin{table}[ht]
+474	\centering
+475	\caption{Cross-benchmark rescue analysis (Control 2): helped vs.\ stayed-wrong on HellaSwag and ARC-Easy (1.3B h3-1).}
+476	\label{tab:cm_cross_c2}
+477	\resizebox{\columnwidth}{!}{%
+478	\begin{tabular}{llrr}
+479	\toprule
+480	Benchmark & Architecture & Cohen's $d$ & $p$ \\
+481	\midrule
+482	HellaSwag & GDN & $-$0.166 & $6.1 \times 10^{-4}$ \\
+483	 & RetNet & $-$0.132 & $1.4 \times 10^{-2}$ \\
+484	 & HGRN2 & $-$0.164 & $1.4 \times 10^{-3}$ \\
+485	\midrule
+486	ARC-Easy & GDN & $-$0.60 & $1.0 \times 10^{-13}$ \\
+487	 & RetNet & $-$0.51 & $5.3 \times 10^{-10}$ \\
+488	 & HGRN2 & $-$0.53 & $5.4 \times 10^{-10}$ \\
+489	\bottomrule
+490	\end{tabular}%
+491	}
+492	\end{table}
+493	
+494	\begin{table}[ht]
+495	\centering
+496	\caption{Cross-benchmark disruption analysis (Control 1): hurt vs.\ stayed-right on HellaSwag and ARC-Easy (1.3B h3-1).}
+497	\label{tab:cm_cross_c1}
+498	\resizebox{\columnwidth}{!}{%
+499	\begin{tabular}{llrrl}
+500	\toprule
+501	Benchmark & Architecture & Cohen's $d$ & $p$ & Sig.? \\
+502	\midrule
+503	HellaSwag & GDN & 0.009 & .999 & No \\
+504	 & RetNet & $-$0.035 & .453 & No \\
+505	 & HGRN2 & $-$0.062 & .274 & No \\
+506	\midrule
+507	ARC-Easy & GDN & 0.26 & $3.2 \times 10^{-4}$ & Yes \\
+508	 & RetNet & 0.22 & $2.8 \times 10^{-3}$ & Yes \\
+509	 & HGRN2 & 0.13 & .145 & No \\
+510	\bottomrule
+511	\end{tabular}%
+512	}
+513	\end{table}
+514	
+515	\subsection{Prediction Framework}\label{app:prediction_framework}
+516	
+517	We formalize the confidence margin analysis as a binary prediction task: given a pure-model example and its target-token $|\log p|$, predict whether attention will change the example's correctness. Using the within-category summary statistics (Tables~\ref{tab:cm_c1},~\ref{tab:cm_c2}), we derive analytic AUC from Cohen's $d$ via $\text{AUC} = \Phi(|d|/\sqrt{2})$ and compute Gaussian-intersection thresholds (the $|\log p|$ value at which the two group densities intersect under equal priors).
+518	
+519	Table~\ref{tab:prediction_auc} reports within-architecture prediction performance. All AUCs exceed 0.69, confirming that pure-model confidence is a reliable within-architecture predictor of attention effects. Disruption prediction is consistently stronger than rescue (mean AUC 0.73 vs.\ 0.70), reflecting the larger effect sizes in Control~1.
+520	
+521	\begin{table}[ht]
+522	\centering
+523	\small
+524	\caption{Within-architecture prediction of attention effects on LAMBADA (1.3B). AUC$_p$: parametric (from Cohen's $d$); AUC$_e$: empirical (non-parametric).}
+525	\label{tab:prediction_auc}
+526	\begin{tabular}{@{}lcccccc@{}}
+527	\toprule
+528	Architecture & \multicolumn{3}{c}{Rescue} & \multicolumn{3}{c}{Disruption} \\
+529	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+530	 & AUC$_p$ & AUC$_e$ & $d$ & AUC$_p$ & AUC$_e$ & $d$ \\
+531	\midrule
+532	GDN (h12-1) & .701 & .756 & 0.75 & .732 & .742 & 0.87 \\
+533	RetNet (h3-1) & .696 & .754 & 0.73 & .722 & .735 & 0.83 \\
+534	HGRN2 (h3-1) & .708 & .765 & 0.77 & .743 & .748 & 0.92 \\
+535	\midrule
+536	Mean & .702 & .758 & --- & .732 & .742 & --- \\
+537	\bottomrule
+538	\end{tabular}
+539	\end{table}
+540	
+541	\paragraph{Normality verification.} Shapiro-Wilk tests reject normality for all six architecture--set combinations (all $W < 0.98$, $p < 10^{-6}$), but the practical departure varies by group. Disruption-set $|\log p|$ values show mild skewness (0.53--0.77, $W \in [0.955, 0.973]$), closely approximating a normal distribution at the sample sizes involved. Rescue-set values are moderately right-skewed (skewness 1.33--1.41, $W \in [0.899, 0.920]$), following an approximately log-normal distribution. Because the skew is one-sided, parametric AUC estimates (0.70--0.74 in the main text) are conservative lower bounds; non-parametric empirical AUC from the same data yields 0.73--0.77.
+542	
+543	Despite similar within-architecture AUC, the optimal prediction thresholds differ across architectures for disruption but not rescue (Table~\ref{tab:threshold_gap}). Rescue thresholds cluster tightly (range 0.03 in $|\log p|$), indicating that the rescuability boundary---the confidence level below which pure-wrong examples are likely to be corrected by attention---is architecture-invariant. Disruption thresholds span a 47\% relative range (GDN: 0.70, RetNet: 1.00, HGRN2: 1.14), meaning that the same confidence level on a pure-correct example may predict vulnerability in one architecture but safety in another. This asymmetry constitutes a second dimension of multiplicity beyond per-example disagreement: all three architectures agree on which wrong answers are rescuable, but disagree on which correct answers are vulnerable to disruption.
+544	
+545	\begin{table}[ht]
+546	\centering
+547	\small
+548	\caption{Gaussian-intersection prediction thresholds ($|\log p|$) across architectures. Relative spread: range/mean.}
+549	\label{tab:threshold_gap}
+550	\begin{tabular}{@{}lccccr@{}}
+551	\toprule
+552	 & GDN & RetNet & HGRN2 & Range & Rel.\ spread \\
+553	\midrule
+554	Rescue & 3.32 & 3.29 & 3.31 & 0.03 & 1.0\% \\
+555	Disruption & 0.70 & 1.00 & 1.14 & 0.44 & 46.7\% \\
+556	\bottomrule
+557	\end{tabular}
+558	\end{table}
+559	
+560	\section{Calibration Analysis}\label{app:calibration}
+561	
+562	Cross-architecture disruption threshold variation (\S\ref{ssec:per_example}) could in principle arise from calibration differences rather than genuine differences in per-example processing. We compute expected calibration error (ECE; \citealt{guo2017calibration}) for each architecture's h3-1 model on LAMBADA using 15 equal-width bins. ECE values are similar: GDN 0.222, RetNet 0.224, HGRN2 0.235. The cross-architecture ECE spread (17\%, computed as range/mean) is less than half the disruption threshold spread (47\%; Table~\ref{tab:threshold_gap}), indicating that calibration differences are insufficient to account for the observed threshold divergence. Rescue thresholds, which show only 1\% cross-architecture spread, are consistent with near-identical calibration in the low-confidence regime.
+563	
+564	\section{BoolQ Supplementary Analysis}
+565	\label{app:boolq}
+566	
+567	BoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\alpha \approx 0.45$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.
+568	
+569	\paragraph{Binary classification baseline.} BoolQ is binary classification (two answer choices), whereas LAMBADA, HellaSwag, and ARC-Easy involve open vocabulary prediction or four-way multiple choice. Under a binary task, the null Jaccard baseline $J_{\text{null}}$ is higher because chance overlap between helped/hurt sets is larger when there are fewer ways to be wrong. This elevates the significance threshold: observed Jaccard must be substantially higher to exceed the null, which explains why 12/24 pairs fail to reach significance despite $\bar{J}_h = 0.103$ and $\bar{J}_u = 0.098$---values comparable to the four main benchmarks.
+570	
+571	\paragraph{Per-example summary.} Table~\ref{tab:boolq_multiplicity} reports the key metrics. The high $\alpha$ reflects that BoolQ examples are more sensitive to architectural variation in the presence of attention: approximately half of all examples change correctness status for at least one architecture. However, the mixed Jaccard significance prevents us from confidently concluding that the cross-architecture overlap structure matches the pattern observed on the four main benchmarks.
+572	
+573	\begin{table}[ht]
+574	\centering
+575	\small
+576	\caption{BoolQ predictive multiplicity at 1.3B (h3-1).}
+577	\label{tab:boolq_multiplicity}
+578	\begin{tabular}{@{}lcccccc@{}}
+579	\toprule
+580	 & $N$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & Sig.\ pairs & $\rho_\alpha$ \\
+581	\midrule
+582	BoolQ & 3270 & .45 & .103 & .098 & 12/24 & $+0.1$ \\
+583	\bottomrule
+584	\end{tabular}
+585	\par\vspace{1pt}
+586	{\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}
+587	\end{table}
+588	
+589	The significant Jaccard overlap concentrates in GDN--RetNet pairs (8/8 significant), while RetNet--HGRN2 shows none (0/8). This pair-specificity does not appear on the four main benchmarks, where all architecture pairs show significant overlap; it may reflect a BoolQ-specific interaction between binary classification structure and particular recurrent architectures rather than a general property of architecture pairs.
+590	
+591	\paragraph{Confidence margin.} Confidence margin analysis on BoolQ shows the rescue pattern (C2) partially holds (2/3 architectures significant, $d = 0.16$--$0.36$) but the disruption pattern (C1) is absent (0/3, $|d| \leq 0.10$), consistent with compressed log-likelihood ranges in binary classification reducing the predictive power of confidence margins. This extends the gradient observed across LAMBADA, ARC-Easy, and HellaSwag: C1 effect sizes decrease from open-ended prediction ($d \approx 0.9$, LAMBADA) through ARC-Easy ($d \approx 0.1$--$0.3$) to HellaSwag ($d \approx 0$ under \texttt{acc\_norm}) and binary classification ($d \approx 0$, BoolQ). The gradient broadly tracks the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$). BoolQ's high-frequency short completions (``\,yes''/``\,no'') yield elevated baseline log-likelihoods (mean $|\text{loglik}| = 3.04$ vs.\ $0.84$ for LAMBADA) with similar absolute spread (IQR $\approx 0.9$), compressing the relative variation and rendering the confidence margin unable to separate borderline-correct from robustly-correct examples.
+592	
+593	\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.
+594	
+595	\section{WinoGrande Supplementary Analysis}
+596	\label{app:winogrande}
+597	
+598	WinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\alpha \approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\bar{J}_h = 0.110$, $\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\sim}60\%$) reduces statistical power to detect above-chance overlap.
+599	
+600	\paragraph{Near-chance accuracy.} WinoGrande accuracy across hybrid configurations ranges from 59\% to 62\%, close to the two-choice chance level of 50\%. At near-chance accuracy, a large fraction of examples are borderline---small perturbations (such as adding attention) can flip predictions in either direction, inflating the helped and hurt sets and consequently $\alpha$. This structural property, shared with BoolQ (${\sim}59\%$ accuracy, $\alpha \approx 0.45$), may partially explain the elevated $\alpha$ rather than task-intrinsic multiplicity. PIQA (73\% accuracy, $\alpha = 0.14$) and HellaSwag (60\% normalized accuracy, $\alpha = 0.15$) demonstrate that near-chance accuracy is not the sole driver, but we cannot fully exclude it as a contributing factor for WinoGrande and BoolQ.
+601	
+602	\begin{table}[ht]
+603	\centering
+604	\small
+605	\caption{WinoGrande predictive multiplicity at 1.3B (h3-1).}
+606	\label{tab:winogrande_multiplicity}
+607	\begin{tabular}{@{}lcccccc@{}}
+608	\toprule
+609	 & $N$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & Sig.\ pairs & $\rho_\alpha$ \\
+610	\midrule
+611	WinoGrande & 1267 & .41 & .110 & .103 & 10/24 & $-0.9$ \\
+612	\bottomrule
+613	\end{tabular}
+614	\par\vspace{1pt}
+615	{\footnotesize $\alpha$ variation across ratios: 0.054 ($> 0.03$ threshold of main benchmarks).}
+616	\end{table}
+617	
+618	\section{340M Per-Example Analysis}\label{app:scale_per_example}
+619	
+620	\subsection{LAMBADA}
+621	
+622	At 340M, LAMBADA per-example multiplicity closely matches the 1.3B pattern: $\alpha = 0.313$ (vs.\ 0.307 at 1.3B), with mean pairwise Jaccard $\bar{J} \approx 0.089$ (vs.\ 0.095). Per-example directionality is preserved: HGRN2 shows net positive effects at h3-1 ($+238$ examples), while GDN ($-256$) and RetNet ($-106$) show net negative effects, mirroring the 1.3B profile (HGRN2 $+153$, GDN $-153$, RetNet $-69$).
+623	
+624	However, aggregate convergence is absent at 340M: $\rho = -0.50$ ($p = .45$), with non-monotonic $\sigma$ across attention ratios ($0.025 \to 0.012 \to 0.018 \to 0.011 \to 0.016$). This contrasts sharply with 1.3B ($\rho = -1.0$, $p = .017$, monotonic $\sigma$ decrease). The decoupling between per-example divergence and aggregate convergence thus manifests differently across scales: at 340M, per-example multiplicity is present but aggregate convergence is not, suggesting that convergence requires sufficient model capacity while multiplicity does not.
+625	
+626	Within-benchmark $\alpha$ variation across attention ratios is also larger at 340M (0.047, from 0.313 at pure to 0.266 at h3-1) than at 1.3B ($< 0.03$; \S\ref{ssec:per_example}), suggesting that smaller models are more sensitive to the attention ratio in terms of per-example disagreement patterns.
+627	
+628	\begin{table}[ht]
+629	\centering
+630	\small
+631	\caption{340M vs.\ 1.3B LAMBADA comparison.}
+632	\label{tab:scale_comparison}
+633	\begin{tabular}{@{}lcc@{}}
+634	\toprule
+635	 & 340M & 1.3B \\
+636	\midrule
+637	$\alpha$ (pure) & .313 & .307 \\
+638	$\bar{J}$ (h3-1) & .089 & .095 \\
+639	$\rho_\sigma$ & $-0.50$ & $-1.0$ \\
+640	$p$ & .45 & .017 \\
+641	GDN net & $-256$ & $-153$ \\
+642	HGRN2 net & $+238$ & $+153$ \\
+643	\bottomrule
+644	\end{tabular}
+645	\end{table}
+646	
+647	\subsection{Cross-Benchmark Scale Comparison}
+648	
+649	Table~\ref{tab:340m_multi_bench} extends the scale comparison to all four main benchmarks. Two patterns emerge. First, $\alpha$ is systematically higher at 340M across all benchmarks, with the largest gap on ARC-Easy ($+$8.4pp) and the smallest on LAMBADA ($+$0.6pp). Second, pairwise Jaccard remains stable across scales ($\bar{J}_h = 0.08$--$0.10$ at both scales); three-architecture results are stable across both 340M and 1.3B scales (Jaccard $\approx$ 0.08--0.10), providing indirect support for scale robustness. This confirms that the qualitative pattern of per-example multiplicity---which architectures affect which examples---is scale-robust even as its magnitude increases at smaller scale. Notably, the $\alpha$ inflation does not track accuracy loss: HellaSwag has the largest accuracy gap between scales yet the smallest $\Delta\alpha$ ($+$1.9pp), while ARC-Easy has a smaller accuracy gap but the largest $\Delta\alpha$ ($+$8.4pp), arguing against accuracy as the primary driver of scale-dependent multiplicity.
+650	
+651	\begin{table}[ht]
+652	\centering
+653	\small
+654	\caption{340M vs.\ 1.3B per-example multiplicity across four benchmarks. $\alpha$: ambiguity at pure-recurrent configuration. Acc: mean accuracy across three architectures at pure-recurrent. $\bar{J}_{h}$/$\bar{J}_{u}$: mean pairwise Jaccard of helped/hurt sets. $\Delta\alpha$: 340M $-$ 1.3B.}
+655	\label{tab:340m_multi_bench}
+656	\resizebox{\columnwidth}{!}{%
+657	\begin{tabular}{lcccccccr}
+658	\toprule
+659	 & \multicolumn{4}{c}{340M} & \multicolumn{3}{c}{1.3B} & \\
+660	\cmidrule(lr){2-5} \cmidrule(lr){6-8}
+661	Benchmark & Acc & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & $\Delta\alpha$ \\
+662	\midrule
+663	PIQA & .663 & .181 & .090 & .085 & .143 & .091 & .094 & $+$.038 \\
+664	HellaSwag$^\dagger$ & .420 & .167 & .084 & .083 & .148 & .095 & .085 & $+$.019 \\
+665	ARC-Easy & .594 & .289 & .098 & .103 & .205 & .092 & .099 & $+$.084 \\
+666	LAMBADA & --- & .313 & .089 & .090 & .307 & .095 & .093 & $+$.006 \\
+667	\bottomrule
+668	\multicolumn{9}{l}{\footnotesize $^\dagger$\texttt{acc\_norm}. LAMBADA accuracy omitted (evaluated in separate run).}
+669	\end{tabular}%
+670	}
+671	\end{table}
+672	
+673	Convergence is absent at 340M across all benchmarks (all $|\rho| \leq 0.4$, $p \geq .45$), in contrast to 1.3B where LAMBADA shows monotonic convergence. The absence of convergence at 340M extends beyond LAMBADA to HellaSwag ($\rho = 0.4$, $p = .52$), PIQA ($\rho = 0.3$, $p = .68$), and ARC-Easy ($\rho = -0.1$, $p = .95$).
+674	
+675	\section{Subsample Sensitivity of \texorpdfstring{$\alpha$}{α}}\label{app:subsample_sensitivity}
+676	
+677	To assess the reliability of $\alpha$ estimation at different sample sizes, we repeatedly subsample each benchmark (1{,}000 bootstrap replicates, seed 42) and compute the 95\% CI width of $\alpha$.
+678	
+679	\begin{table}[ht]
+680	\centering
+681	\small
+682	\caption{$\alpha$ estimation stability: 95\% CI width by subsample size.}
+683	\label{tab:subsample}
+684	\resizebox{\columnwidth}{!}{%
+685	\begin{tabular}{@{}lrrrrr@{}}
+686	\toprule
+687	Benchmark & $n = 100$ & $n = 200$ & $n = 500$ & $n = 1000$ & Full $N$ \\
+688	\midrule
+689	PIQA & .130 & .095 & .066 & .045 & .034 \\
+690	HellaSwag & .140 & .100 & .062 & .044 & .013 \\
+691	ARC-Easy & .160 & .105 & .072 & .050 & .032 \\
+692	LAMBADA & .180 & .125 & .082 & .057 & .025 \\
+693	\bottomrule
+694	\end{tabular}}
+695	\par\vspace{1pt}
+696	{\footnotesize At $n = 100$, CI width (0.13--0.18) spans the entire four-benchmark $\alpha$ range (0.14--0.30), rendering $\alpha$ estimation unreliable. This justifies excluding COPA ($n = 100$) from the per-example analysis.}
+697	\end{table}
+698	
+699	\section{Complementarity Decomposition}\label{app:complementarity}
+700	
+701	We decompose the three-architecture vote on each example into four categories: unanimous correct (3/3), majority correct (2/3), minority correct (1/3), and unanimous wrong (0/3). This decomposition explains the structural failure of majority vote despite substantial per-example complementarity.
+702	
+703	Table~\ref{tab:complementarity} reports the decomposition at h3-1 (25\% attention). Majority vote benefits only from 2/3 examples (where the correct answer holds a majority) but is actively harmed by 1/3 examples (where the correct architecture is outvoted). On LAMBADA, HellaSwag, and ARC-Easy, the MV exploitation ratio---the fraction of complementary examples where MV selects correctly---hovers near 51\%, indicating a near-even split between MV-exploitable and MV-hostile disagreements. The oracle, by contrast, exploits both categories, explaining the large oracle--MV gap ($+7$--$14$\,pp).
+704	
+705	\begin{table}[ht]
+706	\centering
+707	\small
+708	\caption{Complementarity decomposition at 1.3B h3-1. Fractions of total examples in each vote category. MV expl.: fraction of complementary examples where majority vote is correct.}
+709	\label{tab:complementarity}
+710	\begin{tabular}{@{}lccccr@{}}
+711	\toprule
+712	Benchmark & 3/3 & 2/3 & 1/3 & 0/3 & MV expl. \\
+713	\midrule
+714	LAMBADA & .361 & .151 & .145 & .343 & 51.1\% \\
+715	HellaSwag & .519 & .078 & .073 & .331 & 51.6\% \\
+716	ARC-Easy & .603 & .107 & .103 & .187 & 50.9\% \\
+717	BoolQ & .376 & .257 & .197 & .170 & 56.6\% \\
+718	\bottomrule
+719	\end{tabular}
+720	\end{table}
+721	
+722	This near-50\% exploitation ratio is structurally invariant across attention ratios: on LAMBADA, the ratio ranges from 51.1\% to 54.4\% across all five configurations; on HellaSwag, from 50.3\% to 51.6\%. Attention changes neither the amount nor the structure of cross-architecture complementarity.
+723	
+724	\section{Seed-Variation Calibration}\label{app:seed_calibration}
+725	
+726	To contextualize the $3\times$ within- vs.\ cross-architecture Jaccard gap (\S\ref{ssec:decoupling}), we compare against within-seed variation using the Pythia 70M \citep{biderman2023pythia} PolyPythias models \citep{vanderwal2025polypythias}, which provide 9 individually trained seeds of the same architecture.
+727	
+728	On LAMBADA ($N = 5{,}153$), within-seed mean Jaccard is $\bar{J}_h = 0.273$ (helped) and $\bar{J}_u = 0.393$ (hurt), compared to our cross-architecture reference $J \approx 0.10$. On ARC-Easy ($N = 2{,}376$), within-seed $\bar{J}_h = 0.312$ and $\bar{J}_u = 0.354$, versus cross-architecture $J \approx 0.092$. Within-seed ambiguity is $\alpha = 0.36$ (LAMBADA) and $\alpha = 0.49$ (ARC-Easy), compared to cross-architecture $\alpha = 0.30$ and $0.21$ respectively.
+729	
+730	Seeds thus produce comparable or higher amounts of per-example disagreement ($\alpha$) but on more overlapping examples (higher $J$). Cross-architecture variation produces per-example effects on less overlapping examples (lower $J$), consistent with architecture-driven divergence producing qualitatively different per-example patterns than seed noise. The within-seed Jaccard is 2.7--4.3$\times$ higher than cross-architecture Jaccard across both benchmarks.
+731	
+732	Three caveats qualify this comparison. First, scale mismatch: Pythia 70M is $5\times$ smaller than our smallest models (340M); attempts to use Pythia 410M failed repeatedly. Second, architecture family: Pythia is a standard Transformer, not a hybrid recurrent architecture, so this is a cross-family reference point rather than a matched control. Third, accuracy regime: Pythia 70M accuracy (LAMBADA 0.17--0.23, ARC-Easy ${\sim}$0.38) is far below our models (${\sim}$0.50, ${\sim}$0.72), and Jaccard is affected by base rates; the 2.7--4.3$\times$ ratio may differ at accuracy regimes closer to our main experiments. These limitations restrict the comparison to a reference point for seed-variation magnitude rather than definitive evidence for architecture-driven effects.
+733	
+734	\section{Extended Architecture Validation (Five Architectures)}\label{app:extended_arch}
+735	
+736	To test whether the low cross-architecture Jaccard pattern generalizes beyond the three primary architectures, we extend the analysis to include two additional architectures from the same model zoo: GLA (Gated Linear Attention) and DeltaNet, yielding ten pairwise comparisons. Both are available only at 340M; all results below use the h3-1 (25\% attention) configuration.
+737	
+738	\begin{center}
+739	\small
+740	\captionof{table}{Pairwise Jaccard similarity across five architectures (340M, h3-1). All 40 permutation tests yield $p \leq .002$ ($z = 3.49$--$12.21$).}
+741	\label{tab:extended_arch_jaccard}
+742	\begin{tabular}{@{}llcc@{}}
+743	\toprule
+744	Benchmark & Pair & $J_h$ & $J_u$ \\
+745	\midrule
+746	\multirow{11}{*}{LAMBADA} & GDN--RetNet & .128 & .121 \\
+747	 & GDN--HGRN2 & .123 & .083 \\
+748	 & GDN--GLA & .124 & .100 \\
+749	 & GDN--DeltaNet & .115 & .100 \\
+750	 & RetNet--HGRN2 & .108 & .083 \\
+751	 & RetNet--GLA & .123 & .107 \\
+752	 & RetNet--DeltaNet & .115 & .096 \\
+753	 & HGRN2--GLA & .127 & .086 \\
+754	 & HGRN2--DeltaNet & .125 & .090 \\
+755	 & GLA--DeltaNet & .134 & .081 \\
+756	 & \textit{Mean} & \textit{.122} & \textit{.095} \\
+757	\midrule
+758	\multirow{11}{*}{ARC-Easy} & GDN--RetNet & .089 & .114 \\
+759	 & GDN--HGRN2 & .122 & .105 \\
+760	 & GDN--GLA & .114 & .106 \\
+761	 & GDN--DeltaNet & .084 & .102 \\
+762	 & RetNet--HGRN2 & .087 & .115 \\
+763	 & RetNet--GLA & .112 & .110 \\
+764	 & RetNet--DeltaNet & .138 & .123 \\
+765	 & HGRN2--GLA & .098 & .087 \\
+766	 & HGRN2--DeltaNet & .109 & .088 \\
+767	 & GLA--DeltaNet & .129 & .098 \\
+768	 & \textit{Mean} & \textit{.108} & \textit{.105} \\
+769	\bottomrule
+770	\end{tabular}
+771	\end{center}
+772	
+773	% Figure moved to main text (\S\ref{ssec:robustness})
+774	
+775	All pairwise Jaccard values remain $\leq 0.14$, consistent with the three-architecture results at 1.3B (Table~\ref{tab:per_example}). The seven new pairs involving GLA and DeltaNet show no systematic difference from the original three pairs (Mann-Whitney $p > .3$ for both helped and hurt), indicating that the low-overlap pattern is not specific to the original architecture triple. A sixth architecture (HGRN; \citealp{qin2023hierarchically}) is also available in the zoo but excluded from the main analysis: its substantially lower baseline accuracy on LAMBADA (0.263 vs.\ 0.32--0.38 for the other five) mechanically inflates helped-set sizes and Jaccard values. All 15 six-architecture permutation tests nonetheless remain significant ($z \geq 2.9$, $p \leq .006$). The same pattern holds on HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$): all 20 additional pairwise tests yield $p < .01$ with mean $J_{\text{helped}} \leq 0.10$. Full four-benchmark and six-architecture data are included in our code release.
+776	
+777	\section{Use of AI Assistants}
+778	\label{app:ai-assistants}
+779	
+780	We used Claude (Anthropic) as an AI coding and writing assistant
+781	throughout this work. Specifically:
+782	\begin{itemize}
+783	    \item \textbf{Code:} drafting experiment scripts, data-processing
+784	    pipelines, and analysis utilities; debugging and refactoring.
+785	    \item \textbf{Writing:} drafting and revising paper sections,
+786	    polishing prose, and reformatting \LaTeX{}.
+787	    \item \textbf{Literature:} summarizing related papers to inform
+788	    the related-work section.
+789	\end{itemize}
+790	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6c32f6f-0490-430d-b4db-b2339c60bded",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "7123a1cb-e43e-4376-a44c-26178a519318",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+      "content": "% Appendix sections for the paper.\n\n\\section{Confirmatory and Exploratory Analyses}\\label{app:benchmark_details}\n\nThe task taxonomy used in \\S\\ref{ssec:task_taxonomy} was defined prior to running any convergence analyses. Each benchmark was assigned to exactly one of four categories based on the primary cognitive demand of the task:\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: tasks requiring prediction from long-range context without multi-step reasoning (LAMBADA).\n    \\item \\textbf{Comprehension}: reading comprehension with explicit passage support (BoolQ).\n    \\item \\textbf{Reasoning}: tasks requiring commonsense inference or multi-step reasoning (HellaSwag, ARC-Challenge, WinoGrande, PIQA).\n    \\item \\textbf{Mixed}: tasks combining retrieval, comprehension, and reasoning demands (ARC-Easy, MMLU, SciQ, XStoryCloze).\n\\end{itemize}\n\n\\paragraph{Confirmatory benchmark set.} Six benchmarks were designated as confirmatory for Bonferroni correction: LAMBADA, HellaSwag, ARC-Challenge, WinoGrande, ARC-Easy, and MMLU. These were selected as representative of retrieval, reasoning, and mixed categories before any convergence analysis was performed. The taxonomy and benchmark selection were fixed before analysis as an informal pre-analysis plan; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The main text applies the more conservative all-10-benchmark correction (Bonferroni-adjusted $p = .017 \\times 10 = .170$). \\textbf{Sensitivity:} correcting across only the six confirmatory benchmarks yields adjusted $p = .017 \\times 6 = .100$, still above conventional significance.\n\n\\paragraph{One-sided test.} If one adopts the prior that attention should reduce cross-architecture variance, the one-sided permutation $p$-value for LAMBADA is $1/120 \\approx 0.0083$. Under 10-benchmark Bonferroni correction, this yields an adjusted $p = 0.083$, above the conventional threshold. We report two-sided tests throughout the main text as the more conservative choice; the one-sided result is noted here for completeness.\n\n\\paragraph{Exploratory benchmarks.} Four additional benchmarks (BoolQ, PIQA, SciQ, XStoryCloze) were added as exploratory tests. All benchmarks share the same 10-benchmark correction (adjusted threshold $\\alpha / 10 = 0.005$) and the four exploratory benchmarks are labeled as such throughout the paper. The all-10 Bonferroni correction reported in the main text is the only correction used for inference; the exploratory 6-benchmark subset correction in this appendix is provided for transparency.\n\n\\paragraph{Supplementary benchmark.} COPA ($n = 100$) is treated as supplementary due to its small sample size. It is excluded from both correction families and reported separately with the $\\dagger$ annotation in Table~\\ref{tab:convergence}.\n\n\\section{Convergence Detail}\\label{app:convergence_detail}\n\n% Figure moved to main text (\\S\\ref{ssec:decoupling}).\n\nBeyond LAMBADA ($\\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\\rho = -0.67$ with a large $\\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.\n\nSeveral benchmarks show positive or near-zero $\\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.4$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \\citep{arora2024zoology,arora2024based} rather than multi-step inference.\n\n\\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a $5\\times$ $\\sigma$ compression ($0.024 \\to 0.005$). However, three observations argue against a purely statistical artifact. First, the $5\\times$ reduction in cross-architecture $\\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\\S\\ref{ssec:per_example}) reveals architecture-specific patterns: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.\n\n\\section{Scale-Dependent Convergence}\\label{app:scale_convergence}\n\nAt 1.3B parameters, LAMBADA convergence is monotonic: $\\sigma$ decreases at every attention level from 0\\% through 25\\% ($\\rho = -1.0$). At 340M, convergence is partial: $\\sigma$ reaches a maximum reduction of 56\\% at intermediate attention ratios but rebounds at h3-1, yielding a net endpoint reduction of 36\\%. The trajectory is non-monotonic, and the highest-attention model does not achieve the lowest cross-architecture variance. One possible interpretation is that at smaller scale, the capacity overhead of attention layers creates interference that offsets the retrieval benefit.\n\nThis contrast is a preliminary observation from two data points (not a scaling law). Despite the aggregate divergence at 340M, mean pairwise Jaccard is similar at both scales ($J \\approx 0.09$), extending the decoupling observation (\\S\\ref{ssec:decoupling}) to the scale dimension.\n\n\\section{Sensitivity Analyses}\\label{app:sensitivity}\n\n\\subsection{Bootstrap Confidence Intervals}\n\nWe construct 95\\% bootstrap confidence intervals for the Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ on LAMBADA using 10{,}000 resamples at the architecture level ($n = 3$ architectures). Of these resamples, 11.25\\% are degenerate: they consist of same-architecture triplicates, which produce a constant $\\sigma$ vector and therefore an undefined $\\rho$ (division by zero in the rank correlation formula). These are excluded from the confidence interval computation because they carry no information about the correlation, not because they represent $\\rho = 0$.\n\nThe BCa (bias-corrected and accelerated) correction degenerates at the $\\rho = -1.0$ boundary because the acceleration parameter requires finite jackknife variance, which collapses when the point estimate is at the distributional limit. We therefore report percentile confidence intervals instead. From the 88.75\\% informative resamples, the 95\\% percentile CI is $[-1.0,\\,-0.7]$, which excludes zero.\n\n\\subsection{GDN Exclusion Sensitivity}\n\nThe GDN h3-1 configuration uses 16 attention heads rather than 32 (see Appendix~\\ref{app:gdn_confound}). To assess the influence of this confound, we recompute all convergence correlations after excluding GDN, leaving two architectures (RetNet, HGRN2) at five attention ratios.\n\nTable~\\ref{tab:gdn_sensitivity} reports the results for benchmarks where the correlation changes by $|\\Delta\\rho| \\geq 0.3$. LAMBADA weakens from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), consistent with GDN contributing to the convergence signal. MMLU reverses from $\\rho = -0.7$ to $\\rho = +0.6$, confirming that the moderate negative correlation on MMLU depends on GDN's inclusion and should not be interpreted as evidence of convergence.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Effect of GDN exclusion on Spearman $\\rho$ (attention ratio vs.\\ cross-architecture $\\sigma$) at 1.3B scale. Only benchmarks with $|\\Delta\\rho| \\geq 0.3$ shown.}\n\\label{tab:gdn_sensitivity}\n\\begin{tabular}{lrrrr}\n\\toprule\nBenchmark & $\\rho_{\\text{all}}$ & $\\rho_{\\text{no-GDN}}$ & $\\Delta\\rho$ & $p_{\\text{no-GDN}}$ \\\\\n\\midrule\nLAMBADA & $-1.0$ & $-0.7$ & $+0.3$ & .233 \\\\\nMMLU & $-0.7$ & $+0.6$ & $+1.3$ & .350 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{GDN Attention Head Confound}\\label{app:gdn_confound}\n\nIn the \\citet{wang2025hybrid} model zoo, the GDN h3-1 configuration at 1.3B scale uses 16 attention heads per attention layer, while all other hybrid configurations (across GDN, RetNet, and HGRN2) use 32 attention heads. This is a design choice in the original model zoo, not an error. The reduced head count changes the per-head dimension and may affect the attention capacity of GDN h3-1 relative to other configurations.\n\nThis confound is relevant because the convergence analysis measures cross-architecture $\\sigma$ at each attention ratio. At the h3-1 ratio (25\\% attention), GDN's attention layers have a different internal structure than those of RetNet and HGRN2, which could contribute to variance reduction (or inflation) for reasons unrelated to the recurrent--attention interaction under study.\n\nThe sensitivity analysis in Appendix~\\ref{app:sensitivity} shows that removing GDN weakens the LAMBADA convergence correlation from $\\rho = -1.0$ to $\\rho = -0.7$. This weakening is partially attributable to the reduced sample size ($n = 2$ architectures) and partially to the confound itself. We cannot separate these two effects with the available data.\n\n\\section{Attention Weight Analysis}\\label{app:attention_patterns}\n\nWe extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \\citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.\n\n\\subsection{Cross-Architecture Cosine Similarity}\n\nTable~\\ref{tab:attn_cosine} reports cosine similarity between mean attention distributions at selected layers and averaged across all layers.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cosine similarity between mean attention weight distributions of architecture pairs at selected layers (1.3B h3-1 models on LAMBADA).}\n\\label{tab:attn_cosine}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrr}\n\\toprule\nLayer & GDN--RetNet & GDN--HGRN2 & HGRN2--RetNet \\\\\n\\midrule\nL2 (early) & 0.995 & 0.244 & 0.196 \\\\\nL20 (deep) & 0.986 & 0.942 & 0.943 \\\\\n\\midrule\nMean (all layers) & 0.905 & 0.766 & 0.698 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAt layer 2, GDN and RetNet produce nearly identical attention distributions (cosine 0.995), while HGRN2 diverges from both (cosine $< 0.25$). By layer 20, all three architectures converge to similar attention patterns (cosine $> 0.94$). The layer-wise trajectory suggests that early-layer attention patterns are shaped by the preceding recurrent layers (which differ across architectures), while deeper layers converge regardless of the recurrent substrate.\n\n\\subsection{Helped vs.\\ Hurt Attention Entropy}\n\nTo test whether the attention mechanism itself differs between helped and hurt examples, we compute the Shannon entropy of the attention distribution for each example at each attention layer and compare the mean entropy of helped examples against hurt examples within each architecture.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean attention entropy difference (helped $-$ hurt) averaged across attention layers (1.3B h3-1 models on LAMBADA). Values near zero indicate that the attention mechanism does not discriminate between helped and hurt examples.}\n\\label{tab:attn_entropy}\n\\begin{tabular}{lr}\n\\toprule\nArchitecture & $\\Delta H$ (helped $-$ hurt) \\\\\n\\midrule\nGDN & $-0.0009$ \\\\\nRetNet & $+0.0179$ \\\\\nHGRN2 & $+0.0020$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nGDN and HGRN2 show negligible entropy differences ($|\\Delta H| \\leq 0.002$). RetNet's $\\Delta H = +0.018$ is small in absolute terms but slightly larger; helped examples receive marginally more diffuse attention in RetNet. Across all three architectures, the differences are insufficient to explain the per-example divergence, consistent with per-example effects not being explained by attention weight patterns and likely originating in the recurrent layers.\n\n\\subsection{Last-5 Attention Mass}\n\nWe also measure the fraction of attention mass allocated to the last five tokens, which captures whether the attention mechanism concentrates differently on recent context for helped vs.\\ hurt examples.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean attention mass on last-5 tokens for helped and hurt examples, averaged across attention layers (1.3B h3-1 models on LAMBADA).}\n\\label{tab:attn_last5}\n\\begin{tabular}{lrr}\n\\toprule\nArchitecture & Helped & Hurt \\\\\n\\midrule\nGDN & 0.0834 & 0.0831 \\\\\nRetNet & 0.1578 & 0.1591 \\\\\nHGRN2 & 0.0453 & 0.0467 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nNo architecture shows a meaningful difference in last-5 attention mass between helped and hurt examples (Table~\\ref{tab:attn_last5}). This further supports the conclusion that the per-example divergence is not driven by differential attention allocation.\n\n\\section{Cross-Scale Per-Example Comparisons}\\label{app:cross_scale}\n\n\\subsection{Within-Scale Pairwise Jaccard}\n\nTable~\\ref{tab:within_scale_jaccard} reports the within-scale pairwise Jaccard similarity between architectures' helped and hurt sets at both scales. Mean values are similar across scales (340M: 0.094/0.090; 1.3B: 0.100/0.093), confirming that per-example architecture specificity is approximately scale-robust.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-scale pairwise Jaccard similarity of per-example effects (pure $\\to$ h3-1) on LAMBADA. Each row compares the helped (or hurt) sets of two architectures at the same scale.}\n\\label{tab:within_scale_jaccard}\n\\begin{tabular}{llcc}\n\\toprule\nScale & Pair & $J_{\\text{helped}}$ & $J_{\\text{hurt}}$ \\\\\n\\midrule\n\\multirow{4}{*}{340M} & GDN--RetNet & 0.092 & 0.109 \\\\\n& GDN--HGRN2 & 0.084 & 0.075 \\\\\n& RetNet--HGRN2 & 0.108 & 0.085 \\\\\n& \\textit{Mean} & \\textit{0.094} & \\textit{0.090} \\\\\n\\midrule\n\\multirow{4}{*}{1.3B} & GDN--RetNet & 0.092 & 0.103 \\\\\n& GDN--HGRN2 & 0.100 & 0.089 \\\\\n& RetNet--HGRN2 & 0.108 & 0.087 \\\\\n& \\textit{Mean} & \\textit{0.100} & \\textit{0.093} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Scale Pairwise Jaccard}\n\nFor each architecture, we compare the helped and hurt sets of the pure $\\to$ h3-1 transition at 340M and 1.3B scale on LAMBADA.\nThe comparison uses the same classification scheme as \\S\\ref{ssec:per_example}: an example is ``helped'' if it is correct only in the hybrid variant and ``hurt'' if correct only in the pure baseline.\nAll pairwise Jaccard values fall below 0.10, indicating that scale produces per-example predictive multiplicity analogous to the cross-architecture effect reported in \\S\\ref{ssec:per_example}.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-scale pairwise Jaccard similarity of per-example effects (pure $\\to$ h3-1) between 340M and 1.3B on LAMBADA. All values below 0.10.}\n\\label{tab:cross_scale_jaccard}\n\\begin{tabular}{llcc}\n\\toprule\nArchitecture & Scale Pair & $J_{\\text{helped}}$ & $J_{\\text{hurt}}$ \\\\\n\\midrule\nGDN & 340M $\\leftrightarrow$ 1.3B & 0.047 & 0.087 \\\\\nRetNet & 340M $\\leftrightarrow$ 1.3B & 0.059 & 0.073 \\\\\nHGRN2 & 340M $\\leftrightarrow$ 1.3B & 0.089 & 0.055 \\\\\n\\midrule\nMean & & 0.065 & 0.072 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Example Effect Counts}\\label{app:per_example_counts}\n\nTable~\\ref{tab:per_example} reports the full per-example effect counts for each architecture at 1.3B scale.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Per-example effects of attention (pure $\\to$ h3-1) on 5{,}153 LAMBADA examples at 1.3B scale. $\\bar{J}$: mean pairwise Jaccard similarity with other architectures across helped and hurt sets.}\n\\label{tab:per_example}\n\\begin{tabular}{lrrrr}\n\\toprule\nArchitecture & Helped & Hurt & Net & $\\bar{J}$ \\\\\n\\midrule\nGDN & 462 & 615 & $-$153 & .096 \\\\\nRetNet & 426 & 495 & $-$69 & .100 \\\\\nHGRN2 & 548 & 395 & $+$153 & .104 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Normalized Jaccard Effect Size}\\label{app:normalized_es}\n\nTo assess whether low observed Jaccard reflects a floor effect imposed by unequal set sizes, we compute the theoretical upper bound $J_{\\max} = \\min(|A|,|B|) / \\max(|A|,|B|)$ and the normalized effect size $(J_{\\text{obs}} - J_{\\text{null}}) / (J_{\\max} - J_{\\text{null}})$, which measures observed overlap as a fraction of the achievable range above chance. Table~\\ref{tab:normalized_es} reports per-pair results.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}\n\\label{tab:normalized_es}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\nCategory & Pair & $J_{\\text{obs}}$ & $J_{\\max}$ & $J_{\\text{null}}$ & Norm.\\ ES \\\\\n\\midrule\nHelped & GDN--RetNet & .086 & .922 & .048 & .044 \\\\\n & GDN--HGRN2 & .099 & .843 & .050 & .062 \\\\\n & RetNet--HGRN2 & .108 & .777 & .042 & .090 \\\\\n & \\textit{Mean} & \\textit{.098} & \\textit{.847} & \\textit{.047} & \\textit{.065} \\\\\n\\midrule\nHurt & GDN--RetNet & .092 & .805 & .056 & .048 \\\\\n & GDN--HGRN2 & .070 & .642 & .043 & .045 \\\\\n & RetNet--HGRN2 & .087 & .798 & .050 & .049 \\\\\n & \\textit{Mean} & \\textit{.083} & \\textit{.748} & \\textit{.050} & \\textit{.047} \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAll normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.\n\n\\section{ARC-Easy Per-Example Analysis}\\label{app:arceasy}\n\nTable~\\ref{tab:arceasy_effects} reports per-example effect counts on ARC-Easy ($N = 2{,}376$) at 1.3B scale for each attention ratio. Unlike LAMBADA, ARC-Easy shows no aggregate convergence ($\\rho = -0.20$, $p = .783$). HGRN2 is net positive at all ratios; GDN and RetNet are mixed.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Per-example effects on ARC-Easy at 1.3B scale. Net = helped $-$ hurt.}\n\\label{tab:arceasy_effects}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrr}\n\\toprule\nArchitecture & Ratio & Helped & Hurt & Net \\\\\n\\midrule\n\\multirow{4}{*}{GDN} & h24-1 & 178 & 185 & $-$7 \\\\\n& h12-1 & 176 & 206 & $-$30 \\\\\n& h6-1 & 170 & 157 & $+$13 \\\\\n& h3-1 & 171 & 180 & $-$9 \\\\\n\\midrule\n\\multirow{4}{*}{RetNet} & h24-1 & 158 & 168 & $-$10 \\\\\n& h12-1 & 163 & 146 & $+$17 \\\\\n& h6-1 & 159 & 147 & $+$12 \\\\\n& h3-1 & 144 & 184 & $-$40 \\\\\n\\midrule\n\\multirow{4}{*}{HGRN2} & h24-1 & 160 & 119 & $+$41 \\\\\n& h12-1 & 159 & 111 & $+$48 \\\\\n& h6-1 & 185 & 118 & $+$67 \\\\\n& h3-1 & 164 & 146 & $+$18 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nTable~\\ref{tab:arceasy_ambiguity} reports the ambiguity $\\alpha$ \\citep{marx2020predictive} at each attention ratio for all four main benchmarks. Within-benchmark ranges are 0.004 (HellaSwag), 0.011 (PIQA), 0.025 (ARC-Easy), and 0.022 (LAMBADA), all below the 0.03 threshold reported in \\S\\ref{ssec:per_example}.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Ambiguity $\\alpha$ across attention ratios (1.3B scale). 95\\% CI: BCa bootstrap (10{,}000 resamples) at the pure-recurrent configuration.}\n\\label{tab:arceasy_ambiguity}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccc}\n\\toprule\nBenchmark & Pure & h24-1 & h12-1 & h6-1 & h3-1 & 95\\% CI (pure) \\\\\n\\midrule\nPIQA & .143 & .138 & .132 & .143 & .140 & $[.127,\\,.159]$ \\\\\nHellaSwag & .148 & .150 & .148 & .146 & .150 & $[.141,\\,.155]$ \\\\\nARC-Easy & .205 & .226 & .223 & .201 & .210 & $[.189,\\,.221]$ \\\\\nLAMBADA & .307 & .300 & .316 & .294 & .296 & $[.294,\\,.319]$ \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\section{Jaccard Permutation Test}\\label{app:jaccard_permutation}\n\nTo assess whether the observed pairwise Jaccard similarities exceed what would be expected under independence, we perform a permutation test. For each architecture pair at 1.3B h3-1, we hold the helped (or hurt) set sizes fixed and randomly assign example indices to each set (10{,}000 permutations, seed 42). Table~\\ref{tab:jaccard_perm} reports the observed $J$, the null baseline $J_{\\text{null}}$ (mean over permutations), and the $z$-score.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Permutation test for pairwise Jaccard similarity (1.3B h3-1 on LAMBADA, 10{,}000 permutations). All observed values significantly exceed the independence baseline.}\n\\label{tab:jaccard_perm}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\nCategory & Pair & $J_{\\text{obs}}$ & $J_{\\text{null}}$ & $z$ & $p$ \\\\\n\\midrule\nHelped & GDN--HGRN2 & .100 & .051 & 7.11 & $<$.0001 \\\\\n & GDN--RetNet & .092 & .045 & 6.75 & $<$.0001 \\\\\n & HGRN2--RetNet & .108 & .049 & 8.61 & $<$.0001 \\\\\n\\midrule\nHurt & GDN--HGRN2 & .088 & .049 & 5.91 & $<$.0001 \\\\\n & GDN--RetNet & .103 & .056 & 6.85 & $<$.0001 \\\\\n & HGRN2--RetNet & .087 & .045 & 6.05 & $<$.0001 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAll six comparisons yield $z > 5.9$ ($p < .0001$). The null baseline averages $J_{\\text{null}} \\approx 0.049$; observed values are approximately twice this level. The overlap between architectures' per-example effect sets is therefore structured rather than a product of random set overlap given the set sizes.\n\n\\section{Transformer Entrainment Comparison}\\label{app:transformer_entrainment}\n\nTo test whether attention layers make hybrid models' per-example behavior converge toward a pure Transformer, we compare the correct-example sets of each architecture's pure and h3-1 variants against a 1.3B Transformer baseline (accuracy 48.1\\%) on LAMBADA. Table~\\ref{tab:transformer_jaccard} reports the Jaccard similarity between each model's correct set and the Transformer's correct set.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Jaccard similarity between each model's correct set and the Transformer correct set on LAMBADA (1.3B scale). All three h3-1 hybrids are more similar to the Transformer than their pure counterparts.}\n\\label{tab:transformer_jaccard}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nArchitecture & $J_{\\text{pure,T}}$ & $J_{\\text{h3-1,T}}$ & $\\Delta$ \\\\\n\\midrule\nGDN & 0.645 & 0.649 & $+$0.005 \\\\\nRetNet & 0.679 & 0.694 & $+$0.015 \\\\\nHGRN2 & 0.672 & 0.701 & $+$0.029 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll three architectures show positive $\\Delta$: the h3-1 correct set is more similar to the Transformer correct set than the pure correct set is. The effect is strongest for HGRN2 ($+$0.029) and weakest for GDN ($+$0.005). This ordering is consistent with HGRN2 being the only architecture with a positive net per-example effect from attention (Table~\\ref{tab:per_example}). The Transformer itself achieves the lowest accuracy among all models, so the convergence is not explained by hybrid models degrading toward Transformer-level performance; rather, adding attention shifts which specific examples the hybrid gets correct toward the Transformer's pattern.\n\n\\section{Within-Architecture Per-Example Stability}\\label{app:within_arch_stability}\n\nPer-example effect sets exhibit a three-tier Jaccard hierarchy on LAMBADA (1.3B scale). Under independence (permutation baseline), pairwise Jaccard is $J \\approx 0.05$. Cross-architecture comparisons (different architectures at the same attention ratio) yield $J \\approx 0.10$, approximately $2\\times$ baseline. Within-architecture comparisons (same architecture across different attention ratios) yield $J \\approx 0.33$, approximately $7\\times$ baseline and $3\\times$ the cross-architecture level. Architecture identity therefore has approximately three times the influence of attention dose on per-example effects.\n\nTable~\\ref{tab:within_arch_summary} reports mean within-architecture Jaccard for each architecture. HGRN2 shows the highest helped overlap and lowest hurt overlap, consistent with its monotonically increasing helped count across ratios (479 $\\to$ 548).\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean within-architecture pairwise Jaccard similarity across attention ratios (1.3B, LAMBADA). Each mean is computed over all six ratio pairs per architecture.}\n\\label{tab:within_arch_summary}\n\\begin{tabular}{lcc}\n\\toprule\nArchitecture & $\\bar{J}_{\\text{helped}}$ & $\\bar{J}_{\\text{hurt}}$ \\\\\n\\midrule\nGDN & 0.338 & 0.319 \\\\\nRetNet & 0.333 & 0.321 \\\\\nHGRN2 & 0.373 & 0.291 \\\\\n\\midrule\n\\textit{Overall mean} & \\textit{0.348} & \\textit{0.310} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:within_arch_pairwise} reports the full pairwise Jaccard matrix. Attention ratios are denoted by their h$k$-1 labels: h24-1 (4\\%), h12-1 (7.7\\%), h6-1 (14.3\\%), h3-1 (25\\%).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-architecture pairwise Jaccard similarity between helped and hurt sets at different attention ratios (1.3B, LAMBADA). Each cell compares the per-example effect sets of two attention configurations within the same architecture.}\n\\label{tab:within_arch_pairwise}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccccc}\n\\toprule\n & & \\multicolumn{6}{c}{Ratio pair} \\\\\n\\cmidrule(lr){3-8}\nArch & Cat & h24--h12 & h24--h6 & h24--h3 & h12--h6 & h12--h3 & h6--h3 \\\\\n\\midrule\n\\multirow{2}{*}{GDN} & Helped & .345 & .335 & .311 & .344 & .341 & .352 \\\\\n & Hurt & .310 & .328 & .320 & .331 & .281 & .345 \\\\\n\\midrule\n\\multirow{2}{*}{RetNet} & Helped & .354 & .314 & .334 & .322 & .330 & .345 \\\\\n & Hurt & .316 & .334 & .307 & .301 & .324 & .343 \\\\\n\\midrule\n\\multirow{2}{*}{HGRN2} & Helped & .359 & .369 & .375 & .368 & .378 & .388 \\\\\n & Hurt & .292 & .289 & .298 & .273 & .309 & .287 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAdjacent ratio pairs (e.g., h24-1 vs.\\ h12-1) do not exhibit systematically higher Jaccard than non-adjacent pairs (e.g., h24-1 vs.\\ h3-1). Across all architectures, the mean Jaccard for adjacent pairs is 0.353 (helped) and 0.311 (hurt), compared with 0.343 (helped) and 0.310 (hurt) for non-adjacent pairs. The negligible difference indicates that the mapping from attention dose to per-example effects is non-smooth: doubling the attention ratio does not produce a proportionally more similar set of affected examples.\n\n\\section{Cross-Benchmark Jaccard Trajectories}\\label{app:cross_bench_jaccard}\n\nTo test whether Jaccard saturation is specific to LAMBADA or a general property, we compute mean pairwise Jaccard trajectories across all four hybrid attention ratios on all four main benchmarks. Table~\\ref{tab:cross_bench_jaccard} reports the results. On every benchmark, Jaccard shows no statistically significant trend with attention ratio (all $\\rho \\leq 0.80$, $p \\geq 0.333$), with values uniformly between 0.08 and 0.11. The saturation at the first attention level observed on LAMBADA (\\S\\ref{ssec:decoupling}) thus generalizes: once any attention is present, each architecture's per-example response is largely fixed regardless of attention dose.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Mean pairwise Jaccard (helped sets, 3 architecture pairs) across attention ratios and benchmarks (1.3B scale). $\\rho$: Spearman correlation between attention ratio and $\\bar{J}$. All $p \\geq 0.333$.}\n\\label{tab:cross_bench_jaccard}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nBenchmark & h24-1 & h12-1 & h6-1 & h3-1 & $\\rho$ & $p$ \\\\\n\\midrule\nLAMBADA & .091 & .088 & .096 & .097 & 0.80 & .333 \\\\\nHellaSwag & .084 & .081 & .091 & .086 & 0.60 & .417 \\\\\nPIQA & .089 & .096 & .089 & .095 & 0.00 & 1.00 \\\\\nARC-Easy & .084 & .099 & .091 & .109 & 0.80 & .333 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Continuous-Threshold Jaccard Analysis}\\label{app:continuous_jaccard}\n\nThe main text binarizes per-example effects at the correctness boundary. To verify that low cross-architecture Jaccard is not an artifact of this binarization, we compute Jaccard similarity using a continuous confidence threshold $\\tau$: two architectures' effect sets are defined as the examples whose target-token $|\\log p|$ changes by more than $\\tau$ when attention is added. On LAMBADA, mean pairwise Jaccard decreases monotonically from 0.26 ($\\tau = 0.00$, any change) to 0.05 ($\\tau = 0.30$, large changes only). ARC-Easy and PIQA show the same monotonic decrease. The binary threshold ($\\tau = 0$, correctness flip) thus represents the upper end of cross-architecture overlap; restricting to confident transitions further reduces agreement, confirming that low Jaccard is robust to the choice of binarization threshold.\n\n\\section{Target-Token Confidence Margin}\n\\label{app:confidence_margin}\n\nWe analyze whether pure-model confidence on the target token predicts whether attention will help or hurt on a given example.\nWe define confidence as $|\\log p_{\\text{pure}}(y^*)|$, where $y^*$ is the target token: lower values indicate higher probability (near-correct).\nWe initially tested raw perplexity as a predictor of helped/hurt status, but found that within-category controls (C1/C2) are necessary to isolate attention effects from the definitional confound between pure-correct and pure-wrong populations.\n\nTable~\\ref{tab:cm_c1} compares hurt versus stayed-right samples (both pure-correct): hurt samples have significantly lower target-token probability (higher $|\\log p|$), confirming that weakly-correct predictions are vulnerable to attention disruption.\nTable~\\ref{tab:cm_c2} compares helped versus stayed-wrong samples (both pure-wrong): helped samples have higher target-token probability (lower $|\\log p|$), confirming that near-miss errors are rescuable.\nThis pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings---within-architecture predictability coexists with cross-architecture divergence.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Control 1: Pure-correct samples---hurt vs.\\ stayed-right. Higher mean $|\\log p|$ indicates lower target-token probability (less confident correct).}\n\\label{tab:cm_c1}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrrrr}\n\\toprule\nArchitecture & $n_{\\text{hurt}}$ & $n_{\\text{stay}}$ & Hurt mean & Stay mean & Cohen's $d$ \\\\\n\\midrule\nGDN (h12-1) & 519 & 2281 & 1.049 & 0.576 & 0.87 \\\\\nRetNet (h3-1) & 497 & 2169 & 1.293 & 0.785 & 0.83 \\\\\nHGRN2 (h3-1) & 392 & 2102 & 1.481 & 0.899 & 0.92 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[ht]\n\\centering\n\\caption{Control 2: Pure-wrong samples---helped vs.\\ stayed-wrong. Lower mean $|\\log p|$ indicates higher target-token probability (near-miss error).}\n\\label{tab:cm_c2}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrrrr}\n\\toprule\nArchitecture & $n_{\\text{help}}$ & $n_{\\text{stay}}$ & Help mean & Stay mean & Cohen's $d$ \\\\\n\\midrule\nGDN (h12-1) & 480 & 1873 & 2.459 & 4.189 & $-$0.75 \\\\\nRetNet (h3-1) & 420 & 2067 & 2.478 & 4.103 & $-$0.73 \\\\\nHGRN2 (h3-1) & 548 & 2111 & 2.500 & 4.112 & $-$0.77 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\subsection{Cross-Benchmark Extension}\\label{app:cm_cross}\n\nThe confidence margin pattern extends beyond LAMBADA to multiple-choice benchmarks, though with smaller effect sizes. Table~\\ref{tab:cm_cross_c2} reports the rescue analysis (helped vs.\\ stayed-wrong) on HellaSwag and ARC-Easy. All nine comparisons (three benchmarks $\\times$ three architectures) are significant, confirming that attention consistently rescues near-miss errors regardless of task type. Effect sizes range from small on HellaSwag ($d = 0.13$--$0.17$) to medium on ARC-Easy ($d = 0.51$--$0.60$), compared to large on LAMBADA ($d = 0.73$--$0.77$); the attenuation on HellaSwag reflects noisier confidence proxies under length-normalized scoring. Table~\\ref{tab:cm_cross_c1} reports the disruption analysis (hurt vs.\\ stayed-right); two of six comparisons are significant (all on ARC-Easy) with small effect sizes ($d = 0.13$--$0.26$), indicating that the disruption signal is weaker on multiple-choice tasks and absent on HellaSwag under \\texttt{acc\\_norm}. The asymmetry between rescue and disruption reflects task structure: near-miss errors are an intrinsic sample property (the model almost produced the correct answer regardless of format), while borderline correctness in multiple-choice settings depends on relative option ranking rather than absolute confidence, reducing the raw log-likelihood margin's predictive power for vulnerability.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-benchmark rescue analysis (Control 2): helped vs.\\ stayed-wrong on HellaSwag and ARC-Easy (1.3B h3-1).}\n\\label{tab:cm_cross_c2}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrr}\n\\toprule\nBenchmark & Architecture & Cohen's $d$ & $p$ \\\\\n\\midrule\nHellaSwag & GDN & $-$0.166 & $6.1 \\times 10^{-4}$ \\\\\n & RetNet & $-$0.132 & $1.4 \\times 10^{-2}$ \\\\\n & HGRN2 & $-$0.164 & $1.4 \\times 10^{-3}$ \\\\\n\\midrule\nARC-Easy & GDN & $-$0.60 & $1.0 \\times 10^{-13}$ \\\\\n & RetNet & $-$0.51 & $5.3 \\times 10^{-10}$ \\\\\n & HGRN2 & $-$0.53 & $5.4 \\times 10^{-10}$ \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-benchmark disruption analysis (Control 1): hurt vs.\\ stayed-right on HellaSwag and ARC-Easy (1.3B h3-1).}\n\\label{tab:cm_cross_c1}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrl}\n\\toprule\nBenchmark & Architecture & Cohen's $d$ & $p$ & Sig.? \\\\\n\\midrule\nHellaSwag & GDN & 0.009 & .999 & No \\\\\n & RetNet & $-$0.035 & .453 & No \\\\\n & HGRN2 & $-$0.062 & .274 & No \\\\\n\\midrule\nARC-Easy & GDN & 0.26 & $3.2 \\times 10^{-4}$ & Yes \\\\\n & RetNet & 0.22 & $2.8 \\times 10^{-3}$ & Yes \\\\\n & HGRN2 & 0.13 & .145 & No \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\subsection{Prediction Framework}\\label{app:prediction_framework}\n\nWe formalize the confidence margin analysis as a binary prediction task: given a pure-model example and its target-token $|\\log p|$, predict whether attention will change the example's correctness. Using the within-category summary statistics (Tables~\\ref{tab:cm_c1},~\\ref{tab:cm_c2}), we derive analytic AUC from Cohen's $d$ via $\\text{AUC} = \\Phi(|d|/\\sqrt{2})$ and compute Gaussian-intersection thresholds (the $|\\log p|$ value at which the two group densities intersect under equal priors).\n\nTable~\\ref{tab:prediction_auc} reports within-architecture prediction performance. All AUCs exceed 0.69, confirming that pure-model confidence is a reliable within-architecture predictor of attention effects. Disruption prediction is consistently stronger than rescue (mean AUC 0.73 vs.\\ 0.70), reflecting the larger effect sizes in Control~1.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-architecture prediction of attention effects on LAMBADA (1.3B). AUC$_p$: parametric (from Cohen's $d$); AUC$_e$: empirical (non-parametric).}\n\\label{tab:prediction_auc}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nArchitecture & \\multicolumn{3}{c}{Rescue} & \\multicolumn{3}{c}{Disruption} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n & AUC$_p$ & AUC$_e$ & $d$ & AUC$_p$ & AUC$_e$ & $d$ \\\\\n\\midrule\nGDN (h12-1) & .701 & .756 & 0.75 & .732 & .742 & 0.87 \\\\\nRetNet (h3-1) & .696 & .754 & 0.73 & .722 & .735 & 0.83 \\\\\nHGRN2 (h3-1) & .708 & .765 & 0.77 & .743 & .748 & 0.92 \\\\\n\\midrule\nMean & .702 & .758 & --- & .732 & .742 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Normality verification.} Shapiro-Wilk tests reject normality for all six architecture--set combinations (all $W < 0.98$, $p < 10^{-6}$), but the practical departure varies by group. Disruption-set $|\\log p|$ values show mild skewness (0.53--0.77, $W \\in [0.955, 0.973]$), closely approximating a normal distribution at the sample sizes involved. Rescue-set values are moderately right-skewed (skewness 1.33--1.41, $W \\in [0.899, 0.920]$), following an approximately log-normal distribution. Because the skew is one-sided, parametric AUC estimates (0.70--0.74 in the main text) are conservative lower bounds; non-parametric empirical AUC from the same data yields 0.73--0.77.\n\nDespite similar within-architecture AUC, the optimal prediction thresholds differ across architectures for disruption but not rescue (Table~\\ref{tab:threshold_gap}). Rescue thresholds cluster tightly (range 0.03 in $|\\log p|$), indicating that the rescuability boundary---the confidence level below which pure-wrong examples are likely to be corrected by attention---is architecture-invariant. Disruption thresholds span a 47\\% relative range (GDN: 0.70, RetNet: 1.00, HGRN2: 1.14), meaning that the same confidence level on a pure-correct example may predict vulnerability in one architecture but safety in another. This asymmetry constitutes a second dimension of multiplicity beyond per-example disagreement: all three architectures agree on which wrong answers are rescuable, but disagree on which correct answers are vulnerable to disruption.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Gaussian-intersection prediction thresholds ($|\\log p|$) across architectures. Relative spread: range/mean.}\n\\label{tab:threshold_gap}\n\\begin{tabular}{@{}lccccr@{}}\n\\toprule\n & GDN & RetNet & HGRN2 & Range & Rel.\\ spread \\\\\n\\midrule\nRescue & 3.32 & 3.29 & 3.31 & 0.03 & 1.0\\% \\\\\nDisruption & 0.70 & 1.00 & 1.14 & 0.44 & 46.7\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Calibration Analysis}\\label{app:calibration}\n\nCross-architecture disruption threshold variation (\\S\\ref{ssec:per_example}) could in principle arise from calibration differences rather than genuine differences in per-example processing. We compute expected calibration error (ECE; \\citealt{guo2017calibration}) for each architecture's h3-1 model on LAMBADA using 15 equal-width bins. ECE values are similar: GDN 0.222, RetNet 0.224, HGRN2 0.235. The cross-architecture ECE spread (17\\%, computed as range/mean) is less than half the disruption threshold spread (47\\%; Table~\\ref{tab:threshold_gap}), indicating that calibration differences are insufficient to account for the observed threshold divergence. Rescue thresholds, which show only 1\\% cross-architecture spread, are consistent with near-identical calibration in the low-confidence regime.\n\n\\section{BoolQ Supplementary Analysis}\n\\label{app:boolq}\n\nBoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\\alpha \\approx 0.45$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.\n\n\\paragraph{Binary classification baseline.} BoolQ is binary classification (two answer choices), whereas LAMBADA, HellaSwag, and ARC-Easy involve open vocabulary prediction or four-way multiple choice. Under a binary task, the null Jaccard baseline $J_{\\text{null}}$ is higher because chance overlap between helped/hurt sets is larger when there are fewer ways to be wrong. This elevates the significance threshold: observed Jaccard must be substantially higher to exceed the null, which explains why 12/24 pairs fail to reach significance despite $\\bar{J}_h = 0.103$ and $\\bar{J}_u = 0.098$---values comparable to the four main benchmarks.\n\n\\paragraph{Per-example summary.} Table~\\ref{tab:boolq_multiplicity} reports the key metrics. The high $\\alpha$ reflects that BoolQ examples are more sensitive to architectural variation in the presence of attention: approximately half of all examples change correctness status for at least one architecture. However, the mixed Jaccard significance prevents us from confidently concluding that the cross-architecture overlap structure matches the pattern observed on the four main benchmarks.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{BoolQ predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:boolq_multiplicity}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\alpha$ \\\\\n\\midrule\nBoolQ & 3270 & .45 & .103 & .098 & 12/24 & $+0.1$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}\n\\end{table}\n\nThe significant Jaccard overlap concentrates in GDN--RetNet pairs (8/8 significant), while RetNet--HGRN2 shows none (0/8). This pair-specificity does not appear on the four main benchmarks, where all architecture pairs show significant overlap; it may reflect a BoolQ-specific interaction between binary classification structure and particular recurrent architectures rather than a general property of architecture pairs.\n\n\\paragraph{Confidence margin.} Confidence margin analysis on BoolQ shows the rescue pattern (C2) partially holds (2/3 architectures significant, $d = 0.16$--$0.36$) but the disruption pattern (C1) is absent (0/3, $|d| \\leq 0.10$), consistent with compressed log-likelihood ranges in binary classification reducing the predictive power of confidence margins. This extends the gradient observed across LAMBADA, ARC-Easy, and HellaSwag: C1 effect sizes decrease from open-ended prediction ($d \\approx 0.9$, LAMBADA) through ARC-Easy ($d \\approx 0.1$--$0.3$) to HellaSwag ($d \\approx 0$ under \\texttt{acc\\_norm}) and binary classification ($d \\approx 0$, BoolQ). The gradient broadly tracks the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$). BoolQ's high-frequency short completions (``\\,yes''/``\\,no'') yield elevated baseline log-likelihoods (mean $|\\text{loglik}| = 3.04$ vs.\\ $0.84$ for LAMBADA) with similar absolute spread (IQR $\\approx 0.9$), compressing the relative variation and rendering the confidence margin unable to separate borderline-correct from robustly-correct examples.\n\n\\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.\n\n\\section{WinoGrande Supplementary Analysis}\n\\label{app:winogrande}\n\nWinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\\alpha \\approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\\bar{J}_h = 0.110$, $\\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\\sim}60\\%$) reduces statistical power to detect above-chance overlap.\n\n\\paragraph{Near-chance accuracy.} WinoGrande accuracy across hybrid configurations ranges from 59\\% to 62\\%, close to the two-choice chance level of 50\\%. At near-chance accuracy, a large fraction of examples are borderline---small perturbations (such as adding attention) can flip predictions in either direction, inflating the helped and hurt sets and consequently $\\alpha$. This structural property, shared with BoolQ (${\\sim}59\\%$ accuracy, $\\alpha \\approx 0.45$), may partially explain the elevated $\\alpha$ rather than task-intrinsic multiplicity. PIQA (73\\% accuracy, $\\alpha = 0.14$) and HellaSwag (60\\% normalized accuracy, $\\alpha = 0.15$) demonstrate that near-chance accuracy is not the sole driver, but we cannot fully exclude it as a contributing factor for WinoGrande and BoolQ.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{WinoGrande predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:winogrande_multiplicity}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\alpha$ \\\\\n\\midrule\nWinoGrande & 1267 & .41 & .110 & .103 & 10/24 & $-0.9$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize $\\alpha$ variation across ratios: 0.054 ($> 0.03$ threshold of main benchmarks).}\n\\end{table}\n\n\\section{340M Per-Example Analysis}\\label{app:scale_per_example}\n\n\\subsection{LAMBADA}\n\nAt 340M, LAMBADA per-example multiplicity closely matches the 1.3B pattern: $\\alpha = 0.313$ (vs.\\ 0.307 at 1.3B), with mean pairwise Jaccard $\\bar{J} \\approx 0.089$ (vs.\\ 0.095). Per-example directionality is preserved: HGRN2 shows net positive effects at h3-1 ($+238$ examples), while GDN ($-256$) and RetNet ($-106$) show net negative effects, mirroring the 1.3B profile (HGRN2 $+153$, GDN $-153$, RetNet $-69$).\n\nHowever, aggregate convergence is absent at 340M: $\\rho = -0.50$ ($p = .45$), with non-monotonic $\\sigma$ across attention ratios ($0.025 \\to 0.012 \\to 0.018 \\to 0.011 \\to 0.016$). This contrasts sharply with 1.3B ($\\rho = -1.0$, $p = .017$, monotonic $\\sigma$ decrease). The decoupling between per-example divergence and aggregate convergence thus manifests differently across scales: at 340M, per-example multiplicity is present but aggregate convergence is not, suggesting that convergence requires sufficient model capacity while multiplicity does not.\n\nWithin-benchmark $\\alpha$ variation across attention ratios is also larger at 340M (0.047, from 0.313 at pure to 0.266 at h3-1) than at 1.3B ($< 0.03$; \\S\\ref{ssec:per_example}), suggesting that smaller models are more sensitive to the attention ratio in terms of per-example disagreement patterns.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{340M vs.\\ 1.3B LAMBADA comparison.}\n\\label{tab:scale_comparison}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n & 340M & 1.3B \\\\\n\\midrule\n$\\alpha$ (pure) & .313 & .307 \\\\\n$\\bar{J}$ (h3-1) & .089 & .095 \\\\\n$\\rho_\\sigma$ & $-0.50$ & $-1.0$ \\\\\n$p$ & .45 & .017 \\\\\nGDN net & $-256$ & $-153$ \\\\\nHGRN2 net & $+238$ & $+153$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Benchmark Scale Comparison}\n\nTable~\\ref{tab:340m_multi_bench} extends the scale comparison to all four main benchmarks. Two patterns emerge. First, $\\alpha$ is systematically higher at 340M across all benchmarks, with the largest gap on ARC-Easy ($+$8.4pp) and the smallest on LAMBADA ($+$0.6pp). Second, pairwise Jaccard remains stable across scales ($\\bar{J}_h = 0.08$--$0.10$ at both scales); three-architecture results are stable across both 340M and 1.3B scales (Jaccard $\\approx$ 0.08--0.10), providing indirect support for scale robustness. This confirms that the qualitative pattern of per-example multiplicity---which architectures affect which examples---is scale-robust even as its magnitude increases at smaller scale. Notably, the $\\alpha$ inflation does not track accuracy loss: HellaSwag has the largest accuracy gap between scales yet the smallest $\\Delta\\alpha$ ($+$1.9pp), while ARC-Easy has a smaller accuracy gap but the largest $\\Delta\\alpha$ ($+$8.4pp), arguing against accuracy as the primary driver of scale-dependent multiplicity.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{340M vs.\\ 1.3B per-example multiplicity across four benchmarks. $\\alpha$: ambiguity at pure-recurrent configuration. Acc: mean accuracy across three architectures at pure-recurrent. $\\bar{J}_{h}$/$\\bar{J}_{u}$: mean pairwise Jaccard of helped/hurt sets. $\\Delta\\alpha$: 340M $-$ 1.3B.}\n\\label{tab:340m_multi_bench}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccccr}\n\\toprule\n & \\multicolumn{4}{c}{340M} & \\multicolumn{3}{c}{1.3B} & \\\\\n\\cmidrule(lr){2-5} \\cmidrule(lr){6-8}\nBenchmark & Acc & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\Delta\\alpha$ \\\\\n\\midrule\nPIQA & .663 & .181 & .090 & .085 & .143 & .091 & .094 & $+$.038 \\\\\nHellaSwag$^\\dagger$ & .420 & .167 & .084 & .083 & .148 & .095 & .085 & $+$.019 \\\\\nARC-Easy & .594 & .289 & .098 & .103 & .205 & .092 & .099 & $+$.084 \\\\\nLAMBADA & --- & .313 & .089 & .090 & .307 & .095 & .093 & $+$.006 \\\\\n\\bottomrule\n\\multicolumn{9}{l}{\\footnotesize $^\\dagger$\\texttt{acc\\_norm}. LAMBADA accuracy omitted (evaluated in separate run).}\n\\end{tabular}%\n}\n\\end{table}\n\nConvergence is absent at 340M across all benchmarks (all $|\\rho| \\leq 0.4$, $p \\geq .45$), in contrast to 1.3B where LAMBADA shows monotonic convergence. The absence of convergence at 340M extends beyond LAMBADA to HellaSwag ($\\rho = 0.4$, $p = .52$), PIQA ($\\rho = 0.3$, $p = .68$), and ARC-Easy ($\\rho = -0.1$, $p = .95$).\n\n\\section{Subsample Sensitivity of \\texorpdfstring{$\\alpha$}{α}}\\label{app:subsample_sensitivity}\n\nTo assess the reliability of $\\alpha$ estimation at different sample sizes, we repeatedly subsample each benchmark (1{,}000 bootstrap replicates, seed 42) and compute the 95\\% CI width of $\\alpha$.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{$\\alpha$ estimation stability: 95\\% CI width by subsample size.}\n\\label{tab:subsample}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrrrrr@{}}\n\\toprule\nBenchmark & $n = 100$ & $n = 200$ & $n = 500$ & $n = 1000$ & Full $N$ \\\\\n\\midrule\nPIQA & .130 & .095 & .066 & .045 & .034 \\\\\nHellaSwag & .140 & .100 & .062 & .044 & .013 \\\\\nARC-Easy & .160 & .105 & .072 & .050 & .032 \\\\\nLAMBADA & .180 & .125 & .082 & .057 & .025 \\\\\n\\bottomrule\n\\end{tabular}}\n\\par\\vspace{1pt}\n{\\footnotesize At $n = 100$, CI width (0.13--0.18) spans the entire four-benchmark $\\alpha$ range (0.14--0.30), rendering $\\alpha$ estimation unreliable. This justifies excluding COPA ($n = 100$) from the per-example analysis.}\n\\end{table}\n\n\\section{Complementarity Decomposition}\\label{app:complementarity}\n\nWe decompose the three-architecture vote on each example into four categories: unanimous correct (3/3), majority correct (2/3), minority correct (1/3), and unanimous wrong (0/3). This decomposition explains the structural failure of majority vote despite substantial per-example complementarity.\n\nTable~\\ref{tab:complementarity} reports the decomposition at h3-1 (25\\% attention). Majority vote benefits only from 2/3 examples (where the correct answer holds a majority) but is actively harmed by 1/3 examples (where the correct architecture is outvoted). On LAMBADA, HellaSwag, and ARC-Easy, the MV exploitation ratio---the fraction of complementary examples where MV selects correctly---hovers near 51\\%, indicating a near-even split between MV-exploitable and MV-hostile disagreements. The oracle, by contrast, exploits both categories, explaining the large oracle--MV gap ($+7$--$14$\\,pp).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Complementarity decomposition at 1.3B h3-1. Fractions of total examples in each vote category. MV expl.: fraction of complementary examples where majority vote is correct.}\n\\label{tab:complementarity}\n\\begin{tabular}{@{}lccccr@{}}\n\\toprule\nBenchmark & 3/3 & 2/3 & 1/3 & 0/3 & MV expl. \\\\\n\\midrule\nLAMBADA & .361 & .151 & .145 & .343 & 51.1\\% \\\\\nHellaSwag & .519 & .078 & .073 & .331 & 51.6\\% \\\\\nARC-Easy & .603 & .107 & .103 & .187 & 50.9\\% \\\\\nBoolQ & .376 & .257 & .197 & .170 & 56.6\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThis near-50\\% exploitation ratio is structurally invariant across attention ratios: on LAMBADA, the ratio ranges from 51.1\\% to 54.4\\% across all five configurations; on HellaSwag, from 50.3\\% to 51.6\\%. Attention changes neither the amount nor the structure of cross-architecture complementarity.\n\n\\section{Seed-Variation Calibration}\\label{app:seed_calibration}\n\nTo contextualize the $3\\times$ within- vs.\\ cross-architecture Jaccard gap (\\S\\ref{ssec:decoupling}), we compare against within-seed variation using the Pythia 70M \\citep{biderman2023pythia} PolyPythias models \\citep{vanderwal2025polypythias}, which provide 9 individually trained seeds of the same architecture.\n\nOn LAMBADA ($N = 5{,}153$), within-seed mean Jaccard is $\\bar{J}_h = 0.273$ (helped) and $\\bar{J}_u = 0.393$ (hurt), compared to our cross-architecture reference $J \\approx 0.10$. On ARC-Easy ($N = 2{,}376$), within-seed $\\bar{J}_h = 0.312$ and $\\bar{J}_u = 0.354$, versus cross-architecture $J \\approx 0.092$. Within-seed ambiguity is $\\alpha = 0.36$ (LAMBADA) and $\\alpha = 0.49$ (ARC-Easy), compared to cross-architecture $\\alpha = 0.30$ and $0.21$ respectively.\n\nSeeds thus produce comparable or higher amounts of per-example disagreement ($\\alpha$) but on more overlapping examples (higher $J$). Cross-architecture variation produces per-example effects on less overlapping examples (lower $J$), consistent with architecture-driven divergence producing qualitatively different per-example patterns than seed noise. The within-seed Jaccard is 2.7--4.3$\\times$ higher than cross-architecture Jaccard across both benchmarks.\n\nThree caveats qualify this comparison. First, scale mismatch: Pythia 70M is $5\\times$ smaller than our smallest models (340M); attempts to use Pythia 410M failed repeatedly. Second, architecture family: Pythia is a standard Transformer, not a hybrid recurrent architecture, so this is a cross-family reference point rather than a matched control. Third, accuracy regime: Pythia 70M accuracy (LAMBADA 0.17--0.23, ARC-Easy ${\\sim}$0.38) is far below our models (${\\sim}$0.50, ${\\sim}$0.72), and Jaccard is affected by base rates; the 2.7--4.3$\\times$ ratio may differ at accuracy regimes closer to our main experiments. These limitations restrict the comparison to a reference point for seed-variation magnitude rather than definitive evidence for architecture-driven effects.\n\n\\section{Extended Architecture Validation (Five Architectures)}\\label{app:extended_arch}\n\nTo test whether the low cross-architecture Jaccard pattern generalizes beyond the three primary architectures, we extend the analysis to include two additional architectures from the same model zoo: GLA (Gated Linear Attention) and DeltaNet, yielding ten pairwise comparisons. Both are available only at 340M; all results below use the h3-1 (25\\% attention) configuration.\n\n\\begin{center}\n\\small\n\\captionof{table}{Pairwise Jaccard similarity across five architectures (340M, h3-1). All 40 permutation tests yield $p \\leq .002$ ($z = 3.49$--$12.21$).}\n\\label{tab:extended_arch_jaccard}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nBenchmark & Pair & $J_h$ & $J_u$ \\\\\n\\midrule\n\\multirow{11}{*}{LAMBADA} & GDN--RetNet & .128 & .121 \\\\\n & GDN--HGRN2 & .123 & .083 \\\\\n & GDN--GLA & .124 & .100 \\\\\n & GDN--DeltaNet & .115 & .100 \\\\\n & RetNet--HGRN2 & .108 & .083 \\\\\n & RetNet--GLA & .123 & .107 \\\\\n & RetNet--DeltaNet & .115 & .096 \\\\\n & HGRN2--GLA & .127 & .086 \\\\\n & HGRN2--DeltaNet & .125 & .090 \\\\\n & GLA--DeltaNet & .134 & .081 \\\\\n & \\textit{Mean} & \\textit{.122} & \\textit{.095} \\\\\n\\midrule\n\\multirow{11}{*}{ARC-Easy} & GDN--RetNet & .089 & .114 \\\\\n & GDN--HGRN2 & .122 & .105 \\\\\n & GDN--GLA & .114 & .106 \\\\\n & GDN--DeltaNet & .084 & .102 \\\\\n & RetNet--HGRN2 & .087 & .115 \\\\\n & RetNet--GLA & .112 & .110 \\\\\n & RetNet--DeltaNet & .138 & .123 \\\\\n & HGRN2--GLA & .098 & .087 \\\\\n & HGRN2--DeltaNet & .109 & .088 \\\\\n & GLA--DeltaNet & .129 & .098 \\\\\n & \\textit{Mean} & \\textit{.108} & \\textit{.105} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{center}\n\n% Figure moved to main text (\\S\\ref{ssec:robustness})\n\nAll pairwise Jaccard values remain $\\leq 0.14$, consistent with the three-architecture results at 1.3B (Table~\\ref{tab:per_example}). The seven new pairs involving GLA and DeltaNet show no systematic difference from the original three pairs (Mann-Whitney $p > .3$ for both helped and hurt), indicating that the low-overlap pattern is not specific to the original architecture triple. A sixth architecture (HGRN; \\citealp{qin2023hierarchically}) is also available in the zoo but excluded from the main analysis: its substantially lower baseline accuracy on LAMBADA (0.263 vs.\\ 0.32--0.38 for the other five) mechanically inflates helped-set sizes and Jaccard values. All 15 six-architecture permutation tests nonetheless remain significant ($z \\geq 2.9$, $p \\leq .006$). The same pattern holds on HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$): all 20 additional pairwise tests yield $p < .01$ with mean $J_{\\text{helped}} \\leq 0.10$. Full four-benchmark and six-architecture data are included in our code release.\n\n\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant\nthroughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n    pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections,\n    polishing prose, and reformatting \\LaTeX{}.\n    \\item \\textbf{Literature:} summarizing related papers to inform\n    the related-work section.\n\\end{itemize}\n",
+      "numLines": 790,
+      "startLine": 1,
+      "totalLines": 790
+    }
+  },
+  "sourceToolAssistantUUID": "b6c32f6f-0490-430d-b4db-b2339c60bded",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T19:16:53.513Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GsA6iamNdTH21tUJLCbLEi`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7123a1cb-e43e-4376-a44c-26178a519318",
+  "isSidechain": false,
+  "requestId": "req_011CbL38jMgPpHRZALKxotVp",
+  "type": "assistant",
+  "uuid": "f8946022-dddc-4890-8575-f089615c86db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y358bsD9G83YBVhTkmjYK1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 208,
+      "cache_read_input_tokens": 26427,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 26427,
+          "cache_creation_input_tokens": 208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T19:16:53.698Z_
+
+<details><summary>↩ Tool result · `toolu_011J8XyBajkDKm5A4F5DAq1Y`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	Hybrid linear recurrent architectures---including GDN, RetNet, HGRN2, GLA, and DeltaNet---achieve aggregate benchmark scores within 1--2 points of each other at matched parameter budgets. Yet they can differ on up to 90\% of the individual examples they affect: adding attention to three controlled linear recurrent backbones yields helped and hurt sets with at most 10\% pairwise overlap, approximately twice the independence baseline. This per-example divergence is invisible in aggregate metrics: aggregate cross-architecture variance decreases on some benchmarks as attention ratio increases, but each architecture reaches similar accuracy by gaining and losing accuracy on different inputs. Practitioners increasingly choose between recurrent backbones based on aggregate benchmark scores. Across all ten pairwise comparisons among five architectures, overlap in per-example effects remains below 14\% (all $p < .01$), meaning the choice of backbone is associated with which specific inputs a deployed system handles correctly.
+4	
+5	This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \citep{lieber2024jamba}, Griffin \citep{de2024griffin}, RWKV-6 \citep{peng2024eagle}, and RecurrentGemma \citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.
+6	
+7	Most evaluations of hybrid architectures compare aggregate accuracy, which can mask per-example behavioral diversity. Prior work on predictive multiplicity \citep{marx2020predictive} and underspecification \citep{damour2022underspecification,mccoy2020berts} documents this risk for seed variation within a single architecture, but whether the phenomenon extends to architectural variation in hybrid recurrent models remains open. If architectures that score identically in aggregate behave differently on individual inputs, the choice of backbone carries hidden consequences for deployment reliability and ensemble construction.
+8	
+9	We present the first systematic per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Using the model zoo of \citet{wang2025hybrid}, we compare three architectures (GatedDeltaNet, RetNet, HGRN2) at five attention ratios (0\% to 25\%) and two scales (340M and 1.3B parameters). These three architectures represent distinct approaches to linear recurrence: gated delta rules, multi-scale exponential decay, and gated state expansion. We evaluate all 30 configurations on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed task categories. On four benchmarks (LAMBADA, $N = 5{,}153$; HellaSwag, $N = 10{,}042$; PIQA, $N = 1{,}838$; ARC-Easy, $N = 2{,}376$) we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap using Jaccard similarity. Figure~\ref{fig:decoupling} previews our central result: aggregate variance reduction and per-example overlap follow different trajectories as attention ratio increases.
+10	
+11	\begin{figure}[t]
+12	\centering
+13	\includegraphics[width=\columnwidth]{figures/fig1_decoupling_hero.pdf}
+14	\caption{Aggregate variance and per-example overlap follow independent trajectories (helped: correct only with attention; hurt: correct only without). (a) Cross-architecture standard deviation on LAMBADA decreases with attention ratio at 1.3B (solid; Bonferroni-adjusted $p = .170$, non-significant) but partially rebounds at 340M (dashed). (b) Cross-architecture pairwise Jaccard similarity of per-example helped/hurt sets saturates at the first attention level (4\%) and remains flat. Shaded bands are illustrative ($n = 3$).}
+15	\label{fig:decoupling}
+16	\end{figure}
+17	
+18	Our analysis yields two findings. First, per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent variation. The ambiguity $\alpha$ \citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\leq 0.10$, all $p < .01$). Within each benchmark, $\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types, ranging from 0.14 (reasoning) to 0.30 (retrieval).
+19	
+20	Aggregate variance reduction is task-specific and exploratory: of 10 benchmarks, only LAMBADA shows monotonic variance reduction ($\rho = -1.0$, Bonferroni-adjusted $p = .170$; observed at 1.3B, absent at 340M). Yet on this benchmark, per-example Jaccard saturates at the first attention level while aggregate variance continues to decrease (\S\ref{ssec:decoupling}).
+21	
+22	Our contributions are as follows:
+23	\begin{itemize}
+24	    \item We show that architectural variation---a source of multiplicity not previously characterized at the per-example level---produces structured per-example predictive multiplicity ($\alpha = 0.14$--$0.30$) across four benchmarks, with magnitude determined by task type rather than attention dose (\S\ref{ssec:per_example}, Table~\ref{tab:multiplicity}). Extended validation across five architectures confirms the pattern: all ten pairwise Jaccard values remain $\leq 0.14$ across four benchmarks (all $p < .01$; Appendix~\ref{app:extended_arch}). The primary controlled variable is the recurrent backbone \citep[cf.][]{mccoy2020berts, damour2022underspecification}, though single training runs prevent full disentanglement from seed effects (Limitations).
+25	    \item Per-example Jaccard saturates at the first attention level (4\%) across all four benchmarks and shows no further increase at higher ratios, while aggregate variance shows a non-significant decreasing pattern on LAMBADA (\S\ref{ssec:decoupling}; Appendix~\ref{app:cross_bench_jaccard}). This immediate saturation indicates that minimal attention suffices to establish the full pattern of configuration-specific per-example effects; additional attention narrows aggregate gaps without homogenizing which examples each architecture affects. The aggregate convergence component is dependent on GDN inclusion (\S\ref{ssec:robustness}) and does not replicate on other benchmarks.
+26	\end{itemize}
+27	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e47f5bb6-5109-4190-94f1-123e1c30e9fc",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "eff61b19-9ab2-4cf8-894b-80229cbfc92d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
+      "content": "\\section{Introduction}\n\nHybrid linear recurrent architectures---including GDN, RetNet, HGRN2, GLA, and DeltaNet---achieve aggregate benchmark scores within 1--2 points of each other at matched parameter budgets. Yet they can differ on up to 90\\% of the individual examples they affect: adding attention to three controlled linear recurrent backbones yields helped and hurt sets with at most 10\\% pairwise overlap, approximately twice the independence baseline. This per-example divergence is invisible in aggregate metrics: aggregate cross-architecture variance decreases on some benchmarks as attention ratio increases, but each architecture reaches similar accuracy by gaining and losing accuracy on different inputs. Practitioners increasingly choose between recurrent backbones based on aggregate benchmark scores. Across all ten pairwise comparisons among five architectures, overlap in per-example effects remains below 14\\% (all $p < .01$), meaning the choice of backbone is associated with which specific inputs a deployed system handles correctly.\n\nThis tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n\nMost evaluations of hybrid architectures compare aggregate accuracy, which can mask per-example behavioral diversity. Prior work on predictive multiplicity \\citep{marx2020predictive} and underspecification \\citep{damour2022underspecification,mccoy2020berts} documents this risk for seed variation within a single architecture, but whether the phenomenon extends to architectural variation in hybrid recurrent models remains open. If architectures that score identically in aggregate behave differently on individual inputs, the choice of backbone carries hidden consequences for deployment reliability and ensemble construction.\n\nWe present the first systematic per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Using the model zoo of \\citet{wang2025hybrid}, we compare three architectures (GatedDeltaNet, RetNet, HGRN2) at five attention ratios (0\\% to 25\\%) and two scales (340M and 1.3B parameters). These three architectures represent distinct approaches to linear recurrence: gated delta rules, multi-scale exponential decay, and gated state expansion. We evaluate all 30 configurations on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed task categories. On four benchmarks (LAMBADA, $N = 5{,}153$; HellaSwag, $N = 10{,}042$; PIQA, $N = 1{,}838$; ARC-Easy, $N = 2{,}376$) we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap using Jaccard similarity. Figure~\\ref{fig:decoupling} previews our central result: aggregate variance reduction and per-example overlap follow different trajectories as attention ratio increases.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig1_decoupling_hero.pdf}\n\\caption{Aggregate variance and per-example overlap follow independent trajectories (helped: correct only with attention; hurt: correct only without). (a) Cross-architecture standard deviation on LAMBADA decreases with attention ratio at 1.3B (solid; Bonferroni-adjusted $p = .170$, non-significant) but partially rebounds at 340M (dashed). (b) Cross-architecture pairwise Jaccard similarity of per-example helped/hurt sets saturates at the first attention level (4\\%) and remains flat. Shaded bands are illustrative ($n = 3$).}\n\\label{fig:decoupling}\n\\end{figure}\n\nOur analysis yields two findings. First, per-example predictive multiplicity varies in magnitude across tasks, forming a task-dependent variation. The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), while pairwise Jaccard remains uniformly low ($\\leq 0.10$, all $p < .01$). Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs substantially across task types, ranging from 0.14 (reasoning) to 0.30 (retrieval).\n\nAggregate variance reduction is task-specific and exploratory: of 10 benchmarks, only LAMBADA shows monotonic variance reduction ($\\rho = -1.0$, Bonferroni-adjusted $p = .170$; observed at 1.3B, absent at 340M). Yet on this benchmark, per-example Jaccard saturates at the first attention level while aggregate variance continues to decrease (\\S\\ref{ssec:decoupling}).\n\nOur contributions are as follows:\n\\begin{itemize}\n    \\item We show that architectural variation---a source of multiplicity not previously characterized at the per-example level---produces structured per-example predictive multiplicity ($\\alpha = 0.14$--$0.30$) across four benchmarks, with magnitude determined by task type rather than attention dose (\\S\\ref{ssec:per_example}, Table~\\ref{tab:multiplicity}). Extended validation across five architectures confirms the pattern: all ten pairwise Jaccard values remain $\\leq 0.14$ across four benchmarks (all $p < .01$; Appendix~\\ref{app:extended_arch}). The primary controlled variable is the recurrent backbone \\citep[cf.][]{mccoy2020berts, damour2022underspecification}, though single training runs prevent full disentanglement from seed effects (Limitations).\n    \\item Per-example Jaccard saturates at the first attention level (4\\%) across all four benchmarks and shows no further increase at higher ratios, while aggregate variance shows a non-significant decreasing pattern on LAMBADA (\\S\\ref{ssec:decoupling}; Appendix~\\ref{app:cross_bench_jaccard}). This immediate saturation indicates that minimal attention suffices to establish the full pattern of configuration-specific per-example effects; additional attention narrows aggregate gaps without homogenizing which examples each architecture affects. The aggregate convergence component is dependent on GDN inclusion (\\S\\ref{ssec:robustness}) and does not replicate on other benchmarks.\n\\end{itemize}\n",
+      "numLines": 27,
+      "startLine": 1,
+      "totalLines": 27
+    }
+  },
+  "sourceToolAssistantUUID": "e47f5bb6-5109-4190-94f1-123e1c30e9fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T19:16:53.517Z_
+
+<details><summary>↩ Tool result · `toolu_01GsA6iamNdTH21tUJLCbLEi`</summary>
+
+```text
+1	\section{Experiments}\label{sec:experiments}
+2	
+3	Using the model zoo of \citet{wang2025hybrid} (\S\ref{ssec:model_zoo}), we evaluate all 30 configurations on 10 benchmarks plus supplementary COPA ($n = 100$) at 1.3B scale unless noted. Results at 340M appear in scale analyses. Recall: h$k$-1 denotes one attention layer per $k{+}1$ layers; h3-1 = 25\% attention.
+4	
+5	\begin{table*}[t]
+6	\centering
+7	\caption{Cross-architecture variance trends across benchmarks (1.3B scale). $\rho$: Spearman correlation between attention ratio and cross-architecture standard deviation $\sigma$ across five configurations. $p$: exact permutation test (two-tailed, 120 permutations). $\sigma$ values reported $\times 10^{2}$ (accuracy percentage points). Ratio: $\sigma_{\text{pure}} / \sigma_{\text{h3-1}}$. \textbf{Bold}: only benchmark with $\rho = -1.0$. HellaSwag evaluated using normalized accuracy (acc\_norm), the standard metric for this benchmark.}
+8	\label{tab:convergence}
+9	\begin{tabular}{llrrrrr}
+10	\toprule
+11	Benchmark & Category & $\rho$ & $p$ & $\sigma_{\text{pure}}$ & $\sigma_{\text{h3-1}}$ & Ratio \\
+12	\midrule
+13	\textbf{LAMBADA$^{\ddagger}$} & \textbf{Retrieval} & $\mathbf{-1.0}$ & \textbf{.017} & \textbf{2.41} & \textbf{0.49} & \textbf{4.87} \\
+14	\quad\emph{(excl.\ GDN)} & & $-0.7$ & .233 & --- & --- & --- \\
+15	BoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\
+16	ARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\
+17	HellaSwag & Reasoning & $0.4$ & .517 & 1.17 & 1.22 & 0.96 \\
+18	PIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\
+19	WinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\
+20	ARC-E & Mixed & $-0.7$ & .233 & 1.00 & 0.13 & 7.70 \\
+21	MMLU & Mixed & $-0.7$ & .233 & 0.92 & 0.41 & 2.27 \\
+22	SciQ & Mixed & $0.1$ & .950 & 0.87 & 0.74 & 1.19 \\
+23	XStoryCloze & Mixed & $-0.6$ & .350 & 0.82 & 0.55 & 1.49 \\
+24	\midrule
+25	COPA$^{\dagger}$ & Reasoning & $-0.67$ & .267 & 2.63 & 0.47 & 5.57 \\
+26	\bottomrule
+27	\multicolumn{7}{l}{\footnotesize $^{\dagger}$Supplementary ($n = 100$); excluded from multiple comparison correction.} \\
+28	\multicolumn{7}{l}{\footnotesize $^{\ddagger}$GDN h3-1 uses 16 attention heads; all other configurations use 32 (\S\ref{ssec:robustness}).} \\
+29	\multicolumn{7}{@{}p{\textwidth}@{}}{\footnotesize Bonferroni-adjusted $p = .017 \times 10 = .170$ (all-10-benchmark correction). \textbf{Power is limited: only $|\rho| = 1.0$ achieves $p < .05$ at $n = 5$.}}
+30	\end{tabular}
+31	\end{table*}
+32	
+33	\subsection{Per-Example Divergence}\label{ssec:per_example}
+34	
+35	Do architectures converge by improving on the same examples? We compare each architecture's pure-recurrent baseline against its h3-1 hybrid on 5{,}153 LAMBADA examples, classifying each as helped (correct only in hybrid), hurt (correct only in pure), or unchanged. Although the decomposition is binary, we verify below that it captures genuine separation in the continuous confidence space (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA; cross-benchmark details in Appendix~\ref{app:cm_cross}). This binarization discards confidence magnitude (a transition from 0.51 to 0.49 is treated identically to one from 0.99 to 0.01), so we supplement it with continuous confidence margin analysis (Appendix~\ref{app:confidence_margin}) and verify that low Jaccard persists under continuous thresholds (Appendix~\ref{app:continuous_jaccard}).
+36	
+37	Each architecture displays a distinct profile of per-example changes. GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395). HGRN2 is the only architecture for which adding attention yields a net per-example benefit. Pairwise Jaccard similarity is low: mean $\bar{J} \leq 0.10$, indicating ${\sim}90$\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\text{null}} \approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\ref{app:jaccard_permutation}), but normalizing by $J_{\max}$, observed overlap reaches only 6--7\% of the achievable range above chance (Appendix~\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.
+38	
+39	\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74; Appendix~\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\% spread) but disruption thresholds vary 47\%, explaining cross-architecture Jaccard divergence (Appendix~\ref{app:prediction_framework}). Calibration differences account for less than half the threshold spread (Appendix~\ref{app:calibration}). The rescue pattern generalizes across three benchmarks ($d = 0.13$--$0.60$; Appendix~\ref{app:cm_cross}); disruption is weaker on reasoning tasks (Appendix~\ref{app:boolq}). This structured disagreement constitutes predictive multiplicity \citep{marx2020predictive} under architectural variation \citep[cf.][]{damour2022underspecification}.
+40	
+41	\paragraph{Confidence-based routing.} As an illustrative case study, the rescue-threshold asymmetry suggests a practical routing strategy: for each example, select the architecture whose pure-model confidence best predicts successful rescue. On LAMBADA, rescue-threshold routing achieves 56.2\% accuracy versus 50.9\% for majority vote ($+5.3$\,pp, SD $= 0.8$\,pp across 10 splits), extracting 36\% of the oracle gap (oracle = 65.5\%). On ARC-Easy, gains are modest ($+1.0$\,pp, SD $= 0.9$\,pp); on HellaSwag, routing provides no significant benefit ($-0.06$\,pp, $p = .374$); on PIQA, it is significantly negative ($-0.49$\,pp, $p = .006$). Using 10-repeat 50/50 cross-validated splits, routing works when multiplicity is high ($\alpha = 0.30$, LAMBADA) and a clear rescue-threshold signal exists, but is counterproductive when multiplicity is low ($\alpha = 0.14$, PIQA).
+42	
+43	\paragraph{Multiplicity variation.} Extending the per-example analysis to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\ref{tab:multiplicity}). The ambiguity $\alpha$ \citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent variation. Format does not drive multiplicity: HellaSwag (four-way) and PIQA (two-choice) produce nearly identical $\alpha$ despite different formats. Bootstrap 95\% CIs confirm the ordering (all non-overlapping except PIQA--HellaSwag; Appendix, Table~\ref{tab:arceasy_ambiguity}). Moreover, $\alpha$ does not significantly correlate with task accuracy (Spearman $\rho = -0.60$, $p = .24$). Pairwise Jaccard remains uniformly low ($\bar{J} \leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many examples are affected. Within each benchmark, $\alpha$ is stable across attention ratios (variation $< 0.03$), but differs $2\times$ across task types (from reasoning to retrieval), confirming that multiplicity magnitude depends on task, not attention dose \citep[cf.][]{gorbett2026crossmodel}. PIQA (0.14) and HellaSwag (0.15) share a reasoning-task floor, while retrieval (LAMBADA, 0.30) and mixed (ARC-Easy, 0.21) tasks produce higher values.
+44	
+45	\begin{table}[t]
+46	\centering
+47	\small
+48	\caption{Predictive multiplicity at 1.3B. $\alpha$: ambiguity at h3-1 \citep{marx2020predictive}. $\bar{J}$: mean pairwise Jaccard of helped~(h) and hurt~(u) sets, averaged across four hybrid attention ratios and three architecture pairs. $\rho_\alpha$: Spearman $\rho$ between attention ratio and $\alpha$. Benchmarks ordered by $\alpha$.}
+49	\label{tab:multiplicity}
+50	\begin{tabular}{@{}lrcccc@{}}
+51	\toprule
+52	 & $N$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & $\rho_\alpha$ \\
+53	\midrule
+54	PIQA & 1838 & .14 & .091 & .094 & $0.0$ \\
+55	HellaSwag & 10042 & .15 & .095 & .085 & $0.1$ \\
+56	ARC-Easy & 2376 & .21 & .092 & .099 & $-0.2$ \\
+57	LAMBADA & 5153 & .30 & .096 & .091 & $-0.6$ \\
+58	\bottomrule
+59	\end{tabular}
+60	\par\vspace{1pt}
+61	{\footnotesize Within-benchmark $\alpha$ variation $< 0.03$ across ratios. BoolQ, WinoGrande: Appendix~\ref{app:boolq}, \ref{app:winogrande}.}
+62	\end{table}
+63	
+64	\subsection{Aggregate Trends and Per-Example Independence}\label{ssec:decoupling}
+65	
+66	The per-example findings above raise a natural question: when aggregate metrics converge, does this reflect agreement on the same examples? Table~\ref{tab:convergence} provides context. Only LAMBADA shows a monotonically decreasing variance pattern ($\rho = -1.0$, Bonferroni-adjusted $p = .170$; excluding GDN, whose h3-1 uses 16 rather than 32 attention heads: $\rho = -0.7$, $p = .233$; observed at 1.3B, absent at 340M; Appendix~\ref{app:convergence_detail}, Figure~\ref{fig:task_specificity}). This is a suggestive but underpowered secondary observation ($n = 5$; the test has negligible power for $|\rho| < 1.0$). LAMBADA relies purely on in-context retrieval without external knowledge or multi-step reasoning, making it the task most directly aligned with attention's role in context access---a plausible explanation for why convergence is strongest here.
+67	
+68	\begin{figure}[t]
+69	\centering
+70	\includegraphics[width=\columnwidth]{figures/fig2_task_specificity.pdf}
+71	\caption{Spearman $\rho$ between attention ratio and cross-architecture $\sigma$ for each benchmark at 1.3B scale. LAMBADA ($\rho = -1.0$; BCa 95\% CI $[-1.0,\,-0.7]$, heuristic) is the only benchmark with a negative correlation whose confidence interval excludes zero. Benchmarks are grouped by task category. Bootstrap CI is heuristic given $n = 3$ architectures.}
+72	\label{fig:task_specificity}
+73	\end{figure}
+74	
+75	\begin{figure*}[t]
+76	\centering
+77	\includegraphics[width=\textwidth]{figures/jaccard_heatmap_5arch.pdf}
+78	\caption{Pairwise Jaccard heatmap across five architectures (340M, h3-1), where helped (hurt) examples are those correct only with (without) attention. Upper triangle: $J_{\text{helped}}$; lower triangle: $J_{\text{hurt}}$. All values $\leq 0.14$, all permutation tests $p \leq .002$. HellaSwag and PIQA results in Appendix~\ref{app:extended_arch}.}
+79	\label{fig:jaccard_heatmap_5arch}
+80	\end{figure*}
+81	
+82	Even on LAMBADA, the answer is no. Aggregate variance decreases while per-example overlap remains constant as attention ratio increases (Figure~\ref{fig:decoupling}).
+83	
+84	Cross-architecture $\sigma$ decreases from 0.024 (pure) to 0.005 (h3-1) (Bonferroni-adjusted $p = .170$; non-significant), while pairwise Jaccard saturates at the first attention level ($\bar{J} \approx 0.095$)---indicating that each architecture's per-example response to attention is largely idiosyncratic. The observed $\bar{J}$ reaches only 6--7\% of the achievable range above chance ($J_{\max} \approx 0.78$--$0.92$), ruling out ceiling constraints (\S\ref{ssec:per_example}).
+85	
+86	This saturation generalizes beyond LAMBADA (Figure~\ref{fig:jaccard_saturation}): on all four main benchmarks, mean pairwise Jaccard shows no significant trend with attention ratio (all $\rho \leq 0.80$, $p \geq 0.333$), with values uniformly between 0.08 and 0.11.
+87	
+88	\begin{figure}[t]
+89	\centering
+90	\includegraphics[width=\columnwidth]{figures/fig4_jaccard_saturation.pdf}
+91	\caption{Cross-benchmark Jaccard saturation. Mean pairwise $\bar{J}$ (averaged over helped and hurt sets) remains flat across attention ratios on all four benchmarks (all $\rho \leq 0.80$, $p \geq .333$), confirming that per-example divergence saturates immediately regardless of task type.}
+92	\label{fig:jaccard_saturation}
+93	\end{figure}
+94	
+95	Bootstrap 95\% CIs confirm non-overlapping $\sigma$ between pure and h3-1 but completely overlapping Jaccard across all hybrid ratios (\S\ref{ssec:statistical_methods}). Figure~\ref{fig:jaccard_hierarchy} shows a three-tier Jaccard hierarchy: independence baseline (${\sim}0.05$), cross-architecture (${\sim}0.10$, $2\times$ baseline), and within-architecture (${\sim}0.33$, $3\times$ cross-architecture; Appendix~\ref{app:within_arch_stability}). Pythia 70M seed calibration produces a comparable within-seed level ($J = 0.27$--$0.39$; Appendix~\ref{app:seed_calibration}), consistent with architecture-driven divergence, though matched multi-seed experiments would be needed for definitive evidence.
+96	
+97	\begin{figure}[t]
+98	\centering
+99	\includegraphics[width=\columnwidth]{figures/fig_jaccard_hierarchy.pdf}
+100	\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\bar{J} \approx 0.09$) is $2\times$ the independence baseline but only one-third of within-architecture overlap ($\bar{J} \approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}
+101	\label{fig:jaccard_hierarchy}
+102	\end{figure}
+103	
+104	Attention weight analysis (Appendix~\ref{app:attention_patterns}) shows GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet differ in per-example effects, suggesting these originate in the recurrent layers. The four-benchmark variation (Table~\ref{tab:multiplicity}) confirms independence: LAMBADA ($\alpha = 0.30$) is the only benchmark showing variance reduction despite having the highest multiplicity, while PIQA ($\alpha = 0.14$) and HellaSwag ($\alpha = 0.15$) show no variance reduction with the lowest multiplicity.
+105	
+106	Cross-scale analysis confirms scale-robustness: pairwise Jaccard is stable ($\bar{J} = 0.08$--$0.10$ at both scales), though $\alpha$ is systematically higher at 340M ($\Delta \leq 8$\,pp). At 340M, aggregate variance reduction is absent ($\rho = -0.50$, $p = .45$), suggesting that the \emph{pattern} of multiplicity reflects structural differences while absolute magnitude is modulated by capacity (Appendix~\ref{app:scale_per_example}).
+107	\subsection{Robustness}\label{ssec:robustness}
+108	
+109	Removing GDN weakens the LAMBADA variance reduction pattern ($\rho = -0.7$, $p = .233$) and reverses MMLU's ($\rho = +0.6$), both driven by GDN's 16-head configuration (vs.\ 32 in others; Appendix~\ref{app:gdn_confound}). The RetNet--HGRN2 pair preserves the independence pattern ($\sigma \leq 0.008$, $J = 0.086$--$0.108$). The aggregate variance pattern is therefore dependent on GDN inclusion; the decoupling result is not. Five-architecture validation at 340M (GLA, DeltaNet added) confirms $J \leq 0.14$ across all ten pairs and four benchmarks (all $p < .01$; Figure~\ref{fig:jaccard_heatmap_5arch}; Appendix~\ref{app:extended_arch}). Full sensitivity analyses appear in Appendix~\ref{app:sensitivity}.
+110	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8946022-dddc-4890-8575-f089615c86db",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "edc43dfb-cb82-4643-a535-f60f2fa6f423",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+      "content": "\\section{Experiments}\\label{sec:experiments}\n\nUsing the model zoo of \\citet{wang2025hybrid} (\\S\\ref{ssec:model_zoo}), we evaluate all 30 configurations on 10 benchmarks plus supplementary COPA ($n = 100$) at 1.3B scale unless noted. Results at 340M appear in scale analyses. Recall: h$k$-1 denotes one attention layer per $k{+}1$ layers; h3-1 = 25\\% attention.\n\n\\begin{table*}[t]\n\\centering\n\\caption{Cross-architecture variance trends across benchmarks (1.3B scale). $\\rho$: Spearman correlation between attention ratio and cross-architecture standard deviation $\\sigma$ across five configurations. $p$: exact permutation test (two-tailed, 120 permutations). $\\sigma$ values reported $\\times 10^{2}$ (accuracy percentage points). Ratio: $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$. \\textbf{Bold}: only benchmark with $\\rho = -1.0$. HellaSwag evaluated using normalized accuracy (acc\\_norm), the standard metric for this benchmark.}\n\\label{tab:convergence}\n\\begin{tabular}{llrrrrr}\n\\toprule\nBenchmark & Category & $\\rho$ & $p$ & $\\sigma_{\\text{pure}}$ & $\\sigma_{\\text{h3-1}}$ & Ratio \\\\\n\\midrule\n\\textbf{LAMBADA$^{\\ddagger}$} & \\textbf{Retrieval} & $\\mathbf{-1.0}$ & \\textbf{.017} & \\textbf{2.41} & \\textbf{0.49} & \\textbf{4.87} \\\\\n\\quad\\emph{(excl.\\ GDN)} & & $-0.7$ & .233 & --- & --- & --- \\\\\nBoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\\\\nARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\\\\nHellaSwag & Reasoning & $0.4$ & .517 & 1.17 & 1.22 & 0.96 \\\\\nPIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\\\\nWinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\\\\nARC-E & Mixed & $-0.7$ & .233 & 1.00 & 0.13 & 7.70 \\\\\nMMLU & Mixed & $-0.7$ & .233 & 0.92 & 0.41 & 2.27 \\\\\nSciQ & Mixed & $0.1$ & .950 & 0.87 & 0.74 & 1.19 \\\\\nXStoryCloze & Mixed & $-0.6$ & .350 & 0.82 & 0.55 & 1.49 \\\\\n\\midrule\nCOPA$^{\\dagger}$ & Reasoning & $-0.67$ & .267 & 2.63 & 0.47 & 5.57 \\\\\n\\bottomrule\n\\multicolumn{7}{l}{\\footnotesize $^{\\dagger}$Supplementary ($n = 100$); excluded from multiple comparison correction.} \\\\\n\\multicolumn{7}{l}{\\footnotesize $^{\\ddagger}$GDN h3-1 uses 16 attention heads; all other configurations use 32 (\\S\\ref{ssec:robustness}).} \\\\\n\\multicolumn{7}{@{}p{\\textwidth}@{}}{\\footnotesize Bonferroni-adjusted $p = .017 \\times 10 = .170$ (all-10-benchmark correction). \\textbf{Power is limited: only $|\\rho| = 1.0$ achieves $p < .05$ at $n = 5$.}}\n\\end{tabular}\n\\end{table*}\n\n\\subsection{Per-Example Divergence}\\label{ssec:per_example}\n\nDo architectures converge by improving on the same examples? We compare each architecture's pure-recurrent baseline against its h3-1 hybrid on 5{,}153 LAMBADA examples, classifying each as helped (correct only in hybrid), hurt (correct only in pure), or unchanged. Although the decomposition is binary, we verify below that it captures genuine separation in the continuous confidence space (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA; cross-benchmark details in Appendix~\\ref{app:cm_cross}). This binarization discards confidence magnitude (a transition from 0.51 to 0.49 is treated identically to one from 0.99 to 0.01), so we supplement it with continuous confidence margin analysis (Appendix~\\ref{app:confidence_margin}) and verify that low Jaccard persists under continuous thresholds (Appendix~\\ref{app:continuous_jaccard}).\n\nEach architecture displays a distinct profile of per-example changes. GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395). HGRN2 is the only architecture for which adding attention yields a net per-example benefit. Pairwise Jaccard similarity is low: mean $\\bar{J} \\leq 0.10$, indicating ${\\sim}90$\\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\\text{null}} \\approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\\ref{app:jaccard_permutation}), but normalizing by $J_{\\max}$, observed overlap reaches only 6--7\\% of the achievable range above chance (Appendix~\\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.\n\n\\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74; Appendix~\\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\\% spread) but disruption thresholds vary 47\\%, explaining cross-architecture Jaccard divergence (Appendix~\\ref{app:prediction_framework}). Calibration differences account for less than half the threshold spread (Appendix~\\ref{app:calibration}). The rescue pattern generalizes across three benchmarks ($d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross}); disruption is weaker on reasoning tasks (Appendix~\\ref{app:boolq}). This structured disagreement constitutes predictive multiplicity \\citep{marx2020predictive} under architectural variation \\citep[cf.][]{damour2022underspecification}.\n\n\\paragraph{Confidence-based routing.} As an illustrative case study, the rescue-threshold asymmetry suggests a practical routing strategy: for each example, select the architecture whose pure-model confidence best predicts successful rescue. On LAMBADA, rescue-threshold routing achieves 56.2\\% accuracy versus 50.9\\% for majority vote ($+5.3$\\,pp, SD $= 0.8$\\,pp across 10 splits), extracting 36\\% of the oracle gap (oracle = 65.5\\%). On ARC-Easy, gains are modest ($+1.0$\\,pp, SD $= 0.9$\\,pp); on HellaSwag, routing provides no significant benefit ($-0.06$\\,pp, $p = .374$); on PIQA, it is significantly negative ($-0.49$\\,pp, $p = .006$). Using 10-repeat 50/50 cross-validated splits, routing works when multiplicity is high ($\\alpha = 0.30$, LAMBADA) and a clear rescue-threshold signal exists, but is counterproductive when multiplicity is low ($\\alpha = 0.14$, PIQA).\n\n\\paragraph{Multiplicity variation.} Extending the per-example analysis to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy) to 0.30 (LAMBADA), forming a task-dependent variation. Format does not drive multiplicity: HellaSwag (four-way) and PIQA (two-choice) produce nearly identical $\\alpha$ despite different formats. Bootstrap 95\\% CIs confirm the ordering (all non-overlapping except PIQA--HellaSwag; Appendix, Table~\\ref{tab:arceasy_ambiguity}). Moreover, $\\alpha$ does not significantly correlate with task accuracy (Spearman $\\rho = -0.60$, $p = .24$). Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many examples are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$), but differs $2\\times$ across task types (from reasoning to retrieval), confirming that multiplicity magnitude depends on task, not attention dose \\citep[cf.][]{gorbett2026crossmodel}. PIQA (0.14) and HellaSwag (0.15) share a reasoning-task floor, while retrieval (LAMBADA, 0.30) and mixed (ARC-Easy, 0.21) tasks produce higher values.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Predictive multiplicity at 1.3B. $\\alpha$: ambiguity at h3-1 \\citep{marx2020predictive}. $\\bar{J}$: mean pairwise Jaccard of helped~(h) and hurt~(u) sets, averaged across four hybrid attention ratios and three architecture pairs. $\\rho_\\alpha$: Spearman $\\rho$ between attention ratio and $\\alpha$. Benchmarks ordered by $\\alpha$.}\n\\label{tab:multiplicity}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\rho_\\alpha$ \\\\\n\\midrule\nPIQA & 1838 & .14 & .091 & .094 & $0.0$ \\\\\nHellaSwag & 10042 & .15 & .095 & .085 & $0.1$ \\\\\nARC-Easy & 2376 & .21 & .092 & .099 & $-0.2$ \\\\\nLAMBADA & 5153 & .30 & .096 & .091 & $-0.6$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize Within-benchmark $\\alpha$ variation $< 0.03$ across ratios. BoolQ, WinoGrande: Appendix~\\ref{app:boolq}, \\ref{app:winogrande}.}\n\\end{table}\n\n\\subsection{Aggregate Trends and Per-Example Independence}\\label{ssec:decoupling}\n\nThe per-example findings above raise a natural question: when aggregate metrics converge, does this reflect agreement on the same examples? Table~\\ref{tab:convergence} provides context. Only LAMBADA shows a monotonically decreasing variance pattern ($\\rho = -1.0$, Bonferroni-adjusted $p = .170$; excluding GDN, whose h3-1 uses 16 rather than 32 attention heads: $\\rho = -0.7$, $p = .233$; observed at 1.3B, absent at 340M; Appendix~\\ref{app:convergence_detail}, Figure~\\ref{fig:task_specificity}). This is a suggestive but underpowered secondary observation ($n = 5$; the test has negligible power for $|\\rho| < 1.0$). LAMBADA relies purely on in-context retrieval without external knowledge or multi-step reasoning, making it the task most directly aligned with attention's role in context access---a plausible explanation for why convergence is strongest here.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_task_specificity.pdf}\n\\caption{Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ for each benchmark at 1.3B scale. LAMBADA ($\\rho = -1.0$; BCa 95\\% CI $[-1.0,\\,-0.7]$, heuristic) is the only benchmark with a negative correlation whose confidence interval excludes zero. Benchmarks are grouped by task category. Bootstrap CI is heuristic given $n = 3$ architectures.}\n\\label{fig:task_specificity}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/jaccard_heatmap_5arch.pdf}\n\\caption{Pairwise Jaccard heatmap across five architectures (340M, h3-1), where helped (hurt) examples are those correct only with (without) attention. Upper triangle: $J_{\\text{helped}}$; lower triangle: $J_{\\text{hurt}}$. All values $\\leq 0.14$, all permutation tests $p \\leq .002$. HellaSwag and PIQA results in Appendix~\\ref{app:extended_arch}.}\n\\label{fig:jaccard_heatmap_5arch}\n\\end{figure*}\n\nEven on LAMBADA, the answer is no. Aggregate variance decreases while per-example overlap remains constant as attention ratio increases (Figure~\\ref{fig:decoupling}).\n\nCross-architecture $\\sigma$ decreases from 0.024 (pure) to 0.005 (h3-1) (Bonferroni-adjusted $p = .170$; non-significant), while pairwise Jaccard saturates at the first attention level ($\\bar{J} \\approx 0.095$)---indicating that each architecture's per-example response to attention is largely idiosyncratic. The observed $\\bar{J}$ reaches only 6--7\\% of the achievable range above chance ($J_{\\max} \\approx 0.78$--$0.92$), ruling out ceiling constraints (\\S\\ref{ssec:per_example}).\n\nThis saturation generalizes beyond LAMBADA (Figure~\\ref{fig:jaccard_saturation}): on all four main benchmarks, mean pairwise Jaccard shows no significant trend with attention ratio (all $\\rho \\leq 0.80$, $p \\geq 0.333$), with values uniformly between 0.08 and 0.11.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig4_jaccard_saturation.pdf}\n\\caption{Cross-benchmark Jaccard saturation. Mean pairwise $\\bar{J}$ (averaged over helped and hurt sets) remains flat across attention ratios on all four benchmarks (all $\\rho \\leq 0.80$, $p \\geq .333$), confirming that per-example divergence saturates immediately regardless of task type.}\n\\label{fig:jaccard_saturation}\n\\end{figure}\n\nBootstrap 95\\% CIs confirm non-overlapping $\\sigma$ between pure and h3-1 but completely overlapping Jaccard across all hybrid ratios (\\S\\ref{ssec:statistical_methods}). Figure~\\ref{fig:jaccard_hierarchy} shows a three-tier Jaccard hierarchy: independence baseline (${\\sim}0.05$), cross-architecture (${\\sim}0.10$, $2\\times$ baseline), and within-architecture (${\\sim}0.33$, $3\\times$ cross-architecture; Appendix~\\ref{app:within_arch_stability}). Pythia 70M seed calibration produces a comparable within-seed level ($J = 0.27$--$0.39$; Appendix~\\ref{app:seed_calibration}), consistent with architecture-driven divergence, though matched multi-seed experiments would be needed for definitive evidence.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n\\label{fig:jaccard_hierarchy}\n\\end{figure}\n\nAttention weight analysis (Appendix~\\ref{app:attention_patterns}) shows GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet differ in per-example effects, suggesting these originate in the recurrent layers. The four-benchmark variation (Table~\\ref{tab:multiplicity}) confirms independence: LAMBADA ($\\alpha = 0.30$) is the only benchmark showing variance reduction despite having the highest multiplicity, while PIQA ($\\alpha = 0.14$) and HellaSwag ($\\alpha = 0.15$) show no variance reduction with the lowest multiplicity.\n\nCross-scale analysis confirms scale-robustness: pairwise Jaccard is stable ($\\bar{J} = 0.08$--$0.10$ at both scales), though $\\alpha$ is systematically higher at 340M ($\\Delta \\leq 8$\\,pp). At 340M, aggregate variance reduction is absent ($\\rho = -0.50$, $p = .45$), suggesting that the \\emph{pattern} of multiplicity reflects structural differences while absolute magnitude is modulated by capacity (Appendix~\\ref{app:scale_per_example}).\n\\subsection{Robustness}\\label{ssec:robustness}\n\nRemoving GDN weakens the LAMBADA variance reduction pattern ($\\rho = -0.7$, $p = .233$) and reverses MMLU's ($\\rho = +0.6$), both driven by GDN's 16-head configuration (vs.\\ 32 in others; Appendix~\\ref{app:gdn_confound}). The RetNet--HGRN2 pair preserves the independence pattern ($\\sigma \\leq 0.008$, $J = 0.086$--$0.108$). The aggregate variance pattern is therefore dependent on GDN inclusion; the decoupling result is not. Five-architecture validation at 340M (GLA, DeltaNet added) confirms $J \\leq 0.14$ across all ten pairs and four benchmarks (all $p < .01$; Figure~\\ref{fig:jaccard_heatmap_5arch}; Appendix~\\ref{app:extended_arch}). Full sensitivity analyses appear in Appendix~\\ref{app:sensitivity}.\n",
+      "numLines": 110,
+      "startLine": 1,
+      "totalLines": 110
+    }
+  },
+  "sourceToolAssistantUUID": "f8946022-dddc-4890-8575-f089615c86db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-23T19:16:53.673Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011J8XyBajkDKm5A4F5DAq1Y`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "edc43dfb-cb82-4643-a535-f60f2fa6f423",
+  "isSidechain": false,
+  "requestId": "req_011CbL38jMgPpHRZALKxotVp",
+  "type": "assistant",
+  "uuid": "e47f5bb6-5109-4190-94f1-123e1c30e9fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y358bsD9G83YBVhTkmjYK1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 208,
+      "cache_read_input_tokens": 26427,
+      "output_tokens": 243,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 243,
+          "cache_read_input_tokens": 26427,
+          "cache_creation_input_tokens": 208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-23T19:16:53.749Z_
+
+```json
+{
+  "parentUuid": "eff61b19-9ab2-4cf8-894b-80229cbfc92d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "140c3424-3edc-47eb-be02-dc2405a5e099",
+  "timestamp": "2026-05-23T19:16:53.749Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "140c3424-3edc-47eb-be02-dc2405a5e099",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-23T19:16:59.149Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have the appendix and main text. Let me also read the introduction's abstract more carefully and the method section. Let me now systematically extract all numerical claims from the appendix and cross-reference with the main text.
+
+Let me also load the SSH tools to verify source data on the server.
+
+Let me organize the cross-referencing work. First, let me identify the key numerical claims to cross-check between appendix and main text. Then I'll SSH to verify source data.
+
+Let me load the SSH tools and start the server verification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "140c3424-3edc-47eb-be02-dc2405a5e099",
+  "isSidechain": false,
+  "requestId": "req_011CbL38y2T4pHPoqPksJvTL",
+  "type": "assistant",
+  "uuid": "93bb27bc-e94b-4412-9576-6afb83818f50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lh67FfFLyn5nehcnuJfMht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28514,
+      "cache_read_input_tokens": 26635,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 26635,
+          "cache_creation_input_tokens": 28514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-23T19:17:00.654Z_
+
+已读取 appendix 和主文。现在加载 SSH 工具并开始服务器数据验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93bb27bc-e94b-4412-9576-6afb83818f50",
+  "isSidechain": false,
+  "requestId": "req_011CbL38y2T4pHPoqPksJvTL",
+  "type": "assistant",
+  "uuid": "77d15fd3-58cc-4704-881d-c05470c7a162",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lh67FfFLyn5nehcnuJfMht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28514,
+      "cache_read_input_tokens": 26635,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 26635,
+          "cache_creation_input_tokens": 28514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-23T19:17:02.160Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0162RPvG7czPqjKkpwAfT7dJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77d15fd3-58cc-4704-881d-c05470c7a162",
+  "isSidechain": false,
+  "requestId": "req_011CbL38y2T4pHPoqPksJvTL",
+  "type": "assistant",
+  "uuid": "3512d377-f7c4-4eb6-9529-e1df2cacea73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lh67FfFLyn5nehcnuJfMht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28514,
+      "cache_read_input_tokens": 26635,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 26635,
+          "cache_creation_input_tokens": 28514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T19:17:03.585Z_
+
+<details><summary>↩ Tool result · `toolu_015gjNW6n4ooihFEA5yNL762`</summary>
+
+```text
+1	\section{Method}\label{sec:method}
+2	
+3	We describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.
+4	
+5	\subsection{Model Zoo}\label{ssec:model_zoo}
+6	
+7	We use the pretrained model zoo of \citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \citep{yang2024gateddeltanet}, RetNet \citep{sun2023retnet}, and HGRN2 \citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\% (pure recurrent), 4\%, 7.7\%, 14.3\%, and 25\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\% attention, h6-1 to 14.3\%, h12-1 to 7.7\%, and h24-1 to 4\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.
+8	
+9	\subsection{Task Taxonomy}\label{ssec:task_taxonomy}
+10	
+11	We evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy (informal; not pre-registered) was fixed prior to analysis following established distinctions in the hybrid architecture literature \citep{arora2024zoology} (see Appendix~\ref{app:benchmark_details} for the confirmatory/exploratory split), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.
+12	
+13	\begin{itemize}
+14	    \item \textbf{Retrieval}: LAMBADA \citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.
+15	    \item \textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.
+16	    \item \textbf{Reasoning}: HellaSwag, ARC-Challenge \citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) is supplementary; its small sample renders $\alpha$ unreliable (Appendix~\ref{app:subsample_sensitivity}).
+17	    \item \textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.
+18	\end{itemize}
+19	
+20	LAMBADA is the only free-form generation benchmark in our evaluation; its higher $\alpha$ (0.30 vs.\ 0.14--0.21 for multiple-choice tasks) may partly reflect the larger answer space inherent to open-ended prediction. However, within multiple-choice tasks, format (two-way vs.\ four-way) does not predict $\alpha$ (\S\ref{ssec:per_example}).
+21	
+22	All evaluations use lm-evaluation-harness v0.4.x \citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout.
+23	
+24	\subsection{Convergence Metrics}\label{ssec:convergence_metrics}
+25	
+26	We quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\rho$ between attention ratio rank and $\sigma$ across the five attention configurations ($n = 5$). A negative $\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.
+27	
+28	We also report the convergence ratio $\sigma_{\text{pure}} / \sigma_{\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.
+29	
+30	\subsection{Per-Example Decomposition}\label{ssec:per_example_decomposition}
+31	
+32	To move beyond aggregate metrics, we decompose performance changes at the individual-example level on four benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), PIQA (1{,}838; reasoning, two-choice), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\_norm) as the per-example correctness criterion. Supplementary analyses on BoolQ (3{,}270; comprehension) and WinoGrande (1{,}267; reasoning, two-choice) appear in Appendix~\ref{app:boolq} and \ref{app:winogrande}. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid (25\% attention), which maximizes the contrast between recurrent and hybrid modes; \S\ref{ssec:per_example} confirms that $\alpha$ is stable across intermediate ratios (variation $< 0.03$). We classify each example into one of three categories:
+33	
+34	\begin{itemize}
+35	    \item \textbf{Helped}: correct in the hybrid but incorrect in the pure model.
+36	    \item \textbf{Hurt}: correct in the pure model but incorrect in the hybrid.
+37	    \item \textbf{Unchanged}: both models agree (both correct or both incorrect).
+38	\end{itemize}
+39	
+40	The net effect for each architecture is $|\text{helped}| - |\text{hurt}|$. A positive net effect means more examples transition to correct than to incorrect when attention is added; a negative net effect means the opposite.
+41	
+42	To measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \cap B| / |A \cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges. On $K$-choice tasks, binarization collapses $K{-}1$ wrong answers into a single ``incorrect'' category, potentially counting architectures as agreeing (both wrong) when they select different wrong answers. This conservative bias strengthens the multiplicity claim: true per-example divergence may exceed what binary Jaccard captures. Conversely, on $K$-choice tasks, binarization may overestimate hurt-set agreement when two architectures both transition from correct to incorrect but select different wrong answers. Appendix~\ref{app:continuous_jaccard} confirms that results are robust under continuous Jaccard similarity, mitigating concerns about information loss from binarization.
+43	
+44	\subsection{Statistical Methods}\label{ssec:statistical_methods}
+45	
+46	All statistical tests are two-tailed. We use exact permutation tests for Spearman $\rho$ ($5! = 120$ permutations). With $n = 5$, only $|\rho| = 1.0$ achieves $p < .05$ ($p = .017$); all Spearman-based inferences are therefore descriptive and exploratory. We apply Bonferroni correction across all 10 benchmarks (adjusted threshold $\alpha / 10 = 0.005$). Bootstrap 95\% BCa confidence intervals use 10{,}000 resamples; with $n = 3$ architectures, these are heuristic indicators of effect direction. Within-architecture comparisons use Mann-Whitney U; cross-architecture comparisons use Kruskal-Wallis. Attention weight analysis extracts per-layer cosine similarity and Shannon entropy via forward hooks (Appendix~\ref{app:attention_patterns}).
+47	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0fcfca2-0c0e-4426-b701-f106a84deac3",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "2ae91106-84f0-4c33-a35e-6d984fa65bb1",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+      "content": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid}, which provides controlled comparisons across architectures and attention ratios. The zoo contains three linear recurrent architectures: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2}. These three architectures represent distinct approaches to linear recurrence: GatedDeltaNet uses gated delta rules, RetNet uses multi-scale exponential decay, and HGRN2 uses gated linear recurrence with state expansion. Each architecture is trained at five attention ratios: 0\\% (pure recurrent), 4\\%, 7.7\\%, 14.3\\%, and 25\\%. We adopt the h$k$-1 notation from the original work, where one attention layer is interleaved per every $k{+}1$ total layers: h3-1 corresponds to 25\\% attention, h6-1 to 14.3\\%, h12-1 to 7.7\\%, and h24-1 to 4\\%. All configurations are available at two scales: 340M and 1.3B parameters. Within each scale, all models share identical training data, tokenizer, and hyperparameters; they differ only in architecture and attention configuration. This controlled design isolates the effect of attention from confounds such as training data or optimization differences. The zoo also includes a Transformer baseline (pure attention) at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy (informal; not pre-registered) was fixed prior to analysis following established distinctions in the hybrid architecture literature \\citep{arora2024zoology} (see Appendix~\\ref{app:benchmark_details} for the confirmatory/exploratory split), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: BoolQ, a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, ARC-Challenge \\citep{clark2018arc}, WinoGrande, and PIQA. COPA ($n = 100$) is supplementary; its small sample renders $\\alpha$ unreliable (Appendix~\\ref{app:subsample_sensitivity}).\n    \\item \\textbf{Mixed}: ARC-Easy, MMLU, SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nLAMBADA is the only free-form generation benchmark in our evaluation; its higher $\\alpha$ (0.30 vs.\\ 0.14--0.21 for multiple-choice tasks) may partly reflect the larger answer space inherent to open-ended prediction. However, within multiple-choice tasks, format (two-way vs.\\ four-way) does not predict $\\alpha$ (\\S\\ref{ssec:per_example}).\n\nAll evaluations use lm-evaluation-harness v0.4.x \\citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout.\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nTo move beyond aggregate metrics, we decompose performance changes at the individual-example level on four benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), PIQA (1{,}838; reasoning, two-choice), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\\_norm) as the per-example correctness criterion. Supplementary analyses on BoolQ (3{,}270; comprehension) and WinoGrande (1{,}267; reasoning, two-choice) appear in Appendix~\\ref{app:boolq} and \\ref{app:winogrande}. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid (25\\% attention), which maximizes the contrast between recurrent and hybrid modes; \\S\\ref{ssec:per_example} confirms that $\\alpha$ is stable across intermediate ratios (variation $< 0.03$). We classify each example into one of three categories:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means more examples transition to correct than to incorrect when attention is added; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap in per-example effects, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. Low $J$ values would indicate that different architectures are affected on different subsets of examples, which would constitute per-example divergence even when aggregate performance converges. On $K$-choice tasks, binarization collapses $K{-}1$ wrong answers into a single ``incorrect'' category, potentially counting architectures as agreeing (both wrong) when they select different wrong answers. This conservative bias strengthens the multiplicity claim: true per-example divergence may exceed what binary Jaccard captures. Conversely, on $K$-choice tasks, binarization may overestimate hurt-set agreement when two architectures both transition from correct to incorrect but select different wrong answers. Appendix~\\ref{app:continuous_jaccard} confirms that results are robust under continuous Jaccard similarity, mitigating concerns about information loss from binarization.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll statistical tests are two-tailed. We use exact permutation tests for Spearman $\\rho$ ($5! = 120$ permutations). With $n = 5$, only $|\\rho| = 1.0$ achieves $p < .05$ ($p = .017$); all Spearman-based inferences are therefore descriptive and exploratory. We apply Bonferroni correction across all 10 benchmarks (adjusted threshold $\\alpha / 10 = 0.005$). Bootstrap 95\\% BCa confidence intervals use 10{,}000 resamples; with $n = 3$ architectures, these are heuristic indicators of effect direction. Within-architecture comparisons use Mann-Whitney U; cross-architecture comparisons use Kruskal-Wallis. Attention weight analysis extracts per-layer cosine similarity and Shannon entropy via forward hooks (Appendix~\\ref{app:attention_patterns}).\n",
+      "numLines": 47,
+      "startLine": 1,
+      "totalLines": 47
+    }
+  },
+  "sourceToolAssistantUUID": "f0fcfca2-0c0e-4426-b701-f106a84deac3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T19:17:02.164Z_
+
+<details><summary>↩ Tool result · `toolu_0162RPvG7czPqjKkpwAfT7dJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3512d377-f7c4-4eb6-9529-e1df2cacea73",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "028d3a3f-e7f1-4f69-81ef-b17a096ad4aa",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "3512d377-f7c4-4eb6-9529-e1df2cacea73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T19:17:03.580Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015gjNW6n4ooihFEA5yNL762`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "028d3a3f-e7f1-4f69-81ef-b17a096ad4aa",
+  "isSidechain": false,
+  "requestId": "req_011CbL38y2T4pHPoqPksJvTL",
+  "type": "assistant",
+  "uuid": "f0fcfca2-0c0e-4426-b701-f106a84deac3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lh67FfFLyn5nehcnuJfMht",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 28514,
+      "cache_read_input_tokens": 26635,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 26635,
+          "cache_creation_input_tokens": 28514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-23T19:22:08.219Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the paper content. Let me systematically cross-reference the appendix with the main text, and then SSH to the server to verify source data.
+
+Let me start by organizing the cross-referencing work. I'll do this in parallel:
+
+1. SSH to server to find and verify source data files
+2. Cross-reference appendix ↔ main text numbers
+
+Let me first identify the key cross-references:
+
+### Appendix ↔ Main Text Cross-References
+
+**Abstract claims:**
+- Jaccard ≈ 0.10, approximately twice the independence baseline → Appendix Table jaccard_perm: J_null ≈ 0.049, J_obs ≈ 0.10. 
+
+Checking the remaining claims: the five architectures with ten pairwise comparisons all show p < .01, which aligns with the appendix reporting p ≤ .002 across all 40 permutation tests. The effect sizes match up—PIQA at 0.14 and LAMBADA at 0.30 from Table 2. The Bonferroni correction checks out at .170 from multiplying .017 by 10. The 4% attention value corresponds to h24-1, and I'm verifying the remaining numerical claims.
+
+Now I'm confirming the oracle complementarity result on LAMBADA: the 5.3 percentage point improvement over majority vote (56.2% versus 50.9%) represents 36% of the oracle gap, which I can verify by dividing the improvement by the total gap between oracle and majority vote. I'm also cross-referencing the convergence metrics from Table 1 in the main text with the appendix values for LAMBADA, including the correlation coefficient, p-value, and variance ratios.
+
+I'm checking the compression ratio calculation where the standard deviations appear to compress by roughly 5×, though the exact values suggest these might be reported at different scales—the ratio of 2.41 to 0.49 gives approximately 4.92, which is close to but not exactly the 4.87 listed in the table, likely due to rounding or more precise underlying values. I'm realizing the discrepancy comes down to rounding—when I compute the ratio from the precise values σ_pure = 0.02407 and σ_h3-1 = 0.00494, I get 4.873, which rounds to the table's 4.87, but the appendix rounds both values first (0.024 → 0.005) and then claims a 5× compression, which is itself an approximation.
+
+Now I'm cross-checking the GDN exclusion results and the multiplicity table entries against the appendix tables, verifying that the correlation coefficients, p-values, and sample sizes all align correctly across the different sections. I'm noticing the discrepancy between my calculated mean (.09225, rounding to .092) and Table 2's reported value of .091—this could stem from computing the mean across all 12 individual values rather than averaging the four ratio-level means. Now I'm checking the HellaSwag metrics in the same way. There's a clear mismatch between the appendix data showing a mean of 0.0855 for HellaSwag and Table 2's reported value of 0.095—about a 0.01 difference that I need to understand. Let me look more carefully at what each source is actually measuring, since the captions might be describing different subsets of the data. I'm noticing the LAMBADA values also show a consistent offset—the table data averages to .093 but Table 2 reports .096. The captions reveal the key difference: Table 2 includes both helped and hurt sets in its Jaccard calculations, while the cross-benchmark table only covers helped sets, which explains why the numbers diverge systematically. Let me trace through what Table 2 is actually averaging to understand the methodology better. I'm noticing the pure-recurrent configuration might be included in Table 2's average but excluded from the cross-benchmark table, though both claim to use the same four hybrid ratios, so the numbers still shouldn't diverge. The discrepancy could stem from rounding differences or different computation methods between the two tables, but it's worth flagging as a potential inconsistency.
+
+Now I'm checking whether this pattern holds across other benchmarks—HellaSwag shows cross_bench_jaccard at .0855 while Table 2 reports .095, but the 340m_multi_bench table matches Table 2 at .095, suggesting the inconsistency is between the cross-benchmark and multi-bench tables in the appendix itself. For PIQA, the cross_bench_jaccard mean works out to around .092, while both 340m_multi_bench and Table 2 agree at .091, so there's a consistent small discrepancy across benchmarks. The HellaSwag discrepancy is substantial—.0855 versus .095—which rules out simple rounding errors. This points to a genuine inconsistency, possibly from different computation methods, averaging approaches, or data subsets. Let me cross-check the appendix tables against the main text for internal consistency.
+
+The per-example counts align perfectly: GDN's net loss of 153, RetNet's loss of 69, and HGRN2's gain of 153 all match what's stated in the experiments section. The permutation test results also check out—the reported z-scores and null Jaccard values fall within the ranges shown in the appendix table.
+
+Now I'm looking at the normalized effect sizes and noticing a discrepancy. The main text claims the overlap reaches 6–7% of the theoretical maximum, but when I calculate from the table data—helped examples at 6.5% and hurt examples at 4.7%—the average comes to about 5.6%, which doesn't quite align with the 6–7% range stated. Looking at the exact wording more carefully, the "6-7%" figure in both the main text and appendix appears to specifically describe the helped category mean of 6.5%, not the overall picture where values range from 4.4% to 9%. The phrasing is misleading because it doesn't account for the hurt category's lower mean of 4.7%. The text doesn't distinguish between helped and hurt sets when citing the 6-7% figure, which understates the hurt performance at 4.7%. Now checking the Pythia seed calibration claims—the within-seed Jaccard ratios appear to be around 2.7-3.9× rather than reaching 4.3× across all cases. So the cross-architecture baselines are 0.10 for LAMBADA and 0.092 for ARC-Easy, which gives me a range of 2.73 to 3.93—but the paper claims 2.7–4.3×, and 3.93 doesn't round up to 4.3. Let me check if the baseline values might be different than what I'm using. So the 4.3× figure likely comes from dividing the RC-Easy value of 0.393 by the J_u value of 0.091 from Table 2, which gives exactly 4.32 when rounded to 4.3.
+
+For the lower bound, 2.7× appears to come from 0.273 divided by 0.10, suggesting they're using different baseline Jaccard values for the helped versus hurt categories when making these cross-architecture comparisons.
+
+Now I'm checking whether the internal consistency holds across the appendix tables—specifically comparing the within-scale Jaccard values against the per-example means and permutation results for the 1.3B model.
+
+For RetNet, I'm recalculating the mean pairwise Jaccard similarity: the helped set averages to .100 (GDN-RetNet .092 and RetNet-HGRN2 .108), while the hurt set averages to .095 (GDN-RetNet .103 and RetNet-HGRN2 .087), giving an overall mean of .0975—which should round to .098 or .097, yet the table reports .100. There's a discrepancy I need to resolve. I'm noticing inconsistencies across these three tables—the Jaccard values differ significantly depending on which table I'm looking at, particularly for the GDN-HGRN2 comparisons where the "hurt" metric ranges from .070 to .089, and the GDN-RetNet "helped" values vary between .086 and .092. bigger (.070 vs .088/.089).
+
+This is a significant internal inconsistency in the appendix! The same Jaccard values are reported differently across three tables. Looking at the data, the normalized_es table shows notably different J_obs values compared to the other two—particularly for GDN-HGRN2 in the unhelped category where there's an 18-19 point difference. I'm wondering if these might be computed using a different methodology, since the discrepancies are too large to be rounding errors. The J_null values are also inconsistent between tables—for instance, RetNet-HGRN2 in the helped category shows .049 in one table but .042 in the other. This suggests a deeper problem with how the null distributions were computed or which data was used for each analysis. The normalized_es table appears to have been computed differently or with different code than the within_scale_jaccard values. When I verify the per_example J̄ mean for GDN against both tables, it matches perfectly with within_scale_jaccard but diverges significantly from normalized_es, confirming these are fundamentally different datasets that need server-side verification. Now I'm checking cross-references to map out the full scope of this inconsistency.
+
+Looking at the routing accuracy claims, the main text states rescue-threshold routing achieves 56.2% versus 50.9% for majority vote, extracting 36% of the oracle gap. The math checks out: (56.2 - 50.9) / (65.5 - 50.9) = 0.363, which is indeed 36%. However, this specific calculation only appears in the main text and isn't detailed in the appendix. For convergence behavior, the appendix notes that GDN starts with the highest pure accuracy at 0.543 but drops to 0.513 under h3-1, while HGRN2 rises from its lowest starting point of 0.484 to 0.514, suggesting the routing mechanism substantially reshuffles model rankings.
+
+Now I'm working through the standard deviations to verify these convergence claims. The pure accuracy standard deviation across the three models is around 0.0241, but under h3-1 the values cluster much tighter at 0.0049, indicating the routing significantly reduces variance between models. I need to solve for the missing RetNet value to confirm these calculations are consistent. For σ = 0.0049, the values need to be spread by about 0.005-0.01. If x = 0.505 or 0.523, that could work. This is plausible.
+
+Let me also check the appendix claim about "5× σ compression" vs the table's 4.87: Appendix says "5× σ compression (0.024 → 0.005)", which gives 0.024/0.005 = 4.8, not exactly 5×. The "5×" is a rough approximation that's fine for prose, and the table shows 4.87. When I compute 2.41/0.49 = 4.918, it doesn't perfectly match the table's 4.87, but that's likely because the σ values are rounded to 2 decimal places while the ratio was computed from more precise values.
+
+Now looking at BoolQ and WinoGrande: BoolQ has N=3270 with α≈.45, J̄_h=.103, J̄_u=.098, 12 significant pairs out of 24, and ρ_α=+0.1. WinoGrande has N=1267 with α≈.41, J̄_h=.110, J̄_u=.103, 10 significant pairs out of 24, and ρ_α=-0.9. The main text correctly describes these as comprehension and reasoning tasks respectively. For subsample sensitivity, the table shows confidence interval widths that I can't verify without running the bootstrap myself. Moving on to the 340M multi-benchmark results...
+
+Checking the PIQA numbers: 340M shows α=.181 and 1.3B shows α=.143, so the difference is +.038. ✓ HellaSwag: 340M is α=.167 and 1.3B is α=.148, difference is +.019. ✓ ARC-Easy: 340M shows α=.289 and 1.3B appears to have a lower value, but the entry is cut off.
+
+Now I'm verifying the remaining benchmark results. ARC-Easy 1.3B has α=.205, which gives a difference of +.084 from the 340M value. ✓ LAMBADA shows α=.313 for 340M and α=.307 for 1.3B, a minimal difference of +.006. ✓
+
+Cross-checking the 1.3B values from the multi-benchmark table against Table 2 to ensure consistency. PIQA's 1.3B metrics match when accounting for rounding (.143 rounds to .14). HellaSwag values are also aligning so far.
+
+But I'm noticing some discrepancies in the LAMBADA metrics—the J_h and J_u values differ slightly between the two sources, which is worth flagging. I'm noticing a discrepancy: .307 should round to .31 at two decimal places, but Table 2 shows .30. Either the underlying value is slightly lower (like .302 or .304) or there's a typo in the table. Let me check if the caption provides any clarification on how these values were derived. The pure-recurrent configuration in the 340m_multi_bench table gives α = .307, which matches the arceasy_ambiguity data. So the two tables are actually reporting different model configurations—h3-1 versus pure-recurrent—which explains why their α values diverge. But I'm noticing small discrepancies in the Jaccard indices between tables (J_h and J_u differ by .001 or .002), which suggests they might be computing means slightly differently despite both claiming to use mean pairwise Jaccard. Let me cross-check these values against the within_scale_jaccard table to see if there's a pattern. I see the discrepancy now—340m_multi_bench likely averages across all attention ratios like Table 2 does, whereas within_scale_jaccard isolates just the h3-1 ratio, which accounts for why the Jaccard values differ between the two tables.
+
+Checking the numbers more carefully, the LAMBADA and ARC-Easy values between 340m_multi_bench and Table 2 are nearly identical with only minor rounding differences, so they're probably computing the same thing. Now I'm looking at the extended architecture section to see what those permutation tests reveal.
+
+The text claims 40 permutation tests across all benchmarks, but the table only displays results for LAMBADA and ARC-Easy (20 pairs total), with HellaSwag and PIQA data supposedly in the code release. The maximum Jaccard overlap values are 13.4% for LAMBADA and 13.8% for ARC-Easy, both just barely under the 14% threshold mentioned in the abstract and introduction.
+
+The appendix confirms all pairwise Jaccard values stay at or below 0.14, and the permutation tests yield p-values of 0.002 or stronger, which is consistent with the claimed p < 0.01 significance. The transformer accuracy figure of 48.1% appears only in the appendix without server data to verify it against. Now I'm looking at the scale comparison section to see how performance converges at different model sizes. Now I'm verifying the within-benchmark ranges across the different tasks—HellaSwag shows a 0.004 spread, PIQA has 0.011, and ARC-Easy reaches 0.025, all staying comfortably below the 0.03 threshold. I'm computing the mean Jaccard similarity for adjacent pairs across the three architectures, which gives .353, matching the appendix claim. For non-adjacent pairs, the calculation yields .343, also confirmed. Now checking the hurt category where adjacent pairs average to .345 and non-adjacent pairs come to .310. GDN hurt: (.310,.328,.320,.331,.281,.345) = 1.915/6 = .319. ✓
+
+Now checking RetNet helped: (.354,.314,.334,.322,.330,.345) = 1.999/6 = .333. ✓
+RetNet hurt: (.316,.334,.307,.301,.324,.343) = 1.925/6 = .321. ✓
+
+For HGRN2, helped cases average (.359,.369,.375,.368,.378,.388) = 2.237/6 = .373. ✓
+HGRN2 hurt cases: (.292,.289,.298,.273,.309,.287) = 1.748/6 = .291. ✓
+
+The overall averages work out: helped across all architectures is (.338+.333+.373)/3 = .348. ✓ and hurt is (.319+.321+.291)/3 = .310. ✓
+
+All the within-architecture summary values are checking out correctly.
+
+Now verifying the main text claims against the appendix. The within-architecture Jaccard of 0.33 is indeed about 7× the baseline (0.05) and 3× the cross-architecture level (0.10). ✓
+
+For the cross-benchmark Jaccard comparison, the appendix states all correlations are ≤ 0.80 with p-values ≥ 0.333, and values uniformly between 0.08 and 0.11. Checking this against what the main text says...
+
+The appendix table shows the individual benchmark correlations (LAMBADA at 0.80, HellaSwag at 0.60, PIQA at 0.00, ARC-Easy at 0.80), and the range values check out—minimum is 0.081 and maximum is 0.109, both fitting within the stated bounds. ✓
+
+For the attention analysis, the appendix describes using cosine similarity across all 5,153 LAMBADA examples, which matches the main text's method description. Now I'm looking at the specific attention similarity values to verify they're consistent across the document.
+
+The complementarity table shows the MV exploitation ratio hovering around 51% as claimed—LAMBADA at 51.1%, HellaSwag at 51.6%, ARC-Easy at 50.9%. When I check the vote fraction sums, LAMBADA adds to exactly 1.000, HellaSwag sums to 1.001 which is just a rounding artifact, so these all check out. ✓ For the MV exploitation calculation itself, I'm verifying that the ratio of correct 2-1 or 3-0 votes to total complementary examples matches the stated percentages—LAMBADA's .151/(.151+.145) = .5101 ≈ 51.1%, and HellaSwag's .078/(.078+.073) = .5166 ≈ 51.7%, both confirming the reported figures.
+
+Now I'm checking the remaining datasets: ARC-Easy gives .107/(.107+.103) = .5095 ≈ 50.9%, and BoolQ yields .257/(.257+.197) = .5661 ≈ 56.6%, both matching the table. There's a slight discrepancy with HellaSwag where my calculation gives 51.7% but the table shows 51.6%—likely due to the underlying fractions being rounded values themselves.
+
+Moving to the confidence margin tables, I'm verifying the control group data: GDN has 2800 total correct cases, RetNet shows 2666 which represents about 51.7% accuracy on the full dataset, and HGRN2 has 2494 correct cases—all reasonable for models performing around 50% baseline.
+
+Now checking the second control table where I'm validating that the pure-wrong counts match up correctly. For GDN, the 2353 wrong cases decompose into 480 helped and 1873 stayed-wrong, which checks out against the complement of the correct cases. RetNet's 2487 wrong cases similarly break down as 420 helped and 2067 stayed-wrong, confirming the internal consistency across both tables.
+
+But I'm noticing something odd when I cross-reference with the per-example table: GDN is using different hyperparameter settings (h12-1 in the control tables versus h3-1 in the per-example table), which explains why the numbers diverge. However, RetNet and HGRN2 both use h3-1 consistently, yet there are still small discrepancies—RetNet shows 420 helped in C2 but 426 in the per-example table, and the hurt counts are similarly off by a couple of cases. of 3). So there's a real discrepancy here—the definitions of helped and hurt should be identical between the per-example table and the confidence margin analysis, yet the counts don't match for RetNet and HGRN2. This suggests either a subtle difference in how the two analyses categorize examples, or there's an error in one of the calculations. So there are 4 examples being classified differently between the two methods. I've identified the main inconsistencies—the Jaccard values diverging across tables and the RetNet helped/hurt counts not matching—so now I should SSH into the server to verify the source data and pinpoint where these discrepancies originate. 3. **HGRN2 h3-1 hurt count differs**
+   - per_example: 395
+   - cm: 392
+
+4. **GDN-HGRN2 hurt Jaccard: .088 (jaccard_perm) vs .089 (within_scale_jaccard)** - minor
+
+5. **LAMBADA J_h/J_u minor discrepancy between 340m_multi_bench and Table 2**
+   - J_h: .095 vs .096
+   - J_u: .093 vs .091
+
+6. **HellaSwag Jaccard: cross_bench_jaccard mean (.086) vs Table 2 / 340m_multi_bench (.095)** - notable gap
+
+7. **"6-7% of the achievable range" claim**: hurt mean normalized ES is only .047, which is actually around 4.7% — falling short of the stated range. Let me check the raw data directly to verify these numbers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ae91106-84f0-4c33-a35e-6d984fa65bb1",
+  "isSidechain": false,
+  "requestId": "req_011CbL39hf1bigKYjyR9CrtR",
+  "type": "assistant",
+  "uuid": "c909d0fd-913e-407c-b8fa-cd34c5481ed8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQjiFekLEaXMDshLLx7UVv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3048,
+      "cache_read_input_tokens": 55149,
+      "output_tokens": 16072,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3048,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 16072,
+          "cache_read_input_tokens": 55149,
+          "cache_creation_input_tokens": 3048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3048
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-23T19:22:08.567Z_
+
+开始并行进行：(1) Appendix 内部及与主文的交叉核查 (2) SSH 到服务器验证源数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c909d0fd-913e-407c-b8fa-cd34c5481ed8",
+  "isSidechain": false,
+  "requestId": "req_011CbL39hf1bigKYjyR9CrtR",
+  "type": "assistant",
+  "uuid": "adf7e2b0-1398-44ee-9ee1-a2a66f0d9a5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQjiFekLEaXMDshLLx7UVv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3048,
+      "cache_read_input_tokens": 55149,
+      "output_tokens": 16072,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3048,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 16072,
+          "cache_read_input_tokens": 55149,
+          "cache_creation_input_tokens": 3048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3048
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-23T19:22:11.418Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S8p7ARdx65vHwu8nYviwPp`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/results/ -type f -name \"*.json\" -name \"*jaccard*\" -o -name \"*per_example*\" -o -name \"*normalized*\" -o -name \"*confidence*\" -o -name \"*margin*\" -o -name \"*permutation*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "adf7e2b0-1398-44ee-9ee1-a2a66f0d9a5d",
+  "isSidechain": false,
+  "requestId": "req_011CbL39hf1bigKYjyR9CrtR",
+  "type": "assistant",
+  "uuid": "cfb59d88-c999-4579-bb4b-7f53fce902b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQjiFekLEaXMDshLLx7UVv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3048,
+      "cache_read_input_tokens": 55149,
+      "output_tokens": 16072,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3048,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 16072,
+          "cache_read_input_tokens": 55149,
+          "cache_creation_input_tokens": 3048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3048
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T19:22:11.849Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MrPvqYQkKT87zPQFw1mjt4`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/results/ -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfb59d88-c999-4579-bb4b-7f53fce902b3",
+  "isSidechain": false,
+  "requestId": "req_011CbL39hf1bigKYjyR9CrtR",
+  "type": "assistant",
+  "uuid": "77572808-1237-4e60-9adb-a5596d4b2f1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQjiFekLEaXMDshLLx7UVv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3048,
+      "cache_read_input_tokens": 55149,
+      "output_tokens": 16072,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3048,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 16072,
+          "cache_read_input_tokens": 55149,
+          "cache_creation_input_tokens": 3048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3048
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-23T19:22:12.440Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W4Sr7T3gnTjtD4KUT9YNVZ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77572808-1237-4e60-9adb-a5596d4b2f1e",
+  "isSidechain": false,
+  "requestId": "req_011CbL39hf1bigKYjyR9CrtR",
+  "type": "assistant",
+  "uuid": "0382180a-7a5b-4b29-ba28-291e8fea67f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQjiFekLEaXMDshLLx7UVv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3048,
+      "cache_read_input_tokens": 55149,
+      "output_tokens": 16072,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3048,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 16072,
+          "cache_read_input_tokens": 55149,
+          "cache_creation_input_tokens": 3048,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3048
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0382180a-7a5b-4b29-ba28-291e8fea67f7",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-23T19:22:13.571Z_
+
+<details><summary>↩ Tool result · `toolu_01S8p7ARdx65vHwu8nYviwPp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\\n/root/entrainment_gated_ft/results/a2_prediction_framework/confidence_margin_prediction.json\\n/root/entrainment_gated_ft/results/e2_continuous_jaccard.json\\n/root/entrainment_gated_ft/results/e1_confidence_selection.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cfb59d88-c999-4579-bb4b-7f53fce902b3",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "f7df8008-0ebe-4d7d-8f4b-37e7ddbade95",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\\\\n/root/entrainment_gated_ft/results/a2_prediction_framework/confidence_margin_prediction.json\\\\n/root/entrainment_gated_ft/results/e2_continuous_jaccard.json\\\\n/root/entrainment_gated_ft/results/e1_confidence_selection.json\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.14}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json\\n/root/entrainment_gated_ft/results/a2_prediction_framework/confidence_margin_prediction.json\\n/root/entrainment_gated_ft/results/e2_continuous_jaccard.json\\n/root/entrainment_gated_ft/results/e1_confidence_selection.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_6arch.json\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cfb59d88-c999-4579-bb4b-7f53fce902b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T19:22:15.122Z_
+
+<details><summary>↩ Tool result · `toolu_01MrPvqYQkKT87zPQFw1mjt4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/\\n/root/entrainment_gated_ft/results/func_comp\\n/root/entrainment_gated_ft/results/func_comp/datasets\\n/root/entrainment_gated_ft/results/test_run\\n/root/entrainment_gated_ft/results/test_run/datasets\\n/root/entrainment_gated_ft/results/mvp_direct\\n/root/entrainment_gated_ft/results/mvp_direct/datasets\\n/root/entrainment_gated_ft/results/test_logprob\\n/root/entrainment_gated_ft/results/mvp_logprob\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\\n/root/entrainment_gated_ft/results/a3_complementarity\\n/root/entrainment_gated_ft/results/a2_prediction_framework\\n/root/entrainment_gated_ft/results/e4_pythia_seed\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed1\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed1/__root__autodl-tmp__pythia_weights_70m__seed1\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed2\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed2/__root__autodl-tmp__pythia_weights_70m__seed2\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed3\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed3/__root__autodl-tmp__pythia_weights_70m__seed3\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed4\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed4/__root__autodl-tmp__pythia_weights_70m__seed4\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed5\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed5/__root__autodl-tmp__pythia_weights_70m__seed5\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed6\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed6/__root__autodl-tmp__pythia_weights_70m__seed6\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed7\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed7/__root__autodl-tmp__pythia_weights_70m__seed7\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed8\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed8/__root__autodl-tmp__pythia_weights_70m__seed8\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed9\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed9/__root__autodl-tmp__pythia_weights_70m__seed9\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-HGRN-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_pure_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_h3-1_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_pure_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-pure\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_h3-1_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_pure_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_h3-1_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_pure_baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-HGRN-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_h31_hswag_piqa\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_h31_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_hswag_piqa\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_h31_hswag_piqa\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_h31_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_hswag_piqa\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure\\n/root/entrainment_gated_ft/results/figures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77572808-1237-4e60-9adb-a5596d4b2f1e",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "fa3dc06e-2be4-4e59-8756-87b9dcab9962",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/\\\\n/root/entrainment_gated_ft/results/func_comp\\\\n/root/entrainment_gated_ft/results/func_comp/datasets\\\\n/root/entrainment_gated_ft/results/test_run\\\\n/root/entrainment_gated_ft/results/test_run/datasets\\\\n/root/entrainment_gated_ft/results/mvp_direct\\\\n/root/entrainment_gated_ft/results/mvp_direct/datasets\\\\n/root/entrainment_gated_ft/results/test_logprob\\\\n/root/entrainment_gated_ft/results/mvp_logprob\\\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\\\\n/root/entrainment_gated_ft/results/a3_complementarity\\\\n/root/entrainment_gated_ft/results/a2_prediction_framework\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed1\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed1/__root__autodl-tmp__pythia_weights_70m__seed1\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed2\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed2/__root__autodl-tmp__pythia_weights_70m__seed2\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed3\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed3/__root__autodl-tmp__pythia_weights_70m__seed3\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed4\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed4/__root__autodl-tmp__pythia_weights_70m__seed4\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed5\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed5/__root__autodl-tmp__pythia_weights_70m__seed5\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed6\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed6/__root__autodl-tmp__pythia_weights_70m__seed6\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed7\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed7/__root__autodl-tmp__pythia_weights_70m__seed7\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed8\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed8/__root__autodl-tmp__pythia_weights_70m__seed8\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed9\\\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed9/__root__autodl-tmp__pythia_weights_70m__seed9\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-HGRN-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_pure_lambada\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-pure-baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_h3-1_lambada\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_pure_lambada\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-pure\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_h3-1_lambada\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_pure_lambada\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-pure-baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_h3-1_lambada\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_pure_baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-HGRN-pure-baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_h31_hswag_piqa\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_h31_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_hswag_piqa\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_h31_hswag_piqa\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_h31_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_hswag_piqa\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure\\\\n/root/entrainment_gated_ft/results/figures\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.54}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/\\n/root/entrainment_gated_ft/results/func_comp\\n/root/entrainment_gated_ft/results/func_comp/datasets\\n/root/entrainment_gated_ft/results/test_run\\n/root/entrainment_gated_ft/results/test_run/datasets\\n/root/entrainment_gated_ft/results/mvp_direct\\n/root/entrainment_gated_ft/results/mvp_direct/datasets\\n/root/entrainment_gated_ft/results/test_logprob\\n/root/entrainment_gated_ft/results/mvp_logprob\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard\\n/root/entrainment_gated_ft/results/a3_complementarity\\n/root/entrainment_gated_ft/results/a2_prediction_framework\\n/root/entrainment_gated_ft/results/e4_pythia_seed\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed1\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed1/__root__autodl-tmp__pythia_weights_70m__seed1\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed2\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed2/__root__autodl-tmp__pythia_weights_70m__seed2\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed3\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed3/__root__autodl-tmp__pythia_weights_70m__seed3\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed4\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed4/__root__autodl-tmp__pythia_weights_70m__seed4\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed5\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed5/__root__autodl-tmp__pythia_weights_70m__seed5\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed6\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed6/__root__autodl-tmp__pythia_weights_70m__seed6\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed7\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed7/__root__autodl-tmp__pythia_weights_70m__seed7\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed8\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed8/__root__autodl-tmp__pythia_weights_70m__seed8\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed9\\n/root/entrainment_gated_ft/results/e4_pythia_seed/seed9/__root__autodl-tmp__pythia_weights_70m__seed9\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_hybrid-3-1/__root__entrainment_gated_ft__models__340M-20B-HGRN-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_pure_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_h3-1_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GDN_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-GatedDeltaNet-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_pure_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-pure\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_h3-1_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/RetNet_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-RetNet-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_pure_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_pure_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_h3-1_lambada\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN2_h3-1_lambada/__root__entrainment_gated_ft__models__340M-20B-HGRN2-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_pure_baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/HGRN_pure_baseline/__root__entrainment_gated_ft__models__340M-20B-HGRN-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_h31_hswag_piqa\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_h31_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-GLA-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_hswag_piqa\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/GLA_pure_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-GLA-pure-baseline\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_h31_hswag_piqa\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_h31_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-hybrid-3-1\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_hswag_piqa\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_pure_hswag_piqa/__root__entrainment_gated_ft__models__340M-20B-DeltaNet-pure\\n/root/entrainment_gated_ft/results/figures\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"
+    }
+  },
+  "sourceToolAssistantUUID": "77572808-1237-4e60-9adb-a5596d4b2f1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T19:22:16.024Z_
+
+<details><summary>↩ Tool result · `toolu_01W4Sr7T3gnTjtD4KUT9YNVZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 144\\ndrwxr-xr-x 13 root root  4096 May 24 01:08 .\\ndrwxr-xr-x 12 root root  4096 May 24 00:46 ..\\ndrwxr-xr-x  2 root root  4096 May 22 16:03 a1_cross_benchmark_jaccard\\ndrwxr-xr-x  2 root root    95 May 22 16:23 a2_prediction_framework\\ndrwxr-xr-x  2 root root  4096 May 22 16:24 a3_complementarity\\n-rw-r--r--  1 root root  5640 May 22 17:59 e1_confidence_selection.json\\n-rw-r--r--  1 root root  4631 May 24 01:08 e1_paired_ttest.json\\n-rw-r--r--  1 root root  8375 May 22 17:59 e2_continuous_jaccard.json\\n-rw-r--r--  1 root root 12556 May 22 18:01 e3_calibration.json\\ndrwxr-xr-x 11 root root  4096 May 22 20:31 e4_pythia_seed\\ndrwxr-xr-x 19 root root  4096 May 23 10:33 exp005_zoo_expansion\\ndrwxr-xr-x  2 root root  4096 May 23 10:38 figures\\ndrwxr-xr-x  3 root root    30 May 18 14:20 func_comp\\ndrwxr-xr-x  3 root root  8192 May 18 15:20 mvp_direct\\ndrwxr-xr-x  2 root root  8192 May 18 15:36 mvp_logprob\\n-rw-r--r--  1 root root 35275 May 18 15:36 mvp_logprob_run.log\\ndrwxr-xr-x  2 root root   110 May 18 15:28 test_logprob\\n-rw-r--r--  1 root root  2397 May 18 15:28 test_logprob_dryrun.log\\ndrwxr-xr-x  3 root root  4096 May 18 14:29 test_run\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0382180a-7a5b-4b29-ba28-291e8fea67f7",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "f9b5036e-ba1a-4b01-b411-c762c85fa1df",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 144\\\\ndrwxr-xr-x 13 root root  4096 May 24 01:08 .\\\\ndrwxr-xr-x 12 root root  4096 May 24 00:46 ..\\\\ndrwxr-xr-x  2 root root  4096 May 22 16:03 a1_cross_benchmark_jaccard\\\\ndrwxr-xr-x  2 root root    95 May 22 16:23 a2_prediction_framework\\\\ndrwxr-xr-x  2 root root  4096 May 22 16:24 a3_complementarity\\\\n-rw-r--r--  1 root root  5640 May 22 17:59 e1_confidence_selection.json\\\\n-rw-r--r--  1 root root  4631 May 24 01:08 e1_paired_ttest.json\\\\n-rw-r--r--  1 root root  8375 May 22 17:59 e2_continuous_jaccard.json\\\\n-rw-r--r--  1 root root 12556 May 22 18:01 e3_calibration.json\\\\ndrwxr-xr-x 11 root root  4096 May 22 20:31 e4_pythia_seed\\\\ndrwxr-xr-x 19 root root  4096 May 23 10:33 exp005_zoo_expansion\\\\ndrwxr-xr-x  2 root root  4096 May 23 10:38 figures\\\\ndrwxr-xr-x  3 root root    30 May 18 14:20 func_comp\\\\ndrwxr-xr-x  3 root root  8192 May 18 15:20 mvp_direct\\\\ndrwxr-xr-x  2 root root  8192 May 18 15:36 mvp_logprob\\\\n-rw-r--r--  1 root root 35275 May 18 15:36 mvp_logprob_run.log\\\\ndrwxr-xr-x  2 root root   110 May 18 15:28 test_logprob\\\\n-rw-r--r--  1 root root  2397 May 18 15:28 test_logprob_dryrun.log\\\\ndrwxr-xr-x  3 root root  4096 May 18 14:29 test_run\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 144\\ndrwxr-xr-x 13 root root  4096 May 24 01:08 .\\ndrwxr-xr-x 12 root root  4096 May 24 00:46 ..\\ndrwxr-xr-x  2 root root  4096 May 22 16:03 a1_cross_benchmark_jaccard\\ndrwxr-xr-x  2 root root    95 May 22 16:23 a2_prediction_framework\\ndrwxr-xr-x  2 root root  4096 May 22 16:24 a3_complementarity\\n-rw-r--r--  1 root root  5640 May 22 17:59 e1_confidence_selection.json\\n-rw-r--r--  1 root root  4631 May 24 01:08 e1_paired_ttest.json\\n-rw-r--r--  1 root root  8375 May 22 17:59 e2_continuous_jaccard.json\\n-rw-r--r--  1 root root 12556 May 22 18:01 e3_calibration.json\\ndrwxr-xr-x 11 root root  4096 May 22 20:31 e4_pythia_seed\\ndrwxr-xr-x 19 root root  4096 May 23 10:33 exp005_zoo_expansion\\ndrwxr-xr-x  2 root root  4096 May 23 10:38 figures\\ndrwxr-xr-x  3 root root    30 May 18 14:20 func_comp\\ndrwxr-xr-x  3 root root  8192 May 18 15:20 mvp_direct\\ndrwxr-xr-x  2 root root  8192 May 18 15:36 mvp_logprob\\n-rw-r--r--  1 root root 35275 May 18 15:36 mvp_logprob_run.log\\ndrwxr-xr-x  2 root root   110 May 18 15:28 test_logprob\\n-rw-r--r--  1 root root  2397 May 18 15:28 test_logprob_dryrun.log\\ndrwxr-xr-x  3 root root  4096 May 18 14:29 test_run\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0382180a-7a5b-4b29-ba28-291e8fea67f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-23T19:22:21.104Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now read the key source data files in parallel to verify the appendix numbers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9b5036e-ba1a-4b01-b411-c762c85fa1df",
+  "isSidechain": false,
+  "requestId": "req_011CbL3YirqJRt1nZsdYH2k4",
+  "type": "assistant",
+  "uuid": "2ff8199b-eff5-4b4d-b92c-23c1cd550cf7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbAsgQtmNWY6HsaBmvGAna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19750,
+      "cache_read_input_tokens": 58197,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 58197,
+          "cache_creation_input_tokens": 19750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-23T19:22:22.143Z_
+
+找到了关键数据文件。现在并行读取核心源数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ff8199b-eff5-4b4d-b92c-23c1cd550cf7",
+  "isSidechain": false,
+  "requestId": "req_011CbL3YirqJRt1nZsdYH2k4",
+  "type": "assistant",
+  "uuid": "eb505825-6170-4864-8edb-debad38df204",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbAsgQtmNWY6HsaBmvGAna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19750,
+      "cache_read_input_tokens": 58197,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 58197,
+          "cache_creation_input_tokens": 19750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-23T19:22:23.686Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KhVzthNw1BgqxYjeaNDC1i`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/cross_benchmark_jaccard_trajectories.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eb505825-6170-4864-8edb-debad38df204",
+  "isSidechain": false,
+  "requestId": "req_011CbL3YirqJRt1nZsdYH2k4",
+  "type": "assistant",
+  "uuid": "6d6c5222-be61-4972-9556-504ab5b90568",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbAsgQtmNWY6HsaBmvGAna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19750,
+      "cache_read_input_tokens": 58197,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 58197,
+          "cache_creation_input_tokens": 19750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T19:22:24.437Z_
+
+<details><summary>↩ Tool result · `toolu_01KhVzthNw1BgqxYjeaNDC1i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Cross-benchmark Jaccard trajectory analysis (A1)\\\",\\n  \\\"benchmarks\\\": [\\n    \\\"LAMBADA\\\",\\n    \\\"HellaSwag\\\",\\n    \\\"PIQA\\\",\\n    \\\"ARC-Easy\\\"\\n  ],\\n  \\\"attention_ratios\\\": [\\n    0.0,\\n    0.04,\\n    0.0769,\\n    0.1429,\\n    0.25\\n  ],\\n  \\\"ratio_labels\\\": [\\n    \\\"0%\\\",\\n    \\\"4%\\\",\\n    \\\"7.7%\\\",\\n    \\\"14.3%\\\",\\n    \\\"25%\\\"\\n  ],\\n  \\\"variants\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"metrics_used\\\": {\\n    \\\"LAMBADA\\\": \\\"acc\\\",\\n    \\\"HellaSwag\\\": \\\"acc_norm\\\",\\n    \\\"PIQA\\\": \\\"acc\\\",\\n    \\\"ARC-Easy\\\": \\\"acc\\\"\\n  },\\n  \\\"sigma_trajectories\\\": {\\n    \\\"LAMBADA\\\": {\\n      \\\"pure\\\": 0.024047126977057007,\\n      \\\"h24-1\\\": 0.016238171620323174,\\n      \\\"h12-1\\\": 0.013595712311665276,\\n      \\\"h6-1\\\": 0.006055084765553574,\\n      \\\"h3-1\\\": 0.004942545182713789\\n    },\\n    \\\"HellaSwag\\\": {\\n      \\\"pure\\\": 0.011684919531365783,\\n      \\\"h24-1\\\": 0.008615212910147576,\\n      \\\"h12-1\\\": 0.00946859081425128,\\n      \\\"h6-1\\\": 0.009201244143823003,\\n      \\\"h3-1\\\": 0.01183082679011367\\n    },\\n    \\\"PIQA\\\": {\\n      \\\"pure\\\": 0.004623702859623485,\\n      \\\"h24-1\\\": 0.005123121832363242,\\n      \\\"h12-1\\\": 0.0052624657702382525,\\n      \\\"h6-1\\\": 0.003450543632651522,\\n      \\\"h3-1\\\": 0.003872716087062462\\n    },\\n    \\\"ARC-Easy\\\": {\\n      \\\"pure\\\": 0.000396805152180962,\\n      \\\"h24-1\\\": 0.0100208032707231,\\n      \\\"h12-1\\\": 0.013861228109911963,\\n      \\\"h6-1\\\": 0.011012683449377308,\\n      \\\"h3-1\\\": 0.009965656922097678\\n    }\\n  },\\n  \\\"jaccard_trajectories\\\": {\\n    \\\"LAMBADA\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.094523,\\n        \\\"J_hurt\\\": 0.087332,\\n        \\\"J_mean\\\": 0.0909275\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"J_helped\\\": 0.09509,\\n        \\\"J_hurt\\\": 0.08087,\\n        \\\"J_mean\\\": 0.08798\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"J_helped\\\": 0.09223,\\n        \\\"J_hurt\\\": 0.098795,\\n        \\\"J_mean\\\": 0.0955125\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"J_helped\\\": 0.100182,\\n        \\\"J_hurt\\\": 0.092811,\\n        \\\"J_mean\\\": 0.0964965\\n      }\\n    },\\n    \\\"HellaSwag\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.0838,\\n        \\\"J_hurt\\\": 0.08456666666666668,\\n        \\\"J_mean\\\": 0.08418333333333333,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0605,\\n            \\\"hurt\\\": 0.0892\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0942,\\n            \\\"hurt\\\": 0.0771\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0967,\\n            \\\"hurt\\\": 0.0874\\n          }\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"J_helped\\\": 0.09493333333333333,\\n        \\\"J_hurt\\\": 0.06683333333333334,\\n        \\\"J_mean\\\": 0.08088333333333333,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.076,\\n            \\\"hurt\\\": 0.0589\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.092,\\n            \\\"hurt\\\": 0.0568\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.1168,\\n            \\\"hurt\\\": 0.0848\\n          }\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"J_helped\\\": 0.09449999999999999,\\n        \\\"J_hurt\\\": 0.08673333333333333,\\n        \\\"J_mean\\\": 0.09061666666666665,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0923,\\n            \\\"hurt\\\": 0.0745\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0758,\\n            \\\"hurt\\\": 0.0892\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.1154,\\n            \\\"hurt\\\": 0.0965\\n          }\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"J_helped\\\": 0.0894,\\n        \\\"J_hurt\\\": 0.08333333333333333,\\n        \\\"J_mean\\\": 0.08636666666666666,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0867,\\n            \\\"hurt\\\": 0.0905\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0879,\\n            \\\"hurt\\\": 0.0794\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0936,\\n            \\\"hurt\\\": 0.0801\\n          }\\n        }\\n      }\\n    },\\n    \\\"PIQA\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.08523333333333334,\\n        \\\"J_hurt\\\": 0.09313333333333333,\\n        \\\"J_mean\\\": 0.08918333333333334,\\n        \\\"pair_details\\\": {\\n          \\\"GDN_vs_RetNet\\\": {\\n            \\\"helped\\\": 0.0872,\\n            \\\"hurt\\\": 0.0608\\n          },\\n  \\n\\n... [截断: 输出过长，省略 1021 字符] ...\\n\\n\\n          },\\n          \\\"RetNet_vs_HGRN2\\\": {\\n            \\\"helped\\\": 0.094,\\n            \\\"hurt\\\": 0.0844\\n          }\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"J_helped\\\": 0.11223333333333334,\\n        \\\"J_hurt\\\": 0.07840000000000001,\\n        \\\"J_mean\\\": 0.09531666666666667,\\n        \\\"pair_details\\\": {\\n          \\\"GDN_vs_RetNet\\\": {\\n            \\\"helped\\\": 0.1145,\\n            \\\"hurt\\\": 0.0694\\n          },\\n          \\\"GDN_vs_HGRN2\\\": {\\n            \\\"helped\\\": 0.0793,\\n            \\\"hurt\\\": 0.1042\\n          },\\n          \\\"RetNet_vs_HGRN2\\\": {\\n            \\\"helped\\\": 0.1429,\\n            \\\"hurt\\\": 0.0616\\n          }\\n        }\\n      }\\n    },\\n    \\\"ARC-Easy\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.07476666666666666,\\n        \\\"J_hurt\\\": 0.09343333333333333,\\n        \\\"J_mean\\\": 0.0841,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0667,\\n            \\\"hurt\\\": 0.0795\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0833,\\n            \\\"hurt\\\": 0.1095\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0743,\\n            \\\"hurt\\\": 0.0913\\n          }\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"J_helped\\\": 0.09813333333333334,\\n        \\\"J_hurt\\\": 0.0994,\\n        \\\"J_mean\\\": 0.09876666666666667,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0935,\\n            \\\"hurt\\\": 0.1282\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.1167,\\n            \\\"hurt\\\": 0.0856\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0842,\\n            \\\"hurt\\\": 0.0844\\n          }\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"J_helped\\\": 0.09353333333333334,\\n        \\\"J_hurt\\\": 0.08756666666666667,\\n        \\\"J_mean\\\": 0.09055,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0894,\\n            \\\"hurt\\\": 0.0896\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0991,\\n            \\\"hurt\\\": 0.087\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0921,\\n            \\\"hurt\\\": 0.0861\\n          }\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"J_helped\\\": 0.10233333333333333,\\n        \\\"J_hurt\\\": 0.1149,\\n        \\\"J_mean\\\": 0.10861666666666667,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.1131,\\n            \\\"hurt\\\": 0.1131\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.1056,\\n            \\\"hurt\\\": 0.0976\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0883,\\n            \\\"hurt\\\": 0.134\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"statistics\\\": {\\n    \\\"LAMBADA\\\": {\\n      \\\"jaccard_mean_rho\\\": 0.8,\\n      \\\"jaccard_mean_p\\\": 0.3333333333333333,\\n      \\\"jaccard_helped_rho\\\": 0.4,\\n      \\\"jaccard_helped_p\\\": 0.5833333333333334,\\n      \\\"jaccard_hurt_rho\\\": 0.6,\\n      \\\"jaccard_hurt_p\\\": 0.4166666666666667,\\n      \\\"sigma_rho\\\": -1.0,\\n      \\\"sigma_p\\\": 0.016666666666666666,\\n      \\\"n_permutations\\\": 24,\\n      \\\"sigma_n_permutations\\\": 120\\n    },\\n    \\\"HellaSwag\\\": {\\n      \\\"jaccard_mean_rho\\\": 0.6,\\n      \\\"jaccard_mean_p\\\": 0.4166666666666667,\\n      \\\"jaccard_helped_rho\\\": 0.19999999999999996,\\n      \\\"jaccard_helped_p\\\": 0.9166666666666666,\\n      \\\"jaccard_hurt_rho\\\": 0.0,\\n      \\\"jaccard_hurt_p\\\": 1.0,\\n      \\\"sigma_rho\\\": 0.30000000000000004,\\n      \\\"sigma_p\\\": 0.6833333333333333,\\n      \\\"n_permutations\\\": 24,\\n      \\\"sigma_n_permutations\\\": 120\\n    },\\n    \\\"PIQA\\\": {\\n      \\\"jaccard_mean_rho\\\": 0.0,\\n      \\\"jaccard_mean_p\\\": 1.0,\\n      \\\"jaccard_helped_rho\\\": 0.4,\\n      \\\"jaccard_helped_p\\\": 0.5833333333333334,\\n      \\\"jaccard_hurt_rho\\\": -0.3999999999999999,\\n      \\\"jaccard_hurt_p\\\": 0.75,\\n      \\\"sigma_rho\\\": -0.5,\\n      \\\"sigma_p\\\": 0.45,\\n      \\\"n_permutations\\\": 24,\\n      \\\"sigma_n_permutations\\\": 120\\n    },\\n    \\\"ARC-Easy\\\": {\\n      \\\"jaccard_mean_rho\\\": 0.8,\\n      \\\"jaccard_mean_p\\\": 0.3333333333333333,\\n      \\\"jaccard_helped_rho\\\": 0.8,\\n      \\\"jaccard_helped_p\\\": 0.3333333333333333,\\n      \\\"jaccard_hurt_rho\\\": 0.4,\\n      \\\"jaccard_hurt_p\\\": 0.5833333333333334,\\n      \\\"sigma_rho\\\": 0.30000000000000004,\\n      \\\"sigma_p\\\": 0.6833333333333333,\\n      \\\"n_permutations\\\": 24,\\n      \\\"sigma_n_permutations\\\": 120\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d6c5222-be61-4972-9556-504ab5b90568",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "82509317-e2b8-48d8-9435-d7e156d31ff0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Cross-benchmark Jaccard trajectory analysis (A1)\\\\\\\",\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    \\\\\\\"LAMBADA\\\\\\\",\\\\n    \\\\\\\"HellaSwag\\\\\\\",\\\\n    \\\\\\\"PIQA\\\\\\\",\\\\n    \\\\\\\"ARC-Easy\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_ratios\\\\\\\": [\\\\n    0.0,\\\\n    0.04,\\\\n    0.0769,\\\\n    0.1429,\\\\n    0.25\\\\n  ],\\\\n  \\\\\\\"ratio_labels\\\\\\\": [\\\\n    \\\\\\\"0%\\\\\\\",\\\\n    \\\\\\\"4%\\\\\\\",\\\\n    \\\\\\\"7.7%\\\\\\\",\\\\n    \\\\\\\"14.3%\\\\\\\",\\\\n    \\\\\\\"25%\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"variants\\\\\\\": [\\\\n    \\\\\\\"pure\\\\\\\",\\\\n    \\\\\\\"h24-1\\\\\\\",\\\\n    \\\\\\\"h12-1\\\\\\\",\\\\n    \\\\\\\"h6-1\\\\\\\",\\\\n    \\\\\\\"h3-1\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"metrics_used\\\\\\\": {\\\\n    \\\\\\\"LAMBADA\\\\\\\": \\\\\\\"acc\\\\\\\",\\\\n    \\\\\\\"HellaSwag\\\\\\\": \\\\\\\"acc_norm\\\\\\\",\\\\n    \\\\\\\"PIQA\\\\\\\": \\\\\\\"acc\\\\\\\",\\\\n    \\\\\\\"ARC-Easy\\\\\\\": \\\\\\\"acc\\\\\\\"\\\\n  },\\\\n  \\\\\\\"sigma_trajectories\\\\\\\": {\\\\n    \\\\\\\"LAMBADA\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.024047126977057007,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.016238171620323174,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.013595712311665276,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.006055084765553574,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.004942545182713789\\\\n    },\\\\n    \\\\\\\"HellaSwag\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.011684919531365783,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.008615212910147576,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.00946859081425128,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.009201244143823003,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.01183082679011367\\\\n    },\\\\n    \\\\\\\"PIQA\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.004623702859623485,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.005123121832363242,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.0052624657702382525,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.003450543632651522,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.003872716087062462\\\\n    },\\\\n    \\\\\\\"ARC-Easy\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": 0.000396805152180962,\\\\n      \\\\\\\"h24-1\\\\\\\": 0.0100208032707231,\\\\n      \\\\\\\"h12-1\\\\\\\": 0.013861228109911963,\\\\n      \\\\\\\"h6-1\\\\\\\": 0.011012683449377308,\\\\n      \\\\\\\"h3-1\\\\\\\": 0.009965656922097678\\\\n    }\\\\n  },\\\\n  \\\\\\\"jaccard_trajectories\\\\\\\": {\\\\n    \\\\\\\"LAMBADA\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.094523,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.087332,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.0909275\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.09509,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.08087,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.08798\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.09223,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.098795,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.0955125\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.100182,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.092811,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.0964965\\\\n      }\\\\n    },\\\\n    \\\\\\\"HellaSwag\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.0838,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.08456666666666668,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.08418333333333333,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0605,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0892\\\\n          },\\\\n          \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0942,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0771\\\\n          },\\\\n          \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0967,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0874\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.09493333333333333,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.06683333333333334,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.08088333333333333,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.076,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0589\\\\n          },\\\\n          \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.092,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0568\\\\n          },\\\\n          \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.1168,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0848\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.09449999999999999,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.08673333333333333,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.09061666666666665,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0923,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0745\\\\n          },\\\\n          \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0758,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0892\\\\n          },\\\\n          \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.1154,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0965\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.0894,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.08333333333333333,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.08636666666666666,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0867,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0905\\\\n          },\\\\n          \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0879,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0794\\\\n          },\\\\n          \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0936,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0801\\\\n          }\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"PIQA\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.08523333333333334,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.09313333333333333,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.08918333333333334,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0872,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0608\\\\n          },\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 1021 字符] ...\\\\n\\\\n\\\\n          },\\\\n          \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.094,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0844\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.11223333333333334,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.07840000000000001,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.09531666666666667,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN_vs_RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.1145,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0694\\\\n          },\\\\n          \\\\\\\"GDN_vs_HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0793,\\\\n            \\\\\\\"hurt\\\\\\\": 0.1042\\\\n          },\\\\n          \\\\\\\"RetNet_vs_HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.1429,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0616\\\\n          }\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"ARC-Easy\\\\\\\": {\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.07476666666666666,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.09343333333333333,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.0841,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0667,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0795\\\\n          },\\\\n          \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0833,\\\\n            \\\\\\\"hurt\\\\\\\": 0.1095\\\\n          },\\\\n          \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0743,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0913\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.09813333333333334,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.0994,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.09876666666666667,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0935,\\\\n            \\\\\\\"hurt\\\\\\\": 0.1282\\\\n          },\\\\n          \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.1167,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0856\\\\n          },\\\\n          \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0842,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0844\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.09353333333333334,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.08756666666666667,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.09055,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0894,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0896\\\\n          },\\\\n          \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0991,\\\\n            \\\\\\\"hurt\\\\\\\": 0.087\\\\n          },\\\\n          \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0921,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0861\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"J_helped\\\\\\\": 0.10233333333333333,\\\\n        \\\\\\\"J_hurt\\\\\\\": 0.1149,\\\\n        \\\\\\\"J_mean\\\\\\\": 0.10861666666666667,\\\\n        \\\\\\\"pair_details\\\\\\\": {\\\\n          \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.1131,\\\\n            \\\\\\\"hurt\\\\\\\": 0.1131\\\\n          },\\\\n          \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.1056,\\\\n            \\\\\\\"hurt\\\\\\\": 0.0976\\\\n          },\\\\n          \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n            \\\\\\\"helped\\\\\\\": 0.0883,\\\\n            \\\\\\\"hurt\\\\\\\": 0.134\\\\n          }\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"statistics\\\\\\\": {\\\\n    \\\\\\\"LAMBADA\\\\\\\": {\\\\n      \\\\\\\"jaccard_mean_rho\\\\\\\": 0.8,\\\\n      \\\\\\\"jaccard_mean_p\\\\\\\": 0.3333333333333333,\\\\n      \\\\\\\"jaccard_helped_rho\\\\\\\": 0.4,\\\\n      \\\\\\\"jaccard_helped_p\\\\\\\": 0.5833333333333334,\\\\n      \\\\\\\"jaccard_hurt_rho\\\\\\\": 0.6,\\\\n      \\\\\\\"jaccard_hurt_p\\\\\\\": 0.4166666666666667,\\\\n      \\\\\\\"sigma_rho\\\\\\\": -1.0,\\\\n      \\\\\\\"sigma_p\\\\\\\": 0.016666666666666666,\\\\n      \\\\\\\"n_permutations\\\\\\\": 24,\\\\n      \\\\\\\"sigma_n_permutations\\\\\\\": 120\\\\n    },\\\\n    \\\\\\\"HellaSwag\\\\\\\": {\\\\n      \\\\\\\"jaccard_mean_rho\\\\\\\": 0.6,\\\\n      \\\\\\\"jaccard_mean_p\\\\\\\": 0.4166666666666667,\\\\n      \\\\\\\"jaccard_helped_rho\\\\\\\": 0.19999999999999996,\\\\n      \\\\\\\"jaccard_helped_p\\\\\\\": 0.9166666666666666,\\\\n      \\\\\\\"jaccard_hurt_rho\\\\\\\": 0.0,\\\\n      \\\\\\\"jaccard_hurt_p\\\\\\\": 1.0,\\\\n      \\\\\\\"sigma_rho\\\\\\\": 0.30000000000000004,\\\\n      \\\\\\\"sigma_p\\\\\\\": 0.6833333333333333,\\\\n      \\\\\\\"n_permutations\\\\\\\": 24,\\\\n      \\\\\\\"sigma_n_permutations\\\\\\\": 120\\\\n    },\\\\n    \\\\\\\"PIQA\\\\\\\": {\\\\n      \\\\\\\"jaccard_mean_rho\\\\\\\": 0.0,\\\\n      \\\\\\\"jaccard_mean_p\\\\\\\": 1.0,\\\\n      \\\\\\\"jaccard_helped_rho\\\\\\\": 0.4,\\\\n      \\\\\\\"jaccard_helped_p\\\\\\\": 0.5833333333333334,\\\\n      \\\\\\\"jaccard_hurt_rho\\\\\\\": -0.3999999999999999,\\\\n      \\\\\\\"jaccard_hurt_p\\\\\\\": 0.75,\\\\n      \\\\\\\"sigma_rho\\\\\\\": -0.5,\\\\n      \\\\\\\"sigma_p\\\\\\\": 0.45,\\\\n      \\\\\\\"n_permutations\\\\\\\": 24,\\\\n      \\\\\\\"sigma_n_permutations\\\\\\\": 120\\\\n    },\\\\n    \\\\\\\"ARC-Easy\\\\\\\": {\\\\n      \\\\\\\"jaccard_mean_rho\\\\\\\": 0.8,\\\\n      \\\\\\\"jaccard_mean_p\\\\\\\": 0.3333333333333333,\\\\n      \\\\\\\"jaccard_helped_rho\\\\\\\": 0.8,\\\\n      \\\\\\\"jaccard_helped_p\\\\\\\": 0.3333333333333333,\\\\n      \\\\\\\"jaccard_hurt_rho\\\\\\\": 0.4,\\\\n      \\\\\\\"jaccard_hurt_p\\\\\\\": 0.5833333333333334,\\\\n      \\\\\\\"sigma_rho\\\\\\\": 0.30000000000000004,\\\\n      \\\\\\\"sigma_p\\\\\\\": 0.6833333333333333,\\\\n      \\\\\\\"n_permutations\\\\\\\": 24,\\\\n      \\\\\\\"sigma_n_permutations\\\\\\\": 120\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Cross-benchmark Jaccard trajectory analysis (A1)\\\",\\n  \\\"benchmarks\\\": [\\n    \\\"LAMBADA\\\",\\n    \\\"HellaSwag\\\",\\n    \\\"PIQA\\\",\\n    \\\"ARC-Easy\\\"\\n  ],\\n  \\\"attention_ratios\\\": [\\n    0.0,\\n    0.04,\\n    0.0769,\\n    0.1429,\\n    0.25\\n  ],\\n  \\\"ratio_labels\\\": [\\n    \\\"0%\\\",\\n    \\\"4%\\\",\\n    \\\"7.7%\\\",\\n    \\\"14.3%\\\",\\n    \\\"25%\\\"\\n  ],\\n  \\\"variants\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"metrics_used\\\": {\\n    \\\"LAMBADA\\\": \\\"acc\\\",\\n    \\\"HellaSwag\\\": \\\"acc_norm\\\",\\n    \\\"PIQA\\\": \\\"acc\\\",\\n    \\\"ARC-Easy\\\": \\\"acc\\\"\\n  },\\n  \\\"sigma_trajectories\\\": {\\n    \\\"LAMBADA\\\": {\\n      \\\"pure\\\": 0.024047126977057007,\\n      \\\"h24-1\\\": 0.016238171620323174,\\n      \\\"h12-1\\\": 0.013595712311665276,\\n      \\\"h6-1\\\": 0.006055084765553574,\\n      \\\"h3-1\\\": 0.004942545182713789\\n    },\\n    \\\"HellaSwag\\\": {\\n      \\\"pure\\\": 0.011684919531365783,\\n      \\\"h24-1\\\": 0.008615212910147576,\\n      \\\"h12-1\\\": 0.00946859081425128,\\n      \\\"h6-1\\\": 0.009201244143823003,\\n      \\\"h3-1\\\": 0.01183082679011367\\n    },\\n    \\\"PIQA\\\": {\\n      \\\"pure\\\": 0.004623702859623485,\\n      \\\"h24-1\\\": 0.005123121832363242,\\n      \\\"h12-1\\\": 0.0052624657702382525,\\n      \\\"h6-1\\\": 0.003450543632651522,\\n      \\\"h3-1\\\": 0.003872716087062462\\n    },\\n    \\\"ARC-Easy\\\": {\\n      \\\"pure\\\": 0.000396805152180962,\\n      \\\"h24-1\\\": 0.0100208032707231,\\n      \\\"h12-1\\\": 0.013861228109911963,\\n      \\\"h6-1\\\": 0.011012683449377308,\\n      \\\"h3-1\\\": 0.009965656922097678\\n    }\\n  },\\n  \\\"jaccard_trajectories\\\": {\\n    \\\"LAMBADA\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.094523,\\n        \\\"J_hurt\\\": 0.087332,\\n        \\\"J_mean\\\": 0.0909275\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"J_helped\\\": 0.09509,\\n        \\\"J_hurt\\\": 0.08087,\\n        \\\"J_mean\\\": 0.08798\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"J_helped\\\": 0.09223,\\n        \\\"J_hurt\\\": 0.098795,\\n        \\\"J_mean\\\": 0.0955125\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"J_helped\\\": 0.100182,\\n        \\\"J_hurt\\\": 0.092811,\\n        \\\"J_mean\\\": 0.0964965\\n      }\\n    },\\n    \\\"HellaSwag\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.0838,\\n        \\\"J_hurt\\\": 0.08456666666666668,\\n        \\\"J_mean\\\": 0.08418333333333333,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0605,\\n            \\\"hurt\\\": 0.0892\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0942,\\n            \\\"hurt\\\": 0.0771\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0967,\\n            \\\"hurt\\\": 0.0874\\n          }\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"J_helped\\\": 0.09493333333333333,\\n        \\\"J_hurt\\\": 0.06683333333333334,\\n        \\\"J_mean\\\": 0.08088333333333333,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.076,\\n            \\\"hurt\\\": 0.0589\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.092,\\n            \\\"hurt\\\": 0.0568\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.1168,\\n            \\\"hurt\\\": 0.0848\\n          }\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"J_helped\\\": 0.09449999999999999,\\n        \\\"J_hurt\\\": 0.08673333333333333,\\n        \\\"J_mean\\\": 0.09061666666666665,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0923,\\n            \\\"hurt\\\": 0.0745\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0758,\\n            \\\"hurt\\\": 0.0892\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.1154,\\n            \\\"hurt\\\": 0.0965\\n          }\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"J_helped\\\": 0.0894,\\n        \\\"J_hurt\\\": 0.08333333333333333,\\n        \\\"J_mean\\\": 0.08636666666666666,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0867,\\n            \\\"hurt\\\": 0.0905\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0879,\\n            \\\"hurt\\\": 0.0794\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0936,\\n            \\\"hurt\\\": 0.0801\\n          }\\n        }\\n      }\\n    },\\n    \\\"PIQA\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.08523333333333334,\\n        \\\"J_hurt\\\": 0.09313333333333333,\\n        \\\"J_mean\\\": 0.08918333333333334,\\n        \\\"pair_details\\\": {\\n          \\\"GDN_vs_RetNet\\\": {\\n            \\\"helped\\\": 0.0872,\\n            \\\"hurt\\\": 0.0608\\n          },\\n  \\n\\n... [截断: 输出过长，省略 1021 字符] ...\\n\\n\\n          },\\n          \\\"RetNet_vs_HGRN2\\\": {\\n            \\\"helped\\\": 0.094,\\n            \\\"hurt\\\": 0.0844\\n          }\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"J_helped\\\": 0.11223333333333334,\\n        \\\"J_hurt\\\": 0.07840000000000001,\\n        \\\"J_mean\\\": 0.09531666666666667,\\n        \\\"pair_details\\\": {\\n          \\\"GDN_vs_RetNet\\\": {\\n            \\\"helped\\\": 0.1145,\\n            \\\"hurt\\\": 0.0694\\n          },\\n          \\\"GDN_vs_HGRN2\\\": {\\n            \\\"helped\\\": 0.0793,\\n            \\\"hurt\\\": 0.1042\\n          },\\n          \\\"RetNet_vs_HGRN2\\\": {\\n            \\\"helped\\\": 0.1429,\\n            \\\"hurt\\\": 0.0616\\n          }\\n        }\\n      }\\n    },\\n    \\\"ARC-Easy\\\": {\\n      \\\"h24-1\\\": {\\n        \\\"J_helped\\\": 0.07476666666666666,\\n        \\\"J_hurt\\\": 0.09343333333333333,\\n        \\\"J_mean\\\": 0.0841,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0667,\\n            \\\"hurt\\\": 0.0795\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0833,\\n            \\\"hurt\\\": 0.1095\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0743,\\n            \\\"hurt\\\": 0.0913\\n          }\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"J_helped\\\": 0.09813333333333334,\\n        \\\"J_hurt\\\": 0.0994,\\n        \\\"J_mean\\\": 0.09876666666666667,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0935,\\n            \\\"hurt\\\": 0.1282\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.1167,\\n            \\\"hurt\\\": 0.0856\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0842,\\n            \\\"hurt\\\": 0.0844\\n          }\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"J_helped\\\": 0.09353333333333334,\\n        \\\"J_hurt\\\": 0.08756666666666667,\\n        \\\"J_mean\\\": 0.09055,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.0894,\\n            \\\"hurt\\\": 0.0896\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.0991,\\n            \\\"hurt\\\": 0.087\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0921,\\n            \\\"hurt\\\": 0.0861\\n          }\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"J_helped\\\": 0.10233333333333333,\\n        \\\"J_hurt\\\": 0.1149,\\n        \\\"J_mean\\\": 0.10861666666666667,\\n        \\\"pair_details\\\": {\\n          \\\"GDN-RetNet\\\": {\\n            \\\"helped\\\": 0.1131,\\n            \\\"hurt\\\": 0.1131\\n          },\\n          \\\"GDN-HGRN2\\\": {\\n            \\\"helped\\\": 0.1056,\\n            \\\"hurt\\\": 0.0976\\n          },\\n          \\\"RetNet-HGRN2\\\": {\\n            \\\"helped\\\": 0.0883,\\n            \\\"hurt\\\": 0.134\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"statistics\\\": {\\n    \\\"LAMBADA\\\": {\\n      \\\"jaccard_mean_rho\\\": 0.8,\\n      \\\"jaccard_mean_p\\\": 0.3333333333333333,\\n      \\\"jaccard_helped_rho\\\": 0.4,\\n      \\\"jaccard_helped_p\\\": 0.5833333333333334,\\n      \\\"jaccard_hurt_rho\\\": 0.6,\\n      \\\"jaccard_hurt_p\\\": 0.4166666666666667,\\n      \\\"sigma_rho\\\": -1.0,\\n      \\\"sigma_p\\\": 0.016666666666666666,\\n      \\\"n_permutations\\\": 24,\\n      \\\"sigma_n_permutations\\\": 120\\n    },\\n    \\\"HellaSwag\\\": {\\n      \\\"jaccard_mean_rho\\\": 0.6,\\n      \\\"jaccard_mean_p\\\": 0.4166666666666667,\\n      \\\"jaccard_helped_rho\\\": 0.19999999999999996,\\n      \\\"jaccard_helped_p\\\": 0.9166666666666666,\\n      \\\"jaccard_hurt_rho\\\": 0.0,\\n      \\\"jaccard_hurt_p\\\": 1.0,\\n      \\\"sigma_rho\\\": 0.30000000000000004,\\n      \\\"sigma_p\\\": 0.6833333333333333,\\n      \\\"n_permutations\\\": 24,\\n      \\\"sigma_n_permutations\\\": 120\\n    },\\n    \\\"PIQA\\\": {\\n      \\\"jaccard_mean_rho\\\": 0.0,\\n      \\\"jaccard_mean_p\\\": 1.0,\\n      \\\"jaccard_helped_rho\\\": 0.4,\\n      \\\"jaccard_helped_p\\\": 0.5833333333333334,\\n      \\\"jaccard_hurt_rho\\\": -0.3999999999999999,\\n      \\\"jaccard_hurt_p\\\": 0.75,\\n      \\\"sigma_rho\\\": -0.5,\\n      \\\"sigma_p\\\": 0.45,\\n      \\\"n_permutations\\\": 24,\\n      \\\"sigma_n_permutations\\\": 120\\n    },\\n    \\\"ARC-Easy\\\": {\\n      \\\"jaccard_mean_rho\\\": 0.8,\\n      \\\"jaccard_mean_p\\\": 0.3333333333333333,\\n      \\\"jaccard_helped_rho\\\": 0.8,\\n      \\\"jaccard_helped_p\\\": 0.3333333333333333,\\n      \\\"jaccard_hurt_rho\\\": 0.4,\\n      \\\"jaccard_hurt_p\\\": 0.5833333333333334,\\n      \\\"sigma_rho\\\": 0.30000000000000004,\\n      \\\"sigma_p\\\": 0.6833333333333333,\\n      \\\"n_permutations\\\": 24,\\n      \\\"sigma_n_permutations\\\": 120\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6d6c5222-be61-4972-9556-504ab5b90568",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-23T19:22:24.521Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DtQPU4q9rRWudMtd42YPWK`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/a2_prediction_framework/confidence_margin_prediction.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82509317-e2b8-48d8-9435-d7e156d31ff0",
+  "isSidechain": false,
+  "requestId": "req_011CbL3YirqJRt1nZsdYH2k4",
+  "type": "assistant",
+  "uuid": "7328c3a5-c992-4391-a753-89c2db23bbeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbAsgQtmNWY6HsaBmvGAna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19750,
+      "cache_read_input_tokens": 58197,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 58197,
+          "cache_creation_input_tokens": 19750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-23T19:22:25.337Z_
+
+<details><summary>↩ Tool result · `toolu_01DtQPU4q9rRWudMtd42YPWK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"a2_confidence_margin_prediction\\\",\\n  \\\"date\\\": \\\"2026-05-22\\\",\\n  \\\"method\\\": {\\n    \\\"model\\\": \\\"LogisticRegression (sklearn, L2, lbfgs)\\\",\\n    \\\"feature\\\": \\\"abs(target_loglikelihood) from pure model\\\",\\n    \\\"within_arch_cv\\\": \\\"stratified 5-fold\\\",\\n    \\\"cross_arch_transfer\\\": \\\"leave-one-architecture-out (train on 2, test on 1)\\\",\\n    \\\"hybrid_config\\\": \\\"h3-1 (25% attention) for all architectures\\\",\\n    \\\"note\\\": \\\"Helped population = pure-wrong examples; Hurt population = pure-correct examples\\\"\\n  },\\n  \\\"within_arch\\\": {\\n    \\\"lambada\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 461,\\n        \\\"n_hurt\\\": 616,\\n        \\\"n_stayed_right\\\": 2184,\\n        \\\"n_stayed_wrong\\\": 1892,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 2353,\\n          \\\"auc_mean\\\": 0.7519,\\n          \\\"auc_std\\\": 0.018,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 2800,\\n          \\\"auc_mean\\\": 0.7349,\\n          \\\"auc_std\\\": 0.0215,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 420,\\n        \\\"n_hurt\\\": 497,\\n        \\\"n_stayed_right\\\": 2169,\\n        \\\"n_stayed_wrong\\\": 2067,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 2487,\\n          \\\"auc_mean\\\": 0.7542,\\n          \\\"auc_std\\\": 0.0116,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 2666,\\n          \\\"auc_mean\\\": 0.7357,\\n          \\\"auc_std\\\": 0.0262,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 548,\\n        \\\"n_hurt\\\": 392,\\n        \\\"n_stayed_right\\\": 2102,\\n        \\\"n_stayed_wrong\\\": 2111,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 2659,\\n          \\\"auc_mean\\\": 0.7646,\\n          \\\"auc_std\\\": 0.0242,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 2494,\\n          \\\"auc_mean\\\": 0.7492,\\n          \\\"auc_std\\\": 0.0175,\\n          \\\"cv_folds\\\": 5\\n        }\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 533,\\n        \\\"n_hurt\\\": 578,\\n        \\\"n_stayed_right\\\": 5524,\\n        \\\"n_stayed_wrong\\\": 3407,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 3940,\\n          \\\"auc_mean\\\": 0.5624,\\n          \\\"auc_std\\\": 0.021,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 6102,\\n          \\\"auc_mean\\\": 0.514,\\n          \\\"auc_std\\\": 0.0269,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 412,\\n        \\\"n_hurt\\\": 433,\\n        \\\"n_stayed_right\\\": 5389,\\n        \\\"n_stayed_wrong\\\": 3808,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 4220,\\n          \\\"auc_mean\\\": 0.5365,\\n          \\\"auc_std\\\": 0.0344,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 5822,\\n          \\\"auc_mean\\\": 0.5105,\\n          \\\"auc_std\\\": 0.0234,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 446,\\n        \\\"n_hurt\\\": 396,\\n        \\\"n_stayed_right\\\": 5619,\\n        \\\"n_stayed_wrong\\\": 3581,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 4027,\\n          \\\"auc_mean\\\": 0.5463,\\n          \\\"auc_std\\\": 0.0228,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 6015,\\n          \\\"auc_mean\\\": 0.5162,\\n          \\\"auc_std\\\": 0.0125,\\n          \\\"cv_folds\\\": 5\\n        }\\n      }\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 171,\\n        \\\"n_hurt\\\": 180,\\n        \\\"n_stayed_right\\\": 1512,\\n        \\\"n_stayed_wrong\\\": 513,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 684,\\n          \\\"auc_mean\\\": 0.7074,\\n          \\\"auc_std\\\": 0.0422,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1692,\\n          \\\"auc_mean\\\": 0.604,\\n          \\\"auc_std\\\": 0.0246,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 144,\\n        \\\"n_hurt\\\": 184,\\n        \\\"n_stayed_right\\\": 1510,\\n        \\\"n_stayed_wrong\\\": 538,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 682,\\n          \\\"auc_mean\\\": 0.669,\\n          \\\"auc_std\\\": 0.0607,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1694,\\n          \\\"auc_mean\\\": 0.5678,\\n          \\\"auc_std\\\": 0.0353,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 164,\\n        \\\"n_hurt\\\": 146,\\n        \\\"n_stayed_right\\\": 1548,\\n        \\\"n_stayed_wrong\\\": 518,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 682,\\n          \\\"auc_mean\\\": 0.6598,\\n          \\\"auc_std\\\": 0.045,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1694,\\n          \\\"auc_mean\\\": 0.5358,\\n          \\\"auc_std\\\": 0.0636,\\n          \\\"cv_folds\\\": 5\\n        }\\n      }\\n    },\\n    \\\"piqa\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 105,\\n        \\\"n_hurt\\\": 79,\\n        \\\"n_stayed_right\\\": 1251,\\n        \\\"n_stayed_wrong\\\": 403,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 508,\\n          \\\"auc_mean\\\": 0.5629,\\n          \\\"auc_std\\\": 0.0423,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1330,\\n          \\\"auc_mean\\\": 0.4709,\\n          \\\"auc_std\\\": 0.0601,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 80,\\n        \\\"n_hurt\\\": 75,\\n        \\\"n_stayed_right\\\": 1260,\\n        \\\"n_stayed_wrong\\\": 423,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 503,\\n          \\\"auc_mean\\\": 0.6046,\\n          \\\"auc_std\\\": 0.0765,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1335,\\n          \\\"auc_mean\\\": 0.4657,\\n          \\\"auc_std\\\": 0.039,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 72,\\n        \\\"n_hurt\\\": 80,\\n        \\\"n_stayed_right\\\": 1270,\\n        \\\"n_stayed_wrong\\\": 416,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 488,\\n          \\\"auc_mean\\\": 0.5781,\\n          \\\"auc_std\\\": 0.0355,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1350,\\n          \\\"auc_mean\\\": 0.4521,\\n          \\\"auc_std\\\": 0.0545,\\n          \\\"cv_folds\\\": 5\\n        }\\n      }\\n    }\\n  },\\n  \\\"cross_arch_transfer\\\": {\\n    \\\"lambada\\\": {\\n      \\\"GDN\\\": {\\n        \\\"helped_transfer_auc\\\": 0.7521,\\n        \\\"hurt_transfer_auc\\\": 0.7347\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"helped_transfer_auc\\\": 0.7535,\\n        \\\"hurt_transfer_auc\\\": 0.7345\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"helped_transfer_auc\\\": 0.765,\\n        \\\"hurt_transfer_auc\\\": 0.7477\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"GDN\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5625,\\n        \\\"hurt_transfer_auc\\\": 0.5144\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5367,\\n        \\\"hurt_transfer_auc\\\": 0.5108\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5462,\\n        \\\"hurt_transfer_auc\\\": 0.5164\\n      }\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"GDN\\\": {\\n        \\\"helped_transfer_auc\\\": 0.7055,\\n        \\\"hurt_transfer_auc\\\": 0.6031\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"helped_transfer_auc\\\": 0.6683,\\n        \\\"hurt_transfer_auc\\\": 0.5674\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"helped_transfer_auc\\\": 0.6607,\\n        \\\"hurt_transfer_auc\\\": 0.5364\\n      }\\n    },\\n    \\\"piqa\\\": {\\n      \\\"GDN\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5671,\\n        \\\"hurt_transfer_auc\\\": 0.5105\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"helped_transfer_auc\\\": 0.607,\\n        \\\"hurt_transfer_auc\\\": 0.4977\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5815,\\n        \\\"hurt_transfer_auc\\\": 0.4974\\n      }\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"within_arch_helped\\\": {\\n      \\\"mean\\\": 0.6415,\\n      \\\"std\\\": 0.0834,\\n      \\\"n\\\": 12\\n    },\\n    \\\"within_arch_hurt\\\": {\\n      \\\"mean\\\": 0.5714,\\n      \\\"std\\\": 0.1054,\\n      \\\"n\\\": 12\\n    },\\n    \\\"transfer_helped\\\": {\\n      \\\"mean\\\": 0.6422,\\n      \\\"std\\\": 0.0826,\\n      \\\"n\\\": 12\\n    },\\n    \\\"transfer_hurt\\\": {\\n      \\\"mean\\\": 0.5809,\\n      \\\"std\\\": 0.0958,\\n      \\\"n\\\": 12\\n    },\\n    \\\"specificity_delta\\\": {\\n      \\\"helped\\\": -0.0007,\\n      \\\"hurt\\\": -0.0095,\\n      \\\"interpretation\\\": \\\"positive = within > transfer = architecture-specific component\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7328c3a5-c992-4391-a753-89c2db23bbeb",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "4c0b5e63-1dcf-4d2e-8822-2d743e567b56",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"a2_confidence_margin_prediction\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-22\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": {\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"LogisticRegression (sklearn, L2, lbfgs)\\\\\\\",\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"abs(target_loglikelihood) from pure model\\\\\\\",\\\\n    \\\\\\\"within_arch_cv\\\\\\\": \\\\\\\"stratified 5-fold\\\\\\\",\\\\n    \\\\\\\"cross_arch_transfer\\\\\\\": \\\\\\\"leave-one-architecture-out (train on 2, test on 1)\\\\\\\",\\\\n    \\\\\\\"hybrid_config\\\\\\\": \\\\\\\"h3-1 (25% attention) for all architectures\\\\\\\",\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"Helped population = pure-wrong examples; Hurt population = pure-correct examples\\\\\\\"\\\\n  },\\\\n  \\\\\\\"within_arch\\\\\\\": {\\\\n    \\\\\\\"lambada\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 461,\\\\n        \\\\\\\"n_hurt\\\\\\\": 616,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 2184,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 1892,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 2353,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.7519,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.018,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 2800,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.7349,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0215,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 420,\\\\n        \\\\\\\"n_hurt\\\\\\\": 497,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 2169,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2067,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 2487,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.7542,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0116,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 2666,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.7357,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0262,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 548,\\\\n        \\\\\\\"n_hurt\\\\\\\": 392,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 2102,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 2111,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 2659,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.7646,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0242,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 2494,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.7492,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0175,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 533,\\\\n        \\\\\\\"n_hurt\\\\\\\": 578,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 5524,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 3407,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 3940,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5624,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.021,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 6102,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.514,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0269,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 412,\\\\n        \\\\\\\"n_hurt\\\\\\\": 433,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 5389,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 3808,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 4220,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5365,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0344,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 5822,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5105,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0234,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 446,\\\\n        \\\\\\\"n_hurt\\\\\\\": 396,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 5619,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 3581,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 4027,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5463,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0228,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 6015,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5162,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0125,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 171,\\\\n        \\\\\\\"n_hurt\\\\\\\": 180,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1512,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 513,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 684,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.7074,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0422,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 1692,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.604,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0246,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 144,\\\\n        \\\\\\\"n_hurt\\\\\\\": 184,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1510,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 538,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 682,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.669,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0607,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 1694,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5678,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0353,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 164,\\\\n        \\\\\\\"n_hurt\\\\\\\": 146,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1548,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 518,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 682,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.6598,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.045,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 1694,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5358,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0636,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 105,\\\\n        \\\\\\\"n_hurt\\\\\\\": 79,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1251,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 403,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 508,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5629,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0423,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 1330,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.4709,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0601,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 80,\\\\n        \\\\\\\"n_hurt\\\\\\\": 75,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1260,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 423,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 503,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.6046,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0765,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 1335,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.4657,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.039,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"n_helped\\\\\\\": 72,\\\\n        \\\\\\\"n_hurt\\\\\\\": 80,\\\\n        \\\\\\\"n_stayed_right\\\\\\\": 1270,\\\\n        \\\\\\\"n_stayed_wrong\\\\\\\": 416,\\\\n        \\\\\\\"helped_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 488,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.5781,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0355,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        },\\\\n        \\\\\\\"hurt_prediction\\\\\\\": {\\\\n          \\\\\\\"population\\\\\\\": 1350,\\\\n          \\\\\\\"auc_mean\\\\\\\": 0.4521,\\\\n          \\\\\\\"auc_std\\\\\\\": 0.0545,\\\\n          \\\\\\\"cv_folds\\\\\\\": 5\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_arch_transfer\\\\\\\": {\\\\n    \\\\\\\"lambada\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.7521,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.7347\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.7535,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.7345\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.765,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.7477\\\\n      }\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.5625,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.5144\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.5367,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.5108\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.5462,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.5164\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.7055,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.6031\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.6683,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.5674\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.6607,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.5364\\\\n      }\\\\n    },\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"GDN\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.5671,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.5105\\\\n      },\\\\n      \\\\\\\"RetNet\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.607,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.4977\\\\n      },\\\\n      \\\\\\\"HGRN2\\\\\\\": {\\\\n        \\\\\\\"helped_transfer_auc\\\\\\\": 0.5815,\\\\n        \\\\\\\"hurt_transfer_auc\\\\\\\": 0.4974\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"within_arch_helped\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6415,\\\\n      \\\\\\\"std\\\\\\\": 0.0834,\\\\n      \\\\\\\"n\\\\\\\": 12\\\\n    },\\\\n    \\\\\\\"within_arch_hurt\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.5714,\\\\n      \\\\\\\"std\\\\\\\": 0.1054,\\\\n      \\\\\\\"n\\\\\\\": 12\\\\n    },\\\\n    \\\\\\\"transfer_helped\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6422,\\\\n      \\\\\\\"std\\\\\\\": 0.0826,\\\\n      \\\\\\\"n\\\\\\\": 12\\\\n    },\\\\n    \\\\\\\"transfer_hurt\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.5809,\\\\n      \\\\\\\"std\\\\\\\": 0.0958,\\\\n      \\\\\\\"n\\\\\\\": 12\\\\n    },\\\\n    \\\\\\\"specificity_delta\\\\\\\": {\\\\n      \\\\\\\"helped\\\\\\\": -0.0007,\\\\n      \\\\\\\"hurt\\\\\\\": -0.0095,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"positive = within > transfer = architecture-specific component\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"a2_confidence_margin_prediction\\\",\\n  \\\"date\\\": \\\"2026-05-22\\\",\\n  \\\"method\\\": {\\n    \\\"model\\\": \\\"LogisticRegression (sklearn, L2, lbfgs)\\\",\\n    \\\"feature\\\": \\\"abs(target_loglikelihood) from pure model\\\",\\n    \\\"within_arch_cv\\\": \\\"stratified 5-fold\\\",\\n    \\\"cross_arch_transfer\\\": \\\"leave-one-architecture-out (train on 2, test on 1)\\\",\\n    \\\"hybrid_config\\\": \\\"h3-1 (25% attention) for all architectures\\\",\\n    \\\"note\\\": \\\"Helped population = pure-wrong examples; Hurt population = pure-correct examples\\\"\\n  },\\n  \\\"within_arch\\\": {\\n    \\\"lambada\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 461,\\n        \\\"n_hurt\\\": 616,\\n        \\\"n_stayed_right\\\": 2184,\\n        \\\"n_stayed_wrong\\\": 1892,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 2353,\\n          \\\"auc_mean\\\": 0.7519,\\n          \\\"auc_std\\\": 0.018,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 2800,\\n          \\\"auc_mean\\\": 0.7349,\\n          \\\"auc_std\\\": 0.0215,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 420,\\n        \\\"n_hurt\\\": 497,\\n        \\\"n_stayed_right\\\": 2169,\\n        \\\"n_stayed_wrong\\\": 2067,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 2487,\\n          \\\"auc_mean\\\": 0.7542,\\n          \\\"auc_std\\\": 0.0116,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 2666,\\n          \\\"auc_mean\\\": 0.7357,\\n          \\\"auc_std\\\": 0.0262,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 548,\\n        \\\"n_hurt\\\": 392,\\n        \\\"n_stayed_right\\\": 2102,\\n        \\\"n_stayed_wrong\\\": 2111,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 2659,\\n          \\\"auc_mean\\\": 0.7646,\\n          \\\"auc_std\\\": 0.0242,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 2494,\\n          \\\"auc_mean\\\": 0.7492,\\n          \\\"auc_std\\\": 0.0175,\\n          \\\"cv_folds\\\": 5\\n        }\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 533,\\n        \\\"n_hurt\\\": 578,\\n        \\\"n_stayed_right\\\": 5524,\\n        \\\"n_stayed_wrong\\\": 3407,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 3940,\\n          \\\"auc_mean\\\": 0.5624,\\n          \\\"auc_std\\\": 0.021,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 6102,\\n          \\\"auc_mean\\\": 0.514,\\n          \\\"auc_std\\\": 0.0269,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 412,\\n        \\\"n_hurt\\\": 433,\\n        \\\"n_stayed_right\\\": 5389,\\n        \\\"n_stayed_wrong\\\": 3808,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 4220,\\n          \\\"auc_mean\\\": 0.5365,\\n          \\\"auc_std\\\": 0.0344,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 5822,\\n          \\\"auc_mean\\\": 0.5105,\\n          \\\"auc_std\\\": 0.0234,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 446,\\n        \\\"n_hurt\\\": 396,\\n        \\\"n_stayed_right\\\": 5619,\\n        \\\"n_stayed_wrong\\\": 3581,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 4027,\\n          \\\"auc_mean\\\": 0.5463,\\n          \\\"auc_std\\\": 0.0228,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 6015,\\n          \\\"auc_mean\\\": 0.5162,\\n          \\\"auc_std\\\": 0.0125,\\n          \\\"cv_folds\\\": 5\\n        }\\n      }\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 171,\\n        \\\"n_hurt\\\": 180,\\n        \\\"n_stayed_right\\\": 1512,\\n        \\\"n_stayed_wrong\\\": 513,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 684,\\n          \\\"auc_mean\\\": 0.7074,\\n          \\\"auc_std\\\": 0.0422,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1692,\\n          \\\"auc_mean\\\": 0.604,\\n          \\\"auc_std\\\": 0.0246,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 144,\\n        \\\"n_hurt\\\": 184,\\n        \\\"n_stayed_right\\\": 1510,\\n        \\\"n_stayed_wrong\\\": 538,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 682,\\n          \\\"auc_mean\\\": 0.669,\\n          \\\"auc_std\\\": 0.0607,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1694,\\n          \\\"auc_mean\\\": 0.5678,\\n          \\\"auc_std\\\": 0.0353,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 164,\\n        \\\"n_hurt\\\": 146,\\n        \\\"n_stayed_right\\\": 1548,\\n        \\\"n_stayed_wrong\\\": 518,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 682,\\n          \\\"auc_mean\\\": 0.6598,\\n          \\\"auc_std\\\": 0.045,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1694,\\n          \\\"auc_mean\\\": 0.5358,\\n          \\\"auc_std\\\": 0.0636,\\n          \\\"cv_folds\\\": 5\\n        }\\n      }\\n    },\\n    \\\"piqa\\\": {\\n      \\\"GDN\\\": {\\n        \\\"n_helped\\\": 105,\\n        \\\"n_hurt\\\": 79,\\n        \\\"n_stayed_right\\\": 1251,\\n        \\\"n_stayed_wrong\\\": 403,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 508,\\n          \\\"auc_mean\\\": 0.5629,\\n          \\\"auc_std\\\": 0.0423,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1330,\\n          \\\"auc_mean\\\": 0.4709,\\n          \\\"auc_std\\\": 0.0601,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"n_helped\\\": 80,\\n        \\\"n_hurt\\\": 75,\\n        \\\"n_stayed_right\\\": 1260,\\n        \\\"n_stayed_wrong\\\": 423,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 503,\\n          \\\"auc_mean\\\": 0.6046,\\n          \\\"auc_std\\\": 0.0765,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1335,\\n          \\\"auc_mean\\\": 0.4657,\\n          \\\"auc_std\\\": 0.039,\\n          \\\"cv_folds\\\": 5\\n        }\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"n_helped\\\": 72,\\n        \\\"n_hurt\\\": 80,\\n        \\\"n_stayed_right\\\": 1270,\\n        \\\"n_stayed_wrong\\\": 416,\\n        \\\"helped_prediction\\\": {\\n          \\\"population\\\": 488,\\n          \\\"auc_mean\\\": 0.5781,\\n          \\\"auc_std\\\": 0.0355,\\n          \\\"cv_folds\\\": 5\\n        },\\n        \\\"hurt_prediction\\\": {\\n          \\\"population\\\": 1350,\\n          \\\"auc_mean\\\": 0.4521,\\n          \\\"auc_std\\\": 0.0545,\\n          \\\"cv_folds\\\": 5\\n        }\\n      }\\n    }\\n  },\\n  \\\"cross_arch_transfer\\\": {\\n    \\\"lambada\\\": {\\n      \\\"GDN\\\": {\\n        \\\"helped_transfer_auc\\\": 0.7521,\\n        \\\"hurt_transfer_auc\\\": 0.7347\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"helped_transfer_auc\\\": 0.7535,\\n        \\\"hurt_transfer_auc\\\": 0.7345\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"helped_transfer_auc\\\": 0.765,\\n        \\\"hurt_transfer_auc\\\": 0.7477\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"GDN\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5625,\\n        \\\"hurt_transfer_auc\\\": 0.5144\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5367,\\n        \\\"hurt_transfer_auc\\\": 0.5108\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5462,\\n        \\\"hurt_transfer_auc\\\": 0.5164\\n      }\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"GDN\\\": {\\n        \\\"helped_transfer_auc\\\": 0.7055,\\n        \\\"hurt_transfer_auc\\\": 0.6031\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"helped_transfer_auc\\\": 0.6683,\\n        \\\"hurt_transfer_auc\\\": 0.5674\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"helped_transfer_auc\\\": 0.6607,\\n        \\\"hurt_transfer_auc\\\": 0.5364\\n      }\\n    },\\n    \\\"piqa\\\": {\\n      \\\"GDN\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5671,\\n        \\\"hurt_transfer_auc\\\": 0.5105\\n      },\\n      \\\"RetNet\\\": {\\n        \\\"helped_transfer_auc\\\": 0.607,\\n        \\\"hurt_transfer_auc\\\": 0.4977\\n      },\\n      \\\"HGRN2\\\": {\\n        \\\"helped_transfer_auc\\\": 0.5815,\\n        \\\"hurt_transfer_auc\\\": 0.4974\\n      }\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"within_arch_helped\\\": {\\n      \\\"mean\\\": 0.6415,\\n      \\\"std\\\": 0.0834,\\n      \\\"n\\\": 12\\n    },\\n    \\\"within_arch_hurt\\\": {\\n      \\\"mean\\\": 0.5714,\\n      \\\"std\\\": 0.1054,\\n      \\\"n\\\": 12\\n    },\\n    \\\"transfer_helped\\\": {\\n      \\\"mean\\\": 0.6422,\\n      \\\"std\\\": 0.0826,\\n      \\\"n\\\": 12\\n    },\\n    \\\"transfer_hurt\\\": {\\n      \\\"mean\\\": 0.5809,\\n      \\\"std\\\": 0.0958,\\n      \\\"n\\\": 12\\n    },\\n    \\\"specificity_delta\\\": {\\n      \\\"helped\\\": -0.0007,\\n      \\\"hurt\\\": -0.0095,\\n      \\\"interpretation\\\": \\\"positive = within > transfer = architecture-specific component\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7328c3a5-c992-4391-a753-89c2db23bbeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-23T19:22:25.563Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016vp4yd5qxjVwJMKvxJDP5m`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch_extended.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c0b5e63-1dcf-4d2e-8822-2d743e567b56",
+  "isSidechain": false,
+  "requestId": "req_011CbL3YirqJRt1nZsdYH2k4",
+  "type": "assistant",
+  "uuid": "b6bbfd6b-1104-466f-925d-f82353b9d36a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbAsgQtmNWY6HsaBmvGAna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19750,
+      "cache_read_input_tokens": 58197,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 58197,
+          "cache_creation_input_tokens": 19750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-23T19:22:26.521Z_
+
+<details><summary>↩ Tool result · `toolu_016vp4yd5qxjVwJMKvxJDP5m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-005\\\",\\n  \\\"date\\\": \\\"2026-05-23\\\",\\n  \\\"scale\\\": \\\"340M-20B\\\",\\n  \\\"description\\\": \\\"5-architecture pairwise Jaccard extended to 4 benchmarks (h3-1 vs pure)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"lambada_openai\\\": {\\n      \\\"n_samples\\\": 5153,\\n      \\\"architectures\\\": [\\n        \\\"GDN\\\",\\n        \\\"RetNet\\\",\\n        \\\"HGRN2\\\",\\n        \\\"GLA\\\",\\n        \\\"DeltaNet\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 483,\\n          \\\"hurt\\\": 412,\\n          \\\"net\\\": 71,\\n          \\\"pure_acc\\\": 0.343489,\\n          \\\"h31_acc\\\": 0.357268\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"helped\\\": 383,\\n          \\\"hurt\\\": 476,\\n          \\\"net\\\": -93,\\n          \\\"pure_acc\\\": 0.367165,\\n          \\\"h31_acc\\\": 0.349117\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"helped\\\": 571,\\n          \\\"hurt\\\": 335,\\n          \\\"net\\\": 236,\\n          \\\"pure_acc\\\": 0.319232,\\n          \\\"h31_acc\\\": 0.36503\\n        },\\n        \\\"GLA\\\": {\\n          \\\"helped\\\": 532,\\n          \\\"hurt\\\": 312,\\n          \\\"net\\\": 220,\\n          \\\"pure_acc\\\": 0.33922,\\n          \\\"h31_acc\\\": 0.381913\\n        },\\n        \\\"DeltaNet\\\": {\\n          \\\"helped\\\": 498,\\n          \\\"hurt\\\": 345,\\n          \\\"net\\\": 153,\\n          \\\"pure_acc\\\": 0.323889,\\n          \\\"h31_acc\\\": 0.35358\\n        }\\n      },\\n      \\\"pairwise\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_helped\\\": 0.127604,\\n          \\\"J_hurt\\\": 0.121212,\\n          \\\"|helped_a|\\\": 483,\\n          \\\"|helped_b|\\\": 383,\\n          \\\"|hurt_a|\\\": 412,\\n          \\\"|hurt_b|\\\": 476,\\n          \\\"|helped_inter|\\\": 98,\\n          \\\"|hurt_inter|\\\": 96\\n        },\\n        \\\"GDN-HGRN2\\\": {\\n          \\\"J_helped\\\": 0.122471,\\n          \\\"J_hurt\\\": 0.082609,\\n          \\\"|helped_a|\\\": 483,\\n          \\\"|helped_b|\\\": 571,\\n          \\\"|hurt_a|\\\": 412,\\n          \\\"|hurt_b|\\\": 335,\\n          \\\"|helped_inter|\\\": 115,\\n          \\\"|hurt_inter|\\\": 57\\n        },\\n        \\\"GDN-GLA\\\": {\\n          \\\"J_helped\\\": 0.124031,\\n          \\\"J_hurt\\\": 0.100304,\\n          \\\"|helped_a|\\\": 483,\\n          \\\"|helped_b|\\\": 532,\\n          \\\"|hurt_a|\\\": 412,\\n          \\\"|hurt_b|\\\": 312,\\n          \\\"|helped_inter|\\\": 112,\\n          \\\"|hurt_inter|\\\": 66\\n        },\\n        \\\"GDN-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.114773,\\n          \\\"J_hurt\\\": 0.100291,\\n          \\\"|helped_a|\\\": 483,\\n          \\\"|helped_b|\\\": 498,\\n          \\\"|hurt_a|\\\": 412,\\n          \\\"|hurt_b|\\\": 345,\\n          \\\"|helped_inter|\\\": 101,\\n          \\\"|hurt_inter|\\\": 69\\n        },\\n        \\\"RetNet-HGRN2\\\": {\\n          \\\"J_helped\\\": 0.108014,\\n          \\\"J_hurt\\\": 0.082777,\\n          \\\"|helped_a|\\\": 383,\\n          \\\"|helped_b|\\\": 571,\\n          \\\"|hurt_a|\\\": 476,\\n          \\\"|hurt_b|\\\": 335,\\n          \\\"|helped_inter|\\\": 93,\\n          \\\"|hurt_inter|\\\": 62\\n        },\\n        \\\"RetNet-GLA\\\": {\\n          \\\"J_helped\\\": 0.122699,\\n          \\\"J_hurt\\\": 0.106742,\\n          \\\"|helped_a|\\\": 383,\\n          \\\"|helped_b|\\\": 532,\\n          \\\"|hurt_a|\\\": 476,\\n          \\\"|hurt_b|\\\": 312,\\n          \\\"|helped_inter|\\\": 100,\\n          \\\"|hurt_inter|\\\": 76\\n        },\\n        \\\"RetNet-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.11519,\\n          \\\"J_hurt\\\": 0.096128,\\n          \\\"|helped_a|\\\": 383,\\n          \\\"|helped_b|\\\": 498,\\n          \\\"|hurt_a|\\\": 476,\\n          \\\"|hurt_b|\\\": 345,\\n          \\\"|helped_inter|\\\": 91,\\n          \\\"|hurt_inter|\\\": 72\\n        },\\n        \\\"HGRN2-GLA\\\": {\\n          \\\"J_helped\\\": 0.12666,\\n          \\\"J_hurt\\\": 0.08557,\\n          \\\"|helped_a|\\\": 571,\\n          \\\"|helped_b|\\\": 532,\\n          \\\"|hurt_a|\\\": 335,\\n          \\\"|hurt_b|\\\": 312,\\n          \\\"|helped_inter|\\\": 124,\\n          \\\"|hurt_inter|\\\": 51\\n        },\\n        \\\"HGRN2-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.125263,\\n          \\\"J_hurt\\\": 0.089744,\\n          \\\"|helped_a|\\\": 571,\\n          \\\"|helped_b|\\\": 498,\\n          \\\"|hurt_a|\\\": 335,\\n          \\\"|hurt_b|\\\": 345,\\n          \\\"|helped_inter|\\\": 119,\\n          \\\"|hurt_inter|\\\": 56\\n        },\\n        \\\"GLA-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.134361,\\n          \\\"J_hurt\\\": 0.080592,\\n          \\\"|helped_a|\\\": 532,\\n          \\\"|helped_b|\\\": 498,\\n          \\\"|hurt_a|\\\": 312,\\n          \\\"|hurt_b|\\\": 345,\\n          \\\"|helped_inter|\\\": 122,\\n          \\\"|hurt_inter|\\\": 49\\n        }\\n      },\\n      \\\"mean_J_helped\\\": 0.122107,\\n      \\\"mean_J_hurt\\\": 0.094597,\\n      \\\"\\n\\n... [截断: 输出过长，省略 23707 字符] ...\\n\\nGLA\\\": {\\n          \\\"J_obs\\\": 0.101124,\\n          \\\"J_null_mean\\\": 0.027509,\\n          \\\"J_null_std\\\": 0.011633,\\n          \\\"z\\\": 6.33,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"RetNet-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.126437,\\n          \\\"J_null_mean\\\": 0.027612,\\n          \\\"J_null_std\\\": 0.011749,\\n          \\\"z\\\": 8.41,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"HGRN2-GLA\\\": {\\n          \\\"J_obs\\\": 0.110465,\\n          \\\"J_null_mean\\\": 0.026739,\\n          \\\"J_null_std\\\": 0.011846,\\n          \\\"z\\\": 7.07,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"HGRN2-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.097701,\\n          \\\"J_null_mean\\\": 0.027003,\\n          \\\"J_null_std\\\": 0.01173,\\n          \\\"z\\\": 6.03,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"GLA-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.067416,\\n          \\\"J_null_mean\\\": 0.026597,\\n          \\\"J_null_std\\\": 0.011661,\\n          \\\"z\\\": 3.5,\\n          \\\"p\\\": 0.0025\\n        }\\n      },\\n      \\\"permutation_test_hurt\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_obs\\\": 0.074866,\\n          \\\"J_null_mean\\\": 0.027286,\\n          \\\"J_null_std\\\": 0.011426,\\n          \\\"z\\\": 4.16,\\n          \\\"p\\\": 0.001\\n        },\\n        \\\"GDN-HGRN2\\\": {\\n          \\\"J_obs\\\": 0.082418,\\n          \\\"J_null_mean\\\": 0.026625,\\n          \\\"J_null_std\\\": 0.011343,\\n          \\\"z\\\": 4.92,\\n          \\\"p\\\": 0.0001\\n        },\\n        \\\"GDN-GLA\\\": {\\n          \\\"J_obs\\\": 0.081081,\\n          \\\"J_null_mean\\\": 0.026923,\\n          \\\"J_null_std\\\": 0.011461,\\n          \\\"z\\\": 4.73,\\n          \\\"p\\\": 0.0001\\n        },\\n        \\\"GDN-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.116505,\\n          \\\"J_null_mean\\\": 0.032397,\\n          \\\"J_null_std\\\": 0.011771,\\n          \\\"z\\\": 7.15,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"RetNet-HGRN2\\\": {\\n          \\\"J_obs\\\": 0.09589,\\n          \\\"J_null_mean\\\": 0.022359,\\n          \\\"J_null_std\\\": 0.011834,\\n          \\\"z\\\": 6.21,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"RetNet-GLA\\\": {\\n          \\\"J_obs\\\": 0.065359,\\n          \\\"J_null_mean\\\": 0.022915,\\n          \\\"J_null_std\\\": 0.011716,\\n          \\\"z\\\": 3.62,\\n          \\\"p\\\": 0.0023\\n        },\\n        \\\"RetNet-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.109195,\\n          \\\"J_null_mean\\\": 0.026443,\\n          \\\"J_null_std\\\": 0.011562,\\n          \\\"z\\\": 7.16,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"HGRN2-GLA\\\": {\\n          \\\"J_obs\\\": 0.06,\\n          \\\"J_null_mean\\\": 0.022418,\\n          \\\"J_null_std\\\": 0.011838,\\n          \\\"z\\\": 3.17,\\n          \\\"p\\\": 0.0072\\n        },\\n        \\\"HGRN2-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.105263,\\n          \\\"J_null_mean\\\": 0.025679,\\n          \\\"J_null_std\\\": 0.01136,\\n          \\\"z\\\": 7.01,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"GLA-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.072626,\\n          \\\"J_null_mean\\\": 0.026226,\\n          \\\"J_null_std\\\": 0.011557,\\n          \\\"z\\\": 4.01,\\n          \\\"p\\\": 0.0011\\n        }\\n      }\\n    }\\n  },\\n  \\\"cross_benchmark_summary\\\": {\\n    \\\"mean_J_helped_lambada_openai\\\": 0.122107,\\n    \\\"mean_J_hurt_lambada_openai\\\": 0.094597,\\n    \\\"z_range_helped_lambada_openai\\\": [\\n      9.03,\\n      12.21\\n    ],\\n    \\\"z_range_hurt_lambada_openai\\\": [\\n      6.33,\\n      10.89\\n    ],\\n    \\\"sig_pairs_helped_lambada_openai\\\": 10,\\n    \\\"sig_pairs_hurt_lambada_openai\\\": 10,\\n    \\\"mean_J_helped_arc_easy\\\": 0.10813,\\n    \\\"mean_J_hurt_arc_easy\\\": 0.104682,\\n    \\\"z_range_helped_arc_easy\\\": [\\n      3.49,\\n      9.19\\n    ],\\n    \\\"z_range_hurt_arc_easy\\\": [\\n      3.72,\\n      7.48\\n    ],\\n    \\\"sig_pairs_helped_arc_easy\\\": 10,\\n    \\\"sig_pairs_hurt_arc_easy\\\": 10,\\n    \\\"mean_J_helped_hellaswag\\\": 0.093069,\\n    \\\"mean_J_hurt_hellaswag\\\": 0.081486,\\n    \\\"z_range_helped_hellaswag\\\": [\\n      10.31,\\n      19.2\\n    ],\\n    \\\"z_range_hurt_hellaswag\\\": [\\n      10.2,\\n      16.33\\n    ],\\n    \\\"sig_pairs_helped_hellaswag\\\": 10,\\n    \\\"sig_pairs_hurt_hellaswag\\\": 10,\\n    \\\"mean_J_helped_piqa\\\": 0.092804,\\n    \\\"mean_J_hurt_piqa\\\": 0.08632,\\n    \\\"z_range_helped_piqa\\\": [\\n      3.08,\\n      9.46\\n    ],\\n    \\\"z_range_hurt_piqa\\\": [\\n      3.17,\\n      7.16\\n    ],\\n    \\\"sig_pairs_helped_piqa\\\": 10,\\n    \\\"sig_pairs_hurt_piqa\\\": 10,\\n    \\\"grand_mean_J_helped\\\": 0.104027,\\n    \\\"grand_mean_J_hurt\\\": 0.091771,\\n    \\\"n_benchmarks\\\": 4,\\n    \\\"total_sig_helped\\\": 40,\\n    \\\"total_sig_hurt\\\": 40,\\n    \\\"total_pairs_tested\\\": 40\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6bbfd6b-1104-466f-925d-f82353b9d36a",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "3cd15dc0-eaa2-4bd2-9607-d64b5df87cb0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-005\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-23\\\\\\\",\\\\n  \\\\\\\"scale\\\\\\\": \\\\\\\"340M-20B\\\\\\\",\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"5-architecture pairwise Jaccard extended to 4 benchmarks (h3-1 vs pure)\\\\\\\",\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"lambada_openai\\\\\\\": {\\\\n      \\\\\\\"n_samples\\\\\\\": 5153,\\\\n      \\\\\\\"architectures\\\\\\\": [\\\\n        \\\\\\\"GDN\\\\\\\",\\\\n        \\\\\\\"RetNet\\\\\\\",\\\\n        \\\\\\\"HGRN2\\\\\\\",\\\\n        \\\\\\\"GLA\\\\\\\",\\\\n        \\\\\\\"DeltaNet\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"per_arch\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 483,\\\\n          \\\\\\\"hurt\\\\\\\": 412,\\\\n          \\\\\\\"net\\\\\\\": 71,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.343489,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.357268\\\\n        },\\\\n        \\\\\\\"RetNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 383,\\\\n          \\\\\\\"hurt\\\\\\\": 476,\\\\n          \\\\\\\"net\\\\\\\": -93,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.367165,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.349117\\\\n        },\\\\n        \\\\\\\"HGRN2\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 571,\\\\n          \\\\\\\"hurt\\\\\\\": 335,\\\\n          \\\\\\\"net\\\\\\\": 236,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.319232,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.36503\\\\n        },\\\\n        \\\\\\\"GLA\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 532,\\\\n          \\\\\\\"hurt\\\\\\\": 312,\\\\n          \\\\\\\"net\\\\\\\": 220,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.33922,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.381913\\\\n        },\\\\n        \\\\\\\"DeltaNet\\\\\\\": {\\\\n          \\\\\\\"helped\\\\\\\": 498,\\\\n          \\\\\\\"hurt\\\\\\\": 345,\\\\n          \\\\\\\"net\\\\\\\": 153,\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.323889,\\\\n          \\\\\\\"h31_acc\\\\\\\": 0.35358\\\\n        }\\\\n      },\\\\n      \\\\\\\"pairwise\\\\\\\": {\\\\n        \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.127604,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.121212,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 483,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 383,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 412,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 476,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 98,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 96\\\\n        },\\\\n        \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.122471,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.082609,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 483,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 571,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 412,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 335,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 115,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 57\\\\n        },\\\\n        \\\\\\\"GDN-GLA\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.124031,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.100304,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 483,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 532,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 412,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 312,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 112,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 66\\\\n        },\\\\n        \\\\\\\"GDN-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.114773,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.100291,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 483,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 498,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 412,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 345,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 101,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 69\\\\n        },\\\\n        \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.108014,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.082777,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 383,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 571,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 476,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 335,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 93,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 62\\\\n        },\\\\n        \\\\\\\"RetNet-GLA\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.122699,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.106742,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 383,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 532,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 476,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 312,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 100,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 76\\\\n        },\\\\n        \\\\\\\"RetNet-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.11519,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.096128,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 383,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 498,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 476,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 345,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 91,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 72\\\\n        },\\\\n        \\\\\\\"HGRN2-GLA\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.12666,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.08557,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 571,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 532,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 335,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 312,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 124,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 51\\\\n        },\\\\n        \\\\\\\"HGRN2-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.125263,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.089744,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 571,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 498,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 335,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 345,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 119,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 56\\\\n        },\\\\n        \\\\\\\"GLA-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_helped\\\\\\\": 0.134361,\\\\n          \\\\\\\"J_hurt\\\\\\\": 0.080592,\\\\n          \\\\\\\"|helped_a|\\\\\\\": 532,\\\\n          \\\\\\\"|helped_b|\\\\\\\": 498,\\\\n          \\\\\\\"|hurt_a|\\\\\\\": 312,\\\\n          \\\\\\\"|hurt_b|\\\\\\\": 345,\\\\n          \\\\\\\"|helped_inter|\\\\\\\": 122,\\\\n          \\\\\\\"|hurt_inter|\\\\\\\": 49\\\\n        }\\\\n      },\\\\n      \\\\\\\"mean_J_helped\\\\\\\": 0.122107,\\\\n      \\\\\\\"mean_J_hurt\\\\\\\": 0.094597,\\\\n      \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 23707 字符] ...\\\\n\\\\nGLA\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.101124,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.027509,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011633,\\\\n          \\\\\\\"z\\\\\\\": 6.33,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"RetNet-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.126437,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.027612,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011749,\\\\n          \\\\\\\"z\\\\\\\": 8.41,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"HGRN2-GLA\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.110465,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.026739,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011846,\\\\n          \\\\\\\"z\\\\\\\": 7.07,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"HGRN2-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.097701,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.027003,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.01173,\\\\n          \\\\\\\"z\\\\\\\": 6.03,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"GLA-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.067416,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.026597,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011661,\\\\n          \\\\\\\"z\\\\\\\": 3.5,\\\\n          \\\\\\\"p\\\\\\\": 0.0025\\\\n        }\\\\n      },\\\\n      \\\\\\\"permutation_test_hurt\\\\\\\": {\\\\n        \\\\\\\"GDN-RetNet\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.074866,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.027286,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011426,\\\\n          \\\\\\\"z\\\\\\\": 4.16,\\\\n          \\\\\\\"p\\\\\\\": 0.001\\\\n        },\\\\n        \\\\\\\"GDN-HGRN2\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.082418,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.026625,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011343,\\\\n          \\\\\\\"z\\\\\\\": 4.92,\\\\n          \\\\\\\"p\\\\\\\": 0.0001\\\\n        },\\\\n        \\\\\\\"GDN-GLA\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.081081,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.026923,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011461,\\\\n          \\\\\\\"z\\\\\\\": 4.73,\\\\n          \\\\\\\"p\\\\\\\": 0.0001\\\\n        },\\\\n        \\\\\\\"GDN-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.116505,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.032397,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011771,\\\\n          \\\\\\\"z\\\\\\\": 7.15,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"RetNet-HGRN2\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.09589,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.022359,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011834,\\\\n          \\\\\\\"z\\\\\\\": 6.21,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"RetNet-GLA\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.065359,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.022915,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011716,\\\\n          \\\\\\\"z\\\\\\\": 3.62,\\\\n          \\\\\\\"p\\\\\\\": 0.0023\\\\n        },\\\\n        \\\\\\\"RetNet-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.109195,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.026443,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011562,\\\\n          \\\\\\\"z\\\\\\\": 7.16,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"HGRN2-GLA\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.06,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.022418,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011838,\\\\n          \\\\\\\"z\\\\\\\": 3.17,\\\\n          \\\\\\\"p\\\\\\\": 0.0072\\\\n        },\\\\n        \\\\\\\"HGRN2-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.105263,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.025679,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.01136,\\\\n          \\\\\\\"z\\\\\\\": 7.01,\\\\n          \\\\\\\"p\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"GLA-DeltaNet\\\\\\\": {\\\\n          \\\\\\\"J_obs\\\\\\\": 0.072626,\\\\n          \\\\\\\"J_null_mean\\\\\\\": 0.026226,\\\\n          \\\\\\\"J_null_std\\\\\\\": 0.011557,\\\\n          \\\\\\\"z\\\\\\\": 4.01,\\\\n          \\\\\\\"p\\\\\\\": 0.0011\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_benchmark_summary\\\\\\\": {\\\\n    \\\\\\\"mean_J_helped_lambada_openai\\\\\\\": 0.122107,\\\\n    \\\\\\\"mean_J_hurt_lambada_openai\\\\\\\": 0.094597,\\\\n    \\\\\\\"z_range_helped_lambada_openai\\\\\\\": [\\\\n      9.03,\\\\n      12.21\\\\n    ],\\\\n    \\\\\\\"z_range_hurt_lambada_openai\\\\\\\": [\\\\n      6.33,\\\\n      10.89\\\\n    ],\\\\n    \\\\\\\"sig_pairs_helped_lambada_openai\\\\\\\": 10,\\\\n    \\\\\\\"sig_pairs_hurt_lambada_openai\\\\\\\": 10,\\\\n    \\\\\\\"mean_J_helped_arc_easy\\\\\\\": 0.10813,\\\\n    \\\\\\\"mean_J_hurt_arc_easy\\\\\\\": 0.104682,\\\\n    \\\\\\\"z_range_helped_arc_easy\\\\\\\": [\\\\n      3.49,\\\\n      9.19\\\\n    ],\\\\n    \\\\\\\"z_range_hurt_arc_easy\\\\\\\": [\\\\n      3.72,\\\\n      7.48\\\\n    ],\\\\n    \\\\\\\"sig_pairs_helped_arc_easy\\\\\\\": 10,\\\\n    \\\\\\\"sig_pairs_hurt_arc_easy\\\\\\\": 10,\\\\n    \\\\\\\"mean_J_helped_hellaswag\\\\\\\": 0.093069,\\\\n    \\\\\\\"mean_J_hurt_hellaswag\\\\\\\": 0.081486,\\\\n    \\\\\\\"z_range_helped_hellaswag\\\\\\\": [\\\\n      10.31,\\\\n      19.2\\\\n    ],\\\\n    \\\\\\\"z_range_hurt_hellaswag\\\\\\\": [\\\\n      10.2,\\\\n      16.33\\\\n    ],\\\\n    \\\\\\\"sig_pairs_helped_hellaswag\\\\\\\": 10,\\\\n    \\\\\\\"sig_pairs_hurt_hellaswag\\\\\\\": 10,\\\\n    \\\\\\\"mean_J_helped_piqa\\\\\\\": 0.092804,\\\\n    \\\\\\\"mean_J_hurt_piqa\\\\\\\": 0.08632,\\\\n    \\\\\\\"z_range_helped_piqa\\\\\\\": [\\\\n      3.08,\\\\n      9.46\\\\n    ],\\\\n    \\\\\\\"z_range_hurt_piqa\\\\\\\": [\\\\n      3.17,\\\\n      7.16\\\\n    ],\\\\n    \\\\\\\"sig_pairs_helped_piqa\\\\\\\": 10,\\\\n    \\\\\\\"sig_pairs_hurt_piqa\\\\\\\": 10,\\\\n    \\\\\\\"grand_mean_J_helped\\\\\\\": 0.104027,\\\\n    \\\\\\\"grand_mean_J_hurt\\\\\\\": 0.091771,\\\\n    \\\\\\\"n_benchmarks\\\\\\\": 4,\\\\n    \\\\\\\"total_sig_helped\\\\\\\": 40,\\\\n    \\\\\\\"total_sig_hurt\\\\\\\": 40,\\\\n    \\\\\\\"total_pairs_tested\\\\\\\": 40\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-005\\\",\\n  \\\"date\\\": \\\"2026-05-23\\\",\\n  \\\"scale\\\": \\\"340M-20B\\\",\\n  \\\"description\\\": \\\"5-architecture pairwise Jaccard extended to 4 benchmarks (h3-1 vs pure)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"lambada_openai\\\": {\\n      \\\"n_samples\\\": 5153,\\n      \\\"architectures\\\": [\\n        \\\"GDN\\\",\\n        \\\"RetNet\\\",\\n        \\\"HGRN2\\\",\\n        \\\"GLA\\\",\\n        \\\"DeltaNet\\\"\\n      ],\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"helped\\\": 483,\\n          \\\"hurt\\\": 412,\\n          \\\"net\\\": 71,\\n          \\\"pure_acc\\\": 0.343489,\\n          \\\"h31_acc\\\": 0.357268\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"helped\\\": 383,\\n          \\\"hurt\\\": 476,\\n          \\\"net\\\": -93,\\n          \\\"pure_acc\\\": 0.367165,\\n          \\\"h31_acc\\\": 0.349117\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"helped\\\": 571,\\n          \\\"hurt\\\": 335,\\n          \\\"net\\\": 236,\\n          \\\"pure_acc\\\": 0.319232,\\n          \\\"h31_acc\\\": 0.36503\\n        },\\n        \\\"GLA\\\": {\\n          \\\"helped\\\": 532,\\n          \\\"hurt\\\": 312,\\n          \\\"net\\\": 220,\\n          \\\"pure_acc\\\": 0.33922,\\n          \\\"h31_acc\\\": 0.381913\\n        },\\n        \\\"DeltaNet\\\": {\\n          \\\"helped\\\": 498,\\n          \\\"hurt\\\": 345,\\n          \\\"net\\\": 153,\\n          \\\"pure_acc\\\": 0.323889,\\n          \\\"h31_acc\\\": 0.35358\\n        }\\n      },\\n      \\\"pairwise\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_helped\\\": 0.127604,\\n          \\\"J_hurt\\\": 0.121212,\\n          \\\"|helped_a|\\\": 483,\\n          \\\"|helped_b|\\\": 383,\\n          \\\"|hurt_a|\\\": 412,\\n          \\\"|hurt_b|\\\": 476,\\n          \\\"|helped_inter|\\\": 98,\\n          \\\"|hurt_inter|\\\": 96\\n        },\\n        \\\"GDN-HGRN2\\\": {\\n          \\\"J_helped\\\": 0.122471,\\n          \\\"J_hurt\\\": 0.082609,\\n          \\\"|helped_a|\\\": 483,\\n          \\\"|helped_b|\\\": 571,\\n          \\\"|hurt_a|\\\": 412,\\n          \\\"|hurt_b|\\\": 335,\\n          \\\"|helped_inter|\\\": 115,\\n          \\\"|hurt_inter|\\\": 57\\n        },\\n        \\\"GDN-GLA\\\": {\\n          \\\"J_helped\\\": 0.124031,\\n          \\\"J_hurt\\\": 0.100304,\\n          \\\"|helped_a|\\\": 483,\\n          \\\"|helped_b|\\\": 532,\\n          \\\"|hurt_a|\\\": 412,\\n          \\\"|hurt_b|\\\": 312,\\n          \\\"|helped_inter|\\\": 112,\\n          \\\"|hurt_inter|\\\": 66\\n        },\\n        \\\"GDN-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.114773,\\n          \\\"J_hurt\\\": 0.100291,\\n          \\\"|helped_a|\\\": 483,\\n          \\\"|helped_b|\\\": 498,\\n          \\\"|hurt_a|\\\": 412,\\n          \\\"|hurt_b|\\\": 345,\\n          \\\"|helped_inter|\\\": 101,\\n          \\\"|hurt_inter|\\\": 69\\n        },\\n        \\\"RetNet-HGRN2\\\": {\\n          \\\"J_helped\\\": 0.108014,\\n          \\\"J_hurt\\\": 0.082777,\\n          \\\"|helped_a|\\\": 383,\\n          \\\"|helped_b|\\\": 571,\\n          \\\"|hurt_a|\\\": 476,\\n          \\\"|hurt_b|\\\": 335,\\n          \\\"|helped_inter|\\\": 93,\\n          \\\"|hurt_inter|\\\": 62\\n        },\\n        \\\"RetNet-GLA\\\": {\\n          \\\"J_helped\\\": 0.122699,\\n          \\\"J_hurt\\\": 0.106742,\\n          \\\"|helped_a|\\\": 383,\\n          \\\"|helped_b|\\\": 532,\\n          \\\"|hurt_a|\\\": 476,\\n          \\\"|hurt_b|\\\": 312,\\n          \\\"|helped_inter|\\\": 100,\\n          \\\"|hurt_inter|\\\": 76\\n        },\\n        \\\"RetNet-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.11519,\\n          \\\"J_hurt\\\": 0.096128,\\n          \\\"|helped_a|\\\": 383,\\n          \\\"|helped_b|\\\": 498,\\n          \\\"|hurt_a|\\\": 476,\\n          \\\"|hurt_b|\\\": 345,\\n          \\\"|helped_inter|\\\": 91,\\n          \\\"|hurt_inter|\\\": 72\\n        },\\n        \\\"HGRN2-GLA\\\": {\\n          \\\"J_helped\\\": 0.12666,\\n          \\\"J_hurt\\\": 0.08557,\\n          \\\"|helped_a|\\\": 571,\\n          \\\"|helped_b|\\\": 532,\\n          \\\"|hurt_a|\\\": 335,\\n          \\\"|hurt_b|\\\": 312,\\n          \\\"|helped_inter|\\\": 124,\\n          \\\"|hurt_inter|\\\": 51\\n        },\\n        \\\"HGRN2-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.125263,\\n          \\\"J_hurt\\\": 0.089744,\\n          \\\"|helped_a|\\\": 571,\\n          \\\"|helped_b|\\\": 498,\\n          \\\"|hurt_a|\\\": 335,\\n          \\\"|hurt_b|\\\": 345,\\n          \\\"|helped_inter|\\\": 119,\\n          \\\"|hurt_inter|\\\": 56\\n        },\\n        \\\"GLA-DeltaNet\\\": {\\n          \\\"J_helped\\\": 0.134361,\\n          \\\"J_hurt\\\": 0.080592,\\n          \\\"|helped_a|\\\": 532,\\n          \\\"|helped_b|\\\": 498,\\n          \\\"|hurt_a|\\\": 312,\\n          \\\"|hurt_b|\\\": 345,\\n          \\\"|helped_inter|\\\": 122,\\n          \\\"|hurt_inter|\\\": 49\\n        }\\n      },\\n      \\\"mean_J_helped\\\": 0.122107,\\n      \\\"mean_J_hurt\\\": 0.094597,\\n      \\\"\\n\\n... [截断: 输出过长，省略 23707 字符] ...\\n\\nGLA\\\": {\\n          \\\"J_obs\\\": 0.101124,\\n          \\\"J_null_mean\\\": 0.027509,\\n          \\\"J_null_std\\\": 0.011633,\\n          \\\"z\\\": 6.33,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"RetNet-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.126437,\\n          \\\"J_null_mean\\\": 0.027612,\\n          \\\"J_null_std\\\": 0.011749,\\n          \\\"z\\\": 8.41,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"HGRN2-GLA\\\": {\\n          \\\"J_obs\\\": 0.110465,\\n          \\\"J_null_mean\\\": 0.026739,\\n          \\\"J_null_std\\\": 0.011846,\\n          \\\"z\\\": 7.07,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"HGRN2-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.097701,\\n          \\\"J_null_mean\\\": 0.027003,\\n          \\\"J_null_std\\\": 0.01173,\\n          \\\"z\\\": 6.03,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"GLA-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.067416,\\n          \\\"J_null_mean\\\": 0.026597,\\n          \\\"J_null_std\\\": 0.011661,\\n          \\\"z\\\": 3.5,\\n          \\\"p\\\": 0.0025\\n        }\\n      },\\n      \\\"permutation_test_hurt\\\": {\\n        \\\"GDN-RetNet\\\": {\\n          \\\"J_obs\\\": 0.074866,\\n          \\\"J_null_mean\\\": 0.027286,\\n          \\\"J_null_std\\\": 0.011426,\\n          \\\"z\\\": 4.16,\\n          \\\"p\\\": 0.001\\n        },\\n        \\\"GDN-HGRN2\\\": {\\n          \\\"J_obs\\\": 0.082418,\\n          \\\"J_null_mean\\\": 0.026625,\\n          \\\"J_null_std\\\": 0.011343,\\n          \\\"z\\\": 4.92,\\n          \\\"p\\\": 0.0001\\n        },\\n        \\\"GDN-GLA\\\": {\\n          \\\"J_obs\\\": 0.081081,\\n          \\\"J_null_mean\\\": 0.026923,\\n          \\\"J_null_std\\\": 0.011461,\\n          \\\"z\\\": 4.73,\\n          \\\"p\\\": 0.0001\\n        },\\n        \\\"GDN-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.116505,\\n          \\\"J_null_mean\\\": 0.032397,\\n          \\\"J_null_std\\\": 0.011771,\\n          \\\"z\\\": 7.15,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"RetNet-HGRN2\\\": {\\n          \\\"J_obs\\\": 0.09589,\\n          \\\"J_null_mean\\\": 0.022359,\\n          \\\"J_null_std\\\": 0.011834,\\n          \\\"z\\\": 6.21,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"RetNet-GLA\\\": {\\n          \\\"J_obs\\\": 0.065359,\\n          \\\"J_null_mean\\\": 0.022915,\\n          \\\"J_null_std\\\": 0.011716,\\n          \\\"z\\\": 3.62,\\n          \\\"p\\\": 0.0023\\n        },\\n        \\\"RetNet-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.109195,\\n          \\\"J_null_mean\\\": 0.026443,\\n          \\\"J_null_std\\\": 0.011562,\\n          \\\"z\\\": 7.16,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"HGRN2-GLA\\\": {\\n          \\\"J_obs\\\": 0.06,\\n          \\\"J_null_mean\\\": 0.022418,\\n          \\\"J_null_std\\\": 0.011838,\\n          \\\"z\\\": 3.17,\\n          \\\"p\\\": 0.0072\\n        },\\n        \\\"HGRN2-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.105263,\\n          \\\"J_null_mean\\\": 0.025679,\\n          \\\"J_null_std\\\": 0.01136,\\n          \\\"z\\\": 7.01,\\n          \\\"p\\\": 0.0\\n        },\\n        \\\"GLA-DeltaNet\\\": {\\n          \\\"J_obs\\\": 0.072626,\\n          \\\"J_null_mean\\\": 0.026226,\\n          \\\"J_null_std\\\": 0.011557,\\n          \\\"z\\\": 4.01,\\n          \\\"p\\\": 0.0011\\n        }\\n      }\\n    }\\n  },\\n  \\\"cross_benchmark_summary\\\": {\\n    \\\"mean_J_helped_lambada_openai\\\": 0.122107,\\n    \\\"mean_J_hurt_lambada_openai\\\": 0.094597,\\n    \\\"z_range_helped_lambada_openai\\\": [\\n      9.03,\\n      12.21\\n    ],\\n    \\\"z_range_hurt_lambada_openai\\\": [\\n      6.33,\\n      10.89\\n    ],\\n    \\\"sig_pairs_helped_lambada_openai\\\": 10,\\n    \\\"sig_pairs_hurt_lambada_openai\\\": 10,\\n    \\\"mean_J_helped_arc_easy\\\": 0.10813,\\n    \\\"mean_J_hurt_arc_easy\\\": 0.104682,\\n    \\\"z_range_helped_arc_easy\\\": [\\n      3.49,\\n      9.19\\n    ],\\n    \\\"z_range_hurt_arc_easy\\\": [\\n      3.72,\\n      7.48\\n    ],\\n    \\\"sig_pairs_helped_arc_easy\\\": 10,\\n    \\\"sig_pairs_hurt_arc_easy\\\": 10,\\n    \\\"mean_J_helped_hellaswag\\\": 0.093069,\\n    \\\"mean_J_hurt_hellaswag\\\": 0.081486,\\n    \\\"z_range_helped_hellaswag\\\": [\\n      10.31,\\n      19.2\\n    ],\\n    \\\"z_range_hurt_hellaswag\\\": [\\n      10.2,\\n      16.33\\n    ],\\n    \\\"sig_pairs_helped_hellaswag\\\": 10,\\n    \\\"sig_pairs_hurt_hellaswag\\\": 10,\\n    \\\"mean_J_helped_piqa\\\": 0.092804,\\n    \\\"mean_J_hurt_piqa\\\": 0.08632,\\n    \\\"z_range_helped_piqa\\\": [\\n      3.08,\\n      9.46\\n    ],\\n    \\\"z_range_hurt_piqa\\\": [\\n      3.17,\\n      7.16\\n    ],\\n    \\\"sig_pairs_helped_piqa\\\": 10,\\n    \\\"sig_pairs_hurt_piqa\\\": 10,\\n    \\\"grand_mean_J_helped\\\": 0.104027,\\n    \\\"grand_mean_J_hurt\\\": 0.091771,\\n    \\\"n_benchmarks\\\": 4,\\n    \\\"total_sig_helped\\\": 40,\\n    \\\"total_sig_hurt\\\": 40,\\n    \\\"total_pairs_tested\\\": 40\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b6bbfd6b-1104-466f-925d-f82353b9d36a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-23T19:22:29.338Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XPzK8XCrdBgHN7a3fa1Lkk`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/results/a3_complementarity/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cd15dc0-eaa2-4bd2-9607-d64b5df87cb0",
+  "isSidechain": false,
+  "requestId": "req_011CbL3YirqJRt1nZsdYH2k4",
+  "type": "assistant",
+  "uuid": "9f94a81f-0d0f-4c2c-b115-1565d65997c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbAsgQtmNWY6HsaBmvGAna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19750,
+      "cache_read_input_tokens": 58197,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 58197,
+          "cache_creation_input_tokens": 19750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T19:22:29.539Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PngAhLhBHsfgpp46BY57eZ`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "ls -la /root/entrainment_gated_ft/results/e4_pythia_seed/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f94a81f-0d0f-4c2c-b115-1565d65997c3",
+  "isSidechain": false,
+  "requestId": "req_011CbL3YirqJRt1nZsdYH2k4",
+  "type": "assistant",
+  "uuid": "a9809058-7b4c-4823-a185-4a6f17a33276",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbAsgQtmNWY6HsaBmvGAna",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19750,
+      "cache_read_input_tokens": 58197,
+      "output_tokens": 639,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 639,
+          "cache_read_input_tokens": 58197,
+          "cache_creation_input_tokens": 19750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a9809058-7b4c-4823-a185-4a6f17a33276",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T19:22:30.107Z_
+
+<details><summary>↩ Tool result · `toolu_01XPzK8XCrdBgHN7a3fa1Lkk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 648\\ndrwxr-xr-x  2 root root   4096 May 22 16:24 .\\ndrwxr-xr-x 13 root root   4096 May 24 01:08 ..\\n-rw-r--r--  1 root root  14907 May 22 16:24 complementarity_decomposition.json\\n-rw-r--r--  1 root root  30893 May 22 16:24 fig_complementarity_metrics.pdf\\n-rw-r--r--  1 root root 220892 May 22 16:24 fig_complementarity_metrics.png\\n-rw-r--r--  1 root root  28890 May 22 16:24 fig_complementarity_stacked.pdf\\n-rw-r--r--  1 root root 113992 May 22 16:24 fig_complementarity_stacked.png\\n-rw-r--r--  1 root root  30451 May 22 16:24 fig_complementarity_trends.pdf\\n-rw-r--r--  1 root root 204747 May 22 16:24 fig_complementarity_trends.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f94a81f-0d0f-4c2c-b115-1565d65997c3",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "65ffaab6-8b94-44aa-8612-be998a0480f5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 648\\\\ndrwxr-xr-x  2 root root   4096 May 22 16:24 .\\\\ndrwxr-xr-x 13 root root   4096 May 24 01:08 ..\\\\n-rw-r--r--  1 root root  14907 May 22 16:24 complementarity_decomposition.json\\\\n-rw-r--r--  1 root root  30893 May 22 16:24 fig_complementarity_metrics.pdf\\\\n-rw-r--r--  1 root root 220892 May 22 16:24 fig_complementarity_metrics.png\\\\n-rw-r--r--  1 root root  28890 May 22 16:24 fig_complementarity_stacked.pdf\\\\n-rw-r--r--  1 root root 113992 May 22 16:24 fig_complementarity_stacked.png\\\\n-rw-r--r--  1 root root  30451 May 22 16:24 fig_complementarity_trends.pdf\\\\n-rw-r--r--  1 root root 204747 May 22 16:24 fig_complementarity_trends.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 648\\ndrwxr-xr-x  2 root root   4096 May 22 16:24 .\\ndrwxr-xr-x 13 root root   4096 May 24 01:08 ..\\n-rw-r--r--  1 root root  14907 May 22 16:24 complementarity_decomposition.json\\n-rw-r--r--  1 root root  30893 May 22 16:24 fig_complementarity_metrics.pdf\\n-rw-r--r--  1 root root 220892 May 22 16:24 fig_complementarity_metrics.png\\n-rw-r--r--  1 root root  28890 May 22 16:24 fig_complementarity_stacked.pdf\\n-rw-r--r--  1 root root 113992 May 22 16:24 fig_complementarity_stacked.png\\n-rw-r--r--  1 root root  30451 May 22 16:24 fig_complementarity_trends.pdf\\n-rw-r--r--  1 root root 204747 May 22 16:24 fig_complementarity_trends.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9f94a81f-0d0f-4c2c-b115-1565d65997c3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-23T19:22:31.005Z_
+
+<details><summary>↩ Tool result · `toolu_01PngAhLhBHsfgpp46BY57eZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 320\\ndrwxr-xr-x 11 root root   4096 May 22 20:31 .\\ndrwxr-xr-x 13 root root   4096 May 24 01:08 ..\\n-rw-r--r--  1 root root  26118 May 22 18:54 download.log\\n-rw-r--r--  1 root root  36914 May 22 19:05 download_final.log\\n-rw-r--r--  1 root root   1888 May 22 22:06 e4_analysis.json\\n-rw-r--r--  1 root root 148812 May 22 19:40 eval.log\\n-rw-r--r--  1 root root  35097 May 22 22:06 eval_all.log\\n-rw-r--r--  1 root root  37029 May 22 20:32 eval_run.log\\n-rw-r--r--  1 root root    769 May 22 20:03 nohup.log\\n-rw-r--r--  1 root root    115 May 22 18:52 nohup_output.log\\n-rwxr-xr-x  1 root root    984 May 22 19:33 run_all_seeds.sh\\n-rwxr-xr-x  1 root root   1357 May 22 19:10 run_eval.sh\\ndrwxr-xr-x  3 root root     67 May 22 19:34 seed1\\ndrwxr-xr-x  3 root root     67 May 22 19:36 seed2\\ndrwxr-xr-x  3 root root     67 May 22 19:37 seed3\\ndrwxr-xr-x  3 root root     67 May 22 19:39 seed4\\ndrwxr-xr-x  3 root root     67 May 22 19:40 seed5\\ndrwxr-xr-x  3 root root     67 May 22 19:35 seed6\\ndrwxr-xr-x  3 root root     67 May 22 19:36 seed7\\ndrwxr-xr-x  3 root root     67 May 22 22:05 seed8\\ndrwxr-xr-x  3 root root     67 May 22 22:06 seed9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9809058-7b4c-4823-a185-4a6f17a33276",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "b56308f4-92aa-44ad-bedf-e696aad3cfd1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 320\\\\ndrwxr-xr-x 11 root root   4096 May 22 20:31 .\\\\ndrwxr-xr-x 13 root root   4096 May 24 01:08 ..\\\\n-rw-r--r--  1 root root  26118 May 22 18:54 download.log\\\\n-rw-r--r--  1 root root  36914 May 22 19:05 download_final.log\\\\n-rw-r--r--  1 root root   1888 May 22 22:06 e4_analysis.json\\\\n-rw-r--r--  1 root root 148812 May 22 19:40 eval.log\\\\n-rw-r--r--  1 root root  35097 May 22 22:06 eval_all.log\\\\n-rw-r--r--  1 root root  37029 May 22 20:32 eval_run.log\\\\n-rw-r--r--  1 root root    769 May 22 20:03 nohup.log\\\\n-rw-r--r--  1 root root    115 May 22 18:52 nohup_output.log\\\\n-rwxr-xr-x  1 root root    984 May 22 19:33 run_all_seeds.sh\\\\n-rwxr-xr-x  1 root root   1357 May 22 19:10 run_eval.sh\\\\ndrwxr-xr-x  3 root root     67 May 22 19:34 seed1\\\\ndrwxr-xr-x  3 root root     67 May 22 19:36 seed2\\\\ndrwxr-xr-x  3 root root     67 May 22 19:37 seed3\\\\ndrwxr-xr-x  3 root root     67 May 22 19:39 seed4\\\\ndrwxr-xr-x  3 root root     67 May 22 19:40 seed5\\\\ndrwxr-xr-x  3 root root     67 May 22 19:35 seed6\\\\ndrwxr-xr-x  3 root root     67 May 22 19:36 seed7\\\\ndrwxr-xr-x  3 root root     67 May 22 22:05 seed8\\\\ndrwxr-xr-x  3 root root     67 May 22 22:06 seed9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 320\\ndrwxr-xr-x 11 root root   4096 May 22 20:31 .\\ndrwxr-xr-x 13 root root   4096 May 24 01:08 ..\\n-rw-r--r--  1 root root  26118 May 22 18:54 download.log\\n-rw-r--r--  1 root root  36914 May 22 19:05 download_final.log\\n-rw-r--r--  1 root root   1888 May 22 22:06 e4_analysis.json\\n-rw-r--r--  1 root root 148812 May 22 19:40 eval.log\\n-rw-r--r--  1 root root  35097 May 22 22:06 eval_all.log\\n-rw-r--r--  1 root root  37029 May 22 20:32 eval_run.log\\n-rw-r--r--  1 root root    769 May 22 20:03 nohup.log\\n-rw-r--r--  1 root root    115 May 22 18:52 nohup_output.log\\n-rwxr-xr-x  1 root root    984 May 22 19:33 run_all_seeds.sh\\n-rwxr-xr-x  1 root root   1357 May 22 19:10 run_eval.sh\\ndrwxr-xr-x  3 root root     67 May 22 19:34 seed1\\ndrwxr-xr-x  3 root root     67 May 22 19:36 seed2\\ndrwxr-xr-x  3 root root     67 May 22 19:37 seed3\\ndrwxr-xr-x  3 root root     67 May 22 19:39 seed4\\ndrwxr-xr-x  3 root root     67 May 22 19:40 seed5\\ndrwxr-xr-x  3 root root     67 May 22 19:35 seed6\\ndrwxr-xr-x  3 root root     67 May 22 19:36 seed7\\ndrwxr-xr-x  3 root root     67 May 22 22:05 seed8\\ndrwxr-xr-x  3 root root     67 May 22 22:06 seed9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a9809058-7b4c-4823-a185-4a6f17a33276",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62 · 2026-05-23T19:22:31.009Z_
+
+```json
+{
+  "parentUuid": "b56308f4-92aa-44ad-bedf-e696aad3cfd1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8806a0dc-6594-46a4-8578-11c1e35d5617",
+  "timestamp": "2026-05-23T19:22:31.009Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-23T19:24:00.507Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've found key source data files. Let me now examine specific data to verify the inconsistencies I found. Let me read:
+
+1. The prediction framework data - I noticed GDN in the source has n_helped=461 but the confidence margin table uses 480 (which is for h12-1, not h3-1). Wait, the prediction framework JSON says GDN n_helped=461, but the appendix table for GDN says it's h12-1 with helped=480. The source data says it's using h3-1 for all architectures. 
+
+So there's a clear mismatch here - the appendix is using h12-1 for GDN while RetNet and HGRN2 are both at h3-1, but the source JSON specifies h3-1 across all three architectures. This means the confidence margin tables in the appendix are pulling from different attention configurations than what the prediction framework actually used. I'm noticing consistent discrepancies between the prediction_framework.json and the per_example table across multiple models at h3-1: GDN differs by 1 example, RetNet by 6 helped and 2 hurt, and HGRN2 by 3 hurt. These gaps suggest either a filtering difference or a data entry error between the two sources.
+
+Now I'm checking the Jaccard similarity values from the cross_benchmark_jaccard source against the appendix table, and there's a mismatch—the source shows more decimal precision and different values than what appears in the appendix for LAMBADA across the different horizon settings. Looking at the table caption more carefully—it specifies "helped sets" only, not the mean of helped and hurt. But when I check the actual values, neither interpretation matches the appendix perfectly. The J_mean calculations (.091, .088, .096, .096) align better with what's reported than using just the helped values (.095, .095, .092), so there's some inconsistency in how these numbers were derived or rounded. I'm checking the rounding on that h3-1 value—0.0964965 should round to .096 with standard rounding rules, not .097 as shown in the appendix, so there's likely a discrepancy there.
+
+Now I'm looking at the HellaSwag data to understand what metric the table is actually using. The JSON shows J_helped values, but I need to verify whether the appendix table is pulling from J_helped, J_hurt, or some combination of them, and confirm these are all from the 1.3B model scale by checking the sigma values.
+
+I'm cross-referencing the sigma values between the JSON and the main text table. Most of them match closely after scaling by 100, which confirms the JSON is 1.3B data. But there's a discrepancy with HellaSwag h3-1 where the JSON gives 1.18 but the table shows 1.22—I need to figure out where that difference comes from. The ARC-Easy values are completely inverted between the two sources—the JSON shows pure σ as 0.04 and h3-1 as 1.00, while Table 1 has them reversed at 1.00 and 0.13 respectively. This suggests the JSON's pure standard deviation might actually correspond to what the table labels as the h3-1 variant, indicating a fundamental mismatch in how the metrics are being reported or labeled across these datasets. There's a clear contradiction here: the JSON data shows variance increasing dramatically as attention mechanisms are added (from 0.04 to ~1.0), which would suggest a positive correlation, yet Table 1 reports ρ = -0.7 for ARC-Easy. I need to figure out which source is actually correct or if there's a mismatch in how the statistics are being calculated. The ratio calculation suggests the σ values in Table 1 might be swapped or computed differently than expected. But the real puzzle is that Table 1 shows ρ = -0.7 for ARC-E while the JSON data indicates ρ = 0.3 for sigma—unless the JSON is actually reporting Jaccard ρ instead, which would explain the discrepancy entirely.
+
+Looking at the subset of benchmarks in the JSON, most of the sigma_rho values don't match Table 1 (ARC-Easy: 0.3 vs -0.7, HellaSwag: 0.3 vs 0.4), except for PIQA and LAMBADA which align perfectly. This inconsistency suggests the JSON might be analyzing a different set of benchmarks or using different computation methods than the full table. I'm realizing the JSON might be from a separate supplementary analysis run on different data, while Table 1 comes from its own analysis pipeline. Let me search for other source files to track down where each result actually originates, and then systematically verify the key discrepancies around the cross-benchmark Jaccard values, per-example counts, and normalized_es inconsistencies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8806a0dc-6594-46a4-8578-11c1e35d5617",
+  "isSidechain": false,
+  "requestId": "req_011CbL3ZpvyxJubFjMcDMCgN",
+  "type": "assistant",
+  "uuid": "c47338b4-6b15-46f8-96e5-d0cc07c2f41c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJuq5et7t2Rqf41TYxAcaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16147,
+      "cache_read_input_tokens": 77947,
+      "output_tokens": 4714,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4714,
+          "cache_read_input_tokens": 77947,
+          "cache_creation_input_tokens": 16147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-23T19:24:00.575Z_
+
+发现了一些重要的数值对照点。继续深入验证关键数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c47338b4-6b15-46f8-96e5-d0cc07c2f41c",
+  "isSidechain": false,
+  "requestId": "req_011CbL3ZpvyxJubFjMcDMCgN",
+  "type": "assistant",
+  "uuid": "e4430fac-3bf3-4aed-9ad6-f8171faddf11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJuq5et7t2Rqf41TYxAcaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16147,
+      "cache_read_input_tokens": 77947,
+      "output_tokens": 4714,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4714,
+          "cache_read_input_tokens": 77947,
+          "cache_creation_input_tokens": 16147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-23T19:24:02.536Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VZYuz9xAk6mtxhvCE6XZHt`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/e4_pythia_seed/e4_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4430fac-3bf3-4aed-9ad6-f8171faddf11",
+  "isSidechain": false,
+  "requestId": "req_011CbL3ZpvyxJubFjMcDMCgN",
+  "type": "assistant",
+  "uuid": "ffb91f81-796a-4535-8273-a4552044c1dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJuq5et7t2Rqf41TYxAcaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16147,
+      "cache_read_input_tokens": 77947,
+      "output_tokens": 4714,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4714,
+          "cache_read_input_tokens": 77947,
+          "cache_creation_input_tokens": 16147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T19:24:03.294Z_
+
+<details><summary>↩ Tool result · `toolu_01VZYuz9xAk6mtxhvCE6XZHt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"lambada_openai\\\": {\\n    \\\"n_seeds\\\": 9,\\n    \\\"seed_accuracies\\\": {\\n      \\\"seed1\\\": 0.2291868814282942,\\n      \\\"seed2\\\": 0.2012419949543955,\\n      \\\"seed3\\\": 0.19483795847079372,\\n      \\\"seed4\\\": 0.17155055307587813,\\n      \\\"seed5\\\": 0.20822821657287016,\\n      \\\"seed6\\\": 0.2068697845915001,\\n      \\\"seed7\\\": 0.22200659809819523,\\n      \\\"seed8\\\": 0.20861633999611875,\\n      \\\"seed9\\\": 0.18358237919658452\\n    },\\n    \\\"correct_set_jaccard\\\": {\\n      \\\"mean\\\": 0.491518774183648,\\n      \\\"std\\\": 0.019229802087113307,\\n      \\\"min\\\": 0.4470918009810792,\\n      \\\"max\\\": 0.5314735336194564\\n    },\\n    \\\"helped_set_jaccard\\\": {\\n      \\\"mean\\\": 0.2729730136033116,\\n      \\\"std\\\": 0.028339323377298515\\n    },\\n    \\\"hurt_set_jaccard\\\": {\\n      \\\"mean\\\": 0.3929846033718868,\\n      \\\"std\\\": 0.038510593960912845\\n    },\\n    \\\"ambiguity_alpha\\\": 0.3551329322724627,\\n    \\\"reference_comparison\\\": {\\n      \\\"cross_arch_j_helped\\\": 0.1,\\n      \\\"cross_arch_j_hurt\\\": 0.09,\\n      \\\"cross_arch_alpha\\\": 0.3\\n    }\\n  },\\n  \\\"arc_easy\\\": {\\n    \\\"n_seeds\\\": 9,\\n    \\\"seed_accuracies\\\": {\\n      \\\"seed1\\\": 0.4006734006734007,\\n      \\\"seed2\\\": 0.36447811447811446,\\n      \\\"seed3\\\": 0.41035353535353536,\\n      \\\"seed4\\\": 0.37542087542087543,\\n      \\\"seed5\\\": 0.3640572390572391,\\n      \\\"seed6\\\": 0.3779461279461279,\\n      \\\"seed7\\\": 0.38173400673400676,\\n      \\\"seed8\\\": 0.380050505050505,\\n      \\\"seed9\\\": 0.3728956228956229\\n    },\\n    \\\"correct_set_jaccard\\\": {\\n      \\\"mean\\\": 0.5930773901535173,\\n      \\\"std\\\": 0.016371788280132273,\\n      \\\"min\\\": 0.5523049645390071,\\n      \\\"max\\\": 0.6221640488656196\\n    },\\n    \\\"helped_set_jaccard\\\": {\\n      \\\"mean\\\": 0.3115332037140002,\\n      \\\"std\\\": 0.030569293020178332\\n    },\\n    \\\"hurt_set_jaccard\\\": {\\n      \\\"mean\\\": 0.3536965846415993,\\n      \\\"std\\\": 0.030267835172823554\\n    },\\n    \\\"ambiguity_alpha\\\": 0.4907407407407407,\\n    \\\"reference_comparison\\\": {\\n      \\\"cross_arch_j_helped\\\": null,\\n      \\\"cross_arch_j_hurt\\\": null,\\n      \\\"cross_arch_alpha\\\": 0.21\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffb91f81-796a-4535-8273-a4552044c1dc",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "29591311-64f3-42be-aa15-0da1e217c19c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"lambada_openai\\\\\\\": {\\\\n    \\\\\\\"n_seeds\\\\\\\": 9,\\\\n    \\\\\\\"seed_accuracies\\\\\\\": {\\\\n      \\\\\\\"seed1\\\\\\\": 0.2291868814282942,\\\\n      \\\\\\\"seed2\\\\\\\": 0.2012419949543955,\\\\n      \\\\\\\"seed3\\\\\\\": 0.19483795847079372,\\\\n      \\\\\\\"seed4\\\\\\\": 0.17155055307587813,\\\\n      \\\\\\\"seed5\\\\\\\": 0.20822821657287016,\\\\n      \\\\\\\"seed6\\\\\\\": 0.2068697845915001,\\\\n      \\\\\\\"seed7\\\\\\\": 0.22200659809819523,\\\\n      \\\\\\\"seed8\\\\\\\": 0.20861633999611875,\\\\n      \\\\\\\"seed9\\\\\\\": 0.18358237919658452\\\\n    },\\\\n    \\\\\\\"correct_set_jaccard\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.491518774183648,\\\\n      \\\\\\\"std\\\\\\\": 0.019229802087113307,\\\\n      \\\\\\\"min\\\\\\\": 0.4470918009810792,\\\\n      \\\\\\\"max\\\\\\\": 0.5314735336194564\\\\n    },\\\\n    \\\\\\\"helped_set_jaccard\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.2729730136033116,\\\\n      \\\\\\\"std\\\\\\\": 0.028339323377298515\\\\n    },\\\\n    \\\\\\\"hurt_set_jaccard\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3929846033718868,\\\\n      \\\\\\\"std\\\\\\\": 0.038510593960912845\\\\n    },\\\\n    \\\\\\\"ambiguity_alpha\\\\\\\": 0.3551329322724627,\\\\n    \\\\\\\"reference_comparison\\\\\\\": {\\\\n      \\\\\\\"cross_arch_j_helped\\\\\\\": 0.1,\\\\n      \\\\\\\"cross_arch_j_hurt\\\\\\\": 0.09,\\\\n      \\\\\\\"cross_arch_alpha\\\\\\\": 0.3\\\\n    }\\\\n  },\\\\n  \\\\\\\"arc_easy\\\\\\\": {\\\\n    \\\\\\\"n_seeds\\\\\\\": 9,\\\\n    \\\\\\\"seed_accuracies\\\\\\\": {\\\\n      \\\\\\\"seed1\\\\\\\": 0.4006734006734007,\\\\n      \\\\\\\"seed2\\\\\\\": 0.36447811447811446,\\\\n      \\\\\\\"seed3\\\\\\\": 0.41035353535353536,\\\\n      \\\\\\\"seed4\\\\\\\": 0.37542087542087543,\\\\n      \\\\\\\"seed5\\\\\\\": 0.3640572390572391,\\\\n      \\\\\\\"seed6\\\\\\\": 0.3779461279461279,\\\\n      \\\\\\\"seed7\\\\\\\": 0.38173400673400676,\\\\n      \\\\\\\"seed8\\\\\\\": 0.380050505050505,\\\\n      \\\\\\\"seed9\\\\\\\": 0.3728956228956229\\\\n    },\\\\n    \\\\\\\"correct_set_jaccard\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.5930773901535173,\\\\n      \\\\\\\"std\\\\\\\": 0.016371788280132273,\\\\n      \\\\\\\"min\\\\\\\": 0.5523049645390071,\\\\n      \\\\\\\"max\\\\\\\": 0.6221640488656196\\\\n    },\\\\n    \\\\\\\"helped_set_jaccard\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3115332037140002,\\\\n      \\\\\\\"std\\\\\\\": 0.030569293020178332\\\\n    },\\\\n    \\\\\\\"hurt_set_jaccard\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.3536965846415993,\\\\n      \\\\\\\"std\\\\\\\": 0.030267835172823554\\\\n    },\\\\n    \\\\\\\"ambiguity_alpha\\\\\\\": 0.4907407407407407,\\\\n    \\\\\\\"reference_comparison\\\\\\\": {\\\\n      \\\\\\\"cross_arch_j_helped\\\\\\\": null,\\\\n      \\\\\\\"cross_arch_j_hurt\\\\\\\": null,\\\\n      \\\\\\\"cross_arch_alpha\\\\\\\": 0.21\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"lambada_openai\\\": {\\n    \\\"n_seeds\\\": 9,\\n    \\\"seed_accuracies\\\": {\\n      \\\"seed1\\\": 0.2291868814282942,\\n      \\\"seed2\\\": 0.2012419949543955,\\n      \\\"seed3\\\": 0.19483795847079372,\\n      \\\"seed4\\\": 0.17155055307587813,\\n      \\\"seed5\\\": 0.20822821657287016,\\n      \\\"seed6\\\": 0.2068697845915001,\\n      \\\"seed7\\\": 0.22200659809819523,\\n      \\\"seed8\\\": 0.20861633999611875,\\n      \\\"seed9\\\": 0.18358237919658452\\n    },\\n    \\\"correct_set_jaccard\\\": {\\n      \\\"mean\\\": 0.491518774183648,\\n      \\\"std\\\": 0.019229802087113307,\\n      \\\"min\\\": 0.4470918009810792,\\n      \\\"max\\\": 0.5314735336194564\\n    },\\n    \\\"helped_set_jaccard\\\": {\\n      \\\"mean\\\": 0.2729730136033116,\\n      \\\"std\\\": 0.028339323377298515\\n    },\\n    \\\"hurt_set_jaccard\\\": {\\n      \\\"mean\\\": 0.3929846033718868,\\n      \\\"std\\\": 0.038510593960912845\\n    },\\n    \\\"ambiguity_alpha\\\": 0.3551329322724627,\\n    \\\"reference_comparison\\\": {\\n      \\\"cross_arch_j_helped\\\": 0.1,\\n      \\\"cross_arch_j_hurt\\\": 0.09,\\n      \\\"cross_arch_alpha\\\": 0.3\\n    }\\n  },\\n  \\\"arc_easy\\\": {\\n    \\\"n_seeds\\\": 9,\\n    \\\"seed_accuracies\\\": {\\n      \\\"seed1\\\": 0.4006734006734007,\\n      \\\"seed2\\\": 0.36447811447811446,\\n      \\\"seed3\\\": 0.41035353535353536,\\n      \\\"seed4\\\": 0.37542087542087543,\\n      \\\"seed5\\\": 0.3640572390572391,\\n      \\\"seed6\\\": 0.3779461279461279,\\n      \\\"seed7\\\": 0.38173400673400676,\\n      \\\"seed8\\\": 0.380050505050505,\\n      \\\"seed9\\\": 0.3728956228956229\\n    },\\n    \\\"correct_set_jaccard\\\": {\\n      \\\"mean\\\": 0.5930773901535173,\\n      \\\"std\\\": 0.016371788280132273,\\n      \\\"min\\\": 0.5523049645390071,\\n      \\\"max\\\": 0.6221640488656196\\n    },\\n    \\\"helped_set_jaccard\\\": {\\n      \\\"mean\\\": 0.3115332037140002,\\n      \\\"std\\\": 0.030569293020178332\\n    },\\n    \\\"hurt_set_jaccard\\\": {\\n      \\\"mean\\\": 0.3536965846415993,\\n      \\\"std\\\": 0.030267835172823554\\n    },\\n    \\\"ambiguity_alpha\\\": 0.4907407407407407,\\n    \\\"reference_comparison\\\": {\\n      \\\"cross_arch_j_helped\\\": null,\\n      \\\"cross_arch_j_hurt\\\": null,\\n      \\\"cross_arch_alpha\\\": 0.21\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ffb91f81-796a-4535-8273-a4552044c1dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-23T19:24:03.465Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ExTrbasLGwH8yZzEJ6snEn`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/a3_complementarity/complementarity_decomposition.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29591311-64f3-42be-aa15-0da1e217c19c",
+  "isSidechain": false,
+  "requestId": "req_011CbL3ZpvyxJubFjMcDMCgN",
+  "type": "assistant",
+  "uuid": "c6790dc1-47aa-4b1d-98a1-e4622e7443d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJuq5et7t2Rqf41TYxAcaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16147,
+      "cache_read_input_tokens": 77947,
+      "output_tokens": 4714,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4714,
+          "cache_read_input_tokens": 77947,
+          "cache_creation_input_tokens": 16147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-23T19:24:04.432Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MvfQUD6Fnw7eoFL8jXQTo6`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/e3_calibration.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6790dc1-47aa-4b1d-98a1-e4622e7443d6",
+  "isSidechain": false,
+  "requestId": "req_011CbL3ZpvyxJubFjMcDMCgN",
+  "type": "assistant",
+  "uuid": "21b4c294-5f8a-4d1f-bd03-e2c34c571366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJuq5et7t2Rqf41TYxAcaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16147,
+      "cache_read_input_tokens": 77947,
+      "output_tokens": 4714,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4714,
+          "cache_read_input_tokens": 77947,
+          "cache_creation_input_tokens": 16147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-23T19:24:04.483Z_
+
+<details><summary>↩ Tool result · `toolu_01ExTrbasLGwH8yZzEJ6snEn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"A3 Complementarity Decomposition\\\",\\n  \\\"scale\\\": \\\"1.3B parameters\\\",\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\"\\n  ],\\n  \\\"ratios\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"ratio_attention_pct\\\": {\\n    \\\"pure\\\": \\\"0%\\\",\\n    \\\"h24-1\\\": \\\"4%\\\",\\n    \\\"h12-1\\\": \\\"7.7%\\\",\\n    \\\"h6-1\\\": \\\"14.3%\\\",\\n    \\\"h3-1\\\": \\\"25%\\\"\\n  },\\n  \\\"categories\\\": {\\n    \\\"UC\\\": \\\"Universal Correct (3/3 correct)\\\",\\n    \\\"MC\\\": \\\"Majority Correct (2/3 correct)\\\",\\n    \\\"mC\\\": \\\"Minority Correct (1/3 correct, wasted complementarity)\\\",\\n    \\\"UW\\\": \\\"Universal Wrong (0/3 correct)\\\"\\n  },\\n  \\\"metrics_definition\\\": {\\n    \\\"complementarity_index\\\": \\\"(Oracle_acc - Best_single_acc) / Contested_fraction\\\",\\n    \\\"mv_efficiency\\\": \\\"(MV_acc - Best_single_acc) / (Oracle_acc - Best_single_acc)\\\",\\n    \\\"wasted_complementarity\\\": \\\"mC / N\\\"\\n  },\\n  \\\"results\\\": {\\n    \\\"lambada\\\": {\\n      \\\"pure\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1854,\\n        \\\"UW\\\": 1719,\\n        \\\"MC\\\": 818,\\n        \\\"mC\\\": 762,\\n        \\\"UC_pct\\\": 35.97904133514457,\\n        \\\"UW_pct\\\": 33.35920822821657,\\n        \\\"MC_pct\\\": 15.874248010867456,\\n        \\\"mC_pct\\\": 14.787502425771395,\\n        \\\"mean_individual_acc\\\": 51.49,\\n        \\\"best_single_acc\\\": 54.3,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 51.85,\\n        \\\"oracle_acc\\\": 66.64,\\n        \\\"contested_fraction\\\": 30.66,\\n        \\\"complementarity_index\\\": 0.4025,\\n        \\\"mv_efficiency\\\": -0.1981,\\n        \\\"wasted_complementarity\\\": 14.79,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 54.3,\\n          \\\"RetNet\\\": 51.66,\\n          \\\"HGRN2\\\": 48.42\\n        }\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1886,\\n        \\\"UW\\\": 1721,\\n        \\\"MC\\\": 809,\\n        \\\"mC\\\": 737,\\n        \\\"UC_pct\\\": 36.60003881234232,\\n        \\\"UW_pct\\\": 33.39802057054143,\\n        \\\"MC_pct\\\": 15.699592470405587,\\n        \\\"mC_pct\\\": 14.302348146710653,\\n        \\\"mean_individual_acc\\\": 51.83,\\n        \\\"best_single_acc\\\": 53.97,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 52.3,\\n        \\\"oracle_acc\\\": 66.6,\\n        \\\"contested_fraction\\\": 30.0,\\n        \\\"complementarity_index\\\": 0.4211,\\n        \\\"mv_efficiency\\\": -0.1321,\\n        \\\"wasted_complementarity\\\": 14.3,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 53.97,\\n          \\\"RetNet\\\": 51.52,\\n          \\\"HGRN2\\\": 50.03\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1824,\\n        \\\"UW\\\": 1701,\\n        \\\"MC\\\": 865,\\n        \\\"mC\\\": 763,\\n        \\\"UC_pct\\\": 35.396856200271685,\\n        \\\"UW_pct\\\": 33.00989714729284,\\n        \\\"MC_pct\\\": 16.78633805550165,\\n        \\\"mC_pct\\\": 14.806908596933823,\\n        \\\"mean_individual_acc\\\": 51.52,\\n        \\\"best_single_acc\\\": 53.37,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 52.18,\\n        \\\"oracle_acc\\\": 66.99,\\n        \\\"contested_fraction\\\": 31.59,\\n        \\\"complementarity_index\\\": 0.4312,\\n        \\\"mv_efficiency\\\": -0.0869,\\n        \\\"wasted_complementarity\\\": 14.81,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 53.37,\\n          \\\"RetNet\\\": 50.71,\\n          \\\"HGRN2\\\": 50.3\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1828,\\n        \\\"UW\\\": 1812,\\n        \\\"MC\\\": 823,\\n        \\\"mC\\\": 690,\\n        \\\"UC_pct\\\": 35.474480884921405,\\n        \\\"UW_pct\\\": 35.16398214632253,\\n        \\\"MC_pct\\\": 15.971278866679603,\\n        \\\"mC_pct\\\": 13.39025810207646,\\n        \\\"mean_individual_acc\\\": 50.59,\\n        \\\"best_single_acc\\\": 51.1,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 51.45,\\n        \\\"oracle_acc\\\": 64.84,\\n        \\\"contested_fraction\\\": 29.36,\\n        \\\"complementarity_index\\\": 0.4679,\\n        \\\"mv_efficiency\\\": 0.0254,\\n        \\\"wasted_complementarity\\\": 13.39,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 51.1,\\n          \\\"RetNet\\\": 49.72,\\n          \\\"HGRN2\\\": 50.88\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1860,\\n        \\\"UW\\\": 1768,\\n        \\\"MC\\\": 779,\\n        \\\"mC\\\": 746,\\n        \\\"UC_pct\\\": 36.09547836211915,\\n        \\\"UW_pct\\\": 34.310110615175624,\\n        \\\"MC_pct\\\": 15.117407335532699,\\n        \\\"mC_pct\\\": 14.477003687172521,\\n        \\\"mean_individual_acc\\\": 51.0,\\n        \\\"best_single_acc\\\": 51.39,\\n        \\\"best_single\\n\\n... [截断: 输出过长，省略 6907 字符] ...\\n\\n     \\\"mC_pct\\\": 5.767138193688792,\\n        \\\"mean_individual_acc\\\": 73.23,\\n        \\\"best_single_acc\\\": 73.78,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 74.05,\\n        \\\"oracle_acc\\\": 79.82,\\n        \\\"contested_fraction\\\": 13.98,\\n        \\\"complementarity_index\\\": 0.4319,\\n        \\\"mv_efficiency\\\": 0.045,\\n        \\\"wasted_complementarity\\\": 5.77,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 73.78,\\n          \\\"RetNet\\\": 72.91,\\n          \\\"HGRN2\\\": 73.01\\n        }\\n      }\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"pure\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1434,\\n        \\\"UW\\\": 456,\\n        \\\"MC\\\": 292,\\n        \\\"mC\\\": 194,\\n        \\\"UC_pct\\\": 60.35353535353535,\\n        \\\"UW_pct\\\": 19.19191919191919,\\n        \\\"MC_pct\\\": 12.289562289562289,\\n        \\\"mC_pct\\\": 8.164983164983166,\\n        \\\"mean_individual_acc\\\": 71.27,\\n        \\\"best_single_acc\\\": 71.38,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 72.64,\\n        \\\"oracle_acc\\\": 80.81,\\n        \\\"contested_fraction\\\": 20.45,\\n        \\\"complementarity_index\\\": 0.4609,\\n        \\\"mv_efficiency\\\": 0.1339,\\n        \\\"wasted_complementarity\\\": 8.16,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 71.25,\\n          \\\"RetNet\\\": 71.21,\\n          \\\"HGRN2\\\": 71.38\\n        }\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1421,\\n        \\\"UW\\\": 417,\\n        \\\"MC\\\": 303,\\n        \\\"mC\\\": 235,\\n        \\\"UC_pct\\\": 59.80639730639731,\\n        \\\"UW_pct\\\": 17.55050505050505,\\n        \\\"MC_pct\\\": 12.75252525252525,\\n        \\\"mC_pct\\\": 9.89057239057239,\\n        \\\"mean_individual_acc\\\": 71.6,\\n        \\\"best_single_acc\\\": 73.06,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 72.56,\\n        \\\"oracle_acc\\\": 82.45,\\n        \\\"contested_fraction\\\": 22.64,\\n        \\\"complementarity_index\\\": 0.4145,\\n        \\\"mv_efficiency\\\": -0.0538,\\n        \\\"wasted_complementarity\\\": 9.89,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 70.92,\\n          \\\"RetNet\\\": 71.0,\\n          \\\"HGRN2\\\": 73.06\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1427,\\n        \\\"UW\\\": 419,\\n        \\\"MC\\\": 304,\\n        \\\"mC\\\": 226,\\n        \\\"UC_pct\\\": 60.05892255892255,\\n        \\\"UW_pct\\\": 17.634680134680135,\\n        \\\"MC_pct\\\": 12.794612794612794,\\n        \\\"mC_pct\\\": 9.511784511784512,\\n        \\\"mean_individual_acc\\\": 71.76,\\n        \\\"best_single_acc\\\": 73.23,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 72.85,\\n        \\\"oracle_acc\\\": 82.37,\\n        \\\"contested_fraction\\\": 22.31,\\n        \\\"complementarity_index\\\": 0.4094,\\n        \\\"mv_efficiency\\\": -0.0415,\\n        \\\"wasted_complementarity\\\": 9.51,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 69.95,\\n          \\\"RetNet\\\": 72.14,\\n          \\\"HGRN2\\\": 73.23\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1469,\\n        \\\"UW\\\": 429,\\n        \\\"MC\\\": 287,\\n        \\\"mC\\\": 191,\\n        \\\"UC_pct\\\": 61.82659932659933,\\n        \\\"UW_pct\\\": 18.055555555555554,\\n        \\\"MC_pct\\\": 12.07912457912458,\\n        \\\"mC_pct\\\": 8.038720538720538,\\n        \\\"mean_individual_acc\\\": 72.56,\\n        \\\"best_single_acc\\\": 74.28,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 73.91,\\n        \\\"oracle_acc\\\": 81.94,\\n        \\\"contested_fraction\\\": 20.12,\\n        \\\"complementarity_index\\\": 0.3808,\\n        \\\"mv_efficiency\\\": -0.0495,\\n        \\\"wasted_complementarity\\\": 8.04,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 71.8,\\n          \\\"RetNet\\\": 71.84,\\n          \\\"HGRN2\\\": 74.28\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1432,\\n        \\\"UW\\\": 445,\\n        \\\"MC\\\": 254,\\n        \\\"mC\\\": 245,\\n        \\\"UC_pct\\\": 60.26936026936027,\\n        \\\"UW_pct\\\": 18.72895622895623,\\n        \\\"MC_pct\\\": 10.69023569023569,\\n        \\\"mC_pct\\\": 10.311447811447811,\\n        \\\"mean_individual_acc\\\": 70.83,\\n        \\\"best_single_acc\\\": 71.97,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 70.96,\\n        \\\"oracle_acc\\\": 81.27,\\n        \\\"contested_fraction\\\": 21.0,\\n        \\\"complementarity_index\\\": 0.4429,\\n        \\\"mv_efficiency\\\": -0.1086,\\n        \\\"wasted_complementarity\\\": 10.31,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 70.83,\\n          \\\"RetNet\\\": 69.87,\\n          \\\"HGRN2\\\": 71.97\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6790dc1-47aa-4b1d-98a1-e4622e7443d6",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "bcf1e151-86fd-4975-adfa-e5651b60a443",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"A3 Complementarity Decomposition\\\\\\\",\\\\n  \\\\\\\"scale\\\\\\\": \\\\\\\"1.3B parameters\\\\\\\",\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"GDN\\\\\\\",\\\\n    \\\\\\\"RetNet\\\\\\\",\\\\n    \\\\\\\"HGRN2\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"ratios\\\\\\\": [\\\\n    \\\\\\\"pure\\\\\\\",\\\\n    \\\\\\\"h24-1\\\\\\\",\\\\n    \\\\\\\"h12-1\\\\\\\",\\\\n    \\\\\\\"h6-1\\\\\\\",\\\\n    \\\\\\\"h3-1\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"ratio_attention_pct\\\\\\\": {\\\\n    \\\\\\\"pure\\\\\\\": \\\\\\\"0%\\\\\\\",\\\\n    \\\\\\\"h24-1\\\\\\\": \\\\\\\"4%\\\\\\\",\\\\n    \\\\\\\"h12-1\\\\\\\": \\\\\\\"7.7%\\\\\\\",\\\\n    \\\\\\\"h6-1\\\\\\\": \\\\\\\"14.3%\\\\\\\",\\\\n    \\\\\\\"h3-1\\\\\\\": \\\\\\\"25%\\\\\\\"\\\\n  },\\\\n  \\\\\\\"categories\\\\\\\": {\\\\n    \\\\\\\"UC\\\\\\\": \\\\\\\"Universal Correct (3/3 correct)\\\\\\\",\\\\n    \\\\\\\"MC\\\\\\\": \\\\\\\"Majority Correct (2/3 correct)\\\\\\\",\\\\n    \\\\\\\"mC\\\\\\\": \\\\\\\"Minority Correct (1/3 correct, wasted complementarity)\\\\\\\",\\\\n    \\\\\\\"UW\\\\\\\": \\\\\\\"Universal Wrong (0/3 correct)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics_definition\\\\\\\": {\\\\n    \\\\\\\"complementarity_index\\\\\\\": \\\\\\\"(Oracle_acc - Best_single_acc) / Contested_fraction\\\\\\\",\\\\n    \\\\\\\"mv_efficiency\\\\\\\": \\\\\\\"(MV_acc - Best_single_acc) / (Oracle_acc - Best_single_acc)\\\\\\\",\\\\n    \\\\\\\"wasted_complementarity\\\\\\\": \\\\\\\"mC / N\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"lambada\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 5153,\\\\n        \\\\\\\"UC\\\\\\\": 1854,\\\\n        \\\\\\\"UW\\\\\\\": 1719,\\\\n        \\\\\\\"MC\\\\\\\": 818,\\\\n        \\\\\\\"mC\\\\\\\": 762,\\\\n        \\\\\\\"UC_pct\\\\\\\": 35.97904133514457,\\\\n        \\\\\\\"UW_pct\\\\\\\": 33.35920822821657,\\\\n        \\\\\\\"MC_pct\\\\\\\": 15.874248010867456,\\\\n        \\\\\\\"mC_pct\\\\\\\": 14.787502425771395,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 51.49,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 54.3,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"GDN\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 51.85,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 66.64,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 30.66,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4025,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": -0.1981,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 14.79,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 54.3,\\\\n          \\\\\\\"RetNet\\\\\\\": 51.66,\\\\n          \\\\\\\"HGRN2\\\\\\\": 48.42\\\\n        }\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 5153,\\\\n        \\\\\\\"UC\\\\\\\": 1886,\\\\n        \\\\\\\"UW\\\\\\\": 1721,\\\\n        \\\\\\\"MC\\\\\\\": 809,\\\\n        \\\\\\\"mC\\\\\\\": 737,\\\\n        \\\\\\\"UC_pct\\\\\\\": 36.60003881234232,\\\\n        \\\\\\\"UW_pct\\\\\\\": 33.39802057054143,\\\\n        \\\\\\\"MC_pct\\\\\\\": 15.699592470405587,\\\\n        \\\\\\\"mC_pct\\\\\\\": 14.302348146710653,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 51.83,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 53.97,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"GDN\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 52.3,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 66.6,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 30.0,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4211,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": -0.1321,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 14.3,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 53.97,\\\\n          \\\\\\\"RetNet\\\\\\\": 51.52,\\\\n          \\\\\\\"HGRN2\\\\\\\": 50.03\\\\n        }\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 5153,\\\\n        \\\\\\\"UC\\\\\\\": 1824,\\\\n        \\\\\\\"UW\\\\\\\": 1701,\\\\n        \\\\\\\"MC\\\\\\\": 865,\\\\n        \\\\\\\"mC\\\\\\\": 763,\\\\n        \\\\\\\"UC_pct\\\\\\\": 35.396856200271685,\\\\n        \\\\\\\"UW_pct\\\\\\\": 33.00989714729284,\\\\n        \\\\\\\"MC_pct\\\\\\\": 16.78633805550165,\\\\n        \\\\\\\"mC_pct\\\\\\\": 14.806908596933823,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 51.52,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 53.37,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"GDN\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 52.18,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 66.99,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 31.59,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4312,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": -0.0869,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 14.81,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 53.37,\\\\n          \\\\\\\"RetNet\\\\\\\": 50.71,\\\\n          \\\\\\\"HGRN2\\\\\\\": 50.3\\\\n        }\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 5153,\\\\n        \\\\\\\"UC\\\\\\\": 1828,\\\\n        \\\\\\\"UW\\\\\\\": 1812,\\\\n        \\\\\\\"MC\\\\\\\": 823,\\\\n        \\\\\\\"mC\\\\\\\": 690,\\\\n        \\\\\\\"UC_pct\\\\\\\": 35.474480884921405,\\\\n        \\\\\\\"UW_pct\\\\\\\": 35.16398214632253,\\\\n        \\\\\\\"MC_pct\\\\\\\": 15.971278866679603,\\\\n        \\\\\\\"mC_pct\\\\\\\": 13.39025810207646,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 50.59,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 51.1,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"GDN\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 51.45,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 64.84,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 29.36,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4679,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": 0.0254,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 13.39,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 51.1,\\\\n          \\\\\\\"RetNet\\\\\\\": 49.72,\\\\n          \\\\\\\"HGRN2\\\\\\\": 50.88\\\\n        }\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 5153,\\\\n        \\\\\\\"UC\\\\\\\": 1860,\\\\n        \\\\\\\"UW\\\\\\\": 1768,\\\\n        \\\\\\\"MC\\\\\\\": 779,\\\\n        \\\\\\\"mC\\\\\\\": 746,\\\\n        \\\\\\\"UC_pct\\\\\\\": 36.09547836211915,\\\\n        \\\\\\\"UW_pct\\\\\\\": 34.310110615175624,\\\\n        \\\\\\\"MC_pct\\\\\\\": 15.117407335532699,\\\\n        \\\\\\\"mC_pct\\\\\\\": 14.477003687172521,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 51.0,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 51.39,\\\\n        \\\\\\\"best_single\\\\n\\\\n... [截断: 输出过长，省略 6907 字符] ...\\\\n\\\\n     \\\\\\\"mC_pct\\\\\\\": 5.767138193688792,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 73.23,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 73.78,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"GDN\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 74.05,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 79.82,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 13.98,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4319,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": 0.045,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 5.77,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 73.78,\\\\n          \\\\\\\"RetNet\\\\\\\": 72.91,\\\\n          \\\\\\\"HGRN2\\\\\\\": 73.01\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 2376,\\\\n        \\\\\\\"UC\\\\\\\": 1434,\\\\n        \\\\\\\"UW\\\\\\\": 456,\\\\n        \\\\\\\"MC\\\\\\\": 292,\\\\n        \\\\\\\"mC\\\\\\\": 194,\\\\n        \\\\\\\"UC_pct\\\\\\\": 60.35353535353535,\\\\n        \\\\\\\"UW_pct\\\\\\\": 19.19191919191919,\\\\n        \\\\\\\"MC_pct\\\\\\\": 12.289562289562289,\\\\n        \\\\\\\"mC_pct\\\\\\\": 8.164983164983166,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 71.27,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 71.38,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"HGRN2\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 72.64,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 80.81,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 20.45,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4609,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": 0.1339,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 8.16,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 71.25,\\\\n          \\\\\\\"RetNet\\\\\\\": 71.21,\\\\n          \\\\\\\"HGRN2\\\\\\\": 71.38\\\\n        }\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 2376,\\\\n        \\\\\\\"UC\\\\\\\": 1421,\\\\n        \\\\\\\"UW\\\\\\\": 417,\\\\n        \\\\\\\"MC\\\\\\\": 303,\\\\n        \\\\\\\"mC\\\\\\\": 235,\\\\n        \\\\\\\"UC_pct\\\\\\\": 59.80639730639731,\\\\n        \\\\\\\"UW_pct\\\\\\\": 17.55050505050505,\\\\n        \\\\\\\"MC_pct\\\\\\\": 12.75252525252525,\\\\n        \\\\\\\"mC_pct\\\\\\\": 9.89057239057239,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 71.6,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 73.06,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"HGRN2\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 72.56,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 82.45,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 22.64,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4145,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": -0.0538,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 9.89,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 70.92,\\\\n          \\\\\\\"RetNet\\\\\\\": 71.0,\\\\n          \\\\\\\"HGRN2\\\\\\\": 73.06\\\\n        }\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 2376,\\\\n        \\\\\\\"UC\\\\\\\": 1427,\\\\n        \\\\\\\"UW\\\\\\\": 419,\\\\n        \\\\\\\"MC\\\\\\\": 304,\\\\n        \\\\\\\"mC\\\\\\\": 226,\\\\n        \\\\\\\"UC_pct\\\\\\\": 60.05892255892255,\\\\n        \\\\\\\"UW_pct\\\\\\\": 17.634680134680135,\\\\n        \\\\\\\"MC_pct\\\\\\\": 12.794612794612794,\\\\n        \\\\\\\"mC_pct\\\\\\\": 9.511784511784512,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 71.76,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 73.23,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"HGRN2\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 72.85,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 82.37,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 22.31,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4094,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": -0.0415,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 9.51,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 69.95,\\\\n          \\\\\\\"RetNet\\\\\\\": 72.14,\\\\n          \\\\\\\"HGRN2\\\\\\\": 73.23\\\\n        }\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 2376,\\\\n        \\\\\\\"UC\\\\\\\": 1469,\\\\n        \\\\\\\"UW\\\\\\\": 429,\\\\n        \\\\\\\"MC\\\\\\\": 287,\\\\n        \\\\\\\"mC\\\\\\\": 191,\\\\n        \\\\\\\"UC_pct\\\\\\\": 61.82659932659933,\\\\n        \\\\\\\"UW_pct\\\\\\\": 18.055555555555554,\\\\n        \\\\\\\"MC_pct\\\\\\\": 12.07912457912458,\\\\n        \\\\\\\"mC_pct\\\\\\\": 8.038720538720538,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 72.56,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 74.28,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"HGRN2\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 73.91,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 81.94,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 20.12,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.3808,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": -0.0495,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 8.04,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 71.8,\\\\n          \\\\\\\"RetNet\\\\\\\": 71.84,\\\\n          \\\\\\\"HGRN2\\\\\\\": 74.28\\\\n        }\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"N\\\\\\\": 2376,\\\\n        \\\\\\\"UC\\\\\\\": 1432,\\\\n        \\\\\\\"UW\\\\\\\": 445,\\\\n        \\\\\\\"MC\\\\\\\": 254,\\\\n        \\\\\\\"mC\\\\\\\": 245,\\\\n        \\\\\\\"UC_pct\\\\\\\": 60.26936026936027,\\\\n        \\\\\\\"UW_pct\\\\\\\": 18.72895622895623,\\\\n        \\\\\\\"MC_pct\\\\\\\": 10.69023569023569,\\\\n        \\\\\\\"mC_pct\\\\\\\": 10.311447811447811,\\\\n        \\\\\\\"mean_individual_acc\\\\\\\": 70.83,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 71.97,\\\\n        \\\\\\\"best_single_arch\\\\\\\": \\\\\\\"HGRN2\\\\\\\",\\\\n        \\\\\\\"mv_acc\\\\\\\": 70.96,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 81.27,\\\\n        \\\\\\\"contested_fraction\\\\\\\": 21.0,\\\\n        \\\\\\\"complementarity_index\\\\\\\": 0.4429,\\\\n        \\\\\\\"mv_efficiency\\\\\\\": -0.1086,\\\\n        \\\\\\\"wasted_complementarity\\\\\\\": 10.31,\\\\n        \\\\\\\"individual_accs\\\\\\\": {\\\\n          \\\\\\\"GDN\\\\\\\": 70.83,\\\\n          \\\\\\\"RetNet\\\\\\\": 69.87,\\\\n          \\\\\\\"HGRN2\\\\\\\": 71.97\\\\n        }\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"A3 Complementarity Decomposition\\\",\\n  \\\"scale\\\": \\\"1.3B parameters\\\",\\n  \\\"architectures\\\": [\\n    \\\"GDN\\\",\\n    \\\"RetNet\\\",\\n    \\\"HGRN2\\\"\\n  ],\\n  \\\"ratios\\\": [\\n    \\\"pure\\\",\\n    \\\"h24-1\\\",\\n    \\\"h12-1\\\",\\n    \\\"h6-1\\\",\\n    \\\"h3-1\\\"\\n  ],\\n  \\\"ratio_attention_pct\\\": {\\n    \\\"pure\\\": \\\"0%\\\",\\n    \\\"h24-1\\\": \\\"4%\\\",\\n    \\\"h12-1\\\": \\\"7.7%\\\",\\n    \\\"h6-1\\\": \\\"14.3%\\\",\\n    \\\"h3-1\\\": \\\"25%\\\"\\n  },\\n  \\\"categories\\\": {\\n    \\\"UC\\\": \\\"Universal Correct (3/3 correct)\\\",\\n    \\\"MC\\\": \\\"Majority Correct (2/3 correct)\\\",\\n    \\\"mC\\\": \\\"Minority Correct (1/3 correct, wasted complementarity)\\\",\\n    \\\"UW\\\": \\\"Universal Wrong (0/3 correct)\\\"\\n  },\\n  \\\"metrics_definition\\\": {\\n    \\\"complementarity_index\\\": \\\"(Oracle_acc - Best_single_acc) / Contested_fraction\\\",\\n    \\\"mv_efficiency\\\": \\\"(MV_acc - Best_single_acc) / (Oracle_acc - Best_single_acc)\\\",\\n    \\\"wasted_complementarity\\\": \\\"mC / N\\\"\\n  },\\n  \\\"results\\\": {\\n    \\\"lambada\\\": {\\n      \\\"pure\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1854,\\n        \\\"UW\\\": 1719,\\n        \\\"MC\\\": 818,\\n        \\\"mC\\\": 762,\\n        \\\"UC_pct\\\": 35.97904133514457,\\n        \\\"UW_pct\\\": 33.35920822821657,\\n        \\\"MC_pct\\\": 15.874248010867456,\\n        \\\"mC_pct\\\": 14.787502425771395,\\n        \\\"mean_individual_acc\\\": 51.49,\\n        \\\"best_single_acc\\\": 54.3,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 51.85,\\n        \\\"oracle_acc\\\": 66.64,\\n        \\\"contested_fraction\\\": 30.66,\\n        \\\"complementarity_index\\\": 0.4025,\\n        \\\"mv_efficiency\\\": -0.1981,\\n        \\\"wasted_complementarity\\\": 14.79,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 54.3,\\n          \\\"RetNet\\\": 51.66,\\n          \\\"HGRN2\\\": 48.42\\n        }\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1886,\\n        \\\"UW\\\": 1721,\\n        \\\"MC\\\": 809,\\n        \\\"mC\\\": 737,\\n        \\\"UC_pct\\\": 36.60003881234232,\\n        \\\"UW_pct\\\": 33.39802057054143,\\n        \\\"MC_pct\\\": 15.699592470405587,\\n        \\\"mC_pct\\\": 14.302348146710653,\\n        \\\"mean_individual_acc\\\": 51.83,\\n        \\\"best_single_acc\\\": 53.97,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 52.3,\\n        \\\"oracle_acc\\\": 66.6,\\n        \\\"contested_fraction\\\": 30.0,\\n        \\\"complementarity_index\\\": 0.4211,\\n        \\\"mv_efficiency\\\": -0.1321,\\n        \\\"wasted_complementarity\\\": 14.3,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 53.97,\\n          \\\"RetNet\\\": 51.52,\\n          \\\"HGRN2\\\": 50.03\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1824,\\n        \\\"UW\\\": 1701,\\n        \\\"MC\\\": 865,\\n        \\\"mC\\\": 763,\\n        \\\"UC_pct\\\": 35.396856200271685,\\n        \\\"UW_pct\\\": 33.00989714729284,\\n        \\\"MC_pct\\\": 16.78633805550165,\\n        \\\"mC_pct\\\": 14.806908596933823,\\n        \\\"mean_individual_acc\\\": 51.52,\\n        \\\"best_single_acc\\\": 53.37,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 52.18,\\n        \\\"oracle_acc\\\": 66.99,\\n        \\\"contested_fraction\\\": 31.59,\\n        \\\"complementarity_index\\\": 0.4312,\\n        \\\"mv_efficiency\\\": -0.0869,\\n        \\\"wasted_complementarity\\\": 14.81,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 53.37,\\n          \\\"RetNet\\\": 50.71,\\n          \\\"HGRN2\\\": 50.3\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1828,\\n        \\\"UW\\\": 1812,\\n        \\\"MC\\\": 823,\\n        \\\"mC\\\": 690,\\n        \\\"UC_pct\\\": 35.474480884921405,\\n        \\\"UW_pct\\\": 35.16398214632253,\\n        \\\"MC_pct\\\": 15.971278866679603,\\n        \\\"mC_pct\\\": 13.39025810207646,\\n        \\\"mean_individual_acc\\\": 50.59,\\n        \\\"best_single_acc\\\": 51.1,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 51.45,\\n        \\\"oracle_acc\\\": 64.84,\\n        \\\"contested_fraction\\\": 29.36,\\n        \\\"complementarity_index\\\": 0.4679,\\n        \\\"mv_efficiency\\\": 0.0254,\\n        \\\"wasted_complementarity\\\": 13.39,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 51.1,\\n          \\\"RetNet\\\": 49.72,\\n          \\\"HGRN2\\\": 50.88\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"N\\\": 5153,\\n        \\\"UC\\\": 1860,\\n        \\\"UW\\\": 1768,\\n        \\\"MC\\\": 779,\\n        \\\"mC\\\": 746,\\n        \\\"UC_pct\\\": 36.09547836211915,\\n        \\\"UW_pct\\\": 34.310110615175624,\\n        \\\"MC_pct\\\": 15.117407335532699,\\n        \\\"mC_pct\\\": 14.477003687172521,\\n        \\\"mean_individual_acc\\\": 51.0,\\n        \\\"best_single_acc\\\": 51.39,\\n        \\\"best_single\\n\\n... [截断: 输出过长，省略 6907 字符] ...\\n\\n     \\\"mC_pct\\\": 5.767138193688792,\\n        \\\"mean_individual_acc\\\": 73.23,\\n        \\\"best_single_acc\\\": 73.78,\\n        \\\"best_single_arch\\\": \\\"GDN\\\",\\n        \\\"mv_acc\\\": 74.05,\\n        \\\"oracle_acc\\\": 79.82,\\n        \\\"contested_fraction\\\": 13.98,\\n        \\\"complementarity_index\\\": 0.4319,\\n        \\\"mv_efficiency\\\": 0.045,\\n        \\\"wasted_complementarity\\\": 5.77,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 73.78,\\n          \\\"RetNet\\\": 72.91,\\n          \\\"HGRN2\\\": 73.01\\n        }\\n      }\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"pure\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1434,\\n        \\\"UW\\\": 456,\\n        \\\"MC\\\": 292,\\n        \\\"mC\\\": 194,\\n        \\\"UC_pct\\\": 60.35353535353535,\\n        \\\"UW_pct\\\": 19.19191919191919,\\n        \\\"MC_pct\\\": 12.289562289562289,\\n        \\\"mC_pct\\\": 8.164983164983166,\\n        \\\"mean_individual_acc\\\": 71.27,\\n        \\\"best_single_acc\\\": 71.38,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 72.64,\\n        \\\"oracle_acc\\\": 80.81,\\n        \\\"contested_fraction\\\": 20.45,\\n        \\\"complementarity_index\\\": 0.4609,\\n        \\\"mv_efficiency\\\": 0.1339,\\n        \\\"wasted_complementarity\\\": 8.16,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 71.25,\\n          \\\"RetNet\\\": 71.21,\\n          \\\"HGRN2\\\": 71.38\\n        }\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1421,\\n        \\\"UW\\\": 417,\\n        \\\"MC\\\": 303,\\n        \\\"mC\\\": 235,\\n        \\\"UC_pct\\\": 59.80639730639731,\\n        \\\"UW_pct\\\": 17.55050505050505,\\n        \\\"MC_pct\\\": 12.75252525252525,\\n        \\\"mC_pct\\\": 9.89057239057239,\\n        \\\"mean_individual_acc\\\": 71.6,\\n        \\\"best_single_acc\\\": 73.06,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 72.56,\\n        \\\"oracle_acc\\\": 82.45,\\n        \\\"contested_fraction\\\": 22.64,\\n        \\\"complementarity_index\\\": 0.4145,\\n        \\\"mv_efficiency\\\": -0.0538,\\n        \\\"wasted_complementarity\\\": 9.89,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 70.92,\\n          \\\"RetNet\\\": 71.0,\\n          \\\"HGRN2\\\": 73.06\\n        }\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1427,\\n        \\\"UW\\\": 419,\\n        \\\"MC\\\": 304,\\n        \\\"mC\\\": 226,\\n        \\\"UC_pct\\\": 60.05892255892255,\\n        \\\"UW_pct\\\": 17.634680134680135,\\n        \\\"MC_pct\\\": 12.794612794612794,\\n        \\\"mC_pct\\\": 9.511784511784512,\\n        \\\"mean_individual_acc\\\": 71.76,\\n        \\\"best_single_acc\\\": 73.23,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 72.85,\\n        \\\"oracle_acc\\\": 82.37,\\n        \\\"contested_fraction\\\": 22.31,\\n        \\\"complementarity_index\\\": 0.4094,\\n        \\\"mv_efficiency\\\": -0.0415,\\n        \\\"wasted_complementarity\\\": 9.51,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 69.95,\\n          \\\"RetNet\\\": 72.14,\\n          \\\"HGRN2\\\": 73.23\\n        }\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1469,\\n        \\\"UW\\\": 429,\\n        \\\"MC\\\": 287,\\n        \\\"mC\\\": 191,\\n        \\\"UC_pct\\\": 61.82659932659933,\\n        \\\"UW_pct\\\": 18.055555555555554,\\n        \\\"MC_pct\\\": 12.07912457912458,\\n        \\\"mC_pct\\\": 8.038720538720538,\\n        \\\"mean_individual_acc\\\": 72.56,\\n        \\\"best_single_acc\\\": 74.28,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 73.91,\\n        \\\"oracle_acc\\\": 81.94,\\n        \\\"contested_fraction\\\": 20.12,\\n        \\\"complementarity_index\\\": 0.3808,\\n        \\\"mv_efficiency\\\": -0.0495,\\n        \\\"wasted_complementarity\\\": 8.04,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 71.8,\\n          \\\"RetNet\\\": 71.84,\\n          \\\"HGRN2\\\": 74.28\\n        }\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"N\\\": 2376,\\n        \\\"UC\\\": 1432,\\n        \\\"UW\\\": 445,\\n        \\\"MC\\\": 254,\\n        \\\"mC\\\": 245,\\n        \\\"UC_pct\\\": 60.26936026936027,\\n        \\\"UW_pct\\\": 18.72895622895623,\\n        \\\"MC_pct\\\": 10.69023569023569,\\n        \\\"mC_pct\\\": 10.311447811447811,\\n        \\\"mean_individual_acc\\\": 70.83,\\n        \\\"best_single_acc\\\": 71.97,\\n        \\\"best_single_arch\\\": \\\"HGRN2\\\",\\n        \\\"mv_acc\\\": 70.96,\\n        \\\"oracle_acc\\\": 81.27,\\n        \\\"contested_fraction\\\": 21.0,\\n        \\\"complementarity_index\\\": 0.4429,\\n        \\\"mv_efficiency\\\": -0.1086,\\n        \\\"wasted_complementarity\\\": 10.31,\\n        \\\"individual_accs\\\": {\\n          \\\"GDN\\\": 70.83,\\n          \\\"RetNet\\\": 69.87,\\n          \\\"HGRN2\\\": 71.97\\n        }\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c6790dc1-47aa-4b1d-98a1-e4622e7443d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-23T19:24:05.377Z_
+
+<details><summary>↩ Tool result · `toolu_01MvfQUD6Fnw7eoFL8jXQTo6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"lambada\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.197997,\\n        \\\"MCE\\\": 0.528616,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.353177,\\n        \\\"mean_accuracy\\\": 0.543373\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.200245,\\n        \\\"MCE\\\": 0.52529,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.34723,\\n        \\\"mean_accuracy\\\": 0.53988\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.210132,\\n        \\\"MCE\\\": 0.524013,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.330907,\\n        \\\"mean_accuracy\\\": 0.535804\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.204859,\\n        \\\"MCE\\\": 0.535991,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.308102,\\n        \\\"mean_accuracy\\\": 0.509606\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.222327,\\n        \\\"MCE\\\": 0.559606,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.298592,\\n        \\\"mean_accuracy\\\": 0.513293\\n      }\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.232561,\\n        \\\"MCE\\\": 0.541981,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.287444,\\n        \\\"mean_accuracy\\\": 0.517369\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.231751,\\n        \\\"MCE\\\": 0.558766,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.288042,\\n        \\\"mean_accuracy\\\": 0.515234\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.233185,\\n        \\\"MCE\\\": 0.556346,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.278102,\\n        \\\"mean_accuracy\\\": 0.506695\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.227584,\\n        \\\"MCE\\\": 0.558434,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.269636,\\n        \\\"mean_accuracy\\\": 0.496798\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.223559,\\n        \\\"MCE\\\": 0.561299,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.279566,\\n        \\\"mean_accuracy\\\": 0.502426\\n      }\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.235952,\\n        \\\"MCE\\\": 0.593311,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.250293,\\n        \\\"mean_accuracy\\\": 0.48399\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.238096,\\n        \\\"MCE\\\": 0.586112,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.262369,\\n        \\\"mean_accuracy\\\": 0.499903\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.23333,\\n        \\\"MCE\\\": 0.562758,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.272398,\\n        \\\"mean_accuracy\\\": 0.503202\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.23962,\\n        \\\"MCE\\\": 0.573124,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.272876,\\n        \\\"mean_accuracy\\\": 0.511159\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.235154,\\n        \\\"MCE\\\": 0.552255,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.281932,\\n        \\\"mean_accuracy\\\": 0.514264\\n      }\\n    }\\n  },\\n  \\\"hellaswag\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.422236,\\n        \\\"MCE\\\": 0.648996,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.278911,\\n        \\\"mean_accuracy\\\": 0.607648\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.418163,\\n        \\\"MCE\\\": 0.645754,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.278586,\\n        \\\"mean_accuracy\\\": 0.597391\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.423396,\\n        \\\"MCE\\\": 0.644996,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.278893,\\n        \\\"mean_accuracy\\\": 0.610137\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.420375,\\n        \\\"MCE\\\": 0.646724,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.278461,\\n        \\\"mean_accuracy\\\": 0.605557\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.421453,\\n        \\\"MCE\\\": 0.649662,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.277882,\\n        \\\"mean_accuracy\\\"\\n\\n... [截断: 输出过长，省略 4556 字符] ...\\n\\n\\n        \\\"mean_confidence\\\": 0.721088,\\n        \\\"mean_accuracy\\\": 0.737214\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.062795,\\n        \\\"MCE\\\": 0.434009,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 1838,\\n        \\\"mean_confidence\\\": 0.719639,\\n        \\\"mean_accuracy\\\": 0.733406\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.057781,\\n        \\\"MCE\\\": 0.430787,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 1838,\\n        \\\"mean_confidence\\\": 0.715676,\\n        \\\"mean_accuracy\\\": 0.730141\\n      }\\n    }\\n  },\\n  \\\"arc_easy\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.11344,\\n        \\\"MCE\\\": 0.432644,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.657157,\\n        \\\"mean_accuracy\\\": 0.712121\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.113957,\\n        \\\"MCE\\\": 0.429874,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.656465,\\n        \\\"mean_accuracy\\\": 0.709175\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.11132,\\n        \\\"MCE\\\": 0.433438,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.651902,\\n        \\\"mean_accuracy\\\": 0.699495\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.109824,\\n        \\\"MCE\\\": 0.433193,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.667127,\\n        \\\"mean_accuracy\\\": 0.717593\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.108049,\\n        \\\"MCE\\\": 0.433976,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.66313,\\n        \\\"mean_accuracy\\\": 0.708333\\n      }\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.111098,\\n        \\\"MCE\\\": 0.432719,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.655984,\\n        \\\"mean_accuracy\\\": 0.712963\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.114858,\\n        \\\"MCE\\\": 0.436558,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.654835,\\n        \\\"mean_accuracy\\\": 0.708754\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.1091,\\n        \\\"MCE\\\": 0.433557,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.667637,\\n        \\\"mean_accuracy\\\": 0.720118\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.11907,\\n        \\\"MCE\\\": 0.431902,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.658934,\\n        \\\"mean_accuracy\\\": 0.718013\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.113186,\\n        \\\"MCE\\\": 0.430577,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.644391,\\n        \\\"mean_accuracy\\\": 0.696128\\n      }\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.11693,\\n        \\\"MCE\\\": 0.429745,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.659359,\\n        \\\"mean_accuracy\\\": 0.712963\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.11361,\\n        \\\"MCE\\\": 0.434564,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.674851,\\n        \\\"mean_accuracy\\\": 0.730219\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.117436,\\n        \\\"MCE\\\": 0.433307,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.673238,\\n        \\\"mean_accuracy\\\": 0.733165\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.115392,\\n        \\\"MCE\\\": 0.431688,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.677841,\\n        \\\"mean_accuracy\\\": 0.741162\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.113474,\\n        \\\"MCE\\\": 0.430589,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.665299,\\n        \\\"mean_accuracy\\\": 0.720539\\n      }\\n    }\\n  },\\n  \\\"disruption_threshold_vs_ece_correlation\\\": {\\n    \\\"lambada_pure\\\": {\\n      \\\"rho\\\": 1.0,\\n      \\\"p\\\": 0.0,\\n      \\\"ece_values\\\": {\\n        \\\"GDN\\\": 0.197997,\\n        \\\"RetNet\\\": 0.232561,\\n        \\\"HGRN2\\\": 0.235952\\n      },\\n      \\\"threshold_values\\\": {\\n        \\\"GDN\\\": 0.696,\\n        \\\"RetNet\\\": 0.998,\\n        \\\"HGRN2\\\": 1.137\\n      }\\n    },\\n    \\\"all_benchmarks_mean\\\": {\\n      \\\"rho\\\": 1.0,\\n      \\\"p\\\": 0.0,\\n      \\\"mean_ece_values\\\": {\\n        \\\"GDN\\\": 0.197793,\\n        \\\"RetNet\\\": 0.203195,\\n        \\\"HGRN2\\\": 0.208281\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21b4c294-5f8a-4d1f-bd03-e2c34c571366",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "d7d493c9-9752-4e9f-91fb-bb1e76d56d60",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"lambada\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.197997,\\\\n        \\\\\\\"MCE\\\\\\\": 0.528616,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.353177,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.543373\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.200245,\\\\n        \\\\\\\"MCE\\\\\\\": 0.52529,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.34723,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.53988\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.210132,\\\\n        \\\\\\\"MCE\\\\\\\": 0.524013,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.330907,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.535804\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.204859,\\\\n        \\\\\\\"MCE\\\\\\\": 0.535991,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.308102,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.509606\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.222327,\\\\n        \\\\\\\"MCE\\\\\\\": 0.559606,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.298592,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.513293\\\\n      }\\\\n    },\\\\n    \\\\\\\"RetNet\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.232561,\\\\n        \\\\\\\"MCE\\\\\\\": 0.541981,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.287444,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.517369\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.231751,\\\\n        \\\\\\\"MCE\\\\\\\": 0.558766,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.288042,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.515234\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.233185,\\\\n        \\\\\\\"MCE\\\\\\\": 0.556346,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.278102,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.506695\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.227584,\\\\n        \\\\\\\"MCE\\\\\\\": 0.558434,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.269636,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.496798\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.223559,\\\\n        \\\\\\\"MCE\\\\\\\": 0.561299,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.279566,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.502426\\\\n      }\\\\n    },\\\\n    \\\\\\\"HGRN2\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.235952,\\\\n        \\\\\\\"MCE\\\\\\\": 0.593311,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.250293,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.48399\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.238096,\\\\n        \\\\\\\"MCE\\\\\\\": 0.586112,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.262369,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.499903\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.23333,\\\\n        \\\\\\\"MCE\\\\\\\": 0.562758,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.272398,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.503202\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.23962,\\\\n        \\\\\\\"MCE\\\\\\\": 0.573124,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.272876,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.511159\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.235154,\\\\n        \\\\\\\"MCE\\\\\\\": 0.552255,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 5153,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.281932,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.514264\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"hellaswag\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.422236,\\\\n        \\\\\\\"MCE\\\\\\\": 0.648996,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 10042,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.278911,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.607648\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.418163,\\\\n        \\\\\\\"MCE\\\\\\\": 0.645754,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 10042,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.278586,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.597391\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.423396,\\\\n        \\\\\\\"MCE\\\\\\\": 0.644996,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 10042,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.278893,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.610137\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.420375,\\\\n        \\\\\\\"MCE\\\\\\\": 0.646724,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 10042,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.278461,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.605557\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.421453,\\\\n        \\\\\\\"MCE\\\\\\\": 0.649662,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 10042,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.277882,\\\\n        \\\\\\\"mean_accuracy\\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 4556 字符] ...\\\\n\\\\n\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.721088,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.737214\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.062795,\\\\n        \\\\\\\"MCE\\\\\\\": 0.434009,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 1838,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.719639,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.733406\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.057781,\\\\n        \\\\\\\"MCE\\\\\\\": 0.430787,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 1838,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.715676,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.730141\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"arc_easy\\\\\\\": {\\\\n    \\\\\\\"GDN\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.11344,\\\\n        \\\\\\\"MCE\\\\\\\": 0.432644,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.657157,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.712121\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.113957,\\\\n        \\\\\\\"MCE\\\\\\\": 0.429874,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.656465,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.709175\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.11132,\\\\n        \\\\\\\"MCE\\\\\\\": 0.433438,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.651902,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.699495\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.109824,\\\\n        \\\\\\\"MCE\\\\\\\": 0.433193,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.667127,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.717593\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.108049,\\\\n        \\\\\\\"MCE\\\\\\\": 0.433976,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.66313,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.708333\\\\n      }\\\\n    },\\\\n    \\\\\\\"RetNet\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.111098,\\\\n        \\\\\\\"MCE\\\\\\\": 0.432719,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.655984,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.712963\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.114858,\\\\n        \\\\\\\"MCE\\\\\\\": 0.436558,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.654835,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.708754\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.1091,\\\\n        \\\\\\\"MCE\\\\\\\": 0.433557,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.667637,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.720118\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.11907,\\\\n        \\\\\\\"MCE\\\\\\\": 0.431902,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.658934,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.718013\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.113186,\\\\n        \\\\\\\"MCE\\\\\\\": 0.430577,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.644391,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.696128\\\\n      }\\\\n    },\\\\n    \\\\\\\"HGRN2\\\\\\\": {\\\\n      \\\\\\\"pure\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.11693,\\\\n        \\\\\\\"MCE\\\\\\\": 0.429745,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.659359,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.712963\\\\n      },\\\\n      \\\\\\\"h24-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.11361,\\\\n        \\\\\\\"MCE\\\\\\\": 0.434564,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.674851,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.730219\\\\n      },\\\\n      \\\\\\\"h12-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.117436,\\\\n        \\\\\\\"MCE\\\\\\\": 0.433307,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.673238,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.733165\\\\n      },\\\\n      \\\\\\\"h6-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.115392,\\\\n        \\\\\\\"MCE\\\\\\\": 0.431688,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.677841,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.741162\\\\n      },\\\\n      \\\\\\\"h3-1\\\\\\\": {\\\\n        \\\\\\\"ECE\\\\\\\": 0.113474,\\\\n        \\\\\\\"MCE\\\\\\\": 0.430589,\\\\n        \\\\\\\"n_bins\\\\\\\": 15,\\\\n        \\\\\\\"n_samples\\\\\\\": 2376,\\\\n        \\\\\\\"mean_confidence\\\\\\\": 0.665299,\\\\n        \\\\\\\"mean_accuracy\\\\\\\": 0.720539\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"disruption_threshold_vs_ece_correlation\\\\\\\": {\\\\n    \\\\\\\"lambada_pure\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 1.0,\\\\n      \\\\\\\"p\\\\\\\": 0.0,\\\\n      \\\\\\\"ece_values\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": 0.197997,\\\\n        \\\\\\\"RetNet\\\\\\\": 0.232561,\\\\n        \\\\\\\"HGRN2\\\\\\\": 0.235952\\\\n      },\\\\n      \\\\\\\"threshold_values\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": 0.696,\\\\n        \\\\\\\"RetNet\\\\\\\": 0.998,\\\\n        \\\\\\\"HGRN2\\\\\\\": 1.137\\\\n      }\\\\n    },\\\\n    \\\\\\\"all_benchmarks_mean\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 1.0,\\\\n      \\\\\\\"p\\\\\\\": 0.0,\\\\n      \\\\\\\"mean_ece_values\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": 0.197793,\\\\n        \\\\\\\"RetNet\\\\\\\": 0.203195,\\\\n        \\\\\\\"HGRN2\\\\\\\": 0.208281\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"lambada\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.197997,\\n        \\\"MCE\\\": 0.528616,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.353177,\\n        \\\"mean_accuracy\\\": 0.543373\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.200245,\\n        \\\"MCE\\\": 0.52529,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.34723,\\n        \\\"mean_accuracy\\\": 0.53988\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.210132,\\n        \\\"MCE\\\": 0.524013,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.330907,\\n        \\\"mean_accuracy\\\": 0.535804\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.204859,\\n        \\\"MCE\\\": 0.535991,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.308102,\\n        \\\"mean_accuracy\\\": 0.509606\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.222327,\\n        \\\"MCE\\\": 0.559606,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.298592,\\n        \\\"mean_accuracy\\\": 0.513293\\n      }\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.232561,\\n        \\\"MCE\\\": 0.541981,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.287444,\\n        \\\"mean_accuracy\\\": 0.517369\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.231751,\\n        \\\"MCE\\\": 0.558766,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.288042,\\n        \\\"mean_accuracy\\\": 0.515234\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.233185,\\n        \\\"MCE\\\": 0.556346,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.278102,\\n        \\\"mean_accuracy\\\": 0.506695\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.227584,\\n        \\\"MCE\\\": 0.558434,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.269636,\\n        \\\"mean_accuracy\\\": 0.496798\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.223559,\\n        \\\"MCE\\\": 0.561299,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.279566,\\n        \\\"mean_accuracy\\\": 0.502426\\n      }\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.235952,\\n        \\\"MCE\\\": 0.593311,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.250293,\\n        \\\"mean_accuracy\\\": 0.48399\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.238096,\\n        \\\"MCE\\\": 0.586112,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.262369,\\n        \\\"mean_accuracy\\\": 0.499903\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.23333,\\n        \\\"MCE\\\": 0.562758,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.272398,\\n        \\\"mean_accuracy\\\": 0.503202\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.23962,\\n        \\\"MCE\\\": 0.573124,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.272876,\\n        \\\"mean_accuracy\\\": 0.511159\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.235154,\\n        \\\"MCE\\\": 0.552255,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 5153,\\n        \\\"mean_confidence\\\": 0.281932,\\n        \\\"mean_accuracy\\\": 0.514264\\n      }\\n    }\\n  },\\n  \\\"hellaswag\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.422236,\\n        \\\"MCE\\\": 0.648996,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.278911,\\n        \\\"mean_accuracy\\\": 0.607648\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.418163,\\n        \\\"MCE\\\": 0.645754,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.278586,\\n        \\\"mean_accuracy\\\": 0.597391\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.423396,\\n        \\\"MCE\\\": 0.644996,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.278893,\\n        \\\"mean_accuracy\\\": 0.610137\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.420375,\\n        \\\"MCE\\\": 0.646724,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.278461,\\n        \\\"mean_accuracy\\\": 0.605557\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.421453,\\n        \\\"MCE\\\": 0.649662,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 10042,\\n        \\\"mean_confidence\\\": 0.277882,\\n        \\\"mean_accuracy\\\"\\n\\n... [截断: 输出过长，省略 4556 字符] ...\\n\\n\\n        \\\"mean_confidence\\\": 0.721088,\\n        \\\"mean_accuracy\\\": 0.737214\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.062795,\\n        \\\"MCE\\\": 0.434009,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 1838,\\n        \\\"mean_confidence\\\": 0.719639,\\n        \\\"mean_accuracy\\\": 0.733406\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.057781,\\n        \\\"MCE\\\": 0.430787,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 1838,\\n        \\\"mean_confidence\\\": 0.715676,\\n        \\\"mean_accuracy\\\": 0.730141\\n      }\\n    }\\n  },\\n  \\\"arc_easy\\\": {\\n    \\\"GDN\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.11344,\\n        \\\"MCE\\\": 0.432644,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.657157,\\n        \\\"mean_accuracy\\\": 0.712121\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.113957,\\n        \\\"MCE\\\": 0.429874,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.656465,\\n        \\\"mean_accuracy\\\": 0.709175\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.11132,\\n        \\\"MCE\\\": 0.433438,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.651902,\\n        \\\"mean_accuracy\\\": 0.699495\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.109824,\\n        \\\"MCE\\\": 0.433193,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.667127,\\n        \\\"mean_accuracy\\\": 0.717593\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.108049,\\n        \\\"MCE\\\": 0.433976,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.66313,\\n        \\\"mean_accuracy\\\": 0.708333\\n      }\\n    },\\n    \\\"RetNet\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.111098,\\n        \\\"MCE\\\": 0.432719,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.655984,\\n        \\\"mean_accuracy\\\": 0.712963\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.114858,\\n        \\\"MCE\\\": 0.436558,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.654835,\\n        \\\"mean_accuracy\\\": 0.708754\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.1091,\\n        \\\"MCE\\\": 0.433557,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.667637,\\n        \\\"mean_accuracy\\\": 0.720118\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.11907,\\n        \\\"MCE\\\": 0.431902,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.658934,\\n        \\\"mean_accuracy\\\": 0.718013\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.113186,\\n        \\\"MCE\\\": 0.430577,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.644391,\\n        \\\"mean_accuracy\\\": 0.696128\\n      }\\n    },\\n    \\\"HGRN2\\\": {\\n      \\\"pure\\\": {\\n        \\\"ECE\\\": 0.11693,\\n        \\\"MCE\\\": 0.429745,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.659359,\\n        \\\"mean_accuracy\\\": 0.712963\\n      },\\n      \\\"h24-1\\\": {\\n        \\\"ECE\\\": 0.11361,\\n        \\\"MCE\\\": 0.434564,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.674851,\\n        \\\"mean_accuracy\\\": 0.730219\\n      },\\n      \\\"h12-1\\\": {\\n        \\\"ECE\\\": 0.117436,\\n        \\\"MCE\\\": 0.433307,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.673238,\\n        \\\"mean_accuracy\\\": 0.733165\\n      },\\n      \\\"h6-1\\\": {\\n        \\\"ECE\\\": 0.115392,\\n        \\\"MCE\\\": 0.431688,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.677841,\\n        \\\"mean_accuracy\\\": 0.741162\\n      },\\n      \\\"h3-1\\\": {\\n        \\\"ECE\\\": 0.113474,\\n        \\\"MCE\\\": 0.430589,\\n        \\\"n_bins\\\": 15,\\n        \\\"n_samples\\\": 2376,\\n        \\\"mean_confidence\\\": 0.665299,\\n        \\\"mean_accuracy\\\": 0.720539\\n      }\\n    }\\n  },\\n  \\\"disruption_threshold_vs_ece_correlation\\\": {\\n    \\\"lambada_pure\\\": {\\n      \\\"rho\\\": 1.0,\\n      \\\"p\\\": 0.0,\\n      \\\"ece_values\\\": {\\n        \\\"GDN\\\": 0.197997,\\n        \\\"RetNet\\\": 0.232561,\\n        \\\"HGRN2\\\": 0.235952\\n      },\\n      \\\"threshold_values\\\": {\\n        \\\"GDN\\\": 0.696,\\n        \\\"RetNet\\\": 0.998,\\n        \\\"HGRN2\\\": 1.137\\n      }\\n    },\\n    \\\"all_benchmarks_mean\\\": {\\n      \\\"rho\\\": 1.0,\\n      \\\"p\\\": 0.0,\\n      \\\"mean_ece_values\\\": {\\n        \\\"GDN\\\": 0.197793,\\n        \\\"RetNet\\\": 0.203195,\\n        \\\"HGRN2\\\": 0.208281\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  },
+  "sourceToolAssistantUUID": "21b4c294-5f8a-4d1f-bd03-e2c34c571366",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-23T19:24:06.134Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015XA9NTUtBJJqQdVfjFDTfK`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/ -name \"*.py\" -path \"*/scripts/*\" -o -name \"*.py\" -path \"*/analysis/*\" -o -name \"gen_*.py\" -o -name \"plot_*.py\" -o -name \"analyze_*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7d493c9-9752-4e9f-91fb-bb1e76d56d60",
+  "isSidechain": false,
+  "requestId": "req_011CbL3ZpvyxJubFjMcDMCgN",
+  "type": "assistant",
+  "uuid": "9e0d7cfa-3eaf-45af-a1af-378707e918cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJuq5et7t2Rqf41TYxAcaV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16147,
+      "cache_read_input_tokens": 77947,
+      "output_tokens": 4714,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4714,
+          "cache_read_input_tokens": 77947,
+          "cache_creation_input_tokens": 16147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "9e0d7cfa-3eaf-45af-a1af-378707e918cb",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T19:24:06.897Z_
+
+<details><summary>↩ Tool result · `toolu_015XA9NTUtBJJqQdVfjFDTfK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/scripts/download_models.py\\n/root/entrainment_gated_ft/scripts/eval_composition.py\\n/root/entrainment_gated_ft/scripts/eval_logprob.py\\n/root/entrainment_gated_ft/scripts/download_1.3b_models.py\\n/root/entrainment_gated_ft/scripts/run_lmeval_fla.py\\n/root/entrainment_gated_ft/scripts/run_lmeval_clean.py\\n/root/entrainment_gated_ft/scripts/analyze_w3_multiplicity.py\\n/root/entrainment_gated_ft/scripts/analyze_340m_multi.py\\n/root/entrainment_gated_ft/scripts/fla_lm_eval.py\\n/root/entrainment_gated_ft/scripts/patch_fla_eval.py\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/gen_figure.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch_extended.py\\n/root/entrainment_gated_ft/results/figures/plot_jaccard_heatmap.py\\n/root/entrainment_gated_ft/analysis/convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/logprob_analysis.py\\n/root/entrainment_gated_ft/analysis/logprob_plots.py\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\n/root/entrainment_gated_ft/analysis/lambada_matched_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_robustness_h6.py\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n/root/entrainment_gated_ft/analysis/sample_characterization.py\\n/root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\\n/root/entrainment_gated_ft/analysis/sample_perplexity_dryrun.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\n/root/entrainment_gated_ft/analysis/fix_hgrn2_and_complete.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\n/root/entrainment_gated_ft/analysis/additional_benchmarks_convergence.py\\n/root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\\n/root/entrainment_gated_ft/analysis/generate_paper_data.py\\n/root/entrainment_gated_ft/analysis/plot_decoupling.py\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/xstorycloze_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/extract_attention_weights.py\\n/root/entrainment_gated_ft/analysis/exp007_analysis.py\\n/root/entrainment_gated_ft/analysis/within_arch_stability.py\\n/root/entrainment_gated_ft/analysis/confidence_margin_analysis.py\\n/root/entrainment_gated_ft/analysis/confidence_margin_within_category.py\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\n/root/entrainment_gated_ft/analysis/retnet_hgrn2_only_decoupling.py\\n/root/entrainment_gated_ft/analysis/e2_continuous_jaccard.py\\n/root/entrainment_gated_ft/analysis/e1_confidence_selection.py\\n/root/entrainment_gated_ft/analysis/e3_calibration.py\\n/root/entrainment_gated_ft/analyze_exp007.py\\n/root/entrainment_gated_ft/analyze_boolq_hellaswag.py\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py\\n/root/entrainment_gated_ft/analyze_winogrande_piqa.py\\n/root/entrainment_gated_ft/analyze_e4.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9e0d7cfa-3eaf-45af-a1af-378707e918cb",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "9cdb0eef-a500-4b9e-b7fb-8c0b34bf288c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/scripts/download_models.py\\\\n/root/entrainment_gated_ft/scripts/eval_composition.py\\\\n/root/entrainment_gated_ft/scripts/eval_logprob.py\\\\n/root/entrainment_gated_ft/scripts/download_1.3b_models.py\\\\n/root/entrainment_gated_ft/scripts/run_lmeval_fla.py\\\\n/root/entrainment_gated_ft/scripts/run_lmeval_clean.py\\\\n/root/entrainment_gated_ft/scripts/analyze_w3_multiplicity.py\\\\n/root/entrainment_gated_ft/scripts/analyze_340m_multi.py\\\\n/root/entrainment_gated_ft/scripts/fla_lm_eval.py\\\\n/root/entrainment_gated_ft/scripts/patch_fla_eval.py\\\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/gen_figure.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch_jaccard.py\\\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch_extended.py\\\\n/root/entrainment_gated_ft/results/figures/plot_jaccard_heatmap.py\\\\n/root/entrainment_gated_ft/analysis/convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/logprob_analysis.py\\\\n/root/entrainment_gated_ft/analysis/logprob_plots.py\\\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\\\n/root/entrainment_gated_ft/analysis/lambada_matched_comparison.py\\\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.py\\\\n/root/entrainment_gated_ft/analysis/lambada_robustness_h6.py\\\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\\\n/root/entrainment_gated_ft/analysis/sample_characterization.py\\\\n/root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\\\\n/root/entrainment_gated_ft/analysis/sample_perplexity_dryrun.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\\\n/root/entrainment_gated_ft/analysis/fix_hgrn2_and_complete.py\\\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\\\n/root/entrainment_gated_ft/analysis/additional_benchmarks_convergence.py\\\\n/root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\\\\n/root/entrainment_gated_ft/analysis/generate_paper_data.py\\\\n/root/entrainment_gated_ft/analysis/plot_decoupling.py\\\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/xstorycloze_convergence_analysis.py\\\\n/root/entrainment_gated_ft/analysis/extract_attention_weights.py\\\\n/root/entrainment_gated_ft/analysis/exp007_analysis.py\\\\n/root/entrainment_gated_ft/analysis/within_arch_stability.py\\\\n/root/entrainment_gated_ft/analysis/confidence_margin_analysis.py\\\\n/root/entrainment_gated_ft/analysis/confidence_margin_within_category.py\\\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\\\n/root/entrainment_gated_ft/analysis/retnet_hgrn2_only_decoupling.py\\\\n/root/entrainment_gated_ft/analysis/e2_continuous_jaccard.py\\\\n/root/entrainment_gated_ft/analysis/e1_confidence_selection.py\\\\n/root/entrainment_gated_ft/analysis/e3_calibration.py\\\\n/root/entrainment_gated_ft/analyze_exp007.py\\\\n/root/entrainment_gated_ft/analyze_boolq_hellaswag.py\\\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py\\\\n/root/entrainment_gated_ft/analyze_winogrande_piqa.py\\\\n/root/entrainment_gated_ft/analyze_e4.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/scripts/download_models.py\\n/root/entrainment_gated_ft/scripts/eval_composition.py\\n/root/entrainment_gated_ft/scripts/eval_logprob.py\\n/root/entrainment_gated_ft/scripts/download_1.3b_models.py\\n/root/entrainment_gated_ft/scripts/run_lmeval_fla.py\\n/root/entrainment_gated_ft/scripts/run_lmeval_clean.py\\n/root/entrainment_gated_ft/scripts/analyze_w3_multiplicity.py\\n/root/entrainment_gated_ft/scripts/analyze_340m_multi.py\\n/root/entrainment_gated_ft/scripts/fla_lm_eval.py\\n/root/entrainment_gated_ft/scripts/patch_fla_eval.py\\n/root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/gen_figure.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_4arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_6arch_jaccard.py\\n/root/entrainment_gated_ft/results/exp005_zoo_expansion/analyze_5arch_extended.py\\n/root/entrainment_gated_ft/results/figures/plot_jaccard_heatmap.py\\n/root/entrainment_gated_ft/analysis/convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/logprob_analysis.py\\n/root/entrainment_gated_ft/analysis/logprob_plots.py\\n/root/entrainment_gated_ft/analysis/cross_scale_convergence.py\\n/root/entrainment_gated_ft/analysis/lambada_matched_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_three_arch_comparison.py\\n/root/entrainment_gated_ft/analysis/lambada_robustness_h6.py\\n/root/entrainment_gated_ft/analysis/task_specificity_analysis.py\\n/root/entrainment_gated_ft/analysis/sample_characterization.py\\n/root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py\\n/root/entrainment_gated_ft/analysis/sample_perplexity_dryrun.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness.py\\n/root/entrainment_gated_ft/analysis/fix_hgrn2_and_complete.py\\n/root/entrainment_gated_ft/analysis/statistical_robustness_supplement.py\\n/root/entrainment_gated_ft/analysis/additional_benchmarks_convergence.py\\n/root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py\\n/root/entrainment_gated_ft/analysis/generate_paper_data.py\\n/root/entrainment_gated_ft/analysis/plot_decoupling.py\\n/root/entrainment_gated_ft/analysis/exp011_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/xstorycloze_convergence_analysis.py\\n/root/entrainment_gated_ft/analysis/extract_attention_weights.py\\n/root/entrainment_gated_ft/analysis/exp007_analysis.py\\n/root/entrainment_gated_ft/analysis/within_arch_stability.py\\n/root/entrainment_gated_ft/analysis/confidence_margin_analysis.py\\n/root/entrainment_gated_ft/analysis/confidence_margin_within_category.py\\n/root/entrainment_gated_ft/analysis/jaccard_upper_bound.py\\n/root/entrainment_gated_ft/analysis/retnet_hgrn2_only_decoupling.py\\n/root/entrainment_gated_ft/analysis/e2_continuous_jaccard.py\\n/root/entrainment_gated_ft/analysis/e1_confidence_selection.py\\n/root/entrainment_gated_ft/analysis/e3_calibration.py\\n/root/entrainment_gated_ft/analyze_exp007.py\\n/root/entrainment_gated_ft/analyze_boolq_hellaswag.py\\n/root/entrainment_gated_ft/analyze_confidence_margin_mc.py\\n/root/entrainment_gated_ft/analyze_winogrande_piqa.py\\n/root/entrainment_gated_ft/analyze_e4.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9e0d7cfa-3eaf-45af-a1af-378707e918cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-23T19:27:22.497Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have a lot of source data. Let me verify the key findings:
+
+1. **Pythia seed calibration** (from e4_analysis.json):
+   - LAMBADA: within-seed J_h = 0.2730, J_u = 0.3930, α = 0.3551
+   - ARC-Easy: within-seed J_h = 0.3115, J_u = 0.3537, α = 0.4907
+   
+   Appendix says:
+   - LAMBADA J_h = 0.273, J_u = 0.393 ✓
+   - ARC-Easy J_h = 0.312, J_u = 0.354 ✓
+   - LAMBADA α = 0.36 → source: 0.3551 → rounds to 0.36 ✓
+   - ARC-Easy α = 0.49 → source: 0.4907 → rounds to 0.49 ✓
+
+   Now checking the "2.7--4.3×" claim against the LAMBADA J_h values.
+
+Dividing the Jaccard scores by different baseline estimates gives me a range from 2.73 to 4.37, which matches the reported "2.7--4.3×" depending on which baseline denominator I use—specifically, 4.3 comes from using 0.091 as the J_u baseline.
+
+Now I'm looking at the complementarity decomposition data from the LAMBADA h3-1 model, which breaks down 5,153 samples into four categories: uncontradicted correct (36.10%), uncontradicted wrong (34.31%), minimally contradicted (15.12%), and multiply contradicted (14.48%). These percentages map directly to the appendix table values, confirming the source of those complementarity fractions.
+
+I'm verifying the mutual exclusivity explanation calculation—dividing the minimally contradicted fraction by the sum of minimally and multiply contradicted gives 51.0%, which matches the raw counts of 779 and 746 samples yielding 51.08%. Now checking HellaSwag h3-1 against the source data, where the percentages (51.88%, 7.78%, 7.27%, 33.07%) align with the appendix values (.519, .078, .073, .331), and the mutual exclusivity calculation for that dataset comes to 51.7%.
+
+For ARC-Easy h3-1, I'm comparing the source counts (1432 uncontradicted, 254 multiply contradicted, 245 minimally contradicted, 445 unwarranted) against the reported percentages and appendix values, confirming the conversions from raw counts to decimal fractions.
+
+The multiply contradicted fraction for ARC-Easy checks out at 50.9%. I notice the BoolQ data got truncated in the output, so I can't fully verify those numbers, but LAMBADA, HellaSwag, and ARC-Easy are all consistent with what's reported. Now I'm looking at the ECE calibration values from the calibration file to see how they compare across the different models.
+
+The ECE values match what's in the appendix—GDN at 0.222, RetNet at 0.224, and HGRN2 at 0.235. But when I calculate the cross-architecture spread the appendix mentions, I'm getting 5.7% instead of the claimed 17%. The range is 0.013, the mean is 0.227, so range divided by mean gives 0.013/0.227 = 5.7%, which is nowhere near 17%.
+
+I've tried different interpretations—maybe they meant max divided by min minus one, which would be 0.235/0.222 - 1 = 5.9%, still not matching. Now I'm wondering if the 17% refers to something else entirely, perhaps the disruption threshold values instead of the ECE values themselves.
+
+Looking at the disruption thresholds from the source data, the spread calculation works out: the range of 0.441 divided by the mean of 0.944 gives 46.7%, which matches what the appendix reports. But when I apply the same logic to the ECE values, I get 5.7%, nowhere near 17%. Let me check if they might have used a different set of ECE measurements—perhaps the mean values computed across all benchmarks rather than the specific ones I've been looking at. I'm trying different formulas to derive that 17% figure, but none of them match—the coefficient of variation gives me 2.5%, and the relative spread is only 5.7%. Either there's a calculation error in the appendix or the stated ECE values are wrong, possibly a typo where 17% should be 5%.
+
+7% or 6%. The qualitative claim still holds even with the corrected percentage, but I need to flag that 17% as incorrect.
+
+Now I'm noticing a small discrepancy in the GDN per-example counts between the prediction framework JSON and the appendix table—the JSON shows 461 helped and 616 hurt, while the appendix lists 462 and 615, a difference of just one count in each direction.
+
+Let me verify this against the calibration data by working backward from the mean accuracy scores. If I multiply the accuracy rates by the total examples, I can derive the exact counts and see whether the helped/hurt split matches up. The per_example counts don't align with the prediction JSON either—there's a one-example discrepancy that suggests a subtle difference in how correctness is being calculated, possibly from tie-breaking or floating-point precision issues. Now I'm checking the RetNet counts, where the source JSON shows n_helped=420 and n_hurt=497, but the appendix lists 426 and 495 respectively, another inconsistency I need to reconcile against the calibration data. The prediction JSON data matches the calibration data, but the per_example table appears to come from a different computation. Now I'm checking the complementarity table against the main text LAMBADA h3-1 accuracy—the calibration data shows GDN at 0.513293, RetNet at 0.502426, and HGRN2 at 0.514264, which aligns with what the convergence detail describes about how GDN declines from its pure accuracy of 0.543 down to 0.513 under h3-1, while HGRN2 rises from 0.484 to 0.514.
+
+Now I'm verifying the cross-benchmark Jaccard trajectories from the source against the appendix table, checking the mean pairwise Jaccard values for the helped sets across the different hierarchy ratios.
+
+Looking at the actual numbers, the appendix values match the J_mean calculations rather than J_helped—so there's a mislabeling issue where the caption claims to report helped sets but actually reports the mean of helped and hurt sets instead. The h3-1 entry also appears to have a rounding discrepancy, showing .097 when it should round to .096.
+
+For HellaSwag, all the J_mean values align perfectly with what's in the appendix. However, there's a mismatch with the sigma_rho statistic—the source shows 0.3 but Table 1 lists 0.4, though this could stem from different analytical approaches between the trajectory analysis and the convergence table.
+
+Now I'm checking the 5-architecture Jaccard pairwise comparisons for LAMBADA against the extended architecture table in the appendix. Generating markdown table... Generating appendix table... Continuing through the remaining model pairs, all the rounding checks are passing correctly—RetNet combinations, HGRN2 with GLA and DeltaNet, and GLA with DeltaNet all match their expected three-decimal values. Now I need to verify the mean J_h calculation.
+
+The mean J_h value of 0.122107 rounds to .122 as stated in the appendix, and similarly the mean J_u of 0.094597 rounds to .095. Both check out. Though I'm noticing one discrepancy: the GDN-HGRN2 J_h value should be .122, not .123 as I had it.
+
+Moving on to the ARC-Easy dataset with the five-architecture pairwise comparisons, I'm checking the source values against what's documented.
+
+Generating markdown table... Now I'm checking the permutation test results across all datasets—the z-scores range from 3.49 to 12.21 according to the claim, but when I look at the individual results, PIQA's minimum z-score is 3.08, which falls below that stated range, so I need to verify whether this discrepancy is an error in the source data or if I'm misreading the aggregation. I'm trying to reconcile the discrepancy between the summary's z-ranges and the appendix claim. The summary shows z_range_helped_piqa starting at 3.08, which is lower than the appendix's stated minimum of 3.49, so either the appendix is only reporting a subset of tests or there's an inconsistency in how the ranges were calculated. Given that there are 40 total pairs tested across 4 benchmarks with both helped and hurt directions, I need to figure out whether the appendix's z-range refers to all 40 tests in one direction or some other grouping. The stated z range of 3.49–12.21 is contradicted by the actual minimum of 3.08 from the permutation test data. Looking at the p-values, z = 3.08 converts to p ≈ 0.002, which still satisfies the significance threshold, so all 10 PIQA pairs remain significant even with this lower bound. doesn't match the minimum z-value of 3.08 that I calculated for the borderline case. Looking at the appendix table more carefully, it only shows data for LAMBADA and ARC-Easy, where the minimum z for the helped category is 3.49, which would explain the reported range—but this seems to exclude other benchmark pairs that might have lower z-values.
+
+Checking the subsequent text, I see references to six-architecture tests with z ≥ 2.9, and additional tests on HellaSwag and PIQA all showing p < .01, which suggests the "40 permutation tests" statement is specifically about the LAMBADA and ARC-Easy helped cases rather than a comprehensive summary across all benchmarks tested. Now I'm checking the PIQA permutation test results and comparing the convergence sigma values from Table 1 against the source data. I'm noticing a discrepancy in the HellaSwag h3-1 value (1.18 in the source versus 1.22 in the table), and I need to verify the PIQA sigma values as well. The appendix Jaccard table actually aligns with the source JSON, so the discrepancies I'm seeing are between the main text's convergence table and the JSON data—not an appendix issue. I should note this but focus on verifying the appendix itself. Now checking the correlation coefficients and p-values against the JSON statistics to see if those match up. ag sigma_rho = 0.3, sigma_p = 0.683. Table 1: ρ=0.4, p=.517 ✗
+- PIQA sigma_rho = -0.5, sigma_p = 0.45. Table 1: ρ=-0.5, p=.450 ✓
+- ARC-Easy sigma_rho = 0.3, sigma_p = 0.683. Table 1: ρ=-0.7, p=.233 ✗
+
+So LAMBADA and PIQA match, but HellaSwag and ARC-Easy don't. This suggests the JSON sigma values for HellaSwag and ARC-Easy might be from different data or processing. But since LAMBADA and PIQA match, the discrepancy is selective.
+
+The cross_benchmark_jaccard JSON was likely generated with different accuracy data for some benchmarks, which is a source data issue. Since the appendix Jaccard table matches the JSON, those numbers are internally consistent. The main text σ values probably come from the analysis scripts rather than the jaccard trajectory JSON, and I need to check whether the appendix cross_bench_jaccard Spearman correlations are actually about Jaccard trends rather than σ trends—looking at the JSON, the jaccard_mean_rho values are 0.8 for LAMBADA, 0.6 for HellaSwag, and 0.0 for PIQA.
+
+Checking the appendix table against the JSON, the Jaccard ρ/p values all match perfectly. The main text Table 1 ρ/p values are about σ trends and come from a different source, so the two tables are measuring different things. LAMBADA and PIQA σ values match between the JSON and Table 1, but HellaSwag and ARC-Easy don't, suggesting selective data inconsistencies in the source.
+
+Now I'm verifying the within_scale_jaccard and jaccard_perm values by checking the pair-level data. For LAMBADA h3-1, the JSON shows mean Jaccard values across pairs, and HellaSwag h3-1 has detailed pair breakdowns that I can use to verify the calculations. Now I'm verifying the individual pair values from the within_scale_jaccard table against the JSON means—the helped scores average to 0.100 and hurt scores to 0.093, which matches the rounded JSON values perfectly.
+
+For LAMBADA, I'm checking if the cross-benchmark Jaccard helped mean of 0.095506 (which rounds to .096) aligns with Table 2, and it does, though the 340m_multi_bench table shows a slightly different value of .095 for the 1.3B model.
+
+Now looking at the unhelpful Jaccard ratios across the same four settings, I'm computing their mean as 0.089952, which rounds to .090, but Table 2 reports J_u=.091 for LAMBADA—a small discrepancy I'm investigating. I'm noticing these discrepancies across the different sources, so I need to track down the analysis scripts that generated the per_example and normalized ES tables to understand where these variations are coming from.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cdb0eef-a500-4b9e-b7fb-8c0b34bf288c",
+  "isSidechain": false,
+  "requestId": "req_011CbL3gtxGyrhG7ckomp2VM",
+  "type": "assistant",
+  "uuid": "6544c70a-99c7-4306-9d5c-0c45c1b536a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpMyvkpHDZwYJwX9hiNQyf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17272,
+      "cache_read_input_tokens": 94094,
+      "output_tokens": 10911,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10911,
+          "cache_read_input_tokens": 94094,
+          "cache_creation_input_tokens": 17272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-23T19:27:22.970Z_
+
+已找到关键源数据。发现了几个重要的核查点。现在验证几个关键的不一致项。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6544c70a-99c7-4306-9d5c-0c45c1b536a7",
+  "isSidechain": false,
+  "requestId": "req_011CbL3gtxGyrhG7ckomp2VM",
+  "type": "assistant",
+  "uuid": "6d40c6bf-4b07-4b63-b71e-bd04ef0a1018",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpMyvkpHDZwYJwX9hiNQyf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17272,
+      "cache_read_input_tokens": 94094,
+      "output_tokens": 10911,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10911,
+          "cache_read_input_tokens": 94094,
+          "cache_creation_input_tokens": 17272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-23T19:27:24.810Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01APDKhDfHFVUV5CdhbNEMwk`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "find /root/entrainment_gated_ft/ -name \"*.json\" -path \"*/mvp_logprob/*\" -o -name \"*.json\" -path \"*/mvp_direct/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d40c6bf-4b07-4b63-b71e-bd04ef0a1018",
+  "isSidechain": false,
+  "requestId": "req_011CbL3gtxGyrhG7ckomp2VM",
+  "type": "assistant",
+  "uuid": "3c7cb310-95d8-4cfc-a76b-6e3034481dee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpMyvkpHDZwYJwX9hiNQyf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17272,
+      "cache_read_input_tokens": 94094,
+      "output_tokens": 10911,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10911,
+          "cache_read_input_tokens": 94094,
+          "cache_creation_input_tokens": 17272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T19:27:25.700Z_
+
+<details><summary>↩ Tool result · `toolu_01APDKhDfHFVUV5CdhbNEMwk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_1_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_2_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_3_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_4_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_5_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_dir\\n\\n... [截断: 输出过长，省略 8764 字符] ...\\n\\nepth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-12-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-12-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/summary_logprob.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c7cb310-95d8-4cfc-a76b-6e3034481dee",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "09f87dd0-bb4f-40d3-8dd1-6797b5c3fb6f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_1_direct_n500.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_2_direct_n500.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_3_direct_n500.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_4_direct_n500.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_5_direct_n500.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth3_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth4_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth5_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth1_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth2_direct.json\\\\n/root/entrainment_gated_ft/results/mvp_dir\\\\n\\\\n... [截断: 输出过长，省略 8764 字符] ...\\\\n\\\\nepth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-12-1_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-12-1_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth1_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth2_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth1_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth2_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth1_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth2_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth1_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth2_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth1_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth2_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth1_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth2_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth1_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth2_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth1_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth2_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth3_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth4_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth5_details.json\\\\n/root/entrainment_gated_ft/results/mvp_logprob/summary_logprob.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_1_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_2_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_3_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_4_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/datasets/depth_5_direct_n500.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-New-hybrid-24-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-12-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-6-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-GatedDeltaNet-hybrid-3-1_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth3_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth4_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-pure-baseline_depth5_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth1_direct.json\\n/root/entrainment_gated_ft/results/mvp_direct/predictions_340M-20B-HGRN2-hybrid-24-1_depth2_direct.json\\n/root/entrainment_gated_ft/results/mvp_dir\\n\\n... [截断: 输出过长，省略 8764 字符] ...\\n\\nepth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-12-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-12-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-6-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-HGRN2-hybrid-3-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-pure_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-24-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-12-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-6-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/340M-20B-RetNet-hybrid-3-1_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth1_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth2_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth3_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth4_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/transformer_340M_baseline_depth5_details.json\\n/root/entrainment_gated_ft/results/mvp_logprob/summary_logprob.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3c7cb310-95d8-4cfc-a76b-6e3034481dee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-23T19:27:25.790Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018GiPL98c2jyPKTF5FiFHVj`</summary>
+
+```json
+{
+  "server": "westb-48145",
+  "command": "cat /root/entrainment_gated_ft/results/e1_confidence_selection.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09f87dd0-bb4f-40d3-8dd1-6797b5c3fb6f",
+  "isSidechain": false,
+  "requestId": "req_011CbL3gtxGyrhG7ckomp2VM",
+  "type": "assistant",
+  "uuid": "fab7dd1a-9907-4ede-b75d-66595a0e84b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TpMyvkpHDZwYJwX9hiNQyf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17272,
+      "cache_read_input_tokens": 94094,
+      "output_tokens": 10911,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17272,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10911,
+          "cache_read_input_tokens": 94094,
+          "cache_creation_input_tokens": 17272,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17272
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "fab7dd1a-9907-4ede-b75d-66595a0e84b6",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-23T19:27:26.609Z_
+
+<details><summary>↩ Tool result · `toolu_018GiPL98c2jyPKTF5FiFHVj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"e1_confidence_selection\\\",\\n  \\\"date\\\": \\\"2026-05-22\\\",\\n  \\\"method\\\": {\\n    \\\"attention_ratio\\\": \\\"h3-1 (25%)\\\",\\n    \\\"architectures\\\": [\\n      \\\"GDN\\\",\\n      \\\"RetNet\\\",\\n      \\\"HGRN2\\\"\\n    ],\\n    \\\"cv\\\": \\\"50/50 random split x 10 repeats\\\",\\n    \\\"confidence_measure\\\": {\\n      \\\"lambada\\\": \\\"target word loglikelihood\\\",\\n      \\\"hellaswag\\\": \\\"max char-length-normalized loglikelihood\\\",\\n      \\\"piqa\\\": \\\"max raw loglikelihood across choices\\\",\\n      \\\"arc_easy\\\": \\\"max raw loglikelihood across choices\\\"\\n    }\\n  },\\n  \\\"results\\\": {\\n    \\\"lambada\\\": {\\n      \\\"strategies\\\": {\\n        \\\"max_confidence\\\": {\\n          \\\"mean_acc\\\": 0.525378,\\n          \\\"std_acc\\\": 0.006802,\\n          \\\"vs_mv_pp\\\": 1.634,\\n          \\\"vs_best_single_pp\\\": 1.649\\n        },\\n        \\\"rescue_threshold\\\": {\\n          \\\"mean_acc\\\": 0.562321,\\n          \\\"std_acc\\\": 0.005296,\\n          \\\"vs_mv_pp\\\": 5.328,\\n          \\\"vs_best_single_pp\\\": 5.343,\\n          \\\"mean_threshold\\\": 1.7244,\\n          \\\"std_threshold\\\": 0.1688\\n        },\\n        \\\"confidence_weighted\\\": {\\n          \\\"mean_acc\\\": 0.527163,\\n          \\\"std_acc\\\": 0.006393,\\n          \\\"vs_mv_pp\\\": 1.812,\\n          \\\"vs_best_single_pp\\\": 1.828\\n        }\\n      },\\n      \\\"baselines\\\": {\\n        \\\"majority_vote_acc\\\": 0.509042,\\n        \\\"majority_vote_std\\\": 0.005642,\\n        \\\"best_single_acc\\\": 0.508886,\\n        \\\"best_single_std\\\": 0.005018,\\n        \\\"oracle_acc\\\": 0.654637,\\n        \\\"oracle_std\\\": 0.005371,\\n        \\\"random_acc\\\": 0.50683,\\n        \\\"random_std\\\": 0.008304\\n      },\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"pure_acc\\\": 0.543373,\\n          \\\"hybrid_acc\\\": 0.513293\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"pure_acc\\\": 0.517369,\\n          \\\"hybrid_acc\\\": 0.502426\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"pure_acc\\\": 0.48399,\\n          \\\"hybrid_acc\\\": 0.514264\\n        }\\n      },\\n      \\\"n_samples\\\": 5153\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"strategies\\\": {\\n        \\\"max_confidence\\\": {\\n          \\\"mean_acc\\\": 0.596415,\\n          \\\"std_acc\\\": 0.004721,\\n          \\\"vs_mv_pp\\\": 0.118,\\n          \\\"vs_best_single_pp\\\": -0.44\\n        },\\n        \\\"rescue_threshold\\\": {\\n          \\\"mean_acc\\\": 0.595041,\\n          \\\"std_acc\\\": 0.004511,\\n          \\\"vs_mv_pp\\\": -0.02,\\n          \\\"vs_best_single_pp\\\": -0.578,\\n          \\\"mean_threshold\\\": 0.5435,\\n          \\\"std_threshold\\\": 0.0805\\n        },\\n        \\\"confidence_weighted\\\": {\\n          \\\"mean_acc\\\": 0.59524,\\n          \\\"std_acc\\\": 0.005038,\\n          \\\"vs_mv_pp\\\": 0.0,\\n          \\\"vs_best_single_pp\\\": -0.558\\n        }\\n      },\\n      \\\"baselines\\\": {\\n        \\\"majority_vote_acc\\\": 0.59524,\\n        \\\"majority_vote_std\\\": 0.005038,\\n        \\\"best_single_acc\\\": 0.600817,\\n        \\\"best_single_std\\\": 0.004614,\\n        \\\"oracle_acc\\\": 0.668552,\\n        \\\"oracle_std\\\": 0.005935,\\n        \\\"random_acc\\\": 0.593169,\\n        \\\"random_std\\\": 0.004782\\n      },\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"pure_acc\\\": 0.607648,\\n          \\\"hybrid_acc\\\": 0.603167\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"pure_acc\\\": 0.579765,\\n          \\\"hybrid_acc\\\": 0.577674\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"pure_acc\\\": 0.598984,\\n          \\\"hybrid_acc\\\": 0.603963\\n        }\\n      },\\n      \\\"n_samples\\\": 10042\\n    },\\n    \\\"piqa\\\": {\\n      \\\"strategies\\\": {\\n        \\\"max_confidence\\\": {\\n          \\\"mean_acc\\\": 0.728945,\\n          \\\"std_acc\\\": 0.009303,\\n          \\\"vs_mv_pp\\\": -1.121,\\n          \\\"vs_best_single_pp\\\": -0.272\\n        },\\n        \\\"rescue_threshold\\\": {\\n          \\\"mean_acc\\\": 0.734059,\\n          \\\"std_acc\\\": 0.010268,\\n          \\\"vs_mv_pp\\\": -0.609,\\n          \\\"vs_best_single_pp\\\": 0.239,\\n          \\\"mean_threshold\\\": 70.8392,\\n          \\\"std_threshold\\\": 62.5899\\n        },\\n        \\\"confidence_weighted\\\": {\\n          \\\"mean_acc\\\": 0.730686,\\n          \\\"std_acc\\\": 0.009662,\\n          \\\"vs_mv_pp\\\": -0.947,\\n          \\\"vs_best_single_pp\\\": -0.098\\n        }\\n      },\\n      \\\"baselines\\\": {\\n        \\\"majority_vote_acc\\\": 0.740152,\\n        \\\"majority_vote_std\\\": 0.010581,\\n        \\\"best_single_acc\\\": 0.731665,\\n        \\\"best_single_std\\\": 0.011772,\\n        \\\"oracle_acc\\\": 0.795647,\\n        \\\"oracle_std\\\": 0.01089,\\n        \\\"random_acc\\\": 0.728618,\\n        \\\"random_std\\\": 0.008949\\n      },\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"pure_acc\\\": 0.723613,\\n          \\\"hybrid_acc\\\": 0.737758\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"pure_acc\\\": 0.726333,\\n          \\\"hybrid_acc\\\": 0.729053\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"pure_acc\\\": 0.734494,\\n          \\\"hybrid_acc\\\": 0.730141\\n        }\\n      },\\n      \\\"n_samples\\\": 1838\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"strategies\\\": {\\n        \\\"max_confidence\\\": {\\n          \\\"mean_acc\\\": 0.710943,\\n          \\\"std_acc\\\": 0.008495,\\n          \\\"vs_mv_pp\\\": 0.471,\\n          \\\"vs_best_single_pp\\\": -0.236\\n        },\\n        \\\"rescue_threshold\\\": {\\n          \\\"mean_acc\\\": 0.716414,\\n          \\\"std_acc\\\": 0.007323,\\n          \\\"vs_mv_pp\\\": 1.019,\\n          \\\"vs_best_single_pp\\\": 0.311,\\n          \\\"mean_threshold\\\": 19.8566,\\n          \\\"std_threshold\\\": 6.608\\n        },\\n        \\\"confidence_weighted\\\": {\\n          \\\"mean_acc\\\": 0.714141,\\n          \\\"std_acc\\\": 0.007671,\\n          \\\"vs_mv_pp\\\": 0.791,\\n          \\\"vs_best_single_pp\\\": 0.084\\n        }\\n      },\\n      \\\"baselines\\\": {\\n        \\\"majority_vote_acc\\\": 0.706229,\\n        \\\"majority_vote_std\\\": 0.005494,\\n        \\\"best_single_acc\\\": 0.7133,\\n        \\\"best_single_std\\\": 0.009897,\\n        \\\"oracle_acc\\\": 0.808418,\\n        \\\"oracle_std\\\": 0.005883,\\n        \\\"random_acc\\\": 0.707407,\\n        \\\"random_std\\\": 0.008846\\n      },\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"pure_acc\\\": 0.712121,\\n          \\\"hybrid_acc\\\": 0.708333\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"pure_acc\\\": 0.712963,\\n          \\\"hybrid_acc\\\": 0.696128\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"pure_acc\\\": 0.712963,\\n          \\\"hybrid_acc\\\": 0.720539\\n        }\\n      },\\n      \\\"n_samples\\\": 2376\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fab7dd1a-9907-4ede-b75d-66595a0e84b6",
+  "isSidechain": false,
+  "promptId": "b75f8ef9-b0fa-42e6-bae9-29f063d0a53a",
+  "type": "user",
+  "uuid": "c157ef11-face-40f8-8b32-ba560136b97d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"e1_confidence_selection\\\\\\\",\\\\n  \\\\\\\"date\\\\\\\": \\\\\\\"2026-05-22\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": {\\\\n    \\\\\\\"attention_ratio\\\\\\\": \\\\\\\"h3-1 (25%)\\\\\\\",\\\\n    \\\\\\\"architectures\\\\\\\": [\\\\n      \\\\\\\"GDN\\\\\\\",\\\\n      \\\\\\\"RetNet\\\\\\\",\\\\n      \\\\\\\"HGRN2\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"cv\\\\\\\": \\\\\\\"50/50 random split x 10 repeats\\\\\\\",\\\\n    \\\\\\\"confidence_measure\\\\\\\": {\\\\n      \\\\\\\"lambada\\\\\\\": \\\\\\\"target word loglikelihood\\\\\\\",\\\\n      \\\\\\\"hellaswag\\\\\\\": \\\\\\\"max char-length-normalized loglikelihood\\\\\\\",\\\\n      \\\\\\\"piqa\\\\\\\": \\\\\\\"max raw loglikelihood across choices\\\\\\\",\\\\n      \\\\\\\"arc_easy\\\\\\\": \\\\\\\"max raw loglikelihood across choices\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"lambada\\\\\\\": {\\\\n      \\\\\\\"strategies\\\\\\\": {\\\\n        \\\\\\\"max_confidence\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.525378,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.006802,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": 1.634,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": 1.649\\\\n        },\\\\n        \\\\\\\"rescue_threshold\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.562321,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.005296,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": 5.328,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": 5.343,\\\\n          \\\\\\\"mean_threshold\\\\\\\": 1.7244,\\\\n          \\\\\\\"std_threshold\\\\\\\": 0.1688\\\\n        },\\\\n        \\\\\\\"confidence_weighted\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.527163,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.006393,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": 1.812,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": 1.828\\\\n        }\\\\n      },\\\\n      \\\\\\\"baselines\\\\\\\": {\\\\n        \\\\\\\"majority_vote_acc\\\\\\\": 0.509042,\\\\n        \\\\\\\"majority_vote_std\\\\\\\": 0.005642,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 0.508886,\\\\n        \\\\\\\"best_single_std\\\\\\\": 0.005018,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 0.654637,\\\\n        \\\\\\\"oracle_std\\\\\\\": 0.005371,\\\\n        \\\\\\\"random_acc\\\\\\\": 0.50683,\\\\n        \\\\\\\"random_std\\\\\\\": 0.008304\\\\n      },\\\\n      \\\\\\\"per_arch\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.543373,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.513293\\\\n        },\\\\n        \\\\\\\"RetNet\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.517369,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.502426\\\\n        },\\\\n        \\\\\\\"HGRN2\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.48399,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.514264\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 5153\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"strategies\\\\\\\": {\\\\n        \\\\\\\"max_confidence\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.596415,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.004721,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": 0.118,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": -0.44\\\\n        },\\\\n        \\\\\\\"rescue_threshold\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.595041,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.004511,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": -0.02,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": -0.578,\\\\n          \\\\\\\"mean_threshold\\\\\\\": 0.5435,\\\\n          \\\\\\\"std_threshold\\\\\\\": 0.0805\\\\n        },\\\\n        \\\\\\\"confidence_weighted\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.59524,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.005038,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": 0.0,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": -0.558\\\\n        }\\\\n      },\\\\n      \\\\\\\"baselines\\\\\\\": {\\\\n        \\\\\\\"majority_vote_acc\\\\\\\": 0.59524,\\\\n        \\\\\\\"majority_vote_std\\\\\\\": 0.005038,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 0.600817,\\\\n        \\\\\\\"best_single_std\\\\\\\": 0.004614,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 0.668552,\\\\n        \\\\\\\"oracle_std\\\\\\\": 0.005935,\\\\n        \\\\\\\"random_acc\\\\\\\": 0.593169,\\\\n        \\\\\\\"random_std\\\\\\\": 0.004782\\\\n      },\\\\n      \\\\\\\"per_arch\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.607648,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.603167\\\\n        },\\\\n        \\\\\\\"RetNet\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.579765,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.577674\\\\n        },\\\\n        \\\\\\\"HGRN2\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.598984,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.603963\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 10042\\\\n    },\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"strategies\\\\\\\": {\\\\n        \\\\\\\"max_confidence\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.728945,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.009303,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": -1.121,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": -0.272\\\\n        },\\\\n        \\\\\\\"rescue_threshold\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.734059,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.010268,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": -0.609,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": 0.239,\\\\n          \\\\\\\"mean_threshold\\\\\\\": 70.8392,\\\\n          \\\\\\\"std_threshold\\\\\\\": 62.5899\\\\n        },\\\\n        \\\\\\\"confidence_weighted\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.730686,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.009662,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": -0.947,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": -0.098\\\\n        }\\\\n      },\\\\n      \\\\\\\"baselines\\\\\\\": {\\\\n        \\\\\\\"majority_vote_acc\\\\\\\": 0.740152,\\\\n        \\\\\\\"majority_vote_std\\\\\\\": 0.010581,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 0.731665,\\\\n        \\\\\\\"best_single_std\\\\\\\": 0.011772,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 0.795647,\\\\n        \\\\\\\"oracle_std\\\\\\\": 0.01089,\\\\n        \\\\\\\"random_acc\\\\\\\": 0.728618,\\\\n        \\\\\\\"random_std\\\\\\\": 0.008949\\\\n      },\\\\n      \\\\\\\"per_arch\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.723613,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.737758\\\\n        },\\\\n        \\\\\\\"RetNet\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.726333,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.729053\\\\n        },\\\\n        \\\\\\\"HGRN2\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.734494,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.730141\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 1838\\\\n    },\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"strategies\\\\\\\": {\\\\n        \\\\\\\"max_confidence\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.710943,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.008495,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": 0.471,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": -0.236\\\\n        },\\\\n        \\\\\\\"rescue_threshold\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.716414,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.007323,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": 1.019,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": 0.311,\\\\n          \\\\\\\"mean_threshold\\\\\\\": 19.8566,\\\\n          \\\\\\\"std_threshold\\\\\\\": 6.608\\\\n        },\\\\n        \\\\\\\"confidence_weighted\\\\\\\": {\\\\n          \\\\\\\"mean_acc\\\\\\\": 0.714141,\\\\n          \\\\\\\"std_acc\\\\\\\": 0.007671,\\\\n          \\\\\\\"vs_mv_pp\\\\\\\": 0.791,\\\\n          \\\\\\\"vs_best_single_pp\\\\\\\": 0.084\\\\n        }\\\\n      },\\\\n      \\\\\\\"baselines\\\\\\\": {\\\\n        \\\\\\\"majority_vote_acc\\\\\\\": 0.706229,\\\\n        \\\\\\\"majority_vote_std\\\\\\\": 0.005494,\\\\n        \\\\\\\"best_single_acc\\\\\\\": 0.7133,\\\\n        \\\\\\\"best_single_std\\\\\\\": 0.009897,\\\\n        \\\\\\\"oracle_acc\\\\\\\": 0.808418,\\\\n        \\\\\\\"oracle_std\\\\\\\": 0.005883,\\\\n        \\\\\\\"random_acc\\\\\\\": 0.707407,\\\\n        \\\\\\\"random_std\\\\\\\": 0.008846\\\\n      },\\\\n      \\\\\\\"per_arch\\\\\\\": {\\\\n        \\\\\\\"GDN\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.712121,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.708333\\\\n        },\\\\n        \\\\\\\"RetNet\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.712963,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.696128\\\\n        },\\\\n        \\\\\\\"HGRN2\\\\\\\": {\\\\n          \\\\\\\"pure_acc\\\\\\\": 0.712963,\\\\n          \\\\\\\"hybrid_acc\\\\\\\": 0.720539\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_samples\\\\\\\": 2376\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.81}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"e1_confidence_selection\\\",\\n  \\\"date\\\": \\\"2026-05-22\\\",\\n  \\\"method\\\": {\\n    \\\"attention_ratio\\\": \\\"h3-1 (25%)\\\",\\n    \\\"architectures\\\": [\\n      \\\"GDN\\\",\\n      \\\"RetNet\\\",\\n      \\\"HGRN2\\\"\\n    ],\\n    \\\"cv\\\": \\\"50/50 random split x 10 repeats\\\",\\n    \\\"confidence_measure\\\": {\\n      \\\"lambada\\\": \\\"target word loglikelihood\\\",\\n      \\\"hellaswag\\\": \\\"max char-length-normalized loglikelihood\\\",\\n      \\\"piqa\\\": \\\"max raw loglikelihood across choices\\\",\\n      \\\"arc_easy\\\": \\\"max raw loglikelihood across choices\\\"\\n    }\\n  },\\n  \\\"results\\\": {\\n    \\\"lambada\\\": {\\n      \\\"strategies\\\": {\\n        \\\"max_confidence\\\": {\\n          \\\"mean_acc\\\": 0.525378,\\n          \\\"std_acc\\\": 0.006802,\\n          \\\"vs_mv_pp\\\": 1.634,\\n          \\\"vs_best_single_pp\\\": 1.649\\n        },\\n        \\\"rescue_threshold\\\": {\\n          \\\"mean_acc\\\": 0.562321,\\n          \\\"std_acc\\\": 0.005296,\\n          \\\"vs_mv_pp\\\": 5.328,\\n          \\\"vs_best_single_pp\\\": 5.343,\\n          \\\"mean_threshold\\\": 1.7244,\\n          \\\"std_threshold\\\": 0.1688\\n        },\\n        \\\"confidence_weighted\\\": {\\n          \\\"mean_acc\\\": 0.527163,\\n          \\\"std_acc\\\": 0.006393,\\n          \\\"vs_mv_pp\\\": 1.812,\\n          \\\"vs_best_single_pp\\\": 1.828\\n        }\\n      },\\n      \\\"baselines\\\": {\\n        \\\"majority_vote_acc\\\": 0.509042,\\n        \\\"majority_vote_std\\\": 0.005642,\\n        \\\"best_single_acc\\\": 0.508886,\\n        \\\"best_single_std\\\": 0.005018,\\n        \\\"oracle_acc\\\": 0.654637,\\n        \\\"oracle_std\\\": 0.005371,\\n        \\\"random_acc\\\": 0.50683,\\n        \\\"random_std\\\": 0.008304\\n      },\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"pure_acc\\\": 0.543373,\\n          \\\"hybrid_acc\\\": 0.513293\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"pure_acc\\\": 0.517369,\\n          \\\"hybrid_acc\\\": 0.502426\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"pure_acc\\\": 0.48399,\\n          \\\"hybrid_acc\\\": 0.514264\\n        }\\n      },\\n      \\\"n_samples\\\": 5153\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"strategies\\\": {\\n        \\\"max_confidence\\\": {\\n          \\\"mean_acc\\\": 0.596415,\\n          \\\"std_acc\\\": 0.004721,\\n          \\\"vs_mv_pp\\\": 0.118,\\n          \\\"vs_best_single_pp\\\": -0.44\\n        },\\n        \\\"rescue_threshold\\\": {\\n          \\\"mean_acc\\\": 0.595041,\\n          \\\"std_acc\\\": 0.004511,\\n          \\\"vs_mv_pp\\\": -0.02,\\n          \\\"vs_best_single_pp\\\": -0.578,\\n          \\\"mean_threshold\\\": 0.5435,\\n          \\\"std_threshold\\\": 0.0805\\n        },\\n        \\\"confidence_weighted\\\": {\\n          \\\"mean_acc\\\": 0.59524,\\n          \\\"std_acc\\\": 0.005038,\\n          \\\"vs_mv_pp\\\": 0.0,\\n          \\\"vs_best_single_pp\\\": -0.558\\n        }\\n      },\\n      \\\"baselines\\\": {\\n        \\\"majority_vote_acc\\\": 0.59524,\\n        \\\"majority_vote_std\\\": 0.005038,\\n        \\\"best_single_acc\\\": 0.600817,\\n        \\\"best_single_std\\\": 0.004614,\\n        \\\"oracle_acc\\\": 0.668552,\\n        \\\"oracle_std\\\": 0.005935,\\n        \\\"random_acc\\\": 0.593169,\\n        \\\"random_std\\\": 0.004782\\n      },\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"pure_acc\\\": 0.607648,\\n          \\\"hybrid_acc\\\": 0.603167\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"pure_acc\\\": 0.579765,\\n          \\\"hybrid_acc\\\": 0.577674\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"pure_acc\\\": 0.598984,\\n          \\\"hybrid_acc\\\": 0.603963\\n        }\\n      },\\n      \\\"n_samples\\\": 10042\\n    },\\n    \\\"piqa\\\": {\\n      \\\"strategies\\\": {\\n        \\\"max_confidence\\\": {\\n          \\\"mean_acc\\\": 0.728945,\\n          \\\"std_acc\\\": 0.009303,\\n          \\\"vs_mv_pp\\\": -1.121,\\n          \\\"vs_best_single_pp\\\": -0.272\\n        },\\n        \\\"rescue_threshold\\\": {\\n          \\\"mean_acc\\\": 0.734059,\\n          \\\"std_acc\\\": 0.010268,\\n          \\\"vs_mv_pp\\\": -0.609,\\n          \\\"vs_best_single_pp\\\": 0.239,\\n          \\\"mean_threshold\\\": 70.8392,\\n          \\\"std_threshold\\\": 62.5899\\n        },\\n        \\\"confidence_weighted\\\": {\\n          \\\"mean_acc\\\": 0.730686,\\n          \\\"std_acc\\\": 0.009662,\\n          \\\"vs_mv_pp\\\": -0.947,\\n          \\\"vs_best_single_pp\\\": -0.098\\n        }\\n      },\\n      \\\"baselines\\\": {\\n        \\\"majority_vote_acc\\\": 0.740152,\\n        \\\"majority_vote_std\\\": 0.010581,\\n        \\\"best_single_acc\\\": 0.731665,\\n        \\\"best_single_std\\\": 0.011772,\\n        \\\"oracle_acc\\\": 0.795647,\\n        \\\"oracle_std\\\": 0.01089,\\n        \\\"random_acc\\\": 0.728618,\\n        \\\"random_std\\\": 0.008949\\n      },\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"pure_acc\\\": 0.723613,\\n          \\\"hybrid_acc\\\": 0.737758\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"pure_acc\\\": 0.726333,\\n          \\\"hybrid_acc\\\": 0.729053\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"pure_acc\\\": 0.734494,\\n          \\\"hybrid_acc\\\": 0.730141\\n        }\\n      },\\n      \\\"n_samples\\\": 1838\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"strategies\\\": {\\n        \\\"max_confidence\\\": {\\n          \\\"mean_acc\\\": 0.710943,\\n          \\\"std_acc\\\": 0.008495,\\n          \\\"vs_mv_pp\\\": 0.471,\\n          \\\"vs_best_single_pp\\\": -0.236\\n        },\\n        \\\"rescue_threshold\\\": {\\n          \\\"mean_acc\\\": 0.716414,\\n          \\\"std_acc\\\": 0.007323,\\n          \\\"vs_mv_pp\\\": 1.019,\\n          \\\"vs_best_single_pp\\\": 0.311,\\n          \\\"mean_threshold\\\": 19.8566,\\n          \\\"std_threshold\\\": 6.608\\n        },\\n        \\\"confidence_weighted\\\": {\\n          \\\"mean_acc\\\": 0.714141,\\n          \\\"std_acc\\\": 0.007671,\\n          \\\"vs_mv_pp\\\": 0.791,\\n          \\\"vs_best_single_pp\\\": 0.084\\n        }\\n      },\\n      \\\"baselines\\\": {\\n        \\\"majority_vote_acc\\\": 0.706229,\\n        \\\"majority_vote_std\\\": 0.005494,\\n        \\\"best_single_acc\\\": 0.7133,\\n        \\\"best_single_std\\\": 0.009897,\\n        \\\"oracle_acc\\\": 0.808418,\\n        \\\"oracle_std\\\": 0.005883,\\n        \\\"random_acc\\\": 0.707407,\\n        \\\"random_std\\\": 0.008846\\n      },\\n      \\\"per_arch\\\": {\\n        \\\"GDN\\\": {\\n          \\\"pure_acc\\\": 0.712121,\\n          \\\"hybrid_acc\\\": 0.708333\\n        },\\n        \\\"RetNet\\\": {\\n          \\\"pure_acc\\\": 0.712963,\\n          \\\"hybrid_acc\\\": 0.696128\\n        },\\n        \\\"HGRN2\\\": {\\n          \\\"pure_acc\\\": 0.712963,\\n          \\\"hybrid_acc\\\": 0.720539\\n        }\\n      },\\n      \\\"n_samples\\\": 2376\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fab7dd1a-9907-4ede-b75d-66595a0e84b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-23T19:28:45.032Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the routing/confidence selection data. Let me verify:
+
+LAMBADA routing:
+- Source: rescue_threshold mean_acc = 0.562321, vs_mv_pp = 5.328
+- Main text: "rescue-threshold routing achieves 56.2% accuracy versus 50.9% for majority vote (+5.3 pp, SD = 0.8 pp across 10 splits)"
+- Source: majority_vote_acc = 0.509042, oracle_acc = 0.654637
+- Main text: "oracle = 65.5%"
+
+
+- The percentages check out, and the difference is indeed 5.3 percentage points, but the standard deviation in the source data shows 0.5 pp while the main text claims 0.8 pp—there's a discrepancy I need to investigate.
+
+Looking at the standard deviations more carefully, the 0.8 pp might actually refer to the standard deviation of the difference between the rescue threshold and MV strategies across the splits, not just the routing strategy alone. If I combine the standard deviations of both approaches using the formula for independent estimates, I get roughly 0.8 pp, which would align with what's reported in the paper. The standard deviation of 0.8 pp represents the variability in the pairwise difference between routing and MV accuracies across splits, which makes sense given they share the same test set but use different architectures. Now checking the Oracle results: the 0.654637 value converts to 65.5%, matching the paper, and the gap extraction calculation of (56.2 - 50.9) / (65.5 - 50.9) gives 36.3%, which aligns with their reported 36%. For ARC-Easy routing, the individual standard deviations from the source (0.7 pp for rescue and 0.5 pp for MV) combine to approximately 0.9 pp when accounting for the difference, consistent with the reported 1.0 pp improvement with 0.9 pp SD.
+
+Now looking at HellaSwag routing, there's a discrepancy between the source value of -0.02 pp and the paper's reported -0.06 pp. Let me verify this calculation: the rescue threshold mean accuracy is 0.595041 and MV accuracy is 0.59524, giving a difference of -0.000199, which rounds to -0.02 pp in the source. But the paper states -0.06 pp, so there's a mismatch I need to investigate further.
+
+For PIQA routing, I'm seeing an even larger discrepancy: the source shows -0.609 pp while the paper reports -0.49 pp. Checking the numbers, rescue accuracy is 0.734059 and MV accuracy is 0.740152, which gives -0.006093 or -0.6 pp, matching the source's -0.609 but not the paper's -0.49 pp.
+
+I'm wondering if the paper might be reporting a different metric like versus best single instead, but that would be positive. These discrepancies in the main text for both PIQA and HellaSwag are worth noting as issues found during cross-referencing, even though my focus is on appendix verification.
+
+Now I'm checking the threshold values from the calibration data against what's reported in the appendix table. The source shows three threshold values that round correctly to what appears in the table, and the range calculation of 0.44 checks out.
+
+For the relative spread, the appendix computed this from the unrounded values rather than the rounded ones, which gives 46.7% instead of the 46.5% I'd get from the rounded figures—this matches what's documented.
+
+Now I'm organizing the comprehensive audit findings. I've identified a critical inconsistency where the J_obs values in the normalized ES table don't align with the same Jaccard values reported in the within-scale and permutation tables, all supposedly for the same condition.
+
+Looking at the LAMBADA results more closely, the normalized ES table shows different Jaccard values across multiple models compared to what appears in the other tables—for instance, GDN-RetNet helped shows 0.086 versus 0.092, and GDN-HGRN2 hurt shows 0.070 versus 0.088/0.089. This suggests the normalized ES table may have been computed from different underlying data or using different methodology.
+
+There's also a discrepancy in the per-example counts where RetNet h3-1 shows 426 helped and 495 hurt in the per-example table, but the confidence margin tables and source JSON report 420 and 497 respectively.
+
+The ECE spread claim in the appendix states 17% cross-architecture spread, but when I calculate it from the provided values (0.222, 0.224, 0.235), the actual range divided by mean comes to only 5.7%, not 17%.
+
+The cross-benchmark Jaccard table caption claims to show pairwise Jaccard for helped sets, but the values actually represent J_mean (the average of helped and hurt), which I can verify against the source JSON.
+
+For the "6–7% of achievable range" claim, the normalized ES table shows helped averaging 6.5% and hurt at 4.7%, so the 6–7% figure only captures the helped category—the overall average is closer to 5.6%.
+
+There are also a couple of minor rounding inconsistencies: GDN-HGRN2 hurt Jaccard shows .088 in one table but .089 in another, and LAMBADA h3-1 J_mean should round to .096 from the source value of 0.0965, but appears as .097 in the cross-benchmark table.
+
+Looking at more specific values, GDN-HGRN2's helped Jaccard for the 5-architecture setup rounds to .122 from 0.12247 but the appendix lists .123, and LAMBADA shows J_h and J_u discrepancies between the 340m_multi_bench source and Table 2—the values differ by one decimal place in both cases. The HellaSwag MV explainability calculation of 781/(781+730) gives 51.69%, which should round to 51.7% rather than the 51.6% shown in the appendix.
+
+I'm also finding cross-reference issues between the main text and appendix: the routing results for HellaSwag show a -0.02 pp difference in the source JSON but -0.06 pp in the main text, and PIQA's rescue versus MV comparison is -0.61 pp in the source but -0.49 pp in the main text. The HellaSwag h3-1 and ARC-Easy sigma values in the Jaccard trajectory JSON don't match Table 1, though this might stem from different analysis scripts. I've verified that the complementarity decomposition fractions, MV exploitation ratios, Pythia seed calibration values, and ECE measurements all check out correctly. - Routing LAMBADA accuracy (56.2% vs 50.9%, +5.3 percentage points) checks out against the oracle baseline of 65.5%, with a 36% gap extraction rate ✓
+- Verified the within-benchmark variation ranges for the arceasy_ambiguity table and the 340m model's trajectory showing 56%/36% reduction calculations ✓
+- Confirmed all scale comparison alpha differences, ARC-Easy per-example effect counts against complementarity data, bootstrap confidence intervals for LAMBADA correlation, and Bonferroni multiple comparison corrections ✓
+
+Now I'm ready to generate the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c157ef11-face-40f8-8b32-ba560136b97d",
+  "isSidechain": false,
+  "requestId": "req_011CbL3wcjdPhfAkyyytk3KD",
+  "type": "assistant",
+  "uuid": "3bcd7bbd-d02f-4f80-a238-28417238885c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012u83wEG7pVHTUtUU3F1tya",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17783,
+      "cache_read_input_tokens": 111366,
+      "output_tokens": 6379,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17783,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6379,
+          "cache_read_input_tokens": 111366,
+          "cache_creation_input_tokens": 17783,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17783
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-23T19:29:42.472Z_
+
+核查基本完成。现在整理所有发现。
+
+## 数据自查报告 — Appendix
+
+---
+
+### ✅ 已核对一致
+
+**与源数据一致：**
+- Pythia seed calibration: J_h=0.273, J_u=0.393 (LAMBADA), J_h=0.312, J_u=0.354 (ARC-Easy), α=0.36/0.49 ← `e4_analysis.json`
+- ECE values: GDN 0.222, RetNet 0.224, HGRN2 0.235 ← `e3_calibration.json` (0.222327, 0.223559, 0.235154)
+- Disruption thresholds: GDN 0.70, RetNet 1.00, HGRN2 1.14, spread 46.7% ← `e3_calibration.json` (0.696, 0.998, 1.137)
+- 5-arch LAMBADA/ARC-Easy Jaccard: 全部 10 pair × 2 benchmark 值与 `jaccard_5arch_extended.json` 一致（1处微小四舍五入除外）
+- Cross-benchmark Jaccard Spearman ρ/p: LAMBADA 0.80/.333, HellaSwag 0.60/.417, PIQA 0.00/1.00, ARC-Easy 0.80/.333 ← `cross_benchmark_jaccard_trajectories.json` ✓
+- 互补性分解分数 (Tab complementarity): LAMBADA h3-1 .361/.151/.145/.343 ← `complementarity_decomposition.json` (36.10%/15.12%/14.48%/34.31%) ✓
+- MV exploitation ratios: 51.1% (LAMBADA), 50.9% (ARC-Easy) 均验算正确
+- GDN 0.543→0.513, HGRN2 0.484→0.514 ← `e3_calibration.json` (0.543373, 0.513293, 0.483990, 0.514264) ✓
+- Routing LAMBADA: 56.2% vs 50.9%, +5.3pp, oracle 65.5%, 36% gap ← `e1_confidence_selection.json` (0.562321, 0.509042, 0.654637) ✓
+- Routing ARC-Easy: +1.0pp ← source vs_mv_pp=1.019 ✓
+- Bonferroni 计算: .017×10=.170, .017×6=.100 ✓
+- Bootstrap CI [-1.0, -0.7] ✓
+- 340M σ trajectory (0.025→0.012→0.018→0.011→0.016) 及 56%/36% 计算 ✓
+- Scale comparison Δα (全部4个benchmark 差值计算正确) ✓
+
+**Appendix 内部验算一致：**
+- Within-architecture pairwise Jaccard 全表 (Tab 12) 手动重算18个值全部一致
+- Within-architecture summary means (Tab 10): GDN .338/.319, RetNet .333/.321, HGRN2 .373/.291, overall .348/.310 ✓
+- Adjacent vs non-adjacent means: .353/.311 vs .343/.310 ✓
+- Arceasy_ambiguity (Tab 9) within-benchmark ranges: .004/.011/.025/.022 均正确
+- 补充 benchmark sum check: LAMBADA .361+.151+.145+.343=1.000, ARC-Easy 1.000 ✓
+
+---
+
+### ⚠️ 发现的不一致
+
+#### P1: 严重 — Normalized Jaccard ES 表 (Tab 7) J_obs 值与其他表不一致
+
+同一数据（1.3B h3-1 LAMBADA），三张表报告的 J_obs 不同：
+
+| Pair | Category | Tab 7 (norm\_es) | Tab 6 (within\_scale) | Tab 8 (perm) |
+|------|----------|------------------|-----------------------|--------------|
+| GDN-RetNet | helped | **.086** | .092 | .092 |
+| GDN-RetNet | hurt | **.092** | .103 | .103 |
+| GDN-HGRN2 | hurt | **.070** | .089 | .088 |
+
+Tab 6 和 Tab 8 互相一致（仅 GDN-HGRN2 hurt 差 .001），但 Tab 7 的 J_obs 明显偏低。J_null 也不同。Tab 7 可能来自不同版本的分析脚本。
+
+**影响**：Tab 7 的 Normalized ES 值全部需要重算。"6–7% of the achievable range" 结论方向不变但数值可能改变。
+
+#### P2: 中等 — Per-example counts 在不同表之间不一致
+
+| Architecture | Tab 5 (per\_example) | Tab 13/14 (CM) | Source JSON |
+|-------------|---------------------|----------------|-------------|
+| RetNet h3-1 helped | **426** | 420 | 420 |
+| RetNet h3-1 hurt | **495** | 497 | 497 |
+| HGRN2 h3-1 hurt | **395** | 392 | 392 |
+| GDN h3-1 helped | **462** | — (h12-1) | 461 |
+| GDN h3-1 hurt | **615** | — (h12-1) | 616 |
+
+Source JSON (`a2_prediction_framework`) 和 CM tables 一致；Tab 5 与两者均有小差异。可能来自不同分析脚本或 correctness 判定逻辑微妙不同（如 tie-breaking）。
+
+**影响**：Tab 5 的 J̄ 值 (.096/.100/.104) 与 Tab 6 的 pairwise Jaccard 一致，说明 Tab 5 的 J̄ 是用 Tab 6 的数据算的；但 helped/hurt 计数与 CM 表和 source JSON 不一致。需确认哪个是正确版本并统一。
+
+#### P3: 中等 — ECE spread 百分比错误
+
+Appendix §app:calibration 写道：
+> "The cross-architecture ECE spread (17%, computed as range/mean)"
+
+实际计算：range = 0.235−0.222 = 0.013, mean = 0.227, range/mean = **5.7%**，不是 17%。
+
+**影响**：定性结论（ECE spread 远小于 disruption threshold spread 47%）反而更强（5.7% vs 47%），但 17% 这个数字是错的。
+
+#### P4: 轻微 — Cross-benchmark Jaccard 表 (Tab 11) caption 与内容不符
+
+Caption: "Mean pairwise Jaccard (**helped sets**, 3 architecture pairs)"
+实际报告的是 **J_mean**（helped 和 hurt 的平均）。与 source JSON 的 J_mean 字段完全对应。
+
+验证：HellaSwag h24-1 J_helped=0.0838 (source), J_mean=0.0842 (source), 表中为 .084 → 匹配 J_mean 而非 J_helped。
+
+#### P5: 轻微 — "6–7%" 描述范围不准确
+
+Appendix §app:normalized_es 和主文均称 normalized ES 为 "6–7%"。但 Tab 7 自身数据：
+- Helped mean = .065 (6.5%)
+- Hurt mean = .047 (4.7%)
+- 总体 ≈ 5.6%
+
+"6–7%" 仅描述 helped；考虑 hurt 后应为 "5–7%" 或 "5–9%"（含个体值 .044–.090）。
+
+#### P6: 轻微 — 若干四舍五入微差
+
+| 位置 | 期望值 | 实际值 | 来源 |
+|------|--------|--------|------|
+| Tab 11 LAMBADA h3-1 | .096 | .097 | source J_mean=0.0965 |
+| Tab extended_arch GDN-HGRN2 J_h | .122 | .123 | source=0.12247 |
+| HellaSwag MV expl. | 51.7% | 51.6% | 781/(781+730)=51.69% |
+| Tab 6 vs Tab 8: GDN-HGRN2 hurt | .089 vs .088 | — | 同一数据两种四舍五入 |
+
+---
+
+### ❌ 待人工确认
+
+1. **Tab 5 vs CM tables per-example counts**: 需要确认哪组 helped/hurt 计数是 ground truth（RetNet 426/495 还是 420/497）。建议从原始 lm-eval 输出重新计算。
+
+2. **Tab 7 (normalized_es) 全表数据**: J_obs 和 J_null 与其他表均不一致。需要找到 `jaccard_upper_bound.py` 的输出文件，或用 Tab 6/8 的一致数据重算 normalized ES。
+
+3. **主文 routing 数值** (非 appendix 但交叉验证时发现):
+   - HellaSwag routing: 主文 −0.06pp, source JSON −0.02pp
+   - PIQA routing: 主文 −0.49pp, source JSON −0.61pp
+
+4. **Attention weight analysis (Tab 3/4/5 of §app:attention_patterns)**: cosine similarity, entropy, last-5 mass 数值无对应 JSON 文件可追溯。需确认 `extract_attention_weights.py` 的输出是否保存。
+
+5. **Confidence margin Cohen's d, p-values, prediction AUC (Tab 13–18)**: 无对应的独立 JSON 输出。CM tables 的 `d` 值和 `p` 值需从 `confidence_margin_within_category.py` 的输出追溯。
+
+---
+
+### 修复优先级建议
+
+1. **立即修复** (P3): 将 ECE spread "17%" 改为 "6%" 或重新验证计算
+2. **需要调查后修复** (P1): 用统一数据重算 Tab 7 normalized ES
+3. **需要调查后修复** (P2): 确认 per-example counts ground truth 并统一
+4. **低优先级** (P4): 修正 Tab 11 caption "helped sets" → "mean of helped and hurt sets"
+5. **低优先级** (P5/P6): 四舍五入和措辞精确性修正
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bcd7bbd-d02f-4f80-a238-28417238885c",
+  "isSidechain": false,
+  "requestId": "req_011CbL3wcjdPhfAkyyytk3KD",
+  "type": "assistant",
+  "uuid": "56590683-0b5e-4915-b663-7648d6e2490d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012u83wEG7pVHTUtUU3F1tya",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17783,
+      "cache_read_input_tokens": 111366,
+      "output_tokens": 6379,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17783,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6379,
+          "cache_read_input_tokens": 111366,
+          "cache_creation_input_tokens": 17783,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17783
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "56590683-0b5e-4915-b663-7648d6e2490d",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "56590683-0b5e-4915-b663-7648d6e2490d",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify Appendix numerical accuracy before ARR submission",
+  "sessionId": "4c20f481-8d13-42ad-8e55-2436ee5f0e6a"
+}
+```
+
+---

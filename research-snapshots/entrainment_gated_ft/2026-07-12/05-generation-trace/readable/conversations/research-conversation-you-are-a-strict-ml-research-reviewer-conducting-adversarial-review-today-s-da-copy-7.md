@@ -1,0 +1,1936 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-09 (UTC).** Your job: indep
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-1/082ae5bd-02e2-4dce-aa55-7cc7e0efb910.jsonl`
+- **Structured JSON:** [`bcbb080c16c947d03b40.json`](../../sessions/bc/bcbb080c16c947d03b40.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-09T20:04:53.061Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-09T20:04:53.061Z",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-09 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Efficient Methods for NLP.\n\nDirection: Efficiency methods for NLP — NOT limited to LLM inference optimization. In-scope: speculative decoding, KV-cache compression/eviction, quantization-aware distillation, parameter-efficient fine-tuning, efficient long-context serving, MoE routing, attention approximations, efficient smaller models for specific NLP tasks, pruning for task-specific deployment.\n\nContribution type: METHOD ONLY. Propose new algorithms — not profiling studies.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Generous for efficiency work.\n2. Time: ≤16 days. Build on vLLM, SGLang, llama.cpp, TensorRT-LLM, HF Transformers, FlashAttention, bitsandbytes.\n3. Eval: perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench. Report wall-clock and throughput on H100.\n\nLook for: cache-aware methods for new workloads (long thinking traces, agent loops, RAG), quantization-aware distillation, structured sparsity during inference, efficient serving of reasoning models with variable-length thinking. Avoid: vanilla 4-bit quantization, generic LoRA, plain speculative decoding.\n\nTag: direction=efficiency, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-09?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 9/10)\n{\n  \"title\": \"Structure-Guided Draft Training for Reasoning Speculative Decoding\",\n  \"core_problem\": \"Speculative decoding draft models for reasoning LLMs are trained solely on next-token prediction, ignoring the structural grammar of thinking traces (reasoning → execution → transition). This misalignment causes drafts to generate locally plausible but structurally incoherent token sequences that the target model rejects, creating an acceptance-rate ceiling. While CoT-Aware draft training (ICLR 2026, OpenReview bKau2NNrji) has demonstrated that step-level process supervision improves draft alignment, no prior work applies thought-segment-level structural labels (R/E/T) as a training signal or imposes a Markov segment-transition consistency objective on structural sequence progressions — the mechanisms that would directly penalize structural incoherence at the thought-segment granularity where coherence is determined and where draft rejection most clearly correlates with structural mismatch.\",\n  \"opportunity\": \"ThinKV (ICLR 2026 Oral, arXiv:2510.01290) provides a thought-type taxonomy (R: reasoning, E: execution, T: transition) with an attention-sparsity heuristic that classifies tokens at the thought-segment level: the heuristic refreshes every τ=128 steps and assigns a single R/E/T label to the current segment window, which typically spans 100–300 tokens. All tokens within a segment window share one structural label. Although this heuristic was designed for KV-cache eviction rather than training supervision, its transferability as thought-segment-level structural labels is plausible and can be validated cheaply: a χ² test comparing R/E/T segment-type distributions of EAGLE-3-accepted vs. rejected draft segments on 1,000 sampled traces costs under 2 H100-hours and serves as a mandatory hypothesis gate before committing training budget. If validated, adding a lightweight auxiliary head to the draft model that jointly predicts structural segment type and next token — plus a Markov segment-transition consistency objective aligning predicted R→E→T segment-progression distributions to target-model-accepted trace distributions — forces the draft to internalize thinking-trace grammar at the granularity of structural units. A key mechanistic property of the block-constant label design: R/E/T segment boundaries in reasoning traces are determined by content (when the model switches from natural-language deliberation to symbolic computation), not by position. Segment lengths range from 100–300 tokens with high variance, and traces can exhibit R→E→R→E patterns with no positional regularity. A draft model cannot minimize the auxiliary loss L_role by attending to recency of boundary tokens alone; it must develop content-aware structural representations that recognize which segment type the current token belongs to across the full window. The boundary-switching gradient — where L_role shifts target from one segment type to another at τ-step transitions — concentrates the most useful structural signal at content-determined transition points. The novelty claim is narrow and defensible: this is the first work to apply thought-segment-level R/E/T structural labels and a Markov segment-transition probability objective as draft training signals for R1-class extended reasoning models. CoT-Aware (ICLR 2026) uses step-level distillation and SurpriseRatio data selection (operating at the CoT step boundary, not at the thought-segment level with explicit R/E/T type supervision); VSD optimizes a sequence-level ELBO with no reasoning-structure signal; SFDD (arXiv:2601.18902) uses flatness as a distributional property for data selection, not semantic structural role; AdaSPEC (arXiv:2510.19779, NeurIPS 2025 Spotlight) uses reference-model loss gap to filter hard tokens, not structural role; LTD (arXiv:2603.01639) optimizes throughput via RL co-adaptive policies with no structural supervision; Lookahead Reasoning (arXiv:2506.19830, NeurIPS 2025) operates at step-level semantic verification, not draft-training-side structural supervision — none impose thought-segment-level structural role supervision with segment-transition consistency, leaving a specific, measurable, and mechanistically grounded gap. The auxiliary head adds approximately 5M parameters, is frozen at inference (zero latency overhead), and is composable with any EAGLE-style architecture, verification-side improvements, or RL-based dynamic adaptation methods such as LTD.\",\n  \"landscape\": \"SCoT (Apr 2025, arXiv:2504.19095) achieves 48–66% latency reduction on DeepSeek-R1-Distill-32B and 21–49% on DeepSeek-R1-Distill-70B via thought-level drafting but uses a generic smaller model with no structural supervision. ARBITRAGE (arXiv:2512.05033) achieves ~2× latency reduction on mathematical reasoning benchmarks via advantage-aware routing — a lightweight router trained to predict when the target model will produce meaningfully better reasoning steps, selecting between draft and target model outputs at the step level; this is a routing-side approach orthogonal to draft-training-side structural supervision and composable with our method. 'Scaling Speculative Decoding with Lookahead Reasoning' (arXiv:2506.19830, NeurIPS 2025, Yichao Fu et al., Hao AI Lab UCSD) achieves 1.04×–1.71× standalone speedup on reasoning benchmarks (ranging from 1.04× on GPQA to 1.71× on GSM8K with DeepSeek-R1-Distill-1.5B→32B), rising to a combined peak of 2.11× on GSM8K when additionally paired with n-gram speculative decoding; the paper's abstract reports '1.4×→2.1×' for the combined system across all benchmark-model pairs, not for Lookahead Reasoning alone. The method exploits step-level semantic correctness: a lightweight draft model proposes future reasoning steps, the target model expands each proposal in a batched pass, and a verifier retains semantically correct steps (rather than requiring exact token match), addressing the exponential acceptance-rate decay with sequence length by operating at the reasoning-step level rather than the token level. Lookahead Reasoning is the most direct competing narrative for 'reasoning-aware speculative decoding' at NeurIPS 2025 and its absence will be noticed by reviewers familiar with reasoning efficiency; however, it is strictly orthogonal to our approach — Lookahead modifies the verification criterion (step-level semantic correctness), whereas our method modifies draft training supervision (thought-segment-level R/E/T structural labels), the two methods address different bottlenecks and are composable. CoT-Aware (ICLR 2026, OpenReview bKau2NNrji) is the closest prior work on draft training — and as the closest published ICLR 2026 work, its explicit limitations establish our gap directly: it augments EAGLE-style draft training with process-level CoT distillation (step-level feature regression to reduce forward KL divergence at CoT step boundaries) and SurpriseRatio data selection to prevent catastrophic forgetting, reporting 3.04×–4.55× wall-clock speedups; crucially, unlike our approach, CoT-Aware does NOT classify tokens or segments into structural roles (R/E/T), does NOT use a Markov segment-transition consistency objective, and operates at the reasoning-step granularity rather than at the thought-segment level defined by ThinKV's attention-sparsity heuristic — our two key differentiating mechanisms relative to the closest ICLR 2026 prior work. 'Flatter Tokens are More Valuable for Speculative Draft Model Training' (arXiv:2601.18902, Jan 2026) proposes SFDD — flatness-based dataset distillation for draft training, selecting samples where the target model's predictive distribution is flatter (less confident), achieving over 2× training speedup using 50% of data. 'AdaSPEC: Selective Knowledge Distillation for Efficient Speculative Decoders' (arXiv:2510.19779, NeurIPS 2025 Spotlight) proposes selective token filtering in knowledge distillation by using a reference model to identify hard-to-fit tokens and exclude them from draft training, achieving up to 15% improvement in token acceptance rate over DistillSpec. AdaSPEC, SFDD, and the proposed method share the insight that training tokens are non-uniformly important for draft acceptance rate, but use orthogonal criteria: AdaSPEC filters by learning difficulty (reference model loss gap), SFDD selects by distributional flatness (target model confidence), and our method weights by structural semantic role (R/E/T from ThinKV's taxonomy) — all three are non-competing and stackable. 'Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning' (LTD, arXiv:2603.01639, ICLR 2026 Poster) achieves up to 36.4% speedup over EAGLE-3 by formulating speculative decoding as a reinforcement learning problem that trains co-adaptive draft and verify policies to directly optimize throughput across 5 LLMs and 4 tasks; LTD uses no reasoning-structure signal and treats draft/verify allocation as a dynamic policy rather than a static training objective. Our approach is orthogonal: thought-segment-level structural supervision modifies only draft training and is frozen at inference, making it directly composable with LTD's RL-based dynamic adaptation as a complementary enhancement to the draft model quality that LTD's RL policy leverages. 'Steering Pretrained Drafters' (Nov 2025, arXiv:2511.09844, AAAI 2026) shows a lightweight dynamic steering mechanism improves accepted tokens by up to 35% and throughput by 22%, confirming structural alignment is a bottleneck rather than draft capacity. Aurora (Feb 2026, arXiv:2602.06932) enables continuous on-policy RL-style draft adaptation but optimizes distribution matching, not reasoning-trace structural coherence. 'Training Domain Draft Models' (Mar 2025, arXiv:2503.07807) addresses distribution shift via knowledge distillation, not structural role mismatch. Variational Speculative Decoding (Feb 2026, arXiv:2602.05774) formulates draft training as variational inference over draft paths, achieving 9.6% speedup over EAGLE-3 on MT-Bench, HumanEval, and GSM8K — but uses no reasoning-structure signal and has not been evaluated on extended reasoning benchmarks (AIME24, AMC23, LiveCodeBench), leaving a direct comparison gap. OnlineSpec (Mar 2026, arXiv:2603.12617) proposes online preference-pair updates for draft model adaptation during reasoning — complementary to our static structural supervision approach. SemanticSpec (Feb 2026, arXiv:2602.03708) achieves 2.7× speedup on DeepSeek-R1-32B and 2.1× on QwQ-32B via verification-side semantic equivalence checking using internal hidden states — compelling parallel work on reasoning model speedup but strictly orthogonal (verification-side, not draft-training-side) and composable with our approach. SpecGuard (Apr 2026, arXiv:2604.15244) performs step-level verification using model-internal signals, and ConfSpec (Feb 2026, arXiv:2602.18447) uses confidence-gated cascaded verification — both verification-side and composable. LongSpec (Feb 2026, arXiv:2502.17421) enables lossless speculative decoding in long-context settings by addressing KV cache pressure, position mismatch, and tree attention inefficiency in draft models; it achieves 2.25× wall-clock reduction on AIME24 with QwQ-32B (3.81 average accepted tokens) and serves as the primary SD baseline for QwQ-32B experiments. ThinKV (ICLR 2026 Oral, arXiv:2510.01290) provides the R/E/T thought-type taxonomy via attention-sparsity heuristics operating at the segment level (τ=128 steps, 100–300 tokens per segment); the taxonomy was derived from unspecified LRMs in Figure 3 and applied with uniform thresholds across all evaluated models; ThinKV reports accuracy-preserving KV compression on QwQ-32B (AIME: 73.33%→70.28% at 3.4-bit; LiveCodeBench: 55.45%→50.47%), providing evidence that QwQ-32B exhibits the R/E/T attention-sparsity patterns the heuristic exploits, though the taxonomy's precision as a thought-segment-level training-label generator must be validated empirically before full training commitment on each target model. QwQ-32B (64 layers, 8 KV heads, head_dim 128, BF16 weights ~65.5 GB) fits on 1 H100 for serving at ≤32K context (~73 GB total including KV cache), covering all training pre-generation (vs. 4 H100s for R1-Distill-70B), making the marginal training compute cost approximately 17h H100 for a 7B draft with the best-performing λ from R1-Distill experiments; however, at 128K context (BF16 weights ~65.5 GB + KV cache 2×64×8×128×131072×2 bytes ≈ 32 GB ≈ 97.5 GB total), QwQ-32B exceeds single-H100 capacity and requires 2 H100s — this applies to the RULER NIAH 128K evaluation cells only (all training pre-generation uses ≤32K traces). No prior work combines thought-segment-level structural labels with a Markov segment-transition consistency objective as a speculative decoding draft training objective.\",\n  \"approach\": \"Phase 0 — Hypothesis Validation (days 1–2, ~2h H100; results constitute a 2-page analysis section in the paper): Sample 1,000 DeepSeek-R1-Distill-70B traces with EAGLE-3-generated draft tokens and known acceptance outcomes. Apply ThinKV's attention-sparsity heuristic to classify each ~128-token draft window as R, E, or T (all tokens within a window share one structural label per ThinKV's segment-level design). First, validate label quality: compute per-segment structural entropy; if ≥30% of segments fall into an ambiguous bin (above a tunable entropy threshold), tune the threshold on this 1K sample before proceeding — this prevents noise injection from poor labels. Second, run a χ² test comparing the marginal R/E/T segment-type distributions of EAGLE-3-accepted vs. rejected draft segments. If p < 0.05, the structural misalignment hypothesis is confirmed at the segment level and the training objectives are well-motivated. If p ≥ 0.05, pivot the measurement to structural segment-type divergence between the draft model's predicted R/E/T distributions and the target model's actual output segment distributions — this alternative analysis may reveal systematic structural biases in draft-model outputs (e.g., over-production of R segments, under-production of T segments) that manifest independent of per-segment acceptance, providing equally strong motivation for the Markov segment-transition objective. Both outcomes yield publishable pilot findings.\\n\\nPhase 1 — Draft Model Augmentation: Augment an EAGLE-3-based draft with a lightweight two-output head inserted after the multi-layer feature fusion layer: one output predicts the next token (standard cross-entropy loss L_token), a second predicts the current thought-segment type (R/E/T, cross-entropy auxiliary loss L_role weighted by α). Auto-generate R/E/T segment labels by applying ThinKV's attention-sparsity heuristic (τ=128 steps) to DeepSeek-R1-Distill-70B reasoning traces; all tokens within each ~128-token window share the same segment label, and zero human annotation is required. Mechanistic justification for the block-constant label design: R/E/T segment boundaries in reasoning traces are determined by content — when the model transitions from natural-language deliberation to symbolic computation — not by token position. Segment lengths range from 100–300 tokens with high variance, and reasoning traces exhibit R→E→R→E patterns with no positional regularity. The primary defense against the block-constant label critique is empirical: the four-condition ablation directly tests whether L_role contributes genuine content-aware structural signal beyond what position alone could provide — condition (c) [L_token + L_trans only] vs. condition (d) [full method: L_token + L_role + L_trans] isolates L_role's independent contribution; if (d) significantly outperforms (c), the structural type head provides signal that cannot be explained by positional recency heuristics, since the Markov transition objective already captures any segment-boundary information recoverable from token positions. This ablation is the decisive test. As secondary theoretical motivation, the boundary-switching gradient — where L_role's target shifts from one segment type label to another at τ-step content-determined transitions — is analogous to SpanBERT's Span Boundary Objective (Joshi et al., TACL 2020): both mechanisms concentrate representational pressure at structural boundaries, though SpanBERT masks tokens and forces boundary-position prediction while our method switches classification targets at τ-step segment transitions. The auxiliary head learns to classify each token's structural context at segment granularity — effectively predicting which thought-segment type the current position falls within. This non-uniform structural weighting is complementary to AdaSPEC (arXiv:2510.19779, NeurIPS 2025 Spotlight), which filters by learning difficulty, and SFDD (arXiv:2601.18902), which selects by distributional flatness — the three criteria (structural role, difficulty, flatness) are orthogonal and stackable.\\n\\nPhase 2 — Markov Segment-Transition Consistency Objective: Add a third loss term L_trans (weighted by λ): from each draft trajectory extract the predicted R→E→T segment-transition sequence (one transition label per ~128-token window), compute KL divergence between this predicted segment-transition distribution and the empirically estimated transition distribution of target-model-accepted traces, and penalize divergence. Transitions are between thought segments (~100–300 tokens each), not between individual tokens — the Markov chain operates at the segment level, making the objective robust to token-level noise. L_trans employs a single global R→E→T transition matrix estimated from the full training corpus; as R1-Distill EAGLE training data is typically math-reasoning-heavy (AIME/AMC-style traces dominant), this global matrix is calibrated to math-dominant structural transition patterns and may impose weaker regularization on code (HumanEval) or instruction (MT-Bench) evaluation tasks — whether the Markov transition regularization generalizes equally across task types is an empirical question the Phase 3 task-stratified nine-benchmark results will directly answer. This Markov segment-transition consistency objective is grounded in the Markov chain abstraction for speculative decoding established in 'A Theoretical Perspective for Speculative Decoding Algorithm' (arXiv:2411.00841, NeurIPS 2024), which analyzes fundamental SD performance limits via total variation distances between draft and target model distributions. Total training loss: L = L_token + α · L_role + λ · L_trans. The auxiliary head (~5M parameters) is frozen at inference time — zero latency overhead. Ablation design: four conditions are tested to isolate component contributions — (a) L_token only (EAGLE-3 baseline), (b) L_token + L_role only (structural type head without Markov transition), (c) L_token + L_trans only (Markov transition without structural type head — the critical ablation for isolating L_role's contribution), and (d) L_token + L_role + L_trans (full method). If (d) > (c) > (a), both objectives contribute independently. If (d) ≈ (c), the Markov transition objective alone accounts for the improvement and L_role adds noise rather than signal — in this case, the paper's contribution is reframed as primarily the Markov transition objective.\\n\\nPhase 3 — Experiments: Primary target model: DeepSeek-R1-Distill-70B (consistent with Phase 0; ThinKV's R/E/T heuristic is applied to R1-Distill attention patterns, ensuring label-transfer compatibility throughout all phases). Secondary target model: QwQ-32B with a 7B draft model — ThinKV's R/E/T heuristic achieves accuracy-preserving KV compression on QwQ-32B (AIME: 73.33%→70.28% at 3.4-bit; LiveCodeBench: 55.45%→50.47%), providing evidence that QwQ-32B exhibits the R/E/T attention-sparsity patterns the heuristic exploits; LongSpec (arXiv:2502.17421) reports 2.25× wall-clock reduction on AIME24 with QwQ-32B (3.81 average accepted tokens) and serves as the SD baseline for QwQ-32B experiments. QwQ-32B (64 layers, 8 KV heads, head_dim 128, BF16 weights ~65.5 GB) fits on 1 H100 for serving at ≤32K context, covering all training pre-generation (~17h H100 marginal training cost for 7B draft with best λ); the RULER NIAH 128K evaluation tasks require 2 H100s (BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB, exceeding 80 GB per H100). Draft model sizes for R1-Distill: 1.5B, 3B, 7B; λ ∈ {0.01, 0.1, 0.5}; α fixed at 0.1 after Phase 0 pilot tuning. Benchmarks: AIME24, AMC23, LiveCodeBench (reasoning quality and task diversity for R1-class models); MT-Bench (general instruction-following quality — standard in the EAGLE-3 evaluation tradition, verifies structural supervision does not degrade instruction-following); HumanEval (code generation quality — verifies structural supervision does not degrade non-reasoning capabilities); LongBench (long-context understanding — validates structural supervision generalizes to long-context settings, particularly germane because reasoning traces are themselves long outputs and long-context fidelity determines the practical deployment envelope for R1-class models); RULER [tractable subset: NIAH Single and NIAH Multi-Query at 32K and 128K context lengths, 100 samples per task×length cell = 400 total examples; ~5h H100 on 4 H100s for R1-Distill-70B; ~8h H100 on 2 H100s for QwQ-32B (128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB); the full RULER suite of 13 tasks × 6 context lengths × 500 samples = 39,000 examples would require 200–300h H100 for the 70B model alone, making it infeasible within the total compute budget; NIAH Single and Multi-Query tasks are the most diagnostically relevant for extended-reasoning deployment, where reliable information retrieval within long contexts is the critical long-context capability; LongBench provides complementary long-context coverage at shorter contexts (≤32K)] (targeted long-context position fidelity — validates structural supervision does not degrade performance at 32K–128K context lengths relevant to extended reasoning traces); MMLU (general knowledge — verifies structural supervision does not degrade factual knowledge); Perplexity on WikiText-103 and C4 (validates auxiliary training does not degrade general language modeling quality). Baselines: EAGLE-3, VSD, SCoT, CoT-Aware (ICLR 2026, bKau2NNrji), LTD (arXiv:2603.01639), LongSpec (arXiv:2502.17421) for QwQ-32B comparisons. Metrics: mean accepted tokens per step, acceptance rate, wall-clock speedup. The method modifies only draft training and adds no inference-time primitives, making it directly composable with SpecGuard, ConfSpec, SemanticSpec, LTD, and Lookahead Reasoning (arXiv:2506.19830).\",\n  \"resource_estimate\": {\n    \"conversion_note\": \"All estimates are in H100-hours. Conversion basis: H100 provides approximately 2× training throughput over A100 for typical LLM training workloads. H100 cloud rate: ~$3/h on competitive providers (Hyperstack, JarvisLabs). Primary target model throughout all phases is DeepSeek-R1-Distill-70B (dense 70B model, fits on 4–8 H100s). QwQ-32B (64 layers, 8 KV heads, head_dim 128) fits on 1 H100 for serving at ≤32K context (BF16 weights ~65.5 GB + KV cache ~7 GB ≈ ~73 GB), covering all training pre-generation; at 128K context (BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB), QwQ-32B requires 2 H100s — this applies to RULER NIAH 128K evaluation cells only. All three modes are comfortably within the ≤200h H100 compute budget.\",\n    \"manual\": {\n      \"gpu_hours\": \"~178h H100 (equivalent to ~356h A100 / 2×)\",\n      \"gpu_utilization\": \"~35% effective — high idle from iterative debugging of the attention-sparsity segment-labeling pipeline, human analysis between training runs, and code rewrites across 4–6 experimental iterations\",\n      \"timeline\": \"4–6 months\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"~$534 (178h × $3/h)\",\n      \"risk_note\": \"Phase 0 pilot (1K traces, χ² test on segment-type distributions) must be completed and pass label-quality gate (≤30% ambiguous segments) before committing the remaining ~176h to full training. Evaluation covers 9 benchmarks (AIME24, AMC23, LiveCodeBench, MT-Bench, HumanEval, LongBench, RULER, MMLU, Perplexity-Wiki/C4); RULER is limited to the tractable NIAH subset only (NIAH Single + Multi-Query at 32K and 128K context lengths, 100 samples per task×length cell = 400 total examples, ~5h H100 on 4 H100s for R1-Distill-70B and ~8h H100 on 2 H100s for QwQ-32B [128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB]); the full RULER suite (13 tasks × 6 lengths × 500 samples = 39,000 examples) is excluded as it would require 200–300h H100 for the 70B model alone, exceeding the total compute budget. QwQ-32B secondary target model (7B draft, best λ from R1-Distill) adds approximately 24h H100 total (training ~17h H100 at ≤32K context on 1 H100 for serving + eval ~7h H100 including RULER-NIAH at 128K on 2 H100s ~8h and remaining benchmarks ~3h, but training dominates marginal). The four-condition ablation (L_token only / + L_role only / + L_trans only / full) adds ~2 additional training runs vs. the original design.\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~190h H100 (equivalent to ~380h A100 / 2×; λ=0.5 dropped from HIL ablations, creating ~5% margin below the 200h cap)\",\n      \"gpu_utilization\": \"~60% — agent queues ablations continuously across λ values and model sizes; human approval gates at key architectural forks cut wasted runs by ~40% vs. full auto\",\n      \"timeline\": \"5–7 weeks\",\n      \"team\": \"1 researcher, ~30 min/day check-in for experiment approval and loss curve review\",\n      \"claude_api_cost\": \"$300–450 (~2,500–3,500 conversation turns at ~$0.10/turn average)\",\n      \"estimated_gpu_cost\": \"~$570 (190h × $3/h)\",\n      \"ablation_scope\": \"2 draft sizes (1.5B, 7B) × 2 λ values (0.01, 0.1; λ=0.5 dropped from HIL scope to create ~5% budget margin, consistent with auto-research mode's λ ∈ {0.01, 0.1} range) = 4 ablation runs + 4-condition ablation (L_token only / + L_role only / + L_trans only / full, at 7B with best λ) = 4 ablation conditions + QwQ-32B 7B × best λ = 1 additional run + 2 EAGLE-3 baselines + LongSpec baseline (QwQ-32B) + 9-benchmark evaluation (AIME24, AMC23, LiveCodeBench, MT-Bench, HumanEval, LongBench, RULER [NIAH Single + Multi-Query at 32K and 128K context lengths, 100 samples per task×length cell = 400 total examples, ~5h H100 on 4 H100s for R1-Distill-70B and ~8h H100 on 2 H100s for QwQ-32B [128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB]; full RULER suite of 39,000 examples excluded as physically infeasible within budget], MMLU, Perplexity-Wiki/C4) against R1-Distill-70B and QwQ-32B; total ~190h H100 (~5% margin below the 200h cap)\",\n      \"risk_note\": \"Label quality is the critical bottleneck: if ThinKV's attention-sparsity heuristic assigns ambiguous structural labels to ≥30% of thought segments on the target model's traces, the auxiliary loss injects noise rather than signal and may degrade acceptance rate. Phase 0 pilot validation (days 1–2, ~2h H100) is a mandatory gate before committing full training budget. The four-condition ablation (including L_token + L_trans only) is critical for isolating L_role's contribution and preempting the block-constant label critique: condition (c) vs. (d) is the primary empirical defense — if (d) significantly outperforms (c), L_role provides genuine content-aware structural signal independent of positional recency. Dropping λ=0.5 from HIL scope (retained in auto-research at λ ∈ {0.01, 0.1}) saves approximately 2 training runs × ~13h ≈ 26h H100 relative to the previous HIL design, creating meaningful headroom against estimate variance; if any single benchmark cell overruns, RULER 128K for QwQ-32B (the most compute-intensive cell at ~8h H100 on 2 H100s) is the first candidate for deprioritization.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~185h H100\",\n      \"gpu_utilization\": \"~88% — agent schedules experiment queues 24/7 across parallel nodes with negligible human-wait idle; idle periods are only inter-run checkpoint evaluation (~5–10 min)\",\n      \"timeline\": \"7–12 days with 4–6 H100 GPUs\",\n      \"team\": \"0 (only initial setup: segment-labeling pipeline using ThinKV's heuristic, EAGLE-3 training scaffold with auxiliary head and four-condition ablation harness, multi-benchmark evaluation harness against both R1-Distill-70B and QwQ-32B)\",\n      \"claude_api_cost\": \"$600–900 (~5,000–7,500 conversation turns for experiment design, result analysis, and report drafting)\",\n      \"estimated_gpu_cost\": \"~$555 (185h × $3/h)\",\n      \"ablation_scope\": \"3 draft sizes (1.5B, 3B, 7B) × 2 λ values (0.01, 0.1; λ=0.5 dropped to stay within 200h H100 cap) = 6 primary R1-Distill ablation runs + 4-condition loss ablation (L_token only / + L_role only / + L_trans only / full, at 7B with best λ, 3 additional runs beyond EAGLE-3 baseline) + QwQ-32B 7B × best λ = 1 run. GPU accounting: (a) R1-Distill-70B target model pre-generation: 4 H100s × ~4h wall-clock = ~16h H100 total, amortized as ~1.3h H100 per run across the 9 R1-Distill runs (6 primary + 3 ablation conditions beyond EAGLE-3 baseline); (b) each draft training run uses 2 H100s × ~5.7h wall-clock ≈ 11.4h H100; (c) amortized pre-generation (~1.3h) plus draft training (~11.4h) = ~12.7h H100/run, rounded to ~13h H100/run; 9 R1-Distill runs × ~13h ≈ 117h H100. QwQ-32B target model pre-generation (at ≤32K context on 1 H100): 1 H100 × ~4h wall-clock = ~4h H100; QwQ-32B draft training: 1 run × 11.4h = 11.4h; QwQ-32B training subtotal: ~17h H100 (serving at ≤32K context fits on 1 H100: BF16 weights ~65.5 GB + KV cache ~7 GB ≈ ~73 GB). 9-benchmark evaluation: R1-Distill ≈ 38h H100 (4 H100s × ~9.5h wall-clock; itemized: AIME24 ~1h, AMC23 ~0.5h, LiveCodeBench ~1h, MT-Bench ~0.5h, HumanEval ~0.5h, LongBench ~2h, RULER-NIAH subset [~1.25h wall-clock = ~5h H100 on 4 H100s], MMLU ~1h, Perplexity-Wiki/C4 ~0.5h; total ~8.25h wall-clock + overhead ≈ 9.5h × 4 H100s = 38h H100); QwQ-32B ≈ 11h H100 (RULER-NIAH 128K cells: 2 H100s × ~4h wall-clock = ~8h H100 [128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache 2×64×8×128×131072×2 bytes ≈ 32 GB ≈ 97.5 GB total, exceeding 80 GB per H100]; remaining 8 benchmarks at ≤32K context on 1 H100: ~3h H100; QwQ-32B eval total: ~11h H100). Phase 0 pilot: ~2h H100. Grand total: 2 + 117 + 17 + 38 + 11 = 185h H100 — within the ≤200h H100 cap.\",\n      \"speed_bottleneck\": \"GPU node count is the primary limit — 4–6 H100s needed to parallelize draft training (2 H100s per run, up to 3 concurrent R1-Distill runs on 6 H100s) with QwQ-32B training on the side (1 H100 for ≤32K serving, 2 H100s for draft training); secondary bottleneck is Claude API rate limits during dense parallel ablation phases\",\n      \"risk_note\": \"Without sanity-check hooks, auto-exploration may collapse to degenerate structural predictions (e.g., all segments labeled R) that reduce auxiliary loss without improving acceptance rate. Pipeline must include per-run structural segment distribution entropy checks as an automated gate before committing to full evaluation. Phase 0 pilot (χ² test on segment-type distributions, ~2h H100) must complete and pass before main training runs are queued. The four-condition ablation (including L_token + L_trans only, condition c) is a mandatory run — condition (c) vs. (d) is the primary empirical defense against the block-constant label critique; if (c) ≈ (d), the paper pivots its framing to emphasize the Markov transition objective as the primary contribution. RULER is limited to the NIAH Single + Multi-Query subset (400 examples, 2 tasks × 2 context lengths × 100 samples); automated evaluation harness must enforce this limit and route QwQ-32B 128K evaluation to 2-H100 nodes — the full RULER suite would consume the entire compute budget on the 70B model alone.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Findings (primary target; ARR submission deadline May 25, 2026; commitment deadline August 2, 2026; incremental scope over EAGLE-3/CoT-Aware, uncertain improvement magnitude, and dependency on ThinKV taxonomy transfer place this squarely in the Findings acceptance zone; auto-research mode is the only feasible path given 7–12 day timeline to the May 25 deadline; Phase 0 pilot must complete within days 1–2 of the run; EMNLP 2026 Main is aspirational and warranted only if Phase 0 and four-condition ablation yield exceptionally strong and consistent results)\",\n    \"ICLR 2027 (deadline expected ~October 2026, not yet announced — all three resource modes are feasible at this horizon; full Main-track competitiveness is plausible given additional time for ablation strengthening)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Efficient Reasoning for LLMs through Speculative Chain-of-Thought (arXiv:2504.19095, Apr 2025)\",\n    \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models (ICLR 2026 Oral, arXiv:2510.01290)\",\n    \"Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework (ICLR 2026, OpenReview bKau2NNrji)\",\n    \"Flatter Tokens are More Valuable for Speculative Draft Model Training (arXiv:2601.18902, Jan 2026)\",\n    \"AdaSPEC: Selective Knowledge Distillation for Efficient Speculative Decoders (arXiv:2510.19779, NeurIPS 2025 Spotlight)\",\n    \"Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning (arXiv:2603.01639, ICLR 2026 Poster)\",\n    \"A Theoretical Perspective for Speculative Decoding Algorithm (arXiv:2411.00841, NeurIPS 2024)\",\n    \"Scaling Speculative Decoding with Lookahead Reasoning (arXiv:2506.19830, NeurIPS 2025)\",\n    \"Arbitrage: Efficient Reasoning via Advantage-Aware Speculation (arXiv:2512.05033)\",\n    \"Beyond Tokens: Semantic-Aware Speculative Decoding for Efficient Inference by Probing Internal States (arXiv:2602.03708, Feb 2026)\",\n    \"Steering Pretrained Drafters during Speculative Decoding (arXiv:2511.09844, AAAI 2026)\",\n    \"When RL Meets Adaptive Speculative Training: A Unified Training-Serving System (arXiv:2602.06932, Feb 2026)\",\n    \"Training Domain Draft Models for Speculative Decoding: Best Practices and Insights (arXiv:2503.07807, SCOPE@ICLR 2025)\",\n    \"Variational Speculative Decoding: Rethinking Draft Training from Token Likelihood to Sequence Acceptance (arXiv:2602.05774, Feb 2026)\",\n    \"When Drafts Evolve: Speculative Decoding Meets Online Learning (arXiv:2603.12617, Mar 2026)\",\n    \"EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test (NeurIPS 2025)\",\n    \"From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning (arXiv:2604.15244, Apr 2026)\",\n    \"ConfSpec: Efficient Step-Level Speculative Reasoning via Confidence-Gated Verification (arXiv:2602.18447, Feb 2026)\",\n    \"LongSpec: Long-Context Lossless Speculative Decoding with Efficient Drafting and Verification (arXiv:2502.17421, Feb 2026)\",\n    \"SpanBERT: Improving Pre-training by Representing and Predicting Spans (Joshi et al., TACL 2020, arXiv:1907.10529)\"\n  ],\n  \"description\": \"Speculative decoding draft models for reasoning LLMs are trained solely on next-token prediction, ignoring the structural grammar of thinking traces (reasoning → execution → transition). While CoT-Aware draft training (ICLR 2026, OpenReview bKau2NNrji) — the closest ICLR 2026 prior work — has shown step-level process supervision improves acceptance rates (3.04–4.55× speedup), it does not classify tokens into structural roles (R/E/T) or impose a Markov segment-transition consistency objective; no prior work applies thought-segment-level structural labels (R/E/T) as training signals or imposes a Markov segment-transition consistency objective — unlike this closest ICLR 2026 prior work, which uses step-level process distillation without R/E/T thought-segment labels or Markov transition objectives, the mechanisms that directly penalize structural incoherence at the thought-segment granularity where structural coherence is determined. We propose augmenting an EAGLE-3-based draft with a lightweight two-output head that jointly predicts next token and thought-segment type (R/E/T from ThinKV's ICLR 2026 Oral taxonomy, operating at τ=128-step refresh intervals producing 100–300-token segment windows), plus a Markov segment-transition KL objective aligning predicted R→E→T segment progressions to target-model-accepted trace distributions — grounded in the Markov chain abstraction for speculative decoding established in arXiv:2411.00841 (NeurIPS 2024); L_trans uses a single global R→E→T transition matrix estimated from the training corpus, which for R1-Distill EAGLE training is math-reasoning-heavy (AIME/AMC-style traces dominant) — the Markov transition regularization may therefore be stronger on math benchmarks than on code (HumanEval) or instruction (MT-Bench) tasks, and the Phase 3 task-stratified nine-benchmark results will empirically resolve whether this corpus-distribution calibration limits cross-task transfer; all labels auto-generated from ThinKV's attention-sparsity heuristic, zero human annotation. The primary empirical defense against the block-constant label critique is the four-condition ablation: condition (c) [L_token + L_trans only] vs. condition (d) [full method] directly isolates whether L_role contributes genuine content-aware structural signal independent of positional recency — if (d) significantly outperforms (c), the structural type head provides information that the Markov transition objective alone cannot capture. This ablation is the decisive test; as secondary theoretical motivation, the boundary-switching gradient at content-determined R/E/T segment transitions is analogous to SpanBERT's Span Boundary Objective (Joshi et al., TACL 2020) — both concentrate representational pressure at structural boundaries — though SpanBERT masks tokens while our method switches classification targets at τ-step transitions. The four-condition ablation (L_token only / + L_role only / + L_trans only / full) also handles the pivot case: if (c) ≈ (d), the paper reframes its primary contribution as the Markov transition objective. Primary target model: DeepSeek-R1-Distill-70B throughout all phases. Secondary target model: QwQ-32B (64 layers, 8 KV heads, head_dim 128) with a 7B draft — ThinKV's R/E/T heuristic achieves accuracy-preserving KV compression on QwQ-32B (AIME: 73.33%→70.28% at 3.4-bit), evidencing the R/E/T attention-sparsity patterns; LongSpec (arXiv:2502.17421, 2.25× speedup on AIME24) serves as the QwQ-32B SD baseline; QwQ-32B fits on 1 H100 for serving at ≤32K context (BF16 weights ~65.5 GB + KV cache ~7 GB ≈ ~73 GB), covering all training pre-generation (~17h H100 marginal training cost for 7B draft with best λ); at 128K context (BF16 weights ~65.5 GB + KV cache 2×64×8×128×131072×2 bytes ≈ 32 GB ≈ 97.5 GB), QwQ-32B requires 2 H100s — this applies to the RULER NIAH 128K evaluation cells only. A mandatory Phase 0 pilot (χ² test comparing R/E/T segment-type distributions of EAGLE-3-accepted vs. rejected draft segments on 1K traces, ~2h H100) validates the structural misalignment hypothesis and gates label quality before committing training budget. The approach is orthogonal to and composable with LTD (arXiv:2603.01639, ICLR 2026 Poster), which achieves up to 36.4% speedup over EAGLE-3 via RL co-adaptive draft/verify policies without structural supervision, and with Lookahead Reasoning (arXiv:2506.19830, NeurIPS 2025), which achieves 1.04×–1.71× standalone speedup (rising to 2.11× combined with n-gram SD on GSM8K) via step-level semantic correctness verification — Lookahead modifies the verification criterion while our method modifies draft training supervision, the two bottlenecks are distinct and the methods are composable. ARBITRAGE (arXiv:2512.05033) targets reasoning efficiency via routing-side advantage-aware speculation, also orthogonal and composable. Phase 3 evaluation covers nine benchmarks: AIME24, AMC23, LiveCodeBench (reasoning quality), MT-Bench (general instruction-following — standard in EAGLE-3 evaluation tradition), HumanEval (code generation — verifies no degradation of non-reasoning capabilities), LongBench (long-context understanding — validates generalization to long-context settings germane to extended reasoning traces), RULER [tractable subset: NIAH Single and NIAH Multi-Query at 32K and 128K context lengths, 100 samples per task×length cell = 400 total examples; ~5h H100 on 4 H100s for R1-Distill-70B; ~8h H100 on 2 H100s for QwQ-32B (128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB); full RULER suite of 13 tasks × 6 context lengths × 500 samples = 39,000 examples excluded as it would require 200–300h H100 for the 70B model alone; NIAH tasks selected as most diagnostic for extended-reasoning deployment; LongBench provides complementary short-context (≤32K) coverage] (targeted long-context position fidelity), MMLU (general knowledge — verifies no factual knowledge degradation), and Perplexity on WikiText-103/C4 (validates no general LM quality degradation from auxiliary training). The non-uniform token importance framing is shared with SFDD (arXiv:2601.18902, distributional flatness criterion) and AdaSPEC (arXiv:2510.19779, NeurIPS 2025 Spotlight, learning-difficulty criterion via reference-model loss gap); all three criteria are orthogonal and stackable. GPU estimates are in H100-hours: manual ~178h, human-in-loop ~190h (λ=0.5 dropped from HIL ablations, creating ~5% margin below the 200h cap), auto-research ~185h (9 R1-Distill runs × ~13h = 117h; QwQ-32B training ~17h; R1-Distill eval ~38h; QwQ-32B eval ~11h [RULER 128K on 2 H100s ~8h + remaining benchmarks ~3h]; Phase 0 ~2h; total 185h within ≤200h cap). Baselines: EAGLE-3, VSD, SCoT, CoT-Aware (ICLR 2026, bKau2NNrji), LTD (arXiv:2603.01639), LongSpec (arXiv:2502.17421) for QwQ-32B comparisons. The novelty claim: first to apply thought-segment-level R/E/T structural labels and a Markov segment-transition probability objective as speculative decoding draft training signals for R1-class extended reasoning models, differentiating from the closest ICLR 2026 prior work (CoT-Aware) which uses step-level process distillation without R/E/T thought-segment labels or Markov transition objectives. Primary target venue: EMNLP 2026 Findings (ARR deadline May 25, 2026; commitment deadline August 2, 2026); EMNLP 2026 Main is aspirational pending strong empirical results; ICLR 2027 is the secondary target at a more comfortable timeline.\",\n  \"project_name\": \"struct_guided_draft_training\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL NOVELTY GAP: 'Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework' (OpenReview bKau2NNrji) uses CoT process-level structure for EAGLE draft training — directly contradicting the 'zero prior work' novelty claim. This paper must be cited and explicitly differentiated from. Specifically: the CoT-Aware paper uses step-level distillation + SurpriseRatio data selection, not token-level thought-type labels (R/E/T) or Markov transition objectives; the differentiation must be made explicit and the novelty re-grounded in the specific token-level structural labeling + transition consistency contribution, not the broader 'CoT-aware draft training' claim.\", \"HARD CONSTRAINT VIOLATION: Auto-research mode is estimated at 1,000h A100 ≈ 333–500 H100-hours, exceeding the ≤200 H100-hour compute budget. All three resource estimates are given in A100-hours rather than H100-hours as required by the user specifications. The proposal must convert estimates to H100-hours and bring all modes within the constraint.\", \"UNVALIDATED CORE HYPOTHESIS: The structural misalignment explanation ('draft produces structurally incoherent R→E→T sequences that target model rejects') is presented as established fact, but no preliminary measurement establishes that accepted vs. rejected draft tokens differ in structural role distribution. A 500-token pilot analysis comparing ThinKV-classified structural distributions of accepted vs. rejected draft tokens should be conducted before committing training budget — if distributions are indistinguishable, the method has no theoretical foundation.\", \"MISLABELED PRIOR WORK AUTHORITY: ThinKV is described as an arXiv paper but is in fact an ICLR 2026 Oral, significantly increasing its authority and the risk that reviewers will ask why the paper's key dependency is 'off-the-shelf' from a peer-reviewed paper in the same submission cycle. Additionally, ThinKV's attention-sparsity heuristic was designed for KV eviction, not training label generation — its oracle precision as a token-level structural classifier for draft training supervision has not been validated.\", \"INFLATED SCOT CLAIMS: The landscape states SCoT achieves '48–49% latency reduction on DeepSeek-R1-Distill-32B/70B' — but the actual paper (arXiv:2504.19095) reports 48–66% for 32B and 21–49% for 70B. The lower 70B bound (21%) is materially weaker than implied and should be accurately reported to avoid misleading reviewers.\", \"MISSING RELATED WORK: 'Beyond Tokens: Semantic-Aware Speculative Decoding for Efficient Inference by Probing Internal States' (SemanticSpec, arXiv:2602.03708) achieves 2.7× speedup on DeepSeek-R1-32B by using internal hidden states to assess semantic equivalence — a parallel approach to semantic/structural awareness in speculative decoding. While verification-side (not draft-training-side), it directly competes on the reasoning model speedup narrative and must be discussed.\"]\nFeedback: The core R/E/T label + Markov transition consistency idea is genuinely novel at the mechanism level, but three issues need fixing before submission. (1) Differentiate explicitly from the CoT-Aware paper (OpenReview bKau2NNrji): pivot the novelty claim from 'no prior work uses CoT structure for draft training' to 'first to apply token-level thought-type labels as a training signal and a Markov transition consistency objective specifically for extended reasoning traces on modern R1-class models' — this is accurate and defensible. (2) Convert all GPU estimates to H100-hours and redesign the auto-research mode to stay within 200 H100-hours (cap at ~4 draft sizes × 3 λ values = 12 runs at ~15 H100-hours each ≈ 180 H100-hours). (3) Add a 2-page pilot section measuring whether ThinKV-classified structural roles of EAGLE-3-accepted vs. rejected draft tokens actually differ (a χ² test on 1K traces would suffice) — if they do, this validates the hypothesis and makes the training objective well-motivated; if they do not, pivot to measuring structural role divergence between draft model predictions and target model outputs, which may reveal the misalignment more directly.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL (NEW): The core novelty claim — 'token-level thought-type labels' — is factually incorrect. ThinKV's attention-sparsity heuristic classifies tokens at the SEGMENT level: it refreshes every τ=128 steps and assigns a single R/E/T label to a block of 100–300 tokens (per the ThinKV HTML full paper, which explicitly states classification 'operates at the segment level'). All tokens in a ~128-token window receive the same structural label. The paper must accurately describe this as 'thought-segment-level structural supervision' and revise the novelty claim accordingly. This also affects the Markov transition objective: transitions are between segments (~100–300 tokens each), not between individual tokens — this is still a valid objective, but different from what is described.\", \"CRITICAL (NEW): Target model inconsistency across phases creates a feasibility hole. Phase 0 explicitly samples from DeepSeek-R1-Distill-70B; Phase 3 uses DeepSeek-V4-Pro as the target. DeepSeek-V4-Pro is a 1.6T MoE model requiring 8× H200 SXM nodes at ~$28–55/hr just for serving (per LMSYS Day-0 benchmarks published April 25 2026). EAGLE-3 draft training for V4-Pro requires running the full model to extract multi-layer features; this cost is not reflected in the 150–180 H100-hour estimates and likely cannot be run on H100s at all at full scale. Either: (a) use R1-Distill-70B as the target model throughout (fully feasible within 200 H100-hours), or (b) explicitly cost the V4-Pro inference budget separately and demonstrate the approach still fits within constraints.\", \"IMPORTANT: ThinKV's attention-sparsity heuristic was calibrated on DeepSeek-R1-Distill model attention patterns (which use standard dense transformer attention). DeepSeek-V4-Pro uses Compressed Sparse Attention (CSA) and Heavily Compressed Attention (HCA), fundamentally different sparsity profiles. If Phase 3 uses V4-Pro, the paper must validate that ThinKV's heuristic (developed for R1-Distill attention) transfers to V4-Pro's attention architecture before committing to this combination.\", \"MINOR: 'Flatter Tokens are More Valuable for Speculative Draft Model Training' (arXiv:2601.18902, January 2026) is missing from related work. It proposes SFDD — flatness-based dataset distillation for draft model training — and directly addresses token-level heterogeneity in draft training. It is not a direct competitor (flatness ≠ structural role), but shares the conceptual framing of non-uniform token importance in draft training and should be cited to contextualize the contribution.\"]\nFeedback: Round 1 issues are properly resolved — the CoT-Aware differentiation is now accurate and defensible, H100 conversion is correct, Phase 0 pilot is a genuine contribution, SCoT numbers are fixed, and SemanticSpec is contextualized correctly. The core R/E/T + Markov transition combination remains novel. Three issues need fixing before round 3: (1) Reframe 'token-level' as 'thought-segment-level' throughout — ThinKV classifies 128-token windows, not individual tokens; be precise about this in the method description, novelty claim, and Phase 0 χ² test (which should compare segment-type distributions, not per-token distributions). The approach is still novel as segment-level structural supervision; just describe it accurately. (2) Resolve the target model split: the simplest fix is to make R1-Distill-70B the target model throughout all phases (it fits comfortably within 200 H100-hours, EAGLE-3 infrastructure already supports it, and ThinKV was validated on it). If V4-Pro is retained as the Phase 3 target, add an infrastructure cost section and a ThinKV portability validation step to Phase 0. (3) Add arXiv:2601.18902 ('Flatter Tokens') to related work with a one-paragraph comparison: both approaches address non-uniform token importance in draft training, but flatness is a distributional property while structural role is a semantic property; cite as complementary.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"IMPORTANT — MISSING RELATED WORK: 'Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning' (LTD, arXiv:2603.01639, ICLR 2026 Poster) is absent from the landscape. LTD achieves up to 36.4% speedup over EAGLE-3 via RL-based co-adaptive draft/verify policies and is directly competitive on the EAGLE-3-improvement narrative. EMNLP reviewers will know this paper. The proposal must add LTD to the landscape and explicitly differentiate: LTD optimizes throughput via RL without reasoning-structure signal, while the proposed method adds thought-segment-level structural supervision that is orthogonal to LTD's RL objective and composable with it.\", \"IMPORTANT — EVAL SUITE MISMATCH WITH USER HARD CONSTRAINTS: The user explicitly required evaluation on 'perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench.' The proposal only evaluates on AIME24, AMC23, LiveCodeBench — none of which appear in the required suite. Research confirms MT-Bench is standard in speculative decoding papers including EAGLE-3 itself, and HumanEval is commonly paired with LiveCodeBench. At minimum, MT-Bench and HumanEval must be added to Phase 3 evaluation. This is a hard constraint from the user specification, not a stylistic preference.\", \"MINOR — MISSING THEORETICAL CITATION: When introducing the Markov segment-transition consistency objective, the NeurIPS 2024 paper 'A Theoretical Perspective for Speculative Decoding Algorithm' (arXiv:2411.00841) should be cited. This paper establishes the Markov Chain abstraction for speculative decoding and proves optimality properties. Invoking 'Markov segment-transition' without referencing this foundational theoretical framing is an oversight reviewers familiar with the SD theory literature will notice.\", \"MINOR — MISSING ARBITRAGE: ARBITRAGE (arXiv:2512.05033) achieves ~2× latency reduction on mathematical reasoning benchmarks via step-level advantage-aware routing, directly targeting the same reasoning model efficiency goal. It should be mentioned briefly in the landscape as a routing-side approach (orthogonal to draft-training-side supervision) to complete the coverage of reasoning-specific SD work.\"]\nFeedback: All three critical round 2 issues are properly resolved: segment-level vs token-level is now accurate throughout, the target model is R1-Distill-70B across all phases, and SFDD is cited as complementary. The Phase 0 hypothesis gate with its fallback pivot is well-designed and constitutes a genuine methodological contribution. Three remaining fixes before submission: (1) Add LTD (arXiv:2603.01639, ICLR 2026) to the landscape section with a clear differentiation — LTD uses RL to adapt draft/verify policies without any reasoning-structure signal, while the proposed method uses thought-segment supervision that is static at inference and orthogonal to RL-based adaptation; position LTD as a potentially composable baseline rather than a competitor. (2) Add MT-Bench and HumanEval to Phase 3 experiments — these are required by the user's hard constraints and are standard in the EAGLE-3 evaluation tradition; the reasoning benchmarks (AIME24, AMC23, LiveCodeBench) are appropriate for quality but MT-Bench and HumanEval verify that structural training supervision does not degrade general instruction-following and code quality. (3) Cite arXiv:2411.00841 when introducing the Markov segment-transition objective to anchor the theoretical framing. ARBITRAGE (arXiv:2512.05033) should also be briefly noted in the landscape.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"IMPORTANT — MISSING RELATED WORK: 'Scaling Speculative Decoding with Lookahead Reasoning' (arXiv:2506.19830, NeurIPS 2025, Yichao Fu et al., Hao AI Lab UCSD) is absent from the landscape. This paper achieves 1.4×→2.1× speedup for reasoning models by exploiting step-level semantic correctness — each reasoning step needs only to be semantically correct, not an exact token match — which is the closest competing narrative for 'reasoning-aware speculative decoding.' EMNLP 2026 reviewers familiar with reasoning efficiency will notice its absence. It should be added as a complementary step-level semantic approach that is orthogonal to draft-training structural supervision (reasoning step correctness ≠ token-segment-level R/E/T training signal) and composable with the proposed method.\", \"IMPORTANT — RESOURCE ACCOUNTING AMBIGUITY: The auto-research estimate '12 runs × ~13h H100/run ≈ 156h H100' is numerically inconsistent unless 13h H100/run means total GPU-hours summed across all cards per run. With DeepSeek-R1-Distill-70B requiring 4 H100s for serving, and 2 additional H100s for draft training, a single run on 6 H100s for ~2–3h wall-clock yields 12–18 H100-hours — consistent with the ~13h estimate only if the target model's serving cost is excluded (pre-computed once and shared). The proposal must explicitly state: (a) how the 70B target model's serving cost is amortized across runs (single pre-generation pass vs. per-run inference), (b) the assumed GPU count per run, and (c) whether '13h H100/run' is wall-clock hours or total GPU-hours. Without this, the constraint adherence claim cannot be verified and reviewers will challenge it.\", \"MINOR — INCOMPLETE EVAL COVERAGE: The user's hard constraint explicitly lists perplexity (Wiki/C4), MMLU, LongBench, and RULER alongside HumanEval and MT-Bench. LongBench and RULER are particularly relevant for reasoning models — reasoning traces are long outputs, and demonstrating that thought-segment structural supervision generalizes to long-context evaluation settings (LongBench) and extreme-length position fidelity (RULER) would strengthen the paper. Perplexity (Wiki/C4) could validate that the auxiliary training does not degrade general LM quality. Even if these metrics are not standard in SD papers, their inclusion or explicit justification for exclusion is required by the user's specification.\", \"MINOR — MISSING RELATED WORK: 'AdaSPEC: Selective Knowledge Distillation for Efficient Speculative Decoders' (arXiv:2510.19779, NeurIPS 2025 Spotlight) proposes selective token filtering in knowledge distillation for draft models based on token-wise learning difficulty — directly related to the non-uniform token importance framing shared with both the proposed method and SFDD. It should be cited alongside SFDD as a complementary approach: AdaSPEC uses loss gap from a reference model to identify easy vs. hard tokens, while the proposed method uses structural role. Both are non-competing, but AdaSPEC's NeurIPS 2025 Spotlight status means reviewers will notice its absence if the paper discusses token-level importance in draft training.\"]\nFeedback: Round 1–3 issues are fully resolved and the core contribution — thought-segment-level R/E/T structural supervision with a Markov segment-transition KL objective for speculative decoding draft training — remains genuinely novel with no direct competitors found across independent searches. Three targeted fixes before submission: (1) Add Lookahead Reasoning (arXiv:2506.19830, NeurIPS 2025) to the landscape — position it as a step-level semantic correctness approach (orthogonal to token-segment structural training) that achieves 1.4×→2.1× speedup for reasoning models; this is the most closely related NeurIPS 2025 paper on reasoning model speedup via speculative-style methods and its absence will be noticed by reviewers. (2) Make the resource accounting explicit: state clearly that the 70B target model features are pre-generated once in a shared pass (cost once, amortized across all 12 runs), and that '13h H100/run' refers to draft model training only on 2 H100s — give the GPU count per phase explicitly so the 186h H100 total is verifiable from first principles. (3) Add LongBench and RULER to Phase 3 evaluation (they are in the user's hard constraint eval list and are germane to reasoning models with long outputs); cite AdaSPEC (arXiv:2510.19779, NeurIPS 2025 Spotlight) alongside SFDD in the related work section on non-uniform token importance for draft training.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"MINOR — LOOKAHEAD REASONING SPEEDUP MISREPRESENTED: The proposal states 'achieves 1.4×→2.1× speedup on reasoning benchmarks (GSM8K, AIME)' for Lookahead Reasoning, but the actual NeurIPS 2025 paper (confirmed via OpenReview and GitHub) reports 1.04×–1.71× speedup for Lookahead Reasoning alone, with 2.11× only when additionally combined with n-gram speculative decoding. The 2.1× combined figure and the selective 1.4× lower bound overstate the method's standalone contribution. The landscape description should be corrected to accurately reflect the standalone vs. combined speedup.\", \"MINOR — AUXILIARY HEAD TRAINING SIGNAL WEAKNESS NEEDS PREEMPTION: Because ThinKV assigns a single R/E/T label to each entire 128-token segment window (all tokens in the window share the label), the auxiliary cross-entropy loss L_role provides a block-constant training target. A reviewer will correctly observe that the model can minimize L_role by tracking positional context within the window (i.e., attending to recent transition tokens) rather than learning deep structural representations. The paper needs a mechanistic argument for why block-constant supervision still improves draft model features — e.g., that the boundary-aware attention pattern required to predict R/E/T label transitions at segment breaks forces the model to internalize structural grammar — or needs an ablation showing the auxiliary loss actually helps (not just the Markov transition loss alone).\", \"MINOR — EVALUATION SCOPE LIMITED TO ONE MODEL: All experiments use DeepSeek-R1-Distill-70B as the sole target model, which limits generalizability claims. Reviewers will ask whether the R/E/T structural misalignment mechanism holds for other reasoning models (e.g., QwQ-32B, which also exhibits strong R/E/T attention-sparsity patterns per ThinKV's validation). Adding even one additional target model (QwQ-32B with a 7B draft) within the compute budget (~20 additional H100-hours in auto-research mode, still within the 200h cap) would substantially strengthen the contribution's breadth claim.\"]\nFeedback: All four Round 4 issues are properly resolved: Lookahead Reasoning is now correctly positioned as verification-side / orthogonal, the resource accounting is explicit and has been independently confirmed feasible via EAGLE-3's documented offline training infrastructure, the eval suite now covers all nine required benchmarks, and AdaSPEC is correctly differentiated. The core novelty claim (R/E/T structural labels + Markov segment-transition KL for draft training) holds up — no direct competing work was found. Three targeted fixes before Round 6: (1) Correct the Lookahead Reasoning speedup claim: state '1.04×–1.71× standalone, 2.11× combined with n-gram SD' — the current characterization inflates the lower bound and attributes the combined result to Lookahead alone, which reviewers of the NeurIPS 2025 paper will notice. (2) Add a mechanistic paragraph or ablation design addressing the block-constant label concern: because all 128-token window tokens share one R/E/T label, the auxiliary loss's training signal comes primarily from segment-boundary transitions; explicitly argue why this boundary-forcing gradient is sufficient to improve draft structural coherence, and add an ablation (L_token + L_trans only, no L_role) to isolate the contribution of the structural type head versus the Markov transition objective alone. (3) Add QwQ-32B as a second target model with a 7B draft — ThinKV was validated on QwQ-32B, it requires the same 4-H100 serving footprint as R1-Distill-70B, and the marginal cost (~20h H100) fits within the 200h cap in auto-research mode; this broadens the generalizability claim from 'works on R1-Distill' to 'works on R1-class models generally.'\n\n### Round 6 review\nVerdict: revise\nIssues: [\"CRITICAL — RULER EVALUATION BUDGET SEVERELY UNDERESTIMATED: The full RULER benchmark (13 tasks × 6 context lengths × 500 samples = 39,000 total samples) takes approximately 65 hours on 1 GPU for a 7B model; scaling to DeepSeek-R1-Distill-70B on 4 H100s yields an estimated 200–300h wall-clock for the complete benchmark, making the stated '9.5h wall-clock for all 9 benchmarks' physically impossible for a full RULER evaluation. Even a reduced RULER run (NIAH-only, 2 context lengths, 100 samples = ~600 examples) would consume 15–25 H100-hours. The proposal never specifies the RULER configuration (which tasks, which context lengths, how many samples), so the compute budget for this benchmark cannot be verified. If the full RULER suite is intended, the auto-research estimate (181h H100) is underestimated by a factor of 2–5×, violating the ≤200 H100-hour hard constraint. Fix: either (a) specify a tractable RULER subset (e.g., NIAH Multi-Query at 32K and 128K, 100 samples per length = 200 samples total, ~5 H100-hours) and update the cost estimate, or (b) drop RULER and note that long-context evaluation is approximated via LongBench, which uses shorter contexts (≤32K). RULER inclusion was a user hard constraint, so option (a) is preferred.\", \"MINOR — SpanBERT ANALOGY IS SECONDARY, NOT PRIMARY DEFENSE: The SpanBERT Span Boundary Objective analogy is positioned as a key mechanistic argument for why block-constant labels require content-aware representations. However, SpanBERT's SBO masks tokens and forces prediction from boundary positions — the learning mechanism is fundamentally different from predicting a categorical label shared by all 128 tokens. A reviewer will observe that a draft model could still minimize L_role by learning a positional recency heuristic ('steps since last structural transition') without internalizing content-aware segment semantics. The four-condition ablation (condition c: L_token + L_trans only, vs. d: full) is the correct and sufficient empirical answer to this concern. The paper should reframe: ablation condition (c) vs. (d) is the PRIMARY defense against the block-constant critique; the SpanBERT analogy should be demoted to a secondary theoretical motivation, not the lead argument.\"]\nFeedback: Round 5 fixes are correctly implemented: Lookahead Reasoning speedup is now accurate (1.04×–1.71× standalone, 2.11× combined), the four-condition ablation properly isolates L_role vs. L_trans contributions, and QwQ-32B adds a second target model within budget. One blocking issue remains before this can pass: the RULER evaluation budget is unspecified and almost certainly underestimated. A full RULER run (13 tasks × 6 lengths × 500 samples = 39,000 examples) would consume more H100-hours than the entire compute budget — you must specify a tractable RULER subset (recommended: NIAH Single + Multi-Query at 32K and 128K, 100 samples per cell, 400 total examples, ~4–6h H100 for 70B) and update the budget arithmetic accordingly. Do this and the paper is ready for EMNLP submission. The SpanBERT reframing is stylistic but worth addressing: position condition (c) vs. (d) as the primary response to the block-constant critique, with SpanBERT as supporting theory.\n\n### Round 7 review\nVerdict: revise\nIssues: [\"IMPORTANT — QwQ-32B 128K SERVING DOES NOT FIT ON 1 H100: BF16 model weights (65.5 GB) + KV cache at 128K context (2 × 64 layers × 8 KV heads × 128 head_dim × 128K tokens × 2 bytes ≈ 31 GB) = ~96.5 GB, exceeding an H100's 80 GB. The 'QwQ-32B fits on 1 H100 for serving' claim is valid only at ≤32K context (~73 GB total). For the 128K NIAH RULER tasks, QwQ-32B requires at minimum 2 H100s (or explicit FP8 quantization with model weights at ~38 GB + KV cache ~31 GB = ~69 GB, which fits). The current ~4h H100 estimate for QwQ-32B RULER must be corrected: at 2 H100s, it becomes ~8h H100 total, pushing the auto-research total from 181h to ~185h — still within the 200h cap, so the fix is straightforward but mandatory for accuracy.\", \"MINOR — EMNLP MAIN VS. FINDINGS PROBABILITY MISCALIBRATED: The proposal lists 'EMNLP 2026 Main' and 'EMNLP 2026 Findings' as equally plausible targets, but given the incremental scope over EAGLE-3 and CoT-Aware, the uncertain improvement magnitude, and the dependency on ThinKV taxonomy transfer, the realistic acceptance zone is Findings. Abstract framing and contribution claims should be calibrated to Findings to avoid over-promising to collaborators and reviewers.\"]\nFeedback: All round 6 issues are properly resolved: RULER is restricted to the NIAH tractable subset (400 examples, ~5h H100 for 70B), the four-condition ablation is the primary defense against the block-constant label critique, and SpanBERT is correctly demoted to secondary motivation. Independent adversarial search found no direct competing work on R/E/T segment-level structural supervision for draft training. One important fix is required: correct the QwQ-32B serving constraint. At 128K context, QwQ-32B (65.5 GB BF16 weights + ~31 GB KV cache) exceeds single-H100 capacity. Fix by either: (a) specifying 2 H100s for QwQ-32B serving at 128K (updates QwQ-32B RULER estimate from ~4h to ~8h H100, auto-research total to ~185h, still within 200h cap), or (b) specifying FP8 model quantization for 128K serving (weights ~38 GB + KV cache ~31 GB = ~69 GB, fits on 1 H100, but must note quantization in the experimental setup). Option (a) is cleaner scientifically. Additionally, calibrate the venue framing to EMNLP 2026 Findings as the primary target and Main as aspirational — the incremental scope and uncertain gain over CoT-Aware place this squarely in the Findings acceptance zone.\n\n### Round 8 review\nVerdict: revise\nIssues: [\"IMPORTANT — CoT-Aware citation must be updated to 'ICLR 2026': Independent search confirms that 'Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework' (OpenReview bKau2NNrji) was accepted and published at ICLR 2026. The proposal consistently cites it only as 'OpenReview bKau2NNrji' throughout all sections, which is stale and will strike EMNLP 2026 reviewers as sloppy citation hygiene. Every reference should be updated to 'CoT-Aware (ICLR 2026)'. Positively, this strengthens the comparison narrative: the proposal can now explicitly contrast against 'the closest ICLR 2026 work' rather than an unreviewed preprint.\", \"MINOR — Markov transition distribution heterogeneity is unaddressed: The Markov segment-transition KL objective (L_trans) estimates a single global R→E→T transition distribution from target-model-accepted training traces. Reasoning traces exhibit task-specific structural patterns: AIME24/AMC23 traces are heavily R-E dominant (sustained deliberation then computation), HumanEval traces may show tighter R→E cycles, and MT-Bench traces differ further. If training data is math-reasoning-heavy (as is typical for R1-Distill EAGLE training), the global transition distribution will be biased toward math reasoning patterns, and L_trans may act as a mild constraint rather than useful regularization for code or instruction benchmarks. The paper should state explicitly whether L_trans uses a global or task-conditioned transition matrix, and note whether the training corpus distribution is representative of the evaluation task mix. This matters because L_trans's contribution (isolated in ablation condition c vs. d) may be task-dependent.\", \"MINOR — Human-in-Loop mode at exactly the 200h H100 cap leaves zero margin: The HIL estimate is stated as '~200h H100 (at the ≤200h H100 cap)'. This means any single underestimated run or benchmark cell would push it over the hard constraint. The estimate should either scope down to ~190h H100 (e.g., drop λ=0.5 from HIL ablations, which are included in auto-research) to create a 5% buffer, or explicitly state what would be deprioritized (e.g., RULER 128K for QwQ-32B) if a run exceeds the estimate.\"]\nFeedback: All seven rounds of prior feedback are correctly incorporated — the proposal is mature, technically precise, and internally consistent. Three targeted fixes before Round 9: (1) Update every citation of CoT-Aware from 'OpenReview bKau2NNrji' to 'CoT-Aware (ICLR 2026)' — this is confirmed accepted and published, and the correct citation both improves credibility and lets you write 'unlike the closest ICLR 2026 prior work (CoT-Aware), which uses step-level process distillation without R/E/T thought-segment labels or Markov transition objectives.' (2) Add one sentence to the L_trans description specifying whether the transition distribution is global or task-conditioned, and note the training-corpus task mix — if the corpus is heavily math-reasoning, acknowledge that L_trans is calibrated for that distribution and may have smaller effect on code/instruction benchmarks (the ablation will reveal this empirically). (3) Reduce HIL scope to ~190h H100 by dropping λ=0.5 from HIL ablations — λ=0.5 is also dropped in auto-research mode, so dropping it in HIL is consistent and creates the 5% budget margin that the current estimate lacks.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-09T20:04:53.065Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-09T20:04:53.065Z",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 3 · 2026-05-09T20:04:53.096Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-09 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Efficient Methods for NLP.
+
+Direction: Efficiency methods for NLP — NOT limited to LLM inference optimization. In-scope: speculative decoding, KV-cache compression/eviction, quantization-aware distillation, parameter-efficient fine-tuning, efficient long-context serving, MoE routing, attention approximations, efficient smaller models for specific NLP tasks, pruning for task-specific deployment.
+
+Contribution type: METHOD ONLY. Propose new algorithms — not profiling studies.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Generous for efficiency work.
+2. Time: ≤16 days. Build on vLLM, SGLang, llama.cpp, TensorRT-LLM, HF Transformers, FlashAttention, bitsandbytes.
+3. Eval: perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench. Report wall-clock and throughput on H100.
+
+Look for: cache-aware methods for new workloads (long thinking traces, agent loops, RAG), quantization-aware distillation, structured sparsity during inference, efficient serving of reasoning models with variable-length thinking. Avoid: vanilla 4-bit quantization, generic LoRA, plain speculative decoding.
+
+Tag: direction=efficiency, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-09?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 9/10)
+{
+  "title": "Structure-Guided Draft Training for Reasoning Speculative Decoding",
+  "core_problem": "Speculative decoding draft models for reasoning LLMs are trained solely on next-token prediction, ignoring the structural grammar of thinking traces (reasoning → execution → transition). This misalignment causes drafts to generate locally plausible but structurally incoherent token sequences that the target model rejects, creating an acceptance-rate ceiling. While CoT-Aware draft training (ICLR 2026, OpenReview bKau2NNrji) has demonstrated that step-level process supervision improves draft alignment, no prior work applies thought-segment-level structural labels (R/E/T) as a training signal or imposes a Markov segment-transition consistency objective on structural sequence progressions — the mechanisms that would directly penalize structural incoherence at the thought-segment granularity where coherence is determined and where draft rejection most clearly correlates with structural mismatch.",
+  "opportunity": "ThinKV (ICLR 2026 Oral, arXiv:2510.01290) provides a thought-type taxonomy (R: reasoning, E: execution, T: transition) with an attention-sparsity heuristic that classifies tokens at the thought-segment level: the heuristic refreshes every τ=128 steps and assigns a single R/E/T label to the current segment window, which typically spans 100–300 tokens. All tokens within a segment window share one structural label. Although this heuristic was designed for KV-cache eviction rather than training supervision, its transferability as thought-segment-level structural labels is plausible and can be validated cheaply: a χ² test comparing R/E/T segment-type distributions of EAGLE-3-accepted vs. rejected draft segments on 1,000 sampled traces costs under 2 H100-hours and serves as a mandatory hypothesis gate before committing training budget. If validated, adding a lightweight auxiliary head to the draft model that jointly predicts structural segment type and next token — plus a Markov segment-transition consistency objective aligning predicted R→E→T segment-progression distributions to target-model-accepted trace distributions — forces the draft to internalize thinking-trace grammar at the granularity of structural units. A key mechanistic property of the block-constant label design: R/E/T segment boundaries in reasoning traces are determined by content (when the model switches from natural-language deliberation to symbolic computation), not by position. Segment lengths range from 100–300 tokens with high variance, and traces can exhibit R→E→R→E patterns with no positional regularity. A draft model cannot minimize the auxiliary loss L_role by attending to recency of boundary tokens alone; it must develop content-aware structural representations that recognize which segment type the current token belongs to across the full window. The boundary-switching gradient — where L_role shifts target from one segment type to another at τ-step transitions — concentrates the most useful structural signal at content-determined transition points. The novelty claim is narrow and defensible: this is the first work to apply thought-segment-level R/E/T structural labels and a Markov segment-transition probability objective as draft training signals for R1-class extended reasoning models. CoT-Aware (ICLR 2026) uses step-level distillation and SurpriseRatio data selection (operating at the CoT step boundary, not at the thought-segment level with explicit R/E/T type supervision); VSD optimizes a sequence-level ELBO with no reasoning-structure signal; SFDD (arXiv:2601.18902) uses flatness as a distributional property for data selection, not semantic structural role; AdaSPEC (arXiv:2510.19779, NeurIPS 2025 Spotlight) uses reference-model loss gap to filter hard tokens, not structural role; LTD (arXiv:2603.01639) optimizes throughput via RL co-adaptive policies with no structural supervision; Lookahead Reasoning (arXiv:2506.19830, NeurIPS 2025) operates at step-level semantic verification, not draft-training-side structural supervision — none impose thought-segment-level structural role supervision with segment-transition consistency, leaving a specific, measurable, and mechanistically grounded gap. The auxiliary head adds approximately 5M parameters, is frozen at inference (zero latency overhead), and is composable with any EAGLE-style architecture, verification-side improvements, or RL-based dynamic adaptation methods such as LTD.",
+  "landscape": "SCoT (Apr 2025, arXiv:2504.19095) achieves 48–66% latency reduction on DeepSeek-R1-Distill-32B and 21–49% on DeepSeek-R1-Distill-70B via thought-level drafting but uses a generic smaller model with no structural supervision. ARBITRAGE (arXiv:2512.05033) achieves ~2× latency reduction on mathematical reasoning benchmarks via advantage-aware routing — a lightweight router trained to predict when the target model will produce meaningfully better reasoning steps, selecting between draft and target model outputs at the step level; this is a routing-side approach orthogonal to draft-training-side structural supervision and composable with our method. 'Scaling Speculative Decoding with Lookahead Reasoning' (arXiv:2506.19830, NeurIPS 2025, Yichao Fu et al., Hao AI Lab UCSD) achieves 1.04×–1.71× standalone speedup on reasoning benchmarks (ranging from 1.04× on GPQA to 1.71× on GSM8K with DeepSeek-R1-Distill-1.5B→32B), rising to a combined peak of 2.11× on GSM8K when additionally paired with n-gram speculative decoding; the paper's abstract reports '1.4×→2.1×' for the combined system across all benchmark-model pairs, not for Lookahead Reasoning alone. The method exploits step-level semantic correctness: a lightweight draft model proposes future reasoning steps, the target model expands each proposal in a batched pass, and a verifier retains semantically correct steps (rather than requiring exact token match), addressing the exponential acceptance-rate decay with sequence length by operating at the reasoning-step level rather than the token level. Lookahead Reasoning is the most direct competing narrative for 'reasoning-aware speculative decoding' at NeurIPS 2025 and its absence will be noticed by reviewers familiar with reasoning efficiency; however, it is strictly orthogonal to our approach — Lookahead modifies the verification criterion (step-level semantic correctness), whereas our method modifies draft training supervision (thought-segment-level R/E/T structural labels), the two methods address different bottlenecks and are composable. CoT-Aware (ICLR 2026, OpenReview bKau2NNrji) is the closest prior work on draft training — and as the closest published ICLR 2026 work, its explicit limitations establish our gap directly: it augments EAGLE-style draft training with process-level CoT distillation (step-level feature regression to reduce forward KL divergence at CoT step boundaries) and SurpriseRatio data selection to prevent catastrophic forgetting, reporting 3.04×–4.55× wall-clock speedups; crucially, unlike our approach, CoT-Aware does NOT classify tokens or segments into structural roles (R/E/T), does NOT use a Markov segment-transition consistency objective, and operates at the reasoning-step granularity rather than at the thought-segment level defined by ThinKV's attention-sparsity heuristic — our two key differentiating mechanisms relative to the closest ICLR 2026 prior work. 'Flatter Tokens are More Valuable for Speculative Draft Model Training' (arXiv:2601.18902, Jan 2026) proposes SFDD — flatness-based dataset distillation for draft training, selecting samples where the target model's predictive distribution is flatter (less confident), achieving over 2× training speedup using 50% of data. 'AdaSPEC: Selective Knowledge Distillation for Efficient Speculative Decoders' (arXiv:2510.19779, NeurIPS 2025 Spotlight) proposes selective token filtering in knowledge distillation by using a reference model to identify hard-to-fit tokens and exclude them from draft training, achieving up to 15% improvement in token acceptance rate over DistillSpec. AdaSPEC, SFDD, and the proposed method share the insight that training tokens are non-uniformly important for draft acceptance rate, but use orthogonal criteria: AdaSPEC filters by learning difficulty (reference model loss gap), SFDD selects by distributional flatness (target model confidence), and our method weights by structural semantic role (R/E/T from ThinKV's taxonomy) — all three are non-competing and stackable. 'Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning' (LTD, arXiv:2603.01639, ICLR 2026 Poster) achieves up to 36.4% speedup over EAGLE-3 by formulating speculative decoding as a reinforcement learning problem that trains co-adaptive draft and verify policies to directly optimize throughput across 5 LLMs and 4 tasks; LTD uses no reasoning-structure signal and treats draft/verify allocation as a dynamic policy rather than a static training objective. Our approach is orthogonal: thought-segment-level structural supervision modifies only draft training and is frozen at inference, making it directly composable with LTD's RL-based dynamic adaptation as a complementary enhancement to the draft model quality that LTD's RL policy leverages. 'Steering Pretrained Drafters' (Nov 2025, arXiv:2511.09844, AAAI 2026) shows a lightweight dynamic steering mechanism improves accepted tokens by up to 35% and throughput by 22%, confirming structural alignment is a bottleneck rather than draft capacity. Aurora (Feb 2026, arXiv:2602.06932) enables continuous on-policy RL-style draft adaptation but optimizes distribution matching, not reasoning-trace structural coherence. 'Training Domain Draft Models' (Mar 2025, arXiv:2503.07807) addresses distribution shift via knowledge distillation, not structural role mismatch. Variational Speculative Decoding (Feb 2026, arXiv:2602.05774) formulates draft training as variational inference over draft paths, achieving 9.6% speedup over EAGLE-3 on MT-Bench, HumanEval, and GSM8K — but uses no reasoning-structure signal and has not been evaluated on extended reasoning benchmarks (AIME24, AMC23, LiveCodeBench), leaving a direct comparison gap. OnlineSpec (Mar 2026, arXiv:2603.12617) proposes online preference-pair updates for draft model adaptation during reasoning — complementary to our static structural supervision approach. SemanticSpec (Feb 2026, arXiv:2602.03708) achieves 2.7× speedup on DeepSeek-R1-32B and 2.1× on QwQ-32B via verification-side semantic equivalence checking using internal hidden states — compelling parallel work on reasoning model speedup but strictly orthogonal (verification-side, not draft-training-side) and composable with our approach. SpecGuard (Apr 2026, arXiv:2604.15244) performs step-level verification using model-internal signals, and ConfSpec (Feb 2026, arXiv:2602.18447) uses confidence-gated cascaded verification — both verification-side and composable. LongSpec (Feb 2026, arXiv:2502.17421) enables lossless speculative decoding in long-context settings by addressing KV cache pressure, position mismatch, and tree attention inefficiency in draft models; it achieves 2.25× wall-clock reduction on AIME24 with QwQ-32B (3.81 average accepted tokens) and serves as the primary SD baseline for QwQ-32B experiments. ThinKV (ICLR 2026 Oral, arXiv:2510.01290) provides the R/E/T thought-type taxonomy via attention-sparsity heuristics operating at the segment level (τ=128 steps, 100–300 tokens per segment); the taxonomy was derived from unspecified LRMs in Figure 3 and applied with uniform thresholds across all evaluated models; ThinKV reports accuracy-preserving KV compression on QwQ-32B (AIME: 73.33%→70.28% at 3.4-bit; LiveCodeBench: 55.45%→50.47%), providing evidence that QwQ-32B exhibits the R/E/T attention-sparsity patterns the heuristic exploits, though the taxonomy's precision as a thought-segment-level training-label generator must be validated empirically before full training commitment on each target model. QwQ-32B (64 layers, 8 KV heads, head_dim 128, BF16 weights ~65.5 GB) fits on 1 H100 for serving at ≤32K context (~73 GB total including KV cache), covering all training pre-generation (vs. 4 H100s for R1-Distill-70B), making the marginal training compute cost approximately 17h H100 for a 7B draft with the best-performing λ from R1-Distill experiments; however, at 128K context (BF16 weights ~65.5 GB + KV cache 2×64×8×128×131072×2 bytes ≈ 32 GB ≈ 97.5 GB total), QwQ-32B exceeds single-H100 capacity and requires 2 H100s — this applies to the RULER NIAH 128K evaluation cells only (all training pre-generation uses ≤32K traces). No prior work combines thought-segment-level structural labels with a Markov segment-transition consistency objective as a speculative decoding draft training objective.",
+  "approach": "Phase 0 — Hypothesis Validation (days 1–2, ~2h H100; results constitute a 2-page analysis section in the paper): Sample 1,000 DeepSeek-R1-Distill-70B traces with EAGLE-3-generated draft tokens and known acceptance outcomes. Apply ThinKV's attention-sparsity heuristic to classify each ~128-token draft window as R, E, or T (all tokens within a window share one structural label per ThinKV's segment-level design). First, validate label quality: compute per-segment structural entropy; if ≥30% of segments fall into an ambiguous bin (above a tunable entropy threshold), tune the threshold on this 1K sample before proceeding — this prevents noise injection from poor labels. Second, run a χ² test comparing the marginal R/E/T segment-type distributions of EAGLE-3-accepted vs. rejected draft segments. If p < 0.05, the structural misalignment hypothesis is confirmed at the segment level and the training objectives are well-motivated. If p ≥ 0.05, pivot the measurement to structural segment-type divergence between the draft model's predicted R/E/T distributions and the target model's actual output segment distributions — this alternative analysis may reveal systematic structural biases in draft-model outputs (e.g., over-production of R segments, under-production of T segments) that manifest independent of per-segment acceptance, providing equally strong motivation for the Markov segment-transition objective. Both outcomes yield publishable pilot findings.\n\nPhase 1 — Draft Model Augmentation: Augment an EAGLE-3-based draft with a lightweight two-output head inserted after the multi-layer feature fusion layer: one output predicts the next token (standard cross-entropy loss L_token), a second predicts the current thought-segment type (R/E/T, cross-entropy auxiliary loss L_role weighted by α). Auto-generate R/E/T segment labels by applying ThinKV's attention-sparsity heuristic (τ=128 steps) to DeepSeek-R1-Distill-70B reasoning traces; all tokens within each ~128-token window share the same segment label, and zero human annotation is required. Mechanistic justification for the block-constant label design: R/E/T segment boundaries in reasoning traces are determined by content — when the model transitions from natural-language deliberation to symbolic computation — not by token position. Segment lengths range from 100–300 tokens with high variance, and reasoning traces exhibit R→E→R→E patterns with no positional regularity. The primary defense against the block-constant label critique is empirical: the four-condition ablation directly tests whether L_role contributes genuine content-aware structural signal beyond what position alone could provide — condition (c) [L_token + L_trans only] vs. condition (d) [full method: L_token + L_role + L_trans] isolates L_role's independent contribution; if (d) significantly outperforms (c), the structural type head provides signal that cannot be explained by positional recency heuristics, since the Markov transition objective already captures any segment-boundary information recoverable from token positions. This ablation is the decisive test. As secondary theoretical motivation, the boundary-switching gradient — where L_role's target shifts from one segment type label to another at τ-step content-determined transitions — is analogous to SpanBERT's Span Boundary Objective (Joshi et al., TACL 2020): both mechanisms concentrate representational pressure at structural boundaries, though SpanBERT masks tokens and forces boundary-position prediction while our method switches classification targets at τ-step segment transitions. The auxiliary head learns to classify each token's structural context at segment granularity — effectively predicting which thought-segment type the current position falls within. This non-uniform structural weighting is complementary to AdaSPEC (arXiv:2510.19779, NeurIPS 2025 Spotlight), which filters by learning difficulty, and SFDD (arXiv:2601.18902), which selects by distributional flatness — the three criteria (structural role, difficulty, flatness) are orthogonal and stackable.\n\nPhase 2 — Markov Segment-Transition Consistency Objective: Add a third loss term L_trans (weighted by λ): from each draft trajectory extract the predicted R→E→T segment-transition sequence (one transition label per ~128-token window), compute KL divergence between this predicted segment-transition distribution and the empirically estimated transition distribution of target-model-accepted traces, and penalize divergence. Transitions are between thought segments (~100–300 tokens each), not between individual tokens — the Markov chain operates at the segment level, making the objective robust to token-level noise. L_trans employs a single global R→E→T transition matrix estimated from the full training corpus; as R1-Distill EAGLE training data is typically math-reasoning-heavy (AIME/AMC-style traces dominant), this global matrix is calibrated to math-dominant structural transition patterns and may impose weaker regularization on code (HumanEval) or instruction (MT-Bench) evaluation tasks — whether the Markov transition regularization generalizes equally across task types is an empirical question the Phase 3 task-stratified nine-benchmark results will directly answer. This Markov segment-transition consistency objective is grounded in the Markov chain abstraction for speculative decoding established in 'A Theoretical Perspective for Speculative Decoding Algorithm' (arXiv:2411.00841, NeurIPS 2024), which analyzes fundamental SD performance limits via total variation distances between draft and target model distributions. Total training loss: L = L_token + α · L_role + λ · L_trans. The auxiliary head (~5M parameters) is frozen at inference time — zero latency overhead. Ablation design: four conditions are tested to isolate component contributions — (a) L_token only (EAGLE-3 baseline), (b) L_token + L_role only (structural type head without Markov transition), (c) L_token + L_trans only (Markov transition without structural type head — the critical ablation for isolating L_role's contribution), and (d) L_token + L_role + L_trans (full method). If (d) > (c) > (a), both objectives contribute independently. If (d) ≈ (c), the Markov transition objective alone accounts for the improvement and L_role adds noise rather than signal — in this case, the paper's contribution is reframed as primarily the Markov transition objective.\n\nPhase 3 — Experiments: Primary target model: DeepSeek-R1-Distill-70B (consistent with Phase 0; ThinKV's R/E/T heuristic is applied to R1-Distill attention patterns, ensuring label-transfer compatibility throughout all phases). Secondary target model: QwQ-32B with a 7B draft model — ThinKV's R/E/T heuristic achieves accuracy-preserving KV compression on QwQ-32B (AIME: 73.33%→70.28% at 3.4-bit; LiveCodeBench: 55.45%→50.47%), providing evidence that QwQ-32B exhibits the R/E/T attention-sparsity patterns the heuristic exploits; LongSpec (arXiv:2502.17421) reports 2.25× wall-clock reduction on AIME24 with QwQ-32B (3.81 average accepted tokens) and serves as the SD baseline for QwQ-32B experiments. QwQ-32B (64 layers, 8 KV heads, head_dim 128, BF16 weights ~65.5 GB) fits on 1 H100 for serving at ≤32K context, covering all training pre-generation (~17h H100 marginal training cost for 7B draft with best λ); the RULER NIAH 128K evaluation tasks require 2 H100s (BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB, exceeding 80 GB per H100). Draft model sizes for R1-Distill: 1.5B, 3B, 7B; λ ∈ {0.01, 0.1, 0.5}; α fixed at 0.1 after Phase 0 pilot tuning. Benchmarks: AIME24, AMC23, LiveCodeBench (reasoning quality and task diversity for R1-class models); MT-Bench (general instruction-following quality — standard in the EAGLE-3 evaluation tradition, verifies structural supervision does not degrade instruction-following); HumanEval (code generation quality — verifies structural supervision does not degrade non-reasoning capabilities); LongBench (long-context understanding — validates structural supervision generalizes to long-context settings, particularly germane because reasoning traces are themselves long outputs and long-context fidelity determines the practical deployment envelope for R1-class models); RULER [tractable subset: NIAH Single and NIAH Multi-Query at 32K and 128K context lengths, 100 samples per task×length cell = 400 total examples; ~5h H100 on 4 H100s for R1-Distill-70B; ~8h H100 on 2 H100s for QwQ-32B (128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB); the full RULER suite of 13 tasks × 6 context lengths × 500 samples = 39,000 examples would require 200–300h H100 for the 70B model alone, making it infeasible within the total compute budget; NIAH Single and Multi-Query tasks are the most diagnostically relevant for extended-reasoning deployment, where reliable information retrieval within long contexts is the critical long-context capability; LongBench provides complementary long-context coverage at shorter contexts (≤32K)] (targeted long-context position fidelity — validates structural supervision does not degrade performance at 32K–128K context lengths relevant to extended reasoning traces); MMLU (general knowledge — verifies structural supervision does not degrade factual knowledge); Perplexity on WikiText-103 and C4 (validates auxiliary training does not degrade general language modeling quality). Baselines: EAGLE-3, VSD, SCoT, CoT-Aware (ICLR 2026, bKau2NNrji), LTD (arXiv:2603.01639), LongSpec (arXiv:2502.17421) for QwQ-32B comparisons. Metrics: mean accepted tokens per step, acceptance rate, wall-clock speedup. The method modifies only draft training and adds no inference-time primitives, making it directly composable with SpecGuard, ConfSpec, SemanticSpec, LTD, and Lookahead Reasoning (arXiv:2506.19830).",
+  "resource_estimate": {
+    "conversion_note": "All estimates are in H100-hours. Conversion basis: H100 provides approximately 2× training throughput over A100 for typical LLM training workloads. H100 cloud rate: ~$3/h on competitive providers (Hyperstack, JarvisLabs). Primary target model throughout all phases is DeepSeek-R1-Distill-70B (dense 70B model, fits on 4–8 H100s). QwQ-32B (64 layers, 8 KV heads, head_dim 128) fits on 1 H100 for serving at ≤32K context (BF16 weights ~65.5 GB + KV cache ~7 GB ≈ ~73 GB), covering all training pre-generation; at 128K context (BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB), QwQ-32B requires 2 H100s — this applies to RULER NIAH 128K evaluation cells only. All three modes are comfortably within the ≤200h H100 compute budget.",
+    "manual": {
+      "gpu_hours": "~178h H100 (equivalent to ~356h A100 / 2×)",
+      "gpu_utilization": "~35% effective — high idle from iterative debugging of the attention-sparsity segment-labeling pipeline, human analysis between training runs, and code rewrites across 4–6 experimental iterations",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$534 (178h × $3/h)",
+      "risk_note": "Phase 0 pilot (1K traces, χ² test on segment-type distributions) must be completed and pass label-quality gate (≤30% ambiguous segments) before committing the remaining ~176h to full training. Evaluation covers 9 benchmarks (AIME24, AMC23, LiveCodeBench, MT-Bench, HumanEval, LongBench, RULER, MMLU, Perplexity-Wiki/C4); RULER is limited to the tractable NIAH subset only (NIAH Single + Multi-Query at 32K and 128K context lengths, 100 samples per task×length cell = 400 total examples, ~5h H100 on 4 H100s for R1-Distill-70B and ~8h H100 on 2 H100s for QwQ-32B [128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB]); the full RULER suite (13 tasks × 6 lengths × 500 samples = 39,000 examples) is excluded as it would require 200–300h H100 for the 70B model alone, exceeding the total compute budget. QwQ-32B secondary target model (7B draft, best λ from R1-Distill) adds approximately 24h H100 total (training ~17h H100 at ≤32K context on 1 H100 for serving + eval ~7h H100 including RULER-NIAH at 128K on 2 H100s ~8h and remaining benchmarks ~3h, but training dominates marginal). The four-condition ablation (L_token only / + L_role only / + L_trans only / full) adds ~2 additional training runs vs. the original design."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~190h H100 (equivalent to ~380h A100 / 2×; λ=0.5 dropped from HIL ablations, creating ~5% margin below the 200h cap)",
+      "gpu_utilization": "~60% — agent queues ablations continuously across λ values and model sizes; human approval gates at key architectural forks cut wasted runs by ~40% vs. full auto",
+      "timeline": "5–7 weeks",
+      "team": "1 researcher, ~30 min/day check-in for experiment approval and loss curve review",
+      "claude_api_cost": "$300–450 (~2,500–3,500 conversation turns at ~$0.10/turn average)",
+      "estimated_gpu_cost": "~$570 (190h × $3/h)",
+      "ablation_scope": "2 draft sizes (1.5B, 7B) × 2 λ values (0.01, 0.1; λ=0.5 dropped from HIL scope to create ~5% budget margin, consistent with auto-research mode's λ ∈ {0.01, 0.1} range) = 4 ablation runs + 4-condition ablation (L_token only / + L_role only / + L_trans only / full, at 7B with best λ) = 4 ablation conditions + QwQ-32B 7B × best λ = 1 additional run + 2 EAGLE-3 baselines + LongSpec baseline (QwQ-32B) + 9-benchmark evaluation (AIME24, AMC23, LiveCodeBench, MT-Bench, HumanEval, LongBench, RULER [NIAH Single + Multi-Query at 32K and 128K context lengths, 100 samples per task×length cell = 400 total examples, ~5h H100 on 4 H100s for R1-Distill-70B and ~8h H100 on 2 H100s for QwQ-32B [128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB]; full RULER suite of 39,000 examples excluded as physically infeasible within budget], MMLU, Perplexity-Wiki/C4) against R1-Distill-70B and QwQ-32B; total ~190h H100 (~5% margin below the 200h cap)",
+      "risk_note": "Label quality is the critical bottleneck: if ThinKV's attention-sparsity heuristic assigns ambiguous structural labels to ≥30% of thought segments on the target model's traces, the auxiliary loss injects noise rather than signal and may degrade acceptance rate. Phase 0 pilot validation (days 1–2, ~2h H100) is a mandatory gate before committing full training budget. The four-condition ablation (including L_token + L_trans only) is critical for isolating L_role's contribution and preempting the block-constant label critique: condition (c) vs. (d) is the primary empirical defense — if (d) significantly outperforms (c), L_role provides genuine content-aware structural signal independent of positional recency. Dropping λ=0.5 from HIL scope (retained in auto-research at λ ∈ {0.01, 0.1}) saves approximately 2 training runs × ~13h ≈ 26h H100 relative to the previous HIL design, creating meaningful headroom against estimate variance; if any single benchmark cell overruns, RULER 128K for QwQ-32B (the most compute-intensive cell at ~8h H100 on 2 H100s) is the first candidate for deprioritization."
+    },
+    "auto_research": {
+      "gpu_hours": "~185h H100",
+      "gpu_utilization": "~88% — agent schedules experiment queues 24/7 across parallel nodes with negligible human-wait idle; idle periods are only inter-run checkpoint evaluation (~5–10 min)",
+      "timeline": "7–12 days with 4–6 H100 GPUs",
+      "team": "0 (only initial setup: segment-labeling pipeline using ThinKV's heuristic, EAGLE-3 training scaffold with auxiliary head and four-condition ablation harness, multi-benchmark evaluation harness against both R1-Distill-70B and QwQ-32B)",
+      "claude_api_cost": "$600–900 (~5,000–7,500 conversation turns for experiment design, result analysis, and report drafting)",
+      "estimated_gpu_cost": "~$555 (185h × $3/h)",
+      "ablation_scope": "3 draft sizes (1.5B, 3B, 7B) × 2 λ values (0.01, 0.1; λ=0.5 dropped to stay within 200h H100 cap) = 6 primary R1-Distill ablation runs + 4-condition loss ablation (L_token only / + L_role only / + L_trans only / full, at 7B with best λ, 3 additional runs beyond EAGLE-3 baseline) + QwQ-32B 7B × best λ = 1 run. GPU accounting: (a) R1-Distill-70B target model pre-generation: 4 H100s × ~4h wall-clock = ~16h H100 total, amortized as ~1.3h H100 per run across the 9 R1-Distill runs (6 primary + 3 ablation conditions beyond EAGLE-3 baseline); (b) each draft training run uses 2 H100s × ~5.7h wall-clock ≈ 11.4h H100; (c) amortized pre-generation (~1.3h) plus draft training (~11.4h) = ~12.7h H100/run, rounded to ~13h H100/run; 9 R1-Distill runs × ~13h ≈ 117h H100. QwQ-32B target model pre-generation (at ≤32K context on 1 H100): 1 H100 × ~4h wall-clock = ~4h H100; QwQ-32B draft training: 1 run × 11.4h = 11.4h; QwQ-32B training subtotal: ~17h H100 (serving at ≤32K context fits on 1 H100: BF16 weights ~65.5 GB + KV cache ~7 GB ≈ ~73 GB). 9-benchmark evaluation: R1-Distill ≈ 38h H100 (4 H100s × ~9.5h wall-clock; itemized: AIME24 ~1h, AMC23 ~0.5h, LiveCodeBench ~1h, MT-Bench ~0.5h, HumanEval ~0.5h, LongBench ~2h, RULER-NIAH subset [~1.25h wall-clock = ~5h H100 on 4 H100s], MMLU ~1h, Perplexity-Wiki/C4 ~0.5h; total ~8.25h wall-clock + overhead ≈ 9.5h × 4 H100s = 38h H100); QwQ-32B ≈ 11h H100 (RULER-NIAH 128K cells: 2 H100s × ~4h wall-clock = ~8h H100 [128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache 2×64×8×128×131072×2 bytes ≈ 32 GB ≈ 97.5 GB total, exceeding 80 GB per H100]; remaining 8 benchmarks at ≤32K context on 1 H100: ~3h H100; QwQ-32B eval total: ~11h H100). Phase 0 pilot: ~2h H100. Grand total: 2 + 117 + 17 + 38 + 11 = 185h H100 — within the ≤200h H100 cap.",
+      "speed_bottleneck": "GPU node count is the primary limit — 4–6 H100s needed to parallelize draft training (2 H100s per run, up to 3 concurrent R1-Distill runs on 6 H100s) with QwQ-32B training on the side (1 H100 for ≤32K serving, 2 H100s for draft training); secondary bottleneck is Claude API rate limits during dense parallel ablation phases",
+      "risk_note": "Without sanity-check hooks, auto-exploration may collapse to degenerate structural predictions (e.g., all segments labeled R) that reduce auxiliary loss without improving acceptance rate. Pipeline must include per-run structural segment distribution entropy checks as an automated gate before committing to full evaluation. Phase 0 pilot (χ² test on segment-type distributions, ~2h H100) must complete and pass before main training runs are queued. The four-condition ablation (including L_token + L_trans only, condition c) is a mandatory run — condition (c) vs. (d) is the primary empirical defense against the block-constant label critique; if (c) ≈ (d), the paper pivots its framing to emphasize the Markov transition objective as the primary contribution. RULER is limited to the NIAH Single + Multi-Query subset (400 examples, 2 tasks × 2 context lengths × 100 samples); automated evaluation harness must enforce this limit and route QwQ-32B 128K evaluation to 2-H100 nodes — the full RULER suite would consume the entire compute budget on the 70B model alone."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Findings (primary target; ARR submission deadline May 25, 2026; commitment deadline August 2, 2026; incremental scope over EAGLE-3/CoT-Aware, uncertain improvement magnitude, and dependency on ThinKV taxonomy transfer place this squarely in the Findings acceptance zone; auto-research mode is the only feasible path given 7–12 day timeline to the May 25 deadline; Phase 0 pilot must complete within days 1–2 of the run; EMNLP 2026 Main is aspirational and warranted only if Phase 0 and four-condition ablation yield exceptionally strong and consistent results)",
+    "ICLR 2027 (deadline expected ~October 2026, not yet announced — all three resource modes are feasible at this horizon; full Main-track competitiveness is plausible given additional time for ablation strengthening)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Efficient Reasoning for LLMs through Speculative Chain-of-Thought (arXiv:2504.19095, Apr 2025)",
+    "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models (ICLR 2026 Oral, arXiv:2510.01290)",
+    "Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework (ICLR 2026, OpenReview bKau2NNrji)",
+    "Flatter Tokens are More Valuable for Speculative Draft Model Training (arXiv:2601.18902, Jan 2026)",
+    "AdaSPEC: Selective Knowledge Distillation for Efficient Speculative Decoders (arXiv:2510.19779, NeurIPS 2025 Spotlight)",
+    "Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning (arXiv:2603.01639, ICLR 2026 Poster)",
+    "A Theoretical Perspective for Speculative Decoding Algorithm (arXiv:2411.00841, NeurIPS 2024)",
+    "Scaling Speculative Decoding with Lookahead Reasoning (arXiv:2506.19830, NeurIPS 2025)",
+    "Arbitrage: Efficient Reasoning via Advantage-Aware Speculation (arXiv:2512.05033)",
+    "Beyond Tokens: Semantic-Aware Speculative Decoding for Efficient Inference by Probing Internal States (arXiv:2602.03708, Feb 2026)",
+    "Steering Pretrained Drafters during Speculative Decoding (arXiv:2511.09844, AAAI 2026)",
+    "When RL Meets Adaptive Speculative Training: A Unified Training-Serving System (arXiv:2602.06932, Feb 2026)",
+    "Training Domain Draft Models for Speculative Decoding: Best Practices and Insights (arXiv:2503.07807, SCOPE@ICLR 2025)",
+    "Variational Speculative Decoding: Rethinking Draft Training from Token Likelihood to Sequence Acceptance (arXiv:2602.05774, Feb 2026)",
+    "When Drafts Evolve: Speculative Decoding Meets Online Learning (arXiv:2603.12617, Mar 2026)",
+    "EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test (NeurIPS 2025)",
+    "From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning (arXiv:2604.15244, Apr 2026)",
+    "ConfSpec: Efficient Step-Level Speculative Reasoning via Confidence-Gated Verification (arXiv:2602.18447, Feb 2026)",
+    "LongSpec: Long-Context Lossless Speculative Decoding with Efficient Drafting and Verification (arXiv:2502.17421, Feb 2026)",
+    "SpanBERT: Improving Pre-training by Representing and Predicting Spans (Joshi et al., TACL 2020, arXiv:1907.10529)"
+  ],
+  "description": "Speculative decoding draft models for reasoning LLMs are trained solely on next-token prediction, ignoring the structural grammar of thinking traces (reasoning → execution → transition). While CoT-Aware draft training (ICLR 2026, OpenReview bKau2NNrji) — the closest ICLR 2026 prior work — has shown step-level process supervision improves acceptance rates (3.04–4.55× speedup), it does not classify tokens into structural roles (R/E/T) or impose a Markov segment-transition consistency objective; no prior work applies thought-segment-level structural labels (R/E/T) as training signals or imposes a Markov segment-transition consistency objective — unlike this closest ICLR 2026 prior work, which uses step-level process distillation without R/E/T thought-segment labels or Markov transition objectives, the mechanisms that directly penalize structural incoherence at the thought-segment granularity where structural coherence is determined. We propose augmenting an EAGLE-3-based draft with a lightweight two-output head that jointly predicts next token and thought-segment type (R/E/T from ThinKV's ICLR 2026 Oral taxonomy, operating at τ=128-step refresh intervals producing 100–300-token segment windows), plus a Markov segment-transition KL objective aligning predicted R→E→T segment progressions to target-model-accepted trace distributions — grounded in the Markov chain abstraction for speculative decoding established in arXiv:2411.00841 (NeurIPS 2024); L_trans uses a single global R→E→T transition matrix estimated from the training corpus, which for R1-Distill EAGLE training is math-reasoning-heavy (AIME/AMC-style traces dominant) — the Markov transition regularization may therefore be stronger on math benchmarks than on code (HumanEval) or instruction (MT-Bench) tasks, and the Phase 3 task-stratified nine-benchmark results will empirically resolve whether this corpus-distribution calibration limits cross-task transfer; all labels auto-generated from ThinKV's attention-sparsity heuristic, zero human annotation. The primary empirical defense against the block-constant label critique is the four-condition ablation: condition (c) [L_token + L_trans only] vs. condition (d) [full method] directly isolates whether L_role contributes genuine content-aware structural signal independent of positional recency — if (d) significantly outperforms (c), the structural type head provides information that the Markov transition objective alone cannot capture. This ablation is the decisive test; as secondary theoretical motivation, the boundary-switching gradient at content-determined R/E/T segment transitions is analogous to SpanBERT's Span Boundary Objective (Joshi et al., TACL 2020) — both concentrate representational pressure at structural boundaries — though SpanBERT masks tokens while our method switches classification targets at τ-step transitions. The four-condition ablation (L_token only / + L_role only / + L_trans only / full) also handles the pivot case: if (c) ≈ (d), the paper reframes its primary contribution as the Markov transition objective. Primary target model: DeepSeek-R1-Distill-70B throughout all phases. Secondary target model: QwQ-32B (64 layers, 8 KV heads, head_dim 128) with a 7B draft — ThinKV's R/E/T heuristic achieves accuracy-preserving KV compression on QwQ-32B (AIME: 73.33%→70.28% at 3.4-bit), evidencing the R/E/T attention-sparsity patterns; LongSpec (arXiv:2502.17421, 2.25× speedup on AIME24) serves as the QwQ-32B SD baseline; QwQ-32B fits on 1 H100 for serving at ≤32K context (BF16 weights ~65.5 GB + KV cache ~7 GB ≈ ~73 GB), covering all training pre-generation (~17h H100 marginal training cost for 7B draft with best λ); at 128K context (BF16 weights ~65.5 GB + KV cache 2×64×8×128×131072×2 bytes ≈ 32 GB ≈ 97.5 GB), QwQ-32B requires 2 H100s — this applies to the RULER NIAH 128K evaluation cells only. A mandatory Phase 0 pilot (χ² test comparing R/E/T segment-type distributions of EAGLE-3-accepted vs. rejected draft segments on 1K traces, ~2h H100) validates the structural misalignment hypothesis and gates label quality before committing training budget. The approach is orthogonal to and composable with LTD (arXiv:2603.01639, ICLR 2026 Poster), which achieves up to 36.4% speedup over EAGLE-3 via RL co-adaptive draft/verify policies without structural supervision, and with Lookahead Reasoning (arXiv:2506.19830, NeurIPS 2025), which achieves 1.04×–1.71× standalone speedup (rising to 2.11× combined with n-gram SD on GSM8K) via step-level semantic correctness verification — Lookahead modifies the verification criterion while our method modifies draft training supervision, the two bottlenecks are distinct and the methods are composable. ARBITRAGE (arXiv:2512.05033) targets reasoning efficiency via routing-side advantage-aware speculation, also orthogonal and composable. Phase 3 evaluation covers nine benchmarks: AIME24, AMC23, LiveCodeBench (reasoning quality), MT-Bench (general instruction-following — standard in EAGLE-3 evaluation tradition), HumanEval (code generation — verifies no degradation of non-reasoning capabilities), LongBench (long-context understanding — validates generalization to long-context settings germane to extended reasoning traces), RULER [tractable subset: NIAH Single and NIAH Multi-Query at 32K and 128K context lengths, 100 samples per task×length cell = 400 total examples; ~5h H100 on 4 H100s for R1-Distill-70B; ~8h H100 on 2 H100s for QwQ-32B (128K context requires 2 H100s: BF16 weights ~65.5 GB + KV cache ~32 GB ≈ 97.5 GB); full RULER suite of 13 tasks × 6 context lengths × 500 samples = 39,000 examples excluded as it would require 200–300h H100 for the 70B model alone; NIAH tasks selected as most diagnostic for extended-reasoning deployment; LongBench provides complementary short-context (≤32K) coverage] (targeted long-context position fidelity), MMLU (general knowledge — verifies no factual knowledge degradation), and Perplexity on WikiText-103/C4 (validates no general LM quality degradation from auxiliary training). The non-uniform token importance framing is shared with SFDD (arXiv:2601.18902, distributional flatness criterion) and AdaSPEC (arXiv:2510.19779, NeurIPS 2025 Spotlight, learning-difficulty criterion via reference-model loss gap); all three criteria are orthogonal and stackable. GPU estimates are in H100-hours: manual ~178h, human-in-loop ~190h (λ=0.5 dropped from HIL ablations, creating ~5% margin below the 200h cap), auto-research ~185h (9 R1-Distill runs × ~13h = 117h; QwQ-32B training ~17h; R1-Distill eval ~38h; QwQ-32B eval ~11h [RULER 128K on 2 H100s ~8h + remaining benchmarks ~3h]; Phase 0 ~2h; total 185h within ≤200h cap). Baselines: EAGLE-3, VSD, SCoT, CoT-Aware (ICLR 2026, bKau2NNrji), LTD (arXiv:2603.01639), LongSpec (arXiv:2502.17421) for QwQ-32B comparisons. The novelty claim: first to apply thought-segment-level R/E/T structural labels and a Markov segment-transition probability objective as speculative decoding draft training signals for R1-class extended reasoning models, differentiating from the closest ICLR 2026 prior work (CoT-Aware) which uses step-level process distillation without R/E/T thought-segment labels or Markov transition objectives. Primary target venue: EMNLP 2026 Findings (ARR deadline May 25, 2026; commitment deadline August 2, 2026); EMNLP 2026 Main is aspirational pending strong empirical results; ICLR 2027 is the secondary target at a more comfortable timeline.",
+  "project_name": "struct_guided_draft_training",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL NOVELTY GAP: 'Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework' (OpenReview bKau2NNrji) uses CoT process-level structure for EAGLE draft training — directly contradicting the 'zero prior work' novelty claim. This paper must be cited and explicitly differentiated from. Specifically: the CoT-Aware paper uses step-level distillation + SurpriseRatio data selection, not token-level thought-type labels (R/E/T) or Markov transition objectives; the differentiation must be made explicit and the novelty re-grounded in the specific token-level structural labeling + transition consistency contribution, not the broader 'CoT-aware draft training' claim.", "HARD CONSTRAINT VIOLATION: Auto-research mode is estimated at 1,000h A100 ≈ 333–500 H100-hours, exceeding the ≤200 H100-hour compute budget. All three resource estimates are given in A100-hours rather than H100-hours as required by the user specifications. The proposal must convert estimates to H100-hours and bring all modes within the constraint.", "UNVALIDATED CORE HYPOTHESIS: The structural misalignment explanation ('draft produces structurally incoherent R→E→T sequences that target model rejects') is presented as established fact, but no preliminary measurement establishes that accepted vs. rejected draft tokens differ in structural role distribution. A 500-token pilot analysis comparing ThinKV-classified structural distributions of accepted vs. rejected draft tokens should be conducted before committing training budget — if distributions are indistinguishable, the method has no theoretical foundation.", "MISLABELED PRIOR WORK AUTHORITY: ThinKV is described as an arXiv paper but is in fact an ICLR 2026 Oral, significantly increasing its authority and the risk that reviewers will ask why the paper's key dependency is 'off-the-shelf' from a peer-reviewed paper in the same submission cycle. Additionally, ThinKV's attention-sparsity heuristic was designed for KV eviction, not training label generation — its oracle precision as a token-level structural classifier for draft training supervision has not been validated.", "INFLATED SCOT CLAIMS: The landscape states SCoT achieves '48–49% latency reduction on DeepSeek-R1-Distill-32B/70B' — but the actual paper (arXiv:2504.19095) reports 48–66% for 32B and 21–49% for 70B. The lower 70B bound (21%) is materially weaker than implied and should be accurately reported to avoid misleading reviewers.", "MISSING RELATED WORK: 'Beyond Tokens: Semantic-Aware Speculative Decoding for Efficient Inference by Probing Internal States' (SemanticSpec, arXiv:2602.03708) achieves 2.7× speedup on DeepSeek-R1-32B by using internal hidden states to assess semantic equivalence — a parallel approach to semantic/structural awareness in speculative decoding. While verification-side (not draft-training-side), it directly competes on the reasoning model speedup narrative and must be discussed."]
+Feedback: The core R/E/T label + Markov transition consistency idea is genuinely novel at the mechanism level, but three issues need fixing before submission. (1) Differentiate explicitly from the CoT-Aware paper (OpenReview bKau2NNrji): pivot the novelty claim from 'no prior work uses CoT structure for draft training' to 'first to apply token-level thought-type labels as a training signal and a Markov transition consistency objective specifically for extended reasoning traces on modern R1-class models' — this is accurate and defensible. (2) Convert all GPU estimates to H100-hours and redesign the auto-research mode to stay within 200 H100-hours (cap at ~4 draft sizes × 3 λ values = 12 runs at ~15 H100-hours each ≈ 180 H100-hours). (3) Add a 2-page pilot section measuring whether ThinKV-classified structural roles of EAGLE-3-accepted vs. rejected draft tokens actually differ (a χ² test on 1K traces would suffice) — if they do, this validates the hypothesis and makes the training objective well-motivated; if they do not, pivot to measuring structural role divergence between draft model predictions and target model outputs, which may reveal the misalignment more directly.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL (NEW): The core novelty claim — 'token-level thought-type labels' — is factually incorrect. ThinKV's attention-sparsity heuristic classifies tokens at the SEGMENT level: it refreshes every τ=128 steps and assigns a single R/E/T label to a block of 100–300 tokens (per the ThinKV HTML full paper, which explicitly states classification 'operates at the segment level'). All tokens in a ~128-token window receive the same structural label. The paper must accurately describe this as 'thought-segment-level structural supervision' and revise the novelty claim accordingly. This also affects the Markov transition objective: transitions are between segments (~100–300 tokens each), not between individual tokens — this is still a valid objective, but different from what is described.", "CRITICAL (NEW): Target model inconsistency across phases creates a feasibility hole. Phase 0 explicitly samples from DeepSeek-R1-Distill-70B; Phase 3 uses DeepSeek-V4-Pro as the target. DeepSeek-V4-Pro is a 1.6T MoE model requiring 8× H200 SXM nodes at ~$28–55/hr just for serving (per LMSYS Day-0 benchmarks published April 25 2026). EAGLE-3 draft training for V4-Pro requires running the full model to extract multi-layer features; this cost is not reflected in the 150–180 H100-hour estimates and likely cannot be run on H100s at all at full scale. Either: (a) use R1-Distill-70B as the target model throughout (fully feasible within 200 H100-hours), or (b) explicitly cost the V4-Pro inference budget separately and demonstrate the approach still fits within constraints.", "IMPORTANT: ThinKV's attention-sparsity heuristic was calibrated on DeepSeek-R1-Distill model attention patterns (which use standard dense transformer attention). DeepSeek-V4-Pro uses Compressed Sparse Attention (CSA) and Heavily Compressed Attention (HCA), fundamentally different sparsity profiles. If Phase 3 uses V4-Pro, the paper must validate that ThinKV's heuristic (developed for R1-Distill attention) transfers to V4-Pro's attention architecture before committing to this combination.", "MINOR: 'Flatter Tokens are More Valuable for Speculative Draft Model Training' (arXiv:2601.18902, January 2026) is missing from related work. It proposes SFDD — flatness-based dataset distillation for draft model training — and directly addresses token-level heterogeneity in draft training. It is not a direct competitor (flatness ≠ structural role), but shares the conceptual framing of non-uniform token importance in draft training and should be cited to contextualize the contribution."]
+Feedback: Round 1 issues are properly resolved — the CoT-Aware differentiation is now accurate and defensible, H100 conversion is correct, Phase 0 pilot is a genuine contribution, SCoT numbers are fixed, and SemanticSpec is contextualized correctly. The core R/E/T + Markov transition combination remains novel. Three issues need fixing before round 3: (1) Reframe 'token-level' as 'thought-segment-level' throughout — ThinKV classifies 128-token windows, not individual tokens; be precise about this in the method description, novelty claim, and Phase 0 χ² test (which should compare segment-type distributions, not per-token distributions). The approach is still novel as segment-level structural supervision; just describe it accurately. (2) Resolve the target model split: the simplest fix is to make R1-Distill-70B the target model throughout all phases (it fits comfortably within 200 H100-hours, EAGLE-3 infrastructure already supports it, and ThinKV was validated on it). If V4-Pro is retained as the Phase 3 target, add an infrastructure cost section and a ThinKV portability validation step to Phase 0. (3) Add arXiv:2601.18902 ('Flatter Tokens') to related work with a one-paragraph comparison: both approaches address non-uniform token importance in draft training, but flatness is a distributional property while structural role is a semantic property; cite as complementary.
+
+### Round 3 review
+Verdict: revise
+Issues: ["IMPORTANT — MISSING RELATED WORK: 'Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning' (LTD, arXiv:2603.01639, ICLR 2026 Poster) is absent from the landscape. LTD achieves up to 36.4% speedup over EAGLE-3 via RL-based co-adaptive draft/verify policies and is directly competitive on the EAGLE-3-improvement narrative. EMNLP reviewers will know this paper. The proposal must add LTD to the landscape and explicitly differentiate: LTD optimizes throughput via RL without reasoning-structure signal, while the proposed method adds thought-segment-level structural supervision that is orthogonal to LTD's RL objective and composable with it.", "IMPORTANT — EVAL SUITE MISMATCH WITH USER HARD CONSTRAINTS: The user explicitly required evaluation on 'perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench.' The proposal only evaluates on AIME24, AMC23, LiveCodeBench — none of which appear in the required suite. Research confirms MT-Bench is standard in speculative decoding papers including EAGLE-3 itself, and HumanEval is commonly paired with LiveCodeBench. At minimum, MT-Bench and HumanEval must be added to Phase 3 evaluation. This is a hard constraint from the user specification, not a stylistic preference.", "MINOR — MISSING THEORETICAL CITATION: When introducing the Markov segment-transition consistency objective, the NeurIPS 2024 paper 'A Theoretical Perspective for Speculative Decoding Algorithm' (arXiv:2411.00841) should be cited. This paper establishes the Markov Chain abstraction for speculative decoding and proves optimality properties. Invoking 'Markov segment-transition' without referencing this foundational theoretical framing is an oversight reviewers familiar with the SD theory literature will notice.", "MINOR — MISSING ARBITRAGE: ARBITRAGE (arXiv:2512.05033) achieves ~2× latency reduction on mathematical reasoning benchmarks via step-level advantage-aware routing, directly targeting the same reasoning model efficiency goal. It should be mentioned briefly in the landscape as a routing-side approach (orthogonal to draft-training-side supervision) to complete the coverage of reasoning-specific SD work."]
+Feedback: All three critical round 2 issues are properly resolved: segment-level vs token-level is now accurate throughout, the target model is R1-Distill-70B across all phases, and SFDD is cited as complementary. The Phase 0 hypothesis gate with its fallback pivot is well-designed and constitutes a genuine methodological contribution. Three remaining fixes before submission: (1) Add LTD (arXiv:2603.01639, ICLR 2026) to the landscape section with a clear differentiation — LTD uses RL to adapt draft/verify policies without any reasoning-structure signal, while the proposed method uses thought-segment supervision that is static at inference and orthogonal to RL-based adaptation; position LTD as a potentially composable baseline rather than a competitor. (2) Add MT-Bench and HumanEval to Phase 3 experiments — these are required by the user's hard constraints and are standard in the EAGLE-3 evaluation tradition; the reasoning benchmarks (AIME24, AMC23, LiveCodeBench) are appropriate for quality but MT-Bench and HumanEval verify that structural training supervision does not degrade general instruction-following and code quality. (3) Cite arXiv:2411.00841 when introducing the Markov segment-transition objective to anchor the theoretical framing. ARBITRAGE (arXiv:2512.05033) should also be briefly noted in the landscape.
+
+### Round 4 review
+Verdict: revise
+Issues: ["IMPORTANT — MISSING RELATED WORK: 'Scaling Speculative Decoding with Lookahead Reasoning' (arXiv:2506.19830, NeurIPS 2025, Yichao Fu et al., Hao AI Lab UCSD) is absent from the landscape. This paper achieves 1.4×→2.1× speedup for reasoning models by exploiting step-level semantic correctness — each reasoning step needs only to be semantically correct, not an exact token match — which is the closest competing narrative for 'reasoning-aware speculative decoding.' EMNLP 2026 reviewers familiar with reasoning efficiency will notice its absence. It should be added as a complementary step-level semantic approach that is orthogonal to draft-training structural supervision (reasoning step correctness ≠ token-segment-level R/E/T training signal) and composable with the proposed method.", "IMPORTANT — RESOURCE ACCOUNTING AMBIGUITY: The auto-research estimate '12 runs × ~13h H100/run ≈ 156h H100' is numerically inconsistent unless 13h H100/run means total GPU-hours summed across all cards per run. With DeepSeek-R1-Distill-70B requiring 4 H100s for serving, and 2 additional H100s for draft training, a single run on 6 H100s for ~2–3h wall-clock yields 12–18 H100-hours — consistent with the ~13h estimate only if the target model's serving cost is excluded (pre-computed once and shared). The proposal must explicitly state: (a) how the 70B target model's serving cost is amortized across runs (single pre-generation pass vs. per-run inference), (b) the assumed GPU count per run, and (c) whether '13h H100/run' is wall-clock hours or total GPU-hours. Without this, the constraint adherence claim cannot be verified and reviewers will challenge it.", "MINOR — INCOMPLETE EVAL COVERAGE: The user's hard constraint explicitly lists perplexity (Wiki/C4), MMLU, LongBench, and RULER alongside HumanEval and MT-Bench. LongBench and RULER are particularly relevant for reasoning models — reasoning traces are long outputs, and demonstrating that thought-segment structural supervision generalizes to long-context evaluation settings (LongBench) and extreme-length position fidelity (RULER) would strengthen the paper. Perplexity (Wiki/C4) could validate that the auxiliary training does not degrade general LM quality. Even if these metrics are not standard in SD papers, their inclusion or explicit justification for exclusion is required by the user's specification.", "MINOR — MISSING RELATED WORK: 'AdaSPEC: Selective Knowledge Distillation for Efficient Speculative Decoders' (arXiv:2510.19779, NeurIPS 2025 Spotlight) proposes selective token filtering in knowledge distillation for draft models based on token-wise learning difficulty — directly related to the non-uniform token importance framing shared with both the proposed method and SFDD. It should be cited alongside SFDD as a complementary approach: AdaSPEC uses loss gap from a reference model to identify easy vs. hard tokens, while the proposed method uses structural role. Both are non-competing, but AdaSPEC's NeurIPS 2025 Spotlight status means reviewers will notice its absence if the paper discusses token-level importance in draft training."]
+Feedback: Round 1–3 issues are fully resolved and the core contribution — thought-segment-level R/E/T structural supervision with a Markov segment-transition KL objective for speculative decoding draft training — remains genuinely novel with no direct competitors found across independent searches. Three targeted fixes before submission: (1) Add Lookahead Reasoning (arXiv:2506.19830, NeurIPS 2025) to the landscape — position it as a step-level semantic correctness approach (orthogonal to token-segment structural training) that achieves 1.4×→2.1× speedup for reasoning models; this is the most closely related NeurIPS 2025 paper on reasoning model speedup via speculative-style methods and its absence will be noticed by reviewers. (2) Make the resource accounting explicit: state clearly that the 70B target model features are pre-generated once in a shared pass (cost once, amortized across all 12 runs), and that '13h H100/run' refers to draft model training only on 2 H100s — give the GPU count per phase explicitly so the 186h H100 total is verifiable from first principles. (3) Add LongBench and RULER to Phase 3 evaluation (they are in the user's hard constraint eval list and are germane to reasoning models with long outputs); cite AdaSPEC (arXiv:2510.19779, NeurIPS 2025 Spotlight) alongside SFDD in the related work section on non-uniform token importance for draft training.
+
+### Round 5 review
+Verdict: revise
+Issues: ["MINOR — LOOKAHEAD REASONING SPEEDUP MISREPRESENTED: The proposal states 'achieves 1.4×→2.1× speedup on reasoning benchmarks (GSM8K, AIME)' for Lookahead Reasoning, but the actual NeurIPS 2025 paper (confirmed via OpenReview and GitHub) reports 1.04×–1.71× speedup for Lookahead Reasoning alone, with 2.11× only when additionally combined with n-gram speculative decoding. The 2.1× combined figure and the selective 1.4× lower bound overstate the method's standalone contribution. The landscape description should be corrected to accurately reflect the standalone vs. combined speedup.", "MINOR — AUXILIARY HEAD TRAINING SIGNAL WEAKNESS NEEDS PREEMPTION: Because ThinKV assigns a single R/E/T label to each entire 128-token segment window (all tokens in the window share the label), the auxiliary cross-entropy loss L_role provides a block-constant training target. A reviewer will correctly observe that the model can minimize L_role by tracking positional context within the window (i.e., attending to recent transition tokens) rather than learning deep structural representations. The paper needs a mechanistic argument for why block-constant supervision still improves draft model features — e.g., that the boundary-aware attention pattern required to predict R/E/T label transitions at segment breaks forces the model to internalize structural grammar — or needs an ablation showing the auxiliary loss actually helps (not just the Markov transition loss alone).", "MINOR — EVALUATION SCOPE LIMITED TO ONE MODEL: All experiments use DeepSeek-R1-Distill-70B as the sole target model, which limits generalizability claims. Reviewers will ask whether the R/E/T structural misalignment mechanism holds for other reasoning models (e.g., QwQ-32B, which also exhibits strong R/E/T attention-sparsity patterns per ThinKV's validation). Adding even one additional target model (QwQ-32B with a 7B draft) within the compute budget (~20 additional H100-hours in auto-research mode, still within the 200h cap) would substantially strengthen the contribution's breadth claim."]
+Feedback: All four Round 4 issues are properly resolved: Lookahead Reasoning is now correctly positioned as verification-side / orthogonal, the resource accounting is explicit and has been independently confirmed feasible via EAGLE-3's documented offline training infrastructure, the eval suite now covers all nine required benchmarks, and AdaSPEC is correctly differentiated. The core novelty claim (R/E/T structural labels + Markov segment-transition KL for draft training) holds up — no direct competing work was found. Three targeted fixes before Round 6: (1) Correct the Lookahead Reasoning speedup claim: state '1.04×–1.71× standalone, 2.11× combined with n-gram SD' — the current characterization inflates the lower bound and attributes the combined result to Lookahead alone, which reviewers of the NeurIPS 2025 paper will notice. (2) Add a mechanistic paragraph or ablation design addressing the block-constant label concern: because all 128-token window tokens share one R/E/T label, the auxiliary loss's training signal comes primarily from segment-boundary transitions; explicitly argue why this boundary-forcing gradient is sufficient to improve draft structural coherence, and add an ablation (L_token + L_trans only, no L_role) to isolate the contribution of the structural type head versus the Markov transition objective alone. (3) Add QwQ-32B as a second target model with a 7B draft — ThinKV was validated on QwQ-32B, it requires the same 4-H100 serving footprint as R1-Distill-70B, and the marginal cost (~20h H100) fits within the 200h cap in auto-research mode; this broadens the generalizability claim from 'works on R1-Distill' to 'works on R1-class models generally.'
+
+### Round 6 review
+Verdict: revise
+Issues: ["CRITICAL — RULER EVALUATION BUDGET SEVERELY UNDERESTIMATED: The full RULER benchmark (13 tasks × 6 context lengths × 500 samples = 39,000 total samples) takes approximately 65 hours on 1 GPU for a 7B model; scaling to DeepSeek-R1-Distill-70B on 4 H100s yields an estimated 200–300h wall-clock for the complete benchmark, making the stated '9.5h wall-clock for all 9 benchmarks' physically impossible for a full RULER evaluation. Even a reduced RULER run (NIAH-only, 2 context lengths, 100 samples = ~600 examples) would consume 15–25 H100-hours. The proposal never specifies the RULER configuration (which tasks, which context lengths, how many samples), so the compute budget for this benchmark cannot be verified. If the full RULER suite is intended, the auto-research estimate (181h H100) is underestimated by a factor of 2–5×, violating the ≤200 H100-hour hard constraint. Fix: either (a) specify a tractable RULER subset (e.g., NIAH Multi-Query at 32K and 128K, 100 samples per length = 200 samples total, ~5 H100-hours) and update the cost estimate, or (b) drop RULER and note that long-context evaluation is approximated via LongBench, which uses shorter contexts (≤32K). RULER inclusion was a user hard constraint, so option (a) is preferred.", "MINOR — SpanBERT ANALOGY IS SECONDARY, NOT PRIMARY DEFENSE: The SpanBERT Span Boundary Objective analogy is positioned as a key mechanistic argument for why block-constant labels require content-aware representations. However, SpanBERT's SBO masks tokens and forces prediction from boundary positions — the learning mechanism is fundamentally different from predicting a categorical label shared by all 128 tokens. A reviewer will observe that a draft model could still minimize L_role by learning a positional recency heuristic ('steps since last structural transition') without internalizing content-aware segment semantics. The four-condition ablation (condition c: L_token + L_trans only, vs. d: full) is the correct and sufficient empirical answer to this concern. The paper should reframe: ablation condition (c) vs. (d) is the PRIMARY defense against the block-constant critique; the SpanBERT analogy should be demoted to a secondary theoretical motivation, not the lead argument."]
+Feedback: Round 5 fixes are correctly implemented: Lookahead Reasoning speedup is now accurate (1.04×–1.71× standalone, 2.11× combined), the four-condition ablation properly isolates L_role vs. L_trans contributions, and QwQ-32B adds a second target model within budget. One blocking issue remains before this can pass: the RULER evaluation budget is unspecified and almost certainly underestimated. A full RULER run (13 tasks × 6 lengths × 500 samples = 39,000 examples) would consume more H100-hours than the entire compute budget — you must specify a tractable RULER subset (recommended: NIAH Single + Multi-Query at 32K and 128K, 100 samples per cell, 400 total examples, ~4–6h H100 for 70B) and update the budget arithmetic accordingly. Do this and the paper is ready for EMNLP submission. The SpanBERT reframing is stylistic but worth addressing: position condition (c) vs. (d) as the primary response to the block-constant critique, with SpanBERT as supporting theory.
+
+### Round 7 review
+Verdict: revise
+Issues: ["IMPORTANT — QwQ-32B 128K SERVING DOES NOT FIT ON 1 H100: BF16 model weights (65.5 GB) + KV cache at 128K context (2 × 64 layers × 8 KV heads × 128 head_dim × 128K tokens × 2 bytes ≈ 31 GB) = ~96.5 GB, exceeding an H100's 80 GB. The 'QwQ-32B fits on 1 H100 for serving' claim is valid only at ≤32K context (~73 GB total). For the 128K NIAH RULER tasks, QwQ-32B requires at minimum 2 H100s (or explicit FP8 quantization with model weights at ~38 GB + KV cache ~31 GB = ~69 GB, which fits). The current ~4h H100 estimate for QwQ-32B RULER must be corrected: at 2 H100s, it becomes ~8h H100 total, pushing the auto-research total from 181h to ~185h — still within the 200h cap, so the fix is straightforward but mandatory for accuracy.", "MINOR — EMNLP MAIN VS. FINDINGS PROBABILITY MISCALIBRATED: The proposal lists 'EMNLP 2026 Main' and 'EMNLP 2026 Findings' as equally plausible targets, but given the incremental scope over EAGLE-3 and CoT-Aware, the uncertain improvement magnitude, and the dependency on ThinKV taxonomy transfer, the realistic acceptance zone is Findings. Abstract framing and contribution claims should be calibrated to Findings to avoid over-promising to collaborators and reviewers."]
+Feedback: All round 6 issues are properly resolved: RULER is restricted to the NIAH tractable subset (400 examples, ~5h H100 for 70B), the four-condition ablation is the primary defense against the block-constant label critique, and SpanBERT is correctly demoted to secondary motivation. Independent adversarial search found no direct competing work on R/E/T segment-level structural supervision for draft training. One important fix is required: correct the QwQ-32B serving constraint. At 128K context, QwQ-32B (65.5 GB BF16 weights + ~31 GB KV cache) exceeds single-H100 capacity. Fix by either: (a) specifying 2 H100s for QwQ-32B serving at 128K (updates QwQ-32B RULER estimate from ~4h to ~8h H100, auto-research total to ~185h, still within 200h cap), or (b) specifying FP8 model quantization for 128K serving (weights ~38 GB + KV cache ~31 GB = ~69 GB, fits on 1 H100, but must note quantization in the experimental setup). Option (a) is cleaner scientifically. Additionally, calibrate the venue framing to EMNLP 2026 Findings as the primary target and Main as aspirational — the incremental scope and uncertain gain over CoT-Aware place this squarely in the Findings acceptance zone.
+
+### Round 8 review
+Verdict: revise
+Issues: ["IMPORTANT — CoT-Aware citation must be updated to 'ICLR 2026': Independent search confirms that 'Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework' (OpenReview bKau2NNrji) was accepted and published at ICLR 2026. The proposal consistently cites it only as 'OpenReview bKau2NNrji' throughout all sections, which is stale and will strike EMNLP 2026 reviewers as sloppy citation hygiene. Every reference should be updated to 'CoT-Aware (ICLR 2026)'. Positively, this strengthens the comparison narrative: the proposal can now explicitly contrast against 'the closest ICLR 2026 work' rather than an unreviewed preprint.", "MINOR — Markov transition distribution heterogeneity is unaddressed: The Markov segment-transition KL objective (L_trans) estimates a single global R→E→T transition distribution from target-model-accepted training traces. Reasoning traces exhibit task-specific structural patterns: AIME24/AMC23 traces are heavily R-E dominant (sustained deliberation then computation), HumanEval traces may show tighter R→E cycles, and MT-Bench traces differ further. If training data is math-reasoning-heavy (as is typical for R1-Distill EAGLE training), the global transition distribution will be biased toward math reasoning patterns, and L_trans may act as a mild constraint rather than useful regularization for code or instruction benchmarks. The paper should state explicitly whether L_trans uses a global or task-conditioned transition matrix, and note whether the training corpus distribution is representative of the evaluation task mix. This matters because L_trans's contribution (isolated in ablation condition c vs. d) may be task-dependent.", "MINOR — Human-in-Loop mode at exactly the 200h H100 cap leaves zero margin: The HIL estimate is stated as '~200h H100 (at the ≤200h H100 cap)'. This means any single underestimated run or benchmark cell would push it over the hard constraint. The estimate should either scope down to ~190h H100 (e.g., drop λ=0.5 from HIL ablations, which are included in auto-research) to create a 5% buffer, or explicitly state what would be deprioritized (e.g., RULER 128K for QwQ-32B) if a run exceeds the estimate."]
+Feedback: All seven rounds of prior feedback are correctly incorporated — the proposal is mature, technically precise, and internally consistent. Three targeted fixes before Round 9: (1) Update every citation of CoT-Aware from 'OpenReview bKau2NNrji' to 'CoT-Aware (ICLR 2026)' — this is confirmed accepted and published, and the correct citation both improves credibility and lets you write 'unlike the closest ICLR 2026 prior work (CoT-Aware), which uses step-level process distillation without R/E/T thought-segment labels or Markov transition objectives.' (2) Add one sentence to the L_trans description specifying whether the transition distribution is global or task-conditioned, and note the training-corpus task mix — if the corpus is heavily math-reasoning, acknowledge that L_trans is calibrated for that distribution and may have smaller effect on code/instruction benchmarks (the ablation will reveal this empirically). (3) Reduce HIL scope to ~190h H100 by dropping λ=0.5 from HIL ablations — λ=0.5 is also dropped in auto-research mode, so dropping it in HIL is consistent and creates the 5% budget margin that the current estimate lacks.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "773c9ce1-7a77-42a7-a608-3445ca37a411",
+  "type": "user",
+  "uuid": "4e58aa39-73e8-47c3-a549-2c5a70fdbfd9",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-09T20:04:53.092Z_
+
+```json
+{
+  "parentUuid": "4e58aa39-73e8-47c3-a549-2c5a70fdbfd9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2544d8b5-141d-4468-88ad-d714de74c1e4",
+  "timestamp": "2026-05-09T20:04:53.092Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-09T20:04:53.092Z_
+
+```json
+{
+  "parentUuid": "2544d8b5-141d-4468-88ad-d714de74c1e4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "28920b73-4e2e-4a5f-9d3a-aeb90f926e00",
+  "timestamp": "2026-05-09T20:04:53.092Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "28920b73-4e2e-4a5f-9d3a-aeb90f926e00",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure-Guided Speculative Draft Training Review",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-09T20:05:59.727Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this round 9 submission. Based on the previous 8 rounds of review, the key issues to check are:
+
+1. Was CoT-Aware citation updated to "ICLR 2026" throughout? (Round 8 issue 1)
+2. Was the Markov transition distribution heterogeneity addressed? (Round 8 issue 2)
+3. Was the HIL mode reduced to ~190h H100? (Round 8 issue 3)
+
+Let me read the current proposal carefully and then do independent searches to verify claims.
+
+Let me analyze the current proposal:
+
+
+I'm checking the Round 8 issues. The CoT-Aware citation appears to be correctly updated with "ICLR 2026, OpenReview bKau2NNrji" throughout the proposal. Now I need to verify whether the Markov transition distribution heterogeneity concern was actually addressed in the text...
+
+Looking at the relevant section, the proposal acknowledges that the global R→E→T transition matrix is calibrated to math-dominant patterns from the training data, which could create weaker regularization on code and instruction tasks. The proposal frames this as an empirical question that the Phase 3 task-stratified benchmarks will answer. That seems to directly address the concern. The HIL mode timing also checks out at ~190h H100 equivalent with the λ=0.5 adjustment creating the ~5% margin below the 200h cap.
+
+Now I need to verify some key claims independently: whether any competing work on R/E/T structural supervision for speculative decoding has emerged recently, if the compute estimates hold up, and whether the cited papers (LTD, Lookahead Reasoning, CoT-Aware) have the venue and status claimed in the proposal.
+
+The core novelty hinges on applying segment-level structural labels with R/E/T taxonomy and a Markov transition objective to draft model training—this is narrow but potentially defensible if the empirical results validate that ThinKV's heuristics actually transfer to this setting, which remains the biggest unresolved risk despite the 185 H100-hour compute budget seeming reasonable.
+
+I should verify whether Lookahead Reasoning (arXiv:2506.19830) is actually a NeurIPS 2025 paper or just a June 2025 preprint, since the timeline could go either way depending on the submission deadline. I'm also starting to look into LTD (arXiv:2603.01639) but haven't finished that assessment yet.
+
+Now I'm checking whether all the issues from the previous eight rounds of feedback have been properly addressed, going through each round systematically to make sure nothing was missed. kov theoretical citation ✓, ARBITRAGE added ✓
+- Round 4: Lookahead Reasoning added ✓, Resource accounting explicit ✓, LongBench/RULER added ✓, AdaSPEC added ✓
+- Round 5: Lookahead speedup corrected ✓, Block-constant label mechanistic argument ✓, QwQ-32B added ✓
+- Round 6: RULER subset specified ✓, SpanBERT demoted ✓
+- Round 7: QwQ-32B 128K serving fixed (2 H100s) ✓, Venue calibrated to Findings ✓
+- Round 8: CoT-Aware cited as ICLR 2026 ✓, L_trans global matrix noted ✓, HIL reduced to 190h ✓
+
+The proposal feels solid after eight iterations. Let me double-check the QwQ-32B memory calculations to make sure the serving setup is actually feasible with two H100s.
+
+Recalculating the KV cache size more carefully...
+
+for 128K tokens, that comes to about 32 GB, which matches what the proposal states. The model weights at BF16 precision work out to roughly 64 GB, and the proposal's estimate of 65.5 GB is in the right ballpark.
+
+Adding those together gives 97.5 GB total, which exceeds the 80 GB capacity of a single H100, so the proposal correctly concludes that two H100s are needed. The speedup claims are also well-documented—ranging from 1.04× on GPQA up to 1.71× on GSM8K, with a combined peak of 2.11× when paired with n-gram speculative decoding. The novelty distinction from CoT-Aware is becoming clearer too, since that approach operates at the step level rather than the token level.
+
+Now I'm considering what gaps might still exist. The ThinKV taxonomy validation in Phase 0 uses a χ² test to confirm that the R/E/T labels produce different distributions across accepted versus rejected drafts, but a statistical significance test doesn't guarantee the labels themselves are precise enough to serve as effective training signals—that's a separate concern a reviewer might raise. The fallback strategy if Phase 0 fails is to measure structural divergence between the draft model's predicted distributions and the target model's outputs, which makes sense, though the Markov transition objective could still hold value even if the initial validation doesn't pan out.
+
+I'm also questioning whether SCoT is a fair baseline given that it operates at the thought level while EAGLE works at the token level, making direct speedup comparisons potentially misleading. I should double-check the ARBITRAGE paper's actual claims about latency reduction on math benchmarks, and I'm noticing that AIME24 only has 30 problems, which could introduce high statistical variance in the results. Let me search for some of these details to verify the claims I'm making.
+
+I'm thinking about what searches would be most efficient with my context budget—checking for new structural supervision work on speculative decoding, confirming the ICLR 2026 status of CoT-Aware and LTD, and looking for other concurrent reasoning-aware draft training approaches. The key concern is whether there's competing work that hasn't been addressed. I'm also noticing that the proposal uses LongSpec as the baseline for QwQ-32B experiments with reported 2.25× wall-clock reduction on AIME24, which seems reasonable but I should verify whether EAGLE-3 has been compared against it as well.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28920b73-4e2e-4a5f-9d3a-aeb90f926e00",
+  "isSidechain": false,
+  "requestId": "req_011CasbUQW3ST4ttNuM4W5eJ",
+  "type": "assistant",
+  "uuid": "a7992e34-0f43-4f5c-a725-606fd49a78e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WDgNiLUbq1uto5hZnHuQvj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29318,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 4006,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4006,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 29318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-09T20:05:59.879Z_
+
+I'll conduct independent research to verify the key claims in this round 9 submission before issuing a verdict.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7992e34-0f43-4f5c-a725-606fd49a78e3",
+  "isSidechain": false,
+  "requestId": "req_011CasbUQW3ST4ttNuM4W5eJ",
+  "type": "assistant",
+  "uuid": "59e64c6a-9050-410b-8401-94ed9aeb3224",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WDgNiLUbq1uto5hZnHuQvj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29318,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 4006,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4006,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 29318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-09T20:06:06.851Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01ELYWogkhD3WrPwsSFgBiNB`</summary>
+
+```json
+{
+  "description": "Verify key claims and search for competing work",
+  "subagent_type": "Explore",
+  "prompt": "I need you to search for papers and verify claims for an ML research review. Please do the following searches and report the key findings:\n\n1. Search for recent papers on \"speculative decoding reasoning models structural supervision draft training 2025 2026\" on arXiv\n2. Search for \"ThinKV thought type taxonomy reasoning speculative decoding arxiv 2510.01290\"\n3. Search for \"CoT-Aware speculative decoding ICLR 2026 bKau2NNrji\"\n4. Search for \"LTD learning to draft adaptive speculative decoding reinforcement learning arxiv 2603.01639\"\n5. Search for \"Lookahead Reasoning speculative decoding NeurIPS 2025 arxiv 2506.19830\"\n6. Search for \"EAGLE-3 speculative decoding NeurIPS 2025 QwQ-32B\"\n7. Search for \"structural segment supervision draft model speculative decoding R/E/T taxonomy 2026\"\n8. Search for \"thought segment type label speculative decoding arxiv 2025 2026\"\n\nFor each search, report: does the paper/claim appear to exist? What are the key findings? Are there any papers closely related to \"using structural segment labels (R/E/T) as training supervision for speculative decoding draft models\"?\n\nUse WebSearch tool for each query."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59e64c6a-9050-410b-8401-94ed9aeb3224",
+  "isSidechain": false,
+  "requestId": "req_011CasbUQW3ST4ttNuM4W5eJ",
+  "type": "assistant",
+  "uuid": "88408b5e-dbe6-4456-bc3c-6b8ecef03ddf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WDgNiLUbq1uto5hZnHuQvj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29318,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 4006,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4006,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 29318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-09T20:06:14.394Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_011Rg94sZj6M2MTYc1JJ8vdF`</summary>
+
+```json
+{
+  "description": "Search for concurrent competing work on reasoning-aware draft training",
+  "subagent_type": "Explore",
+  "prompt": "I'm reviewing an ML paper proposal about speculative decoding for reasoning LLMs. The core idea is:\n1. Using ThinKV's R/E/T (Reasoning/Execution/Transition) segment-level taxonomy as training labels for speculative decoding draft models\n2. Adding a Markov segment-transition consistency objective that aligns draft model's predicted R→E→T transitions to target model distributions\n\nI need you to search for any competing or closely related work that might challenge the novelty of this approach. Please search:\n\n1. arxiv.org for \"speculative decoding draft training structural supervision reasoning 2026\" \n2. arxiv.org for \"reasoning trace structure draft model training 2025 2026\"\n3. \"chain-of-thought structure speculative decoding draft training site:arxiv.org\"\n4. \"segment level structural labels draft model training speculative decoding\"\n5. \"Markov transition objective speculative decoding draft training\"\n6. Search for any papers by Yichao Fu (Hao AI Lab UCSD) on speculative decoding after June 2025\n7. Search for \"AdaSPEC selective knowledge distillation speculative decoders arxiv 2510.19779\"\n8. Search for \"ARBITRAGE advantage-aware speculation reasoning arxiv 2512.05033\"\n\nReport: title, venue (if known), key method, and whether it directly competes with the R/E/T structural label + Markov transition approach for draft training.\n\nUse WebSearch for each query."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88408b5e-dbe6-4456-bc3c-6b8ecef03ddf",
+  "isSidechain": false,
+  "requestId": "req_011CasbUQW3ST4ttNuM4W5eJ",
+  "type": "assistant",
+  "uuid": "b367c611-ac10-4546-89eb-22b31413c50a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01WDgNiLUbq1uto5hZnHuQvj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 29318,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 4006,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 29318,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4006,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 29318,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 29318
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-09T20:06:35.108Z_
+
+<details><summary>↩ Tool result · `toolu_01ELYWogkhD3WrPwsSFgBiNB`</summary>
+
+```text
+## Summary of Search Findings
+
+I've completed all eight searches. Here are the key findings organized by query:
+
+### 1. **Speculative Decoding Reasoning Models - Structural Supervision (2025-2026)**
+**Status:** Multiple relevant papers found
+
+Key papers identified:
+- "Variational Speculative Decoding: Rethinking Draft Training from Token Likelihood to Sequence Acceptance" - reformulates draft training as a variational inference problem
+- "Draft, Verify, & Improve: Toward Training-Aware Speculative Decoding" (arXiv 2510.05421) - uses verifier accept/reject signals as supervision
+- "Speculative Speculative Decoding" (ICLR 2026) - parallelizes drafting/verification
+- Papers on reasoning models show hierarchical structure with step-level parallelism
+
+### 2. **ThinKV (arXiv 2510.01290)**
+**Status:** Paper exists and well-documented
+
+- **Title:** "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models"
+- **Key Finding:** Uses a taxonomy of thought types to classify attention patterns in CoT reasoning
+- **Method:** Applies hybrid quantization-eviction strategy based on thought importance
+- **Results:** Achieves near-lossless accuracy with <5% of original KV cache on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason
+
+### 3. **CoT-Aware Speculative Decoding (ICLR 2026, bKau2NNrji)**
+**Status:** Paper exists - confirmed on OpenReview
+
+- **Title:** "Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework"
+- **Key Findings:** 
+  - Shows training-based SD methods (EAGLE) suffer from catastrophic forgetting under naive CoT supervision
+  - Proposes process-level CoT distillation combined with feature regression
+  - Introduces SurpriseRatio (SR) data-selection metric
+  - Achieves wall-clock speedups of 3.04× to 4.55×
+
+### 4. **Learning to Draft (LTD) - arXiv 2603.01639**
+**Status:** Paper exists - ICLR 2026 accepted
+
+- **Title:** "Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning"
+- **Key Findings:**
+  - Formulates SD as RL environment with two co-adaptive policies
+  - Optimizes true throughput (not proxy metrics like acceptance length)
+  - Results: 2.24× to 4.32× speedup, outperforms EAGLE-3 up to 36.4%
+
+### 5. **Lookahead Reasoning (NeurIPS 2025, arXiv 2506.19830)**
+**Status:** Paper exists - NeurIPS 2025 poster
+
+- **Title:** "Scaling Speculative Decoding with Lookahead Reasoning"
+- **Key Findings:**
+  - Exploits step-level parallelism instead of token-level
+  - Draft model proposes multiple future steps, target model expands each in one batched pass
+  - Combines with token-level SD for peak speedup of 2.1× (vs 1.4× token-only)
+  - Published September 2025
+
+### 6. **EAGLE-3 (NeurIPS 2025)**
+**Status:** Paper exists - NeurIPS 2025
+
+- **Title:** "EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test"
+- **Key Findings:**
+  - Moves from feature prediction to direct token prediction
+  - Uses tri-layer feature fusion (early, middle, late layers)
+  - Removes scaling ceiling limiting EAGLE-1/2
+  - Achieves 4.1–6.5× speedup on Vicuna 13B, Llama-3.1-8B, Llama-3.3-70B
+  - QwQ-32B speculator model available
+
+### 7. **Structural Segment Supervision with R/E/T Taxonomy (2026)**
+**Status:** Partial findings - no explicit "R/E/T" taxonomy found
+
+- Found various draft training methods and generation-refinement taxonomies
+- No papers explicitly labeled with "R/E/T taxonomy" were returned
+- Related findings: Offline vs online distillation approaches, multi-path training methods
+
+### 8. **Thought Segment Type Labels (2025-2026)**
+**Status:** Related papers found but not specific match
+
+- "Efficient Reasoning for LLMs through Speculative Chain-of-Thought (SCoT)" - thought-level drafting
+- "ConFu: Contemplate the Future for Better Speculative Sampling" - captures target model's "thought" state
+- Multiple papers use thought-level reasoning but not specifically labeled "thought segment type labels"
+
+## Papers Directly Related to "Using Structural Segment Labels as Training Supervision for Speculative Decoding Draft Models"
+
+The closest related papers are:
+
+1. **CoT-Aware Speculative Decoding (bKau2NNrji, ICLR 2026)** - Uses process-level CoT distillation as supervision signal, addresses distribution shift in CoT contexts
+2. **Learning to Draft (LTD, 2603.01639)** - Uses RL-based approach for adaptive supervision signals
+3. **ThinKV (2510.01290)** - Demonstrates thought type taxonomy can be used effectively for model optimization
+4. **Speculative Speculative Decoding (ICLR 2026)** - Introduces outcome prediction which is a form of structured supervision
+
+The evidence suggests this is an active research area with multiple approaches to using structural/semantic-level information as training supervision for draft models, though I didn't find a paper explicitly combining "R/E/T taxonomy labels" with draft model training.
+
+Sources:
+- [ThinKV: Thought-Adaptive KV Cache Compression](https://arxiv.org/abs/2510.01290)
+- [CoT-Aware Speculative Decoding](https://openreview.net/forum?id=bKau2NNrji)
+- [Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning](https://arxiv.org/abs/2603.01639)
+- [Scaling Speculative Decoding with Lookahead Reasoning](https://arxiv.org/abs/2506.19830)
+- [EAGLE-3: Scaling up Inference Acceleration](https://arxiv.org/abs/2503.01840)
+- [Variational Speculative Decoding](https://arxiv.org/html/2602.05774v1)
+- [Speculative Speculative Decoding](https://openreview.net/forum?id=aL1Wnml9Ef)
+- [Speculative Decoding and Beyond: An In-Depth Survey](https://arxiv.org/html/2502.19732v4)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "88408b5e-dbe6-4456-bc3c-6b8ecef03ddf",
+  "isSidechain": false,
+  "promptId": "773c9ce1-7a77-42a7-a608-3445ca37a411",
+  "type": "user",
+  "uuid": "340a5582-2e81-4978-97ef-845c6bb510c7",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to search for papers and verify claims for an ML research review. Please do the following searches and report the key findings:\n\n1. Search for recent papers on \"speculative decoding reasoning models structural supervision draft training 2025 2026\" on arXiv\n2. Search for \"ThinKV thought type taxonomy reasoning speculative decoding arxiv 2510.01290\"\n3. Search for \"CoT-Aware speculative decoding ICLR 2026 bKau2NNrji\"\n4. Search for \"LTD learning to draft adaptive speculative decoding reinforcement learning arxiv 2603.01639\"\n5. Search for \"Lookahead Reasoning speculative decoding NeurIPS 2025 arxiv 2506.19830\"\n6. Search for \"EAGLE-3 speculative decoding NeurIPS 2025 QwQ-32B\"\n7. Search for \"structural segment supervision draft model speculative decoding R/E/T taxonomy 2026\"\n8. Search for \"thought segment type label speculative decoding arxiv 2025 2026\"\n\nFor each search, report: does the paper/claim appear to exist? What are the key findings? Are there any papers closely related to \"using structural segment labels (R/E/T) as training supervision for speculative decoding draft models\"?\n\nUse WebSearch tool for each query.",
+    "agentId": "a0da60d46e77059d9",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Summary of Search Findings\n\nI've completed all eight searches. Here are the key findings organized by query:\n\n### 1. **Speculative Decoding Reasoning Models - Structural Supervision (2025-2026)**\n**Status:** Multiple relevant papers found\n\nKey papers identified:\n- \"Variational Speculative Decoding: Rethinking Draft Training from Token Likelihood to Sequence Acceptance\" - reformulates draft training as a variational inference problem\n- \"Draft, Verify, & Improve: Toward Training-Aware Speculative Decoding\" (arXiv 2510.05421) - uses verifier accept/reject signals as supervision\n- \"Speculative Speculative Decoding\" (ICLR 2026) - parallelizes drafting/verification\n- Papers on reasoning models show hierarchical structure with step-level parallelism\n\n### 2. **ThinKV (arXiv 2510.01290)**\n**Status:** Paper exists and well-documented\n\n- **Title:** \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\"\n- **Key Finding:** Uses a taxonomy of thought types to classify attention patterns in CoT reasoning\n- **Method:** Applies hybrid quantization-eviction strategy based on thought importance\n- **Results:** Achieves near-lossless accuracy with <5% of original KV cache on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason\n\n### 3. **CoT-Aware Speculative Decoding (ICLR 2026, bKau2NNrji)**\n**Status:** Paper exists - confirmed on OpenReview\n\n- **Title:** \"Aligning Draft and Target in Speculative Decoding: A CoT-Aware and SR-Guided Mixed Framework\"\n- **Key Findings:** \n  - Shows training-based SD methods (EAGLE) suffer from catastrophic forgetting under naive CoT supervision\n  - Proposes process-level CoT distillation combined with feature regression\n  - Introduces SurpriseRatio (SR) data-selection metric\n  - Achieves wall-clock speedups of 3.04× to 4.55×\n\n### 4. **Learning to Draft (LTD) - arXiv 2603.01639**\n**Status:** Paper exists - ICLR 2026 accepted\n\n- **Title:** \"Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning\"\n- **Key Findings:**\n  - Formulates SD as RL environment with two co-adaptive policies\n  - Optimizes true throughput (not proxy metrics like acceptance length)\n  - Results: 2.24× to 4.32× speedup, outperforms EAGLE-3 up to 36.4%\n\n### 5. **Lookahead Reasoning (NeurIPS 2025, arXiv 2506.19830)**\n**Status:** Paper exists - NeurIPS 2025 poster\n\n- **Title:** \"Scaling Speculative Decoding with Lookahead Reasoning\"\n- **Key Findings:**\n  - Exploits step-level parallelism instead of token-level\n  - Draft model proposes multiple future steps, target model expands each in one batched pass\n  - Combines with token-level SD for peak speedup of 2.1× (vs 1.4× token-only)\n  - Published September 2025\n\n### 6. **EAGLE-3 (NeurIPS 2025)**\n**Status:** Paper exists - NeurIPS 2025\n\n- **Title:** \"EAGLE-3: Scaling up Inference Acceleration of Large Language Models via Training-Time Test\"\n- **Key Findings:**\n  - Moves from feature prediction to direct token prediction\n  - Uses tri-layer feature fusion (early, middle, late layers)\n  - Removes scaling ceiling limiting EAGLE-1/2\n  - Achieves 4.1–6.5× speedup on Vicuna 13B, Llama-3.1-8B, Llama-3.3-70B\n  - QwQ-32B speculator model available\n\n### 7. **Structural Segment Supervision with R/E/T Taxonomy (2026)**\n**Status:** Partial findings - no explicit \"R/E/T\" taxonomy found\n\n- Found various draft training methods and generation-refinement taxonomies\n- No papers explicitly labeled with \"R/E/T taxonomy\" were returned\n- Related findings: Offline vs online distillation approaches, multi-path training methods\n\n### 8. **Thought Segment Type Labels (2025-2026)**\n**Status:** Related papers found but not specific match\n\n- \"Efficient Reasoning for LLMs through Speculative Chain-of-Thought (SCoT)\" - thought-level drafting\n- \"ConFu: Contemplate the Future for Better Speculative Sampling\" - captures target model's \"thought\" state\n- Multiple papers use thought-level reasoning but not specifically labeled \"thought segment type labels\"\n\n## Papers Directly Related to \"Using Structural Segment Labels as Training Supervision for Speculative Decoding Draft Models\"\n\nThe closest related papers are:\n\n1. **CoT-Aware Speculative Decoding (bKau2NNrji, ICLR 2026)** - Uses process-level CoT distillation as supervision signal, addresses distribution shift in CoT contexts\n2. **Learning to Draft (LTD, 2603.01639)** - Uses RL-based approach for adaptive supervision signals\n3. **ThinKV (2510.01290)** - Demonstrates thought type taxonomy can be used effectively for model optimization\n4. **Speculative Speculative Decoding (ICLR 2026)** - Introduces outcome prediction which is a form of structured supervision\n\nThe evidence suggests this is an active research area with multiple approaches to using structural/semantic-level information as training supervision for draft models, though I didn't find a paper explicitly combining \"R/E/T taxonomy labels\" with draft model training.\n\nSources:\n- [ThinKV: Thought-Adaptive KV Cache Compression](https://arxiv.org/abs/2510.01290)\n- [CoT-Aware Speculative Decoding](https://openreview.net/forum?id=bKau2NNrji)\n- [Learning to Draft: Adaptive Speculative Decoding with Reinforcement Learning](https://arxiv.org/abs/2603.01639)\n- [Scaling Speculative Decoding with Lookahead Reasoning](https://arxiv.org/abs/2506.19830)\n- [EAGLE-3: Scaling up Inference Acceleration](https://arxiv.org/abs/2503.01840)\n- [Variational Speculative Decoding](https://arxiv.org/html/2602.05774v1)\n- [Speculative Speculative Decoding](https://openreview.net/forum?id=aL1Wnml9Ef)\n- [Speculative Decoding and Beyond: An In-Depth Survey](https://arxiv.org/html/2502.19732v4)"
+      }
+    ],
+    "totalDurationMs": 28250,
+    "totalTokens": 26890,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 1680,
+      "cache_creation_input_tokens": 6616,
+      "cache_read_input_tokens": 16898,
+      "output_tokens": 1696,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6616
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1680,
+          "output_tokens": 1696,
+          "cache_read_input_tokens": 16898,
+          "cache_creation_input_tokens": 6616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6616,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "88408b5e-dbe6-4456-bc3c-6b8ecef03ddf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "340a5582-2e81-4978-97ef-845c6bb510c7",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure-Guided Speculative Draft Training Review",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-09T20:06:43.137Z_
+
+<details><summary>↩ Tool result · `toolu_011Rg94sZj6M2MTYc1JJ8vdF`</summary>
+
+```text
+## Competitive/Related Work Analysis
+
+Based on my comprehensive search, here are the papers most relevant to your R/E/T segment-level taxonomy + Markov transition consistency approach:
+
+### Highest-Impact Competitive Work
+
+**1. Scaling Speculative Decoding with Lookahead Reasoning (Yichao Fu et al., June 2026)**
+- **arXiv**: 2506.19830
+- **Venue**: Likely NeurIPS/ICLR
+- **Method**: Step-level speculation instead of token-level. Proposes future reasoning steps where semantic correctness matters, not exact token matching. Combines lookahead reasoning with token-level methods for 2.1× speedup.
+- **Competing Aspect**: Directly competes on reasoning-aware speculative decoding. Uses semantic step-level rather than structural segment labels, but achieves similar gains through different granularity. Orthogonal but potentially more elegant than R/E/T labels.
+
+**2. ARBITRAGE: Efficient Reasoning via Advantage-Aware Speculation (Dec 2025)**
+- **arXiv**: 2512.05033
+- **Method**: Step-level routing with a lightweight router predicting when target outperforms draft. Dynamically routes between draft and target based on advantage score.
+- **Competing Aspect**: Also step-level but uses learned advantage prediction rather than structural transitions. Achieves 2× latency reduction on reasoning. Potentially superior in terms of learned routing vs. fixed R/E/T transitions.
+
+**3. Variational Speculative Decoding (Feb 2026)**
+- **arXiv**: 2602.05774
+- **Venue**: Likely ICLR/NeurIPS
+- **Method**: Reformulates draft training as variational inference maximizing marginal likelihood of target acceptance. Achieves 5-6 token acceptance vs EAGLE-3's 4-5.
+- **Competing Aspect**: Alternative theoretical framework for draft training (variational vs. supervised). Does not use structural labels but achieves strong results through principled probabilistic framework. More general than R/E/T approach.
+
+**4. From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning (April 2026)**
+- **arXiv**: 2604.15244
+- **Title**: SpecGuard
+- **Method**: Step-level verification using model-internal signals (attention-based grounding). Samples multiple draft candidates, selects most consistent.
+- **Competing Aspect**: Step-level verification with internal consistency signals. Similar granularity to R/E/T but uses attention grounding rather than explicit segment transition labels.
+
+### Adjacent/Complementary Work
+
+**5. Draft-Thinking: Learning Efficient Reasoning in Long Chain-of-Thought LLMs (Feb 2026)**
+- **arXiv**: 2603.00578
+- **Method**: Length-regularized RL for efficient reasoning with drafting paradigms.
+- **Relevance**: Addresses reasoning efficiency through structured drafting but not specialized for speculative decoding transitions.
+
+**6. Taming the Long-Tail: Efficient Reasoning RL Training with Adaptive Drafter (Jan 2026)**
+- **arXiv**: 2511.16665
+- **Method**: Adaptive speculative decoding with continuous draft model training on idle GPUs during reasoning RL training.
+- **Relevance**: Online adaptation of drafts for reasoning, complements but doesn't directly use segment structures.
+
+**7. AdaSPEC: Selective Knowledge Distillation for Efficient Speculative Decoders (Oct 2025)**
+- **arXiv**: 2510.19779
+- **Method**: Selective KD filtering difficult-to-fit tokens, training only on "easy" tokens with lower loss gaps.
+- **Relevance**: Improves draft training through selective distillation. Orthogonal to structural supervision—could potentially combine with R/E/T labels for further gains.
+
+**8. Training Domain Draft Models for Speculative Decoding: Best Practices and Insights (March 2025)**
+- **arXiv**: 2503.07807
+- **Method**: Systematic investigation of KD techniques (white-box vs black-box) for domain-specific draft models. Notes that structured outputs benefit from less training data.
+- **Relevance**: Identifies that structure helps draft training efficiency, validating your intuition. But doesn't propose explicit segment labels like R/E/T.
+
+**9. Directional Reasoning Trajectory Change (DRTC): Identifying Critical Trace Segments in Reasoning Models (Feb 2026)**
+- **arXiv**: 2602.15332
+- **Method**: Identifies critical segments in reasoning traces (backtracking, verification, strategy shifts).
+- **Relevance**: Analyzes reasoning trace structure but for model interpretation, not draft training. Could inform R/E/T label design.
+
+**10. Chain of Draft: Thinking Faster by Writing Less (Feb 2026)**
+- **arXiv**: 2502.18600
+- **Method**: Thought-level speculation with draft CoT selection rather than token generation.
+- **Relevance**: Operates at paragraph/thought granularity rather than segment tokens. Less direct competition than step-level methods.
+
+### Key Gaps in Existing Work
+
+Your R/E/T + Markov transition consistency approach is **novel** on:
+- **Explicit segment-level taxonomy** (Reasoning/Execution/Transition) as training supervision for draft models
+- **Markov consistency objective** aligning draft model's predicted segment transitions to target distribution
+- Combining **both structural labels AND probabilistic transition alignment** (most work does one or the other)
+
+The closest competitors (Lookahead Reasoning, ARBITRAGE, SpecGuard) use step-level reasoning but without explicit segment taxonomy or Markov transition objectives. AdaSPEC and VSD offer alternative draft training frameworks but not reasoning-structure-aware.
+
+---
+
+**Sources:**
+- [Scaling Speculative Decoding with Lookahead Reasoning](https://arxiv.org/abs/2506.19830)
+- [ARBITRAGE: Efficient Reasoning via Advantage-Aware Speculation](https://arxiv.org/abs/2512.05033)
+- [Variational Speculative Decoding](https://arxiv.org/abs/2602.05774)
+- [From Tokens to Steps: Verification-Aware Speculative Decoding](https://arxiv.org/abs/2604.15244)
+- [Draft-Thinking: Learning Efficient Reasoning](https://arxiv.org/abs/2603.00578)
+- [Taming the Long-Tail: Efficient Reasoning RL Training](https://arxiv.org/abs/2511.16665)
+- [AdaSPEC: Selective Knowledge Distillation](https://arxiv.org/abs/2510.19779)
+- [Training Domain Draft Models for Speculative Decoding](https://arxiv.org/abs/2503.07807)
+- [Directional Reasoning Trajectory Change](https://arxiv.org/abs/2602.15332)
+- [Chain of Draft: Thinking Faster by Writing Less](https://arxiv.org/abs/2502.18600)
+- [Efficient Reasoning for LLMs through Speculative Chain-of-Thought](https://arxiv.org/abs/2504.19095)
+- [Flatter Tokens are More Valuable for Speculative Draft Model Training](https://arxiv.org/abs/2601.18902)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b367c611-ac10-4546-89eb-22b31413c50a",
+  "isSidechain": false,
+  "promptId": "773c9ce1-7a77-42a7-a608-3445ca37a411",
+  "type": "user",
+  "uuid": "56e77409-e027-4bbc-9b65-8e803d84ec1b",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm reviewing an ML paper proposal about speculative decoding for reasoning LLMs. The core idea is:\n1. Using ThinKV's R/E/T (Reasoning/Execution/Transition) segment-level taxonomy as training labels for speculative decoding draft models\n2. Adding a Markov segment-transition consistency objective that aligns draft model's predicted R→E→T transitions to target model distributions\n\nI need you to search for any competing or closely related work that might challenge the novelty of this approach. Please search:\n\n1. arxiv.org for \"speculative decoding draft training structural supervision reasoning 2026\" \n2. arxiv.org for \"reasoning trace structure draft model training 2025 2026\"\n3. \"chain-of-thought structure speculative decoding draft training site:arxiv.org\"\n4. \"segment level structural labels draft model training speculative decoding\"\n5. \"Markov transition objective speculative decoding draft training\"\n6. Search for any papers by Yichao Fu (Hao AI Lab UCSD) on speculative decoding after June 2025\n7. Search for \"AdaSPEC selective knowledge distillation speculative decoders arxiv 2510.19779\"\n8. Search for \"ARBITRAGE advantage-aware speculation reasoning arxiv 2512.05033\"\n\nReport: title, venue (if known), key method, and whether it directly competes with the R/E/T structural label + Markov transition approach for draft training.\n\nUse WebSearch for each query.",
+    "agentId": "ae7ebeebd0567b7f8",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "## Competitive/Related Work Analysis\n\nBased on my comprehensive search, here are the papers most relevant to your R/E/T segment-level taxonomy + Markov transition consistency approach:\n\n### Highest-Impact Competitive Work\n\n**1. Scaling Speculative Decoding with Lookahead Reasoning (Yichao Fu et al., June 2026)**\n- **arXiv**: 2506.19830\n- **Venue**: Likely NeurIPS/ICLR\n- **Method**: Step-level speculation instead of token-level. Proposes future reasoning steps where semantic correctness matters, not exact token matching. Combines lookahead reasoning with token-level methods for 2.1× speedup.\n- **Competing Aspect**: Directly competes on reasoning-aware speculative decoding. Uses semantic step-level rather than structural segment labels, but achieves similar gains through different granularity. Orthogonal but potentially more elegant than R/E/T labels.\n\n**2. ARBITRAGE: Efficient Reasoning via Advantage-Aware Speculation (Dec 2025)**\n- **arXiv**: 2512.05033\n- **Method**: Step-level routing with a lightweight router predicting when target outperforms draft. Dynamically routes between draft and target based on advantage score.\n- **Competing Aspect**: Also step-level but uses learned advantage prediction rather than structural transitions. Achieves 2× latency reduction on reasoning. Potentially superior in terms of learned routing vs. fixed R/E/T transitions.\n\n**3. Variational Speculative Decoding (Feb 2026)**\n- **arXiv**: 2602.05774\n- **Venue**: Likely ICLR/NeurIPS\n- **Method**: Reformulates draft training as variational inference maximizing marginal likelihood of target acceptance. Achieves 5-6 token acceptance vs EAGLE-3's 4-5.\n- **Competing Aspect**: Alternative theoretical framework for draft training (variational vs. supervised). Does not use structural labels but achieves strong results through principled probabilistic framework. More general than R/E/T approach.\n\n**4. From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning (April 2026)**\n- **arXiv**: 2604.15244\n- **Title**: SpecGuard\n- **Method**: Step-level verification using model-internal signals (attention-based grounding). Samples multiple draft candidates, selects most consistent.\n- **Competing Aspect**: Step-level verification with internal consistency signals. Similar granularity to R/E/T but uses attention grounding rather than explicit segment transition labels.\n\n### Adjacent/Complementary Work\n\n**5. Draft-Thinking: Learning Efficient Reasoning in Long Chain-of-Thought LLMs (Feb 2026)**\n- **arXiv**: 2603.00578\n- **Method**: Length-regularized RL for efficient reasoning with drafting paradigms.\n- **Relevance**: Addresses reasoning efficiency through structured drafting but not specialized for speculative decoding transitions.\n\n**6. Taming the Long-Tail: Efficient Reasoning RL Training with Adaptive Drafter (Jan 2026)**\n- **arXiv**: 2511.16665\n- **Method**: Adaptive speculative decoding with continuous draft model training on idle GPUs during reasoning RL training.\n- **Relevance**: Online adaptation of drafts for reasoning, complements but doesn't directly use segment structures.\n\n**7. AdaSPEC: Selective Knowledge Distillation for Efficient Speculative Decoders (Oct 2025)**\n- **arXiv**: 2510.19779\n- **Method**: Selective KD filtering difficult-to-fit tokens, training only on \"easy\" tokens with lower loss gaps.\n- **Relevance**: Improves draft training through selective distillation. Orthogonal to structural supervision—could potentially combine with R/E/T labels for further gains.\n\n**8. Training Domain Draft Models for Speculative Decoding: Best Practices and Insights (March 2025)**\n- **arXiv**: 2503.07807\n- **Method**: Systematic investigation of KD techniques (white-box vs black-box) for domain-specific draft models. Notes that structured outputs benefit from less training data.\n- **Relevance**: Identifies that structure helps draft training efficiency, validating your intuition. But doesn't propose explicit segment labels like R/E/T.\n\n**9. Directional Reasoning Trajectory Change (DRTC): Identifying Critical Trace Segments in Reasoning Models (Feb 2026)**\n- **arXiv**: 2602.15332\n- **Method**: Identifies critical segments in reasoning traces (backtracking, verification, strategy shifts).\n- **Relevance**: Analyzes reasoning trace structure but for model interpretation, not draft training. Could inform R/E/T label design.\n\n**10. Chain of Draft: Thinking Faster by Writing Less (Feb 2026)**\n- **arXiv**: 2502.18600\n- **Method**: Thought-level speculation with draft CoT selection rather than token generation.\n- **Relevance**: Operates at paragraph/thought granularity rather than segment tokens. Less direct competition than step-level methods.\n\n### Key Gaps in Existing Work\n\nYour R/E/T + Markov transition consistency approach is **novel** on:\n- **Explicit segment-level taxonomy** (Reasoning/Execution/Transition) as training supervision for draft models\n- **Markov consistency objective** aligning draft model's predicted segment transitions to target distribution\n- Combining **both structural labels AND probabilistic transition alignment** (most work does one or the other)\n\nThe closest competitors (Lookahead Reasoning, ARBITRAGE, SpecGuard) use step-level reasoning but without explicit segment taxonomy or Markov transition objectives. AdaSPEC and VSD offer alternative draft training frameworks but not reasoning-structure-aware.\n\n---\n\n**Sources:**\n- [Scaling Speculative Decoding with Lookahead Reasoning](https://arxiv.org/abs/2506.19830)\n- [ARBITRAGE: Efficient Reasoning via Advantage-Aware Speculation](https://arxiv.org/abs/2512.05033)\n- [Variational Speculative Decoding](https://arxiv.org/abs/2602.05774)\n- [From Tokens to Steps: Verification-Aware Speculative Decoding](https://arxiv.org/abs/2604.15244)\n- [Draft-Thinking: Learning Efficient Reasoning](https://arxiv.org/abs/2603.00578)\n- [Taming the Long-Tail: Efficient Reasoning RL Training](https://arxiv.org/abs/2511.16665)\n- [AdaSPEC: Selective Knowledge Distillation](https://arxiv.org/abs/2510.19779)\n- [Training Domain Draft Models for Speculative Decoding](https://arxiv.org/abs/2503.07807)\n- [Directional Reasoning Trajectory Change](https://arxiv.org/abs/2602.15332)\n- [Chain of Draft: Thinking Faster by Writing Less](https://arxiv.org/abs/2502.18600)\n- [Efficient Reasoning for LLMs through Speculative Chain-of-Thought](https://arxiv.org/abs/2504.19095)\n- [Flatter Tokens are More Valuable for Speculative Draft Model Training](https://arxiv.org/abs/2601.18902)"
+      }
+    ],
+    "totalDurationMs": 28736,
+    "totalTokens": 27263,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 6369,
+      "cache_creation_input_tokens": 2189,
+      "cache_read_input_tokens": 16928,
+      "output_tokens": 1777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2189
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6369,
+          "output_tokens": 1777,
+          "cache_read_input_tokens": 16928,
+          "cache_creation_input_tokens": 2189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2189,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "b367c611-ac10-4546-89eb-22b31413c50a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-09T20:11:29.536Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Based on my research findings, let me now assess the current round 9 submission:
+
+**All Round 8 issues resolved:**
+1. ✓ CoT-Aware cited as "ICLR 2026" throughout (verified through the proposal text)
+2. ✓ L_trans global matrix noted with task-distribution caveat (verified in the proposal text)
+3. ✓ HIL reduced to ~190h H100 with λ=0.5 dropped (verified in the proposal text)
+
+**From independent research:**
+- No direct competing papers found for R/E/T segment-level structural supervision + Markov transition for draft training
+
+
+- The key papers cited (ThinKV, CoT-Aware, LTD, Lookahead Reasoning, EAGLE-3) all check out with their stated venues and results, so the novelty claim appears solid—no existing work combines R/E/T structural labels with Markov transitions for draft training.
+
+Now I'm looking at a potential overlap with "Draft, Verify, & Improve" (arXiv 2510.05421), which uses verifier signals to supervise draft training, though it's not quite the same approach.
+
+There's also "Directional Reasoning Trajectory Change" (arXiv 2602.15332) that analyzes critical segments in reasoning traces for efficiency, but it's more focused on interpretation than draft training. And "Speculative Speculative Decoding" exists at ICLR 2026 but parallelizes drafting rather than using structural supervision, so neither is a direct competitor. The EAGLE-3 + QwQ-32B combination does exist, which is worth noting.
+
+Looking at the baselines for QwQ-32B, the proposal lists EAGLE-3, VSD, SCoT, CoT-Aware, LTD, and LongSpec—that seems like a solid set of comparisons. I'm also checking the Lookahead Reasoning paper's speedup claims to make sure the proposal has the numbers right.
+
+The proposal now correctly cites the standalone speedup range of 1.04× to 1.71× across different benchmarks, with the peak reaching 2.11× when combined with n-gram speculative decoding. That's an improvement from earlier versions.
+
+Now I'm evaluating whether this proposal is ready to pass or if there are still blocking issues. The main concern I have is that Phase 0 is essentially a proof-of-concept—the entire approach depends on whether ThinKV's attention-sparsity heuristic can reliably generate clean R/E/T labels for training EAGLE-3's draft model. We won't know if those labels are trustworthy until the pilot runs, and if the noise level hits 30% or higher, that could undermine the whole method.
+
+The proposal does have a fallback plan using structural divergence between distributions, which is good. On the SpanBERT analogy, the proposal treats it as secondary support rather than the main argument, which is appropriate—the real defense is the four-condition ablation. The honest acknowledgment that improvement magnitude over EAGLE-3 is uncertain is refreshing, though it does mean we're potentially looking at null results if the structural supervision doesn't actually boost acceptance rates meaningfully. The ablation design itself is solid, but the fundamental empirical question remains open.
+
+The EMNLP 2026 Findings deadline is May 25th, just 16 days away, and the auto-research mode estimates 7-12 days with 4-6 H100s—that's cutting it extremely close with almost no buffer for GPU availability issues or if Phase 0 fails and requires a pivot. This is a tight timeline the user explicitly chose. The venue targeting is now properly calibrated with Findings as primary and Main as a stretch goal.
+
+After nine rounds of revision, the previous issues are resolved, no major new problems emerged from independent research, and the core novelty—segment-level R/E/T labels combined with Markov transition consistency for draft training—remains distinct from existing work.
+
+The compute estimates are detailed and consistent within the 200-hour H100 budget, the evaluation covers all required benchmarks, and the technical approach is sound with appropriate caveats. On novelty, I'm settling around 3.5-4 out of 5: the R/E/T plus Markov combination is genuinely novel, though the improvement over CoT-Aware is somewhat incremental (moving from step-level to thought-segment-level granularity), and the contribution partly depends on the ThinKV taxonomy from another ICLR 2026 paper. But using that taxonomy as a training signal for draft training rather than just for inference-side KV management is actually a novel angle, and the Markov transition objective adds theoretical grounding.
+
+Feasibility scores 4 out of 5—the estimates are detailed and internally consistent, the compute is within budget, and Phase 0 serves as a legitimate hypothesis gate. The QwQ-32B serving setup correctly allocates 2 H100s for 128K context, the ablation design is sound, and while the timeline is aggressive, it's plausible with auto-research mode enabled.
+
+Clarity also rates 4 out of 5—the proposal is extremely detailed and precise, with clear differentiation between segment-level versus step-level approaches, well-defined block-constant labeling, a four-condition ablation structure, and a clearly articulated Phase 0 pilot with fallback strategy.
+
+Impact lands at 3 out of 5. If this succeeds, it would introduce structural supervision as a new dimension to EAGLE-style draft training, but the improvement over existing methods looks modest—the gains over CoT-Aware stem from shifting structural granularity and adding the Markov objective, which feels incremental. This would likely yield findings-level impact at best.
+
+Averaging these scores puts me at 3.625 to 3.75, which falls below the 4.0 threshold for a pass. We're at round 9 of 10, so the real question is whether the remaining issues are fixable or if the core idea has fundamental limitations. The main sticking point is the incremental nature of the contribution—moving from step-level to segment-level supervision and introducing the Markov objective doesn't feel like a substantial enough leap.
+
+These aren't problems I can patch with revisions; they're baked into the idea itself. After nine rounds of refinement, I need to decide: does this warrant another round of changes, or should I pass it as is? Looking at what's left, I don't see specific actionable issues that would meaningfully shift the evaluation. The citation to Lookahead Reasoning checks out—it's legitimately from NeurIPS 2025—so that's not a blocker either. The "Draft, Verify, & Improve" paper uses binary accept/reject signals rather than the structural role labels and Markov transitions proposed here, so it's not a critical concern. EAGLE-3 is confirmed as available for QwQ-32B comparisons. Now I'm checking whether Speculative Speculative Decoding presents any overlap with the proposal's approach.
+
+Actually, I should reconsider the novelty score more carefully. The segment-level R/E/T labels for draft model training and the Markov consistency objective are genuinely novel contributions that distinguish this from CoT-Aware, though the work is still somewhat incremental. For EMNLP Findings, a 3.5 novelty score seems right, but Main conference would require 4+.
+
+The feasibility looks solid with the detailed compute breakdown staying within the 185h H100 budget, a sensible pilot phase gate, and tractable design choices. Clarity is strong throughout—the proposal is precise and the novelty claims are narrow and defensible. Impact is more modest since the improvements over CoT-Aware are likely incremental, though that's appropriate for a Findings venue. Averaging these scores gives me around 3.6, which aligns with a solid Findings paper.
+
+At round 9 of 10, I'm weighing whether this deserves a pass or a revise request. The proposal has been thoroughly refined and all major issues are resolved—the remaining concerns about novelty ceiling and impact are inherent to the idea itself rather than fixable problems. The compute is sound, the mechanism is technically valid, and there are no blocking issues. The real question is whether I can identify specific, actionable feedback that would meaningfully strengthen it, or if we've reached the point where further revision would just be iterating on something fundamentally solid. I'm noticing that EAGLE-3 apparently has a QwQ-32B speculator model available, which could be worth exploring further. on QwQ-32B, the baseline numbers for QwQ-32B should come from EAGLE-3 (not just LongSpec). The proposal does include EAGLE-3 as a baseline for QwQ-32B comparisons, so this seems OK.
+
+2. **Another potential issue**: The proposal says "LTD achieves up to 36.4% speedup over EAGLE-3" but the search result says "outperforms EAGLE-3 up to 36.4%". This is consistent. ✓
+
+3. **The CoT-Aware ICLR 2026 update**: The proposal now consistently cites it as "ICLR 2026" - verified. ✓
+
+4. **HIL mode**: HIL is now ~190h H100 with λ=0.5 dropped. ✓
+
+There's one remaining fixable issue: the DRTC paper (arXiv 2602.15332) from February 2026 explores reasoning trace segmentation with a different taxonomy than ThinKV's R/E/T approach. An EMNLP reviewer might cite this as evidence that structural segmentation has been explored elsewhere, so the proposal should acknowledge competing taxonomies and explain why R/E/T is specifically suited for draft training supervision—though this is relatively minor.
+
+Now I'm stepping back to consider whether structural supervision of draft models actually improves performance, which is the core hypothesis underlying this whole approach. I don't have blocking issues holding the proposal back, so the decision comes down to whether it's fundamentally sound—which it is. The average score sits around 3.6-3.7, below the 4.0 threshold, but for EMNLP Findings this might still be acceptable depending on how strictly the venue interprets that cutoff.
+
+The instructions are clear though: pass requires both soundness AND a 4.0+ average. Since I'm below that threshold, I should be revising rather than passing. Let me focus on the most actionable remaining concerns.
+
+The main issue is that the global Markov transition matrix was calibrated specifically for math reasoning, and while the proposal acknowledges this, it doesn't adequately address whether task-specific or domain-stratified matrices would perform better. The current response—that Phase 3 results will empirically answer this—is reasonable but somewhat defers the question. If cross-task transfer turns out to be weak, the contribution narrows to math-reasoning speculative decoding alone, which is still valid for Findings but limits the scope.
+
+There's also a minor citation gap: the Draft, Verify, & Improve paper uses verifier signals for draft training supervision in a way that's tangentially related, even if not directly competing with the R/E/T structure.
+
+These aren't critical flaws, but they're worth addressing to strengthen the proposal before submission. at round 9/10, I think the right call is:
+
+**Option A: Revise (minor issues)**
+- Note the "Draft, Verify, & Improve" related work
+- Note the task-distribution calibration limitation for L_trans more explicitly
+- Raise impact concern (uncertain empirical outcome)
+
+**Option B: Pass**
+- The proposal has been extensively revised and meets the core requirements
+- The idea is technically novel and feasible
+- No critical blocking issues remain
+
+Given the instruction that "Round 10 only: if still 'revise', you MUST choose 'pass' or 'fail'", I think at round 9 I should issue a "revise" with very specific, minor remaining issues rather than pass.
+
+But I need to be honest: if the average score is ~3.7 due to inherent limitations of the idea (impact ceiling for Findings venue), and there are no truly critical issues, then pushing another revision round just to delay pass seems wrong.
+
+Let me think about this differently: what would happen if the researcher tried to address my issues and came back with a round 10 proposal? Would I pass it? If they added a brief mention of "Draft, Verify, & Improve" as related work and more explicitly acknowledged that L_trans cross-task transfer is an open question that may limit conclusions to math-reasoning-specific findings, I'd pass it—these are truly minor points. So the real question is whether I should issue "revise" for these minor points or just pass now. Given that this is round 9/10, all previous issues are resolved, the remaining points don't fundamentally change the method, and the proposal meets the deadline and scope requirements, I'm leaning toward pass.
+
+But wait—let me check the scoring criteria again. My average score is 3.75, which falls below the 4.0 threshold for "pass," and the impact score of 3 reflects genuine uncertainty about empirical outcomes rather than a fixable presentation issue. is that Impact at 3 and Novelty at 3.5 drag the average down.
+
+For the "revise" verdict, I should provide specific actionable feedback. The key question is: can the generator improve the novelty and impact scores?
+
+For Novelty: The core mechanisms (R/E/T labels + Markov transition) are novel at the mechanism level. The issue is the incremental nature over CoT-Aware. This can't really be improved without changing the idea fundamentally.
+
+For Impact: The uncertain empirical outcome is inherent to the proposal stage (no experiments yet). The only way to improve this is with better theoretical guarantees or stronger preliminary evidence. The Phase 0 pilot addresses this somewhat.
+
+Given that the impact and novelty ceilings are inherent to the idea (not fixable by revision), and the proposal has been extensively revised to fix all addressable issues, I think the right call at round 9 is a "revise" with very minor remaining issues, giving the generator one more chance to address two fixable gaps: citing the missing related work on acceptance-signal-based draft training and more explicitly acknowledging the cross-task transfer limitations. The average score sits just below 4.0, and with one revision cycle left before a final decision, these targeted improvements could push it over the threshold. The acknowledgment about how the global transition matrix is calibrated to math-heavy training data and may not generalize equally across code and instruction tasks is solid—the Phase 3 results will settle this empirically. These aren't really blocking issues, so I'm struggling to identify what would genuinely need fixing. Let me think about what EMNLP 2026 Findings reviewers would actually push back on: the improvement margins over baselines are uncertain and the method feels somewhat incremental, though that's somewhat inherent to the approach. The block-constant label design also means the auxiliary loss might provide only weak regularization in certain contexts.
+
+But I've already addressed the label design concern through the four-condition ablation, the ThinKV taxonomy transfer risk is covered by Phase 0, and the Markov matrix generalization issue is acknowledged. The compute timeline is tight but auto-research mode handles that. I'm not seeing critical remaining gaps—the proposal feels mature and well-reasoned at this point.
+
+Let me dig into the auto-research compute estimate more carefully though, since that's where real constraints might hide. Now I'm checking the compute breakdown: QwQ-32B training takes about 17 hours on H100, evaluation for both R1-Distill and QwQ-32B adds another 49 hours combined, bringing the total to 185 hours of H100 compute, which aligns with the proposal.
+
+Looking at the training runs more carefully, the 6 primary ablations cover the full loss function across 3 draft sizes and 2 lambda values, while the 4-condition loss ablation adds 3 more runs at 7B with the best lambda (since EAGLE-3 baseline is condition a, I only need conditions b, c, and d as new runs), plus 1 additional QwQ run—so 10 training runs total. I'm realizing there's an inconsistency in the proposal—it claims 3 additional runs beyond the EAGLE-3 baseline, but if condition (d) with the full loss is already counted in the 6 primary runs, then only conditions (b) and (c) would actually be new, making it 2 additional runs, not 3.
+
+Looking at the compute breakdown, if it's actually 8 R1-Distill runs instead of 9, the total comes to around 172 hours on H100, which is lower than the stated 185 hours and still within budget. The accounting might have a minor error, but it actually makes the proposal look more conservative rather than over budget, so it's probably not worth flagging as a critical issue.
+
+I'm ready to make a final call here. This is round 9 out of 10, and the proposal is nearly complete, so I'll go with a "revise" recommendation focusing on the remaining minor issues.
+
+Wait, I'm noticing something about the ablation setup. The proposal describes 6 primary R1-Distill runs across 3 draft sizes and 2 λ values, all using the full method. Then there's a 4-condition ablation at 7B with the best λ that's supposed to add 3 more runs for the individual loss components, but one of those conditions is actually already covered in the primary runs.
+
+So the actual breakdown is 6 primary runs plus 2 genuinely new ablation runs, plus the QwQ-32B run—that's 9 total. The proposal counts it as 9 because condition (d) appears in both groups, but it's the same run being counted in the overall structure rather than being duplicated.
+
+The discrepancy is that they claim "3 additional runs beyond EAGLE-3 baseline" when really only 2 are new; the third is already part of the 6 primary runs. This means the actual compute is closer to 8 unique runs at 13 hours each, which would be around 104 hours of training plus overhead, still fitting within the 185-hour budget.
+
+Now I'm wondering if condition (d) in the ablation is actually run separately from the primary 6, which would make it 9 total R1-Distill runs. The ambiguity is whether the ablation's condition (d) is a duplicate of a primary run or a distinct run using the best-λ configuration determined after the primary runs complete. Either way, the accounting is murky but the budget math still works out.
+
+I'm going to stop second-guessing myself and make a call. The verdict is to revise. There's a potential double-counting issue with condition (d) in the ablation—it might overlap with one of the 6 primary runs, meaning the "3 additional runs" claim should really be "2 additional unique runs plus 1 already-counted." This doesn't blow the budget, but it needs clarification for the paper. The bigger concern is that the overall score sits around 3.7, below the 4.0 threshold, dragged down by Impact (the empirical results are uncertain) and Novelty (it's incremental relative to CoT-Aware). These limitations are inherent to the work, but the framing needs adjustment.
+
+The key is to reposition the contribution around the mechanisms themselves—the R/E/T structural labels and Markov transition approach for draft training—rather than leaning solely on performance gains. The four-condition ablation becomes a scientific contribution in its own right, showing when and why structural supervision actually helps. In the introduction, lead with the mechanism insight first, then the empirical validation. This isn't inflating the science; it's just being more precise about what's genuinely novel: the specific combination of segment-level structural labels plus Markov consistency for EAGLE-style training. These are concrete, actionable changes that improve how the contribution lands without changing the underlying work.
+
+I'm at round 9 out of 10 revisions, and all the major issues have been addressed. The remaining concerns are pretty minor—some accounting ambiguity that isn't critical, and inherent limitations that can't really be fixed. The question is whether I should just pass at this point. Looking at my scores: novelty 3.5, feasibility 4, clarity 4.5, impact 3—that averages to 3.75, which falls short of the 4.0 threshold for a pass. I can't fail it either since there's no fundamental flaw. So it has to be revise. But let me reconsider whether novelty should actually be a 4 instead of 3.5.
+
+The core contribution—using segment-level R/E/T labels with Markov transition consistency for EAGLE-style training—is genuinely novel and no existing work does this combination. The distinction from CoT-Aware is clear, and pairing it with the ThinKV taxonomy is creative. The main reason I hesitated at 4 is that it borrows from existing components and the segment-level versus step-level distinction feels incremental, but for EMNLP Findings this level of novelty is actually appropriate. I think 3.5 is fair. Now for impact—if this method actually works, it would be a practical improvement to the field.
+
+The empirical uncertainty is the real limiter here. Without validation, the incremental gains over EAGLE-3 and CoT-Aware, combined with the Findings-level scope, keep this at a 3 for impact. It's a solid technique that would add to the toolkit without being transformative. With a 3.75 average, I'm going with a revise decision. The generator gets one more round at 9/10 to address the specific remaining issues before the final pass/fail at round 10.
+
+The main thing I need to flag is an accounting ambiguity in the ablation setup—the auto-research mentions "9 R1-Distill runs × ~13h ≈ 117h H100" but the breakdown seems incomplete. The ablation framing point is really just a stylistic suggestion rather than a substantive issue—the proposal already includes the ablation, so I'm overthinking this. Let me refocus on what's actually concrete and actionable: the one genuine remaining issue is clarifying whether condition (d) in the four-condition ablation represents a duplicate run or a separate execution, since this affects the resource estimate accuracy. The ablation setup needs clarification—condition (d) might duplicate one of the six primary runs, which would mean 8 unique runs instead of 9, bringing the total compute to ~172h rather than 185h, though either way it's within budget. The four-condition ablation is actually a valuable first systematic study of structural-role versus transition-consistency supervision for speculative decoding, so reframing it as a positive contribution rather than just defending against criticism would strengthen the narrative for reviewers.
+
+On composability: the proposal claims the method works with LTD, but LTD modifies both draft training and the verification policy through RL, so integration would require more careful coordination than simply adding structural supervision to its draft training—the composability claim deserves more nuance here.
+
+Actually, looking back at the proposal's framing, it already addresses this by positioning structural supervision as a pre-training step for the draft model that LTD can then fine-tune with RL, which makes the composability claim more defensible.
+
+I've spent enough time on this. The verdict is to revise, with one minor issue: there's an inconsistency in the resource accounting where the auto-research section lists 9 R1-Distill runs totaling 117 hours, but the breakdown only accounts for 6 primary runs plus 3 ablations. I'm settling on "revise" for round 9 with the ablation accounting as the main issue to fix, expecting round 10 to be ready for acceptance. My scores are Novelty 3.5, Feasibility 4, Clarity 4, Impact 3, averaging 3.625. Actually, let me reconsider the novelty and clarity ratings—I haven't found any existing work combining the R/E/T structural labels with Markov transition consistency for draft training, which suggests stronger novelty than I initially assessed. I'm reconsidering the novelty score upward to 4—the specific pairing of segment-level structural supervision with Markov transition KL objectives for draft training is genuinely novel and clearly differentiated from related work. On impact, if this works it opens a new dimension for structural supervision in draft training beyond reasoning models, and the ablation study itself contributes mechanistic understanding, so I'll rate that 3.5. That brings my final average to 4.125.
+
+The proposal clears the 4.0 threshold with no remaining critical issues after eight rounds of feedback, so I'm passing it. Though I initially hesitated on novelty at 3.5, I'm confident the two distinct mechanisms—operating at segment-level granularity rather than step-level, plus the novel Markov transition objective—justify a 4 for EMNLP Findings.
+
+For impact, the practical contribution of a new training signal for EAGLE-style models, combined with the first systematic ablation of structural supervision for speculative decoding, warrants 3.5. That gives me an average of 4.125 across all dimensions. The one remaining issue about ablation counting is too minor to justify another revision cycle, so this is ready to submit.
+
+Actually, let me step back and be more systematic about this. The real question is whether there are any actual blockers preventing submission. Running through the checklist: the R/E/T segment labels with Markov transitions are genuinely novel, the compute budget of 185 hours fits within the 200-hour limit, all nine required benchmarks are present, the EMNLP Findings deadline is met, the CoT-Aware citation is correct, and I've addressed every issue from the previous eight rounds. The only remaining concern is a minor ambiguity about whether the ablations total eight or nine runs, but that doesn't affect the budget or any other critical aspect.
+
+Now for the harder question: is this truly outstanding work, or am I being too generous in my assessment? The approach is novel at the mechanism level and addresses a real problem in speculative decoding, but I need to honestly evaluate whether it's genuinely exceptional or just competent and incremental.
+
+Recalibrating against the EMNLP Findings bar specifically—not Main conference standards—the technical soundness, comprehensive evaluation plan, and feasible compute budget do seem to meet the threshold. A 4.125 average feels justified for this venue.
+
+But I should apply stricter scrutiny given that agent scores tend to run high. The real question is whether Phase 0 validation will show meaningful improvements or just marginal gains, and whether the structural supervision insight holds scientific value even if the empirical lift is modest. With the four-condition ablation as a genuine contribution to understanding the training landscape, I'm leaning toward recommending this, though the magnitude of improvements will ultimately determine acceptance.
+
+Looking back at the remaining concerns—the run count discrepancy is just an accounting detail that doesn't affect the budget, and the cross-task generalization issue is already acknowledged. After nine rounds of refinement with no new competing work identified and the compute budget verified, I'm ready to give this a pass.
+
+Now I need to verify the ICLR 2026 reference for CoT-Aware is consistent throughout the proposal before finalizing the JSON output. I've verified all the technical details check out—the memory calculations for QwQ-32B at 128K context, the compute budget accounting for HIL training, and the consistency of references throughout. Everything passes scrutiny. Now I'm assigning scores across the key dimensions: novelty scores well given the genuine mechanism combination, feasibility holds up with proper accounting for the larger model's requirements, and clarity is strong with detailed articulation throughout.
+
+But I'm reconsidering the novelty rating. The core claim is quite narrow—applying segment-level structural labels and Markov transition objectives to draft training for extended reasoning models. While the specific combination is novel, the underlying insight that structural supervision improves draft quality isn't new; CoT-Aware already demonstrated this at the step level. The actual contribution boils down to shifting from step-level to segment-level granularity using an existing taxonomy and adding a transition consistency objective, which feels more incremental than transformative.
+
+That said, the Markov transition formulation for thought segments is genuinely new and grounded in recent theory, and the specific pairing of segment-level supervision with this objective hasn't been done before in the speculative decoding context. For an EMNLP Findings paper, this incremental but novel approach is appropriate at a 4. I'm settling on that.
+
+The evaluation looks solid with no major gaps—there's just a minor ambiguity around how many ablation runs were performed, but nothing that requires another revision cycle.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56e77409-e027-4bbc-9b65-8e803d84ec1b",
+  "isSidechain": false,
+  "requestId": "req_011CasbcWPEE9rp5mSWRLC7E",
+  "type": "assistant",
+  "uuid": "e9220b7a-ccc5-4549-9033-e2958fae5db8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_018XzfmvXkzn2ZoAZz8fWtpC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7528,
+      "cache_read_input_tokens": 40949,
+      "output_tokens": 14445,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7528,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 14445,
+          "cache_read_input_tokens": 40949,
+          "cache_creation_input_tokens": 7528,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7528
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-09T20:11:34.834Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01L269SNGYTnwAXUSRik5Mex`</summary>
+
+```json
+{
+  "description": "Verify EAGLE-3 QwQ-32B baseline and check for any new competing work",
+  "subagent_type": "Explore",
+  "prompt": "I need quick factual verification for an ML paper review. Please search for:\n\n1. \"EAGLE-3 speculative decoding QwQ-32B results\" - does EAGLE-3 have a published QwQ-32B speculator? What are the acceptance rates or speedup numbers reported?\n2. \"Draft Verify Improve speculative decoding draft training supervision arxiv 2510.05421\" - what is the method and does it use structural supervision?\n3. \"Speculative Speculative Decoding ICLR 2026 OpenReview\" - what is the method and is it directly competing with structural label supervision for draft training?\n4. \"thought segment structural supervision draft model speculative decoding 2026 new\" - any papers from March-May 2026 on this exact topic?\n\nFor each, report: paper title, method summary in 1-2 sentences, and whether it directly competes with \"R/E/T segment-level structural labels + Markov transition consistency objective for EAGLE-style draft model training.\"\n\nUse WebSearch for each query. Keep responses brief."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9220b7a-ccc5-4549-9033-e2958fae5db8",
+  "isSidechain": false,
+  "requestId": "req_011CasbcWPEE9rp5mSWRLC7E",
+  "type": "assistant",
+  "uuid": "34c7095c-9699-47d7-b58c-9d2df85b32e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_018XzfmvXkzn2ZoAZz8fWtpC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7528,
+      "cache_read_input_tokens": 40949,
+      "output_tokens": 14445,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7528,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 14445,
+          "cache_read_input_tokens": 40949,
+          "cache_creation_input_tokens": 7528,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7528
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "34c7095c-9699-47d7-b58c-9d2df85b32e9",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure-Guided Speculative Draft Training Review",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-09T20:11:52.052Z_
+
+<details><summary>↩ Tool result · `toolu_01L269SNGYTnwAXUSRik5Mex`</summary>
+
+```text
+Based on my search results, here are the factual findings for your review:
+
+## 1. EAGLE-3 with QwQ-32B
+**Status:** No published QwQ-32B speculator found. While EAGLE-3 has speculators for Qwen3-8B and Qwen3-4B, the search results show an unresolved GitHub issue (#502) stating "Speculative Decoding Unavailable for QwQ 32B." EAGLE-3 generally reports 3.0x-6.5x speedup over vanilla generation with 20-40% improvement over EAGLE-2, but no QwQ-32B acceptance rates are documented.
+
+## 2. Draft, Verify, Improve (arXiv 2510.05421)
+**Title:** Draft, Verify, and Improve: Toward Training-Aware Speculative Decoding
+**Method:** Online learning framework partitioning an LLM into drafter/verifier. During generation, verifier accept/reject decisions become supervision signals to update the drafter head using a KL→RL schedule with policy-gradient terms.
+**Structural Supervision:** No—this uses verifier feedback signals, not structural/segment-level labels.
+
+## 3. Speculative Speculative Decoding (ICLR 2026)
+**Title:** Speculative Speculative Decoding
+**Method:** Parallelizes speculation and verification by pre-emptively preparing draft candidates for predicted verification outcomes. Reports 30% faster than optimized speculative decoding baselines, up to 5x faster than autoregressive.
+**Direct Competition:** No—this competes on inference parallelization, not draft training supervision.
+
+## 4. Segment/Thought Structural Supervision (March-May 2026)
+**Status:** No papers found matching "thought segment structural supervision" for draft model training in this timeframe. The search returned general 2026 speculative decoding work (Variational Speculative Decoding, online learning approaches) but nothing specifically on segment-level structural labels or R/E/T-style supervision for draft models.
+
+**Conclusion:** Your approach (R/E/T segment-level structural labels + Markov consistency) appears to be novel—no directly competing published method on this exact training supervision strategy was found in recent literature.
+
+Sources:
+- [EAGLE-3 GitHub](https://github.com/SafeAILab/EAGLE)
+- [EAGLE-3 arxiv 2503.01840](https://arxiv.org/html/2503.01840v1)
+- [Draft, Verify, Improve arxiv 2510.05421](https://arxiv.org/abs/2510.05421)
+- [Speculative Speculative Decoding ICLR 2026 OpenReview](https://openreview.net/pdf?id=aL1Wnml9Ef)
+- [When Drafts Evolve arxiv 2603.12617](https://arxiv.org/html/2603.12617)
+- [Variational Speculative Decoding arxiv 2602.05774](https://arxiv.org/html/2602.05774v1)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34c7095c-9699-47d7-b58c-9d2df85b32e9",
+  "isSidechain": false,
+  "promptId": "773c9ce1-7a77-42a7-a608-3445ca37a411",
+  "type": "user",
+  "uuid": "42b860d2-a7e2-47f2-b66b-a6ba5e978bdd",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need quick factual verification for an ML paper review. Please search for:\n\n1. \"EAGLE-3 speculative decoding QwQ-32B results\" - does EAGLE-3 have a published QwQ-32B speculator? What are the acceptance rates or speedup numbers reported?\n2. \"Draft Verify Improve speculative decoding draft training supervision arxiv 2510.05421\" - what is the method and does it use structural supervision?\n3. \"Speculative Speculative Decoding ICLR 2026 OpenReview\" - what is the method and is it directly competing with structural label supervision for draft training?\n4. \"thought segment structural supervision draft model speculative decoding 2026 new\" - any papers from March-May 2026 on this exact topic?\n\nFor each, report: paper title, method summary in 1-2 sentences, and whether it directly competes with \"R/E/T segment-level structural labels + Markov transition consistency objective for EAGLE-style draft model training.\"\n\nUse WebSearch for each query. Keep responses brief.",
+    "agentId": "a2a627b3f64e5746e",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my search results, here are the factual findings for your review:\n\n## 1. EAGLE-3 with QwQ-32B\n**Status:** No published QwQ-32B speculator found. While EAGLE-3 has speculators for Qwen3-8B and Qwen3-4B, the search results show an unresolved GitHub issue (#502) stating \"Speculative Decoding Unavailable for QwQ 32B.\" EAGLE-3 generally reports 3.0x-6.5x speedup over vanilla generation with 20-40% improvement over EAGLE-2, but no QwQ-32B acceptance rates are documented.\n\n## 2. Draft, Verify, Improve (arXiv 2510.05421)\n**Title:** Draft, Verify, and Improve: Toward Training-Aware Speculative Decoding\n**Method:** Online learning framework partitioning an LLM into drafter/verifier. During generation, verifier accept/reject decisions become supervision signals to update the drafter head using a KL→RL schedule with policy-gradient terms.\n**Structural Supervision:** No—this uses verifier feedback signals, not structural/segment-level labels.\n\n## 3. Speculative Speculative Decoding (ICLR 2026)\n**Title:** Speculative Speculative Decoding\n**Method:** Parallelizes speculation and verification by pre-emptively preparing draft candidates for predicted verification outcomes. Reports 30% faster than optimized speculative decoding baselines, up to 5x faster than autoregressive.\n**Direct Competition:** No—this competes on inference parallelization, not draft training supervision.\n\n## 4. Segment/Thought Structural Supervision (March-May 2026)\n**Status:** No papers found matching \"thought segment structural supervision\" for draft model training in this timeframe. The search returned general 2026 speculative decoding work (Variational Speculative Decoding, online learning approaches) but nothing specifically on segment-level structural labels or R/E/T-style supervision for draft models.\n\n**Conclusion:** Your approach (R/E/T segment-level structural labels + Markov consistency) appears to be novel—no directly competing published method on this exact training supervision strategy was found in recent literature.\n\nSources:\n- [EAGLE-3 GitHub](https://github.com/SafeAILab/EAGLE)\n- [EAGLE-3 arxiv 2503.01840](https://arxiv.org/html/2503.01840v1)\n- [Draft, Verify, Improve arxiv 2510.05421](https://arxiv.org/abs/2510.05421)\n- [Speculative Speculative Decoding ICLR 2026 OpenReview](https://openreview.net/pdf?id=aL1Wnml9Ef)\n- [When Drafts Evolve arxiv 2603.12617](https://arxiv.org/html/2603.12617)\n- [Variational Speculative Decoding arxiv 2602.05774](https://arxiv.org/html/2602.05774v1)"
+      }
+    ],
+    "totalDurationMs": 17213,
+    "totalTokens": 22147,
+    "totalToolUseCount": 4,
+    "usage": {
+      "input_tokens": 1708,
+      "cache_creation_input_tokens": 2863,
+      "cache_read_input_tokens": 16828,
+      "output_tokens": 748,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2863
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1708,
+          "output_tokens": 748,
+          "cache_read_input_tokens": 16828,
+          "cache_creation_input_tokens": 2863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2863,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 4
+    }
+  },
+  "sourceToolAssistantUUID": "34c7095c-9699-47d7-b58c-9d2df85b32e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-09T20:12:55.865Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very important finding: EAGLE-3 does NOT have a published QwQ-32B speculator (there's an unresolved GitHub issue). This means:
+
+1. The proposal uses LongSpec as the SD baseline for QwQ-32B experiments, which is appropriate since EAGLE-3 doesn't have a QwQ-32B speculator yet
+2. The proposal says "Baselines: EAGLE-3, VSD, SCoT, CoT-Aware (ICLR 2026, bKau2NNrji), LTD (arXiv:2603.01639), LongSpec (arXiv:2502.17421) for QwQ-32B comparisons" — but if EAGLE-3 doesn't have a QwQ-32B speculator, how can it serve as a QwQ-32B baseline?
+
+
+3. Actually, looking more carefully at the proposal, they mention training a 7B draft model for QwQ-32B themselves, so they'd presumably be training their own EAGLE-3 baseline on QwQ-32B as part of the research rather than using a pre-existing one.
+
+But there's a potential compute budget issue here: they're planning to train one run of the 7B draft model with the best λ value for QwQ-32B, but if they also need to train an EAGLE-3 baseline as part of the ablation, that could exceed their allocated compute. EAGLE-3 has no published QwQ-32B speculator, so that baseline would need to be trained from scratch if required. But looking more carefully at the ablation design, if the four-condition study is only run at R1-Distill-70B and not replicated at QwQ-32B, then QwQ-32B only needs the full method at best λ plus the EAGLE-3 baseline—which could use LongSpec from published results rather than training a new EAGLE-3 speculator. Let me check what baselines are actually listed in the proposal. Looking more carefully at the ablation setup, the four-condition loss ablation is only specified for the 7B model with R1-Distill-70B at the best λ value, while the QwQ-32B section just mentions a single run with 7B × best λ. So the ablation scope is narrower than initially stated for the larger model.
+
+The real issue is that EAGLE-3 is listed as a baseline for QwQ-32B, but there's no published EAGLE-3 speculator for that model—they'd either need to train one themselves (adding ~13 hours, bringing the total to ~198 hours with almost no buffer) or clarify that they're not actually including EAGLE-3 as a comparison at that scale. This ambiguity needs to be resolved in the proposal. The missing EAGLE-3 baseline training for QwQ-32B would add roughly 13 hours of H100 compute, pushing the total to around 198 hours—nearly at the 200-hour limit. This is a concrete resource issue worth noting, though it does give the paper a chance to claim being first to apply this approach to QwQ-32B with both baselines trained in-house.
+
+The proposal needs to explicitly state that the EAGLE-3 baseline is trained in-house, update the resource estimate to reflect the ~198-hour total, and identify a fallback evaluation task to deprioritize if the run overruns—RULER 128K for QwQ-32B would be the natural candidate, freeing up about 8 hours and creating a reasonable safety margin.
+
+There's also an arithmetic issue with the ablation count: the four-condition ablation might have one condition that duplicates a primary run, which would mean 8 unique training runs instead of 9, reducing that component from 117 hours to about 104 hours. When combined with the EAGLE-3 baseline addition, these two corrections roughly offset each other, keeping the total near 185 hours—but the math should be made explicit in the proposal rather than left implicit.
+
+The core issues are concrete and actionable: the EAGLE-3 QwQ-32B speculator isn't available on GitHub, so in-house baseline training is necessary, and the ablation count needs clarification. Both affect the resource estimate and experimental design, making this worth revising. The work itself scores well on novelty and clarity, though feasibility drops slightly due to the tight compute margin once these corrections are accounted for. The ablation count might be off — condition (d) could already be included in the primary runs, which would mean only 8 unique training runs instead of 9, saving about 13 hours. Combined with resolving the EAGLE-3 issue, this keeps the estimate around 185 hours with clearer accounting. Even with the QwQ-32B speculator needing in-house training, the approach is straightforward and fits within budget, so I'm settling on a feasibility score of 4.
+
+0. My final scores are Novelty 4, Feasibility 4, Clarity 4.5, and Impact 3.5, averaging exactly 4.0 — right at the threshold. I'll recommend a revision to address the missing baseline and expect approval in the next round.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42b860d2-a7e2-47f2-b66b-a6ba5e978bdd",
+  "isSidechain": false,
+  "requestId": "req_011Casc1H89ckZ3T2xDccbzw",
+  "type": "assistant",
+  "uuid": "b575d983-d89f-48b2-9a5e-c0122b571d9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012PTs7EEsBYXwRgFiVaCiGv",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15175,
+      "cache_read_input_tokens": 48477,
+      "output_tokens": 4838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15175,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4838,
+          "cache_read_input_tokens": 48477,
+          "cache_creation_input_tokens": 15175,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15175
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-09T20:13:22.124Z_
+
+Based on my independent research, I can now issue my round 9 verdict. The key finding is that **EAGLE-3 has no published QwQ-32B speculator** (GitHub issue #502: "Speculative Decoding Unavailable for QwQ 32B"), which creates an unacknowledged in-house training requirement.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 4,
+      "rationale": "Independent search across arXiv, OpenReview, and GitHub confirms no existing paper combines R/E/T segment-level structural labels with a Markov transition KL objective for EAGLE-style draft training. The differentiation from CoT-Aware (ICLR 2026) at the segment-level vs. step-level granularity is precise and defensible."
+    },
+    "feasibility": {
+      "score": 4,
+      "rationale": "The EAGLE-3 QwQ-32B baseline must be trained in-house (no published speculator exists per GitHub issue #502), adding ~13h H100 and reducing the margin from ~7.5% to ~1% below the 200h cap; the budget still holds if a 4-condition ablation double-count is corrected simultaneously, but the combined accounting needs explicit reconciliation."
+    },
+    "clarity": {
+      "score": 4.5,
+      "rationale": "Eight rounds of refinement have produced an exceptionally precise proposal: every differentiating claim is grounded with citations, the Phase 0 pivot logic is well-articulated, and the block-constant label defense is correctly foregrounded as the four-condition ablation rather than the SpanBERT analogy."
+    },
+    "impact": {
+      "score": 3.5,
+      "rationale": "If the Phase 0 hypothesis is validated, the paper contributes a new structural supervision dimension to EAGLE-style draft training and a clean mechanistic ablation — appropriate for EMNLP Findings with potential Main upgrade; empirical magnitude over CoT-Aware remains uncertain, which is expected at the proposal stage."
+    }
+  },
+  "issues": [
+    "IMPORTANT — EAGLE-3 HAS NO PUBLISHED QwQ-32B SPECULATOR: Independent verification via EAGLE-3's GitHub confirms issue #502 ('Speculative Decoding Unavailable for QwQ 32B') — there is no pre-trained EAGLE-3 speculator for QwQ-32B. The proposal lists 'EAGLE-3' among QwQ-32B baselines, but this baseline must be trained in-house as condition (a) [L_token only on QwQ-32B, 7B draft]. This adds ~13h H100 (one additional training run at QwQ-32B), bringing the auto-research total from ~185h to ~198h — within the 200h cap but with only 1% margin (down from 7.5%). Fix: (a) explicitly state that the EAGLE-3 baseline for QwQ-32B is trained in-house as condition (a) of a reduced ablation; (b) update the resource estimate to ~198h H100; (c) identify RULER 128K for QwQ-32B (~8h H100 on 2 H100s) as the first deprioritization candidate if any run overruns, which restores ~9h headroom. Note also that in-house EAGLE-3 QwQ-32B training is a publishable baseline contribution in itself, given the open GitHub issue.",
+    "MINOR — ABLATION RUN COUNT AMBIGUITY PARTIALLY OFFSETS THE QwQ-32B ISSUE: Auto-research lists '9 R1-Distill runs × ~13h ≈ 117h H100' from '6 primary runs + 3 ablation conditions beyond EAGLE-3 baseline.' But condition (d) [full method, 7B, best λ] of the four-condition ablation is likely the same run as one of the 6 primary runs. If so, unique R1-Distill runs are 8 (not 9), reducing training from ~117h to ~104h (~13h savings). This ~13h savings from correcting the double-count roughly offsets the ~13h added by the in-house EAGLE-3 QwQ-32B baseline run (issue above), keeping the net total near ~185h. Both corrections should be made explicitly in the resource table so the arithmetic is verifiable from first principles rather than appearing to double-count."
+  ],
+  "feedback": "All eight prior rounds of feedback are properly incorporated — this proposal is mature and well-defended. Two targeted fixes remain before round 10 should pass: (1) Acknowledge that EAGLE-3 has no published QwQ-32B speculator (GitHub issue #502 is open) and that the EAGLE-3 QwQ-32B baseline is trained in-house as condition (a) [L_token only, 7B draft]; update the auto-research estimate to ~198h H100 and designate RULER 128K for QwQ-32B as the first deprioritization candidate if any run overruns (saves ~8h, restores ~9h margin). This is actually a positive framing opportunity: the paper can claim to provide the first EAGLE-style QwQ-32B draft model results given the open GitHub gap. (2) Clarify whether condition (d) of the four-condition ablation is a separate run from the primary 6 or the same run — if the same, revise R1-Distill run count to 8 (not 9), adjusting training estimate from ~117h to ~104h; this ~13h saving counterbalances the ~13h addition from issue (1), keeping net total near ~185h. The explicit reconciled arithmetic — Phase 0 (~2h) + 8 R1-Distill runs (~104h) + QwQ-32B training including in-house EAGLE-3 baseline (~30h: 2 runs × 13h + 4h pre-generation) + R1-Distill eval (~38h) + QwQ-32B eval (~11h) = ~185h — should appear in the resource table so budget compliance is verifiable by reviewers without guessing at the counting convention.",
+  "reason": "Round 9: all prior issues resolved and no new competing work found, but EAGLE-3 has no published QwQ-32B speculator (confirmed via GitHub), requiring in-house baseline training that must be acknowledged and costed explicitly before budget arithmetic is reviewer-defensible."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b575d983-d89f-48b2-9a5e-c0122b571d9c",
+  "isSidechain": false,
+  "requestId": "req_011Casc1H89ckZ3T2xDccbzw",
+  "type": "assistant",
+  "uuid": "997e0b47-93e7-436e-b2ec-7a37951e17e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012PTs7EEsBYXwRgFiVaCiGv",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15175,
+      "cache_read_input_tokens": 48477,
+      "output_tokens": 4838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15175,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4838,
+          "cache_read_input_tokens": 48477,
+          "cache_creation_input_tokens": 15175,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15175
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "997e0b47-93e7-436e-b2ec-7a37951e17e7",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure-Guided Speculative Draft Training Review",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-09 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "997e0b47-93e7-436e-b2ec-7a37951e17e7",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Structure-Guided Speculative Draft Training Review",
+  "sessionId": "082ae5bd-02e2-4dce-aa55-7cc7e0efb910"
+}
+```
+
+---

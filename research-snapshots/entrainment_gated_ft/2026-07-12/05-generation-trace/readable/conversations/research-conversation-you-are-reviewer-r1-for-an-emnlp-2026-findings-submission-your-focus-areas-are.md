@@ -1,0 +1,2879 @@
+# Research conversation: You are Reviewer R1 for an EMNLP 2026 Findings submission. Your focus areas are **methodology and experiments**. Conduct
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-add62814c4b2f5345.jsonl`
+- **Structured JSON:** [`89eaea0d6fc45f592fb6.json`](../../sessions/89/89eaea0d6fc45f592fb6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 1 · 2026-05-13T17:07:29.534Z_
+
+You are Reviewer R1 for an EMNLP 2026 Findings submission. Your focus areas are **methodology and experiments**. Conduct a thorough, independent blind review.
+
+## Scoring Rubric (ARR/EMNLP)
+
+**Soundness** (1-5): 5=Excellent (one of the most thorough studies), 4=Strong (sufficient support for all claims), 3=Acceptable (sufficient support for main claims), 2=Poor (some claims not well-supported), 1=Major issues
+**Excitement** (1-5): 5=Highly Exciting, 4=Exciting, 3=Interesting, 2=Potentially Interesting, 1=Not Exciting
+**Overall Assessment** (1-5, half-point increments): 5=Consider for Award, 4=Accept, 3.5=Lean Accept, 3=Borderline, 2.5=Lean Reject, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit
+
+## Paper: "Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation"
+
+### Abstract
+LLM-based user simulators exhibit dialect-dependent behavioral biases—speakers of AAVE and Indian English receive systematically different politeness and question-asking patterns compared to Standard American English. The paper investigates BCP (prompt-level) and DPO (training-level) calibration strategies. Both fail systematically. The paper presents the first taxonomy of calibration failure modes: (1) FM1: global behavior suppression—calibration prompts collapse task completion by 47%; (2) FM2: cross-dimension interference—targeting one behavioral dimension perturbs others by up to 25.6%; (3) FM3: overcorrection rebound—extreme targets cause +5.0pp rebound; (4) FM4: DPO–BCP interaction reversal—DPO alignment reverses BCP calibration direction (gap diff=+0.157, p=0.014). Failure severity is scale-dependent: at 14B, destructive side effects disappear but calibration remains ineffective (safety-efficacy gap).
+
+### Method
+- **Evaluation Framework**: τ-bench retail domain, 16 tools, 20 tasks per run. Measures politeness, question rate, completion. Six prompt variants: baseline, AAVE target, Indian English target, overcorrected, single-dim question, single-dim politeness.
+- **BCP**: Injects explicit target behavioral rates into system prompt. E.g., "Target politeness rate: 0.45; target question rate: 0.03." Values from human dialect distributions.
+- **DPO Fine-Tuning**: Qwen2.5-7B-Instruct, 3 epochs (1,173 steps), Fix B corrects tokenizer mismatch. Rewards accuracy 0.75–1.0, loss 0.653. Merged model used (LoRA serving had vLLM bug).
+- **Hypothesis Testing**: H1 (Safety): Completion ≥80% of baseline. H2 (Efficacy): Dialect gap reduced ≥30%. H3 (Non-interference): Non-targeted dims within ±10% of baseline. Bootstrap CIs (10,000 resamples).
+
+### Experiments
+1. **Exp. 1: 7B BCP Baseline** (1 run, 118 episodes, n=19-20 per variant): Shows FM1 (retention 52.4%), FM2 (pol shift -25.6% when targeting Q, qrate shift -52.3% when targeting pol), FM3 (+4.6pp rebound).
+2. **Exp. 2: 7B DPO Training**: DPO-003 with Fix B. Loss=0.653, acc=0.75-1.0. LoRA merge diagnostic: merged completion=60% vs base 40%.
+3. **Exp. 3: 7B DPO+BCP** (4 runs × 6 variants × 20 tasks = 480 episodes): FM4 reversal—AAVE gap: -0.091→+0.064 (reversed), Indian: -0.099→+0.063. 10/12 variant×run show gap expansion. FM3 amplifies from +5.0pp to +7.2pp.
+4. **Exp. 4: 14B BCP** (4 runs × 6 variants × 20 tasks = 480 episodes): Mean completion 61.6% (+67% over 7B). FM1 disappears (retention >97%), FM3 reverses sign. H2 passes 1/4. "Selective ignoring" mode.
+5. **Exp. 5: 7B BCP Replication** (3 additional runs, total 4 runs ~478 episodes): FM1 retention 53.0%±2.6pp, FM2 consistent 4/4, FM3 +5.0pp±0.7pp 4/4 runs.
+6. **Exp. 6: Bootstrap CI Re-Analysis** with expanded base (n≈80): AAVE gap diff p=0.014 CI[+0.018,+0.291], Indian p=0.011 CI[+0.022,+0.296]. Both exclude zero.
+7. **Auxiliary**: Llama-3-8B (completion=5%), Mistral-7B (completion=0%)—floor effects, not usable.
+
+### Key Tables
+- Table 2: 7B BCP baseline (6 variants × 4 metrics)
+- Table 3: FM4 gap reversal (AAVE: -0.091→+0.064, Indian: -0.099→+0.063)
+- Table 4: Scale-dependent failure mode transition (7B vs 14B)
+- Tables 5-7: Multi-run replication of FM1/FM2/FM3
+- Table 8: Bootstrap CI before/after base expansion
+
+### Limitations acknowledged
+- Single model family (Qwen2.5), Llama/Mistral insufficient tool-calling ability
+- Single task domain (τ-bench retail)
+- No DPO+BCP at 14B
+
+### References (9 total)
+[1] Basil et al. 2025 (persona-accuracy tradeoff), [2] Gupta et al. 2026 (bias spillover), [3] Hu et al. 2026 (persona degrades accuracy), [4] Khan et al. 2026 (constrained decoding), [5] Lee et al. 2024 ICML (DPO mechanistic), [6] Rafailov et al. 2023 NeurIPS (DPO), [7] Seshadri et al. 2026 (dialect biases), [8] Anonymous 2026 (sim-to-real gap), [9] Yao et al. 2024 (τ-bench)
+
+## Experiment Design Reference (from review_context.yaml)
+
+The full imagined experiment list includes these experiments:
+1. 7B BCP Baseline Evaluation (plan_001) — DONE, 1 run
+2. 7B DPO Training v3, Fix B (plan_002) — DONE
+3. 7B DPO+BCP Evaluation (plan_003) — DONE, 4 runs × 6 variants × 20 tasks = 480 episodes
+4. 14B BCP Cross-Scale Evaluation (plan_004) — DONE, 4 runs × 6 variants × 20 tasks = 480 episodes
+5. 7B BCP Multi-Run Replication (plan_005b) — DONE, 3 additional runs bringing total to 4
+6. Bootstrap CI for Key Comparisons (plan_005) — DONE, re-run with expanded base
+7. FM3 Multi-Run Consolidation (plan_003 supplementary) — DONE, reanalysis
+8. 14B DPO + BCP (plan_006) — NOT RUN (skipped, deemed unnecessary)
+9. Llama-3-8B BCP (plan_aux_001) — DONE, floor effect
+10. Mistral-7B BCP (plan_aux_002) — DONE, floor effect
+11. LoRA Merge Diagnostics (plan_aux_003) — DONE
+
+Key note: plan_006 (14B DPO+BCP) was skipped. The paper's rationale is that C2 (DPO reversal) is already well-supported at 7B and doesn't need 14B DPO control. This is a potential weakness reviewers might probe.
+
+## Your Review Task
+
+Write a detailed review focusing on:
+
+1. **Methodology soundness**: Are the experimental designs appropriate? Are the metrics well-chosen? Are the hypotheses (H1/H2/H3) reasonable thresholds?
+2. **Statistical rigor**: Bootstrap CI methodology, sample sizes (n=19-20 initially, expanded to ~80), multiple testing concerns, effect size interpretation.
+3. **Experimental coverage**: Are the experiments sufficient to support the claims? What's missing? The paper runs 6 experiments + auxiliaries. Does plan_006 (14B DPO+BCP not run) weaken C2 or C3?
+4. **Reproducibility**: Is there enough detail to replicate? τ-bench setup, BCP prompt format, DPO training details.
+5. **Internal consistency**: Do the results logically support the failure mode taxonomy? Are there alternative explanations?
+
+Structure your review as:
+- **Summary** (2-3 sentences)
+- **Strengths** (bulleted, specific)
+- **Weaknesses** (bulleted, specific, with severity: major/minor)
+- **Questions for Authors** (specific)
+- **Missing Experiments / Analyses**
+- **Scores**: Soundness (1-5), Excitement (1-5), Overall (1-5 with half-points)
+- **Confidence** (1-5): 5=expert, 4=confident, 3=fairly confident, 2=willing to defend, 1=educated guess
+
+Be rigorous but fair. Point out both genuine weaknesses and genuine strengths. Do not be unnecessarily harsh or unnecessarily lenient.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "d35abdf3-149e-4965-98ef-d6cd8dd173af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T17:07:29.540Z_
+
+```json
+{
+  "parentUuid": "d35abdf3-149e-4965-98ef-d6cd8dd173af",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9d3793d7-cdfa-4817-bbb3-b0e57f07119c",
+  "timestamp": "2026-05-13T17:07:29.540Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-13T17:07:32.819Z_
+
+
+
+I'll start by reading the project files to get full context on the paper, experiments, and results before writing my review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d3793d7-cdfa-4817-bbb3-b0e57f07119c",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwBUbV4MnNSgd9PQCwX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a8fa313d-9d73-42aa-b2b2-5b319ee27bd5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GdEUNK97EaiDYJxsPT3Jk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16537,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16537,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T17:07:33.779Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NRbeFURwmGqJPHELQCxdq7`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__director_get_project_overview",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8fa313d-9d73-42aa-b2b2-5b319ee27bd5",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwBUbV4MnNSgd9PQCwX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b0b3ce6b-1d3f-417d-8cdc-1c5c9d2ec126",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GdEUNK97EaiDYJxsPT3Jk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16537,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 16537
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 16537,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 16537,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-13T17:07:33.783Z_
+
+<details><summary>↩ Tool result · `toolu_01NRbeFURwmGqJPHELQCxdq7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_get_project_overview"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0b3ce6b-1d3f-417d-8cdc-1c5c9d2ec126",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "3a22e5ae-fb12-457f-b957-6033fb48ea1d",
+  "sourceToolAssistantUUID": "b0b3ce6b-1d3f-417d-8cdc-1c5c9d2ec126",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-13T17:07:36.517Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_get_project_overview · `toolu_01T3SGXWSGnTacUqfMvfkDJj`</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a22e5ae-fb12-457f-b957-6033fb48ea1d",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwBnitrRFVyS2BiKrdY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7b13923b-03fc-416c-a099-487aabbe7a5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VkdRCuXpWnrD6a7SvoQ6zC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 16537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1454,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-13T17:07:36.628Z_
+
+<details><summary>↩ Tool result · `toolu_01T3SGXWSGnTacUqfMvfkDJj`</summary>
+
+```text
+{"result":"# 项目 demo_calibrated_sim 概况\n\n## 实验状态 (18 个)\n\n- **mistral-bcp-001**: DONE (negative) — \n- **hgate-dpo003-merged**: DONE (negative) — \n- **hgate-dpo001**: DONE (negative) — \n- **hgate-dpo003**: DONE (killed) — \n- **hgate-dpo002**: DONE (negative) — \n- **diag-lora-merge**: DONE (success) — \n- **dpo-003**: DONE (success) — \n- **dpo-002**: DONE (success) — \n- **llama-bcp-001**: DONE (killed) — \n- **dpo-001**: DONE (success) — \n- **mvp-004**: DONE (negative) — \n- **aave-corpus-gen**: DONE (killed) — \n- **mvp-003**: DONE (killed) — \n- **mvp-002**: DONE (killed) — \n- **mvp-001**: DONE (failed) — \n\n## 最新报告\n# Handover — 2026-05-13\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| bcp7b-multirun-001 | 7B BCP multi-run replication: verify FM1 (completion collapse) and FM2 (cross-dim interference) reproducibility across 3 additional runs | — | — | — |\n\n## 待处理\n（无）\n\n## 近期结论\n- **bootstrap-ci-001** (success): —\n  [bootstrap_ci_report](/api/workspace-files/projects/demo_calibrated_sim/artifacts/bootstrap-ci-001/report/bootstrap_ci_report.md)\n- **qwen14b-bcp-001** (success): Qwen2.5-14B-Instruct FP16 (TP=2) BCP eval: cross-scale verification of BCP failure mechanism. AWQ quantization corrupts tool-call tokens, switched to FP16 tensor-parallel. Quick test: 40% completion (2/5), passes >20% gate. ← 基于 mvp-004\n  [qwen14b-bcp-001 FM Replication Analysis](/api/workspace-files/projects/demo_calibrated_sim/artifacts/qwen14b-bcp-001/report/fm_replication_analysis.md)\n- **mistral-bcp-001** (negative): Mistral-7B-Instruct BCP eval: completion >20% + BCP behavior shift observable → Plan B (empirical analysis) viable for EMNLP submission ← 基于 mvp-004\n  [mistral-bcp-001-results](/api/workspace-files/projects/demo_calibrated_sim/artifacts/mistral-bcp-001/report/mistral-bcp-001-report.md)\n\n## 趋势\n成功 6 / 负向 5 / 失败 1 / 共 17\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\ncqa1-21977: 无 GPU 信息\n\n## 告警\n- mvp-001: 训练失败 — unknown\n- mvp-002: 已被终止 — unknown\n- mvp-003: 已被终止 — unknown\n- aave-corpus-gen: 已被终止 — unknown\n- llama-bcp-001: 已被终止 — unknown\n- hgate-dpo003: 已被终止 — unknown"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b13923b-03fc-416c-a099-487aabbe7a5f",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "000d8c58-0b34-42bf-93cb-94cbe7b4028f",
+  "sourceToolAssistantUUID": "7b13923b-03fc-416c-a099-487aabbe7a5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T17:07:37.094Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01UVcBwgtZv939Aw15b8B2dr`</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "file": "report.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "000d8c58-0b34-42bf-93cb-94cbe7b4028f",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwBnitrRFVyS2BiKrdY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f26e2aac-f9af-443a-9fd0-65428a501be4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VkdRCuXpWnrD6a7SvoQ6zC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1454,
+      "cache_read_input_tokens": 16537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1454,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T17:07:37.102Z_
+
+<details><summary>↩ Tool result · `toolu_01UVcBwgtZv939Aw15b8B2dr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/report.md\", \"content\": \"# Handover — 2026-05-13\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| bcp7b-multirun-001 | 7B BCP multi-run replication: verify FM1 (completion collapse) and FM2 (cross-dim interference) reproducibility across 3 additional runs | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **bootstrap-ci-001** (success): —\\n  [bootstrap_ci_report](/api/workspace-files/projects/demo_calibrated_sim/artifacts/bootstrap-ci-001/report/bootstrap_ci_report.md)\\n- **qwen14b-bcp-001** (success): Qwen2.5-14B-Instruct FP16 (TP=2) BCP eval: cross-scale verification of BCP failure mechanism. AWQ quantization corrupts tool-call tokens, switched to FP16 tensor-parallel. Quick test: 40% completion (2/5), passes >20% gate. ← 基于 mvp-004\\n  [qwen14b-bcp-001 FM Replication Analysis](/api/workspace-files/projects/demo_calibrated_sim/artifacts/qwen14b-bcp-001/report/fm_replication_analysis.md)\\n- **mistral-bcp-001** (negative): Mistral-7B-Instruct BCP eval: completion >20% + BCP behavior shift observable → Plan B (empirical analysis) viable for EMNLP submission ← 基于 mvp-004\\n  [mistral-bcp-001-results](/api/workspace-files/projects/demo_calibrated_sim/artifacts/mistral-bcp-001/report/mistral-bcp-001-report.md)\\n\\n## 趋势\\n成功 6 / 负向 5 / 失败 1 / 共 17\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-21977: 无 GPU 信息\\n\\n## 告警\\n- mvp-001: 训练失败 — unknown\\n- mvp-002: 已被终止 — unknown\\n- mvp-003: 已被终止 — unknown\\n- aave-corpus-gen: 已被终止 — unknown\\n- llama-bcp-001: 已被终止 — unknown\\n- hgate-dpo003: 已被终止 — unknown\\n\", \"total_chars\": 1532, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f26e2aac-f9af-443a-9fd0-65428a501be4",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "517df212-a36b-48c6-814e-ecbc3a3ed537",
+  "sourceToolAssistantUUID": "f26e2aac-f9af-443a-9fd0-65428a501be4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T17:07:39.841Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_0195MZNy4PJQmLuwNiGL4YYi`</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "517df212-a36b-48c6-814e-ecbc3a3ed537",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwC385GFGqqU6ppr7du",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8a71a045-6b82-49cd-9d92-ae828c5d6fb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GrtuVDNHkP3HDTU9H8X8ri",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 17991,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2060,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T17:07:39.850Z_
+
+<details><summary>↩ Tool result · `toolu_0195MZNy4PJQmLuwNiGL4YYi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/memory.md\", \"content\": \"# Memory — demo_calibrated_sim\\n\\n## 教训\\n\\n### [2026-05-12] 禁止 cherry-picking eval 结果\\ndpo-001 eval 跑了 ≥5 次，completion 分别为 25%/20%/10%/30%/未完成。Reviewer 发现后要求全部记录。\\n**规则：所有 eval run 结果必须完整记录到 registry，报告 mean ± 所有单次值。不能只选最好的一次。**\\n\\n### [2026-05-12] tokenizer mismatch 导致 DPO 训练无效\\ndpo-001 使用 v1 数据（raw text 格式），48% 的 DPO pairs 存在 tokenizer mismatch。训练 loss 仅比随机低 0.012，accuracy=0.5（随机水平）。\\n**教训：DPO 数据必须用 chat template 格式构造（v2 脚本），否则 tokenizer 对齐问题会让训练完全无效。**\\n\\n### [2026-05-12] TRL 1.4.0 + Qwen2.5 根因：add_generation_prompt 硬编码\\nTRL DPOTrainer 对 conversational 数据硬编码 `add_generation_prompt=True`，追加 `<|im_start|>assistant\\\\n` 到 prompt_ids。当 chosen/rejected 是 user 角色时导致 100% mismatch。已知 issue TRL #5213，无修复版本。\\n**修复**：数据预处理用 `apply_chat_template()` 转纯文本 → DPOTrainer 走文本路径 → 0 mismatch。同时设 `padding_side=\\\"right\\\"`。脚本：`train_dpo_v3.py`。\\n\\n### [2026-05-12] BCP prompt 三个失败机制\\nmvp-004 (n=19/20) 验证 BCP 路线失败：(1) 全局行为抑制——completion 崩溃至 10-26%；(2) 跨维度干扰——校准一个维度破坏其他维度；(3) 过校正反弹——overcorrected variant politeness 反升至 60.5%。\\n\\n### [2026-05-13] vLLM LoRA 动态加载严重低估 completion\\ndiag-lora-merge 实验证明 vLLM LoRA serving 存在 bug：同一个 DPO-003 adapter，LoRA 动态加载 completion=15%，merge_and_unload 后 completion=60%（4 倍差距）。Base model 无 DPO 为 40%。\\n**规则：H-gate eval 必须用 merged 模型（PEFT merge_and_unload），不要用 vLLM LoRA 动态加载。**\\n\\n### [2026-05-13] Mistral-7B 无法在 16-tool 场景做 function calling\\nmistral-bcp-001 实验发现 Mistral-7B-Instruct-v0.3 通过 vLLM 无法在 tau-bench retail 环境（16 tools）下生成 structured tool_calls。\\n- 1 tool 时正常，16 tools 时 tool_calls 返回空列表\\n**教训：跨模型对比实验前必须先验证基础能力（tool calling、instruction following）。**\\n\\n### [2026-05-13] AWQ 量化破坏 Qwen2.5 的 tool-call special token\\nQwen2.5-14B-Instruct-AWQ（4-bit 量化）通过 vLLM 部署时，`&lt;tool_call>` special token (ID 151657) 被映射到泰语字符 \\\"คณะกรรม\\\" (token 139738)。导致 tool calling 完全失效。\\n**解决方案**：使用 FP16 + tensor-parallel（TP=2 跨两张 4090D）替代 AWQ。FP16 下 tool-calling 正常工作（quick test 40% completion）。\\n**教训：量化模型部署前必须验证 special token 完整性，尤其是 tool-call 相关 token。AWQ 对 Qwen2.5 系列不安全。**\\n\\n### [2026-05-13] BCP 失败机制是 scale-dependent 的——不是简单复现\\nqwen14b-bcp-001 (14B FP16 TP=2) 完成。**14B 的 BCP 失败与 7B 根本不同**：\\n- **7B**: \\\"灾难性崩溃\\\"——BCP prompt 摧毁模型行为，completion 崩溃至 10-26%（FM1），跨维度严重干扰（FM2），过校正反弹（FM3）\\n- **14B**: \\\"选择性忽略\\\"——模型正常工作（completion 61.6%，retention >97%）但无视 BCP 校准指令（H2 1/4）\\n- FM1 未复现（无 completion 崩溃），FM2 弱复现（幅度远小于 7B），FM3 未复现（方向相反）\\n- **两者 H2 都 FAIL，但原因相反：7B 过度响应导致崩溃，14B 不够响应导致忽略**\\n**关键发现：这是 scale-dependent failure mode transition，走决策树\\\"模式不同\\\"分支 → 对论文更有价值，说明 BCP 的缺陷是方法论层面的，不论 scale 都失败但失败方式不同。**\\n\\n## 决策上下文\\n\\n### [2026-05-12] DPO 是 MVP 唯一剩余路径\\nBCP 失败(D003)后，DPO LoRA 是唯一校准方法。\\n\\n### [2026-05-12] 多模型复现是投稿必须项\\nReviewer 评估单模型(Qwen)数据不够，需要跨模型/跨 scale 证据(D005)。\\n\\n### [2026-05-13] sim2real2026gap 是 Plan B 核心 motivation\\narXiv 2603.11245。与 DemoCalib 同一问题空间但只诊断不开药。Plan B 应引用为核心 motivation。\\n\\n### [2026-05-13] Plan B story 方向：校准尝试的完整生命周期（Director 批准）\\nDirector 确认选项 2：\\\"校准尝试的完整生命周期：BCP 失败机制 + DPO+BCP 反转效应 + implications\\\"。\\n\\n### [2026-05-13] D012: Qwen2.5-14B 跨 scale 验证\\nPlan B KILL 条件触发但 Director 判断 DPO+BCP 反转效应是真实新发现。改用 Qwen2.5-14B FP16 TP=2 做跨 scale 验证。Quick test 40% completion 通过 >20% gate。\\n\\n### [2026-05-13] D012 结果：scale-dependent failure mode transition\\n14B BCP eval 完成。FM1/FM3 未复现，FM2 弱复现。但 H2 仍然 FAIL。发现 BCP 在不同 scale 以不同方式失败：7B 过度响应 vs 14B 选择性忽略。走\\\"模式不同 → scale-dependent failure boundary\\\"分支。论文 C3 应重构为 failure mode transition 而非简单 replication。\\n\", \"total_chars\": 3303, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a71a045-6b82-49cd-9d92-ae828c5d6fb1",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "c31d961a-3722-4022-b754-40f7ef077d30",
+  "sourceToolAssistantUUID": "8a71a045-6b82-49cd-9d92-ae828c5d6fb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T17:07:40.839Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01DjAa5qBhWmddQzFYagM3fE`</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c31d961a-3722-4022-b754-40f7ef077d30",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwC385GFGqqU6ppr7du",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7086e838-d4e7-4fc9-9b48-baf25332b2ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GrtuVDNHkP3HDTU9H8X8ri",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 17991,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2060,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T17:07:40.849Z_
+
+<details><summary>↩ Tool result · `toolu_01DjAa5qBhWmddQzFYagM3fE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/decisions.yaml\", \"content\": \"_next_id: 16\\ndecisions:\\n- id: D001\\n  date: 2026-05-12 09:57 UTC\\n  summary: MVP 方案确定：三阶段验证行为率校准可行性（Phase A 基线测量 → Phase B BCP prompting → Phase C DPO），聚焦\\n    AAVE 单组\\n  rationale: 13 天 ARR deadline 限制下，MVP 需尽快验证核心假设。Phase A/B 不需 GPU 可立即启动，Phase C 仅需单卡\\n    ~8h。聚焦 AAVE 单组（数据最丰富、gap 最大）降低 MVP 复杂度。Pass 标准：复现过度合作性 + 至少一种方法缩小 ≥30% relative\\n    gap。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-12 12:51 UTC\\n  summary: MVP H-gate 重构：politeness 为主维度，question rate 降为 secondary metric（D001 修订）\\n  rationale: QuestionDetector 修复后（precision 19%→100%），baseline question_rate 从 65%\\n    降至 11.4%，已接近 AAVE 真实用户 ~10%。question 维度不存在显著偏差需校准。politeness 偏差稳健（baseline 45%\\n    vs 目标 20%，+125% relative），足以独立支撑校准假设。这本身是一个发现：Seshadri 报告的 question rate gap (18.8%\\n    vs 10%) 在严格定义 info-seeking question 后大幅缩小，说明 question rate 偏差部分是测量定义差异而非真实行为偏差。论文可报告为\\n    measurement artifact finding + 聚焦 politeness 校准。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-12 14:55 UTC\\n  summary: BCP 路线判定失败（completion 崩溃 + 校准不足），DPO 为 MVP 唯一剩余路径\\n  rationale: 'mvp-004 Phase 2 前两个 BCP variant（aave_target, indian_english_target）n=20\\n    结果：completion 从 baseline 37% 崩到 10-15%（H3 要求 ≥29.6%），politeness gap 缩小仅 25%（H2\\n    要求 ≥30%），question_rate 反向过冲。两个独立 variant 一致呈现同一模式，排除噪声。BCP prompt 同时压低所有行为维度并摧毁\\n    task completion，方法论根本问题。让 mvp-004 剩余 variant 跑完收集诊断数据，但战略重心立即转向 DPO LoRA 微调。同时确立\\n    n=20 canonical baselines: completion=37%, politeness=55.9%, question_rate=4.4%。'\\n  related_experiments:\\n  - exp_id: mvp-004\\n    role: evidence\\n    result: BCP aave_target completion=10%, indian_english_target completion=15%,\\n      both far below H3 threshold\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-12 15:13 UTC\\n  summary: BCP 失败根因诊断：三个机制——全局行为抑制、跨维度干扰、过校正反弹，均为可发表 negative result\\n  rationale: mvp-004 完整数据（4/5 BCP variants 完成，含 2 ablation）揭示：(a) completion 崩溃是普遍的——4/4\\n    variant 均低于 H3 阈值，包括单维度 ablation，排除\\\"多约束冲突\\\"假设，说明 BCP prompt 对 7B 模型产生全局行为抑制；(b)\\n    跨维度干扰——single_dim_question 只约束 q_rate 但 politeness 从 55.9% 暴跌至 41.6%，BCP 无法定向校准；(c)\\n    overcorrection paradox——要求 p=10% 实际产出 60.5%（超 baseline），极端约束触发模型 safe fallback\\n    反弹。这三个机制为 DPO 提供强 motivation：不是\\\"没试 BCP\\\"而是\\\"系统验证 BCP 在所有配置下失败\\\"。完整 BCP 数据表应作为论文 artifact\\n    保留。\\n  related_experiments:\\n  - exp_id: mvp-004\\n    role: evidence\\n    result: 4/4 completed BCP variants all fail H3; single_dim_question ablation confirms\\n      global suppression; overcorrected shows paradoxical rebound\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-12 17:06 UTC\\n  summary: 采纳决策树：dpo-002 为分支节点；多模型 BCP 复现（Llama-3-8B）立即并行启动；不 KILL\\n  rationale: 'Reviewer 评估 Plan B（纯 negative result paper）当前数据不足——单模型+单 benchmark 接受率\\n    <30%。决策树：dpo-002 H2+H3 双 PASS → Plan A（提出 DPO 方法）；H2 PASS H3 边缘 → 混合叙事；双 FAIL\\n    → Plan B 但需多模型复现。无论哪条路，多模型 BCP 复现（Llama-3-8B-Instruct, 3 variants: baseline+aave_target+single_dim_politeness,\\n    ~14 GPU-h）是必须项，回答 generalizability。GPU 预算充裕（624 GPU-h 剩余，总需 ~41 GPU-h）。多模型实验与\\n    dpo-002 并行，最晚 5/16 完成所有数据，9 天写论文。'\\n  related_experiments:\\n  - exp_id: dpo-001\\n    role: evidence\\n    result: train_loss=0.6814 near random, accuracy=0.5, tokenizer mismatch 48% —\\n      learning signal negligible\\n  - exp_id: mvp-004\\n    role: evidence\\n    result: BCP 6/6 variants fail, but single-model limitation identified by Reviewer\\n  depends_on:\\n  - D003\\n  - D004\\n- id: D006\\n  date: 2026-05-12 17:35 UTC\\n  summary: TRL+Qwen2.5 mismatch 根因确认，dpo-002 继续跑 + 并行调查修复方案准备 dpo-003\\n  rationale: Reviewer 核实 v2 数据 100% tokenizer mismatch 源于 TRL DPOTrainer 与 Qwen2.5\\n    chat template 兼容性问题，非数据格式问题。dpo-002 继续跑（对比价值），同时 Agent 立即调查修复方案（手动tokenize/TRL升级/配置调整），确保\\n    dpo-003 能在干净条件下验证 DPO 有效性。若不修复，无法区分\\\"方法无效\\\"还是\\\"实现 bug\\\"，对 Plan A 和 Plan B 都致命。\\n  related_experiments:\\n  - exp_id: dpo-001\\n    role: predecessor\\n    result: FAIL - 48% mismatch\\n  - exp_id: hgate-dpo001\\n    role: eval\\n    result: FAIL - completion 21.3%\\n  - exp_id: dpo-002\\n    role: current\\n    result: RUNNING - 100% mismatch\\n  depends_on:\\n  - D005\\n  - D003\\n- id: D007\\n  date: 2026-05-12 18:22 UTC\\n  summary: Llama BCP 无效（floor effect），cuda:3 释放后试 Mistral-7B；Llama 过校正数据保留为辅助证据\\n  rationale: Llama-3-8B completion=5%（tool-calling 能力不足），无法验证 BCP 三个失败机制中的全局抑制和跨维度干扰。但过校正反弹确实复现（politeness\\n    31%→51.4%）。多模型 generalizability 需要一个能完成 tau-bench 的模型。Mistral-7B-Instruct-v0.3\\n    tool-calling 支持较好，下载+部署+eval ~3h，在 cuda:3 释放后并行执行不影响 dpo-003 决策节点。Llama 数据不丢弃——作为\\\"低能力模型仍展现偏差\\\"的辅助证据。\\n  related_experiments:\\n  - exp_id: llama-bcp-001\\n    role: trigger\\n    result: negative - floor effect, completion 5%\\n  depends_on:\\n  - D005\\n  - D006\\n- id: D008\\n  date: 2026-05-12 18:22 UTC\\n  summary: Llama BCP generalizability 不足，hedge 下载 Mistral-7B，最终决策等 dpo-003\\n  rationale: Llama-3-8B completion=5%（tool-calling 不足），BCP 三机制中仅过校正可复现，全局抑制和跨维度干扰因\\n    floor effect 无法验证。Plan A（DPO 方法）不依赖多模型 BCP，Plan B（empirical analysis）需要 completion>20%\\n    的第二模型。hedge 策略：先下载 Mistral-7B（CPU，不占 GPU），dpo-003 结果决定是否需要部署。\\n  related_experiments:\\n  - exp_id: llama-bcp-001\\n    role: multi-model replication\\n    result: negative - completion 5% floor effect\\n  - exp_id: mvp-004\\n    role: original BCP\\n    result: negative - Qwen BCP 3 failure mechanisms\\n  - exp_id: dpo-003\\n    role: decision node\\n    result: RUNNING\\n  depends_on:\\n  - D005\\n  - D006\\n- id: D009\\n  date: 2026-05-12 18:26 UTC\\n  summary: Reviewer critical 修正：llama-bcp-001 overclaim 降级；Plan B Mistral≤20% 终态改为\\n    KILL；cuda:2 立即释放给 dpo-003\\n  rationale: Reviewer 核实发现三个问题：(1) llama-bcp-001 三 variant completion 完全一致(均 task\\n    17)，\\\"2/3 BCP 机制跨模型复现\\\"是 overclaim，降级为\\\"低能力模型在 BCP 下展现行为偏移\\\"；(2) Plan B \\\"弱化\\\"分支无明确终态，现明确：Mistral\\n    completion≤20% 则 KILL，单模型 empirical 不够投稿；(3) cuda:2 仍跑已判无效的 llama-bcp-001 而 dpo-003(决策节点)等\\n    cuda:3 释放，资源错配需立即修正。\\n  related_experiments:\\n  - exp_id: llama-bcp-001\\n    role: evidence\\n    result: overclaim corrected\\n  - exp_id: dpo-003\\n    role: target\\n    result: pending - elevated to cuda:2\\n  depends_on:\\n  - D007\\n  - D008\\n- id: D010\\n  date: 2026-05-13 01:37 UTC\\n  summary: vLLM LoRA serving bug 确认：merged DPO-003 completion 60% vs LoRA serving\\n    15%；kill hgate-dpo003，双 GPU 并行跑 merged 模型 H-gate eval\\n  rationale: 诊断实验（5 tasks, cuda:3）证实 vLLM LoRA 动态加载严重压低 completion（15% vs merged 60%\\n    vs base 40%）。DPO-003 实际改善了 tool-calling 能力。当前 hgate-dpo003 数据不可靠，需用 merged 模型重跑。两\\n    GPU 并行可将 10h 缩短至 ~5h。\\n  related_experiments:\\n  - exp_id: hgate-dpo003\\n    role: invalidated\\n    result: LoRA serving bug 导致 completion 失真\\n  - exp_id: dpo-003\\n    role: source\\n    result: merged 模型 completion 60% > base 40%\\n  depends_on:\\n  - D006\\n  - D009\\n- id: D011\\n  date: 2026-05-13 05:50 UTC\\n  summary: Plan A FAIL：hgate-dpo003-merged 2/4 runs H2+H3 双 FAIL，DPO+BCP 交互反转。按 D005\\n    决策树转 Plan B（Mistral empirical analysis）\\n  rationale: Run 1/3 数据一致：BCP variants politeness 反升（47.5→60.9%, 53.2→58.3%），completion\\n    降至 15-30%。DPO 改变了模型对 BCP 的响应模式，从\\\"部分校准但毁 completion\\\"变成\\\"反向偏移+仍毁 completion\\\"。DPO\\n    baseline（无 BCP）有轻微正面信号（politeness 略降，completion 可比），但不足以支撑方法论文。Run 2/4 未完成但 2/4\\n    一致 FAIL 翻盘概率极低。按 D005：H2+H3 双 FAIL → Plan B，需 Mistral BCP 数据。Mistral completion\\n    ≤20% → KILL。\\n  related_experiments:\\n  - exp_id: hgate-dpo003-merged\\n    role: decision_node\\n    result: H2+H3 双 FAIL (2/4 runs)\\n  - exp_id: mvp-004\\n    role: baseline\\n    result: BCP 6/6 FAIL\\n  - exp_id: diag-lora-merge\\n    role: diagnostic\\n    result: 确认 merged model serving 正常\\n  depends_on:\\n  - D005\\n  - D010\\n- id: D012\\n  date: 2026-05-13 06:53 UTC\\n  summary: Mistral completion=0%（tool-calling 能力不足），Plan B multi-model 路线 FAIL。三选一：KILL\\n    / Qwen-only 短论文 / 换更强模型获取跨 scale 数据\\n  rationale: Mistral-7B 在 16-tool τ-bench 下 0/35 次产生 structured tool_calls，远低于 20%\\n    阈值。Llama-8B 同样 floor effect（5%）。7B 开源模型在复杂 tool-calling 场景下普遍能力不足是 confounding\\n    factor。单模型（Qwen2.5-7B）数据扎实（BCP 4 机制 + DPO+BCP 反转，4 runs n=480），taxonomy 本身是文献空白。选项\\n    C（Qwen2.5-14B 跨 scale 验证）可在 1-2 天内完成，仍在 deadline 内。需用户决策。\\n  related_experiments:\\n  - exp_id: mistral-bcp-001\\n    role: decision_node\\n    result: completion=0%, FAIL\\n  - exp_id: llama-bcp-001\\n    role: reference\\n    result: completion=5%, floor effect\\n  - exp_id: hgate-dpo003-merged\\n    role: reference\\n    result: H2+H3 FAIL, DPO+BCP反转效应\\n  depends_on:\\n  - D011\\n  - D005\\n- id: D013\\n  date: 2026-05-13 15:23 UTC\\n  summary: 'MVP PASS (Plan C): BCP 失败是结构性的，非容量限制。进入 research 阶段，走 8 页 empirical analysis\\n    全文路线。'\\n  rationale: qwen14b-bcp-001 结果：14B completion 61.6%（远超 20% gate），但 H2 仅 1/4 PASS。BCP\\n    校准在 7B 和 14B 上均结构性失败，验证了 \\\"alignment non-compositionality\\\" 假设。7B (C1 FM1-3, C2\\n    DPO reversal) + 14B (C3 cross-scale) 数据足以支撑 8 页全文。\\n  related_experiments:\\n  - exp_id: qwen14b-bcp-001\\n    role: Plan C 关键验证\\n    result: 14B completion 61.6%, H2 1/4, BCP 结构性失败确认\\n  - exp_id: mvp-004\\n    role: 7B baseline BCP\\n    result: completion 36.8%, BCP 失败\\n  - exp_id: hgate-dpo003-merged\\n    role: Plan A DPO 校准\\n    result: negative, DPO+BCP 反转\\n  - exp_id: mistral-bcp-001\\n    role: Plan B 跨模型\\n    result: negative, 0% completion\\n  depends_on:\\n  - D012\\n- id: D014\\n  date: 2026-05-13 15:25 UTC\\n  summary: C3 framing 修正：从\\\"cross-scale replication of FM1-3\\\"改为\\\"scale-dependent failure\\n    severity\\\"——BCP 在 7B/14B 均失效，但破坏性副作用(FM1/FM3)仅限 7B，14B 只有\\\"校准力度不足\\\"\\n  rationale: Reviewer 审查 qwen14b-bcp-001 per-variant 数据发现：FM1(completion collapse)\\n    14B 未复现(H3 4/4 PASS)，FM3(overcorrection rebound) 14B 未复现(0/4 runs)。FM2 部分复现(H2\\n    3/4 FAIL 但属 insufficient calibration 非 destructive)。Agent 原报告\\\"BCP 失败是结构性的\\\"为 overclaim。实际是更有趣的发现：失败严重度随\\n    scale 递减，大模型能抵抗 BCP 破坏性副作用但仍无法被有效校准。\\n  related_experiments:\\n  - exp_id: qwen14b-bcp-001\\n    role: 14B cross-scale data\\n    result: H2 1/4, FM1 not replicated, FM3 not replicated, FM2 partial\\n  - exp_id: mvp-004\\n    role: 7B baseline\\n    result: FM1-FM3 confirmed at 7B\\n  - exp_id: hgate-dpo003-merged\\n    role: 7B DPO+BCP\\n    result: FM3 confirmed 4/4 runs at 7B\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-13 15:38 UTC\\n  summary: 接受 Reviewer 评估：当前 claims 多处 overclaim，必须补 GPT-4o-mini 跨家族验证 + 7B multi-run\\n    复现 + 全面收紧 claim 措辞\\n  rationale: Reviewer 独立审查确认用户担忧合理：(1) C1 FM1/FM2 基于单 run，evidence 偏弱；(2) \\\"taxonomy\\\"\\n    需多家族支撑；(3) C3 仅 2 个同家族 scale 点不足以支撑 \\\"safety-efficacy gap\\\" 作为 core claim；(4) GPT-4o-mini\\n    是最高 ROI 补充（~$5, 2-4h, LiteLLM 原生支持，代码改动最小）。不加模型的 Qwen-only 论文接受率估 30-40%，加 GPT-4o-mini\\n    后估 50-60%。\\n  related_experiments:\\n  - exp_id: mvp-004\\n    role: C1 主证据（单 run 缺口）\\n    result: FM1/FM2 observed but single run\\n  - exp_id: qwen14b-bcp-001\\n    role: C3 唯一跨 scale 点\\n    result: FM1/FM3 未复现，同家族\\n  depends_on:\\n  - D014\\n\", \"total_chars\": 10374, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7086e838-d4e7-4fc9-9b48-baf25332b2ad",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "170a75e6-e945-454b-a860-2e4f1e21f1c4",
+  "sourceToolAssistantUUID": "7086e838-d4e7-4fc9-9b48-baf25332b2ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T17:07:41.129Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_016nq7dGuX98JSNVVmzrq5LR`</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "file": "EVALUATION.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "170a75e6-e945-454b-a860-2e4f1e21f1c4",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwC385GFGqqU6ppr7du",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8cfe4505-bda5-4174-ab66-59c5a7cc57df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GrtuVDNHkP3HDTU9H8X8ri",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 17991,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2060,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T17:07:41.142Z_
+
+<details><summary>↩ Tool result · `toolu_016nq7dGuX98JSNVVmzrq5LR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No EVALUATION.md found for 'demo_calibrated_sim'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8cfe4505-bda5-4174-ab66-59c5a7cc57df",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "737b9249-c7dd-4927-9941-df7cd67293b4",
+  "sourceToolAssistantUUID": "8cfe4505-bda5-4174-ab66-59c5a7cc57df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T17:07:44.808Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01FQRCWUKjEP4jp7Mw8LEf2g`</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "737b9249-c7dd-4927-9941-df7cd67293b4",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwCMQAy8VMq2hwmUyGS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c9514912-02f5-48ba-8143-2ecc98521e27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiGvLY7aWgEmabqmXrv4ni",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8671,
+      "cache_read_input_tokens": 20051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8671,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T17:07:44.821Z_
+
+<details><summary>↩ Tool result · `toolu_01FQRCWUKjEP4jp7Mw8LEf2g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/paper_framing.md\", \"content\": \"# Paper Framing: Calibration Failure Taxonomy for LLM User Simulators\\n\\n> Plan B story — Director approved 2026-05-13\\n> Target: EMNLP 2026 Findings (ARR deadline 2026-05-25)\\n\\n---\\n\\n## Title Candidates\\n\\n1. **\\\"Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation\\\"**\\n   - Pro: 直接点明贡献（taxonomy），关键词覆盖好\\n   - Con: 稍长\\n\\n2. **\\\"The Calibration Trap: Prompt-Based and Training-Based Corrections Both Fail for Dialect Bias in LLM User Simulators\\\"**\\n   - Pro: \\\"trap\\\" 吸引眼球，涵盖两种方法\\n   - Con: 可能暗示过于 negative\\n\\n3. **\\\"Behavioral Calibration Considered Harmful? Systematic Failure Modes in Dialect-Aware User Simulation\\\"**\\n   - Pro: Dijkstra 风格标题引发好奇，问号留余地\\n   - Con: \\\"Considered Harmful\\\" 可能被认为 cliché\\n\\n**推荐**: Title 1 — 最准确传达贡献，reviewer-friendly。\\n\\n---\\n\\n## Core Story\\n\\n**Problem**: LLM user simulators exhibit dialect-dependent behavioral biases — AAVE and Indian English speakers receive systematically different politeness and question-asking patterns compared to Standard American English (sim2real2026gap; seshadri2026lost). These biases propagate into agent evaluation, undermining fairness.\\n\\n**Attempted Solution**: We apply two complementary calibration strategies:\\n- **BCP (Behavioral Calibration Prompting)**: Prompt-level injection of target behavioral rates\\n- **DPO (Direct Preference Optimization)**: Training-level alignment using dialect-calibrated preference pairs\\n\\n**Finding**: Both strategies fail systematically. We document **the first taxonomy of calibration failure modes** for LLM user simulators, identifying four distinct mechanisms that explain why seemingly reasonable calibration interventions produce counterproductive outcomes.\\n\\n**Framing**: This is NOT \\\"we tried and failed.\\\" This is a systematic empirical analysis that (1) identifies previously undocumented failure mechanisms, (2) connects them to known phenomena in persona prompting and alignment, and (3) provides actionable constraints for future calibration research.\\n\\n---\\n\\n## Core Claims\\n\\n### C1: BCP produces three systematic failure mechanisms\\n**Evidence strength**: Moderate (single model, single run, n=19-20 per variant)\\n\\n| Failure Mode | Description | Key Metric | exp_id |\\n|---|---|---|---|\\n| FM1: Global Behavior Suppression | BCP calibration prompts collapse task completion regardless of target dimension | completion retention 52.3% (threshold ≥80%) | mvp-004 |\\n| FM2: Cross-Dimension Interference | Targeting one behavioral dimension perturbs non-targeted dimensions | politeness -25.6% when targeting question_rate; question_rate -52.3% when targeting politeness | mvp-004 |\\n| FM3: Overcorrection Rebound | Requesting extreme behavioral shift causes model to rebound in opposite direction | overcorrected politeness +4.2pp ~ +10.4pp above baseline (4 runs, 4/4 consistent) | hgate-dpo003-merged |\\n\\n**Supporting numbers (mvp-004, Qwen2.5-7B-Instruct, n=19-20)**:\\n- FM1: aave completion 0.100 vs baseline 0.368 (-72.8%); indian 0.150 (-59.2%); mean calibrated 0.193\\n- FM2: single_dim_question politeness drops 25.6% (non-target); single_dim_politeness question_rate drops 52.3% (non-target)\\n  - **Base rate caveat**: question_rate baseline = 0.044 (~0.8 questions/task); 52.3% drop = absolute change from ~0.044 to ~0.021. Paper must report both absolute values and relative changes.\\n- FM3: **[primary]** hgate-dpo003-merged overcorrected politeness mean 0.574 vs baseline 0.502, gap +7.2pp (+14.3% relative), range +4.2pp ~ +10.4pp, 4/4 runs consistent; **[auxiliary]** mvp-004 single run: 0.605 vs 0.559 (+4.6pp, +8.2% relative)\\n\\n**External support**:\\n- FM1: basil2025playing_pretend (persona prompting drops MMLU 71.6%→66.3%); hu2026expert_persona (accuracy degradation up to 30pp under persona)\\n- FM2: gupta2026intra_fairness (bias spillover effect in targeted alignment)\\n- FM3: no direct external parallel — novel observation\\n\\n### C2: DPO+BCP interaction produces calibration reversal\\n**Evidence strength**: Strong (single model, 4 runs × 20 tasks = 80 episodes)\\n\\nDPO training, despite learning effectively (acc 0.75-1.0, loss 0.653), reverses BCP calibration direction when combined:\\n\\n| Metric | Base BCP (mvp-004) | DPO+BCP (hgate-dpo003-merged) |\\n|---|---|---|\\n| AAVE politeness gap | -0.091 (correct direction) | +0.064 (**reversed**) |\\n| Indian politeness gap | -0.099 (correct direction) | +0.063 (**reversed**) |\\n| H2 gap reduction | 25-28% (close to 30% threshold) | **-10.3%** (wrong direction) |\\n| Variant×run checks with gap expansion | — | **10/12** |\\n| Overcorrection rebound | +8.2% | **+14.3%** (amplified) |\\n\\n**Key insight**: DPO-003 training *improved* tool-calling ability (merged completion 60% vs base 40%, diag-lora-merge). The reversal is not a DPO training failure — it's an **interaction effect** between DPO alignment and BCP prompting.\\n\\n**External support**: lee2024dpo_toxicity (DPO bypasses rather than removes capabilities; alignment is fragile and reversible)\\n\\n### C3: Scale-dependent failure severity\\n**Evidence strength**: Strong (two scales, 4 runs × 20 tasks = 80 episodes each)\\n\\nBCP fails at both 7B and 14B, but the **failure mode** changes with scale:\\n\\n| Failure Mode | 7B (mvp-004 / hgate-dpo003-merged) | 14B (qwen14b-bcp-001) |\\n|---|---|---|\\n| FM1: Completion collapse | ✅ (aave 0.100, indian 0.150) | ❌ Not replicated (H3 4/4 PASS, all variants >80% baseline) |\\n| FM2: Cross-dim interference | ✅ (pol -25.6%, qrate -52.3%) | ⚠️ Partial (H2 3/4 FAIL — insufficient calibration, not destructive) |\\n| FM3: Overcorrection rebound | ✅ (+7.2pp, 4/4 runs) | ❌ Not replicated (0/4 runs; overcorrected pol consistently BELOW baseline) |\\n| BCP overall effectiveness | ❌ Fails | ❌ Fails |\\n\\n**Key insight**: BCP is ineffective at both scales, but the **failure mode transitions** with scale:\\n- **7B = \\\"catastrophic over-response\\\"**: BCP prompts overwhelm the model's limited capacity, collapsing task completion (FM1) and triggering overcorrection rebounds (FM3)\\n- **14B = \\\"selective ignoring\\\"**: The model maintains normal behavior (H3 PASS, high completion) but simply does not respond to calibration instructions (H2 FAIL)\\n\\nThis reveals a **safety-efficacy gap**: scaling resolves BCP's destructive side effects but not its calibration ineffectiveness. There is no \\\"sweet spot\\\" scale where BCP works — smaller models are harmed by it, larger models ignore it.\\n\\n**14B specifics** (qwen14b-bcp-001, Qwen2.5-14B-Instruct FP16 TP=2, 4 runs × 20 tasks):\\n- Mean completion: 61.6% (vs 7B 36.8%, +67%)\\n- H1: 4/4 ✅ | H2: 1/4 ❌ (Run 2 pass due to anomalously high baseline 0.588) | H3: 4/4 ✅\\n- Per-run completion: 73.7% / 55.0% / 57.9% / 60.0%\\n- Mean politeness: 0.523 (vs 7B 0.559)\\n\\n**Auxiliary evidence**:\\n- Llama-3-8B (llama-bcp-001): Floor effect (completion=5%). Tool-calling too weak to isolate BCP effect.\\n- Mistral-7B (mistral-bcp-001): completion=0%. No usable data.\\n\\n### C4: Implications for future calibration research\\n**Evidence strength**: Analytical (grounded in C1-C3)\\n\\n- **Implication 1**: Prompt-based calibration of behavioral rates in multi-turn agent dialogue faces a scale-dependent completion-calibration trade-off (FM1). At smaller scales (7B), BCP is destructive — it collapses task completion. At larger scales (14B), this harm disappears but calibration remains ineffective. This parallels the persona-accuracy trade-off (basil2025playing_pretend; hu2026expert_persona) but adds a scale dimension: larger models resist perturbation but aren't thereby calibrated.\\n- **Implication 2**: Behavioral dimensions are coupled — calibrating politeness rate without affecting question rate (or completion) requires methods that can disentangle dimensions (FM2). Possible direction: per-dimension reward models or constrained decoding (cf. khan2026decoding).\\n- **Implication 3**: DPO alignment and prompt-based calibration can interact adversarially (FM4). Future work must evaluate calibration methods in combination, not in isolation.\\n- **Implication 4**: Overcorrection rebound (FM3) at 7B suggests smaller models have an \\\"attractor basin\\\" for default behavioral rates that resists large perturbations. At 14B this rebound disappears — but calibration still fails (FM2 persists). Gradual/iterative calibration may outperform one-shot extreme targets, but the 14B result suggests the problem is deeper than perturbation magnitude.\\n- **Implication 5** (NEW): Scale-dependent failure severity implies that \\\"BCP works at scale\\\" is a misleading conclusion — while destructive side effects vanish, calibration efficacy does not improve. Future calibration methods cannot assume scaling alone will solve the problem.\\n\\n---\\n\\n## Reviewer Concerns (Pre-empted Attack Surfaces)\\n\\n### RC1: \\\"Single model — how do we know this generalizes?\\\"\\n**Status**: Substantially mitigated (cross-scale, single model family)\\n- Qwen 7B + 14B cross-scale evidence: BCP fails at both scales (different severity profiles)\\n- Cross-scale data adds a contribution dimension (scale-dependent failure taxonomy) rather than just \\\"replication\\\"\\n- Llama-3-8B/Mistral-7B failed due to tool-calling limitations, NOT because BCP worked on them\\n- FM1 aligns with persona-accuracy trade-off documented across GPT-4, Claude, Llama in basil2025playing_pretend and hu2026expert_persona\\n- **Remaining limitation**: Single model family (Qwen2.5). Cross-family generalization (e.g., Llama, Mistral with sufficient tool-calling) remains future work. Explicitly acknowledged in limitations.\\n- **Honest hedge**: \\\"We document BCP failure across two model scales within the Qwen2.5 family; the scale-dependent pattern of failure severity is itself a finding, but cross-family verification requires models with sufficient tool-calling ability in 16-tool settings.\\\"\\n\\n### RC2: \\\"n=20 tasks, high variance — statistical power?\\\"\\n**Response**:\\n- BCP results (mvp-004): n=19-20 per variant, single run. Variance is a valid concern for absolute numbers.\\n- DPO+BCP results (hgate-dpo003-merged): 4 independent runs × 20 tasks = 80 episodes. Reversal effect consistent across 10/12 variant×run checks — this is not a variance artifact.\\n- FM3 (rebound): consistent direction in 4/4 runs for overcorrected variant.\\n- **Mitigation**: Report all individual run data (no cherry-picking, per memory.md rule). Frame claims around direction and consistency, not precise magnitudes.\\n\\n### RC3: \\\"This is just negative results — where's the contribution?\\\"\\n**Response**:\\n- Negative-results papers exist at top venues (e.g., Findings track). But this is MORE than negative results:\\n  1. **Taxonomy**: First systematic categorization of calibration failure modes (FM1-FM4)\\n  2. **Mechanistic connections**: Link FM1→persona-accuracy trade-off, FM2→bias spillover, FM4→DPO bypass\\n  3. **Actionable implications**: Concrete constraints for future calibration methods\\n  4. **Interaction discovery**: FM4 (DPO+BCP reversal) is novel — no prior work documents this interaction\\n\\n### RC4: \\\"Why not try other calibration methods?\\\"\\n**Response**:\\n- BCP and DPO represent the two main paradigms (prompt-time vs training-time). Covering both provides good coverage.\\n- Paper scope is diagnosis (failure taxonomy), not exhaustive method search.\\n- Implications section points to alternative approaches (constrained decoding, per-dimension reward, iterative calibration).\\n\\n### RC5: \\\"The evaluation framework (tau-bench) is a confound — maybe BCP works on simpler tasks?\\\"\\n**Response**:\\n- tau-bench is the standard benchmark for tool-calling agent evaluation (yao2024taubench; sim2real2026gap uses it too).\\n- FM1 parallels persona-accuracy trade-off found on MMLU/general benchmarks — not tau-bench specific.\\n- But fairly: FM2 and FM3 may be task-dependent. Acknowledged in limitations.\\n\\n---\\n\\n## Evidence Map\\n\\n| Claim | Sub-claim | Primary Experiment | Metric | Value | Secondary Experiment |\\n|---|---|---|---|---|---|\\n| C1 | FM1: completion collapse | mvp-004 | mean completion retention | 52.3% (need ≥80%) | hgate-dpo003-merged (excl. run2: 47-51% drop) |\\n| C1 | FM2: cross-dim interference | mvp-004 | non-target dim shift | politeness -25.6%, qrate -52.3% | — |\\n| C1 | FM3: overcorrection rebound | hgate-dpo003-merged | overcorrected pol vs baseline | +7.2pp mean (+14.3% rel), 4/4 runs consistent | mvp-004 (+4.6pp, single run) |\\n| C2 | FM4: DPO reversal of BCP | hgate-dpo003-merged | H2 gap reduction | -10.3% (wrong direction) | — |\\n| C2 | FM4: gap expansion count | hgate-dpo003-merged | variant×run checks | 10/12 expanded | — |\\n| C2 | DPO training effective | dpo-003 | rewards accuracy | 0.75-1.0 | diag-lora-merge (merged 60% vs base 40%) |\\n| C2 | Direction comparison | mvp-004 vs hgate-dpo003-merged | AAVE pol gap | -0.091 → +0.064 | Indian: -0.099 → +0.063 |\\n| C3 | Scale-dependent severity | qwen14b-bcp-001 | FM1 replication | ❌ (H3 4/4 PASS at 14B) | mvp-004 (FM1 confirmed at 7B) |\\n| C3 | Scale-dependent severity | qwen14b-bcp-001 | FM3 replication | ❌ (0/4 runs rebound at 14B) | hgate-dpo003-merged (4/4 at 7B) |\\n| C3 | BCP ineffective both scales | qwen14b-bcp-001 | H2 pass rate | 1/4 (14B) vs 0/1 (7B) | Both fail calibration |\\n| C3 | Completion improvement | qwen14b-bcp-001 | baseline completion | 61.6% (14B) vs 36.8% (7B) | +67% from scaling |\\n| C3 | Cross-model (auxiliary) | llama-bcp-001 | completion | 5% (floor) | Not usable for generalization |\\n\\n---\\n\\n## Contribution Statement\\n\\nWe present the first systematic taxonomy of calibration failure modes for LLM user simulators in agentic evaluation. Through controlled experiments on Qwen2.5-7B and Qwen2.5-14B in the tau-bench retail domain, we identify four failure mechanisms — global behavior suppression, cross-dimension interference, overcorrection rebound, and DPO-BCP interaction reversal — and reveal that their severity is **scale-dependent**: destructive side effects (completion collapse, overcorrection rebound) disappear at 14B, but calibration itself remains ineffective. This safety-efficacy gap shows that scaling resolves BCP's harms without solving its core limitation. Our findings establish concrete constraints for future calibration research and connect observed failures to broader phenomena in persona prompting and preference optimization.\\n\\n---\\n\\n## Key Literature Anchors\\n\\n| Role in Paper | Paper | What It Provides |\\n|---|---|---|\\n| Core motivation | sim2real2026gap (arXiv 2603.11245) | Quantifies sim-vs-human gap in τ-bench; diagnoses the problem we attempt to solve |\\n| FM1 mechanism | basil2025playing_pretend (arXiv 2512.05858) | Persona prompting degrades accuracy; explains completion collapse |\\n| FM1 mechanism | hu2026expert_persona (arXiv 2603.18507) | Persona-accuracy trade-off up to 30pp; instruction-tuned models more susceptible |\\n| FM2 mechanism | gupta2026intra_fairness (arXiv 2602.16438) | Bias spillover in targeted alignment; parallel to cross-dim interference |\\n| FM4 mechanism | lee2024dpo_toxicity (ICML 2024) | DPO bypasses rather than removes capabilities; fragile alignment |\\n| Evaluation framework | yao2024taubench (arXiv 2406.12045) | τ-bench retail domain, pass^k metric |\\n| Bias context | seshadri2026lost (arXiv 2601.17087) | AAVE/Indian English speakers get worst simulator calibration |\\n| DPO method | rafailov2023dpo (NeurIPS 2023) | Core DPO algorithm reference |\\n\\n---\\n\\n## Open Items\\n\\n- [x] **qwen14b-bcp-001 results** — C3 updated: scale-dependent failure severity (FM1/FM3 capacity-dependent, FM2 partial, BCP ineffective at both scales). D014.\\n- [ ] **Statistical tests** — add bootstrap CI for key comparisons (FM4 reversal direction, FM3 rebound magnitude, 7B-vs-14B completion difference) once data is finalized.\\n- [ ] **Figure plan** — taxonomy diagram (FM1-FM4), gap reversal visualization (base vs DPO politeness gaps), **scale-dependent severity heatmap** (7B vs 14B × FM1-FM3).\\n- [ ] **14B DPO (optional)** — would FM4 (DPO+BCP reversal) also show scale-dependent behavior? ~11-13h GPU. Contingent on new server GPU availability.\\n- [ ] **C1 annotation** — add note that FM1 and FM3 are documented at 7B; 14B evidence shows these are capacity-dependent. Paper must not overclaim \\\"structural\\\" for FM1/FM3.\\n\", \"total_chars\": 16020, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9514912-02f5-48ba-8143-2ecc98521e27",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "9bede42e-4a37-4401-bee1-1216d162de14",
+  "sourceToolAssistantUUID": "c9514912-02f5-48ba-8143-2ecc98521e27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T17:07:45.272Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_013VYBDasSk4Sk2pavSYb1o6`</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "file": "paper_provenance.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bede42e-4a37-4401-bee1-1216d162de14",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwCMQAy8VMq2hwmUyGS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dc545c65-aafc-49c1-ab8e-7b452e721547",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiGvLY7aWgEmabqmXrv4ni",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8671,
+      "cache_read_input_tokens": 20051,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 8671,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T17:07:45.281Z_
+
+<details><summary>↩ Tool result · `toolu_013VYBDasSk4Sk2pavSYb1o6`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_provenance.yaml found for 'demo_calibrated_sim'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc545c65-aafc-49c1-ab8e-7b452e721547",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "fae69591-190c-4a10-bc76-b07298550d17",
+  "sourceToolAssistantUUID": "dc545c65-aafc-49c1-ab8e-7b452e721547",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T17:07:45.880Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_017jHZbNVk258dkCFPMV82Cs`</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "file": "ideas.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fae69591-190c-4a10-bc76-b07298550d17",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwCMQAy8VMq2hwmUyGS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4d030fa7-df40-4c94-b115-b8e3649658a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GiGvLY7aWgEmabqmXrv4ni",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8671,
+      "cache_read_input_tokens": 20051,
+      "output_tokens": 293,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 8671
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 293,
+          "cache_read_input_tokens": 20051,
+          "cache_creation_input_tokens": 8671,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 8671,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T17:07:45.888Z_
+
+<details><summary>↩ Tool result · `toolu_017jHZbNVk258dkCFPMV82Cs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'demo_calibrated_sim'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d030fa7-df40-4c94-b115-b8e3649658a2",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "8449a9dc-060d-45cb-8f75-430abbadfe51",
+  "sourceToolAssistantUUID": "4d030fa7-df40-4c94-b115-b8e3649658a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-13T17:07:48.970Z_
+
+Now let me look at the artifacts for the key experiments to get the actual data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8449a9dc-060d-45cb-8f75-430abbadfe51",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwCgimMwozJL1Nfj8tW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7dc9467e-aadf-43ac-8d9d-9faa88f9b1c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqExZDEWipx5BRB9UH9Xuz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5972,
+      "cache_read_input_tokens": 28722,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5972,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T17:07:49.974Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01PDpNn2EhqXfk1sGvntbYkk`</summary>
+
+```json
+{
+  "pattern": "**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dc9467e-aadf-43ac-8d9d-9faa88f9b1c9",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwCgimMwozJL1Nfj8tW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f3063613-9d48-46aa-b003-7f9d7acd9ff0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XqExZDEWipx5BRB9UH9Xuz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5972,
+      "cache_read_input_tokens": 28722,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5972
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 28722,
+          "cache_creation_input_tokens": 5972,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5972,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T17:07:49.995Z_
+
+<details><summary>↩ Tool result · `toolu_01PDpNn2EhqXfk1sGvntbYkk`</summary>
+
+```text
+artifacts/tau-bench/README.md
+artifacts/tau-bench/tau_bench/envs/airline/wiki.md
+artifacts/tau-bench/tau_bench/envs/retail/data/readme.md
+artifacts/tau-bench/tau_bench/envs/retail/wiki.md
+artifacts/code/.pytest_cache/README.md
+artifacts/_project/report/tau_bench_analysis.md
+artifacts/tau_bench_analysis.md
+artifacts/_project/report/mvp_contingency.md
+artifacts/mvp_contingency.md
+artifacts/_project/report/plan_b_evidence_table.md
+artifacts/plan_b_evidence_table.md
+artifacts/mistral-bcp-001/report/mistral-bcp-001-report.md
+artifacts/_project/paper/section_related_work_draft.md
+artifacts/section_related_work_draft.md
+artifacts/section_method_draft.md
+artifacts/section_experiments_draft.md
+artifacts/_project/paper/section_method_draft.md
+artifacts/_project/paper/section_experiments_draft.md
+artifacts/_project/report/reference_audit_report.md
+artifacts/reference_audit_report.md
+artifacts/qwen14b-bcp-001/fm_replication_analysis.md
+artifacts/qwen14b-bcp-001/report/fm_replication_analysis.md
+artifacts/_project/report/post_mvp_data_summary.md
+artifacts/bootstrap-ci-001/report/bootstrap_ci_report.md
+artifacts/dream_reports/dream_20260513T153032/best/paper_framing.md
+artifacts/dream_reports/dream_20260513T153032/median/paper_framing.md
+artifacts/dream_reports/dream_20260513T153032/worst/paper_framing.md
+artifacts/dream_reports/dream_20260513T153032/best/review_report.md
+artifacts/dream_reports/dream_20260513T153032/median/review_report.md
+artifacts/dream_reports/dream_20260513T163256/best/paper_framing.md
+artifacts/dream_reports/dream_20260513T163256/median/paper_framing.md
+artifacts/dream_reports/dream_20260513T163256/worst/paper_framing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3063613-9d48-46aa-b003-7f9d7acd9ff0",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "d7dfc57f-d0b5-47d9-b1c6-c58c15d9bd89",
+  "sourceToolAssistantUUID": "f3063613-9d48-46aa-b003-7f9d7acd9ff0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T17:07:53.096Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01N64ex3PuLJSeHs6tdv1MZT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/bootstrap-ci-001/report/bootstrap_ci_report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7dfc57f-d0b5-47d9-b1c6-c58c15d9bd89",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwCzEE2ynCjfumEVanZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f4a3088f-61d1-41fb-98aa-0cbdbcbb882a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015zJabn2rJbcomLzbiMJBuj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 679,
+      "cache_read_input_tokens": 34694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 679,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T17:07:53.101Z_
+
+<details><summary>↩ Tool result · `toolu_01N64ex3PuLJSeHs6tdv1MZT`</summary>
+
+```text
+1	Remote file: /root/democalib/results/bootstrap_ci_report.md on cqa1-21977
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4a3088f-61d1-41fb-98aa-0cbdbcbb882a",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "f7618e8f-1f5a-4992-9064-f207f34f5471",
+  "sourceToolAssistantUUID": "f4a3088f-61d1-41fb-98aa-0cbdbcbb882a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T17:07:53.568Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DyvfCi9i2tVH78gYQdTgWE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/qwen14b-bcp-001/report/fm_replication_analysis.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7618e8f-1f5a-4992-9064-f207f34f5471",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwCzEE2ynCjfumEVanZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1e3e93ae-50e6-4ec1-a236-79a158fb4078",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015zJabn2rJbcomLzbiMJBuj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 679,
+      "cache_read_input_tokens": 34694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 679,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T17:07:53.573Z_
+
+<details><summary>↩ Tool result · `toolu_01DyvfCi9i2tVH78gYQdTgWE`</summary>
+
+```text
+1	# FM Replication Analysis: qwen14b-bcp-001
+2	
+3	**Model**: Qwen2.5-14B-Instruct FP16 (TP=2)  
+4	**Experiment**: qwen14b-bcp-001, 4 runs × 6 variants × 20 scenarios  
+5	**Date**: 2026-05-13
+6	
+7	---
+8	
+9	## Per-Variant Data (All 4 Runs)
+10	
+11	### Task Completion Rate
+12	
+13	| Variant | Run 1 | Run 2 | Run 3 | Run 4 | Mean |
+14	|---------|-------|-------|-------|-------|------|
+15	| uncalibrated_baseline | 0.737 | 0.550 | 0.579 | 0.600 | **0.616** |
+16	| aave_target | 0.700 | 0.474 | 0.632 | 0.600 | **0.601** |
+17	| indian_english_target | 0.650 | 0.600 | 0.842 | 0.650 | **0.686** |
+18	| overcorrected | 0.750 | 0.500 | 0.600 | 0.650 | **0.625** |
+19	| single_dim_question | 0.500 | 0.700 | 0.600 | 0.600 | **0.600** |
+20	| single_dim_politeness | 0.600 | 0.800 | 0.474 | 0.750 | **0.656** |
+21	
+22	### Mean Politeness Rate
+23	
+24	| Variant | Run 1 | Run 2 | Run 3 | Run 4 | Mean |
+25	|---------|-------|-------|-------|-------|------|
+26	| uncalibrated_baseline | 0.470 | 0.588 | 0.497 | 0.536 | **0.523** |
+27	| aave_target | 0.393 | 0.454 | 0.493 | 0.455 | **0.449** |
+28	| indian_english_target | 0.462 | 0.442 | 0.427 | 0.444 | **0.444** |
+29	| overcorrected | 0.453 | 0.419 | 0.466 | 0.467 | **0.451** |
+30	| single_dim_question | 0.449 | 0.499 | 0.463 | 0.512 | **0.481** |
+31	| single_dim_politeness | 0.489 | 0.438 | 0.456 | 0.403 | **0.447** |
+32	
+33	### Mean Question Rate
+34	
+35	| Variant | Run 1 | Run 2 | Run 3 | Run 4 | Mean |
+36	|---------|-------|-------|-------|-------|------|
+37	| uncalibrated_baseline | 0.037 | 0.035 | 0.054 | 0.041 | **0.042** |
+38	| aave_target | 0.044 | 0.015 | 0.044 | 0.008 | **0.028** |
+39	| indian_english_target | 0.038 | 0.023 | 0.027 | 0.018 | **0.027** |
+40	| overcorrected | 0.015 | 0.028 | 0.010 | 0.011 | **0.016** |
+41	| single_dim_question | 0.048 | 0.017 | 0.034 | 0.005 | **0.026** |
+42	| single_dim_politeness | 0.018 | 0.023 | 0.016 | 0.021 | **0.020** |
+43	
+44	### Gate Results
+45	
+46	| Run | H1 | H2 | H3 |
+47	|-----|----|----|-----|
+48	| run_1 | PASS | FAIL | PASS |
+49	| run_2 | PASS | PASS | PASS |
+50	| run_3 | PASS | FAIL | PASS |
+51	| run_4 | PASS | FAIL | PASS |
+52	| **Aggregate** | **4/4** | **1/4** | **4/4** |
+53	
+54	---
+55	
+56	## FM1: Global Behavior Suppression
+57	
+58	**Definition**: BCP variant completion significantly lower than baseline (retention < 80%).
+59	
+60	| Variant | Mean Completion | Baseline (0.616) | Retention | FM1? |
+61	|---------|----------------|-------------------|-----------|------|
+62	| aave_target | 0.601 | 0.616 | **97.6%** | NO |
+63	| indian_english_target | 0.686 | 0.616 | **111.2%** | NO |
+64	| overcorrected | 0.625 | 0.616 | **101.4%** | NO |
+65	
+66	**判断: FM1 未复现。** 所有 BCP variant 的 completion 保持率 > 97%，没有行为抑制。14B 模型在接到 BCP prompt 后仍然正常完成任务。
+67	
+68	---
+69	
+70	## FM2: Cross-Dimension Interference
+71	
+72	**Definition**: Calibrating one dimension causes unintended degradation of another dimension.
+73	
+74	### single_dim_question → politeness impact
+75	
+76	| Metric | Baseline | single_dim_question | Change |
+77	|--------|----------|-------------------|--------|
+78	| Politeness | 0.523 | 0.481 | **-8.0%** (-4.2 pp) |
+79	
+80	### single_dim_politeness → question_rate impact
+81	
+82	| Metric | Baseline | single_dim_politeness | Change |
+83	|--------|----------|---------------------|--------|
+84	| Question Rate | 0.042 | 0.020 | **-52.8%** (-2.2 pp) |
+85	
+86	**判断: FM2 部分复现（弱）。**
+87	- question→politeness 方向：politeness 下降 8%（4.2 pp），效应较弱。
+88	- politeness→question 方向：question_rate 相对下降 53%，但基线本身仅 4.2%，绝对下降仅 2.2 pp，可能在噪声范围内。
+89	- 两个方向均存在跨维度干扰，但绝对幅度远小于 7B。
+90	
+91	---
+92	
+93	## FM3: Overcorrection Rebound
+94	
+95	**Definition**: overcorrected variant 的 politeness 高于 baseline（模型被 overcorrection prompt "激发"出更高的 politeness）。
+96	
+97	| Metric | Baseline | Overcorrected | Change |
+98	|--------|----------|---------------|--------|
+99	| Politeness | 0.523 | 0.451 | **-13.6%** (-7.1 pp) |
+100	
+101	**判断: FM3 未复现。** overcorrected variant 的 politeness 低于 baseline（-7.1 pp），方向与 FM3 预测相反。14B 模型不会因 overcorrection prompt 产生反弹效应，反而略微降低 politeness。
+102	
+103	---
+104	
+105	## 与 7B 对比
+106	
+107	| Failure Mode | 7B (mvp-004) | 14B (qwen14b-bcp-001) | 模式一致? |
+108	|-------------|-------------|----------------------|----------|
+109	| **FM1: Global Behavior Suppression** | 严重复现：AAVE 10%, Indian 15% vs baseline 36.8%（retention ~27-41%） | 未复现：所有 variant retention > 97% | **否** |
+110	| **FM2: Cross-Dimension Interference** | 显著复现 | 弱复现：-8.0% politeness, -2.2pp question rate | **部分** |
+111	| **FM3: Overcorrection Rebound** | 复现：overcorrected politeness > baseline | 未复现：overcorrected politeness < baseline (-7.1pp) | **否** |
+112	| **H2 (Calibration Accuracy)** | FAIL | FAIL (3/4 runs) | **是** |
+113	| **Mean Completion** | ~25% | ~61.6% | 14B >> 7B |
+114	
+115	---
+116	
+117	## 关键发现
+118	
+119	14B 模型的 BCP 校准失败机制与 7B **根本不同**：
+120	
+121	1. **7B 失败模式：灾难性崩溃。** BCP prompt 导致模型"冻结"——无法完成任务（completion 暴跌至 10-15%）、跨维度严重干扰、overcorrection 反弹。模型被 BCP prompt 严重干扰。
+122	
+123	2. **14B 失败模式：选择性忽略。** 模型正常完成任务（completion ~62%），但 BCP prompt 几乎没有改变行为指标。所有 variant 的 politeness 和 question_rate 都接近 baseline。模型不是被 BCP "破坏"了，而是**无视**了 BCP 校准指令。
+124	
+125	3. **共同点**：两种 scale 都 H2 FAIL——BCP 都未能成功校准目标行为维度。但失败原因不同：7B 是"过度响应导致崩溃"，14B 是"不够响应导致无效"。
+126	
+127	4. **论文启示**：这揭示了一个 scale-dependent failure mode transition。BCP 作为校准方法在两个 scale 上都失败，但机制相反——这是一个重要的 finding，说明 BCP 的问题不仅仅是"prompt 设计不好"，而是方法论层面的缺陷。
+128	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e3e93ae-50e6-4ec1-a236-79a158fb4078",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "1b4d201d-feee-4d56-ab93-75a1bcb9a864",
+  "sourceToolAssistantUUID": "1e3e93ae-50e6-4ec1-a236-79a158fb4078",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-13T17:07:54.258Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01C1JdBfheEweBu4gR56474g`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/_project/report/post_mvp_data_summary.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b4d201d-feee-4d56-ab93-75a1bcb9a864",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwCzEE2ynCjfumEVanZ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "516f57b8-587a-4a71-bc3f-59074a23f390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015zJabn2rJbcomLzbiMJBuj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 679,
+      "cache_read_input_tokens": 34694,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 679
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 34694,
+          "cache_creation_input_tokens": 679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 679,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T17:07:54.264Z_
+
+<details><summary>↩ Tool result · `toolu_01C1JdBfheEweBu4gR56474g`</summary>
+
+```text
+1	# Post-MVP 全实验数据汇总
+2	
+3	> 生成日期: 2026-05-13 | 用途: paper_framing.md 更新 + experiment_plan.yaml 创建
+4	
+5	---
+6	
+7	## 1. 实验总览
+8	
+9	| 实验线 | exp_id | 模型 | 方法 | Conclusion | 论文角色 |
+10	|--------|--------|------|------|-----------|---------|
+11	| 7B BCP | mvp-004 | Qwen2.5-7B-Instruct | BCP prompting | negative | C1 主证据 (FM1/FM2/FM3) |
+12	| 7B DPO+BCP | hgate-dpo003-merged | Qwen2.5-7B-DPO003-merged | DPO LoRA + BCP | negative | C2 主证据 (FM4 reversal) |
+13	| 14B BCP | qwen14b-bcp-001 | Qwen2.5-14B-Instruct (FP16, TP=2) | BCP prompting | success | C3 主证据 (scale transition) |
+14	| 7B DPO training | dpo-003 | Qwen2.5-7B-Instruct | DPO LoRA (Fix B) | success | C2 辅助 (DPO 训练有效) |
+15	| Diagnosis | diag-lora-merge | Qwen2.5-7B-DPO003-merged | merge eval | success | C2 辅助 (排除 LoRA bug) |
+16	| Llama BCP | llama-bcp-001 | Llama-3-8B-Instruct | BCP prompting | killed | 辅助证据 (floor effect) |
+17	| Mistral BCP | mistral-bcp-001 | Mistral-7B-Instruct-v0.3 | BCP prompting | negative | 辅助证据 (tool-call 能力不足) |
+18	
+19	---
+20	
+21	## 2. 7B BCP — mvp-004 (C1 主证据)
+22	
+23	**设置**: Qwen2.5-7B-Instruct, tau-bench retail, 20 tasks, 6 variants, 1 run
+24	
+25	### Per-variant 指标
+26	
+27	| Variant | Completion | Politeness | Question Rate | n |
+28	|---------|-----------|------------|---------------|---|
+29	| baseline | 0.368 | 0.559 | 0.044 | 19 |
+30	| aave_target | 0.100 | 0.468 | 0.015 | 20 |
+31	| indian_english | 0.150 | 0.460 | 0.014 | 20 |
+32	| overcorrected | 0.263 | 0.605 | 0.018 | 19 |
+33	| single_dim_question | 0.250 | 0.416 | 0.065 | 20 |
+34	| single_dim_politeness | 0.200 | 0.634 | 0.021 | 20 |
+35	
+36	### FM 证据
+37	
+38	| FM | 指标 | 值 | 判定 |
+39	|----|------|-----|------|
+40	| FM1 全局抑制 | aave retention | 27.2% (0.100/0.368) | **复现** (threshold <80%) |
+41	| FM1 全局抑制 | indian retention | 40.8% (0.150/0.368) | **复现** |
+42	| FM2 跨维度干扰 | sdq→politeness | -25.6% (0.416 vs 0.559) | **复现** |
+43	| FM2 跨维度干扰 | sdp→question_rate | -52.3% (0.021 vs 0.044) | **复现** (但基线仅 0.044) |
+44	| FM3 过校正反弹 | overcorrected pol | +8.2% (0.605 vs 0.559, +4.6pp) | **复现** |
+45	
+46	### Gate 结果
+47	H1: PASS | H2: FAIL | H3: FAIL | Overall: **FAIL (1/3)**
+48	
+49	---
+50	
+51	## 3. 7B DPO+BCP — hgate-dpo003-merged (C2 主证据)
+52	
+53	**设置**: Qwen2.5-7B-DPO003-merged (merged model serving), tau-bench retail, 20 tasks, 6 variants, 4 runs
+54	
+55	### Per-variant 指标 (4 runs)
+56	
+57	#### Completion
+58	| Variant | Run 1 | Run 2 | Run 3 | Run 4 | Mean |
+59	|---------|-------|-------|-------|-------|------|
+60	| baseline | 0.278 | 0.150 | 0.400 | 0.350 | **0.294** |
+61	| aave | 0.150 | 0.444 | 0.300 | 0.100 | **0.249** |
+62	| indian_english | 0.150 | 0.158 | 0.250 | 0.105 | **0.166** |
+63	| overcorrected | 0.150 | 0.250 | 0.278 | 0.158 | **0.209** |
+64	| single_dim_question | 0.100 | 0.263 | 0.200 | 0.316 | **0.220** |
+65	| single_dim_politeness | 0.300 | 0.150 | 0.350 | 0.316 | **0.279** |
+66	
+67	#### Politeness
+68	| Variant | Run 1 | Run 2 | Run 3 | Run 4 | Mean |
+69	|---------|-------|-------|-------|-------|------|
+70	| baseline | 0.475 | 0.466 | 0.532 | 0.534 | **0.502** |
+71	| aave | 0.609 | 0.559 | 0.583 | 0.514 | **0.566** |
+72	| indian_english | 0.577 | 0.534 | 0.510 | 0.638 | **0.565** |
+73	| overcorrected | 0.569 | 0.508 | 0.581 | 0.637 | **0.574** |
+74	| single_dim_question | 0.477 | 0.402 | 0.478 | 0.545 | **0.475** |
+75	| single_dim_politeness | 0.576 | 0.669 | 0.590 | 0.604 | **0.610** |
+76	
+77	### FM4 (DPO+BCP Reversal) 证据
+78	
+79	| 指标 | Base BCP (mvp-004) | DPO+BCP (hgate-dpo003-merged) | 方向 |
+80	|------|-------------------|-------------------------------|------|
+81	| AAVE pol gap | -0.091 (correct ↓) | +0.064 (**reversed** ↑) | ⚠️ 反转 |
+82	| Indian pol gap | -0.099 (correct ↓) | +0.063 (**reversed** ↑) | ⚠️ 反转 |
+83	| H2 gap reduction | 25-28% | **-10.3%** (wrong direction) | ⚠️ 反转 |
+84	| Variant×run gap expansion | — | **10/12** checks expanded | ⚠️ 系统性 |
+85	| Overcorrected rebound | +8.2% | **+14.3%** (amplified) | ⚠️ 放大 |
+86	
+87	### Gate 结果 (aggregate)
+88	H1: PASS (4/4) | H2: **FAIL (0/4)** | H3: FAIL (3/4) | Overall: **FAIL**
+89	
+90	### DPO 训练有效性证据 (dpo-003 + diag-lora-merge)
+91	- DPO-003 training: loss 0.653, accuracy 0.75-1.0, margin 0.05-0.17 (有效学习)
+92	- Merged model completion: 60% vs base 40% (+50%) → DPO 改善了 tool-calling
+93	- vLLM LoRA serving bug: 15% vs merged 60% → 已排除 serving artifact
+94	
+95	---
+96	
+97	## 4. 14B BCP — qwen14b-bcp-001 (C3 主证据)
+98	
+99	**设置**: Qwen2.5-14B-Instruct FP16 (TP=2), tau-bench retail, 20 tasks, 6 variants, 4 runs
+100	
+101	### Per-variant 指标 (4 runs)
+102	
+103	#### Completion
+104	| Variant | Run 1 | Run 2 | Run 3 | Run 4 | Mean |
+105	|---------|-------|-------|-------|-------|------|
+106	| baseline | 0.737 | 0.550 | 0.579 | 0.600 | **0.616** |
+107	| aave_target | 0.700 | 0.474 | 0.632 | 0.600 | **0.601** |
+108	| indian_english | 0.650 | 0.600 | 0.842 | 0.650 | **0.686** |
+109	| overcorrected | 0.750 | 0.500 | 0.600 | 0.650 | **0.625** |
+110	| single_dim_question | 0.500 | 0.700 | 0.600 | 0.600 | **0.600** |
+111	| single_dim_politeness | 0.600 | 0.800 | 0.474 | 0.750 | **0.656** |
+112	
+113	#### Politeness
+114	| Variant | Run 1 | Run 2 | Run 3 | Run 4 | Mean |
+115	|---------|-------|-------|-------|-------|------|
+116	| baseline | 0.470 | 0.588 | 0.497 | 0.536 | **0.523** |
+117	| aave_target | 0.393 | 0.454 | 0.493 | 0.455 | **0.449** |
+118	| indian_english | 0.462 | 0.442 | 0.427 | 0.444 | **0.444** |
+119	| overcorrected | 0.453 | 0.419 | 0.466 | 0.467 | **0.451** |
+120	| single_dim_question | 0.449 | 0.499 | 0.463 | 0.512 | **0.481** |
+121	| single_dim_politeness | 0.489 | 0.438 | 0.456 | 0.403 | **0.447** |
+122	
+123	#### Question Rate
+124	| Variant | Run 1 | Run 2 | Run 3 | Run 4 | Mean |
+125	|---------|-------|-------|-------|-------|------|
+126	| baseline | 0.037 | 0.035 | 0.054 | 0.041 | **0.042** |
+127	| aave_target | 0.044 | 0.015 | 0.044 | 0.008 | **0.028** |
+128	| indian_english | 0.038 | 0.023 | 0.027 | 0.018 | **0.027** |
+129	| overcorrected | 0.015 | 0.028 | 0.010 | 0.011 | **0.016** |
+130	| single_dim_question | 0.048 | 0.017 | 0.034 | 0.005 | **0.026** |
+131	| single_dim_politeness | 0.018 | 0.023 | 0.016 | 0.021 | **0.020** |
+132	
+133	### FM 复现分析
+134	
+135	| FM | 指标 | 14B 值 | 7B 值 | 14B 判定 |
+136	|----|------|--------|-------|---------|
+137	| FM1 | aave retention | 97.6% | 27.2% | **未复现** |
+138	| FM1 | indian retention | 111.2% | 40.8% | **未复现** |
+139	| FM2 | sdq→politeness | -8.0% (-4.2pp) | -25.6% | **弱复现** |
+140	| FM2 | sdp→question_rate | -52.8% (-2.2pp) | -52.3% | **弱复现** (绝对值小) |
+141	| FM3 | overcorrected pol | -13.6% (-7.1pp) | +8.2% (+4.6pp) | **未复现** (方向反) |
+142	
+143	### Gate 结果
+144	H1: PASS (4/4) | H2: **FAIL (1/4)** | H3: PASS (4/4) | Overall: 1/4
+145	
+146	---
+147	
+148	## 5. Scale-Dependent Failure Mode Transition (核心发现)
+149	
+150	| 维度 | 7B (mvp-004) | 14B (qwen14b-bcp-001) |
+151	|------|-------------|----------------------|
+152	| **失败模式** | 灾难性崩溃 (过度响应) | 选择性忽略 (不够响应) |
+153	| **Completion** | 10-26% (崩溃) | 60-69% (正常) |
+154	| **FM1 全局抑制** | ✅ 严重 (retention 27-41%) | ❌ 未复现 (retention >97%) |
+155	| **FM2 跨维度** | ✅ 显著 | ⚠️ 弱 (幅度远小) |
+156	| **FM3 过校正** | ✅ 反弹 (+4.6pp) | ❌ 反向 (-7.1pp) |
+157	| **H2 校准** | FAIL | FAIL |
+158	| **根因** | BCP prompt 扰动 > 模型能力 → 行为崩溃 | 模型能力 > BCP prompt → 忽略校准 |
+159	
+160	**结论**: BCP 在所有 scale 都失败，但失败机制随 scale 转变。不存在"刚好合适"的 scale 让 BCP 成功——7B 太弱会崩溃，14B 太强会忽略。这是方法论层面的缺陷。
+161	
+162	---
+163	
+164	## 6. 辅助实验数据
+165	
+166	### Llama-3-8B (llama-bcp-001) — killed
+167	- Completion: 5% (floor effect, tool-calling 能力不足)
+168	- 三 variant completion 完全一致，BCP 对 completion 效果严格为零
+169	- 降级为辅助证据：仅支持"低能力模型在 BCP 下也展现行为偏移"
+170	
+171	### Mistral-7B (mistral-bcp-001) — negative  
+172	- Completion: 0% (无法在 16-tool 场景生成 structured tool_calls)
+173	- 1 tool 正常, 16 tools FAIL
+174	- 无可用 BCP 数据
+175	
+176	---
+177	
+178	## 7. Paper Claims → Evidence 映射 (更新版)
+179	
+180	| Claim | Evidence | Strength | exp_id |
+181	|-------|----------|----------|--------|
+182	| C1: FM1 全局抑制 | 7B retention 27-41% | Moderate (1 model, 1 run, n=19-20) | mvp-004 |
+183	| C1: FM2 跨维度干扰 | 7B politeness -25.6%, qrate -52.3% | Moderate | mvp-004 |
+184	| C1: FM3 过校正反弹 | 7B +4.6pp (1 run); DPO+BCP +7.2pp mean (4 runs, 4/4) | Moderate-Strong | mvp-004, hgate-dpo003-merged |
+185	| C2: FM4 DPO reversal | gap expansion 10/12, H2 -10.3% wrong direction | Strong (4 runs, 80 episodes) | hgate-dpo003-merged |
+186	| C2: DPO 训练有效 | acc 0.75-1.0; merged 60% vs base 40% | Strong | dpo-003, diag-lora-merge |
+187	| C3: Scale transition | 14B H2 FAIL but FM1/FM3 NOT replicated → different failure mode | Strong (4 runs, 80 episodes) | qwen14b-bcp-001 |
+188	| C3: No "right" scale | 7B over-responds, 14B under-responds, both fail H2 | Moderate (2 scales, 1 model family) | mvp-004, qwen14b-bcp-001 |
+189	| C4: Implications | Analytical, grounded in C1-C3 | Analytical | — |
+190	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "516f57b8-587a-4a71-bc3f-59074a23f390",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "73ad4563-aa0b-4fe6-b0f3-7a9268e955c0",
+  "sourceToolAssistantUUID": "516f57b8-587a-4a71-bc3f-59074a23f390",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-13T17:07:58.832Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Kw56MpEzbfXMJzzaGxZQQ2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/_project/paper/section_experiments_draft.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73ad4563-aa0b-4fe6-b0f3-7a9268e955c0",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwDJgUwQrRmU7VyJFy5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "dc06a977-c664-4990-a3da-7dfcfcc9a6eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011C2pk4b2KEzGTZsxHxrPqV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7910,
+      "cache_read_input_tokens": 35373,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7910,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-13T17:07:58.837Z_
+
+<details><summary>↩ Tool result · `toolu_01Kw56MpEzbfXMJzzaGxZQQ2`</summary>
+
+```text
+1	# 4. Experiments
+2	
+3	## 4.1 Experimental Setup
+4	
+5	**Claim**: We evaluate BCP and DPO+BCP calibration on Qwen2.5-7B-Instruct in the $\tau$-bench retail domain, with auxiliary cross-model and cross-scale evidence.
+6	
+7	**Primary model.** Qwen2.5-7B-Instruct, served via vLLM with `gpu_memory_utilization=0.9`, `max_model_len=32768`, `trust_remote_code=True`. For DPO experiments, the DPO-003 adapter is merged into base weights and served as a standalone model.
+8	
+9	**Excluded models.**
+10	- *Llama-3-8B-Instruct* [llama-bcp-001]: Completion floor at 5% (1/20 tasks). Tool-calling capability insufficient for $\tau$-bench's 16-tool environment. Cannot isolate BCP effect from tool-calling failure.
+11	- *Mistral-7B-Instruct-v0.3* [mistral-bcp-001]: Completion 0% (0/3 tasks). Model cannot generate structured `tool_calls` with 16 tools --- embeds JSON in text content instead. Single-tool calling works; 16-tool calling fails. Attempted `--tool-call-parser mistral` + `--tokenizer-mode mistral` without success.
+12	
+13	**Cross-scale validation.** [PENDING: Qwen2.5-14B-Instruct-AWQ, qwen14b-bcp-001]
+14	
+15	## 4.2 BCP Failure Mechanisms (C1)
+16	
+17	**Claim**: BCP produces three systematic failure mechanisms --- global behavior suppression, cross-dimension interference, and overcorrection rebound --- that collectively explain why prompt-based calibration fails.
+18	
+19	### Table 1: BCP Results (Qwen2.5-7B-Instruct, $n=19$--$20$ per variant) [mvp-004]
+20	
+21	| Variant | Politeness | $\Delta$ Pol | Completion | $\Delta$ Comp | Question Rate | $\Delta$ QR |
+22	|---------|------------|-------------|------------|--------------|---------------|-------------|
+23	| `baseline` | 0.559 | --- | 0.368 | --- | 0.044 | --- |
+24	| `aave_target` | 0.468 | $-16.3\%$ | 0.100 | $-72.8\%$ | 0.015 | $-65.9\%$ |
+25	| `indian_english` | 0.460 | $-17.7\%$ | 0.150 | $-59.2\%$ | 0.014 | $-68.2\%$ |
+26	| `overcorrected` | 0.605 | $+8.2\%$ | 0.263 | $-28.5\%$ | 0.018 | $-59.1\%$ |
+27	| `single_dim_question` | 0.416 | $-25.6\%$ | 0.250 | $-32.1\%$ | 0.065 | $+47.7\%$ |
+28	| `single_dim_politeness` | 0.634 | $+13.4\%$ | 0.200 | $-45.7\%$ | 0.021 | $-52.3\%$ |
+29	
+30	### FM1: Global Behavior Suppression
+31	
+32	BCP injection collapses task completion regardless of the targeted behavioral dimension. Mean calibrated completion across all five BCP variants is $0.193$ ($52.3\%$ retention of baseline $0.368$), far below the $\geq 80\%$ threshold required by H3. Even the best-performing variant (`overcorrected`, $0.263$) retains only $71.5\%$ of baseline completion.
+33	
+34	This parallels the persona-accuracy trade-off documented in classification settings: persona prompting degrades MMLU accuracy from $71.6\%$ to $66.3\%$ \cite{basil2025playing_pretend}, and expert personas cause up to 30pp accuracy drops with instruction-tuned models being most susceptible \cite{hu2026expert_persona}. BCP represents a more severe instance of this trade-off in agentic settings, where the model must simultaneously maintain persona compliance and multi-step tool-calling capability.
+35	
+36	### FM2: Cross-Dimension Interference
+37	
+38	Targeting a single behavioral dimension perturbs non-targeted dimensions:
+39	
+40	- `single_dim_question` (targets question rate only): politeness drops $25.6\%$ ($0.559 \to 0.416$), despite no politeness constraint.
+41	- `single_dim_politeness` (targets politeness only): question rate drops $52.3\%$ ($0.044 \to 0.021$), despite no question rate constraint.
+42	
+43	**Base rate caveat.** The baseline question rate is low ($0.044$, approximately 0.8 questions per multi-turn task episode). The $52.3\%$ relative drop corresponds to an absolute change from $\sim 0.044$ to $\sim 0.021$. We report both relative and absolute values throughout; readers should weight the absolute magnitudes when assessing practical significance.
+44	
+45	This cross-dimension coupling aligns with the bias spillover effect documented in targeted LLM alignment \cite{gupta2026intra_fairness}, where debiasing one social axis produces unintended effects on others. In our setting, the coupling suggests behavioral dimensions share representational capacity that cannot be independently modulated via prompting alone.
+46	
+47	### FM3: Overcorrection Rebound
+48	
+49	Requesting extreme behavioral shifts causes the model to rebound in the opposite direction. The `overcorrected` variant targets very low politeness ($\sim 5\%$) but produces *higher* politeness than baseline.
+50	
+51	**Primary evidence** [hgate-dpo003-merged, 4 runs]:
+52	
+53	| Run | Baseline Pol | Overcorrected Pol | $\Delta$ (pp) |
+54	|-----|-------------|-------------------|---------------|
+55	| 1 | 0.4748 | 0.5693 | $+9.45$ |
+56	| 2 | 0.4657 | 0.5080 | $+4.23$ |
+57	| 3 | 0.5321 | 0.5810 | $+4.89$ |
+58	| 4 | 0.5336 | 0.6371 | $+10.35$ |
+59	| **Mean** | **0.5016** | **0.5739** | **$+7.23$** |
+60	
+61	The rebound is consistent across all 4 runs (4/4), with magnitude ranging from $+4.2$pp to $+10.4$pp ($+8.2\%$ to $+19.4\%$ relative). Auxiliary evidence from the single-run BCP experiment [mvp-004] shows the same direction: overcorrected politeness $0.605$ vs. baseline $0.559$ ($+4.6$pp, $+8.2\%$ relative).
+62	
+63	This suggests an "attractor basin" for default behavioral rates: the model resists large perturbations and snaps back toward (or beyond) its baseline distribution. No direct external parallel exists for this specific mechanism, making FM3 a novel contribution.
+64	
+65	## 4.3 DPO+BCP Interaction Reversal (C2)
+66	
+67	**Claim**: DPO training, despite effective learning (accuracy $0.75$--$1.0$), reverses the direction of BCP calibration when combined, expanding rather than closing dialect-dependent behavioral gaps.
+68	
+69	### Table 2: DPO+BCP Aggregate Results [hgate-dpo003-merged, 4 runs $\times$ 20 tasks]
+70	
+71	| Variant | Mean Pol ($\pm$ SD) | Mean Comp ($\pm$ SD) | H2 Gap Change |
+72	|---------|---------------------|----------------------|---------------|
+73	| `baseline` | $0.502 \pm 0.035$ | $0.294 \pm 0.107$ | --- |
+74	| `aave_target` | $0.566 \pm 0.039$ | $0.249 \pm 0.157$ | $-23.3 \pm 23.4$ |
+75	| `indian_english` | $0.565 \pm 0.054$ | $0.166 \pm 0.059$ | $-21.9 \pm 19.3$ |
+76	| `overcorrected` | $0.574 \pm 0.054$ | $0.209 \pm 0.057$ | $-18.0 \pm 7.5$ |
+77	| `single_dim_question` | $0.475 \pm 0.059$ | $0.220 \pm 0.090$ | --- |
+78	| `single_dim_politeness` | $0.609 \pm 0.043$ | $0.279 \pm 0.082$ | --- |
+79	
+80	*H2 Gap Change reported as mean $\pm$ SD across 4 runs (negative = gap expanded). See Appendix for per-run breakdown.*
+81	
+82	**H-gate results**: H1 PASS (4/4), H2 FAIL (0/4), H3 FAIL (3/4). Overall: **FAIL**.
+83	
+84	### Direction Reversal
+85	
+86	The critical finding is that DPO+BCP *reverses* the calibration direction compared to BCP alone:
+87	
+88	| Comparison | AAVE Pol Gap | Indian Pol Gap |
+89	|------------|-------------|----------------|
+90	| BCP alone (baseline $-$ variant) [mvp-004] | $-0.091$ (correct: variant lower) | $-0.099$ (correct: variant lower) |
+91	| DPO+BCP (baseline $-$ variant) [hgate-dpo003-merged] | $+0.064$ (**reversed**: variant higher) | $+0.063$ (**reversed**: variant higher) |
+92	
+93	Under BCP alone, dialect-targeted variants show lower politeness than baseline (the intended calibration direction). Under DPO+BCP, the same variants show *higher* politeness than baseline --- the gap has flipped sign.
+94	
+95	**Gap expansion.** Across 4 runs $\times$ 3 dialect-targeted variants (aave, indian, overcorrected) = 12 variant$\times$run checks, 10/12 show gap expansion (politeness gap increased rather than decreased). Mean H2 gap reduction = $-10.3\%$ (negative = wrong direction; threshold $\geq +30\%$).
+96	
+97	### DPO Training Was Effective
+98	
+99	The reversal is not attributable to DPO training failure. DPO-003 metrics show strong learning:
+100	
+101	- Rewards accuracy: $0.75$--$1.0$ (vs. $0.50$ for DPO-001 with mismatched data)
+102	- Rewards margin: $0.05$--$0.17$ (vs. $-0.00015$ for DPO-001)
+103	- Merged model completion: $60\%$ vs. base model $40\%$ [diag-lora-merge]
+104	
+105	DPO improved the model's tool-calling ability. The reversal arises from an **interaction effect** between DPO alignment and BCP prompting. This aligns with findings that DPO bypasses rather than removes pre-training capabilities \cite{lee2024dpo_toxicity}: the DPO-aligned model has a shifted behavioral baseline that interacts adversarially with BCP rate targets.
+106	
+107	### Overcorrection Amplification
+108	
+109	DPO amplifies the overcorrection rebound (FM3):
+110	
+111	| Setting | Overcorrected Pol $-$ Baseline Pol | Relative |
+112	|---------|-------------------------------------|----------|
+113	| BCP alone [mvp-004] | $+4.6$pp ($0.605$ vs. $0.559$) | $+8.2\%$ |
+114	| DPO+BCP [hgate-dpo003-merged, mean] | $+7.2$pp ($0.574$ vs. $0.502$) | $+14.3\%$ |
+115	
+116	The rebound magnitude approximately doubles under DPO, suggesting that alignment strengthens the attractor basin that resists extreme calibration targets.
+117	
+118	## 4.4 Cross-Scale Validation (C3)
+119	
+120	[PENDING: qwen14b-bcp-001]
+121	
+122	### Table 3: Cross-Scale BCP Comparison (placeholder)
+123	
+124	| Metric | Qwen2.5-7B [mvp-004] | Qwen2.5-14B [PENDING] |
+125	|--------|-----------------------|-----------------------|
+126	| Baseline completion | 0.368 | [PENDING] |
+127	| Baseline politeness | 0.559 | [PENDING] |
+128	| FM1: mean calibrated completion retention | 52.3% | [PENDING] |
+129	| FM2: cross-dim politeness shift (single_dim_question) | $-25.6\%$ | [PENDING] |
+130	| FM3: overcorrection rebound | $+8.2\%$ | [PENDING] |
+131	
+132	**Auxiliary cross-model evidence.**
+133	- Llama-3-8B-Instruct [llama-bcp-001]: Completion floor ($5\%$) prevents meaningful BCP analysis. All three tested variants achieve identical completion (1/20 on the same task), so BCP has zero observable completion effect. Politeness shifts are observable but occur in $95\%$-failed dialogues, supporting only a weak claim that "low-capability models also exhibit behavioral shifts under BCP."
+134	- Mistral-7B-Instruct-v0.3 [mistral-bcp-001]: Zero tool-calling capability in 16-tool setting. No usable data.
+135	
+136	**Hedging strategy.** If Qwen-14B replicates FM1--FM3: "failure modes persist across model scales (7B, 14B)." If not: "documented on Qwen2.5-7B; generalizability requires further investigation."
+137	
+138	## 4.5 Analysis
+139	
+140	### Baseline Completion Variance
+141	
+142	Baseline task completion exhibits high variance across runs in the DPO+BCP evaluation [hgate-dpo003-merged]:
+143	
+144	| Run | Baseline Completion |
+145	|-----|---------------------|
+146	| 1 | 0.278 |
+147	| 2 | 0.150 |
+148	| 3 | 0.400 |
+149	| 4 | 0.350 |
+150	| **Mean $\pm$ SD** | **$0.294 \pm 0.107$** |
+151	
+152	The $\sigma = 10.7$pp across 4 runs (range: $15.0\%$--$40.0\%$) reflects inherent stochasticity in multi-turn tool-calling dialogues. This variance is a confound for completion-based claims and motivates our focus on *directional consistency* (e.g., overcorrection rebound in 4/4 runs, gap expansion in 10/12 checks) rather than precise magnitude estimates.
+153	
+154	### DPO Training Quality Progression
+155	
+156	The three DPO iterations demonstrate how data quality dominates training outcomes:
+157	
+158	| Version | Mismatch | Accuracy | Loss | Margin | exp_id |
+159	|---------|----------|----------|------|--------|--------|
+160	| DPO-001 | 48% | 0.50 | 0.6814 | $-0.00015$ | dpo-001 |
+161	| DPO-002 | Partial | 0.667 | 0.6614 | $0.026$ | dpo-002 |
+162	| DPO-003 | 0% | 0.75--1.0 | 0.653 | $0.05$--$0.17$ | dpo-003 |
+163	
+164	DPO-001 trained on v1 data with $48\%$ tokenizer mismatch, producing random-level accuracy and near-zero rewards margin. Fix B (apply_chat_template $\to$ plain text) in DPO-003 eliminated mismatch entirely, yielding strong learning signal. Despite this effective training, DPO-003 still failed to produce positive calibration outcomes when combined with BCP --- the failure is in the calibration interaction, not in DPO learning.
+165	
+166	### vLLM LoRA Serving Bug
+167	
+168	Diagnostic experiment [diag-lora-merge] revealed a critical evaluation artifact: vLLM's dynamic LoRA loading produces severely degraded completion compared to merged-model serving.
+169	
+170	| Serving Mode | Completion | Source |
+171	|-------------|------------|--------|
+172	| vLLM LoRA dynamic loading | 15% | hgate-dpo003 (killed) |
+173	| Merged model (PEFT `merge_and_unload`) | 60% | diag-lora-merge |
+174	| Base model (no DPO) | 40% | diag-lora-merge |
+175	
+176	The $4\times$ gap between LoRA serving ($15\%$) and merged serving ($60\%$) invalidates all LoRA-served evaluation data (hgate-dpo001, hgate-dpo002, hgate-dpo003). All final results in this paper use the merged model [hgate-dpo003-merged]. This finding has practical implications: researchers using vLLM for LoRA-based evaluation should validate against merged-model baselines.
+177	
+178	### Statistical Limitations
+179	
+180	- BCP-only results (Table 1) are from a single run ($n = 19$--$20$ per variant). While effect sizes are large (completion drops $>28\%$), statistical power for precise magnitude estimates is limited.
+181	- DPO+BCP results (Table 2) benefit from 4 independent runs, enabling consistency analysis. We focus on directional consistency (10/12 gap expansion, 4/4 overcorrection rebound) rather than point estimates.
+182	- [PENDING: Bootstrap confidence intervals for key comparisons (FM3 rebound magnitude, C2 reversal direction)]
+183	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc06a977-c664-4990-a3da-7dfcfcc9a6eb",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "0e908d02-5b2e-4926-ab2f-14510f2e293c",
+  "sourceToolAssistantUUID": "dc06a977-c664-4990-a3da-7dfcfcc9a6eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T17:07:59.454Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014X1QsAxTWU9Hv2mXewbrBh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/_project/paper/section_method_draft.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e908d02-5b2e-4926-ab2f-14510f2e293c",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwDJgUwQrRmU7VyJFy5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d7331ab1-deb3-4ac2-a0f3-938d6ceab38f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011C2pk4b2KEzGTZsxHxrPqV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7910,
+      "cache_read_input_tokens": 35373,
+      "output_tokens": 171,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7910
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 171,
+          "cache_read_input_tokens": 35373,
+          "cache_creation_input_tokens": 7910,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7910,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T17:07:59.463Z_
+
+<details><summary>↩ Tool result · `toolu_014X1QsAxTWU9Hv2mXewbrBh`</summary>
+
+```text
+1	# 3. Method
+2	
+3	## 3.1 Task Environment
+4	
+5	We ground our study in the $\tau$-bench retail domain \cite{yao2024taubench}, a multi-turn tool-calling benchmark for evaluating customer service agents. The environment consists of a user simulator $\mathcal{U}$, a customer service agent $\mathcal{A}$, and 16 retail-domain tools (e.g., `get_order_details`, `cancel_order`, `modify_pending_order`). Each episode proceeds as a multi-turn dialogue where $\mathcal{U}$ presents a task request and $\mathcal{A}$ must resolve it through tool-calling and natural language interaction.
+6	
+7	**Task completion.** Following \cite{yao2024taubench}, we define task success as a binary reward $r \in \{0, 1\}$ computed by comparing the final database state against the ground-truth target state. We report task completion rate as $\bar{r} = \frac{1}{N}\sum_{i=1}^{N} r_i$ over $N$ episodes.
+8	
+9	**Why $\tau$-bench.** $\tau$-bench provides (1) a standardized user simulator that is amenable to behavioral modification via system prompt injection, (2) a deterministic reward signal that does not require human judgment, and (3) a multi-turn setting where behavioral calibration effects accumulate across turns. Recent work \cite{sim2real2026gap} demonstrates that LLM user simulators in $\tau$-bench are excessively cooperative and stylistically uniform compared to real users, directly motivating calibration interventions.
+10	
+11	## 3.2 Behavioral Calibration Prompting (BCP)
+12	
+13	**Motivation.** LLM user simulators exhibit dialect-dependent behavioral biases: AAVE and Indian English speakers receive systematically different politeness and question-asking patterns compared to Standard American English \cite{seshadri2026lost, haq2026dialect}. BCP aims to close these gaps by injecting explicit behavioral rate targets into the user simulator's system prompt.
+14	
+15	**Design.** A BCP prompt $p_v$ for variant $v$ specifies target rates for one or more behavioral dimensions. The modified user simulator $\mathcal{U}_{v}$ receives $p_v$ prepended to its standard instructions. We design six variants to cover three axes of variation:
+16	
+17	| Variant | Target | Motivation |
+18	|---------|--------|------------|
+19	| `baseline` | No BCP injection | Control condition; uncalibrated simulator |
+20	| `aave_target` | Politeness $\approx 20\%$, question rate $\approx 10\%$ | Calibrate toward AAVE behavioral norms \cite{rickford1999aave} |
+21	| `indian_english` | Politeness $\approx 35\%$, question rate $\approx 8\%$ | Calibrate toward Indian English norms \cite{kachru2008cultures} |
+22	| `overcorrected` | Politeness $\approx 5\%$, question rate $\approx 2\%$ | Extreme target to probe overcorrection dynamics |
+23	| `single_dim_question` | Question rate $\approx 10\%$; politeness unconstrained | Isolate single-dimension calibration effect |
+24	| `single_dim_politeness` | Politeness $\approx 20\%$; question rate unconstrained | Isolate single-dimension calibration effect |
+25	
+26	**Variant selection rationale.** The six variants span three critical dimensions: (1) cross-dialect calibration (`aave_target`, `indian_english`) tests whether BCP can correct real demographic gaps; (2) single-dimension controls (`single_dim_question`, `single_dim_politeness`) isolate whether cross-dimension interference is inherent; (3) the `overcorrected` variant probes model behavior under extreme calibration pressure, revealing overcorrection rebound effects.
+27	
+28	## 3.3 DPO Training Protocol
+29	
+30	**Data construction.** We generate preference pairs from $\tau$-bench retail episodes. Each pair $(x, y_w, y_l)$ consists of a dialogue context $x$, a preferred response $y_w$ exhibiting target behavioral rates (lower politeness, appropriate question frequency), and a dispreferred response $y_l$ exhibiting baseline behavioral rates.
+31	
+32	- **Source data**: 137 baseline traces + 32 AAVE-calibrated traces from Qwen2.5-7B-Instruct [aave-corpus-gen]
+33	- **Pair construction**: 1,563 DPO preference pairs from user-turn behavioral rate contrasts [aave-corpus-gen]
+34	
+35	**Critical implementation detail: Fix B.** TRL's `DPOTrainer` (v1.4.0) hard-codes `add_generation_prompt=True` for conversational-format data, appending `<|im_start|>assistant\n` to prompt tokens. When chosen/rejected responses are user-role turns, this causes systematic tokenizer mismatch (TRL issue #5213). We resolve this by applying `tokenizer.apply_chat_template()` during preprocessing to convert conversations to plain text, forcing `DPOTrainer` to use the text-format code path with zero mismatch. We additionally set `padding_side="right"` to prevent padding-induced attention artifacts.
+36	
+37	**Training configuration.** We fine-tune Qwen2.5-7B-Instruct using LoRA \cite{hu2021lora}:
+38	
+39	| Parameter | Value |
+40	|-----------|-------|
+41	| LoRA rank $r$ | 16 |
+42	| LoRA $\alpha$ | 32 (scaling factor $\alpha/r = 2$) |
+43	| Target modules | `q_proj`, `v_proj` |
+44	| LoRA dropout | 0.05 |
+45	| Learning rate | $5 \times 10^{-7}$ |
+46	| DPO $\beta$ | 0.1 |
+47	| Batch size | 1 (gradient accumulation 4, effective batch 4) |
+48	| Epochs | 3 |
+49	| Total steps | 1,173 |
+50	
+51	**DPO version evolution.** The final training protocol (DPO-003) emerged through iterative debugging:
+52	
+53	| Version | Data Format | Mismatch Rate | Final Accuracy | Final Loss | exp_id |
+54	|---------|-------------|---------------|----------------|------------|--------|
+55	| DPO-001 | Raw text (v1) | 48% | 0.50 (random) | 0.6814 | dpo-001 |
+56	| DPO-002 | Chat template (v2) | Partial (TRL bug) | 0.667 | 0.6614 | dpo-002 |
+57	| DPO-003 | Plain text via Fix B (v3) | 0% | 0.75--1.0 | 0.653 | dpo-003 |
+58	
+59	DPO-001's 48% mismatch rate rendered training ineffective (accuracy at chance level, rewards margin $-0.00015$). DPO-003 achieved strong learning signal with rewards margin $0.05$--$0.17$, confirming that Fix B resolved the data-model alignment issue.
+60	
+61	## 3.4 Evaluation Protocol
+62	
+63	**Hypothesis-gated evaluation (H-gate).** We evaluate calibration success through three sequential hypotheses:
+64	
+65	- **H1 (Baseline quality)**: Uncalibrated baseline politeness rate $\geq 0.30$, confirming the model exhibits measurable behavioral rates worth calibrating.
+66	- **H2 (Calibration effect)**: Calibrated variants reduce the politeness gap between dialect-targeted variants and baseline by $\geq 30\%$ relative.
+67	- **H3 (Completion retention)**: Calibrated variant task completion $\geq 80\%$ of baseline completion rate, ensuring calibration does not destroy task-solving capability.
+68	
+69	**Evaluation scale.** For BCP-only evaluation [mvp-004]: 1 run $\times$ 20 tasks $\times$ 6 variants = 120 episodes ($n = 19$--$20$ per variant after filtering). For DPO+BCP evaluation [hgate-dpo003-merged]: 4 runs $\times$ 20 tasks $\times$ 6 variants = 480 episodes, enabling cross-run consistency analysis.
+70	
+71	**Behavioral metrics.** We measure three dimensions per episode:
+72	
+73	- **Politeness rate**: Fraction of user turns containing politeness markers (greetings, thanks, hedging, apologies), computed via keyword-based classifier.
+74	- **Task completion**: Binary reward $r \in \{0, 1\}$ from $\tau$-bench database state comparison.
+75	- **Question rate**: Fraction of user turns containing interrogative sentences, computed via `QuestionDetector` (rule-based, precision-validated on a held-out annotation set).
+76	
+77	**Model serving.** For DPO-003 evaluation, we serve the merged model (LoRA weights merged via PEFT `merge_and_unload`) rather than vLLM dynamic LoRA loading. Diagnostic experiment [diag-lora-merge] revealed that vLLM LoRA dynamic loading produces severely degraded completion (15% vs. 60% for merged model vs. 40% for base model), likely due to weight scaling inconsistencies in the LoRA serving path. All reported DPO results use the merged model.
+78	
+79	[PENDING: Qwen2.5-14B-Instruct-AWQ deployment details for cross-scale validation, qwen14b-bcp-001]
+80	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7331ab1-deb3-4ac2-a0f3-938d6ceab38f",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "8c7dcf44-b8ed-4b73-93d3-c1bb07da5472",
+  "sourceToolAssistantUUID": "d7331ab1-deb3-4ac2-a0f3-938d6ceab38f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T17:08:03.689Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015jcnpzgq6apQXeZ73H6Dpg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/_project/paper/section_related_work_draft.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c7dcf44-b8ed-4b73-93d3-c1bb07da5472",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwDgZsDSq8SWEPER5q9",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7fa4aa14-1cc1-4233-ba0d-8a6b0fe472cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uz73Yodz15JnZQ56R5652X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7423,
+      "cache_read_input_tokens": 43283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7423,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T17:08:03.697Z_
+
+<details><summary>↩ Tool result · `toolu_015jcnpzgq6apQXeZ73H6Dpg`</summary>
+
+```text
+1	# 2 Related Work
+2	
+3	## 2.1 LLM-Based User Simulation for Agent Evaluation
+4	
+5	LLM-based user simulators have become central to evaluating tool-calling agents. Yao et al. (2024) introduce τ-bench, a benchmark pairing an LLM user simulator with a tool-calling agent in retail and airline domains, and propose the pass^k reliability metric. Liu et al. (2024) and Wang et al. (2024) establish complementary multi-environment and multi-turn evaluation paradigms, though neither incorporates demographic variation in their simulated users. Naous et al. (2025) demonstrate that purpose-built User LMs outperform repurposed assistant models, with GPT-4o success rates dropping from 74.6% to 57.4% under realistic simulation. Sekulić et al. (2024) show that domain-aware fine-tuning improves user goal fulfillment, while Ahmad et al. (2025) generate diverse user profiles with varied demographics and conversational styles. Nakash et al. (2026) address evaluation efficiency through diversity-guided branching trajectories. Most critically, Zhou et al. (2026) conduct the first full τ-bench evaluation with 451 real humans, finding that LLM simulators are excessively cooperative and stylistically uniform, inflating agent success rates. Seshadri et al. (2026) further document that AAVE and Indian English speakers experience the worst calibration errors. However, none of these works attempt to *correct* the identified sim-to-real gaps through behavioral calibration—they diagnose without prescribing, leaving open whether calibration methods can close the fidelity gaps they identify.
+6	
+7	## 2.2 Behavioral Calibration of Language Models
+8	
+9	Prompt-based calibration has a rich history: Zhao et al. (2021) show that contextual calibration of output distributions can improve few-shot accuracy by up to 30%, but their method targets classification biases, not behavioral rates in generation. In multi-turn settings, Abdulhai et al. (2025) apply multi-turn RL to reduce persona inconsistency by over 55%, demonstrating that off-the-shelf LLMs drift from assigned personas across conversation turns. A growing body of work, however, documents fundamental limitations of persona and role prompting. Basil et al. (2025) find that expert personas *degrade* factual accuracy—MMLU drops from 71.6% to 66.3% with detailed persona instructions—because persona prompting activates instruction-following mode at the expense of factual recall. Hu et al. (2026) systematically confirm this trade-off, reporting accuracy degradation of up to 30 percentage points, with more instruction-tuned models being more susceptible. Li et al. (2025) show that LLM-generated personas drift toward socially desirable traits, introducing bias at the persona creation step itself. Our work extends these findings to a previously unstudied setting: multi-turn agent dialogue with tool-calling requirements, where we find that prompt-based behavioral calibration (BCP) triggers a more severe failure—global suppression of task completion—because the model must simultaneously follow calibration instructions and execute structured tool calls.
+10	
+11	## 2.3 Preference Optimization for Bias Mitigation
+12	
+13	Direct Preference Optimization (Rafailov et al., 2023) offers a computationally lightweight alternative to PPO-based RLHF by directly optimizing policy from preference pairs without an explicit reward model, and has been widely adopted for alignment tasks (Wang et al., 2024). Recent work applies preference optimization to bias mitigation: Khan (2026) proposes decoding-time debiasing via Process Reward Models, achieving bias score improvements of up to +0.40 without weight changes—a complementary inference-time approach to our training-time DPO strategy. However, DPO's alignment mechanism has known fragility. Lee et al. (2024) provide mechanistic evidence that DPO *bypasses* rather than *removes* pre-training capabilities—toxic behavior can be recovered through simple un-alignment with minimal parameter changes. Paraschou et al. (2026) document a related phenomenon: targeted debiasing on one social dimension causes unintended *bias spillover* on other dimensions, indicating that multi-attribute fairness dynamics must be considered jointly. Our work reveals a failure mode at the intersection of these concerns: when DPO-aligned models are combined with BCP prompting, the calibration direction *reverses*—an interaction effect not predictable from studying either method in isolation.
+14	
+15	## 2.4 Dialect and Sociolinguistic Bias in NLP
+16	
+17	AAVE and Indian English represent two well-studied but underserved varieties in NLP. Rickford (1999) provides the authoritative description of AAVE phonological and pragmatic features, while Kachru and Smith (2008) document Indian English politeness strategies rooted in distinct face-saving norms. Joshi et al. (2025) survey NLP for dialects comprehensively, noting systematic performance degradation on dialectal data across both NLU and NLG tasks. Several benchmarks quantify these disparities: Faisal et al. (2024) cover 281 language varieties across 10 NLP tasks in DialectBench; Lin et al. (2025) introduce ReDial, the first human-annotated SE–AAVE parallel benchmark, finding that LLMs struggle more with AAVE than with misspelled Standard English; and Gupta et al. (2025) present EnDive, a cross-dialect benchmark covering both our target dialects (AAVE and Indian English) across understanding, reasoning, and math tasks. Haq and Saldias (2026) demonstrate that dialect cues alone trigger differential LLM behavior—a "dialect jailbreak" reducing refusal probability to near zero—establishing that bias operates through implicit linguistic signals, not just explicit identity markers. Gallegos et al. (2024) provide a comprehensive taxonomy of bias metrics and mitigation methods across the LLM pipeline. Critically, existing work evaluates dialect bias in classification, QA, and reasoning tasks. No prior study measures *behavioral rate disparities* (e.g., question-asking frequency, politeness levels) in multi-turn agent dialogue, nor documents what happens when calibration methods are applied to correct such disparities.
+18	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7fa4aa14-1cc1-4233-ba0d-8a6b0fe472cb",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "96ed4270-f7c4-403e-9478-df067d7c41a3",
+  "sourceToolAssistantUUID": "7fa4aa14-1cc1-4233-ba0d-8a6b0fe472cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T17:08:04.442Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QE4BaySk9r5hoM9pm33Mh6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/plan_b_evidence_table.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96ed4270-f7c4-403e-9478-df067d7c41a3",
+  "isSidechain": true,
+  "agentId": "add62814c4b2f5345",
+  "requestId": "req_011CazwDgZsDSq8SWEPER5q9",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7debb1be-269d-4239-a038-830c46ae8aa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uz73Yodz15JnZQ56R5652X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7423,
+      "cache_read_input_tokens": 43283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7423,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T17:08:04.447Z_
+
+<details><summary>↩ Tool result · `toolu_01QE4BaySk9r5hoM9pm33Mh6`</summary>
+
+```text
+1	# Plan B Evidence Table: BCP Failure Mechanisms
+2	
+3	> Compiled 2026-05-13 from experiment registry. All numbers from registry, no fabrication.
+4	
+5	## Summary
+6	
+7	| Failure Mechanism | Experiments | Models | Key Metric | Severity |
+8	|---|---|---|---|---|
+9	| FM1: Global Behavior Suppression | mvp-004, hgate-dpo003-merged, llama-bcp-001 | Qwen2.5-7B, Llama-3-8B | completion drop 46-95% | Critical |
+10	| FM2: Cross-Dimension Interference | mvp-004 | Qwen2.5-7B | non-target dimension shift 25-66% | High |
+11	| FM3: Overcorrection Rebound | mvp-004, hgate-dpo003-merged | Qwen2.5-7B, Qwen2.5-7B-DPO003 | politeness +8-19pp vs baseline | Medium |
+12	| FM4: DPO+BCP Interaction Reversal | hgate-dpo003-merged | Qwen2.5-7B-DPO003 | gap reduction -10.3% (wrong dir) | Critical |
+13	
+14	---
+15	
+16	## FM1: Global Behavior Suppression (Completion Collapse)
+17	
+18	BCP calibration prompts systematically reduce task completion, regardless of which behavioral dimension is targeted.
+19	
+20	### mvp-004 (Qwen2.5-7B-Instruct, BCP only, n=20 tasks)
+21	
+22	| Variant | Politeness | Question Rate | Completion | Completion Δ vs Baseline |
+23	|---|---|---|---|---|
+24	| baseline | 0.559 | 0.044 | 0.368 | — |
+25	| aave_target | 0.468 | 0.015 | 0.100 | **-72.8%** |
+26	| indian_english | 0.460 | 0.014 | 0.150 | **-59.2%** |
+27	| overcorrected | 0.605 | 0.018 | 0.263 | -28.5% |
+28	| single_dim_question | 0.416 | 0.065 | 0.250 | -32.1% |
+29	| single_dim_politeness | 0.634 | 0.021 | 0.200 | **-45.7%** |
+30	
+31	- Mean calibrated completion: 0.193 (vs baseline 0.368)
+32	- Mean completion retention: **52.3%** (H3 threshold: ≥80%)
+33	
+34	### hgate-dpo003-merged (Qwen2.5-7B-DPO003-merged, 4 runs × 20 tasks)
+35	
+36	| Run | Baseline Comp | AAVE Comp | Indian Comp | Overcorrected Comp |
+37	|---|---|---|---|---|
+38	| 1 | 0.278 | 0.150 (-46%) | 0.150 (-46%) | 0.150 (-46%) |
+39	| 2 | 0.150 | 0.444 (+196%) | 0.158 (+5%) | 0.250 (+67%) |
+40	| 3 | 0.400 | 0.300 (-25%) | 0.250 (-38%) | 0.278 (-31%) |
+41	| 4 | 0.350 | 0.100 (-71%) | 0.105 (-70%) | 0.158 (-55%) |
+42	| **Mean** | **0.294** | **0.249 (-15%)** | **0.166 (-44%)** | **0.209 (-29%)** |
+43	
+44	Note: Run 2 baseline=0.15 is anomalously low, inflating AAVE relative comparison. Excluding Run 2, mean completion drop is 47% (AAVE), 51% (Indian), 44% (Overcorrected).
+45	
+46	### llama-bcp-001 (Meta-Llama-3-8B-Instruct, killed early)
+47	
+48	| Variant | Completion | Note |
+49	|---|---|---|
+50	| all variants | 0.05 | Floor effect — Llama-3-8B tool-calling too weak |
+51	
+52	- Killed: completion=5% makes BCP effect unmeasurable
+53	- Only supports: "low-capability models show behavior shift under BCP but at floor completion"
+54	
+55	---
+56	
+57	## FM2: Cross-Dimension Interference
+58	
+59	Targeting one behavioral dimension with BCP systematically perturbs non-targeted dimensions.
+60	
+61	### mvp-004 (Qwen2.5-7B-Instruct)
+62	
+63	| Variant | Target Dimension | Politeness Δ | Question Rate Δ | Completion Δ |
+64	|---|---|---|---|---|
+65	| single_dim_question | question_rate ↑ | **-25.6%** (non-target) | +47.7% (target) | -32.1% |
+66	| single_dim_politeness | politeness ↑ | +13.4% (target) | **-52.3%** (non-target) | -45.7% |
+67	| aave_target | both | -16.3% | -65.9% | -72.8% |
+68	| indian_english | both | -17.7% | -68.2% | -59.2% |
+69	
+70	Key finding: **Single-dimension BCP cannot isolate its effect.** Targeting question rate reduces politeness by 25.6%; targeting politeness reduces question rate by 52.3%.
+71	
+72	---
+73	
+74	## FM3: Overcorrection Rebound
+75	
+76	When BCP requests extreme behavioral shifts (e.g., very low politeness), the model rebounds to *higher* politeness than baseline.
+77	
+78	### mvp-004 (Qwen2.5-7B-Instruct)
+79	
+80	| Variant | BCP Politeness Target | Actual Politeness | Baseline Politeness | Delta |
+81	|---|---|---|---|---|
+82	| overcorrected | ~0.10 (very low) | 0.605 | 0.559 | **+8.2%** |
+83	
+84	### hgate-dpo003-merged (Qwen2.5-7B-DPO003-merged, 4 runs)
+85	
+86	| Run | Overcorrected Pol | Baseline Pol | Delta |
+87	|---|---|---|---|
+88	| 1 | 0.569 | 0.475 | **+19.8%** |
+89	| 2 | 0.508 | 0.466 | **+9.0%** |
+90	| 3 | 0.581 | 0.532 | **+9.2%** |
+91	| 4 | 0.637 | 0.534 | **+19.3%** |
+92	| **Mean** | **0.574** | **0.502** | **+14.3%** |
+93	
+94	Consistent across all runs: requesting very low politeness produces **higher** politeness. Effect amplified by DPO training (+14.3% DPO vs +8.2% base).
+95	
+96	### Rebound also in dialect-calibrated variants (DPO model)
+97	
+98	| Run | AAVE Pol | Indian Pol | Baseline Pol | AAVE Δ | Indian Δ |
+99	|---|---|---|---|---|---|
+100	| 1 | 0.609 | 0.577 | 0.475 | +28.2% | +21.5% |
+101	| 2 | 0.559 | 0.534 | 0.466 | +20.0% | +14.6% |
+102	| 3 | 0.583 | 0.510 | 0.532 | +9.6% | -4.1% |
+103	| 4 | 0.514 | 0.638 | 0.534 | -3.7% | +19.5% |
+104	| **Mean** | **0.566** | **0.565** | **0.502** | **+13.5%** | **+12.9%** |
+105	
+106	In the DPO model, BCP *increases* politeness for both AAVE and Indian English variants instead of reducing it — the opposite of the intended calibration direction.
+107	
+108	---
+109	
+110	## FM4: DPO+BCP Interaction Reversal
+111	
+112	DPO training, intended to improve BCP effectiveness, actually reverses BCP calibration direction.
+113	
+114	### Comparison: Base Model (mvp-004) vs DPO Model (hgate-dpo003-merged)
+115	
+116	| Model | AAVE Pol | Baseline Pol | Gap | Direction |
+117	|---|---|---|---|---|
+118	| Base (mvp-004) | 0.468 | 0.559 | -0.091 | ✓ Correct (lower) |
+119	| DPO (mean 4 runs) | 0.566 | 0.502 | +0.064 | ✗ **Reversed** (higher) |
+120	
+121	| Model | Indian Pol | Baseline Pol | Gap | Direction |
+122	|---|---|---|---|---|
+123	| Base (mvp-004) | 0.460 | 0.559 | -0.099 | ✓ Correct (lower) |
+124	| DPO (mean 4 runs) | 0.565 | 0.502 | +0.063 | ✗ **Reversed** (higher) |
+125	
+126	### H-gate Results
+127	
+128	| Experiment | H1 (behavior shift) | H2 (gap reduction ≥30%) | H3 (completion ≥80% baseline) | Overall |
+129	|---|---|---|---|---|
+130	| mvp-004 (base BCP) | PASS | FAIL (25-28%, need 30%) | FAIL (52% retention) | FAIL |
+131	| hgate-dpo003-merged (DPO+BCP) | PASS (4/4) | FAIL (0/4, -10.3%) | FAIL (3/4) | FAIL |
+132	
+133	DPO+BCP is **strictly worse** than BCP alone on H2: base model achieves 25-28% gap reduction (close to threshold), DPO model achieves -10.3% (wrong direction entirely).
+134	
+135	### Aggregate DPO+BCP Statistics (hgate-dpo003-merged)
+136	
+137	- Mean politeness gap reduction: **-10.3%** (threshold: ≥30%)
+138	- DPO increased gap in **10/12** variant×run checks
+139	- Mean baseline completion: 29.4% (barely at threshold 29.6%)
+140	- H2 pass rate: **0/4 runs**
+141	- H3 pass rate: 1/4 runs
+142	
+143	---
+144	
+145	## Auxiliary Evidence
+146	
+147	### diag-lora-merge: vLLM LoRA Serving Bug (methodological)
+148	
+149	| Serving Method | Completion | Note |
+150	|---|---|---|
+151	| vLLM LoRA dynamic | 0.15 | Bug: LoRA weights not properly applied |
+152	| Merged model | 0.60 | DPO-003 actual capability |
+153	| Base model | 0.40 | Baseline without DPO |
+154	
+155	DPO-003 training actually *improved* tool-calling (60% vs 40%), but vLLM LoRA serving introduced a confound that initially masked this. All LoRA-served experiments (hgate-dpo001, hgate-dpo002, hgate-dpo003) are marked UNRELIABLE for completion metrics.
+156	
+157	### DPO Training Progression
+158	
+159	| Experiment | Data | Mismatch Rate | Final Acc | Final Loss | Conclusion |
+160	|---|---|---|---|---|---|
+161	| dpo-001 | v1 (1434 pairs) | 48% tokenizer | 0.50 (random) | 0.681 | Weak signal |
+162	| dpo-002 | v2 (1563 pairs) | partial TRL | 0.667 | 0.661 | Improved |
+163	| dpo-003 | v3 Fix B (1563 pairs) | 0% | 0.75-1.0 | 0.653 | Strong signal |
+164	
+165	DPO-003 learned effectively (acc up to 1.0), yet BCP calibration reversed — suggesting the failure is in BCP+DPO interaction, not DPO training quality.
+166	
+167	---
+168	
+169	## Statistical Summary
+170	
+171	| Metric | Base BCP (mvp-004) | DPO+BCP (hgate-dpo003-merged) |
+172	|---|---|---|
+173	| n tasks | 20 | 80 (4×20) |
+174	| Baseline completion | 0.368 | 0.294 |
+175	| Mean calibrated completion | 0.193 | 0.208 |
+176	| Completion retention | 52.3% | 70.7% |
+177	| AAVE politeness delta | -16.3% | +13.5% |
+178	| Indian politeness delta | -17.7% | +12.9% |
+179	| Overcorrected rebound | +8.2% | +14.3% |
+180	| H1 pass | 1/1 | 4/4 |
+181	| H2 pass | 0/1 | 0/4 |
+182	| H3 pass | 0/1 | 1/4 |
+183	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7debb1be-269d-4239-a038-830c46ae8aa5",
+  "isSidechain": true,
+  "promptId": "d70f163d-5a66-499f-a923-faa6e19feb2f",
+  "agentId": "add62814c4b2f5345",
+  "type": "user",
+  "uuid": "b28e6e21-4347-4e7b-8979-e19ff8fc2512",
+  "sourceToolAssistantUUID": "7debb1be-269d-4239-a038-830c46ae8aa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim",
+  "sessionId": "2a034fb2-c99a-4077-810e-027f0ae362c6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,4750 @@
+# Research conversation: <project_context> # 项目: ratekv ## 运行环境 - 服务器名: westd-37397 - SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 accou
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 78
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/exported-trajectories/account-3/d01416c0-6fc1-4e02-b20b-b6d511da8957.jsonl`
+- **Structured JSON:** [`3fda1a50a28e6e858308.json`](../../sessions/3f/3fda1a50a28e6e858308.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T22:17:24.720Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T22:17:24.720Z",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "content": "&lt;project_context>\n# 项目: ratekv\n\n## 运行环境\n- 服务器名: westd-37397\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh westd-37397  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/ratekv\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：P0 Patches — Qwen concentration 值全文统一为 0.61\n\n**背景**：Qwen2.5-7B 的 float32 hires top-5% concentration 已验证为 0.6104，Director 决定全文统一用 **0.61**（不报 bf16 range）。\n\n**执行步骤**：\n\n1. 读取 `docs/paper/` 下所有 .tex 文件，找出所有 Qwen concentration 相关的旧值：\n   - `0.59`, `0.5856`, `0.5909`, `0.59–0.66`, `0.59-0.66`, `0.66`, `0.6156`, `0.6104` 等\n   - 注意区分上下文：只改 Qwen 的 top-5% concentration 值，不要误改其他模型（Yi=0.71, Llama=0.57, Mistral=0.22, Gemma-2=0.23）或其他指标\n   - 也要检查 `0.50` 阈值附近的描述是否需要更新（\"0.59-0.66 range\" → 直接说 0.61）\n\n2. 需要检查和修改的文件（至少）：\n   - `abstract.tex` — 如果提到 concentration 值\n   - `introduction.tex` — 如果提到 concentration 值\n   - `experiments.tex` — 5-model table, Qwen 行的 concentration 列\n   - `analysis.tex` — concentration 分析段落\n   - `conclusion.tex` — 如果提到 concentration 值\n   - `appendix.tex` — 如有相关数据\n\n3. 5-model table 中 Qwen 行：concentration 写 0.61，不标 float32，不标 range\n\n4. 如果有 \"bf16 range 0.59–0.66\" 这类表述，改为直接用 0.61（无需提 bf16/float32 区分）\n\n5. **不要改其他模型的值，不要改非 concentration 的数字**\n\n6. 改完后 `git add` 所有修改的 .tex 文件并 `git commit`，commit message: \"P0: unify Qwen concentration to 0.61 (float32 verified)\"\n\n**工作目录**：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2`\n**论文目录**：`docs/paper/`\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T22:17:24.723Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T22:17:24.723Z",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+## Round 1
+
+76 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T22:17:24.754Z_
+
+&lt;project_context>
+# 项目: ratekv
+
+## 运行环境
+- 服务器名: westd-37397
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh westd-37397  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/ratekv
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：P0 Patches — Qwen concentration 值全文统一为 0.61
+
+**背景**：Qwen2.5-7B 的 float32 hires top-5% concentration 已验证为 0.6104，Director 决定全文统一用 **0.61**（不报 bf16 range）。
+
+**执行步骤**：
+
+1. 读取 `docs/paper/` 下所有 .tex 文件，找出所有 Qwen concentration 相关的旧值：
+   - `0.59`, `0.5856`, `0.5909`, `0.59–0.66`, `0.59-0.66`, `0.66`, `0.6156`, `0.6104` 等
+   - 注意区分上下文：只改 Qwen 的 top-5% concentration 值，不要误改其他模型（Yi=0.71, Llama=0.57, Mistral=0.22, Gemma-2=0.23）或其他指标
+   - 也要检查 `0.50` 阈值附近的描述是否需要更新（"0.59-0.66 range" → 直接说 0.61）
+
+2. 需要检查和修改的文件（至少）：
+   - `abstract.tex` — 如果提到 concentration 值
+   - `introduction.tex` — 如果提到 concentration 值
+   - `experiments.tex` — 5-model table, Qwen 行的 concentration 列
+   - `analysis.tex` — concentration 分析段落
+   - `conclusion.tex` — 如果提到 concentration 值
+   - `appendix.tex` — 如有相关数据
+
+3. 5-model table 中 Qwen 行：concentration 写 0.61，不标 float32，不标 range
+
+4. 如果有 "bf16 range 0.59–0.66" 这类表述，改为直接用 0.61（无需提 bf16/float32 区分）
+
+5. **不要改其他模型的值，不要改非 concentration 的数字**
+
+6. 改完后 `git add` 所有修改的 .tex 文件并 `git commit`，commit message: "P0: unify Qwen concentration to 0.61 (float32 verified)"
+
+**工作目录**：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2`
+**论文目录**：`docs/paper/`
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "c486881d-b0ae-4be5-9719-d99b76ee64c3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T22:17:24.753Z_
+
+```json
+{
+  "parentUuid": "c486881d-b0ae-4be5-9719-d99b76ee64c3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__clone_repo",
+      "mcp__agent-ml-research__list_repo_tree",
+      "mcp__agent-ml-research__read_repo_file",
+      "mcp__agent-ml-research__search_repo",
+      "mcp__agent-ml-research__sync_code_to_remote"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__clone_repo",
+      "mcp__agent-ml-research__list_repo_tree",
+      "mcp__agent-ml-research__read_repo_file",
+      "mcp__agent-ml-research__search_repo",
+      "mcp__agent-ml-research__sync_code_to_remote"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "78a499f1-b923-4341-bce5-2e5330919237",
+  "timestamp": "2026-05-14T22:17:24.753Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T22:17:24.753Z_
+
+```json
+{
+  "parentUuid": "78a499f1-b923-4341-bce5-2e5330919237",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2f6df59c-038b-4b71-b3ac-24056fb23f81",
+  "timestamp": "2026-05-14T22:17:24.753Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T22:17:24.753Z_
+
+```json
+{
+  "parentUuid": "2f6df59c-038b-4b71-b3ac-24056fb23f81",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "07ad65c8-9fd8-4da1-8ebc-c9bb39a67153",
+  "timestamp": "2026-05-14T22:17:24.753Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unify Qwen concentration to 0.61",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T22:17:27.619Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07ad65c8-9fd8-4da1-8ebc-c9bb39a67153",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Ed8MHRPD8KRaoJsAja",
+  "type": "assistant",
+  "uuid": "8f211135-57db-4306-8b73-a92fc164fff6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01QXb8MFAQe4qmPzQx35ZDiU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 8520,
+      "cache_read_input_tokens": 16241,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 16241,
+          "cache_creation_input_tokens": 8520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T22:17:27.978Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01X8CF4DejcvA8NkorQUn7uk`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_2/docs/paper/",
+  "description": "List paper directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f211135-57db-4306-8b73-a92fc164fff6",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Ed8MHRPD8KRaoJsAja",
+  "type": "assistant",
+  "uuid": "37a52981-b2a3-4fb4-a7bb-47497259fd0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01QXb8MFAQe4qmPzQx35ZDiU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 8520,
+      "cache_read_input_tokens": 16241,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8520,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 16241,
+          "cache_creation_input_tokens": 8520,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8520
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T22:17:28.213Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01X8CF4DejcvA8NkorQUn7uk`</summary>
+
+```text
+Exit code 2
+ls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0509_2/docs/paper/': No such file or directory
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37a52981-b2a3-4fb4-a7bb-47497259fd0c",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "d75c2af6-a85a-43f8-9fe2-5b02f98e5f2a",
+  "toolUseResult": "Error: Exit code 2\nls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0509_2/docs/paper/': No such file or directory",
+  "sourceToolAssistantUUID": "37a52981-b2a3-4fb4-a7bb-47497259fd0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T22:17:30.533Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015iT7DyfDdJfZuWrTQjTkre`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_2/",
+  "description": "List working dir"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d75c2af6-a85a-43f8-9fe2-5b02f98e5f2a",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EdP642imPJFKW5v7Qg",
+  "type": "assistant",
+  "uuid": "401648f5-ef4b-43db-b381-9aa374a79ce9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01VKRwyxjQ9qEZ9dm8RbcWaP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 240,
+      "cache_read_input_tokens": 24761,
+      "output_tokens": 117,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 240,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 117,
+          "cache_read_input_tokens": 24761,
+          "cache_creation_input_tokens": 240,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 240
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T22:17:30.619Z_
+
+<details><summary>↩ Tool result · `toolu_015iT7DyfDdJfZuWrTQjTkre`</summary>
+
+```text
+AGENTS.md
+config
+global
+idea_generator
+projects
+skills
+state
+workspace.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "401648f5-ef4b-43db-b381-9aa374a79ce9",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "33b0944e-8b96-47f6-a847-c73ae16cad53",
+  "toolUseResult": {
+    "stdout": "AGENTS.md\nconfig\nglobal\nidea_generator\nprojects\nskills\nstate\nworkspace.yaml",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "401648f5-ef4b-43db-b381-9aa374a79ce9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T22:17:33.179Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KnJj5ZwQZ9EN7zNDmFAnrm`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_2 -name \"*.tex\" -type f 2>/dev/null | head -50",
+  "description": "Find tex files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33b0944e-8b96-47f6-a847-c73ae16cad53",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EdZEzkpwS9emdFPigU",
+  "type": "assistant",
+  "uuid": "57f6fe80-ad32-4620-810a-745a4f2b5e93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_018CF3cvkjz5tdZ5MusejUNk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 162,
+      "cache_read_input_tokens": 25001,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 162,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 25001,
+          "cache_creation_input_tokens": 162,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 162
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T22:17:33.316Z_
+
+<details><summary>↩ Tool result · `toolu_01KnJj5ZwQZ9EN7zNDmFAnrm`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T163256/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T163256/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T163256/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T153032/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T153032/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T153032/best/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/abstract.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/analysis.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/_project/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/_project/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/dream_reports/dream_20260514T002109/median/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/dream_reports/dream_20260514T002109/worst/paper.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/dream_reports/dream_20260514T002109/best/paper.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57f6fe80-ad32-4620-810a-745a4f2b5e93",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "cc4436c2-d939-4686-8123-817e7ca3e889",
+  "toolUseResult": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T163256/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T163256/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T163256/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T153032/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T153032/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/dream_reports/dream_20260513T153032/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/analysis.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/_project/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/_project/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/dream_reports/dream_20260514T002109/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/dream_reports/dream_20260514T002109/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/dream_reports/dream_20260514T002109/best/paper.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "57f6fe80-ad32-4620-810a-745a4f2b5e93",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T22:17:35.891Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NJ8jtYJ8bNjqhbFX8G6oXT`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv && ls docs/paper/",
+  "description": "List paper dir"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc4436c2-d939-4686-8123-817e7ca3e889",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EdmEp7piairwumghDC",
+  "type": "assistant",
+  "uuid": "15b0b3b9-9ccd-4689-a98a-081531460503",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016N54dW7LWuRKaETkL9NeG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 25163,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1339,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 25163,
+          "cache_creation_input_tokens": 1339,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1339
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T22:17:35.939Z_
+
+<details><summary>↩ Tool result · `toolu_01NJ8jtYJ8bNjqhbFX8G6oXT`</summary>
+
+```text
+_pdf_images
+abstract.tex
+acl.sty
+acl_natbib.bst
+analysis.tex
+appendix.tex
+conclusion.tex
+experiments.tex
+figures
+introduction.tex
+main.aux
+main.bbl
+main.blg
+main.fdb_latexmk
+main.fls
+main.log
+main.out
+main.pdf
+main.tex
+method.tex
+references.bib
+references.bib.prev
+related_work.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15b0b3b9-9ccd-4689-a98a-081531460503",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "d1e4ed31-c8ce-4921-ba58-c40211ac50ad",
+  "toolUseResult": {
+    "stdout": "_pdf_images\nabstract.tex\nacl.sty\nacl_natbib.bst\nanalysis.tex\nappendix.tex\nconclusion.tex\nexperiments.tex\nfigures\nintroduction.tex\nmain.aux\nmain.bbl\nmain.blg\nmain.fdb_latexmk\nmain.fls\nmain.log\nmain.out\nmain.pdf\nmain.tex\nmethod.tex\nreferences.bib\nreferences.bib.prev\nrelated_work.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "15b0b3b9-9ccd-4689-a98a-081531460503",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T22:17:39.977Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01YQiPJVE9cehr3p711EJiE1`</summary>
+
+```json
+{
+  "pattern": "0\\.(59|5856|5909|66|6156|6104|61)|0\\.50|concentration|Qwen|bf16|float32",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": true,
+  "head_limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1e4ed31-c8ce-4921-ba58-c40211ac50ad",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Edx7f23knTwiszGkcH",
+  "type": "assistant",
+  "uuid": "76518ffb-14df-4517-a55c-e450c557d750",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01PB8ovuLjmcSRJ9fYG42Qn8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 290,
+      "cache_read_input_tokens": 26502,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 290,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 26502,
+          "cache_creation_input_tokens": 290,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 290
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T22:17:39.993Z_
+
+<details><summary>↩ Tool result · `toolu_01YQiPJVE9cehr3p711EJiE1`</summary>
+
+```text
+docs/paper/analysis.tex:8:We quantify this with a \emph{top-5\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\% of heads.
+docs/paper/analysis.tex:9:High concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.
+docs/paper/analysis.tex:14:Qwen2.5-7B exemplifies the spread pattern (top-5\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.
+docs/paper/analysis.tex:17:Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\ $+$0.20). %exp_id=yi15_hires_constrained_mckp
+docs/paper/analysis.tex:22:This is the ``spike'' pattern: high concentration driven by a single outlier with sensitivity at only one bitwidth.
+docs/paper/analysis.tex:24:In contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth sensitivity gradient across several heads---a ``spread'' pattern that enables meaningful budget reallocation. %exp_id=qwen_hires_profiling
+docs/paper/analysis.tex:27:Llama-3.1-8B shows above-threshold concentration ($0.57$) with a pronounced spike ($t_1/t_5{=}0.85$, $t_1/t_2{=}34.8$); its allocation is essentially indistinguishable from uniform ($+$0.36 vs.\ $+$0.38). %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained
+docs/paper/analysis.tex:28:Mistral-7B-v0.3 and Gemma-2-9B both exhibit flat distributions ($t_1/t_5{=}0.18$) with low concentration ($0.22$ and $0.23$ respectively), leaving the profiler with no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\ $+$0.10 for Mistral; $+$0.15 vs.\ $+$0.13 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline
+docs/paper/analysis.tex:40:Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\
+docs/paper/analysis.tex:52:[Omitted long matching line]
+docs/paper/analysis.tex:57:The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.
+docs/paper/analysis.tex:62:The heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.
+docs/paper/analysis.tex:67:\item Compute the top-5\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.
+docs/paper/analysis.tex:68:\item Select allocation strategy based on concentration \emph{and} shape:
+docs/paper/analysis.tex:70:  \item \textbf{Spread} (concentration $\gtrsim 0.50$, $t_1/t_5 \lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\% PPL improvement.
+docs/paper/analysis.tex:71:  \item \textbf{Spike} ($t_1/t_5 \gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.
+docs/paper/analysis.tex:72:  \item \textbf{Flat} (concentration $\lesssim 0.50$, low $t_1/t_5$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. Mistral (0.22, $t_1/t_5{=}0.18$) and Gemma-2 (0.23, $t_1/t_5{=}0.18$): counterproductive.
+docs/paper/analysis.tex:76:Llama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.
+docs/paper/analysis.tex:77:Indeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.
+docs/paper/analysis.tex:78:The joint condition---concentration $\gtrsim 0.50$ and $t_1/t_5 \lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.
+docs/paper/experiments.tex:9:\textbf{Qwen2.5-7B} (GQA ratio 7:1, 28 layers $\times$ 4 KV heads = 112 KV heads),
+docs/paper/experiments.tex:17:We report perplexity (PPL, $\downarrow$) on the WikiText-2 test split (298{,}938 tokens) under bf16 inference with stride 512.
+docs/paper/experiments.tex:21:Per-head sensitivity is measured by independently quantizing each head to each candidate bit-width in $\{2, 4, 8, 16\}$ and recording the PPL increase over the bf16 baseline.
+docs/paper/experiments.tex:27:The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \S\ref{sec:method} ($k{=}8$ for Qwen, $k{=}2$ for Yi-1.5 and Llama, $k{=}4$ for Mistral, $k{=}8$ for Gemma-2).
+docs/paper/experiments.tex:43:[Omitted long matching line]
+docs/paper/experiments.tex:48: & (bf16) & (4-bit) & Greedy & MCKP & (Constr.) \\
+docs/paper/experiments.tex:50:Qwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \textbf{11.23}$\pm$0.06 \\
+docs/paper/experiments.tex:60:On Qwen2.5-7B, constrained MCKP achieves 11.23 PPL, a 27.3\% reduction over uniform 4-bit (15.45).
+docs/paper/experiments.tex:67:Hires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.
+docs/paper/experiments.tex:74:Despite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.
+docs/paper/experiments.tex:79:Unconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.
+docs/paper/experiments.tex:80:Figure~\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.
+docs/paper/experiments.tex:85:\caption{Bit-width allocation on Qwen2.5-7B at 4$\times$ compression. Uniform assigns all heads to 4-bit. Constrained MCKP protects Layer-0 heads at 8-bit and assigns the 8 least-sensitive heads to 2-bit.}
+docs/paper/experiments.tex:95:\caption{Effect of compression ratio on Qwen2.5-7B. Constrained MCKP provides meaningful gains at moderate-to-aggressive compression ($\geq$4$\times$). Standard-resolution profiling; hires results in Appendix~\ref{sec:profiling_resolution}.}
+docs/paper/experiments.tex:101:2$\times$ & 10.10 & 10.66 & $-$0.56 \\
+docs/paper/experiments.tex:108:Table~\ref{tab:budget_sweep} shows how the benefit of constrained allocation varies with compression ratio on Qwen2.5-7B.
+docs/paper/experiments.tex:110:At 2$\times$ compression, uniform 8-bit quantization is near-lossless (10.10 PPL vs.\ 9.81 bf16, $+$0.29).
+docs/paper/experiments.tex:111:Per-head optimization has no headroom here; constrained MCKP is slightly worse (10.66) due to unnecessary 2-bit assignments that the budget permits but the model does not need.
+docs/paper/experiments.tex:126:\caption{Constrained MCKP vs.\ heuristic baselines at 4$\times$ compression. L0-random reports median and mean$\pm$std over 5 seeds. All methods use per-model optimal $k$ ($k{=}8$ for Qwen, $k{=}2$ for Llama, $k{=}4$ for Mistral). Llama and Mistral use hires profiling, consistent with Table~\ref{tab:main_results}.}
+docs/paper/experiments.tex:133:Qwen2.5-7B      & 11.23 & 11.52 & 11.69$\pm$0.47 & 12.23 \\
+docs/paper/experiments.tex:142:On Qwen, MCKP (11.23) beats the L0-random median (11.52) by 0.29 PPL and the naive positional heuristic (12.23) by 1.00 PPL, confirming that profiling-guided selection outperforms both random and depth-based assignment.
+docs/paper/experiments.tex:158:\caption{0-shot accuracy on Qwen2.5-7B at 4$\times$ compression. Constrained MCKP recovers approximately 73\% of the accuracy lost by uniform 4-bit quantization.}
+docs/paper/experiments.tex:163: & (bf16) & (4-bit) & (Ours) & Uniform \\
+docs/paper/experiments.tex:168:WinoGrande & ---   & 0.662 & 0.682 & $+$2.0 pts \\
+docs/paper/experiments.tex:170:Average    & 0.695 & 0.660 & 0.686 & $+$2.6 pts \\
+docs/paper/experiments.tex:175:Table~\ref{tab:downstream} shows that the PPL improvements transfer to downstream tasks on Qwen2.5-7B.
+docs/paper/experiments.tex:176:Constrained MCKP improves average 0-shot accuracy by 2.6 points over uniform 4-bit (0.686 vs.\ 0.660), with gains on all four benchmarks.
+docs/paper/experiments.tex:179:Constrained MCKP recovers approximately 73\% of the accuracy lost by uniform 4-bit quantization, indicating that per-head bit allocation addresses much of the degradation, though a gap to bf16 remains.
+docs/paper/experiments.tex:185:On Qwen2.5-7B, C4-calibrated MCKP achieves 11.29 PPL on WikiText-2 (vs.\ 15.45 uniform, a 27\% reduction), only 0.06 PPL above the WikiText-2-calibrated result (11.23).
+docs/paper/experiments.tex:186:In the reverse direction, WikiText-2-calibrated MCKP achieves 20.56 PPL on the C4 held-out split (vs.\ 35.42 uniform, a 42\% reduction; C4 bf16 baseline on this split is 15.32).
+docs/paper/experiments.tex:187:All three models show ${>}96\%$ bit-assignment agreement across calibration sources: Qwen 96.4\% (108/112 heads), Llama 97.7\% (250/256), and Mistral 96.5\% (247/256).
+docs/paper/experiments.tex:188:Qwen's agreement is the most informative, as all 112 heads have variable assignments; on Llama, 253 of 256 heads are forced to 4-bit by the $k{=}2$ constraint, inflating agreement.
+docs/paper/experiments.tex:189:The cross-dataset results reinforce the heterogeneity-driven narrative: on Qwen, the MCKP benefit is preserved across calibration sources; on Llama and Mistral, the lack of benefit is equally stable---Llama's C4-calibrated MCKP is 0.18 PPL worse than uniform, and Mistral shows similar degradation ($-$0.03 to $-$0.05 PPL).
+docs/paper/conclusion.tex:4:A single constraint---limiting simultaneously active 2-bit heads to $k \leq 8$ (7\% of heads)---reduces perplexity on Qwen2.5-7B from 15.45 (uniform 4-bit) to 11.23, a 27.3\% improvement at $4\times$ compression.
+docs/paper/conclusion.tex:6:The benefit of non-uniform allocation depends on both the concentration and \emph{shape} of head sensitivity heterogeneity.
+docs/paper/conclusion.tex:7:Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.
+docs/paper/conclusion.tex:8:Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.
+docs/paper/conclusion.tex:9:A joint diagnostic using concentration ($\gtrsim 0.50$) and $t_1/t_5$ ratio ($\lesssim 0.70$) correctly identifies spread, spike, and flat patterns across all five models studied, computable from the same profiling pass used for allocation.
+docs/paper/method.tex:24:We profile each KV head independently by quantizing it to each $b \in \mathcal{B}$ while keeping all other heads at bf16, and measuring the resulting PPL increase $d_h(b)$ on a calibration set of 64 sequences $\times$ 2048 tokens from WikiText-2 train.
+docs/paper/method.tex:42:\caption{PPL on Qwen2.5-7B ($4\times$ compression) as a function of $k$, the maximum number of 2-bit heads. Too few 2-bit heads waste budget on 4-bit; too many trigger compounding. The minimum occurs at $k{=}8$.}
+docs/paper/method.tex:47:On Qwen2.5-7B, unconstrained greedy assigns 68 heads to 2-bit and achieves 32.45 PPL; unconstrained MCKP assigns 75 heads and achieves 36.92---both far worse than uniform 4-bit (15.45).
+docs/paper/method.tex:55:Figure~\ref{fig:compounding} shows the relationship between $k$ (the maximum number of 2-bit heads) and PPL on Qwen2.5-7B at $4\times$ compression.
+docs/paper/method.tex:68:For Qwen2.5-7B with 112 KV heads, $k{=}8$ ($\sim$7\% of heads).
+docs/paper/method.tex:73:On Qwen2.5-7B, the profiler assigns very high distortion to Layer-0 heads at 2-bit: L0H0 increases PPL by 31.9\% relative to the bf16 baseline (9.81 $\to$ 12.94), L0H2 by 23.2\% (9.81 $\to$ 12.09), L0H3 by 11.7\% (9.81 $\to$ 10.96).
+docs/paper/method.tex:84:\caption{Solver comparison on Qwen2.5-7B at $4\times$ compression. Unconstrained solvers over-allocate 2-bit heads and fail catastrophically. The cardinality constraint ($k{\leq}8$) makes greedy and MCKP produce identical allocations.\protect\footnotemark}
+docs/paper/method.tex:102:Table~\ref{tab:solver_equiv} shows that constrained greedy and constrained MCKP achieve the same PPL (11.23) with the same bit distribution on Qwen2.5-7B.
+docs/paper/method.tex:106:\item \textbf{Qwen2.5-7B:} 112/112 heads receive identical bit-widths.
+docs/paper/method.tex:117:To verify that constrained MCKP is near-optimal, we perform a per-layer brute-force oracle on Qwen2.5-7B: for each of the 28 layers, we enumerate all $4^4{=}256$ bit-width assignments to the 4 KV heads and select the allocation minimizing per-layer PPL.
+docs/paper/abstract.tex:1:Per-head mixed-precision quantization of the KV cache promises lower perplexity than uniform quantization at the same average bit-width, but on hardware-aligned bit-widths $\{2, 4, 8, 16\}$, existing solvers fail catastrophically: unconstrained greedy and MCKP allocation achieve 32.45 and 36.92 perplexity on Qwen2.5-7B---far worse than uniform 4-bit (15.45).
+docs/paper/abstract.tex:4:On Qwen2.5-7B at $4\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\% reduction over uniform 4-bit.
+docs/paper/abstract.tex:7:Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.
+docs/paper/abstract.tex:8:We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.
+docs/paper/appendix.tex:14:We compare standard-resolution profiling (16 sequences $\times$ 512 tokens) against high-resolution profiling (64 sequences $\times$ 2048 tokens) on Qwen2.5-7B at $4\times$ compression.
+docs/paper/appendix.tex:17:Relative to the bf16 baseline (9.81), this reduces the degradation from 1.42 to 1.10, a 22.5\% reduction.
+docs/paper/appendix.tex:25:Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \pm 0.06$ across 3 random calibration seeds (individual runs: 11.02, 10.90, 11.05), with std/mean below 0.6\%.
+docs/paper/appendix.tex:33:To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).
+docs/paper/appendix.tex:58:\caption{PyTorch-level latency on Qwen2.5-7B (single NVIDIA RTX PRO 6000 (96\,GB), prompt\_len=256, gen\_len=128, mean of 10 runs). All conditions store KV in bf16 with simulated per-head quantize/dequantize calls; peak GPU memory is identical across rows.}
+docs/paper/appendix.tex:64:Baseline bf16       & 45.86 & 33.78 & 29.6 \\
+docs/paper/appendix.tex:72:Uniform 4-bit quantization adds 25.7\% decode overhead relative to the bf16 baseline (42.46 vs.\ 33.78~ms/tok), reflecting per-head quantize/dequantize calls at every attention step.
+docs/paper/appendix.tex:75:Both quantized conditions achieve the same $4\times$ KV cache compression (5.25~MB vs.\ 21~MB at bf16), so the latency difference between uniform and MCKP reflects only the mixed-precision dispatch overhead, not a memory trade-off.
+docs/paper/introduction.tex:12:On Qwen2.5-7B at $4\times$ compression, unconstrained greedy achieves 32.45 PPL and unconstrained MCKP achieves 36.92---both \emph{far worse} than uniform 4-bit (15.45).
+docs/paper/introduction.tex:23:On Qwen2.5-7B, setting $k{=}8$ (7\% of heads) yields 11.23 PPL---a 27.3\% reduction over uniform 4-bit.
+docs/paper/introduction.tex:28:Constrained greedy and constrained MCKP produce identical allocations---not approximately, but exactly: all 112 heads receive the same bit-width on Qwen2.5-7B, all 256 on Llama-3.1-8B, and 255 of 256 on Mistral-7B-v0.3 (the single difference is a zero-distortion tie with no PPL impact).
+docs/paper/introduction.tex:38:Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads forming a cluster of high sensitivity; Yi-1.5 has a single extreme outlier but otherwise uniform heads (a ``spike'' pattern that MCKP cannot exploit); Gemma-2 and Mistral show near-uniform sensitivity across all heads.
+docs/paper/introduction.tex:42:We propose a joint heterogeneity diagnostic based on concentration \emph{and} distribution shape of per-head distortion (\S\ref{sec:heterogeneity}).
+docs/paper/introduction.tex:43:On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.
+docs/paper/introduction.tex:44:Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier spike with no cross-bitwidth gradient---precisely the pattern where MCKP cannot redistribute budget.
+docs/paper/introduction.tex:49:\item We identify 2-bit distortion compounding as the cause of catastrophic failure in unconstrained per-head KV cache quantization on hardware-aligned bit-widths, and show that a cardinality constraint on 2-bit assignments is a minimal sufficient fix, reducing Qwen2.5-7B PPL from 32--37 (unconstrained) to 11.23 (constrained) at $4\times$ compression (\S\ref{sec:compounding}, \S\ref{sec:experiments}).
+docs/paper/introduction.tex:53:\item We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly separates architectures where non-uniform allocation helps from those where it does not, across all five models tested. Yi-1.5-9B serves as a critical test: its concentration exceeds Qwen's, yet its single-outlier spike pattern means MCKP provides no benefit over uniform (\S\ref{sec:heterogeneity}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76518ffb-14df-4517-a55c-e450c557d750",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "8c8e966a-4f43-4245-8bf0-e1a41959acd3",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/analysis.tex:8:We quantify this with a \\emph{top-5\\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\\% of heads.\ndocs/paper/analysis.tex:9:High concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.\ndocs/paper/analysis.tex:14:Qwen2.5-7B exemplifies the spread pattern (top-5\\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.\ndocs/paper/analysis.tex:17:Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\\ $+$0.20). %exp_id=yi15_hires_constrained_mckp\ndocs/paper/analysis.tex:22:This is the ``spike'' pattern: high concentration driven by a single outlier with sensitivity at only one bitwidth.\ndocs/paper/analysis.tex:24:In contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth sensitivity gradient across several heads---a ``spread'' pattern that enables meaningful budget reallocation. %exp_id=qwen_hires_profiling\ndocs/paper/analysis.tex:27:Llama-3.1-8B shows above-threshold concentration ($0.57$) with a pronounced spike ($t_1/t_5{=}0.85$, $t_1/t_2{=}34.8$); its allocation is essentially indistinguishable from uniform ($+$0.36 vs.\\ $+$0.38). %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained\ndocs/paper/analysis.tex:28:Mistral-7B-v0.3 and Gemma-2-9B both exhibit flat distributions ($t_1/t_5{=}0.18$) with low concentration ($0.22$ and $0.23$ respectively), leaving the profiler with no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\\ $+$0.10 for Mistral; $+$0.15 vs.\\ $+$0.13 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline\ndocs/paper/analysis.tex:40:Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\\\\ndocs/paper/analysis.tex:52:[Omitted long matching line]\ndocs/paper/analysis.tex:57:The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.\ndocs/paper/analysis.tex:62:The heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \\emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.\ndocs/paper/analysis.tex:67:\\item Compute the top-5\\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.\ndocs/paper/analysis.tex:68:\\item Select allocation strategy based on concentration \\emph{and} shape:\ndocs/paper/analysis.tex:70:  \\item \\textbf{Spread} (concentration $\\gtrsim 0.50$, $t_1/t_5 \\lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\\% PPL improvement.\ndocs/paper/analysis.tex:71:  \\item \\textbf{Spike} ($t_1/t_5 \\gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.\ndocs/paper/analysis.tex:72:  \\item \\textbf{Flat} (concentration $\\lesssim 0.50$, low $t_1/t_5$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. Mistral (0.22, $t_1/t_5{=}0.18$) and Gemma-2 (0.23, $t_1/t_5{=}0.18$): counterproductive.\ndocs/paper/analysis.tex:76:Llama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.\ndocs/paper/analysis.tex:77:Indeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.\ndocs/paper/analysis.tex:78:The joint condition---concentration $\\gtrsim 0.50$ and $t_1/t_5 \\lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.\ndocs/paper/experiments.tex:9:\\textbf{Qwen2.5-7B} (GQA ratio 7:1, 28 layers $\\times$ 4 KV heads = 112 KV heads),\ndocs/paper/experiments.tex:17:We report perplexity (PPL, $\\downarrow$) on the WikiText-2 test split (298{,}938 tokens) under bf16 inference with stride 512.\ndocs/paper/experiments.tex:21:Per-head sensitivity is measured by independently quantizing each head to each candidate bit-width in $\\{2, 4, 8, 16\\}$ and recording the PPL increase over the bf16 baseline.\ndocs/paper/experiments.tex:27:The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \\S\\ref{sec:method} ($k{=}8$ for Qwen, $k{=}2$ for Yi-1.5 and Llama, $k{=}4$ for Mistral, $k{=}8$ for Gemma-2).\ndocs/paper/experiments.tex:43:[Omitted long matching line]\ndocs/paper/experiments.tex:48: & (bf16) & (4-bit) & Greedy & MCKP & (Constr.) \\\\\ndocs/paper/experiments.tex:50:Qwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \\textbf{11.23}$\\pm$0.06 \\\\\ndocs/paper/experiments.tex:60:On Qwen2.5-7B, constrained MCKP achieves 11.23 PPL, a 27.3\\% reduction over uniform 4-bit (15.45).\ndocs/paper/experiments.tex:67:Hires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.\ndocs/paper/experiments.tex:74:Despite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.\ndocs/paper/experiments.tex:79:Unconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\ndocs/paper/experiments.tex:80:Figure~\\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.\ndocs/paper/experiments.tex:85:\\caption{Bit-width allocation on Qwen2.5-7B at 4$\\times$ compression. Uniform assigns all heads to 4-bit. Constrained MCKP protects Layer-0 heads at 8-bit and assigns the 8 least-sensitive heads to 2-bit.}\ndocs/paper/experiments.tex:95:\\caption{Effect of compression ratio on Qwen2.5-7B. Constrained MCKP provides meaningful gains at moderate-to-aggressive compression ($\\geq$4$\\times$). Standard-resolution profiling; hires results in Appendix~\\ref{sec:profiling_resolution}.}\ndocs/paper/experiments.tex:101:2$\\times$ & 10.10 & 10.66 & $-$0.56 \\\\\ndocs/paper/experiments.tex:108:Table~\\ref{tab:budget_sweep} shows how the benefit of constrained allocation varies with compression ratio on Qwen2.5-7B.\ndocs/paper/experiments.tex:110:At 2$\\times$ compression, uniform 8-bit quantization is near-lossless (10.10 PPL vs.\\ 9.81 bf16, $+$0.29).\ndocs/paper/experiments.tex:111:Per-head optimization has no headroom here; constrained MCKP is slightly worse (10.66) due to unnecessary 2-bit assignments that the budget permits but the model does not need.\ndocs/paper/experiments.tex:126:\\caption{Constrained MCKP vs.\\ heuristic baselines at 4$\\times$ compression. L0-random reports median and mean$\\pm$std over 5 seeds. All methods use per-model optimal $k$ ($k{=}8$ for Qwen, $k{=}2$ for Llama, $k{=}4$ for Mistral). Llama and Mistral use hires profiling, consistent with Table~\\ref{tab:main_results}.}\ndocs/paper/experiments.tex:133:Qwen2.5-7B      & 11.23 & 11.52 & 11.69$\\pm$0.47 & 12.23 \\\\\ndocs/paper/experiments.tex:142:On Qwen, MCKP (11.23) beats the L0-random median (11.52) by 0.29 PPL and the naive positional heuristic (12.23) by 1.00 PPL, confirming that profiling-guided selection outperforms both random and depth-based assignment.\ndocs/paper/experiments.tex:158:\\caption{0-shot accuracy on Qwen2.5-7B at 4$\\times$ compression. Constrained MCKP recovers approximately 73\\% of the accuracy lost by uniform 4-bit quantization.}\ndocs/paper/experiments.tex:163: & (bf16) & (4-bit) & (Ours) & Uniform \\\\\ndocs/paper/experiments.tex:168:WinoGrande & ---   & 0.662 & 0.682 & $+$2.0 pts \\\\\ndocs/paper/experiments.tex:170:Average    & 0.695 & 0.660 & 0.686 & $+$2.6 pts \\\\\ndocs/paper/experiments.tex:175:Table~\\ref{tab:downstream} shows that the PPL improvements transfer to downstream tasks on Qwen2.5-7B.\ndocs/paper/experiments.tex:176:Constrained MCKP improves average 0-shot accuracy by 2.6 points over uniform 4-bit (0.686 vs.\\ 0.660), with gains on all four benchmarks.\ndocs/paper/experiments.tex:179:Constrained MCKP recovers approximately 73\\% of the accuracy lost by uniform 4-bit quantization, indicating that per-head bit allocation addresses much of the degradation, though a gap to bf16 remains.\ndocs/paper/experiments.tex:185:On Qwen2.5-7B, C4-calibrated MCKP achieves 11.29 PPL on WikiText-2 (vs.\\ 15.45 uniform, a 27\\% reduction), only 0.06 PPL above the WikiText-2-calibrated result (11.23).\ndocs/paper/experiments.tex:186:In the reverse direction, WikiText-2-calibrated MCKP achieves 20.56 PPL on the C4 held-out split (vs.\\ 35.42 uniform, a 42\\% reduction; C4 bf16 baseline on this split is 15.32).\ndocs/paper/experiments.tex:187:All three models show ${>}96\\%$ bit-assignment agreement across calibration sources: Qwen 96.4\\% (108/112 heads), Llama 97.7\\% (250/256), and Mistral 96.5\\% (247/256).\ndocs/paper/experiments.tex:188:Qwen's agreement is the most informative, as all 112 heads have variable assignments; on Llama, 253 of 256 heads are forced to 4-bit by the $k{=}2$ constraint, inflating agreement.\ndocs/paper/experiments.tex:189:The cross-dataset results reinforce the heterogeneity-driven narrative: on Qwen, the MCKP benefit is preserved across calibration sources; on Llama and Mistral, the lack of benefit is equally stable---Llama's C4-calibrated MCKP is 0.18 PPL worse than uniform, and Mistral shows similar degradation ($-$0.03 to $-$0.05 PPL).\ndocs/paper/conclusion.tex:4:A single constraint---limiting simultaneously active 2-bit heads to $k \\leq 8$ (7\\% of heads)---reduces perplexity on Qwen2.5-7B from 15.45 (uniform 4-bit) to 11.23, a 27.3\\% improvement at $4\\times$ compression.\ndocs/paper/conclusion.tex:6:The benefit of non-uniform allocation depends on both the concentration and \\emph{shape} of head sensitivity heterogeneity.\ndocs/paper/conclusion.tex:7:Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.\ndocs/paper/conclusion.tex:8:Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.\ndocs/paper/conclusion.tex:9:A joint diagnostic using concentration ($\\gtrsim 0.50$) and $t_1/t_5$ ratio ($\\lesssim 0.70$) correctly identifies spread, spike, and flat patterns across all five models studied, computable from the same profiling pass used for allocation.\ndocs/paper/method.tex:24:We profile each KV head independently by quantizing it to each $b \\in \\mathcal{B}$ while keeping all other heads at bf16, and measuring the resulting PPL increase $d_h(b)$ on a calibration set of 64 sequences $\\times$ 2048 tokens from WikiText-2 train.\ndocs/paper/method.tex:42:\\caption{PPL on Qwen2.5-7B ($4\\times$ compression) as a function of $k$, the maximum number of 2-bit heads. Too few 2-bit heads waste budget on 4-bit; too many trigger compounding. The minimum occurs at $k{=}8$.}\ndocs/paper/method.tex:47:On Qwen2.5-7B, unconstrained greedy assigns 68 heads to 2-bit and achieves 32.45 PPL; unconstrained MCKP assigns 75 heads and achieves 36.92---both far worse than uniform 4-bit (15.45).\ndocs/paper/method.tex:55:Figure~\\ref{fig:compounding} shows the relationship between $k$ (the maximum number of 2-bit heads) and PPL on Qwen2.5-7B at $4\\times$ compression.\ndocs/paper/method.tex:68:For Qwen2.5-7B with 112 KV heads, $k{=}8$ ($\\sim$7\\% of heads).\ndocs/paper/method.tex:73:On Qwen2.5-7B, the profiler assigns very high distortion to Layer-0 heads at 2-bit: L0H0 increases PPL by 31.9\\% relative to the bf16 baseline (9.81 $\\to$ 12.94), L0H2 by 23.2\\% (9.81 $\\to$ 12.09), L0H3 by 11.7\\% (9.81 $\\to$ 10.96).\ndocs/paper/method.tex:84:\\caption{Solver comparison on Qwen2.5-7B at $4\\times$ compression. Unconstrained solvers over-allocate 2-bit heads and fail catastrophically. The cardinality constraint ($k{\\leq}8$) makes greedy and MCKP produce identical allocations.\\protect\\footnotemark}\ndocs/paper/method.tex:102:Table~\\ref{tab:solver_equiv} shows that constrained greedy and constrained MCKP achieve the same PPL (11.23) with the same bit distribution on Qwen2.5-7B.\ndocs/paper/method.tex:106:\\item \\textbf{Qwen2.5-7B:} 112/112 heads receive identical bit-widths.\ndocs/paper/method.tex:117:To verify that constrained MCKP is near-optimal, we perform a per-layer brute-force oracle on Qwen2.5-7B: for each of the 28 layers, we enumerate all $4^4{=}256$ bit-width assignments to the 4 KV heads and select the allocation minimizing per-layer PPL.\ndocs/paper/abstract.tex:1:Per-head mixed-precision quantization of the KV cache promises lower perplexity than uniform quantization at the same average bit-width, but on hardware-aligned bit-widths $\\{2, 4, 8, 16\\}$, existing solvers fail catastrophically: unconstrained greedy and MCKP allocation achieve 32.45 and 36.92 perplexity on Qwen2.5-7B---far worse than uniform 4-bit (15.45).\ndocs/paper/abstract.tex:4:On Qwen2.5-7B at $4\\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\\% reduction over uniform 4-bit.\ndocs/paper/abstract.tex:7:Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.\ndocs/paper/abstract.tex:8:We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.\ndocs/paper/appendix.tex:14:We compare standard-resolution profiling (16 sequences $\\times$ 512 tokens) against high-resolution profiling (64 sequences $\\times$ 2048 tokens) on Qwen2.5-7B at $4\\times$ compression.\ndocs/paper/appendix.tex:17:Relative to the bf16 baseline (9.81), this reduces the degradation from 1.42 to 1.10, a 22.5\\% reduction.\ndocs/paper/appendix.tex:25:Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \\pm 0.06$ across 3 random calibration seeds (individual runs: 11.02, 10.90, 11.05), with std/mean below 0.6\\%.\ndocs/paper/appendix.tex:33:To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).\ndocs/paper/appendix.tex:58:\\caption{PyTorch-level latency on Qwen2.5-7B (single NVIDIA RTX PRO 6000 (96\\,GB), prompt\\_len=256, gen\\_len=128, mean of 10 runs). All conditions store KV in bf16 with simulated per-head quantize/dequantize calls; peak GPU memory is identical across rows.}\ndocs/paper/appendix.tex:64:Baseline bf16       & 45.86 & 33.78 & 29.6 \\\\\ndocs/paper/appendix.tex:72:Uniform 4-bit quantization adds 25.7\\% decode overhead relative to the bf16 baseline (42.46 vs.\\ 33.78~ms/tok), reflecting per-head quantize/dequantize calls at every attention step.\ndocs/paper/appendix.tex:75:Both quantized conditions achieve the same $4\\times$ KV cache compression (5.25~MB vs.\\ 21~MB at bf16), so the latency difference between uniform and MCKP reflects only the mixed-precision dispatch overhead, not a memory trade-off.\ndocs/paper/introduction.tex:12:On Qwen2.5-7B at $4\\times$ compression, unconstrained greedy achieves 32.45 PPL and unconstrained MCKP achieves 36.92---both \\emph{far worse} than uniform 4-bit (15.45).\ndocs/paper/introduction.tex:23:On Qwen2.5-7B, setting $k{=}8$ (7\\% of heads) yields 11.23 PPL---a 27.3\\% reduction over uniform 4-bit.\ndocs/paper/introduction.tex:28:Constrained greedy and constrained MCKP produce identical allocations---not approximately, but exactly: all 112 heads receive the same bit-width on Qwen2.5-7B, all 256 on Llama-3.1-8B, and 255 of 256 on Mistral-7B-v0.3 (the single difference is a zero-distortion tie with no PPL impact).\ndocs/paper/introduction.tex:38:Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads forming a cluster of high sensitivity; Yi-1.5 has a single extreme outlier but otherwise uniform heads (a ``spike'' pattern that MCKP cannot exploit); Gemma-2 and Mistral show near-uniform sensitivity across all heads.\ndocs/paper/introduction.tex:42:We propose a joint heterogeneity diagnostic based on concentration \\emph{and} distribution shape of per-head distortion (\\S\\ref{sec:heterogeneity}).\ndocs/paper/introduction.tex:43:On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.\ndocs/paper/introduction.tex:44:Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier spike with no cross-bitwidth gradient---precisely the pattern where MCKP cannot redistribute budget.\ndocs/paper/introduction.tex:49:\\item We identify 2-bit distortion compounding as the cause of catastrophic failure in unconstrained per-head KV cache quantization on hardware-aligned bit-widths, and show that a cardinality constraint on 2-bit assignments is a minimal sufficient fix, reducing Qwen2.5-7B PPL from 32--37 (unconstrained) to 11.23 (constrained) at $4\\times$ compression (\\S\\ref{sec:compounding}, \\S\\ref{sec:experiments}).\ndocs/paper/introduction.tex:53:\\item We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly separates architectures where non-uniform allocation helps from those where it does not, across all five models tested. Yi-1.5-9B serves as a critical test: its concentration exceeds Qwen's, yet its single-outlier spike pattern means MCKP provides no benefit over uniform (\\S\\ref{sec:heterogeneity}).",
+    "numLines": 89
+  },
+  "sourceToolAssistantUUID": "76518ffb-14df-4517-a55c-e450c557d750",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8c8e966a-4f43-4245-8bf0-e1a41959acd3",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unify Qwen concentration to 0.61",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-14T22:17:45.194Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c8e966a-4f43-4245-8bf0-e1a41959acd3",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EeFYuNP7JiLweWd41w",
+  "type": "assistant",
+  "uuid": "6eff2de0-b6dc-4404-8f37-6806fb35d4f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016egLuWaepbGT8ng1RZAeQ2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9252,
+      "cache_read_input_tokens": 26792,
+      "output_tokens": 417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 417,
+          "cache_read_input_tokens": 26792,
+          "cache_creation_input_tokens": 9252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T22:17:47.196Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Eov5rTbz33nLKav77tUEwN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/experiments.tex",
+  "offset": 40,
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6eff2de0-b6dc-4404-8f37-6806fb35d4f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EeFYuNP7JiLweWd41w",
+  "type": "assistant",
+  "uuid": "499fb006-836c-4c01-9af1-98a05059e8f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016egLuWaepbGT8ng1RZAeQ2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9252,
+      "cache_read_input_tokens": 26792,
+      "output_tokens": 417,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 417,
+          "cache_read_input_tokens": 26792,
+          "cache_creation_input_tokens": 9252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T22:17:47.204Z_
+
+<details><summary>↩ Tool result · `toolu_01Eov5rTbz33nLKav77tUEwN`</summary>
+
+```text
+40	\begin{table}[t]
+41	\centering
+42	\small
+43	\caption{PPL ($\downarrow$) on WikiText-2 at 4$\times$ compression. Unconstrained allocation fails catastrophically on $\{2,4,8,16\}$; our cardinality constraint restores performance. Best constrained result per model in \textbf{bold}. $^\dagger$Hires profiling (64 seq $\times$ 2048 tok); standard profiling does not improve over uniform on these architectures. $^\ddagger$Best $k$ from ablation ($k{=}4$). The $\pm$0.06 on Qwen reports std over 3 calibration seeds (hires profiling); bit distributions are identical across seeds.}
+44	\label{tab:main_results}
+45	\begin{tabular}{lcccccc}
+46	\toprule
+47	Model & Baseline & Uniform & \multicolumn{2}{c}{Unconstrained} & Ours \\
+48	 & (bf16) & (4-bit) & Greedy & MCKP & (Constr.) \\
+49	\midrule
+50	Qwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \textbf{11.23}$\pm$0.06 \\
+51	Llama-3.1-8B    & 8.09  & 8.47  & ---   & ---   & \textbf{8.45}$^\dagger$ \\
+52	Mistral-7B-v0.3 & 7.04  & 7.13  & ---   & ---   & 7.16$^{\dagger\ddagger}$ \\
+53	Yi-1.5-9B$^\dagger$       & 7.02  & 7.22  & ---   & ---   & 7.22 \\
+54	Gemma-2-9B      & 8.90  & 9.03  & ---   & ---   & 9.05 \\
+55	\bottomrule
+56	\end{tabular}
+57	\end{table}
+58	
+59	Table~\ref{tab:main_results} summarizes the main results.
+60	On Qwen2.5-7B, constrained MCKP achieves 11.23 PPL, a 27.3\% reduction over uniform 4-bit (15.45).
+61	Higher-resolution profiling (64 seq $\times$ 2048 tok) further improves this to 10.91; we report the standard-profiling result here and analyze the effect of profiling resolution in Appendix~\ref{sec:profiling_resolution}.
+62	Without the cardinality constraint, both greedy (32.45) and MCKP (36.92) perform \emph{worse} than uniform---a catastrophic failure caused by excessive 2-bit assignments that compound across layers.
+63	The constraint eliminates this failure mode entirely.
+64	Across 3 calibration seeds, constrained MCKP yields mean PPL 10.99$\pm$0.06 (std is 1.3\% of the uniform gap), with 90.2\% three-way allocation agreement, confirming profiling stability.
+65	
+66	On Llama-3.1-8B, the result is essentially indistinguishable from uniform (8.45 vs.\ 8.47, $\Delta < 0.02$ PPL).
+67	Hires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.
+68	
+69	On Mistral-7B-v0.3, constrained MCKP (7.16, $k{=}4$) is slightly worse than uniform (7.13, $+$0.4\%).
+70	This is a genuine negative result: the profiler reports near-zero sensitivity differences across heads, meaning the optimization has no reliable signal to exploit.
+71	Mistral's sliding-window attention may contribute to this uniformity by limiting head-level variation in effective context length.
+72	
+73	On Yi-1.5-9B$^\dagger$, constrained MCKP ($k{=}2$) achieves 7.22 PPL, essentially identical to uniform 7.22 ($<$0.01\% difference).
+74	Despite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.
+75	
+76	On Gemma-2-9B (GQA 2:1), constrained MCKP ($k{=}8$) achieves 9.05 PPL vs.\ uniform 9.03---a 0.3\% degradation.
+77	Gemma-2 has the most uniform head sensitivity distribution across its 336 KV heads, consistent with its low GQA ratio and attention logit softcapping.
+78	
+79	Unconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.
+80	Figure~\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.
+81	
+82	\begin{figure}[t]
+83	\centering
+84	\includegraphics[width=\columnwidth]{figures/fig3_allocation_comparison.pdf}
+85	\caption{Bit-width allocation on Qwen2.5-7B at 4$\times$ compression. Uniform assigns all heads to 4-bit. Constrained MCKP protects Layer-0 heads at 8-bit and assigns the 8 least-sensitive heads to 2-bit.}
+86	\label{fig:allocation}
+87	\end{figure}
+88	
+89	\subsection{Budget Sweep}
+90	\label{sec:budget_sweep}
+91	
+92	\begin{table}[t]
+93	\centering
+94	\small
+95	\caption{Effect of compression ratio on Qwen2.5-7B. Constrained MCKP provides meaningful gains at moderate-to-aggressive compression ($\geq$4$\times$). Standard-resolution profiling; hires results in Appendix~\ref{sec:profiling_resolution}.}
+96	\label{tab:budget_sweep}
+97	\begin{tabular}{cccc}
+98	\toprule
+99	Compression & Uniform PPL & Constr.\ MCKP PPL & $\Delta$ PPL \\
+100	\midrule
+101	2$\times$ & 10.10 & 10.66 & $-$0.56 \\
+102	4$\times$ & 15.45 & 11.23 & $+$4.22 \\
+103	8$\times$ & 14{,}759 & 907 & $+$13{,}852 \\
+104	\bottomrule
+105	\end{tabular}
+106	\end{table}
+107	
+108	Table~\ref{tab:budget_sweep} shows how the benefit of constrained allocation varies with compression ratio on Qwen2.5-7B.
+109	
+110	At 2$\times$ compression, uniform 8-bit quantization is near-lossless (10.10 PPL vs.\ 9.81 bf16, $+$0.29).
+111	Per-head optimization has no headroom here; constrained MCKP is slightly worse (10.66) due to unnecessary 2-bit assignments that the budget permits but the model does not need.
+112	
+113	At 4$\times$, the gap is substantial: constrained MCKP reduces PPL from 15.45 to 11.23, a 27.3\% improvement.
+114	Hires profiling further reduces this to 10.91 (Appendix~\ref{sec:profiling_resolution}).
+115	
+116	At 8$\times$, both methods degrade catastrophically---the budget is too aggressive for any allocation to preserve model quality.
+117	However, constrained MCKP (907) is an order of magnitude better than uniform (14{,}759) because the constraint still protects Layer-0 heads at 8-bit, preventing total representational collapse.
+118	Neither result is practically usable, but the gap demonstrates the protection mechanism at work.
+119	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "499fb006-836c-4c01-9af1-98a05059e8f5",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "288f0d6b-e5c0-4353-8be6-9cefda2e030c",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/experiments.tex",
+      "content": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{PPL ($\\downarrow$) on WikiText-2 at 4$\\times$ compression. Unconstrained allocation fails catastrophically on $\\{2,4,8,16\\}$; our cardinality constraint restores performance. Best constrained result per model in \\textbf{bold}. $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok); standard profiling does not improve over uniform on these architectures. $^\\ddagger$Best $k$ from ablation ($k{=}4$). The $\\pm$0.06 on Qwen reports std over 3 calibration seeds (hires profiling); bit distributions are identical across seeds.}\n\\label{tab:main_results}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & Baseline & Uniform & \\multicolumn{2}{c}{Unconstrained} & Ours \\\\\n & (bf16) & (4-bit) & Greedy & MCKP & (Constr.) \\\\\n\\midrule\nQwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \\textbf{11.23}$\\pm$0.06 \\\\\nLlama-3.1-8B    & 8.09  & 8.47  & ---   & ---   & \\textbf{8.45}$^\\dagger$ \\\\\nMistral-7B-v0.3 & 7.04  & 7.13  & ---   & ---   & 7.16$^{\\dagger\\ddagger}$ \\\\\nYi-1.5-9B$^\\dagger$       & 7.02  & 7.22  & ---   & ---   & 7.22 \\\\\nGemma-2-9B      & 8.90  & 9.03  & ---   & ---   & 9.05 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:main_results} summarizes the main results.\nOn Qwen2.5-7B, constrained MCKP achieves 11.23 PPL, a 27.3\\% reduction over uniform 4-bit (15.45).\nHigher-resolution profiling (64 seq $\\times$ 2048 tok) further improves this to 10.91; we report the standard-profiling result here and analyze the effect of profiling resolution in Appendix~\\ref{sec:profiling_resolution}.\nWithout the cardinality constraint, both greedy (32.45) and MCKP (36.92) perform \\emph{worse} than uniform---a catastrophic failure caused by excessive 2-bit assignments that compound across layers.\nThe constraint eliminates this failure mode entirely.\nAcross 3 calibration seeds, constrained MCKP yields mean PPL 10.99$\\pm$0.06 (std is 1.3\\% of the uniform gap), with 90.2\\% three-way allocation agreement, confirming profiling stability.\n\nOn Llama-3.1-8B, the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47, $\\Delta < 0.02$ PPL).\nHires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.\n\nOn Mistral-7B-v0.3, constrained MCKP (7.16, $k{=}4$) is slightly worse than uniform (7.13, $+$0.4\\%).\nThis is a genuine negative result: the profiler reports near-zero sensitivity differences across heads, meaning the optimization has no reliable signal to exploit.\nMistral's sliding-window attention may contribute to this uniformity by limiting head-level variation in effective context length.\n\nOn Yi-1.5-9B$^\\dagger$, constrained MCKP ($k{=}2$) achieves 7.22 PPL, essentially identical to uniform 7.22 ($<$0.01\\% difference).\nDespite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.\n\nOn Gemma-2-9B (GQA 2:1), constrained MCKP ($k{=}8$) achieves 9.05 PPL vs.\\ uniform 9.03---a 0.3\\% degradation.\nGemma-2 has the most uniform head sensitivity distribution across its 336 KV heads, consistent with its low GQA ratio and attention logit softcapping.\n\nUnconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\nFigure~\\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig3_allocation_comparison.pdf}\n\\caption{Bit-width allocation on Qwen2.5-7B at 4$\\times$ compression. Uniform assigns all heads to 4-bit. Constrained MCKP protects Layer-0 heads at 8-bit and assigns the 8 least-sensitive heads to 2-bit.}\n\\label{fig:allocation}\n\\end{figure}\n\n\\subsection{Budget Sweep}\n\\label{sec:budget_sweep}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Effect of compression ratio on Qwen2.5-7B. Constrained MCKP provides meaningful gains at moderate-to-aggressive compression ($\\geq$4$\\times$). Standard-resolution profiling; hires results in Appendix~\\ref{sec:profiling_resolution}.}\n\\label{tab:budget_sweep}\n\\begin{tabular}{cccc}\n\\toprule\nCompression & Uniform PPL & Constr.\\ MCKP PPL & $\\Delta$ PPL \\\\\n\\midrule\n2$\\times$ & 10.10 & 10.66 & $-$0.56 \\\\\n4$\\times$ & 15.45 & 11.23 & $+$4.22 \\\\\n8$\\times$ & 14{,}759 & 907 & $+$13{,}852 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:budget_sweep} shows how the benefit of constrained allocation varies with compression ratio on Qwen2.5-7B.\n\nAt 2$\\times$ compression, uniform 8-bit quantization is near-lossless (10.10 PPL vs.\\ 9.81 bf16, $+$0.29).\nPer-head optimization has no headroom here; constrained MCKP is slightly worse (10.66) due to unnecessary 2-bit assignments that the budget permits but the model does not need.\n\nAt 4$\\times$, the gap is substantial: constrained MCKP reduces PPL from 15.45 to 11.23, a 27.3\\% improvement.\nHires profiling further reduces this to 10.91 (Appendix~\\ref{sec:profiling_resolution}).\n\nAt 8$\\times$, both methods degrade catastrophically---the budget is too aggressive for any allocation to preserve model quality.\nHowever, constrained MCKP (907) is an order of magnitude better than uniform (14{,}759) because the constraint still protects Layer-0 heads at 8-bit, preventing total representational collapse.\nNeither result is practically usable, but the gap demonstrates the protection mechanism at work.\n",
+      "numLines": 80,
+      "startLine": 40,
+      "totalLines": 190
+    }
+  },
+  "sourceToolAssistantUUID": "499fb006-836c-4c01-9af1-98a05059e8f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24 · 2026-05-14T22:17:47.461Z_
+
+````json
+{
+  "parentUuid": "288f0d6b-e5c0-4353-8be6-9cefda2e030c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "nested_memory",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/CLAUDE.md",
+    "content": {
+      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/CLAUDE.md",
+      "type": "Project",
+      "content": "## 当前项目\n当前绑定项目：**ratekv**\n\n## 按需查阅\n- 项目配置：`load_project_config(\"ratekv\")` 或 `load_project_config(\"ratekv\", section=\"execution\")`\n- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n- 路线图：`read_roadmap()` 读取研究方向和短期任务\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/artifacts/`（写文件后用 `register_artifact` 注册）\n\n## Worker 操作规范\n\n### ssh-env-setup\n\n# 远程服务器环境搭建规范\n\n## 核心原则\n\n**先探测，再安装。** 不要假设服务器上什么都没有——很多包已经装好了。安装前必须走 discovery 流程。\n\n**镜像快速路径**：连接服务器后，先用 `detect_image` 检测是否为预置镜像。如果是已知镜像且版本匹配，跳过基础环境搭建（Phase 1-4），直接安装项目特有依赖。未检测到镜像时走传统流程。\n\n**aml-train 镜像使用 conda 环境**（不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。pip/python 在 `/root/miniconda3/bin/` 下。**不要假设 .venv 存在，不要创建 venv。**\n\n## Phase 1: 环境探测（用 ssh_read_only）\n\n连接到服务器后，第一步永远是收集信息，不要直接装东西：\n\n```bash\n# 1. Python 环境\nwhich python3 && python3 --version\npip3 --version 2>/dev/null || echo \"NO_PIP\"\n\n# 2. CUDA 环境\nnvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader 2>/dev/null || echo \"NO_GPU\"\nnvcc --version 2>/dev/null | grep \"release\" || echo \"NO_NVCC\"\n\n# 3. 包管理器\nls -d /opt/miniconda3 ~/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\"\nls -d .venv venv env 2>/dev/null || echo \"NO_VENV\"\npip3 list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|flash\" || echo \"NO_ML_PKGS\"\n\n# 4. PEP 668 检查\npython3 -c \"import sysconfig; print(sysconfig.get_path('stdlib'))\" 2>/dev/null\nls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\"\n```\n\n根据探测结果决定安装策略，不要猜。\n\n## Phase 2: 环境策略选择\n\n根据 Phase 1 结果选择**一个**策略，不要混用：\n\n| 探测结果 | 策略 | 说明 |\n|----------|------|------|\n| 项目目录有 `.venv/` | 用它：`source .venv/bin/activate` | 最优先 |\n| 有 conda 且有写权限 | `conda activate base` 或创建专属 env | 次优先 |\n| PEP668_MANAGED + 无 venv | 创建 venv：`python3 -m venv .venv && source .venv/bin/activate` | 不要用 --break-system-packages |\n| PEP668_OK（无保护） | 直接 `pip install`（旧系统） | 仍建议 venv |\n\n**决不混用 conda install + pip install 到同一环境。** 选了 pip 就全用 pip。\n\n## Phase 3: PyTorch 安装\n\n### CUDA 版本映射（2025-2026 常用）\n\n先从 `nvcc --version` 或 `nvidia-smi` 获取 CUDA 版本，然后匹配：\n\n| CUDA 版本 | PyTorch pip index URL | 推荐 torch 版本 |\n|-----------|----------------------|-----------------|\n| 11.8 | `https://download.pytorch.org/whl/cu118` | ≥ 2.0 |\n| 12.1 | `https://download.pytorch.org/whl/cu121` | ≥ 2.1 |\n| 12.4 | `https://download.pytorch.org/whl/cu124` | ≥ 2.4 |\n| 12.6 | `https://download.pytorch.org/whl/cu126` | ≥ 2.6 |\n\n**不要猜版本号。** 如果不确定可用版本：\n```bash\npip index versions torch --index-url https://download.pytorch.org/whl/cu121 2>/dev/null | head -3\n```\n\n安装命令：\n```bash\npip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu{CUDA_SHORT}\n```\n\n### 大包超时处理\n\nPyTorch wheel 约 500MB-2GB，默认 SSH 超时可能不够。策略：\n\n```bash\n# 方法 1: nohup + 轮询（推荐）\nnohup pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 > /tmp/pip_install.log 2>&1 &\necho $!  # 记录 PID\n\n# 后续用 ssh_read_only 轮询\ncat /tmp/pip_install.log | tail -5\nps -p &lt;PID> -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"\n```\n\n```bash\n# 方法 2: 加大 pip 超时\npip install --timeout 300 torch ...\n```\n\n## Phase 4: 验证（必须执行）\n\n安装后必须验证，不要假设成功：\n\n```bash\npython3 -c \"\nimport torch\nprint(f'torch={torch.__version__}, cuda={torch.cuda.is_available()}, gpus={torch.cuda.device_count()}')\nif torch.cuda.is_available():\n    for i in range(torch.cuda.device_count()):\n        print(f'  GPU {i}: {torch.cuda.get_device_name(i)} ({torch.cuda.get_device_properties(i).total_mem // 1024**3}GB)')\n\"\n```\n\n验证失败的常见原因：\n- `torch.cuda.is_available()` 返回 False → CUDA 版本和 torch 不匹配，重装正确版本\n- `ImportError: libcudnn` → 缺 cuDNN，装 `nvidia-cudnn-cu1x`\n- GPU 数量不对 → 检查 `CUDA_VISIBLE_DEVICES` 环境变量\n\n## Phase 5: 项目依赖\n\n基础环境就绪后，安装项目依赖：\n\n```bash\n# 优先用 requirements.txt / pyproject.toml\npip install -r requirements.txt  # 或 pip install -e .\n\n# 常用 ML 依赖补装\npip install transformers datasets einops accelerate wandb\n```\n\nflash-attention 特殊处理（编译型包）：\n```bash\n# 需要匹配的 CUDA toolkit，编译耗时 5-15 分钟\npip install flash-attn --no-build-isolation\n# 如果编译失败，试预编译版本\npip install flash-attn --no-build-isolation 2>/dev/null || pip install flash-attn-wheels\n```\n\n## ssh_read_only vs ssh_execute 使用规则\n\n| 操作 | 用哪个工具 |\n|------|-----------|\n| 检查环境（python --version, nvidia-smi, pip list） | `ssh_read_only` |\n| 读文件内容、查日志 | `ssh_read_only` |\n| 安装包（pip install, conda install） | `ssh_execute` |\n| 创建/修改文件、启动进程 | `ssh_execute` |\n| 运行实验脚本 | `ssh_execute` |\n\n**原则：能用 read_only 就用 read_only，只有要改变服务器状态时才用 execute。**\n\n## AutoDL 专项注意事项\n\nAutoDL 实例有一系列特殊约束，5 个项目反复踩坑，必须遵守：\n\n### 磁盘\n- **根分区只有 ~30GB，严禁存大文件。** 模型、数据集、HF cache 全部放数据盘 `/root/autodl-tmp/`\n- 设置 `HF_HOME=/root/autodl-tmp/.hf_cache`，否则 HF 默认缓存到根分区导致磁盘满\n- 下载模型时用 `--local-dir /root/autodl-tmp/models/&lt;name>`，不要用默认路径\n\n### 网络\n- pip install / git clone 前必须 `source /etc/network_turbo` 启用代理加速，否则 pypi.nvidia.com 504 超时、GitHub TLS 断连\n- HF 下载设 `HF_HUB_DISABLE_XET=1`，xet_get 在 AutoDL 上返回 401\n- **SSL 证书**：`network_turbo` 的代理使用自签名证书，Python 默认 SSL 验证会失败。必须设置 `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt` 和 `SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt`，否则 HF 下载、datasets 加载等全部报 SSL 错误\n- **大模型下载优先用 ModelScope**：AutoDL 代理下载 HuggingFace 大文件极慢（~200KB/s），改用 ModelScope 国内 CDN 速度快很多。`pip install modelscope && python -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen2.5-7B-Instruct', cache_dir='/root/autodl-tmp/.hf_cache')\"`\n\n### SSH\n- **AutoDL 实例重启后 SSH 端口会变。** 连接失败时不要反复重试，应提示用户去控制台查新端口并更新 `~/.ssh/config`\n\n## 经验沉淀\n\n- [2026-04-05] Worker 首次连接服务器时，先用一条 ssh_read_only 组合命令完成全部探测，减少 SSH 往返次数\n- [2026-04-05] 遇到 PEP 668 时创建 venv 而非 --break-system-packages，避免污染系统 Python\n- [2026-04-05] PyTorch 大包安装用 nohup 后台执行 + 轮询方式，避免 SSH 超时导致安装中断\n- [2026-04-05] conda 环境和 pip 不要混用——如果项目用 pip，就全部用 pip\n- [2026-04-09] sync_code 前确保本地 commit 已 push 到 remote，否则服务器 git pull 拉不到最新代码\n- [2026-04-09] venv 创建后用 `which python` 验证路径指向正确的 venv python，不要假设系统 PATH 正确\n\n## 更多 Skills（按需加载）\n\n执行相关任务前，先 Read 对应 skill 获取环境配置和最佳实践。\n\n- **check-training-status** — 当用户问训练进度/实验状态/查状态时使用。用专用工具查看训练状态，禁止 ssh_execute。  →  `/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md`\n- **rebuttal** — 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。  →  `/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md`\n- **review-reviewer-session-start** — Review Reviewer session 启动初始化——检查论文格式、编译状态、材料清单。Review Reviewer 角色 session 启动时自动使用。  →  `/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md`\n- **reference-audit** — 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。  →  `/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md`\n- **accelerate-distributed** — HuggingFace Accelerate 分布式训练指南——4行代码实现多GPU/DeepSpeed/FSDP/混合精度。多GPU训练时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md`\n- **draw-paper-figure** — 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG  →  `/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md`\n- **experiment-analysis** — 实验结果分析框架——统计显著性检验、消融分析、baseline 对比、可视化建议。分析实验结果或撰写论文 Results 部分时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md`\n- **hf-hub** — HuggingFace Hub CLI (hf) — 下载/上传模型和数据集、管理缓存、搜索论文和模型。涉及 HuggingFace 资源操作时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md`\n- **latex-paper** — ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md`\n- **lm-eval-harness** — lm-evaluation-harness 模型评估指南——MMLU/GSM8K/HumanEval 等 60+ 学术基准测试。评估模型质量、对比实验时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md`\n- **ml-experiment-guide** — 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md`\n- **paper-banana** — 用 PaperBanana 生成发表级学术统计图——LLM 写 matplotlib 代码 + Critic 迭代 3 轮，输入 CSV/JSON 数据 + 意图描述即可。需要 GOOGLE_API_KEY。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md`\n- **paper-image-extractor** — 从论文 PDF 或 arXiv 源码包提取图表——优先 arXiv 原始图片，回退 PDF 解析。用户说\"提取图\"/\"抽图\"/\"extract figures\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md`\n- **peft-lora** — PEFT/LoRA/QLoRA 参数高效微调指南——LoRA 配置选择、QLoRA 量化训练、Adapter 管理与合并。微调大模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/peft-lora.skill.md`\n- **research-news** — 每日论文推荐——搜索 arXiv 最新论文，按相关性/新颖性/影响力评分，生成推荐列表。Director 说\"有什么新论文\"/\"最近进展\"/\"research news\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/research-news.skill.md`\n- **trl-training** — TRL (Transformer Reinforcement Learning) 训练指南——SFT/DPO/GRPO/KTO 配置与最佳实践。训练或对齐语言模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/trl-training.skill.md`\n- **wandb-guide** — W&B 查询最佳实践——如何高效使用 fetch_wandb_metrics / compare_wandb_runs / get_best_wandb_run 分析实验结果。分析实验指标时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/wandb-guide.skill.md`\n",
+      "contentDiffersFromDisk": false
+    },
+    "displayPath": ".claude/CLAUDE.md"
+  },
+  "type": "attachment",
+  "uuid": "5f930628-5d5f-44d3-8fea-f1dc9097da59",
+  "timestamp": "2026-05-14T22:17:47.461Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-14T22:17:54.912Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f930628-5d5f-44d3-8fea-f1dc9097da59",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EeoHsKmdkBpYBCva7K",
+  "type": "assistant",
+  "uuid": "e5f893e0-b38b-4ddf-a1fb-d06af787f324",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014uAQSQPFRwyuvwVJqL3zvM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9148,
+      "cache_read_input_tokens": 36044,
+      "output_tokens": 703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9148,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 703,
+          "cache_read_input_tokens": 36044,
+          "cache_creation_input_tokens": 9148,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9148
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T22:17:56.813Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01CtjNXkbnaJ7G8b2KNVQAYj`</summary>
+
+```json
+{
+  "pattern": "0\\.59|0\\.5856|0\\.5909|0\\.66|0\\.6156|0\\.6104|0\\.62",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5f893e0-b38b-4ddf-a1fb-d06af787f324",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EeoHsKmdkBpYBCva7K",
+  "type": "assistant",
+  "uuid": "b6f69a93-95c8-44a9-8fb8-b70228551705",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014uAQSQPFRwyuvwVJqL3zvM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9148,
+      "cache_read_input_tokens": 36044,
+      "output_tokens": 703,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9148,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 703,
+          "cache_read_input_tokens": 36044,
+          "cache_creation_input_tokens": 9148,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9148
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T22:17:56.837Z_
+
+<details><summary>↩ Tool result · `toolu_01CtjNXkbnaJ7G8b2KNVQAYj`</summary>
+
+```text
+docs/paper/experiments.tex:101:2$\times$ & 10.10 & 10.66 & $-$0.56 \\
+docs/paper/experiments.tex:111:Per-head optimization has no headroom here; constrained MCKP is slightly worse (10.66) due to unnecessary 2-bit assignments that the budget permits but the model does not need.
+docs/paper/experiments.tex:168:WinoGrande & ---   & 0.662 & 0.682 & $+$2.0 pts \\
+docs/paper/experiments.tex:170:Average    & 0.695 & 0.660 & 0.686 & $+$2.6 pts \\
+docs/paper/experiments.tex:176:Constrained MCKP improves average 0-shot accuracy by 2.6 points over uniform 4-bit (0.686 vs.\ 0.660), with gains on all four benchmarks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6f69a93-95c8-44a9-8fb8-b70228551705",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "4fbc254d-e261-462b-803e-3434f7bace28",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/experiments.tex:101:2$\\times$ & 10.10 & 10.66 & $-$0.56 \\\\\ndocs/paper/experiments.tex:111:Per-head optimization has no headroom here; constrained MCKP is slightly worse (10.66) due to unnecessary 2-bit assignments that the budget permits but the model does not need.\ndocs/paper/experiments.tex:168:WinoGrande & ---   & 0.662 & 0.682 & $+$2.0 pts \\\\\ndocs/paper/experiments.tex:170:Average    & 0.695 & 0.660 & 0.686 & $+$2.6 pts \\\\\ndocs/paper/experiments.tex:176:Constrained MCKP improves average 0-shot accuracy by 2.6 points over uniform 4-bit (0.686 vs.\\ 0.660), with gains on all four benchmarks.",
+    "numLines": 5
+  },
+  "sourceToolAssistantUUID": "b6f69a93-95c8-44a9-8fb8-b70228551705",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "4fbc254d-e261-462b-803e-3434f7bace28",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unify Qwen concentration to 0.61",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-14T22:17:59.976Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fbc254d-e261-462b-803e-3434f7bace28",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EfVcWtnsuiYrQhtUeS",
+  "type": "assistant",
+  "uuid": "ee3a51fd-8f1f-4cc0-aea3-d332a293d7ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Nt26BBnxcak3aY9TB2gyco",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 45192,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 45192,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T22:18:01.627Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01NNZWxJF6S6TqsuwEzJ6XVK`</summary>
+
+```json
+{
+  "pattern": "bf16 range|float32|fp32|0\\.59.{0,3}0\\.66|range.*concentration|concentration.*range",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee3a51fd-8f1f-4cc0-aea3-d332a293d7ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EfVcWtnsuiYrQhtUeS",
+  "type": "assistant",
+  "uuid": "7edf0570-62ab-4a44-8cb6-bfedb8950281",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Nt26BBnxcak3aY9TB2gyco",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1012,
+      "cache_read_input_tokens": 45192,
+      "output_tokens": 330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1012,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 330,
+          "cache_read_input_tokens": 45192,
+          "cache_creation_input_tokens": 1012,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1012
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T22:18:01.650Z_
+
+<details><summary>↩ Tool result · `toolu_01NNZWxJF6S6TqsuwEzJ6XVK`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7edf0570-62ab-4a44-8cb6-bfedb8950281",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "ba0140f9-f62a-4124-9a28-6640eb84da49",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "7edf0570-62ab-4a44-8cb6-bfedb8950281",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T22:18:04.874Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01G3k9vx3pLuAyXmo5Kr6we9`</summary>
+
+```json
+{
+  "pattern": "Qwen.{0,80}concentration|concentration.{0,80}Qwen",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba0140f9-f62a-4124-9a28-6640eb84da49",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EfrDG3x2CttX9yrxPQ",
+  "type": "assistant",
+  "uuid": "7e2d221b-d38f-43ba-a1e8-2dbdf735ac71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01Qdmi9qzEugrii72TpXP1wu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 346,
+      "cache_read_input_tokens": 46204,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 346,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 46204,
+          "cache_creation_input_tokens": 346,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 346
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T22:18:04.892Z_
+
+<details><summary>↩ Tool result · `toolu_01G3k9vx3pLuAyXmo5Kr6we9`</summary>
+
+```text
+docs/paper/introduction.tex:43:On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.
+docs/paper/introduction.tex:44:Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier spike with no cross-bitwidth gradient---precisely the pattern where MCKP cannot redistribute budget.
+docs/paper/introduction.tex:53:\item We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly separates architectures where non-uniform allocation helps from those where it does not, across all five models tested. Yi-1.5-9B serves as a critical test: its concentration exceeds Qwen's, yet its single-outlier spike pattern means MCKP provides no benefit over uniform (\S\ref{sec:heterogeneity}).
+docs/paper/analysis.tex:14:Qwen2.5-7B exemplifies the spread pattern (top-5\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.
+docs/paper/analysis.tex:17:Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\ $+$0.20). %exp_id=yi15_hires_constrained_mckp
+docs/paper/analysis.tex:52:[Omitted long matching line]
+docs/paper/conclusion.tex:7:Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.
+docs/paper/conclusion.tex:8:Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e2d221b-d38f-43ba-a1e8-2dbdf735ac71",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "2df0c7d0-ec92-460e-af52-1b0904f88764",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/introduction.tex:43:On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.\ndocs/paper/introduction.tex:44:Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier spike with no cross-bitwidth gradient---precisely the pattern where MCKP cannot redistribute budget.\ndocs/paper/introduction.tex:53:\\item We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly separates architectures where non-uniform allocation helps from those where it does not, across all five models tested. Yi-1.5-9B serves as a critical test: its concentration exceeds Qwen's, yet its single-outlier spike pattern means MCKP provides no benefit over uniform (\\S\\ref{sec:heterogeneity}).\ndocs/paper/analysis.tex:14:Qwen2.5-7B exemplifies the spread pattern (top-5\\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.\ndocs/paper/analysis.tex:17:Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\\ $+$0.20). %exp_id=yi15_hires_constrained_mckp\ndocs/paper/analysis.tex:52:[Omitted long matching line]\ndocs/paper/conclusion.tex:7:Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.\ndocs/paper/conclusion.tex:8:Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.",
+    "numLines": 8
+  },
+  "sourceToolAssistantUUID": "7e2d221b-d38f-43ba-a1e8-2dbdf735ac71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-14T22:18:07.616Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2df0c7d0-ec92-460e-af52-1b0904f88764",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Eg62ULUDJ2ktgmJzsK",
+  "type": "assistant",
+  "uuid": "7ef1fff6-7535-4f7b-8da7-422cd542b137",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017XvbpstSd9dtV8UxPZnGHT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1135,
+      "cache_read_input_tokens": 46550,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1135,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 46550,
+          "cache_creation_input_tokens": 1135,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1135
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T22:18:08.678Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012tB479Qh45qHNNEcFmT59h`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/analysis.tex",
+  "offset": 30,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ef1fff6-7535-4f7b-8da7-422cd542b137",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Eg62ULUDJ2ktgmJzsK",
+  "type": "assistant",
+  "uuid": "f9f7fed8-80c4-4983-a26a-8a472dd091ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_017XvbpstSd9dtV8UxPZnGHT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1135,
+      "cache_read_input_tokens": 46550,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1135,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 46550,
+          "cache_creation_input_tokens": 1135,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1135
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T22:18:08.682Z_
+
+<details><summary>↩ Tool result · `toolu_012tB479Qh45qHNNEcFmT59h`</summary>
+
+```text
+30	\begin{table}[t]
+31	\centering
+32	\small
+33	\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at $4\times$ compression. $t_1/t_5$: ratio of top-1 to top-5 per-head 2-bit distortion (low${=}$spread, high${=}$spike). $^\dagger$Hires profiling (64 seq $\times$ 2048 tok); $^\ddagger$standard profiling, hires pending.}
+34	\label{tab:heterogeneity}
+35	\begin{tabular}{lcccccc}
+36	\toprule
+37	Model & GQA & Top-5\% & $t_1/t_5$ & $\Delta$ PPL & $\Delta$ PPL & Shape \\
+38	 & Ratio & Conc. & & (Uniform) & (Ours) & \\
+39	\midrule
+40	Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\
+41	Yi-1.5-9B$^\dagger$ & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\
+42	Llama-3.1-8B$^\dagger$ & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\
+43	Mistral-7B-v0.3$^\dagger$ & 4:1 & 0.22 & 0.18 & $+$0.10 & $+$0.13 & Flat \\
+44	Gemma-2-9B$^\ddagger$ & 2:1 & 0.23 & 0.18 & $+$0.13 & $+$0.15 & Flat \\
+45	\bottomrule
+46	\end{tabular}
+47	\end{table}
+48	
+49	\begin{figure*}[t]
+50	\centering
+51	\includegraphics[width=\textwidth]{figures/fig1_head_delta_heatmap.pdf}
+52	\caption{Per-head 2-bit quantization sensitivity across five architectures. Qwen2.5-7B shows high concentration in Layer-0 heads (``spread'' pattern); Yi-1.5-9B shows a single extreme outlier at Layer-4 Head-3 (``spike'' pattern); Llama-3.1-8B shows a dominant outlier at Layer-2 Head-5 (49\% of total distortion, ``spike'' pattern); Mistral-7B-v0.3 shows near-zero sensitivity across all heads; Gemma-2-9B exhibits the most uniform distribution, consistent with its low GQA ratio (2:1). Color intensity indicates PPL increase when the head is quantized to 2-bit.}
+53	\label{fig:heatmap}
+54	\end{figure*}
+55	
+56	Figure~\ref{fig:heatmap} visualizes the per-head 2-bit distortion as a heatmap.
+57	The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.
+58	
+59	\subsection{Diagnostic Framework}
+60	\label{sec:diagnostic}
+61	
+62	The heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.
+63	This motivates a joint diagnostic, based on five architectures, for deciding when non-uniform allocation is worthwhile:
+64	
+65	\begin{enumerate}[nosep]
+66	\item Run per-head profiling as described in \S\ref{sec:profiling}.
+67	\item Compute the top-5\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.
+68	\item Select allocation strategy based on concentration \emph{and} shape:
+69	  \begin{itemize}[nosep]
+70	  \item \textbf{Spread} (concentration $\gtrsim 0.50$, $t_1/t_5 \lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\% PPL improvement.
+71	  \item \textbf{Spike} ($t_1/t_5 \gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.
+72	  \item \textbf{Flat} (concentration $\lesssim 0.50$, low $t_1/t_5$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. Mistral (0.22, $t_1/t_5{=}0.18$) and Gemma-2 (0.23, $t_1/t_5{=}0.18$): counterproductive.
+73	  \end{itemize}
+74	\end{enumerate}
+75	
+76	Llama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.
+77	Indeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.
+78	The joint condition---concentration $\gtrsim 0.50$ and $t_1/t_5 \lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.
+79	Both thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules.
+80	The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver and avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.
+81	Additional analyses---the effect of aggressive compression ratios, profiling resolution and multi-seed stability, per-layer optimality validation, and KV separation ablation---are provided in Appendices~\ref{sec:aggressive}--\ref{sec:kv_separation}.
+82	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9f7fed8-80c4-4983-a26a-8a472dd091ed",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "2e637113-41bc-4f89-89aa-a61493c3e2b1",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/analysis.tex",
+      "content": "\\begin{table}[t]\n\\centering\n\\small\n\\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at $4\\times$ compression. $t_1/t_5$: ratio of top-1 to top-5 per-head 2-bit distortion (low${=}$spread, high${=}$spike). $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok); $^\\ddagger$standard profiling, hires pending.}\n\\label{tab:heterogeneity}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & GQA & Top-5\\% & $t_1/t_5$ & $\\Delta$ PPL & $\\Delta$ PPL & Shape \\\\\n & Ratio & Conc. & & (Uniform) & (Ours) & \\\\\n\\midrule\nQwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\\\\nYi-1.5-9B$^\\dagger$ & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\\\\nLlama-3.1-8B$^\\dagger$ & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\\\\nMistral-7B-v0.3$^\\dagger$ & 4:1 & 0.22 & 0.18 & $+$0.10 & $+$0.13 & Flat \\\\\nGemma-2-9B$^\\ddagger$ & 2:1 & 0.23 & 0.18 & $+$0.13 & $+$0.15 & Flat \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_head_delta_heatmap.pdf}\n\\caption{Per-head 2-bit quantization sensitivity across five architectures. Qwen2.5-7B shows high concentration in Layer-0 heads (``spread'' pattern); Yi-1.5-9B shows a single extreme outlier at Layer-4 Head-3 (``spike'' pattern); Llama-3.1-8B shows a dominant outlier at Layer-2 Head-5 (49\\% of total distortion, ``spike'' pattern); Mistral-7B-v0.3 shows near-zero sensitivity across all heads; Gemma-2-9B exhibits the most uniform distribution, consistent with its low GQA ratio (2:1). Color intensity indicates PPL increase when the head is quantized to 2-bit.}\n\\label{fig:heatmap}\n\\end{figure*}\n\nFigure~\\ref{fig:heatmap} visualizes the per-head 2-bit distortion as a heatmap.\nThe contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.\n\n\\subsection{Diagnostic Framework}\n\\label{sec:diagnostic}\n\nThe heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \\emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.\nThis motivates a joint diagnostic, based on five architectures, for deciding when non-uniform allocation is worthwhile:\n\n\\begin{enumerate}[nosep]\n\\item Run per-head profiling as described in \\S\\ref{sec:profiling}.\n\\item Compute the top-5\\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.\n\\item Select allocation strategy based on concentration \\emph{and} shape:\n  \\begin{itemize}[nosep]\n  \\item \\textbf{Spread} (concentration $\\gtrsim 0.50$, $t_1/t_5 \\lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\\% PPL improvement.\n  \\item \\textbf{Spike} ($t_1/t_5 \\gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.\n  \\item \\textbf{Flat} (concentration $\\lesssim 0.50$, low $t_1/t_5$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. Mistral (0.22, $t_1/t_5{=}0.18$) and Gemma-2 (0.23, $t_1/t_5{=}0.18$): counterproductive.\n  \\end{itemize}\n\\end{enumerate}\n\nLlama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.\nIndeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.\nThe joint condition---concentration $\\gtrsim 0.50$ and $t_1/t_5 \\lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.\nBoth thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules.\nThe diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver and avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.\nAdditional analyses---the effect of aggressive compression ratios, profiling resolution and multi-seed stability, per-layer optimality validation, and KV separation ablation---are provided in Appendices~\\ref{sec:aggressive}--\\ref{sec:kv_separation}.\n",
+      "numLines": 53,
+      "startLine": 30,
+      "totalLines": 82
+    }
+  },
+  "sourceToolAssistantUUID": "f9f7fed8-80c4-4983-a26a-8a472dd091ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-14T22:18:08.764Z_
+
+```json
+{
+  "parentUuid": "2e637113-41bc-4f89-89aa-a61493c3e2b1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "910e325d-f464-4c37-9910-8eeee971cb42",
+  "timestamp": "2026-05-14T22:18:08.764Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-14T22:18:12.445Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "910e325d-f464-4c37-9910-8eeee971cb42",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EgNadXVrb4XCywjaAj",
+  "type": "assistant",
+  "uuid": "80edd5a6-32a6-47ef-bc67-ec4e945f7bc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_019ADLUPoigjBYZmUiNvVfEr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2820,
+      "cache_read_input_tokens": 47685,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 47685,
+          "cache_creation_input_tokens": 2820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T22:18:13.840Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KAhyuhPSP36M2vVKx3iWWf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80edd5a6-32a6-47ef-bc67-ec4e945f7bc9",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EgNadXVrb4XCywjaAj",
+  "type": "assistant",
+  "uuid": "43d92ef9-4d57-489d-aa93-85fe60a910c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_019ADLUPoigjBYZmUiNvVfEr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2820,
+      "cache_read_input_tokens": 47685,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 47685,
+          "cache_creation_input_tokens": 2820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T22:18:13.844Z_
+
+<details><summary>↩ Tool result · `toolu_01KAhyuhPSP36M2vVKx3iWWf`</summary>
+
+```text
+1	Per-head mixed-precision quantization of the KV cache promises lower perplexity than uniform quantization at the same average bit-width, but on hardware-aligned bit-widths $\{2, 4, 8, 16\}$, existing solvers fail catastrophically: unconstrained greedy and MCKP allocation achieve 32.45 and 36.92 perplexity on Qwen2.5-7B---far worse than uniform 4-bit (15.45).
+2	We trace this failure to \emph{2-bit distortion compounding}: when the majority of heads are assigned 2-bit precision, per-head quantization errors interact non-additively through the residual stream, violating the additive objective assumed by standard solvers.
+3	We show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.
+4	On Qwen2.5-7B at $4\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\% reduction over uniform 4-bit.
+5	The constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\Delta{=}0.0000$), enabling use of a simple $O(H \log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).
+6	However, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.
+7	Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.
+8	We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.
+9	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43d92ef9-4d57-489d-aa93-85fe60a910c7",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "573ff66b-f00e-43de-ad63-01e3e47d295f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/abstract.tex",
+      "content": "Per-head mixed-precision quantization of the KV cache promises lower perplexity than uniform quantization at the same average bit-width, but on hardware-aligned bit-widths $\\{2, 4, 8, 16\\}$, existing solvers fail catastrophically: unconstrained greedy and MCKP allocation achieve 32.45 and 36.92 perplexity on Qwen2.5-7B---far worse than uniform 4-bit (15.45).\nWe trace this failure to \\emph{2-bit distortion compounding}: when the majority of heads are assigned 2-bit precision, per-head quantization errors interact non-additively through the residual stream, violating the additive objective assumed by standard solvers.\nWe show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.\nOn Qwen2.5-7B at $4\\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\\% reduction over uniform 4-bit.\nThe constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\\Delta{=}0.0000$), enabling use of a simple $O(H \\log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).\nHowever, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.\nNotably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.\nWe propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.\n",
+      "numLines": 9,
+      "startLine": 1,
+      "totalLines": 9
+    }
+  },
+  "sourceToolAssistantUUID": "43d92ef9-4d57-489d-aa93-85fe60a910c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "573ff66b-f00e-43de-ad63-01e3e47d295f",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unify Qwen concentration to 0.61",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T22:18:17.101Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_017H8WMrZVXH8NH68UekwEZk`</summary>
+
+```json
+{
+  "pattern": "concentration|0\\.6|hires|profil",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "573ff66b-f00e-43de-ad63-01e3e47d295f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EgkL5QYMbvvWMJact9",
+  "type": "assistant",
+  "uuid": "e3737e5f-94d6-4da6-8c4e-9b52decbe61c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014up3jvx2xQBvg3V9nrYMTN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1026,
+      "cache_read_input_tokens": 50505,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1026,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 50505,
+          "cache_creation_input_tokens": 1026,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1026
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T22:18:17.121Z_
+
+<details><summary>↩ Tool result · `toolu_017H8WMrZVXH8NH68UekwEZk`</summary>
+
+```text
+12:\label{sec:profiling_resolution}
+14:We compare standard-resolution profiling (16 sequences $\times$ 512 tokens) against high-resolution profiling (64 sequences $\times$ 2048 tokens) on Qwen2.5-7B at $4\times$ compression.
+16:High-resolution profiling improves constrained MCKP from 11.23 to 10.91 PPL ($-$0.32 absolute).
+18:The improvement comes from finer-grained sensitivity estimates: standard profiling detects non-zero 2-bit distortion in 37 of 112 heads, while high-resolution profiling detects 100 of 112 (2.7$\times$ more).
+21:High-resolution profiling protects shallow layers (L1--L3) at higher bit-widths while compressing mid-layers (L5--L11) more aggressively---a redistribution that standard profiling misses because its distortion estimates for these heads fall below the noise floor.
+24:The profiled allocation is stable across calibration subsets.
+25:Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \pm 0.06$ across 3 random calibration seeds (individual runs: 11.02, 10.90, 11.05), with std/mean below 0.6\%.
+30:Float32 profiling (64 $\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\ 10.91, $\Delta = 0.02 < \sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.
+33:To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3737e5f-94d6-4da6-8c4e-9b52decbe61c",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "6c9628bb-cdaa-4203-93d3-012a18c48282",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "12:\\label{sec:profiling_resolution}\n14:We compare standard-resolution profiling (16 sequences $\\times$ 512 tokens) against high-resolution profiling (64 sequences $\\times$ 2048 tokens) on Qwen2.5-7B at $4\\times$ compression.\n16:High-resolution profiling improves constrained MCKP from 11.23 to 10.91 PPL ($-$0.32 absolute).\n18:The improvement comes from finer-grained sensitivity estimates: standard profiling detects non-zero 2-bit distortion in 37 of 112 heads, while high-resolution profiling detects 100 of 112 (2.7$\\times$ more).\n21:High-resolution profiling protects shallow layers (L1--L3) at higher bit-widths while compressing mid-layers (L5--L11) more aggressively---a redistribution that standard profiling misses because its distortion estimates for these heads fall below the noise floor.\n24:The profiled allocation is stable across calibration subsets.\n25:Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \\pm 0.06$ across 3 random calibration seeds (individual runs: 11.02, 10.90, 11.05), with std/mean below 0.6\\%.\n30:Float32 profiling (64 $\\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\\ 10.91, $\\Delta = 0.02 < \\sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.\n33:To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).",
+    "numLines": 9
+  },
+  "sourceToolAssistantUUID": "e3737e5f-94d6-4da6-8c4e-9b52decbe61c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-14T22:18:21.006Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c9628bb-cdaa-4203-93d3-012a18c48282",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EgzKhUbhBSyueraLrA",
+  "type": "assistant",
+  "uuid": "84dfbb25-b3af-4a40-8bbd-8c7a10690b0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NnRF5vGP6Hau1CnBnw9F9j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 51531,
+      "output_tokens": 281,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 281,
+          "cache_read_input_tokens": 51531,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T22:18:21.742Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YV2dNRQKMR3kMacaRRP5Ce`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex",
+  "offset": 25,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84dfbb25-b3af-4a40-8bbd-8c7a10690b0f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EgzKhUbhBSyueraLrA",
+  "type": "assistant",
+  "uuid": "44820de5-b97a-4c78-90bc-5a2888b30c1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NnRF5vGP6Hau1CnBnw9F9j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 51531,
+      "output_tokens": 281,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 849,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 281,
+          "cache_read_input_tokens": 51531,
+          "cache_creation_input_tokens": 849,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 849
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T22:18:21.748Z_
+
+<details><summary>↩ Tool result · `toolu_01YV2dNRQKMR3kMacaRRP5Ce`</summary>
+
+```text
+25	Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \pm 0.06$ across 3 random calibration seeds (individual runs: 11.02, 10.90, 11.05), with std/mean below 0.6\%.
+26	The bit distribution is identical across all seeds ($\{$2-bit: 8, 4-bit: 100, 8-bit: 4$\}$), and 101 of 112 heads (90.2\%) receive the same assignment in all three runs.
+27	This stability confirms that the per-head sensitivity ranking is robust to calibration sampling noise.
+28	
+29	\paragraph{Numerical precision.}
+30	Float32 profiling (64 $\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\ 10.91, $\Delta = 0.02 < \sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.
+31	
+32	\paragraph{Per-layer optimality.}
+33	To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).
+34	Of the 8 layers admitting multiple feasible allocations, MCKP matches the oracle exactly in 5; the remaining 3 show gaps of 0.018 (Layer~1), 0.014 (Layer~11), and 0.005 (Layer~4) PPL.
+35	All three gaps involve repositioning a 2-bit assignment among heads with near-identical sensitivity within the same layer bit budget.
+36	The negligible total gap ($<0.04$ PPL) confirms that the per-head additive distortion model closely approximates the true layer-level interaction.
+37	
+38	\section{KV Separation Ablation}
+39	\label{sec:kv_separation}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "44820de5-b97a-4c78-90bc-5a2888b30c1d",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "b65e9bd9-aa2e-470c-a9a4-147059911151",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex",
+      "content": "Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \\pm 0.06$ across 3 random calibration seeds (individual runs: 11.02, 10.90, 11.05), with std/mean below 0.6\\%.\nThe bit distribution is identical across all seeds ($\\{$2-bit: 8, 4-bit: 100, 8-bit: 4$\\}$), and 101 of 112 heads (90.2\\%) receive the same assignment in all three runs.\nThis stability confirms that the per-head sensitivity ranking is robust to calibration sampling noise.\n\n\\paragraph{Numerical precision.}\nFloat32 profiling (64 $\\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\\ 10.91, $\\Delta = 0.02 < \\sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.\n\n\\paragraph{Per-layer optimality.}\nTo validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).\nOf the 8 layers admitting multiple feasible allocations, MCKP matches the oracle exactly in 5; the remaining 3 show gaps of 0.018 (Layer~1), 0.014 (Layer~11), and 0.005 (Layer~4) PPL.\nAll three gaps involve repositioning a 2-bit assignment among heads with near-identical sensitivity within the same layer bit budget.\nThe negligible total gap ($<0.04$ PPL) confirms that the per-head additive distortion model closely approximates the true layer-level interaction.\n\n\\section{KV Separation Ablation}\n\\label{sec:kv_separation}",
+      "numLines": 15,
+      "startLine": 25,
+      "totalLines": 82
+    }
+  },
+  "sourceToolAssistantUUID": "44820de5-b97a-4c78-90bc-5a2888b30c1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-14T22:18:26.729Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b65e9bd9-aa2e-470c-a9a4-147059911151",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EhLBHjz1hzYG4TtSTL",
+  "type": "assistant",
+  "uuid": "89308001-67be-4381-aafa-49a09a867b29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015dmSbkfCTX2TEex2zW5Za5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 52380,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 52380,
+          "cache_creation_input_tokens": 982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T22:18:27.577Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AS8pzBts4GqNmTWoUjoRVa`</summary>
+
+```json
+{
+  "command": "git status && echo \"---\" && git log --oneline -10",
+  "description": "Check git status"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89308001-67be-4381-aafa-49a09a867b29",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EhLBHjz1hzYG4TtSTL",
+  "type": "assistant",
+  "uuid": "e5359d10-f62e-4dab-9c3b-c7ebca096af2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015dmSbkfCTX2TEex2zW5Za5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 982,
+      "cache_read_input_tokens": 52380,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 982,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 52380,
+          "cache_creation_input_tokens": 982,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 982
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T22:18:27.643Z_
+
+<details><summary>↩ Tool result · `toolu_01AS8pzBts4GqNmTWoUjoRVa`</summary>
+
+```text
+On branch master
+Changes not staged for commit:
+  (use "git add &lt;file>..." to update what will be committed)
+  (use "git restore &lt;file>..." to discard changes in working directory)
+	modified:   docs/paper/abstract.tex
+	modified:   docs/paper/analysis.tex
+	modified:   docs/paper/appendix.tex
+	modified:   docs/paper/conclusion.tex
+	modified:   docs/paper/experiments.tex
+	modified:   docs/paper/figures/fig1_head_delta_heatmap.pdf
+	modified:   docs/paper/introduction.tex
+	modified:   docs/paper/main.aux
+	modified:   docs/paper/main.bbl
+	modified:   docs/paper/main.blg
+	modified:   docs/paper/main.fdb_latexmk
+	modified:   docs/paper/main.fls
+	modified:   docs/paper/main.log
+	modified:   docs/paper/main.out
+	modified:   docs/paper/main.pdf
+	modified:   docs/paper/references.bib
+	modified:   docs/paper/related_work.tex
+	modified:   paper_provenance.yaml
+	modified:   run_qwen_hires_constrained.py
+	modified:   run_yi15_full_pipeline.py
+
+Untracked files:
+  (use "git add &lt;file>..." to include in what will be committed)
+	.claude/
+	AGENTS.md
+	ROADMAP.lock
+	ROADMAP.md
+	artifacts/
+	checkpoints/
+	decisions.lock
+	decisions.yaml
+	docs/IDEA_BRIEF.md
+	docs/paper/_pdf_images/
+	docs/paper/figures/fig1_head_delta_heatmap.png
+	docs/paper/figures/fig_concentration_scatter.pdf
+	docs/paper/figures/fig_concentration_scatter.png
+	dream_registry.lock
+	dream_registry.yaml
+	dream_registry.yaml.bak
+	experiment_plan.lock
+	experiment_plan.yaml
+	figures/
+	generate_hires_heatmap.py
+	literature_map.lock
+	literature_map.yaml
+	logs/
+	memory.md
+	paper_framing.md
+	paper_provenance.lock
+	registry.lock
+	registry.yaml
+	report.md
+	run_c4_cross_dataset.py
+	run_gemma2_full_pipeline.py
+	run_gemma2_hires_bf16_2bitonly.py
+	run_k_ablation.py
+	run_kv_separation.py
+	run_llama_heuristic_k2.py
+	run_llama_hires_bf16_2bitonly.py
+	run_mistral_c4_cross_dataset.py
+	run_mistral_hires_bf16_2bitonly.py
+	run_yi15_hires_bf16_2bitonly.py
+	run_yi15_hires_constrained.py
+	run_yi15_hires_profiling.py
+	study_status.lock
+	task_context/
+	writing_plan.yaml
+
+no changes added to commit (use "git add" and/or "git commit -a")
+---
+c4ead3c add Qwen2.5-7B constrained MCKP + WikiText-2 eval script
+0ddb176 add Yi-1.5-9B full pipeline script
+9b16d41 [paper] move §5.3-5.5 to appendix, fix provenance Tier 3 claims
+e9b1a23 [paper] refinement round 2
+3b2b842 [paper] refinement round 1
+ac58ede [paper] refinement round 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5359d10-f62e-4dab-9c3b-c7ebca096af2",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "5d3ab3bb-1d56-4695-9644-e1fbccdfbd97",
+  "toolUseResult": {
+    "stdout": "On branch master\nChanges not staged for commit:\n  (use \"git add &lt;file>...\" to update what will be committed)\n  (use \"git restore &lt;file>...\" to discard changes in working directory)\n\tmodified:   docs/paper/abstract.tex\n\tmodified:   docs/paper/analysis.tex\n\tmodified:   docs/paper/appendix.tex\n\tmodified:   docs/paper/conclusion.tex\n\tmodified:   docs/paper/experiments.tex\n\tmodified:   docs/paper/figures/fig1_head_delta_heatmap.pdf\n\tmodified:   docs/paper/introduction.tex\n\tmodified:   docs/paper/main.aux\n\tmodified:   docs/paper/main.bbl\n\tmodified:   docs/paper/main.blg\n\tmodified:   docs/paper/main.fdb_latexmk\n\tmodified:   docs/paper/main.fls\n\tmodified:   docs/paper/main.log\n\tmodified:   docs/paper/main.out\n\tmodified:   docs/paper/main.pdf\n\tmodified:   docs/paper/references.bib\n\tmodified:   docs/paper/related_work.tex\n\tmodified:   paper_provenance.yaml\n\tmodified:   run_qwen_hires_constrained.py\n\tmodified:   run_yi15_full_pipeline.py\n\nUntracked files:\n  (use \"git add &lt;file>...\" to include in what will be committed)\n\t.claude/\n\tAGENTS.md\n\tROADMAP.lock\n\tROADMAP.md\n\tartifacts/\n\tcheckpoints/\n\tdecisions.lock\n\tdecisions.yaml\n\tdocs/IDEA_BRIEF.md\n\tdocs/paper/_pdf_images/\n\tdocs/paper/figures/fig1_head_delta_heatmap.png\n\tdocs/paper/figures/fig_concentration_scatter.pdf\n\tdocs/paper/figures/fig_concentration_scatter.png\n\tdream_registry.lock\n\tdream_registry.yaml\n\tdream_registry.yaml.bak\n\texperiment_plan.lock\n\texperiment_plan.yaml\n\tfigures/\n\tgenerate_hires_heatmap.py\n\tliterature_map.lock\n\tliterature_map.yaml\n\tlogs/\n\tmemory.md\n\tpaper_framing.md\n\tpaper_provenance.lock\n\tregistry.lock\n\tregistry.yaml\n\treport.md\n\trun_c4_cross_dataset.py\n\trun_gemma2_full_pipeline.py\n\trun_gemma2_hires_bf16_2bitonly.py\n\trun_k_ablation.py\n\trun_kv_separation.py\n\trun_llama_heuristic_k2.py\n\trun_llama_hires_bf16_2bitonly.py\n\trun_mistral_c4_cross_dataset.py\n\trun_mistral_hires_bf16_2bitonly.py\n\trun_yi15_hires_bf16_2bitonly.py\n\trun_yi15_hires_constrained.py\n\trun_yi15_hires_profiling.py\n\tstudy_status.lock\n\ttask_context/\n\twriting_plan.yaml\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n---\nc4ead3c add Qwen2.5-7B constrained MCKP + WikiText-2 eval script\n0ddb176 add Yi-1.5-9B full pipeline script\n9b16d41 [paper] move §5.3-5.5 to appendix, fix provenance Tier 3 claims\ne9b1a23 [paper] refinement round 2\n3b2b842 [paper] refinement round 1\nac58ede [paper] refinement round 0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "e5359d10-f62e-4dab-9c3b-c7ebca096af2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T22:18:32.694Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BVT7suNarYVPCoEk5GWoLi`</summary>
+
+```json
+{
+  "command": "git diff docs/paper/abstract.tex docs/paper/analysis.tex docs/paper/appendix.tex docs/paper/conclusion.tex docs/paper/experiments.tex docs/paper/introduction.tex",
+  "description": "Diff tex files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d3ab3bb-1d56-4695-9644-e1fbccdfbd97",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Ehm4WajQrfjQCpfs2R",
+  "type": "assistant",
+  "uuid": "009c5266-ee3e-4d13-825f-7ca5926fd2cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01HiTZLMU3tvJ3ZgWVEDYnrU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1556,
+      "cache_read_input_tokens": 53362,
+      "output_tokens": 164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1556,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 164,
+          "cache_read_input_tokens": 53362,
+          "cache_creation_input_tokens": 1556,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1556
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T22:18:32.762Z_
+
+<details><summary>↩ Tool result · `toolu_01BVT7suNarYVPCoEk5GWoLi`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (30.5KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2/d01416c0-6fc1-4e02-b20b-b6d511da8957/tool-results/b3uh5wxsl.txt
+
+Preview (first 2KB):
+diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex
+index f56c7d6..26e3464 100644
+--- a/docs/paper/abstract.tex
++++ b/docs/paper/abstract.tex
+@@ -3,5 +3,6 @@ We trace this failure to \emph{2-bit distortion compounding}: when the majority
+ We show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.
+ On Qwen2.5-7B at $4\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\% reduction over uniform 4-bit.
+ The constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\Delta{=}0.0000$), enabling use of a simple $O(H \log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).
+-However, the benefit depends on architecture: on Llama-3.1-8B the improvement is marginal (8.45 vs.\ 8.47), and on Mistral-7B-v0.3 non-uniform allocation is slightly counterproductive (7.16 vs.\ 7.13).
+-We propose a heterogeneity diagnostic based on the concentration of per-head sensitivity that can indicate, before any allocation, whether a given architecture will benefit from non-uniform quantization.
++However, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.
++Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "009c5266-ee3e-4d13-825f-7ca5926fd2cb",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "d558283d-e608-4f05-a155-50614a4aa3fd",
+  "toolUseResult": {
+    "stdout": "diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex\nindex f56c7d6..26e3464 100644\n--- a/docs/paper/abstract.tex\n+++ b/docs/paper/abstract.tex\n@@ -3,5 +3,6 @@ We trace this failure to \\emph{2-bit distortion compounding}: when the majority\n We show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.\n On Qwen2.5-7B at $4\\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\\% reduction over uniform 4-bit.\n The constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\\Delta{=}0.0000$), enabling use of a simple $O(H \\log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).\n-However, the benefit depends on architecture: on Llama-3.1-8B the improvement is marginal (8.45 vs.\\ 8.47), and on Mistral-7B-v0.3 non-uniform allocation is slightly counterproductive (7.16 vs.\\ 7.13).\n-We propose a heterogeneity diagnostic based on the concentration of per-head sensitivity that can indicate, before any allocation, whether a given architecture will benefit from non-uniform quantization.\n+However, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.\n+Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.\n+We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.\ndiff --git a/docs/paper/analysis.tex b/docs/paper/analysis.tex\nindex b3d04e0..92318a4 100644\n--- a/docs/paper/analysis.tex\n+++ b/docs/paper/analysis.tex\n@@ -8,26 +8,40 @@ The benefit of non-uniform allocation depends on how unevenly head sensitivities\n We quantify this with a \\emph{top-5\\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\\% of heads.\n High concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.\n \n-Table~\\ref{tab:heterogeneity} summarizes the results across three architectures at $4\\times$ compression.\n-Qwen2.5-7B exhibits the highest heterogeneity (top-5\\% concentration 0.59--0.66), with Layer-0 heads contributing the majority of total 2-bit distortion.\n-Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\\% improvement over uniform 4-bit.\n-Llama-3.1-8B shows moderate heterogeneity (0.34--0.59), and the allocation benefit is marginal ($+$0.36 vs.\\ $+$0.38).\n-Mistral-7B-v0.3 has a concentration of 0.42 but near-zero absolute distortion for most heads, leaving the profiler with no reliable signal.\n-Here, constrained MCKP is slightly \\emph{worse} than uniform ($+$0.13 vs.\\ $+$0.10), confirming that non-uniform allocation is counterproductive when heterogeneity is low.\n+Table~\\ref{tab:heterogeneity} summarizes the results across five architectures at $4\\times$ compression.\n+The central finding is that MCKP benefit requires \\emph{spread heterogeneity}---multiple heads with cross-bitwidth sensitivity gradients---rather than sensitivity concentrated in a single outlier at one bitwidth.\n+\n+Qwen2.5-7B exemplifies the spread pattern (top-5\\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.\n+Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\\% improvement over uniform 4-bit. %exp_id=qwen_constrained_mckp\n+\n+Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\\ $+$0.20). %exp_id=yi15_hires_constrained_mckp\n+The mechanism is clear from the cross-bitwidth gradient structure.\n+Yi-1.5's sensitivity is dominated by a single extreme outlier: Layer-4 Head-3 has a 2-bit delta of 13.12, while the second-ranked head has delta 0.55---a $24\\times$ gap ($t_1/t_5{=}0.90$, $t_1/t_2{=}23.7$). %exp_id=yi15_hires_profiling\n+Critically, L4H3's sensitivity is confined to the 2-bit operating point: its 4-bit and 8-bit deltas are ${\\approx}\\,0$.\n+The solver therefore has only one lever---upgrading L4H3 from 2-bit to 4-bit removes the distortion, but further upgrading to 8-bit provides no additional benefit, so the budget freed by downgrading other heads has nowhere useful to go.\n+This is the ``spike'' pattern: high concentration driven by a single outlier with sensitivity at only one bitwidth.\n+\n+In contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth sensitivity gradient across several heads---a ``spread'' pattern that enables meaningful budget reallocation. %exp_id=qwen_hires_profiling\n+\n+The remaining three architectures fill out the diagnostic picture.\n+Llama-3.1-8B shows above-threshold concentration ($0.57$) with a pronounced spike ($t_1/t_5{=}0.85$, $t_1/t_2{=}34.8$); its allocation is essentially indistinguishable from uniform ($+$0.36 vs.\\ $+$0.38). %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained\n+Mistral-7B-v0.3 and Gemma-2-9B both exhibit flat distributions ($t_1/t_5{=}0.18$) with low concentration ($0.22$ and $0.23$ respectively), leaving the profiler with no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\\ $+$0.10 for Mistral; $+$0.15 vs.\\ $+$0.13 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline\n \n \\begin{table}[t]\n \\centering\n \\small\n-\\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at 4$\\times$ compression. $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok).}\n+\\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at $4\\times$ compression. $t_1/t_5$: ratio of top-1 to top-5 per-head 2-bit distortion (low${=}$spread, high${=}$spike). $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok); $^\\ddagger$standard profiling, hires pending.}\n \\label{tab:heterogeneity}\n-\\begin{tabular}{lccccc}\n+\\begin{tabular}{lcccccc}\n \\toprule\n-Model & GQA & Top-5\\% & $\\Delta$ PPL & $\\Delta$ PPL & Recommendation \\\\\n- & Ratio & Conc. & (Uniform) & (Ours) & \\\\\n+Model & GQA & Top-5\\% & $t_1/t_5$ & $\\Delta$ PPL & $\\Delta$ PPL & Shape \\\\\n+ & Ratio & Conc. & & (Uniform) & (Ours) & \\\\\n \\midrule\n-Qwen2.5-7B & 7:1 & 0.59--0.66 & $+$5.64 & $+$1.42 & Non-uniform \\\\\n-Llama-3.1-8B$^\\dagger$ & 4:1 & 0.34--0.59 & $+$0.38 & $+$0.36 & Marginal \\\\\n-Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.42 & $+$0.10 & $+$0.13 & Uniform \\\\\n+Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\\\\n+Yi-1.5-9B$^\\dagger$ & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\\\\n+Llama-3.1-8B$^\\dagger$ & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\\\\n+Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.22 & 0.18 & $+$0.10 & $+$0.13 & Flat \\\\\n+Gemma-2-9B$^\\ddagger$ & 2:1 & 0.23 & 0.18 & $+$0.13 & $+$0.15 & Flat \\\\\n \\bottomrule\n \\end{tabular}\n \\end{table}\n@@ -35,30 +49,33 @@ Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.42 & $+$0.10 & $+$0.13 & Uniform \\\\\n \\begin{figure*}[t]\n \\centering\n \\includegraphics[width=\\textwidth]{figures/fig1_head_delta_heatmap.pdf}\n-\\caption{Per-head 2-bit quantization sensitivity across three models. Qwen2.5-7B (left) shows high concentration in Layer-0 heads; Llama-3.1-8B (center) shows moderate spread; Mistral-7B-v0.3 (right) shows near-zero sensitivity across all heads. Color intensity indicates PPL increase when the head is quantized to 2-bit.}\n+\\caption{Per-head 2-bit quantization sensitivity across five architectures. Qwen2.5-7B shows high concentration in Layer-0 heads (``spread'' pattern); Yi-1.5-9B shows a single extreme outlier at Layer-4 Head-3 (``spike'' pattern); Llama-3.1-8B shows a dominant outlier at Layer-2 Head-5 (49\\% of total distortion, ``spike'' pattern); Mistral-7B-v0.3 shows near-zero sensitivity across all heads; Gemma-2-9B exhibits the most uniform distribution, consistent with its low GQA ratio (2:1). Color intensity indicates PPL increase when the head is quantized to 2-bit.}\n \\label{fig:heatmap}\n \\end{figure*}\n \n Figure~\\ref{fig:heatmap} visualizes the per-head 2-bit distortion as a heatmap.\n-The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Mistral shows uniformly low distortion across all layers and heads.\n+The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.\n \n \\subsection{Diagnostic Framework}\n \\label{sec:diagnostic}\n \n-The heterogeneity characterization yields a preliminary guideline, based on three architectures, for deciding when non-uniform allocation is worthwhile:\n+The heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \\emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.\n+This motivates a joint diagnostic, based on five architectures, for deciding when non-uniform allocation is worthwhile:\n \n \\begin{enumerate}[nosep]\n \\item Run per-head profiling as described in \\S\\ref{sec:profiling}.\n-\\item Compute the top-5\\% concentration from the resulting distortion table.\n-\\item Select allocation strategy:\n+\\item Compute the top-5\\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.\n+\\item Select allocation strategy based on concentration \\emph{and} shape:\n   \\begin{itemize}[nosep]\n-  \\item Concentration ${>}\\,0.50$: non-uniform allocation recommended (Qwen case; 27.3\\% PPL improvement).\n-  \\item Concentration $0.30$--$0.50$: marginal benefit; depends on target compression ratio (Llama case; 0.2\\% at $4\\times$).\n-  \\item Near-zero absolute distortion for most heads: use uniform directly (Mistral case; non-uniform is counterproductive).\n+  \\item \\textbf{Spread} (concentration $\\gtrsim 0.50$, $t_1/t_5 \\lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\\% PPL improvement.\n+  \\item \\textbf{Spike} ($t_1/t_5 \\gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.\n+  \\item \\textbf{Flat} (concentration $\\lesssim 0.50$, low $t_1/t_5$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. Mistral (0.22, $t_1/t_5{=}0.18$) and Gemma-2 (0.23, $t_1/t_5{=}0.18$): counterproductive.\n   \\end{itemize}\n \\end{enumerate}\n \n-The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver.\n-This avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.\n-The thresholds above are derived from three architectures and should be validated on a broader set of models before being treated as general rules.\n+Llama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.\n+Indeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.\n+The joint condition---concentration $\\gtrsim 0.50$ and $t_1/t_5 \\lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.\n+Both thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules.\n+The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver and avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.\n Additional analyses---the effect of aggressive compression ratios, profiling resolution and multi-seed stability, per-layer optimality validation, and KV separation ablation---are provided in Appendices~\\ref{sec:aggressive}--\\ref{sec:kv_separation}.\ndiff --git a/docs/paper/appendix.tex b/docs/paper/appendix.tex\nindex d00775a..5604bff 100644\n--- a/docs/paper/appendix.tex\n+++ b/docs/paper/appendix.tex\n@@ -26,6 +26,9 @@ Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \\pm\n The bit distribution is identical across all seeds ($\\{$2-bit: 8, 4-bit: 100, 8-bit: 4$\\}$), and 101 of 112 heads (90.2\\%) receive the same assignment in all three runs.\n This stability confirms that the per-head sensitivity ranking is robust to calibration sampling noise.\n \n+\\paragraph{Numerical precision.}\n+Float32 profiling (64 $\\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\\ 10.91, $\\Delta = 0.02 < \\sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.\n+\n \\paragraph{Per-layer optimality.}\n To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).\n Of the 8 layers admitting multiple feasible allocations, MCKP matches the oracle exactly in 5; the remaining 3 show gaps of 0.018 (Layer~1), 0.014 (Layer~11), and 0.005 (Layer~4) PPL.\n@@ -46,3 +49,33 @@ This systematic asymmetry suggests that K caches are inherently more compressibl\n \n Joint allocation is sufficient under the current constraint formulation.\n Separated K/V allocation with per-side cardinality constraints---limiting 2-bit assignments independently for K and V---is a direction for future work.\n+\n+\\section{Runtime Benchmark}\n+\\label{sec:runtime}\n+\n+\\begin{table}[h]\n+\\centering\n+\\caption{PyTorch-level latency on Qwen2.5-7B (single NVIDIA RTX PRO 6000 (96\\,GB), prompt\\_len=256, gen\\_len=128, mean of 10 runs). All conditions store KV in bf16 with simulated per-head quantize/dequantize calls; peak GPU memory is identical across rows.}\n+\\label{tab:runtime}\n+\\begin{tabular}{lccc}\n+\\toprule\n+Condition & Prefill (ms) & Decode (ms/tok) & Throughput (tok/s) \\\\\n+\\midrule\n+Baseline bf16       & 45.86 & 33.78 & 29.6 \\\\\n+Uniform 4-bit       & 54.25 & 42.46 & 23.6 \\\\\n+Constrained MCKP    & 57.03 & 46.09 & 21.8 \\\\\n+\\bottomrule\n+\\end{tabular}\n+\\end{table}\n+\n+Table~\\ref{tab:runtime} reports end-to-end latency for three KV cache configurations.\n+Uniform 4-bit quantization adds 25.7\\% decode overhead relative to the bf16 baseline (42.46 vs.\\ 33.78~ms/tok), reflecting per-head quantize/dequantize calls at every attention step.\n+Constrained MCKP adds a further 8.5\\% over uniform (46.09 vs.\\ 42.46~ms/tok), because mixed-precision allocation dispatches different dequantization kernels for 2-bit, 4-bit, and 8-bit heads within the same layer.\n+The MCKP solver itself runs in ${\\sim}5$~ms and is invoked once at initialization, contributing negligibly to end-to-end latency.\n+Both quantized conditions achieve the same $4\\times$ KV cache compression (5.25~MB vs.\\ 21~MB at bf16), so the latency difference between uniform and MCKP reflects only the mixed-precision dispatch overhead, not a memory trade-off.\n+\n+\\paragraph{Caveat.}\n+These measurements use PyTorch-level per-head \\texttt{quantize}/\\texttt{dequantize} calls and do \\emph{not} represent optimized CUDA kernel performance.\n+Production inference engines such as vLLM and TensorRT-LLM employ fused attention kernels that batch dequantization with the matrix multiply, amortizing the per-head dispatch cost that dominates the gap between uniform and MCKP in our simulation.\n+The 8.5\\% overhead reported here should therefore be treated as an upper bound on the mixed-precision penalty; real-world deployment with fused kernels would likely narrow or eliminate this gap.\n+The limitation noted in Section~\\ref{sec:conclusion}---that we report no real-kernel latency benchmarks---remains: the numbers above quantify simulation overhead, not production inference speedup.\ndiff --git a/docs/paper/conclusion.tex b/docs/paper/conclusion.tex\nindex 9e8ccab..1290c3a 100644\n--- a/docs/paper/conclusion.tex\n+++ b/docs/paper/conclusion.tex\n@@ -3,12 +3,15 @@\n We showed that per-head mixed-precision KV cache quantization over hardware-aligned bit-widths \\{2, 4, 8, 16\\} requires a cardinality constraint on 2-bit assignments to prevent non-additive distortion compounding through the residual stream.\n A single constraint---limiting simultaneously active 2-bit heads to $k \\leq 8$ (7\\% of heads)---reduces perplexity on Qwen2.5-7B from 15.45 (uniform 4-bit) to 11.23, a 27.3\\% improvement at $4\\times$ compression.\n Under the constraint, solver choice becomes irrelevant: greedy and MCKP produce equivalent allocations across all three architectures ($\\Delta = 0.0000$), so a simple $O(H \\log H)$ greedy algorithm suffices.\n-The benefit of non-uniform allocation scales with head sensitivity heterogeneity, as measured by the top-5\\% concentration diagnostic: Qwen2.5-7B (concentration 0.59--0.66) shows large gains, Llama-3.1-8B (0.34--0.59) shows marginal improvement (8.45 vs.\\ 8.47 PPL), and Mistral-7B-v0.3 (0.42) is slightly counterproductive (7.16 vs.\\ 7.13 PPL).\n-This diagnostic, computable from the same profiling pass used for allocation, lets practitioners decide \\emph{before deployment} whether non-uniform quantization is worthwhile for a given model.\n+The benefit of non-uniform allocation depends on both the concentration and \\emph{shape} of head sensitivity heterogeneity.\n+Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.\n+Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.\n+A joint diagnostic using concentration ($\\gtrsim 0.50$) and $t_1/t_5$ ratio ($\\lesssim 0.70$) correctly identifies spread, spike, and flat patterns across all five models studied, computable from the same profiling pass used for allocation.\n+This provides a practical guideline: practitioners can determine whether non-uniform quantization is worthwhile for their architecture \\emph{before} running the allocation solver.\n \n \\paragraph{Limitations.}\n Our study has several limitations that temper the generality of the findings.\n-First, we evaluate only three 7B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.\n+First, we evaluate only five 7--9B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.\n Second, profiling relies on a single sensitivity metric (perplexity-based per-head distortion); alternative measures such as gradient-based or activation-norm diagnostics remain unexplored and could yield different allocation decisions.\n Third, we report perplexity and downstream accuracy but no real-kernel latency benchmarks, leaving the practical inference speedup from mixed-precision allocation unquantified.\n Fourth, we have not verified whether these findings transfer to larger scales (70B+), where head counts and attention patterns differ substantially.\ndiff --git a/docs/paper/experiments.tex b/docs/paper/experiments.tex\nindex fae830e..e6ff8b9 100644\n--- a/docs/paper/experiments.tex\n+++ b/docs/paper/experiments.tex\n@@ -5,11 +5,13 @@\n \\label{sec:setup}\n \n \\paragraph{Models.}\n-We evaluate on three architectures spanning different grouped-query attention (GQA) configurations:\n+We evaluate on five architectures spanning different grouped-query attention (GQA) configurations:\n \\textbf{Qwen2.5-7B} (GQA ratio 7:1, 28 layers $\\times$ 4 KV heads = 112 KV heads),\n+\\textbf{Yi-1.5-9B} (8:1, 48 $\\times$ 4 = 192 KV heads),\n \\textbf{Llama-3.1-8B} (4:1, 32 $\\times$ 8 = 256 KV heads),\n-and \\textbf{Mistral-7B-v0.3} (4:1, 32 $\\times$ 8 = 256 KV heads, sliding window attention).\n-This selection covers the two dominant KV head counts (112 vs.\\ 256) and both standard and sliding-window attention.\n+\\textbf{Mistral-7B-v0.3} (4:1, 32 $\\times$ 8 = 256 KV heads, sliding window attention),\n+and \\textbf{Gemma-2-9B} (2:1, 42 $\\times$ 8 = 336 KV heads, \\texttt{head\\_dim}=256, attention logit softcapping).\n+This selection spans GQA ratios from 2:1 to 8:1 and covers standard, sliding-window, and softcapped attention.\n \n \\paragraph{Evaluation.}\n We report perplexity (PPL, $\\downarrow$) on the WikiText-2 test split (298{,}938 tokens) under bf16 inference with stride 512.\n@@ -22,7 +24,7 @@ Unless marked with $\\dagger$, all results use standard-resolution profiling; App\n \n \\paragraph{Compression and constraint.}\n The default target is 4$\\times$ compression (average 4 bits, budget ratio 0.25).\n-The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \\S\\ref{sec:method} ($k{=}8$ for Qwen's 112 heads; analogous sweeps determine $k$ for Llama and Mistral).\n+The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \\S\\ref{sec:method} ($k{=}8$ for Qwen, $k{=}2$ for Yi-1.5 and Llama, $k{=}4$ for Mistral, $k{=}8$ for Gemma-2).\n \n \\paragraph{Baselines.}\n We compare against:\n@@ -48,6 +50,8 @@ Model & Baseline & Uniform & \\multicolumn{2}{c}{Unconstrained} & Ours \\\\\n Qwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \\textbf{11.23}$\\pm$0.06 \\\\\n Llama-3.1-8B    & 8.09  & 8.47  & ---   & ---   & \\textbf{8.45}$^\\dagger$ \\\\\n Mistral-7B-v0.3 & 7.04  & 7.13  & ---   & ---   & 7.16$^{\\dagger\\ddagger}$ \\\\\n+Yi-1.5-9B$^\\dagger$       & 7.02  & 7.22  & ---   & ---   & 7.22 \\\\\n+Gemma-2-9B      & 8.90  & 9.03  & ---   & ---   & 9.05 \\\\\n \\bottomrule\n \\end{tabular}\n \\end{table}\n@@ -59,14 +63,20 @@ Without the cardinality constraint, both greedy (32.45) and MCKP (36.92) perform\n The constraint eliminates this failure mode entirely.\n Across 3 calibration seeds, constrained MCKP yields mean PPL 10.99$\\pm$0.06 (std is 1.3\\% of the uniform gap), with 90.2\\% three-way allocation agreement, confirming profiling stability.\n \n-On Llama-3.1-8B, the improvement is marginal: 8.45 vs.\\ 8.47 (0.2\\%).\n-The profiler finds low sensitivity heterogeneity across Llama's 256 KV heads, leaving little room for non-uniform allocation to improve over uniform.\n+On Llama-3.1-8B, the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47, $\\Delta < 0.02$ PPL).\n+Hires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.\n \n On Mistral-7B-v0.3, constrained MCKP (7.16, $k{=}4$) is slightly worse than uniform (7.13, $+$0.4\\%).\n This is a genuine negative result: the profiler reports near-zero sensitivity differences across heads, meaning the optimization has no reliable signal to exploit.\n Mistral's sliding-window attention may contribute to this uniformity by limiting head-level variation in effective context length.\n \n-Unconstrained results for Llama and Mistral are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\n+On Yi-1.5-9B$^\\dagger$, constrained MCKP ($k{=}2$) achieves 7.22 PPL, essentially identical to uniform 7.22 ($<$0.01\\% difference).\n+Despite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.\n+\n+On Gemma-2-9B (GQA 2:1), constrained MCKP ($k{=}8$) achieves 9.05 PPL vs.\\ uniform 9.03---a 0.3\\% degradation.\n+Gemma-2 has the most uniform head sensitivity distribution across its 336 KV heads, consistent with its low GQA ratio and attention logit softcapping.\n+\n+Unconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\n Figure~\\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.\n \n \\begin{figure}[t]\n@@ -133,7 +143,7 @@ On Qwen, MCKP (11.23) beats the L0-random median (11.52) by 0.29 PPL and the nai\n \n On Llama ($k{=}2$), the gap between methods is small: MCKP achieves 8.45 vs.\\ L0-random 8.62 and naive positional 8.58.\n With only 2 heads assigned to 2-bit, the choice of which heads to compress has limited impact, and all methods cluster within 0.17 PPL.\n-MCKP still achieves the best result, but the practical advantage of profiling-guided selection is marginal at this constraint level.\n+MCKP still achieves the best result, but the practical advantage of profiling-guided selection is negligible at this constraint level.\n \n On Mistral ($k{=}4$), all non-uniform strategies are worse than uniform 4-bit (7.13): MCKP 7.16, naive 7.21, L0-random median 7.20 (mean 7.24$\\pm$0.07).\n MCKP outperforms both heuristics, but the best non-uniform result (7.16) still exceeds uniform by 0.03 PPL, reinforcing that non-uniform allocation is counterproductive when heterogeneity is low.\ndiff --git a/docs/paper/introduction.tex b/docs/paper/introduction.tex\nindex 108a94c..84100c5 100644\n--- a/docs/paper/introduction.tex\n+++ b/docs/paper/introduction.tex\n@@ -30,14 +30,18 @@ The constraint narrows the feasible set enough that greedy's locally optimal dec\n A per-layer brute-force oracle confirms near-optimality: the maximum gap across 28 layers is 0.02 PPL, 0.4\\% of the total improvement (\\S\\ref{sec:solver_equiv}).\n \n However, non-uniform allocation does not help universally.\n-On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\\ uniform 8.47---a marginal 0.2\\% improvement.\n+On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\\ uniform 8.47---essentially indistinguishable from uniform ($\\Delta < 0.02$ PPL).\n On Mistral-7B-v0.3, it is slightly \\emph{worse}: 7.16 vs.\\ 7.13.\n-The difference across architectures traces to head sensitivity heterogeneity: Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads contributing a disproportionate share, while Mistral's heads are nearly uniform in sensitivity.\n-When there is no heterogeneity to exploit, non-uniform allocation adds noise without benefit.\n+On Yi-1.5-9B, non-uniform allocation provides no benefit (7.22 vs.\\ 7.22 uniform) despite Yi-1.5 having the highest GQA ratio tested (8:1).\n+On Gemma-2-9B (GQA 2:1, the lowest ratio tested), degradation is 0.3\\% (9.05 vs.\\ 9.03).\n+The difference across architectures traces to head sensitivity heterogeneity---specifically, its \\emph{distribution shape}, not GQA ratio alone.\n+Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads forming a cluster of high sensitivity; Yi-1.5 has a single extreme outlier but otherwise uniform heads (a ``spike'' pattern that MCKP cannot exploit); Gemma-2 and Mistral show near-uniform sensitivity across all heads.\n+When there is no exploitable heterogeneity, non-uniform allocation adds noise without benefit.\n \n This motivates a diagnostic question that prior work does not address: \\emph{when} should a practitioner use per-head mixed-precision quantization?\n-We propose a heterogeneity diagnostic based on the top-5\\% concentration of per-head distortion (\\S\\ref{sec:heterogeneity}).\n-On our three architectures, the concentration metric---combined with the absolute magnitude of per-head distortion---separates the beneficial case (Qwen, concentration 0.59--0.66, 27.3\\% PPL improvement) from cases where non-uniform allocation provides marginal (Llama) or no benefit (Mistral), across the three tested architectures.\n+We propose a joint heterogeneity diagnostic based on concentration \\emph{and} distribution shape of per-head distortion (\\S\\ref{sec:heterogeneity}).\n+On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.\n+Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "persistedOutputPath": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2/d01416c0-6fc1-4e02-b20b-b6d511da8957/tool-results/b3uh5wxsl.txt",
+    "persistedOutputSize": 31235
+  },
+  "sourceToolAssistantUUID": "009c5266-ee3e-4d13-825f-7ca5926fd2cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d558283d-e608-4f05-a155-50614a4aa3fd",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unify Qwen concentration to 0.61",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T22:18:35.592Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AWzM3PeooZtY1eGqJjnmN2`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2/d01416c0-6fc1-4e02-b20b-b6d511da8957/tool-results/b3uh5wxsl.txt",
+  "description": "Read full diff"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d558283d-e608-4f05-a155-50614a4aa3fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb3Ei91MyGA9rc6qgoqp6",
+  "type": "assistant",
+  "uuid": "4b638633-40b4-43fb-8bb8-73f922b7dfe9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_012ASan6DAZdweYsi9jS1TjJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 54918,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 54918,
+          "cache_creation_input_tokens": 1076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T22:18:35.648Z_
+
+<details><summary>↩ Tool result · `toolu_01AWzM3PeooZtY1eGqJjnmN2`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (30.5KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2/d01416c0-6fc1-4e02-b20b-b6d511da8957/tool-results/bzu5q4tdc.txt
+
+Preview (first 2KB):
+diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex
+index f56c7d6..26e3464 100644
+--- a/docs/paper/abstract.tex
++++ b/docs/paper/abstract.tex
+@@ -3,5 +3,6 @@ We trace this failure to \emph{2-bit distortion compounding}: when the majority
+ We show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.
+ On Qwen2.5-7B at $4\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\% reduction over uniform 4-bit.
+ The constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\Delta{=}0.0000$), enabling use of a simple $O(H \log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).
+-However, the benefit depends on architecture: on Llama-3.1-8B the improvement is marginal (8.45 vs.\ 8.47), and on Mistral-7B-v0.3 non-uniform allocation is slightly counterproductive (7.16 vs.\ 7.13).
+-We propose a heterogeneity diagnostic based on the concentration of per-head sensitivity that can indicate, before any allocation, whether a given architecture will benefit from non-uniform quantization.
++However, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.
++Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b638633-40b4-43fb-8bb8-73f922b7dfe9",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "8b7e57c2-6dc0-4b66-a0d0-7adb6b874ce5",
+  "toolUseResult": {
+    "stdout": "diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex\nindex f56c7d6..26e3464 100644\n--- a/docs/paper/abstract.tex\n+++ b/docs/paper/abstract.tex\n@@ -3,5 +3,6 @@ We trace this failure to \\emph{2-bit distortion compounding}: when the majority\n We show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.\n On Qwen2.5-7B at $4\\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\\% reduction over uniform 4-bit.\n The constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\\Delta{=}0.0000$), enabling use of a simple $O(H \\log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).\n-However, the benefit depends on architecture: on Llama-3.1-8B the improvement is marginal (8.45 vs.\\ 8.47), and on Mistral-7B-v0.3 non-uniform allocation is slightly counterproductive (7.16 vs.\\ 7.13).\n-We propose a heterogeneity diagnostic based on the concentration of per-head sensitivity that can indicate, before any allocation, whether a given architecture will benefit from non-uniform quantization.\n+However, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.\n+Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.\n+We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.\ndiff --git a/docs/paper/analysis.tex b/docs/paper/analysis.tex\nindex b3d04e0..92318a4 100644\n--- a/docs/paper/analysis.tex\n+++ b/docs/paper/analysis.tex\n@@ -8,26 +8,40 @@ The benefit of non-uniform allocation depends on how unevenly head sensitivities\n We quantify this with a \\emph{top-5\\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\\% of heads.\n High concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.\n \n-Table~\\ref{tab:heterogeneity} summarizes the results across three architectures at $4\\times$ compression.\n-Qwen2.5-7B exhibits the highest heterogeneity (top-5\\% concentration 0.59--0.66), with Layer-0 heads contributing the majority of total 2-bit distortion.\n-Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\\% improvement over uniform 4-bit.\n-Llama-3.1-8B shows moderate heterogeneity (0.34--0.59), and the allocation benefit is marginal ($+$0.36 vs.\\ $+$0.38).\n-Mistral-7B-v0.3 has a concentration of 0.42 but near-zero absolute distortion for most heads, leaving the profiler with no reliable signal.\n-Here, constrained MCKP is slightly \\emph{worse} than uniform ($+$0.13 vs.\\ $+$0.10), confirming that non-uniform allocation is counterproductive when heterogeneity is low.\n+Table~\\ref{tab:heterogeneity} summarizes the results across five architectures at $4\\times$ compression.\n+The central finding is that MCKP benefit requires \\emph{spread heterogeneity}---multiple heads with cross-bitwidth sensitivity gradients---rather than sensitivity concentrated in a single outlier at one bitwidth.\n+\n+Qwen2.5-7B exemplifies the spread pattern (top-5\\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.\n+Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\\% improvement over uniform 4-bit. %exp_id=qwen_constrained_mckp\n+\n+Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\\ $+$0.20). %exp_id=yi15_hires_constrained_mckp\n+The mechanism is clear from the cross-bitwidth gradient structure.\n+Yi-1.5's sensitivity is dominated by a single extreme outlier: Layer-4 Head-3 has a 2-bit delta of 13.12, while the second-ranked head has delta 0.55---a $24\\times$ gap ($t_1/t_5{=}0.90$, $t_1/t_2{=}23.7$). %exp_id=yi15_hires_profiling\n+Critically, L4H3's sensitivity is confined to the 2-bit operating point: its 4-bit and 8-bit deltas are ${\\approx}\\,0$.\n+The solver therefore has only one lever---upgrading L4H3 from 2-bit to 4-bit removes the distortion, but further upgrading to 8-bit provides no additional benefit, so the budget freed by downgrading other heads has nowhere useful to go.\n+This is the ``spike'' pattern: high concentration driven by a single outlier with sensitivity at only one bitwidth.\n+\n+In contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth sensitivity gradient across several heads---a ``spread'' pattern that enables meaningful budget reallocation. %exp_id=qwen_hires_profiling\n+\n+The remaining three architectures fill out the diagnostic picture.\n+Llama-3.1-8B shows above-threshold concentration ($0.57$) with a pronounced spike ($t_1/t_5{=}0.85$, $t_1/t_2{=}34.8$); its allocation is essentially indistinguishable from uniform ($+$0.36 vs.\\ $+$0.38). %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained\n+Mistral-7B-v0.3 and Gemma-2-9B both exhibit flat distributions ($t_1/t_5{=}0.18$) with low concentration ($0.22$ and $0.23$ respectively), leaving the profiler with no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\\ $+$0.10 for Mistral; $+$0.15 vs.\\ $+$0.13 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline\n \n \\begin{table}[t]\n \\centering\n \\small\n-\\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at 4$\\times$ compression. $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok).}\n+\\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at $4\\times$ compression. $t_1/t_5$: ratio of top-1 to top-5 per-head 2-bit distortion (low${=}$spread, high${=}$spike). $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok); $^\\ddagger$standard profiling, hires pending.}\n \\label{tab:heterogeneity}\n-\\begin{tabular}{lccccc}\n+\\begin{tabular}{lcccccc}\n \\toprule\n-Model & GQA & Top-5\\% & $\\Delta$ PPL & $\\Delta$ PPL & Recommendation \\\\\n- & Ratio & Conc. & (Uniform) & (Ours) & \\\\\n+Model & GQA & Top-5\\% & $t_1/t_5$ & $\\Delta$ PPL & $\\Delta$ PPL & Shape \\\\\n+ & Ratio & Conc. & & (Uniform) & (Ours) & \\\\\n \\midrule\n-Qwen2.5-7B & 7:1 & 0.59--0.66 & $+$5.64 & $+$1.42 & Non-uniform \\\\\n-Llama-3.1-8B$^\\dagger$ & 4:1 & 0.34--0.59 & $+$0.38 & $+$0.36 & Marginal \\\\\n-Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.42 & $+$0.10 & $+$0.13 & Uniform \\\\\n+Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\\\\n+Yi-1.5-9B$^\\dagger$ & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\\\\n+Llama-3.1-8B$^\\dagger$ & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\\\\n+Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.22 & 0.18 & $+$0.10 & $+$0.13 & Flat \\\\\n+Gemma-2-9B$^\\ddagger$ & 2:1 & 0.23 & 0.18 & $+$0.13 & $+$0.15 & Flat \\\\\n \\bottomrule\n \\end{tabular}\n \\end{table}\n@@ -35,30 +49,33 @@ Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.42 & $+$0.10 & $+$0.13 & Uniform \\\\\n \\begin{figure*}[t]\n \\centering\n \\includegraphics[width=\\textwidth]{figures/fig1_head_delta_heatmap.pdf}\n-\\caption{Per-head 2-bit quantization sensitivity across three models. Qwen2.5-7B (left) shows high concentration in Layer-0 heads; Llama-3.1-8B (center) shows moderate spread; Mistral-7B-v0.3 (right) shows near-zero sensitivity across all heads. Color intensity indicates PPL increase when the head is quantized to 2-bit.}\n+\\caption{Per-head 2-bit quantization sensitivity across five architectures. Qwen2.5-7B shows high concentration in Layer-0 heads (``spread'' pattern); Yi-1.5-9B shows a single extreme outlier at Layer-4 Head-3 (``spike'' pattern); Llama-3.1-8B shows a dominant outlier at Layer-2 Head-5 (49\\% of total distortion, ``spike'' pattern); Mistral-7B-v0.3 shows near-zero sensitivity across all heads; Gemma-2-9B exhibits the most uniform distribution, consistent with its low GQA ratio (2:1). Color intensity indicates PPL increase when the head is quantized to 2-bit.}\n \\label{fig:heatmap}\n \\end{figure*}\n \n Figure~\\ref{fig:heatmap} visualizes the per-head 2-bit distortion as a heatmap.\n-The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Mistral shows uniformly low distortion across all layers and heads.\n+The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.\n \n \\subsection{Diagnostic Framework}\n \\label{sec:diagnostic}\n \n-The heterogeneity characterization yields a preliminary guideline, based on three architectures, for deciding when non-uniform allocation is worthwhile:\n+The heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \\emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.\n+This motivates a joint diagnostic, based on five architectures, for deciding when non-uniform allocation is worthwhile:\n \n \\begin{enumerate}[nosep]\n \\item Run per-head profiling as described in \\S\\ref{sec:profiling}.\n-\\item Compute the top-5\\% concentration from the resulting distortion table.\n-\\item Select allocation strategy:\n+\\item Compute the top-5\\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.\n+\\item Select allocation strategy based on concentration \\emph{and} shape:\n   \\begin{itemize}[nosep]\n-  \\item Concentration ${>}\\,0.50$: non-uniform allocation recommended (Qwen case; 27.3\\% PPL improvement).\n-  \\item Concentration $0.30$--$0.50$: marginal benefit; depends on target compression ratio (Llama case; 0.2\\% at $4\\times$).\n-  \\item Near-zero absolute distortion for most heads: use uniform directly (Mistral case; non-uniform is counterproductive).\n+  \\item \\textbf{Spread} (concentration $\\gtrsim 0.50$, $t_1/t_5 \\lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\\% PPL improvement.\n+  \\item \\textbf{Spike} ($t_1/t_5 \\gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.\n+  \\item \\textbf{Flat} (concentration $\\lesssim 0.50$, low $t_1/t_5$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. Mistral (0.22, $t_1/t_5{=}0.18$) and Gemma-2 (0.23, $t_1/t_5{=}0.18$): counterproductive.\n   \\end{itemize}\n \\end{enumerate}\n \n-The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver.\n-This avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.\n-The thresholds above are derived from three architectures and should be validated on a broader set of models before being treated as general rules.\n+Llama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.\n+Indeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.\n+The joint condition---concentration $\\gtrsim 0.50$ and $t_1/t_5 \\lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.\n+Both thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules.\n+The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver and avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.\n Additional analyses---the effect of aggressive compression ratios, profiling resolution and multi-seed stability, per-layer optimality validation, and KV separation ablation---are provided in Appendices~\\ref{sec:aggressive}--\\ref{sec:kv_separation}.\ndiff --git a/docs/paper/appendix.tex b/docs/paper/appendix.tex\nindex d00775a..5604bff 100644\n--- a/docs/paper/appendix.tex\n+++ b/docs/paper/appendix.tex\n@@ -26,6 +26,9 @@ Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \\pm\n The bit distribution is identical across all seeds ($\\{$2-bit: 8, 4-bit: 100, 8-bit: 4$\\}$), and 101 of 112 heads (90.2\\%) receive the same assignment in all three runs.\n This stability confirms that the per-head sensitivity ranking is robust to calibration sampling noise.\n \n+\\paragraph{Numerical precision.}\n+Float32 profiling (64 $\\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\\ 10.91, $\\Delta = 0.02 < \\sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.\n+\n \\paragraph{Per-layer optimality.}\n To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).\n Of the 8 layers admitting multiple feasible allocations, MCKP matches the oracle exactly in 5; the remaining 3 show gaps of 0.018 (Layer~1), 0.014 (Layer~11), and 0.005 (Layer~4) PPL.\n@@ -46,3 +49,33 @@ This systematic asymmetry suggests that K caches are inherently more compressibl\n \n Joint allocation is sufficient under the current constraint formulation.\n Separated K/V allocation with per-side cardinality constraints---limiting 2-bit assignments independently for K and V---is a direction for future work.\n+\n+\\section{Runtime Benchmark}\n+\\label{sec:runtime}\n+\n+\\begin{table}[h]\n+\\centering\n+\\caption{PyTorch-level latency on Qwen2.5-7B (single NVIDIA RTX PRO 6000 (96\\,GB), prompt\\_len=256, gen\\_len=128, mean of 10 runs). All conditions store KV in bf16 with simulated per-head quantize/dequantize calls; peak GPU memory is identical across rows.}\n+\\label{tab:runtime}\n+\\begin{tabular}{lccc}\n+\\toprule\n+Condition & Prefill (ms) & Decode (ms/tok) & Throughput (tok/s) \\\\\n+\\midrule\n+Baseline bf16       & 45.86 & 33.78 & 29.6 \\\\\n+Uniform 4-bit       & 54.25 & 42.46 & 23.6 \\\\\n+Constrained MCKP    & 57.03 & 46.09 & 21.8 \\\\\n+\\bottomrule\n+\\end{tabular}\n+\\end{table}\n+\n+Table~\\ref{tab:runtime} reports end-to-end latency for three KV cache configurations.\n+Uniform 4-bit quantization adds 25.7\\% decode overhead relative to the bf16 baseline (42.46 vs.\\ 33.78~ms/tok), reflecting per-head quantize/dequantize calls at every attention step.\n+Constrained MCKP adds a further 8.5\\% over uniform (46.09 vs.\\ 42.46~ms/tok), because mixed-precision allocation dispatches different dequantization kernels for 2-bit, 4-bit, and 8-bit heads within the same layer.\n+The MCKP solver itself runs in ${\\sim}5$~ms and is invoked once at initialization, contributing negligibly to end-to-end latency.\n+Both quantized conditions achieve the same $4\\times$ KV cache compression (5.25~MB vs.\\ 21~MB at bf16), so the latency difference between uniform and MCKP reflects only the mixed-precision dispatch overhead, not a memory trade-off.\n+\n+\\paragraph{Caveat.}\n+These measurements use PyTorch-level per-head \\texttt{quantize}/\\texttt{dequantize} calls and do \\emph{not} represent optimized CUDA kernel performance.\n+Production inference engines such as vLLM and TensorRT-LLM employ fused attention kernels that batch dequantization with the matrix multiply, amortizing the per-head dispatch cost that dominates the gap between uniform and MCKP in our simulation.\n+The 8.5\\% overhead reported here should therefore be treated as an upper bound on the mixed-precision penalty; real-world deployment with fused kernels would likely narrow or eliminate this gap.\n+The limitation noted in Section~\\ref{sec:conclusion}---that we report no real-kernel latency benchmarks---remains: the numbers above quantify simulation overhead, not production inference speedup.\ndiff --git a/docs/paper/conclusion.tex b/docs/paper/conclusion.tex\nindex 9e8ccab..1290c3a 100644\n--- a/docs/paper/conclusion.tex\n+++ b/docs/paper/conclusion.tex\n@@ -3,12 +3,15 @@\n We showed that per-head mixed-precision KV cache quantization over hardware-aligned bit-widths \\{2, 4, 8, 16\\} requires a cardinality constraint on 2-bit assignments to prevent non-additive distortion compounding through the residual stream.\n A single constraint---limiting simultaneously active 2-bit heads to $k \\leq 8$ (7\\% of heads)---reduces perplexity on Qwen2.5-7B from 15.45 (uniform 4-bit) to 11.23, a 27.3\\% improvement at $4\\times$ compression.\n Under the constraint, solver choice becomes irrelevant: greedy and MCKP produce equivalent allocations across all three architectures ($\\Delta = 0.0000$), so a simple $O(H \\log H)$ greedy algorithm suffices.\n-The benefit of non-uniform allocation scales with head sensitivity heterogeneity, as measured by the top-5\\% concentration diagnostic: Qwen2.5-7B (concentration 0.59--0.66) shows large gains, Llama-3.1-8B (0.34--0.59) shows marginal improvement (8.45 vs.\\ 8.47 PPL), and Mistral-7B-v0.3 (0.42) is slightly counterproductive (7.16 vs.\\ 7.13 PPL).\n-This diagnostic, computable from the same profiling pass used for allocation, lets practitioners decide \\emph{before deployment} whether non-uniform quantization is worthwhile for a given model.\n+The benefit of non-uniform allocation depends on both the concentration and \\emph{shape} of head sensitivity heterogeneity.\n+Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.\n+Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.\n+A joint diagnostic using concentration ($\\gtrsim 0.50$) and $t_1/t_5$ ratio ($\\lesssim 0.70$) correctly identifies spread, spike, and flat patterns across all five models studied, computable from the same profiling pass used for allocation.\n+This provides a practical guideline: practitioners can determine whether non-uniform quantization is worthwhile for their architecture \\emph{before} running the allocation solver.\n \n \\paragraph{Limitations.}\n Our study has several limitations that temper the generality of the findings.\n-First, we evaluate only three 7B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.\n+First, we evaluate only five 7--9B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.\n Second, profiling relies on a single sensitivity metric (perplexity-based per-head distortion); alternative measures such as gradient-based or activation-norm diagnostics remain unexplored and could yield different allocation decisions.\n Third, we report perplexity and downstream accuracy but no real-kernel latency benchmarks, leaving the practical inference speedup from mixed-precision allocation unquantified.\n Fourth, we have not verified whether these findings transfer to larger scales (70B+), where head counts and attention patterns differ substantially.\ndiff --git a/docs/paper/experiments.tex b/docs/paper/experiments.tex\nindex fae830e..e6ff8b9 100644\n--- a/docs/paper/experiments.tex\n+++ b/docs/paper/experiments.tex\n@@ -5,11 +5,13 @@\n \\label{sec:setup}\n \n \\paragraph{Models.}\n-We evaluate on three architectures spanning different grouped-query attention (GQA) configurations:\n+We evaluate on five architectures spanning different grouped-query attention (GQA) configurations:\n \\textbf{Qwen2.5-7B} (GQA ratio 7:1, 28 layers $\\times$ 4 KV heads = 112 KV heads),\n+\\textbf{Yi-1.5-9B} (8:1, 48 $\\times$ 4 = 192 KV heads),\n \\textbf{Llama-3.1-8B} (4:1, 32 $\\times$ 8 = 256 KV heads),\n-and \\textbf{Mistral-7B-v0.3} (4:1, 32 $\\times$ 8 = 256 KV heads, sliding window attention).\n-This selection covers the two dominant KV head counts (112 vs.\\ 256) and both standard and sliding-window attention.\n+\\textbf{Mistral-7B-v0.3} (4:1, 32 $\\times$ 8 = 256 KV heads, sliding window attention),\n+and \\textbf{Gemma-2-9B} (2:1, 42 $\\times$ 8 = 336 KV heads, \\texttt{head\\_dim}=256, attention logit softcapping).\n+This selection spans GQA ratios from 2:1 to 8:1 and covers standard, sliding-window, and softcapped attention.\n \n \\paragraph{Evaluation.}\n We report perplexity (PPL, $\\downarrow$) on the WikiText-2 test split (298{,}938 tokens) under bf16 inference with stride 512.\n@@ -22,7 +24,7 @@ Unless marked with $\\dagger$, all results use standard-resolution profiling; App\n \n \\paragraph{Compression and constraint.}\n The default target is 4$\\times$ compression (average 4 bits, budget ratio 0.25).\n-The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \\S\\ref{sec:method} ($k{=}8$ for Qwen's 112 heads; analogous sweeps determine $k$ for Llama and Mistral).\n+The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \\S\\ref{sec:method} ($k{=}8$ for Qwen, $k{=}2$ for Yi-1.5 and Llama, $k{=}4$ for Mistral, $k{=}8$ for Gemma-2).\n \n \\paragraph{Baselines.}\n We compare against:\n@@ -48,6 +50,8 @@ Model & Baseline & Uniform & \\multicolumn{2}{c}{Unconstrained} & Ours \\\\\n Qwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \\textbf{11.23}$\\pm$0.06 \\\\\n Llama-3.1-8B    & 8.09  & 8.47  & ---   & ---   & \\textbf{8.45}$^\\dagger$ \\\\\n Mistral-7B-v0.3 & 7.04  & 7.13  & ---   & ---   & 7.16$^{\\dagger\\ddagger}$ \\\\\n+Yi-1.5-9B$^\\dagger$       & 7.02  & 7.22  & ---   & ---   & 7.22 \\\\\n+Gemma-2-9B      & 8.90  & 9.03  & ---   & ---   & 9.05 \\\\\n \\bottomrule\n \\end{tabular}\n \\end{table}\n@@ -59,14 +63,20 @@ Without the cardinality constraint, both greedy (32.45) and MCKP (36.92) perform\n The constraint eliminates this failure mode entirely.\n Across 3 calibration seeds, constrained MCKP yields mean PPL 10.99$\\pm$0.06 (std is 1.3\\% of the uniform gap), with 90.2\\% three-way allocation agreement, confirming profiling stability.\n \n-On Llama-3.1-8B, the improvement is marginal: 8.45 vs.\\ 8.47 (0.2\\%).\n-The profiler finds low sensitivity heterogeneity across Llama's 256 KV heads, leaving little room for non-uniform allocation to improve over uniform.\n+On Llama-3.1-8B, the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47, $\\Delta < 0.02$ PPL).\n+Hires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.\n \n On Mistral-7B-v0.3, constrained MCKP (7.16, $k{=}4$) is slightly worse than uniform (7.13, $+$0.4\\%).\n This is a genuine negative result: the profiler reports near-zero sensitivity differences across heads, meaning the optimization has no reliable signal to exploit.\n Mistral's sliding-window attention may contribute to this uniformity by limiting head-level variation in effective context length.\n \n-Unconstrained results for Llama and Mistral are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\n+On Yi-1.5-9B$^\\dagger$, constrained MCKP ($k{=}2$) achieves 7.22 PPL, essentially identical to uniform 7.22 ($<$0.01\\% difference).\n+Despite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.\n+\n+On Gemma-2-9B (GQA 2:1), constrained MCKP ($k{=}8$) achieves 9.05 PPL vs.\\ uniform 9.03---a 0.3\\% degradation.\n+Gemma-2 has the most uniform head sensitivity distribution across its 336 KV heads, consistent with its low GQA ratio and attention logit softcapping.\n+\n+Unconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\n Figure~\\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.\n \n \\begin{figure}[t]\n@@ -133,7 +143,7 @@ On Qwen, MCKP (11.23) beats the L0-random median (11.52) by 0.29 PPL and the nai\n \n On Llama ($k{=}2$), the gap between methods is small: MCKP achieves 8.45 vs.\\ L0-random 8.62 and naive positional 8.58.\n With only 2 heads assigned to 2-bit, the choice of which heads to compress has limited impact, and all methods cluster within 0.17 PPL.\n-MCKP still achieves the best result, but the practical advantage of profiling-guided selection is marginal at this constraint level.\n+MCKP still achieves the best result, but the practical advantage of profiling-guided selection is negligible at this constraint level.\n \n On Mistral ($k{=}4$), all non-uniform strategies are worse than uniform 4-bit (7.13): MCKP 7.16, naive 7.21, L0-random median 7.20 (mean 7.24$\\pm$0.07).\n MCKP outperforms both heuristics, but the best non-uniform result (7.16) still exceeds uniform by 0.03 PPL, reinforcing that non-uniform allocation is counterproductive when heterogeneity is low.\ndiff --git a/docs/paper/introduction.tex b/docs/paper/introduction.tex\nindex 108a94c..84100c5 100644\n--- a/docs/paper/introduction.tex\n+++ b/docs/paper/introduction.tex\n@@ -30,14 +30,18 @@ The constraint narrows the feasible set enough that greedy's locally optimal dec\n A per-layer brute-force oracle confirms near-optimality: the maximum gap across 28 layers is 0.02 PPL, 0.4\\% of the total improvement (\\S\\ref{sec:solver_equiv}).\n \n However, non-uniform allocation does not help universally.\n-On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\\ uniform 8.47---a marginal 0.2\\% improvement.\n+On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\\ uniform 8.47---essentially indistinguishable from uniform ($\\Delta < 0.02$ PPL).\n On Mistral-7B-v0.3, it is slightly \\emph{worse}: 7.16 vs.\\ 7.13.\n-The difference across architectures traces to head sensitivity heterogeneity: Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads contributing a disproportionate share, while Mistral's heads are nearly uniform in sensitivity.\n-When there is no heterogeneity to exploit, non-uniform allocation adds noise without benefit.\n+On Yi-1.5-9B, non-uniform allocation provides no benefit (7.22 vs.\\ 7.22 uniform) despite Yi-1.5 having the highest GQA ratio tested (8:1).\n+On Gemma-2-9B (GQA 2:1, the lowest ratio tested), degradation is 0.3\\% (9.05 vs.\\ 9.03).\n+The difference across architectures traces to head sensitivity heterogeneity---specifically, its \\emph{distribution shape}, not GQA ratio alone.\n+Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads forming a cluster of high sensitivity; Yi-1.5 has a single extreme outlier but otherwise uniform heads (a ``spike'' pattern that MCKP cannot exploit); Gemma-2 and Mistral show near-uniform sensitivity across all heads.\n+When there is no exploitable heterogeneity, non-uniform allocation adds noise without benefit.\n \n This motivates a diagnostic question that prior work does not address: \\emph{when} should a practitioner use per-head mixed-precision quantization?\n-We propose a heterogeneity diagnostic based on the top-5\\% concentration of per-head distortion (\\S\\ref{sec:heterogeneity}).\n-On our three architectures, the concentration metric---combined with the absolute magnitude of per-head distortion---separates the beneficial case (Qwen, concentration 0.59--0.66, 27.3\\% PPL improvement) from cases where non-uniform allocation provides marginal (Llama) or no benefit (Mistral), across the three tested architectures.\n+We propose a joint heterogeneity diagnostic based on concentration \\emph{and} distribution shape of per-head distortion (\\S\\ref{sec:heterogeneity}).\n+On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.\n+Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "persistedOutputPath": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2/d01416c0-6fc1-4e02-b20b-b6d511da8957/tool-results/bzu5q4tdc.txt",
+    "persistedOutputSize": 31235
+  },
+  "sourceToolAssistantUUID": "4b638633-40b4-43fb-8bb8-73f922b7dfe9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8b7e57c2-6dc0-4b66-a0d0-7adb6b874ce5",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unify Qwen concentration to 0.61",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-14T22:18:38.228Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SW2Ro3GyPsjU4rScFXT37Z`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2/d01416c0-6fc1-4e02-b20b-b6d511da8957/tool-results/b3uh5wxsl.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b7e57c2-6dc0-4b66-a0d0-7adb6b874ce5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EiMJHb9VdjWxnhevV6",
+  "type": "assistant",
+  "uuid": "f0926a3a-3b0e-4da3-abd0-9c2aa3f76fb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_016ebBZAFbEFho4iEU9yY277",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1093,
+      "cache_read_input_tokens": 55994,
+      "output_tokens": 155,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1093,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 155,
+          "cache_read_input_tokens": 55994,
+          "cache_creation_input_tokens": 1093,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1093
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T22:18:38.547Z_
+
+<details><summary>↩ Tool result · `toolu_01SW2Ro3GyPsjU4rScFXT37Z`</summary>
+
+```text
+1	diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex
+2	index f56c7d6..26e3464 100644
+3	--- a/docs/paper/abstract.tex
+4	+++ b/docs/paper/abstract.tex
+5	@@ -3,5 +3,6 @@ We trace this failure to \emph{2-bit distortion compounding}: when the majority
+6	 We show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.
+7	 On Qwen2.5-7B at $4\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\% reduction over uniform 4-bit.
+8	 The constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\Delta{=}0.0000$), enabling use of a simple $O(H \log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).
+9	-However, the benefit depends on architecture: on Llama-3.1-8B the improvement is marginal (8.45 vs.\ 8.47), and on Mistral-7B-v0.3 non-uniform allocation is slightly counterproductive (7.16 vs.\ 7.13).
+10	-We propose a heterogeneity diagnostic based on the concentration of per-head sensitivity that can indicate, before any allocation, whether a given architecture will benefit from non-uniform quantization.
+11	+However, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.
+12	+Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.
+13	+We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.
+14	diff --git a/docs/paper/analysis.tex b/docs/paper/analysis.tex
+15	index b3d04e0..92318a4 100644
+16	--- a/docs/paper/analysis.tex
+17	+++ b/docs/paper/analysis.tex
+18	@@ -8,26 +8,40 @@ The benefit of non-uniform allocation depends on how unevenly head sensitivities
+19	 We quantify this with a \emph{top-5\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\% of heads.
+20	 High concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.
+21	 
+22	-Table~\ref{tab:heterogeneity} summarizes the results across three architectures at $4\times$ compression.
+23	-Qwen2.5-7B exhibits the highest heterogeneity (top-5\% concentration 0.59--0.66), with Layer-0 heads contributing the majority of total 2-bit distortion.
+24	-Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\% improvement over uniform 4-bit.
+25	-Llama-3.1-8B shows moderate heterogeneity (0.34--0.59), and the allocation benefit is marginal ($+$0.36 vs.\ $+$0.38).
+26	-Mistral-7B-v0.3 has a concentration of 0.42 but near-zero absolute distortion for most heads, leaving the profiler with no reliable signal.
+27	-Here, constrained MCKP is slightly \emph{worse} than uniform ($+$0.13 vs.\ $+$0.10), confirming that non-uniform allocation is counterproductive when heterogeneity is low.
+28	+Table~\ref{tab:heterogeneity} summarizes the results across five architectures at $4\times$ compression.
+29	+The central finding is that MCKP benefit requires \emph{spread heterogeneity}---multiple heads with cross-bitwidth sensitivity gradients---rather than sensitivity concentrated in a single outlier at one bitwidth.
+30	+
+31	+Qwen2.5-7B exemplifies the spread pattern (top-5\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.
+32	+Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\% improvement over uniform 4-bit. %exp_id=qwen_constrained_mckp
+33	+
+34	+Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\ $+$0.20). %exp_id=yi15_hires_constrained_mckp
+35	+The mechanism is clear from the cross-bitwidth gradient structure.
+36	+Yi-1.5's sensitivity is dominated by a single extreme outlier: Layer-4 Head-3 has a 2-bit delta of 13.12, while the second-ranked head has delta 0.55---a $24\times$ gap ($t_1/t_5{=}0.90$, $t_1/t_2{=}23.7$). %exp_id=yi15_hires_profiling
+37	+Critically, L4H3's sensitivity is confined to the 2-bit operating point: its 4-bit and 8-bit deltas are ${\approx}\,0$.
+38	+The solver therefore has only one lever---upgrading L4H3 from 2-bit to 4-bit removes the distortion, but further upgrading to 8-bit provides no additional benefit, so the budget freed by downgrading other heads has nowhere useful to go.
+39	+This is the ``spike'' pattern: high concentration driven by a single outlier with sensitivity at only one bitwidth.
+40	+
+41	+In contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth sensitivity gradient across several heads---a ``spread'' pattern that enables meaningful budget reallocation. %exp_id=qwen_hires_profiling
+42	+
+43	+The remaining three architectures fill out the diagnostic picture.
+44	+Llama-3.1-8B shows above-threshold concentration ($0.57$) with a pronounced spike ($t_1/t_5{=}0.85$, $t_1/t_2{=}34.8$); its allocation is essentially indistinguishable from uniform ($+$0.36 vs.\ $+$0.38). %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained
+45	+Mistral-7B-v0.3 and Gemma-2-9B both exhibit flat distributions ($t_1/t_5{=}0.18$) with low concentration ($0.22$ and $0.23$ respectively), leaving the profiler with no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\ $+$0.10 for Mistral; $+$0.15 vs.\ $+$0.13 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline
+46	 
+47	 \begin{table}[t]
+48	 \centering
+49	 \small
+50	-\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at 4$\times$ compression. $^\dagger$Hires profiling (64 seq $\times$ 2048 tok).}
+51	+\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at $4\times$ compression. $t_1/t_5$: ratio of top-1 to top-5 per-head 2-bit distortion (low${=}$spread, high${=}$spike). $^\dagger$Hires profiling (64 seq $\times$ 2048 tok); $^\ddagger$standard profiling, hires pending.}
+52	 \label{tab:heterogeneity}
+53	-\begin{tabular}{lccccc}
+54	+\begin{tabular}{lcccccc}
+55	 \toprule
+56	-Model & GQA & Top-5\% & $\Delta$ PPL & $\Delta$ PPL & Recommendation \\
+57	- & Ratio & Conc. & (Uniform) & (Ours) & \\
+58	+Model & GQA & Top-5\% & $t_1/t_5$ & $\Delta$ PPL & $\Delta$ PPL & Shape \\
+59	+ & Ratio & Conc. & & (Uniform) & (Ours) & \\
+60	 \midrule
+61	-Qwen2.5-7B & 7:1 & 0.59--0.66 & $+$5.64 & $+$1.42 & Non-uniform \\
+62	-Llama-3.1-8B$^\dagger$ & 4:1 & 0.34--0.59 & $+$0.38 & $+$0.36 & Marginal \\
+63	-Mistral-7B-v0.3$^\dagger$ & 4:1 & 0.42 & $+$0.10 & $+$0.13 & Uniform \\
+64	+Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\
+65	+Yi-1.5-9B$^\dagger$ & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\
+66	+Llama-3.1-8B$^\dagger$ & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\
+67	+Mistral-7B-v0.3$^\dagger$ & 4:1 & 0.22 & 0.18 & $+$0.10 & $+$0.13 & Flat \\
+68	+Gemma-2-9B$^\ddagger$ & 2:1 & 0.23 & 0.18 & $+$0.13 & $+$0.15 & Flat \\
+69	 \bottomrule
+70	 \end{tabular}
+71	 \end{table}
+72	@@ -35,30 +49,33 @@ Mistral-7B-v0.3$^\dagger$ & 4:1 & 0.42 & $+$0.10 & $+$0.13 & Uniform \\
+73	 \begin{figure*}[t]
+74	 \centering
+75	 \includegraphics[width=\textwidth]{figures/fig1_head_delta_heatmap.pdf}
+76	-\caption{Per-head 2-bit quantization sensitivity across three models. Qwen2.5-7B (left) shows high concentration in Layer-0 heads; Llama-3.1-8B (center) shows moderate spread; Mistral-7B-v0.3 (right) shows near-zero sensitivity across all heads. Color intensity indicates PPL increase when the head is quantized to 2-bit.}
+77	+\caption{Per-head 2-bit quantization sensitivity across five architectures. Qwen2.5-7B shows high concentration in Layer-0 heads (``spread'' pattern); Yi-1.5-9B shows a single extreme outlier at Layer-4 Head-3 (``spike'' pattern); Llama-3.1-8B shows a dominant outlier at Layer-2 Head-5 (49\% of total distortion, ``spike'' pattern); Mistral-7B-v0.3 shows near-zero sensitivity across all heads; Gemma-2-9B exhibits the most uniform distribution, consistent with its low GQA ratio (2:1). Color intensity indicates PPL increase when the head is quantized to 2-bit.}
+78	 \label{fig:heatmap}
+79	 \end{figure*}
+80	 
+81	 Figure~\ref{fig:heatmap} visualizes the per-head 2-bit distortion as a heatmap.
+82	-The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Mistral shows uniformly low distortion across all layers and heads.
+83	+The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.
+84	 
+85	 \subsection{Diagnostic Framework}
+86	 \label{sec:diagnostic}
+87	 
+88	-The heterogeneity characterization yields a preliminary guideline, based on three architectures, for deciding when non-uniform allocation is worthwhile:
+89	+The heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.
+90	+This motivates a joint diagnostic, based on five architectures, for deciding when non-uniform allocation is worthwhile:
+91	 
+92	 \begin{enumerate}[nosep]
+93	 \item Run per-head profiling as described in \S\ref{sec:profiling}.
+94	-\item Compute the top-5\% concentration from the resulting distortion table.
+95	-\item Select allocation strategy:
+96	+\item Compute the top-5\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.
+97	+\item Select allocation strategy based on concentration \emph{and} shape:
+98	   \begin{itemize}[nosep]
+99	-  \item Concentration ${>}\,0.50$: non-uniform allocation recommended (Qwen case; 27.3\% PPL improvement).
+100	-  \item Concentration $0.30$--$0.50$: marginal benefit; depends on target compression ratio (Llama case; 0.2\% at $4\times$).
+101	-  \item Near-zero absolute distortion for most heads: use uniform directly (Mistral case; non-uniform is counterproductive).
+102	+  \item \textbf{Spread} (concentration $\gtrsim 0.50$, $t_1/t_5 \lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\% PPL improvement.
+103	+  \item \textbf{Spike} ($t_1/t_5 \gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.
+104	+  \item \textbf{Flat} (concentration $\lesssim 0.50$, low $t_1/t_5$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. Mistral (0.22, $t_1/t_5{=}0.18$) and Gemma-2 (0.23, $t_1/t_5{=}0.18$): counterproductive.
+105	   \end{itemize}
+106	 \end{enumerate}
+107	 
+108	-The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver.
+109	-This avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.
+110	-The thresholds above are derived from three architectures and should be validated on a broader set of models before being treated as general rules.
+111	+Llama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.
+112	+Indeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.
+113	+The joint condition---concentration $\gtrsim 0.50$ and $t_1/t_5 \lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.
+114	+Both thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules.
+115	+The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver and avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.
+116	 Additional analyses---the effect of aggressive compression ratios, profiling resolution and multi-seed stability, per-layer optimality validation, and KV separation ablation---are provided in Appendices~\ref{sec:aggressive}--\ref{sec:kv_separation}.
+117	diff --git a/docs/paper/appendix.tex b/docs/paper/appendix.tex
+118	index d00775a..5604bff 100644
+119	--- a/docs/paper/appendix.tex
+120	+++ b/docs/paper/appendix.tex
+121	@@ -26,6 +26,9 @@ Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \pm
+122	 The bit distribution is identical across all seeds ($\{$2-bit: 8, 4-bit: 100, 8-bit: 4$\}$), and 101 of 112 heads (90.2\%) receive the same assignment in all three runs.
+123	 This stability confirms that the per-head sensitivity ranking is robust to calibration sampling noise.
+124	 
+125	+\paragraph{Numerical precision.}
+126	+Float32 profiling (64 $\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\ 10.91, $\Delta = 0.02 < \sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.
+127	+
+128	 \paragraph{Per-layer optimality.}
+129	 To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).
+130	 Of the 8 layers admitting multiple feasible allocations, MCKP matches the oracle exactly in 5; the remaining 3 show gaps of 0.018 (Layer~1), 0.014 (Layer~11), and 0.005 (Layer~4) PPL.
+131	@@ -46,3 +49,33 @@ This systematic asymmetry suggests that K caches are inherently more compressibl
+132	 
+133	 Joint allocation is sufficient under the current constraint formulation.
+134	 Separated K/V allocation with per-side cardinality constraints---limiting 2-bit assignments independently for K and V---is a direction for future work.
+135	+
+136	+\section{Runtime Benchmark}
+137	+\label{sec:runtime}
+138	+
+139	+\begin{table}[h]
+140	+\centering
+141	+\caption{PyTorch-level latency on Qwen2.5-7B (single NVIDIA RTX PRO 6000 (96\,GB), prompt\_len=256, gen\_len=128, mean of 10 runs). All conditions store KV in bf16 with simulated per-head quantize/dequantize calls; peak GPU memory is identical across rows.}
+142	+\label{tab:runtime}
+143	+\begin{tabular}{lccc}
+144	+\toprule
+145	+Condition & Prefill (ms) & Decode (ms/tok) & Throughput (tok/s) \\
+146	+\midrule
+147	+Baseline bf16       & 45.86 & 33.78 & 29.6 \\
+148	+Uniform 4-bit       & 54.25 & 42.46 & 23.6 \\
+149	+Constrained MCKP    & 57.03 & 46.09 & 21.8 \\
+150	+\bottomrule
+151	+\end{tabular}
+152	+\end{table}
+153	+
+154	+Table~\ref{tab:runtime} reports end-to-end latency for three KV cache configurations.
+155	+Uniform 4-bit quantization adds 25.7\% decode overhead relative to the bf16 baseline (42.46 vs.\ 33.78~ms/tok), reflecting per-head quantize/dequantize calls at every attention step.
+156	+Constrained MCKP adds a further 8.5\% over uniform (46.09 vs.\ 42.46~ms/tok), because mixed-precision allocation dispatches different dequantization kernels for 2-bit, 4-bit, and 8-bit heads within the same layer.
+157	+The MCKP solver itself runs in ${\sim}5$~ms and is invoked once at initialization, contributing negligibly to end-to-end latency.
+158	+Both quantized conditions achieve the same $4\times$ KV cache compression (5.25~MB vs.\ 21~MB at bf16), so the latency difference between uniform and MCKP reflects only the mixed-precision dispatch overhead, not a memory trade-off.
+159	+
+160	+\paragraph{Caveat.}
+161	+These measurements use PyTorch-level per-head \texttt{quantize}/\texttt{dequantize} calls and do \emph{not} represent optimized CUDA kernel performance.
+162	+Production inference engines such as vLLM and TensorRT-LLM employ fused attention kernels that batch dequantization with the matrix multiply, amortizing the per-head dispatch cost that dominates the gap between uniform and MCKP in our simulation.
+163	+The 8.5\% overhead reported here should therefore be treated as an upper bound on the mixed-precision penalty; real-world deployment with fused kernels would likely narrow or eliminate this gap.
+164	+The limitation noted in Section~\ref{sec:conclusion}---that we report no real-kernel latency benchmarks---remains: the numbers above quantify simulation overhead, not production inference speedup.
+165	diff --git a/docs/paper/conclusion.tex b/docs/paper/conclusion.tex
+166	index 9e8ccab..1290c3a 100644
+167	--- a/docs/paper/conclusion.tex
+168	+++ b/docs/paper/conclusion.tex
+169	@@ -3,12 +3,15 @@
+170	 We showed that per-head mixed-precision KV cache quantization over hardware-aligned bit-widths \{2, 4, 8, 16\} requires a cardinality constraint on 2-bit assignments to prevent non-additive distortion compounding through the residual stream.
+171	 A single constraint---limiting simultaneously active 2-bit heads to $k \leq 8$ (7\% of heads)---reduces perplexity on Qwen2.5-7B from 15.45 (uniform 4-bit) to 11.23, a 27.3\% improvement at $4\times$ compression.
+172	 Under the constraint, solver choice becomes irrelevant: greedy and MCKP produce equivalent allocations across all three architectures ($\Delta = 0.0000$), so a simple $O(H \log H)$ greedy algorithm suffices.
+173	-The benefit of non-uniform allocation scales with head sensitivity heterogeneity, as measured by the top-5\% concentration diagnostic: Qwen2.5-7B (concentration 0.59--0.66) shows large gains, Llama-3.1-8B (0.34--0.59) shows marginal improvement (8.45 vs.\ 8.47 PPL), and Mistral-7B-v0.3 (0.42) is slightly counterproductive (7.16 vs.\ 7.13 PPL).
+174	-This diagnostic, computable from the same profiling pass used for allocation, lets practitioners decide \emph{before deployment} whether non-uniform quantization is worthwhile for a given model.
+175	+The benefit of non-uniform allocation depends on both the concentration and \emph{shape} of head sensitivity heterogeneity.
+176	+Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.
+177	+Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.
+178	+A joint diagnostic using concentration ($\gtrsim 0.50$) and $t_1/t_5$ ratio ($\lesssim 0.70$) correctly identifies spread, spike, and flat patterns across all five models studied, computable from the same profiling pass used for allocation.
+179	+This provides a practical guideline: practitioners can determine whether non-uniform quantization is worthwhile for their architecture \emph{before} running the allocation solver.
+180	 
+181	 \paragraph{Limitations.}
+182	 Our study has several limitations that temper the generality of the findings.
+183	-First, we evaluate only three 7B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.
+184	+First, we evaluate only five 7--9B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.
+185	 Second, profiling relies on a single sensitivity metric (perplexity-based per-head distortion); alternative measures such as gradient-based or activation-norm diagnostics remain unexplored and could yield different allocation decisions.
+186	 Third, we report perplexity and downstream accuracy but no real-kernel latency benchmarks, leaving the practical inference speedup from mixed-precision allocation unquantified.
+187	 Fourth, we have not verified whether these findings transfer to larger scales (70B+), where head counts and attention patterns differ substantially.
+188	diff --git a/docs/paper/experiments.tex b/docs/paper/experiments.tex
+189	index fae830e..e6ff8b9 100644
+190	--- a/docs/paper/experiments.tex
+191	+++ b/docs/paper/experiments.tex
+192	@@ -5,11 +5,13 @@
+193	 \label{sec:setup}
+194	 
+195	 \paragraph{Models.}
+196	-We evaluate on three architectures spanning different grouped-query attention (GQA) configurations:
+197	+We evaluate on five architectures spanning different grouped-query attention (GQA) configurations:
+198	 \textbf{Qwen2.5-7B} (GQA ratio 7:1, 28 layers $\times$ 4 KV heads = 112 KV heads),
+199	+\textbf{Yi-1.5-9B} (8:1, 48 $\times$ 4 = 192 KV heads),
+200	 \textbf{Llama-3.1-8B} (4:1, 32 $\times$ 8 = 256 KV heads),
+201	-and \textbf{Mistral-7B-v0.3} (4:1, 32 $\times$ 8 = 256 KV heads, sliding window attention).
+202	-This selection covers the two dominant KV head counts (112 vs.\ 256) and both standard and sliding-window attention.
+203	+\textbf{Mistral-7B-v0.3} (4:1, 32 $\times$ 8 = 256 KV heads, sliding window attention),
+204	+and \textbf{Gemma-2-9B} (2:1, 42 $\times$ 8 = 336 KV heads, \texttt{head\_dim}=256, attention logit softcapping).
+205	+This selection spans GQA ratios from 2:1 to 8:1 and covers standard, sliding-window, and softcapped attention.
+206	 
+207	 \paragraph{Evaluation.}
+208	 We report perplexity (PPL, $\downarrow$) on the WikiText-2 test split (298{,}938 tokens) under bf16 inference with stride 512.
+209	@@ -22,7 +24,7 @@ Unless marked with $\dagger$, all results use standard-resolution profiling; App
+210	 
+211	 \paragraph{Compression and constraint.}
+212	 The default target is 4$\times$ compression (average 4 bits, budget ratio 0.25).
+213	-The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \S\ref{sec:method} ($k{=}8$ for Qwen's 112 heads; analogous sweeps determine $k$ for Llama and Mistral).
+214	+The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \S\ref{sec:method} ($k{=}8$ for Qwen, $k{=}2$ for Yi-1.5 and Llama, $k{=}4$ for Mistral, $k{=}8$ for Gemma-2).
+215	 
+216	 \paragraph{Baselines.}
+217	 We compare against:
+218	@@ -48,6 +50,8 @@ Model & Baseline & Uniform & \multicolumn{2}{c}{Unconstrained} & Ours \\
+219	 Qwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \textbf{11.23}$\pm$0.06 \\
+220	 Llama-3.1-8B    & 8.09  & 8.47  & ---   & ---   & \textbf{8.45}$^\dagger$ \\
+221	 Mistral-7B-v0.3 & 7.04  & 7.13  & ---   & ---   & 7.16$^{\dagger\ddagger}$ \\
+222	+Yi-1.5-9B$^\dagger$       & 7.02  & 7.22  & ---   & ---   & 7.22 \\
+223	+Gemma-2-9B      & 8.90  & 9.03  & ---   & ---   & 9.05 \\
+224	 \bottomrule
+225	 \end{tabular}
+226	 \end{table}
+227	@@ -59,14 +63,20 @@ Without the cardinality constraint, both greedy (32.45) and MCKP (36.92) perform
+228	 The constraint eliminates this failure mode entirely.
+229	 Across 3 calibration seeds, constrained MCKP yields mean PPL 10.99$\pm$0.06 (std is 1.3\% of the uniform gap), with 90.2\% three-way allocation agreement, confirming profiling stability.
+230	 
+231	-On Llama-3.1-8B, the improvement is marginal: 8.45 vs.\ 8.47 (0.2\%).
+232	-The profiler finds low sensitivity heterogeneity across Llama's 256 KV heads, leaving little room for non-uniform allocation to improve over uniform.
+233	+On Llama-3.1-8B, the result is essentially indistinguishable from uniform (8.45 vs.\ 8.47, $\Delta < 0.02$ PPL).
+234	+Hires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.
+235	 
+236	 On Mistral-7B-v0.3, constrained MCKP (7.16, $k{=}4$) is slightly worse than uniform (7.13, $+$0.4\%).
+237	 This is a genuine negative result: the profiler reports near-zero sensitivity differences across heads, meaning the optimization has no reliable signal to exploit.
+238	 Mistral's sliding-window attention may contribute to this uniformity by limiting head-level variation in effective context length.
+239	 
+240	-Unconstrained results for Llama and Mistral are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.
+241	+On Yi-1.5-9B$^\dagger$, constrained MCKP ($k{=}2$) achieves 7.22 PPL, essentially identical to uniform 7.22 ($<$0.01\% difference).
+242	+Despite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.
+243	+
+244	+On Gemma-2-9B (GQA 2:1), constrained MCKP ($k{=}8$) achieves 9.05 PPL vs.\ uniform 9.03---a 0.3\% degradation.
+245	+Gemma-2 has the most uniform head sensitivity distribution across its 336 KV heads, consistent with its low GQA ratio and attention logit softcapping.
+246	+
+247	+Unconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.
+248	 Figure~\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.
+249	 
+250	 \begin{figure}[t]
+251	@@ -133,7 +143,7 @@ On Qwen, MCKP (11.23) beats the L0-random median (11.52) by 0.29 PPL and the nai
+252	 
+253	 On Llama ($k{=}2$), the gap between methods is small: MCKP achieves 8.45 vs.\ L0-random 8.62 and naive positional 8.58.
+254	 With only 2 heads assigned to 2-bit, the choice of which heads to compress has limited impact, and all methods cluster within 0.17 PPL.
+255	-MCKP still achieves the best result, but the practical advantage of profiling-guided selection is marginal at this constraint level.
+256	+MCKP still achieves the best result, but the practical advantage of profiling-guided selection is negligible at this constraint level.
+257	 
+258	 On Mistral ($k{=}4$), all non-uniform strategies are worse than uniform 4-bit (7.13): MCKP 7.16, naive 7.21, L0-random median 7.20 (mean 7.24$\pm$0.07).
+259	 MCKP outperforms both heuristics, but the best non-uniform result (7.16) still exceeds uniform by 0.03 PPL, reinforcing that non-uniform allocation is counterproductive when heterogeneity is low.
+260	diff --git a/docs/paper/introduction.tex b/docs/paper/introduction.tex
+261	index 108a94c..84100c5 100644
+262	--- a/docs/paper/introduction.tex
+263	+++ b/docs/paper/introduction.tex
+264	@@ -30,14 +30,18 @@ The constraint narrows the feasible set enough that greedy's locally optimal dec
+265	 A per-layer brute-force oracle confirms near-optimality: the maximum gap across 28 layers is 0.02 PPL, 0.4\% of the total improvement (\S\ref{sec:solver_equiv}).
+266	 
+267	 However, non-uniform allocation does not help universally.
+268	-On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\ uniform 8.47---a marginal 0.2\% improvement.
+269	+On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\ uniform 8.47---essentially indistinguishable from uniform ($\Delta < 0.02$ PPL).
+270	 On Mistral-7B-v0.3, it is slightly \emph{worse}: 7.16 vs.\ 7.13.
+271	-The difference across architectures traces to head sensitivity heterogeneity: Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads contributing a disproportionate share, while Mistral's heads are nearly uniform in sensitivity.
+272	-When there is no heterogeneity to exploit, non-uniform allocation adds noise without benefit.
+273	+On Yi-1.5-9B, non-uniform allocation provides no benefit (7.22 vs.\ 7.22 uniform) despite Yi-1.5 having the highest GQA ratio tested (8:1).
+274	+On Gemma-2-9B (GQA 2:1, the lowest ratio tested), degradation is 0.3\% (9.05 vs.\ 9.03).
+275	+The difference across architectures traces to head sensitivity heterogeneity---specifically, its \emph{distribution shape}, not GQA ratio alone.
+276	+Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads forming a cluster of high sensitivity; Yi-1.5 has a single extreme outlier but otherwise uniform heads (a ``spike'' pattern that MCKP cannot exploit); Gemma-2 and Mistral show near-uniform sensitivity across all heads.
+277	+When there is no exploitable heterogeneity, non-uniform allocation adds noise without benefit.
+278	 
+279	 This motivates a diagnostic question that prior work does not address: \emph{when} should a practitioner use per-head mixed-precision quantization?
+280	-We propose a heterogeneity diagnostic based on the top-5\% concentration of per-head distortion (\S\ref{sec:heterogeneity}).
+281	-On our three architectures, the concentration metric---combined with the absolute magnitude of per-head distortion---separates the beneficial case (Qwen, concentration 0.59--0.66, 27.3\% PPL improvement) from cases where non-uniform allocation provides marginal (Llama) or no benefit (Mistral), across the three tested architectures.
+282	+We propose a joint heterogeneity diagnostic based on concentration \emph{and} distribution shape of per-head distortion (\S\ref{sec:heterogeneity}).
+283	+On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.
+284	+Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier spike with no cross-bitwidth gradient---precisely the pattern where MCKP cannot redistribute budget.
+285	 The diagnostic reuses profiling data already required by the solver and adds no computational overhead.
+286	 
+287	 Our contributions are:
+288	@@ -46,5 +50,5 @@ Our contributions are:
+289	 
+290	 \item We demonstrate that the cardinality constraint makes solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent per-head allocations across three architectures, enabling use of a simple greedy algorithm (\S\ref{sec:solver_equiv}).
+291	 
+292	-\item We propose a heterogeneity-based diagnostic framework that can indicate whether non-uniform allocation will help a given architecture, validated on three models spanning beneficial, marginal, and counterproductive outcomes (\S\ref{sec:heterogeneity}).
+293	+\item We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly separates architectures where non-uniform allocation helps from those where it does not, across all five models tested. Yi-1.5-9B serves as a critical test: its concentration exceeds Qwen's, yet its single-outlier spike pattern means MCKP provides no benefit over uniform (\S\ref{sec:heterogeneity}).
+294	 \end{enumerate}
+295	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0926a3a-3b0e-4da3-abd0-9c2aa3f76fb8",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "2eeef705-9ff9-4f9a-bacf-a2526f5f0f4b",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2/d01416c0-6fc1-4e02-b20b-b6d511da8957/tool-results/b3uh5wxsl.txt",
+      "content": "diff --git a/docs/paper/abstract.tex b/docs/paper/abstract.tex\nindex f56c7d6..26e3464 100644\n--- a/docs/paper/abstract.tex\n+++ b/docs/paper/abstract.tex\n@@ -3,5 +3,6 @@ We trace this failure to \\emph{2-bit distortion compounding}: when the majority\n We show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.\n On Qwen2.5-7B at $4\\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\\% reduction over uniform 4-bit.\n The constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\\Delta{=}0.0000$), enabling use of a simple $O(H \\log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).\n-However, the benefit depends on architecture: on Llama-3.1-8B the improvement is marginal (8.45 vs.\\ 8.47), and on Mistral-7B-v0.3 non-uniform allocation is slightly counterproductive (7.16 vs.\\ 7.13).\n-We propose a heterogeneity diagnostic based on the concentration of per-head sensitivity that can indicate, before any allocation, whether a given architecture will benefit from non-uniform quantization.\n+However, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.\n+Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.\n+We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.\ndiff --git a/docs/paper/analysis.tex b/docs/paper/analysis.tex\nindex b3d04e0..92318a4 100644\n--- a/docs/paper/analysis.tex\n+++ b/docs/paper/analysis.tex\n@@ -8,26 +8,40 @@ The benefit of non-uniform allocation depends on how unevenly head sensitivities\n We quantify this with a \\emph{top-5\\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\\% of heads.\n High concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.\n \n-Table~\\ref{tab:heterogeneity} summarizes the results across three architectures at $4\\times$ compression.\n-Qwen2.5-7B exhibits the highest heterogeneity (top-5\\% concentration 0.59--0.66), with Layer-0 heads contributing the majority of total 2-bit distortion.\n-Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\\% improvement over uniform 4-bit.\n-Llama-3.1-8B shows moderate heterogeneity (0.34--0.59), and the allocation benefit is marginal ($+$0.36 vs.\\ $+$0.38).\n-Mistral-7B-v0.3 has a concentration of 0.42 but near-zero absolute distortion for most heads, leaving the profiler with no reliable signal.\n-Here, constrained MCKP is slightly \\emph{worse} than uniform ($+$0.13 vs.\\ $+$0.10), confirming that non-uniform allocation is counterproductive when heterogeneity is low.\n+Table~\\ref{tab:heterogeneity} summarizes the results across five architectures at $4\\times$ compression.\n+The central finding is that MCKP benefit requires \\emph{spread heterogeneity}---multiple heads with cross-bitwidth sensitivity gradients---rather than sensitivity concentrated in a single outlier at one bitwidth.\n+\n+Qwen2.5-7B exemplifies the spread pattern (top-5\\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.\n+Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\\% improvement over uniform 4-bit. %exp_id=qwen_constrained_mckp\n+\n+Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\\ $+$0.20). %exp_id=yi15_hires_constrained_mckp\n+The mechanism is clear from the cross-bitwidth gradient structure.\n+Yi-1.5's sensitivity is dominated by a single extreme outlier: Layer-4 Head-3 has a 2-bit delta of 13.12, while the second-ranked head has delta 0.55---a $24\\times$ gap ($t_1/t_5{=}0.90$, $t_1/t_2{=}23.7$). %exp_id=yi15_hires_profiling\n+Critically, L4H3's sensitivity is confined to the 2-bit operating point: its 4-bit and 8-bit deltas are ${\\approx}\\,0$.\n+The solver therefore has only one lever---upgrading L4H3 from 2-bit to 4-bit removes the distortion, but further upgrading to 8-bit provides no additional benefit, so the budget freed by downgrading other heads has nowhere useful to go.\n+This is the ``spike'' pattern: high concentration driven by a single outlier with sensitivity at only one bitwidth.\n+\n+In contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth sensitivity gradient across several heads---a ``spread'' pattern that enables meaningful budget reallocation. %exp_id=qwen_hires_profiling\n+\n+The remaining three architectures fill out the diagnostic picture.\n+Llama-3.1-8B shows above-threshold concentration ($0.57$) with a pronounced spike ($t_1/t_5{=}0.85$, $t_1/t_2{=}34.8$); its allocation is essentially indistinguishable from uniform ($+$0.36 vs.\\ $+$0.38). %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained\n+Mistral-7B-v0.3 and Gemma-2-9B both exhibit flat distributions ($t_1/t_5{=}0.18$) with low concentration ($0.22$ and $0.23$ respectively), leaving the profiler with no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\\ $+$0.10 for Mistral; $+$0.15 vs.\\ $+$0.13 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline\n \n \\begin{table}[t]\n \\centering\n \\small\n-\\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at 4$\\times$ compression. $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok).}\n+\\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at $4\\times$ compression. $t_1/t_5$: ratio of top-1 to top-5 per-head 2-bit distortion (low${=}$spread, high${=}$spike). $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok); $^\\ddagger$standard profiling, hires pending.}\n \\label{tab:heterogeneity}\n-\\begin{tabular}{lccccc}\n+\\begin{tabular}{lcccccc}\n \\toprule\n-Model & GQA & Top-5\\% & $\\Delta$ PPL & $\\Delta$ PPL & Recommendation \\\\\n- & Ratio & Conc. & (Uniform) & (Ours) & \\\\\n+Model & GQA & Top-5\\% & $t_1/t_5$ & $\\Delta$ PPL & $\\Delta$ PPL & Shape \\\\\n+ & Ratio & Conc. & & (Uniform) & (Ours) & \\\\\n \\midrule\n-Qwen2.5-7B & 7:1 & 0.59--0.66 & $+$5.64 & $+$1.42 & Non-uniform \\\\\n-Llama-3.1-8B$^\\dagger$ & 4:1 & 0.34--0.59 & $+$0.38 & $+$0.36 & Marginal \\\\\n-Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.42 & $+$0.10 & $+$0.13 & Uniform \\\\\n+Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\\\\n+Yi-1.5-9B$^\\dagger$ & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\\\\n+Llama-3.1-8B$^\\dagger$ & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\\\\n+Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.22 & 0.18 & $+$0.10 & $+$0.13 & Flat \\\\\n+Gemma-2-9B$^\\ddagger$ & 2:1 & 0.23 & 0.18 & $+$0.13 & $+$0.15 & Flat \\\\\n \\bottomrule\n \\end{tabular}\n \\end{table}\n@@ -35,30 +49,33 @@ Mistral-7B-v0.3$^\\dagger$ & 4:1 & 0.42 & $+$0.10 & $+$0.13 & Uniform \\\\\n \\begin{figure*}[t]\n \\centering\n \\includegraphics[width=\\textwidth]{figures/fig1_head_delta_heatmap.pdf}\n-\\caption{Per-head 2-bit quantization sensitivity across three models. Qwen2.5-7B (left) shows high concentration in Layer-0 heads; Llama-3.1-8B (center) shows moderate spread; Mistral-7B-v0.3 (right) shows near-zero sensitivity across all heads. Color intensity indicates PPL increase when the head is quantized to 2-bit.}\n+\\caption{Per-head 2-bit quantization sensitivity across five architectures. Qwen2.5-7B shows high concentration in Layer-0 heads (``spread'' pattern); Yi-1.5-9B shows a single extreme outlier at Layer-4 Head-3 (``spike'' pattern); Llama-3.1-8B shows a dominant outlier at Layer-2 Head-5 (49\\% of total distortion, ``spike'' pattern); Mistral-7B-v0.3 shows near-zero sensitivity across all heads; Gemma-2-9B exhibits the most uniform distribution, consistent with its low GQA ratio (2:1). Color intensity indicates PPL increase when the head is quantized to 2-bit.}\n \\label{fig:heatmap}\n \\end{figure*}\n \n Figure~\\ref{fig:heatmap} visualizes the per-head 2-bit distortion as a heatmap.\n-The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Mistral shows uniformly low distortion across all layers and heads.\n+The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.\n \n \\subsection{Diagnostic Framework}\n \\label{sec:diagnostic}\n \n-The heterogeneity characterization yields a preliminary guideline, based on three architectures, for deciding when non-uniform allocation is worthwhile:\n+The heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \\emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.\n+This motivates a joint diagnostic, based on five architectures, for deciding when non-uniform allocation is worthwhile:\n \n \\begin{enumerate}[nosep]\n \\item Run per-head profiling as described in \\S\\ref{sec:profiling}.\n-\\item Compute the top-5\\% concentration from the resulting distortion table.\n-\\item Select allocation strategy:\n+\\item Compute the top-5\\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.\n+\\item Select allocation strategy based on concentration \\emph{and} shape:\n   \\begin{itemize}[nosep]\n-  \\item Concentration ${>}\\,0.50$: non-uniform allocation recommended (Qwen case; 27.3\\% PPL improvement).\n-  \\item Concentration $0.30$--$0.50$: marginal benefit; depends on target compression ratio (Llama case; 0.2\\% at $4\\times$).\n-  \\item Near-zero absolute distortion for most heads: use uniform directly (Mistral case; non-uniform is counterproductive).\n+  \\item \\textbf{Spread} (concentration $\\gtrsim 0.50$, $t_1/t_5 \\lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\\% PPL improvement.\n+  \\item \\textbf{Spike} ($t_1/t_5 \\gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.\n+  \\item \\textbf{Flat} (concentration $\\lesssim 0.50$, low $t_1/t_5$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. Mistral (0.22, $t_1/t_5{=}0.18$) and Gemma-2 (0.23, $t_1/t_5{=}0.18$): counterproductive.\n   \\end{itemize}\n \\end{enumerate}\n \n-The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver.\n-This avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.\n-The thresholds above are derived from three architectures and should be validated on a broader set of models before being treated as general rules.\n+Llama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.\n+Indeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.\n+The joint condition---concentration $\\gtrsim 0.50$ and $t_1/t_5 \\lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.\n+Both thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules.\n+The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver and avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.\n Additional analyses---the effect of aggressive compression ratios, profiling resolution and multi-seed stability, per-layer optimality validation, and KV separation ablation---are provided in Appendices~\\ref{sec:aggressive}--\\ref{sec:kv_separation}.\ndiff --git a/docs/paper/appendix.tex b/docs/paper/appendix.tex\nindex d00775a..5604bff 100644\n--- a/docs/paper/appendix.tex\n+++ b/docs/paper/appendix.tex\n@@ -26,6 +26,9 @@ Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \\pm\n The bit distribution is identical across all seeds ($\\{$2-bit: 8, 4-bit: 100, 8-bit: 4$\\}$), and 101 of 112 heads (90.2\\%) receive the same assignment in all three runs.\n This stability confirms that the per-head sensitivity ranking is robust to calibration sampling noise.\n \n+\\paragraph{Numerical precision.}\n+Float32 profiling (64 $\\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\\ 10.91, $\\Delta = 0.02 < \\sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.\n+\n \\paragraph{Per-layer optimality.}\n To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).\n Of the 8 layers admitting multiple feasible allocations, MCKP matches the oracle exactly in 5; the remaining 3 show gaps of 0.018 (Layer~1), 0.014 (Layer~11), and 0.005 (Layer~4) PPL.\n@@ -46,3 +49,33 @@ This systematic asymmetry suggests that K caches are inherently more compressibl\n \n Joint allocation is sufficient under the current constraint formulation.\n Separated K/V allocation with per-side cardinality constraints---limiting 2-bit assignments independently for K and V---is a direction for future work.\n+\n+\\section{Runtime Benchmark}\n+\\label{sec:runtime}\n+\n+\\begin{table}[h]\n+\\centering\n+\\caption{PyTorch-level latency on Qwen2.5-7B (single NVIDIA RTX PRO 6000 (96\\,GB), prompt\\_len=256, gen\\_len=128, mean of 10 runs). All conditions store KV in bf16 with simulated per-head quantize/dequantize calls; peak GPU memory is identical across rows.}\n+\\label{tab:runtime}\n+\\begin{tabular}{lccc}\n+\\toprule\n+Condition & Prefill (ms) & Decode (ms/tok) & Throughput (tok/s) \\\\\n+\\midrule\n+Baseline bf16       & 45.86 & 33.78 & 29.6 \\\\\n+Uniform 4-bit       & 54.25 & 42.46 & 23.6 \\\\\n+Constrained MCKP    & 57.03 & 46.09 & 21.8 \\\\\n+\\bottomrule\n+\\end{tabular}\n+\\end{table}\n+\n+Table~\\ref{tab:runtime} reports end-to-end latency for three KV cache configurations.\n+Uniform 4-bit quantization adds 25.7\\% decode overhead relative to the bf16 baseline (42.46 vs.\\ 33.78~ms/tok), reflecting per-head quantize/dequantize calls at every attention step.\n+Constrained MCKP adds a further 8.5\\% over uniform (46.09 vs.\\ 42.46~ms/tok), because mixed-precision allocation dispatches different dequantization kernels for 2-bit, 4-bit, and 8-bit heads within the same layer.\n+The MCKP solver itself runs in ${\\sim}5$~ms and is invoked once at initialization, contributing negligibly to end-to-end latency.\n+Both quantized conditions achieve the same $4\\times$ KV cache compression (5.25~MB vs.\\ 21~MB at bf16), so the latency difference between uniform and MCKP reflects only the mixed-precision dispatch overhead, not a memory trade-off.\n+\n+\\paragraph{Caveat.}\n+These measurements use PyTorch-level per-head \\texttt{quantize}/\\texttt{dequantize} calls and do \\emph{not} represent optimized CUDA kernel performance.\n+Production inference engines such as vLLM and TensorRT-LLM employ fused attention kernels that batch dequantization with the matrix multiply, amortizing the per-head dispatch cost that dominates the gap between uniform and MCKP in our simulation.\n+The 8.5\\% overhead reported here should therefore be treated as an upper bound on the mixed-precision penalty; real-world deployment with fused kernels would likely narrow or eliminate this gap.\n+The limitation noted in Section~\\ref{sec:conclusion}---that we report no real-kernel latency benchmarks---remains: the numbers above quantify simulation overhead, not production inference speedup.\ndiff --git a/docs/paper/conclusion.tex b/docs/paper/conclusion.tex\nindex 9e8ccab..1290c3a 100644\n--- a/docs/paper/conclusion.tex\n+++ b/docs/paper/conclusion.tex\n@@ -3,12 +3,15 @@\n We showed that per-head mixed-precision KV cache quantization over hardware-aligned bit-widths \\{2, 4, 8, 16\\} requires a cardinality constraint on 2-bit assignments to prevent non-additive distortion compounding through the residual stream.\n A single constraint---limiting simultaneously active 2-bit heads to $k \\leq 8$ (7\\% of heads)---reduces perplexity on Qwen2.5-7B from 15.45 (uniform 4-bit) to 11.23, a 27.3\\% improvement at $4\\times$ compression.\n Under the constraint, solver choice becomes irrelevant: greedy and MCKP produce equivalent allocations across all three architectures ($\\Delta = 0.0000$), so a simple $O(H \\log H)$ greedy algorithm suffices.\n-The benefit of non-uniform allocation scales with head sensitivity heterogeneity, as measured by the top-5\\% concentration diagnostic: Qwen2.5-7B (concentration 0.59--0.66) shows large gains, Llama-3.1-8B (0.34--0.59) shows marginal improvement (8.45 vs.\\ 8.47 PPL), and Mistral-7B-v0.3 (0.42) is slightly counterproductive (7.16 vs.\\ 7.13 PPL).\n-This diagnostic, computable from the same profiling pass used for allocation, lets practitioners decide \\emph{before deployment} whether non-uniform quantization is worthwhile for a given model.\n+The benefit of non-uniform allocation depends on both the concentration and \\emph{shape} of head sensitivity heterogeneity.\n+Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.\n+Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.\n+A joint diagnostic using concentration ($\\gtrsim 0.50$) and $t_1/t_5$ ratio ($\\lesssim 0.70$) correctly identifies spread, spike, and flat patterns across all five models studied, computable from the same profiling pass used for allocation.\n+This provides a practical guideline: practitioners can determine whether non-uniform quantization is worthwhile for their architecture \\emph{before} running the allocation solver.\n \n \\paragraph{Limitations.}\n Our study has several limitations that temper the generality of the findings.\n-First, we evaluate only three 7B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.\n+First, we evaluate only five 7--9B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.\n Second, profiling relies on a single sensitivity metric (perplexity-based per-head distortion); alternative measures such as gradient-based or activation-norm diagnostics remain unexplored and could yield different allocation decisions.\n Third, we report perplexity and downstream accuracy but no real-kernel latency benchmarks, leaving the practical inference speedup from mixed-precision allocation unquantified.\n Fourth, we have not verified whether these findings transfer to larger scales (70B+), where head counts and attention patterns differ substantially.\ndiff --git a/docs/paper/experiments.tex b/docs/paper/experiments.tex\nindex fae830e..e6ff8b9 100644\n--- a/docs/paper/experiments.tex\n+++ b/docs/paper/experiments.tex\n@@ -5,11 +5,13 @@\n \\label{sec:setup}\n \n \\paragraph{Models.}\n-We evaluate on three architectures spanning different grouped-query attention (GQA) configurations:\n+We evaluate on five architectures spanning different grouped-query attention (GQA) configurations:\n \\textbf{Qwen2.5-7B} (GQA ratio 7:1, 28 layers $\\times$ 4 KV heads = 112 KV heads),\n+\\textbf{Yi-1.5-9B} (8:1, 48 $\\times$ 4 = 192 KV heads),\n \\textbf{Llama-3.1-8B} (4:1, 32 $\\times$ 8 = 256 KV heads),\n-and \\textbf{Mistral-7B-v0.3} (4:1, 32 $\\times$ 8 = 256 KV heads, sliding window attention).\n-This selection covers the two dominant KV head counts (112 vs.\\ 256) and both standard and sliding-window attention.\n+\\textbf{Mistral-7B-v0.3} (4:1, 32 $\\times$ 8 = 256 KV heads, sliding window attention),\n+and \\textbf{Gemma-2-9B} (2:1, 42 $\\times$ 8 = 336 KV heads, \\texttt{head\\_dim}=256, attention logit softcapping).\n+This selection spans GQA ratios from 2:1 to 8:1 and covers standard, sliding-window, and softcapped attention.\n \n \\paragraph{Evaluation.}\n We report perplexity (PPL, $\\downarrow$) on the WikiText-2 test split (298{,}938 tokens) under bf16 inference with stride 512.\n@@ -22,7 +24,7 @@ Unless marked with $\\dagger$, all results use standard-resolution profiling; App\n \n \\paragraph{Compression and constraint.}\n The default target is 4$\\times$ compression (average 4 bits, budget ratio 0.25).\n-The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \\S\\ref{sec:method} ($k{=}8$ for Qwen's 112 heads; analogous sweeps determine $k$ for Llama and Mistral).\n+The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \\S\\ref{sec:method} ($k{=}8$ for Qwen, $k{=}2$ for Yi-1.5 and Llama, $k{=}4$ for Mistral, $k{=}8$ for Gemma-2).\n \n \\paragraph{Baselines.}\n We compare against:\n@@ -48,6 +50,8 @@ Model & Baseline & Uniform & \\multicolumn{2}{c}{Unconstrained} & Ours \\\\\n Qwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \\textbf{11.23}$\\pm$0.06 \\\\\n Llama-3.1-8B    & 8.09  & 8.47  & ---   & ---   & \\textbf{8.45}$^\\dagger$ \\\\\n Mistral-7B-v0.3 & 7.04  & 7.13  & ---   & ---   & 7.16$^{\\dagger\\ddagger}$ \\\\\n+Yi-1.5-9B$^\\dagger$       & 7.02  & 7.22  & ---   & ---   & 7.22 \\\\\n+Gemma-2-9B      & 8.90  & 9.03  & ---   & ---   & 9.05 \\\\\n \\bottomrule\n \\end{tabular}\n \\end{table}\n@@ -59,14 +63,20 @@ Without the cardinality constraint, both greedy (32.45) and MCKP (36.92) perform\n The constraint eliminates this failure mode entirely.\n Across 3 calibration seeds, constrained MCKP yields mean PPL 10.99$\\pm$0.06 (std is 1.3\\% of the uniform gap), with 90.2\\% three-way allocation agreement, confirming profiling stability.\n \n-On Llama-3.1-8B, the improvement is marginal: 8.45 vs.\\ 8.47 (0.2\\%).\n-The profiler finds low sensitivity heterogeneity across Llama's 256 KV heads, leaving little room for non-uniform allocation to improve over uniform.\n+On Llama-3.1-8B, the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47, $\\Delta < 0.02$ PPL).\n+Hires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.\n \n On Mistral-7B-v0.3, constrained MCKP (7.16, $k{=}4$) is slightly worse than uniform (7.13, $+$0.4\\%).\n This is a genuine negative result: the profiler reports near-zero sensitivity differences across heads, meaning the optimization has no reliable signal to exploit.\n Mistral's sliding-window attention may contribute to this uniformity by limiting head-level variation in effective context length.\n \n-Unconstrained results for Llama and Mistral are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\n+On Yi-1.5-9B$^\\dagger$, constrained MCKP ($k{=}2$) achieves 7.22 PPL, essentially identical to uniform 7.22 ($<$0.01\\% difference).\n+Despite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.\n+\n+On Gemma-2-9B (GQA 2:1), constrained MCKP ($k{=}8$) achieves 9.05 PPL vs.\\ uniform 9.03---a 0.3\\% degradation.\n+Gemma-2 has the most uniform head sensitivity distribution across its 336 KV heads, consistent with its low GQA ratio and attention logit softcapping.\n+\n+Unconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\n Figure~\\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.\n \n \\begin{figure}[t]\n@@ -133,7 +143,7 @@ On Qwen, MCKP (11.23) beats the L0-random median (11.52) by 0.29 PPL and the nai\n \n On Llama ($k{=}2$), the gap between methods is small: MCKP achieves 8.45 vs.\\ L0-random 8.62 and naive positional 8.58.\n With only 2 heads assigned to 2-bit, the choice of which heads to compress has limited impact, and all methods cluster within 0.17 PPL.\n-MCKP still achieves the best result, but the practical advantage of profiling-guided selection is marginal at this constraint level.\n+MCKP still achieves the best result, but the practical advantage of profiling-guided selection is negligible at this constraint level.\n \n On Mistral ($k{=}4$), all non-uniform strategies are worse than uniform 4-bit (7.13): MCKP 7.16, naive 7.21, L0-random median 7.20 (mean 7.24$\\pm$0.07).\n MCKP outperforms both heuristics, but the best non-uniform result (7.16) still exceeds uniform by 0.03 PPL, reinforcing that non-uniform allocation is counterproductive when heterogeneity is low.\ndiff --git a/docs/paper/introduction.tex b/docs/paper/introduction.tex\nindex 108a94c..84100c5 100644\n--- a/docs/paper/introduction.tex\n+++ b/docs/paper/introduction.tex\n@@ -30,14 +30,18 @@ The constraint narrows the feasible set enough that greedy's locally optimal dec\n A per-layer brute-force oracle confirms near-optimality: the maximum gap across 28 layers is 0.02 PPL, 0.4\\% of the total improvement (\\S\\ref{sec:solver_equiv}).\n \n However, non-uniform allocation does not help universally.\n-On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\\ uniform 8.47---a marginal 0.2\\% improvement.\n+On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\\ uniform 8.47---essentially indistinguishable from uniform ($\\Delta < 0.02$ PPL).\n On Mistral-7B-v0.3, it is slightly \\emph{worse}: 7.16 vs.\\ 7.13.\n-The difference across architectures traces to head sensitivity heterogeneity: Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads contributing a disproportionate share, while Mistral's heads are nearly uniform in sensitivity.\n-When there is no heterogeneity to exploit, non-uniform allocation adds noise without benefit.\n+On Yi-1.5-9B, non-uniform allocation provides no benefit (7.22 vs.\\ 7.22 uniform) despite Yi-1.5 having the highest GQA ratio tested (8:1).\n+On Gemma-2-9B (GQA 2:1, the lowest ratio tested), degradation is 0.3\\% (9.05 vs.\\ 9.03).\n+The difference across architectures traces to head sensitivity heterogeneity---specifically, its \\emph{distribution shape}, not GQA ratio alone.\n+Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads forming a cluster of high sensitivity; Yi-1.5 has a single extreme outlier but otherwise uniform heads (a ``spike'' pattern that MCKP cannot exploit); Gemma-2 and Mistral show near-uniform sensitivity across all heads.\n+When there is no exploitable heterogeneity, non-uniform allocation adds noise without benefit.\n \n This motivates a diagnostic question that prior work does not address: \\emph{when} should a practitioner use per-head mixed-precision quantization?\n-We propose a heterogeneity diagnostic based on the top-5\\% concentration of per-head distortion (\\S\\ref{sec:heterogeneity}).\n-On our three architectures, the concentration metric---combined with the absolute magnitude of per-head distortion---separates the beneficial case (Qwen, concentration 0.59--0.66, 27.3\\% PPL improvement) from cases where non-uniform allocation provides marginal (Llama) or no benefit (Mistral), across the three tested architectures.\n+We propose a joint heterogeneity diagnostic based on concentration \\emph{and} distribution shape of per-head distortion (\\S\\ref{sec:heterogeneity}).\n+On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.\n+Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier spike with no cross-bitwidth gradient---precisely the pattern where MCKP cannot redistribute budget.\n The diagnostic reuses profiling data already required by the solver and adds no computational overhead.\n \n Our contributions are:\n@@ -46,5 +50,5 @@ Our contributions are:\n \n \\item We demonstrate that the cardinality constraint makes solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent per-head allocations across three architectures, enabling use of a simple greedy algorithm (\\S\\ref{sec:solver_equiv}).\n \n-\\item We propose a heterogeneity-based diagnostic framework that can indicate whether non-uniform allocation will help a given architecture, validated on three models spanning beneficial, marginal, and counterproductive outcomes (\\S\\ref{sec:heterogeneity}).\n+\\item We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly separates architectures where non-uniform allocation helps from those where it does not, across all five models tested. Yi-1.5-9B serves as a critical test: its concentration exceeds Qwen's, yet its single-outlier spike pattern means MCKP provides no benefit over uniform (\\S\\ref{sec:heterogeneity}).\n \\end{enumerate}\n",
+      "numLines": 295,
+      "startLine": 1,
+      "totalLines": 295
+    }
+  },
+  "sourceToolAssistantUUID": "f0926a3a-3b0e-4da3-abd0-9c2aa3f76fb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "2eeef705-9ff9-4f9a-bacf-a2526f5f0f4b",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unify Qwen concentration to 0.61",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-14T22:18:52.838Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2eeef705-9ff9-4f9a-bacf-a2526f5f0f4b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EiZndBJPPhbLZMJwrz",
+  "type": "assistant",
+  "uuid": "174af46e-a99a-4234-9bc0-425973a3be56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NaeK2XkPATxh7qVN6zMQSf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14604,
+      "cache_read_input_tokens": 57087,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 57087,
+          "cache_creation_input_tokens": 14604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T22:18:56.115Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DuFQ3gSMKrp13bCNSo5J5B`</summary>
+
+```json
+{
+  "command": "git diff docs/paper/related_work.tex",
+  "description": "Check related_work diff"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "174af46e-a99a-4234-9bc0-425973a3be56",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EiZndBJPPhbLZMJwrz",
+  "type": "assistant",
+  "uuid": "8e864cca-f3f6-4e46-ba22-03246f41ac7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01NaeK2XkPATxh7qVN6zMQSf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14604,
+      "cache_read_input_tokens": 57087,
+      "output_tokens": 506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 506,
+          "cache_read_input_tokens": 57087,
+          "cache_creation_input_tokens": 14604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T22:18:56.160Z_
+
+<details><summary>↩ Tool result · `toolu_01DuFQ3gSMKrp13bCNSo5J5B`</summary>
+
+```text
+diff --git a/docs/paper/related_work.tex b/docs/paper/related_work.tex
+index edeb3f2..26ff723 100644
+--- a/docs/paper/related_work.tex
++++ b/docs/paper/related_work.tex
+@@ -6,12 +6,13 @@ We extend the design space to per-head non-uniform allocation over hardware-alig
+ 
+ \paragraph{KV Cache Eviction.}
+ Complementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\cite{zhang2023h2o}, per-head important tokens~\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\cite{liu2024scissorhands}, attention sinks~\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\cite{yang2024pyramidinfer}.
+-Our work focuses exclusively on the quantization allocation problem.
++Recent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.
++
+ 
+ \paragraph{Mixed-Precision Rate-Distortion Allocation.}
+ RateQuant~\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\{2,\ldots,6\}$ via the polymatroid structure.
+ On hardware-aligned $\{2,4,8,16\}$, this structure breaks; we show that unconstrained solvers fail catastrophically due to 2-bit distortion compounding, a failure mode absent in RateQuant's setting.
+-Related mixed-precision work operates at coarser granularity (layer-level~\cite{li2025kvmix}, memory-budget-level~\cite{lei2026arkv}), at the weight level~\cite{kim2024squeezellm}, or dynamically at inference time~\cite{zhang2025mixkvq}; our allocation is static and per-head.
++Related mixed-precision work operates at coarser granularity---layer-level via gradient-based sensitivity~\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\cite{li2025kvtuner}, memory-budget-level~\cite{lei2026arkv}---at the weight level~\cite{kim2024squeezellm}, or dynamically at inference time~\cite{zhang2025mixkvq}; our allocation is static and per-head.
+ 
+ \paragraph{Attention Head Analysis.}
+ Prior work studies head redundancy and pruning~\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8e864cca-f3f6-4e46-ba22-03246f41ac7f",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "d0115d48-683f-47ed-9ef4-39016761c4bd",
+  "toolUseResult": {
+    "stdout": "diff --git a/docs/paper/related_work.tex b/docs/paper/related_work.tex\nindex edeb3f2..26ff723 100644\n--- a/docs/paper/related_work.tex\n+++ b/docs/paper/related_work.tex\n@@ -6,12 +6,13 @@ We extend the design space to per-head non-uniform allocation over hardware-alig\n \n \\paragraph{KV Cache Eviction.}\n Complementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\\cite{zhang2023h2o}, per-head important tokens~\\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\\cite{liu2024scissorhands}, attention sinks~\\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\\cite{yang2024pyramidinfer}.\n-Our work focuses exclusively on the quantization allocation problem.\n+Recent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.\n+\n \n \\paragraph{Mixed-Precision Rate-Distortion Allocation.}\n RateQuant~\\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\\{2,\\ldots,6\\}$ via the polymatroid structure.\n On hardware-aligned $\\{2,4,8,16\\}$, this structure breaks; we show that unconstrained solvers fail catastrophically due to 2-bit distortion compounding, a failure mode absent in RateQuant's setting.\n-Related mixed-precision work operates at coarser granularity (layer-level~\\cite{li2025kvmix}, memory-budget-level~\\cite{lei2026arkv}), at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\n+Related mixed-precision work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\n \n \\paragraph{Attention Head Analysis.}\n Prior work studies head redundancy and pruning~\\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "8e864cca-f3f6-4e46-ba22-03246f41ac7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-14T22:19:22.029Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0115d48-683f-47ed-9ef4-39016761c4bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EjtDB4zNfHRyXUW4rr",
+  "type": "assistant",
+  "uuid": "27606817-a1d3-4cdf-85fb-b2b7355adc2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JXRcDsEBapf96Pu1LBdDf6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1540,
+      "cache_read_input_tokens": 71691,
+      "output_tokens": 2445,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2445,
+          "cache_read_input_tokens": 71691,
+          "cache_creation_input_tokens": 1540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-14T22:19:22.899Z_
+
+All Qwen concentration values in the .tex files are already unified to `0.61` in the working tree (previous values `0.59--0.66` have been replaced). Verifying with a final grep, then committing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27606817-a1d3-4cdf-85fb-b2b7355adc2c",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EjtDB4zNfHRyXUW4rr",
+  "type": "assistant",
+  "uuid": "c841a4b9-11ea-49a5-bbef-3e648eaa31dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JXRcDsEBapf96Pu1LBdDf6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1540,
+      "cache_read_input_tokens": 71691,
+      "output_tokens": 2445,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2445,
+          "cache_read_input_tokens": 71691,
+          "cache_creation_input_tokens": 1540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T22:19:24.729Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01KikPMZf7eGGr9yVjf8hJWA`</summary>
+
+```json
+{
+  "pattern": "0\\.59--0\\.66|0\\.59-0\\.66|0\\.5856|0\\.5909|0\\.6156|0\\.6104",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c841a4b9-11ea-49a5-bbef-3e648eaa31dd",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EjtDB4zNfHRyXUW4rr",
+  "type": "assistant",
+  "uuid": "a9b1e142-ace9-480b-b7d7-ad8a2220e9db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01JXRcDsEBapf96Pu1LBdDf6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1540,
+      "cache_read_input_tokens": 71691,
+      "output_tokens": 2445,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2445,
+          "cache_read_input_tokens": 71691,
+          "cache_creation_input_tokens": 1540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T22:19:24.743Z_
+
+<details><summary>↩ Tool result · `toolu_01KikPMZf7eGGr9yVjf8hJWA`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9b1e142-ace9-480b-b7d7-ad8a2220e9db",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "47158792-2cc2-431c-ad93-222cf7ed7601",
+  "toolUseResult": {
+    "mode": "files_with_matches",
+    "filenames": [],
+    "numFiles": 0
+  },
+  "sourceToolAssistantUUID": "a9b1e142-ace9-480b-b7d7-ad8a2220e9db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 71 · 2026-05-14T22:19:24.816Z_
+
+```json
+{
+  "parentUuid": "47158792-2cc2-431c-ad93-222cf7ed7601",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "8676b745-2f97-4f11-8cbd-2a26b2a009f4",
+  "timestamp": "2026-05-14T22:19:24.816Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-14T22:19:28.869Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01KPoKq4ZUjs9ihSSznvgCYG`</summary>
+
+```json
+{
+  "command": "git add docs/paper/abstract.tex docs/paper/analysis.tex docs/paper/appendix.tex docs/paper/conclusion.tex docs/paper/experiments.tex docs/paper/introduction.tex docs/paper/related_work.tex && git commit -m \"$(cat <<'EOF'\nP0: unify Qwen concentration to 0.61 (float32 verified)\n\nCo-Authored-By: Claude Opus 4.7 (1M context) &lt;noreply@anthropic.com>\nEOF\n)\"",
+  "description": "Commit tex changes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8676b745-2f97-4f11-8cbd-2a26b2a009f4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EmyeQaSv24F8pS39FG",
+  "type": "assistant",
+  "uuid": "a0f6aedb-bcbb-498f-8202-3d6303eb27c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_01DUhATmJSzR2kvTiVM1ZavU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2615,
+      "cache_read_input_tokens": 73231,
+      "output_tokens": 304,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2615,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 304,
+          "cache_read_input_tokens": 73231,
+          "cache_creation_input_tokens": 2615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2615
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T22:19:28.950Z_
+
+<details><summary>↩ Tool result · `toolu_01KPoKq4ZUjs9ihSSznvgCYG`</summary>
+
+```text
+[master bfaea4e] P0: unify Qwen concentration to 0.61 (float32 verified)
+ Committer: Ubuntu &lt;ubuntu@ip-172-31-2-106.ap-northeast-1.compute.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 7 files changed, 114 insertions(+), 45 deletions(-)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0f6aedb-bcbb-498f-8202-3d6303eb27c2",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "ff44ba01-7060-48a0-97ee-4deb82909270",
+  "toolUseResult": {
+    "stdout": "[master bfaea4e] P0: unify Qwen concentration to 0.61 (float32 verified)\n Committer: Ubuntu &lt;ubuntu@ip-172-31-2-106.ap-northeast-1.compute.internal>\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly. Run the\nfollowing command and follow the instructions in your editor to edit\nyour configuration file:\n\n    git config --global --edit\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 7 files changed, 114 insertions(+), 45 deletions(-)",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "a0f6aedb-bcbb-498f-8202-3d6303eb27c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-14T22:19:31.543Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013fGAS7a3HhSN8h8vZDrDuA`</summary>
+
+```json
+{
+  "command": "git log --oneline -3",
+  "description": "Verify commit"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff44ba01-7060-48a0-97ee-4deb82909270",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EnHBMGbPwVAVynZiDt",
+  "type": "assistant",
+  "uuid": "ce2cf5f4-12c6-4c01-81e0-1e3e2928a6fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_014AX4a1jHoeBdoy9EyjZmMn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 501,
+      "cache_read_input_tokens": 75846,
+      "output_tokens": 95,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 501,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 95,
+          "cache_read_input_tokens": 75846,
+          "cache_creation_input_tokens": 501,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 501
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-14T22:19:31.587Z_
+
+<details><summary>↩ Tool result · `toolu_013fGAS7a3HhSN8h8vZDrDuA`</summary>
+
+```text
+bfaea4e P0: unify Qwen concentration to 0.61 (float32 verified)
+c4ead3c add Qwen2.5-7B constrained MCKP + WikiText-2 eval script
+0ddb176 add Yi-1.5-9B full pipeline script
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce2cf5f4-12c6-4c01-81e0-1e3e2928a6fb",
+  "isSidechain": false,
+  "promptId": "bf62dfc3-d5b0-4e4d-afc8-5dd924391a81",
+  "type": "user",
+  "uuid": "ea1ac911-3eec-40bc-9491-80549abaa279",
+  "toolUseResult": {
+    "stdout": "bfaea4e P0: unify Qwen concentration to 0.61 (float32 verified)\nc4ead3c add Qwen2.5-7B constrained MCKP + WikiText-2 eval script\n0ddb176 add Yi-1.5-9B full pipeline script",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "ce2cf5f4-12c6-4c01-81e0-1e3e2928a6fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-14T22:19:38.158Z_
+
+完成。
+
+**核查结果**：
+- `docs/paper/` 下所有 .tex 文件中 Qwen 的 top-5% concentration 值已全部为 **0.61**（共 6 处：`analysis.tex` ×4、`introduction.tex` ×1、`conclusion.tex` ×1）
+- 旧值 `0.59--0.66` / `0.59-0.66` / `0.5856` / `0.5909` / `0.66` / `0.6156` / `0.6104` 已无残留
+- 其他模型值未动：Yi=0.71、Llama=0.57、Mistral=0.22、Gemma-2=0.23
+- 5-model table（`analysis.tex:40`）Qwen 行 concentration 列为 `0.61`，未标 float32/range
+- 无 "bf16 range" 表述
+
+**Commit**: `bfaea4e P0: unify Qwen concentration to 0.61 (float32 verified)` — 7 files changed (含 `related_work.tex` 引用更新一并提交)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea1ac911-3eec-40bc-9491-80549abaa279",
+  "isSidechain": false,
+  "requestId": "req_011Cb3EnUfAiKE8arEocJRRR",
+  "type": "assistant",
+  "uuid": "5d18b7dc-4b3a-46cf-8f68-f07468b4ee0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-7",
+    "id": "msg_015ZqhkDi4C5KWSPuvu8N6Xp",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 198,
+      "cache_read_input_tokens": 76347,
+      "output_tokens": 349,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 198,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 349,
+          "cache_read_input_tokens": 76347,
+          "cache_creation_input_tokens": 198,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 198
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "5d18b7dc-4b3a-46cf-8f68-f07468b4ee0c",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Unify Qwen concentration to 0.61",
+  "sessionId": "d01416c0-6fc1-4e02-b20b-b6d511da8957"
+}
+```
+
+---

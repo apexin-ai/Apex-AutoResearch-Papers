@@ -1,0 +1,4634 @@
+# Research conversation: [Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1 **论文**: "When Does Non-Uniform KV Cache Quantization Help? Cardinality Cons
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 68
+- **Recorded user turns:** 3
+- **Tool calls:** 16
+- **Original source:** `logs/chats/exported-trajectories/account-1/b1747c27-a83d-4087-89f1-023ca10cd084.jsonl`
+- **Structured JSON:** [`df168108cff44f527bfa.json`](../../sessions/df/df168108cff44f527bfa.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T04:18:40.334Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T04:18:40.334Z",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "content": "[Round 1 审稿请求]:\n## Round 1 审稿任务 — Reviewer 1\n\n**论文**: \"When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic\"\n**路径**: `projects/ratekv/docs/paper/main.tex`（含 abstract.tex, introduction.tex, method.tex, experiments.tex, analysis.tex, related_work.tex, conclusion.tex, appendix.tex, references.bib）\n**目标 Venue**: EMNLP 2026 Main Conference (ARR May 2026 cycle)\n**Deadline**: 2026-05-25 (ARR submission)\n\n### Venue 要求\n- **格式**: ACL 两栏模板 (`\\usepackage[review]{acl}`)\n- **页数限制**: Long paper 正文 8 页（不含参考文献和附录）\n- **匿名规则**: Double-blind\n- **Limitations section**: 必须在 conclusion 后包含\n\n### 你的审查侧重：方法严谨性 + 实验有效性\n\n请重点审查以下方面：\n\n1. **方法论严谨性**：\n   - 2-bit distortion compounding 的分析是否有充分理论/实验支撑？\"non-additive\" 的说法是否精确定义？\n   - Cardinality constraint 是 ad-hoc 的 engineering fix 还是有原则性的 justification？k 的选取方法（U-shaped sweep）是否存在 overfitting 风险？\n   - Solver equivalence 的证明（greedy = MCKP under constraint）是否有形式化论证还是仅靠实验观察？\n\n2. **实验设计与统计**：\n   - 5 个模型是否足以支撑 diagnostic framework 的结论？样本量对 threshold 鲁棒性的影响？\n   - Qwen2.5-7B 上 27.3% improvement 的统计显著性——3 seeds 是否足够？variance 报告是否充分？\n   - Cross-dataset stability（WikiText-2 vs C4）的设计是否充分？只用两个数据集能否声称 \"stability\"？\n   - 为什么 Llama/Mistral/Yi/Gemma 没有 unconstrained baseline 结果？论文说 \"experiments were conducted only on Qwen\" 是否是实验设计缺陷？\n   - 下游评估仅 Qwen 4 个 0-shot task，其他模型无下游评估——这是否削弱了 generalizability claim？\n\n3. **Runtime benchmark 有效性**：\n   - Table 7 runtime 使用 PyTorch-level simulation 而非真实 inference kernel，是否能支撑任何实际部署结论？\n   - Constrained MCKP 比 uniform 多 8.5% latency overhead，这是否削弱了方法的实用性？\n\n4. **Profiling methodology**：\n   - 单头独立 profiling（quantize one head, keep others bf16）是否捕捉到 head 之间的交互效应？这与 compounding 论点是否自相矛盾？\n   - Standard vs hires profiling 差异显著（37 vs 100 non-zero heads），哪个结果才是可靠的？\n\n请按 EMNLP 审稿标准输出完整审稿报告，包含：Summary、Strengths、Weaknesses（逐条编号）、Questions、Missing References、Detailed Comments、Overall Score（strong reject / weak reject / borderline / weak accept / strong accept）+ Confidence。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T04:18:40.338Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T04:18:40.338Z",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+## Round 1
+
+58 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T04:18:40.370Z_
+
+[Round 1 审稿请求]:
+## Round 1 审稿任务 — Reviewer 1
+
+**论文**: "When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic"
+**路径**: `projects/ratekv/docs/paper/main.tex`（含 abstract.tex, introduction.tex, method.tex, experiments.tex, analysis.tex, related_work.tex, conclusion.tex, appendix.tex, references.bib）
+**目标 Venue**: EMNLP 2026 Main Conference (ARR May 2026 cycle)
+**Deadline**: 2026-05-25 (ARR submission)
+
+### Venue 要求
+- **格式**: ACL 两栏模板 (`\usepackage[review]{acl}`)
+- **页数限制**: Long paper 正文 8 页（不含参考文献和附录）
+- **匿名规则**: Double-blind
+- **Limitations section**: 必须在 conclusion 后包含
+
+### 你的审查侧重：方法严谨性 + 实验有效性
+
+请重点审查以下方面：
+
+1. **方法论严谨性**：
+   - 2-bit distortion compounding 的分析是否有充分理论/实验支撑？"non-additive" 的说法是否精确定义？
+   - Cardinality constraint 是 ad-hoc 的 engineering fix 还是有原则性的 justification？k 的选取方法（U-shaped sweep）是否存在 overfitting 风险？
+   - Solver equivalence 的证明（greedy = MCKP under constraint）是否有形式化论证还是仅靠实验观察？
+
+2. **实验设计与统计**：
+   - 5 个模型是否足以支撑 diagnostic framework 的结论？样本量对 threshold 鲁棒性的影响？
+   - Qwen2.5-7B 上 27.3% improvement 的统计显著性——3 seeds 是否足够？variance 报告是否充分？
+   - Cross-dataset stability（WikiText-2 vs C4）的设计是否充分？只用两个数据集能否声称 "stability"？
+   - 为什么 Llama/Mistral/Yi/Gemma 没有 unconstrained baseline 结果？论文说 "experiments were conducted only on Qwen" 是否是实验设计缺陷？
+   - 下游评估仅 Qwen 4 个 0-shot task，其他模型无下游评估——这是否削弱了 generalizability claim？
+
+3. **Runtime benchmark 有效性**：
+   - Table 7 runtime 使用 PyTorch-level simulation 而非真实 inference kernel，是否能支撑任何实际部署结论？
+   - Constrained MCKP 比 uniform 多 8.5% latency overhead，这是否削弱了方法的实用性？
+
+4. **Profiling methodology**：
+   - 单头独立 profiling（quantize one head, keep others bf16）是否捕捉到 head 之间的交互效应？这与 compounding 论点是否自相矛盾？
+   - Standard vs hires profiling 差异显著（37 vs 100 non-zero heads），哪个结果才是可靠的？
+
+请按 EMNLP 审稿标准输出完整审稿报告，包含：Summary、Strengths、Weaknesses（逐条编号）、Questions、Missing References、Detailed Comments、Overall Score（strong reject / weak reject / borderline / weak accept / strong accept）+ Confidence。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "b0b6566b-92d9-4cb4-89a9-420ae1d60f44",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T04:18:40.369Z_
+
+```json
+{
+  "parentUuid": "b0b6566b-92d9-4cb4-89a9-420ae1d60f44",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "766adb2d-84cc-4067-83ad-ea28d4236095",
+  "timestamp": "2026-05-15T04:18:40.369Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T04:18:40.369Z_
+
+```json
+{
+  "parentUuid": "766adb2d-84cc-4067-83ad-ea28d4236095",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9bee27ef-9ebf-4939-a51d-1e52a4965acd",
+  "timestamp": "2026-05-15T04:18:40.369Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T04:18:40.369Z_
+
+```json
+{
+  "parentUuid": "9bee27ef-9ebf-4939-a51d-1e52a4965acd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "42da895e-c114-42c4-9258-bd9db7a599c9",
+  "timestamp": "2026-05-15T04:18:40.369Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review KV cache quantization paper for EMNLP",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T04:18:45.622Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user (Review Director) is asking me to perform a Round 1 review of a paper as Reviewer 1. Let me follow the instructions:
+
+1. First, I need to do Step 0: search for EMNLP 2026 / ACL ARR reviewer guidelines
+2. Then read the paper thoroughly
+3. Produce a structured review
+
+Let me start by:
+1. Loading the necessary tools (pdf_to_images, web search, etc.)
+2. Reading the paper files
+3. Searching for reviewer guidelines
+
+Let me first load the tools I need and read the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42da895e-c114-42c4-9258-bd9db7a599c9",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iAvp2pVWorfnL23mHm",
+  "type": "assistant",
+  "uuid": "c6cc6ed0-5fdf-46f9-84f2-8ffb9162ff6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ekYCRdAj2tJytYCuEgGSc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14802,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14802,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14802,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14802
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T04:18:46.607Z_
+
+开始执行 Round 1 审稿。先并行加载工具和读取论文各部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6cc6ed0-5fdf-46f9-84f2-8ffb9162ff6d",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iAvp2pVWorfnL23mHm",
+  "type": "assistant",
+  "uuid": "8f62f39b-7290-4c9f-8c90-1a1e73dfc42e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ekYCRdAj2tJytYCuEgGSc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14802,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14802,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14802,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14802
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T04:18:47.532Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UAMNAW75mf3J7etqdyaHVH`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__review_reviewer_post_to_director,mcp__agent-ml-research__verify_references,mcp__agent-ml-research__pdf_to_images",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f62f39b-7290-4c9f-8c90-1a1e73dfc42e",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iAvp2pVWorfnL23mHm",
+  "type": "assistant",
+  "uuid": "ae730cf1-566b-4928-a68a-27c0a89b6347",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ekYCRdAj2tJytYCuEgGSc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14802,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 305,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14802,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 305,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14802,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14802
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T04:18:47.538Z_
+
+<details><summary>↩ Tool result · `toolu_01UAMNAW75mf3J7etqdyaHVH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__review_reviewer_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__verify_references"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__pdf_to_images"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae730cf1-566b-4928-a68a-27c0a89b6347",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "354efb1b-3530-4070-a631-7e4aaac7d2a4",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__pdf_to_images"
+    ],
+    "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__review_reviewer_post_to_director,mcp__agent-ml-research__verify_references,mcp__agent-ml-research__pdf_to_images",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "ae730cf1-566b-4928-a68a-27c0a89b6347",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-15T04:18:49.783Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for EMNLP 2026 / ACL ARR reviewer guidelines and read the paper files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "354efb1b-3530-4070-a631-7e4aaac7d2a4",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iBTitsaCTePLmU5xxp",
+  "type": "assistant",
+  "uuid": "2471be31-32b1-415f-b229-771a5c5c445f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ET17NHgbSwZWRqBZ4Z7kse",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2303,
+      "cache_read_input_tokens": 26643,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2303,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 26643,
+          "cache_creation_input_tokens": 2303,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2303
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-15T04:18:50.266Z_
+
+先并行搜索 reviewer guidelines 和读取论文各部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2471be31-32b1-415f-b229-771a5c5c445f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iBTitsaCTePLmU5xxp",
+  "type": "assistant",
+  "uuid": "6b7c1d20-39f0-4be7-a5bb-9908988d1409",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ET17NHgbSwZWRqBZ4Z7kse",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2303,
+      "cache_read_input_tokens": 26643,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2303,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 26643,
+          "cache_creation_input_tokens": 2303,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2303
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T04:18:51.201Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CfCbBgRdUVumQh3DDgehhR`</summary>
+
+```json
+{
+  "query": "ACL ARR 2026 reviewer guidelines review form criteria"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b7c1d20-39f0-4be7-a5bb-9908988d1409",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iBTitsaCTePLmU5xxp",
+  "type": "assistant",
+  "uuid": "9afd88f0-a1ac-40d0-ac32-a16b77c3cae8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ET17NHgbSwZWRqBZ4Z7kse",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2303,
+      "cache_read_input_tokens": 26643,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2303,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 26643,
+          "cache_creation_input_tokens": 2303,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2303
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T04:18:53.041Z_
+
+<details><summary>↩ Tool result · `toolu_018nh2hHFYugqYELe3ZVY8aD`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	Per-head mixed-precision quantization of the KV cache is a natural strategy for reducing memory during LLM inference: assign fewer bits to insensitive heads and more bits to sensitive ones, achieving lower perplexity than uniform quantization at the same average bit-width.
+5	Recent work on KV cache quantization explores both uniform schemes~\cite{liu2024kivi,hooper2024kvquant,lin2024qserve,he2024zipcache} and token-level mixed-precision approaches~\cite{ge2024fastgen,lei2026arkv}, while complementary methods reduce cache size through eviction~\cite{zhang2023h2o,li2024snapkv}.
+6	RateQuant~\cite{zuo2026ratequant} formalizes per-head allocation as a rate-distortion optimization and shows that greedy allocation is optimal when bit-widths are consecutive integers $\{2,3,4,5,6\}$, exploiting the polymatroid structure of the feasible set (their Proposition~6).
+7	
+8	In practice, hardware-efficient inference requires bit-widths drawn from $\{2, 4, 8, 16\}$---the formats natively supported by modern accelerators.
+9	On this non-consecutive set, the polymatroid structure breaks down, and greedy is no longer provably optimal.
+10	One might expect that exact MCKP solvers would fill this gap.
+11	They do not.
+12	On Qwen2.5-7B at $4\times$ compression, unconstrained greedy achieves 32.45 PPL and unconstrained MCKP achieves 36.92---both \emph{far worse} than uniform 4-bit (15.45).
+13	The optimization does not merely underperform; it fails catastrophically.
+14	
+15	The root cause is not solver suboptimality but a violation of the objective's additive distortion assumption.
+16	Both solvers assign 68--75 of 112 KV heads to 2-bit, where per-head quantization errors are large enough to compound through the residual stream.
+17	The additive model predicts $\sim$11 PPL for these allocations; the actual PPL is $3$--$4\times$ higher.
+18	At 4-bit and above, per-head distortions are small and compound negligibly---uniform 4-bit achieves close to its additive prediction---but 2-bit distortions are orders of magnitude larger.
+19	When most heads are quantized to 2-bit simultaneously, cumulative truncation errors exceed the network's capacity to compensate, and perplexity degrades super-linearly.
+20	
+21	This observation points to a minimal intervention: cap the number of 2-bit assignments.
+22	We add a single cardinality constraint $\sum_h \mathbb{1}[b_h{=}2] \leq k$ to the standard MCKP formulation (\S\ref{sec:method}).
+23	On Qwen2.5-7B, setting $k{=}8$ (7\% of heads) yields 11.23 PPL---a 27.3\% reduction over uniform 4-bit.
+24	The constraint works by forcing the solver to use 2-bit only on the least-sensitive heads, while redistributing the freed budget to protect sensitive heads at 8-bit or 16-bit.
+25	This is not a heuristic patch: the constraint directly addresses the identified failure mode and is compatible with any solver.
+26	
+27	A surprising consequence is that, under the cardinality constraint, the choice of solver becomes irrelevant.
+28	Constrained greedy and constrained MCKP produce identical allocations---not approximately, but exactly: all 112 heads receive the same bit-width on Qwen2.5-7B, all 256 on Llama-3.1-8B, and 255 of 256 on Mistral-7B-v0.3 (the single difference is a zero-distortion tie with no PPL impact).
+29	The constraint narrows the feasible set enough that greedy's locally optimal decisions are globally optimal (\S\ref{sec:solver_equiv}), enabling practitioners to use the simpler $O(H \log H)$ greedy algorithm without sacrificing solution quality.
+30	A per-layer brute-force oracle confirms near-optimality: the maximum gap across 28 layers is 0.02 PPL, 0.4\% of the total improvement (\S\ref{sec:solver_equiv}).
+31	
+32	However, non-uniform allocation does not help universally.
+33	On Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\ uniform 8.47---essentially indistinguishable from uniform ($\Delta < 0.02$ PPL).
+34	On Mistral-7B-v0.3, it is slightly \emph{worse}: 7.16 vs.\ 7.13.
+35	On Yi-1.5-9B, non-uniform allocation provides no benefit (7.22 vs.\ 7.22 uniform) despite Yi-1.5 having the highest GQA ratio tested (8:1).
+36	On Gemma-2-9B (GQA 2:1, the lowest ratio tested), degradation is 0.3\% (9.05 vs.\ 9.03).
+37	The difference across architectures traces to head sensitivity heterogeneity---specifically, its \emph{distribution shape}, not GQA ratio alone.
+38	Qwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads forming a cluster of high sensitivity; Yi-1.5 has a single extreme outlier but otherwise uniform heads (a ``spike'' pattern that MCKP cannot exploit); Gemma-2 and Mistral show near-uniform sensitivity across all heads.
+39	When there is no exploitable heterogeneity, non-uniform allocation adds noise without benefit.
+40	
+41	This motivates a diagnostic question that prior work does not address: \emph{when} should a practitioner use per-head mixed-precision quantization?
+42	We propose a joint heterogeneity diagnostic based on concentration \emph{and} distribution shape of per-head distortion (\S\ref{sec:heterogeneity}).
+43	On our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.
+44	Yi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier spike with no cross-bitwidth gradient---precisely the pattern where MCKP cannot redistribute budget.
+45	The diagnostic reuses profiling data already required by the solver and adds no computational overhead.
+46	
+47	Our contributions are:
+48	\begin{enumerate}[nosep]
+49	\item We identify 2-bit distortion compounding as the cause of catastrophic failure in unconstrained per-head KV cache quantization on hardware-aligned bit-widths, and show that a cardinality constraint on 2-bit assignments is a minimal sufficient fix, reducing Qwen2.5-7B PPL from 32--37 (unconstrained) to 11.23 (constrained) at $4\times$ compression (\S\ref{sec:compounding}, \S\ref{sec:experiments}).
+50	
+51	\item We demonstrate that the cardinality constraint makes solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent per-head allocations across three architectures, enabling use of a simple greedy algorithm (\S\ref{sec:solver_equiv}).
+52	
+53	\item We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly separates architectures where non-uniform allocation helps from those where it does not, across all five models tested. Yi-1.5-9B serves as a critical test: its concentration exceeds Qwen's, yet its single-outlier spike pattern means MCKP provides no benefit over uniform (\S\ref{sec:heterogeneity}).
+54	\end{enumerate}
+55	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e88dd60-ae4f-449b-b66f-2241a6ac178b",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "72662977-095b-46c0-a520-d88c25e8f504",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nPer-head mixed-precision quantization of the KV cache is a natural strategy for reducing memory during LLM inference: assign fewer bits to insensitive heads and more bits to sensitive ones, achieving lower perplexity than uniform quantization at the same average bit-width.\nRecent work on KV cache quantization explores both uniform schemes~\\cite{liu2024kivi,hooper2024kvquant,lin2024qserve,he2024zipcache} and token-level mixed-precision approaches~\\cite{ge2024fastgen,lei2026arkv}, while complementary methods reduce cache size through eviction~\\cite{zhang2023h2o,li2024snapkv}.\nRateQuant~\\cite{zuo2026ratequant} formalizes per-head allocation as a rate-distortion optimization and shows that greedy allocation is optimal when bit-widths are consecutive integers $\\{2,3,4,5,6\\}$, exploiting the polymatroid structure of the feasible set (their Proposition~6).\n\nIn practice, hardware-efficient inference requires bit-widths drawn from $\\{2, 4, 8, 16\\}$---the formats natively supported by modern accelerators.\nOn this non-consecutive set, the polymatroid structure breaks down, and greedy is no longer provably optimal.\nOne might expect that exact MCKP solvers would fill this gap.\nThey do not.\nOn Qwen2.5-7B at $4\\times$ compression, unconstrained greedy achieves 32.45 PPL and unconstrained MCKP achieves 36.92---both \\emph{far worse} than uniform 4-bit (15.45).\nThe optimization does not merely underperform; it fails catastrophically.\n\nThe root cause is not solver suboptimality but a violation of the objective's additive distortion assumption.\nBoth solvers assign 68--75 of 112 KV heads to 2-bit, where per-head quantization errors are large enough to compound through the residual stream.\nThe additive model predicts $\\sim$11 PPL for these allocations; the actual PPL is $3$--$4\\times$ higher.\nAt 4-bit and above, per-head distortions are small and compound negligibly---uniform 4-bit achieves close to its additive prediction---but 2-bit distortions are orders of magnitude larger.\nWhen most heads are quantized to 2-bit simultaneously, cumulative truncation errors exceed the network's capacity to compensate, and perplexity degrades super-linearly.\n\nThis observation points to a minimal intervention: cap the number of 2-bit assignments.\nWe add a single cardinality constraint $\\sum_h \\mathbb{1}[b_h{=}2] \\leq k$ to the standard MCKP formulation (\\S\\ref{sec:method}).\nOn Qwen2.5-7B, setting $k{=}8$ (7\\% of heads) yields 11.23 PPL---a 27.3\\% reduction over uniform 4-bit.\nThe constraint works by forcing the solver to use 2-bit only on the least-sensitive heads, while redistributing the freed budget to protect sensitive heads at 8-bit or 16-bit.\nThis is not a heuristic patch: the constraint directly addresses the identified failure mode and is compatible with any solver.\n\nA surprising consequence is that, under the cardinality constraint, the choice of solver becomes irrelevant.\nConstrained greedy and constrained MCKP produce identical allocations---not approximately, but exactly: all 112 heads receive the same bit-width on Qwen2.5-7B, all 256 on Llama-3.1-8B, and 255 of 256 on Mistral-7B-v0.3 (the single difference is a zero-distortion tie with no PPL impact).\nThe constraint narrows the feasible set enough that greedy's locally optimal decisions are globally optimal (\\S\\ref{sec:solver_equiv}), enabling practitioners to use the simpler $O(H \\log H)$ greedy algorithm without sacrificing solution quality.\nA per-layer brute-force oracle confirms near-optimality: the maximum gap across 28 layers is 0.02 PPL, 0.4\\% of the total improvement (\\S\\ref{sec:solver_equiv}).\n\nHowever, non-uniform allocation does not help universally.\nOn Llama-3.1-8B, constrained MCKP achieves 8.45 PPL vs.\\ uniform 8.47---essentially indistinguishable from uniform ($\\Delta < 0.02$ PPL).\nOn Mistral-7B-v0.3, it is slightly \\emph{worse}: 7.16 vs.\\ 7.13.\nOn Yi-1.5-9B, non-uniform allocation provides no benefit (7.22 vs.\\ 7.22 uniform) despite Yi-1.5 having the highest GQA ratio tested (8:1).\nOn Gemma-2-9B (GQA 2:1, the lowest ratio tested), degradation is 0.3\\% (9.05 vs.\\ 9.03).\nThe difference across architectures traces to head sensitivity heterogeneity---specifically, its \\emph{distribution shape}, not GQA ratio alone.\nQwen's KV heads vary widely in 2-bit distortion, with Layer-0 heads forming a cluster of high sensitivity; Yi-1.5 has a single extreme outlier but otherwise uniform heads (a ``spike'' pattern that MCKP cannot exploit); Gemma-2 and Mistral show near-uniform sensitivity across all heads.\nWhen there is no exploitable heterogeneity, non-uniform allocation adds noise without benefit.\n\nThis motivates a diagnostic question that prior work does not address: \\emph{when} should a practitioner use per-head mixed-precision quantization?\nWe propose a joint heterogeneity diagnostic based on concentration \\emph{and} distribution shape of per-head distortion (\\S\\ref{sec:heterogeneity}).\nOn our five architectures, the diagnostic separates the beneficial case (Qwen, concentration 0.61, spread pattern) from cases where non-uniform allocation provides no meaningful benefit.\nYi-1.5 is a critical test: its concentration ($0.71$) exceeds Qwen's, but its heterogeneity is a single-outlier spike with no cross-bitwidth gradient---precisely the pattern where MCKP cannot redistribute budget.\nThe diagnostic reuses profiling data already required by the solver and adds no computational overhead.\n\nOur contributions are:\n\\begin{enumerate}[nosep]\n\\item We identify 2-bit distortion compounding as the cause of catastrophic failure in unconstrained per-head KV cache quantization on hardware-aligned bit-widths, and show that a cardinality constraint on 2-bit assignments is a minimal sufficient fix, reducing Qwen2.5-7B PPL from 32--37 (unconstrained) to 11.23 (constrained) at $4\\times$ compression (\\S\\ref{sec:compounding}, \\S\\ref{sec:experiments}).\n\n\\item We demonstrate that the cardinality constraint makes solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent per-head allocations across three architectures, enabling use of a simple greedy algorithm (\\S\\ref{sec:solver_equiv}).\n\n\\item We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly separates architectures where non-uniform allocation helps from those where it does not, across all five models tested. Yi-1.5-9B serves as a critical test: its concentration exceeds Qwen's, yet its single-outlier spike pattern means MCKP provides no benefit over uniform (\\S\\ref{sec:heterogeneity}).\n\\end{enumerate}\n",
+      "numLines": 55,
+      "startLine": 1,
+      "totalLines": 55
+    }
+  },
+  "sourceToolAssistantUUID": "2e88dd60-ae4f-449b-b66f-2241a6ac178b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T04:18:52.137Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MY4XoMjeAoKQnkGtyjUWLd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9afd88f0-a1ac-40d0-ac32-a16b77c3cae8",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iBTitsaCTePLmU5xxp",
+  "type": "assistant",
+  "uuid": "7bf7a863-76ed-4470-9b71-f5c28fec3b37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ET17NHgbSwZWRqBZ4Z7kse",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2303,
+      "cache_read_input_tokens": 26643,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2303,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 26643,
+          "cache_creation_input_tokens": 2303,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2303
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T04:18:52.152Z_
+
+<details><summary>↩ Tool result · `toolu_01MY4XoMjeAoKQnkGtyjUWLd`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	\usepackage[review]{acl}
+3	\usepackage{times}
+4	\usepackage{latexsym}
+5	\usepackage{amsmath}
+6	\usepackage{amssymb}
+7	\usepackage{graphicx}
+8	\usepackage{booktabs}
+9	\usepackage{enumitem}
+10	
+11	\title{When Does Non-Uniform KV Cache Quantization Help?\\Cardinality Constraints and a Heterogeneity Diagnostic}
+12	
+13	\author{Anonymous}
+14	
+15	\begin{document}
+16	\maketitle
+17	
+18	\begin{abstract}
+19	\input{abstract}
+20	\end{abstract}
+21	
+22	\input{introduction}
+23	\input{related_work}
+24	\input{method}
+25	\input{experiments}
+26	\input{analysis}
+27	\input{conclusion}
+28	
+29	\bibliography{references}
+30	
+31	\input{appendix}
+32	
+33	\end{document}
+34	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7bf7a863-76ed-4470-9b71-f5c28fec3b37",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "8e81a8fc-7597-4962-82fb-734768c11fc2",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{enumitem}\n\n\\title{When Does Non-Uniform KV Cache Quantization Help?\\\\Cardinality Constraints and a Heterogeneity Diagnostic}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n\\input{abstract}\n\\end{abstract}\n\n\\input{introduction}\n\\input{related_work}\n\\input{method}\n\\input{experiments}\n\\input{analysis}\n\\input{conclusion}\n\n\\bibliography{references}\n\n\\input{appendix}\n\n\\end{document}\n",
+      "numLines": 34,
+      "startLine": 1,
+      "totalLines": 34
+    }
+  },
+  "sourceToolAssistantUUID": "7bf7a863-76ed-4470-9b71-f5c28fec3b37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T04:18:52.622Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018fPpiSV8LP3YrB4wUqeAgm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e81a8fc-7597-4962-82fb-734768c11fc2",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iBTitsaCTePLmU5xxp",
+  "type": "assistant",
+  "uuid": "4a4a3c30-3b9e-4662-8409-0ee02c86679b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ET17NHgbSwZWRqBZ4Z7kse",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2303,
+      "cache_read_input_tokens": 26643,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2303,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 26643,
+          "cache_creation_input_tokens": 2303,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2303
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T04:18:52.628Z_
+
+<details><summary>↩ Tool result · `toolu_018fPpiSV8LP3YrB4wUqeAgm`</summary>
+
+```text
+1	Per-head mixed-precision quantization of the KV cache promises lower perplexity than uniform quantization at the same average bit-width, but on hardware-aligned bit-widths $\{2, 4, 8, 16\}$, existing solvers fail catastrophically: unconstrained greedy and MCKP allocation achieve 32.45 and 36.92 perplexity on Qwen2.5-7B---far worse than uniform 4-bit (15.45).
+2	We trace this failure to \emph{2-bit distortion compounding}: when the majority of heads are assigned 2-bit precision, per-head quantization errors interact non-additively through the residual stream, violating the additive objective assumed by standard solvers.
+3	We show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.
+4	On Qwen2.5-7B at $4\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\% reduction over uniform 4-bit.
+5	The constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\Delta{=}0.0000$), enabling use of a simple $O(H \log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).
+6	However, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.
+7	Notably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.
+8	We propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.
+9	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a4a3c30-3b9e-4662-8409-0ee02c86679b",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "6c1eb914-f85f-47e6-898c-fca88f19a106",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/abstract.tex",
+      "content": "Per-head mixed-precision quantization of the KV cache promises lower perplexity than uniform quantization at the same average bit-width, but on hardware-aligned bit-widths $\\{2, 4, 8, 16\\}$, existing solvers fail catastrophically: unconstrained greedy and MCKP allocation achieve 32.45 and 36.92 perplexity on Qwen2.5-7B---far worse than uniform 4-bit (15.45).\nWe trace this failure to \\emph{2-bit distortion compounding}: when the majority of heads are assigned 2-bit precision, per-head quantization errors interact non-additively through the residual stream, violating the additive objective assumed by standard solvers.\nWe show that a single cardinality constraint capping the number of 2-bit assignments is a minimal sufficient fix.\nOn Qwen2.5-7B at $4\\times$ compression, constrained allocation achieves 11.23 perplexity, a 27.3\\% reduction over uniform 4-bit.\nThe constraint also renders solver choice irrelevant: constrained greedy and constrained MCKP produce equivalent bit-width assignments across all three tested architectures ($\\Delta{=}0.0000$), enabling use of a simple $O(H \\log H)$ greedy algorithm; per-layer brute-force oracle confirms near-optimality (max gap 0.02 PPL).\nHowever, the benefit depends on architecture: on Llama-3.1-8B the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47), and on Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B non-uniform allocation provides no benefit.\nNotably, Yi-1.5-9B has the highest GQA ratio tested (8:1) and the highest top-5\\% concentration (0.71), yet gains nothing from non-uniform allocation---because its heterogeneity is a single-outlier ``spike'' with no cross-bitwidth sensitivity gradient, rather than the ``spread'' pattern that enables MCKP to redistribute budget across heads.\nWe propose a joint diagnostic combining concentration and distribution shape ($t_1/t_5$ ratio) that correctly identifies all five architectures studied---distinguishing spread heterogeneity (MCKP-exploitable) from spike and flat patterns where non-uniform allocation provides no benefit.\n",
+      "numLines": 9,
+      "startLine": 1,
+      "totalLines": 9
+    }
+  },
+  "sourceToolAssistantUUID": "4a4a3c30-3b9e-4662-8409-0ee02c86679b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T04:18:53.032Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018nh2hHFYugqYELe3ZVY8aD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c1eb914-f85f-47e6-898c-fca88f19a106",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iBTitsaCTePLmU5xxp",
+  "type": "assistant",
+  "uuid": "2e88dd60-ae4f-449b-b66f-2241a6ac178b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ET17NHgbSwZWRqBZ4Z7kse",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2303,
+      "cache_read_input_tokens": 26643,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2303,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 26643,
+          "cache_creation_input_tokens": 2303,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2303
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1  **论文**: \"When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic\" **路径**: `projects/ratekv/docs/paper/mai…",
+  "leafUuid": "72662977-095b-46c0-a520-d88c25e8f504",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review KV cache quantization paper for EMNLP",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T04:18:59.787Z_
+
+<details><summary>↩ Tool result · `toolu_01CfCbBgRdUVumQh3DDgehhR`</summary>
+
+```text
+Web search results for query: "ACL ARR 2026 reviewer guidelines review form criteria"
+
+Links: [{"title":"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewform"},{"title":"aclrollingreview/cfp.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"}]
+
+I found comprehensive information about ACL ARR 2026 reviewer guidelines and review form criteria. Here's what I found:
+
+## Review Form Criteria
+
+For Findings papers, the main criteria are soundness and reproducibility, while conference recommendations may also consider novelty, impact and other factors.
+
+The review form includes several key evaluation dimensions:
+
+**Overall Assessment Scores:** Papers are rated on a scale from "Consider for Award" (up to top 2.5% papers), down through "Resubmit next cycle" for papers needing substantial revisions, "Resubmit after next cycle" for revisions that cannot be completed in one cycle, and "Do not resubmit" for papers that need to be fully redone or are not relevant to the ACL community.
+
+**Reproducibility:** Reviewers assess whether there is enough information in the paper for a reader to reproduce the main results, use results presented in the paper in future work, or build upon this work.
+
+**Strengths and Weaknesses:** Reviewers describe major reasons to publish the paper, including novel methodology, empirical results, theoretical analysis, and literature organization, as well as concerns about correctness, limited impact, or clarity.
+
+**Excitement Level:** Excitement is subjective and may relate to transformational/innovative aspects, conceptual breakthroughs, challenging common assumptions, or potential impact on communities.
+
+**Ethics Considerations:** Reviewers should review the ACL code of ethics and the ARR checklist, describe any ethical issues, and determine if in-depth ethics review is needed.
+
+## General Reviewer Guidelines
+
+Reviewers are asked to read the paper and get a first impression, then search for related work without deliberately trying to find that particular submission.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9afd88f0-a1ac-40d0-ac32-a16b77c3cae8",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "81c4f6f1-dfbe-4468-998b-55930dcda735",
+  "toolUseResult": {
+    "query": "ACL ARR 2026 reviewer guidelines review form criteria",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YPW9cYNiojbFJY2LUbavkT",
+        "content": [
+          {
+            "title": "ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewerguidelines"
+          },
+          {
+            "title": "ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/acguidelines"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewform"
+          },
+          {
+            "title": "aclrollingreview/cfp.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          }
+        ]
+      },
+      "I found comprehensive information about ACL ARR 2026 reviewer guidelines and review form criteria. Here's what I found:\n\n## Review Form Criteria\n\nFor Findings papers, the main criteria are soundness and reproducibility, while conference recommendations may also consider novelty, impact and other factors.\n\nThe review form includes several key evaluation dimensions:\n\n**Overall Assessment Scores:** Papers are rated on a scale from \"Consider for Award\" (up to top 2.5% papers), down through \"Resubmit next cycle\" for papers needing substantial revisions, \"Resubmit after next cycle\" for revisions that cannot be completed in one cycle, and \"Do not resubmit\" for papers that need to be fully redone or are not relevant to the ACL community.\n\n**Reproducibility:** Reviewers assess whether there is enough information in the paper for a reader to reproduce the main results, use results presented in the paper in future work, or build upon this work.\n\n**Strengths and Weaknesses:** Reviewers describe major reasons to publish the paper, including novel methodology, empirical results, theoretical analysis, and literature organization, as well as concerns about correctness, limited impact, or clarity.\n\n**Excitement Level:** Excitement is subjective and may relate to transformational/innovative aspects, conceptual breakthroughs, challenging common assumptions, or potential impact on communities.\n\n**Ethics Considerations:** Reviewers should review the ACL code of ethics and the ARR checklist, describe any ethical issues, and determine if in-depth ethics review is needed.\n\n## General Reviewer Guidelines\n\nReviewers are asked to read the paper and get a first impression, then search for related work without deliberately trying to find that particular submission."
+    ],
+    "durationSeconds": 8.581063142000001
+  },
+  "sourceToolAssistantUUID": "9afd88f0-a1ac-40d0-ac32-a16b77c3cae8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T04:19:05.260Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SyyZNPuU91KPT4DFxYcb6S`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/reviewform",
+  "prompt": "Extract the complete ARR review form: all scoring dimensions, their scales, and descriptions. Include overall assessment scale, soundness, excitement/novelty, reproducibility, and any other rated dimensions."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81c4f6f1-dfbe-4468-998b-55930dcda735",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iCMoyD8vDJHrDLmAZA",
+  "type": "assistant",
+  "uuid": "f42780c4-03ff-4449-8e6e-b2f2d5fb2087",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBdFWb5gb8qbh8T8qVqbRd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2962,
+      "cache_creation_input_tokens": 1218,
+      "cache_read_input_tokens": 28946,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2962,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 28946,
+          "cache_creation_input_tokens": 1218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T04:19:05.716Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019DHAcARKiKxT29GDqUWNtr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f42780c4-03ff-4449-8e6e-b2f2d5fb2087",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iCMoyD8vDJHrDLmAZA",
+  "type": "assistant",
+  "uuid": "2bd1bf24-f1fd-4d01-a853-f1368d69e30f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBdFWb5gb8qbh8T8qVqbRd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2962,
+      "cache_creation_input_tokens": 1218,
+      "cache_read_input_tokens": 28946,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2962,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 28946,
+          "cache_creation_input_tokens": 1218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T04:19:05.722Z_
+
+<details><summary>↩ Tool result · `toolu_019DHAcARKiKxT29GDqUWNtr`</summary>
+
+```text
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Problem Formulation}
+5	\label{sec:formulation}
+6	
+7	We formulate per-head KV cache quantization as a constrained optimization problem.
+8	Let $h \in \{1,\ldots,H\}$ index the KV heads across all layers, $b_h \in \mathcal{B}$ the bit-width assigned to head $h$, and $\mathcal{B} = \{2, 4, 8, 16\}$ the set of hardware-aligned bit-widths.
+9	Each head $h$ has a profiled distortion function $d_h(b)$, the PPL increase when head $h$ is quantized to $b$ bits.
+10	Given a memory budget ratio $R$ (e.g., $R = 0.25$ for $4\times$ compression), we seek the allocation that minimizes total distortion:
+11	\begin{equation}
+12	\label{eq:objective}
+13	\min_{\{b_h\}} \sum_{h=1}^{H} d_h(b_h) \quad \text{s.t.} \quad \frac{1}{H \cdot 16}\sum_{h=1}^{H} b_h \leq R.
+14	\end{equation}
+15	
+16	This is a multiple-choice knapsack problem (MCKP): each head selects one bit-width from $\mathcal{B}$ to minimize total distortion under a budget.
+17	RateQuant~\cite{zuo2026ratequant} solves this for consecutive bit-widths $\{2,3,4,5,6\}$, where the polymatroid structure of the feasible set guarantees that greedy allocation is optimal (their Proposition 6).
+18	Hardware-aligned bit-widths $\{2,4,8,16\}$ are non-consecutive; the gaps break this structure, and greedy is no longer guaranteed to match the MCKP optimum.
+19	Moreover, as we show in \S\ref{sec:compounding}, the objective itself is not well-behaved: distortions from 2-bit heads compound non-additively, making unconstrained optimization unreliable.
+20	
+21	\subsection{PPL-based Per-Head Profiling}
+22	\label{sec:profiling}
+23	
+24	We profile each KV head independently by quantizing it to each $b \in \mathcal{B}$ while keeping all other heads at bf16, and measuring the resulting PPL increase $d_h(b)$ on a calibration set of 64 sequences $\times$ 2048 tokens from WikiText-2 train.
+25	This yields a distortion table of $H \times |\mathcal{B}|$ entries that serves as input to the solver.
+26	
+27	The optimization in Eq.~\eqref{eq:objective} relies on an additive distortion assumption: the total PPL degradation from a mixed-precision allocation is approximately $\sum_h d_h(b_h)$.
+28	This holds when per-head distortions are small and independent---a reasonable approximation for 4-bit and 8-bit quantization, where individual head distortions are typically below 0.1 PPL.
+29	At 2-bit, however, individual distortions are orders of magnitude larger, and the additive assumption breaks down.
+30	
+31	\subsection{Compounding Effect}
+32	\label{sec:compounding}
+33	
+34	When many heads are simultaneously quantized to 2-bit, per-head distortions compound non-additively.
+35	The mechanism is straightforward: each head's quantized output feeds into the residual stream, and truncation errors from multiple 2-bit heads accumulate through subsequent layers.
+36	When the number of 2-bit heads is small, these errors are absorbed by the remaining high-precision heads.
+37	As the count grows, cumulative errors exceed the capacity of the residual stream to compensate, and PPL degrades super-linearly.
+38	
+39	\begin{figure}[t]
+40	\centering
+41	\includegraphics[width=\columnwidth]{figures/fig2_compounding_curve.pdf}
+42	\caption{PPL on Qwen2.5-7B ($4\times$ compression) as a function of $k$, the maximum number of 2-bit heads. Too few 2-bit heads waste budget on 4-bit; too many trigger compounding. The minimum occurs at $k{=}8$.}
+43	\label{fig:compounding}
+44	\end{figure}
+45	
+46	Unconstrained solvers are blind to this effect because the additive objective underestimates the cost of large-scale 2-bit assignment.
+47	On Qwen2.5-7B, unconstrained greedy assigns 68 heads to 2-bit and achieves 32.45 PPL; unconstrained MCKP assigns 75 heads and achieves 36.92---both far worse than uniform 4-bit (15.45).
+48	Standard-resolution profiling detects non-zero $d_h(2)$ for only 37 of 112 heads; the remaining 75 heads have $d_h(2) \approx 0$, so most 2-bit assignments appear free to the additive objective.
+49	The resulting additive prediction is $\sum_h d_h(b_h) + \text{baseline} \approx 11$ PPL---$3\text{--}4\times$ lower than the actual 32--37 PPL, because the compounding interaction between simultaneously quantized heads is invisible to per-head profiling.
+50	
+51	This compounding is specific to 2-bit quantization.
+52	At 4-bit and above, per-head distortions are small enough that additivity holds even when all heads share the same bit-width (uniform 4-bit achieves 15.45 PPL, close to the sum-of-distortions prediction).
+53	The qualitative difference arises because 2-bit quantization has far larger per-head distortion, saturating the error tolerance of the residual stream.
+54	
+55	Figure~\ref{fig:compounding} shows the relationship between $k$ (the maximum number of 2-bit heads) and PPL on Qwen2.5-7B at $4\times$ compression.
+56	The curve is U-shaped: at $k{=}0$ (uniform 4-bit), PPL is 15.45; allowing a few 2-bit heads reduces PPL by freeing budget for 8-bit heads on sensitive positions, reaching a minimum of 11.23 at $k{=}8$; beyond this point, compounding drives PPL upward, reaching 35.35 at $k{=}75$.
+57	
+58	\subsection{Cardinality Constraint}
+59	\label{sec:cardinality}
+60	
+61	The compounding effect motivates a simple addition to Eq.~\eqref{eq:objective}: a cardinality constraint on 2-bit assignments.
+62	\begin{equation}
+63	\label{eq:constraint}
+64	\sum_{h=1}^{H} \mathbb{1}[b_h = 2] \leq k.
+65	\end{equation}
+66	
+67	The constraint parameter $k$ is selected by a small-scale sweep on calibration data: solve the constrained problem for each candidate $k$, evaluate calibration PPL, and pick the value at the minimum of the U-shaped curve (Figure~\ref{fig:compounding}).
+68	For Qwen2.5-7B with 112 KV heads, $k{=}8$ ($\sim$7\% of heads).
+69	
+70	The constraint is a single linear inequality, compatible with any solver---greedy, MCKP, or integer linear programming---and adds negligible overhead to the optimization.
+71	
+72	A natural question is whether Layer-0 heads require explicit protection, since attention heads in the first layer are known to carry disproportionate importance.
+73	On Qwen2.5-7B, the profiler assigns very high distortion to Layer-0 heads at 2-bit: L0H0 increases PPL by 31.9\% relative to the bf16 baseline (9.81 $\to$ 12.94), L0H2 by 23.2\% (9.81 $\to$ 12.09), L0H3 by 11.7\% (9.81 $\to$ 10.96).
+74	These values are large enough that no solver would assign 2-bit to Layer-0 under any reasonable budget.
+75	We verify this empirically: running the solver with and without manual Layer-0 exclusion produces identical allocations across all 112 heads.
+76	No manual exclusion rule is needed; the profiler signal is sufficient.
+77	
+78	\subsection{Solver Equivalence}
+79	\label{sec:solver_equiv}
+80	
+81	\begin{table}[t]
+82	\centering
+83	\small
+84	\caption{Solver comparison on Qwen2.5-7B at $4\times$ compression. Unconstrained solvers over-allocate 2-bit heads and fail catastrophically. The cardinality constraint ($k{\leq}8$) makes greedy and MCKP produce identical allocations.\protect\footnotemark}
+85	\label{tab:solver_equiv}
+86	\begin{tabular}{llcccc}
+87	\toprule
+88	Solver & Constraint & PPL & \multicolumn{3}{c}{Bit distribution} \\
+89	 & & & 2-bit & 4-bit & 8/16-bit \\
+90	\midrule
+91	Greedy & None & 32.45 & 68 & 30 & 14 \\
+92	MCKP & None & 36.92 & 75 & 33 & 4 \\
+93	Greedy & $k{\leq}8$ & 11.23 & 8 & 100 & 4 \\
+94	MCKP & $k{\leq}8$ & 11.23 & 8 & 100 & 4 \\
+95	Uniform & --- & 15.45 & 0 & 112 & 0 \\
+96	\bottomrule
+97	\end{tabular}
+98	\end{table}
+99	\footnotetext{Standard-resolution profiling; hires profiling (64 seq $\times$ 2048 tok) achieves 10.91 (Appendix~\ref{sec:profiling_resolution}).}
+100	
+101	With the cardinality constraint in place, greedy and MCKP produce identical results---not approximately, but exactly.
+102	Table~\ref{tab:solver_equiv} shows that constrained greedy and constrained MCKP achieve the same PPL (11.23) with the same bit distribution on Qwen2.5-7B.
+103	We verify this at the per-head level across three models:
+104	
+105	\begin{itemize}[nosep]
+106	\item \textbf{Qwen2.5-7B:} 112/112 heads receive identical bit-widths.
+107	\item \textbf{Llama-3.1-8B:} 256/256 heads identical.
+108	\item \textbf{Mistral-7B-v0.3:} 255/256 heads identical. The single difference is a zero-distortion tie between two heads at 4-bit and 8-bit, with no PPL impact.
+109	\end{itemize}
+110	
+111	The constraint narrows the feasible set enough that greedy's locally optimal decisions are globally optimal.
+112	Without it, greedy cascades into excessive 2-bit allocation: each additional 2-bit head looks locally beneficial (freeing budget) but contributes to the compounding effect that degrades global PPL.
+113	The cardinality constraint breaks this cascade by capping the number of 2-bit heads, aligning local and global optima.
+114	
+115	The practical implication is that practitioners can use the simpler $O(H \log H)$ greedy algorithm instead of MCKP without sacrificing optimality.
+116	
+117	To verify that constrained MCKP is near-optimal, we perform a per-layer brute-force oracle on Qwen2.5-7B: for each of the 28 layers, we enumerate all $4^4{=}256$ bit-width assignments to the 4 KV heads and select the allocation minimizing per-layer PPL.
+118	Of the 8 layers with non-trivial (non-all-4-bit) allocations, MCKP matches the oracle on 5; the remaining 3 have a maximum gap of 0.018 PPL---0.4\% of the constrained-vs-uniform improvement (4.53 PPL)---due to within-layer 2-bit head position swaps with no change to the per-layer bit budget.
+119	Combined with the greedy--MCKP equivalence above, this closes the optimality chain: a simple $O(H \log H)$ greedy algorithm (runtime 0.005s) produces allocations within 0.02 PPL of the brute-force optimum.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2bd1bf24-f1fd-4d01-a853-f1368d69e30f",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "5ae14859-accf-4591-ae27-ccb0d84b760d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/method.tex",
+      "content": "\\section{Method}\n\\label{sec:method}\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\nWe formulate per-head KV cache quantization as a constrained optimization problem.\nLet $h \\in \\{1,\\ldots,H\\}$ index the KV heads across all layers, $b_h \\in \\mathcal{B}$ the bit-width assigned to head $h$, and $\\mathcal{B} = \\{2, 4, 8, 16\\}$ the set of hardware-aligned bit-widths.\nEach head $h$ has a profiled distortion function $d_h(b)$, the PPL increase when head $h$ is quantized to $b$ bits.\nGiven a memory budget ratio $R$ (e.g., $R = 0.25$ for $4\\times$ compression), we seek the allocation that minimizes total distortion:\n\\begin{equation}\n\\label{eq:objective}\n\\min_{\\{b_h\\}} \\sum_{h=1}^{H} d_h(b_h) \\quad \\text{s.t.} \\quad \\frac{1}{H \\cdot 16}\\sum_{h=1}^{H} b_h \\leq R.\n\\end{equation}\n\nThis is a multiple-choice knapsack problem (MCKP): each head selects one bit-width from $\\mathcal{B}$ to minimize total distortion under a budget.\nRateQuant~\\cite{zuo2026ratequant} solves this for consecutive bit-widths $\\{2,3,4,5,6\\}$, where the polymatroid structure of the feasible set guarantees that greedy allocation is optimal (their Proposition 6).\nHardware-aligned bit-widths $\\{2,4,8,16\\}$ are non-consecutive; the gaps break this structure, and greedy is no longer guaranteed to match the MCKP optimum.\nMoreover, as we show in \\S\\ref{sec:compounding}, the objective itself is not well-behaved: distortions from 2-bit heads compound non-additively, making unconstrained optimization unreliable.\n\n\\subsection{PPL-based Per-Head Profiling}\n\\label{sec:profiling}\n\nWe profile each KV head independently by quantizing it to each $b \\in \\mathcal{B}$ while keeping all other heads at bf16, and measuring the resulting PPL increase $d_h(b)$ on a calibration set of 64 sequences $\\times$ 2048 tokens from WikiText-2 train.\nThis yields a distortion table of $H \\times |\\mathcal{B}|$ entries that serves as input to the solver.\n\nThe optimization in Eq.~\\eqref{eq:objective} relies on an additive distortion assumption: the total PPL degradation from a mixed-precision allocation is approximately $\\sum_h d_h(b_h)$.\nThis holds when per-head distortions are small and independent---a reasonable approximation for 4-bit and 8-bit quantization, where individual head distortions are typically below 0.1 PPL.\nAt 2-bit, however, individual distortions are orders of magnitude larger, and the additive assumption breaks down.\n\n\\subsection{Compounding Effect}\n\\label{sec:compounding}\n\nWhen many heads are simultaneously quantized to 2-bit, per-head distortions compound non-additively.\nThe mechanism is straightforward: each head's quantized output feeds into the residual stream, and truncation errors from multiple 2-bit heads accumulate through subsequent layers.\nWhen the number of 2-bit heads is small, these errors are absorbed by the remaining high-precision heads.\nAs the count grows, cumulative errors exceed the capacity of the residual stream to compensate, and PPL degrades super-linearly.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_compounding_curve.pdf}\n\\caption{PPL on Qwen2.5-7B ($4\\times$ compression) as a function of $k$, the maximum number of 2-bit heads. Too few 2-bit heads waste budget on 4-bit; too many trigger compounding. The minimum occurs at $k{=}8$.}\n\\label{fig:compounding}\n\\end{figure}\n\nUnconstrained solvers are blind to this effect because the additive objective underestimates the cost of large-scale 2-bit assignment.\nOn Qwen2.5-7B, unconstrained greedy assigns 68 heads to 2-bit and achieves 32.45 PPL; unconstrained MCKP assigns 75 heads and achieves 36.92---both far worse than uniform 4-bit (15.45).\nStandard-resolution profiling detects non-zero $d_h(2)$ for only 37 of 112 heads; the remaining 75 heads have $d_h(2) \\approx 0$, so most 2-bit assignments appear free to the additive objective.\nThe resulting additive prediction is $\\sum_h d_h(b_h) + \\text{baseline} \\approx 11$ PPL---$3\\text{--}4\\times$ lower than the actual 32--37 PPL, because the compounding interaction between simultaneously quantized heads is invisible to per-head profiling.\n\nThis compounding is specific to 2-bit quantization.\nAt 4-bit and above, per-head distortions are small enough that additivity holds even when all heads share the same bit-width (uniform 4-bit achieves 15.45 PPL, close to the sum-of-distortions prediction).\nThe qualitative difference arises because 2-bit quantization has far larger per-head distortion, saturating the error tolerance of the residual stream.\n\nFigure~\\ref{fig:compounding} shows the relationship between $k$ (the maximum number of 2-bit heads) and PPL on Qwen2.5-7B at $4\\times$ compression.\nThe curve is U-shaped: at $k{=}0$ (uniform 4-bit), PPL is 15.45; allowing a few 2-bit heads reduces PPL by freeing budget for 8-bit heads on sensitive positions, reaching a minimum of 11.23 at $k{=}8$; beyond this point, compounding drives PPL upward, reaching 35.35 at $k{=}75$.\n\n\\subsection{Cardinality Constraint}\n\\label{sec:cardinality}\n\nThe compounding effect motivates a simple addition to Eq.~\\eqref{eq:objective}: a cardinality constraint on 2-bit assignments.\n\\begin{equation}\n\\label{eq:constraint}\n\\sum_{h=1}^{H} \\mathbb{1}[b_h = 2] \\leq k.\n\\end{equation}\n\nThe constraint parameter $k$ is selected by a small-scale sweep on calibration data: solve the constrained problem for each candidate $k$, evaluate calibration PPL, and pick the value at the minimum of the U-shaped curve (Figure~\\ref{fig:compounding}).\nFor Qwen2.5-7B with 112 KV heads, $k{=}8$ ($\\sim$7\\% of heads).\n\nThe constraint is a single linear inequality, compatible with any solver---greedy, MCKP, or integer linear programming---and adds negligible overhead to the optimization.\n\nA natural question is whether Layer-0 heads require explicit protection, since attention heads in the first layer are known to carry disproportionate importance.\nOn Qwen2.5-7B, the profiler assigns very high distortion to Layer-0 heads at 2-bit: L0H0 increases PPL by 31.9\\% relative to the bf16 baseline (9.81 $\\to$ 12.94), L0H2 by 23.2\\% (9.81 $\\to$ 12.09), L0H3 by 11.7\\% (9.81 $\\to$ 10.96).\nThese values are large enough that no solver would assign 2-bit to Layer-0 under any reasonable budget.\nWe verify this empirically: running the solver with and without manual Layer-0 exclusion produces identical allocations across all 112 heads.\nNo manual exclusion rule is needed; the profiler signal is sufficient.\n\n\\subsection{Solver Equivalence}\n\\label{sec:solver_equiv}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Solver comparison on Qwen2.5-7B at $4\\times$ compression. Unconstrained solvers over-allocate 2-bit heads and fail catastrophically. The cardinality constraint ($k{\\leq}8$) makes greedy and MCKP produce identical allocations.\\protect\\footnotemark}\n\\label{tab:solver_equiv}\n\\begin{tabular}{llcccc}\n\\toprule\nSolver & Constraint & PPL & \\multicolumn{3}{c}{Bit distribution} \\\\\n & & & 2-bit & 4-bit & 8/16-bit \\\\\n\\midrule\nGreedy & None & 32.45 & 68 & 30 & 14 \\\\\nMCKP & None & 36.92 & 75 & 33 & 4 \\\\\nGreedy & $k{\\leq}8$ & 11.23 & 8 & 100 & 4 \\\\\nMCKP & $k{\\leq}8$ & 11.23 & 8 & 100 & 4 \\\\\nUniform & --- & 15.45 & 0 & 112 & 0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\\footnotetext{Standard-resolution profiling; hires profiling (64 seq $\\times$ 2048 tok) achieves 10.91 (Appendix~\\ref{sec:profiling_resolution}).}\n\nWith the cardinality constraint in place, greedy and MCKP produce identical results---not approximately, but exactly.\nTable~\\ref{tab:solver_equiv} shows that constrained greedy and constrained MCKP achieve the same PPL (11.23) with the same bit distribution on Qwen2.5-7B.\nWe verify this at the per-head level across three models:\n\n\\begin{itemize}[nosep]\n\\item \\textbf{Qwen2.5-7B:} 112/112 heads receive identical bit-widths.\n\\item \\textbf{Llama-3.1-8B:} 256/256 heads identical.\n\\item \\textbf{Mistral-7B-v0.3:} 255/256 heads identical. The single difference is a zero-distortion tie between two heads at 4-bit and 8-bit, with no PPL impact.\n\\end{itemize}\n\nThe constraint narrows the feasible set enough that greedy's locally optimal decisions are globally optimal.\nWithout it, greedy cascades into excessive 2-bit allocation: each additional 2-bit head looks locally beneficial (freeing budget) but contributes to the compounding effect that degrades global PPL.\nThe cardinality constraint breaks this cascade by capping the number of 2-bit heads, aligning local and global optima.\n\nThe practical implication is that practitioners can use the simpler $O(H \\log H)$ greedy algorithm instead of MCKP without sacrificing optimality.\n\nTo verify that constrained MCKP is near-optimal, we perform a per-layer brute-force oracle on Qwen2.5-7B: for each of the 28 layers, we enumerate all $4^4{=}256$ bit-width assignments to the 4 KV heads and select the allocation minimizing per-layer PPL.\nOf the 8 layers with non-trivial (non-all-4-bit) allocations, MCKP matches the oracle on 5; the remaining 3 have a maximum gap of 0.018 PPL---0.4\\% of the constrained-vs-uniform improvement (4.53 PPL)---due to within-layer 2-bit head position swaps with no change to the per-layer bit budget.\nCombined with the greedy--MCKP equivalence above, this closes the optimality chain: a simple $O(H \\log H)$ greedy algorithm (runtime 0.005s) produces allocations within 0.02 PPL of the brute-force optimum.",
+      "numLines": 119,
+      "startLine": 1,
+      "totalLines": 119
+    }
+  },
+  "sourceToolAssistantUUID": "2bd1bf24-f1fd-4d01-a853-f1368d69e30f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T04:19:06.622Z_
+
+<details><summary>↩ Tool result · `toolu_01RsvJyoYfMe5nb6gkhvrzXW`</summary>
+
+```text
+1	\section{Analysis}
+2	\label{sec:analysis}
+3	
+4	\subsection{Heterogeneity Characterization}
+5	\label{sec:heterogeneity}
+6	
+7	The benefit of non-uniform allocation depends on how unevenly head sensitivities are distributed.
+8	We quantify this with a \emph{top-5\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\% of heads.
+9	High concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.
+10	
+11	Table~\ref{tab:heterogeneity} summarizes the results across five architectures at $4\times$ compression.
+12	The central finding is that MCKP benefit requires \emph{spread heterogeneity}---multiple heads with cross-bitwidth sensitivity gradients---rather than sensitivity concentrated in a single outlier at one bitwidth.
+13	
+14	Qwen2.5-7B exemplifies the spread pattern (top-5\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.
+15	Constrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\% improvement over uniform 4-bit. %exp_id=qwen_constrained_mckp
+16	
+17	Yi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\ $+$0.20). %exp_id=yi15_hires_constrained_mckp
+18	The mechanism is clear from the cross-bitwidth gradient structure.
+19	Yi-1.5's sensitivity is dominated by a single extreme outlier: Layer-4 Head-3 has a 2-bit delta of 13.12, while the second-ranked head has delta 0.55---a $24\times$ gap ($t_1/t_5{=}0.90$, $t_1/t_2{=}23.7$). %exp_id=yi15_hires_profiling
+20	Critically, L4H3's sensitivity is confined to the 2-bit operating point: its 4-bit and 8-bit deltas are ${\approx}\,0$.
+21	The solver therefore has only one lever---upgrading L4H3 from 2-bit to 4-bit removes the distortion, but further upgrading to 8-bit provides no additional benefit, so the budget freed by downgrading other heads has nowhere useful to go.
+22	This is the ``spike'' pattern: high concentration driven by a single outlier with sensitivity at only one bitwidth.
+23	
+24	In contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth sensitivity gradient across several heads---a ``spread'' pattern that enables meaningful budget reallocation. %exp_id=qwen_hires_profiling
+25	
+26	The remaining three architectures fill out the diagnostic picture.
+27	Llama-3.1-8B shows above-threshold concentration ($0.57$) with a pronounced spike ($t_1/t_5{=}0.85$, $t_1/t_2{=}34.8$); its allocation is essentially indistinguishable from uniform ($+$0.36 vs.\ $+$0.38). %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained
+28	Mistral-7B-v0.3 ($t_1/t_5{=}0.41$) and Gemma-2-9B ($t_1/t_5{=}0.38$) both exhibit flat distributions with low concentration ($0.24$ and $0.23$ respectively), leaving the profiler with no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\ $+$0.10 for Mistral; $+$0.15 vs.\ $+$0.13 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline
+29	
+30	\begin{table}[t]
+31	\centering
+32	\small
+33	\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at $4\times$ compression. $t_1/t_5$: ratio of top-1 to top-5 per-head 2-bit distortion (low${=}$spread, high${=}$spike). $^\dagger$Hires profiling (64 seq $\times$ 2048 tok).}
+34	\label{tab:heterogeneity}
+35	\begin{tabular}{lcccccc}
+36	\toprule
+37	Model & GQA & Top-5\% & $t_1/t_5$ & $\Delta$ PPL & $\Delta$ PPL & Shape \\
+38	 & Ratio & Conc. & & (Uniform) & (Ours) & \\
+39	\midrule
+40	Qwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\
+41	Yi-1.5-9B$^\dagger$ & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\
+42	Llama-3.1-8B$^\dagger$ & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\
+43	Mistral-7B-v0.3$^\dagger$ & 4:1 & 0.24 & 0.41 & $+$0.10 & $+$0.13 & Flat \\
+44	Gemma-2-9B$^\dagger$ & 2:1 & 0.23 & 0.38 & $+$0.13 & $+$0.15 & Flat \\
+45	\bottomrule
+46	\end{tabular}
+47	\end{table}
+48	
+49	\begin{figure*}[t]
+50	\centering
+51	\includegraphics[width=\textwidth]{figures/fig1_head_delta_heatmap.pdf}
+52	\caption{Per-head 2-bit quantization sensitivity across five architectures. Qwen2.5-7B shows high concentration in Layer-0 heads (``spread'' pattern); Yi-1.5-9B shows a single extreme outlier at Layer-4 Head-3 (``spike'' pattern); Llama-3.1-8B shows a dominant outlier at Layer-2 Head-5 (49\% of total distortion, ``spike'' pattern); Mistral-7B-v0.3 shows near-zero sensitivity across all heads; Gemma-2-9B exhibits the most uniform distribution, consistent with its low GQA ratio (2:1). Color intensity indicates PPL increase when the head is quantized to 2-bit.}
+53	\label{fig:heatmap}
+54	\end{figure*}
+55	
+56	Figure~\ref{fig:heatmap} visualizes the per-head 2-bit distortion as a heatmap.
+57	The contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.
+58	
+59	\subsection{Diagnostic Framework}
+60	\label{sec:diagnostic}
+61	
+62	The heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.
+63	This motivates a joint diagnostic, based on five architectures, for deciding when non-uniform allocation is worthwhile:
+64	
+65	\begin{enumerate}[nosep]
+66	\item Run per-head profiling as described in \S\ref{sec:profiling}.
+67	\item Compute the top-5\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.
+68	\item Select allocation strategy based on concentration \emph{and} shape:
+69	  \begin{itemize}[nosep]
+70	  \item \textbf{Spread} (concentration $\gtrsim 0.50$, $t_1/t_5 \lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\% PPL improvement.
+71	  \item \textbf{Spike} ($t_1/t_5 \gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.
+72	  \item \textbf{Flat} (concentration $\lesssim 0.50$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. When concentration falls below 0.50, the top-5\% heads contribute too little cumulative delta for the solver to construct a meaningfully non-uniform allocation; consequently the $t_1/t_5$ ratio---regardless of its value---does not alter the outcome, and concentration alone suffices to determine the category. Mistral (0.24, $t_1/t_5{=}0.41$) and Gemma-2 (0.23, $t_1/t_5{=}0.38$): counterproductive.
+73	  \end{itemize}
+74	\end{enumerate}
+75	
+76	Llama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.
+77	Indeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.
+78	The joint condition---concentration $\gtrsim 0.50$ and $t_1/t_5 \lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.
+79	Both thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules.
+80	The diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver and avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.
+81	Additional analyses---the effect of aggressive compression ratios, profiling resolution and multi-seed stability, per-layer optimality validation, and KV separation ablation---are provided in Appendices~\ref{sec:aggressive}--\ref{sec:kv_separation}.
+82	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b8b31263-7145-46ef-8030-79c76e016770",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "feb7c467-3a12-4a3a-99b3-08e92bcb4add",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/analysis.tex",
+      "content": "\\section{Analysis}\n\\label{sec:analysis}\n\n\\subsection{Heterogeneity Characterization}\n\\label{sec:heterogeneity}\n\nThe benefit of non-uniform allocation depends on how unevenly head sensitivities are distributed.\nWe quantify this with a \\emph{top-5\\% concentration metric}: sort per-head 2-bit distortions $d_h(2)$ in descending order and compute the fraction of total distortion contributed by the top 5\\% of heads.\nHigh concentration indicates that a few heads are disproportionately sensitive; low concentration indicates near-uniform sensitivity.\n\nTable~\\ref{tab:heterogeneity} summarizes the results across five architectures at $4\\times$ compression.\nThe central finding is that MCKP benefit requires \\emph{spread heterogeneity}---multiple heads with cross-bitwidth sensitivity gradients---rather than sensitivity concentrated in a single outlier at one bitwidth.\n\nQwen2.5-7B exemplifies the spread pattern (top-5\\% concentration 0.61, $t_1/t_5{=}0.57$), with Layer-0 heads contributing the majority of total 2-bit distortion across multiple bitwidths.\nConstrained MCKP reduces degradation from $+$5.64 PPL (uniform) to $+$1.42 PPL, a 27.3\\% improvement over uniform 4-bit. %exp_id=qwen_constrained_mckp\n\nYi-1.5-9B is a critical counterexample: despite the highest concentration tested ($0.71$, exceeding Qwen's $0.61$), constrained MCKP matches uniform ($+$0.20 vs.\\ $+$0.20). %exp_id=yi15_hires_constrained_mckp\nThe mechanism is clear from the cross-bitwidth gradient structure.\nYi-1.5's sensitivity is dominated by a single extreme outlier: Layer-4 Head-3 has a 2-bit delta of 13.12, while the second-ranked head has delta 0.55---a $24\\times$ gap ($t_1/t_5{=}0.90$, $t_1/t_2{=}23.7$). %exp_id=yi15_hires_profiling\nCritically, L4H3's sensitivity is confined to the 2-bit operating point: its 4-bit and 8-bit deltas are ${\\approx}\\,0$.\nThe solver therefore has only one lever---upgrading L4H3 from 2-bit to 4-bit removes the distortion, but further upgrading to 8-bit provides no additional benefit, so the budget freed by downgrading other heads has nowhere useful to go.\nThis is the ``spike'' pattern: high concentration driven by a single outlier with sensitivity at only one bitwidth.\n\nIn contrast, Qwen's Layer-0 heads exhibit non-zero deltas at multiple bitwidths (e.g., L0H0: 2-bit delta ${=}6.74$, with positive 4-bit and 8-bit deltas), giving the solver a multi-bitwidth sensitivity gradient across several heads---a ``spread'' pattern that enables meaningful budget reallocation. %exp_id=qwen_hires_profiling\n\nThe remaining three architectures fill out the diagnostic picture.\nLlama-3.1-8B shows above-threshold concentration ($0.57$) with a pronounced spike ($t_1/t_5{=}0.85$, $t_1/t_2{=}34.8$); its allocation is essentially indistinguishable from uniform ($+$0.36 vs.\\ $+$0.38). %exp_id=llama_hires_bf16_2bitonly %exp_id=llama_hires_constrained\nMistral-7B-v0.3 ($t_1/t_5{=}0.41$) and Gemma-2-9B ($t_1/t_5{=}0.38$) both exhibit flat distributions with low concentration ($0.24$ and $0.23$ respectively), leaving the profiler with no reliable signal; constrained MCKP is slightly worse than uniform in both cases ($+$0.13 vs.\\ $+$0.10 for Mistral; $+$0.15 vs.\\ $+$0.13 for Gemma-2). %exp_id=mistral_c4_cross_dataset %exp_id=gemma2_full_pipeline\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Head sensitivity heterogeneity and constrained allocation benefit across architectures at $4\\times$ compression. $t_1/t_5$: ratio of top-1 to top-5 per-head 2-bit distortion (low${=}$spread, high${=}$spike). $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok).}\n\\label{tab:heterogeneity}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & GQA & Top-5\\% & $t_1/t_5$ & $\\Delta$ PPL & $\\Delta$ PPL & Shape \\\\\n & Ratio & Conc. & & (Uniform) & (Ours) & \\\\\n\\midrule\nQwen2.5-7B & 7:1 & 0.61 & 0.57 & $+$5.64 & $+$1.42 & Spread \\\\\nYi-1.5-9B$^\\dagger$ & 8:1 & 0.71 & 0.90 & $+$0.20 & $+$0.20 & Spike \\\\\nLlama-3.1-8B$^\\dagger$ & 4:1 & 0.57 & 0.85 & $+$0.38 & $+$0.36 & Spike \\\\\nMistral-7B-v0.3$^\\dagger$ & 4:1 & 0.24 & 0.41 & $+$0.10 & $+$0.13 & Flat \\\\\nGemma-2-9B$^\\dagger$ & 2:1 & 0.23 & 0.38 & $+$0.13 & $+$0.15 & Flat \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_head_delta_heatmap.pdf}\n\\caption{Per-head 2-bit quantization sensitivity across five architectures. Qwen2.5-7B shows high concentration in Layer-0 heads (``spread'' pattern); Yi-1.5-9B shows a single extreme outlier at Layer-4 Head-3 (``spike'' pattern); Llama-3.1-8B shows a dominant outlier at Layer-2 Head-5 (49\\% of total distortion, ``spike'' pattern); Mistral-7B-v0.3 shows near-zero sensitivity across all heads; Gemma-2-9B exhibits the most uniform distribution, consistent with its low GQA ratio (2:1). Color intensity indicates PPL increase when the head is quantized to 2-bit.}\n\\label{fig:heatmap}\n\\end{figure*}\n\nFigure~\\ref{fig:heatmap} visualizes the per-head 2-bit distortion as a heatmap.\nThe contrast is stark: Qwen's Layer-0 heads show high distortion (dark cells) while mid-to-deep layers are near-zero; Yi-1.5 shows a single bright spot at Layer-4 Head-3 (34\\% of total delta) with the remaining 191 heads near-uniform---a ``spike'' that MCKP cannot exploit; Gemma-2 exhibits the most uniform heatmap across its 336 heads, consistent with its 0.23 concentration; Mistral shows similarly low distortion across all layers and heads.\n\n\\subsection{Diagnostic Framework}\n\\label{sec:diagnostic}\n\nThe heterogeneity characterization shows that MCKP benefit requires not just high concentration but a specific \\emph{shape}---spread heterogeneity across multiple heads with cross-bitwidth sensitivity gradients.\nThis motivates a joint diagnostic, based on five architectures, for deciding when non-uniform allocation is worthwhile:\n\n\\begin{enumerate}[nosep]\n\\item Run per-head profiling as described in \\S\\ref{sec:profiling}.\n\\item Compute the top-5\\% concentration and the $t_1/t_5$ ratio (top-1 distortion divided by top-5 distortion) from the resulting distortion table.\n\\item Select allocation strategy based on concentration \\emph{and} shape:\n  \\begin{itemize}[nosep]\n  \\item \\textbf{Spread} (concentration $\\gtrsim 0.50$, $t_1/t_5 \\lesssim 0.70$): non-uniform allocation recommended. Multiple heads exhibit cross-bitwidth sensitivity gradients, giving the solver room to redistribute budget. Qwen (0.61, $t_1/t_5{=}0.57$): 27.3\\% PPL improvement.\n  \\item \\textbf{Spike} ($t_1/t_5 \\gtrsim 0.70$, any concentration): use uniform. Sensitivity is dominated by a single outlier with no cross-bitwidth gradient; the solver cannot exploit it. Yi-1.5 (0.71, $t_1/t_5{=}0.90$) and Llama (0.57, $t_1/t_5{=}0.85$): no meaningful benefit.\n  \\item \\textbf{Flat} (concentration $\\lesssim 0.50$): use uniform. Near-uniform sensitivity provides no signal for differentiated allocation. When concentration falls below 0.50, the top-5\\% heads contribute too little cumulative delta for the solver to construct a meaningfully non-uniform allocation; consequently the $t_1/t_5$ ratio---regardless of its value---does not alter the outcome, and concentration alone suffices to determine the category. Mistral (0.24, $t_1/t_5{=}0.41$) and Gemma-2 (0.23, $t_1/t_5{=}0.38$): counterproductive.\n  \\end{itemize}\n\\end{enumerate}\n\nLlama-3.1-8B illustrates why both conditions are needed: its concentration (0.57) lies above the 0.50 threshold and would be misclassified as beneficial by concentration alone, but its spike shape ($t_1/t_5{=}0.85$) correctly predicts no meaningful benefit.\nIndeed, a concentration-only threshold would misclassify two of the three high-concentration models (Yi-1.5 at 0.71 and Llama at 0.57), making the $t_1/t_5$ shape condition essential for avoiding false positives.\nThe joint condition---concentration $\\gtrsim 0.50$ and $t_1/t_5 \\lesssim 0.70$---correctly separates the beneficial case from the four non-beneficial cases across all five architectures studied.\nBoth thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules.\nThe diagnostic adds no computational overhead: it reuses the profiling data already required for the allocation solver and avoids wasted optimization effort on architectures where non-uniform allocation provides no benefit.\nAdditional analyses---the effect of aggressive compression ratios, profiling resolution and multi-seed stability, per-layer optimality validation, and KV separation ablation---are provided in Appendices~\\ref{sec:aggressive}--\\ref{sec:kv_separation}.\n",
+      "numLines": 82,
+      "startLine": 1,
+      "totalLines": 82
+    }
+  },
+  "sourceToolAssistantUUID": "b8b31263-7145-46ef-8030-79c76e016770",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T04:19:06.199Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0187PKtgtjV4rmWa83WwPG7x`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ae14859-accf-4591-ae27-ccb0d84b760d",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iCMoyD8vDJHrDLmAZA",
+  "type": "assistant",
+  "uuid": "4fbd2658-8f40-4d36-8c68-7632209b427d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBdFWb5gb8qbh8T8qVqbRd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2962,
+      "cache_creation_input_tokens": 1218,
+      "cache_read_input_tokens": 28946,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2962,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 28946,
+          "cache_creation_input_tokens": 1218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T04:19:06.205Z_
+
+<details><summary>↩ Tool result · `toolu_0187PKtgtjV4rmWa83WwPG7x`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:setup}
+6	
+7	\paragraph{Models.}
+8	We evaluate on five architectures spanning different grouped-query attention (GQA) configurations:
+9	\textbf{Qwen2.5-7B} (GQA ratio 7:1, 28 layers $\times$ 4 KV heads = 112 KV heads),
+10	\textbf{Yi-1.5-9B} (8:1, 48 $\times$ 4 = 192 KV heads),
+11	\textbf{Llama-3.1-8B} (4:1, 32 $\times$ 8 = 256 KV heads),
+12	\textbf{Mistral-7B-v0.3} (4:1, 32 $\times$ 8 = 256 KV heads, sliding window attention),
+13	and \textbf{Gemma-2-9B} (2:1, 42 $\times$ 8 = 336 KV heads, \texttt{head\_dim}=256, attention logit softcapping).
+14	This selection spans GQA ratios from 2:1 to 8:1 and covers standard, sliding-window, and softcapped attention.
+15	
+16	\paragraph{Evaluation.}
+17	We report perplexity (PPL, $\downarrow$) on the WikiText-2 test split (298{,}938 tokens) under bf16 inference with stride 512.
+18	For downstream evaluation, we use ARC-Challenge, HellaSwag, PIQA, and WinoGrande under 0-shot prompting.
+19	
+20	\paragraph{Profiling.}
+21	Per-head sensitivity is measured by independently quantizing each head to each candidate bit-width in $\{2, 4, 8, 16\}$ and recording the PPL increase over the bf16 baseline.
+22	We use two profiling resolutions: \emph{standard} (16 sequences $\times$ 512 tokens) and \emph{high-resolution} (64 sequences $\times$ 2048 tokens), both from WikiText-2 train.
+23	Unless marked with $\dagger$, all results use standard-resolution profiling; Appendix~\ref{sec:profiling_resolution} analyzes the effect of resolution.
+24	
+25	\paragraph{Compression and constraint.}
+26	The default target is 4$\times$ compression (average 4 bits, budget ratio 0.25).
+27	The cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \S\ref{sec:method} ($k{=}8$ for Qwen, $k{=}2$ for Yi-1.5 and Llama, $k{=}4$ for Mistral, $k{=}8$ for Gemma-2).
+28	
+29	\paragraph{Baselines.}
+30	We compare against:
+31	(1)~uniform 4-bit quantization;
+32	(2)~unconstrained greedy allocation (RateQuant-style~\cite{zuo2026ratequant});
+33	(3)~unconstrained MCKP allocation;
+34	(4)~an L0-random heuristic that assigns Layer-0 heads to 8-bit and $k$ random non-Layer-0 heads to 2-bit, with remaining heads at 4-bit (5 seeds; we report mean$\pm$std and median);
+35	and (5)~a naive positional heuristic that assigns Layer-0 to 8-bit and the $k$ deepest heads to 2-bit.
+36	
+37	\subsection{Main Results}
+38	\label{sec:main_results}
+39	
+40	\begin{table}[t]
+41	\centering
+42	\small
+43	\caption{PPL ($\downarrow$) on WikiText-2 at 4$\times$ compression. Unconstrained allocation fails catastrophically on $\{2,4,8,16\}$; our cardinality constraint restores performance. Best constrained result per model in \textbf{bold}. $^\dagger$Hires profiling (64 seq $\times$ 2048 tok); standard profiling does not improve over uniform on these architectures. $^\ddagger$Best $k$ from ablation ($k{=}4$). The $\pm$0.06 on Qwen reports std over 3 calibration seeds (hires profiling); bit distributions are identical across seeds.}
+44	\label{tab:main_results}
+45	\begin{tabular}{lcccccc}
+46	\toprule
+47	Model & Baseline & Uniform & \multicolumn{2}{c}{Unconstrained} & Ours \\
+48	 & (bf16) & (4-bit) & Greedy & MCKP & (Constr.) \\
+49	\midrule
+50	Qwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \textbf{11.23}$\pm$0.06 \\
+51	Llama-3.1-8B    & 8.09  & 8.47  & ---   & ---   & \textbf{8.45}$^\dagger$ \\
+52	Mistral-7B-v0.3 & 7.04  & 7.13  & ---   & ---   & 7.16$^{\dagger\ddagger}$ \\
+53	Yi-1.5-9B$^\dagger$       & 7.02  & 7.22  & ---   & ---   & 7.22 \\
+54	Gemma-2-9B      & 8.90  & 9.03  & ---   & ---   & 9.05 \\
+55	\bottomrule
+56	\end{tabular}
+57	\end{table}
+58	
+59	Table~\ref{tab:main_results} summarizes the main results.
+60	On Qwen2.5-7B, constrained MCKP achieves 11.23 PPL, a 27.3\% reduction over uniform 4-bit (15.45).
+61	Higher-resolution profiling (64 seq $\times$ 2048 tok) further improves this to 10.91; we report the standard-profiling result here and analyze the effect of profiling resolution in Appendix~\ref{sec:profiling_resolution}.
+62	Without the cardinality constraint, both greedy (32.45) and MCKP (36.92) perform \emph{worse} than uniform---a catastrophic failure caused by excessive 2-bit assignments that compound across layers.
+63	The constraint eliminates this failure mode entirely.
+64	Across 3 calibration seeds, constrained MCKP yields mean PPL 10.99$\pm$0.06 (std is 1.3\% of the uniform gap), with 90.2\% three-way allocation agreement, confirming profiling stability.
+65	
+66	On Llama-3.1-8B, the result is essentially indistinguishable from uniform (8.45 vs.\ 8.47, $\Delta < 0.02$ PPL).
+67	Hires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.
+68	
+69	On Mistral-7B-v0.3, constrained MCKP (7.16, $k{=}4$) is slightly worse than uniform (7.13, $+$0.4\%).
+70	This is a genuine negative result: the profiler reports near-zero sensitivity differences across heads, meaning the optimization has no reliable signal to exploit.
+71	Mistral's sliding-window attention may contribute to this uniformity by limiting head-level variation in effective context length.
+72	
+73	On Yi-1.5-9B$^\dagger$, constrained MCKP ($k{=}2$) achieves 7.22 PPL, essentially identical to uniform 7.22 ($<$0.01\% difference).
+74	Despite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.
+75	
+76	On Gemma-2-9B (GQA 2:1), constrained MCKP ($k{=}8$) achieves 9.05 PPL vs.\ uniform 9.03---a 0.3\% degradation.
+77	Gemma-2 has the most uniform head sensitivity distribution across its 336 KV heads, consistent with its low GQA ratio and attention logit softcapping.
+78	
+79	Unconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.
+80	Figure~\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.
+81	
+82	\begin{figure}[t]
+83	\centering
+84	\includegraphics[width=\columnwidth]{figures/fig3_allocation_comparison.pdf}
+85	\caption{Bit-width allocation on Qwen2.5-7B at 4$\times$ compression. Uniform assigns all heads to 4-bit. Constrained MCKP protects Layer-0 heads at 8-bit and assigns the 8 least-sensitive heads to 2-bit.}
+86	\label{fig:allocation}
+87	\end{figure}
+88	
+89	\subsection{Budget Sweep}
+90	\label{sec:budget_sweep}
+91	
+92	\begin{table}[t]
+93	\centering
+94	\small
+95	\caption{Effect of compression ratio on Qwen2.5-7B. Constrained MCKP provides meaningful gains at moderate-to-aggressive compression ($\geq$4$\times$). Standard-resolution profiling; hires results in Appendix~\ref{sec:profiling_resolution}.}
+96	\label{tab:budget_sweep}
+97	\begin{tabular}{cccc}
+98	\toprule
+99	Compression & Uniform PPL & Constr.\ MCKP PPL & $\Delta$ PPL \\
+100	\midrule
+101	2$\times$ & 10.10 & 10.66 & $-$0.56 \\
+102	4$\times$ & 15.45 & 11.23 & $+$4.22 \\
+103	8$\times$ & 14{,}759 & 907 & $+$13{,}852 \\
+104	\bottomrule
+105	\end{tabular}
+106	\end{table}
+107	
+108	Table~\ref{tab:budget_sweep} shows how the benefit of constrained allocation varies with compression ratio on Qwen2.5-7B.
+109	
+110	At 2$\times$ compression, uniform 8-bit quantization is near-lossless (10.10 PPL vs.\ 9.81 bf16, $+$0.29).
+111	Per-head optimization has no headroom here; constrained MCKP is slightly worse (10.66) due to unnecessary 2-bit assignments that the budget permits but the model does not need.
+112	
+113	At 4$\times$, the gap is substantial: constrained MCKP reduces PPL from 15.45 to 11.23, a 27.3\% improvement.
+114	Hires profiling further reduces this to 10.91 (Appendix~\ref{sec:profiling_resolution}).
+115	
+116	At 8$\times$, both methods degrade catastrophically---the budget is too aggressive for any allocation to preserve model quality.
+117	However, constrained MCKP (907) is an order of magnitude better than uniform (14{,}759) because the constraint still protects Layer-0 heads at 8-bit, preventing total representational collapse.
+118	Neither result is practically usable, but the gap demonstrates the protection mechanism at work.
+119	
+120	\subsection{Heuristic Baselines}
+121	\label{sec:heuristic}
+122	
+123	\begin{table}[t]
+124	\centering
+125	\small
+126	\caption{Constrained MCKP vs.\ heuristic baselines at 4$\times$ compression. L0-random reports median and mean$\pm$std over 5 seeds. All methods use per-model optimal $k$ ($k{=}8$ for Qwen, $k{=}2$ for Llama, $k{=}4$ for Mistral). Llama and Mistral use hires profiling, consistent with Table~\ref{tab:main_results}.}
+127	\label{tab:heuristic}
+128	\begin{tabular}{lcccc}
+129	\toprule
+130	Model & MCKP & \multicolumn{2}{c}{L0-random} & Naive \\
+131	 & & Median & Mean$\pm$Std & Positional \\
+132	\midrule
+133	Qwen2.5-7B      & 11.23 & 11.52 & 11.69$\pm$0.47 & 12.23 \\
+134	Llama-3.1-8B    & 8.45  & 8.62  & 8.62$\pm$0.07  & 8.58 \\
+135	Mistral-7B-v0.3 & 7.16  & 7.20  & 7.24$\pm$0.07  & 7.21 \\
+136	\bottomrule
+137	\end{tabular}
+138	\end{table}
+139	
+140	Table~\ref{tab:heuristic} compares profiling-guided MCKP against heuristic baselines that use the same Layer-0 protection but assign 2-bit heads without profiling.
+141	
+142	On Qwen, MCKP (11.23) beats the L0-random median (11.52) by 0.29 PPL and the naive positional heuristic (12.23) by 1.00 PPL, confirming that profiling-guided selection outperforms both random and depth-based assignment.
+143	
+144	On Llama ($k{=}2$), the gap between methods is small: MCKP achieves 8.45 vs.\ L0-random 8.62 and naive positional 8.58.
+145	With only 2 heads assigned to 2-bit, the choice of which heads to compress has limited impact, and all methods cluster within 0.17 PPL.
+146	MCKP still achieves the best result, but the practical advantage of profiling-guided selection is negligible at this constraint level.
+147	
+148	On Mistral ($k{=}4$), all non-uniform strategies are worse than uniform 4-bit (7.13): MCKP 7.16, naive 7.21, L0-random median 7.20 (mean 7.24$\pm$0.07).
+149	MCKP outperforms both heuristics, but the best non-uniform result (7.16) still exceeds uniform by 0.03 PPL, reinforcing that non-uniform allocation is counterproductive when heterogeneity is low.
+150	Note that the heuristic baselines use a slightly higher budget (0.256 vs.\ 0.248 for MCKP, a 3\% difference) because integer $k$ does not divide evenly into the target; despite this advantage, they still underperform MCKP, making the comparison conservative.
+151	
+152	\subsection{Downstream Evaluation}
+153	\label{sec:downstream}
+154	
+155	\begin{table}[t]
+156	\centering
+157	\small
+158	\caption{0-shot accuracy on Qwen2.5-7B at 4$\times$ compression. Constrained MCKP recovers approximately 73\% of the accuracy lost by uniform 4-bit quantization.}
+159	\label{tab:downstream}
+160	\begin{tabular}{lcccc}
+161	\toprule
+162	Task & Baseline & Uniform & MCKP & $\Delta$ vs \\
+163	 & (bf16) & (4-bit) & (Ours) & Uniform \\
+164	\midrule
+165	ARC-C      & ---   & 0.482 & 0.514 & $+$3.2 pts \\
+166	HellaSwag  & ---   & 0.728 & 0.768 & $+$4.0 pts \\
+167	PIQA       & ---   & 0.766 & 0.779 & $+$1.3 pts \\
+168	WinoGrande & ---   & 0.662 & 0.682 & $+$2.0 pts \\
+169	\midrule
+170	Average    & 0.695 & 0.660 & 0.686 & $+$2.6 pts \\
+171	\bottomrule
+172	\end{tabular}
+173	\end{table}
+174	
+175	Table~\ref{tab:downstream} shows that the PPL improvements transfer to downstream tasks on Qwen2.5-7B.
+176	Constrained MCKP improves average 0-shot accuracy by 2.6 points over uniform 4-bit (0.686 vs.\ 0.660), with gains on all four benchmarks.
+177	The largest gain appears on HellaSwag ($+$4.0 pts), where language modeling quality is most directly reflected.
+178	
+179	Constrained MCKP recovers approximately 73\% of the accuracy lost by uniform 4-bit quantization, indicating that per-head bit allocation addresses much of the degradation, though a gap to bf16 remains.
+180	
+181	\subsection{Cross-Dataset Stability}
+182	\label{sec:cross_dataset}
+183	
+184	To verify that the profiled allocation is not overfit to the calibration corpus, we profile on C4 and evaluate on WikiText-2, and vice versa, at $4\times$ compression.
+185	On Qwen2.5-7B, C4-calibrated MCKP achieves 11.29 PPL on WikiText-2 (vs.\ 15.45 uniform, a 27\% reduction), only 0.06 PPL above the WikiText-2-calibrated result (11.23).
+186	In the reverse direction, WikiText-2-calibrated MCKP achieves 20.56 PPL on the C4 held-out split (vs.\ 35.42 uniform, a 42\% reduction; C4 bf16 baseline on this split is 15.32).
+187	All three models show ${>}96\%$ bit-assignment agreement across calibration sources: Qwen 96.4\% (108/112 heads), Llama 97.7\% (250/256), and Mistral 96.5\% (247/256).
+188	Qwen's agreement is the most informative, as all 112 heads have variable assignments; on Llama, 253 of 256 heads are forced to 4-bit by the $k{=}2$ constraint, inflating agreement.
+189	The cross-dataset results reinforce the heterogeneity-driven narrative: on Qwen, the MCKP benefit is preserved across calibration sources; on Llama and Mistral, the lack of benefit is equally stable---Llama's C4-calibrated MCKP is 0.18 PPL worse than uniform, and Mistral shows similar degradation ($-$0.03 to $-$0.05 PPL).
+190	Whether non-uniform allocation helps is determined by the model's intrinsic head sensitivity heterogeneity, not the calibration data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4fbd2658-8f40-4d36-8c68-7632209b427d",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "ca0ac9b7-b2de-44b1-b94d-2f6370ab7abd",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Models.}\nWe evaluate on five architectures spanning different grouped-query attention (GQA) configurations:\n\\textbf{Qwen2.5-7B} (GQA ratio 7:1, 28 layers $\\times$ 4 KV heads = 112 KV heads),\n\\textbf{Yi-1.5-9B} (8:1, 48 $\\times$ 4 = 192 KV heads),\n\\textbf{Llama-3.1-8B} (4:1, 32 $\\times$ 8 = 256 KV heads),\n\\textbf{Mistral-7B-v0.3} (4:1, 32 $\\times$ 8 = 256 KV heads, sliding window attention),\nand \\textbf{Gemma-2-9B} (2:1, 42 $\\times$ 8 = 336 KV heads, \\texttt{head\\_dim}=256, attention logit softcapping).\nThis selection spans GQA ratios from 2:1 to 8:1 and covers standard, sliding-window, and softcapped attention.\n\n\\paragraph{Evaluation.}\nWe report perplexity (PPL, $\\downarrow$) on the WikiText-2 test split (298{,}938 tokens) under bf16 inference with stride 512.\nFor downstream evaluation, we use ARC-Challenge, HellaSwag, PIQA, and WinoGrande under 0-shot prompting.\n\n\\paragraph{Profiling.}\nPer-head sensitivity is measured by independently quantizing each head to each candidate bit-width in $\\{2, 4, 8, 16\\}$ and recording the PPL increase over the bf16 baseline.\nWe use two profiling resolutions: \\emph{standard} (16 sequences $\\times$ 512 tokens) and \\emph{high-resolution} (64 sequences $\\times$ 2048 tokens), both from WikiText-2 train.\nUnless marked with $\\dagger$, all results use standard-resolution profiling; Appendix~\\ref{sec:profiling_resolution} analyzes the effect of resolution.\n\n\\paragraph{Compression and constraint.}\nThe default target is 4$\\times$ compression (average 4 bits, budget ratio 0.25).\nThe cardinality constraint limits 2-bit assignments to at most $k$ heads, where $k$ is selected via the compounding sweep described in \\S\\ref{sec:method} ($k{=}8$ for Qwen, $k{=}2$ for Yi-1.5 and Llama, $k{=}4$ for Mistral, $k{=}8$ for Gemma-2).\n\n\\paragraph{Baselines.}\nWe compare against:\n(1)~uniform 4-bit quantization;\n(2)~unconstrained greedy allocation (RateQuant-style~\\cite{zuo2026ratequant});\n(3)~unconstrained MCKP allocation;\n(4)~an L0-random heuristic that assigns Layer-0 heads to 8-bit and $k$ random non-Layer-0 heads to 2-bit, with remaining heads at 4-bit (5 seeds; we report mean$\\pm$std and median);\nand (5)~a naive positional heuristic that assigns Layer-0 to 8-bit and the $k$ deepest heads to 2-bit.\n\n\\subsection{Main Results}\n\\label{sec:main_results}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{PPL ($\\downarrow$) on WikiText-2 at 4$\\times$ compression. Unconstrained allocation fails catastrophically on $\\{2,4,8,16\\}$; our cardinality constraint restores performance. Best constrained result per model in \\textbf{bold}. $^\\dagger$Hires profiling (64 seq $\\times$ 2048 tok); standard profiling does not improve over uniform on these architectures. $^\\ddagger$Best $k$ from ablation ($k{=}4$). The $\\pm$0.06 on Qwen reports std over 3 calibration seeds (hires profiling); bit distributions are identical across seeds.}\n\\label{tab:main_results}\n\\begin{tabular}{lcccccc}\n\\toprule\nModel & Baseline & Uniform & \\multicolumn{2}{c}{Unconstrained} & Ours \\\\\n & (bf16) & (4-bit) & Greedy & MCKP & (Constr.) \\\\\n\\midrule\nQwen2.5-7B      & 9.81  & 15.45 & 32.45 & 36.92 & \\textbf{11.23}$\\pm$0.06 \\\\\nLlama-3.1-8B    & 8.09  & 8.47  & ---   & ---   & \\textbf{8.45}$^\\dagger$ \\\\\nMistral-7B-v0.3 & 7.04  & 7.13  & ---   & ---   & 7.16$^{\\dagger\\ddagger}$ \\\\\nYi-1.5-9B$^\\dagger$       & 7.02  & 7.22  & ---   & ---   & 7.22 \\\\\nGemma-2-9B      & 8.90  & 9.03  & ---   & ---   & 9.05 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:main_results} summarizes the main results.\nOn Qwen2.5-7B, constrained MCKP achieves 11.23 PPL, a 27.3\\% reduction over uniform 4-bit (15.45).\nHigher-resolution profiling (64 seq $\\times$ 2048 tok) further improves this to 10.91; we report the standard-profiling result here and analyze the effect of profiling resolution in Appendix~\\ref{sec:profiling_resolution}.\nWithout the cardinality constraint, both greedy (32.45) and MCKP (36.92) perform \\emph{worse} than uniform---a catastrophic failure caused by excessive 2-bit assignments that compound across layers.\nThe constraint eliminates this failure mode entirely.\nAcross 3 calibration seeds, constrained MCKP yields mean PPL 10.99$\\pm$0.06 (std is 1.3\\% of the uniform gap), with 90.2\\% three-way allocation agreement, confirming profiling stability.\n\nOn Llama-3.1-8B, the result is essentially indistinguishable from uniform (8.45 vs.\\ 8.47, $\\Delta < 0.02$ PPL).\nHires profiling reveals a spike pattern (concentration 0.57, $t_1/t_5{=}0.85$) dominated by a single top head (L2H5), leaving little cross-bitwidth gradient for non-uniform allocation to exploit.\n\nOn Mistral-7B-v0.3, constrained MCKP (7.16, $k{=}4$) is slightly worse than uniform (7.13, $+$0.4\\%).\nThis is a genuine negative result: the profiler reports near-zero sensitivity differences across heads, meaning the optimization has no reliable signal to exploit.\nMistral's sliding-window attention may contribute to this uniformity by limiting head-level variation in effective context length.\n\nOn Yi-1.5-9B$^\\dagger$, constrained MCKP ($k{=}2$) achieves 7.22 PPL, essentially identical to uniform 7.22 ($<$0.01\\% difference).\nDespite having the highest GQA ratio in our evaluation (8:1) and the highest concentration tested (0.71), Yi-1.5's sensitivity is dominated by a single extreme outlier (Layer-4 Head-3, $t_1/t_5{=}0.90$), a spike pattern that leaves no cross-bitwidth gradient for the solver to exploit.\n\nOn Gemma-2-9B (GQA 2:1), constrained MCKP ($k{=}8$) achieves 9.05 PPL vs.\\ uniform 9.03---a 0.3\\% degradation.\nGemma-2 has the most uniform head sensitivity distribution across its 336 KV heads, consistent with its low GQA ratio and attention logit softcapping.\n\nUnconstrained results for Llama, Mistral, Yi-1.5, and Gemma-2 are omitted (---) as those experiments were conducted only on Qwen, where the failure mode is most pronounced.\nFigure~\\ref{fig:allocation} visualizes the bit-width allocation on Qwen, showing how constrained MCKP protects Layer-0 heads at 8-bit while selectively assigning only the 8 least-sensitive heads to 2-bit.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig3_allocation_comparison.pdf}\n\\caption{Bit-width allocation on Qwen2.5-7B at 4$\\times$ compression. Uniform assigns all heads to 4-bit. Constrained MCKP protects Layer-0 heads at 8-bit and assigns the 8 least-sensitive heads to 2-bit.}\n\\label{fig:allocation}\n\\end{figure}\n\n\\subsection{Budget Sweep}\n\\label{sec:budget_sweep}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Effect of compression ratio on Qwen2.5-7B. Constrained MCKP provides meaningful gains at moderate-to-aggressive compression ($\\geq$4$\\times$). Standard-resolution profiling; hires results in Appendix~\\ref{sec:profiling_resolution}.}\n\\label{tab:budget_sweep}\n\\begin{tabular}{cccc}\n\\toprule\nCompression & Uniform PPL & Constr.\\ MCKP PPL & $\\Delta$ PPL \\\\\n\\midrule\n2$\\times$ & 10.10 & 10.66 & $-$0.56 \\\\\n4$\\times$ & 15.45 & 11.23 & $+$4.22 \\\\\n8$\\times$ & 14{,}759 & 907 & $+$13{,}852 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:budget_sweep} shows how the benefit of constrained allocation varies with compression ratio on Qwen2.5-7B.\n\nAt 2$\\times$ compression, uniform 8-bit quantization is near-lossless (10.10 PPL vs.\\ 9.81 bf16, $+$0.29).\nPer-head optimization has no headroom here; constrained MCKP is slightly worse (10.66) due to unnecessary 2-bit assignments that the budget permits but the model does not need.\n\nAt 4$\\times$, the gap is substantial: constrained MCKP reduces PPL from 15.45 to 11.23, a 27.3\\% improvement.\nHires profiling further reduces this to 10.91 (Appendix~\\ref{sec:profiling_resolution}).\n\nAt 8$\\times$, both methods degrade catastrophically---the budget is too aggressive for any allocation to preserve model quality.\nHowever, constrained MCKP (907) is an order of magnitude better than uniform (14{,}759) because the constraint still protects Layer-0 heads at 8-bit, preventing total representational collapse.\nNeither result is practically usable, but the gap demonstrates the protection mechanism at work.\n\n\\subsection{Heuristic Baselines}\n\\label{sec:heuristic}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Constrained MCKP vs.\\ heuristic baselines at 4$\\times$ compression. L0-random reports median and mean$\\pm$std over 5 seeds. All methods use per-model optimal $k$ ($k{=}8$ for Qwen, $k{=}2$ for Llama, $k{=}4$ for Mistral). Llama and Mistral use hires profiling, consistent with Table~\\ref{tab:main_results}.}\n\\label{tab:heuristic}\n\\begin{tabular}{lcccc}\n\\toprule\nModel & MCKP & \\multicolumn{2}{c}{L0-random} & Naive \\\\\n & & Median & Mean$\\pm$Std & Positional \\\\\n\\midrule\nQwen2.5-7B      & 11.23 & 11.52 & 11.69$\\pm$0.47 & 12.23 \\\\\nLlama-3.1-8B    & 8.45  & 8.62  & 8.62$\\pm$0.07  & 8.58 \\\\\nMistral-7B-v0.3 & 7.16  & 7.20  & 7.24$\\pm$0.07  & 7.21 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:heuristic} compares profiling-guided MCKP against heuristic baselines that use the same Layer-0 protection but assign 2-bit heads without profiling.\n\nOn Qwen, MCKP (11.23) beats the L0-random median (11.52) by 0.29 PPL and the naive positional heuristic (12.23) by 1.00 PPL, confirming that profiling-guided selection outperforms both random and depth-based assignment.\n\nOn Llama ($k{=}2$), the gap between methods is small: MCKP achieves 8.45 vs.\\ L0-random 8.62 and naive positional 8.58.\nWith only 2 heads assigned to 2-bit, the choice of which heads to compress has limited impact, and all methods cluster within 0.17 PPL.\nMCKP still achieves the best result, but the practical advantage of profiling-guided selection is negligible at this constraint level.\n\nOn Mistral ($k{=}4$), all non-uniform strategies are worse than uniform 4-bit (7.13): MCKP 7.16, naive 7.21, L0-random median 7.20 (mean 7.24$\\pm$0.07).\nMCKP outperforms both heuristics, but the best non-uniform result (7.16) still exceeds uniform by 0.03 PPL, reinforcing that non-uniform allocation is counterproductive when heterogeneity is low.\nNote that the heuristic baselines use a slightly higher budget (0.256 vs.\\ 0.248 for MCKP, a 3\\% difference) because integer $k$ does not divide evenly into the target; despite this advantage, they still underperform MCKP, making the comparison conservative.\n\n\\subsection{Downstream Evaluation}\n\\label{sec:downstream}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{0-shot accuracy on Qwen2.5-7B at 4$\\times$ compression. Constrained MCKP recovers approximately 73\\% of the accuracy lost by uniform 4-bit quantization.}\n\\label{tab:downstream}\n\\begin{tabular}{lcccc}\n\\toprule\nTask & Baseline & Uniform & MCKP & $\\Delta$ vs \\\\\n & (bf16) & (4-bit) & (Ours) & Uniform \\\\\n\\midrule\nARC-C      & ---   & 0.482 & 0.514 & $+$3.2 pts \\\\\nHellaSwag  & ---   & 0.728 & 0.768 & $+$4.0 pts \\\\\nPIQA       & ---   & 0.766 & 0.779 & $+$1.3 pts \\\\\nWinoGrande & ---   & 0.662 & 0.682 & $+$2.0 pts \\\\\n\\midrule\nAverage    & 0.695 & 0.660 & 0.686 & $+$2.6 pts \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:downstream} shows that the PPL improvements transfer to downstream tasks on Qwen2.5-7B.\nConstrained MCKP improves average 0-shot accuracy by 2.6 points over uniform 4-bit (0.686 vs.\\ 0.660), with gains on all four benchmarks.\nThe largest gain appears on HellaSwag ($+$4.0 pts), where language modeling quality is most directly reflected.\n\nConstrained MCKP recovers approximately 73\\% of the accuracy lost by uniform 4-bit quantization, indicating that per-head bit allocation addresses much of the degradation, though a gap to bf16 remains.\n\n\\subsection{Cross-Dataset Stability}\n\\label{sec:cross_dataset}\n\nTo verify that the profiled allocation is not overfit to the calibration corpus, we profile on C4 and evaluate on WikiText-2, and vice versa, at $4\\times$ compression.\nOn Qwen2.5-7B, C4-calibrated MCKP achieves 11.29 PPL on WikiText-2 (vs.\\ 15.45 uniform, a 27\\% reduction), only 0.06 PPL above the WikiText-2-calibrated result (11.23).\nIn the reverse direction, WikiText-2-calibrated MCKP achieves 20.56 PPL on the C4 held-out split (vs.\\ 35.42 uniform, a 42\\% reduction; C4 bf16 baseline on this split is 15.32).\nAll three models show ${>}96\\%$ bit-assignment agreement across calibration sources: Qwen 96.4\\% (108/112 heads), Llama 97.7\\% (250/256), and Mistral 96.5\\% (247/256).\nQwen's agreement is the most informative, as all 112 heads have variable assignments; on Llama, 253 of 256 heads are forced to 4-bit by the $k{=}2$ constraint, inflating agreement.\nThe cross-dataset results reinforce the heterogeneity-driven narrative: on Qwen, the MCKP benefit is preserved across calibration sources; on Llama and Mistral, the lack of benefit is equally stable---Llama's C4-calibrated MCKP is 0.18 PPL worse than uniform, and Mistral shows similar degradation ($-$0.03 to $-$0.05 PPL).\nWhether non-uniform allocation helps is determined by the model's intrinsic head sensitivity heterogeneity, not the calibration data.",
+      "numLines": 190,
+      "startLine": 1,
+      "totalLines": 190
+    }
+  },
+  "sourceToolAssistantUUID": "4fbd2658-8f40-4d36-8c68-7632209b427d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T04:19:06.618Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RsvJyoYfMe5nb6gkhvrzXW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/analysis.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca0ac9b7-b2de-44b1-b94d-2f6370ab7abd",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iCMoyD8vDJHrDLmAZA",
+  "type": "assistant",
+  "uuid": "b8b31263-7145-46ef-8030-79c76e016770",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KBdFWb5gb8qbh8T8qVqbRd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2962,
+      "cache_creation_input_tokens": 1218,
+      "cache_read_input_tokens": 28946,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2962,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 28946,
+          "cache_creation_input_tokens": 1218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1  **论文**: \"When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic\" **路径**: `projects/ratekv/docs/paper/mai…",
+  "leafUuid": "feb7c467-3a12-4a3a-99b3-08e92bcb4add",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review KV cache quantization paper for EMNLP",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T04:19:15.495Z_
+
+<details><summary>↩ Tool result · `toolu_01SyyZNPuU91KPT4DFxYcb6S`</summary>
+
+```text
+# ACL Rolling Review Form - Scoring Dimensions
+
+## Primary Scoring Dimensions
+
+**Reviewer Confidence** (1-5 scale)
+- 5: "Positive that my evaluation is correct. I read the paper very carefully and am familiar with related work."
+- 1: Not in reviewer's expertise area or paper is difficult to comprehend
+
+**Soundness** (1-5 scale with half-point increments)
+- 5: "This study is one of the most thorough I have seen, given its type."
+- 3: Adequate support for main claims with minor gaps
+- 1: Major issues; insufficient rigor for publication
+
+**Excitement/Novelty** (1-5 scale with half-point increments)
+- 5: "I would recommend this paper to others and/or attend its presentation"
+- 3: Interesting but not compelling
+- 1: Lacks relevance to computational linguistics community
+
+**Overall Assessment** (1-5 scale with half-point increments)
+- 5: Consider for Award (top 2.5% papers)
+- 4: Conference acceptance
+- 3: Accept to Findings track
+- 2: Needs substantial revisions
+- 1: Do not resubmit or not ACL-relevant
+
+## Additional Evaluation Dimensions
+
+**Reproducibility** (1-5 scale)
+- 5: Results easily reproducible
+- 1: Impossible to reproduce
+
+**Datasets** (1-5 scale)
+- 5: Enabling for future research
+- 1: No usable datasets provided
+
+**Software** (1-5 scale)
+- 5: Enabling for research community
+- 1: No usable software released
+
+**Author Anonymity Knowledge** (1-5 scale)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f42780c4-03ff-4449-8e6e-b2f2d5fb2087",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "9cd08d42-f63b-4367-b783-eefb43aa6320",
+  "toolUseResult": {
+    "bytes": 25365,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ACL Rolling Review Form - Scoring Dimensions\n\n## Primary Scoring Dimensions\n\n**Reviewer Confidence** (1-5 scale)\n- 5: \"Positive that my evaluation is correct. I read the paper very carefully and am familiar with related work.\"\n- 1: Not in reviewer's expertise area or paper is difficult to comprehend\n\n**Soundness** (1-5 scale with half-point increments)\n- 5: \"This study is one of the most thorough I have seen, given its type.\"\n- 3: Adequate support for main claims with minor gaps\n- 1: Major issues; insufficient rigor for publication\n\n**Excitement/Novelty** (1-5 scale with half-point increments)\n- 5: \"I would recommend this paper to others and/or attend its presentation\"\n- 3: Interesting but not compelling\n- 1: Lacks relevance to computational linguistics community\n\n**Overall Assessment** (1-5 scale with half-point increments)\n- 5: Consider for Award (top 2.5% papers)\n- 4: Conference acceptance\n- 3: Accept to Findings track\n- 2: Needs substantial revisions\n- 1: Do not resubmit or not ACL-relevant\n\n## Additional Evaluation Dimensions\n\n**Reproducibility** (1-5 scale)\n- 5: Results easily reproducible\n- 1: Impossible to reproduce\n\n**Datasets** (1-5 scale)\n- 5: Enabling for future research\n- 1: No usable datasets provided\n\n**Software** (1-5 scale)\n- 5: Enabling for research community\n- 1: No usable software released\n\n**Author Anonymity Knowledge** (1-5 scale)",
+    "durationMs": 10229,
+    "url": "https://aclrollingreview.org/reviewform"
+  },
+  "sourceToolAssistantUUID": "f42780c4-03ff-4449-8e6e-b2f2d5fb2087",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-15T04:19:15.501Z_
+
+```json
+{
+  "parentUuid": "9cd08d42-f63b-4367-b783-eefb43aa6320",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c9a4d751-efcb-4aff-ab16-54cba567d3d0",
+  "timestamp": "2026-05-15T04:19:15.501Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-15T04:19:18.298Z_
+
+继续读取剩余部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9a4d751-efcb-4aff-ab16-54cba567d3d0",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iDWyA8tAeVx6ruLqor",
+  "type": "assistant",
+  "uuid": "79e39039-dda0-46e5-850b-85b1957bdf38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQGseBHQCpgmSyyYrQkDBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 11607,
+      "cache_creation_input_tokens": 3825,
+      "cache_read_input_tokens": 30164,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3825,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 11607,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 30164,
+          "cache_creation_input_tokens": 3825,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3825
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T04:19:19.525Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VfUkUKMGnMohYoZNnHV44X`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79e39039-dda0-46e5-850b-85b1957bdf38",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iDWyA8tAeVx6ruLqor",
+  "type": "assistant",
+  "uuid": "6fa3aa43-f8ec-4a29-83c3-6cf8c5736217",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQGseBHQCpgmSyyYrQkDBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 11607,
+      "cache_creation_input_tokens": 3825,
+      "cache_read_input_tokens": 30164,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3825,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 11607,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 30164,
+          "cache_creation_input_tokens": 3825,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3825
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T04:19:19.531Z_
+
+<details><summary>↩ Tool result · `toolu_01VfUkUKMGnMohYoZNnHV44X`</summary>
+
+```text
+1	\section{Related Work}\label{sec:related_work}
+2	
+3	\paragraph{KV Cache Quantization.}
+4	Uniform-precision methods quantize the KV cache at a single bit-width across all heads, using techniques such as asymmetric per-channel/per-token schemes~\cite{liu2024kivi,hooper2024kvquant}, quantization--serving co-design~\cite{lin2024qserve}, salient-token identification~\cite{he2024zipcache}, low-rank plus sparse correction~\cite{kang2024gear}, and sliding-window adaptation~\cite{duanmu2024skvq}.
+5	We extend the design space to per-head non-uniform allocation over hardware-aligned bit-widths $\{2,4,8,16\}$.
+6	
+7	\paragraph{KV Cache Eviction.}
+8	Complementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\cite{zhang2023h2o}, per-head important tokens~\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\cite{liu2024scissorhands}, attention sinks~\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\cite{yang2024pyramidinfer}.
+9	Recent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.
+10	
+11	
+12	\paragraph{Mixed-Precision Rate-Distortion Allocation.}
+13	RateQuant~\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\{2,\ldots,6\}$ via the polymatroid structure.
+14	On hardware-aligned $\{2,4,8,16\}$, this structure breaks; we show that unconstrained solvers fail catastrophically due to 2-bit distortion compounding, a failure mode absent in RateQuant's setting.
+15	Related mixed-precision work operates at coarser granularity---layer-level via gradient-based sensitivity~\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\cite{li2025kvtuner}, memory-budget-level~\cite{lei2026arkv}---at the weight level~\cite{kim2024squeezellm}, or dynamically at inference time~\cite{zhang2025mixkvq}; our allocation is static and per-head.
+16	
+17	\paragraph{Attention Head Analysis.}
+18	Prior work studies head redundancy and pruning~\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.
+19	Our analysis asks a different question: which heads are sensitive to \emph{quantization}, and how heterogeneous that sensitivity is across architectures---a property that determines whether non-uniform allocation is beneficial (\S\ref{sec:heterogeneity}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6fa3aa43-f8ec-4a29-83c3-6cf8c5736217",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "b7fc7df7-fb31-4c31-9abc-60b1e5e842b0",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/related_work.tex",
+      "content": "\\section{Related Work}\\label{sec:related_work}\n\n\\paragraph{KV Cache Quantization.}\nUniform-precision methods quantize the KV cache at a single bit-width across all heads, using techniques such as asymmetric per-channel/per-token schemes~\\cite{liu2024kivi,hooper2024kvquant}, quantization--serving co-design~\\cite{lin2024qserve}, salient-token identification~\\cite{he2024zipcache}, low-rank plus sparse correction~\\cite{kang2024gear}, and sliding-window adaptation~\\cite{duanmu2024skvq}.\nWe extend the design space to per-head non-uniform allocation over hardware-aligned bit-widths $\\{2,4,8,16\\}$.\n\n\\paragraph{KV Cache Eviction.}\nComplementary to quantization, eviction methods reduce cache size by discarding tokens---retaining heavy-hitters~\\cite{zhang2023h2o}, per-head important tokens~\\cite{li2024snapkv,ge2024fastgen}, persistent-importance tokens~\\cite{liu2024scissorhands}, attention sinks~\\cite{xiao2024streamingllm}, or progressively fewer tokens in deeper layers~\\cite{yang2024pyramidinfer}.\nRecent per-head eviction methods allocate non-uniform budgets across heads based on retrieval-vs-reasoning importance~\\cite{fu2025headkv} or adaptive optimization extending SnapKV/PyramidKV~\\cite{feng2025adakv}, confirming that head-level heterogeneity is exploitable for eviction; our work shows it is equally exploitable for quantization.\n\n\n\\paragraph{Mixed-Precision Rate-Distortion Allocation.}\nRateQuant~\\cite{zuo2026ratequant} formulates per-head bit-width selection as an MCKP and proves greedy optimality for consecutive bit-widths $\\{2,\\ldots,6\\}$ via the polymatroid structure.\nOn hardware-aligned $\\{2,4,8,16\\}$, this structure breaks; we show that unconstrained solvers fail catastrophically due to 2-bit distortion compounding, a failure mode absent in RateQuant's setting.\nRelated mixed-precision work operates at coarser granularity---layer-level via gradient-based sensitivity~\\cite{li2025kvmix} or Pareto search over hardware-friendly precision pairs~\\cite{li2025kvtuner}, memory-budget-level~\\cite{lei2026arkv}---at the weight level~\\cite{kim2024squeezellm}, or dynamically at inference time~\\cite{zhang2025mixkvq}; our allocation is static and per-head.\n\n\\paragraph{Attention Head Analysis.}\nPrior work studies head redundancy and pruning~\\cite{voita2019analyzing,michel2019sixteen}, focusing on which heads can be removed entirely.\nOur analysis asks a different question: which heads are sensitive to \\emph{quantization}, and how heterogeneous that sensitivity is across architectures---a property that determines whether non-uniform allocation is beneficial (\\S\\ref{sec:heterogeneity}).",
+      "numLines": 19,
+      "startLine": 1,
+      "totalLines": 19
+    }
+  },
+  "sourceToolAssistantUUID": "6fa3aa43-f8ec-4a29-83c3-6cf8c5736217",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T04:19:20.620Z_
+
+<details><summary>↩ Tool result · `toolu_01AZbHUc8LSMQXwAnqJj83V7`</summary>
+
+```text
+1	\appendix
+2	
+3	\section{Aggressive Compression}
+4	\label{sec:aggressive}
+5	
+6	At $4\times$ compression, Llama and Mistral show minimal benefit from non-uniform allocation.
+7	At more aggressive ratios, the picture changes: at $5.3\times$ (average 3 bits), constrained MCKP achieves $45\times$ lower PPL than uniform on Llama (57.60 vs.\ 2643.77) and $44\times$ on Mistral (11.91 vs.\ 519.11), because the constraint protects sensitive heads from 2-bit assignment.
+8	At $8\times$, the budget is too constrained for any allocation to preserve quality (both methods degrade catastrophically).
+9	The intermediate regime ($5.3\times$) provides the largest relative benefit.
+10	
+11	\section{Profiling Resolution and Stability}
+12	\label{sec:profiling_resolution}
+13	
+14	We compare standard-resolution profiling (16 sequences $\times$ 512 tokens) against high-resolution profiling (64 sequences $\times$ 2048 tokens) on Qwen2.5-7B at $4\times$ compression.
+15	
+16	High-resolution profiling improves constrained MCKP from 11.23 to 10.91 PPL ($-$0.32 absolute).
+17	Relative to the bf16 baseline (9.81), this reduces the degradation from 1.42 to 1.10, a 22.5\% reduction.
+18	The improvement comes from finer-grained sensitivity estimates: standard profiling detects non-zero 2-bit distortion in 37 of 112 heads, while high-resolution profiling detects 100 of 112 (2.7$\times$ more).
+19	
+20	The additional signal changes 8 of 112 head assignments.
+21	High-resolution profiling protects shallow layers (L1--L3) at higher bit-widths while compressing mid-layers (L5--L11) more aggressively---a redistribution that standard profiling misses because its distortion estimates for these heads fall below the noise floor.
+22	
+23	\paragraph{Multi-seed stability.}
+24	The profiled allocation is stable across calibration subsets.
+25	Under hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \pm 0.06$ across 3 random calibration seeds (individual runs: 11.02, 10.90, 11.05), with std/mean below 0.6\%.
+26	The bit distribution is identical across all seeds ($\{$2-bit: 8, 4-bit: 100, 8-bit: 4$\}$), and 101 of 112 heads (90.2\%) receive the same assignment in all three runs.
+27	This stability confirms that the per-head sensitivity ranking is robust to calibration sampling noise.
+28	
+29	\paragraph{Numerical precision.}
+30	Float32 profiling (64 $\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\ 10.91, $\Delta = 0.02 < \sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.
+31	
+32	\paragraph{Per-layer optimality.}
+33	To validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).
+34	Of the 8 layers admitting multiple feasible allocations, MCKP matches the oracle exactly in 5; the remaining 3 show gaps of 0.018 (Layer~1), 0.014 (Layer~11), and 0.005 (Layer~4) PPL.
+35	All three gaps involve repositioning a 2-bit assignment among heads with near-identical sensitivity within the same layer bit budget.
+36	The negligible total gap ($<0.04$ PPL) confirms that the per-head additive distortion model closely approximates the true layer-level interaction.
+37	
+38	\section{KV Separation Ablation}
+39	\label{sec:kv_separation}
+40	
+41	We test whether treating K and V caches as independent items in the MCKP solver---allowing different bit-widths for K and V within the same head---improves over joint allocation where K and V share a bit-width.
+42	
+43	Joint allocation achieves 10.91 PPL; separated K/V allocation achieves 11.22 ($+$0.31 worse).
+44	The degradation stems from K-side over-compression: the separated solver doubles the maximum number of 2-bit K items to 16 (vs.\ 8 in the joint formulation), since K and V are counted independently against the cardinality constraint.
+45	Meanwhile, V-side distortion is near-zero for most heads, so the solver assigns all V items to 4-bit, concentrating compression entirely on K.
+46	
+47	Of the 112 heads, 21 show K$\neq$V asymmetry in the separated allocation, all with K receiving a lower bit-width than V.
+48	This systematic asymmetry suggests that K caches are inherently more compressible than V caches, consistent with the observation that key vectors primarily encode positional information while value vectors carry content.
+49	
+50	Joint allocation is sufficient under the current constraint formulation.
+51	Separated K/V allocation with per-side cardinality constraints---limiting 2-bit assignments independently for K and V---is a direction for future work.
+52	
+53	\section{Runtime Benchmark}
+54	\label{sec:runtime}
+55	
+56	\begin{table}[h]
+57	\centering
+58	\caption{PyTorch-level latency on Qwen2.5-7B (single NVIDIA RTX PRO 6000 (96\,GB), prompt\_len=256, gen\_len=128, mean of 10 runs). All conditions store KV in bf16 with simulated per-head quantize/dequantize calls; peak GPU memory is identical across rows.}
+59	\label{tab:runtime}
+60	\begin{tabular}{lccc}
+61	\toprule
+62	Condition & Prefill (ms) & Decode (ms/tok) & Throughput (tok/s) \\
+63	\midrule
+64	Baseline bf16       & 45.86 & 33.78 & 29.6 \\
+65	Uniform 4-bit       & 54.25 & 42.46 & 23.6 \\
+66	Constrained MCKP    & 57.03 & 46.09 & 21.8 \\
+67	\bottomrule
+68	\end{tabular}
+69	\end{table}
+70	
+71	Table~\ref{tab:runtime} reports end-to-end latency for three KV cache configurations.
+72	Uniform 4-bit quantization adds 25.7\% decode overhead relative to the bf16 baseline (42.46 vs.\ 33.78~ms/tok), reflecting per-head quantize/dequantize calls at every attention step.
+73	Constrained MCKP adds a further 8.5\% over uniform (46.09 vs.\ 42.46~ms/tok), because mixed-precision allocation dispatches different dequantization kernels for 2-bit, 4-bit, and 8-bit heads within the same layer.
+74	The MCKP solver itself runs in ${\sim}5$~ms and is invoked once at initialization, contributing negligibly to end-to-end latency.
+75	Both quantized conditions achieve the same $4\times$ KV cache compression (5.25~MB vs.\ 21~MB at bf16), so the latency difference between uniform and MCKP reflects only the mixed-precision dispatch overhead, not a memory trade-off.
+76	
+77	\paragraph{Caveat.}
+78	These measurements use PyTorch-level per-head \texttt{quantize}/\texttt{dequantize} calls and do \emph{not} represent optimized CUDA kernel performance.
+79	Production inference engines such as vLLM and TensorRT-LLM employ fused attention kernels that batch dequantization with the matrix multiply, amortizing the per-head dispatch cost that dominates the gap between uniform and MCKP in our simulation.
+80	The 8.5\% overhead reported here should therefore be treated as an upper bound on the mixed-precision penalty; real-world deployment with fused kernels would likely narrow or eliminate this gap.
+81	The limitation noted in Section~\ref{sec:conclusion}---that we report no real-kernel latency benchmarks---remains: the numbers above quantify simulation overhead, not production inference speedup.
+82	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aaec9516-7e76-4569-9db5-cd6a6e8af9d8",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "8505c655-dfb0-499a-a1a5-42951ad0a38f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex",
+      "content": "\\appendix\n\n\\section{Aggressive Compression}\n\\label{sec:aggressive}\n\nAt $4\\times$ compression, Llama and Mistral show minimal benefit from non-uniform allocation.\nAt more aggressive ratios, the picture changes: at $5.3\\times$ (average 3 bits), constrained MCKP achieves $45\\times$ lower PPL than uniform on Llama (57.60 vs.\\ 2643.77) and $44\\times$ on Mistral (11.91 vs.\\ 519.11), because the constraint protects sensitive heads from 2-bit assignment.\nAt $8\\times$, the budget is too constrained for any allocation to preserve quality (both methods degrade catastrophically).\nThe intermediate regime ($5.3\\times$) provides the largest relative benefit.\n\n\\section{Profiling Resolution and Stability}\n\\label{sec:profiling_resolution}\n\nWe compare standard-resolution profiling (16 sequences $\\times$ 512 tokens) against high-resolution profiling (64 sequences $\\times$ 2048 tokens) on Qwen2.5-7B at $4\\times$ compression.\n\nHigh-resolution profiling improves constrained MCKP from 11.23 to 10.91 PPL ($-$0.32 absolute).\nRelative to the bf16 baseline (9.81), this reduces the degradation from 1.42 to 1.10, a 22.5\\% reduction.\nThe improvement comes from finer-grained sensitivity estimates: standard profiling detects non-zero 2-bit distortion in 37 of 112 heads, while high-resolution profiling detects 100 of 112 (2.7$\\times$ more).\n\nThe additional signal changes 8 of 112 head assignments.\nHigh-resolution profiling protects shallow layers (L1--L3) at higher bit-widths while compressing mid-layers (L5--L11) more aggressively---a redistribution that standard profiling misses because its distortion estimates for these heads fall below the noise floor.\n\n\\paragraph{Multi-seed stability.}\nThe profiled allocation is stable across calibration subsets.\nUnder hires profiling on Qwen2.5-7B, constrained MCKP yields mean PPL $10.99 \\pm 0.06$ across 3 random calibration seeds (individual runs: 11.02, 10.90, 11.05), with std/mean below 0.6\\%.\nThe bit distribution is identical across all seeds ($\\{$2-bit: 8, 4-bit: 100, 8-bit: 4$\\}$), and 101 of 112 heads (90.2\\%) receive the same assignment in all three runs.\nThis stability confirms that the per-head sensitivity ranking is robust to calibration sampling noise.\n\n\\paragraph{Numerical precision.}\nFloat32 profiling (64 $\\times$ 2048 tokens) yields an identical constrained allocation and PPL within seed variance (10.89 vs.\\ 10.91, $\\Delta = 0.02 < \\sigma = 0.06$), confirming that bfloat16 precision is sufficient for the profiling step.\n\n\\paragraph{Per-layer optimality.}\nTo validate the additive distortion assumption underlying the MCKP formulation, we compare constrained MCKP against a per-layer brute-force oracle that exhaustively enumerates all $4^4 = 256$ bit-width combinations within each 4-head group on Qwen2.5-7B (hires profiling).\nOf the 8 layers admitting multiple feasible allocations, MCKP matches the oracle exactly in 5; the remaining 3 show gaps of 0.018 (Layer~1), 0.014 (Layer~11), and 0.005 (Layer~4) PPL.\nAll three gaps involve repositioning a 2-bit assignment among heads with near-identical sensitivity within the same layer bit budget.\nThe negligible total gap ($<0.04$ PPL) confirms that the per-head additive distortion model closely approximates the true layer-level interaction.\n\n\\section{KV Separation Ablation}\n\\label{sec:kv_separation}\n\nWe test whether treating K and V caches as independent items in the MCKP solver---allowing different bit-widths for K and V within the same head---improves over joint allocation where K and V share a bit-width.\n\nJoint allocation achieves 10.91 PPL; separated K/V allocation achieves 11.22 ($+$0.31 worse).\nThe degradation stems from K-side over-compression: the separated solver doubles the maximum number of 2-bit K items to 16 (vs.\\ 8 in the joint formulation), since K and V are counted independently against the cardinality constraint.\nMeanwhile, V-side distortion is near-zero for most heads, so the solver assigns all V items to 4-bit, concentrating compression entirely on K.\n\nOf the 112 heads, 21 show K$\\neq$V asymmetry in the separated allocation, all with K receiving a lower bit-width than V.\nThis systematic asymmetry suggests that K caches are inherently more compressible than V caches, consistent with the observation that key vectors primarily encode positional information while value vectors carry content.\n\nJoint allocation is sufficient under the current constraint formulation.\nSeparated K/V allocation with per-side cardinality constraints---limiting 2-bit assignments independently for K and V---is a direction for future work.\n\n\\section{Runtime Benchmark}\n\\label{sec:runtime}\n\n\\begin{table}[h]\n\\centering\n\\caption{PyTorch-level latency on Qwen2.5-7B (single NVIDIA RTX PRO 6000 (96\\,GB), prompt\\_len=256, gen\\_len=128, mean of 10 runs). All conditions store KV in bf16 with simulated per-head quantize/dequantize calls; peak GPU memory is identical across rows.}\n\\label{tab:runtime}\n\\begin{tabular}{lccc}\n\\toprule\nCondition & Prefill (ms) & Decode (ms/tok) & Throughput (tok/s) \\\\\n\\midrule\nBaseline bf16       & 45.86 & 33.78 & 29.6 \\\\\nUniform 4-bit       & 54.25 & 42.46 & 23.6 \\\\\nConstrained MCKP    & 57.03 & 46.09 & 21.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:runtime} reports end-to-end latency for three KV cache configurations.\nUniform 4-bit quantization adds 25.7\\% decode overhead relative to the bf16 baseline (42.46 vs.\\ 33.78~ms/tok), reflecting per-head quantize/dequantize calls at every attention step.\nConstrained MCKP adds a further 8.5\\% over uniform (46.09 vs.\\ 42.46~ms/tok), because mixed-precision allocation dispatches different dequantization kernels for 2-bit, 4-bit, and 8-bit heads within the same layer.\nThe MCKP solver itself runs in ${\\sim}5$~ms and is invoked once at initialization, contributing negligibly to end-to-end latency.\nBoth quantized conditions achieve the same $4\\times$ KV cache compression (5.25~MB vs.\\ 21~MB at bf16), so the latency difference between uniform and MCKP reflects only the mixed-precision dispatch overhead, not a memory trade-off.\n\n\\paragraph{Caveat.}\nThese measurements use PyTorch-level per-head \\texttt{quantize}/\\texttt{dequantize} calls and do \\emph{not} represent optimized CUDA kernel performance.\nProduction inference engines such as vLLM and TensorRT-LLM employ fused attention kernels that batch dequantization with the matrix multiply, amortizing the per-head dispatch cost that dominates the gap between uniform and MCKP in our simulation.\nThe 8.5\\% overhead reported here should therefore be treated as an upper bound on the mixed-precision penalty; real-world deployment with fused kernels would likely narrow or eliminate this gap.\nThe limitation noted in Section~\\ref{sec:conclusion}---that we report no real-kernel latency benchmarks---remains: the numbers above quantify simulation overhead, not production inference speedup.\n",
+      "numLines": 82,
+      "startLine": 1,
+      "totalLines": 82
+    }
+  },
+  "sourceToolAssistantUUID": "aaec9516-7e76-4569-9db5-cd6a6e8af9d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T04:19:20.454Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013kMRmaUqGfY2ozv2TKNhmb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7fc7df7-fb31-4c31-9abc-60b1e5e842b0",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iDWyA8tAeVx6ruLqor",
+  "type": "assistant",
+  "uuid": "f8518df4-c467-4ede-b45a-6801132c1e2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQGseBHQCpgmSyyYrQkDBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 11607,
+      "cache_creation_input_tokens": 3825,
+      "cache_read_input_tokens": 30164,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3825,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 11607,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 30164,
+          "cache_creation_input_tokens": 3825,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3825
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T04:19:20.459Z_
+
+<details><summary>↩ Tool result · `toolu_013kMRmaUqGfY2ozv2TKNhmb`</summary>
+
+```text
+1	\section{Conclusion}\label{sec:conclusion}
+2	
+3	We showed that per-head mixed-precision KV cache quantization over hardware-aligned bit-widths \{2, 4, 8, 16\} requires a cardinality constraint on 2-bit assignments to prevent non-additive distortion compounding through the residual stream.
+4	A single constraint---limiting simultaneously active 2-bit heads to $k \leq 8$ (7\% of heads)---reduces perplexity on Qwen2.5-7B from 15.45 (uniform 4-bit) to 11.23, a 27.3\% improvement at $4\times$ compression.
+5	Under the constraint, solver choice becomes irrelevant: greedy and MCKP produce equivalent allocations across all three architectures ($\Delta = 0.0000$), so a simple $O(H \log H)$ greedy algorithm suffices.
+6	The benefit of non-uniform allocation depends on both the concentration and \emph{shape} of head sensitivity heterogeneity.
+7	Qwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.
+8	Yi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.
+9	A joint diagnostic using concentration ($\gtrsim 0.50$) and $t_1/t_5$ ratio ($\lesssim 0.70$) correctly identifies spread, spike, and flat patterns across all five models studied, computable from the same profiling pass used for allocation.
+10	This provides a practical guideline: practitioners can determine whether non-uniform quantization is worthwhile for their architecture \emph{before} running the allocation solver.
+11	
+12	\paragraph{Limitations.}
+13	Our study has several limitations that temper the generality of the findings.
+14	First, we evaluate only five 7--9B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.
+15	Second, profiling relies on a single sensitivity metric (perplexity-based per-head distortion); alternative measures such as gradient-based or activation-norm diagnostics remain unexplored and could yield different allocation decisions.
+16	Third, we report perplexity and downstream accuracy but no real-kernel latency benchmarks, leaving the practical inference speedup from mixed-precision allocation unquantified.
+17	Fourth, we have not verified whether these findings transfer to larger scales (70B+), where head counts and attention patterns differ substantially.
+18	Finally, although we validate on four downstream tasks, profiling and primary evaluation use a single dataset (WikiText-2).
+19	
+20	\paragraph{Future Work.}
+21	Extending evaluation to 70B+ models would test whether the heterogeneity--benefit relationship holds at scale.
+22	Integration with production inference engines (vLLM, TensorRT-LLM) would enable real-kernel latency measurement, and investigating per-side K/V cardinality constraints (Appendix~\ref{sec:kv_separation}) or dynamic per-request allocation could further improve the framework.
+23	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8518df4-c467-4ede-b45a-6801132c1e2a",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "43de6782-5157-4a6e-820c-60496c15c590",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\\label{sec:conclusion}\n\nWe showed that per-head mixed-precision KV cache quantization over hardware-aligned bit-widths \\{2, 4, 8, 16\\} requires a cardinality constraint on 2-bit assignments to prevent non-additive distortion compounding through the residual stream.\nA single constraint---limiting simultaneously active 2-bit heads to $k \\leq 8$ (7\\% of heads)---reduces perplexity on Qwen2.5-7B from 15.45 (uniform 4-bit) to 11.23, a 27.3\\% improvement at $4\\times$ compression.\nUnder the constraint, solver choice becomes irrelevant: greedy and MCKP produce equivalent allocations across all three architectures ($\\Delta = 0.0000$), so a simple $O(H \\log H)$ greedy algorithm suffices.\nThe benefit of non-uniform allocation depends on both the concentration and \\emph{shape} of head sensitivity heterogeneity.\nQwen2.5-7B (concentration 0.61, $t_1/t_5{=}0.57$, spread pattern) shows large gains; Llama-3.1-8B (concentration 0.57, $t_1/t_5{=}0.85$, spike) is essentially indistinguishable from uniform (8.45 vs.\\ 8.47 PPL); Mistral-7B-v0.3, Yi-1.5-9B, and Gemma-2-9B show no benefit.\nYi-1.5-9B is a critical test case: despite the highest concentration tested ($0.71$, exceeding Qwen), its heterogeneity is a single-outlier spike ($t_1/t_5{=}0.90$) with no cross-bitwidth sensitivity gradient, so MCKP cannot redistribute budget.\nA joint diagnostic using concentration ($\\gtrsim 0.50$) and $t_1/t_5$ ratio ($\\lesssim 0.70$) correctly identifies spread, spike, and flat patterns across all five models studied, computable from the same profiling pass used for allocation.\nThis provides a practical guideline: practitioners can determine whether non-uniform quantization is worthwhile for their architecture \\emph{before} running the allocation solver.\n\n\\paragraph{Limitations.}\nOur study has several limitations that temper the generality of the findings.\nFirst, we evaluate only five 7--9B-scale models---too few to establish a statistically robust correlation between heterogeneity and quantization benefit; the observed trend is directional evidence, not a predictive law.\nSecond, profiling relies on a single sensitivity metric (perplexity-based per-head distortion); alternative measures such as gradient-based or activation-norm diagnostics remain unexplored and could yield different allocation decisions.\nThird, we report perplexity and downstream accuracy but no real-kernel latency benchmarks, leaving the practical inference speedup from mixed-precision allocation unquantified.\nFourth, we have not verified whether these findings transfer to larger scales (70B+), where head counts and attention patterns differ substantially.\nFinally, although we validate on four downstream tasks, profiling and primary evaluation use a single dataset (WikiText-2).\n\n\\paragraph{Future Work.}\nExtending evaluation to 70B+ models would test whether the heterogeneity--benefit relationship holds at scale.\nIntegration with production inference engines (vLLM, TensorRT-LLM) would enable real-kernel latency measurement, and investigating per-side K/V cardinality constraints (Appendix~\\ref{sec:kv_separation}) or dynamic per-request allocation could further improve the framework.\n",
+      "numLines": 23,
+      "startLine": 1,
+      "totalLines": 23
+    }
+  },
+  "sourceToolAssistantUUID": "f8518df4-c467-4ede-b45a-6801132c1e2a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T04:19:20.616Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AZbHUc8LSMQXwAnqJj83V7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43de6782-5157-4a6e-820c-60496c15c590",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iDWyA8tAeVx6ruLqor",
+  "type": "assistant",
+  "uuid": "aaec9516-7e76-4569-9db5-cd6a6e8af9d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQGseBHQCpgmSyyYrQkDBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 11607,
+      "cache_creation_input_tokens": 3825,
+      "cache_read_input_tokens": 30164,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3825,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 11607,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 30164,
+          "cache_creation_input_tokens": 3825,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3825
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1  **论文**: \"When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic\" **路径**: `projects/ratekv/docs/paper/mai…",
+  "leafUuid": "8505c655-dfb0-499a-a1a5-42951ad0a38f",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review KV cache quantization paper for EMNLP",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-15T04:19:24.351Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also verify references and look at the paper's PDF visually. Let me also fetch the official ARR review form and reviewer guidelines to have precise scoring rubrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8505c655-dfb0-499a-a1a5-42951ad0a38f",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iDu8v4PSHovfPzysG8",
+  "type": "assistant",
+  "uuid": "d6bfe454-488d-441b-9ae4-440107f68da0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyQnccE374NJB95fZjauy6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15865,
+      "cache_read_input_tokens": 33989,
+      "output_tokens": 310,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 310,
+          "cache_read_input_tokens": 33989,
+          "cache_creation_input_tokens": 15865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-15T04:19:25.785Z_
+
+论文通读完毕。现在并行执行引用验证和获取 ARR 官方 reviewer guidelines 细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6bfe454-488d-441b-9ae4-440107f68da0",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iDu8v4PSHovfPzysG8",
+  "type": "assistant",
+  "uuid": "879ce96a-6238-426c-94db-58632baef154",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyQnccE374NJB95fZjauy6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15865,
+      "cache_read_input_tokens": 33989,
+      "output_tokens": 310,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 310,
+          "cache_read_input_tokens": 33989,
+          "cache_creation_input_tokens": 15865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-15T04:19:26.754Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__verify_references · `toolu_0192fcE1ap1kYMCzfFyAnSFr`</summary>
+
+```json
+{
+  "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/docs/paper",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "879ce96a-6238-426c-94db-58632baef154",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iDu8v4PSHovfPzysG8",
+  "type": "assistant",
+  "uuid": "85157953-c3e6-4260-a6c7-644a64b11d46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyQnccE374NJB95fZjauy6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15865,
+      "cache_read_input_tokens": 33989,
+      "output_tokens": 310,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 310,
+          "cache_read_input_tokens": 33989,
+          "cache_creation_input_tokens": 15865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T04:19:28.234Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0133SrvQ3QmJUVywHdmnPLCv`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/reviewerguidelines",
+  "prompt": "Extract the complete reviewer guidelines: what reviewers should look for, how to evaluate papers, scoring criteria details, what constitutes a strong vs weak paper, any specific guidance on soundness, novelty, reproducibility, and overall assessment."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85157953-c3e6-4260-a6c7-644a64b11d46",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iDu8v4PSHovfPzysG8",
+  "type": "assistant",
+  "uuid": "cbbe96f8-3d64-4d97-81cf-248e14581d92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PyQnccE374NJB95fZjauy6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15865,
+      "cache_read_input_tokens": 33989,
+      "output_tokens": 310,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15865,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 310,
+          "cache_read_input_tokens": 33989,
+          "cache_creation_input_tokens": 15865,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15865
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T04:19:43.126Z_
+
+<details><summary>↩ Tool result · `toolu_0192fcE1ap1kYMCzfFyAnSFr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 22, \"total_citations\": 33, \"unique_cited_keys\": 22, \"orphan_bib\": 0, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 18, \"online_not_found\": 1, \"online_mismatch\": 3}, \"cross_check\": {\"orphan_bib\": [], \"missing_bib\": [], \"orphan_count\": 0, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"liu2024kivi\", \"type\": \"inproceedings\", \"title\": \"KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache\", \"authors\": \"Zirui Liu and Jiayi Yuan and Hongye Jin and Shaochen Zhong and Zhaozhuo Xu and V...\", \"year\": \"2024\", \"venue\": \"ICML 2024\"}, {\"key\": \"hooper2024kvquant\", \"type\": \"inproceedings\", \"title\": \"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\", \"authors\": \"Coleman Hooper and Sehoon Kim and Hiva Mohammadzadeh and Michael W. Mahoney and ...\", \"year\": \"2024\", \"venue\": \"NeurIPS 2024\"}, {\"key\": \"lin2024qserve\", \"type\": \"inproceedings\", \"title\": \"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\", \"authors\": \"Yujun Lin and Haotian Tang and Shang Yang and Zhekai Zhang and Guangxuan Xiao an...\", \"year\": \"2025\", \"venue\": \"MLSys 2025\"}, {\"key\": \"he2024zipcache\", \"type\": \"inproceedings\", \"title\": \"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\", \"authors\": \"Yefei He and Luoming Zhang and Weijia Wu and Jing Liu and Hong Zhou and Bohan Zh...\", \"year\": \"2024\", \"venue\": \"NeurIPS 2024\"}, {\"key\": \"kang2024gear\", \"type\": \"misc\", \"title\": \"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\", \"authors\": \"Hao Kang and Qingru Zhang and Souvik Kundu and Geonhwa Jeong and Zaoxing Liu and...\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"duanmu2024skvq\", \"type\": \"misc\", \"title\": \"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\", \"authors\": \"Haojie Duanmu and Zhihang Yuan and Xiuhong Li and Jiangfei Duan and Xingcheng Zh...\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"zhang2023h2o\", \"type\": \"inproceedings\", \"title\": \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\", \"authors\": \"\", \"year\": \"2023\", \"venue\": \"NeurIPS 2023\"}, {\"key\": \"li2024snapkv\", \"type\": \"inproceedings\", \"title\": \"SnapKV: LLM Knows What You are Looking for Before Generation\", \"authors\": \"Yuhong Li and Yingbing Huang and Bowen Yang and Bharat Venkitesh and Acyr Locate...\", \"year\": \"2024\", \"venue\": \"NeurIPS 2024\"}, {\"key\": \"ge2024fastgen\", \"type\": \"inproceedings\", \"title\": \"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\", \"authors\": \"Suyu Ge and Yunan Zhang and Liyuan Liu and Minjia Zhang and Jiawei Han and Jianf...\", \"year\": \"2024\", \"venue\": \"ICLR 2024\"}, {\"key\": \"xiao2024streamingllm\", \"type\": \"inproceedings\", \"title\": \"Efficient Streaming Language Models with Attention Sinks\", \"authors\": \"Guangxuan Xiao and Yuandong Tian and Beidi Chen and Song Han and Mike Lewis\", \"year\": \"2024\", \"venue\": \"ICLR 2024\"}, {\"key\": \"liu2024scissorhands\", \"type\": \"inproceedings\", \"title\": \"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\", \"authors\": \"Zichang Liu and Aditya Desai and Fangshuo Liao and Weitao Wang and Victor Xie an...\", \"year\": \"2023\", \"venue\": \"NeurIPS 2023\"}, {\"key\": \"yang2024pyramidinfer\", \"type\": \"inproceedings\", \"title\": \"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\", \"authors\": \"Dongjie Yang and Xiaodong Han and Yan Gao and Yao Hu and Shilin Zhang and Hai Zh...\", \"year\": \"2024\", \"venue\": \"Findings of ACL 2024\"}, {\"key\": \"zuo2026ratequant\", \"type\": \"misc\", \"title\": \"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\", \"authors\": \"Fei Zuo and Zikang Zhou and Hao Cong and Xiaoyan Xi and Ho Fai Leung\", \"year\": \"2026\", \"venue\": \"\"}, {\"key\": \"lei2026arkv\", \"type\": \"misc\", \"title\": \"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\", \"authors\": \"Jianlong Lei and Shashikant Ilager\", \"year\": \"2026\", \"venue\": \"\"}, {\"key\": \"li2025kvmix\", \"type\": \"misc\", \"title\": \"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\", \"authors\": \"Fei Li and Song Liu and Weiguo Wu and Shiqiang Nie and Jinyu Wang\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"zhang2025mixkvq\", \"type\": \"misc\", \"title\": \"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\", \"authors\": \"Tao Zhang and Ziqian Zeng and Hao Peng and Huiping Zhuang and Cen Chen\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"kim2024squeezellm\", \"type\": \"inproceedings\", \"title\": \"SqueezeLLM: Dense-and-Sparse Quantization\", \"authors\": \"Sehoon Kim and Coleman Hooper and Amir Gholami and Zhen Dong and Xiuyu Li and Sh...\", \"year\": \"2024\", \"venue\": \"ICML 2024\"}, {\"key\": \"fu2025headkv\", \"type\": \"inproceedings\", \"title\": \"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\", \"authors\": \"Yu Fu and Zefan Cai and Abdelrahman Sid-Lakhdar and Wayne Xin Zhao and Richard P...\", \"year\": \"2025\", \"venue\": \"ICLR 2025\"}, {\"key\": \"feng2025adakv\", \"type\": \"inproceedings\", \"title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation\", \"authors\": \"Yuan Feng and Junlin Lv and Yukun Cao and Xike Xie and S. Kevin Zhou\", \"year\": \"2025\", \"venue\": \"NeurIPS 2025\"}, {\"key\": \"li2025kvtuner\", \"type\": \"inproceedings\", \"title\": \"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Infere...\", \"authors\": \"Li, Zhongzhi and Shen, Yuhan and Tang, Yixuan and Luo, Jian and Dai, Yonggang\", \"year\": \"2025\", \"venue\": \"ICML 2025\"}, {\"key\": \"voita2019analyzing\", \"type\": \"inproceedings\", \"title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"authors\": \"Elena Voita and David Talbot and Fedor Moiseev and Rico Sennrich and Ivan Titov\", \"year\": \"2019\", \"venue\": \"ACL 2019\"}, {\"key\": \"michel2019sixteen\", \"type\": \"inproceedings\", \"title\": \"Are Sixteen Heads Really Better than One?\", \"authors\": \"Paul Michel and Omer Levy and Graham Neubig\", \"year\": \"2019\", \"venue\": \"NeurIPS 2019\"}], \"tex_citations\": [{\"key\": \"liu2024kivi\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"hooper2024kvquant\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"lin2024qserve\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"he2024zipcache\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"ge2024fastgen\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"lei2026arkv\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"zhang2023h2o\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"li2024snapkv\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"zuo2026ratequant\", \"file\": \"introduction.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"liu2024kivi\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"hooper2024kvquant\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"lin2024qserve\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"he2024zipcache\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"kang2024gear\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"duanmu2024skvq\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"zhang2023h2o\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"li2024snapkv\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"ge2024fastgen\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"liu2024scissorhands\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"xiao2024streamingllm\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"yang2024pyramidinfer\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"fu2025headkv\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"feng2025adakv\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"zuo2026ratequant\", \"file\": \"related_work.tex\", \"line\": 13, \"command\": \"cite\"}, {\"key\": \"li2025kvmix\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"li2025kvtuner\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"lei2026arkv\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"kim2024squeezellm\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"zhang2025mixkvq\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"voita2019analyzing\", \"file\": \"related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"michel2019sixteen\", \"file\": \"related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"zuo2026ratequant\", \"file\": \"method.tex\", \"line\": 17, \"command\": \"cite\"}, {\"key\": \"zuo2026ratequant\", \"file\": \"experiments.tex\", \"line\": 32, \"command\": \"cite\"}], \"online_verification\": [{\"key\": \"liu2024kivi\", \"title\": \"KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache\", \"status\": \"not_found\", \"confidence\": 0.335, \"matched_title\": \"Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.34 below threshold 0.82\"}, {\"key\": \"hooper2024kvquant\", \"title\": \"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=hooper vs api=gholami\"], \"note\": \"\"}, {\"key\": \"lin2024qserve\", \"title\": \"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"he2024zipcache\", \"title\": \"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kang2024gear\", \"title\": \"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"duanmu2024skvq\", \"title\": \"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhang2023h2o\", \"title\": \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2024snapkv\", \"title\": \"SnapKV: LLM Knows What You are Looking for Before Generation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SnapKV: LLM Knows What You are Looking for Before Generation\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=li vs api=cai\"], \"note\": \"\"}, {\"key\": \"ge2024fastgen\", \"title\": \"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"xiao2024streamingllm\", \"title\": \"Efficient Streaming Language Models with Attention Sinks\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Efficient Streaming Language Models with Attention Sinks\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=xiao vs api=leonardo\"], \"note\": \"\"}, {\"key\": \"liu2024scissorhands\", \"title\": \"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yang2024pyramidinfer\", \"title\": \"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zuo2026ratequant\", \"title\": \"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lei2026arkv\", \"title\": \"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2025kvmix\", \"title\": \"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhang2025mixkvq\", \"title\": \"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kim2024squeezellm\", \"title\": \"SqueezeLLM: Dense-and-Sparse Quantization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SqueezeLLM: Dense-and-Sparse Quantization\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"fu2025headkv\", \"title\": \"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"feng2025adakv\", \"title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation\", \"status\": \"verified\", \"confidence\": 0.825, \"matched_title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2025kvtuner\", \"title\": \"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"voita2019analyzing\", \"title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"michel2019sixteen\", \"title\": \"Are Sixteen Heads Really Better than One?\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Are Sixteen Heads Really Better than One?\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85157953-c3e6-4260-a6c7-644a64b11d46",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "5a5cec08-0ec1-4d52-8f3c-759c75de30eb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 22, \\\"total_citations\\\": 33, \\\"unique_cited_keys\\\": 22, \\\"orphan_bib\\\": 0, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 18, \\\"online_not_found\\\": 1, \\\"online_mismatch\\\": 3}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 0, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"liu2024kivi\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache\\\", \\\"authors\\\": \\\"Zirui Liu and Jiayi Yuan and Hongye Jin and Shaochen Zhong and Zhaozhuo Xu and V...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"ICML 2024\\\"}, {\\\"key\\\": \\\"hooper2024kvquant\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\\\", \\\"authors\\\": \\\"Coleman Hooper and Sehoon Kim and Hiva Mohammadzadeh and Michael W. Mahoney and ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"NeurIPS 2024\\\"}, {\\\"key\\\": \\\"lin2024qserve\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\\\", \\\"authors\\\": \\\"Yujun Lin and Haotian Tang and Shang Yang and Zhekai Zhang and Guangxuan Xiao an...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"MLSys 2025\\\"}, {\\\"key\\\": \\\"he2024zipcache\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\\\", \\\"authors\\\": \\\"Yefei He and Luoming Zhang and Weijia Wu and Jing Liu and Hong Zhou and Bohan Zh...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"NeurIPS 2024\\\"}, {\\\"key\\\": \\\"kang2024gear\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\\\", \\\"authors\\\": \\\"Hao Kang and Qingru Zhang and Souvik Kundu and Geonhwa Jeong and Zaoxing Liu and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"duanmu2024skvq\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\\\", \\\"authors\\\": \\\"Haojie Duanmu and Zhihang Yuan and Xiuhong Li and Jiangfei Duan and Xingcheng Zh...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhang2023h2o\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\\\", \\\"authors\\\": \\\"\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"NeurIPS 2023\\\"}, {\\\"key\\\": \\\"li2024snapkv\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SnapKV: LLM Knows What You are Looking for Before Generation\\\", \\\"authors\\\": \\\"Yuhong Li and Yingbing Huang and Bowen Yang and Bharat Venkitesh and Acyr Locate...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"NeurIPS 2024\\\"}, {\\\"key\\\": \\\"ge2024fastgen\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\\\", \\\"authors\\\": \\\"Suyu Ge and Yunan Zhang and Liyuan Liu and Minjia Zhang and Jiawei Han and Jianf...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"ICLR 2024\\\"}, {\\\"key\\\": \\\"xiao2024streamingllm\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Efficient Streaming Language Models with Attention Sinks\\\", \\\"authors\\\": \\\"Guangxuan Xiao and Yuandong Tian and Beidi Chen and Song Han and Mike Lewis\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"ICLR 2024\\\"}, {\\\"key\\\": \\\"liu2024scissorhands\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\\\", \\\"authors\\\": \\\"Zichang Liu and Aditya Desai and Fangshuo Liao and Weitao Wang and Victor Xie an...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"NeurIPS 2023\\\"}, {\\\"key\\\": \\\"yang2024pyramidinfer\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\\\", \\\"authors\\\": \\\"Dongjie Yang and Xiaodong Han and Yan Gao and Yao Hu and Shilin Zhang and Hai Zh...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Findings of ACL 2024\\\"}, {\\\"key\\\": \\\"zuo2026ratequant\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\\\", \\\"authors\\\": \\\"Fei Zuo and Zikang Zhou and Hao Cong and Xiaoyan Xi and Ho Fai Leung\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"lei2026arkv\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\\\", \\\"authors\\\": \\\"Jianlong Lei and Shashikant Ilager\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2025kvmix\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\\\", \\\"authors\\\": \\\"Fei Li and Song Liu and Weiguo Wu and Shiqiang Nie and Jinyu Wang\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhang2025mixkvq\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\\\", \\\"authors\\\": \\\"Tao Zhang and Ziqian Zeng and Hao Peng and Huiping Zhuang and Cen Chen\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"kim2024squeezellm\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SqueezeLLM: Dense-and-Sparse Quantization\\\", \\\"authors\\\": \\\"Sehoon Kim and Coleman Hooper and Amir Gholami and Zhen Dong and Xiuyu Li and Sh...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"ICML 2024\\\"}, {\\\"key\\\": \\\"fu2025headkv\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\\\", \\\"authors\\\": \\\"Yu Fu and Zefan Cai and Abdelrahman Sid-Lakhdar and Wayne Xin Zhao and Richard P...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"ICLR 2025\\\"}, {\\\"key\\\": \\\"feng2025adakv\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation\\\", \\\"authors\\\": \\\"Yuan Feng and Junlin Lv and Yukun Cao and Xike Xie and S. Kevin Zhou\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"NeurIPS 2025\\\"}, {\\\"key\\\": \\\"li2025kvtuner\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Infere...\\\", \\\"authors\\\": \\\"Li, Zhongzhi and Shen, Yuhan and Tang, Yixuan and Luo, Jian and Dai, Yonggang\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"ICML 2025\\\"}, {\\\"key\\\": \\\"voita2019analyzing\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\\\", \\\"authors\\\": \\\"Elena Voita and David Talbot and Fedor Moiseev and Rico Sennrich and Ivan Titov\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"ACL 2019\\\"}, {\\\"key\\\": \\\"michel2019sixteen\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Are Sixteen Heads Really Better than One?\\\", \\\"authors\\\": \\\"Paul Michel and Omer Levy and Graham Neubig\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"NeurIPS 2019\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"liu2024kivi\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"hooper2024kvquant\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lin2024qserve\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"he2024zipcache\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ge2024fastgen\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lei2026arkv\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zhang2023h2o\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2024snapkv\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zuo2026ratequant\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"liu2024kivi\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"hooper2024kvquant\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lin2024qserve\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"he2024zipcache\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"kang2024gear\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"duanmu2024skvq\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zhang2023h2o\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2024snapkv\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ge2024fastgen\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"liu2024scissorhands\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"xiao2024streamingllm\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"yang2024pyramidinfer\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"fu2025headkv\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"feng2025adakv\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zuo2026ratequant\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2025kvmix\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2025kvtuner\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lei2026arkv\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"kim2024squeezellm\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zhang2025mixkvq\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"voita2019analyzing\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"michel2019sixteen\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zuo2026ratequant\\\", \\\"file\\\": \\\"method.tex\\\", \\\"line\\\": 17, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zuo2026ratequant\\\", \\\"file\\\": \\\"experiments.tex\\\", \\\"line\\\": 32, \\\"command\\\": \\\"cite\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"liu2024kivi\\\", \\\"title\\\": \\\"KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.335, \\\"matched_title\\\": \\\"Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.34 below threshold 0.82\\\"}, {\\\"key\\\": \\\"hooper2024kvquant\\\", \\\"title\\\": \\\"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=hooper vs api=gholami\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lin2024qserve\\\", \\\"title\\\": \\\"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"he2024zipcache\\\", \\\"title\\\": \\\"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kang2024gear\\\", \\\"title\\\": \\\"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"duanmu2024skvq\\\", \\\"title\\\": \\\"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhang2023h2o\\\", \\\"title\\\": \\\"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2024snapkv\\\", \\\"title\\\": \\\"SnapKV: LLM Knows What You are Looking for Before Generation\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SnapKV: LLM Knows What You are Looking for Before Generation\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=li vs api=cai\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ge2024fastgen\\\", \\\"title\\\": \\\"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"xiao2024streamingllm\\\", \\\"title\\\": \\\"Efficient Streaming Language Models with Attention Sinks\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Efficient Streaming Language Models with Attention Sinks\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=xiao vs api=leonardo\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"liu2024scissorhands\\\", \\\"title\\\": \\\"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"yang2024pyramidinfer\\\", \\\"title\\\": \\\"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zuo2026ratequant\\\", \\\"title\\\": \\\"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lei2026arkv\\\", \\\"title\\\": \\\"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2025kvmix\\\", \\\"title\\\": \\\"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhang2025mixkvq\\\", \\\"title\\\": \\\"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"kim2024squeezellm\\\", \\\"title\\\": \\\"SqueezeLLM: Dense-and-Sparse Quantization\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SqueezeLLM: Dense-and-Sparse Quantization\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"fu2025headkv\\\", \\\"title\\\": \\\"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"feng2025adakv\\\", \\\"title\\\": \\\"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.825, \\\"matched_title\\\": \\\"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2025kvtuner\\\", \\\"title\\\": \\\"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"voita2019analyzing\\\", \\\"title\\\": \\\"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"michel2019sixteen\\\", \\\"title\\\": \\\"Are Sixteen Heads Really Better than One?\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Are Sixteen Heads Really Better than One?\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 22, \"total_citations\": 33, \"unique_cited_keys\": 22, \"orphan_bib\": 0, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 18, \"online_not_found\": 1, \"online_mismatch\": 3}, \"cross_check\": {\"orphan_bib\": [], \"missing_bib\": [], \"orphan_count\": 0, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"liu2024kivi\", \"type\": \"inproceedings\", \"title\": \"KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache\", \"authors\": \"Zirui Liu and Jiayi Yuan and Hongye Jin and Shaochen Zhong and Zhaozhuo Xu and V...\", \"year\": \"2024\", \"venue\": \"ICML 2024\"}, {\"key\": \"hooper2024kvquant\", \"type\": \"inproceedings\", \"title\": \"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\", \"authors\": \"Coleman Hooper and Sehoon Kim and Hiva Mohammadzadeh and Michael W. Mahoney and ...\", \"year\": \"2024\", \"venue\": \"NeurIPS 2024\"}, {\"key\": \"lin2024qserve\", \"type\": \"inproceedings\", \"title\": \"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\", \"authors\": \"Yujun Lin and Haotian Tang and Shang Yang and Zhekai Zhang and Guangxuan Xiao an...\", \"year\": \"2025\", \"venue\": \"MLSys 2025\"}, {\"key\": \"he2024zipcache\", \"type\": \"inproceedings\", \"title\": \"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\", \"authors\": \"Yefei He and Luoming Zhang and Weijia Wu and Jing Liu and Hong Zhou and Bohan Zh...\", \"year\": \"2024\", \"venue\": \"NeurIPS 2024\"}, {\"key\": \"kang2024gear\", \"type\": \"misc\", \"title\": \"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\", \"authors\": \"Hao Kang and Qingru Zhang and Souvik Kundu and Geonhwa Jeong and Zaoxing Liu and...\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"duanmu2024skvq\", \"type\": \"misc\", \"title\": \"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\", \"authors\": \"Haojie Duanmu and Zhihang Yuan and Xiuhong Li and Jiangfei Duan and Xingcheng Zh...\", \"year\": \"2024\", \"venue\": \"\"}, {\"key\": \"zhang2023h2o\", \"type\": \"inproceedings\", \"title\": \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\", \"authors\": \"\", \"year\": \"2023\", \"venue\": \"NeurIPS 2023\"}, {\"key\": \"li2024snapkv\", \"type\": \"inproceedings\", \"title\": \"SnapKV: LLM Knows What You are Looking for Before Generation\", \"authors\": \"Yuhong Li and Yingbing Huang and Bowen Yang and Bharat Venkitesh and Acyr Locate...\", \"year\": \"2024\", \"venue\": \"NeurIPS 2024\"}, {\"key\": \"ge2024fastgen\", \"type\": \"inproceedings\", \"title\": \"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\", \"authors\": \"Suyu Ge and Yunan Zhang and Liyuan Liu and Minjia Zhang and Jiawei Han and Jianf...\", \"year\": \"2024\", \"venue\": \"ICLR 2024\"}, {\"key\": \"xiao2024streamingllm\", \"type\": \"inproceedings\", \"title\": \"Efficient Streaming Language Models with Attention Sinks\", \"authors\": \"Guangxuan Xiao and Yuandong Tian and Beidi Chen and Song Han and Mike Lewis\", \"year\": \"2024\", \"venue\": \"ICLR 2024\"}, {\"key\": \"liu2024scissorhands\", \"type\": \"inproceedings\", \"title\": \"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\", \"authors\": \"Zichang Liu and Aditya Desai and Fangshuo Liao and Weitao Wang and Victor Xie an...\", \"year\": \"2023\", \"venue\": \"NeurIPS 2023\"}, {\"key\": \"yang2024pyramidinfer\", \"type\": \"inproceedings\", \"title\": \"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\", \"authors\": \"Dongjie Yang and Xiaodong Han and Yan Gao and Yao Hu and Shilin Zhang and Hai Zh...\", \"year\": \"2024\", \"venue\": \"Findings of ACL 2024\"}, {\"key\": \"zuo2026ratequant\", \"type\": \"misc\", \"title\": \"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\", \"authors\": \"Fei Zuo and Zikang Zhou and Hao Cong and Xiaoyan Xi and Ho Fai Leung\", \"year\": \"2026\", \"venue\": \"\"}, {\"key\": \"lei2026arkv\", \"type\": \"misc\", \"title\": \"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\", \"authors\": \"Jianlong Lei and Shashikant Ilager\", \"year\": \"2026\", \"venue\": \"\"}, {\"key\": \"li2025kvmix\", \"type\": \"misc\", \"title\": \"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\", \"authors\": \"Fei Li and Song Liu and Weiguo Wu and Shiqiang Nie and Jinyu Wang\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"zhang2025mixkvq\", \"type\": \"misc\", \"title\": \"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\", \"authors\": \"Tao Zhang and Ziqian Zeng and Hao Peng and Huiping Zhuang and Cen Chen\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"kim2024squeezellm\", \"type\": \"inproceedings\", \"title\": \"SqueezeLLM: Dense-and-Sparse Quantization\", \"authors\": \"Sehoon Kim and Coleman Hooper and Amir Gholami and Zhen Dong and Xiuyu Li and Sh...\", \"year\": \"2024\", \"venue\": \"ICML 2024\"}, {\"key\": \"fu2025headkv\", \"type\": \"inproceedings\", \"title\": \"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\", \"authors\": \"Yu Fu and Zefan Cai and Abdelrahman Sid-Lakhdar and Wayne Xin Zhao and Richard P...\", \"year\": \"2025\", \"venue\": \"ICLR 2025\"}, {\"key\": \"feng2025adakv\", \"type\": \"inproceedings\", \"title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation\", \"authors\": \"Yuan Feng and Junlin Lv and Yukun Cao and Xike Xie and S. Kevin Zhou\", \"year\": \"2025\", \"venue\": \"NeurIPS 2025\"}, {\"key\": \"li2025kvtuner\", \"type\": \"inproceedings\", \"title\": \"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Infere...\", \"authors\": \"Li, Zhongzhi and Shen, Yuhan and Tang, Yixuan and Luo, Jian and Dai, Yonggang\", \"year\": \"2025\", \"venue\": \"ICML 2025\"}, {\"key\": \"voita2019analyzing\", \"type\": \"inproceedings\", \"title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"authors\": \"Elena Voita and David Talbot and Fedor Moiseev and Rico Sennrich and Ivan Titov\", \"year\": \"2019\", \"venue\": \"ACL 2019\"}, {\"key\": \"michel2019sixteen\", \"type\": \"inproceedings\", \"title\": \"Are Sixteen Heads Really Better than One?\", \"authors\": \"Paul Michel and Omer Levy and Graham Neubig\", \"year\": \"2019\", \"venue\": \"NeurIPS 2019\"}], \"tex_citations\": [{\"key\": \"liu2024kivi\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"hooper2024kvquant\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"lin2024qserve\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"he2024zipcache\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"ge2024fastgen\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"lei2026arkv\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"zhang2023h2o\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"li2024snapkv\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"zuo2026ratequant\", \"file\": \"introduction.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"liu2024kivi\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"hooper2024kvquant\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"lin2024qserve\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"he2024zipcache\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"kang2024gear\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"duanmu2024skvq\", \"file\": \"related_work.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"zhang2023h2o\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"li2024snapkv\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"ge2024fastgen\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"liu2024scissorhands\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"xiao2024streamingllm\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"yang2024pyramidinfer\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"fu2025headkv\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"feng2025adakv\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"zuo2026ratequant\", \"file\": \"related_work.tex\", \"line\": 13, \"command\": \"cite\"}, {\"key\": \"li2025kvmix\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"li2025kvtuner\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"lei2026arkv\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"kim2024squeezellm\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"zhang2025mixkvq\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"voita2019analyzing\", \"file\": \"related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"michel2019sixteen\", \"file\": \"related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"zuo2026ratequant\", \"file\": \"method.tex\", \"line\": 17, \"command\": \"cite\"}, {\"key\": \"zuo2026ratequant\", \"file\": \"experiments.tex\", \"line\": 32, \"command\": \"cite\"}], \"online_verification\": [{\"key\": \"liu2024kivi\", \"title\": \"KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache\", \"status\": \"not_found\", \"confidence\": 0.335, \"matched_title\": \"Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.34 below threshold 0.82\"}, {\"key\": \"hooper2024kvquant\", \"title\": \"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=hooper vs api=gholami\"], \"note\": \"\"}, {\"key\": \"lin2024qserve\", \"title\": \"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"QServe: W4A8KV4 Quantization and System Co-design for Efficient LLM Serving\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"he2024zipcache\", \"title\": \"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kang2024gear\", \"title\": \"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"GEAR: An Efficient KV Cache Compression Recipe for Near-Lossless Generative Inference of LLM\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"duanmu2024skvq\", \"title\": \"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SKVQ: Sliding-window Key and Value Cache Quantization for Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhang2023h2o\", \"title\": \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2024snapkv\", \"title\": \"SnapKV: LLM Knows What You are Looking for Before Generation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SnapKV: LLM Knows What You are Looking for Before Generation\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=li vs api=cai\"], \"note\": \"\"}, {\"key\": \"ge2024fastgen\", \"title\": \"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Model Tells You What to Discard: Adaptive KV Cache Compression for LLMs\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"xiao2024streamingllm\", \"title\": \"Efficient Streaming Language Models with Attention Sinks\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Efficient Streaming Language Models with Attention Sinks\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=xiao vs api=leonardo\"], \"note\": \"\"}, {\"key\": \"liu2024scissorhands\", \"title\": \"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression at Test Time\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yang2024pyramidinfer\", \"title\": \"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"PyramidInfer: Pyramid KV Cache Compression for High-throughput LLM Inference\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zuo2026ratequant\", \"title\": \"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RateQuant: Optimal Mixed-Precision KV Cache Quantization via Rate-Distortion Theory\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lei2026arkv\", \"title\": \"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2025kvmix\", \"title\": \"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"KVmix: Gradient-Based Layer Importance-Aware Mixed-Precision Quantization for KV Cache\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhang2025mixkvq\", \"title\": \"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"MixKVQ: Query-Aware Mixed-Precision KV Cache Quantization for Long-Context Reasoning\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"kim2024squeezellm\", \"title\": \"SqueezeLLM: Dense-and-Sparse Quantization\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SqueezeLLM: Dense-and-Sparse Quantization\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"fu2025headkv\", \"title\": \"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"feng2025adakv\", \"title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation\", \"status\": \"verified\", \"confidence\": 0.825, \"matched_title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2025kvtuner\", \"title\": \"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"voita2019analyzing\", \"title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"michel2019sixteen\", \"title\": \"Are Sixteen Heads Really Better than One?\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Are Sixteen Heads Really Better than One?\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "85157953-c3e6-4260-a6c7-644a64b11d46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1  **论文**: \"When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic\" **路径**: `projects/ratekv/docs/paper/mai…",
+  "leafUuid": "5a5cec08-0ec1-4d52-8f3c-759c75de30eb",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review KV cache quantization paper for EMNLP",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T04:20:05.900Z_
+
+<details><summary>↩ Tool result · `toolu_0133SrvQ3QmJUVywHdmnPLCv`</summary>
+
+```text
+# ARR Reviewer Guidelines: Complete Summary
+
+## Core Reviewing Tasks
+
+Reviewers must complete four main tasks:
+
+1. **Allocate calendar time** for reviewing and discussion periods
+2. **Check assignments** for expertise fit and conflicts of interest
+3. **Write strong reviews** following structured guidelines
+4. **Update assessments** after author responses and peer discussion
+
+## What Reviewers Should Evaluate
+
+### Expertise & Conflicts
+Reviewers must assess whether they're qualified to review each paper. The guidelines note: "you will sometimes be asked to review papers that are a bit outside of your own subfield," which is acceptable if you understand core methodology. Disclose any knowledge of author identity and recuse yourself from papers conflicting with your own work.
+
+### Desk-Rejection Checklist
+Before deep review, flag papers with:
+- Inappropriate scope for ARR/the venue
+- Hallucinated references
+- Anonymity violations
+- Style guide or length violations
+- Missing Limitations sections
+- Inadequate responsible NLP checklist responses
+- Potential ethics issues
+
+## Strong Review Characteristics
+
+### Reading Strategy
+The guidelines stress two-pass reading:
+- **Skim-reading**: Identify research question, methodology scope, and claim appropriateness without examining results
+- **In-depth reading**: Evaluate technical soundness, proof validity, argumentation, and novelty
+
+### Specificity (Criterion I1)
+Reviews must be concrete. Rather than stating "X is not clear," specify "Y and Z are missing from the description of X." Weak feedback like "missing relevant references" should become "missing references A, B, and C."
+
+## Common Problematic Review Patterns (Heuristics H1-H17)
+
+The guidelines identify reviewing biases to avoid:
+
+| Issue | Why Problematic |
+|-------|-----------------|
+| "Results are unsurprising" | Findings can be intuitive yet novel empirically |
+| "Results contradict expectations" | Confirmation bias may reject valid contradictory evidence |
+| "No precedent in literature" | Novel work is harder to publish; conservatism is a risk |
+| "Doesn't exceed SOTA" | Scientific contributions aren't measured by performance alone |
+| "Negative results" | Publishing bias exists; null findings contribute knowledge |
+| "Methodology is too simple" | Simpler solutions are preferable and more deployable |
+| "Missing [preferred method]" | NLP values diverse contribution types |
+| "Only non-English work" | Monolingual research is important practically and theoretically |
+| "Paper has language errors" | Content quality matters more than journalistic polish |
+| "Could do extra experiment X" | Papers need sufficient evidence for their claims, not maximal completeness |
+
+Requesting comparisons to closed-source models is only justified if directly supporting the authors' claims.
+
+## Common NLP Paper Problems to Flag
+
+**Methodology Issues (M1-M5):**
+- LLM evaluation without validation of reliability
+- Insufficient reproducibility details
+- Undisclosed data quality problems
+- Unmotivated selection of models/benchmarks
+- Incomplete proofs or assumptions
+
+**Results Issues (R1-R5):**
+- Inappropriate statistics or p-hacking
+- Claims exceeding the evaluated sample scope
+- Speculation presented as conclusions
+- Overclaiming or misleading framing
+- Missing statistical significance assessment
+
+**General Issues (G1-G5):**
+- Unclear research questions
+- Reliance on unsound precedents
+- Unfair representation of related work
+- Vague key terms
+- Misleading citations
+
+## Scoring System (As of February 2025)
+
+Three distinct scores are required:
+
+**Soundness**: Technical correctness and methodological rigor. Scores must be justified by specific review content. Low soundness requires documented flaws; vague criticism indicates potential unconscious bias.
+
+**Excitement**: Personal interest orthogonal to soundness. Reflects subjective taste without requiring explicit justification.
+
+**Overall Assessment**: Composite recommendation considering soundness, excitement, novelty, and impact. Papers recommended for Findings/main conferences must be sound and reproducible, though you can recommend papers lacking your personal enthusiasm if they demonstrate significant impact.
+
+## Tone & Professionalism (Criterion I4)
+
+Reviews should be "professional and neutral, if not kind." The guidelines emphasize: "Write the review you would like to get yourself." Recognize that authors may be early-career researchers facing stress. Sarcasm and dismissiveness are counterproductive and harmful.
+
+## Author Response & Discussion
+
+Reviewers should:
+- Acknowledge author responses, even if unconvinced
+- Explain why responses didn't address concerns adequately
+- Update review scores when issues are resolved
+- Engage in reviewer discussions to catch mistakes
+- Beware of social psychology effects (conformity, authority bias) when reading other reviews
+
+## Reviewing Resubmissions
+
+**Repeat reviewers**: Must indicate they read revision notes and assess whether weaknesses were addressed. Avoid raising new issues unless revisions created contradictory findings.
+
+**Substitute reviewers**: Read the paper first, then check previous reviews to distinguish: (i) previously identified weaknesses not adequately addressed; (ii) newly identified critical soundness issues; (iii) other new suggestions.
+
+**Fresh reviewers**: Form independent opinions, then check revision notes against previous concerns to explain if prior weaknesses remained unaddressed.
+
+## Reproducibility Standards
+
+Reviewers aren't required to run code, but should assess whether sufficient details exist for reproduction:
+- Clear hyperparameter selection
+- Code/data/model availability status and timeline
+- Explicit motivation if resources unavailable
+- Implementation details enabling experiment replication
+
+## Ethics Flagging
+
+Flag papers for ethics review if they involve:
+- Questionable human data collection practices
+- Potential for abuse or harm
+- Disadvantages for minoritized groups
+- Data privacy concerns
+
+Refer to the Responsible NLP Checklist where authors have already addressed many ethics questions.
+
+## Generative AI in Reviewing
+
+Acceptable uses:
+- Paraphrasing for clarity or language support
+- Checking proof validity
+
+Prohibited uses:
+- Using AI to generate review content/first drafts
+- Uploading papers to non-private AI services (breaches confidentiality)
+- Uploading your review report to non-private tools
+- Relying on LLM-generated summaries instead of reading papers
+
+The guidelines note that "reviews that look like they were written by ChatGPT decrease faith in the peer review process."
+
+## Recognition & Accountability Policies (New May 2025)
+
+**Great reviewers** may be nominated for recognition with public conference listings, special badges, and potential free registrations.
+
+**Highly irresponsible reviewers** (extremely terse reviews, unprofessional tone, LLM-generated content) face desk-rejection of their own papers and ineligibility for future ARR cycles.
+
+Authors can report review issues, which ACs consider in meta-reviews. ACs can flag great/irresponsible reviews through new reporting forms.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cbbe96f8-3d64-4d97-81cf-248e14581d92",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "eaa04bdc-e1f3-4182-b9af-7033ee42dcad",
+  "toolUseResult": {
+    "bytes": 100603,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ARR Reviewer Guidelines: Complete Summary\n\n## Core Reviewing Tasks\n\nReviewers must complete four main tasks:\n\n1. **Allocate calendar time** for reviewing and discussion periods\n2. **Check assignments** for expertise fit and conflicts of interest\n3. **Write strong reviews** following structured guidelines\n4. **Update assessments** after author responses and peer discussion\n\n## What Reviewers Should Evaluate\n\n### Expertise & Conflicts\nReviewers must assess whether they're qualified to review each paper. The guidelines note: \"you will sometimes be asked to review papers that are a bit outside of your own subfield,\" which is acceptable if you understand core methodology. Disclose any knowledge of author identity and recuse yourself from papers conflicting with your own work.\n\n### Desk-Rejection Checklist\nBefore deep review, flag papers with:\n- Inappropriate scope for ARR/the venue\n- Hallucinated references\n- Anonymity violations\n- Style guide or length violations\n- Missing Limitations sections\n- Inadequate responsible NLP checklist responses\n- Potential ethics issues\n\n## Strong Review Characteristics\n\n### Reading Strategy\nThe guidelines stress two-pass reading:\n- **Skim-reading**: Identify research question, methodology scope, and claim appropriateness without examining results\n- **In-depth reading**: Evaluate technical soundness, proof validity, argumentation, and novelty\n\n### Specificity (Criterion I1)\nReviews must be concrete. Rather than stating \"X is not clear,\" specify \"Y and Z are missing from the description of X.\" Weak feedback like \"missing relevant references\" should become \"missing references A, B, and C.\"\n\n## Common Problematic Review Patterns (Heuristics H1-H17)\n\nThe guidelines identify reviewing biases to avoid:\n\n| Issue | Why Problematic |\n|-------|-----------------|\n| \"Results are unsurprising\" | Findings can be intuitive yet novel empirically |\n| \"Results contradict expectations\" | Confirmation bias may reject valid contradictory evidence |\n| \"No precedent in literature\" | Novel work is harder to publish; conservatism is a risk |\n| \"Doesn't exceed SOTA\" | Scientific contributions aren't measured by performance alone |\n| \"Negative results\" | Publishing bias exists; null findings contribute knowledge |\n| \"Methodology is too simple\" | Simpler solutions are preferable and more deployable |\n| \"Missing [preferred method]\" | NLP values diverse contribution types |\n| \"Only non-English work\" | Monolingual research is important practically and theoretically |\n| \"Paper has language errors\" | Content quality matters more than journalistic polish |\n| \"Could do extra experiment X\" | Papers need sufficient evidence for their claims, not maximal completeness |\n\nRequesting comparisons to closed-source models is only justified if directly supporting the authors' claims.\n\n## Common NLP Paper Problems to Flag\n\n**Methodology Issues (M1-M5):**\n- LLM evaluation without validation of reliability\n- Insufficient reproducibility details\n- Undisclosed data quality problems\n- Unmotivated selection of models/benchmarks\n- Incomplete proofs or assumptions\n\n**Results Issues (R1-R5):**\n- Inappropriate statistics or p-hacking\n- Claims exceeding the evaluated sample scope\n- Speculation presented as conclusions\n- Overclaiming or misleading framing\n- Missing statistical significance assessment\n\n**General Issues (G1-G5):**\n- Unclear research questions\n- Reliance on unsound precedents\n- Unfair representation of related work\n- Vague key terms\n- Misleading citations\n\n## Scoring System (As of February 2025)\n\nThree distinct scores are required:\n\n**Soundness**: Technical correctness and methodological rigor. Scores must be justified by specific review content. Low soundness requires documented flaws; vague criticism indicates potential unconscious bias.\n\n**Excitement**: Personal interest orthogonal to soundness. Reflects subjective taste without requiring explicit justification.\n\n**Overall Assessment**: Composite recommendation considering soundness, excitement, novelty, and impact. Papers recommended for Findings/main conferences must be sound and reproducible, though you can recommend papers lacking your personal enthusiasm if they demonstrate significant impact.\n\n## Tone & Professionalism (Criterion I4)\n\nReviews should be \"professional and neutral, if not kind.\" The guidelines emphasize: \"Write the review you would like to get yourself.\" Recognize that authors may be early-career researchers facing stress. Sarcasm and dismissiveness are counterproductive and harmful.\n\n## Author Response & Discussion\n\nReviewers should:\n- Acknowledge author responses, even if unconvinced\n- Explain why responses didn't address concerns adequately\n- Update review scores when issues are resolved\n- Engage in reviewer discussions to catch mistakes\n- Beware of social psychology effects (conformity, authority bias) when reading other reviews\n\n## Reviewing Resubmissions\n\n**Repeat reviewers**: Must indicate they read revision notes and assess whether weaknesses were addressed. Avoid raising new issues unless revisions created contradictory findings.\n\n**Substitute reviewers**: Read the paper first, then check previous reviews to distinguish: (i) previously identified weaknesses not adequately addressed; (ii) newly identified critical soundness issues; (iii) other new suggestions.\n\n**Fresh reviewers**: Form independent opinions, then check revision notes against previous concerns to explain if prior weaknesses remained unaddressed.\n\n## Reproducibility Standards\n\nReviewers aren't required to run code, but should assess whether sufficient details exist for reproduction:\n- Clear hyperparameter selection\n- Code/data/model availability status and timeline\n- Explicit motivation if resources unavailable\n- Implementation details enabling experiment replication\n\n## Ethics Flagging\n\nFlag papers for ethics review if they involve:\n- Questionable human data collection practices\n- Potential for abuse or harm\n- Disadvantages for minoritized groups\n- Data privacy concerns\n\nRefer to the Responsible NLP Checklist where authors have already addressed many ethics questions.\n\n## Generative AI in Reviewing\n\nAcceptable uses:\n- Paraphrasing for clarity or language support\n- Checking proof validity\n\nProhibited uses:\n- Using AI to generate review content/first drafts\n- Uploading papers to non-private AI services (breaches confidentiality)\n- Uploading your review report to non-private tools\n- Relying on LLM-generated summaries instead of reading papers\n\nThe guidelines note that \"reviews that look like they were written by ChatGPT decrease faith in the peer review process.\"\n\n## Recognition & Accountability Policies (New May 2025)\n\n**Great reviewers** may be nominated for recognition with public conference listings, special badges, and potential free registrations.\n\n**Highly irresponsible reviewers** (extremely terse reviews, unprofessional tone, LLM-generated content) face desk-rejection of their own papers and ineligibility for future ARR cycles.\n\nAuthors can report review issues, which ACs consider in meta-reviews. ACs can flag great/irresponsible reviews through new reporting forms.",
+    "durationMs": 22767,
+    "url": "https://aclrollingreview.org/reviewerguidelines"
+  },
+  "sourceToolAssistantUUID": "cbbe96f8-3d64-4d97-81cf-248e14581d92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-15T04:21:10.522Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have comprehensive understanding of:
+1. The paper content (all sections including appendix)
+2. ACL ARR review form (Soundness 1-5, Excitement 1-5, Overall 1-5)
+3. ARR reviewer guidelines (detailed heuristics, what to look for)
+4. Reference verification results
+
+Let me now compile my thorough review. Let me analyze the paper systematically:
+
+**Key observations:**
+
+### Strengths:
+1. Clear problem identification: 2-bit distortion compounding is a real and well-documented failure mode
+2. Simple, elegant fix: cardinality constraint is minimal and principled
+
+
+3. Honest negative results: 4 of 5 models show no benefit, which is commendable transparency
+4. Yi-1.5 as a critical test case for the diagnostic is well-chosen
+5. The spread/spike/flat taxonomy is intuitive and practically useful
+6. Good experimental design elements: cross-dataset validation, multi-seed stability, brute-force oracle
+
+### Weaknesses (Must-Fix):
+
+**N1: Diagnostic validated on only 5 models with exact class separation — overfitting concern**
+The diagnostic framework (concentration ≳ 0.50, t1/t5 ≲ 0.70) is derived from just 5 data points and achieves perfect separation, raising serious concerns about whether these thresholds will generalize to new models or if they're simply fitting the observed data.
+
+**N2: Missing unconstrained baselines for 4 of 5 models**
+The paper only demonstrates unconstrained greedy and MCKP results on Qwen, leaving a critical gap — we can't verify whether the compounding failure actually occurs across other models or if the cardinality constraint is addressing a problem unique to that single model.
+
+**N3: Downstream evaluation only on Qwen**
+The downstream task results are also limited to Qwen, which undermines the claim of a general diagnostic framework. The four models where non-uniform quantization doesn't help should have downstream evaluations too, to confirm whether the PPL improvements actually translate to real task performance.
+
+**N4: Runtime benchmark is simulation, not real inference**
+The runtime measurements use simulated PyTorch operations rather than actual CUDA kernels, which limits their practical relevance for deployment decisions. The 8.5% overhead compared to uniform quantization is notable, but the paper doesn't establish what level of PPL improvement would justify this cost.
+
+**N5: Profiling methodology**
+There's a fundamental tension between profiling heads in isolation while claiming that distortions compound through the residual stream. The single-head approach may not capture the actual error propagation, and while the oracle results show small gaps within 4-head groups, they don't address interactions across layers.
+
+**N6: Standard vs hires profiling discrepancy**
+The standard profiling identifies 37 sensitive heads out of 112, but high-resolution profiling finds 100 out of 112 — a 2.7× difference. Since the main results rely on standard profiling, this gap raises questions about whether the method is actually capturing the right heads.
+
+**W1: Statistical rigor with only 3 seeds**
+Three calibration seeds is too small a sample to properly estimate standard error or characterize stability. The 90.2% three-way allocation agreement is a useful metric, but the confidence intervals are essentially meaningless at this sample size.
+
+**W2: Cross-dataset claims on limited evidence**
+The cross-dataset stability claim uses only WikiText-2 and C4, both general-domain web text. Testing on domain-shifted data like code or math would be more convincing.
+
+**W3: Greedy-MCKP equivalence lacks formal proof**
+The claim that greedy equals MCKP under constraint is supported only by empirical results on 3 models. The intuition about constraint narrowing the feasible set is reasonable but not formally proven—a characterization of when this holds relative to k and H would be stronger.
+
+**W4: k selection sensitivity unclear**
+The paper selects k by sweeping on calibration data and shows 96%+ cross-dataset agreement, but doesn't examine how sensitive the optimal k is to calibration variation or whether nearby values like k=7 or k=9 produce similar perplexity.
+
+**W5: "Non-additive" needs formal definition**
+The paper relies heavily on "non-additive" and "compounding" language without formally defining these terms—whether the relationship is super-additive, sub-additive, or multiplicative remains unclear, even though the empirical observation that actual PPL is 3-4× higher than additive prediction is shown.
+
+A few other gaps: Table 5 omits individual task baselines for bf16, the polymatroid structure claim needs justification for why it breaks with non-consecutive bit-widths, and there are some reference inconsistencies with author names.
+
+I'm also wondering about several methodological choices: why weren't unconstrained experiments run across all five models, and how does the diagnostic handle borderline cases where concentration and t1/t5 ratios sit right on the thresholds? The oracle approach only explores within-layer combinations, but if compounding is fundamentally a cross-layer phenomenon, I'm not sure that fully validates the allocation strategy. I'd also like to know whether this has been tested with other quantization schemes like GPTQ or AWQ.
+
+Looking at the scoring, the core idea is sound and the problem identification is clear, but there are real gaps—the profiling contradiction with compounding, missing baselines, and an unvalidated diagnostic weaken things. The method only helps one of five models, which limits practical value. Reproducibility is decent on experimental details but lacks code and precision on profiling. That puts it around 2.5/5, borderline weak reject. Though reconsidering: the paper does identify a genuine problem elegantly, proposes a clean solution with the cardinality constraint, and reports findings honestly, which counts for something.
+
+Weighing the strengths against the significant evaluation gaps—particularly the missing baselines on four models that undermine the central claim, the diagnostic overfitting to just five points, and the downstream evaluation limited to Qwen—this feels like a borderline paper. The idea is solid but the execution has substantial holes. On the ARR scale, it's somewhere between "needs substantial revisions" and "accept to findings," probably closer to needing revisions given how much the missing baselines matter. I'm settling on my final scores: Soundness 3/5, Excitement 2.5/5, Overall 2.5 (borderline between needing revisions and Findings-level), with high confidence in this assessment. Now I'll draft the formal review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eaa04bdc-e1f3-4182-b9af-7033ee42dcad",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iHEVppcyeK78mk5x1C",
+  "type": "assistant",
+  "uuid": "0ed97cdb-68a5-43ca-9a52-7bd55c54c228",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdmWCh2WB7AdSiSZBFixtm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8685,
+      "cache_read_input_tokens": 49854,
+      "output_tokens": 10527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10527,
+          "cache_read_input_tokens": 49854,
+          "cache_creation_input_tokens": 8685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-15T04:22:58.490Z_
+
+论文全文及引用验证完毕。现在撰写完整审稿报告。
+
+---
+
+## Summary
+
+本文研究 per-head mixed-precision KV cache quantization 在 hardware-aligned bit-widths {2,4,8,16} 上的失败与修复。作者发现 unconstrained greedy/MCKP solver 在 Qwen2.5-7B 上产生灾难性退化（PPL 32–37 vs uniform 4-bit 15.45），原因是大量 2-bit head 的 distortion 通过 residual stream 产生 non-additive compounding。提出的修复是在 MCKP 中加入 2-bit cardinality constraint（$k \leq 8$），将 PPL 降至 11.23（−27.3%）。论文还发现 constrained greedy 与 constrained MCKP 在所有测试模型上产生等价分配，并提出基于 concentration + $t_1/t_5$ ratio 的 joint diagnostic 来判断 non-uniform allocation 是否有益。5 个模型中仅 Qwen 受益，Llama/Mistral/Yi-1.5/Gemma-2 均无改善。
+
+---
+
+## 官方维度打分（ACL ARR Review Form）
+
+| 维度 | 分数 | 理由摘要 |
+|------|------|----------|
+| Soundness | 3/5 | 核心 compounding 观察有实验支撑，但 profiling 方法与 compounding 论点存在逻辑张力；diagnostic 在 5 个数据点上完美拟合 2 个 threshold，有 overfitting 嫌疑；4/5 模型缺失 unconstrained baseline |
+| Excitement | 3/5 | 问题选取有实践意义，negative results 的诚实报告值得肯定，spread/spike/flat taxonomy 直觉上有用；但方法仅在 1/5 模型上有效，且 diagnostic 尚属 preliminary |
+| Reproducibility | 3.5/5 | 实验设置描述充分（profiling 参数、calibration 细节、seed 数量），但未提及代码发布计划 |
+| Overall | 2.5/5 | Borderline——core idea 有价值，negative results 有贡献，但评估存在系统性缺口（missing baselines, Qwen-only downstream, simulation-only runtime），diagnostic 的泛化性未被验证 |
+| Confidence | 4/5 | 熟悉 KV cache quantization 和 mixed-precision allocation 文献 |
+
+---
+
+## Must-Fix 问题（影响接收决定）
+
+**N1** [critical] Diagnostic framework 在 5 个数据点上完美拟合——overfitting 风险
+
+- 具体位置：Section 5.2 (analysis.tex L59–81), Table 6
+- 问题：Diagnostic 用 2 个 threshold（concentration ≳ 0.50, $t_1/t_5$ ≲ 0.70）在 5 个 architecture 上实现 100% 准确分类。用 2 个自由参数完美拟合 5 个样本是经典 overfitting 信号。论文自身承认 "thresholds are illustrative, derived from five models; they should be validated on a broader set before being treated as general rules"（analysis.tex L79），但 diagnostic 仍作为 Contribution 3 列入 introduction。
+- 为什么影响接收：如果 diagnostic 不可靠，Contribution 3（论文三大贡献之一）的价值大打折扣。5 个模型全部 7–9B 规模、decoder-only、类似训练范式——如果在 Phi-3、DeepSeek、Command-R 等不同设计范式的模型上测试失败，整个 framework 就不成立。
+- 建议修改方向：（a）至少再增加 2–3 个模型验证（特别是不同架构范式如 Phi-3-medium MHA、DeepSeek-V2 MLA），确认 threshold 的鲁棒性；或（b）将 diagnostic 定位为 exploratory finding 而非 validated framework，降低 claim 力度。
+
+**N2** [critical] 4/5 模型缺失 unconstrained baseline
+
+- 具体位置：Table 2 (experiments.tex L45–57), experiments.tex L79
+- 问题：Table 2 中 Llama/Mistral/Yi-1.5/Gemma-2 的 unconstrained greedy 和 MCKP 列为 "---"，论文解释 "those experiments were conducted only on Qwen, where the failure mode is most pronounced"。但 2-bit distortion compounding 是本文的核心发现和 cardinality constraint 的 motivation——如果这一 failure mode 只在 Qwen 上验证过，读者无法判断 compounding 是 Qwen 的 idiosyncratic behavior 还是 general phenomenon。
+- 为什么影响接收：论文的整个叙事链（compounding → constraint → diagnostic）建立在 compounding 是 general 问题的假设上。如果 Llama/Mistral/Yi-1.5/Gemma-2 的 unconstrained allocation 并不产生 catastrophic failure（因为它们的 head sensitivity 本就 uniform），那么 cardinality constraint 在这些模型上不起作用的原因可能根本不是 "no heterogeneity to exploit"，而是 "compounding doesn't happen"——这会改变论文的结论结构。
+- 建议修改方向：在所有 5 个模型上补跑 unconstrained greedy/MCKP，完成 Table 2。这是 straightforward 实验，不需要额外 GPU 时间。
+
+**N3** [critical] Profiling methodology 与 compounding 论点的逻辑矛盾
+
+- 具体位置：Section 3.2 (method.tex L22–29) vs Section 3.3 (method.tex L34–53)
+- 问题：Section 3.2 明确说明 profiling 方式是"independently quantizing each head to each $b$ while keeping all other heads at bf16"——这是 additive、independent 的假设。Section 3.3 则论证 2-bit distortions "compound non-additively through the residual stream"。这两者存在直接张力：如果 per-head distortions 是 non-additive 的，那么 single-head isolation profiling 得到的 $d_h(b)$ 就不能准确反映 multi-head simultaneous quantization 的 distortion。brute-force oracle（Appendix B）只在 within-layer 4-head groups 内枚举，不处理 cross-layer interactions，而 compounding 本身是 cross-layer 现象。
+- 为什么影响接收：这是方法论层面的 internal inconsistency。论文用 additive profiling 来 guide non-additive problem 的 allocation，成功靠的是 cardinality constraint 粗暴限制 2-bit 数量（绕开了 non-additivity），但 diagnostic 中的 $d_h(2)$ 值仍然来自 additive profiling——这些值在 multi-head quantization 下的准确性未被验证。
+- 建议修改方向：（a）增加实验验证 single-head profiled $d_h(2)$ 与 multi-head actual distortion 之间的 correlation（哪怕在 subset 上）；（b）在论文中明确讨论这一张力，解释为什么 additive profiling + cardinality constraint 的组合仍然有效（可以论证 constraint 将 problem 压回 additive regime）。
+
+**N4** [critical] Downstream evaluation 仅限 Qwen
+
+- 具体位置：Table 5 (experiments.tex L155–173), Section 5.5
+- 问题：0-shot downstream evaluation 仅在 Qwen2.5-7B 上执行（ARC-C, HellaSwag, PIQA, WinoGrande），其他 4 个模型无 downstream results。对于一个声称提供 cross-architecture diagnostic framework 的论文，downstream 验证仅覆盖 1/5 模型是不充分的。
+- 为什么影响接收：PPL 和 downstream accuracy 并不总是正相关，特别是在 PPL 差异很小的情况下（如 Llama 8.45 vs 8.47, 差 0.02 PPL）。在 Llama/Mistral/Yi-1.5 上，non-uniform 分配的 PPL 差异可能在 downstream tasks 上被放大或反转。不跑这些实验就声称 "non-uniform allocation provides no benefit" 是不完整的。
+- 建议修改方向：在所有 5 个模型上补充 downstream evaluation。至少需要在 Llama 和 Yi-1.5 上验证，因为这两个模型是 diagnostic 的关键 test cases。
+
+---
+
+## Should-Fix 问题（影响评分但不一票否决）
+
+**W1** [warning] Standard vs hires profiling 差异过大，但 headline results 用 standard
+
+- 具体位置：Appendix B (appendix.tex L14–21), method.tex L48
+- 问题：Standard profiling 检测到 37/112 heads 有 non-zero $d_h(2)$，hires 检测到 100/112（2.7× 差异）。论文 headline results（Table 2 的 Qwen 11.23）使用 standard profiling。如果 63 个 additional heads 实际有 measurable sensitivity，standard profiling 的 noise floor 是否过高？这是否意味着 standard profiling 下的 allocation decisions 对 75 个 "apparently zero-distortion" heads 做了错误的 0-distortion 假设？
+- 建议：要么将 hires profiling 作为 default recommendation，要么更深入讨论为什么 standard profiling 在 allocation 层面仍然足够（虽然 distortion 估计更粗）。
+
+**W2** [warning] 统计报告不够充分——3 seeds, 仅报告 std
+
+- 具体位置：experiments.tex L64, appendix.tex L25–27
+- 问题：Multi-seed stability 仅用 3 个 calibration seeds，报告 std（±0.06）而非 confidence interval。n=3 下 std 估计本身极不稳定。"90.2% three-way agreement" 是有用的度量但 3 seeds 不足以刻画 stability distribution。
+- 建议：增加到至少 5 seeds 并报告 95% CI。
+
+**W3** [warning] Cross-dataset stability 仅用两个 general-domain 数据集
+
+- 具体位置：Section 5.6 (experiments.tex L182–190)
+- 问题：WikiText-2 和 C4 都是 general-domain web text。在 domain-shifted 数据（code, math, multilingual）上的 stability 未被测试。"Cross-dataset stability" 的 claim 基于两个高度 correlated 的数据集。
+- 建议：至少加一个 domain-shifted dataset（如 The Stack 或 GSM8K）或降低 claim 力度。
+
+**W4** [warning] Solver equivalence 缺乏形式化证明
+
+- 具体位置：Section 3.5 (method.tex L101–118)
+- 问题："The constraint narrows the feasible set enough that greedy's locally optimal decisions are globally optimal" 是一个 intuition，不是 proof。论文仅提供 3 个模型的经验证据。何时 constraint 足以保证 greedy = MCKP（例如 $k/H$ 的条件）没有被形式化。这是 Contribution 2 的核心，理应有更强的理论支撑。
+- 建议：提供 sufficient conditions 的形式化刻画，或明确将 Contribution 2 定位为 empirical observation 而非 theoretical result。
+
+**W5** [warning] Runtime benchmark 缺乏实际推理价值
+
+- 具体位置：Appendix C (appendix.tex L53–82), Table 7
+- 问题：PyTorch-level simulation 不能支撑部署结论。Constrained MCKP 比 uniform 多 8.5% decode latency，论文自己也说 "should be treated as an upper bound"。但论文未讨论在什么 PPL 改善幅度下这个 overhead 是 worthwhile——Qwen 的 27.3% PPL improvement 看似值得，但如果考虑 end-to-end throughput，需要更细致的 cost-benefit 分析。
+- 建议：删除 runtime 部分或将其明确定位为 overhead upper bound analysis，并增加 cost-benefit 讨论。
+
+**W6** [warning] "Non-additive" 未被形式化定义
+
+- 具体位置：method.tex L34, abstract.tex L2
+- 问题：论文大量使用 "non-additive" 和 "compounding" 但未给出形式化定义。实际观测是 actual PPL ≈ 3–4× additive prediction，但这是 super-additive、multiplicative、还是其他形式？如果能给出 interaction 的 functional form（即使是 empirical model），会大幅增强论文的理论贡献。
+- 建议：尝试拟合一个 compounding model（例如 $\text{PPL} \approx \sum d_h + \alpha \cdot (\sum_{2\text{-bit}} d_h)^2$），或至少讨论 compounding 的 scaling behavior。
+
+---
+
+## 小问题（不影响接收）
+
+- Table 5 中 bf16 individual task scores 显示 "---" 但 Average 为 0.695，完整性要求补充个别任务的 bf16 baseline。
+- Introduction L6 提到 RateQuant 的 "Proposition 6" 但未解释 polymatroid structure 为什么在 non-consecutive bit-widths 上 break down，应加一句直觉解释。
+- Table 2 footnote 标记 standard profiling / hires profiling 的规则不够一致：Qwen 的 hires 结果在 footnote 中提及，但 Llama/Mistral/Yi-1.5 的 $\dagger$ 标记含义不同（它们是必须用 hires 才能检测到 heterogeneity）。
+- 引用核查：`liu2024kivi` 在 OpenAlex 中未找到匹配（可能尚未索引）；`hooper2024kvquant`、`li2024snapkv`、`xiao2024streamingllm` 的 first author 与 OpenAlex 记录不一致，建议核实。
+- Conclusion 中 "solver choice becomes irrelevant...across all three architectures ($\Delta = 0.0000$)" 但实际 Mistral 有 1/256 head 不同（method.tex L108），措辞应更精确。
+
+---
+
+## Questions for Authors
+
+1. 为什么没有在所有 5 个模型上运行 unconstrained baselines？这是直接的实验，能显著加强 compounding 的 generality claim。
+2. 对于 diagnostic 的 borderline cases（concentration ≈ 0.55, $t_1/t_5$ ≈ 0.65），framework 给出什么建议？当前的 binary threshold 是否过于 rigid？
+3. Brute-force oracle 仅在 within-layer 4-head groups 内枚举。鉴于 compounding 是 cross-layer 现象，within-layer oracle 能否真正验证 allocation 的 near-optimality？
+4. 方法是否依赖于特定的 quantization scheme（round-to-nearest），还是对 GPTQ/AWQ 等更复杂的 quantization 方法同样适用？
+5. Hires profiling 将 detected sensitive heads 从 37 提升到 100，PPL 从 11.23 改善到 10.91。是否尝试过更高分辨率（如 128 seq × 4096 tok）？是否存在 diminishing returns 的拐点？
+
+---
+
+## Missing References
+
+- **KIVI** (Liu et al., 2024) 是 asymmetric 2-bit KV cache quantization 的直接 baseline——论文讨论了 2-bit 的灾难性 failure 但未与 KIVI 的 2-bit 策略做实验对比（KIVI 使用 per-channel asymmetric quantization 来缓解 2-bit degradation，是否可以替代 cardinality constraint？）。
+- **MiKV** (Yang et al., 2025, ICML 2025) — mixed-precision KV cache quantization work that also explores per-head allocation。
+- 论文引用了 eviction 方法但未与 quantization+eviction 的联合策略对比（如 ZipCache + non-uniform quantization），这类 hybrid approach 可能是更强的 baseline。
+
+---
+
+## 主要优势
+
+1. **问题识别清晰有价值**：2-bit distortion compounding 在 hardware-aligned bit-widths 上的 catastrophic failure 是一个 genuine、previously-undocumented 的问题，对实践者有直接的 warning value。
+2. **解决方案简洁优雅**：单个 cardinality constraint 是 minimal intervention，compatible with any solver，实现简单。
+3. **Negative results 的诚实报告**：4/5 模型 non-uniform allocation 无效的结论比只报告 Qwen 的正面结果更有科学价值。Yi-1.5 的 counterexample（high concentration but spike pattern）是 insightful observation。
+4. **Spread/spike/flat taxonomy**：虽然 validation 不足，但 taxonomy 本身是直觉上正确的 conceptual contribution，为后续工作提供了有用的 vocabulary。
+5. **实验设计有亮点**：cross-dataset validation、brute-force oracle、multi-seed stability、KV separation ablation 显示出对 thorough evaluation 的追求。
+
+---
+
+## 总体评分
+
+**Overall**: 2.5/5 — Borderline (介于 "needs substantial revisions" 和 "Findings track" 之间)
+
+**一句话总结**: 核心发现（2-bit compounding + cardinality constraint）有实践价值，negative results 的诚实报告值得肯定，但评估存在系统性缺口——缺失 4/5 模型的 unconstrained baselines、仅 Qwen 有 downstream evaluation、profiling 方法与 compounding 论点的逻辑张力未被解决、diagnostic framework 在 5 个同质模型上 overfit。建议作为 Findings paper 接收的前提是补充 N2（unconstrained baselines）和 N4（downstream evaluation），并修正 N1（降低 diagnostic 的 claim 力度或增加验证模型）。
+
+**Confidence**: 4/5
+
+---
+
+现在将审稿报告提交给 Review Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ed97cdb-68a5-43ca-9a52-7bd55c54c228",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iHEVppcyeK78mk5x1C",
+  "type": "assistant",
+  "uuid": "af070670-82f7-4027-b253-e54c752bc830",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdmWCh2WB7AdSiSZBFixtm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8685,
+      "cache_read_input_tokens": 49854,
+      "output_tokens": 10527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10527,
+          "cache_read_input_tokens": 49854,
+          "cache_creation_input_tokens": 8685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T04:23:32.091Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_015RBsNoYpw2FvrdgyURk5uB`</summary>
+
+```json
+{
+  "text": "## Reviewer 1 — Round 1 审稿报告\n\n**论文**: \"When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic\"\n**目标 Venue**: EMNLP 2026 Main Conference (ARR May 2026)\n\n---\n\n## Summary\n\n本文研究 per-head mixed-precision KV cache quantization 在 hardware-aligned bit-widths {2,4,8,16} 上的失败与修复。作者发现 unconstrained greedy/MCKP solver 在 Qwen2.5-7B 上产生灾难性退化（PPL 32–37 vs uniform 4-bit 15.45），原因是大量 2-bit head 的 distortion 通过 residual stream 产生 non-additive compounding。提出的修复是在 MCKP 中加入 2-bit cardinality constraint（k≤8），将 PPL 降至 11.23（−27.3%）。论文还发现 constrained greedy 与 constrained MCKP 在所有测试模型上产生等价分配，并提出基于 concentration + t1/t5 ratio 的 joint diagnostic 来判断 non-uniform allocation 是否有益。5 个模型中仅 Qwen 受益，Llama/Mistral/Yi-1.5/Gemma-2 均无改善。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3/5 | 核心 compounding 观察有实验支撑，但 profiling 方法与 compounding 论点存在逻辑张力；diagnostic 在 5 个数据点上完美拟合 2 个 threshold，有 overfitting 嫌疑；4/5 模型缺失 unconstrained baseline |\n| Excitement | 3/5 | 问题选取有实践意义，negative results 诚实报告值得肯定，spread/spike/flat taxonomy 直觉上有用；但方法仅在 1/5 模型上有效，且 diagnostic 尚属 preliminary |\n| Reproducibility | 3.5/5 | 实验设置描述充分，但未提及代码发布计划 |\n| Overall | 2.5/5 | Borderline——core idea 有价值，negative results 有贡献，但评估存在系统性缺口 |\n| Confidence | 4/5 | 熟悉 KV cache quantization 和 mixed-precision allocation 文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] Diagnostic framework 在 5 个数据点上完美拟合——overfitting 风险\n- 具体位置：Section 5.2 (analysis.tex L59–81), Table 6\n- 问题：Diagnostic 用 2 个 threshold（concentration ≳ 0.50, t1/t5 ≲ 0.70）在 5 个 architecture 上实现 100% 准确分类。用 2 个自由参数完美拟合 5 个样本是经典 overfitting 信号。论文自身承认 \"should be validated on a broader set\"（analysis.tex L79），但仍作为 Contribution 3 列入 introduction。\n- 为什么影响接收：如果 diagnostic 不可靠，Contribution 3 的价值大打折扣。5 个模型全部 7–9B 规模、decoder-only——如果在 Phi-3、DeepSeek-V2 等不同设计范式模型上测试失败，整个 framework 就不成立。\n- 建议：增加 2–3 个模型验证 threshold 鲁棒性，或降低 claim 力度为 exploratory finding。\n\n**N2** [critical] 4/5 模型缺失 unconstrained baseline\n- 具体位置：Table 2 (experiments.tex L45–57), experiments.tex L79\n- 问题：Llama/Mistral/Yi-1.5/Gemma-2 的 unconstrained greedy 和 MCKP 列为 \"---\"，论文解释 \"those experiments were conducted only on Qwen\"。但 compounding 是本文核心发现——如果只在 1 个模型上验证，无法判断是 Qwen idiosyncratic behavior 还是 general phenomenon。\n- 为什么影响接收：论文叙事链（compounding → constraint → diagnostic）建立在 compounding 是 general 问题的假设上。如果其他模型 unconstrained 不产生 catastrophic failure，结论结构需要修改。\n- 建议：在所有 5 个模型上补跑 unconstrained greedy/MCKP。\n\n**N3** [critical] Profiling methodology 与 compounding 论点的逻辑矛盾\n- 具体位置：Section 3.2 (method.tex L22–29) vs Section 3.3 (method.tex L34–53)\n- 问题：Profiling 用 single-head isolation（keep others bf16），但论文论证 distortions 是 non-additive。如果 per-head distortions 是 non-additive 的，single-head profiling 的 d_h(b) 就不能准确反映 multi-head 实际 distortion。brute-force oracle 仅在 within-layer groups 内枚举，不处理 cross-layer interactions。\n- 为什么影响接收：方法论层面的 internal inconsistency。论文用 additive profiling 来 guide non-additive problem。\n- 建议：增加实验验证 single-head d_h(2) 与 multi-head actual distortion 的 correlation，或明确讨论 constraint 如何将 problem 压回 additive regime。\n\n**N4** [critical] Downstream evaluation 仅限 Qwen\n- 具体位置：Table 5 (experiments.tex L155–173)\n- 问题：0-shot downstream evaluation 仅在 Qwen 执行，其他 4 个模型无 downstream results。对于声称 cross-architecture diagnostic framework 的论文，downstream 验证仅覆盖 1/5 模型不充分。PPL 和 downstream accuracy 不总是正相关，特别是差异很小时（如 Llama 8.45 vs 8.47）。\n- 建议：至少在 Llama 和 Yi-1.5 上补充 downstream evaluation。\n\n---\n\n## Should-Fix 问题\n\n**W1** [warning] Standard vs hires profiling 差异过大（37→100 sensitive heads），但 headline results 用 standard\n- 具体位置：Appendix B (appendix.tex L14–21)\n\n**W2** [warning] 统计报告不够充分——3 seeds, 仅报告 std，未报告 CI\n- 具体位置：experiments.tex L64\n\n**W3** [warning] Cross-dataset stability 仅用两个 general-domain 数据集\n- 具体位置：Section 5.6\n\n**W4** [warning] Solver equivalence 缺乏形式化证明，仅有 3 个模型经验观察\n- 具体位置：Section 3.5\n\n**W5** [warning] Runtime benchmark 为 PyTorch simulation，无法支撑部署结论；8.5% overhead 的 cost-benefit 未讨论\n- 具体位置：Appendix C\n\n**W6** [warning] \"Non-additive\" 未被形式化定义（super-additive? multiplicative?）\n- 具体位置：method.tex L34, abstract.tex L2\n\n---\n\n## Questions for Authors\n\n1. 为什么没有在所有 5 个模型上运行 unconstrained baselines？\n2. Diagnostic 的 borderline cases（concentration ≈ 0.55, t1/t5 ≈ 0.65）如何处理？\n3. Within-layer brute-force oracle 能否验证 cross-layer compounding 的 near-optimality？\n4. 方法是否依赖 round-to-nearest quantization，对 GPTQ/AWQ 是否适用？\n5. 是否尝试过更高分辨率 profiling（128 seq × 4096 tok）？\n\n---\n\n## Missing References\n\n- KIVI (Liu et al., 2024) 的 per-channel asymmetric 2-bit 策略是否可替代 cardinality constraint？论文未做实验对比。\n- MiKV (Yang et al., 2025, ICML 2025) — mixed-precision KV cache quantization 的直接相关工作。\n- Quantization + eviction 联合策略作为 hybrid baseline 未被讨论。\n\n---\n\n## 主要优势\n\n1. 2-bit distortion compounding 是 genuine、previously-undocumented 的问题，有直接 warning value\n2. 单个 cardinality constraint 是 minimal、elegant 的修复\n3. 4/5 模型 negative results 的诚实报告比只报 Qwen 正面结果更有科学价值\n4. Spread/spike/flat taxonomy 提供了有用的 conceptual vocabulary\n5. Cross-dataset validation、brute-force oracle、KV separation ablation 等设计显示 thorough evaluation 追求\n\n---\n\n## 总体评分\n\n**Overall**: 2.5/5 — Borderline\n\n**一句话总结**: 核心发现有实践价值、negative results 诚实报告值得肯定，但评估存在系统性缺口——缺失 4/5 模型 unconstrained baselines、仅 Qwen 有 downstream evaluation、profiling 方法与 compounding 论点逻辑张力未解决、diagnostic 在 5 个同质模型上 overfit。建议补充 N2 和 N4 后作为 Findings paper 考虑。",
+  "reviewer_id": "1",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af070670-82f7-4027-b253-e54c752bc830",
+  "isSidechain": false,
+  "requestId": "req_011Cb3iHEVppcyeK78mk5x1C",
+  "type": "assistant",
+  "uuid": "36c8182f-9e31-4563-9e2b-13f6168ea66e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KdmWCh2WB7AdSiSZBFixtm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8685,
+      "cache_read_input_tokens": 49854,
+      "output_tokens": 10527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8685,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10527,
+          "cache_read_input_tokens": 49854,
+          "cache_creation_input_tokens": 8685,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8685
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1  **论文**: \"When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic\" **路径**: `projects/ratekv/docs/paper/mai…",
+  "leafUuid": "36c8182f-9e31-4563-9e2b-13f6168ea66e",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review KV cache quantization paper for EMNLP",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T04:23:35.685Z_
+
+<details><summary>↩ Tool result · `toolu_015RBsNoYpw2FvrdgyURk5uB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_ec66209ede0ea4e3bda924778c210d8e:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36c8182f-9e31-4563-9e2b-13f6168ea66e",
+  "isSidechain": false,
+  "promptId": "3f31c318-2a93-4d03-b98a-4c3de1b273a9",
+  "type": "user",
+  "uuid": "73dfce06-e2ec-4d95-b278-5c136a0ec69c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_ec66209ede0ea4e3bda924778c210d8e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_ec66209ede0ea4e3bda924778c210d8e:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "36c8182f-9e31-4563-9e2b-13f6168ea66e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review KV cache quantization paper for EMNLP",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59 · 2026-05-15T04:25:41.639Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T04:25:41.639Z",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "content": "[Round 1 审稿请求]:\n## Step 2 交叉分享 — 请逐条回应 Reviewer 2 的审稿意见\n\n以下是 Reviewer 2 的完整审稿意见。请逐条回应：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n\n---\n\n### Reviewer 2 完整审稿报告\n\n**Overall**: 2/5 (Resubmit next cycle)\n**Soundness**: 3/5 | **Excitement**: 2/5 | **Reproducibility**: 4/5 | **Confidence**: 4/5\n\n**一句话总结**: 2-bit compounding 分析有价值，但 cardinality constraint 是标准技术的直接应用，diagnostic framework 仅基于 5 个模型（1 个正例），4/5 模型无收益严重削弱 practical value。\n\n#### Must-Fix 问题\n\n**N1** [critical] Diagnostic Framework 泛化性严重不足——5 个模型不构成 \"framework\"\n- Section 5.2, Table 4: 阈值 concentration ≳0.50 和 t₁/t₅ ≲0.70 来自 exactly 5 个数据点。\"Spread\" 类别仅 1 个正样本（Qwen）。论文自承 \"Both thresholds are illustrative\"（S5.2 L79），但标题/abstract 的 framing 未反映此 caveat。\n- 建议：扩展到 10-15 个模型，或将 claim 降级为 \"empirical observation\"。\n\n**N2** [critical] 4/5 模型无收益——方法 practical value 存疑\n- Table 2: Qwen 27.3% improvement，但 Llama Δ<0.02，Mistral/Gemma 比 uniform 更差，Yi 完全一致。Qwen 的 uniform 4-bit degradation 异常高（+57.5%），其他模型仅 +2.9%~4.7%——Qwen 可能是架构 outlier 而非方法普遍有效的证据。\n- 建议：分析 Qwen 为何异常，测试更多模型寻找 \"Spread\" 架构。\n\n**N3** [critical] Novelty 不足——cardinality constraint 是标准组合优化技术\n- Eq.(2) 是标准 knapsack cardinality constraint。Sensitivity-based mixed-precision 在 weight quant 领域已有 HAWQ/HAQ 等先驱。Genuine insight 在 compounding 诊断，但解决方案本身缺乏 algorithmic novelty。\n- 建议：formalize compounding 为 super-additive distortion model，或提出 interaction-aware objective。\n\n#### Should-Fix 问题\n\n**W1** Related Work 遗漏严重：缺 HAWQ/HAWQ-V2/HAQ（mixed-precision bit allocation 先驱）；缺 PM-KVQ、Kitty、RotateKV、MiniKV（IJCAI/ACL/ICML 2025）、AQUA-KV（ICML 2025）等 2025 published KV cache 工作。\n\n**W2** 与 RateQuant 差异化不清晰：formulation 完全相同，主要区别是 bitwidth set 和 constraint。RateQuant 在 {2,4,8,16} 上是否也 fail？\n\n**W3** 标题/abstract framing 偏乐观：abstract 前半段突出 Qwen 的 27.3%，但实际 4/5 模型无收益。\n\n**W4** Solver equivalence 是 3 模型的 empirical observation，非 proven theorem——应提供 formal sufficient condition 或明确标注为 empirical。\n\n**W5** 缺少 per-head vs token-level granularity 的 tradeoff 讨论。\n\n#### Missing References\nHAWQ (ICCV'19), HAWQ-V2 (NeurIPS'20), HAQ (CVPR'19), PM-KVQ (arXiv'25), Kitty (arXiv'25), RotateKV (IJCAI'25), MiniKV (ACL Findings'25), AQUA-KV (ICML'25), \"Don't Waste Bits!\" (arXiv'26)\n\n#### 主要优势\n- Compounding 分析深入（Section 3.3, Figure 2）\n- 实验诚实——negative results 完整报告\n- 写作清晰，逻辑链连贯\n- Multi-seed/cross-dataset stability 分析增强可信度\n- 匿名和格式合规\n\n---\n\n请对以上每个 Must-Fix（N1-N3）和 Should-Fix（W1-W5）逐条给出 [AGREE] 或 [REBUT] 回应。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60 · 2026-05-15T04:25:41.639Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T04:25:41.639Z",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 61 · 2026-05-15T04:25:41.630Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73dfce06-e2ec-4d95-b278-5c136a0ec69c",
+  "isSidechain": false,
+  "promptId": "02d8019c-84b1-4649-8c01-a08e99e4dcb4",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "4d250899-fadb-45df-b392-fbb9ae041462",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-15T04:25:41.630Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d250899-fadb-45df-b392-fbb9ae041462",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "0a5aaaa7-c57c-4ed5-97eb-7f55a302c474",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "c07159f0-7408-4ad3-b898-bef75e4287eb",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+6 recorded events
+
+### User
+
+_source line 63 · 2026-05-15T04:25:41.705Z_
+
+[Round 1 审稿请求]:
+## Step 2 交叉分享 — 请逐条回应 Reviewer 2 的审稿意见
+
+以下是 Reviewer 2 的完整审稿意见。请逐条回应：
+- **[AGREE]** 同意并说明理由
+- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）
+
+---
+
+### Reviewer 2 完整审稿报告
+
+**Overall**: 2/5 (Resubmit next cycle)
+**Soundness**: 3/5 | **Excitement**: 2/5 | **Reproducibility**: 4/5 | **Confidence**: 4/5
+
+**一句话总结**: 2-bit compounding 分析有价值，但 cardinality constraint 是标准技术的直接应用，diagnostic framework 仅基于 5 个模型（1 个正例），4/5 模型无收益严重削弱 practical value。
+
+#### Must-Fix 问题
+
+**N1** [critical] Diagnostic Framework 泛化性严重不足——5 个模型不构成 "framework"
+- Section 5.2, Table 4: 阈值 concentration ≳0.50 和 t₁/t₅ ≲0.70 来自 exactly 5 个数据点。"Spread" 类别仅 1 个正样本（Qwen）。论文自承 "Both thresholds are illustrative"（S5.2 L79），但标题/abstract 的 framing 未反映此 caveat。
+- 建议：扩展到 10-15 个模型，或将 claim 降级为 "empirical observation"。
+
+**N2** [critical] 4/5 模型无收益——方法 practical value 存疑
+- Table 2: Qwen 27.3% improvement，但 Llama Δ<0.02，Mistral/Gemma 比 uniform 更差，Yi 完全一致。Qwen 的 uniform 4-bit degradation 异常高（+57.5%），其他模型仅 +2.9%~4.7%——Qwen 可能是架构 outlier 而非方法普遍有效的证据。
+- 建议：分析 Qwen 为何异常，测试更多模型寻找 "Spread" 架构。
+
+**N3** [critical] Novelty 不足——cardinality constraint 是标准组合优化技术
+- Eq.(2) 是标准 knapsack cardinality constraint。Sensitivity-based mixed-precision 在 weight quant 领域已有 HAWQ/HAQ 等先驱。Genuine insight 在 compounding 诊断，但解决方案本身缺乏 algorithmic novelty。
+- 建议：formalize compounding 为 super-additive distortion model，或提出 interaction-aware objective。
+
+#### Should-Fix 问题
+
+**W1** Related Work 遗漏严重：缺 HAWQ/HAWQ-V2/HAQ（mixed-precision bit allocation 先驱）；缺 PM-KVQ、Kitty、RotateKV、MiniKV（IJCAI/ACL/ICML 2025）、AQUA-KV（ICML 2025）等 2025 published KV cache 工作。
+
+**W2** 与 RateQuant 差异化不清晰：formulation 完全相同，主要区别是 bitwidth set 和 constraint。RateQuant 在 {2,4,8,16} 上是否也 fail？
+
+**W3** 标题/abstract framing 偏乐观：abstract 前半段突出 Qwen 的 27.3%，但实际 4/5 模型无收益。
+
+**W4** Solver equivalence 是 3 模型的 empirical observation，非 proven theorem——应提供 formal sufficient condition 或明确标注为 empirical。
+
+**W5** 缺少 per-head vs token-level granularity 的 tradeoff 讨论。
+
+#### Missing References
+HAWQ (ICCV'19), HAWQ-V2 (NeurIPS'20), HAQ (CVPR'19), PM-KVQ (arXiv'25), Kitty (arXiv'25), RotateKV (IJCAI'25), MiniKV (ACL Findings'25), AQUA-KV (ICML'25), "Don't Waste Bits!" (arXiv'26)
+
+#### 主要优势
+- Compounding 分析深入（Section 3.3, Figure 2）
+- 实验诚实——negative results 完整报告
+- 写作清晰，逻辑链连贯
+- Multi-seed/cross-dataset stability 分析增强可信度
+- 匿名和格式合规
+
+---
+
+请对以上每个 Must-Fix（N1-N3）和 Should-Fix（W1-W5）逐条给出 [AGREE] 或 [REBUT] 回应。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a5aaaa7-c57c-4ed5-97eb-7f55a302c474",
+  "isSidechain": false,
+  "promptId": "02d8019c-84b1-4649-8c01-a08e99e4dcb4",
+  "type": "user",
+  "uuid": "b1eaad54-3992-4925-8d58-c937771ef04e",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64 · 2026-05-15T04:25:41.705Z_
+
+```json
+{
+  "parentUuid": "b1eaad54-3992-4925-8d58-c937771ef04e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c57ee88c-de0e-47c0-a984-35b6da9c856b",
+  "timestamp": "2026-05-15T04:25:41.705Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-15T04:26:06.097Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Review Director is asking me (Reviewer 1) to respond to Reviewer 2's review point by point, using [AGREE] or [REBUT] format. Let me go through each issue carefully, drawing on my own reading of the paper.
+
+Let me analyze each point:
+
+**N1 - Diagnostic Framework generalization (5 models insufficient)**
+I raised essentially the same concern as my N1. I agree with R2 here.
+
+**N2 - 4/5 models no benefit, practical value questionable**
+R2 raises an important point that Qwen's uniform 4-bit degradation is unusually high (+57.5% vs +2.9-4.7% for others). 
+
+R2's observation about Qwen being a potential outlier is sharper than my own take. The practical value concern is valid, though I think the diagnostic contribution—understanding when a technique fails—matters too. But the framing around Qwen's anomalous behavior is compelling.
+
+**N3 - Novelty insufficient, cardinality constraint is standard**
+I need to think carefully here since I might disagree with R2. The cardinality constraint itself is standard in combinatorial optimization, and prior work like HAWQ and HAQ already explored mixed-precision quantization at the layer level. The real novelty claim seems to hinge on identifying when and why certain quantization strategies break down across different model architectures.
+
+R2 argues the solution lacks algorithmic novelty, which is fair—the constraint isn't new. But identifying the failure mode, demonstrating that a straightforward fix resolves it, and providing a diagnostic framework for understanding when this happens does constitute a contribution. The EMNLP guidelines explicitly caution against penalizing simple methodologies, so I'd push back partially on this critique.
+
+**W1 - Missing references (HAWQ/HAQ, recent KV cache works)**
+HAWQ and HAQ are clearly relevant predecessors in mixed-precision allocation, even if they operate at layer granularity for weights rather than tokens. The recent KV cache quantization work—PM-KVQ, Kitty, RotateKV and similar approaches—should definitely be cited. R2 is right that this is a gap.
+
+**W2 - Differentiation from RateQuant unclear**
+The paper does address this to some extent, but the distinction could be sharper.
+
+The key difference is that RateQuant proves greedy optimality for consecutive bit-widths like {2,3,4,5,6} using polymatroid structure, which breaks down when you have gaps like {2,4,8,16}. The unconstrained MCKP formulation that RateQuant uses fails on these non-consecutive configurations. So the differentiation exists but needs to be more explicit.
+
+**W3 - Title/abstract framing too optimistic**
+The abstract does present both sides—it opens with the failure case (32.45/36.92 degradation), then shows the fix (11.23, 27.3% improvement), then immediately notes that benefits depend on architecture with negative results included. But the title "When Does Non-Uniform KV Cache Quantization Help?" and the emphasis on the diagnostic framework do lean toward framing this as a positive story. R2's concern about optimistic framing has some merit.
+
+**W4 - Solver equivalence not formally proven**
+This is a valid issue I also flagged. The paper doesn't formally establish that the solver produces equivalent solutions across different formulations.
+
+**W5 - Missing per-head vs token-level granularity tradeoff**
+Token-level methods like ZipCache and FastGen operate at a different granularity than per-head allocation, but the paper doesn't discuss when one approach is preferable to the other. It's a legitimate gap, though perhaps not critical to the main contribution.
+
+Now I'll draft my responses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c57ee88c-de0e-47c0-a984-35b6da9c856b",
+  "isSidechain": false,
+  "requestId": "req_011Cb3ihzEH8aTuAthXgMeSt",
+  "type": "assistant",
+  "uuid": "4f1ea75a-ef21-4c8a-b5b8-e07c34509ea5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fP5nBB3uG2fuGMBNCdaUs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1479,
+      "cache_read_input_tokens": 69139,
+      "output_tokens": 4387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4387,
+          "cache_read_input_tokens": 69139,
+          "cache_creation_input_tokens": 1479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-15T04:26:55.539Z_
+
+## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应
+
+---
+
+### Must-Fix 问题
+
+**[AGREE] R2-N1: Diagnostic Framework 泛化性不足**
+
+同意。这与我的 N1 完全一致。5 个数据点拟合 2 个 threshold，且 "Spread" 类别仅有 Qwen 一个正样本——这实质上是 n=1 的 positive evidence。我在审稿中也指出 5 个模型均为 7–9B decoder-only，架构同质性高。R2 建议扩展到 10–15 个模型，我认为可以适当降低——增加 3–4 个不同范式模型（如 MHA、MLA、MoE-based attention）即可对 threshold 鲁棒性给出有意义的验证。但核心判断一致：当前 evidence 不足以支撑 "framework" 级别的 claim。
+
+**[AGREE with nuance] R2-N2: 4/5 模型无收益，practical value 存疑**
+
+R2 的核心观察——Qwen uniform 4-bit degradation 异常高（+57.5% vs 其他模型 +2.9%–4.7%）——是一个我在 Round 1 中未充分强调的锐利洞察。这确实提示 Qwen 可能是架构 outlier（例如 GQA 7:1 + 特定 Layer-0 attention pattern），而非方法普适有效的证据。
+
+但我对 "practical value 存疑" 的结论有一个补充：论文的价值不仅在于正面结果，还在于 negative results 本身。知道 "4/5 模型不需要 non-uniform allocation" 对实践者同样有用——它避免了在不会受益的架构上浪费 profiling + optimization effort。论文的 diagnostic（即使 preliminary）提供了一个 go/no-go 信号，这本身有 practical value，只是与 abstract 前半段暗示的 "improvement method" 定位不同。R2 在 W3 中也触及了这一 framing 问题。
+
+**[REBUT] R2-N3: Novelty 不足——cardinality constraint 是标准技术**
+
+R2 的事实判断正确：Eq.(2) 确实是标准 knapsack cardinality constraint，HAWQ/HAQ 确实是 mixed-precision allocation 的先驱。但我不同意将此定性为 "novelty 不足" 达到 Must-Fix critical 级别，理由如下：
+
+1. **ARR reviewer guidelines 明确警告 H6 heuristic**："Methodology is too simple" 不应成为 reject 理由。Guidelines 指出 simpler solutions are preferable and more deployable。论文的贡献不在 constraint 本身的算法新颖性，而在 *diagnosis*——识别出 compounding failure mode 并证明一个 minimal fix 就足够。
+
+2. **HAWQ/HAQ 的类比不完全成立**。HAWQ/HAQ 在 weight quantization 中做 layer-level mixed-precision，其 distortion model 是 Hessian-based 且假设 additivity。本文的核心发现恰恰是：在 KV cache 的 head-level 2-bit quantization 下 additivity breaks down，这一 failure mode 在 HAWQ/HAQ 的设定中不存在（weight quantization 的 per-layer distortion 在 INT4+ 下 additivity 近似成立）。因此，直接搬用 HAWQ 的 cardinality constraint 并非 obvious 的先验选择。
+
+3. **R2 自己也承认** "Genuine insight 在 compounding 诊断"。如果核心贡献是 diagnosis + negative results + practical guideline，那么 solution 的 simplicity 是 feature 而非 bug。
+
+我同意 R2 的建议方向（formalize compounding 为 super-additive model）会增强论文——这与我的 W6 一致——但我不认为 novelty 不足构成 critical must-fix。应为 Should-Fix 级别。
+
+---
+
+### Should-Fix 问题
+
+**[AGREE] R2-W1: Related Work 遗漏**
+
+HAWQ (ICCV'19)、HAWQ-V2 (NeurIPS'20)、HAQ (CVPR'19) 作为 mixed-precision bit allocation 的先驱确实应该被讨论，即使它们操作在 weight quantization / layer granularity。2025 年的 KV cache 新工作（PM-KVQ, RotateKV, MiniKV, AQUA-KV）也应覆盖。这是 related work 的明显遗漏。
+
+**[AGREE with nuance] R2-W2: 与 RateQuant 差异化**
+
+论文确实在 Section 3.1 (method.tex L17–19) 和 Introduction (introduction.tex L6–12) 讨论了 RateQuant，明确指出 polymatroid structure 在 non-consecutive bit-widths 上 break down。但 R2 提的具体问题——"RateQuant 在 {2,4,8,16} 上是否也 fail？"——论文没有直接回答。如果 RateQuant 的 greedy（本文 Table 1 的 "unconstrained greedy" 就是 RateQuant-style，见 experiments.tex L32）在 {2,4,8,16} 上产生 32.45 PPL，这个对比已经隐含在 Table 1 中，但应该更明确地 label 为 RateQuant baseline 以便读者理解差异。
+
+**[REBUT] R2-W3: 标题/abstract framing 偏乐观**
+
+我重新审视了 abstract (abstract.tex)。Abstract 的叙事结构是：
+- 第 1 句：unconstrained solvers fail catastrophically（32.45/36.92 vs 15.45）
+- 第 2–3 句：diagnosis（compounding）+ fix（cardinality constraint, 11.23）
+- 第 4 句：solver equivalence
+- 第 5 句起：**明确报告 negative results**——Llama indistinguishable from uniform, Mistral/Yi-1.5/Gemma-2 no benefit
+- 第 6–7 句：Yi-1.5 counterexample 详细解释
+- 最后一句：diagnostic framework
+
+Abstract 后半段对 negative results 的覆盖相当充分。标题 "When Does Non-Uniform KV Cache Quantization Help?" 本身就是一个 diagnostic question，暗示答案是 "not always"。我认为 framing 是 balanced 的，不构成 Should-Fix。R2 的担忧更适合作为小问题提出。
+
+**[AGREE] R2-W4: Solver equivalence 非形式化证明**
+
+与我的 W4 完全一致。论文应明确标注为 empirical observation 或提供 sufficient conditions 的形式化刻画。
+
+**[AGREE] R2-W5: 缺少 per-head vs token-level granularity tradeoff 讨论**
+
+论文在 related work (related_work.tex L5–9) 引用了 token-level 方法（FastGen, ARKV），但未讨论 per-head allocation 相对于 token-level mixed-precision 的优劣。这是一个 positioning gap——实践者需要知道何时选择 per-head vs token-level granularity。建议在 related work 或 conclusion 中增加简要讨论。
+
+---
+
+### 总结
+
+| R2 Issue | 我的判断 | 理由 |
+|----------|---------|------|
+| N1 Diagnostic 泛化性 | **AGREE** | 与我的 N1 一致，n=5 不足以支撑 framework claim |
+| N2 4/5 无收益 | **AGREE with nuance** | Qwen outlier 观察锐利，但 negative results 本身有 practical value |
+| N3 Novelty 不足 | **REBUT** | ARR H6 heuristic warns against penalizing simplicity；compounding diagnosis 是真正 novelty，constraint simplicity 是 feature |
+| W1 Missing refs | **AGREE** | HAWQ/HAQ + 2025 KV cache works 确实遗漏 |
+| W2 RateQuant 差异化 | **AGREE with nuance** | 差异化已存在但应更 explicit label |
+| W3 Framing 偏乐观 | **REBUT** | Abstract 后半段充分覆盖 negative results，标题本身是 diagnostic question |
+| W4 Solver equiv 非形式化 | **AGREE** | 与我的 W4 一致 |
+| W5 Per-head vs token-level | **AGREE** | Positioning gap 确实存在 |
+
+R2 的 Overall 2/5 偏严。论文的主要贡献——compounding diagnosis + negative results + practical go/no-go guideline——在 EMNLP 的 Findings track 标准下仍有价值。我维持 2.5/5 borderline 判断，前提是补充 unconstrained baselines (我的 N2) 和 downstream evaluation (我的 N4)。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f1ea75a-ef21-4c8a-b5b8-e07c34509ea5",
+  "isSidechain": false,
+  "requestId": "req_011Cb3ihzEH8aTuAthXgMeSt",
+  "type": "assistant",
+  "uuid": "833de9cb-24d4-4fdb-b316-cd252f6969c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fP5nBB3uG2fuGMBNCdaUs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1479,
+      "cache_read_input_tokens": 69139,
+      "output_tokens": 4387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4387,
+          "cache_read_input_tokens": 69139,
+          "cache_creation_input_tokens": 1479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T04:27:06.390Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_01GNm9P4A2w2rWHU9AJJbrFk`</summary>
+
+```json
+{
+  "text": "## Reviewer 1 — Step 2 交叉回应（对 Reviewer 2 审稿意见）\n\n### Must-Fix\n\n[AGREE] R2-N1: Diagnostic Framework 泛化性不足\n与我的 N1 一致。5 个数据点拟合 2 个 threshold，\"Spread\" 类别仅 Qwen 一个正样本（n=1 positive evidence）。增加 3–4 个不同范式模型（MHA/MLA/MoE attention）即可给出有意义验证。\n\n[AGREE with nuance] R2-N2: 4/5 模型无收益，practical value 存疑\nR2 观察到 Qwen uniform 4-bit degradation 异常高（+57.5% vs 其他 +2.9%–4.7%）是锐利洞察，我的 Round 1 未充分强调。但 negative results 本身（\"4/5 模型不需要 non-uniform\"）对实践者有 go/no-go 信号价值，论文的 practical value 不仅在正面结果。\n\n[REBUT] R2-N3: Novelty 不足——cardinality constraint 是标准技术\n事实判断正确（Eq.2 是标准 knapsack constraint），但不应升至 Must-Fix critical：(1) ARR H6 heuristic 明确警告 \"methodology is too simple\" 不应成为 reject 理由；(2) HAWQ/HAQ 的类比不完全——weight quant layer-level 的 additivity 在 INT4+ 下成立，KV cache head-level 2-bit 的 non-additivity 是新发现；(3) R2 自己承认 \"genuine insight 在 compounding 诊断\"——如果核心贡献是 diagnosis，solution simplicity 是 feature 非 bug。应降为 Should-Fix。\n\n### Should-Fix\n\n[AGREE] R2-W1: Related Work 遗漏 HAWQ/HAQ 和 2025 KV cache 工作\n[AGREE with nuance] R2-W2: 差异化已存在于 S3.1/Introduction（Table 1 unconstrained greedy = RateQuant-style），但应更 explicit label\n[REBUT] R2-W3: Abstract 后半段充分覆盖 4/5 negative results，标题 \"When Does...Help?\" 本身暗示 \"not always\"——framing 已 balanced\n[AGREE] R2-W4: 与我的 W4 一致\n[AGREE] R2-W5: Per-head vs token-level positioning gap 确实存在\n\n### 总体判断\n\nR2 的 Overall 2/5 偏严。我维持 2.5/5 borderline，认为 compounding diagnosis + negative results + practical guideline 在 Findings track 标准下仍有价值，前提是补充 unconstrained baselines（我的 N2）和 downstream evaluation（我的 N4）。",
+  "reviewer_id": "1",
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "833de9cb-24d4-4fdb-b316-cd252f6969c7",
+  "isSidechain": false,
+  "requestId": "req_011Cb3ihzEH8aTuAthXgMeSt",
+  "type": "assistant",
+  "uuid": "b2dc5583-921c-4329-a29b-122940ff0f5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fP5nBB3uG2fuGMBNCdaUs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1479,
+      "cache_read_input_tokens": 69139,
+      "output_tokens": 4387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1479,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4387,
+          "cache_read_input_tokens": 69139,
+          "cache_creation_input_tokens": 1479,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1479
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T04:27:10.004Z_
+
+<details><summary>↩ Tool result · `toolu_01GNm9P4A2w2rWHU9AJJbrFk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_ec66209ede0ea4e3bda924778c210d8e:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b2dc5583-921c-4329-a29b-122940ff0f5a",
+  "isSidechain": false,
+  "promptId": "02d8019c-84b1-4649-8c01-a08e99e4dcb4",
+  "type": "user",
+  "uuid": "2bad2e25-9199-4d26-bc4d-9d84d7b177ce",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_ec66209ede0ea4e3bda924778c210d8e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_ec66209ede0ea4e3bda924778c210d8e:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "b2dc5583-921c-4329-a29b-122940ff0f5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/review_reviewer_1_36f1d6e8",
+  "sessionId": "b1747c27-a83d-4087-89f1-023ca10cd084",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---

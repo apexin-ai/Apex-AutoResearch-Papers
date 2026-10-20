@@ -1,0 +1,7008 @@
+# Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: entrainment_gated_ft - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/e
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 97
+- **Recorded user turns:** 4
+- **Tool calls:** 27
+- **Original source:** `logs/chats/exported-trajectories/account-1/6354da54-15bc-465d-8729-e75681e03af8.jsonl`
+- **Structured JSON:** [`69f38454c9a54743ee8e.json`](../../sessions/69/69f38454c9a54743ee8e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-24T22:49:39.744Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-24T22:49:39.744Z",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "content": "系统通知：审稿审批已通过。请开始审稿。\n\n[论文提交]\n- 项目: entrainment_gated_ft\n- 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex\n- 目标 venue: EMNLP 2026\n- 截止日期: 2026-05-25\n- **引用验证**: ❌ 未启用\n\n请 `Read /home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md` 获取完整审稿流程，然后按流程开始审核。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-24T22:49:39.747Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-24T22:49:39.747Z",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+## Round 1
+
+87 recorded events
+
+### User
+
+_source line 3 · 2026-05-24T22:49:39.782Z_
+
+系统通知：审稿审批已通过。请开始审稿。
+
+[论文提交]
+- 项目: entrainment_gated_ft
+- 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex
+- 目标 venue: EMNLP 2026
+- 截止日期: 2026-05-25
+- **引用验证**: ❌ 未启用
+
+请 `Read /home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md` 获取完整审稿流程，然后按流程开始审核。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "c513fadd-8494-4b47-86be-46105a61079c",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-24T22:49:39.781Z_
+
+```json
+{
+  "parentUuid": "c513fadd-8494-4b47-86be-46105a61079c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a39e7892-480b-4bad-a5a6-0e3a1352a16c",
+  "timestamp": "2026-05-24T22:49:39.781Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-24T22:49:39.781Z_
+
+```json
+{
+  "parentUuid": "a39e7892-480b-4bad-a5a6-0e3a1352a16c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "77788f42-de52-4412-ad4c-6d18783f84bb",
+  "timestamp": "2026-05-24T22:49:39.781Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-24T22:49:39.781Z_
+
+```json
+{
+  "parentUuid": "77788f42-de52-4412-ad4c-6d18783f84bb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "7b7446be-c2be-472b-9d6c-a232e8487bbd",
+  "timestamp": "2026-05-24T22:49:39.781Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review entrainment_gated_ft paper for EMNLP 2026",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-24T22:49:42.436Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到论文提交，需要开始审稿流程。按照指示，先读取 review-director-session-start skill 文件。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b7446be-c2be-472b-9d6c-a232e8487bbd",
+  "isSidechain": false,
+  "requestId": "req_011CbNDAvQv7kyFxpHrutH78",
+  "type": "assistant",
+  "uuid": "86608083-371a-499b-a2eb-0608aa89108b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fHuyTgQczdsfosPY88TUN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15637,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15637,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15637,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15637
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-24T22:49:43.090Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QUTBiBAEhY2gU4AkZvoMCN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86608083-371a-499b-a2eb-0608aa89108b",
+  "isSidechain": false,
+  "requestId": "req_011CbNDAvQv7kyFxpHrutH78",
+  "type": "assistant",
+  "uuid": "266239cb-c2d1-4e23-8318-0c17df4ebc8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fHuyTgQczdsfosPY88TUN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15637,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15637,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15637,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15637
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T22:49:43.104Z_
+
+<details><summary>↩ Tool result · `toolu_01QUTBiBAEhY2gU4AkZvoMCN`</summary>
+
+````text
+1	---
+2	name: review-director-session-start
+3	description: Review Director session 启动初始化流程——圆桌多轮审稿协议。Review Director 角色 session 启动时自动使用。
+4	priority: 9
+5	scope: global
+6	tags:
+7	- workflow
+8	- review
+9	- session
+10	version: 3
+11	roles:
+12	- review_director
+13	---
+14	
+15	# Review Director Session 启动流程（圆桌会议模式）
+16	
+17	## 初始化
+18	
+19	1. `director_get_project_overview(project)` — 了解研究现状（实验状态、最新报告）
+20	2. 读取论文文件状态：检查 `projects/{project}/paper/` 或 `main.tex` 是否存在
+21	3. 检查是否有来自 Research Director 的论文提交（`[论文提交]` 消息）
+22	4. 向用户简要汇报：
+23	   - **投稿目标**：venue 和 deadline
+24	   - **论文状态**：当前草稿位置和版本
+25	   - **资料完整性**：提交的材料是否齐全
+26	   - **下一步**：即将开始的圆桌审稿流程
+27	
+28	## 评审流程（收到论文提交后执行）
+29	
+30	### Step 0 — 资料检查 + Venue 调研（必须先做，不可跳过）
+31	
+32	1. 检查提交资料完整性：论文文件是否存在、是否可读、补充材料是否齐全
+33	2. 确认目标投稿 venue（从提交消息中获取）
+34	3. 用 `web_search` 搜索该 venue 当前轮次的 CFP（Call for Papers），关键词示例：
+35	   - `"&lt;venue name> 2026 call for papers" site:aclweb.org`
+36	   - `"&lt;venue name> 2026 submission deadline"`
+37	   - `"&lt;venue name> 2026 author guidelines"`
+38	4. **验证 deadline 未过期**：今天日期与截止日期对比，若已过期立即通知用户，不继续
+39	5. 提取当前版本的格式要求：
+40	   - 页数限制（正文 / 附录 / 参考文献）
+41	   - 模板（ACL / IEEE / NeurIPS / ICML / ...）
+42	   - 匿名规则（double-blind / single-blind / open）
+43	   - 附录规则（是否允许、是否参与审稿）
+44	   - 引用格式（natbib / biblatex / 特定 .bst）
+45	6. 将以上信息作为上下文，随任务一起传递给 Reviewer
+46	
+47	⚠️ 禁止使用训练知识中的 venue 要求——格式标准每年都会更新，必须实时搜索确认。
+48	
+49	### Step 0.5 — 决定 Reviewer 编排
+50	
+51	根据 venue 类型和论文特点，决定：
+52	- 需要几个 Reviewer（1-5 人）
+53	- 每个 Reviewer 的审查侧重
+54	
+55	参考：
+56	- **顶会长文**（NeurIPS/ICML/ACL）：3 人（方法/实验 + novelty/related work + 格式/ethics）
+57	- **一般会议**（EMNLP/NAACL）：2 人（方法严谨性 + 新颖性/完整性）
+58	- **Workshop / 短文**：1 人（全面审查）
+59	
+60	向 Group C（即项目配置中的 `feishu.review_chat_id` 审稿群）汇报编排决定。
+61	
+62	### Step 0.6 — 外部审稿线（与 Step 1 并行）
+63	
+64	检查项目配置中 `external_review.paperreview_ai.enabled` 是否为 `true`：
+65	- 如果启用：调用 `request_external_review(project, paper_pdf_path, venue)` 向用户群发送协助提交卡片
+66	- 这一步与 Step 1（内部 Reviewer 分配）**并行执行**，不阻塞内部审稿流程
+67	- 外部结果到达后（用户在群里粘贴），纳入 Step 4 最终报告
+68	- 如果到 Step 4 时外部结果仍未返回，调用 `get_external_review_status(project)` 确认状态，在报告中标注
+69	
+70	### Step 0.7 — 视觉审查派发（与 Step 1 并行）
+71	
+72	派发独立视觉审查 Agent，与 Reviewer 审稿并行执行：
+73	
+74	```
+75	dispatch_visual_check(project="{project}", review_chat_id="{review_chat_id}")
+76	```
+77	
+78	- 视觉审查 Agent 自动渲染论文 PDF 并逐页检查排版质量（Figure 1 位置、布局节奏、图表质量、空白分布等）
+79	- **不参与评分和交叉讨论**，结果仅作为参考信息
+80	- 启动和完成通知自动发送到 Group C
+81	- 结果在 Step 4 通过 `get_visual_check_status(project)` 读取并拼入报告
+82	- **fire-and-forget**：调用立即返回，本步骤永不等待视觉审查完成
+83	
+84	### Step 1 — Round N：独立审稿
+85	
+86	携带 Step 0 搜到的 venue 要求，启动所有 Reviewer：
+87	
+88	```
+89	director_post_to_reviewer(reviewer_id="1", round_number=N, text="你负责 {focus}。...")
+90	director_post_to_reviewer(reviewer_id="2", round_number=N, text="你负责 {focus}。...")
+91	...（按需）
+92	```
+93	
+94	消息中必须包含：
+95	- venue 名称和截止日期
+96	- 页数限制和模板名称
+97	- 匿名规则
+98	- 论文文件路径
+99	- **该 Reviewer 的审查侧重**（在消息中明确指定）
+100	
+101	收集所有 Reviewer 的审稿结果。
+102	
+103	### Step 2 — 交叉分享（原文转发 + 逐条回应）
+104	
+105	将每位 Reviewer 的**完整审稿原文**转发给其他 Reviewer，要求逐条回应：
+106	
+107	```
+108	director_post_to_reviewer(reviewer_id="2", round_number=N, text="""
+109	以下是 Reviewer 1 的完整审稿意见：
+110	
+111	{Reviewer 1 的原文}
+112	
+113	请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。
+114	""")
+115	```
+116	
+117	对每位 Reviewer 重复此步骤（每人看到其他所有 Reviewer 的原文）。
+118	
+119	收集所有交叉回应。
+120	
+121	### Step 3 — 收敛判断
+122	
+123	分析所有 Reviewer 的意见和交叉回应：
+124	
+125	- **关键问题已达成共识**（`[AGREE]` 占多数，无未解决的 `[REBUT]` 矛盾）→ 进入 Step 4
+126	- **存在重大分歧**（关键 issue 上有 `[REBUT]` 且双方各有道理）→ 回到 Step 1 开始下一轮，附带聚焦问题
+127	- **最多 3 轮**：如果第 3 轮仍有分歧，在报告中如实记录各方观点
+128	
+129	### Step 4 — 汇总报告 & 投递
+130	
+131	合并所有轮次的发现，形成统一审稿报告：
+132	
+133	1. 报告结构：
+134	   - **Summary**：论文概述（2-3 句）
+135	   - **Strengths**：优点（逐条列出）
+136	   - **Weaknesses**：缺点（逐条列出，这是重点，必须严格）
+137	   - **Reviewer Consensus**：所有 Reviewer 达成共识的关键问题（标注 `[AGREE]`）
+138	   - **Reviewer Divergence**：分歧点及各方理由（标注 `[REBUT]`，如有）
+139	   - **Questions**：需要作者澄清的问题
+140	   - **Missing References**：遗漏的重要相关工作
+141	   - **External Review (Stanford Agentic Reviewer)**：如有外部审稿结果，单独列出其 7 维评分、关键发现、以及与内部审稿的差异；如未返回则标注状态
+142	   - **Visual Layout Check**（非评分项，不阻塞报告）：调用 `get_visual_check_status(project)` 读一次状态——
+143	     - `done` → 直接拼入 findings
+144	     - `running` → 写"仍在进行中，本报告不等待，完成后会自动补发到 Group C"
+145	     - `timeout` / `error` → 写失败原因 + 提示用户可重新触发
+146	     - `not_started` → 写未派发
+147	     不要为视觉审查推迟报告投递。视觉 Agent 完成后会自己把结果发到 Group C，与本报告解耦。可直接调用 `format_visual_findings_for_report(project)` 拿到现成的 markdown section
+148	   - **Overall Assessment**：总评 + 评分（strong reject / weak reject / borderline / weak accept / strong accept）+ 置信度
+149	   - **Detailed Comments**：逐节详细意见
+150	2. **同步 Issue Tracker**（投递前必做）：
+151	   - 用 `read_local_file("projects/{project}/artifacts/review_issues.yaml")` 读当前 tracker（不存在视为空）
+152	   - 对本轮所有 Weakness/Must-Fix/Should-Fix:
+153	     - 与已有 issue 匹配（同 category + 相似 summary）→ 在 `mentions` 追加本轮记录,更新 `last_seen_round`
+154	     - 新问题 → 创建条目（id=`R{reviewer}-W{n}`,status=`open`,first_raised_round=本轮）
+155	   - 对上轮 `open`/`in_progress` 但本轮**未被任何 Reviewer 提及**的:
+156	     - 在 `mentions` 追加 `note: "本轮未提及,可能已修复,待 Research Director 确认"`
+157	   - 调 `update_review_issues(project, issues_yaml=完整 YAML)` 写回
+158	3. 调用 `submit_review_report_to_research_director` 投递报告 → Research Director
+159	4. 向用户（Group C）汇报审核完成
+160	
+161	此流程只在 session 启动时执行一次。
+162	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "266239cb-c2d1-4e23-8318-0c17df4ebc8d",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "a69c7c93-262b-420f-94b3-5b69d68d030a",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md",
+      "content": "---\nname: review-director-session-start\ndescription: Review Director session 启动初始化流程——圆桌多轮审稿协议。Review Director 角色 session 启动时自动使用。\npriority: 9\nscope: global\ntags:\n- workflow\n- review\n- session\nversion: 3\nroles:\n- review_director\n---\n\n# Review Director Session 启动流程（圆桌会议模式）\n\n## 初始化\n\n1. `director_get_project_overview(project)` — 了解研究现状（实验状态、最新报告）\n2. 读取论文文件状态：检查 `projects/{project}/paper/` 或 `main.tex` 是否存在\n3. 检查是否有来自 Research Director 的论文提交（`[论文提交]` 消息）\n4. 向用户简要汇报：\n   - **投稿目标**：venue 和 deadline\n   - **论文状态**：当前草稿位置和版本\n   - **资料完整性**：提交的材料是否齐全\n   - **下一步**：即将开始的圆桌审稿流程\n\n## 评审流程（收到论文提交后执行）\n\n### Step 0 — 资料检查 + Venue 调研（必须先做，不可跳过）\n\n1. 检查提交资料完整性：论文文件是否存在、是否可读、补充材料是否齐全\n2. 确认目标投稿 venue（从提交消息中获取）\n3. 用 `web_search` 搜索该 venue 当前轮次的 CFP（Call for Papers），关键词示例：\n   - `\"&lt;venue name> 2026 call for papers\" site:aclweb.org`\n   - `\"&lt;venue name> 2026 submission deadline\"`\n   - `\"&lt;venue name> 2026 author guidelines\"`\n4. **验证 deadline 未过期**：今天日期与截止日期对比，若已过期立即通知用户，不继续\n5. 提取当前版本的格式要求：\n   - 页数限制（正文 / 附录 / 参考文献）\n   - 模板（ACL / IEEE / NeurIPS / ICML / ...）\n   - 匿名规则（double-blind / single-blind / open）\n   - 附录规则（是否允许、是否参与审稿）\n   - 引用格式（natbib / biblatex / 特定 .bst）\n6. 将以上信息作为上下文，随任务一起传递给 Reviewer\n\n⚠️ 禁止使用训练知识中的 venue 要求——格式标准每年都会更新，必须实时搜索确认。\n\n### Step 0.5 — 决定 Reviewer 编排\n\n根据 venue 类型和论文特点，决定：\n- 需要几个 Reviewer（1-5 人）\n- 每个 Reviewer 的审查侧重\n\n参考：\n- **顶会长文**（NeurIPS/ICML/ACL）：3 人（方法/实验 + novelty/related work + 格式/ethics）\n- **一般会议**（EMNLP/NAACL）：2 人（方法严谨性 + 新颖性/完整性）\n- **Workshop / 短文**：1 人（全面审查）\n\n向 Group C（即项目配置中的 `feishu.review_chat_id` 审稿群）汇报编排决定。\n\n### Step 0.6 — 外部审稿线（与 Step 1 并行）\n\n检查项目配置中 `external_review.paperreview_ai.enabled` 是否为 `true`：\n- 如果启用：调用 `request_external_review(project, paper_pdf_path, venue)` 向用户群发送协助提交卡片\n- 这一步与 Step 1（内部 Reviewer 分配）**并行执行**，不阻塞内部审稿流程\n- 外部结果到达后（用户在群里粘贴），纳入 Step 4 最终报告\n- 如果到 Step 4 时外部结果仍未返回，调用 `get_external_review_status(project)` 确认状态，在报告中标注\n\n### Step 0.7 — 视觉审查派发（与 Step 1 并行）\n\n派发独立视觉审查 Agent，与 Reviewer 审稿并行执行：\n\n```\ndispatch_visual_check(project=\"{project}\", review_chat_id=\"{review_chat_id}\")\n```\n\n- 视觉审查 Agent 自动渲染论文 PDF 并逐页检查排版质量（Figure 1 位置、布局节奏、图表质量、空白分布等）\n- **不参与评分和交叉讨论**，结果仅作为参考信息\n- 启动和完成通知自动发送到 Group C\n- 结果在 Step 4 通过 `get_visual_check_status(project)` 读取并拼入报告\n- **fire-and-forget**：调用立即返回，本步骤永不等待视觉审查完成\n\n### Step 1 — Round N：独立审稿\n\n携带 Step 0 搜到的 venue 要求，启动所有 Reviewer：\n\n```\ndirector_post_to_reviewer(reviewer_id=\"1\", round_number=N, text=\"你负责 {focus}。...\")\ndirector_post_to_reviewer(reviewer_id=\"2\", round_number=N, text=\"你负责 {focus}。...\")\n...（按需）\n```\n\n消息中必须包含：\n- venue 名称和截止日期\n- 页数限制和模板名称\n- 匿名规则\n- 论文文件路径\n- **该 Reviewer 的审查侧重**（在消息中明确指定）\n\n收集所有 Reviewer 的审稿结果。\n\n### Step 2 — 交叉分享（原文转发 + 逐条回应）\n\n将每位 Reviewer 的**完整审稿原文**转发给其他 Reviewer，要求逐条回应：\n\n```\ndirector_post_to_reviewer(reviewer_id=\"2\", round_number=N, text=\"\"\"\n以下是 Reviewer 1 的完整审稿意见：\n\n{Reviewer 1 的原文}\n\n请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\"\"\")\n```\n\n对每位 Reviewer 重复此步骤（每人看到其他所有 Reviewer 的原文）。\n\n收集所有交叉回应。\n\n### Step 3 — 收敛判断\n\n分析所有 Reviewer 的意见和交叉回应：\n\n- **关键问题已达成共识**（`[AGREE]` 占多数，无未解决的 `[REBUT]` 矛盾）→ 进入 Step 4\n- **存在重大分歧**（关键 issue 上有 `[REBUT]` 且双方各有道理）→ 回到 Step 1 开始下一轮，附带聚焦问题\n- **最多 3 轮**：如果第 3 轮仍有分歧，在报告中如实记录各方观点\n\n### Step 4 — 汇总报告 & 投递\n\n合并所有轮次的发现，形成统一审稿报告：\n\n1. 报告结构：\n   - **Summary**：论文概述（2-3 句）\n   - **Strengths**：优点（逐条列出）\n   - **Weaknesses**：缺点（逐条列出，这是重点，必须严格）\n   - **Reviewer Consensus**：所有 Reviewer 达成共识的关键问题（标注 `[AGREE]`）\n   - **Reviewer Divergence**：分歧点及各方理由（标注 `[REBUT]`，如有）\n   - **Questions**：需要作者澄清的问题\n   - **Missing References**：遗漏的重要相关工作\n   - **External Review (Stanford Agentic Reviewer)**：如有外部审稿结果，单独列出其 7 维评分、关键发现、以及与内部审稿的差异；如未返回则标注状态\n   - **Visual Layout Check**（非评分项，不阻塞报告）：调用 `get_visual_check_status(project)` 读一次状态——\n     - `done` → 直接拼入 findings\n     - `running` → 写\"仍在进行中，本报告不等待，完成后会自动补发到 Group C\"\n     - `timeout` / `error` → 写失败原因 + 提示用户可重新触发\n     - `not_started` → 写未派发\n     不要为视觉审查推迟报告投递。视觉 Agent 完成后会自己把结果发到 Group C，与本报告解耦。可直接调用 `format_visual_findings_for_report(project)` 拿到现成的 markdown section\n   - **Overall Assessment**：总评 + 评分（strong reject / weak reject / borderline / weak accept / strong accept）+ 置信度\n   - **Detailed Comments**：逐节详细意见\n2. **同步 Issue Tracker**（投递前必做）：\n   - 用 `read_local_file(\"projects/{project}/artifacts/review_issues.yaml\")` 读当前 tracker（不存在视为空）\n   - 对本轮所有 Weakness/Must-Fix/Should-Fix:\n     - 与已有 issue 匹配（同 category + 相似 summary）→ 在 `mentions` 追加本轮记录,更新 `last_seen_round`\n     - 新问题 → 创建条目（id=`R{reviewer}-W{n}`,status=`open`,first_raised_round=本轮）\n   - 对上轮 `open`/`in_progress` 但本轮**未被任何 Reviewer 提及**的:\n     - 在 `mentions` 追加 `note: \"本轮未提及,可能已修复,待 Research Director 确认\"`\n   - 调 `update_review_issues(project, issues_yaml=完整 YAML)` 写回\n3. 调用 `submit_review_report_to_research_director` 投递报告 → Research Director\n4. 向用户（Group C）汇报审核完成\n\n此流程只在 session 启动时执行一次。\n",
+      "numLines": 162,
+      "startLine": 1,
+      "totalLines": 162
+    }
+  },
+  "sourceToolAssistantUUID": "266239cb-c2d1-4e23-8318-0c17df4ebc8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-24T22:49:47.636Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full review process. Let me follow the steps:
+
+1. First, get project overview
+2. Read the paper
+3. Do venue research (web search for EMNLP 2026 CFP)
+4. Decide reviewer arrangement
+5. Dispatch visual check and external review (if enabled)
+6. Start reviewers
+
+Let me begin with Step 0 - initialization and resource checking.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a69c7c93-262b-420f-94b3-5b69d68d030a",
+  "isSidechain": false,
+  "requestId": "req_011CbNDBAchC5XT5qLkGB73p",
+  "type": "assistant",
+  "uuid": "b4b2955a-c877-4ec9-881e-4021bb02e6d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5piY5UeGhSRL1MvFQ8yuk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3459,
+      "cache_read_input_tokens": 27478,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 27478,
+          "cache_creation_input_tokens": 3459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-24T22:49:48.565Z_
+
+开始审稿初始化流程。先获取项目概览并检查论文文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4b2955a-c877-4ec9-881e-4021bb02e6d6",
+  "isSidechain": false,
+  "requestId": "req_011CbNDBAchC5XT5qLkGB73p",
+  "type": "assistant",
+  "uuid": "46f6b44c-92f8-493d-a896-7da3e07a9a54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5piY5UeGhSRL1MvFQ8yuk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3459,
+      "cache_read_input_tokens": 27478,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 27478,
+          "cache_creation_input_tokens": 3459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-24T22:49:50.053Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019XWasVpuVF9Aybbk4oNz8u`</summary>
+
+```json
+{
+  "query": "select:director_get_project_overview,dispatch_visual_check,request_external_review,get_external_review_status,get_visual_check_status,director_post_to_reviewer,submit_review_report_to_research_director,update_review_issues,read_project_file",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46f6b44c-92f8-493d-a896-7da3e07a9a54",
+  "isSidechain": false,
+  "requestId": "req_011CbNDBAchC5XT5qLkGB73p",
+  "type": "assistant",
+  "uuid": "ac60f069-d7cd-4e76-82e9-b096a4d4b60d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5piY5UeGhSRL1MvFQ8yuk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3459,
+      "cache_read_input_tokens": 27478,
+      "output_tokens": 274,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 274,
+          "cache_read_input_tokens": 27478,
+          "cache_creation_input_tokens": 3459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T22:49:50.058Z_
+
+<details><summary>↩ Tool result · `toolu_019XWasVpuVF9Aybbk4oNz8u`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac60f069-d7cd-4e76-82e9-b096a4d4b60d",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "c0d54726-3e9c-4a2f-8415-625062768d23",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:director_get_project_overview,dispatch_visual_check,request_external_review,get_external_review_status,get_visual_check_status,director_post_to_reviewer,submit_review_report_to_research_director,update_review_issues,read_project_file",
+    "total_deferred_tools": 29
+  },
+  "sourceToolAssistantUUID": "ac60f069-d7cd-4e76-82e9-b096a4d4b60d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "系统通知：审稿审批已通过。请开始审稿。  [论文提交] - 项目: entrainment_gated_ft - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex - 目标 venue: EMNLP 2026 - 截止日期: 2026-05-…",
+  "leafUuid": "c0d54726-3e9c-4a2f-8415-625062768d23",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review entrainment_gated_ft paper for EMNLP 2026",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-24T22:49:54.277Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015fowbUn4REM4YiV3wwP5PZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__dispatch_visual_check,mcp__agent-ml-research__request_external_review,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__director_post_to_reviewer,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_project_file",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0d54726-3e9c-4a2f-8415-625062768d23",
+  "isSidechain": false,
+  "requestId": "req_011CbNDBh8z6nCGkbtwnJabn",
+  "type": "assistant",
+  "uuid": "bd30fef0-5be4-4a60-8251-dd1c2a1b6662",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018CJxxfNP6Wz94R9kziwb8Z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 292,
+      "cache_read_input_tokens": 30937,
+      "output_tokens": 221,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 292,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 221,
+          "cache_read_input_tokens": 30937,
+          "cache_creation_input_tokens": 292,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 292
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-24T22:49:54.280Z_
+
+<details><summary>↩ Tool result · `toolu_015fowbUn4REM4YiV3wwP5PZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_get_project_overview"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__dispatch_visual_check"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__request_external_review"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_external_review_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_visual_check_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_post_to_reviewer"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_review_report_to_research_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_review_issues"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd30fef0-5be4-4a60-8251-dd1c2a1b6662",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "846f7264-716f-4f31-ba1e-6233692333e0",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__dispatch_visual_check",
+      "mcp__agent-ml-research__request_external_review",
+      "mcp__agent-ml-research__get_external_review_status",
+      "mcp__agent-ml-research__get_visual_check_status",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__submit_review_report_to_research_director",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__dispatch_visual_check,mcp__agent-ml-research__request_external_review,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__director_post_to_reviewer,mcp__agent-ml-research__submit_review_report_to_research_director,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 29
+  },
+  "sourceToolAssistantUUID": "bd30fef0-5be4-4a60-8251-dd1c2a1b6662",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-24T22:49:56.673Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016o63okHp9hj2E6AgxiYRCn`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_local_file,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "846f7264-716f-4f31-ba1e-6233692333e0",
+  "isSidechain": false,
+  "requestId": "req_011CbNDBzPKN3Rg4W6NpVx5q",
+  "type": "assistant",
+  "uuid": "e2a68f9e-074f-49b9-99f1-a925aeeaa732",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ya7ZGkVHjoscBz4SjKjZZE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3354,
+      "cache_read_input_tokens": 31229,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 31229,
+          "cache_creation_input_tokens": 3354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T22:49:56.675Z_
+
+<details><summary>↩ Tool result · `toolu_016o63okHp9hj2E6AgxiYRCn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2a68f9e-074f-49b9-99f1-a925aeeaa732",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "50f07c3c-8341-45ee-a6eb-aa4860e1269a",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:mcp__agent-ml-research__read_local_file,WebSearch",
+    "total_deferred_tools": 29
+  },
+  "sourceToolAssistantUUID": "e2a68f9e-074f-49b9-99f1-a925aeeaa732",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-24T22:50:00.945Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me proceed with the initialization steps in parallel:
+1. Get project overview
+2. Read the paper (main.tex)
+3. Check if review_issues.yaml exists
+4. Web search for EMNLP 2026 CFP
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50f07c3c-8341-45ee-a6eb-aa4860e1269a",
+  "isSidechain": false,
+  "requestId": "req_011CbNDCBihP5ov23dwCkkQa",
+  "type": "assistant",
+  "uuid": "8b28c63d-de85-4799-9b67-910066191650",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGs3oU8C1rG5L7HYJtF1pt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 620,
+      "cache_read_input_tokens": 34583,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 620,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 34583,
+          "cache_creation_input_tokens": 620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 620
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-24T22:50:01.872Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_get_project_overview · `toolu_01PTbtuN276Tj7KSLQh92rwT`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b28c63d-de85-4799-9b67-910066191650",
+  "isSidechain": false,
+  "requestId": "req_011CbNDCBihP5ov23dwCkkQa",
+  "type": "assistant",
+  "uuid": "a058112a-26b8-44b4-bb15-f3cb53a17c2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGs3oU8C1rG5L7HYJtF1pt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 620,
+      "cache_read_input_tokens": 34583,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 620,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 34583,
+          "cache_creation_input_tokens": 620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 620
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T22:50:02.038Z_
+
+<details><summary>↩ Tool result · `toolu_01PTbtuN276Tj7KSLQh92rwT`</summary>
+
+```text
+{"result":"# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-arc-easy-eval**: DONE (success) — \n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-24\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **exp-005-pure-v4** (killed): —\n- **exp-005-pure-v3** (killed): —\n- **exp-005-hgrn-chain** (killed): —\n\n## 趋势\n成功 16 / 负向 4 / 失败 3 / 共 46\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestb-48145: 无 GPU 信息\n\n## 告警\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\n- exp-003-p2v2: 已被终止 — unknown\n- exp-004: 训练失败 — unknown\n- exp-005-eval: 已被终止 — unknown\n- exp-005-p1-v4: 已被终止 — unknown\n- exp-005-gla-eval: 训练失败 — unknown\n- exp-005-gla: 已被终止 — unknown\n- exp-005-deltanet: 已被终止 — unknown\n- exp-005-dn-eval: 已被终止 — unknown\n- exp-005-pure-eval: 已被终止 — unknown\n- exp-005-p1-eval: 已被终止 — unknown\n- exp-005-p1-eval-v2: 已被终止 — unknown\n- exp-005-p1-eval-v3: 已被终止 — unknown\n- exp-005-p1-eval-v4: 已被终止 — unknown\n- exp-005-p1-eval-v5: 已被终止 — unknown\n- exp-005-hgrn-chain: 已被终止 — unknown\n- exp-005-batch: 训练失败 — unknown\n- exp-005-pure-v3: 已被终止 — unknown\n- exp-005-pure-v4: 已被终止 — unknown\n- exp-005-pure-v5: 已被终止 — unknown\n- exp-005-pure-v6: 已被终止 — unknown\n- exp-005-pure-v7: 已被终止 — unknown\n- exp-005-pure-v8: 已被终止 — unknown\n- exp-005-pure-v9: 已被终止 — unknown\n- exp-005-pure-v10: 已被终止 — unknown\n- exp-005-pure-baselines: 已被终止 — unknown"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a058112a-26b8-44b4-bb15-f3cb53a17c2d",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "1be84725-82ff-4553-8e5c-ea933730b429",
+  "toolUseResult": "{\"result\":\"# 项目 entrainment_gated_ft 概况\\n\\n## 实验状态 (46 个)\\n\\n- **exp-arc-easy-eval**: DONE (success) — \\n- **exp-007**: DONE (success) — \\n- **exp-004-r2**: DONE (success) — \\n- **exp-011-xstorycloze**: DONE (negative) — \\n- **exp-004**: DONE (failed) — \\n- **exp-011**: DONE (negative) — \\n- **exp-010**: DONE (success) — \\n- **exp-001**: DONE (success) — \\n- **exp-008**: DONE (success) — \\n- **exp-003-p2**: DONE (negative) — \\n- **exp-003**: DONE (negative) — \\n- **exp-009**: DONE (success) — \\n- **eval_340m_retnet_hgrn2**: DONE (success) — \\n- **hgrn2_eval_h3_1**: DONE (success) — \\n- **hgrn2_eval_1_3b_all**: DONE (killed) — \\n\\n## 最新报告\\n# Handover — 2026-05-24\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp-005-pure-v4** (killed): —\\n- **exp-005-pure-v3** (killed): —\\n- **exp-005-hgrn-chain** (killed): —\\n\\n## 趋势\\n成功 16 / 负向 4 / 失败 3 / 共 46\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-48145: 无 GPU 信息\\n\\n## 告警\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\n- exp-003-p2v2: 已被终止 — unknown\\n- exp-004: 训练失败 — unknown\\n- exp-005-eval: 已被终止 — unknown\\n- exp-005-p1-v4: 已被终止 — unknown\\n- exp-005-gla-eval: 训练失败 — unknown\\n- exp-005-gla: 已被终止 — unknown\\n- exp-005-deltanet: 已被终止 — unknown\\n- exp-005-dn-eval: 已被终止 — unknown\\n- exp-005-pure-eval: 已被终止 — unknown\\n- exp-005-p1-eval: 已被终止 — unknown\\n- exp-005-p1-eval-v2: 已被终止 — unknown\\n- exp-005-p1-eval-v3: 已被终止 — unknown\\n- exp-005-p1-eval-v4: 已被终止 — unknown\\n- exp-005-p1-eval-v5: 已被终止 — unknown\\n- exp-005-hgrn-chain: 已被终止 — unknown\\n- exp-005-batch: 训练失败 — unknown\\n- exp-005-pure-v3: 已被终止 — unknown\\n- exp-005-pure-v4: 已被终止 — unknown\\n- exp-005-pure-v5: 已被终止 — unknown\\n- exp-005-pure-v6: 已被终止 — unknown\\n- exp-005-pure-v7: 已被终止 — unknown\\n- exp-005-pure-v8: 已被终止 — unknown\\n- exp-005-pure-v9: 已被终止 — unknown\\n- exp-005-pure-v10: 已被终止 — unknown\\n- exp-005-pure-baselines: 已被终止 — unknown\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-arc-easy-eval**: DONE (success) — \n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-24\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **exp-005-pure-v4** (killed): —\n- **exp-005-pure-v3** (killed): —\n- **exp-005-hgrn-chain** (killed): —\n\n## 趋势\n成功 16 / 负向 4 / 失败 3 / 共 46\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestb-48145: 无 GPU 信息\n\n## 告警\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\n- exp-003-p2v2: 已被终止 — unknown\n- exp-004: 训练失败 — unknown\n- exp-005-eval: 已被终止 — unknown\n- exp-005-p1-v4: 已被终止 — unknown\n- exp-005-gla-eval: 训练失败 — unknown\n- exp-005-gla: 已被终止 — unknown\n- exp-005-deltanet: 已被终止 — unknown\n- exp-005-dn-eval: 已被终止 — unknown\n- exp-005-pure-eval: 已被终止 — unknown\n- exp-005-p1-eval: 已被终止 — unknown\n- exp-005-p1-eval-v2: 已被终止 — unknown\n- exp-005-p1-eval-v3: 已被终止 — unknown\n- exp-005-p1-eval-v4: 已被终止 — unknown\n- exp-005-p1-eval-v5: 已被终止 — unknown\n- exp-005-hgrn-chain: 已被终止 — unknown\n- exp-005-batch: 训练失败 — unknown\n- exp-005-pure-v3: 已被终止 — unknown\n- exp-005-pure-v4: 已被终止 — unknown\n- exp-005-pure-v5: 已被终止 — unknown\n- exp-005-pure-v6: 已被终止 — unknown\n- exp-005-pure-v7: 已被终止 — unknown\n- exp-005-pure-v8: 已被终止 — unknown\n- exp-005-pure-v9: 已被终止 — unknown\n- exp-005-pure-v10: 已被终止 — unknown\n- exp-005-pure-baselines: 已被终止 — unknown"
+    }
+  },
+  "sourceToolAssistantUUID": "a058112a-26b8-44b4-bb15-f3cb53a17c2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T22:50:04.069Z_
+
+<details><summary>↩ Tool result · `toolu_01Xsn4M7RgqR5eWGtvVupWpS`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff05859d-7a52-4449-afe9-cca1ad7368b6",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "c997973f-9005-4351-b95b-0c031d3149fa",
+  "toolUseResult": {
+    "matches": [],
+    "query": "select:mcp__agent-ml-research__read_local_file",
+    "total_deferred_tools": 29
+  },
+  "sourceToolAssistantUUID": "ff05859d-7a52-4449-afe9-cca1ad7368b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-24T22:50:03.016Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RkKDoPkrA8oK3cwk7buLUS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1be84725-82ff-4553-8e5c-ea933730b429",
+  "isSidechain": false,
+  "requestId": "req_011CbNDCBihP5ov23dwCkkQa",
+  "type": "assistant",
+  "uuid": "c6554b56-f079-452e-803a-a79b8bb47226",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGs3oU8C1rG5L7HYJtF1pt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 620,
+      "cache_read_input_tokens": 34583,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 620,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 34583,
+          "cache_creation_input_tokens": 620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 620
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T22:50:03.023Z_
+
+<details><summary>↩ Tool result · `toolu_01RkKDoPkrA8oK3cwk7buLUS`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{booktabs}
+12	\usepackage{amsmath}
+13	\usepackage{amssymb}
+14	\usepackage{multirow}
+15	\usepackage{xcolor}
+16	\usepackage{caption}
+17	\usepackage{enumitem}
+18	\setlist[itemize]{itemsep=1pt, parsep=0pt, topsep=2pt}
+19	
+20	\setlength{\textfloatsep}{6pt plus 1pt minus 1pt}
+21	\setlength{\floatsep}{6pt plus 1pt minus 1pt}
+22	\setlength{\intextsep}{6pt plus 1pt minus 1pt}
+23	\setlength{\abovecaptionskip}{3pt}
+24	\setlength{\belowcaptionskip}{0pt}
+25	\setlength{\dbltextfloatsep}{6pt plus 1pt minus 1pt}
+26	\setlength{\dblfloatsep}{6pt plus 1pt minus 1pt}
+27	\setlength{\abovedisplayskip}{4pt plus 1pt minus 1pt}
+28	\setlength{\belowdisplayskip}{4pt plus 1pt minus 1pt}
+29	\setlength{\parskip}{0pt plus 0.5pt}
+30	
+31	\title{Aggregate Equivalence $\neq$ Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models}
+32	
+33	\author{Anonymous}
+34	
+35	\begin{document}
+36	\maketitle
+37	
+38	\begin{abstract}
+39	Hybrid linear recurrent architectures that appear interchangeable by aggregate benchmarks can differ on which specific examples they handle correctly. Using a controlled model zoo \citep{wang2025hybrid} (three architectures, five attention ratios, two scales), we decompose per-example effects of adding attention and find structured predictive multiplicity \citep{marx2020predictive}: pairwise overlap of helped and hurt example sets is uniformly low (Jaccard $\approx 0.10$, roughly twice the independence baseline; all $p < .01$ across five architectures). This multiplicity varies by task type or evaluation format ($\alpha = 0.14$--$0.30$) rather than attention ratio. Per-example overlap saturates at 4\% attention and remains flat across higher ratios, indicating that minimal attention establishes which examples each architecture affects. \citet{yang2026benchmark} document analogous per-item disagreement (16--66\%) among frontier large language models (LLMs) despite comparable aggregate scores; our within-family design isolates backbone variation from training-regime differences. Confidence margins partially predict affected examples (area under the ROC curve [AUC] 0.70--0.74). Low cross-architecture overlap implies substantial complementarity, though routing-based exploitation remains task-dependent.
+40	\end{abstract}
+41	
+42	\input{sections/introduction}
+43	
+44	\input{sections/related_work}
+45	
+46	\input{sections/method}
+47	
+48	\input{sections/experiments}
+49	
+50	\input{sections/conclusion}
+51	
+52	\section*{Limitations}
+53	
+54	\paragraph{Single training runs.} Each configuration is a single training run; consistency across all 40 architecture--benchmark combinations (all $p < .01$) and a $3\times$ within- vs.\ cross-architecture Jaccard gap (within-seed $J$ is 2.7--4.3$\times$ higher; Appendix~\ref{app:seed_calibration}) mitigate seed confounds but cannot fully resolve them.
+55	
+56	\paragraph{Format confound.} The confound between task type and evaluation format cannot be fully resolved: LAMBADA is the only free-form benchmark, so its higher $\alpha$ may reflect format differences rather than cognitive demands alone.
+57	
+58	\paragraph{Coverage.} We examine three primary architectures (plus two extended) from one model zoo, four main benchmarks, and two scale points. Generalization to Mamba, RWKV, other hybrid families, and generation tasks remains open; all four per-example benchmarks use discriminative scoring, so multiplicity under open-ended generation is untested. Results at larger scales (e.g., 7B+) may differ, particularly as attention mechanisms become more expressive with increased capacity.
+59	
+60	\paragraph{Pre-training only.} All evaluations use pretrained checkpoints without fine-tuning; per-example effects may not persist after task-specific adaptation. All evaluations use greedy decoding (the lm-eval-harness default); sampling strategies may alter per-example agreement patterns.
+61	
+62	\bibliography{references}
+63	
+64	\appendix
+65	\input{sections/appendix}
+66	
+67	\end{document}
+68	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6554b56-f079-452e-803a-a79b8bb47226",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "d1b3b610-f48f-464e-ab5d-f05fee9d1357",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{caption}\n\\usepackage{enumitem}\n\\setlist[itemize]{itemsep=1pt, parsep=0pt, topsep=2pt}\n\n\\setlength{\\textfloatsep}{6pt plus 1pt minus 1pt}\n\\setlength{\\floatsep}{6pt plus 1pt minus 1pt}\n\\setlength{\\intextsep}{6pt plus 1pt minus 1pt}\n\\setlength{\\abovecaptionskip}{3pt}\n\\setlength{\\belowcaptionskip}{0pt}\n\\setlength{\\dbltextfloatsep}{6pt plus 1pt minus 1pt}\n\\setlength{\\dblfloatsep}{6pt plus 1pt minus 1pt}\n\\setlength{\\abovedisplayskip}{4pt plus 1pt minus 1pt}\n\\setlength{\\belowdisplayskip}{4pt plus 1pt minus 1pt}\n\\setlength{\\parskip}{0pt plus 0.5pt}\n\n\\title{Aggregate Equivalence $\\neq$ Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\nHybrid linear recurrent architectures that appear interchangeable by aggregate benchmarks can differ on which specific examples they handle correctly. Using a controlled model zoo \\citep{wang2025hybrid} (three architectures, five attention ratios, two scales), we decompose per-example effects of adding attention and find structured predictive multiplicity \\citep{marx2020predictive}: pairwise overlap of helped and hurt example sets is uniformly low (Jaccard $\\approx 0.10$, roughly twice the independence baseline; all $p < .01$ across five architectures). This multiplicity varies by task type or evaluation format ($\\alpha = 0.14$--$0.30$) rather than attention ratio. Per-example overlap saturates at 4\\% attention and remains flat across higher ratios, indicating that minimal attention establishes which examples each architecture affects. \\citet{yang2026benchmark} document analogous per-item disagreement (16--66\\%) among frontier large language models (LLMs) despite comparable aggregate scores; our within-family design isolates backbone variation from training-regime differences. Confidence margins partially predict affected examples (area under the ROC curve [AUC] 0.70--0.74). Low cross-architecture overlap implies substantial complementarity, though routing-based exploitation remains task-dependent.\n\\end{abstract}\n\n\\input{sections/introduction}\n\n\\input{sections/related_work}\n\n\\input{sections/method}\n\n\\input{sections/experiments}\n\n\\input{sections/conclusion}\n\n\\section*{Limitations}\n\n\\paragraph{Single training runs.} Each configuration is a single training run; consistency across all 40 architecture--benchmark combinations (all $p < .01$) and a $3\\times$ within- vs.\\ cross-architecture Jaccard gap (within-seed $J$ is 2.7--4.3$\\times$ higher; Appendix~\\ref{app:seed_calibration}) mitigate seed confounds but cannot fully resolve them.\n\n\\paragraph{Format confound.} The confound between task type and evaluation format cannot be fully resolved: LAMBADA is the only free-form benchmark, so its higher $\\alpha$ may reflect format differences rather than cognitive demands alone.\n\n\\paragraph{Coverage.} We examine three primary architectures (plus two extended) from one model zoo, four main benchmarks, and two scale points. Generalization to Mamba, RWKV, other hybrid families, and generation tasks remains open; all four per-example benchmarks use discriminative scoring, so multiplicity under open-ended generation is untested. Results at larger scales (e.g., 7B+) may differ, particularly as attention mechanisms become more expressive with increased capacity.\n\n\\paragraph{Pre-training only.} All evaluations use pretrained checkpoints without fine-tuning; per-example effects may not persist after task-specific adaptation. All evaluations use greedy decoding (the lm-eval-harness default); sampling strategies may alter per-example agreement patterns.\n\n\\bibliography{references}\n\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}\n",
+      "numLines": 68,
+      "startLine": 1,
+      "totalLines": 68
+    }
+  },
+  "sourceToolAssistantUUID": "c6554b56-f079-452e-803a-a79b8bb47226",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-24T22:50:03.901Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013j5JuTHN9AAk1JxPbqCikn`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 call for papers submission guidelines ARR site:aclweb.org"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1b3b610-f48f-464e-ab5d-f05fee9d1357",
+  "isSidechain": false,
+  "requestId": "req_011CbNDCBihP5ov23dwCkkQa",
+  "type": "assistant",
+  "uuid": "44881b22-e3ee-4d44-af16-f39bb55bdc3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGs3oU8C1rG5L7HYJtF1pt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 620,
+      "cache_read_input_tokens": 34583,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 620,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 34583,
+          "cache_creation_input_tokens": 620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 620
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-24T22:50:04.066Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Xsn4M7RgqR5eWGtvVupWpS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_local_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44881b22-e3ee-4d44-af16-f39bb55bdc3c",
+  "isSidechain": false,
+  "requestId": "req_011CbNDCBihP5ov23dwCkkQa",
+  "type": "assistant",
+  "uuid": "ff05859d-7a52-4449-afe9-cca1ad7368b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGs3oU8C1rG5L7HYJtF1pt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 620,
+      "cache_read_input_tokens": 34583,
+      "output_tokens": 346,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 620,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 346,
+          "cache_read_input_tokens": 34583,
+          "cache_creation_input_tokens": 620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 620
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-24T22:50:09.466Z_
+
+<details><summary>↩ Tool result · `toolu_013j5JuTHN9AAk1JxPbqCikn`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 call for papers submission guidelines ARR site:aclweb.org"
+
+Links: [{"title":"Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"},{"title":"Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026"},{"title":"*SEM 2026: Commitment Link for ARR-Reviewed Papers (Deadline: 10 April 2026) | ACL Member Portal","url":"https://www.aclweb.org/portal/content/sem-2026-commitment-link-arr-reviewed-papers-deadline-10-april-2026"},{"title":"EACL/ACL 2026 Joint Call for Workshops | ACL Member Portal","url":"https://www.aclweb.org/portal/content/eaclacl-2026-joint-call-workshops"},{"title":"Joint Call for Tutorial Proposals (EACL/ACL) 2026 | ACL Member Portal","url":"https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-eaclacl-2026"},{"title":"[EMNLP 2025] First Call for Papers | ACL Member Portal","url":"https://www.aclweb.org/portal/content/emnlp-2025-first-call-papers"},{"title":"The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026","url":"https://2026.aclweb.org/"},{"title":"The 2nd BabyLM Workshop | ACL Member Portal","url":"https://www.aclweb.org/portal/content/2nd-babylm-workshop"},{"title":"Call for Papers: The 20th Linguistic Annotation Workshop (LAW XX), co-located with ACL 2026 | ACL Member Portal","url":"https://www.aclweb.org/portal/content/call-papers-20th-linguistic-annotation-workshop-law-xx-co-located-acl-2026"},{"title":"Jan. 2025 ACL Standing Committee on Peer Review (COPR) Report 1","url":"https://www.aclweb.org/adminwiki/images/9/9e/COPR-5-cycle-report-to-publish.pdf"}]
+
+Based on the search results, I found information about EMNLP 2026 and ARR submission guidelines. Here's what I found:
+
+## EMNLP 2026 and ARR
+
+While the search results don't contain a dedicated main EMNLP 2026 call for papers document, the results show that the 2nd BabyLM Workshop will be co-located with EMNLP 2026 in Budapest, Hungary, and workshops associated with EMNLP 2026 have ARR submission deadlines of May 25 and mid-July for direct submissions, with an early August commitment deadline.
+
+The search results indicate that EMNLP uses the ACL Rolling Review (ARR) system. According to scheduling information found, ARR runs a cycle on May 19th dedicated to EMNLP.
+
+For specific EMNLP 2026 main conference submission guidelines and details, you would want to check the official EMNLP 2026 website directly on aclweb.org, as the main call for papers document was not returned in these search results. The search did return various workshop and tutorial calls for EMNLP 2026, which provide some guidance on submission formats and ARR procedures used across the conference's events.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "44881b22-e3ee-4d44-af16-f39bb55bdc3c",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "b602ffd5-2bd2-4956-9671-99ec6d315921",
+  "toolUseResult": {
+    "query": "EMNLP 2026 call for papers submission guidelines ARR site:aclweb.org",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DoKW9isfXaBdHH3LaQKZz7",
+        "content": [
+          {
+            "title": "Joint Call for Tutorial Proposals (EMNLP/AACL-IJCNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-emnlpaacl-ijcnlp-2026"
+          },
+          {
+            "title": "Workshop on Multimodal Interaction in Face-to-Face Dialogue (MINT @ EMNLP 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/workshop-multimodal-interaction-face-face-dialogue-mint-emnlp-2026"
+          },
+          {
+            "title": "*SEM 2026: Commitment Link for ARR-Reviewed Papers (Deadline: 10 April 2026) | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/sem-2026-commitment-link-arr-reviewed-papers-deadline-10-april-2026"
+          },
+          {
+            "title": "EACL/ACL 2026 Joint Call for Workshops | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/eaclacl-2026-joint-call-workshops"
+          },
+          {
+            "title": "Joint Call for Tutorial Proposals (EACL/ACL) 2026 | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/joint-call-tutorial-proposals-eaclacl-2026"
+          },
+          {
+            "title": "[EMNLP 2025] First Call for Papers | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/emnlp-2025-first-call-papers"
+          },
+          {
+            "title": "The 64th Annual Meeting of the Association for Computational Linguistics - ACL 2026",
+            "url": "https://2026.aclweb.org/"
+          },
+          {
+            "title": "The 2nd BabyLM Workshop | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/2nd-babylm-workshop"
+          },
+          {
+            "title": "Call for Papers: The 20th Linguistic Annotation Workshop (LAW XX), co-located with ACL 2026 | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/call-papers-20th-linguistic-annotation-workshop-law-xx-co-located-acl-2026"
+          },
+          {
+            "title": "Jan. 2025 ACL Standing Committee on Peer Review (COPR) Report 1",
+            "url": "https://www.aclweb.org/adminwiki/images/9/9e/COPR-5-cycle-report-to-publish.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about EMNLP 2026 and ARR submission guidelines. Here's what I found:\n\n## EMNLP 2026 and ARR\n\nWhile the search results don't contain a dedicated main EMNLP 2026 call for papers document, the results show that the 2nd BabyLM Workshop will be co-located with EMNLP 2026 in Budapest, Hungary, and workshops associated with EMNLP 2026 have ARR submission deadlines of May 25 and mid-July for direct submissions, with an early August commitment deadline.\n\nThe search results indicate that EMNLP uses the ACL Rolling Review (ARR) system. According to scheduling information found, ARR runs a cycle on May 19th dedicated to EMNLP.\n\nFor specific EMNLP 2026 main conference submission guidelines and details, you would want to check the official EMNLP 2026 website directly on aclweb.org, as the main call for papers document was not returned in these search results. The search did return various workshop and tutorial calls for EMNLP 2026, which provide some guidance on submission formats and ARR procedures used across the conference's events."
+    ],
+    "durationSeconds": 5.561823021
+  },
+  "sourceToolAssistantUUID": "44881b22-e3ee-4d44-af16-f39bb55bdc3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "系统通知：审稿审批已通过。请开始审稿。  [论文提交] - 项目: entrainment_gated_ft - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex - 目标 venue: EMNLP 2026 - 截止日期: 2026-05-…",
+  "leafUuid": "b602ffd5-2bd2-4956-9671-99ec6d315921",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review entrainment_gated_ft paper for EMNLP 2026",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-24T22:50:18.924Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to:
+1. Search more specifically for EMNLP 2026 / ARR submission guidelines
+2. Read the paper sections (introduction, related_work, method, experiments, conclusion, appendix)
+3. Check if review_issues.yaml exists
+
+Let me also search for the EMNLP 2026 CFP more specifically and read the paper sections.
+
+The paper is about "Aggregate Equivalence ≠ Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models". It examines predictive multiplicity across hybrid linear recurrent architectures.
+
+
+Now I'll read through the paper sections and look up the submission guidelines for EMNLP 2026 and ARR, then verify whether the review_issues file is present.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b602ffd5-2bd2-4956-9671-99ec6d315921",
+  "isSidechain": false,
+  "requestId": "req_011CbNDD7KJt7gv17vQcSw6Z",
+  "type": "assistant",
+  "uuid": "ee09d908-48ee-4b15-9e3f-83b0add91a5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TQJAuqog7oQ6W6F3B6zBhC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 38,
+      "cache_creation_input_tokens": 3791,
+      "cache_read_input_tokens": 35203,
+      "output_tokens": 508,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 38,
+          "output_tokens": 508,
+          "cache_read_input_tokens": 35203,
+          "cache_creation_input_tokens": 3791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-24T22:50:18.929Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SdKqH3KM9vUXBFDcWMwKk7`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 submission deadline ARR cycle commitment deadline"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee09d908-48ee-4b15-9e3f-83b0add91a5f",
+  "isSidechain": false,
+  "requestId": "req_011CbNDD7KJt7gv17vQcSw6Z",
+  "type": "assistant",
+  "uuid": "d153a19c-787f-4806-9e15-7326a8765821",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TQJAuqog7oQ6W6F3B6zBhC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 38,
+      "cache_creation_input_tokens": 3791,
+      "cache_read_input_tokens": 35203,
+      "output_tokens": 508,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 38,
+          "output_tokens": 508,
+          "cache_read_input_tokens": 35203,
+          "cache_creation_input_tokens": 3791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-24T22:50:19.339Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KmXfomjJViMQtoaSJKwoYw`</summary>
+
+```json
+{
+  "query": "ACL Rolling Review 2026 submission guidelines page limit author instructions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d153a19c-787f-4806-9e15-7326a8765821",
+  "isSidechain": false,
+  "requestId": "req_011CbNDD7KJt7gv17vQcSw6Z",
+  "type": "assistant",
+  "uuid": "bc6bb9f8-4dce-433e-aa1b-8a88c458dbb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TQJAuqog7oQ6W6F3B6zBhC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 38,
+      "cache_creation_input_tokens": 3791,
+      "cache_read_input_tokens": 35203,
+      "output_tokens": 508,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 38,
+          "output_tokens": 508,
+          "cache_read_input_tokens": 35203,
+          "cache_creation_input_tokens": 3791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-24T22:50:21.661Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_017iby6TUXYS6DiNc6sUDTJU`</summary>
+
+```json
+{
+  "pattern": "sections/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc6bb9f8-4dce-433e-aa1b-8a88c458dbb5",
+  "isSidechain": false,
+  "requestId": "req_011CbNDD7KJt7gv17vQcSw6Z",
+  "type": "assistant",
+  "uuid": "b73d94c9-5f70-4d40-a046-65655267e553",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TQJAuqog7oQ6W6F3B6zBhC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 38,
+      "cache_creation_input_tokens": 3791,
+      "cache_read_input_tokens": 35203,
+      "output_tokens": 508,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 38,
+          "output_tokens": 508,
+          "cache_read_input_tokens": 35203,
+          "cache_creation_input_tokens": 3791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T22:50:21.676Z_
+
+<details><summary>↩ Tool result · `toolu_017iby6TUXYS6DiNc6sUDTJU`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b73d94c9-5f70-4d40-a046-65655267e553",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "e7a7d30c-8799-47f4-9668-d2d441752911",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 9,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "b73d94c9-5f70-4d40-a046-65655267e553",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-24T22:50:22.730Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BRS9NutyH6vPrdcW4Frsem`</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_21/submitted.pdf 2>/dev/null && echo \"PDF EXISTS\" || echo \"NO PDF\"",
+  "description": "Check if submitted PDF exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7a7d30c-8799-47f4-9668-d2d441752911",
+  "isSidechain": false,
+  "requestId": "req_011CbNDD7KJt7gv17vQcSw6Z",
+  "type": "assistant",
+  "uuid": "5c422e60-16d3-4128-a5c7-cd44b6498b9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TQJAuqog7oQ6W6F3B6zBhC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 38,
+      "cache_creation_input_tokens": 3791,
+      "cache_read_input_tokens": 35203,
+      "output_tokens": 508,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3791,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 38,
+          "output_tokens": 508,
+          "cache_read_input_tokens": 35203,
+          "cache_creation_input_tokens": 3791,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3791
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T22:50:22.885Z_
+
+<details><summary>↩ Tool result · `toolu_01BRS9NutyH6vPrdcW4Frsem`</summary>
+
+```text
+-rw-r--r-- 1 ubuntu ubuntu 596962 May 24 22:48 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_21/submitted.pdf
+PDF EXISTS
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c422e60-16d3-4128-a5c7-cd44b6498b9f",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "426b718f-aeec-4bae-a94a-69e3a29e34e4",
+  "toolUseResult": {
+    "stdout": "-rw-r--r-- 1 ubuntu ubuntu 596962 May 24 22:48 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_21/submitted.pdf\nPDF EXISTS",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "5c422e60-16d3-4128-a5c7-cd44b6498b9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-24T22:50:24.435Z_
+
+<details><summary>↩ Tool result · `toolu_01SdKqH3KM9vUXBFDcWMwKk7`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 submission deadline ARR cycle commitment deadline"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML","url":"https://mlciv.com/ai-deadlines/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"EMNLP 2026 Workshop WiNLP ARR Commitment | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026%2FWorkshop%2FWiNLP_ARR_Commitment"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"}]
+
+Based on the search results, here are the key deadlines for EMNLP 2026:
+
+## ARR Submission Deadline
+The ARR submission deadline for long and short papers is May 25, 2026.
+
+## ARR Commitment Deadline
+The commitment deadline for EMNLP 2026 is August 2, 2026.
+
+## Important Policy Note
+For the ARR 2026 May cycle, authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026—papers that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+## Other Key Dates
+Additional important dates include the reviewer registration deadline for all authors on May 27, 2026, author response and author-reviewer discussion from July 7-13, 2026, meta-review release on July 30, 2026, and notification of acceptance on August 20, 2026.
+
+All deadlines are 11:59PM UTC-12:00 ("anywhere on Earth").
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d153a19c-787f-4806-9e15-7326a8765821",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "d57c0dfb-70fc-4295-9ef7-18600d002f2a",
+  "toolUseResult": {
+    "query": "EMNLP 2026 submission deadline ARR cycle commitment deadline",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EtXxieoN2fLC7BCnmfFnh6",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "EMNLP 2026 Workshop WiNLP ARR Commitment | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026%2FWorkshop%2FWiNLP_ARR_Commitment"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          }
+        ]
+      },
+      "Based on the search results, here are the key deadlines for EMNLP 2026:\n\n## ARR Submission Deadline\nThe ARR submission deadline for long and short papers is May 25, 2026.\n\n## ARR Commitment Deadline\nThe commitment deadline for EMNLP 2026 is August 2, 2026.\n\n## Important Policy Note\nFor the ARR 2026 May cycle, authors must explicitly declare which conference they intend to commit to at submission time, and this choice is binding for EMNLP 2026—papers that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\n## Other Key Dates\nAdditional important dates include the reviewer registration deadline for all authors on May 27, 2026, author response and author-reviewer discussion from July 7-13, 2026, meta-review release on July 30, 2026, and notification of acceptance on August 20, 2026.\n\nAll deadlines are 11:59PM UTC-12:00 (\"anywhere on Earth\")."
+    ],
+    "durationSeconds": 5.501762308000004
+  },
+  "sourceToolAssistantUUID": "d153a19c-787f-4806-9e15-7326a8765821",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T22:50:25.410Z_
+
+<details><summary>↩ Tool result · `toolu_01KmXfomjJViMQtoaSJKwoYw`</summary>
+
+```text
+Web search results for query: "ACL Rolling Review 2026 submission guidelines page limit author instructions"
+
+Links: [{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Paper formatting guidelines - ACLPUB","url":"https://acl-org.github.io/ACLPUB/formatting.html"},{"title":"Authors Beware: Common Submission Problems – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authorchecklist"},{"title":"Main Conference - ACL 2026","url":"https://2026.aclweb.org/calls/main_conference_papers/"},{"title":"ACL Rolling Review | ACL Member Portal","url":"https://www.aclweb.org/portal/content/acl-rolling-review"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"ACL ARR 2026 January | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"},{"title":"EACL 2026: First Call for Papers | ACL Member Portal","url":"https://www.aclweb.org/portal/content/eacl-2026-first-call-papers"}]
+
+Based on the search results, here are the key ACL Rolling Review 2026 submission guidelines regarding page limits and author instructions:
+
+## Page Limits
+
+Long papers for review versions may have up to eight (8) pages of content plus unlimited pages for references. Review versions of short papers may have up to four (4) pages of content, plus unlimited pages for references. 
+
+Upon acceptance, final versions of long papers will be given one additional page – up to nine (9) pages of content plus unlimited pages for acknowledgments and references – so that reviewers' comments can be taken into account. Final versions of short papers may have up to five (5) pages, plus unlimited pages for acknowledgments and references.
+
+## Key Author Instructions
+
+- All long, short, and theme papers must follow the ACL Author Guidelines.
+- Paper submissions must use the official ACL style template.
+- Papers must not include authors' names and affiliations. Furthermore, self-references that reveal the authors' identities must be avoided.
+- ACL currently requires all submissions to have a section titled "Limitations", which should be placed after the conclusion section and before references. It does not count towards the page limit.
+- For both long and short papers, all figures and tables that are part of the main text must fit within the page limits.
+
+For more complete submission guidelines, you can visit the official ACL Rolling Review website at http://aclrollingreview.org/cfp.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc6bb9f8-4dce-433e-aa1b-8a88c458dbb5",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "9746eebc-a029-4c73-ba7d-032fca00641c",
+  "toolUseResult": {
+    "query": "ACL Rolling Review 2026 submission guidelines page limit author instructions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013K7F1NcXXFyWiDPu5ExsoB",
+        "content": [
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Paper formatting guidelines - ACLPUB",
+            "url": "https://acl-org.github.io/ACLPUB/formatting.html"
+          },
+          {
+            "title": "Authors Beware: Common Submission Problems – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authorchecklist"
+          },
+          {
+            "title": "Main Conference - ACL 2026",
+            "url": "https://2026.aclweb.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "ACL Rolling Review | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/acl-rolling-review"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "ACL ARR 2026 January | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary"
+          },
+          {
+            "title": "EACL 2026: First Call for Papers | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/eacl-2026-first-call-papers"
+          }
+        ]
+      },
+      "Based on the search results, here are the key ACL Rolling Review 2026 submission guidelines regarding page limits and author instructions:\n\n## Page Limits\n\nLong papers for review versions may have up to eight (8) pages of content plus unlimited pages for references. Review versions of short papers may have up to four (4) pages of content, plus unlimited pages for references. \n\nUpon acceptance, final versions of long papers will be given one additional page – up to nine (9) pages of content plus unlimited pages for acknowledgments and references – so that reviewers' comments can be taken into account. Final versions of short papers may have up to five (5) pages, plus unlimited pages for acknowledgments and references.\n\n## Key Author Instructions\n\n- All long, short, and theme papers must follow the ACL Author Guidelines.\n- Paper submissions must use the official ACL style template.\n- Papers must not include authors' names and affiliations. Furthermore, self-references that reveal the authors' identities must be avoided.\n- ACL currently requires all submissions to have a section titled \"Limitations\", which should be placed after the conclusion section and before references. It does not count towards the page limit.\n- For both long and short papers, all figures and tables that are part of the main text must fit within the page limits.\n\nFor more complete submission guidelines, you can visit the official ACL Rolling Review website at http://aclrollingreview.org/cfp."
+    ],
+    "durationSeconds": 6.067830610000004
+  },
+  "sourceToolAssistantUUID": "bc6bb9f8-4dce-433e-aa1b-8a88c458dbb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41 · 2026-05-24T22:50:25.414Z_
+
+```json
+{
+  "parentUuid": "9746eebc-a029-4c73-ba7d-032fca00641c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f34c708f-0e99-459d-ac05-66eaddb7c29a",
+  "timestamp": "2026-05-24T22:50:25.414Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-24T22:50:28.835Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The sections are in the paper directory. Let me find them - they use `\input{sections/...}`, so I need to look in the paper directory for the sections subdirectory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f34c708f-0e99-459d-ac05-66eaddb7c29a",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEHXkWpjC132DPhLPf",
+  "type": "assistant",
+  "uuid": "db505f5e-5769-43d0-b53e-99ff3238dddf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0158SYoh6Aq4LjG3hexHUnAq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 128,
+      "cache_creation_input_tokens": 2311,
+      "cache_read_input_tokens": 38994,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2311,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 128,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 38994,
+          "cache_creation_input_tokens": 2311,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2311
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-24T22:50:29.553Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01XiKGEGfej2NMFXJpX6uAGC`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db505f5e-5769-43d0-b53e-99ff3238dddf",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEHXkWpjC132DPhLPf",
+  "type": "assistant",
+  "uuid": "428b52b9-7e4e-4005-ac5d-7acfc4ef134d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0158SYoh6Aq4LjG3hexHUnAq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 128,
+      "cache_creation_input_tokens": 2311,
+      "cache_read_input_tokens": 38994,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2311,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 128,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 38994,
+          "cache_creation_input_tokens": 2311,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2311
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T22:50:29.562Z_
+
+<details><summary>↩ Tool result · `toolu_01XiKGEGfej2NMFXJpX6uAGC`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/arr_checklist.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "428b52b9-7e4e-4005-ac5d-7acfc4ef134d",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "424088f9-0040-48d8-8f81-28c20a4f3131",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/arr_checklist.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
+    ],
+    "durationMs": 6,
+    "numFiles": 10,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "428b52b9-7e4e-4005-ac5d-7acfc4ef134d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-24T22:50:35.031Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Gy6pHUcARz4yRXXMaaWHmp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "424088f9-0040-48d8-8f81-28c20a4f3131",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEbTG2q7RxpvgSr96o",
+  "type": "assistant",
+  "uuid": "ffececea-25c7-45a1-b79f-4810cfe0fce4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DUX7ygDSvtnXtiUofJEmcJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 41305,
+      "output_tokens": 552,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 552,
+          "cache_read_input_tokens": 41305,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T22:50:35.037Z_
+
+<details><summary>↩ Tool result · `toolu_01Gy6pHUcARz4yRXXMaaWHmp`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	Hybrid linear recurrent architectures---including GatedDeltaNet (GDN), RetNet, HGRN2, Gated Linear Attention (GLA), and DeltaNet---achieve aggregate benchmark scores within 1--2 points of each other at matched parameter budgets, yet they can differ on up to 90\% of the individual examples they affect. This per-example divergence is invisible in aggregate metrics: architectures that score similarly reach that score by gaining and losing on different inputs, and the choice of backbone carries hidden consequences for which specific examples a deployed system handles correctly.
+4	
+5	\begin{figure*}[t]
+6	\centering
+7	\begin{minipage}[t]{0.56\textwidth}
+8	\centering
+9	\includegraphics[width=\textwidth]{figures/fig1_decoupling_hero.pdf}
+10	\end{minipage}%
+11	\hfill
+12	\begin{minipage}[t]{0.42\textwidth}
+13	\centering
+14	\includegraphics[width=\textwidth]{figures/fig4_jaccard_saturation.pdf}
+15	\end{minipage}
+16	\caption{Per-example overlap saturates at minimal attention across benchmarks. (a,\,b) LAMBADA: cross-architecture $\sigma$ shows a non-significant decreasing trend at 1.3B (solid; Bonferroni-adjusted $p = .170$) but partially rebounds at 340M (dashed), while pairwise Jaccard of helped/hurt sets saturates at 4\% attention and remains flat. (c) This saturation generalizes: on all four main benchmarks, mean pairwise $\bar{J}$ remains flat across attention ratios (all $\rho \leq 0.80$, $p \geq .333$). Shaded bands are illustrative ($n = 3$).}
+17	\label{fig:decoupling}
+18	\end{figure*}
+19	
+20	This tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \citep{lieber2024jamba}, Griffin \citep{de2024griffin}, RWKV-6 \citep{peng2024eagle}, and RecurrentGemma \citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.
+21	
+22	Prior work on predictive multiplicity \citep{marx2020predictive} and underspecification \citep{damour2022underspecification,mccoy2020berts} documents this risk for seed variation within a single architecture, but whether it extends to architectural variation in hybrid recurrent models remains open. If architectures that score similarly in aggregate behave differently on individual inputs, the backbone choice carries hidden consequences for deployment reliability and ensemble construction.
+23	
+24	We present the first controlled within-family per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Using the model zoo of \citet{wang2025hybrid}, we compare three architectures---GatedDeltaNet (gated delta rules), RetNet (multi-scale exponential decay), and HGRN2 (gated state expansion)---at five attention ratios (0--25\%) and two scales (340M, 1.3B). We evaluate all 30 configurations on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed categories. On four benchmarks (LAMBADA, $N = 5{,}153$; HellaSwag, $N = 10{,}042$; PIQA, $N = 1{,}838$; ARC-Easy, $N = 2{,}376$) we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap via Jaccard similarity. Figure~\ref{fig:decoupling} previews our central finding: architectures that appear equivalent by aggregate benchmarks diverge systematically at the per-example level, and this divergence is established by minimal attention.
+25	
+26	Our central finding is that architectural variation produces structured predictive multiplicity whose magnitude depends on task type, not attention ratio. The ambiguity $\alpha$ \citep{marx2020predictive} ranges from 0.14 (PIQA) to 0.30 (LAMBADA), varies $2\times$ across task types but only 0.03 within each benchmark across attention ratios; pairwise Jaccard remains uniformly low ($\leq 0.10$, all $p < .01$ across all ten five-architecture pairs). A supporting observation is that this per-example overlap saturates at the first attention level (4\%) and remains flat at higher ratios---even on LAMBADA, where aggregate variance shows a non-significant decreasing trend ($\rho = -1.0$, Bonferroni-adjusted $p = .170$; at 1.3B only), per-example Jaccard does not change (\S\ref{ssec:decoupling}).
+27	
+28	Our contributions are as follows:
+29	\begin{itemize}
+30	    \item Architectural variation in hybrid recurrent models---controlled within a single model zoo sharing training data and hyperparameters---produces structured predictive multiplicity whose magnitude varies by task type (or evaluation format) rather than attention ratio (\S\ref{ssec:per_example}). Five-architecture validation confirms the pattern (\S\ref{ssec:robustness}; Appendix~\ref{app:extended_arch}).
+31	    \item Per-example overlap saturates at the first attention level (4\%) across all four benchmarks: minimal attention establishes which examples each architecture affects, and additional attention does not homogenize these per-example sets (\S\ref{ssec:decoupling}).
+32	    \item Pure-model confidence margins partially predict which examples attention will affect (AUC 0.70--0.74), with rescue thresholds architecture-invariant but disruption thresholds varying 47\% across architectures---a second dimension of multiplicity beyond per-example disagreement (\S\ref{ssec:per_example}; Appendix~\ref{app:prediction_framework}).
+33	\end{itemize}
+34	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffececea-25c7-45a1-b79f-4810cfe0fce4",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "dc0f8bb6-a47c-4d4d-9ac2-91431947778a",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/introduction.tex",
+      "content": "\\section{Introduction}\n\nHybrid linear recurrent architectures---including GatedDeltaNet (GDN), RetNet, HGRN2, Gated Linear Attention (GLA), and DeltaNet---achieve aggregate benchmark scores within 1--2 points of each other at matched parameter budgets, yet they can differ on up to 90\\% of the individual examples they affect. This per-example divergence is invisible in aggregate metrics: architectures that score similarly reach that score by gaining and losing on different inputs, and the choice of backbone carries hidden consequences for which specific examples a deployed system handles correctly.\n\n\\begin{figure*}[t]\n\\centering\n\\begin{minipage}[t]{0.56\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig1_decoupling_hero.pdf}\n\\end{minipage}%\n\\hfill\n\\begin{minipage}[t]{0.42\\textwidth}\n\\centering\n\\includegraphics[width=\\textwidth]{figures/fig4_jaccard_saturation.pdf}\n\\end{minipage}\n\\caption{Per-example overlap saturates at minimal attention across benchmarks. (a,\\,b) LAMBADA: cross-architecture $\\sigma$ shows a non-significant decreasing trend at 1.3B (solid; Bonferroni-adjusted $p = .170$) but partially rebounds at 340M (dashed), while pairwise Jaccard of helped/hurt sets saturates at 4\\% attention and remains flat. (c) This saturation generalizes: on all four main benchmarks, mean pairwise $\\bar{J}$ remains flat across attention ratios (all $\\rho \\leq 0.80$, $p \\geq .333$). Shaded bands are illustrative ($n = 3$).}\n\\label{fig:decoupling}\n\\end{figure*}\n\nThis tension arises in the context of a rapid architectural shift toward hybrid recurrent-attention models, which interleave attention layers within linear recurrent backbones. Jamba \\citep{lieber2024jamba}, Griffin \\citep{de2024griffin}, RWKV-6 \\citep{peng2024eagle}, and RecurrentGemma \\citep{botev2024recurrentgemma} each combine recurrence with attention using different mixing strategies. These systems now serve as production-grade alternatives to pure Transformers, and the practical question of how much attention to include is typically answered by comparing aggregate benchmark numbers. \\citet{wang2025hybrid} provide a controlled model zoo spanning three recurrent architectures, five attention ratios, and two parameter scales, which enables systematic study of how attention allocation affects these hybrid designs.\n\nPrior work on predictive multiplicity \\citep{marx2020predictive} and underspecification \\citep{damour2022underspecification,mccoy2020berts} documents this risk for seed variation within a single architecture, but whether it extends to architectural variation in hybrid recurrent models remains open. If architectures that score similarly in aggregate behave differently on individual inputs, the backbone choice carries hidden consequences for deployment reliability and ensemble construction.\n\nWe present the first controlled within-family per-example analysis of how attention affects cross-architecture agreement in hybrid recurrent models. Using the model zoo of \\citet{wang2025hybrid}, we compare three architectures---GatedDeltaNet (gated delta rules), RetNet (multi-scale exponential decay), and HGRN2 (gated state expansion)---at five attention ratios (0--25\\%) and two scales (340M, 1.3B). We evaluate all 30 configurations on 10 benchmarks spanning retrieval, comprehension, reasoning, and mixed categories. On four benchmarks (LAMBADA, $N = 5{,}153$; HellaSwag, $N = 10{,}042$; PIQA, $N = 1{,}838$; ARC-Easy, $N = 2{,}376$) we conduct per-example decompositions, classifying each example as helped, hurt, or unchanged when attention is added, and measure cross-architecture overlap via Jaccard similarity. Figure~\\ref{fig:decoupling} previews our central finding: architectures that appear equivalent by aggregate benchmarks diverge systematically at the per-example level, and this divergence is established by minimal attention.\n\nOur central finding is that architectural variation produces structured predictive multiplicity whose magnitude depends on task type, not attention ratio. The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) to 0.30 (LAMBADA), varies $2\\times$ across task types but only 0.03 within each benchmark across attention ratios; pairwise Jaccard remains uniformly low ($\\leq 0.10$, all $p < .01$ across all ten five-architecture pairs). A supporting observation is that this per-example overlap saturates at the first attention level (4\\%) and remains flat at higher ratios---even on LAMBADA, where aggregate variance shows a non-significant decreasing trend ($\\rho = -1.0$, Bonferroni-adjusted $p = .170$; at 1.3B only), per-example Jaccard does not change (\\S\\ref{ssec:decoupling}).\n\nOur contributions are as follows:\n\\begin{itemize}\n    \\item Architectural variation in hybrid recurrent models---controlled within a single model zoo sharing training data and hyperparameters---produces structured predictive multiplicity whose magnitude varies by task type (or evaluation format) rather than attention ratio (\\S\\ref{ssec:per_example}). Five-architecture validation confirms the pattern (\\S\\ref{ssec:robustness}; Appendix~\\ref{app:extended_arch}).\n    \\item Per-example overlap saturates at the first attention level (4\\%) across all four benchmarks: minimal attention establishes which examples each architecture affects, and additional attention does not homogenize these per-example sets (\\S\\ref{ssec:decoupling}).\n    \\item Pure-model confidence margins partially predict which examples attention will affect (AUC 0.70--0.74), with rescue thresholds architecture-invariant but disruption thresholds varying 47\\% across architectures---a second dimension of multiplicity beyond per-example disagreement (\\S\\ref{ssec:per_example}; Appendix~\\ref{app:prediction_framework}).\n\\end{itemize}\n",
+      "numLines": 34,
+      "startLine": 1,
+      "totalLines": 34
+    }
+  },
+  "sourceToolAssistantUUID": "ffececea-25c7-45a1-b79f-4810cfe0fce4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-24T22:50:35.354Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Lo6VZ3WbWvpnNPrboBpi8a`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc0f8bb6-a47c-4d4d-9ac2-91431947778a",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEbTG2q7RxpvgSr96o",
+  "type": "assistant",
+  "uuid": "9c0ff8f7-f63d-4c4e-b16a-8fc58a1c20b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DUX7ygDSvtnXtiUofJEmcJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 41305,
+      "output_tokens": 552,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 552,
+          "cache_read_input_tokens": 41305,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T22:50:35.358Z_
+
+<details><summary>↩ Tool result · `toolu_01Lo6VZ3WbWvpnNPrboBpi8a`</summary>
+
+```text
+1	\section{Related Work}
+2	
+3	\paragraph{Hybrid Recurrent Architectures.}
+4	The design space for combining attention with recurrence spans layer-level interleaving \citep[Jamba;][]{lieber2024jamba}, local attention pairing \citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \citep[RWKV-6;][]{peng2024eagle}, within-head mixing \citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \citep[Samba;][]{ren2024samba}. H3 \citep{fu2023hungry} and Hyena \citep{poli2023hyena} establish early design points in the hybrid space with gated convolutions and subquadratic operators. Mamba-2 \citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \citep{lahoti2026mamba3} extends the design further, while \citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \citep{basu2026routing}. Recent theoretical work establishes a provable expressiveness hierarchy between hybrid and pure linear attention \citep{ye2026provable}, providing formal grounding for the architectural differences we characterize at the per-example level. \citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.
+5	
+6	\paragraph{Linear Recurrent Models.}
+7	Our three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \citep{gu2022s4} and Mamba \citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.
+8	
+9	\paragraph{Underspecification and Predictive Multiplicity.}
+10	\citet{damour2022underspecification} formalized underspecification---equivalent aggregate performance masking per-prediction divergence---with NLP instances including seed-dependent BERT disagreement \citep{mccoy2020berts,sellam2022multiberts}. \citet{marx2020predictive} introduced predictive multiplicity, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic settings \citep{watson2023predictive}, Rashomon capacity \citep{hsu2022rashomon}, and reconciliation \citep{du2025reconciling,haghighat2026resolving}. These studies attribute divergence to initialization noise within a single architecture; Rashomon-set analyses \citep{fisher2019all,semenova2022existence} and weight-space interpolation \citep{wortsman2022model} operate within this scope. We show that changing the recurrent backbone---a qualitatively different source of variation---produces per-example multiplicity that varies by task type. Our routing approach relates to selective prediction \citep{geifman2017selective} and ensemble selection \citep{caruana2004ensemble}, though we select among architecturally distinct models. \citet{yang2026benchmark} demonstrate analogous per-item disagreement (16--66\%) among frontier LLMs; our within-family design isolates backbone variation from training-regime differences.
+11	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9c0ff8f7-f63d-4c4e-b16a-8fc58a1c20b8",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "96230d79-5e2b-42dd-8661-d524d3346ccd",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/related_work.tex",
+      "content": "\\section{Related Work}\n\n\\paragraph{Hybrid Recurrent Architectures.}\nThe design space for combining attention with recurrence spans layer-level interleaving \\citep[Jamba;][]{lieber2024jamba}, local attention pairing \\citep[Griffin, RecurrentGemma;][]{de2024griffin,botev2024recurrentgemma}, matrix-valued recurrence \\citep[RWKV-6;][]{peng2024eagle}, within-head mixing \\citep[Hymba;][]{dong2024hymba}, and unbounded-context hybrid SSMs \\citep[Samba;][]{ren2024samba}. H3 \\citep{fu2023hungry} and Hyena \\citep{poli2023hyena} establish early design points in the hybrid space with gated convolutions and subquadratic operators. Mamba-2 \\citep{dao2024mamba2} establishes a duality between structured state spaces and attention; Mamba-3 \\citep{lahoti2026mamba3} extends the design further, while \\citet{ali2025hidden} reveal implicit attention within Mamba. Comparative evaluations confirm that hybrids outperform pure Transformers and SSMs at scale \\citep{waleffe2024empirical}, and that even one attention layer enables content-based routing \\citep{basu2026routing}. Recent theoretical work establishes a provable expressiveness hierarchy between hybrid and pure linear attention \\citep{ye2026provable}, providing formal grounding for the architectural differences we characterize at the per-example level. \\citet{wang2025hybrid} provide the controlled model zoo we use, holding training conditions constant while varying architecture and attention ratio.\n\n\\paragraph{Linear Recurrent Models.}\nOur three recurrent backbones represent distinct gating strategies within the linear recurrence family: RetNet \\citep{sun2023retnet} uses multi-scale exponential decay, HGRN2 \\citep{qin2024hgrn2} applies gated state expansion, and GatedDeltaNet \\citep{yang2024gateddeltanet} combines gated updates with delta rules. These descend from S4 \\citep{gu2022s4} and Mamba \\citep{gu2024mamba}, which introduced structured state spaces and input-dependent selection, respectively, and connect to linear attention \\citep{katharopoulos2020transformers} through the state-space--attention duality of Mamba-2.\n\n\\paragraph{Underspecification and Predictive Multiplicity.}\n\\citet{damour2022underspecification} formalized underspecification---equivalent aggregate performance masking per-prediction divergence---with NLP instances including seed-dependent BERT disagreement \\citep{mccoy2020berts,sellam2022multiberts}. \\citet{marx2020predictive} introduced predictive multiplicity, showing that near-optimal models produce conflicting per-example predictions; extensions address probabilistic settings \\citep{watson2023predictive}, Rashomon capacity \\citep{hsu2022rashomon}, and reconciliation \\citep{du2025reconciling,haghighat2026resolving}. These studies attribute divergence to initialization noise within a single architecture; Rashomon-set analyses \\citep{fisher2019all,semenova2022existence} and weight-space interpolation \\citep{wortsman2022model} operate within this scope. We show that changing the recurrent backbone---a qualitatively different source of variation---produces per-example multiplicity that varies by task type. Our routing approach relates to selective prediction \\citep{geifman2017selective} and ensemble selection \\citep{caruana2004ensemble}, though we select among architecturally distinct models. \\citet{yang2026benchmark} demonstrate analogous per-item disagreement (16--66\\%) among frontier LLMs; our within-family design isolates backbone variation from training-regime differences.\n",
+      "numLines": 11,
+      "startLine": 1,
+      "totalLines": 11
+    }
+  },
+  "sourceToolAssistantUUID": "9c0ff8f7-f63d-4c4e-b16a-8fc58a1c20b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-24T22:50:35.976Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QeSiJHSis6dEJV8J85Lu61`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96230d79-5e2b-42dd-8661-d524d3346ccd",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEbTG2q7RxpvgSr96o",
+  "type": "assistant",
+  "uuid": "71f4f000-4233-4a43-8c7c-2d4dc9b07edf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DUX7ygDSvtnXtiUofJEmcJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 41305,
+      "output_tokens": 552,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 552,
+          "cache_read_input_tokens": 41305,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-24T22:50:35.981Z_
+
+<details><summary>↩ Tool result · `toolu_01QeSiJHSis6dEJV8J85Lu61`</summary>
+
+```text
+1	\section{Method}\label{sec:method}
+2	
+3	We describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.
+4	
+5	\begin{table}[t]
+6	\centering
+7	\small
+8	\caption{Model zoo summary \citep{wang2025hybrid}. All configurations share training data, tokenizer, and hyperparameters; they differ only in backbone and attention ratio.}
+9	\label{tab:model_zoo}
+10	\begin{tabular}{@{}lll@{}}
+11	\toprule
+12	Architecture & Recurrence mechanism & Scales \\
+13	\midrule
+14	GatedDeltaNet & Gated delta rules & 340M, 1.3B \\
+15	RetNet & Multi-scale exp.\ decay & 340M, 1.3B \\
+16	HGRN2 & Gated state expansion & 340M, 1.3B \\
+17	\midrule
+18	\multicolumn{3}{@{}l@{}}{\footnotesize Attention ratios: 0\%, 4\%, 7.7\%, 14.3\%, 25\%} \\
+19	\multicolumn{3}{@{}l@{}}{\footnotesize Extended (340M only): +GLA, +DeltaNet} \\
+20	\bottomrule
+21	\end{tabular}
+22	\end{table}
+23	
+24	\subsection{Model Zoo}\label{ssec:model_zoo}
+25	
+26	We use the pretrained model zoo of \citet{wang2025hybrid} (Table~\ref{tab:model_zoo}), which provides controlled comparisons: GatedDeltaNet \citep{yang2024gateddeltanet}, RetNet \citep{sun2023retnet}, and HGRN2 \citep{qin2024hgrn2} at five attention ratios and two scales. The GDN 1.3B h3-1 configuration uses 16 attention heads vs.\ 32 for RetNet and HGRN2 (\S\ref{ssec:robustness}). We adopt the h$k$-1 notation: h3-1 = 25\% attention, h6-1 = 14.3\%, h12-1 = 7.7\%, h24-1 = 4\%. Within each scale, all models share identical training data, tokenizer, and hyperparameters, isolating architecture and attention configuration. The zoo also includes a Transformer baseline at both scales.
+27	
+28	\subsection{Task Taxonomy}\label{ssec:task_taxonomy}
+29	
+30	We evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy (informal; not pre-registered) was fixed prior to analysis following standard categorizations in the evaluation literature \citep{arora2024zoology} and is treated as hypothesis-generating rather than confirmatory (see Appendix~\ref{app:benchmark_details} for the confirmatory/exploratory split), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.
+31	
+32	\begin{itemize}
+33	    \item \textbf{Retrieval}: LAMBADA \citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.
+34	    \item \textbf{Comprehension}: Boolean Questions (BoolQ), a reading comprehension task with yes/no answers.
+35	    \item \textbf{Reasoning}: HellaSwag, AI2 Reasoning Challenge (ARC-Challenge; \citealt{clark2018arc}), WinoGrande, and Physical Intuition Question Answering (PIQA). Choice of Plausible Alternatives (COPA; $n = 100$) is supplementary; its small sample renders $\alpha$ unreliable (Appendix~\ref{app:subsample_sensitivity}).
+36	    \item \textbf{Mixed}: ARC-Easy, Massive Multitask Language Understanding (MMLU), SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.
+37	\end{itemize}
+38	
+39	LAMBADA is the only free-form generation benchmark in our evaluation; all others use multiple-choice scoring. Its higher $\alpha$ (0.30 vs.\ 0.14--0.21 for multiple-choice tasks) may partly reflect the larger answer space inherent to open-ended prediction, and the multiple-choice format may mechanically constrain per-example divergence by limiting the number of distinct error patterns. We cannot fully disentangle task type from evaluation format with the present benchmarks. However, within multiple-choice tasks, format (two-way vs.\ four-way) does not predict $\alpha$ (\S\ref{ssec:per_example}), suggesting that format alone does not drive the observed variation.
+40	
+41	All evaluations use lm-evaluation-harness v0.4.x \citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout.
+42	
+43	\begin{figure}[t]
+44	\centering
+45	\includegraphics[width=\columnwidth]{figures/fig_method_overview.pdf}
+46	\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \approx 0.10$), revealing architecture-specific sensitivity patterns.}
+47	\label{fig:method_overview}
+48	\end{figure}
+49	
+50	\subsection{Convergence Metrics}\label{ssec:convergence_metrics}
+51	
+52	We quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\rho$ between attention ratio rank and $\sigma$ across the five attention configurations ($n = 5$). A negative $\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.
+53	
+54	We also report the convergence ratio $\sigma_{\text{pure}} / \sigma_{\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.
+55	
+56	\subsection{Per-Example Decomposition}\label{ssec:per_example_decomposition}
+57	
+58	We decompose performance changes at the individual-example level on four benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), PIQA (1{,}838; reasoning, two-choice), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\_norm) as the per-example correctness criterion. Supplementary analyses on BoolQ (3{,}270) and WinoGrande (1{,}267) appear in Appendix~\ref{app:boolq} and \ref{app:winogrande}. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid (25\% attention), which maximizes the recurrent--hybrid contrast; \S\ref{ssec:per_example} confirms that $\alpha$ is stable across intermediate ratios (variation $< 0.03$). Each example is classified as:
+59	
+60	\begin{itemize}
+61	    \item \textbf{Helped}: correct in the hybrid but incorrect in the pure model.
+62	    \item \textbf{Hurt}: correct in the pure model but incorrect in the hybrid.
+63	    \item \textbf{Unchanged}: both models agree (both correct or both incorrect).
+64	\end{itemize}
+65	
+66	The net effect for each architecture is $|\text{helped}| - |\text{hurt}|$. A positive net effect means more examples transition to correct than to incorrect when attention is added; a negative net effect means the opposite.
+67	
+68	To measure cross-architecture overlap, we compute the pairwise Jaccard similarity $J = |A \cap B| / |A \cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. On $K$-choice tasks, binarization collapses $K{-}1$ wrong answers into a single ``incorrect'' category, potentially counting architectures as agreeing (both wrong) when they select different wrong answers. This conservative bias strengthens the multiplicity claim: true divergence may exceed what binary Jaccard captures. Appendix~\ref{app:continuous_jaccard} confirms robustness under continuous Jaccard similarity.
+69	
+70	\subsection{Statistical Methods}\label{ssec:statistical_methods}
+71	
+72	All tests are two-tailed. Spearman $\rho$ uses exact permutation tests ($5! = 120$ permutations); with $n = 5$, only $|\rho| = 1.0$ achieves $p < .05$ ($p = .017$), so all Spearman-based inferences are descriptive and exploratory. Bonferroni correction spans all 10 benchmarks (adjusted threshold $\alpha / 10 = 0.005$). Bootstrap 95\% bias-corrected and accelerated (BCa) confidence intervals use 10{,}000 resamples; with $n = 3$ architectures, these are heuristic indicators of effect direction. Within-architecture comparisons use Mann-Whitney U; cross-architecture comparisons use Kruskal-Wallis. Attention weight analysis extracts per-layer cosine similarity and Shannon entropy via forward hooks (Appendix~\ref{app:attention_patterns}). The permutation null does not condition on item difficulty; shared-difficulty effects may inflate baseline overlap expectations.
+73	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "71f4f000-4233-4a43-8c7c-2d4dc9b07edf",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "c0d55e3e-3198-49fb-963b-ca7c7535ee23",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/method.tex",
+      "content": "\\section{Method}\\label{sec:method}\n\nWe describe the model configurations, evaluation benchmarks, and analytical framework used to measure how attention affects cross-architecture agreement at both aggregate and per-example levels.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Model zoo summary \\citep{wang2025hybrid}. All configurations share training data, tokenizer, and hyperparameters; they differ only in backbone and attention ratio.}\n\\label{tab:model_zoo}\n\\begin{tabular}{@{}lll@{}}\n\\toprule\nArchitecture & Recurrence mechanism & Scales \\\\\n\\midrule\nGatedDeltaNet & Gated delta rules & 340M, 1.3B \\\\\nRetNet & Multi-scale exp.\\ decay & 340M, 1.3B \\\\\nHGRN2 & Gated state expansion & 340M, 1.3B \\\\\n\\midrule\n\\multicolumn{3}{@{}l@{}}{\\footnotesize Attention ratios: 0\\%, 4\\%, 7.7\\%, 14.3\\%, 25\\%} \\\\\n\\multicolumn{3}{@{}l@{}}{\\footnotesize Extended (340M only): +GLA, +DeltaNet} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Model Zoo}\\label{ssec:model_zoo}\n\nWe use the pretrained model zoo of \\citet{wang2025hybrid} (Table~\\ref{tab:model_zoo}), which provides controlled comparisons: GatedDeltaNet \\citep{yang2024gateddeltanet}, RetNet \\citep{sun2023retnet}, and HGRN2 \\citep{qin2024hgrn2} at five attention ratios and two scales. The GDN 1.3B h3-1 configuration uses 16 attention heads vs.\\ 32 for RetNet and HGRN2 (\\S\\ref{ssec:robustness}). We adopt the h$k$-1 notation: h3-1 = 25\\% attention, h6-1 = 14.3\\%, h12-1 = 7.7\\%, h24-1 = 4\\%. Within each scale, all models share identical training data, tokenizer, and hyperparameters, isolating architecture and attention configuration. The zoo also includes a Transformer baseline at both scales.\n\n\\subsection{Task Taxonomy}\\label{ssec:task_taxonomy}\n\nWe evaluate on 10 benchmarks grouped into four categories defined by the primary cognitive demand of each task. This taxonomy (informal; not pre-registered) was fixed prior to analysis following standard categorizations in the evaluation literature \\citep{arora2024zoology} and is treated as hypothesis-generating rather than confirmatory (see Appendix~\\ref{app:benchmark_details} for the confirmatory/exploratory split), not derived post hoc from observed results. The categories test whether the effect of attention on cross-architecture variance depends on task type.\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: LAMBADA \\citep{paperno2016lambada}, which requires predicting a final word from long-range context without reasoning or world knowledge.\n    \\item \\textbf{Comprehension}: Boolean Questions (BoolQ), a reading comprehension task with yes/no answers.\n    \\item \\textbf{Reasoning}: HellaSwag, AI2 Reasoning Challenge (ARC-Challenge; \\citealt{clark2018arc}), WinoGrande, and Physical Intuition Question Answering (PIQA). Choice of Plausible Alternatives (COPA; $n = 100$) is supplementary; its small sample renders $\\alpha$ unreliable (Appendix~\\ref{app:subsample_sensitivity}).\n    \\item \\textbf{Mixed}: ARC-Easy, Massive Multitask Language Understanding (MMLU), SciQ, and XStoryCloze, which combine retrieval, comprehension, and reasoning demands.\n\\end{itemize}\n\nLAMBADA is the only free-form generation benchmark in our evaluation; all others use multiple-choice scoring. Its higher $\\alpha$ (0.30 vs.\\ 0.14--0.21 for multiple-choice tasks) may partly reflect the larger answer space inherent to open-ended prediction, and the multiple-choice format may mechanically constrain per-example divergence by limiting the number of distinct error patterns. We cannot fully disentangle task type from evaluation format with the present benchmarks. However, within multiple-choice tasks, format (two-way vs.\\ four-way) does not predict $\\alpha$ (\\S\\ref{ssec:per_example}), suggesting that format alone does not drive the observed variation.\n\nAll evaluations use lm-evaluation-harness v0.4.x \\citep{gao2024lmeval} with default prompts and greedy decoding; accuracy serves as the primary metric for all benchmarks. Bootstrap analyses use random seed 42 throughout.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_overview.pdf}\n\\caption{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \\approx 0.10$), revealing architecture-specific sensitivity patterns.}\n\\label{fig:method_overview}\n\\end{figure}\n\n\\subsection{Convergence Metrics}\\label{ssec:convergence_metrics}\n\nWe quantify cross-architecture agreement as a function of attention ratio. For each benchmark and attention ratio, we compute the cross-architecture standard deviation $\\sigma$ over the three architectures' accuracy scores. To measure the relationship between attention and convergence, we compute the Spearman rank correlation $\\rho$ between attention ratio rank and $\\sigma$ across the five attention configurations ($n = 5$). A negative $\\rho$ indicates that higher attention ratios are associated with lower cross-architecture variance.\n\nWe also report the convergence ratio $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$, defined as the standard deviation under the pure-recurrent configuration divided by that under the highest attention ratio (25\\%). Values greater than 1 indicate that higher attention ratios are associated with lower cross-architecture variance.\n\n\\subsection{Per-Example Decomposition}\\label{ssec:per_example_decomposition}\n\nWe decompose performance changes at the individual-example level on four benchmarks spanning three task categories: LAMBADA (5{,}153 examples; retrieval), HellaSwag (10{,}042; reasoning), PIQA (1{,}838; reasoning, two-choice), and ARC-Easy (2{,}376; mixed). HellaSwag uses normalized accuracy (acc\\_norm) as the per-example correctness criterion. Supplementary analyses on BoolQ (3{,}270) and WinoGrande (1{,}267) appear in Appendix~\\ref{app:boolq} and \\ref{app:winogrande}. For each architecture, we compare the pure-recurrent baseline against its h3-1 hybrid (25\\% attention), which maximizes the recurrent--hybrid contrast; \\S\\ref{ssec:per_example} confirms that $\\alpha$ is stable across intermediate ratios (variation $< 0.03$). Each example is classified as:\n\n\\begin{itemize}\n    \\item \\textbf{Helped}: correct in the hybrid but incorrect in the pure model.\n    \\item \\textbf{Hurt}: correct in the pure model but incorrect in the hybrid.\n    \\item \\textbf{Unchanged}: both models agree (both correct or both incorrect).\n\\end{itemize}\n\nThe net effect for each architecture is $|\\text{helped}| - |\\text{hurt}|$. A positive net effect means more examples transition to correct than to incorrect when attention is added; a negative net effect means the opposite.\n\nTo measure cross-architecture overlap, we compute the pairwise Jaccard similarity $J = |A \\cap B| / |A \\cup B|$ between the helped sets of two architectures and, separately, between their hurt sets. $J = 1$ indicates identical sets; $J = 0$ indicates no overlap. On $K$-choice tasks, binarization collapses $K{-}1$ wrong answers into a single ``incorrect'' category, potentially counting architectures as agreeing (both wrong) when they select different wrong answers. This conservative bias strengthens the multiplicity claim: true divergence may exceed what binary Jaccard captures. Appendix~\\ref{app:continuous_jaccard} confirms robustness under continuous Jaccard similarity.\n\n\\subsection{Statistical Methods}\\label{ssec:statistical_methods}\n\nAll tests are two-tailed. Spearman $\\rho$ uses exact permutation tests ($5! = 120$ permutations); with $n = 5$, only $|\\rho| = 1.0$ achieves $p < .05$ ($p = .017$), so all Spearman-based inferences are descriptive and exploratory. Bonferroni correction spans all 10 benchmarks (adjusted threshold $\\alpha / 10 = 0.005$). Bootstrap 95\\% bias-corrected and accelerated (BCa) confidence intervals use 10{,}000 resamples; with $n = 3$ architectures, these are heuristic indicators of effect direction. Within-architecture comparisons use Mann-Whitney U; cross-architecture comparisons use Kruskal-Wallis. Attention weight analysis extracts per-layer cosine similarity and Shannon entropy via forward hooks (Appendix~\\ref{app:attention_patterns}). The permutation null does not condition on item difficulty; shared-difficulty effects may inflate baseline overlap expectations.\n",
+      "numLines": 73,
+      "startLine": 1,
+      "totalLines": 73
+    }
+  },
+  "sourceToolAssistantUUID": "71f4f000-4233-4a43-8c7c-2d4dc9b07edf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-24T22:50:36.892Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014Xz9ZBQ9F3DGWD4zj3tyNb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0d55e3e-3198-49fb-963b-ca7c7535ee23",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEbTG2q7RxpvgSr96o",
+  "type": "assistant",
+  "uuid": "f7c8f1f2-035b-405c-8426-8395abfe9939",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DUX7ygDSvtnXtiUofJEmcJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 41305,
+      "output_tokens": 552,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 552,
+          "cache_read_input_tokens": 41305,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-24T22:50:36.898Z_
+
+<details><summary>↩ Tool result · `toolu_014Xz9ZBQ9F3DGWD4zj3tyNb`</summary>
+
+```text
+1	\section{Experiments}\label{sec:experiments}
+2	
+3	Using the model zoo of \citet{wang2025hybrid} (\S\ref{ssec:model_zoo}), we evaluate all 30 configurations on 10 benchmarks plus supplementary COPA ($n = 100$) at 1.3B scale unless noted. Results at 340M appear in scale analyses. Recall: h$k$-1 denotes one attention layer per $k{+}1$ layers; h3-1 = 25\% attention.
+4	
+5	\begin{table*}[t]
+6	\centering
+7	\caption{Cross-architecture variance trends across benchmarks (1.3B scale). $\rho$: Spearman correlation between attention ratio and cross-architecture standard deviation $\sigma$ across five configurations. $p$: exact permutation test (two-tailed, 120 permutations). $\sigma$ values reported $\times 10^{2}$ (accuracy percentage points). Ratio: $\sigma_{\text{pure}} / \sigma_{\text{h3-1}}$. \textbf{Bold}: only benchmark with $\rho = -1.0$. HellaSwag evaluated using normalized accuracy (acc\_norm), the standard metric for this benchmark.}
+8	\label{tab:convergence}
+9	\begin{tabular}{llrrrrr}
+10	\toprule
+11	Benchmark & Category & $\rho$ & $p$ & $\sigma_{\text{pure}}$ & $\sigma_{\text{h3-1}}$ & Ratio \\
+12	\midrule
+13	\textbf{LAMBADA$^{\ddagger}$} & \textbf{Retrieval} & $\mathbf{-1.0}$ & \textbf{.017} & \textbf{2.41} & \textbf{0.49} & \textbf{4.87} \\
+14	\quad\emph{(excl.\ GDN)} & & $-0.7$ & .233 & --- & --- & --- \\
+15	BoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\
+16	ARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\
+17	HellaSwag & Reasoning & $0.3$ & .683 & 1.17 & 1.18 & 0.99 \\
+18	PIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\
+19	WinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\
+20	ARC-E & Mixed & $-0.7$ & .233 & 1.00 & 0.13 & 7.70 \\
+21	MMLU & Mixed & $-0.7$ & .233 & 0.92 & 0.41 & 2.27 \\
+22	SciQ & Mixed & $0.1$ & .950 & 0.87 & 0.74 & 1.19 \\
+23	XStoryCloze & Mixed & $-0.6$ & .350 & 0.82 & 0.55 & 1.49 \\
+24	\midrule
+25	COPA$^{\dagger}$ & Reasoning & $-0.67$ & .267 & 2.63 & 0.47 & 5.57 \\
+26	\bottomrule
+27	\multicolumn{7}{l}{\footnotesize $^{\dagger}$Supplementary ($n = 100$); excluded from multiple comparison correction.} \\
+28	\multicolumn{7}{l}{\footnotesize $^{\ddagger}$GDN h3-1 uses 16 attention heads; all other configurations use 32 (\S\ref{ssec:robustness}).} \\
+29	\multicolumn{7}{@{}p{\textwidth}@{}}{\footnotesize Bonferroni-adjusted $p = .170$. \textbf{Power: only $|\rho| = 1.0$ achieves $p < .05$ at $n = 5$.} Excl.\ GDN reverses MMLU $\rho$ to $+0.6$ (\S\ref{ssec:robustness}).}
+30	\end{tabular}
+31	\vspace{-4pt}
+32	\end{table*}
+33	
+34	\subsection{Per-Example Divergence}\label{ssec:per_example}
+35	
+36	Do architectures converge by improving on the same examples? We compare each architecture's pure-recurrent baseline against its h3-1 hybrid on 5{,}153 LAMBADA examples, classifying each as helped, hurt, or unchanged. Although the decomposition is binary, it captures genuine separation in the continuous confidence space (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA; cross-benchmark details in Appendix~\ref{app:cm_cross}). Binarization discards confidence magnitude, so we supplement with continuous confidence margin analysis (Appendix~\ref{app:confidence_margin}) and verify that low Jaccard persists under continuous thresholds (Appendix~\ref{app:continuous_jaccard}).
+37	
+38	Each architecture displays a distinct profile of per-example changes (Figure~\ref{fig:per_example_bars}). GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395; full counts in Appendix~\ref{app:per_example_counts}). HGRN2 is the only architecture for which adding attention yields a net per-example benefit. Pairwise Jaccard similarity is low: mean $\bar{J} \leq 0.10$, indicating ${\sim}90$\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\text{null}} \approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\ref{app:jaccard_permutation}), plausibly reflecting shared sensitivity to example difficulty. Normalizing by $J_{\max}$, observed overlap reaches only 6--7\% of the achievable range above chance (Appendix~\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.
+39	
+40	\begin{figure}[t]
+41	\centering
+42	\includegraphics[width=\columnwidth]{figures/fig_per_example_bars.pdf}
+43	\caption{Per-example effects of adding attention (pure $\to$ h3-1) on LAMBADA at 1.3B scale. Helped: correct only in the hybrid; hurt: correct only in the pure model. HGRN2 is the only architecture with a net positive effect. Despite comparable magnitudes, these sets overlap minimally across architectures ($\bar{J} \leq 0.10$, all $p < .0001$).}
+44	\label{fig:per_example_bars}
+45	\end{figure}
+46	
+47	\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74, a non-parametric measure equivalent to Mann-Whitney $U$; Appendix~\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\% spread) but disruption thresholds vary 47\%, explaining cross-architecture Jaccard divergence (Appendix~\ref{app:prediction_framework}). Calibration differences account for less than half the threshold spread (Appendix~\ref{app:calibration}). The rescue pattern generalizes across three benchmarks ($d = 0.13$--$0.60$; Appendix~\ref{app:cm_cross}); disruption is weaker on reasoning tasks (Appendix~\ref{app:boolq}). This structured disagreement constitutes predictive multiplicity \citep{marx2020predictive} under architectural variation.
+48	
+49	\paragraph{Confidence-based routing.} As an illustrative case study, the rescue-threshold asymmetry suggests a routing strategy: select the architecture whose pure-model confidence best predicts successful rescue. On LAMBADA, this outperforms majority vote by $+5.2$\,pp (SD $= 0.4$\,pp, 10 cross-validated splits), extracting 36\% of the oracle gap (oracle = 65.5\%; Appendix~\ref{app:complementarity}). On ARC-Easy, gains are modest ($+1.2$\,pp, SD $= 0.5$\,pp); on HellaSwag, routing provides no benefit ($-0.06$\,pp, $p = .374$); on PIQA, it is significantly negative ($-0.49$\,pp, $p = .006$). Routing works when multiplicity is high ($\alpha = 0.30$, LAMBADA) and a clear rescue-threshold signal exists, but is counterproductive when multiplicity is low ($\alpha = 0.14$, PIQA). A natural comparison---average-logits ensemble---is left to future work as it requires simultaneous inference across all architectures.
+50	
+51	\begin{figure}[t]
+52	\centering
+53	\includegraphics[width=\columnwidth]{figures/fig3_alpha_routing.pdf}
+54	\caption{(a) Per-example ambiguity $\alpha$ varies $2\times$ across task types. (b) Confidence-based routing gains track $\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}
+55	\label{fig:alpha_routing}
+56	\end{figure}
+57	
+58	\paragraph{Multiplicity variation.} Extending to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\ref{tab:multiplicity}). The ambiguity $\alpha$ \citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy; Appendix~\ref{app:arceasy}) to 0.30 (LAMBADA). Format does not drive this ordering: HellaSwag (four-way) and PIQA (two-choice) produce nearly identical $\alpha$ despite different answer-space sizes, and $\alpha$ does not correlate with task accuracy ($\rho = -0.60$, $p = .24$). This within-multiple-choice invariance suggests that per-example multiplicity is associated with the cognitive demands of the task rather than the mechanical constraints of the evaluation format, though the confound between task type and format cannot be fully resolved with the present benchmarks (Limitations). Bootstrap 95\% CIs confirm the ordering (all non-overlapping except PIQA--HellaSwag; Table~\ref{tab:arceasy_ambiguity}). Pairwise Jaccard remains uniformly low ($\bar{J} \leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many are affected. Within each benchmark, $\alpha$ is stable across attention ratios (variation $< 0.03$) but differs $2\times$ across task types (or evaluation formats), confirming that multiplicity magnitude depends on task, not attention ratio \citep[cf.][]{gorbett2026crossmodel}.
+59	
+60	\begin{table}[t]
+61	\centering
+62	\small
+63	\caption{Predictive multiplicity at 1.3B. $\alpha$: ambiguity at h3-1 \citep{marx2020predictive}. $\bar{J}$: mean pairwise Jaccard of helped~(h) and hurt~(u) sets, averaged across four hybrid attention ratios and three architecture pairs. $\rho_\alpha$: Spearman $\rho$ between attention ratio and $\alpha$. Benchmarks ordered by $\alpha$.}
+64	\label{tab:multiplicity}
+65	\begin{tabular}{@{}lrcccc@{}}
+66	\toprule
+67	 & $N$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & $\rho_\alpha$ \\
+68	\midrule
+69	PIQA & 1838 & .14 & .091 & .094 & $0.0$ \\
+70	HellaSwag & 10042 & .15 & .095 & .085 & $0.1$ \\
+71	ARC-Easy & 2376 & .21 & .092 & .099 & $-0.2$ \\
+72	LAMBADA & 5153 & .30 & .096 & .091 & $-0.6$ \\
+73	\bottomrule
+74	\end{tabular}
+75	\par\vspace{-2pt}
+76	{\footnotesize Within-benchmark $\alpha$ variation $< 0.03$ across ratios. BoolQ, WinoGrande: Appendix~\ref{app:boolq}, \ref{app:winogrande}.}
+77	\end{table}
+78	
+79	\subsection{Per-Example Overlap Saturates at Minimal Attention}\label{ssec:decoupling}
+80	
+81	Does adding more attention change \emph{which} examples each architecture affects? Pairwise Jaccard saturates at the first attention level (4\%; $\bar{J} \approx 0.095$) and remains flat across all higher ratios (Figure~\ref{fig:decoupling}b), indicating that minimal attention suffices to establish the full per-example divergence pattern. As background, LAMBADA's aggregate cross-architecture $\sigma$ shows a non-significant decreasing trend ($\rho = -1.0$, Bonferroni-adjusted $p = .170$; excluding GDN: $\rho = -0.7$, $p = .233$; MMLU reverses to $\rho = +0.6$ when excluding GDN; observed at 1.3B, absent at 340M; Table~\ref{tab:convergence}, Figure~\ref{fig:task_specificity}). No other benchmark shows a comparable aggregate pattern ($n = 5$; negligible power for $|\rho| < 1.0$).
+82	
+83	\begin{figure}[t]
+84	\centering
+85	\includegraphics[width=\columnwidth]{figures/fig2_task_specificity.pdf}
+86	\caption{Spearman $\rho$ between attention ratio and cross-architecture $\sigma$ for each benchmark at 1.3B scale. LAMBADA ($\rho = -1.0$; BCa 95\% CI $[-1.0,\,-0.7]$, heuristic) is the only benchmark with a negative correlation whose confidence interval excludes zero. Benchmarks are grouped by task category. Bootstrap CI is heuristic given $n = 3$ architectures.}
+87	\label{fig:task_specificity}
+88	\end{figure}
+89	
+90	\begin{figure*}[t]
+91	\centering
+92	\includegraphics[width=\textwidth]{figures/jaccard_heatmap_5arch.pdf}
+93	\caption{Pairwise Jaccard heatmap across five architectures (340M, h3-1), where helped (hurt) examples are those correct only with (without) attention. Upper triangle: $J_{\text{helped}}$; lower triangle: $J_{\text{hurt}}$. All values $\leq 0.14$, all permutation tests $p \leq .002$. HellaSwag and PIQA results in Appendix~\ref{app:extended_arch}.}
+94	\label{fig:jaccard_heatmap_5arch}
+95	\end{figure*}
+96	
+97	Each architecture's per-example response to attention is largely idiosyncratic. The observed $\bar{J}$ reaches only 6--7\% of the achievable range above chance ($J_{\max} \approx 0.78$--$0.92$), ruling out ceiling constraints (\S\ref{ssec:per_example}). Readers can verify $\rho$ directly from Table~\ref{tab:convergence}; with $n = 3$ architectures, all bootstrap CIs are heuristic indicators of direction rather than precise coverage.
+98	
+99	This saturation generalizes beyond LAMBADA (Figure~\ref{fig:decoupling}c): on all four main benchmarks, mean pairwise Jaccard shows no significant trend with attention ratio (all $\rho \leq 0.80$, $p \geq 0.333$), with values uniformly between 0.08 and 0.11.
+100	
+101	Heuristic bootstrap 95\% CIs ($n = 3$; \S\ref{ssec:statistical_methods}) show non-overlapping $\sigma$ between pure and h3-1 but completely overlapping Jaccard across all hybrid ratios (\S\ref{ssec:statistical_methods}). Figure~\ref{fig:jaccard_hierarchy} shows a three-tier Jaccard hierarchy: independence baseline (${\sim}0.05$), cross-architecture (${\sim}0.10$, $2\times$ baseline), and within-architecture (${\sim}0.33$, $3\times$ cross-architecture; Appendix~\ref{app:within_arch_stability}). Pythia 70M seed calibration yields a comparable within-seed level ($J = 0.27$--$0.39$; Appendix~\ref{app:seed_calibration}), consistent with architecture-driven divergence, though matched multi-seed experiments would be needed for definitive evidence.
+102	
+103	\begin{figure}[t]
+104	\centering
+105	\includegraphics[width=\columnwidth]{figures/fig_jaccard_hierarchy.pdf}
+106	\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\bar{J} \approx 0.09$) is $2\times$ the independence baseline but only one-third of within-architecture overlap ($\bar{J} \approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}
+107	\label{fig:jaccard_hierarchy}
+108	\end{figure}
+109	
+110	An alternative interpretation of the saturation is that adding even minimal attention causes all architectures to rapidly adopt Transformer-like behavior, rather than locking in architecture-specific fingerprints. Appendix~\ref{app:transformer_entrainment} shows that h3-1 correct sets indeed converge toward the Transformer baseline, consistent with this account. Under the fingerprint view, each recurrent backbone imposes a characteristic inductive bias that determines which examples attention can rescue; under the convergence view, attention overrides backbone differences and steers all architectures toward a shared solution, with residual per-example divergence arising from incomplete convergence. Disentangling these accounts requires ablation of the attention mechanism itself---for example, replacing learned attention weights with random projections---which we leave to future work. Attention weight analysis (Appendix~\ref{app:attention_patterns}) shows GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet differ in per-example effects, suggesting these originate in the recurrent layers. The four-benchmark variation (Table~\ref{tab:multiplicity}) is consistent with independence: LAMBADA ($\alpha = 0.30$) is the only benchmark showing a variance-reduction trend despite having the highest multiplicity, while PIQA ($\alpha = 0.14$) and HellaSwag ($\alpha = 0.15$) show no variance reduction with the lowest multiplicity.
+111	
+112	Cross-scale analysis reveals a clear dissociation: per-example Jaccard is consistent across both scales ($\bar{J} = 0.08$--$0.10$ at 340M and 1.3B), whereas the aggregate variance trend is observed only at 1.3B on LAMBADA ($\rho = -0.50$, $p = .45$ at 340M). Ambiguity $\alpha$ is systematically higher at 340M ($\Delta \leq 8$\,pp), suggesting that the \emph{pattern} of per-example multiplicity is stable across scales while its magnitude co-varies with model capacity (Appendix~\ref{app:scale_per_example}--\ref{app:cross_scale}).
+113	\vspace{-2pt}
+114	\subsection{Robustness}\label{ssec:robustness}
+115	
+116	Removing GDN weakens the LAMBADA variance reduction ($\rho = -0.7$, $p = .233$) and reverses MMLU's ($\rho = +0.6$), both driven by GDN's 16-head configuration (vs.\ 32 in others; Appendix~\ref{app:gdn_confound}). The RetNet--HGRN2 pair preserves the independence pattern ($\sigma \leq 0.008$, $J = 0.086$--$0.108$). The aggregate variance pattern therefore depends on GDN inclusion; the per-example saturation result does not. Five-architecture validation at 340M (adding GLA and DeltaNet) confirms $J \leq 0.14$ across all ten pairwise comparisons and four benchmarks (all $p < .01$; Figure~\ref{fig:jaccard_heatmap_5arch}; Appendix~\ref{app:extended_arch}), extending the per-example divergence finding to architectures not used in the primary analysis. Full sensitivity analyses appear in Appendix~\ref{app:sensitivity}; Transformer baseline comparison in Appendix~\ref{app:transformer_entrainment}.
+117	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7c8f1f2-035b-405c-8426-8395abfe9939",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "7f6d635f-b0a0-45d1-abf2-5894068747e2",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/experiments.tex",
+      "content": "\\section{Experiments}\\label{sec:experiments}\n\nUsing the model zoo of \\citet{wang2025hybrid} (\\S\\ref{ssec:model_zoo}), we evaluate all 30 configurations on 10 benchmarks plus supplementary COPA ($n = 100$) at 1.3B scale unless noted. Results at 340M appear in scale analyses. Recall: h$k$-1 denotes one attention layer per $k{+}1$ layers; h3-1 = 25\\% attention.\n\n\\begin{table*}[t]\n\\centering\n\\caption{Cross-architecture variance trends across benchmarks (1.3B scale). $\\rho$: Spearman correlation between attention ratio and cross-architecture standard deviation $\\sigma$ across five configurations. $p$: exact permutation test (two-tailed, 120 permutations). $\\sigma$ values reported $\\times 10^{2}$ (accuracy percentage points). Ratio: $\\sigma_{\\text{pure}} / \\sigma_{\\text{h3-1}}$. \\textbf{Bold}: only benchmark with $\\rho = -1.0$. HellaSwag evaluated using normalized accuracy (acc\\_norm), the standard metric for this benchmark.}\n\\label{tab:convergence}\n\\begin{tabular}{llrrrrr}\n\\toprule\nBenchmark & Category & $\\rho$ & $p$ & $\\sigma_{\\text{pure}}$ & $\\sigma_{\\text{h3-1}}$ & Ratio \\\\\n\\midrule\n\\textbf{LAMBADA$^{\\ddagger}$} & \\textbf{Retrieval} & $\\mathbf{-1.0}$ & \\textbf{.017} & \\textbf{2.41} & \\textbf{0.49} & \\textbf{4.87} \\\\\n\\quad\\emph{(excl.\\ GDN)} & & $-0.7$ & .233 & --- & --- & --- \\\\\nBoolQ & Comprehension & $0.2$ & .783 & 1.63 & 2.36 & 0.69 \\\\\nARC-C & Reasoning & $0.6$ & .350 & 0.96 & 1.32 & 0.72 \\\\\nHellaSwag & Reasoning & $0.3$ & .683 & 1.17 & 1.18 & 0.99 \\\\\nPIQA & Reasoning & $-0.5$ & .450 & 0.54 & 0.34 & 1.59 \\\\\nWinoGrande & Reasoning & $0.1$ & .950 & 0.67 & 0.78 & 0.86 \\\\\nARC-E & Mixed & $-0.7$ & .233 & 1.00 & 0.13 & 7.70 \\\\\nMMLU & Mixed & $-0.7$ & .233 & 0.92 & 0.41 & 2.27 \\\\\nSciQ & Mixed & $0.1$ & .950 & 0.87 & 0.74 & 1.19 \\\\\nXStoryCloze & Mixed & $-0.6$ & .350 & 0.82 & 0.55 & 1.49 \\\\\n\\midrule\nCOPA$^{\\dagger}$ & Reasoning & $-0.67$ & .267 & 2.63 & 0.47 & 5.57 \\\\\n\\bottomrule\n\\multicolumn{7}{l}{\\footnotesize $^{\\dagger}$Supplementary ($n = 100$); excluded from multiple comparison correction.} \\\\\n\\multicolumn{7}{l}{\\footnotesize $^{\\ddagger}$GDN h3-1 uses 16 attention heads; all other configurations use 32 (\\S\\ref{ssec:robustness}).} \\\\\n\\multicolumn{7}{@{}p{\\textwidth}@{}}{\\footnotesize Bonferroni-adjusted $p = .170$. \\textbf{Power: only $|\\rho| = 1.0$ achieves $p < .05$ at $n = 5$.} Excl.\\ GDN reverses MMLU $\\rho$ to $+0.6$ (\\S\\ref{ssec:robustness}).}\n\\end{tabular}\n\\vspace{-4pt}\n\\end{table*}\n\n\\subsection{Per-Example Divergence}\\label{ssec:per_example}\n\nDo architectures converge by improving on the same examples? We compare each architecture's pure-recurrent baseline against its h3-1 hybrid on 5{,}153 LAMBADA examples, classifying each as helped, hurt, or unchanged. Although the decomposition is binary, it captures genuine separation in the continuous confidence space (Cohen's $d = 0.73$--$0.92$ between helped and hurt on LAMBADA; cross-benchmark details in Appendix~\\ref{app:cm_cross}). Binarization discards confidence magnitude, so we supplement with continuous confidence margin analysis (Appendix~\\ref{app:confidence_margin}) and verify that low Jaccard persists under continuous thresholds (Appendix~\\ref{app:continuous_jaccard}).\n\nEach architecture displays a distinct profile of per-example changes (Figure~\\ref{fig:per_example_bars}). GDN loses a net 153 examples (462 helped, 615 hurt), RetNet loses 69 (426/495), and HGRN2 gains 153 (548/395; full counts in Appendix~\\ref{app:per_example_counts}). HGRN2 is the only architecture for which adding attention yields a net per-example benefit. Pairwise Jaccard similarity is low: mean $\\bar{J} \\leq 0.10$, indicating ${\\sim}90$\\% non-overlap. Overlap significantly exceeds the independence baseline ($J_{\\text{null}} \\approx 0.05$, all $z > 5.9$, $p < .0001$; Appendix~\\ref{app:jaccard_permutation}), plausibly reflecting shared sensitivity to example difficulty. Normalizing by $J_{\\max}$, observed overlap reaches only 6--7\\% of the achievable range above chance (Appendix~\\ref{app:normalized_es}), confirming that low Jaccard cannot be attributed to set-size constraints.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_example_bars.pdf}\n\\caption{Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA at 1.3B scale. Helped: correct only in the hybrid; hurt: correct only in the pure model. HGRN2 is the only architecture with a net positive effect. Despite comparable magnitudes, these sets overlap minimally across architectures ($\\bar{J} \\leq 0.10$, all $p < .0001$).}\n\\label{fig:per_example_bars}\n\\end{figure}\n\n\\paragraph{Confidence margin predictor.} Pure-model confidence on the target token predicts which examples will be affected (AUC 0.70--0.74, a non-parametric measure equivalent to Mann-Whitney $U$; Appendix~\\ref{app:confidence_margin}): rescue thresholds are architecture-invariant (1\\% spread) but disruption thresholds vary 47\\%, explaining cross-architecture Jaccard divergence (Appendix~\\ref{app:prediction_framework}). Calibration differences account for less than half the threshold spread (Appendix~\\ref{app:calibration}). The rescue pattern generalizes across three benchmarks ($d = 0.13$--$0.60$; Appendix~\\ref{app:cm_cross}); disruption is weaker on reasoning tasks (Appendix~\\ref{app:boolq}). This structured disagreement constitutes predictive multiplicity \\citep{marx2020predictive} under architectural variation.\n\n\\paragraph{Confidence-based routing.} As an illustrative case study, the rescue-threshold asymmetry suggests a routing strategy: select the architecture whose pure-model confidence best predicts successful rescue. On LAMBADA, this outperforms majority vote by $+5.2$\\,pp (SD $= 0.4$\\,pp, 10 cross-validated splits), extracting 36\\% of the oracle gap (oracle = 65.5\\%; Appendix~\\ref{app:complementarity}). On ARC-Easy, gains are modest ($+1.2$\\,pp, SD $= 0.5$\\,pp); on HellaSwag, routing provides no benefit ($-0.06$\\,pp, $p = .374$); on PIQA, it is significantly negative ($-0.49$\\,pp, $p = .006$). Routing works when multiplicity is high ($\\alpha = 0.30$, LAMBADA) and a clear rescue-threshold signal exists, but is counterproductive when multiplicity is low ($\\alpha = 0.14$, PIQA). A natural comparison---average-logits ensemble---is left to future work as it requires simultaneous inference across all architectures.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig3_alpha_routing.pdf}\n\\caption{(a) Per-example ambiguity $\\alpha$ varies $2\\times$ across task types. (b) Confidence-based routing gains track $\\alpha$: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}\n\\label{fig:alpha_routing}\n\\end{figure}\n\n\\paragraph{Multiplicity variation.} Extending to HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$) reveals that predictive multiplicity varies systematically across tasks (Table~\\ref{tab:multiplicity}). The ambiguity $\\alpha$ \\citep{marx2020predictive} ranges from 0.14 (PIQA) through 0.15 (HellaSwag) and 0.21 (ARC-Easy; Appendix~\\ref{app:arceasy}) to 0.30 (LAMBADA). Format does not drive this ordering: HellaSwag (four-way) and PIQA (two-choice) produce nearly identical $\\alpha$ despite different answer-space sizes, and $\\alpha$ does not correlate with task accuracy ($\\rho = -0.60$, $p = .24$). This within-multiple-choice invariance suggests that per-example multiplicity is associated with the cognitive demands of the task rather than the mechanical constraints of the evaluation format, though the confound between task type and format cannot be fully resolved with the present benchmarks (Limitations). Bootstrap 95\\% CIs confirm the ordering (all non-overlapping except PIQA--HellaSwag; Table~\\ref{tab:arceasy_ambiguity}). Pairwise Jaccard remains uniformly low ($\\bar{J} \\leq 0.10$, all $p < .01$ across four benchmarks), indicating that architectures affect different examples regardless of how many are affected. Within each benchmark, $\\alpha$ is stable across attention ratios (variation $< 0.03$) but differs $2\\times$ across task types (or evaluation formats), confirming that multiplicity magnitude depends on task, not attention ratio \\citep[cf.][]{gorbett2026crossmodel}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Predictive multiplicity at 1.3B. $\\alpha$: ambiguity at h3-1 \\citep{marx2020predictive}. $\\bar{J}$: mean pairwise Jaccard of helped~(h) and hurt~(u) sets, averaged across four hybrid attention ratios and three architecture pairs. $\\rho_\\alpha$: Spearman $\\rho$ between attention ratio and $\\alpha$. Benchmarks ordered by $\\alpha$.}\n\\label{tab:multiplicity}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\rho_\\alpha$ \\\\\n\\midrule\nPIQA & 1838 & .14 & .091 & .094 & $0.0$ \\\\\nHellaSwag & 10042 & .15 & .095 & .085 & $0.1$ \\\\\nARC-Easy & 2376 & .21 & .092 & .099 & $-0.2$ \\\\\nLAMBADA & 5153 & .30 & .096 & .091 & $-0.6$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{-2pt}\n{\\footnotesize Within-benchmark $\\alpha$ variation $< 0.03$ across ratios. BoolQ, WinoGrande: Appendix~\\ref{app:boolq}, \\ref{app:winogrande}.}\n\\end{table}\n\n\\subsection{Per-Example Overlap Saturates at Minimal Attention}\\label{ssec:decoupling}\n\nDoes adding more attention change \\emph{which} examples each architecture affects? Pairwise Jaccard saturates at the first attention level (4\\%; $\\bar{J} \\approx 0.095$) and remains flat across all higher ratios (Figure~\\ref{fig:decoupling}b), indicating that minimal attention suffices to establish the full per-example divergence pattern. As background, LAMBADA's aggregate cross-architecture $\\sigma$ shows a non-significant decreasing trend ($\\rho = -1.0$, Bonferroni-adjusted $p = .170$; excluding GDN: $\\rho = -0.7$, $p = .233$; MMLU reverses to $\\rho = +0.6$ when excluding GDN; observed at 1.3B, absent at 340M; Table~\\ref{tab:convergence}, Figure~\\ref{fig:task_specificity}). No other benchmark shows a comparable aggregate pattern ($n = 5$; negligible power for $|\\rho| < 1.0$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_task_specificity.pdf}\n\\caption{Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ for each benchmark at 1.3B scale. LAMBADA ($\\rho = -1.0$; BCa 95\\% CI $[-1.0,\\,-0.7]$, heuristic) is the only benchmark with a negative correlation whose confidence interval excludes zero. Benchmarks are grouped by task category. Bootstrap CI is heuristic given $n = 3$ architectures.}\n\\label{fig:task_specificity}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{figures/jaccard_heatmap_5arch.pdf}\n\\caption{Pairwise Jaccard heatmap across five architectures (340M, h3-1), where helped (hurt) examples are those correct only with (without) attention. Upper triangle: $J_{\\text{helped}}$; lower triangle: $J_{\\text{hurt}}$. All values $\\leq 0.14$, all permutation tests $p \\leq .002$. HellaSwag and PIQA results in Appendix~\\ref{app:extended_arch}.}\n\\label{fig:jaccard_heatmap_5arch}\n\\end{figure*}\n\nEach architecture's per-example response to attention is largely idiosyncratic. The observed $\\bar{J}$ reaches only 6--7\\% of the achievable range above chance ($J_{\\max} \\approx 0.78$--$0.92$), ruling out ceiling constraints (\\S\\ref{ssec:per_example}). Readers can verify $\\rho$ directly from Table~\\ref{tab:convergence}; with $n = 3$ architectures, all bootstrap CIs are heuristic indicators of direction rather than precise coverage.\n\nThis saturation generalizes beyond LAMBADA (Figure~\\ref{fig:decoupling}c): on all four main benchmarks, mean pairwise Jaccard shows no significant trend with attention ratio (all $\\rho \\leq 0.80$, $p \\geq 0.333$), with values uniformly between 0.08 and 0.11.\n\nHeuristic bootstrap 95\\% CIs ($n = 3$; \\S\\ref{ssec:statistical_methods}) show non-overlapping $\\sigma$ between pure and h3-1 but completely overlapping Jaccard across all hybrid ratios (\\S\\ref{ssec:statistical_methods}). Figure~\\ref{fig:jaccard_hierarchy} shows a three-tier Jaccard hierarchy: independence baseline (${\\sim}0.05$), cross-architecture (${\\sim}0.10$, $2\\times$ baseline), and within-architecture (${\\sim}0.33$, $3\\times$ cross-architecture; Appendix~\\ref{app:within_arch_stability}). Pythia 70M seed calibration yields a comparable within-seed level ($J = 0.27$--$0.39$; Appendix~\\ref{app:seed_calibration}), consistent with architecture-driven divergence, though matched multi-seed experiments would be needed for definitive evidence.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_jaccard_hierarchy.pdf}\n\\caption{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}\n\\label{fig:jaccard_hierarchy}\n\\end{figure}\n\nAn alternative interpretation of the saturation is that adding even minimal attention causes all architectures to rapidly adopt Transformer-like behavior, rather than locking in architecture-specific fingerprints. Appendix~\\ref{app:transformer_entrainment} shows that h3-1 correct sets indeed converge toward the Transformer baseline, consistent with this account. Under the fingerprint view, each recurrent backbone imposes a characteristic inductive bias that determines which examples attention can rescue; under the convergence view, attention overrides backbone differences and steers all architectures toward a shared solution, with residual per-example divergence arising from incomplete convergence. Disentangling these accounts requires ablation of the attention mechanism itself---for example, replacing learned attention weights with random projections---which we leave to future work. Attention weight analysis (Appendix~\\ref{app:attention_patterns}) shows GDN and RetNet produce nearly identical attention distributions (cosine 0.995) yet differ in per-example effects, suggesting these originate in the recurrent layers. The four-benchmark variation (Table~\\ref{tab:multiplicity}) is consistent with independence: LAMBADA ($\\alpha = 0.30$) is the only benchmark showing a variance-reduction trend despite having the highest multiplicity, while PIQA ($\\alpha = 0.14$) and HellaSwag ($\\alpha = 0.15$) show no variance reduction with the lowest multiplicity.\n\nCross-scale analysis reveals a clear dissociation: per-example Jaccard is consistent across both scales ($\\bar{J} = 0.08$--$0.10$ at 340M and 1.3B), whereas the aggregate variance trend is observed only at 1.3B on LAMBADA ($\\rho = -0.50$, $p = .45$ at 340M). Ambiguity $\\alpha$ is systematically higher at 340M ($\\Delta \\leq 8$\\,pp), suggesting that the \\emph{pattern} of per-example multiplicity is stable across scales while its magnitude co-varies with model capacity (Appendix~\\ref{app:scale_per_example}--\\ref{app:cross_scale}).\n\\vspace{-2pt}\n\\subsection{Robustness}\\label{ssec:robustness}\n\nRemoving GDN weakens the LAMBADA variance reduction ($\\rho = -0.7$, $p = .233$) and reverses MMLU's ($\\rho = +0.6$), both driven by GDN's 16-head configuration (vs.\\ 32 in others; Appendix~\\ref{app:gdn_confound}). The RetNet--HGRN2 pair preserves the independence pattern ($\\sigma \\leq 0.008$, $J = 0.086$--$0.108$). The aggregate variance pattern therefore depends on GDN inclusion; the per-example saturation result does not. Five-architecture validation at 340M (adding GLA and DeltaNet) confirms $J \\leq 0.14$ across all ten pairwise comparisons and four benchmarks (all $p < .01$; Figure~\\ref{fig:jaccard_heatmap_5arch}; Appendix~\\ref{app:extended_arch}), extending the per-example divergence finding to architectures not used in the primary analysis. Full sensitivity analyses appear in Appendix~\\ref{app:sensitivity}; Transformer baseline comparison in Appendix~\\ref{app:transformer_entrainment}.\n",
+      "numLines": 117,
+      "startLine": 1,
+      "totalLines": 117
+    }
+  },
+  "sourceToolAssistantUUID": "f7c8f1f2-035b-405c-8426-8395abfe9939",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-24T22:50:37.244Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017DsXicm6NusExY1kvb6rzN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f6d635f-b0a0-45d1-abf2-5894068747e2",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEbTG2q7RxpvgSr96o",
+  "type": "assistant",
+  "uuid": "4015ce63-41d1-4770-a4ad-59da0a89bc13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DUX7ygDSvtnXtiUofJEmcJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 41305,
+      "output_tokens": 552,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 552,
+          "cache_read_input_tokens": 41305,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-24T22:50:37.249Z_
+
+<details><summary>↩ Tool result · `toolu_017DsXicm6NusExY1kvb6rzN`</summary>
+
+```text
+1	\vspace{-2pt}
+2	\section{Conclusion}
+3	
+4	We have shown that hybrid linear recurrent architectures which appear interchangeable by aggregate benchmarks diverge substantially at the per-example level. This multiplicity varies by task type ($\alpha = 0.14$--$0.30$) rather than attention ratio. Per-example overlap saturates at 4\% attention (pairwise Jaccard $\leq 0.10$), establishing architecture-specific sensitivity patterns that additional attention does not alter. Confidence margins partially predict which examples are affected (AUC 0.70--0.74), with rescue thresholds architecture-invariant but disruption thresholds varying 47\%.
+5	
+6	At the 340M--1.3B scales studied here, per-example audit before architecture substitution is advisable when multiplicity is substantial---aggregate equivalence does not guarantee behavioral equivalence. Low cross-architecture Jaccard creates complementarity ($+7$--$14$\,pp oracle gain), though preliminary routing experiments show exploitation remains task-dependent ($+5.2$\,pp on LAMBADA; $-0.49$\,pp on PIQA).
+7	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4015ce63-41d1-4770-a4ad-59da0a89bc13",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "5bf00f18-f2ea-49d3-b9af-4be840d1149f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/conclusion.tex",
+      "content": "\\vspace{-2pt}\n\\section{Conclusion}\n\nWe have shown that hybrid linear recurrent architectures which appear interchangeable by aggregate benchmarks diverge substantially at the per-example level. This multiplicity varies by task type ($\\alpha = 0.14$--$0.30$) rather than attention ratio. Per-example overlap saturates at 4\\% attention (pairwise Jaccard $\\leq 0.10$), establishing architecture-specific sensitivity patterns that additional attention does not alter. Confidence margins partially predict which examples are affected (AUC 0.70--0.74), with rescue thresholds architecture-invariant but disruption thresholds varying 47\\%.\n\nAt the 340M--1.3B scales studied here, per-example audit before architecture substitution is advisable when multiplicity is substantial---aggregate equivalence does not guarantee behavioral equivalence. Low cross-architecture Jaccard creates complementarity ($+7$--$14$\\,pp oracle gain), though preliminary routing experiments show exploitation remains task-dependent ($+5.2$\\,pp on LAMBADA; $-0.49$\\,pp on PIQA).\n",
+      "numLines": 7,
+      "startLine": 1,
+      "totalLines": 7
+    }
+  },
+  "sourceToolAssistantUUID": "4015ce63-41d1-4770-a4ad-59da0a89bc13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-24T22:50:37.752Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QbgXbJicKMrSKAZEhLQPd3`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bf00f18-f2ea-49d3-b9af-4be840d1149f",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEbTG2q7RxpvgSr96o",
+  "type": "assistant",
+  "uuid": "04941411-23be-4c8d-8802-858868357732",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DUX7ygDSvtnXtiUofJEmcJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 41305,
+      "output_tokens": 552,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 552,
+          "cache_read_input_tokens": 41305,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-24T22:50:38.069Z_
+
+<details><summary>↩ Tool result · `toolu_01QbgXbJicKMrSKAZEhLQPd3`</summary>
+
+```text
+1	% Appendix sections for the paper.
+2	
+3	\section{Confirmatory and Exploratory Analyses}\label{app:benchmark_details}
+4	
+5	The task taxonomy used in \S\ref{ssec:task_taxonomy} was defined prior to running any convergence analyses. Each benchmark was assigned to exactly one of four categories based on the primary cognitive demand of the task:
+6	
+7	\begin{itemize}
+8	    \item \textbf{Retrieval}: tasks requiring prediction from long-range context without multi-step reasoning (LAMBADA).
+9	    \item \textbf{Comprehension}: reading comprehension with explicit passage support (BoolQ).
+10	    \item \textbf{Reasoning}: tasks requiring commonsense inference or multi-step reasoning (HellaSwag, ARC-Challenge, WinoGrande, PIQA).
+11	    \item \textbf{Mixed}: tasks combining retrieval, comprehension, and reasoning demands (ARC-Easy, MMLU, SciQ, XStoryCloze).
+12	\end{itemize}
+13	
+14	\paragraph{Confirmatory benchmark set.} Six benchmarks were designated as confirmatory for Bonferroni correction: LAMBADA, HellaSwag, ARC-Challenge, WinoGrande, ARC-Easy, and MMLU. These were selected as representative of retrieval, reasoning, and mixed categories before any convergence analysis was performed. The taxonomy and benchmark selection were fixed before analysis as an informal pre-analysis plan; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The main text applies the more conservative all-10-benchmark correction (Bonferroni-adjusted $p = .017 \times 10 = .170$). \textbf{Sensitivity:} correcting across only the six confirmatory benchmarks yields adjusted $p = .017 \times 6 = .100$, still above conventional significance.
+15	
+16	\paragraph{One-sided test.} If one adopts the prior that attention should reduce cross-architecture variance, the one-sided permutation $p$-value for LAMBADA is $1/120 \approx 0.0083$. Under 10-benchmark Bonferroni correction, this yields an adjusted $p = 0.083$, above the conventional threshold. We report two-sided tests throughout the main text as the more conservative choice; the one-sided result is noted here for completeness.
+17	
+18	\paragraph{Exploratory benchmarks.} Four additional benchmarks (BoolQ, PIQA, SciQ, XStoryCloze) were added as exploratory tests. All benchmarks share the same 10-benchmark correction (adjusted threshold $\alpha / 10 = 0.005$) and the four exploratory benchmarks are labeled as such throughout the paper. The all-10 Bonferroni correction reported in the main text is the only correction used for inference; the exploratory 6-benchmark subset correction in this appendix is provided for transparency.
+19	
+20	\paragraph{Supplementary benchmark.} COPA ($n = 100$) is treated as supplementary due to its small sample size. It is excluded from both correction families and reported separately with the $\dagger$ annotation in Table~\ref{tab:convergence}.
+21	
+22	\section{Convergence Detail}\label{app:convergence_detail}
+23	
+24	% Figure moved to main text (\S\ref{ssec:decoupling}).
+25	
+26	Beyond LAMBADA ($\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\rho = -0.67$ with a large $\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.
+27	
+28	Several benchmarks show positive or near-zero $\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.3$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \citep{arora2024zoology,arora2024based} rather than multi-step inference.
+29	
+30	\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a $5\times$ $\sigma$ compression ($0.024 \to 0.005$). However, three observations argue against a purely statistical artifact. First, the $5\times$ reduction in cross-architecture $\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\S\ref{ssec:per_example}) reveals architecture-specific patterns: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.
+31	
+32	\section{Scale-Dependent Convergence}\label{app:scale_convergence}
+33	
+34	At 1.3B parameters, LAMBADA convergence is monotonic: $\sigma$ decreases at every attention level from 0\% through 25\% ($\rho = -1.0$). At 340M, convergence is partial: $\sigma$ reaches a maximum reduction of 56\% at intermediate attention ratios but rebounds at h3-1, yielding a net endpoint reduction of 36\%. The trajectory is non-monotonic, and the highest-attention model does not achieve the lowest cross-architecture variance. One possible interpretation is that at smaller scale, the capacity overhead of attention layers creates interference that offsets the retrieval benefit.
+35	
+36	This contrast is a preliminary observation from two data points (not a scaling law). Despite the aggregate divergence at 340M, mean pairwise Jaccard is similar at both scales ($J \approx 0.09$), extending the decoupling observation (\S\ref{ssec:decoupling}) to the scale dimension.
+37	
+38	\section{Sensitivity Analyses}\label{app:sensitivity}
+39	
+40	\subsection{Bootstrap Confidence Intervals}
+41	
+42	We construct 95\% bootstrap confidence intervals for the Spearman $\rho$ between attention ratio and cross-architecture $\sigma$ on LAMBADA using 10{,}000 resamples at the architecture level ($n = 3$ architectures). Of these resamples, 11.25\% are degenerate: they consist of same-architecture triplicates, which produce a constant $\sigma$ vector and therefore an undefined $\rho$ (division by zero in the rank correlation formula). These are excluded from the confidence interval computation because they carry no information about the correlation, not because they represent $\rho = 0$.
+43	
+44	The BCa (bias-corrected and accelerated) correction degenerates at the $\rho = -1.0$ boundary because the acceleration parameter requires finite jackknife variance, which collapses when the point estimate is at the distributional limit. We therefore report percentile confidence intervals instead. From the 88.75\% informative resamples, the 95\% percentile CI is $[-1.0,\,-0.7]$, which excludes zero.
+45	
+46	\subsection{GDN Exclusion Sensitivity}
+47	
+48	The GDN h3-1 configuration uses 16 attention heads rather than 32 (see Appendix~\ref{app:gdn_confound}). To assess the influence of this confound, we recompute all convergence correlations after excluding GDN, leaving two architectures (RetNet, HGRN2) at five attention ratios.
+49	
+50	Table~\ref{tab:gdn_sensitivity} reports the results for benchmarks where the correlation changes by $|\Delta\rho| \geq 0.3$. LAMBADA weakens from $\rho = -1.0$ to $\rho = -0.7$ ($p = .233$), consistent with GDN contributing to the convergence signal. MMLU reverses from $\rho = -0.7$ to $\rho = +0.6$, confirming that the moderate negative correlation on MMLU depends on GDN's inclusion and should not be interpreted as evidence of convergence.
+51	
+52	\begin{table}[ht]
+53	\centering
+54	\small
+55	\caption{Effect of GDN exclusion on Spearman $\rho$ (attention ratio vs.\ cross-architecture $\sigma$) at 1.3B scale. Only benchmarks with $|\Delta\rho| \geq 0.3$ shown.}
+56	\label{tab:gdn_sensitivity}
+57	\begin{tabular}{lrrrr}
+58	\toprule
+59	Benchmark & $\rho_{\text{all}}$ & $\rho_{\text{no-GDN}}$ & $\Delta\rho$ & $p_{\text{no-GDN}}$ \\
+60	\midrule
+61	LAMBADA & $-1.0$ & $-0.7$ & $+0.3$ & .233 \\
+62	MMLU & $-0.7$ & $+0.6$ & $+1.3$ & .350 \\
+63	\bottomrule
+64	\end{tabular}
+65	\end{table}
+66	
+67	\section{GDN Attention Head Confound}\label{app:gdn_confound}
+68	
+69	In the \citet{wang2025hybrid} model zoo, the GDN h3-1 configuration at 1.3B scale uses 16 attention heads per attention layer, while all other hybrid configurations (across GDN, RetNet, and HGRN2) use 32 attention heads. This is a design choice in the original model zoo, not an error. The reduced head count changes the per-head dimension and may affect the attention capacity of GDN h3-1 relative to other configurations.
+70	
+71	This confound is relevant because the convergence analysis measures cross-architecture $\sigma$ at each attention ratio. At the h3-1 ratio (25\% attention), GDN's attention layers have a different internal structure than those of RetNet and HGRN2, which could contribute to variance reduction (or inflation) for reasons unrelated to the recurrent--attention interaction under study.
+72	
+73	The sensitivity analysis in Appendix~\ref{app:sensitivity} shows that removing GDN weakens the LAMBADA convergence correlation from $\rho = -1.0$ to $\rho = -0.7$. This weakening is partially attributable to the reduced sample size ($n = 2$ architectures) and partially to the confound itself. We cannot separate these two effects with the available data.
+74	
+75	\section{Attention Weight Analysis}\label{app:attention_patterns}
+76	
+77	We extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.
+78	
+79	\subsection{Cross-Architecture Cosine Similarity}
+80	
+81	Table~\ref{tab:attn_cosine} reports cosine similarity between mean attention distributions at selected layers and averaged across all layers.
+82	
+83	\begin{table}[ht]
+84	\centering
+85	\caption{Cosine similarity between mean attention weight distributions of architecture pairs at selected layers (1.3B h3-1 models on LAMBADA).}
+86	\label{tab:attn_cosine}
+87	\resizebox{\columnwidth}{!}{%
+88	\begin{tabular}{lrrr}
+89	\toprule
+90	Layer & GDN--RetNet & GDN--HGRN2 & HGRN2--RetNet \\
+91	\midrule
+92	L2 (early) & 0.995 & 0.244 & 0.196 \\
+93	L20 (deep) & 0.986 & 0.942 & 0.943 \\
+94	\midrule
+95	Mean (all layers) & 0.905 & 0.766 & 0.698 \\
+96	\bottomrule
+97	\end{tabular}%
+98	}
+99	\end{table}
+100	
+101	At layer 2, GDN and RetNet produce nearly identical attention distributions (cosine 0.995), while HGRN2 diverges from both (cosine $< 0.25$). By layer 20, all three architectures converge to similar attention patterns (cosine $> 0.94$). The layer-wise trajectory suggests that early-layer attention patterns are shaped by the preceding recurrent layers (which differ across architectures), while deeper layers converge regardless of the recurrent substrate.
+102	
+103	\subsection{Helped vs.\ Hurt Attention Entropy}
+104	
+105	To test whether the attention mechanism itself differs between helped and hurt examples, we compute the Shannon entropy of the attention distribution for each example at each attention layer and compare the mean entropy of helped examples against hurt examples within each architecture.
+106	
+107	\begin{table}[ht]
+108	\centering
+109	\caption{Mean attention entropy difference (helped $-$ hurt) averaged across attention layers (1.3B h3-1 models on LAMBADA). Values near zero indicate that the attention mechanism does not discriminate between helped and hurt examples.}
+110	\label{tab:attn_entropy}
+111	\begin{tabular}{lr}
+112	\toprule
+113	Architecture & $\Delta H$ (helped $-$ hurt) \\
+114	\midrule
+115	GDN & $-0.0009$ \\
+116	RetNet & $+0.0179$ \\
+117	HGRN2 & $+0.0020$ \\
+118	\bottomrule
+119	\end{tabular}
+120	\end{table}
+121	
+122	GDN and HGRN2 show negligible entropy differences ($|\Delta H| \leq 0.002$). RetNet's $\Delta H = +0.018$ is small in absolute terms but slightly larger; helped examples receive marginally more diffuse attention in RetNet. Across all three architectures, the differences are insufficient to explain the per-example divergence, consistent with per-example effects not being explained by attention weight patterns and likely originating in the recurrent layers.
+123	
+124	\subsection{Last-5 Attention Mass}
+125	
+126	We also measure the fraction of attention mass allocated to the last five tokens, which captures whether the attention mechanism concentrates differently on recent context for helped vs.\ hurt examples.
+127	
+128	\begin{table}[ht]
+129	\centering
+130	\caption{Mean attention mass on last-5 tokens for helped and hurt examples, averaged across attention layers (1.3B h3-1 models on LAMBADA).}
+131	\label{tab:attn_last5}
+132	\begin{tabular}{lrr}
+133	\toprule
+134	Architecture & Helped & Hurt \\
+135	\midrule
+136	GDN & 0.0834 & 0.0831 \\
+137	RetNet & 0.1578 & 0.1591 \\
+138	HGRN2 & 0.0453 & 0.0467 \\
+139	\bottomrule
+140	\end{tabular}
+141	\end{table}
+142	
+143	No architecture shows a meaningful difference in last-5 attention mass between helped and hurt examples (Table~\ref{tab:attn_last5}). This further supports the conclusion that the per-example divergence is not driven by differential attention allocation.
+144	
+145	\section{Cross-Scale Per-Example Comparisons}\label{app:cross_scale}
+146	
+147	\subsection{Within-Scale Pairwise Jaccard}
+148	
+149	Table~\ref{tab:within_scale_jaccard} reports the within-scale pairwise Jaccard similarity between architectures' helped and hurt sets at both scales. Mean values are similar across scales (340M: 0.094/0.090; 1.3B: 0.100/0.093), indicating that per-example architecture specificity is consistent across the two scales examined.
+150	
+151	\begin{table}[ht]
+152	\centering
+153	\small
+154	\caption{Within-scale pairwise Jaccard similarity of per-example effects (pure $\to$ h3-1) on LAMBADA. Each row compares the helped (or hurt) sets of two architectures at the same scale.}
+155	\label{tab:within_scale_jaccard}
+156	\begin{tabular}{llcc}
+157	\toprule
+158	Scale & Pair & $J_{\text{helped}}$ & $J_{\text{hurt}}$ \\
+159	\midrule
+160	\multirow{4}{*}{340M} & GDN--RetNet & 0.092 & 0.109 \\
+161	& GDN--HGRN2 & 0.084 & 0.075 \\
+162	& RetNet--HGRN2 & 0.108 & 0.085 \\
+163	& \textit{Mean} & \textit{0.094} & \textit{0.090} \\
+164	\midrule
+165	\multirow{4}{*}{1.3B} & GDN--RetNet & 0.092 & 0.103 \\
+166	& GDN--HGRN2 & 0.100 & 0.088 \\
+167	& RetNet--HGRN2 & 0.108 & 0.087 \\
+168	& \textit{Mean} & \textit{0.100} & \textit{0.093} \\
+169	\bottomrule
+170	\end{tabular}
+171	\end{table}
+172	
+173	\subsection{Cross-Scale Pairwise Jaccard}
+174	
+175	For each architecture, we compare the helped and hurt sets of the pure $\to$ h3-1 transition at 340M and 1.3B scale on LAMBADA.
+176	The comparison uses the same classification scheme as \S\ref{ssec:per_example}: an example is ``helped'' if it is correct only in the hybrid variant and ``hurt'' if correct only in the pure baseline.
+177	All pairwise Jaccard values fall below 0.10, indicating that scale variation is associated with per-example predictive multiplicity analogous to the cross-architecture effect reported in \S\ref{ssec:per_example}.
+178	
+179	\begin{table}[ht]
+180	\centering
+181	\caption{Cross-scale pairwise Jaccard similarity of per-example effects (pure $\to$ h3-1) between 340M and 1.3B on LAMBADA. All values below 0.10.}
+182	\label{tab:cross_scale_jaccard}
+183	\begin{tabular}{llcc}
+184	\toprule
+185	Architecture & Scale Pair & $J_{\text{helped}}$ & $J_{\text{hurt}}$ \\
+186	\midrule
+187	GDN & 340M $\leftrightarrow$ 1.3B & 0.047 & 0.087 \\
+188	RetNet & 340M $\leftrightarrow$ 1.3B & 0.059 & 0.073 \\
+189	HGRN2 & 340M $\leftrightarrow$ 1.3B & 0.089 & 0.055 \\
+190	\midrule
+191	Mean & & 0.065 & 0.072 \\
+192	\bottomrule
+193	\end{tabular}
+194	\end{table}
+195	
+196	\section{Per-Example Effect Counts}\label{app:per_example_counts}
+197	
+198	Table~\ref{tab:per_example} reports the full per-example effect counts for each architecture at 1.3B scale.
+199	
+200	\begin{table}[ht]
+201	\centering
+202	\caption{Per-example effects of attention (pure $\to$ h3-1) on 5{,}153 LAMBADA examples at 1.3B scale. $\bar{J}$: mean pairwise Jaccard similarity with other architectures across helped and hurt sets.}
+203	\label{tab:per_example}
+204	\begin{tabular}{lrrrr}
+205	\toprule
+206	Architecture & Helped & Hurt & Net & $\bar{J}$ \\
+207	\midrule
+208	GDN & 462 & 615 & $-$153 & .096 \\
+209	RetNet & 426 & 495 & $-$69 & .100 \\
+210	HGRN2 & 548 & 395 & $+$153 & .104 \\
+211	\bottomrule
+212	\end{tabular}
+213	\end{table}
+214	
+215	\section{Normalized Jaccard Effect Size}\label{app:normalized_es}
+216	
+217	To assess whether low observed Jaccard reflects a floor effect imposed by unequal set sizes, we compute the theoretical upper bound $J_{\max} = \min(|A|,|B|) / \max(|A|,|B|)$ and the normalized effect size $(J_{\text{obs}} - J_{\text{null}}) / (J_{\max} - J_{\text{null}})$, which measures observed overlap as a fraction of the achievable range above chance. Table~\ref{tab:normalized_es} reports per-pair results.
+218	
+219	\begin{table}[ht]
+220	\centering
+221	\small
+222	\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}
+223	\label{tab:normalized_es}
+224	\resizebox{\columnwidth}{!}{%
+225	\begin{tabular}{llcccc}
+226	\toprule
+227	Category & Pair & $J_{\text{obs}}$ & $J_{\max}$ & $J_{\text{null}}$ & Norm.\ ES \\
+228	\midrule
+229	Helped & GDN--RetNet & .092 & .922 & .045 & .054 \\
+230	 & GDN--HGRN2 & .100 & .843 & .051 & .062 \\
+231	 & RetNet--HGRN2 & .108 & .777 & .049 & .081 \\
+232	 & \textit{Mean} & \textit{.100} & \textit{.848} & \textit{.048} & \textit{.066} \\
+233	\midrule
+234	Hurt & GDN--RetNet & .103 & .805 & .056 & .063 \\
+235	 & GDN--HGRN2 & .088 & .642 & .049 & .066 \\
+236	 & RetNet--HGRN2 & .087 & .798 & .045 & .056 \\
+237	 & \textit{Mean} & \textit{.093} & \textit{.748} & \textit{.050} & \textit{.062} \\
+238	\bottomrule
+239	\end{tabular}%
+240	}
+241	\end{table}
+242	
+243	All normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.
+244	
+245	\section{ARC-Easy Per-Example Analysis}\label{app:arceasy}
+246	
+247	Table~\ref{tab:arceasy_effects} reports per-example effect counts on ARC-Easy ($N = 2{,}376$) at 1.3B scale for each attention ratio. Unlike LAMBADA, ARC-Easy shows no aggregate convergence ($\rho = -0.20$, $p = .783$). HGRN2 is net positive at all ratios; GDN and RetNet are mixed.
+248	
+249	\begin{table}[ht]
+250	\centering
+251	\small
+252	\caption{Per-example effects on ARC-Easy at 1.3B scale. Net = helped $-$ hurt.}
+253	\label{tab:arceasy_effects}
+254	\resizebox{\columnwidth}{!}{%
+255	\begin{tabular}{llrrr}
+256	\toprule
+257	Architecture & Ratio & Helped & Hurt & Net \\
+258	\midrule
+259	\multirow{4}{*}{GDN} & h24-1 & 178 & 185 & $-$7 \\
+260	& h12-1 & 176 & 206 & $-$30 \\
+261	& h6-1 & 170 & 157 & $+$13 \\
+262	& h3-1 & 171 & 180 & $-$9 \\
+263	\midrule
+264	\multirow{4}{*}{RetNet} & h24-1 & 158 & 168 & $-$10 \\
+265	& h12-1 & 163 & 146 & $+$17 \\
+266	& h6-1 & 159 & 147 & $+$12 \\
+267	& h3-1 & 144 & 184 & $-$40 \\
+268	\midrule
+269	\multirow{4}{*}{HGRN2} & h24-1 & 160 & 119 & $+$41 \\
+270	& h12-1 & 159 & 111 & $+$48 \\
+271	& h6-1 & 185 & 118 & $+$67 \\
+272	& h3-1 & 164 & 146 & $+$18 \\
+273	\bottomrule
+274	\end{tabular}%
+275	}
+276	\end{table}
+277	
+278	Table~\ref{tab:arceasy_ambiguity} reports the ambiguity $\alpha$ \citep{marx2020predictive} at each attention ratio for all four main benchmarks. Within-benchmark ranges are 0.004 (HellaSwag), 0.011 (PIQA), 0.025 (ARC-Easy), and 0.022 (LAMBADA), all below the 0.03 threshold reported in \S\ref{ssec:per_example}.
+279	
+280	\begin{table}[ht]
+281	\centering
+282	\caption{Ambiguity $\alpha$ across attention ratios (1.3B scale). 95\% CI: BCa bootstrap (10{,}000 resamples) at the pure-recurrent configuration.}
+283	\label{tab:arceasy_ambiguity}
+284	\resizebox{\columnwidth}{!}{%
+285	\begin{tabular}{lcccccc}
+286	\toprule
+287	Benchmark & Pure & h24-1 & h12-1 & h6-1 & h3-1 & 95\% CI (pure) \\
+288	\midrule
+289	PIQA & .143 & .138 & .132 & .143 & .140 & $[.127,\,.159]$ \\
+290	HellaSwag & .148 & .150 & .148 & .146 & .150 & $[.141,\,.155]$ \\
+291	ARC-Easy & .205 & .226 & .223 & .201 & .210 & $[.189,\,.221]$ \\
+292	LAMBADA & .307 & .300 & .316 & .294 & .296 & $[.294,\,.319]$ \\
+293	\bottomrule
+294	\end{tabular}%
+295	}
+296	\end{table}
+297	
+298	\section{Jaccard Permutation Test}\label{app:jaccard_permutation}
+299	
+300	To assess whether the observed pairwise Jaccard similarities exceed what would be expected under independence, we perform a permutation test. For each architecture pair at 1.3B h3-1, we hold the helped (or hurt) set sizes fixed and randomly assign example indices to each set (10{,}000 permutations, seed 42). Table~\ref{tab:jaccard_perm} reports the observed $J$, the null baseline $J_{\text{null}}$ (mean over permutations), and the $z$-score.
+301	
+302	\begin{table}[ht]
+303	\centering
+304	\caption{Permutation test for pairwise Jaccard similarity (1.3B h3-1 on LAMBADA, 10{,}000 permutations). All observed values significantly exceed the independence baseline.}
+305	\label{tab:jaccard_perm}
+306	\resizebox{\columnwidth}{!}{%
+307	\begin{tabular}{llcccc}
+308	\toprule
+309	Category & Pair & $J_{\text{obs}}$ & $J_{\text{null}}$ & $z$ & $p$ \\
+310	\midrule
+311	Helped & GDN--HGRN2 & .100 & .051 & 7.11 & $<$.0001 \\
+312	 & GDN--RetNet & .092 & .045 & 6.75 & $<$.0001 \\
+313	 & HGRN2--RetNet & .108 & .049 & 8.61 & $<$.0001 \\
+314	\midrule
+315	Hurt & GDN--HGRN2 & .088 & .049 & 5.91 & $<$.0001 \\
+316	 & GDN--RetNet & .103 & .056 & 6.85 & $<$.0001 \\
+317	 & HGRN2--RetNet & .087 & .045 & 6.05 & $<$.0001 \\
+318	\bottomrule
+319	\end{tabular}%
+320	}
+321	\end{table}
+322	
+323	All six comparisons yield $z > 5.9$ ($p < .0001$). The null baseline averages $J_{\text{null}} \approx 0.049$; observed values are approximately twice this level. The overlap between architectures' per-example effect sets is therefore structured rather than a product of random set overlap given the set sizes.
+324	
+325	\section{Transformer Entrainment Comparison}\label{app:transformer_entrainment}
+326	
+327	To test whether attention layers make hybrid models' per-example behavior converge toward a pure Transformer, we compare the correct-example sets of each architecture's pure and h3-1 variants against a 1.3B Transformer baseline (accuracy 48.1\%) on LAMBADA. Table~\ref{tab:transformer_jaccard} reports the Jaccard similarity between each model's correct set and the Transformer's correct set.
+328	
+329	\begin{table}[ht]
+330	\centering
+331	\caption{Jaccard similarity between each model's correct set and the Transformer correct set on LAMBADA (1.3B scale). All three h3-1 hybrids are more similar to the Transformer than their pure counterparts.}
+332	\label{tab:transformer_jaccard}
+333	\small
+334	\begin{tabular}{lccc}
+335	\toprule
+336	Architecture & $J_{\text{pure,T}}$ & $J_{\text{h3-1,T}}$ & $\Delta$ \\
+337	\midrule
+338	GDN & 0.645 & 0.649 & $+$0.005 \\
+339	RetNet & 0.679 & 0.694 & $+$0.015 \\
+340	HGRN2 & 0.672 & 0.701 & $+$0.029 \\
+341	\bottomrule
+342	\end{tabular}
+343	\end{table}
+344	
+345	All three architectures show positive $\Delta$: the h3-1 correct set is more similar to the Transformer correct set than the pure correct set is. The effect is strongest for HGRN2 ($+$0.029) and weakest for GDN ($+$0.005). This ordering is consistent with HGRN2 being the only architecture with a positive net per-example effect from attention (Table~\ref{tab:per_example}). The Transformer itself achieves the lowest accuracy among all models, so the convergence is not explained by hybrid models degrading toward Transformer-level performance; rather, adding attention shifts which specific examples the hybrid gets correct toward the Transformer's pattern.
+346	
+347	\section{Within-Architecture Per-Example Stability}\label{app:within_arch_stability}
+348	
+349	Per-example effect sets exhibit a three-tier Jaccard hierarchy on LAMBADA (1.3B scale). Under independence (permutation baseline), pairwise Jaccard is $J \approx 0.05$. Cross-architecture comparisons (different architectures at the same attention ratio) yield $J \approx 0.10$, approximately $2\times$ baseline. Within-architecture comparisons (same architecture across different attention ratios) yield $J \approx 0.33$, approximately $7\times$ baseline and $3\times$ the cross-architecture level. Architecture identity therefore has approximately three times the influence of attention ratio on per-example effects.
+350	
+351	Table~\ref{tab:within_arch_summary} reports mean within-architecture Jaccard for each architecture. HGRN2 shows the highest helped overlap and lowest hurt overlap, consistent with its monotonically increasing helped count across ratios (479 $\to$ 548).
+352	
+353	\begin{table}[ht]
+354	\centering
+355	\caption{Mean within-architecture pairwise Jaccard similarity across attention ratios (1.3B, LAMBADA). Each mean is computed over all six ratio pairs per architecture.}
+356	\label{tab:within_arch_summary}
+357	\begin{tabular}{lcc}
+358	\toprule
+359	Architecture & $\bar{J}_{\text{helped}}$ & $\bar{J}_{\text{hurt}}$ \\
+360	\midrule
+361	GDN & 0.338 & 0.319 \\
+362	RetNet & 0.333 & 0.321 \\
+363	HGRN2 & 0.373 & 0.291 \\
+364	\midrule
+365	\textit{Overall mean} & \textit{0.348} & \textit{0.310} \\
+366	\bottomrule
+367	\end{tabular}
+368	\end{table}
+369	
+370	Table~\ref{tab:within_arch_pairwise} reports the full pairwise Jaccard matrix. Attention ratios are denoted by their h$k$-1 labels: h24-1 (4\%), h12-1 (7.7\%), h6-1 (14.3\%), h3-1 (25\%).
+371	
+372	\begin{table}[ht]
+373	\centering
+374	\small
+375	\caption{Within-architecture pairwise Jaccard similarity between helped and hurt sets at different attention ratios (1.3B, LAMBADA). Each cell compares the per-example effect sets of two attention configurations within the same architecture.}
+376	\label{tab:within_arch_pairwise}
+377	\resizebox{\columnwidth}{!}{%
+378	\begin{tabular}{llcccccc}
+379	\toprule
+380	 & & \multicolumn{6}{c}{Ratio pair} \\
+381	\cmidrule(lr){3-8}
+382	Arch & Cat & h24--h12 & h24--h6 & h24--h3 & h12--h6 & h12--h3 & h6--h3 \\
+383	\midrule
+384	\multirow{2}{*}{GDN} & Helped & .345 & .335 & .311 & .344 & .341 & .352 \\
+385	 & Hurt & .310 & .328 & .320 & .331 & .281 & .345 \\
+386	\midrule
+387	\multirow{2}{*}{RetNet} & Helped & .354 & .314 & .334 & .322 & .330 & .345 \\
+388	 & Hurt & .316 & .334 & .307 & .301 & .324 & .343 \\
+389	\midrule
+390	\multirow{2}{*}{HGRN2} & Helped & .359 & .369 & .375 & .368 & .378 & .388 \\
+391	 & Hurt & .292 & .289 & .298 & .273 & .309 & .287 \\
+392	\bottomrule
+393	\end{tabular}%
+394	}
+395	\end{table}
+396	
+397	Adjacent ratio pairs (e.g., h24-1 vs.\ h12-1) do not exhibit systematically higher Jaccard than non-adjacent pairs (e.g., h24-1 vs.\ h3-1). Across all architectures, the mean Jaccard for adjacent pairs is 0.353 (helped) and 0.311 (hurt), compared with 0.343 (helped) and 0.310 (hurt) for non-adjacent pairs. The negligible difference indicates that the mapping from attention ratio to per-example effects is non-smooth: doubling the attention ratio does not produce a proportionally more similar set of affected examples.
+398	
+399	\section{Cross-Benchmark Jaccard Trajectories}\label{app:cross_bench_jaccard}
+400	
+401	To test whether Jaccard saturation is specific to LAMBADA or a general property, we compute mean pairwise Jaccard trajectories across all four hybrid attention ratios on all four main benchmarks. Table~\ref{tab:cross_bench_jaccard} reports the results. On every benchmark, Jaccard shows no statistically significant trend with attention ratio (all $\rho \leq 0.80$, $p \geq 0.333$), with values uniformly between 0.08 and 0.11. The saturation at the first attention level observed on LAMBADA (\S\ref{ssec:decoupling}) thus generalizes: once any attention is present, each architecture's per-example response is largely fixed regardless of attention ratio.
+402	
+403	\begin{table}[ht]
+404	\centering
+405	\small
+406	\caption{Mean pairwise Jaccard (mean of helped and hurt sets, 3 architecture pairs) across attention ratios and benchmarks (1.3B scale). $\rho$: Spearman correlation between attention ratio and $\bar{J}$. All $p \geq 0.333$.}
+407	\label{tab:cross_bench_jaccard}
+408	\resizebox{\columnwidth}{!}{%
+409	\begin{tabular}{@{}lcccccc@{}}
+410	\toprule
+411	Benchmark & h24-1 & h12-1 & h6-1 & h3-1 & $\rho$ & $p$ \\
+412	\midrule
+413	LAMBADA & .091 & .088 & .096 & .097 & 0.80 & .333 \\
+414	HellaSwag & .084 & .081 & .091 & .086 & 0.60 & .417 \\
+415	PIQA & .089 & .096 & .089 & .095 & 0.00 & 1.00 \\
+416	ARC-Easy & .084 & .099 & .091 & .109 & 0.80 & .333 \\
+417	\bottomrule
+418	\end{tabular}}
+419	\end{table}
+420	
+421	\section{Continuous-Threshold Jaccard Analysis}\label{app:continuous_jaccard}
+422	
+423	The main text binarizes per-example effects at the correctness boundary. To verify that low cross-architecture Jaccard is not an artifact of this binarization, we compute Jaccard similarity using a continuous confidence threshold $\tau$: two architectures' effect sets are defined as the examples whose target-token $|\log p|$ changes by more than $\tau$ when attention is added. On LAMBADA, mean pairwise Jaccard decreases monotonically from 0.26 ($\tau = 0.00$, any change) to 0.05 ($\tau = 0.30$, large changes only). ARC-Easy and PIQA show the same monotonic decrease. The binary threshold ($\tau = 0$, correctness flip) thus represents the upper end of cross-architecture overlap; restricting to confident transitions further reduces agreement, confirming that low Jaccard is robust to the choice of binarization threshold.
+424	
+425	\section{Target-Token Confidence Margin}
+426	\label{app:confidence_margin}
+427	
+428	We analyze whether pure-model confidence on the target token predicts whether attention will help or hurt on a given example.
+429	We define confidence as $|\log p_{\text{pure}}(y^*)|$, where $y^*$ is the target token: lower values indicate higher probability (near-correct).
+430	We initially tested raw perplexity as a predictor of helped/hurt status, but found that within-category controls (C1/C2) are necessary to isolate attention effects from the definitional confound between pure-correct and pure-wrong populations.
+431	
+432	Table~\ref{tab:cm_c1} compares hurt versus stayed-right samples (both pure-correct): hurt samples have significantly lower target-token probability (higher $|\log p|$), confirming that weakly-correct predictions are vulnerable to attention disruption.
+433	Table~\ref{tab:cm_c2} compares helped versus stayed-wrong samples (both pure-wrong): helped samples have higher target-token probability (lower $|\log p|$), confirming that near-miss errors are rescuable.
+434	This pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings---within-architecture predictability coexists with cross-architecture divergence.
+435	
+436	\begin{table}[ht]
+437	\centering
+438	\caption{Control 1: Pure-correct samples---hurt vs.\ stayed-right. Higher mean $|\log p|$ indicates lower target-token probability (less confident correct).}
+439	\label{tab:cm_c1}
+440	\resizebox{\columnwidth}{!}{%
+441	\begin{tabular}{lrrrrr}
+442	\toprule
+443	Architecture & $n_{\text{hurt}}$ & $n_{\text{stay}}$ & Hurt mean & Stay mean & Cohen's $d$ \\
+444	\midrule
+445	GDN (h12-1) & 519 & 2281 & 1.049 & 0.576 & 0.87 \\
+446	RetNet (h3-1) & 497 & 2169 & 1.293 & 0.785 & 0.83 \\
+447	HGRN2 (h3-1) & 392 & 2102 & 1.481 & 0.899 & 0.92 \\
+448	\bottomrule
+449	\end{tabular}
+450	}
+451	\end{table}
+452	
+453	\begin{table}[ht]
+454	\centering
+455	\caption{Control 2: Pure-wrong samples---helped vs.\ stayed-wrong. Lower mean $|\log p|$ indicates higher target-token probability (near-miss error).}
+456	\label{tab:cm_c2}
+457	\resizebox{\columnwidth}{!}{%
+458	\begin{tabular}{lrrrrr}
+459	\toprule
+460	Architecture & $n_{\text{help}}$ & $n_{\text{stay}}$ & Help mean & Stay mean & Cohen's $d$ \\
+461	\midrule
+462	GDN (h12-1) & 480 & 1873 & 2.459 & 4.189 & $-$0.75 \\
+463	RetNet (h3-1) & 420 & 2067 & 2.478 & 4.103 & $-$0.73 \\
+464	HGRN2 (h3-1) & 548 & 2111 & 2.500 & 4.112 & $-$0.77 \\
+465	\bottomrule
+466	\end{tabular}
+467	}
+468	\end{table}
+469	
+470	\subsection{Cross-Benchmark Extension}\label{app:cm_cross}
+471	
+472	The confidence margin pattern extends beyond LAMBADA to multiple-choice benchmarks, though with smaller effect sizes. Table~\ref{tab:cm_cross_c2} reports the rescue analysis (helped vs.\ stayed-wrong) on HellaSwag and ARC-Easy. All nine comparisons (three benchmarks $\times$ three architectures) are significant, confirming that attention consistently rescues near-miss errors regardless of task type. Effect sizes range from small on HellaSwag ($d = 0.13$--$0.17$) to medium on ARC-Easy ($d = 0.51$--$0.60$), compared to large on LAMBADA ($d = 0.73$--$0.77$); the attenuation on HellaSwag reflects noisier confidence proxies under length-normalized scoring. Table~\ref{tab:cm_cross_c1} reports the disruption analysis (hurt vs.\ stayed-right); two of six comparisons are significant (all on ARC-Easy) with small effect sizes ($d = 0.13$--$0.26$), indicating that the disruption signal is weaker on multiple-choice tasks and absent on HellaSwag under \texttt{acc\_norm}. The asymmetry between rescue and disruption reflects task structure: near-miss errors are an intrinsic sample property (the model almost produced the correct answer regardless of format), while borderline correctness in multiple-choice settings depends on relative option ranking rather than absolute confidence, reducing the raw log-likelihood margin's predictive power for vulnerability.
+473	
+474	\begin{table}[ht]
+475	\centering
+476	\caption{Cross-benchmark rescue analysis (Control 2): helped vs.\ stayed-wrong on HellaSwag and ARC-Easy (1.3B h3-1).}
+477	\label{tab:cm_cross_c2}
+478	\resizebox{\columnwidth}{!}{%
+479	\begin{tabular}{llrr}
+480	\toprule
+481	Benchmark & Architecture & Cohen's $d$ & $p$ \\
+482	\midrule
+483	HellaSwag & GDN & $-$0.166 & $6.1 \times 10^{-4}$ \\
+484	 & RetNet & $-$0.132 & $1.4 \times 10^{-2}$ \\
+485	 & HGRN2 & $-$0.164 & $1.4 \times 10^{-3}$ \\
+486	\midrule
+487	ARC-Easy & GDN & $-$0.60 & $1.0 \times 10^{-13}$ \\
+488	 & RetNet & $-$0.51 & $5.3 \times 10^{-10}$ \\
+489	 & HGRN2 & $-$0.53 & $5.4 \times 10^{-10}$ \\
+490	\bottomrule
+491	\end{tabular}%
+492	}
+493	\end{table}
+494	
+495	\begin{table}[ht]
+496	\centering
+497	\caption{Cross-benchmark disruption analysis (Control 1): hurt vs.\ stayed-right on HellaSwag and ARC-Easy (1.3B h3-1).}
+498	\label{tab:cm_cross_c1}
+499	\resizebox{\columnwidth}{!}{%
+500	\begin{tabular}{llrrl}
+501	\toprule
+502	Benchmark & Architecture & Cohen's $d$ & $p$ & Sig.? \\
+503	\midrule
+504	HellaSwag & GDN & 0.009 & .999 & No \\
+505	 & RetNet & $-$0.035 & .453 & No \\
+506	 & HGRN2 & $-$0.062 & .274 & No \\
+507	\midrule
+508	ARC-Easy & GDN & 0.26 & $3.2 \times 10^{-4}$ & Yes \\
+509	 & RetNet & 0.22 & $2.8 \times 10^{-3}$ & Yes \\
+510	 & HGRN2 & 0.13 & .145 & No \\
+511	\bottomrule
+512	\end{tabular}%
+513	}
+514	\end{table}
+515	
+516	\subsection{Prediction Framework}\label{app:prediction_framework}
+517	
+518	We formalize the confidence margin analysis as a binary prediction task: given a pure-model example and its target-token $|\log p|$, predict whether attention will change the example's correctness. Using the within-category summary statistics (Tables~\ref{tab:cm_c1},~\ref{tab:cm_c2}), we derive analytic AUC from Cohen's $d$ via $\text{AUC} = \Phi(|d|/\sqrt{2})$ and compute Gaussian-intersection thresholds (the $|\log p|$ value at which the two group densities intersect under equal priors).
+519	
+520	Table~\ref{tab:prediction_auc} reports within-architecture prediction performance. All AUCs exceed 0.69, confirming that pure-model confidence is a reliable within-architecture predictor of attention effects. Disruption prediction is consistently stronger than rescue (mean AUC 0.73 vs.\ 0.70), reflecting the larger effect sizes in Control~1.
+521	
+522	\begin{table}[ht]
+523	\centering
+524	\small
+525	\caption{Within-architecture prediction of attention effects on LAMBADA (1.3B). AUC$_p$: parametric (from Cohen's $d$); AUC$_e$: empirical (non-parametric).}
+526	\label{tab:prediction_auc}
+527	\resizebox{\columnwidth}{!}{%
+528	\begin{tabular}{@{}lcccccc@{}}
+529	\toprule
+530	Architecture & \multicolumn{3}{c}{Rescue} & \multicolumn{3}{c}{Disruption} \\
+531	\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+532	 & AUC$_p$ & AUC$_e$ & $d$ & AUC$_p$ & AUC$_e$ & $d$ \\
+533	\midrule
+534	GDN (h12-1) & .701 & .756 & 0.75 & .732 & .742 & 0.87 \\
+535	RetNet (h3-1) & .696 & .754 & 0.73 & .722 & .735 & 0.83 \\
+536	HGRN2 (h3-1) & .708 & .765 & 0.77 & .743 & .748 & 0.92 \\
+537	\midrule
+538	Mean & .702 & .758 & --- & .732 & .742 & --- \\
+539	\bottomrule
+540	\end{tabular}}
+541	\end{table}
+542	
+543	\paragraph{Normality verification.} Shapiro-Wilk tests reject normality for all six architecture--set combinations (all $W < 0.98$, $p < 10^{-6}$), but the practical departure varies by group. Disruption-set $|\log p|$ values show mild skewness (0.53--0.77, $W \in [0.955, 0.973]$), closely approximating a normal distribution at the sample sizes involved. Rescue-set values are moderately right-skewed (skewness 1.33--1.41, $W \in [0.899, 0.920]$), following an approximately log-normal distribution. Because the skew is one-sided, parametric AUC estimates (0.70--0.74 in the main text) are conservative lower bounds; non-parametric empirical AUC from the same data yields 0.73--0.77.
+544	
+545	Despite similar within-architecture AUC, the optimal prediction thresholds differ across architectures for disruption but not rescue (Table~\ref{tab:threshold_gap}). Rescue thresholds cluster tightly (range 0.03 in $|\log p|$), indicating that the rescuability boundary---the confidence level below which pure-wrong examples are likely to be corrected by attention---is architecture-invariant. Disruption thresholds span a 47\% relative range (GDN: 0.70, RetNet: 1.00, HGRN2: 1.14), meaning that the same confidence level on a pure-correct example may predict vulnerability in one architecture but safety in another. This asymmetry constitutes a second dimension of multiplicity beyond per-example disagreement: all three architectures agree on which wrong answers are rescuable, but disagree on which correct answers are vulnerable to disruption.
+546	
+547	\begin{table}[ht]
+548	\centering
+549	\small
+550	\caption{Gaussian-intersection prediction thresholds ($|\log p|$) across architectures. Relative spread: range/mean.}
+551	\label{tab:threshold_gap}
+552	\resizebox{\columnwidth}{!}{%
+553	\begin{tabular}{@{}lccccr@{}}
+554	\toprule
+555	 & GDN & RetNet & HGRN2 & Range & Rel.\ spread \\
+556	\midrule
+557	Rescue & 3.32 & 3.29 & 3.31 & 0.03 & 1.0\% \\
+558	Disruption & 0.70 & 1.00 & 1.14 & 0.44 & 46.7\% \\
+559	\bottomrule
+560	\end{tabular}}
+561	\end{table}
+562	
+563	\section{Calibration Analysis}\label{app:calibration}
+564	
+565	Cross-architecture disruption threshold variation (\S\ref{ssec:per_example}) could in principle arise from calibration differences rather than genuine differences in per-example processing. We compute expected calibration error (ECE; \citealt{guo2017calibration}) for each architecture's h3-1 model on LAMBADA using 15 equal-width bins. ECE values are similar: GDN 0.222, RetNet 0.224, HGRN2 0.235. The cross-architecture ECE spread (6\%, computed as range/mean) is less than half the disruption threshold spread (47\%; Table~\ref{tab:threshold_gap}), indicating that calibration differences are insufficient to account for the observed threshold divergence. Rescue thresholds, which show only 1\% cross-architecture spread, are consistent with near-identical calibration in the low-confidence regime.
+566	
+567	\section{BoolQ Supplementary Analysis}
+568	\label{app:boolq}
+569	
+570	BoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\alpha \approx 0.45$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.
+571	
+572	\paragraph{Binary classification baseline.} BoolQ is binary classification (two answer choices), whereas LAMBADA, HellaSwag, and ARC-Easy involve open vocabulary prediction or four-way multiple choice. Under a binary task, the null Jaccard baseline $J_{\text{null}}$ is higher because chance overlap between helped/hurt sets is larger when there are fewer ways to be wrong. This elevates the significance threshold: observed Jaccard must be substantially higher to exceed the null, which explains why 12/24 pairs fail to reach significance despite $\bar{J}_h = 0.103$ and $\bar{J}_u = 0.098$---values comparable to the four main benchmarks.
+573	
+574	\paragraph{Per-example summary.} Table~\ref{tab:boolq_multiplicity} reports the key metrics. The high $\alpha$ reflects that BoolQ examples are more sensitive to architectural variation in the presence of attention: approximately half of all examples change correctness status for at least one architecture. However, the mixed Jaccard significance prevents us from confidently concluding that the cross-architecture overlap structure matches the pattern observed on the four main benchmarks.
+575	
+576	\begin{table}[ht]
+577	\centering
+578	\small
+579	\caption{BoolQ predictive multiplicity at 1.3B (h3-1).}
+580	\label{tab:boolq_multiplicity}
+581	\begin{tabular}{@{}lcccccc@{}}
+582	\toprule
+583	 & $N$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & Sig.\ pairs & $\rho_\alpha$ \\
+584	\midrule
+585	BoolQ & 3270 & .45 & .103 & .098 & 12/24 & $+0.1$ \\
+586	\bottomrule
+587	\end{tabular}
+588	\par\vspace{1pt}
+589	{\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}
+590	\end{table}
+591	
+592	The significant Jaccard overlap concentrates in GDN--RetNet pairs (8/8 significant), while RetNet--HGRN2 shows none (0/8). This pair-specificity does not appear on the four main benchmarks, where all architecture pairs show significant overlap; it may reflect a BoolQ-specific interaction between binary classification structure and particular recurrent architectures rather than a general property of architecture pairs.
+593	
+594	\paragraph{Confidence margin.} Confidence margin analysis on BoolQ shows the rescue pattern (C2) partially holds (2/3 architectures significant, $d = 0.16$--$0.36$) but the disruption pattern (C1) is absent (0/3, $|d| \leq 0.10$), consistent with compressed log-likelihood ranges in binary classification reducing the predictive power of confidence margins. This extends the gradient observed across LAMBADA, ARC-Easy, and HellaSwag: C1 effect sizes decrease from open-ended prediction ($d \approx 0.9$, LAMBADA) through ARC-Easy ($d \approx 0.1$--$0.3$) to HellaSwag ($d \approx 0$ under \texttt{acc\_norm}) and binary classification ($d \approx 0$, BoolQ). The gradient broadly tracks the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$). BoolQ's high-frequency short completions (``\,yes''/``\,no'') yield elevated baseline log-likelihoods (mean $|\text{loglik}| = 3.04$ vs.\ $0.84$ for LAMBADA) with similar absolute spread (IQR $\approx 0.9$), compressing the relative variation and rendering the confidence margin unable to separate borderline-correct from robustly-correct examples.
+595	
+596	\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.
+597	
+598	\section{WinoGrande Supplementary Analysis}
+599	\label{app:winogrande}
+600	
+601	WinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\alpha \approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\bar{J}_h = 0.110$, $\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\sim}60\%$) reduces statistical power to detect above-chance overlap.
+602	
+603	\paragraph{Near-chance accuracy.} WinoGrande accuracy across hybrid configurations ranges from 59\% to 62\%, close to the two-choice chance level of 50\%. At near-chance accuracy, a large fraction of examples are borderline---small perturbations (such as adding attention) can flip predictions in either direction, inflating the helped and hurt sets and consequently $\alpha$. This structural property, shared with BoolQ (${\sim}59\%$ accuracy, $\alpha \approx 0.45$), may partially explain the elevated $\alpha$ rather than task-intrinsic multiplicity. PIQA (73\% accuracy, $\alpha = 0.14$) and HellaSwag (60\% normalized accuracy, $\alpha = 0.15$) demonstrate that near-chance accuracy is not the sole driver, but we cannot fully exclude it as a contributing factor for WinoGrande and BoolQ.
+604	
+605	\begin{table}[ht]
+606	\centering
+607	\small
+608	\caption{WinoGrande predictive multiplicity at 1.3B (h3-1).}
+609	\label{tab:winogrande_multiplicity}
+610	\resizebox{\columnwidth}{!}{%
+611	\begin{tabular}{@{}lcccccc@{}}
+612	\toprule
+613	 & $N$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & Sig.\ pairs & $\rho_\alpha$ \\
+614	\midrule
+615	WinoGrande & 1267 & .41 & .110 & .103 & 10/24 & $-0.9$ \\
+616	\bottomrule
+617	\end{tabular}}
+618	\par\vspace{1pt}
+619	{\footnotesize $\alpha$ variation across ratios: 0.054 ($> 0.03$ threshold of main benchmarks).}
+620	\end{table}
+621	
+622	\section{340M Per-Example Analysis}\label{app:scale_per_example}
+623	
+624	\subsection{LAMBADA}
+625	
+626	At 340M, LAMBADA per-example multiplicity closely matches the 1.3B pattern: $\alpha = 0.313$ (vs.\ 0.307 at 1.3B), with mean pairwise Jaccard $\bar{J} \approx 0.089$ (vs.\ 0.095). Per-example directionality is preserved: HGRN2 shows net positive effects at h3-1 ($+238$ examples), while GDN ($-256$) and RetNet ($-106$) show net negative effects, mirroring the 1.3B profile (HGRN2 $+153$, GDN $-153$, RetNet $-69$).
+627	
+628	However, aggregate convergence is absent at 340M: $\rho = -0.50$ ($p = .45$), with non-monotonic $\sigma$ across attention ratios ($0.025 \to 0.012 \to 0.018 \to 0.011 \to 0.016$). This contrasts sharply with 1.3B ($\rho = -1.0$, $p = .017$, monotonic $\sigma$ decrease). The decoupling between per-example divergence and aggregate convergence thus manifests differently across scales: at 340M, per-example multiplicity is present but aggregate convergence is not, suggesting that convergence requires sufficient model capacity while multiplicity does not.
+629	
+630	Within-benchmark $\alpha$ variation across attention ratios is also larger at 340M (0.047, from 0.313 at pure to 0.266 at h3-1) than at 1.3B ($< 0.03$; \S\ref{ssec:per_example}), suggesting that smaller models are more sensitive to the attention ratio in terms of per-example disagreement patterns.
+631	
+632	\begin{table}[ht]
+633	\centering
+634	\small
+635	\caption{340M vs.\ 1.3B LAMBADA comparison.}
+636	\label{tab:scale_comparison}
+637	\begin{tabular}{@{}lcc@{}}
+638	\toprule
+639	 & 340M & 1.3B \\
+640	\midrule
+641	$\alpha$ (pure) & .313 & .307 \\
+642	$\bar{J}$ (h3-1) & .089 & .095 \\
+643	$\rho_\sigma$ & $-0.50$ & $-1.0$ \\
+644	$p$ & .45 & .017 \\
+645	GDN net & $-256$ & $-153$ \\
+646	HGRN2 net & $+238$ & $+153$ \\
+647	\bottomrule
+648	\end{tabular}
+649	\end{table}
+650	
+651	\subsection{Cross-Benchmark Scale Comparison}
+652	
+653	Table~\ref{tab:340m_multi_bench} extends the scale comparison to all four main benchmarks. Two patterns emerge. First, $\alpha$ is systematically higher at 340M across all benchmarks, with the largest gap on ARC-Easy ($+$8.4pp) and the smallest on LAMBADA ($+$0.6pp). Second, pairwise Jaccard remains stable across scales ($\bar{J}_h = 0.08$--$0.10$ at both scales); three-architecture results are stable across both 340M and 1.3B scales (Jaccard $\approx$ 0.08--0.10), providing indirect support for consistency across these two scales. This suggests that the qualitative pattern of per-example multiplicity---which architectures affect which examples---is consistent across the two scales examined, even as its magnitude increases at smaller scale. Notably, the $\alpha$ inflation does not track accuracy loss: HellaSwag has the largest accuracy gap between scales yet the smallest $\Delta\alpha$ ($+$1.9pp), while ARC-Easy has a smaller accuracy gap but the largest $\Delta\alpha$ ($+$8.4pp), arguing against accuracy as the primary driver of scale-dependent multiplicity.
+654	
+655	\begin{table}[ht]
+656	\centering
+657	\small
+658	\caption{340M vs.\ 1.3B per-example multiplicity across four benchmarks. $\alpha$: ambiguity at pure-recurrent configuration. Acc: mean accuracy across three architectures at pure-recurrent. $\bar{J}_{h}$/$\bar{J}_{u}$: mean pairwise Jaccard of helped/hurt sets. $\Delta\alpha$: 340M $-$ 1.3B.}
+659	\label{tab:340m_multi_bench}
+660	\resizebox{\columnwidth}{!}{%
+661	\begin{tabular}{lcccccccr}
+662	\toprule
+663	 & \multicolumn{4}{c}{340M} & \multicolumn{3}{c}{1.3B} & \\
+664	\cmidrule(lr){2-5} \cmidrule(lr){6-8}
+665	Benchmark & Acc & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & $\alpha$ & $\bar{J}_{h}$ & $\bar{J}_{u}$ & $\Delta\alpha$ \\
+666	\midrule
+667	PIQA & .663 & .181 & .090 & .085 & .143 & .091 & .094 & $+$.038 \\
+668	HellaSwag$^\dagger$ & .420 & .167 & .084 & .083 & .148 & .095 & .085 & $+$.019 \\
+669	ARC-Easy & .594 & .289 & .098 & .103 & .205 & .092 & .099 & $+$.084 \\
+670	LAMBADA & --- & .313 & .089 & .090 & .307 & .095 & .093 & $+$.006 \\
+671	\bottomrule
+672	\multicolumn{9}{l}{\footnotesize $^\dagger$\texttt{acc\_norm}. LAMBADA accuracy omitted (evaluated in separate run).}
+673	\end{tabular}%
+674	}
+675	\end{table}
+676	
+677	Convergence is absent at 340M across all benchmarks (all $|\rho| \leq 0.4$, $p \geq .45$), in contrast to 1.3B where LAMBADA shows monotonic convergence. The absence of convergence at 340M extends beyond LAMBADA to HellaSwag ($\rho = 0.4$, $p = .52$), PIQA ($\rho = 0.3$, $p = .68$), and ARC-Easy ($\rho = -0.1$, $p = .95$).
+678	
+679	\section{Subsample Sensitivity of \texorpdfstring{$\alpha$}{α}}\label{app:subsample_sensitivity}
+680	
+681	To assess the reliability of $\alpha$ estimation at different sample sizes, we repeatedly subsample each benchmark (1{,}000 bootstrap replicates, seed 42) and compute the 95\% CI width of $\alpha$.
+682	
+683	\begin{table}[ht]
+684	\centering
+685	\small
+686	\caption{$\alpha$ estimation stability: 95\% CI width by subsample size.}
+687	\label{tab:subsample}
+688	\resizebox{\columnwidth}{!}{%
+689	\begin{tabular}{@{}lrrrrr@{}}
+690	\toprule
+691	Benchmark & $n = 100$ & $n = 200$ & $n = 500$ & $n = 1000$ & Full $N$ \\
+692	\midrule
+693	PIQA & .130 & .095 & .066 & .045 & .034 \\
+694	HellaSwag & .140 & .100 & .062 & .044 & .013 \\
+695	ARC-Easy & .160 & .105 & .072 & .050 & .032 \\
+696	LAMBADA & .180 & .125 & .082 & .057 & .025 \\
+697	\bottomrule
+698	\end{tabular}}
+699	\par\vspace{1pt}
+700	{\footnotesize At $n = 100$, CI width (0.13--0.18) spans the entire four-benchmark $\alpha$ range (0.14--0.30), rendering $\alpha$ estimation unreliable. This justifies excluding COPA ($n = 100$) from the per-example analysis.}
+701	\end{table}
+702	
+703	\section{Complementarity Decomposition}\label{app:complementarity}
+704	
+705	We decompose the three-architecture vote on each example into four categories: unanimous correct (3/3), majority correct (2/3), minority correct (1/3), and unanimous wrong (0/3). This decomposition explains the structural failure of majority vote despite substantial per-example complementarity.
+706	
+707	Table~\ref{tab:complementarity} reports the decomposition at h3-1 (25\% attention). Majority vote benefits only from 2/3 examples (where the correct answer holds a majority) but is actively harmed by 1/3 examples (where the correct architecture is outvoted). On LAMBADA, HellaSwag, and ARC-Easy, the MV exploitation ratio---the fraction of complementary examples where MV selects correctly---hovers near 51\%, indicating a near-even split between MV-exploitable and MV-hostile disagreements. The oracle, by contrast, exploits both categories, explaining the large oracle--MV gap ($+7$--$14$\,pp).
+708	
+709	\begin{table}[ht]
+710	\centering
+711	\small
+712	\caption{Complementarity decomposition at 1.3B h3-1. Fractions of total examples in each vote category. MV expl.: fraction of complementary examples where majority vote is correct.}
+713	\label{tab:complementarity}
+714	\begin{tabular}{@{}lccccr@{}}
+715	\toprule
+716	Benchmark & 3/3 & 2/3 & 1/3 & 0/3 & MV expl. \\
+717	\midrule
+718	LAMBADA & .361 & .151 & .145 & .343 & 51.1\% \\
+719	HellaSwag & .519 & .078 & .073 & .331 & 51.6\% \\
+720	ARC-Easy & .603 & .107 & .103 & .187 & 50.9\% \\
+721	BoolQ & .376 & .257 & .197 & .170 & 56.6\% \\
+722	\bottomrule
+723	\end{tabular}
+724	\end{table}
+725	
+726	This near-50\% exploitation ratio is structurally invariant across attention ratios: on LAMBADA, the ratio ranges from 51.1\% to 54.4\% across all five configurations; on HellaSwag, from 50.3\% to 51.6\%. Attention changes neither the amount nor the structure of cross-architecture complementarity.
+727	
+728	\section{Seed-Variation Calibration}\label{app:seed_calibration}
+729	
+730	To contextualize the $3\times$ within- vs.\ cross-architecture Jaccard gap (\S\ref{ssec:decoupling}), we compare against within-seed variation using the Pythia 70M \citep{biderman2023pythia} PolyPythias models \citep{vanderwal2025polypythias}, which provide 9 individually trained seeds of the same architecture.
+731	
+732	On LAMBADA ($N = 5{,}153$), within-seed mean Jaccard is $\bar{J}_h = 0.273$ (helped) and $\bar{J}_u = 0.393$ (hurt), compared to our cross-architecture reference $J \approx 0.10$. On ARC-Easy ($N = 2{,}376$), within-seed $\bar{J}_h = 0.312$ and $\bar{J}_u = 0.354$, versus cross-architecture $J \approx 0.092$. Within-seed ambiguity is $\alpha = 0.36$ (LAMBADA) and $\alpha = 0.49$ (ARC-Easy), compared to cross-architecture $\alpha = 0.30$ and $0.21$ respectively.
+733	
+734	Seeds thus produce comparable or higher amounts of per-example disagreement ($\alpha$) but on more overlapping examples (higher $J$). Cross-architecture variation is associated with per-example effects on less overlapping examples (lower $J$), consistent with architecture-driven divergence yielding qualitatively different per-example patterns than seed noise. The within-seed Jaccard is 2.7--4.3$\times$ higher than cross-architecture Jaccard across both benchmarks.
+735	
+736	Three caveats qualify this comparison. First, scale mismatch: Pythia 70M is $5\times$ smaller than our smallest models (340M); attempts to use Pythia 410M failed repeatedly. Second, architecture family: Pythia is a standard Transformer, not a hybrid recurrent architecture, so this is a cross-family reference point rather than a matched control. Third, accuracy regime: Pythia 70M accuracy (LAMBADA 0.17--0.23, ARC-Easy ${\sim}$0.38) is far below our models (${\sim}$0.50, ${\sim}$0.72), and Jaccard is affected by base rates; the 2.7--4.3$\times$ ratio may differ at accuracy regimes closer to our main experiments. These limitations restrict the comparison to a reference point for seed-variation magnitude rather than definitive evidence for architecture-driven effects.
+737	
+738	\section{Extended Architecture Validation (Five Architectures)}\label{app:extended_arch}
+739	
+740	To test whether the low cross-architecture Jaccard pattern generalizes beyond the three primary architectures, we extend the analysis to include two additional architectures from the same model zoo: GLA (Gated Linear Attention) and DeltaNet, yielding ten pairwise comparisons. Both are available only at 340M in the model zoo; all results below use the h3-1 (25\% attention) configuration. This extension validates per-example divergence (not aggregate convergence).
+741	
+742	\begin{center}
+743	\small
+744	\captionof{table}{Pairwise Jaccard similarity across five architectures (340M, h3-1). All 40 permutation tests yield $p \leq .002$ ($z = 3.49$--$12.21$).}
+745	\label{tab:extended_arch_jaccard}
+746	\begin{tabular}{@{}llcc@{}}
+747	\toprule
+748	Benchmark & Pair & $J_h$ & $J_u$ \\
+749	\midrule
+750	\multirow{11}{*}{LAMBADA} & GDN--RetNet & .128 & .121 \\
+751	 & GDN--HGRN2 & .123 & .083 \\
+752	 & GDN--GLA & .124 & .100 \\
+753	 & GDN--DeltaNet & .115 & .100 \\
+754	 & RetNet--HGRN2 & .108 & .083 \\
+755	 & RetNet--GLA & .123 & .107 \\
+756	 & RetNet--DeltaNet & .115 & .096 \\
+757	 & HGRN2--GLA & .127 & .086 \\
+758	 & HGRN2--DeltaNet & .125 & .090 \\
+759	 & GLA--DeltaNet & .134 & .081 \\
+760	 & \textit{Mean} & \textit{.122} & \textit{.095} \\
+761	\midrule
+762	\multirow{11}{*}{ARC-Easy} & GDN--RetNet & .089 & .114 \\
+763	 & GDN--HGRN2 & .122 & .105 \\
+764	 & GDN--GLA & .114 & .106 \\
+765	 & GDN--DeltaNet & .084 & .102 \\
+766	 & RetNet--HGRN2 & .087 & .115 \\
+767	 & RetNet--GLA & .112 & .110 \\
+768	 & RetNet--DeltaNet & .138 & .123 \\
+769	 & HGRN2--GLA & .098 & .087 \\
+770	 & HGRN2--DeltaNet & .109 & .088 \\
+771	 & GLA--DeltaNet & .129 & .098 \\
+772	 & \textit{Mean} & \textit{.108} & \textit{.105} \\
+773	\bottomrule
+774	\end{tabular}
+775	\end{center}
+776	
+777	% Figure moved to main text (\S\ref{ssec:robustness})
+778	
+779	All pairwise Jaccard values remain $\leq 0.14$, consistent with the three-architecture results at 1.3B (Table~\ref{tab:per_example}). The seven new pairs involving GLA and DeltaNet show no systematic difference from the original three pairs (Mann-Whitney $p > .3$ for both helped and hurt), indicating that the low-overlap pattern is not specific to the original architecture triple. A sixth architecture (HGRN; \citealp{qin2023hierarchically}) is also available in the zoo but excluded from the main analysis: its substantially lower baseline accuracy on LAMBADA (0.263 vs.\ 0.32--0.38 for the other five) mechanically inflates helped-set sizes and Jaccard values. All 15 six-architecture permutation tests nonetheless remain significant ($z \geq 2.9$, $p \leq .006$). The same pattern holds on HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$): all 20 additional pairwise tests yield $p < .01$ with mean $J_{\text{helped}} \leq 0.10$. Full four-benchmark and six-architecture data are included in our code release.
+780	
+781	\section{Code and Data Availability}
+782	\label{app:code_data}
+783	
+784	All models are from the publicly available model zoo of \citet{wang2025hybrid}. Our analysis code and per-example evaluation outputs will be released upon publication.
+785	
+786	\section{Use of AI Assistants}
+787	\label{app:ai-assistants}
+788	
+789	We used Claude (Anthropic) as an AI coding and writing assistant
+790	throughout this work. Specifically:
+791	\begin{itemize}
+792	    \item \textbf{Code:} drafting experiment scripts, data-processing
+793	    pipelines, and analysis utilities; debugging and refactoring.
+794	    \item \textbf{Writing:} drafting and revising paper sections,
+795	    polishing prose, and reformatting \LaTeX{}.
+796	    \item \textbf{Literature:} summarizing related papers to inform
+797	    the related-work section.
+798	\end{itemize}
+799	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04941411-23be-4c8d-8802-858868357732",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "56ea9079-fdeb-42d2-b45f-4e4139db9289",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/sections/appendix.tex",
+      "content": "% Appendix sections for the paper.\n\n\\section{Confirmatory and Exploratory Analyses}\\label{app:benchmark_details}\n\nThe task taxonomy used in \\S\\ref{ssec:task_taxonomy} was defined prior to running any convergence analyses. Each benchmark was assigned to exactly one of four categories based on the primary cognitive demand of the task:\n\n\\begin{itemize}\n    \\item \\textbf{Retrieval}: tasks requiring prediction from long-range context without multi-step reasoning (LAMBADA).\n    \\item \\textbf{Comprehension}: reading comprehension with explicit passage support (BoolQ).\n    \\item \\textbf{Reasoning}: tasks requiring commonsense inference or multi-step reasoning (HellaSwag, ARC-Challenge, WinoGrande, PIQA).\n    \\item \\textbf{Mixed}: tasks combining retrieval, comprehension, and reasoning demands (ARC-Easy, MMLU, SciQ, XStoryCloze).\n\\end{itemize}\n\n\\paragraph{Confirmatory benchmark set.} Six benchmarks were designated as confirmatory for Bonferroni correction: LAMBADA, HellaSwag, ARC-Challenge, WinoGrande, ARC-Easy, and MMLU. These were selected as representative of retrieval, reasoning, and mixed categories before any convergence analysis was performed. The taxonomy and benchmark selection were fixed before analysis as an informal pre-analysis plan; we describe this as a confirmatory/exploratory split rather than a formal pre-registration, since no external timestamp exists. The main text applies the more conservative all-10-benchmark correction (Bonferroni-adjusted $p = .017 \\times 10 = .170$). \\textbf{Sensitivity:} correcting across only the six confirmatory benchmarks yields adjusted $p = .017 \\times 6 = .100$, still above conventional significance.\n\n\\paragraph{One-sided test.} If one adopts the prior that attention should reduce cross-architecture variance, the one-sided permutation $p$-value for LAMBADA is $1/120 \\approx 0.0083$. Under 10-benchmark Bonferroni correction, this yields an adjusted $p = 0.083$, above the conventional threshold. We report two-sided tests throughout the main text as the more conservative choice; the one-sided result is noted here for completeness.\n\n\\paragraph{Exploratory benchmarks.} Four additional benchmarks (BoolQ, PIQA, SciQ, XStoryCloze) were added as exploratory tests. All benchmarks share the same 10-benchmark correction (adjusted threshold $\\alpha / 10 = 0.005$) and the four exploratory benchmarks are labeled as such throughout the paper. The all-10 Bonferroni correction reported in the main text is the only correction used for inference; the exploratory 6-benchmark subset correction in this appendix is provided for transparency.\n\n\\paragraph{Supplementary benchmark.} COPA ($n = 100$) is treated as supplementary due to its small sample size. It is excluded from both correction families and reported separately with the $\\dagger$ annotation in Table~\\ref{tab:convergence}.\n\n\\section{Convergence Detail}\\label{app:convergence_detail}\n\n% Figure moved to main text (\\S\\ref{ssec:decoupling}).\n\nBeyond LAMBADA ($\\rho = -1.0$), two benchmarks show moderate negative correlations that do not reach significance: ARC-Easy and MMLU (both $\\rho = -0.7$, $p = .233$). Both are classified as ``Mixed'' tasks combining retrieval with reasoning demands. The sensitivity analysis (Appendix~\\ref{app:sensitivity}) shows that MMLU's correlation reverses upon GDN exclusion ($\\rho = +0.6$), indicating dependence on a single architecture; ARC-Easy's correlation is more stable. COPA ($n = 100$; supplementary) shows $\\rho = -0.67$ with a large $\\sigma$ ratio (5.57), consistent with LAMBADA's pattern but unreliable due to small sample size.\n\nSeveral benchmarks show positive or near-zero $\\rho$ (BoolQ: $+0.2$; ARC-C: $+0.6$; HellaSwag: $+0.3$; WinoGrande: $+0.1$; SciQ: $+0.1$), indicating that attention does not systematically reduce cross-architecture variance on reasoning or comprehension tasks. The contrast with LAMBADA is consistent with attention's convergence benefit being specific to tasks requiring direct token-level recall \\citep{arora2024zoology,arora2024based} rather than multi-step inference.\n\n\\paragraph{Regression to the mean.} The direction of LAMBADA's aggregate convergence is consistent with regression to the mean: GDN (highest pure accuracy, 0.543) declines to 0.513 under h3-1, while HGRN2 (lowest, 0.484) rises to 0.514, yielding a $5\\times$ $\\sigma$ compression ($0.024 \\to 0.005$). However, three observations argue against a purely statistical artifact. First, the $5\\times$ reduction in cross-architecture $\\sigma$ far exceeds typical regression amplitudes. Second, the direction is entirely determined by architecture identity, not random fluctuation: HGRN2 accuracy increases monotonically across all attention ratios, while GDN decreases monotonically---a pattern inconsistent with noise-driven mean reversion. Third, per-example analysis (\\S\\ref{ssec:per_example}) reveals architecture-specific patterns: GDN's net $-153$ examples and HGRN2's net $+153$ examples reflect distinct helped/hurt profiles with low cross-architecture Jaccard overlap, indicating that the aggregate convergence arises from structured, architecture-dependent per-example changes rather than symmetric regression.\n\n\\section{Scale-Dependent Convergence}\\label{app:scale_convergence}\n\nAt 1.3B parameters, LAMBADA convergence is monotonic: $\\sigma$ decreases at every attention level from 0\\% through 25\\% ($\\rho = -1.0$). At 340M, convergence is partial: $\\sigma$ reaches a maximum reduction of 56\\% at intermediate attention ratios but rebounds at h3-1, yielding a net endpoint reduction of 36\\%. The trajectory is non-monotonic, and the highest-attention model does not achieve the lowest cross-architecture variance. One possible interpretation is that at smaller scale, the capacity overhead of attention layers creates interference that offsets the retrieval benefit.\n\nThis contrast is a preliminary observation from two data points (not a scaling law). Despite the aggregate divergence at 340M, mean pairwise Jaccard is similar at both scales ($J \\approx 0.09$), extending the decoupling observation (\\S\\ref{ssec:decoupling}) to the scale dimension.\n\n\\section{Sensitivity Analyses}\\label{app:sensitivity}\n\n\\subsection{Bootstrap Confidence Intervals}\n\nWe construct 95\\% bootstrap confidence intervals for the Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ on LAMBADA using 10{,}000 resamples at the architecture level ($n = 3$ architectures). Of these resamples, 11.25\\% are degenerate: they consist of same-architecture triplicates, which produce a constant $\\sigma$ vector and therefore an undefined $\\rho$ (division by zero in the rank correlation formula). These are excluded from the confidence interval computation because they carry no information about the correlation, not because they represent $\\rho = 0$.\n\nThe BCa (bias-corrected and accelerated) correction degenerates at the $\\rho = -1.0$ boundary because the acceleration parameter requires finite jackknife variance, which collapses when the point estimate is at the distributional limit. We therefore report percentile confidence intervals instead. From the 88.75\\% informative resamples, the 95\\% percentile CI is $[-1.0,\\,-0.7]$, which excludes zero.\n\n\\subsection{GDN Exclusion Sensitivity}\n\nThe GDN h3-1 configuration uses 16 attention heads rather than 32 (see Appendix~\\ref{app:gdn_confound}). To assess the influence of this confound, we recompute all convergence correlations after excluding GDN, leaving two architectures (RetNet, HGRN2) at five attention ratios.\n\nTable~\\ref{tab:gdn_sensitivity} reports the results for benchmarks where the correlation changes by $|\\Delta\\rho| \\geq 0.3$. LAMBADA weakens from $\\rho = -1.0$ to $\\rho = -0.7$ ($p = .233$), consistent with GDN contributing to the convergence signal. MMLU reverses from $\\rho = -0.7$ to $\\rho = +0.6$, confirming that the moderate negative correlation on MMLU depends on GDN's inclusion and should not be interpreted as evidence of convergence.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Effect of GDN exclusion on Spearman $\\rho$ (attention ratio vs.\\ cross-architecture $\\sigma$) at 1.3B scale. Only benchmarks with $|\\Delta\\rho| \\geq 0.3$ shown.}\n\\label{tab:gdn_sensitivity}\n\\begin{tabular}{lrrrr}\n\\toprule\nBenchmark & $\\rho_{\\text{all}}$ & $\\rho_{\\text{no-GDN}}$ & $\\Delta\\rho$ & $p_{\\text{no-GDN}}$ \\\\\n\\midrule\nLAMBADA & $-1.0$ & $-0.7$ & $+0.3$ & .233 \\\\\nMMLU & $-0.7$ & $+0.6$ & $+1.3$ & .350 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{GDN Attention Head Confound}\\label{app:gdn_confound}\n\nIn the \\citet{wang2025hybrid} model zoo, the GDN h3-1 configuration at 1.3B scale uses 16 attention heads per attention layer, while all other hybrid configurations (across GDN, RetNet, and HGRN2) use 32 attention heads. This is a design choice in the original model zoo, not an error. The reduced head count changes the per-head dimension and may affect the attention capacity of GDN h3-1 relative to other configurations.\n\nThis confound is relevant because the convergence analysis measures cross-architecture $\\sigma$ at each attention ratio. At the h3-1 ratio (25\\% attention), GDN's attention layers have a different internal structure than those of RetNet and HGRN2, which could contribute to variance reduction (or inflation) for reasons unrelated to the recurrent--attention interaction under study.\n\nThe sensitivity analysis in Appendix~\\ref{app:sensitivity} shows that removing GDN weakens the LAMBADA convergence correlation from $\\rho = -1.0$ to $\\rho = -0.7$. This weakening is partially attributable to the reduced sample size ($n = 2$ architectures) and partially to the confound itself. We cannot separate these two effects with the available data.\n\n\\section{Attention Weight Analysis}\\label{app:attention_patterns}\n\nWe extract attention weight matrices from the 1.3B h3-1 models of all three architectures using forward hooks on each attention layer. While \\citet{ali2025hidden} show that SSM layers learn implicit attention patterns, our analysis focuses on the explicit attention layers interleaved within the hybrid architecture. For each layer, we compute the mean attention distribution across all 5{,}153 LAMBADA examples and measure cross-architecture similarity via cosine similarity.\n\n\\subsection{Cross-Architecture Cosine Similarity}\n\nTable~\\ref{tab:attn_cosine} reports cosine similarity between mean attention distributions at selected layers and averaged across all layers.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cosine similarity between mean attention weight distributions of architecture pairs at selected layers (1.3B h3-1 models on LAMBADA).}\n\\label{tab:attn_cosine}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrr}\n\\toprule\nLayer & GDN--RetNet & GDN--HGRN2 & HGRN2--RetNet \\\\\n\\midrule\nL2 (early) & 0.995 & 0.244 & 0.196 \\\\\nL20 (deep) & 0.986 & 0.942 & 0.943 \\\\\n\\midrule\nMean (all layers) & 0.905 & 0.766 & 0.698 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAt layer 2, GDN and RetNet produce nearly identical attention distributions (cosine 0.995), while HGRN2 diverges from both (cosine $< 0.25$). By layer 20, all three architectures converge to similar attention patterns (cosine $> 0.94$). The layer-wise trajectory suggests that early-layer attention patterns are shaped by the preceding recurrent layers (which differ across architectures), while deeper layers converge regardless of the recurrent substrate.\n\n\\subsection{Helped vs.\\ Hurt Attention Entropy}\n\nTo test whether the attention mechanism itself differs between helped and hurt examples, we compute the Shannon entropy of the attention distribution for each example at each attention layer and compare the mean entropy of helped examples against hurt examples within each architecture.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean attention entropy difference (helped $-$ hurt) averaged across attention layers (1.3B h3-1 models on LAMBADA). Values near zero indicate that the attention mechanism does not discriminate between helped and hurt examples.}\n\\label{tab:attn_entropy}\n\\begin{tabular}{lr}\n\\toprule\nArchitecture & $\\Delta H$ (helped $-$ hurt) \\\\\n\\midrule\nGDN & $-0.0009$ \\\\\nRetNet & $+0.0179$ \\\\\nHGRN2 & $+0.0020$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nGDN and HGRN2 show negligible entropy differences ($|\\Delta H| \\leq 0.002$). RetNet's $\\Delta H = +0.018$ is small in absolute terms but slightly larger; helped examples receive marginally more diffuse attention in RetNet. Across all three architectures, the differences are insufficient to explain the per-example divergence, consistent with per-example effects not being explained by attention weight patterns and likely originating in the recurrent layers.\n\n\\subsection{Last-5 Attention Mass}\n\nWe also measure the fraction of attention mass allocated to the last five tokens, which captures whether the attention mechanism concentrates differently on recent context for helped vs.\\ hurt examples.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean attention mass on last-5 tokens for helped and hurt examples, averaged across attention layers (1.3B h3-1 models on LAMBADA).}\n\\label{tab:attn_last5}\n\\begin{tabular}{lrr}\n\\toprule\nArchitecture & Helped & Hurt \\\\\n\\midrule\nGDN & 0.0834 & 0.0831 \\\\\nRetNet & 0.1578 & 0.1591 \\\\\nHGRN2 & 0.0453 & 0.0467 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nNo architecture shows a meaningful difference in last-5 attention mass between helped and hurt examples (Table~\\ref{tab:attn_last5}). This further supports the conclusion that the per-example divergence is not driven by differential attention allocation.\n\n\\section{Cross-Scale Per-Example Comparisons}\\label{app:cross_scale}\n\n\\subsection{Within-Scale Pairwise Jaccard}\n\nTable~\\ref{tab:within_scale_jaccard} reports the within-scale pairwise Jaccard similarity between architectures' helped and hurt sets at both scales. Mean values are similar across scales (340M: 0.094/0.090; 1.3B: 0.100/0.093), indicating that per-example architecture specificity is consistent across the two scales examined.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-scale pairwise Jaccard similarity of per-example effects (pure $\\to$ h3-1) on LAMBADA. Each row compares the helped (or hurt) sets of two architectures at the same scale.}\n\\label{tab:within_scale_jaccard}\n\\begin{tabular}{llcc}\n\\toprule\nScale & Pair & $J_{\\text{helped}}$ & $J_{\\text{hurt}}$ \\\\\n\\midrule\n\\multirow{4}{*}{340M} & GDN--RetNet & 0.092 & 0.109 \\\\\n& GDN--HGRN2 & 0.084 & 0.075 \\\\\n& RetNet--HGRN2 & 0.108 & 0.085 \\\\\n& \\textit{Mean} & \\textit{0.094} & \\textit{0.090} \\\\\n\\midrule\n\\multirow{4}{*}{1.3B} & GDN--RetNet & 0.092 & 0.103 \\\\\n& GDN--HGRN2 & 0.100 & 0.088 \\\\\n& RetNet--HGRN2 & 0.108 & 0.087 \\\\\n& \\textit{Mean} & \\textit{0.100} & \\textit{0.093} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Scale Pairwise Jaccard}\n\nFor each architecture, we compare the helped and hurt sets of the pure $\\to$ h3-1 transition at 340M and 1.3B scale on LAMBADA.\nThe comparison uses the same classification scheme as \\S\\ref{ssec:per_example}: an example is ``helped'' if it is correct only in the hybrid variant and ``hurt'' if correct only in the pure baseline.\nAll pairwise Jaccard values fall below 0.10, indicating that scale variation is associated with per-example predictive multiplicity analogous to the cross-architecture effect reported in \\S\\ref{ssec:per_example}.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-scale pairwise Jaccard similarity of per-example effects (pure $\\to$ h3-1) between 340M and 1.3B on LAMBADA. All values below 0.10.}\n\\label{tab:cross_scale_jaccard}\n\\begin{tabular}{llcc}\n\\toprule\nArchitecture & Scale Pair & $J_{\\text{helped}}$ & $J_{\\text{hurt}}$ \\\\\n\\midrule\nGDN & 340M $\\leftrightarrow$ 1.3B & 0.047 & 0.087 \\\\\nRetNet & 340M $\\leftrightarrow$ 1.3B & 0.059 & 0.073 \\\\\nHGRN2 & 340M $\\leftrightarrow$ 1.3B & 0.089 & 0.055 \\\\\n\\midrule\nMean & & 0.065 & 0.072 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Per-Example Effect Counts}\\label{app:per_example_counts}\n\nTable~\\ref{tab:per_example} reports the full per-example effect counts for each architecture at 1.3B scale.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Per-example effects of attention (pure $\\to$ h3-1) on 5{,}153 LAMBADA examples at 1.3B scale. $\\bar{J}$: mean pairwise Jaccard similarity with other architectures across helped and hurt sets.}\n\\label{tab:per_example}\n\\begin{tabular}{lrrrr}\n\\toprule\nArchitecture & Helped & Hurt & Net & $\\bar{J}$ \\\\\n\\midrule\nGDN & 462 & 615 & $-$153 & .096 \\\\\nRetNet & 426 & 495 & $-$69 & .100 \\\\\nHGRN2 & 548 & 395 & $+$153 & .104 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Normalized Jaccard Effect Size}\\label{app:normalized_es}\n\nTo assess whether low observed Jaccard reflects a floor effect imposed by unequal set sizes, we compute the theoretical upper bound $J_{\\max} = \\min(|A|,|B|) / \\max(|A|,|B|)$ and the normalized effect size $(J_{\\text{obs}} - J_{\\text{null}}) / (J_{\\max} - J_{\\text{null}})$, which measures observed overlap as a fraction of the achievable range above chance. Table~\\ref{tab:normalized_es} reports per-pair results.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\\max}$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}\n\\label{tab:normalized_es}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\nCategory & Pair & $J_{\\text{obs}}$ & $J_{\\max}$ & $J_{\\text{null}}$ & Norm.\\ ES \\\\\n\\midrule\nHelped & GDN--RetNet & .092 & .922 & .045 & .054 \\\\\n & GDN--HGRN2 & .100 & .843 & .051 & .062 \\\\\n & RetNet--HGRN2 & .108 & .777 & .049 & .081 \\\\\n & \\textit{Mean} & \\textit{.100} & \\textit{.848} & \\textit{.048} & \\textit{.066} \\\\\n\\midrule\nHurt & GDN--RetNet & .103 & .805 & .056 & .063 \\\\\n & GDN--HGRN2 & .088 & .642 & .049 & .066 \\\\\n & RetNet--HGRN2 & .087 & .798 & .045 & .056 \\\\\n & \\textit{Mean} & \\textit{.093} & \\textit{.748} & \\textit{.050} & \\textit{.062} \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAll normalized effect sizes fall below 0.10, confirming that observed overlap reaches only 6--7\\% of the theoretical maximum. The low Jaccard values cannot be attributed to set-size constraints.\n\n\\section{ARC-Easy Per-Example Analysis}\\label{app:arceasy}\n\nTable~\\ref{tab:arceasy_effects} reports per-example effect counts on ARC-Easy ($N = 2{,}376$) at 1.3B scale for each attention ratio. Unlike LAMBADA, ARC-Easy shows no aggregate convergence ($\\rho = -0.20$, $p = .783$). HGRN2 is net positive at all ratios; GDN and RetNet are mixed.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Per-example effects on ARC-Easy at 1.3B scale. Net = helped $-$ hurt.}\n\\label{tab:arceasy_effects}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrr}\n\\toprule\nArchitecture & Ratio & Helped & Hurt & Net \\\\\n\\midrule\n\\multirow{4}{*}{GDN} & h24-1 & 178 & 185 & $-$7 \\\\\n& h12-1 & 176 & 206 & $-$30 \\\\\n& h6-1 & 170 & 157 & $+$13 \\\\\n& h3-1 & 171 & 180 & $-$9 \\\\\n\\midrule\n\\multirow{4}{*}{RetNet} & h24-1 & 158 & 168 & $-$10 \\\\\n& h12-1 & 163 & 146 & $+$17 \\\\\n& h6-1 & 159 & 147 & $+$12 \\\\\n& h3-1 & 144 & 184 & $-$40 \\\\\n\\midrule\n\\multirow{4}{*}{HGRN2} & h24-1 & 160 & 119 & $+$41 \\\\\n& h12-1 & 159 & 111 & $+$48 \\\\\n& h6-1 & 185 & 118 & $+$67 \\\\\n& h3-1 & 164 & 146 & $+$18 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nTable~\\ref{tab:arceasy_ambiguity} reports the ambiguity $\\alpha$ \\citep{marx2020predictive} at each attention ratio for all four main benchmarks. Within-benchmark ranges are 0.004 (HellaSwag), 0.011 (PIQA), 0.025 (ARC-Easy), and 0.022 (LAMBADA), all below the 0.03 threshold reported in \\S\\ref{ssec:per_example}.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Ambiguity $\\alpha$ across attention ratios (1.3B scale). 95\\% CI: BCa bootstrap (10{,}000 resamples) at the pure-recurrent configuration.}\n\\label{tab:arceasy_ambiguity}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccc}\n\\toprule\nBenchmark & Pure & h24-1 & h12-1 & h6-1 & h3-1 & 95\\% CI (pure) \\\\\n\\midrule\nPIQA & .143 & .138 & .132 & .143 & .140 & $[.127,\\,.159]$ \\\\\nHellaSwag & .148 & .150 & .148 & .146 & .150 & $[.141,\\,.155]$ \\\\\nARC-Easy & .205 & .226 & .223 & .201 & .210 & $[.189,\\,.221]$ \\\\\nLAMBADA & .307 & .300 & .316 & .294 & .296 & $[.294,\\,.319]$ \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\section{Jaccard Permutation Test}\\label{app:jaccard_permutation}\n\nTo assess whether the observed pairwise Jaccard similarities exceed what would be expected under independence, we perform a permutation test. For each architecture pair at 1.3B h3-1, we hold the helped (or hurt) set sizes fixed and randomly assign example indices to each set (10{,}000 permutations, seed 42). Table~\\ref{tab:jaccard_perm} reports the observed $J$, the null baseline $J_{\\text{null}}$ (mean over permutations), and the $z$-score.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Permutation test for pairwise Jaccard similarity (1.3B h3-1 on LAMBADA, 10{,}000 permutations). All observed values significantly exceed the independence baseline.}\n\\label{tab:jaccard_perm}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\nCategory & Pair & $J_{\\text{obs}}$ & $J_{\\text{null}}$ & $z$ & $p$ \\\\\n\\midrule\nHelped & GDN--HGRN2 & .100 & .051 & 7.11 & $<$.0001 \\\\\n & GDN--RetNet & .092 & .045 & 6.75 & $<$.0001 \\\\\n & HGRN2--RetNet & .108 & .049 & 8.61 & $<$.0001 \\\\\n\\midrule\nHurt & GDN--HGRN2 & .088 & .049 & 5.91 & $<$.0001 \\\\\n & GDN--RetNet & .103 & .056 & 6.85 & $<$.0001 \\\\\n & HGRN2--RetNet & .087 & .045 & 6.05 & $<$.0001 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAll six comparisons yield $z > 5.9$ ($p < .0001$). The null baseline averages $J_{\\text{null}} \\approx 0.049$; observed values are approximately twice this level. The overlap between architectures' per-example effect sets is therefore structured rather than a product of random set overlap given the set sizes.\n\n\\section{Transformer Entrainment Comparison}\\label{app:transformer_entrainment}\n\nTo test whether attention layers make hybrid models' per-example behavior converge toward a pure Transformer, we compare the correct-example sets of each architecture's pure and h3-1 variants against a 1.3B Transformer baseline (accuracy 48.1\\%) on LAMBADA. Table~\\ref{tab:transformer_jaccard} reports the Jaccard similarity between each model's correct set and the Transformer's correct set.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Jaccard similarity between each model's correct set and the Transformer correct set on LAMBADA (1.3B scale). All three h3-1 hybrids are more similar to the Transformer than their pure counterparts.}\n\\label{tab:transformer_jaccard}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\nArchitecture & $J_{\\text{pure,T}}$ & $J_{\\text{h3-1,T}}$ & $\\Delta$ \\\\\n\\midrule\nGDN & 0.645 & 0.649 & $+$0.005 \\\\\nRetNet & 0.679 & 0.694 & $+$0.015 \\\\\nHGRN2 & 0.672 & 0.701 & $+$0.029 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAll three architectures show positive $\\Delta$: the h3-1 correct set is more similar to the Transformer correct set than the pure correct set is. The effect is strongest for HGRN2 ($+$0.029) and weakest for GDN ($+$0.005). This ordering is consistent with HGRN2 being the only architecture with a positive net per-example effect from attention (Table~\\ref{tab:per_example}). The Transformer itself achieves the lowest accuracy among all models, so the convergence is not explained by hybrid models degrading toward Transformer-level performance; rather, adding attention shifts which specific examples the hybrid gets correct toward the Transformer's pattern.\n\n\\section{Within-Architecture Per-Example Stability}\\label{app:within_arch_stability}\n\nPer-example effect sets exhibit a three-tier Jaccard hierarchy on LAMBADA (1.3B scale). Under independence (permutation baseline), pairwise Jaccard is $J \\approx 0.05$. Cross-architecture comparisons (different architectures at the same attention ratio) yield $J \\approx 0.10$, approximately $2\\times$ baseline. Within-architecture comparisons (same architecture across different attention ratios) yield $J \\approx 0.33$, approximately $7\\times$ baseline and $3\\times$ the cross-architecture level. Architecture identity therefore has approximately three times the influence of attention ratio on per-example effects.\n\nTable~\\ref{tab:within_arch_summary} reports mean within-architecture Jaccard for each architecture. HGRN2 shows the highest helped overlap and lowest hurt overlap, consistent with its monotonically increasing helped count across ratios (479 $\\to$ 548).\n\n\\begin{table}[ht]\n\\centering\n\\caption{Mean within-architecture pairwise Jaccard similarity across attention ratios (1.3B, LAMBADA). Each mean is computed over all six ratio pairs per architecture.}\n\\label{tab:within_arch_summary}\n\\begin{tabular}{lcc}\n\\toprule\nArchitecture & $\\bar{J}_{\\text{helped}}$ & $\\bar{J}_{\\text{hurt}}$ \\\\\n\\midrule\nGDN & 0.338 & 0.319 \\\\\nRetNet & 0.333 & 0.321 \\\\\nHGRN2 & 0.373 & 0.291 \\\\\n\\midrule\n\\textit{Overall mean} & \\textit{0.348} & \\textit{0.310} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:within_arch_pairwise} reports the full pairwise Jaccard matrix. Attention ratios are denoted by their h$k$-1 labels: h24-1 (4\\%), h12-1 (7.7\\%), h6-1 (14.3\\%), h3-1 (25\\%).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-architecture pairwise Jaccard similarity between helped and hurt sets at different attention ratios (1.3B, LAMBADA). Each cell compares the per-example effect sets of two attention configurations within the same architecture.}\n\\label{tab:within_arch_pairwise}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccccc}\n\\toprule\n & & \\multicolumn{6}{c}{Ratio pair} \\\\\n\\cmidrule(lr){3-8}\nArch & Cat & h24--h12 & h24--h6 & h24--h3 & h12--h6 & h12--h3 & h6--h3 \\\\\n\\midrule\n\\multirow{2}{*}{GDN} & Helped & .345 & .335 & .311 & .344 & .341 & .352 \\\\\n & Hurt & .310 & .328 & .320 & .331 & .281 & .345 \\\\\n\\midrule\n\\multirow{2}{*}{RetNet} & Helped & .354 & .314 & .334 & .322 & .330 & .345 \\\\\n & Hurt & .316 & .334 & .307 & .301 & .324 & .343 \\\\\n\\midrule\n\\multirow{2}{*}{HGRN2} & Helped & .359 & .369 & .375 & .368 & .378 & .388 \\\\\n & Hurt & .292 & .289 & .298 & .273 & .309 & .287 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nAdjacent ratio pairs (e.g., h24-1 vs.\\ h12-1) do not exhibit systematically higher Jaccard than non-adjacent pairs (e.g., h24-1 vs.\\ h3-1). Across all architectures, the mean Jaccard for adjacent pairs is 0.353 (helped) and 0.311 (hurt), compared with 0.343 (helped) and 0.310 (hurt) for non-adjacent pairs. The negligible difference indicates that the mapping from attention ratio to per-example effects is non-smooth: doubling the attention ratio does not produce a proportionally more similar set of affected examples.\n\n\\section{Cross-Benchmark Jaccard Trajectories}\\label{app:cross_bench_jaccard}\n\nTo test whether Jaccard saturation is specific to LAMBADA or a general property, we compute mean pairwise Jaccard trajectories across all four hybrid attention ratios on all four main benchmarks. Table~\\ref{tab:cross_bench_jaccard} reports the results. On every benchmark, Jaccard shows no statistically significant trend with attention ratio (all $\\rho \\leq 0.80$, $p \\geq 0.333$), with values uniformly between 0.08 and 0.11. The saturation at the first attention level observed on LAMBADA (\\S\\ref{ssec:decoupling}) thus generalizes: once any attention is present, each architecture's per-example response is largely fixed regardless of attention ratio.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Mean pairwise Jaccard (mean of helped and hurt sets, 3 architecture pairs) across attention ratios and benchmarks (1.3B scale). $\\rho$: Spearman correlation between attention ratio and $\\bar{J}$. All $p \\geq 0.333$.}\n\\label{tab:cross_bench_jaccard}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nBenchmark & h24-1 & h12-1 & h6-1 & h3-1 & $\\rho$ & $p$ \\\\\n\\midrule\nLAMBADA & .091 & .088 & .096 & .097 & 0.80 & .333 \\\\\nHellaSwag & .084 & .081 & .091 & .086 & 0.60 & .417 \\\\\nPIQA & .089 & .096 & .089 & .095 & 0.00 & 1.00 \\\\\nARC-Easy & .084 & .099 & .091 & .109 & 0.80 & .333 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{Continuous-Threshold Jaccard Analysis}\\label{app:continuous_jaccard}\n\nThe main text binarizes per-example effects at the correctness boundary. To verify that low cross-architecture Jaccard is not an artifact of this binarization, we compute Jaccard similarity using a continuous confidence threshold $\\tau$: two architectures' effect sets are defined as the examples whose target-token $|\\log p|$ changes by more than $\\tau$ when attention is added. On LAMBADA, mean pairwise Jaccard decreases monotonically from 0.26 ($\\tau = 0.00$, any change) to 0.05 ($\\tau = 0.30$, large changes only). ARC-Easy and PIQA show the same monotonic decrease. The binary threshold ($\\tau = 0$, correctness flip) thus represents the upper end of cross-architecture overlap; restricting to confident transitions further reduces agreement, confirming that low Jaccard is robust to the choice of binarization threshold.\n\n\\section{Target-Token Confidence Margin}\n\\label{app:confidence_margin}\n\nWe analyze whether pure-model confidence on the target token predicts whether attention will help or hurt on a given example.\nWe define confidence as $|\\log p_{\\text{pure}}(y^*)|$, where $y^*$ is the target token: lower values indicate higher probability (near-correct).\nWe initially tested raw perplexity as a predictor of helped/hurt status, but found that within-category controls (C1/C2) are necessary to isolate attention effects from the definitional confound between pure-correct and pure-wrong populations.\n\nTable~\\ref{tab:cm_c1} compares hurt versus stayed-right samples (both pure-correct): hurt samples have significantly lower target-token probability (higher $|\\log p|$), confirming that weakly-correct predictions are vulnerable to attention disruption.\nTable~\\ref{tab:cm_c2} compares helped versus stayed-wrong samples (both pure-wrong): helped samples have higher target-token probability (lower $|\\log p|$), confirming that near-miss errors are rescuable.\nThis pattern is consistent across all three architectures ($|d| = 0.73$--$0.92$, all $p < 10^{-54}$) but does not alter the cross-architecture Jaccard findings---within-architecture predictability coexists with cross-architecture divergence.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Control 1: Pure-correct samples---hurt vs.\\ stayed-right. Higher mean $|\\log p|$ indicates lower target-token probability (less confident correct).}\n\\label{tab:cm_c1}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrrrr}\n\\toprule\nArchitecture & $n_{\\text{hurt}}$ & $n_{\\text{stay}}$ & Hurt mean & Stay mean & Cohen's $d$ \\\\\n\\midrule\nGDN (h12-1) & 519 & 2281 & 1.049 & 0.576 & 0.87 \\\\\nRetNet (h3-1) & 497 & 2169 & 1.293 & 0.785 & 0.83 \\\\\nHGRN2 (h3-1) & 392 & 2102 & 1.481 & 0.899 & 0.92 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\begin{table}[ht]\n\\centering\n\\caption{Control 2: Pure-wrong samples---helped vs.\\ stayed-wrong. Lower mean $|\\log p|$ indicates higher target-token probability (near-miss error).}\n\\label{tab:cm_c2}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lrrrrr}\n\\toprule\nArchitecture & $n_{\\text{help}}$ & $n_{\\text{stay}}$ & Help mean & Stay mean & Cohen's $d$ \\\\\n\\midrule\nGDN (h12-1) & 480 & 1873 & 2.459 & 4.189 & $-$0.75 \\\\\nRetNet (h3-1) & 420 & 2067 & 2.478 & 4.103 & $-$0.73 \\\\\nHGRN2 (h3-1) & 548 & 2111 & 2.500 & 4.112 & $-$0.77 \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\end{table}\n\n\\subsection{Cross-Benchmark Extension}\\label{app:cm_cross}\n\nThe confidence margin pattern extends beyond LAMBADA to multiple-choice benchmarks, though with smaller effect sizes. Table~\\ref{tab:cm_cross_c2} reports the rescue analysis (helped vs.\\ stayed-wrong) on HellaSwag and ARC-Easy. All nine comparisons (three benchmarks $\\times$ three architectures) are significant, confirming that attention consistently rescues near-miss errors regardless of task type. Effect sizes range from small on HellaSwag ($d = 0.13$--$0.17$) to medium on ARC-Easy ($d = 0.51$--$0.60$), compared to large on LAMBADA ($d = 0.73$--$0.77$); the attenuation on HellaSwag reflects noisier confidence proxies under length-normalized scoring. Table~\\ref{tab:cm_cross_c1} reports the disruption analysis (hurt vs.\\ stayed-right); two of six comparisons are significant (all on ARC-Easy) with small effect sizes ($d = 0.13$--$0.26$), indicating that the disruption signal is weaker on multiple-choice tasks and absent on HellaSwag under \\texttt{acc\\_norm}. The asymmetry between rescue and disruption reflects task structure: near-miss errors are an intrinsic sample property (the model almost produced the correct answer regardless of format), while borderline correctness in multiple-choice settings depends on relative option ranking rather than absolute confidence, reducing the raw log-likelihood margin's predictive power for vulnerability.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-benchmark rescue analysis (Control 2): helped vs.\\ stayed-wrong on HellaSwag and ARC-Easy (1.3B h3-1).}\n\\label{tab:cm_cross_c2}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrr}\n\\toprule\nBenchmark & Architecture & Cohen's $d$ & $p$ \\\\\n\\midrule\nHellaSwag & GDN & $-$0.166 & $6.1 \\times 10^{-4}$ \\\\\n & RetNet & $-$0.132 & $1.4 \\times 10^{-2}$ \\\\\n & HGRN2 & $-$0.164 & $1.4 \\times 10^{-3}$ \\\\\n\\midrule\nARC-Easy & GDN & $-$0.60 & $1.0 \\times 10^{-13}$ \\\\\n & RetNet & $-$0.51 & $5.3 \\times 10^{-10}$ \\\\\n & HGRN2 & $-$0.53 & $5.4 \\times 10^{-10}$ \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\begin{table}[ht]\n\\centering\n\\caption{Cross-benchmark disruption analysis (Control 1): hurt vs.\\ stayed-right on HellaSwag and ARC-Easy (1.3B h3-1).}\n\\label{tab:cm_cross_c1}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llrrl}\n\\toprule\nBenchmark & Architecture & Cohen's $d$ & $p$ & Sig.? \\\\\n\\midrule\nHellaSwag & GDN & 0.009 & .999 & No \\\\\n & RetNet & $-$0.035 & .453 & No \\\\\n & HGRN2 & $-$0.062 & .274 & No \\\\\n\\midrule\nARC-Easy & GDN & 0.26 & $3.2 \\times 10^{-4}$ & Yes \\\\\n & RetNet & 0.22 & $2.8 \\times 10^{-3}$ & Yes \\\\\n & HGRN2 & 0.13 & .145 & No \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\subsection{Prediction Framework}\\label{app:prediction_framework}\n\nWe formalize the confidence margin analysis as a binary prediction task: given a pure-model example and its target-token $|\\log p|$, predict whether attention will change the example's correctness. Using the within-category summary statistics (Tables~\\ref{tab:cm_c1},~\\ref{tab:cm_c2}), we derive analytic AUC from Cohen's $d$ via $\\text{AUC} = \\Phi(|d|/\\sqrt{2})$ and compute Gaussian-intersection thresholds (the $|\\log p|$ value at which the two group densities intersect under equal priors).\n\nTable~\\ref{tab:prediction_auc} reports within-architecture prediction performance. All AUCs exceed 0.69, confirming that pure-model confidence is a reliable within-architecture predictor of attention effects. Disruption prediction is consistently stronger than rescue (mean AUC 0.73 vs.\\ 0.70), reflecting the larger effect sizes in Control~1.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Within-architecture prediction of attention effects on LAMBADA (1.3B). AUC$_p$: parametric (from Cohen's $d$); AUC$_e$: empirical (non-parametric).}\n\\label{tab:prediction_auc}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\nArchitecture & \\multicolumn{3}{c}{Rescue} & \\multicolumn{3}{c}{Disruption} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n & AUC$_p$ & AUC$_e$ & $d$ & AUC$_p$ & AUC$_e$ & $d$ \\\\\n\\midrule\nGDN (h12-1) & .701 & .756 & 0.75 & .732 & .742 & 0.87 \\\\\nRetNet (h3-1) & .696 & .754 & 0.73 & .722 & .735 & 0.83 \\\\\nHGRN2 (h3-1) & .708 & .765 & 0.77 & .743 & .748 & 0.92 \\\\\n\\midrule\nMean & .702 & .758 & --- & .732 & .742 & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\paragraph{Normality verification.} Shapiro-Wilk tests reject normality for all six architecture--set combinations (all $W < 0.98$, $p < 10^{-6}$), but the practical departure varies by group. Disruption-set $|\\log p|$ values show mild skewness (0.53--0.77, $W \\in [0.955, 0.973]$), closely approximating a normal distribution at the sample sizes involved. Rescue-set values are moderately right-skewed (skewness 1.33--1.41, $W \\in [0.899, 0.920]$), following an approximately log-normal distribution. Because the skew is one-sided, parametric AUC estimates (0.70--0.74 in the main text) are conservative lower bounds; non-parametric empirical AUC from the same data yields 0.73--0.77.\n\nDespite similar within-architecture AUC, the optimal prediction thresholds differ across architectures for disruption but not rescue (Table~\\ref{tab:threshold_gap}). Rescue thresholds cluster tightly (range 0.03 in $|\\log p|$), indicating that the rescuability boundary---the confidence level below which pure-wrong examples are likely to be corrected by attention---is architecture-invariant. Disruption thresholds span a 47\\% relative range (GDN: 0.70, RetNet: 1.00, HGRN2: 1.14), meaning that the same confidence level on a pure-correct example may predict vulnerability in one architecture but safety in another. This asymmetry constitutes a second dimension of multiplicity beyond per-example disagreement: all three architectures agree on which wrong answers are rescuable, but disagree on which correct answers are vulnerable to disruption.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Gaussian-intersection prediction thresholds ($|\\log p|$) across architectures. Relative spread: range/mean.}\n\\label{tab:threshold_gap}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccr@{}}\n\\toprule\n & GDN & RetNet & HGRN2 & Range & Rel.\\ spread \\\\\n\\midrule\nRescue & 3.32 & 3.29 & 3.31 & 0.03 & 1.0\\% \\\\\nDisruption & 0.70 & 1.00 & 1.14 & 0.44 & 46.7\\% \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{Calibration Analysis}\\label{app:calibration}\n\nCross-architecture disruption threshold variation (\\S\\ref{ssec:per_example}) could in principle arise from calibration differences rather than genuine differences in per-example processing. We compute expected calibration error (ECE; \\citealt{guo2017calibration}) for each architecture's h3-1 model on LAMBADA using 15 equal-width bins. ECE values are similar: GDN 0.222, RetNet 0.224, HGRN2 0.235. The cross-architecture ECE spread (6\\%, computed as range/mean) is less than half the disruption threshold spread (47\\%; Table~\\ref{tab:threshold_gap}), indicating that calibration differences are insufficient to account for the observed threshold divergence. Rescue thresholds, which show only 1\\% cross-architecture spread, are consistent with near-identical calibration in the low-confidence regime.\n\n\\section{BoolQ Supplementary Analysis}\n\\label{app:boolq}\n\nBoolQ ($N = 3{,}270$; comprehension, binary yes/no classification) shows the highest ambiguity among the benchmarks we analyzed ($\\alpha \\approx 0.45$), but the Jaccard significance pattern is mixed: only 12 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. In particular, the RetNet--HGRN2 pair produces 0/8 significant Jaccard values, with several normalized effect sizes below zero, suggesting anti-correlated per-example effects for this pair.\n\n\\paragraph{Binary classification baseline.} BoolQ is binary classification (two answer choices), whereas LAMBADA, HellaSwag, and ARC-Easy involve open vocabulary prediction or four-way multiple choice. Under a binary task, the null Jaccard baseline $J_{\\text{null}}$ is higher because chance overlap between helped/hurt sets is larger when there are fewer ways to be wrong. This elevates the significance threshold: observed Jaccard must be substantially higher to exceed the null, which explains why 12/24 pairs fail to reach significance despite $\\bar{J}_h = 0.103$ and $\\bar{J}_u = 0.098$---values comparable to the four main benchmarks.\n\n\\paragraph{Per-example summary.} Table~\\ref{tab:boolq_multiplicity} reports the key metrics. The high $\\alpha$ reflects that BoolQ examples are more sensitive to architectural variation in the presence of attention: approximately half of all examples change correctness status for at least one architecture. However, the mixed Jaccard significance prevents us from confidently concluding that the cross-architecture overlap structure matches the pattern observed on the four main benchmarks.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{BoolQ predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:boolq_multiplicity}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\alpha$ \\\\\n\\midrule\nBoolQ & 3270 & .45 & .103 & .098 & 12/24 & $+0.1$ \\\\\n\\bottomrule\n\\end{tabular}\n\\par\\vspace{1pt}\n{\\footnotesize RetNet--HGRN2: 0/8 significant; multiple normalized ES $< 0$.}\n\\end{table}\n\nThe significant Jaccard overlap concentrates in GDN--RetNet pairs (8/8 significant), while RetNet--HGRN2 shows none (0/8). This pair-specificity does not appear on the four main benchmarks, where all architecture pairs show significant overlap; it may reflect a BoolQ-specific interaction between binary classification structure and particular recurrent architectures rather than a general property of architecture pairs.\n\n\\paragraph{Confidence margin.} Confidence margin analysis on BoolQ shows the rescue pattern (C2) partially holds (2/3 architectures significant, $d = 0.16$--$0.36$) but the disruption pattern (C1) is absent (0/3, $|d| \\leq 0.10$), consistent with compressed log-likelihood ranges in binary classification reducing the predictive power of confidence margins. This extends the gradient observed across LAMBADA, ARC-Easy, and HellaSwag: C1 effect sizes decrease from open-ended prediction ($d \\approx 0.9$, LAMBADA) through ARC-Easy ($d \\approx 0.1$--$0.3$) to HellaSwag ($d \\approx 0$ under \\texttt{acc\\_norm}) and binary classification ($d \\approx 0$, BoolQ). The gradient broadly tracks the coefficient of variation (CV) of the log-likelihood confidence proxy: LAMBADA ($\\text{CV} = 0.75$) $>$ ARC-Easy ($0.54$) $>$ HellaSwag ($0.49$) $>$ BoolQ ($0.22$). BoolQ's high-frequency short completions (``\\,yes''/``\\,no'') yield elevated baseline log-likelihoods (mean $|\\text{loglik}| = 3.04$ vs.\\ $0.84$ for LAMBADA) with similar absolute spread (IQR $\\approx 0.9$), compressing the relative variation and rendering the confidence margin unable to separate borderline-correct from robustly-correct examples.\n\n\\paragraph{Interpretation.} The RetNet--HGRN2 anti-correlation may reflect different error modes specific to binary classification: when one architecture's recurrent state resolves a yes/no ambiguity through attention, the other architecture's resolution may be disrupted by the same attention intervention. This pattern warrants further investigation with additional binary classification benchmarks to determine whether it is BoolQ-specific or characteristic of two-choice tasks more broadly.\n\n\\section{WinoGrande Supplementary Analysis}\n\\label{app:winogrande}\n\nWinoGrande ($N = 1{,}267$; reasoning, two-choice coreference resolution) shows high ambiguity ($\\alpha \\approx 0.41$ at h3-1) but mixed Jaccard significance: 10 of 24 architecture $\\times$ attention-ratio pair combinations yield $p < .01$. Mean pairwise Jaccard ($\\bar{J}_h = 0.110$, $\\bar{J}_u = 0.103$) is comparable to the four main benchmarks, but the elevated null baseline from near-chance accuracy (${\\sim}60\\%$) reduces statistical power to detect above-chance overlap.\n\n\\paragraph{Near-chance accuracy.} WinoGrande accuracy across hybrid configurations ranges from 59\\% to 62\\%, close to the two-choice chance level of 50\\%. At near-chance accuracy, a large fraction of examples are borderline---small perturbations (such as adding attention) can flip predictions in either direction, inflating the helped and hurt sets and consequently $\\alpha$. This structural property, shared with BoolQ (${\\sim}59\\%$ accuracy, $\\alpha \\approx 0.45$), may partially explain the elevated $\\alpha$ rather than task-intrinsic multiplicity. PIQA (73\\% accuracy, $\\alpha = 0.14$) and HellaSwag (60\\% normalized accuracy, $\\alpha = 0.15$) demonstrate that near-chance accuracy is not the sole driver, but we cannot fully exclude it as a contributing factor for WinoGrande and BoolQ.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{WinoGrande predictive multiplicity at 1.3B (h3-1).}\n\\label{tab:winogrande_multiplicity}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n & $N$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & Sig.\\ pairs & $\\rho_\\alpha$ \\\\\n\\midrule\nWinoGrande & 1267 & .41 & .110 & .103 & 10/24 & $-0.9$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\par\\vspace{1pt}\n{\\footnotesize $\\alpha$ variation across ratios: 0.054 ($> 0.03$ threshold of main benchmarks).}\n\\end{table}\n\n\\section{340M Per-Example Analysis}\\label{app:scale_per_example}\n\n\\subsection{LAMBADA}\n\nAt 340M, LAMBADA per-example multiplicity closely matches the 1.3B pattern: $\\alpha = 0.313$ (vs.\\ 0.307 at 1.3B), with mean pairwise Jaccard $\\bar{J} \\approx 0.089$ (vs.\\ 0.095). Per-example directionality is preserved: HGRN2 shows net positive effects at h3-1 ($+238$ examples), while GDN ($-256$) and RetNet ($-106$) show net negative effects, mirroring the 1.3B profile (HGRN2 $+153$, GDN $-153$, RetNet $-69$).\n\nHowever, aggregate convergence is absent at 340M: $\\rho = -0.50$ ($p = .45$), with non-monotonic $\\sigma$ across attention ratios ($0.025 \\to 0.012 \\to 0.018 \\to 0.011 \\to 0.016$). This contrasts sharply with 1.3B ($\\rho = -1.0$, $p = .017$, monotonic $\\sigma$ decrease). The decoupling between per-example divergence and aggregate convergence thus manifests differently across scales: at 340M, per-example multiplicity is present but aggregate convergence is not, suggesting that convergence requires sufficient model capacity while multiplicity does not.\n\nWithin-benchmark $\\alpha$ variation across attention ratios is also larger at 340M (0.047, from 0.313 at pure to 0.266 at h3-1) than at 1.3B ($< 0.03$; \\S\\ref{ssec:per_example}), suggesting that smaller models are more sensitive to the attention ratio in terms of per-example disagreement patterns.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{340M vs.\\ 1.3B LAMBADA comparison.}\n\\label{tab:scale_comparison}\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n & 340M & 1.3B \\\\\n\\midrule\n$\\alpha$ (pure) & .313 & .307 \\\\\n$\\bar{J}$ (h3-1) & .089 & .095 \\\\\n$\\rho_\\sigma$ & $-0.50$ & $-1.0$ \\\\\n$p$ & .45 & .017 \\\\\nGDN net & $-256$ & $-153$ \\\\\nHGRN2 net & $+238$ & $+153$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Cross-Benchmark Scale Comparison}\n\nTable~\\ref{tab:340m_multi_bench} extends the scale comparison to all four main benchmarks. Two patterns emerge. First, $\\alpha$ is systematically higher at 340M across all benchmarks, with the largest gap on ARC-Easy ($+$8.4pp) and the smallest on LAMBADA ($+$0.6pp). Second, pairwise Jaccard remains stable across scales ($\\bar{J}_h = 0.08$--$0.10$ at both scales); three-architecture results are stable across both 340M and 1.3B scales (Jaccard $\\approx$ 0.08--0.10), providing indirect support for consistency across these two scales. This suggests that the qualitative pattern of per-example multiplicity---which architectures affect which examples---is consistent across the two scales examined, even as its magnitude increases at smaller scale. Notably, the $\\alpha$ inflation does not track accuracy loss: HellaSwag has the largest accuracy gap between scales yet the smallest $\\Delta\\alpha$ ($+$1.9pp), while ARC-Easy has a smaller accuracy gap but the largest $\\Delta\\alpha$ ($+$8.4pp), arguing against accuracy as the primary driver of scale-dependent multiplicity.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{340M vs.\\ 1.3B per-example multiplicity across four benchmarks. $\\alpha$: ambiguity at pure-recurrent configuration. Acc: mean accuracy across three architectures at pure-recurrent. $\\bar{J}_{h}$/$\\bar{J}_{u}$: mean pairwise Jaccard of helped/hurt sets. $\\Delta\\alpha$: 340M $-$ 1.3B.}\n\\label{tab:340m_multi_bench}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccccr}\n\\toprule\n & \\multicolumn{4}{c}{340M} & \\multicolumn{3}{c}{1.3B} & \\\\\n\\cmidrule(lr){2-5} \\cmidrule(lr){6-8}\nBenchmark & Acc & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\alpha$ & $\\bar{J}_{h}$ & $\\bar{J}_{u}$ & $\\Delta\\alpha$ \\\\\n\\midrule\nPIQA & .663 & .181 & .090 & .085 & .143 & .091 & .094 & $+$.038 \\\\\nHellaSwag$^\\dagger$ & .420 & .167 & .084 & .083 & .148 & .095 & .085 & $+$.019 \\\\\nARC-Easy & .594 & .289 & .098 & .103 & .205 & .092 & .099 & $+$.084 \\\\\nLAMBADA & --- & .313 & .089 & .090 & .307 & .095 & .093 & $+$.006 \\\\\n\\bottomrule\n\\multicolumn{9}{l}{\\footnotesize $^\\dagger$\\texttt{acc\\_norm}. LAMBADA accuracy omitted (evaluated in separate run).}\n\\end{tabular}%\n}\n\\end{table}\n\nConvergence is absent at 340M across all benchmarks (all $|\\rho| \\leq 0.4$, $p \\geq .45$), in contrast to 1.3B where LAMBADA shows monotonic convergence. The absence of convergence at 340M extends beyond LAMBADA to HellaSwag ($\\rho = 0.4$, $p = .52$), PIQA ($\\rho = 0.3$, $p = .68$), and ARC-Easy ($\\rho = -0.1$, $p = .95$).\n\n\\section{Subsample Sensitivity of \\texorpdfstring{$\\alpha$}{α}}\\label{app:subsample_sensitivity}\n\nTo assess the reliability of $\\alpha$ estimation at different sample sizes, we repeatedly subsample each benchmark (1{,}000 bootstrap replicates, seed 42) and compute the 95\\% CI width of $\\alpha$.\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{$\\alpha$ estimation stability: 95\\% CI width by subsample size.}\n\\label{tab:subsample}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lrrrrr@{}}\n\\toprule\nBenchmark & $n = 100$ & $n = 200$ & $n = 500$ & $n = 1000$ & Full $N$ \\\\\n\\midrule\nPIQA & .130 & .095 & .066 & .045 & .034 \\\\\nHellaSwag & .140 & .100 & .062 & .044 & .013 \\\\\nARC-Easy & .160 & .105 & .072 & .050 & .032 \\\\\nLAMBADA & .180 & .125 & .082 & .057 & .025 \\\\\n\\bottomrule\n\\end{tabular}}\n\\par\\vspace{1pt}\n{\\footnotesize At $n = 100$, CI width (0.13--0.18) spans the entire four-benchmark $\\alpha$ range (0.14--0.30), rendering $\\alpha$ estimation unreliable. This justifies excluding COPA ($n = 100$) from the per-example analysis.}\n\\end{table}\n\n\\section{Complementarity Decomposition}\\label{app:complementarity}\n\nWe decompose the three-architecture vote on each example into four categories: unanimous correct (3/3), majority correct (2/3), minority correct (1/3), and unanimous wrong (0/3). This decomposition explains the structural failure of majority vote despite substantial per-example complementarity.\n\nTable~\\ref{tab:complementarity} reports the decomposition at h3-1 (25\\% attention). Majority vote benefits only from 2/3 examples (where the correct answer holds a majority) but is actively harmed by 1/3 examples (where the correct architecture is outvoted). On LAMBADA, HellaSwag, and ARC-Easy, the MV exploitation ratio---the fraction of complementary examples where MV selects correctly---hovers near 51\\%, indicating a near-even split between MV-exploitable and MV-hostile disagreements. The oracle, by contrast, exploits both categories, explaining the large oracle--MV gap ($+7$--$14$\\,pp).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Complementarity decomposition at 1.3B h3-1. Fractions of total examples in each vote category. MV expl.: fraction of complementary examples where majority vote is correct.}\n\\label{tab:complementarity}\n\\begin{tabular}{@{}lccccr@{}}\n\\toprule\nBenchmark & 3/3 & 2/3 & 1/3 & 0/3 & MV expl. \\\\\n\\midrule\nLAMBADA & .361 & .151 & .145 & .343 & 51.1\\% \\\\\nHellaSwag & .519 & .078 & .073 & .331 & 51.6\\% \\\\\nARC-Easy & .603 & .107 & .103 & .187 & 50.9\\% \\\\\nBoolQ & .376 & .257 & .197 & .170 & 56.6\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThis near-50\\% exploitation ratio is structurally invariant across attention ratios: on LAMBADA, the ratio ranges from 51.1\\% to 54.4\\% across all five configurations; on HellaSwag, from 50.3\\% to 51.6\\%. Attention changes neither the amount nor the structure of cross-architecture complementarity.\n\n\\section{Seed-Variation Calibration}\\label{app:seed_calibration}\n\nTo contextualize the $3\\times$ within- vs.\\ cross-architecture Jaccard gap (\\S\\ref{ssec:decoupling}), we compare against within-seed variation using the Pythia 70M \\citep{biderman2023pythia} PolyPythias models \\citep{vanderwal2025polypythias}, which provide 9 individually trained seeds of the same architecture.\n\nOn LAMBADA ($N = 5{,}153$), within-seed mean Jaccard is $\\bar{J}_h = 0.273$ (helped) and $\\bar{J}_u = 0.393$ (hurt), compared to our cross-architecture reference $J \\approx 0.10$. On ARC-Easy ($N = 2{,}376$), within-seed $\\bar{J}_h = 0.312$ and $\\bar{J}_u = 0.354$, versus cross-architecture $J \\approx 0.092$. Within-seed ambiguity is $\\alpha = 0.36$ (LAMBADA) and $\\alpha = 0.49$ (ARC-Easy), compared to cross-architecture $\\alpha = 0.30$ and $0.21$ respectively.\n\nSeeds thus produce comparable or higher amounts of per-example disagreement ($\\alpha$) but on more overlapping examples (higher $J$). Cross-architecture variation is associated with per-example effects on less overlapping examples (lower $J$), consistent with architecture-driven divergence yielding qualitatively different per-example patterns than seed noise. The within-seed Jaccard is 2.7--4.3$\\times$ higher than cross-architecture Jaccard across both benchmarks.\n\nThree caveats qualify this comparison. First, scale mismatch: Pythia 70M is $5\\times$ smaller than our smallest models (340M); attempts to use Pythia 410M failed repeatedly. Second, architecture family: Pythia is a standard Transformer, not a hybrid recurrent architecture, so this is a cross-family reference point rather than a matched control. Third, accuracy regime: Pythia 70M accuracy (LAMBADA 0.17--0.23, ARC-Easy ${\\sim}$0.38) is far below our models (${\\sim}$0.50, ${\\sim}$0.72), and Jaccard is affected by base rates; the 2.7--4.3$\\times$ ratio may differ at accuracy regimes closer to our main experiments. These limitations restrict the comparison to a reference point for seed-variation magnitude rather than definitive evidence for architecture-driven effects.\n\n\\section{Extended Architecture Validation (Five Architectures)}\\label{app:extended_arch}\n\nTo test whether the low cross-architecture Jaccard pattern generalizes beyond the three primary architectures, we extend the analysis to include two additional architectures from the same model zoo: GLA (Gated Linear Attention) and DeltaNet, yielding ten pairwise comparisons. Both are available only at 340M in the model zoo; all results below use the h3-1 (25\\% attention) configuration. This extension validates per-example divergence (not aggregate convergence).\n\n\\begin{center}\n\\small\n\\captionof{table}{Pairwise Jaccard similarity across five architectures (340M, h3-1). All 40 permutation tests yield $p \\leq .002$ ($z = 3.49$--$12.21$).}\n\\label{tab:extended_arch_jaccard}\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nBenchmark & Pair & $J_h$ & $J_u$ \\\\\n\\midrule\n\\multirow{11}{*}{LAMBADA} & GDN--RetNet & .128 & .121 \\\\\n & GDN--HGRN2 & .123 & .083 \\\\\n & GDN--GLA & .124 & .100 \\\\\n & GDN--DeltaNet & .115 & .100 \\\\\n & RetNet--HGRN2 & .108 & .083 \\\\\n & RetNet--GLA & .123 & .107 \\\\\n & RetNet--DeltaNet & .115 & .096 \\\\\n & HGRN2--GLA & .127 & .086 \\\\\n & HGRN2--DeltaNet & .125 & .090 \\\\\n & GLA--DeltaNet & .134 & .081 \\\\\n & \\textit{Mean} & \\textit{.122} & \\textit{.095} \\\\\n\\midrule\n\\multirow{11}{*}{ARC-Easy} & GDN--RetNet & .089 & .114 \\\\\n & GDN--HGRN2 & .122 & .105 \\\\\n & GDN--GLA & .114 & .106 \\\\\n & GDN--DeltaNet & .084 & .102 \\\\\n & RetNet--HGRN2 & .087 & .115 \\\\\n & RetNet--GLA & .112 & .110 \\\\\n & RetNet--DeltaNet & .138 & .123 \\\\\n & HGRN2--GLA & .098 & .087 \\\\\n & HGRN2--DeltaNet & .109 & .088 \\\\\n & GLA--DeltaNet & .129 & .098 \\\\\n & \\textit{Mean} & \\textit{.108} & \\textit{.105} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{center}\n\n% Figure moved to main text (\\S\\ref{ssec:robustness})\n\nAll pairwise Jaccard values remain $\\leq 0.14$, consistent with the three-architecture results at 1.3B (Table~\\ref{tab:per_example}). The seven new pairs involving GLA and DeltaNet show no systematic difference from the original three pairs (Mann-Whitney $p > .3$ for both helped and hurt), indicating that the low-overlap pattern is not specific to the original architecture triple. A sixth architecture (HGRN; \\citealp{qin2023hierarchically}) is also available in the zoo but excluded from the main analysis: its substantially lower baseline accuracy on LAMBADA (0.263 vs.\\ 0.32--0.38 for the other five) mechanically inflates helped-set sizes and Jaccard values. All 15 six-architecture permutation tests nonetheless remain significant ($z \\geq 2.9$, $p \\leq .006$). The same pattern holds on HellaSwag ($N = 10{,}042$) and PIQA ($N = 1{,}838$): all 20 additional pairwise tests yield $p < .01$ with mean $J_{\\text{helped}} \\leq 0.10$. Full four-benchmark and six-architecture data are included in our code release.\n\n\\section{Code and Data Availability}\n\\label{app:code_data}\n\nAll models are from the publicly available model zoo of \\citet{wang2025hybrid}. Our analysis code and per-example evaluation outputs will be released upon publication.\n\n\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant\nthroughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n    pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections,\n    polishing prose, and reformatting \\LaTeX{}.\n    \\item \\textbf{Literature:} summarizing related papers to inform\n    the related-work section.\n\\end{itemize}\n",
+      "numLines": 799,
+      "startLine": 1,
+      "totalLines": 799
+    }
+  },
+  "sourceToolAssistantUUID": "04941411-23be-4c8d-8802-858868357732",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-24T22:50:38.740Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NRs7yooQS18eTm41MdMwmT`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 call for papers main conference anonymity appendix policy",
+  "allowed_domains": [
+    "2026.emnlp.org"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56ea9079-fdeb-42d2-b45f-4e4139db9289",
+  "isSidechain": false,
+  "requestId": "req_011CbNDEbTG2q7RxpvgSr96o",
+  "type": "assistant",
+  "uuid": "c9c08f18-a438-41c2-9b41-2862f8d05ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DUX7ygDSvtnXtiUofJEmcJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 41305,
+      "output_tokens": 552,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 552,
+          "cache_read_input_tokens": 41305,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "系统通知：审稿审批已通过。请开始审稿。  [论文提交] - 项目: entrainment_gated_ft - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex - 目标 venue: EMNLP 2026 - 截止日期: 2026-05-…",
+  "leafUuid": "c9c08f18-a438-41c2-9b41-2862f8d05ca1",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review entrainment_gated_ft paper for EMNLP 2026",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-24T22:50:45.383Z_
+
+<details><summary>↩ Tool result · `toolu_01NRs7yooQS18eTm41MdMwmT`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 call for papers main conference anonymity appendix policy"
+
+Links: [{"title":"Call for Papers: EMNLP 2026 Industry Track - EMNLP 2026","url":"https://2026.emnlp.org/calls/industry_track/"},{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"EMNLP 2026 Paper Integrity Policy - EMNLP 2026","url":"https://2026.emnlp.org/paper-integrity-policy/"},{"title":"Call for Workshop Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/workshops/"},{"title":"Call for Tutorials - EMNLP 2026","url":"https://2026.emnlp.org/calls/tutorials/"},{"title":"Registration Information for EMNLP 2025 - EMNLP 2026","url":"https://2026.emnlp.org/registration/"}]
+
+Based on the search results, here's information about the EMNLP 2026 main conference's anonymity and appendix policy:
+
+**Anonymity Policy:**
+Following the ACL and ARR policies, there is no anonymity period requirement. However, the reviewing process will continue to be double-blind, with reviewers not seeing authors, nor will authors see reviewers and reviews.
+
+**Appendix Policy:**
+Authors are asked not to abuse the option of an unlimited appendix and only to include material that supports the primary messages and content of the paper; to avoid any misunderstandings regarding the nature of the appendix, for the final papers, especially those with an appendix of excessive length, the EMNLP 2026 Industry Track chairs reserve the right to include a statement that it is not mandatory for reviewers to review the material presented in the appendix.
+
+The search results reference the Industry Track's appendix policy; the main conference may have similar guidelines, though the specific main conference appendix policy details weren't fully captured in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c9c08f18-a438-41c2-9b41-2862f8d05ca1",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "131836dc-7084-435e-8fd5-a7ebc50ec023",
+  "toolUseResult": {
+    "query": "EMNLP 2026 call for papers main conference anonymity appendix policy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AYxutM1QV52JFn898KqTEF",
+        "content": [
+          {
+            "title": "Call for Papers: EMNLP 2026 Industry Track - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/industry_track/"
+          },
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "EMNLP 2026 Paper Integrity Policy - EMNLP 2026",
+            "url": "https://2026.emnlp.org/paper-integrity-policy/"
+          },
+          {
+            "title": "Call for Workshop Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/workshops/"
+          },
+          {
+            "title": "Call for Tutorials - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/tutorials/"
+          },
+          {
+            "title": "Registration Information for EMNLP 2025 - EMNLP 2026",
+            "url": "https://2026.emnlp.org/registration/"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the EMNLP 2026 main conference's anonymity and appendix policy:\n\n**Anonymity Policy:**\nFollowing the ACL and ARR policies, there is no anonymity period requirement. However, the reviewing process will continue to be double-blind, with reviewers not seeing authors, nor will authors see reviewers and reviews.\n\n**Appendix Policy:**\nAuthors are asked not to abuse the option of an unlimited appendix and only to include material that supports the primary messages and content of the paper; to avoid any misunderstandings regarding the nature of the appendix, for the final papers, especially those with an appendix of excessive length, the EMNLP 2026 Industry Track chairs reserve the right to include a statement that it is not mandatory for reviewers to review the material presented in the appendix.\n\nThe search results reference the Industry Track's appendix policy; the main conference may have similar guidelines, though the specific main conference appendix policy details weren't fully captured in these results."
+    ],
+    "durationSeconds": 6.6394898469999974
+  },
+  "sourceToolAssistantUUID": "c9c08f18-a438-41c2-9b41-2862f8d05ca1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-24T22:51:25.783Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the paper. Let me also check the references file and read the EMNLP 2026 main conference CFP for full details.
+
+Let me now also check for the review_issues.yaml file.
+
+Let me summarize what I know:
+
+**Paper**: "Aggregate Equivalence ≠ Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models"
+- Venue: EMNLP 2026
+- Deadline: May 25, 2026 (ARR submission)
+- Uses ACL template with [review] option
+- Anonymous (double-blind)
+
+
+- Long paper format: 8 pages main text plus unlimited references, with a required limitations section
+
+The paper follows a standard structure with an abstract, introduction featuring Figure 1, related work, a methods section covering the model zoo and task taxonomy along with convergence and statistical analysis techniques, experiments examining per-example divergence and robustness, and concluding remarks with limitations.
+
+I'm setting up the review process for EMNLP 2026, assigning two reviewers—one focused on methodology rigor and another on novelty and completeness. I need to verify the external review configuration, run a visual check, post assignments to reviewers, and confirm the review issues file. I should also verify the abstract stays within the 200-word target.
+
+Now I'm looking at the core findings: the study uses a controlled model zoo to examine how different hybrid architectures handle specific examples, revealing structured predictive multiplicity where the overlap between examples helped and hurt by adding attention is consistently low across architectures. This multiplicity varies more by task type than by attention ratio, and the per-example overlap plateaus quickly at minimal attention levels, suggesting that even small amounts of attention determine which examples each model affects. The key findings show that architectural variation produces structured differences in predictions across examples, with overlap varying significantly by task type rather than attention mechanisms, and confidence margins offering modest predictive power for identifying affected cases. For a thorough review, I'm weighing the study's strengths—its controlled experimental design with shared infrastructure, rigorous statistical methodology, and novel perspective on predictive multiplicity—against limitations like the restricted scale range (only up to 1.3B parameters) and reliance on single training runs without seed variation.
+
+I'm also noting several methodological concerns: only four benchmarks used for per-example analysis, potential confounds between architectural choices and attention head counts, unresolved interactions between task type and format, inconsistent routing performance across tasks, and limited statistical power given the small sample sizes. The calibration approach using Pythia at a different scale adds another layer of complexity. Now I'm preparing to dispatch the review process and checking the external review configuration to initiate the reviewer assignments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "131836dc-7084-435e-8fd5-a7ebc50ec023",
+  "isSidechain": false,
+  "requestId": "req_011CbNDFkuKBHUrd3qbdLJbH",
+  "type": "assistant",
+  "uuid": "08f35f22-7660-4510-a7a0-ef243e5576cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgcbaqFCFt2eL7hYizNgds",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 33550,
+      "cache_read_input_tokens": 42016,
+      "output_tokens": 1738,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33550,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1738,
+          "cache_read_input_tokens": 42016,
+          "cache_creation_input_tokens": 33550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33550
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-24T22:51:29.544Z_
+
+论文已读完。EMNLP 2026 venue 信息确认：ARR 提交截止 2026-05-25，long paper 正文 8 页 + 无限参考文献，double-blind 审稿，Limitations 必须放正文。
+
+编排决定：EMNLP 2026 = 2 名 Reviewer。
+- **Reviewer 1**：方法严谨性——统计方法、实验设计、confound 处理、claims 是否被数据支撑
+- **Reviewer 2**：新颖性/完整性——贡献的新颖度、related work 覆盖、论文结构与写作质量
+
+同时派发视觉审查和检查外部审稿配置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08f35f22-7660-4510-a7a0-ef243e5576cc",
+  "isSidechain": false,
+  "requestId": "req_011CbNDFkuKBHUrd3qbdLJbH",
+  "type": "assistant",
+  "uuid": "bb86a113-2486-4329-96ac-a674908e553b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgcbaqFCFt2eL7hYizNgds",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 33550,
+      "cache_read_input_tokens": 42016,
+      "output_tokens": 1738,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33550,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1738,
+          "cache_read_input_tokens": 42016,
+          "cache_creation_input_tokens": 33550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33550
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-24T22:51:32.025Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__dispatch_visual_check · `toolu_01SFJE4z6JxUZJhLzMEV1HLz`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft",
+  "review_chat_id": "oc_b542b52ff24f138c42225a1d4b456e7e"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb86a113-2486-4329-96ac-a674908e553b",
+  "isSidechain": false,
+  "requestId": "req_011CbNDFkuKBHUrd3qbdLJbH",
+  "type": "assistant",
+  "uuid": "164c8185-31c2-4761-90f5-ecb6b439ac45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgcbaqFCFt2eL7hYizNgds",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 33550,
+      "cache_read_input_tokens": 42016,
+      "output_tokens": 1738,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33550,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1738,
+          "cache_read_input_tokens": 42016,
+          "cache_creation_input_tokens": 33550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33550
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-24T22:51:32.388Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_external_review_status · `toolu_013GRWpygwsv33iDikAvHrCe`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "164c8185-31c2-4761-90f5-ecb6b439ac45",
+  "isSidechain": false,
+  "requestId": "req_011CbNDFkuKBHUrd3qbdLJbH",
+  "type": "assistant",
+  "uuid": "0dbefb41-9a1b-4200-be72-6bd5ab4fc8b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgcbaqFCFt2eL7hYizNgds",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 33550,
+      "cache_read_input_tokens": 42016,
+      "output_tokens": 1738,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33550,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1738,
+          "cache_read_input_tokens": 42016,
+          "cache_creation_input_tokens": 33550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33550
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-24T22:51:32.618Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_get_project_overview · `toolu_01Bd5QwuEPXFqWsFNf8qWtwV`</summary>
+
+```json
+{
+  "project": "entrainment_gated_ft"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0dbefb41-9a1b-4200-be72-6bd5ab4fc8b5",
+  "isSidechain": false,
+  "requestId": "req_011CbNDFkuKBHUrd3qbdLJbH",
+  "type": "assistant",
+  "uuid": "de66b5d5-0610-4d0e-aa0e-83a7dc647713",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LgcbaqFCFt2eL7hYizNgds",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 33550,
+      "cache_read_input_tokens": 42016,
+      "output_tokens": 1738,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 33550,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1738,
+          "cache_read_input_tokens": 42016,
+          "cache_creation_input_tokens": 33550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 33550
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-24T22:51:35.629Z_
+
+<details><summary>↩ Tool result · `toolu_01SFJE4z6JxUZJhLzMEV1HLz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "164c8185-31c2-4761-90f5-ecb6b439ac45",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "c52ade06-97f7-4ab4-b791-85c4021dcdb7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"started\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"status\": \"started\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "164c8185-31c2-4761-90f5-ecb6b439ac45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-24T22:51:35.643Z_
+
+<details><summary>↩ Tool result · `toolu_013GRWpygwsv33iDikAvHrCe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0dbefb41-9a1b-4200-be72-6bd5ab4fc8b5",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "0dbd4b99-40ff-416c-9c76-5b9be669fe53",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0dbefb41-9a1b-4200-be72-6bd5ab4fc8b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-24T22:51:35.860Z_
+
+<details><summary>↩ Tool result · `toolu_01Bd5QwuEPXFqWsFNf8qWtwV`</summary>
+
+```text
+{"result":"# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-arc-easy-eval**: DONE (success) — \n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-24\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **exp-005-pure-v4** (killed): —\n- **exp-005-pure-v3** (killed): —\n- **exp-005-hgrn-chain** (killed): —\n\n## 趋势\n成功 16 / 负向 4 / 失败 3 / 共 46\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestb-48145: 无 GPU 信息\n\n## 告警\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\n- exp-003-p2v2: 已被终止 — unknown\n- exp-004: 训练失败 — unknown\n- exp-005-eval: 已被终止 — unknown\n- exp-005-p1-v4: 已被终止 — unknown\n- exp-005-gla-eval: 训练失败 — unknown\n- exp-005-gla: 已被终止 — unknown\n- exp-005-deltanet: 已被终止 — unknown\n- exp-005-dn-eval: 已被终止 — unknown\n- exp-005-pure-eval: 已被终止 — unknown\n- exp-005-p1-eval: 已被终止 — unknown\n- exp-005-p1-eval-v2: 已被终止 — unknown\n- exp-005-p1-eval-v3: 已被终止 — unknown\n- exp-005-p1-eval-v4: 已被终止 — unknown\n- exp-005-p1-eval-v5: 已被终止 — unknown\n- exp-005-hgrn-chain: 已被终止 — unknown\n- exp-005-batch: 训练失败 — unknown\n- exp-005-pure-v3: 已被终止 — unknown\n- exp-005-pure-v4: 已被终止 — unknown\n- exp-005-pure-v5: 已被终止 — unknown\n- exp-005-pure-v6: 已被终止 — unknown\n- exp-005-pure-v7: 已被终止 — unknown\n- exp-005-pure-v8: 已被终止 — unknown\n- exp-005-pure-v9: 已被终止 — unknown\n- exp-005-pure-v10: 已被终止 — unknown\n- exp-005-pure-baselines: 已被终止 — unknown"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de66b5d5-0610-4d0e-aa0e-83a7dc647713",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "cb2066fc-b219-4c48-910e-45963ea434a1",
+  "toolUseResult": "{\"result\":\"# 项目 entrainment_gated_ft 概况\\n\\n## 实验状态 (46 个)\\n\\n- **exp-arc-easy-eval**: DONE (success) — \\n- **exp-007**: DONE (success) — \\n- **exp-004-r2**: DONE (success) — \\n- **exp-011-xstorycloze**: DONE (negative) — \\n- **exp-004**: DONE (failed) — \\n- **exp-011**: DONE (negative) — \\n- **exp-010**: DONE (success) — \\n- **exp-001**: DONE (success) — \\n- **exp-008**: DONE (success) — \\n- **exp-003-p2**: DONE (negative) — \\n- **exp-003**: DONE (negative) — \\n- **exp-009**: DONE (success) — \\n- **eval_340m_retnet_hgrn2**: DONE (success) — \\n- **hgrn2_eval_h3_1**: DONE (success) — \\n- **hgrn2_eval_1_3b_all**: DONE (killed) — \\n\\n## 最新报告\\n# Handover — 2026-05-24\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp-005-pure-v4** (killed): —\\n- **exp-005-pure-v3** (killed): —\\n- **exp-005-hgrn-chain** (killed): —\\n\\n## 趋势\\n成功 16 / 负向 4 / 失败 3 / 共 46\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-48145: 无 GPU 信息\\n\\n## 告警\\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\\n- exp-003-p2v2: 已被终止 — unknown\\n- exp-004: 训练失败 — unknown\\n- exp-005-eval: 已被终止 — unknown\\n- exp-005-p1-v4: 已被终止 — unknown\\n- exp-005-gla-eval: 训练失败 — unknown\\n- exp-005-gla: 已被终止 — unknown\\n- exp-005-deltanet: 已被终止 — unknown\\n- exp-005-dn-eval: 已被终止 — unknown\\n- exp-005-pure-eval: 已被终止 — unknown\\n- exp-005-p1-eval: 已被终止 — unknown\\n- exp-005-p1-eval-v2: 已被终止 — unknown\\n- exp-005-p1-eval-v3: 已被终止 — unknown\\n- exp-005-p1-eval-v4: 已被终止 — unknown\\n- exp-005-p1-eval-v5: 已被终止 — unknown\\n- exp-005-hgrn-chain: 已被终止 — unknown\\n- exp-005-batch: 训练失败 — unknown\\n- exp-005-pure-v3: 已被终止 — unknown\\n- exp-005-pure-v4: 已被终止 — unknown\\n- exp-005-pure-v5: 已被终止 — unknown\\n- exp-005-pure-v6: 已被终止 — unknown\\n- exp-005-pure-v7: 已被终止 — unknown\\n- exp-005-pure-v8: 已被终止 — unknown\\n- exp-005-pure-v9: 已被终止 — unknown\\n- exp-005-pure-v10: 已被终止 — unknown\\n- exp-005-pure-baselines: 已被终止 — unknown\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "# 项目 entrainment_gated_ft 概况\n\n## 实验状态 (46 个)\n\n- **exp-arc-easy-eval**: DONE (success) — \n- **exp-007**: DONE (success) — \n- **exp-004-r2**: DONE (success) — \n- **exp-011-xstorycloze**: DONE (negative) — \n- **exp-004**: DONE (failed) — \n- **exp-011**: DONE (negative) — \n- **exp-010**: DONE (success) — \n- **exp-001**: DONE (success) — \n- **exp-008**: DONE (success) — \n- **exp-003-p2**: DONE (negative) — \n- **exp-003**: DONE (negative) — \n- **exp-009**: DONE (success) — \n- **eval_340m_retnet_hgrn2**: DONE (success) — \n- **hgrn2_eval_h3_1**: DONE (success) — \n- **hgrn2_eval_1_3b_all**: DONE (killed) — \n\n## 最新报告\n# Handover — 2026-05-24\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n（无）\n\n## 待处理\n（无）\n\n## 近期结论\n- **exp-005-pure-v4** (killed): —\n- **exp-005-pure-v3** (killed): —\n- **exp-005-hgrn-chain** (killed): —\n\n## 趋势\n成功 16 / 负向 4 / 失败 3 / 共 46\n\n## 下一步\n（无活跃 idea，请通过 ideas.md 添加）\n\n## 资源状态\nwestb-48145: 无 GPU 信息\n\n## 告警\n- hgrn2_eval_1_3b_all: 已被终止 — unknown\n- exp-003-p2v2: 已被终止 — unknown\n- exp-004: 训练失败 — unknown\n- exp-005-eval: 已被终止 — unknown\n- exp-005-p1-v4: 已被终止 — unknown\n- exp-005-gla-eval: 训练失败 — unknown\n- exp-005-gla: 已被终止 — unknown\n- exp-005-deltanet: 已被终止 — unknown\n- exp-005-dn-eval: 已被终止 — unknown\n- exp-005-pure-eval: 已被终止 — unknown\n- exp-005-p1-eval: 已被终止 — unknown\n- exp-005-p1-eval-v2: 已被终止 — unknown\n- exp-005-p1-eval-v3: 已被终止 — unknown\n- exp-005-p1-eval-v4: 已被终止 — unknown\n- exp-005-p1-eval-v5: 已被终止 — unknown\n- exp-005-hgrn-chain: 已被终止 — unknown\n- exp-005-batch: 训练失败 — unknown\n- exp-005-pure-v3: 已被终止 — unknown\n- exp-005-pure-v4: 已被终止 — unknown\n- exp-005-pure-v5: 已被终止 — unknown\n- exp-005-pure-v6: 已被终止 — unknown\n- exp-005-pure-v7: 已被终止 — unknown\n- exp-005-pure-v8: 已被终止 — unknown\n- exp-005-pure-v9: 已被终止 — unknown\n- exp-005-pure-v10: 已被终止 — unknown\n- exp-005-pure-baselines: 已被终止 — unknown"
+    }
+  },
+  "sourceToolAssistantUUID": "de66b5d5-0610-4d0e-aa0e-83a7dc647713",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 69 · 2026-05-24T22:51:35.865Z_
+
+```json
+{
+  "parentUuid": "cb2066fc-b219-4c48-910e-45963ea434a1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d0b18cae-0fe9-42c7-bbfb-ee9d2ce5bcd6",
+  "timestamp": "2026-05-24T22:51:35.865Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-24T22:52:00.575Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+External review is not requested, and looking at the CLAUDE.md instructions, it says to check if `external_review.paperreview_ai.enabled` is true. The status says "not_requested". Let me check the project config to see if external review is enabled.
+
+Actually, looking at the CLAUDE.md at the top, it says:
+- **引用验证**: ❌ 未启用
+
+And for external review, I need to check the project config. Let me just proceed - the status says "not_requested" which likely means it's not configured. Let me check by trying to read the project config.
+
+
+The skill instructions mention checking if `external_review.paperreview_ai.enabled` is true in the project config, but since the status is already "not_requested", I'll move forward with preparing the reviewer assignments for the first reviewer focused on methodological rigor.
+
+Now I need to gather the submission details for both reviewers—the venue is EMNLP 2026 with an ARR deadline of May 25, 2026, 8-page limit plus unlimited references, ACL template, double-blind review, and I'll assign the first reviewer to evaluate methodology rigor while the second reviewer covers novelty, related work, structure, and writing quality. Let me also check the review_issues.yaml file to see what issues need addressing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d0b18cae-0fe9-42c7-bbfb-ee9d2ce5bcd6",
+  "isSidechain": false,
+  "requestId": "req_011CbNDKUkaQSVQKKRFRbaZs",
+  "type": "assistant",
+  "uuid": "83948453-8c76-4acb-94b8-a347bb54b236",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mzncy7M3UUFb1W6X4jz4k5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 75566,
+      "output_tokens": 599,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 599,
+          "cache_read_input_tokens": 75566,
+          "cache_creation_input_tokens": 3105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-24T22:52:00.578Z_
+
+视觉审查已派发。外部审稿未配置，跳过。现在分配两名 Reviewer 开始 Round 1 独立初审。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83948453-8c76-4acb-94b8-a347bb54b236",
+  "isSidechain": false,
+  "requestId": "req_011CbNDKUkaQSVQKKRFRbaZs",
+  "type": "assistant",
+  "uuid": "a59ef88f-5db6-4624-891d-377652c9a8ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mzncy7M3UUFb1W6X4jz4k5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 75566,
+      "output_tokens": 599,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 599,
+          "cache_read_input_tokens": 75566,
+          "cache_creation_input_tokens": 3105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-24T22:52:20.767Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JB7gTv1PLc1PgwT9Vy2Vou`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_issues.yaml 2>/dev/null || echo \"FILE_NOT_FOUND\"",
+  "description": "Check if review_issues.yaml exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a59ef88f-5db6-4624-891d-377652c9a8ec",
+  "isSidechain": false,
+  "requestId": "req_011CbNDKUkaQSVQKKRFRbaZs",
+  "type": "assistant",
+  "uuid": "1af1507a-c362-4032-9237-26dce81d4517",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mzncy7M3UUFb1W6X4jz4k5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3105,
+      "cache_read_input_tokens": 75566,
+      "output_tokens": 599,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3105,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 599,
+          "cache_read_input_tokens": 75566,
+          "cache_creation_input_tokens": 3105,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3105
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-24T22:52:20.853Z_
+
+<details><summary>↩ Tool result · `toolu_01JB7gTv1PLc1PgwT9Vy2Vou`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (30.3KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-review-director-7bef78c5/6354da54-15bc-465d-8729-e75681e03af8/tool-results/b5mvao0dy.txt
+
+Preview (first 2KB):
+- id: "R5-W1"
+  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
+  category: experiment
+  severity: critical
+  status: wont_fix
+  first_raised_round: 5
+  last_seen_round: 20
+  mentions:
+    - round: 5
+      reviewers: [R1, R2]
+      note: "R1 Critical, R2 W3+Q3 支持。"
+    - round: 15
+      reviewers: [R1, R2]
+      note: "R2-N3 Must-Fix vs R1-W2 Should-Fix。"
+    - round: 16
+      reviewers: [R1, R2]
+      note: "R1-N1 Critical + R2-N2 Critical。"
+    - round: 17
+      reviewers: [R1, R2]
+      note: "R1-N3 Critical + R2 交叉 [AGREE]。"
+    - round: 18
+      reviewers: [R1, R2]
+      note: "R1-N2 Critical + R2-N2 Critical，交叉均 [AGREE]。2.7× gap 部分支持架构效应独立性。"
+    - round: 19
+      reviewers: [R1, R2]
+      note: "R1-N2 Critical + R2-W4 Minor。R1 详列双重 mismatch。R2 同意但认为 minor。交叉后一致：structural limitation，维持 wont_fix。"
+    - round: 20
+      reviewers: [R1, R2]
+      note: "R1-W3 Major + R2-W3 Major，交叉均 [AGREE]。R2 补充：within- vs cross-architecture 3× 差距混淆了种子+架构。R1 指出 Pythia 70M 跨家族校准不充分。双方一致为最根本局限。"
+  action_items:
+    - round: 13
+      action: "E4 Pythia 410M 9-seed calibration（实际完成 70M）"
+      assigned_to: main_agent
+      status: done
+    - round: 14
+      action: "Limitations 提升 single-seed 为 top limitation；§4.2 弱化因果语言"
+      assigned_to: paper_agent
+      status: done
+  resolution: "结构性限制。已做：Pythia 70M calibration + Limitations 讨论 + associative 语言。R20 双方维持 wont_fix。"
+  resolution_round: null
+
+- id: "R5-W2"
+  summary: "收敛 claim 统计不显著（Bonferroni p=.170）且依赖 GDN inclusion"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 20
+  mentions:
+    - round: 15
+      reviewers: [R1, R2]
+      note: "R1-N1 Critical + R2-N1 Critical。交叉 [AGREE]。"
+    - round: 16
+      reviewers: [R1, R2]
+      note: "R16-N1 重新 flag。"
+    - round: 17
+      reviewers: [R1, R2]
+      note: "R1-N1 Critical + R2 交叉 [AGREE]。"
+    - round: 18
+      reviewers: [R1, R2]
+      note: "R1-N1 Critical + R2-N1 Critical，交叉均 [AGREE]。"
+    - round: 19
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1af1507a-c362-4032-9237-26dce81d4517",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "59ddbd96-b5c3-4764-be72-ef644f03a5e6",
+  "toolUseResult": {
+    "stdout": "- id: \"R5-W1\"\n  summary: \"架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）\"\n  category: experiment\n  severity: critical\n  status: wont_fix\n  first_raised_round: 5\n  last_seen_round: 20\n  mentions:\n    - round: 5\n      reviewers: [R1, R2]\n      note: \"R1 Critical, R2 W3+Q3 支持。\"\n    - round: 15\n      reviewers: [R1, R2]\n      note: \"R2-N3 Must-Fix vs R1-W2 Should-Fix。\"\n    - round: 16\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N2 Critical。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"R1-N3 Critical + R2 交叉 [AGREE]。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"R1-N2 Critical + R2-N2 Critical，交叉均 [AGREE]。2.7× gap 部分支持架构效应独立性。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-N2 Critical + R2-W4 Minor。R1 详列双重 mismatch。R2 同意但认为 minor。交叉后一致：structural limitation，维持 wont_fix。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R1-W3 Major + R2-W3 Major，交叉均 [AGREE]。R2 补充：within- vs cross-architecture 3× 差距混淆了种子+架构。R1 指出 Pythia 70M 跨家族校准不充分。双方一致为最根本局限。\"\n  action_items:\n    - round: 13\n      action: \"E4 Pythia 410M 9-seed calibration（实际完成 70M）\"\n      assigned_to: main_agent\n      status: done\n    - round: 14\n      action: \"Limitations 提升 single-seed 为 top limitation；§4.2 弱化因果语言\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"结构性限制。已做：Pythia 70M calibration + Limitations 讨论 + associative 语言。R20 双方维持 wont_fix。\"\n  resolution_round: null\n\n- id: \"R5-W2\"\n  summary: \"收敛 claim 统计不显著（Bonferroni p=.170）且依赖 GDN inclusion\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 1\n  last_seen_round: 20\n  mentions:\n    - round: 15\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N1 Critical。交叉 [AGREE]。\"\n    - round: 16\n      reviewers: [R1, R2]\n      note: \"R16-N1 重新 flag。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2 交叉 [AGREE]。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N1 Critical，交叉均 [AGREE]。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N1 Critical，交叉均 [AGREE]。R2 升级论证：decoupling 叙事建立在'不存在的前提'上。双方建议重构为条件式或转向 Jaccard 饱和。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R1-W1 Critical（但数值有误报 −0.2）+ R2 交叉 [PARTIAL]。R2 rebut 两点：(1) 实际数值为 ρ=−0.7 非 −0.2；(2) 聚合收敛非核心 claim，论文利用其非显著性来对比 per-example 显著性。R2 降级为 Major。R1 维持 Critical。分歧：是否是核心 claim。\"\n  action_items:\n    - round: 15\n      action: \"Abstract/Intro 重构：以 Jaccard saturation 为主线\"\n      assigned_to: paper_agent\n      status: done\n    - round: 16\n      action: \"结构性叙事重组\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 19\n      action: \"Contribution 2 重构为条件式或将 Jaccard 饱和升级为主发现\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R20 分歧：R1 Critical vs R2 Major。R2 论证聚合收敛非核心 claim 有说服力，但叙事仍需重构。\"\n  resolution_round: null\n\n- id: \"R5-W4\"\n  summary: \"新颖性有限——已有指标的直接套用，无新方法/理论\"\n  category: framing\n  severity: critical\n  status: wont_fix\n  first_raised_round: 5\n  last_seen_round: 20\n  mentions:\n    - round: 15\n      reviewers: [R1, R2]\n      note: \"R2-W1 ecological fallacy。R1 REBUT。\"\n    - round: 16\n      reviewers: [R1, R2]\n      note: \"R2-N1 Must-Fix vs R1 REBUT。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"部分收敛：均同意定位为 empirical contribution。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"Findings 标准下经验发现足够。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R2-N2 Major + R2-N3 (Benchmark Illusion)。R1 交叉部分 AGREE。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R2-W1 Major：核心信息已被 Marx/D'Amour/Yang&Wang 充分建立。R1 交叉 [PARTIAL]：同意概念层面增量有限，但经验贡献（饱和发现+受控设计+时效性）被低估。R1 建议重组论文让饱和发现为主线。双方在 Findings 标准下可接受达成一致。\"\n  action_items:\n    - round: 6\n      action: \"Intro 加 empirical novelty framing\"\n      assigned_to: paper_agent\n      status: done\n    - round: 16\n      action: \"Intro 强化 empirical contribution 定位\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 19\n      action: \"引用 Benchmark Illusion 并定位增量贡献\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"结构性限制。Findings 标准下可接受。R20 R1 建议饱和发现为主线——可能提升贡献感知。\"\n  resolution_round: null\n\n- id: \"R5-W3\"\n  summary: \"Task-dependent spectrum 仅 3 benchmark，存在评估格式 confound\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  mentions:\n    - round: 5\n      reviewers: [R1, R2]\n      note: \"α 变异可能反映 format 而非 task type。\"\n  action_items:\n    - round: 5\n      action: \"WinoGrande + PIQA per-example 分析\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"PIQA + WinoGrande 整合完成。R17 提出更具体的 format confound（见 R17-W1）。\"\n  resolution_round: 6\n\n- id: \"R5-W5\"\n  summary: \"正文约 8.2 页超出 EMNLP 8 页限制\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R19 双方格式检查确认合规。\"\n  action_items:\n    - round: 5\n      action: \"结构性压缩 8.2→7 页\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"主文在 8 页内。R14-R19 持续确认合规。\"\n  resolution_round: 5\n\n- id: \"R5-W6\"\n  summary: \"遗漏关键相关工作 Zoology/Based/Samba\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  action_items:\n    - round: 5\n      action: \"补 3 篇引用\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已引用。\"\n  resolution_round: 5\n\n- id: \"R5-W7\"\n  summary: \"Ensemble 建议缺乏实验支撑\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 9\n  action_items:\n    - round: 7\n      action: \"Majority vote + oracle POC 写入 Conclusion\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已包含 MV/oracle POC 数据。\"\n  resolution_round: 9\n\n- id: \"R5-W8\"\n  summary: \"Binary decomposition 可能低估多选题一致性\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 19\n  mentions:\n    - round: 16\n      reviewers: [R1, R2]\n      note: \"Appendix O continuous Jaccard 缓解。\"\n    - round: 19\n      reviewers: []\n      note: \"R19 双方均未作为 weakness 提出。R1 在 S6 肯定 binary decomposition 设计合理。视为已充分缓解。\"\n  action_items:\n    - round: 13\n      action: \"E2 continuous-threshold Jaccard 整合\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"R19 双方未 flag，R1 肯定设计合理。已充分缓解。\"\n  resolution_round: 19\n\n- id: \"R5-W9\"\n  summary: \"Abstract 信息密度过高（统计量堆砌）\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 5\n  last_seen_round: 20\n  mentions:\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"接近 200 word 上限，inline 统计量增加认知负荷。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"R2-W4 Major：数字密度过高。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"Abstract 已改善（148词）。R2-W6 指出 Introduction 贡献列表过长。R1 交叉 REBUT。\"\n    - round: 20\n      reviewers: [R2]\n      note: \"R2 在 Detailed Comments 中指出 Abstract ~154 词符合 ≤200 要求。Routing 描述占 ~1/6 篇幅，正面数字比消极描述更突出。与 R15-W2 routing 叙事问题重叠。\"\n  action_items:\n    - round: 18\n      action: \"Abstract 再次精简\"\n      assigned_to: paper_agent\n      status: done\n    - round: 19\n      action: \"Introduction 贡献列表精简为核心 claim + section 引用\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"Abstract 字数合规（~154词）。Routing 叙事权重问题归入 R15-W2。\"\n  resolution_round: null\n\n- id: \"RV-L1\"\n  summary: \"Limitations 6 段违反 EMNLP 用户规则（要求 ~3 点）\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 15\n  action_items:\n    - round: 5\n      action: \"6 段→3 段\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"压缩为 3 段。R14-R19 确认合规。\"\n  resolution_round: 5\n\n- id: \"RV-L2\"\n  summary: \"loglik 压缩假说已被诊断数据反驳但论文仍引用\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  action_items:\n    - round: 5\n      action: \"改为 binary classification structural properties 解释\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已修正。\"\n  resolution_round: 5\n\n- id: \"R6-N3\"\n  summary: \"仅 2 个 scale 点不足以支撑 scale-dependent claim\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 7\n  action_items:\n    - round: 6\n      action: \"全文替换 scale-dependent\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"全文已用 'differs between 340M and 1.3B'。\"\n  resolution_round: 8\n\n- id: \"R6-N2\"\n  summary: \"缺乏 actionable insights——论文停在 '问题存在' 层面\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 15\n  action_items:\n    - round: 13\n      action: \"E1 routing 结果整合\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Routing 已写入。非 blocking。\"\n  resolution_round: 13\n\n- id: \"R6-W1\"\n  summary: \"Decoupling 形式化存在技术问题\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 9\n  action_items:\n    - round: 8\n      action: \"删除 Equation 1\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已删。Round 12-19 未再提及。\"\n  resolution_round: 12\n\n- id: \"R6-W2\"\n  summary: \"GDN h3-1 的 16-head confound 削弱 LAMBADA convergence\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 20\n  mentions:\n    - round: 15\n      reviewers: [R1, R2]\n      note: \"主文并列 with/without GDN。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"移除 GDN 后 ρ 从 -1.0 降至 -0.7。\"\n    - round: 18\n      reviewers: []\n      note: \"§4.3 已讨论。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-W2 Major + R2 交叉 AGREE。MMLU ρ 完全反转。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R1-W1 Critical（引用错误数值 −0.2）+ R2 交叉 [PARTIAL]。R2 纠正：实际为 ρ=−0.7, p=.233。R2 论证聚合收敛非核心 claim，per-example 饱和不受 GDN 影响。R1 维持 Critical 因整个 §4.3 convergence 讨论受影响。最终：R1 Critical vs R2 Major，分歧记录。\"\n  action_items:\n    - round: 15\n      action: \"§4.2/§4.3 讨论 GDN exclusion\"\n      assigned_to: paper_agent\n      status: done\n    - round: 19\n      action: \"Table 1 首次引入 GDN 时 flag 16-head anomaly；正文报告 MMLU ρ 反转\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R20 分歧：R1 Critical vs R2 Major。R2 论证有力：per-example 核心发现不受影响。但 GDN 对 convergence 叙事的影响仍需更显著讨论。\"\n  resolution_round: null\n\n- id: \"R6-W3\"\n  summary: \"Bootstrap CI 在 n=3 架构上覆盖率远低于名义值\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 20\n  mentions:\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"升级为 Critical。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-W7 Minor。论文 Section 3.5 已标 'heuristic'。R2 交叉 AGREE 但认为已 acknowledge。降级回 Minor/Warning。\"\n    - round: 20\n      reviewers: [R1]\n      note: \"R1 在交叉回应中再次提出：Appendix D1 确认大量 bootstrap 样本是退化的同架构三重采样，影响 Figure 4 CI 不含零的可信度。R2 未在初审中提及。\"\n  action_items:\n    - round: 16\n      action: \"Intro BCa CI 加 heuristic caveat\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"Section 3.5 caveat 存在。R20 R1 再次提出但 severity 维持 warning。\"\n  resolution_round: null\n\n- id: \"R14-W1\"\n  summary: \"Confidence margin 'mechanism' 标题暗示因果性\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 14\n  action_items:\n    - round: 14\n      action: \"替换 'mechanism' → 'predictor'\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已替换。R15-R19 未再提及。\"\n  resolution_round: 15\n\n- id: \"R14-W2\"\n  summary: \"n=5 attention ratios 使 permutation test 本质为 binary outcome\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  action_items:\n    - round: 15\n      action: \"§4.2 标注 'suggestive but underpowered'\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已完成。合并入 R5-W2。\"\n  resolution_round: 15\n\n- id: \"R14-W3\"\n  summary: \"标题/Abstract 过度泛化\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  action_items:\n    - round: 14\n      action: \"正文加 scope 限定\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已完成。\"\n  resolution_round: 15\n\n- id: \"R14-W4\"\n  summary: \"缺失 prediction churn 文献\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 14\n  last_seen_round: 15\n  action_items:\n    - round: 14\n      action: \"添加 Milani Fard (2016)\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已引用。\"\n  resolution_round: 15\n\n- id: \"R15-W1\"\n  summary: \"'Nearly disjoint' 措辞夸大\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 15\n  action_items:\n    - round: 15\n      action: \"替换为 calibrated 表述\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已完成。\"\n  resolution_round: 15\n\n- id: \"R15-W2\"\n  summary: \"Routing 定位过高（仅 1/4 benchmark 有效）\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 15\n  last_seen_round: 20\n  mentions:\n    - round: 15\n      reviewers: [R1, R2]\n      note: \"降级为 case study。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"1/4 success rate，无 ensemble baseline。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"PIQA 显著负效。缺 ensemble baseline。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-W4 Major + R2-W1 Major，交叉均 AGREE。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R2-W2 Major + R1 交叉 [AGREE]。R1 补充：PIQA 显著有害(-0.49pp, p=.006) 直接反驳通用工具叙事。Conclusion 将 routing 列为两大观察之一是过度。双方一致要求：(1) Abstract 缩减/弱化 routing；(2) 明确标注为探索性消极发现；(3) 补 logits ensemble baseline。\"\n  action_items:\n    - round: 15\n      action: \"降级为 case study\"\n      assigned_to: paper_agent\n      status: done\n    - round: 19\n      action: \"Abstract routing 句加 qualifier；补充 average-logits ensemble baseline\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R20 双方强 AGREE Major。Abstract/Conclusion 叙事权重仍偏高。需补 ensemble baseline。\"\n  resolution_round: null\n\n- id: \"R15-D1\"\n  summary: \"Appendix Table 30 DeltaNet 数据不一致\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 15\n  action_items:\n    - round: 15\n      action: \"从 JSON 逐格修正\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已修正。\"\n  resolution_round: 15\n\n- id: \"R15-W3\"\n  summary: \"缺失 Jain et al. (2025 FAccT)\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 15\n  last_seen_round: 15\n  action_items:\n    - round: 15\n      action: \"添加到 bib + Related Work\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已完成。\"\n  resolution_round: 15\n\n- id: \"R16-N1\"\n  summary: \"Aggregate convergence 叙事在 Abstract/Introduction 中仍过度突出\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 20\n  mentions:\n    - round: 16\n      reviewers: [R1, R2]\n      note: \"R1-N2 Must-Fix + R2-W1 Should-Fix。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"要求全文统一为 descriptive/suggestive。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"R2 建议重构。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N1 Critical，交叉均 AGREE。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R2 rebut R1-W1 时论证：聚合收敛非核心 claim，论文策略是利用其非显著性与 per-example 显著性的对比。R1 交叉中对 R2-W1 回应时建议重组让饱和发现为主线。双方实质上同意：饱和才是核心贡献。叙事重构方向趋于一致。\"\n  action_items:\n    - round: 16\n      action: \"结构性叙事重组\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 19\n      action: \"§4.2 标题改为非确定性；全文消除 convergence 作为 established premise\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R20 双方趋于一致：饱和发现应为主线，convergence 应明确为 non-significant 背景。\"\n  resolution_round: null\n\n- id: \"R16-W1\"\n  summary: \"Routing 实验缺少 variance 报告\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 19\n  mentions:\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"LAMBADA SD=0.4pp 已报告。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1 仍要求 bootstrap CI + significance test。R2 交叉同意应补充。\"\n  action_items:\n    - round: 19\n      action: \"LAMBADA routing 补 bootstrap CI + permutation significance test\"\n      assigned_to: main_agent\n      status: open\n      note: \"DDL 限制，如时间不够可降级为 Limitations 标注\"\n  resolution: \"SD 已报告，formal significance test 仍缺。\"\n  resolution_round: null\n\n- id: \"R16-W2\"\n  summary: \"5-architecture 扩展验证仅 340M\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 20\n  mentions:\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R2 REBUT：数据约束非设计缺陷。\"\n    - round: 20\n      reviewers: [R2]\n      note: \"R2-S6 肯定五架构验证增强泛化性（GLA + DeltaNet，10 对全部 J≤0.14, p≤.002）。仅 340M 是 model zoo 约束。\"\n  action_items:\n    - round: 19\n      action: \"Appendix X 明确标注仅验证 per-example divergence（非 convergence），说明 GLA/DeltaNet 仅有 340M 版本\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R2 rebut 有理：数据约束非设计缺陷。标注 scope 即可。\"\n  resolution_round: null\n\n- id: \"R16-W3\"\n  summary: \"Confidence margin AUC 的正态假设未验证\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R2 rebut：AUC 本身为 non-parametric。降低严重程度。\"\n  action_items:\n    - round: 16\n      action: \"计算 empirical AUC 对比\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"R2 rebut 有理：AUC 本身为 non-parametric，不受正态假设影响。\"\n  resolution_round: null\n\n- id: \"R16-W4\"\n  summary: \"模型规模覆盖有限（≤1.3B vs 7B+ 部署场景）\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R2 区分正确：per-example 跨 scale 稳健，convergence 不跨 scale。\"\n  action_items:\n    - round: 18\n      action: \"全文 scale 语言限定\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 19\n      action: \"明确区分：per-example Jaccard 跨 scale 一致 vs aggregate convergence 仅 1.3B LAMBADA\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R2 区分正确：per-example 跨 scale 稳健，convergence 不跨 scale。\"\n  resolution_round: null\n\n- id: \"R16-W5\"\n  summary: \"遗漏重要相关工作\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 20\n  mentions:\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"Model Soups + Jiang (2024)。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R2-N3 Major：Yang & Wang (2026) 'Benchmark Illusion' 重大遗漏。\"\n    - round: 20\n      reviewers: [R2]\n      note: \"R2-S5 确认 Yang & Wang (2026) 现已在 abstract 和 Related Work 中正确引用并区分贡献。R2-W5 新增：缺少 selective prediction / abstention 文献（Geifman & El-Yaniv 2017/2019）和 ensemble selection（Caruana et al. 2004）。R1 交叉 AGREE W5。\"\n  action_items:\n    - round: 18\n      action: \"添加 Wortsman (2022) + Jiang (2024)\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 19\n      action: \"必须引用 Yang & Wang (2026) Benchmark Illusion\"\n      assigned_to: paper_agent\n      status: done\n    - round: 20\n      action: \"补充 selective prediction 文献（Geifman & El-Yaniv 2017/2019）和 ensemble selection（Caruana et al. 2004）\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"Yang & Wang 已引用（R20 确认）。新增缺失：selective prediction + ensemble selection。\"\n  resolution_round: null\n\n- id: \"R16-M1\"\n  summary: \"Haghighat 2026 bib 条目需更新为 AAAI 2026\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 16\n  last_seen_round: 18\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19 未提及。可能已修复。\"\n  action_items:\n    - round: 16\n      action: \"更新 references.bib\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R17-W1\"\n  summary: \"Task type vs evaluation format confound（LAMBADA 为唯一 free-form benchmark）\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 20\n  mentions:\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"R1-W2 提出 + R2 [AGREE]。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"双方 Major，要求正文讨论。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-W1 Major + R2-W2 Major，交叉均强 AGREE。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R1-W4 Major + R2-W4 Major，交叉均 [AGREE]。R2 补充：多选题内部 format 不预测 α 只排除子空间内效应。R1 交叉补充：LAMBADA 同时是唯一 retrieval/free-form/最高 α 任务——三重混淆。双方一致认为核心 claim 的因果解释力受限。论文 hedging 诚实但不可证伪。\"\n  action_items:\n    - round: 18\n      action: \"§3.2 末加 format confound 讨论\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 19\n      action: \"Limitations 显式加入 format confound；§4.1 'task type' 改为 'task type or evaluation format'\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R20 双方强 AGREE Major。论文 hedging 诚实但因果力受限，是结构性局限。\"\n  resolution_round: null\n\n- id: \"R17-W2\"\n  summary: \"Confirmatory/exploratory benchmark 分类缺乏预注册\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 17\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1 Major vs R2 REBUT（标准分类）。Director 降级为 Should-Fix。\"\n  action_items:\n    - round: 17\n      action: \"Appendix A 明确 all-10 correction 为唯一有效\"\n      assigned_to: paper_agent\n      status: open\n    - round: 19\n      action: \"提供 taxonomy 时间证据（git commit）或框定为 hypothesis-generating\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R1 Major vs R2 REBUT（标准分类）。Director 降级为 Should-Fix。\"\n  resolution_round: null\n\n- id: \"R18-W1\"\n  summary: \"Permutation test null baseline 不排除 example difficulty confound\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 18\n  last_seen_round: 20\n  mentions:\n    - round: 19\n      reviewers: []\n      note: \"R19 未显式提及。可能被 format confound 讨论吸收。\"\n    - round: 20\n      reviewers: [R1]\n      note: \"R1 在交叉回应中作为 R2 遗漏的重要问题再次提出：Appendix K 的 null baseline 未排除样本内在难度对跨架构 Jaccard 重叠的混淆。\"\n  action_items:\n    - round: 18\n      action: \"讨论 example difficulty 作为 confound\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R19-W1\"\n  summary: \"遗漏 Yang & Wang (2026) 'Benchmark Illusion'——核心发现高度重叠\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 20\n  mentions:\n    - round: 19\n      reviewers: [R2]\n      note: \"R2-N3 Major：Yang & Wang (2026) arXiv:2602.11898。\"\n    - round: 20\n      reviewers: [R2]\n      note: \"R2-S5 确认已正确引用：'Yang & Wang (2026) 的引用处理得当。在 abstract 和 Related Work 中均明确引用并区分贡献（our within-family design isolates backbone variation from training-regime differences）'。\"\n  action_items:\n    - round: 19\n      action: \"引用 Yang & Wang (2026)；重新界定 'first' claim 为 'first controlled within-family analysis'\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已引用并正确区分贡献。R20 R2 确认处理得当。\"\n  resolution_round: 20\n\n- id: \"R19-W2\"\n  summary: \"LAMBADA 和 ARC-Easy routing 增益数值疑似相同\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1 误读。原文数值不同。\"\n  action_items: []\n  resolution: \"R1 误读。原文数值不同（LAMBADA +5.2pp vs ARC-Easy +1.2pp）。无需修改。\"\n  resolution_round: 19\n\n- id: \"R19-W3\"\n  summary: \"全文 associative vs causal 语言不完全一致\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 19\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-W8 Minor：'reflects'/'modulated by'/'controlled' 等 causal 用语偶现。R2 交叉 AGREE 但认为 minor。\"\n  action_items:\n    - round: 19\n      action: \"全文统一 associative 语言\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R20-W1\"\n  summary: \"n=5 Spearman power analysis 未形式化（仅非正式说明）\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R1-W2 Major：未讨论 power analysis。R2 交叉 [PARTIAL] → Minor：论文已说明 'only |ρ|=1.0 achieves p<.05 at n=5'，等价于非形式化 power 陈述。核心贡献不依赖 Spearman（Jaccard p 值来自置换检验）。R1 维持 Major，R2 降为 Minor。\"\n  action_items:\n    - round: 20\n      action: \"考虑添加正式 power analysis 表格（锦上添花，非必须）\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"分歧：R1 Major vs R2 Minor。论文已有等价非形式化说明。\"\n  resolution_round: null\n\n- id: \"R20-W2\"\n  summary: \"Routing 缺少 selective prediction / ensemble selection 文献\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R2-W5 Minor：缺 Geifman & El-Yaniv (2017/2019) selective prediction 和 Caruana et al. (2004) ensemble selection。R1 交叉 [AGREE]：routing 定位不够准确，读者无法判断与已有 selective prediction 方法的关系。\"\n  action_items:\n    - round: 20\n      action: \"Related Work 或 §4.4 引用 Geifman & El-Yaniv (2017/2019) + Caruana et al. (2004)\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R20-W3\"\n  summary: \"Limitations 遗漏 greedy decoding 对逐样本分歧的影响\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 20\n  last_seen_round: 20\n  mentions:\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R2-W6 Minor：所有评估用 greedy decoding，采样 decoding 可能改变 boundary cases 的 helped/hurt 分类。R1 交叉 [PARTIAL]：方向同意但 severity 更低——greedy 是 lm-eval-harness 标准配置，大多数 LM 评估工作使用 greedy。建议 Limitations 加一句即可。\"\n  action_items:\n    - round: 20\n      action: \"Lim",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false,
+    "persistedOutputPath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-review-director-7bef78c5/6354da54-15bc-465d-8729-e75681e03af8/tool-results/b5mvao0dy.txt",
+    "persistedOutputSize": 31049
+  },
+  "sourceToolAssistantUUID": "1af1507a-c362-4032-9237-26dce81d4517",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "系统通知：审稿审批已通过。请开始审稿。  [论文提交] - 项目: entrainment_gated_ft - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex - 目标 venue: EMNLP 2026 - 截止日期: 2026-05-…",
+  "leafUuid": "59ddbd96-b5c3-4764-be72-ef644f03a5e6",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review entrainment_gated_ft paper for EMNLP 2026",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-24T22:52:37.925Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's a substantial review_issues.yaml file. This is a "fresh" review mode, so I don't need to reference previous issues. But I should still be aware that this is round 21 of reviews. Let me read more of the file to understand the current state.
+
+Actually, wait - the CLAUDE.md says:
+"**重新审稿模式（fresh）** —— 收到 "🚀 审稿阶段已启动" 的 kick-off 消息时（无论是首次还是 Round N 重新审稿），你**没有任何上一轮的记忆或痕迹**"
+
+
+So in fresh mode, I'm starting completely clean without any prior context, even though this is round 21. I should proceed with dispatching reviewers and preparing the detailed assignments with the paper path and venue information.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59ddbd96-b5c3-4764-be72-ef644f03a5e6",
+  "isSidechain": false,
+  "requestId": "req_011CbNDNoHNzFRWCPGMMT82S",
+  "type": "assistant",
+  "uuid": "3acc67db-a63a-4957-8f8f-9b7e78ad8ba0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpkFHf8cQCt8NDfSwZxbrB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1706,
+      "cache_read_input_tokens": 78671,
+      "output_tokens": 629,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1706,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 629,
+          "cache_read_input_tokens": 78671,
+          "cache_creation_input_tokens": 1706,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1706
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-24T22:52:40.188Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JCmB5sQCzYJEy944LY6kNb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-review-director-7bef78c5/6354da54-15bc-465d-8729-e75681e03af8/tool-results/b5mvao0dy.txt",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3acc67db-a63a-4957-8f8f-9b7e78ad8ba0",
+  "isSidechain": false,
+  "requestId": "req_011CbNDNoHNzFRWCPGMMT82S",
+  "type": "assistant",
+  "uuid": "f77f56dc-5e04-424e-b54c-ab95257e216a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RpkFHf8cQCt8NDfSwZxbrB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1706,
+      "cache_read_input_tokens": 78671,
+      "output_tokens": 629,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1706,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 629,
+          "cache_read_input_tokens": 78671,
+          "cache_creation_input_tokens": 1706,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1706
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-24T22:52:40.196Z_
+
+<details><summary>↩ Tool result · `toolu_01JCmB5sQCzYJEy944LY6kNb`</summary>
+
+```text
+1	- id: "R5-W1"
+2	  summary: "架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）"
+3	  category: experiment
+4	  severity: critical
+5	  status: wont_fix
+6	  first_raised_round: 5
+7	  last_seen_round: 20
+8	  mentions:
+9	    - round: 5
+10	      reviewers: [R1, R2]
+11	      note: "R1 Critical, R2 W3+Q3 支持。"
+12	    - round: 15
+13	      reviewers: [R1, R2]
+14	      note: "R2-N3 Must-Fix vs R1-W2 Should-Fix。"
+15	    - round: 16
+16	      reviewers: [R1, R2]
+17	      note: "R1-N1 Critical + R2-N2 Critical。"
+18	    - round: 17
+19	      reviewers: [R1, R2]
+20	      note: "R1-N3 Critical + R2 交叉 [AGREE]。"
+21	    - round: 18
+22	      reviewers: [R1, R2]
+23	      note: "R1-N2 Critical + R2-N2 Critical，交叉均 [AGREE]。2.7× gap 部分支持架构效应独立性。"
+24	    - round: 19
+25	      reviewers: [R1, R2]
+26	      note: "R1-N2 Critical + R2-W4 Minor。R1 详列双重 mismatch。R2 同意但认为 minor。交叉后一致：structural limitation，维持 wont_fix。"
+27	    - round: 20
+28	      reviewers: [R1, R2]
+29	      note: "R1-W3 Major + R2-W3 Major，交叉均 [AGREE]。R2 补充：within- vs cross-architecture 3× 差距混淆了种子+架构。R1 指出 Pythia 70M 跨家族校准不充分。双方一致为最根本局限。"
+30	  action_items:
+31	    - round: 13
+32	      action: "E4 Pythia 410M 9-seed calibration（实际完成 70M）"
+33	      assigned_to: main_agent
+34	      status: done
+35	    - round: 14
+36	      action: "Limitations 提升 single-seed 为 top limitation；§4.2 弱化因果语言"
+37	      assigned_to: paper_agent
+38	      status: done
+39	  resolution: "结构性限制。已做：Pythia 70M calibration + Limitations 讨论 + associative 语言。R20 双方维持 wont_fix。"
+40	  resolution_round: null
+41	
+42	- id: "R5-W2"
+43	  summary: "收敛 claim 统计不显著（Bonferroni p=.170）且依赖 GDN inclusion"
+44	  category: method
+45	  severity: critical
+46	  status: in_progress
+47	  first_raised_round: 1
+48	  last_seen_round: 20
+49	  mentions:
+50	    - round: 15
+51	      reviewers: [R1, R2]
+52	      note: "R1-N1 Critical + R2-N1 Critical。交叉 [AGREE]。"
+53	    - round: 16
+54	      reviewers: [R1, R2]
+55	      note: "R16-N1 重新 flag。"
+56	    - round: 17
+57	      reviewers: [R1, R2]
+58	      note: "R1-N1 Critical + R2 交叉 [AGREE]。"
+59	    - round: 18
+60	      reviewers: [R1, R2]
+61	      note: "R1-N1 Critical + R2-N1 Critical，交叉均 [AGREE]。"
+62	    - round: 19
+63	      reviewers: [R1, R2]
+64	      note: "R1-N1 Critical + R2-N1 Critical，交叉均 [AGREE]。R2 升级论证：decoupling 叙事建立在'不存在的前提'上。双方建议重构为条件式或转向 Jaccard 饱和。"
+65	    - round: 20
+66	      reviewers: [R1, R2]
+67	      note: "R1-W1 Critical（但数值有误报 −0.2）+ R2 交叉 [PARTIAL]。R2 rebut 两点：(1) 实际数值为 ρ=−0.7 非 −0.2；(2) 聚合收敛非核心 claim，论文利用其非显著性来对比 per-example 显著性。R2 降级为 Major。R1 维持 Critical。分歧：是否是核心 claim。"
+68	  action_items:
+69	    - round: 15
+70	      action: "Abstract/Intro 重构：以 Jaccard saturation 为主线"
+71	      assigned_to: paper_agent
+72	      status: done
+73	    - round: 16
+74	      action: "结构性叙事重组"
+75	      assigned_to: paper_agent
+76	      status: in_progress
+77	    - round: 19
+78	      action: "Contribution 2 重构为条件式或将 Jaccard 饱和升级为主发现"
+79	      assigned_to: paper_agent
+80	      status: in_progress
+81	  resolution: "R20 分歧：R1 Critical vs R2 Major。R2 论证聚合收敛非核心 claim 有说服力，但叙事仍需重构。"
+82	  resolution_round: null
+83	
+84	- id: "R5-W4"
+85	  summary: "新颖性有限——已有指标的直接套用，无新方法/理论"
+86	  category: framing
+87	  severity: critical
+88	  status: wont_fix
+89	  first_raised_round: 5
+90	  last_seen_round: 20
+91	  mentions:
+92	    - round: 15
+93	      reviewers: [R1, R2]
+94	      note: "R2-W1 ecological fallacy。R1 REBUT。"
+95	    - round: 16
+96	      reviewers: [R1, R2]
+97	      note: "R2-N1 Must-Fix vs R1 REBUT。"
+98	    - round: 17
+99	      reviewers: [R1, R2]
+100	      note: "部分收敛：均同意定位为 empirical contribution。"
+101	    - round: 18
+102	      reviewers: [R1, R2]
+103	      note: "Findings 标准下经验发现足够。"
+104	    - round: 19
+105	      reviewers: [R1, R2]
+106	      note: "R2-N2 Major + R2-N3 (Benchmark Illusion)。R1 交叉部分 AGREE。"
+107	    - round: 20
+108	      reviewers: [R1, R2]
+109	      note: "R2-W1 Major：核心信息已被 Marx/D'Amour/Yang&Wang 充分建立。R1 交叉 [PARTIAL]：同意概念层面增量有限，但经验贡献（饱和发现+受控设计+时效性）被低估。R1 建议重组论文让饱和发现为主线。双方在 Findings 标准下可接受达成一致。"
+110	  action_items:
+111	    - round: 6
+112	      action: "Intro 加 empirical novelty framing"
+113	      assigned_to: paper_agent
+114	      status: done
+115	    - round: 16
+116	      action: "Intro 强化 empirical contribution 定位"
+117	      assigned_to: paper_agent
+118	      status: in_progress
+119	    - round: 19
+120	      action: "引用 Benchmark Illusion 并定位增量贡献"
+121	      assigned_to: paper_agent
+122	      status: in_progress
+123	  resolution: "结构性限制。Findings 标准下可接受。R20 R1 建议饱和发现为主线——可能提升贡献感知。"
+124	  resolution_round: null
+125	
+126	- id: "R5-W3"
+127	  summary: "Task-dependent spectrum 仅 3 benchmark，存在评估格式 confound"
+128	  category: experiment
+129	  severity: warning
+130	  status: resolved
+131	  first_raised_round: 5
+132	  last_seen_round: 5
+133	  mentions:
+134	    - round: 5
+135	      reviewers: [R1, R2]
+136	      note: "α 变异可能反映 format 而非 task type。"
+137	  action_items:
+138	    - round: 5
+139	      action: "WinoGrande + PIQA per-example 分析"
+140	      assigned_to: main_agent
+141	      status: done
+142	  resolution: "PIQA + WinoGrande 整合完成。R17 提出更具体的 format confound（见 R17-W1）。"
+143	  resolution_round: 6
+144	
+145	- id: "R5-W5"
+146	  summary: "正文约 8.2 页超出 EMNLP 8 页限制"
+147	  category: format
+148	  severity: warning
+149	  status: resolved
+150	  first_raised_round: 5
+151	  last_seen_round: 19
+152	  mentions:
+153	    - round: 19
+154	      reviewers: [R1, R2]
+155	      note: "R19 双方格式检查确认合规。"
+156	  action_items:
+157	    - round: 5
+158	      action: "结构性压缩 8.2→7 页"
+159	      assigned_to: paper_agent
+160	      status: done
+161	  resolution: "主文在 8 页内。R14-R19 持续确认合规。"
+162	  resolution_round: 5
+163	
+164	- id: "R5-W6"
+165	  summary: "遗漏关键相关工作 Zoology/Based/Samba"
+166	  category: writing
+167	  severity: warning
+168	  status: resolved
+169	  first_raised_round: 5
+170	  last_seen_round: 5
+171	  action_items:
+172	    - round: 5
+173	      action: "补 3 篇引用"
+174	      assigned_to: paper_agent
+175	      status: done
+176	  resolution: "已引用。"
+177	  resolution_round: 5
+178	
+179	- id: "R5-W7"
+180	  summary: "Ensemble 建议缺乏实验支撑"
+181	  category: writing
+182	  severity: warning
+183	  status: resolved
+184	  first_raised_round: 5
+185	  last_seen_round: 9
+186	  action_items:
+187	    - round: 7
+188	      action: "Majority vote + oracle POC 写入 Conclusion"
+189	      assigned_to: paper_agent
+190	      status: done
+191	  resolution: "已包含 MV/oracle POC 数据。"
+192	  resolution_round: 9
+193	
+194	- id: "R5-W8"
+195	  summary: "Binary decomposition 可能低估多选题一致性"
+196	  category: method
+197	  severity: warning
+198	  status: resolved
+199	  first_raised_round: 5
+200	  last_seen_round: 19
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f77f56dc-5e04-424e-b54c-ab95257e216a",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "3e1495d3-15ee-4db3-988b-806f9a3051f3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-entrainment-gated-ft--claude-sessions-review-director-7bef78c5/6354da54-15bc-465d-8729-e75681e03af8/tool-results/b5mvao0dy.txt",
+      "content": "- id: \"R5-W1\"\n  summary: \"架构效应 vs seed 效应无法区分（单 training run，无 seed baseline）\"\n  category: experiment\n  severity: critical\n  status: wont_fix\n  first_raised_round: 5\n  last_seen_round: 20\n  mentions:\n    - round: 5\n      reviewers: [R1, R2]\n      note: \"R1 Critical, R2 W3+Q3 支持。\"\n    - round: 15\n      reviewers: [R1, R2]\n      note: \"R2-N3 Must-Fix vs R1-W2 Should-Fix。\"\n    - round: 16\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N2 Critical。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"R1-N3 Critical + R2 交叉 [AGREE]。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"R1-N2 Critical + R2-N2 Critical，交叉均 [AGREE]。2.7× gap 部分支持架构效应独立性。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-N2 Critical + R2-W4 Minor。R1 详列双重 mismatch。R2 同意但认为 minor。交叉后一致：structural limitation，维持 wont_fix。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R1-W3 Major + R2-W3 Major，交叉均 [AGREE]。R2 补充：within- vs cross-architecture 3× 差距混淆了种子+架构。R1 指出 Pythia 70M 跨家族校准不充分。双方一致为最根本局限。\"\n  action_items:\n    - round: 13\n      action: \"E4 Pythia 410M 9-seed calibration（实际完成 70M）\"\n      assigned_to: main_agent\n      status: done\n    - round: 14\n      action: \"Limitations 提升 single-seed 为 top limitation；§4.2 弱化因果语言\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"结构性限制。已做：Pythia 70M calibration + Limitations 讨论 + associative 语言。R20 双方维持 wont_fix。\"\n  resolution_round: null\n\n- id: \"R5-W2\"\n  summary: \"收敛 claim 统计不显著（Bonferroni p=.170）且依赖 GDN inclusion\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 1\n  last_seen_round: 20\n  mentions:\n    - round: 15\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N1 Critical。交叉 [AGREE]。\"\n    - round: 16\n      reviewers: [R1, R2]\n      note: \"R16-N1 重新 flag。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2 交叉 [AGREE]。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N1 Critical，交叉均 [AGREE]。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R1-N1 Critical + R2-N1 Critical，交叉均 [AGREE]。R2 升级论证：decoupling 叙事建立在'不存在的前提'上。双方建议重构为条件式或转向 Jaccard 饱和。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R1-W1 Critical（但数值有误报 −0.2）+ R2 交叉 [PARTIAL]。R2 rebut 两点：(1) 实际数值为 ρ=−0.7 非 −0.2；(2) 聚合收敛非核心 claim，论文利用其非显著性来对比 per-example 显著性。R2 降级为 Major。R1 维持 Critical。分歧：是否是核心 claim。\"\n  action_items:\n    - round: 15\n      action: \"Abstract/Intro 重构：以 Jaccard saturation 为主线\"\n      assigned_to: paper_agent\n      status: done\n    - round: 16\n      action: \"结构性叙事重组\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 19\n      action: \"Contribution 2 重构为条件式或将 Jaccard 饱和升级为主发现\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"R20 分歧：R1 Critical vs R2 Major。R2 论证聚合收敛非核心 claim 有说服力，但叙事仍需重构。\"\n  resolution_round: null\n\n- id: \"R5-W4\"\n  summary: \"新颖性有限——已有指标的直接套用，无新方法/理论\"\n  category: framing\n  severity: critical\n  status: wont_fix\n  first_raised_round: 5\n  last_seen_round: 20\n  mentions:\n    - round: 15\n      reviewers: [R1, R2]\n      note: \"R2-W1 ecological fallacy。R1 REBUT。\"\n    - round: 16\n      reviewers: [R1, R2]\n      note: \"R2-N1 Must-Fix vs R1 REBUT。\"\n    - round: 17\n      reviewers: [R1, R2]\n      note: \"部分收敛：均同意定位为 empirical contribution。\"\n    - round: 18\n      reviewers: [R1, R2]\n      note: \"Findings 标准下经验发现足够。\"\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R2-N2 Major + R2-N3 (Benchmark Illusion)。R1 交叉部分 AGREE。\"\n    - round: 20\n      reviewers: [R1, R2]\n      note: \"R2-W1 Major：核心信息已被 Marx/D'Amour/Yang&Wang 充分建立。R1 交叉 [PARTIAL]：同意概念层面增量有限，但经验贡献（饱和发现+受控设计+时效性）被低估。R1 建议重组论文让饱和发现为主线。双方在 Findings 标准下可接受达成一致。\"\n  action_items:\n    - round: 6\n      action: \"Intro 加 empirical novelty framing\"\n      assigned_to: paper_agent\n      status: done\n    - round: 16\n      action: \"Intro 强化 empirical contribution 定位\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 19\n      action: \"引用 Benchmark Illusion 并定位增量贡献\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"结构性限制。Findings 标准下可接受。R20 R1 建议饱和发现为主线——可能提升贡献感知。\"\n  resolution_round: null\n\n- id: \"R5-W3\"\n  summary: \"Task-dependent spectrum 仅 3 benchmark，存在评估格式 confound\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  mentions:\n    - round: 5\n      reviewers: [R1, R2]\n      note: \"α 变异可能反映 format 而非 task type。\"\n  action_items:\n    - round: 5\n      action: \"WinoGrande + PIQA per-example 分析\"\n      assigned_to: main_agent\n      status: done\n  resolution: \"PIQA + WinoGrande 整合完成。R17 提出更具体的 format confound（见 R17-W1）。\"\n  resolution_round: 6\n\n- id: \"R5-W5\"\n  summary: \"正文约 8.2 页超出 EMNLP 8 页限制\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 19\n  mentions:\n    - round: 19\n      reviewers: [R1, R2]\n      note: \"R19 双方格式检查确认合规。\"\n  action_items:\n    - round: 5\n      action: \"结构性压缩 8.2→7 页\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"主文在 8 页内。R14-R19 持续确认合规。\"\n  resolution_round: 5\n\n- id: \"R5-W6\"\n  summary: \"遗漏关键相关工作 Zoology/Based/Samba\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  action_items:\n    - round: 5\n      action: \"补 3 篇引用\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已引用。\"\n  resolution_round: 5\n\n- id: \"R5-W7\"\n  summary: \"Ensemble 建议缺乏实验支撑\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 9\n  action_items:\n    - round: 7\n      action: \"Majority vote + oracle POC 写入 Conclusion\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已包含 MV/oracle POC 数据。\"\n  resolution_round: 9\n\n- id: \"R5-W8\"\n  summary: \"Binary decomposition 可能低估多选题一致性\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 19",
+      "numLines": 200,
+      "startLine": 1,
+      "totalLines": 904
+    }
+  },
+  "sourceToolAssistantUUID": "f77f56dc-5e04-424e-b54c-ab95257e216a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79 · 2026-05-24T22:52:48.068Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've read through the existing issue tracker. This is a fresh review, so I won't reference previous rounds, but I should be aware of the recurring issues. Let me now dispatch both reviewers.
+
+The paper is at:
+- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex`
+- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_21/submitted.pdf`
+
+
+Now I'm composing the reviewer messages and sending them out simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e1495d3-15ee-4db3-988b-806f9a3051f3",
+  "isSidechain": false,
+  "requestId": "req_011CbNDQDqn9GopvdAEMR9k2",
+  "type": "assistant",
+  "uuid": "2f746271-7540-44dd-a83e-d2e19401b87d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnzH5AhnSfJrpKZ8jBdnb9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3871,
+      "cache_read_input_tokens": 80377,
+      "output_tokens": 2128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3871,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2128,
+          "cache_read_input_tokens": 80377,
+          "cache_creation_input_tokens": 3871,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3871
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-24T22:52:48.452Z_
+
+正在分配 Reviewer 1 和 Reviewer 2。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f746271-7540-44dd-a83e-d2e19401b87d",
+  "isSidechain": false,
+  "requestId": "req_011CbNDQDqn9GopvdAEMR9k2",
+  "type": "assistant",
+  "uuid": "c3a73aa1-141e-485a-806a-00d4bb633638",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnzH5AhnSfJrpKZ8jBdnb9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3871,
+      "cache_read_input_tokens": 80377,
+      "output_tokens": 2128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3871,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2128,
+          "cache_read_input_tokens": 80377,
+          "cache_creation_input_tokens": 3871,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3871
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-24T22:53:06.869Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer · `toolu_0117DovQrvxJXr6tGrfuohek`</summary>
+
+```json
+{
+  "text": "你是 Reviewer 1，负责 **方法严谨性** 审查。\n\n## 投稿信息\n- **Venue**: EMNLP 2026（通过 ARR 统一审稿）\n- **Deadline**: 2026-05-25（ARR May cycle）\n- **页数限制**: 正文 8 页 + 无限参考文献；Limitations 不计入页数\n- **模板**: ACL style template\n- **匿名规则**: Double-blind\n- **附录**: 允许，不计页数但不保证审稿人阅读\n\n## 论文路径\n- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_21/submitted.pdf`\n\n## 你的审查侧重\n\n重点审查以下维度：\n\n1. **统计方法的适当性和严谨性**：\n   - Spearman ρ 在 n=5 的检验力问题——claims 是否超越了数据所能支撑的范围？\n   - Bonferroni 校正的应用是否正确？\n   - Bootstrap CI 在 n=3 architectures 下的可靠性\n   - 排列检验的适当性\n   - 多重比较问题的处理\n\n2. **实验设计的有效性**：\n   - 单训练 run（无 seed variation）对 claims 的影响\n   - Model zoo 的 confound（如 GDN h3-1 的 16 head vs 32 head 问题）\n   - Binary binarization 是否合理\n   - 基线和对照的充分性\n\n3. **Claims 与证据的匹配度**：\n   - 每个主要 claim 是否有充分的统计证据支撑？\n   - 因果 vs 关联语言的使用是否恰当？\n   - Routing 实验的结论是否合理？\n   - \"Saturation at 4%\" 的 claim 是否在统计上被证实？\n\n4. **方法论缺陷**：\n   - Per-example decomposition 的二值化是否遗漏重要信息？\n   - Confidence margin predictor 的 AUC 计算是否正确？\n   - Jaccard similarity 的适当性（vs 其他 overlap metrics）\n   - 任务分类法的客观性\n\n请提供结构化审稿意见：Summary → Strengths → Weaknesses（标注 Critical/Major/Minor）→ Questions → Missing References → Overall Assessment（评分 + 置信度）。\n\nARR Overall Assessment 评分标准：5 = Consider for Award, 4 = Conference, 3.5 = Borderline Conference, 3 = Findings, 2.5 = Borderline Findings, 2 = Resubmit next cycle。",
+  "reviewer_id": "1",
+  "project": "entrainment_gated_ft",
+  "round_number": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3a73aa1-141e-485a-806a-00d4bb633638",
+  "isSidechain": false,
+  "requestId": "req_011CbNDQDqn9GopvdAEMR9k2",
+  "type": "assistant",
+  "uuid": "443f8639-94f4-444a-ad08-74fd6b71ef90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnzH5AhnSfJrpKZ8jBdnb9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3871,
+      "cache_read_input_tokens": 80377,
+      "output_tokens": 2128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3871,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2128,
+          "cache_read_input_tokens": 80377,
+          "cache_creation_input_tokens": 3871,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3871
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-24T22:53:08.139Z_
+
+<details><summary>↩ Tool result · `toolu_0117DovQrvxJXr6tGrfuohek`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "443f8639-94f4-444a-ad08-74fd6b71ef90",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "fca50cbb-b6a4-4084-a9b8-a1bb6845a98a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_1\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "443f8639-94f4-444a-ad08-74fd6b71ef90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-24T22:53:21.942Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_reviewer · `toolu_01FAM7HTeF57167TLnz3LaUb`</summary>
+
+```json
+{
+  "text": "你是 Reviewer 2，负责 **新颖性与完整性** 审查。\n\n## 投稿信息\n- **Venue**: EMNLP 2026（通过 ARR 统一审稿）\n- **Deadline**: 2026-05-25（ARR May cycle）\n- **页数限制**: 正文 8 页 + 无限参考文献；Limitations 不计入页数\n- **模板**: ACL style template\n- **匿名规则**: Double-blind\n- **附录**: 允许，不计页数但不保证审稿人阅读\n\n## 论文路径\n- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/review_round_21/submitted.pdf`\n\n## 你的审查侧重\n\n重点审查以下维度：\n\n1. **贡献的新颖性**：\n   - 相对于 Marx et al. (2020) predictive multiplicity、D'Amour et al. (2022) underspecification、Yang & Wang (2026) benchmark disagreement，本文的增量贡献有多大？\n   - \"Saturation at 4%\" 是否是一个 novel finding？\n   - 受控 model zoo 内的比较 vs 前人的跨训练范式比较——这一设计选择是否产生了独特的 insight？\n   - Confidence margin asymmetry（rescue invariant, disruption variable）是否有足够新颖性？\n\n2. **Related Work 覆盖**：\n   - 是否遗漏了重要的 related work？特别注意：\n     - 2025-2026 的最新 hybrid architecture 工作\n     - Predictive multiplicity / model disagreement 的最新进展\n     - Benchmark-level vs instance-level evaluation 的讨论\n   - 与现有工作的定位是否清晰？\n\n3. **论文结构与写作质量**：\n   - 论文的叙事逻辑是否清晰？\n   - 核心 message 是否在 abstract/intro 中被准确传达？\n   - Figure 和 Table 是否有效支撑论文的 story？\n   - 写作是否有冗余或不清晰之处？\n\n4. **完整性**：\n   - 论文的 scope 是否合理（10 benchmarks, 3+2 architectures, 2 scales）？\n   - Limitations 的覆盖是否充分且诚实？\n   - 是否有明显缺失的实验或分析？\n   - 格式是否符合 ACL/EMNLP 要求（页数、匿名性、Limitations 位置等）？\n\n请提供结构化审稿意见：Summary → Strengths → Weaknesses（标注 Critical/Major/Minor）→ Questions → Missing References → Overall Assessment（评分 + 置信度）。\n\nARR Overall Assessment 评分标准：5 = Consider for Award, 4 = Conference, 3.5 = Borderline Conference, 3 = Findings, 2.5 = Borderline Findings, 2 = Resubmit next cycle。",
+  "reviewer_id": "2",
+  "project": "entrainment_gated_ft",
+  "round_number": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fca50cbb-b6a4-4084-a9b8-a1bb6845a98a",
+  "isSidechain": false,
+  "requestId": "req_011CbNDQDqn9GopvdAEMR9k2",
+  "type": "assistant",
+  "uuid": "b51fa29d-105b-4e04-ac57-5708ad47b091",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BnzH5AhnSfJrpKZ8jBdnb9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3871,
+      "cache_read_input_tokens": 80377,
+      "output_tokens": 2128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3871,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2128,
+          "cache_read_input_tokens": 80377,
+          "cache_creation_input_tokens": 3871,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3871
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "系统通知：审稿审批已通过。请开始审稿。  [论文提交] - 项目: entrainment_gated_ft - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/main.tex - 目标 venue: EMNLP 2026 - 截止日期: 2026-05-…",
+  "leafUuid": "b51fa29d-105b-4e04-ac57-5708ad47b091",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review entrainment_gated_ft paper for EMNLP 2026",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-24T22:53:23.235Z_
+
+<details><summary>↩ Tool result · `toolu_01FAM7HTeF57167TLnz3LaUb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b51fa29d-105b-4e04-ac57-5708ad47b091",
+  "isSidechain": false,
+  "promptId": "423150d8-99de-4027-ac4a-f33f3bfd08ac",
+  "type": "user",
+  "uuid": "a7422065-78d6-47cf-841f-a23b4387843c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reviewer_key\": \"feishu:group:oc_b542b52ff24f138c42225a1d4b456e7e:reviewer_2\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "b51fa29d-105b-4e04-ac57-5708ad47b091",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review entrainment_gated_ft paper for EMNLP 2026",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88 · 2026-05-24T22:59:48.705Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-24T22:59:48.705Z",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "content": "[Reviewer 2 审稿意见]:\n\n## Reviewer 2 审稿意见 — 新颖性与完整性\n\n**论文标题**: Aggregate Equivalence ≠ Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models\n\n---\n\n## 总体评分\n**Overall Assessment**: 3.0 (Findings)\n**Confidence**: 4/5\n**一句话总结**: 方法论扎实、实验充分，但核心发现（聚合指标掩盖逐样本差异）相对于已有工作的增量贡献有限，最具新颖性的 saturation finding 解释不充分，整体更适合 Findings 而非主会议。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 方法论合理，受控 model zoo 设计好，但单次训练运行 + GDN head confound 削弱了因果推断力度 |\n| Excitement | 2.5/5 | 核心发现不出人意料——predictive multiplicity 在新语境中的验证；saturation finding 有趣但解释薄弱 |\n| Reproducibility | 4/5 | 模型 zoo 公开，方法描述详尽，10K permutation tests + bootstrap CIs 提供了充分的统计细节 |\n| Overall Assessment | 3.0/5 | Findings 水准——扎实的经验性分析，但缺乏足够的新颖性或理论深度达到主会议门槛 |\n\n---\n\n## Summary\n\n本文研究了混合线性循环架构（GatedDeltaNet、RetNet、HGRN2）在聚合 benchmark 分数相似的情况下，于逐样本层面的预测差异。通过 Wang et al. (2025) 的受控 model zoo（3 架构 × 5 注意力比例 × 2 规模 = 30 配置），作者在 10 个 benchmark 上发现：(1) 跨架构的逐样本 Jaccard 重叠度很低（~0.10），且在 4% 注意力处即饱和；(2) multiplicity 的大小取决于任务类型（σ = 0.14–0.30）而非注意力比例；(3) 置信度边际可部分预测哪些样本受影响（AUC 0.70–0.74），且 rescue 是架构不变的而 disruption 是架构可变的。\n\n---\n\n## 主要优势\n\n**S1. 受控实验设计精良**：使用预混 model zoo 只改变架构和注意力比例，控制了训练数据、tokenizer、超参数等混淆因素，这在 predictive multiplicity 文献中是难得的。相比 D'Amour et al. (2022) 和 Yang & Wang (2026) 的跨训练范式比较，本设计可以更精确地归因于架构差异。\n\n**S2. 统计严谨性**：10,000 次 permutation tests、Bootstrap 95% CIs、Bonferroni 校正、连续阈值 Jaccard 分析（Appendix O）等多层统计验证，远超同类工作的常见标准。\n\n**S3. Confidence margin asymmetry 分解**：将 rescue（纯模型错、混合模型对）和 disruption（纯模型对、混合模型错）分开分析，发现 rescue 是跨架构一致的而 disruption 是架构特异的（Section 4.1, Tables 19-22），这个分解有分析价值。\n\n**S4. 极其充分的附录**：13 页附录（A-Z，26 个子部分）系统性地覆盖了几乎所有可预见的 reviewer concern——包括 GDN head confound（Appendix E）、Transformer 对比（Appendix L）、种子变异性校准（Appendix W）、5 架构扩展验证（Appendix X）等。\n\n**S5. 写作结构清晰**：Abstract 准确传达了核心 message，Figure 1 有效对比了聚合收敛 vs. 逐样本平行，Table 2-3 支撑了主要 claim。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 核心发现的新颖性不足——对已知现象的领域应用\n- 具体位置：Section 1 (Introduction), Section 2 (Related Work)\n- 问题：\"聚合指标相似的模型在逐样本层面存在显著差异\"这一核心 insight 已被 Marx et al. (2020) 的 predictive multiplicity、D'Amour et al. (2022) 的 underspecification、以及 Yang & Wang (2026) 的 benchmark disagreement 充分建立。本文的增量贡献在于将其应用于混合线性循环模型这一特定家族，但这个迁移本身并不产生令人惊讶的发现——考虑到这些架构共享训练数据且仅在循环机制上不同，出现逐样本差异是可以预期的。\n- 为什么影响接收：对于主会议级别的论文，需要超越\"已知现象在新领域中被验证\"。Introduction 中 claim \"We present the first controlled within-family per-example analysis of how attention affects cross-architecture agreement\" 准确地界定了贡献，但 \"first in this specific setting\" 不等同于 \"novel insight\"。\n- 建议修改方向：需要更清楚地论证受控 model zoo 内的发现与前人工作的 qualitative 区别是什么——即受控设计揭示了哪些跨训练范式比较无法揭示的机制。目前 Section 2.2 虽然 cite 了前人工作，但 positioning 停留在 \"我们的设置不同\" 而非 \"我们因此能回答前人无法回答的问题\"。\n\n**N2** [critical] \"Saturation at 4%\" 的解释不充分，两个竞争性假设未被区分\n- 具体位置：Section 4.2, Section 5 (Conclusion)\n- 问题：论文发现 per-example overlap 在 4% 注意力即饱和（Figure 1b, Table 3, Figure 5），这是最具新颖性的发现。但 Section 5 明确给出了两个竞争性解释：(a) 最小注意力锁定了架构特异的 fingerprint；(b) 注意力使所有架构收敛向 Transformer-like 行为。这两个假设有截然不同的理论含义——(a) 意味着架构差异是内在的，(b) 意味着注意力同质化了行为。论文未能区分这两个假设，仅表示 \"which we leave to future work\"。\n- 为什么影响接收：这是论文最核心的 finding，但如果对其机制没有 even preliminary 的解释或区分，其贡献就从 \"novel mechanistic insight\" 降级为 \"empirical observation awaiting explanation\"。Appendix L 的 Transformer 比较实际上提供了一些证据（h3-1 hybrid 的 correct set 更接近 Transformer），但这一关键结果被埋在附录中，未在正文中充分讨论。\n- 建议修改方向：将 Appendix L（Transformer Entrainment Comparison）的核心结果整合进正文 Section 4.2 或 Section 5。Table 15 的 Jaccard 数据和 \"all three architectures show positive Δ\" 的结论直接回应了 (b) 假说，应作为正文的一部分而非附录。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [major] 单次训练运行削弱了 multiplicity 归因于架构 vs. 随机种子的区分\n- 具体位置：Limitations (Section 5), Appendix W (Seed-Variation Calibration)\n- 问题：所有结果均基于每个配置的单次训练运行。Appendix W 使用 Pythia 70M 和 PolitoPoSha 的种子变异数据进行校准，发现种子变异的 Jaccard（~0.32）高于跨架构 Jaccard（~0.10），但这些校准来自不同规模、不同架构族的模型，无法直接类比。此外，Pythia 410M 的校准实验甚至失败了（Section W, \"Pythia 410M attempts to use Pythia 410M failed repeatedly\"），进一步削弱了校准的说服力。\n- 建议：如果无法补跑实验，至少需要在正文中更加诚实地讨论此限制——当前 Limitations 只有一句 \"Single training runs\" 并指向 Appendix W，但 Appendix W 的校准本身存在的问题（跨模型族、失败的 410M 尝试）未被充分讨论。\n\n**W2** [major] GDN head confound 未被完全解决\n- 具体位置：Table 1, Appendix D.2, Appendix E\n- 问题：GDN 1.3B b3-1 使用 16 个注意力头而 RetNet 和 HGRN2 使用 32 个，这源于原始 model zoo 的设计决策（Section E: \"This is a design choice in the original model zoo, not an error\"）。Appendix D.2 的敏感性分析表明排除 GDN 后 LAMBADA 的聚合收敛趋势减弱（ρ 从 -1.0 变为 -0.7），说明部分结果依赖于 GDN 的特殊配置。论文承认 \"we cannot separate these two effects with the available data\"，但这意味着正文中涉及 GDN 的结论（如 Figure 3 的 helped/hurt profile, Table 2 中 GDN 的 convergence ratio 4.87）可能部分被 head count confound 驱动。\n- 建议：在正文 Section 3.1 或 Section 4 中加入明确的 caveat，而不是仅在附录中讨论。可以考虑在关键结果图表中标注 GDN 的数据点，让读者能判断排除 GDN 后结论是否成立。\n\n**W3** [moderate] Confidence-based routing 的实用价值未被充分论证\n- 具体位置：Section 4.1 (Confidence-based routing), Figure 4b\n- 问题：Confidence-based routing 在 LAMBADA 上有正效果（+1.2 pp），但在 HellaSwag 上无效果，在 PIQA 上为负效果（Figure 4b）。这意味着该路由策略只在 multiplicity 最高的任务上有效。论文将此归因于 multiplicity 大小的差异，但未提供判断何时该使用 routing 的先验标准。如果实际部署时不知道哪些任务的 multiplicity 高，routing 策略就无法使用。\n- 建议：要么删除或降级 routing 的讨论（不作为 contribution 之一），要么提供一个可实操的判断标准（如基于 σ 阈值）来决定何时使用 routing。\n\n**W4** [moderate] Related work 与本文贡献的 positioning 不够 sharp\n- 具体位置：Section 2.2 (Underspecification and Predictive Multiplicity)\n- 问题：Section 2.2 描述了 D'Amour et al. (2022)、Marx et al. (2020) 以及相关工作，但 positioning 主要通过列举差异点（\"we show that changing the recurrent backbone—a qualitatively different source of variation—produces per-example multiplicity that varies by task type\"）。这种 positioning 方式未能说明：为什么了解此特定变异源（recurrent backbone）很重要？对 NLP 社区有什么 actionable implication？\n- 建议：在 Section 2.2 末尾或 Introduction 中明确陈述：如果部署者从一个 hybrid recurrent model 切换到另一个（如从 RetNet 切换到 GatedDeltaNet），哪些下游风险是此前文献未能预测的？\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: Abstract 字数约 150 words，符合 EMNLP 2026 的 200-word 限制。\n- **M2**: 正文 8 页，Limitations 在正文末尾（Section 5 末段），格式合规。\n- **M3**: 未发现匿名性违反——标注为 \"Anonymous ACL submission\"，参考文献中未 self-cite 可识别内容。Appendix Y (Code and Data Availability) 和 Z (Use of AI Assistants) 存在但未暴露作者身份。\n- **M4**: Figure 1(a) 的 shaded bands 标注为 \"illustrative (n=3)\" 不太严谨——建议改为 bootstrap CI 或标准误差。\n- **M5**: Section 3.2 中 task taxonomy 的 \"confirmatory vs. exploratory\" 划分在 Appendix A 中有详细说明，但正文中首次出现时解释不够充分，可能让读者困惑为什么只有 4 个 benchmark 出现在主要分析中。\n- **M6**: Table 1 的 \"Extended\" 配置（{340M} only, ×64A, ×8×0×8h）的含义在正文中未解释，需要翻到 Appendix 才能理解。\n\n---\n\n## Missing References\n\n1. **Behzad et al. (2025)**, \"Reconciling Predictive Multiplicity in Practice\", FAccT 2025 — 直接相关的后续工作，提出 Reconcile 算法来解决 predictive multiplicity 问题，与本文发现的 confidence-based routing 形成呼应。\n2. **Lieber et al. (2024)**, \"Jamba: A Hybrid Transformer-Mamba Language Model\" — 虽然论文提到了若干 hybrid 架构，但未 cite 最具影响力的生产级 SSM-Transformer 混合模型 Jamba，它以 1:7 的注意力层比例运行，与本文的 attention ratio 研究直接相关。\n3. **Wortsman et al. (2022)**, \"Model soups\" 已 cite（Section 2.2），但可以更明确地讨论 model soups 的 per-example 行为是否也展现类似的 multiplicity pattern。\n\n---\n\n## Questions to Authors\n\n**Q1**: Appendix L 表明 h3-1 hybrid 的 correct set 比 pure-recurrent 更接近 Transformer。这是否意味着 attention 层实质上在 \"Transformer 化\" 所有架构，而非放大架构差异？如果是，那 saturation finding 的解释应偏向假说 (b)，论文的 framing 是否应相应调整？\n\n**Q2**: 对于 Table 3 中的 saturation pattern，是否考虑过 attention ratio 从 4% → 25% 的变化量本身就很小（从 1 层增加到数层），可能 overlap 的统计量对这种变化不够敏感？如果使用更 fine-grained 的 attention ratio（如 2%, 6%, 8%），saturation 是否仍在 4% 处？\n\n**Q3**: Confidence-based routing 在 PIQA 上的负效果（Figure 4b）是否暗示某些任务类型中 pure-model confidence 与 hybrid-model 行为是反相关的？如果是，这与 Section P 的 confidence margin 分析有何关系？\n\n---\n\n## 评审总结\n\n本文是一项扎实的经验性研究，通过受控实验设计揭示了混合线性循环架构在逐样本层面的预测差异。方法论上有多处值得肯定之处（受控 model zoo、多层统计验证、极详尽的附录）。然而，核心发现——聚合指标掩盖逐样本差异——已被 predictive multiplicity 文献充分建立，本文的增量贡献主要在于 (a) 将其应用于特定架构家族 和 (b) 发现 saturation at 4% 这一具体 pattern。前者更像是验证而非发现，后者缺乏充分的解释。论文最有影响力的结果（Transformer entrainment, Appendix L）被埋在附录中。\n\n建议：(1) 将 Appendix L 的核心内容提升至正文；(2) 更清楚地论证受控设计相对于 Yang & Wang (2026) 等工作产生了哪些 qualitatively 不同的 insight；(3) 要么深化 saturation finding 的解释，要么将论文定位为 \"empirical documentation\" 而非暗示 mechanistic insight。以当前形态，推荐 Findings 接收。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 89 · 2026-05-24T22:59:48.705Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-24T22:59:48.705Z",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 90 · 2026-05-24T22:59:48.695Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a7422065-78d6-47cf-841f-a23b4387843c",
+  "isSidechain": false,
+  "promptId": "088e73a7-3fc9-4dbd-8029-697a55168985",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "e4f0aead-ba9a-4ca4-9122-0713acaff33e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-24T22:59:48.695Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4f0aead-ba9a-4ca4-9122-0713acaff33e",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "48538de5-2945-4623-99f5-b05267cb7603",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "e37e8d29-49ad-47b3-81df-a492571f7a24",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+5 recorded events
+
+### User
+
+_source line 92 · 2026-05-24T22:59:48.785Z_
+
+[Reviewer 2 审稿意见]:
+
+## Reviewer 2 审稿意见 — 新颖性与完整性
+
+**论文标题**: Aggregate Equivalence ≠ Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models
+
+---
+
+## 总体评分
+**Overall Assessment**: 3.0 (Findings)
+**Confidence**: 4/5
+**一句话总结**: 方法论扎实、实验充分，但核心发现（聚合指标掩盖逐样本差异）相对于已有工作的增量贡献有限，最具新颖性的 saturation finding 解释不充分，整体更适合 Findings 而非主会议。
+
+---
+
+## 官方维度打分（ACL ARR Review Form）
+
+| 维度 | 分数 | 理由摘要 |
+|------|------|----------|
+| Soundness | 3.5/5 | 方法论合理，受控 model zoo 设计好，但单次训练运行 + GDN head confound 削弱了因果推断力度 |
+| Excitement | 2.5/5 | 核心发现不出人意料——predictive multiplicity 在新语境中的验证；saturation finding 有趣但解释薄弱 |
+| Reproducibility | 4/5 | 模型 zoo 公开，方法描述详尽，10K permutation tests + bootstrap CIs 提供了充分的统计细节 |
+| Overall Assessment | 3.0/5 | Findings 水准——扎实的经验性分析，但缺乏足够的新颖性或理论深度达到主会议门槛 |
+
+---
+
+## Summary
+
+本文研究了混合线性循环架构（GatedDeltaNet、RetNet、HGRN2）在聚合 benchmark 分数相似的情况下，于逐样本层面的预测差异。通过 Wang et al. (2025) 的受控 model zoo（3 架构 × 5 注意力比例 × 2 规模 = 30 配置），作者在 10 个 benchmark 上发现：(1) 跨架构的逐样本 Jaccard 重叠度很低（~0.10），且在 4% 注意力处即饱和；(2) multiplicity 的大小取决于任务类型（σ = 0.14–0.30）而非注意力比例；(3) 置信度边际可部分预测哪些样本受影响（AUC 0.70–0.74），且 rescue 是架构不变的而 disruption 是架构可变的。
+
+---
+
+## 主要优势
+
+**S1. 受控实验设计精良**：使用预混 model zoo 只改变架构和注意力比例，控制了训练数据、tokenizer、超参数等混淆因素，这在 predictive multiplicity 文献中是难得的。相比 D'Amour et al. (2022) 和 Yang & Wang (2026) 的跨训练范式比较，本设计可以更精确地归因于架构差异。
+
+**S2. 统计严谨性**：10,000 次 permutation tests、Bootstrap 95% CIs、Bonferroni 校正、连续阈值 Jaccard 分析（Appendix O）等多层统计验证，远超同类工作的常见标准。
+
+**S3. Confidence margin asymmetry 分解**：将 rescue（纯模型错、混合模型对）和 disruption（纯模型对、混合模型错）分开分析，发现 rescue 是跨架构一致的而 disruption 是架构特异的（Section 4.1, Tables 19-22），这个分解有分析价值。
+
+**S4. 极其充分的附录**：13 页附录（A-Z，26 个子部分）系统性地覆盖了几乎所有可预见的 reviewer concern——包括 GDN head confound（Appendix E）、Transformer 对比（Appendix L）、种子变异性校准（Appendix W）、5 架构扩展验证（Appendix X）等。
+
+**S5. 写作结构清晰**：Abstract 准确传达了核心 message，Figure 1 有效对比了聚合收敛 vs. 逐样本平行，Table 2-3 支撑了主要 claim。
+
+---
+
+## Must-Fix 问题（影响接收决定）
+
+**N1** [critical] 核心发现的新颖性不足——对已知现象的领域应用
+- 具体位置：Section 1 (Introduction), Section 2 (Related Work)
+- 问题："聚合指标相似的模型在逐样本层面存在显著差异"这一核心 insight 已被 Marx et al. (2020) 的 predictive multiplicity、D'Amour et al. (2022) 的 underspecification、以及 Yang & Wang (2026) 的 benchmark disagreement 充分建立。本文的增量贡献在于将其应用于混合线性循环模型这一特定家族，但这个迁移本身并不产生令人惊讶的发现——考虑到这些架构共享训练数据且仅在循环机制上不同，出现逐样本差异是可以预期的。
+- 为什么影响接收：对于主会议级别的论文，需要超越"已知现象在新领域中被验证"。Introduction 中 claim "We present the first controlled within-family per-example analysis of how attention affects cross-architecture agreement" 准确地界定了贡献，但 "first in this specific setting" 不等同于 "novel insight"。
+- 建议修改方向：需要更清楚地论证受控 model zoo 内的发现与前人工作的 qualitative 区别是什么——即受控设计揭示了哪些跨训练范式比较无法揭示的机制。目前 Section 2.2 虽然 cite 了前人工作，但 positioning 停留在 "我们的设置不同" 而非 "我们因此能回答前人无法回答的问题"。
+
+**N2** [critical] "Saturation at 4%" 的解释不充分，两个竞争性假设未被区分
+- 具体位置：Section 4.2, Section 5 (Conclusion)
+- 问题：论文发现 per-example overlap 在 4% 注意力即饱和（Figure 1b, Table 3, Figure 5），这是最具新颖性的发现。但 Section 5 明确给出了两个竞争性解释：(a) 最小注意力锁定了架构特异的 fingerprint；(b) 注意力使所有架构收敛向 Transformer-like 行为。这两个假设有截然不同的理论含义——(a) 意味着架构差异是内在的，(b) 意味着注意力同质化了行为。论文未能区分这两个假设，仅表示 "which we leave to future work"。
+- 为什么影响接收：这是论文最核心的 finding，但如果对其机制没有 even preliminary 的解释或区分，其贡献就从 "novel mechanistic insight" 降级为 "empirical observation awaiting explanation"。Appendix L 的 Transformer 比较实际上提供了一些证据（h3-1 hybrid 的 correct set 更接近 Transformer），但这一关键结果被埋在附录中，未在正文中充分讨论。
+- 建议修改方向：将 Appendix L（Transformer Entrainment Comparison）的核心结果整合进正文 Section 4.2 或 Section 5。Table 15 的 Jaccard 数据和 "all three architectures show positive Δ" 的结论直接回应了 (b) 假说，应作为正文的一部分而非附录。
+
+---
+
+## Should-Fix 问题（影响评分但不一票否决）
+
+**W1** [major] 单次训练运行削弱了 multiplicity 归因于架构 vs. 随机种子的区分
+- 具体位置：Limitations (Section 5), Appendix W (Seed-Variation Calibration)
+- 问题：所有结果均基于每个配置的单次训练运行。Appendix W 使用 Pythia 70M 和 PolitoPoSha 的种子变异数据进行校准，发现种子变异的 Jaccard（~0.32）高于跨架构 Jaccard（~0.10），但这些校准来自不同规模、不同架构族的模型，无法直接类比。此外，Pythia 410M 的校准实验甚至失败了（Section W, "Pythia 410M attempts to use Pythia 410M failed repeatedly"），进一步削弱了校准的说服力。
+- 建议：如果无法补跑实验，至少需要在正文中更加诚实地讨论此限制——当前 Limitations 只有一句 "Single training runs" 并指向 Appendix W，但 Appendix W 的校准本身存在的问题（跨模型族、失败的 410M 尝试）未被充分讨论。
+
+**W2** [major] GDN head confound 未被完全解决
+- 具体位置：Table 1, Appendix D.2, Appendix E
+- 问题：GDN 1.3B b3-1 使用 16 个注意力头而 RetNet 和 HGRN2 使用 32 个，这源于原始 model zoo 的设计决策（Section E: "This is a design choice in the original model zoo, not an error"）。Appendix D.2 的敏感性分析表明排除 GDN 后 LAMBADA 的聚合收敛趋势减弱（ρ 从 -1.0 变为 -0.7），说明部分结果依赖于 GDN 的特殊配置。论文承认 "we cannot separate these two effects with the available data"，但这意味着正文中涉及 GDN 的结论（如 Figure 3 的 helped/hurt profile, Table 2 中 GDN 的 convergence ratio 4.87）可能部分被 head count confound 驱动。
+- 建议：在正文 Section 3.1 或 Section 4 中加入明确的 caveat，而不是仅在附录中讨论。可以考虑在关键结果图表中标注 GDN 的数据点，让读者能判断排除 GDN 后结论是否成立。
+
+**W3** [moderate] Confidence-based routing 的实用价值未被充分论证
+- 具体位置：Section 4.1 (Confidence-based routing), Figure 4b
+- 问题：Confidence-based routing 在 LAMBADA 上有正效果（+1.2 pp），但在 HellaSwag 上无效果，在 PIQA 上为负效果（Figure 4b）。这意味着该路由策略只在 multiplicity 最高的任务上有效。论文将此归因于 multiplicity 大小的差异，但未提供判断何时该使用 routing 的先验标准。如果实际部署时不知道哪些任务的 multiplicity 高，routing 策略就无法使用。
+- 建议：要么删除或降级 routing 的讨论（不作为 contribution 之一），要么提供一个可实操的判断标准（如基于 σ 阈值）来决定何时使用 routing。
+
+**W4** [moderate] Related work 与本文贡献的 positioning 不够 sharp
+- 具体位置：Section 2.2 (Underspecification and Predictive Multiplicity)
+- 问题：Section 2.2 描述了 D'Amour et al. (2022)、Marx et al. (2020) 以及相关工作，但 positioning 主要通过列举差异点（"we show that changing the recurrent backbone—a qualitatively different source of variation—produces per-example multiplicity that varies by task type"）。这种 positioning 方式未能说明：为什么了解此特定变异源（recurrent backbone）很重要？对 NLP 社区有什么 actionable implication？
+- 建议：在 Section 2.2 末尾或 Introduction 中明确陈述：如果部署者从一个 hybrid recurrent model 切换到另一个（如从 RetNet 切换到 GatedDeltaNet），哪些下游风险是此前文献未能预测的？
+
+---
+
+## 小问题（不影响接收）
+
+- **M1**: Abstract 字数约 150 words，符合 EMNLP 2026 的 200-word 限制。
+- **M2**: 正文 8 页，Limitations 在正文末尾（Section 5 末段），格式合规。
+- **M3**: 未发现匿名性违反——标注为 "Anonymous ACL submission"，参考文献中未 self-cite 可识别内容。Appendix Y (Code and Data Availability) 和 Z (Use of AI Assistants) 存在但未暴露作者身份。
+- **M4**: Figure 1(a) 的 shaded bands 标注为 "illustrative (n=3)" 不太严谨——建议改为 bootstrap CI 或标准误差。
+- **M5**: Section 3.2 中 task taxonomy 的 "confirmatory vs. exploratory" 划分在 Appendix A 中有详细说明，但正文中首次出现时解释不够充分，可能让读者困惑为什么只有 4 个 benchmark 出现在主要分析中。
+- **M6**: Table 1 的 "Extended" 配置（{340M} only, ×64A, ×8×0×8h）的含义在正文中未解释，需要翻到 Appendix 才能理解。
+
+---
+
+## Missing References
+
+1. **Behzad et al. (2025)**, "Reconciling Predictive Multiplicity in Practice", FAccT 2025 — 直接相关的后续工作，提出 Reconcile 算法来解决 predictive multiplicity 问题，与本文发现的 confidence-based routing 形成呼应。
+2. **Lieber et al. (2024)**, "Jamba: A Hybrid Transformer-Mamba Language Model" — 虽然论文提到了若干 hybrid 架构，但未 cite 最具影响力的生产级 SSM-Transformer 混合模型 Jamba，它以 1:7 的注意力层比例运行，与本文的 attention ratio 研究直接相关。
+3. **Wortsman et al. (2022)**, "Model soups" 已 cite（Section 2.2），但可以更明确地讨论 model soups 的 per-example 行为是否也展现类似的 multiplicity pattern。
+
+---
+
+## Questions to Authors
+
+**Q1**: Appendix L 表明 h3-1 hybrid 的 correct set 比 pure-recurrent 更接近 Transformer。这是否意味着 attention 层实质上在 "Transformer 化" 所有架构，而非放大架构差异？如果是，那 saturation finding 的解释应偏向假说 (b)，论文的 framing 是否应相应调整？
+
+**Q2**: 对于 Table 3 中的 saturation pattern，是否考虑过 attention ratio 从 4% → 25% 的变化量本身就很小（从 1 层增加到数层），可能 overlap 的统计量对这种变化不够敏感？如果使用更 fine-grained 的 attention ratio（如 2%, 6%, 8%），saturation 是否仍在 4% 处？
+
+**Q3**: Confidence-based routing 在 PIQA 上的负效果（Figure 4b）是否暗示某些任务类型中 pure-model confidence 与 hybrid-model 行为是反相关的？如果是，这与 Section P 的 confidence margin 分析有何关系？
+
+---
+
+## 评审总结
+
+本文是一项扎实的经验性研究，通过受控实验设计揭示了混合线性循环架构在逐样本层面的预测差异。方法论上有多处值得肯定之处（受控 model zoo、多层统计验证、极详尽的附录）。然而，核心发现——聚合指标掩盖逐样本差异——已被 predictive multiplicity 文献充分建立，本文的增量贡献主要在于 (a) 将其应用于特定架构家族 和 (b) 发现 saturation at 4% 这一具体 pattern。前者更像是验证而非发现，后者缺乏充分的解释。论文最有影响力的结果（Transformer entrainment, Appendix L）被埋在附录中。
+
+建议：(1) 将 Appendix L 的核心内容提升至正文；(2) 更清楚地论证受控设计相对于 Yang & Wang (2026) 等工作产生了哪些 qualitatively 不同的 insight；(3) 要么深化 saturation finding 的解释，要么将论文定位为 "empirical documentation" 而非暗示 mechanistic insight。以当前形态，推荐 Findings 接收。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48538de5-2945-4623-99f5-b05267cb7603",
+  "isSidechain": false,
+  "promptId": "088e73a7-3fc9-4dbd-8029-697a55168985",
+  "type": "user",
+  "uuid": "c933a12f-5776-4d0d-9b1d-48160c0dd7a6",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review entrainment_gated_ft paper for EMNLP 2026",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94 · 2026-05-24T23:00:12.549Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-24T23:00:12.549Z",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "content": "[Reviewer 2 审稿结果]:\n审稿完成。已向 Review Director 提交结构化审稿意见，核心判断：\n\n- **Overall: 3.0 (Findings)**，Soundness 3.5，Excitement 2.5\n- **2 个 Critical 问题**：(1) 核心发现相对于 Marx et al. (2020)、D'Amour et al. (2022)、Yang & Wang (2026) 的增量新颖性不足；(2) 最具新颖性的 \"saturation at 4%\" 发现未能区分两个竞争性解释，且关键证据（Appendix L 的 Transformer entrainment 比较）被埋在附录中\n- **4 个 Major/Moderate 问题**：单次训练运行的归因力度、GDN head confound、routing 实用价值有限、related work positioning 不够 sharp\n- **3 个 Missing References**：Behzad et al. (2025) FAccT、Jamba (Lieber et al., 2024)、Model Soups 的 per-example 讨论"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95 · 2026-05-24T23:00:12.550Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-24T23:00:12.550Z",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 96 · 2026-05-24T23:00:12.538Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c933a12f-5776-4d0d-9b1d-48160c0dd7a6",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "d9590e8f-2079-4b7c-9585-205bf33300fd",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "5babde8e-e126-4ab7-b466-80d7ba5dad44",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+1 recorded events
+
+### User
+
+_source line 97 · 2026-05-24T23:00:12.661Z_
+
+[Reviewer 2 审稿结果]:
+审稿完成。已向 Review Director 提交结构化审稿意见，核心判断：
+
+- **Overall: 3.0 (Findings)**，Soundness 3.5，Excitement 2.5
+- **2 个 Critical 问题**：(1) 核心发现相对于 Marx et al. (2020)、D'Amour et al. (2022)、Yang & Wang (2026) 的增量新颖性不足；(2) 最具新颖性的 "saturation at 4%" 发现未能区分两个竞争性解释，且关键证据（Appendix L 的 Transformer entrainment 比较）被埋在附录中
+- **4 个 Major/Moderate 问题**：单次训练运行的归因力度、GDN head confound、routing 实用价值有限、related work positioning 不够 sharp
+- **3 个 Missing References**：Behzad et al. (2025) FAccT、Jamba (Lieber et al., 2024)、Model Soups 的 per-example 讨论
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9590e8f-2079-4b7c-9585-205bf33300fd",
+  "isSidechain": false,
+  "promptId": "8669b7a7-17c2-4515-b224-b0d756d5b76e",
+  "type": "user",
+  "uuid": "478045d9-150e-4d0c-9781-d31b457305f2",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/review_director_7bef78c5",
+  "sessionId": "6354da54-15bc-465d-8729-e75681e03af8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

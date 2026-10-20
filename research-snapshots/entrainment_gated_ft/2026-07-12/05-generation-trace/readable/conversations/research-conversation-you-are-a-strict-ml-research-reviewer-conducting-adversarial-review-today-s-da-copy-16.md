@@ -1,0 +1,3397 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-1/e82b1787-a633-441a-8e03-23d13d65e510.jsonl`
+- **Structured JSON:** [`735ca0f3667f8867faac.json`](../../sessions/73/735ca0f3667f8867faac.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T07:10:23.086Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T07:10:23.086Z",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Human-Centered NLP and Human-AI Interaction. Aligns with EMNLP 2026 special theme on agentic workflows interfacing with human experiences.\n\nDirection: Methods that improve how humans and NLP systems collaborate. In-scope: interactive learning from human feedback (beyond vanilla RLHF), human-in-the-loop annotation methods, calibrated uncertainty communication to users, adaptive explanation generation, collaborative writing/editing systems, preference elicitation, controllable generation with user intent.\n\nContribution type: METHOD ONLY. Must propose a concrete algorithm or system mechanism — not a user study alone. Method validated via user study or simulation is ideal.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. HCI-style work is often light on compute, heavier on design and evaluation.\n2. Time: ≤16 days. Use existing open models + lightweight adaptation. If user study needed, design a small-scale simulated or crowdsourced protocol.\n3. Eval: task-specific metrics + human evaluation (inter-annotator agreement, preference rates, task completion time). Simulated user evaluation acceptable for ARR submission.\n\nLook for: adaptive interaction patterns, uncertainty-aware response generation, methods for user preference learning with minimal feedback, controllable generation beyond simple instruction following.\n\nTag: direction=human_ai_interaction, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 4/10)\n{\n  \"title\": \"Disagreement-Type-Conditioned Active Annotation Resolution Protocol\",\n  \"project_name\": \"type_aware_disagree_resolve\",\n  \"source\": \"web_research\",\n  \"level\": \"solid\",\n  \"core_problem\": \"When human annotators disagree, current annotation systems either collapse disagreement via majority voting or model its distribution passively without intervening. A principled typed taxonomy of NLI disagreement (Jiang & de Marneffe, TACL 2022) has been proposed, and Zhang et al. (ICML 2025, arXiv:2410.14632) have now shown that even RLHF reward models and LLM judges fail to account for annotator divergence when presented with typed preference data — confirming that passive LLM prediction cannot substitute for active resolution. Yet no system exploits disagreement type to select probe format, generate targeted resolution probes, collect structured annotator responses, and feed them back into model training as calibrated soft-label updates. The precise mechanism by which disagreement type should determine probe format, and how probe responses should update label distributions for downstream training, remains entirely unspecified in the literature.\",\n  \"opportunity\": \"CARE (EMNLP 2025, aclanthology 2025.emnlp-main.671) introduces disagreement detection via sub-concept alignment and counterfactual reasoning but is entirely passive — it does not type disagreements or generate resolution probes. A simultaneous structured disagreement analysis (arXiv 2604.19943, April 2026) shows task-level conceptual difficulty accounts for substantially more annotation variance than annotator identity, providing empirical grounding for type-conditioned probe selection. Zhang et al. (ICML 2025, arXiv:2410.14632) develop a 10-category disagreement taxonomy for RLHF preference annotation and find that standard reward modeling methods and LLM-as-Judge approaches 'fail to account for divergence between annotators' — a direct empirical motivation for DART's active probe-based approach: where passive LLM prediction fails, structured human probing through typed probes is required. ClarifyDelphi (ACL 2023, aclanthology.org/2023.acl-long.630) is the closest prior work on targeted clarification question generation, using RL with defeasibility rewards to elicit context for moral/social situations — but it operates in a narrow domain, does not pre-classify disagreement type before generating questions, generates background-context questions (not annotation-schema disambiguation probes), and does not connect to soft-label training. 'Will Annotators Disagree?' (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) predicts whether disagreement will occur on value-laden arguments (one of DART's three types), but predicts binary occurrence rather than typing it post-hoc and generates no probes. The NLP Annotation Disagreement Workshop (ACL 2025 co-located) and NLPerspectives at EMNLP 2025 confirm sustained community interest. Together, these works leave a specific gap: no system closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration.\",\n  \"landscape\": \"Current SOTA spans: CARE (EMNLP 2025) for disagreement detection; Jiang & de Marneffe's 10-category NLI disagreement taxonomy under three classes — sentence-meaning uncertainty, guideline underspecification, and annotator behavior (TACL 2022, aclanthology.org/2022.tacl-1.78) — which provides the most directly related typed treatment of annotation disagreement and direct training supervision for DART Stage 1; 'Diverging Preferences' (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632), which develops a 10-category taxonomy for RLHF preference annotation (pairwise A vs. B comparisons on MultiPref and HelpSteer2, spanning four high-level classes: Task, Response Style, Refusals, Errors) and finds that LLMs fail to account for annotator divergence — this null result for passive LLM prediction provides independent motivation for DART's active probing design, and distinguishes from DART in scope (pairwise RLHF preference data vs. general NLP multi-class annotation schemas), mechanism (post-hoc characterization without probe generation), and integration (no connection to annotation resolution or soft-label training); Beyond Consensus (arXiv 2601.09065, Jan 2026) for perspectivist evaluation; soft-label training (arXiv 2511.14117) for preserving epistemic uncertainty; DEM-MoE (arXiv 2508.02853) for demographic-aware expert modeling; STABLEVAL (arXiv 2605.02122, May 2026) for disagreement-aware evaluation; 'Will Annotators Disagree?' (EMNLP 2025 Findings) for predicting value-laden disagreement occurrence; 'Beyond Black-Box Labels' (arXiv 2604.17022, April 2026) for pre-annotation diagnostic criteria separation; and ClarifyDelphi (ACL 2023) for RL-based clarification question generation in moral/social contexts. Closest concurrent work is ReasonScaffold (arXiv 2603.21094, March 2026), which exposes LLM reasoning to annotators via a two-pass Delphi protocol but applies a uniform intervention regardless of disagreement type and does not generate targeted resolution probes. Annotator-Centric Active Learning (EMNLP 2024) selects which annotators to query about disputed items but does not generate type-conditioned probe content. None of these systems include an active protocol that (i) detects disagreement type, (ii) generates type-specific resolution probes, (iii) encodes structured annotator responses as calibrated soft-label updates, and (iv) feeds these into model training.\",\n  \"approach\": \"We propose DART (Disagreement-Aware Resolution through Type-conditioned probing), a four-stage active annotation protocol scoped to ~1,500 ProbeBank instances across two domains (toxicity detection and NLI) to fit within the compute budget. Stage 1 fine-tunes Qwen3-7B as a three-way disagreement-type classifier — conceptual ambiguity (annotators interpret the construct via different sub-definitions), value divergence (shared construct understanding but differing normative weighting), and borderline threshold (stimulus near a decision boundary) — using dual-source supervision: (a) direct supervision from Jiang & de Marneffe's TACL 2022 NLI disagreement taxonomy (their three high-level classes map directly: sentence-meaning uncertainty → borderline/conceptual ambiguity; guideline underspecification → conceptual ambiguity; annotator behavior → value divergence; approximately 300 instances with human-typed labels) and (b) CARE-derived weak supervision for the toxicity domain, where CARE's three output signals serve as proxy labels: sub-concept-alignment-sensitive instances (label changes when sub-concept definition is swapped) → conceptual ambiguity; rationale-stable but direction-divergent instances (rationale-to-critique output shows annotators identify the same features but weight them differently) → value divergence; counterfactual-sensitive instances (counterfactual-to-detection shows the disagreement resolves with small textual perturbation) → borderline threshold. Stage 2 uses Qwen3-72B to generate type-specific resolution probes (max two candidates per instance): conceptual ambiguity → definitional boundary probes with minimal contrastive pairs ('Does X count as Y if Z is absent?'); value divergence → explicit priority-ranking elicitation frames ('Please rank the following considerations by their relevance to your judgment...'); borderline threshold → counterfactual shift probes ('Would your judgment change if [minimal feature] were [perturbed]?'). Stage 3 collects structured probe responses: for a 100-instance human gold standard on Prolific (~50-75 annotator-hours, ~5-8 days including pilot and QC), and for the remaining ~1,400 instances via LLM persona responses — where demographically diverse personas respond to the constrained probe questions. Persona prompting yields modest improvements on high-disagreement annotation samples relative to unprompted baselines (Hu & Collier, ACL 2024, arXiv:2402.10811); however, demographic conditioning can redistribute error in ways that undermine subgroup fidelity on open-ended survey tasks (arXiv:2602.18462), motivating strict validation before full deployment. Persona responses on the gold standard must correlate with human responses at ρ ≥ 0.60 before deployment at scale. Concrete fallback: if persona responses fail to reach ρ ≥ 0.60 on the gold standard, the paper's primary results are reported on the 100-instance Prolific human gold standard only, with full-scale persona deployment repositioned as future work; this preserves a complete publishable contribution grounded entirely in human annotation. Stage 4 integrates probe-conditioned soft labels into model fine-tuning: probe responses are encoded as pseudo-annotator vote vectors over the label space using a lightweight encoder trained on the gold standard; these vectors are added to the existing annotation distribution as N_probe = 3 equivalent pseudo-annotator votes via weighted average (P_updated = (N_orig × P_orig + N_probe × P_probe) / (N_orig + N_probe)); the updated distribution is used directly as the soft-label target following arXiv 2511.14117. Evaluation fine-tunes Qwen3-7B on the DART-updated soft labels and compares against three baselines on ToxiGen (toxicity domain) and the MNLI validation split (NLI domain): (1) hard-label training using majority-vote labels, (2) soft-label training without DART probing using the original annotation distribution, and (3) DART-probed soft-label training. Primary metrics are macro-F1 and Expected Calibration Error (ECE); STABLEVAL score provides a secondary disagreement-aware evaluation. Reduction in residual annotation entropy on held-out instances is reported as an auxiliary analysis. The three-way comparison isolates the contribution of type-conditioned probing over both hard labeling and unprobed soft labeling. DART explicitly extends ClarifyDelphi (ACL 2023) in four dimensions: domain generality (any NLP annotation schema, not only moral/social situations), type-conditioned probe selection (not uniform question generation), annotation-schema disambiguation probes rather than background-context questions, and training integration via soft-label updates. We release ProbeBank-1.5K: 1,500 type-annotated disagreement instances with validated resolution probes across two NLP domains.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~100h A100 80GB (~50 H100-equivalent hours)\",\n      \"gpu_utilization\": \"Low (~20-30%) — compute bursts are short; GPU idles during Prolific study setup/pilot (~2 days), QC and re-annotation (~2 days), and manual experimental analysis\",\n      \"timeline\": \"3-4 months from start; targeting AAAI 2027 (expected deadline July-August 2026), beginning immediately in May 2026 is borderline feasible\",\n      \"team\": \"2 researchers (1 NLP lead, 1 annotation study coordinator)\",\n      \"estimated_gpu_cost\": \"~$150-250 (100h × $1.50-2.50/hr on RunPod/Lambda)\",\n      \"annotation_cost\": \"~$600-900 for 100-instance Prolific gold standard at $12/hr × ~60 annotator-hours\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150h A100 80GB (~75 H100-equivalent hours)\",\n      \"gpu_utilization\": \"Moderate (~50-60%) — agent handles hyperparameter sweeps, probe generation drafts, and evaluation runs; human approves gold-standard design, reviews probe quality samples, and checkpoints training decisions every ~45min\",\n      \"timeline\": \"4-6 weeks; recommended primary mode for AAAI 2027 target (expected deadline July-August 2026 — ~3 months available as of May 2026; this mode completes well within the window with buffer for revision)\",\n      \"team\": \"1 researcher, ~45min/day approval check-ins\",\n      \"claude_api_cost\": \"$100-200 (~1,000-2,000 turns for experiment orchestration, probe drafting, result summarization, and ProbeBank quality-filtering decisions)\",\n      \"estimated_gpu_cost\": \"~$225-375 (150h × $1.50-2.50/hr)\",\n      \"risk_note\": \"Prolific gold-standard collection (~5-8 days wall-clock) runs in parallel with data preparation and initial classifier experiments; with the AAAI 2027 deadline, this is not on the critical path and can be run in proper sequence if needed\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~250-300h A100 80GB (~125-150 H100-equivalent hours, within 200 H100h budget)\",\n      \"gpu_utilization\": \"High (~80-90%) — agent runs hyperparameter sweeps, probe template ablations, persona simulation at scale, and evaluation continuously; idle time limited to API rate limits and data loading\",\n      \"timeline\": \"16-22 days (4× A100 cluster); fully feasible for AAAI 2027 with substantial buffer; Prolific gold-standard collection (~5-8 days) is no longer on a compressing critical path given the ~3-month window to deadline\",\n      \"team\": \"0 (setup only: ~3-4h to configure agent, provision datasets, deploy Prolific study, set persona simulation pipeline)\",\n      \"claude_api_cost\": \"$200-400 (~2,000-4,000 turns including failed runs, multi-seed ablations, persona response filtering, and paper draft generation)\",\n      \"estimated_gpu_cost\": \"~$375-750 (250-300h × $1.50-2.50/hr)\",\n      \"speed_bottleneck\": \"Prolific gold-standard collection is the irreducible wall-clock minimum (~5-8 days); secondary bottleneck is Qwen3-72B inference rate for probe generation (single-pass at 1,500 instances × 2 candidates ≈ 15-20h A100, manageable within budget)\",\n      \"risk_note\": \"LLM persona probe responses may converge on superficially fluent but diagnostically shallow answers despite type-conditioning; validated by requiring ρ ≥ 0.60 correlation with human responses on gold standard before full deployment. Concrete fallback: if threshold is not met, paper reports results on the 100-instance human gold standard as the primary contribution and repositions persona scaling as future work. Recommend one human spot-check of probe quality mid-run.\"\n    }\n  },\n  \"target_venues\": [\n    \"AAAI 2027 (expected deadline July-August 2026 — primary target; feasible under human-in-loop mode starting immediately, with ~3 months available and 4-6 week execution time; auto-research mode also feasible at 16-22 days)\",\n    \"ARR September 2026 cycle → EMNLP 2027 (fallback if AAAI submission requires additional iteration)\"\n  ],\n  \"key_references\": [\n    \"CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement (EMNLP 2025, aclanthology 2025.emnlp-main.671)\",\n    \"Investigating Reasons for Disagreement in Natural Language Inference (Jiang & de Marneffe, TACL 2022, aclanthology.org/2022.tacl-1.78) — 10-category NLI taxonomy providing direct training supervision for Stage 1\",\n    \"Diverging Preferences: When do Annotators Disagree and do Models Know? (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632) — 10-category taxonomy for RLHF preference annotation (pairwise A vs. B; MultiPref and HelpSteer2 datasets) across four high-level classes (Task, Response Style, Refusals, Errors); finds that LLMs fail to capture annotator divergence, motivating DART's active probe approach; distinct from DART in targeting pairwise RLHF data (not general NLP multi-class schemas), not generating resolution probes, and not connecting to annotation resolution or soft-label training\",\n    \"ClarifyDelphi: Reinforced Clarification Questions with Defeasibility Rewards for Social and Moral Situations (ACL 2023, aclanthology.org/2023.acl-long.630) — closest predecessor in probe generation; DART extends to annotation-domain generality, type conditioning, schema disambiguation, and training integration\",\n    \"Will Annotators Disagree? Identifying Subjectivity in Value-Laden Arguments (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) — partial prior coverage of value-divergence type (predicts binary occurrence, not type; no probe generation)\",\n    \"Quantifying the Persona Effect in LLM Simulations (Hu & Collier, ACL 2024, arXiv:2402.10811) — supports the narrow claim that persona prompting yields modest improvements on high-disagreement annotation samples; basis for Stage 3 persona deployment rationale\",\n    \"Assessing the Reliability of Persona-Conditioned LLMs as Synthetic Survey Respondents (arXiv:2602.18462, Feb 2026) — shows persona conditioning can redistribute error and undermine subgroup fidelity; motivates the ρ ≥ 0.60 validation threshold and the 100-instance human gold standard fallback\",\n    \"Structured Disagreement in Health-Literacy Annotation: Epistemic Stability, Conceptual Difficulty, and Agreement-Stratified Inference (arXiv 2604.19943, April 2026)\",\n    \"Beyond Black-Box Labels: Interpretable Criteria for Diagnosing Subjective NLP Tasks (arXiv 2604.17022, April 2026) — concurrent diagnostic approach; pre-annotation audit vs. DART's active resolution\",\n    \"Beyond Consensus: Perspectivist Modeling and Evaluation of Annotator Disagreement in NLP (arXiv 2601.09065, Jan 2026)\",\n    \"Soft-Label Training Preserves Epistemic Uncertainty (arXiv 2511.14117)\",\n    \"Modeling Annotator Disagreement with Demographic-Aware Experts and Synthetic Perspectives (DEM-MoE, arXiv 2508.02853)\",\n    \"STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems (arXiv 2605.02122, May 2026)\",\n    \"ReasonScaffold: Evaluating Reasoning-Based Scaffolds for Human-AI Co-Annotation (arXiv 2603.21094, March 2026)\",\n    \"Annotator-Centric Active Learning for Subjective NLP Tasks (EMNLP 2024)\"\n  ],\n  \"description\": \"DART (Disagreement-Aware Resolution through Type-conditioned probing) proposes the first active annotation protocol that closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration. Grounded in Jiang & de Marneffe's (TACL 2022) typed NLI taxonomy and findings that task-level conceptual difficulty dominates annotation variance, DART trains a Qwen3-7B three-way classifier (conceptual ambiguity / value divergence / borderline threshold) using dual-source supervision: direct labels from the TACL 2022 taxonomy for the NLI domain, and CARE-derived weak supervision for toxicity — where sub-concept-alignment sensitivity → conceptual ambiguity, rationale-stable but direction-divergent CARE output → value divergence, and counterfactual-sensitive CARE output → borderline threshold. Qwen3-72B generates type-specific probes: definitional boundary contrastive pairs for ambiguity, priority-ranking frames for value disputes, and counterfactual shift probes for borderline cases. Structured annotator responses (collected via LLM personas for ~1,400 instances, validated against a 100-instance Prolific human gold standard requiring ρ ≥ 0.60 correlation; persona prompting yields modest improvements on high-disagreement samples per Hu & Collier, ACL 2024, but can redistribute error in open-ended settings per arXiv:2602.18462, hence strict validation and a concrete fallback: if the threshold is not met, primary results are reported on the 100-instance gold standard only with persona scaling as future work) are encoded as pseudo-annotator vote vectors and integrated into the annotation distribution via weighted average, then used for soft-label training following arXiv 2511.14117. Evaluation fine-tunes Qwen3-7B on the DART-updated soft labels against three baselines — hard-label training, unprobed soft-label training, and DART-probed soft-label training — on ToxiGen (toxicity) and MNLI validation split (NLI), measuring macro-F1 and calibration ECE. Unlike 'Diverging Preferences' (Zhang, Pyatkin et al., ICML 2025), which develops a 10-category taxonomy for RLHF pairwise preference data and finds that LLMs fail to capture divergence — motivating active probing — DART targets general NLP multi-class annotation schemas, generates type-conditioned resolution probes, and completes the resolution-to-training loop. Unlike ClarifyDelphi (ACL 2023), which generates context-eliciting questions for moral situations without type pre-classification and without annotation workflow integration, DART operates across annotation schemas, conditions probe selection on disagreement type, and completes the resolution-to-training loop. Unlike 'Will Annotators Disagree?' (EMNLP 2025 Findings), which predicts binary value-laden disagreement occurrence pre-annotation, DART types disagreement post-hoc across all three categories and generates targeted probes. The scoped release — ProbeBank-1.5K, 1,500 type-annotated disagreement instances with validated probes across toxicity and NLI — provides the first benchmark for evaluating annotation resolution protocols within a 125-150 H100-equivalent-hour compute budget.\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"HARD CONSTRAINT VIOLATION: The user specified ≤200 H100-hours. Auto-research mode (the only EMNLP-2026-feasible mode) uses ~700 A100 hours ≈ 350 H100-equivalent hours, exceeding the budget by ~75%. Manual mode fits the compute budget (180 A100h ≈ 90 H100h) but requires 5–7 months. No configuration satisfies both the 200 H100h limit and the 16-day deadline simultaneously. The idea as currently scoped cannot reach EMNLP 2026 within user-stated constraints.\", \"UNCITED CRITICAL PRIOR WORK — ClarifyDelphi (ACL 2023, aclanthology.org/2023.acl-long.630): Generates targeted clarification questions for moral/social situations via RL with defeasibility rewards (maximizing divergence of potential answers). This directly pre-empts DART's Stage 2 probe generation concept. DART must cite and explicitly differentiate: ClarifyDelphi is domain-specific (moral/social), not annotation-context-general; it doesn't pre-classify disagreement type; and it doesn't feed into soft-label model training. These distinctions are real but must be made explicit.\", \"UNCITED RELEVANT PRIOR WORK — 'Will Annotators Disagree? Identifying Subjectivity in Value-Laden Arguments' (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824): Predicts whether annotators will disagree specifically on value-laden content, overlapping significantly with DART's 'value-based divergence' type category in Stage 1. The generator claims DART's type taxonomy is new, but this paper partially covers one of the three types.\", \"HUMAN ANNOTATION BOTTLENECK IS UNDERESTIMATED FOR 16-DAY TIMELINE: The paper acknowledges 200–300 annotator-hours as an 'irreducible lower bound,' but crowdsourced annotation on Prolific in practice requires: study protocol finalization, platform setup and pilot (2–3 days), active annotation batch (3–5 days at reasonable pay rates), quality control and re-annotation of rejected HIT responses (2–3 days), and iteration. This alone consumes ~10 days, leaving essentially no time for classifier training, Qwen3-72B probe generation at scale, soft-label training, ablations, and paper writing.\", \"WEAK SUPERVISION SPECIFICATION GAP: Stage 1 claims to use 'CARE-derived rationale labels as weak supervision' for a 3-way classifier (conceptual ambiguity / value divergence / borderline threshold). However, CARE's output is concept-level alignment and counterfactual-based disagreement detection — it does not directly emit a conceptual-vs-value-vs-borderline partition. The label induction procedure mapping CARE outputs to these three types is critical and entirely unspecified. Without this, the classifier training step is undefined.\", \"QWEN3-72B INFERENCE SCALE: Stage 2 uses Qwen3-72B for probe generation across ~5,000 ProbeBank instances. Running a 72B model for batch inference over this scale is more expensive than the ~30h A100 estimate if generation requires substantial sampling or multi-candidate output per instance. The estimate assumes single-pass inference; any multi-sample or temperature-based diversity will multiply this cost.\", \"STAGE 4 TRAINING INTEGRATION IS UNDERSPECIFIED: The paper states probe-conditioned soft labels are 'fed into model fine-tuning following the arXiv 2511.14117 framework' but does not specify how the probe response modifies the label distribution (e.g., reweighting, Bayesian update, direct soft-label replacement). The arXiv 2511.14117 paper is a training method, not a label aggregation procedure — the connecting mechanism is missing.\"]\nFeedback: The core concept of DART — closing the loop from disagreement-type detection to type-specific probe generation to training integration — is intellectually sound and addresses a real gap. To make this submittable to EMNLP 2026 within user constraints, the generator should make three targeted revisions: (1) SCOPE REDUCTION TO FIT COMPUTE BUDGET: Reduce ProbeBank to ~1,500 instances across two domains (toxicity + NLI), use simulated annotators (LLM personas with demographic prompting, validated against a 100-instance human gold standard) for most ProbeBank construction, and restrict ablations to critical variants. This should bring auto-research compute to ~250 A100h ≈ 125 H100h, within the 200 H100h budget, and make the 16-day timeline tight but feasible. (2) CITE AND DIFFERENTIATE FROM ClarifyDelphi: Add ClarifyDelphi (ACL 2023) as a direct predecessor. Emphasize DART's distinctions: annotation-domain generality (not just moral/social situations), explicit three-way type classification before probe selection, structured annotator response encoding, and training integration via soft labels. Position ClarifyDelphi as the closest prior work in the probe-generation component and DART as extending it to the full annotation lifecycle. Also cite 'Will Annotators Disagree?' (EMNLP 2025 Findings) for the value-divergence type. (3) SPECIFY WEAK SUPERVISION LABEL INDUCTION: Describe concretely how CARE concept taxonomy and counterfactual outputs map to the three disagreement types. For example: instances where CARE identifies sub-concept misalignment → conceptual ambiguity; instances where construct understanding is stable but evaluation direction differs → value divergence; instances where counterfactual perturbations shift labels at low magnitude → borderline threshold. This operationalization is needed before Stage 1 training is feasible.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"TIMELINE STILL INFEASIBLE FOR EMNLP ARR: The proposal's own auto-research estimate is 16–22 days, but only 15 days remain before the May 25, 2026 ARR deadline (confirmed at https://2026.emnlp.org/calls/main_conference_papers/). Even the optimistic 16-day scenario places completion at May 26 — one day after the deadline. The proposal claims 'feasible' while citing an estimate that contradicts this claim. ARR requires complete papers with results; submitting with ongoing Prolific QC is not permissible.\", \"LLM PERSONA RELIABILITY RISK IS UNDERESTIMATED: Recent empirical literature shows LLM personas account for <10% of annotation variance (ACL 2024 'Quantifying the Persona Effect'), and that prompted LLMs 'fail to account for divergence between annotators' on preference tasks (ICML 2025 'Diverging Preferences'). Requiring ρ ≥ 0.60 between persona responses and human responses on annotation disagreement tasks is extremely optimistic. If this threshold is not met, the entire Stage 3 fallback requires 200–300 human annotator-hours, violating both the 200 H100h budget and the 15-day timeline simultaneously.\", \"UNCITED ICML 2025 CONCURRENT TAXONOMY WORK: 'Diverging Preferences: When do Annotators Disagree and do Models Know?' (Zhang, Pyatkin et al., ICML 2025, arXiv 2410.14632) develops a 10-category taxonomy across four high-level classes of annotator disagreement specifically for NLP tasks, published at a top venue. This is directly relevant to DART's Stage 1 three-way classifier. EMNLP reviewers familiar with this paper will expect explicit citation and differentiation. Without it, the novelty of Stage 1 will appear weaker than claimed.\", \"EVALUATION PLAN INSUFFICIENT FOR EMNLP MAIN: 'Reduction in residual annotation entropy' is not a standard validated metric in subjective NLP. EMNLP Main reviewers will expect at least one downstream task performance result (e.g., F1 on toxicity detection or NLI accuracy) where soft-label DART training outperforms standard baselines. The current plan mentions STABLEVAL-evaluated performance but does not specify what task/model/baseline is being evaluated, making the evaluation framework opaque.\", \"STAGE 4 DOWNSTREAM MODEL UNSPECIFIED: The proposal says probe-conditioned soft labels are fed into 'model fine-tuning' but never specifies what model architecture is fine-tuned, on what task, with what baseline comparison. This is a fundamental gap for reproducibility and for assessing whether Stage 4 produces measurable improvements.\", \"'PYATKIN ET AL. 2025' CITATION FOR PERSONA RELIABILITY APPEARS INCORRECT: The proposal claims 'persona simulation is more reliable than open-ended disagreement generation, per Pyatkin et al. 2025.' The Pyatkin group's most relevant 2025 paper is 'Diverging Preferences' (ICML 2025), which demonstrates LLMs fail to capture annotator divergence — the opposite of what the proposal claims. No paper by Pyatkin specifically validating LLM persona reliability for constrained annotation probe questions was found.\"]\nFeedback: DART's core architecture is now well-specified and the compute budget constraint from Round 1 is genuinely resolved. Three targeted revisions remain: (1) TIMELINE — Accept that EMNLP 2026 ARR is not achievable in 15 days given the 16–22 day estimate and the irreducible Prolific bottleneck. Retarget AAAI 2027 (deadline ~July–August 2026) as the primary venue, which allows manual or human-in-loop mode. Alternatively, if EMNLP 2026 must be the target, pilot the Prolific study and Stage 1 training in the next 3 days before submission, report partial results with complete methodology, and explicitly frame the paper as a methods proposal with preliminary validation — but this is risky and ARR may reject incomplete work. (2) LLM PERSONA RISK MITIGATION — Lower the gold standard correlation threshold to ρ ≥ 0.50 and plan a fallback: if personas fail validation on Stage 3, report human-evaluation-only results on the 100-instance gold standard (still sufficient to validate the protocol) and position the 1,400-instance persona extension as a future work. This isolates the methodology contribution (Stage 1+2+4) from the empirical scale contribution (Stage 3), making the paper robust to persona failure. (3) CITE AND DIFFERENTIATE FROM ICML 2025 CONCURRENT WORK — Add 'Diverging Preferences: When do Annotators Disagree and do Models Know?' (Zhang, Pyatkin et al., ICML 2025, arXiv 2410.14632) as a concurrent taxonomy paper. The key differentiator: that work focuses on preference/RLHF annotation contexts and does not generate probes or connect to soft-label training; DART targets general NLP annotation schemas and closes the full resolution loop. Correct the 'Pyatkin et al. 2025' citation for persona reliability or remove the claim. (4) EVALUATION — Add at least one concrete downstream task result: e.g., fine-tune a Qwen3-7B model on the DART-updated soft labels for toxicity detection, measure macro-F1 against a hard-label baseline and a naive soft-label baseline (without DART probing). This anchors the abstract entropy metric to something reviewers can evaluate.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"TIMELINE INFEASIBILITY — EMNLP 2026 CLAIM IS FALSE: Today is May 10; the ARR deadline is May 25 (15 days). The proposal's own auto-research estimate is '16-22 days,' with 5-8 days as the irreducible Prolific wall-clock minimum. Under the most optimistic scenario (16 days), completion falls on May 26 — one day after the deadline. Claiming EMNLP 2026 is 'feasible' while the proposal's own estimates disprove it is a direct contradiction that reviewers (and the user) will notice. This has been raised in both prior rounds without resolution.\", \"DIVERGING PREFERENCES (ICML 2025) STILL MISSING AFTER TWO EXPLICIT ROUNDS OF FEEDBACK: 'Diverging Preferences: When do Annotators Disagree and do Models Know?' (Zhang, Pyatkin, Hwang et al., ICML 2025, arXiv:2410.14632) proposes a 10-category annotator disagreement taxonomy across four high-level classes, published at a top ML venue. This paper is directly analogous to DART's Stage 1 classifier. It was cited as a critical missing reference in Round 1 and Round 2 feedback; it remains completely absent from the Round 3 key references and landscape. EMNLP reviewers familiar with this work will view the omission as either ignorance or evasion.\", \"PYATKIN CITATION INVERTS THE ACTUAL PAPER'S FINDING: The proposal states 'persona simulation is more reliable than open-ended disagreement generation, per Pyatkin et al. 2025.' The most relevant Pyatkin 2025 paper is 'Diverging Preferences' (ICML 2025, arXiv:2410.14632), which concludes that LLMs 'fail to account for divergence between annotators' — the precise opposite of the claim being made. This is not a minor attribution issue: it is a factually incorrect citation that undermines the theoretical justification for Stage 3.\", \"LLM PERSONA RELIABILITY RISK UNDERESTIMATED GIVEN 2026 EVIDENCE: 'Assessing the Reliability of Persona-Conditioned LLMs as Synthetic Survey Respondents' (arXiv:2602.18462, Feb 2026) shows persona prompting does not yield aggregate improvement and in many cases 'significantly degrades performance,' redistributing error in ways that 'undermine subgroup fidelity.' The ρ ≥ 0.60 validation threshold is still presented as a sufficient safeguard, but failure to meet this threshold on the gold standard would invalidate the entire 1,400-instance persona extension. A concrete fallback plan (human-evaluation-only results on the 100-instance gold standard as the primary submission result) is still absent.\", \"STAGE 4 EVALUATION STILL UNSPECIFIED AFTER THREE ROUNDS: The evaluation states 'STABLEVAL-evaluated performance on subjective NLP tasks' without naming the downstream model architecture, the dataset used for fine-tuning, or the baseline comparisons. Round 2 feedback explicitly requested: 'fine-tune a Qwen3-7B model on the DART-updated soft labels for toxicity detection, measure macro-F1 against a hard-label baseline and a naive soft-label baseline (without DART probing).' This has not been addressed.\"]\nFeedback: The methodology is now well-specified in its core components (CARE-derived weak supervision mapping, Stage 4 formula, probe type design). Four targeted changes will resolve all remaining blockers:\n\n(1) RETARGET TO AAAI 2027 — Remove the EMNLP 2026 entry from target_venues or explicitly mark it as infeasible. The auto-research timeline estimate (16-22 days) exceeds the available 15 days by definition. Commit to AAAI 2027 (expected deadline July-August 2026) as the primary venue, which allows human-in-loop mode with the Prolific study running in proper sequence.\n\n(2) ADD AND DIFFERENTIATE DIVERGING PREFERENCES (ICML 2025) — Add 'Diverging Preferences: When do Annotators Disagree and do Models Know?' (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632) to key_references with this differentiation: that paper develops a 10-category taxonomy for RLHF/preference annotation contexts (A vs. B comparisons) and does not generate targeted probes or connect to annotation resolution; DART operates across general NLP annotation schemas (toxicity, NLI), conditions probe generation on pre-classified disagreement type, and closes the full resolution-to-training loop. This differentiation is genuine and credible — it just needs to be stated explicitly.\n\n(3) CORRECT THE PYATKIN CITATION AND ADDRESS PERSONA RISK — Remove 'per Pyatkin et al. 2025' as a citation supporting persona reliability. Instead, cite 'Quantifying the Persona Effect in LLM Simulations' (Hu & Collier, ACL 2024, arXiv:2402.10811) for the narrow claim that persona prompting provides modest improvements on high-disagreement samples. Acknowledge that persona reliability is a failure risk: add a concrete fallback — if personas fail the ρ ≥ 0.60 threshold, the paper reports results on the 100-instance human gold standard only and positions full-scale persona deployment as future work.\n\n(4) SPECIFY THE STAGE 4 EVALUATION — Name the downstream model (Qwen3-7B), dataset (ToxiGen or MNLI validation split), and baselines (hard-label training; soft-label training without DART probing, i.e., using the original annotation distribution). Report macro-F1 and calibration ECE. This anchors the entropy reduction metric to a standard benchmark reviewers can evaluate independently.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T07:10:23.091Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T07:10:23.091Z",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T07:10:23.127Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Human-Centered NLP and Human-AI Interaction. Aligns with EMNLP 2026 special theme on agentic workflows interfacing with human experiences.
+
+Direction: Methods that improve how humans and NLP systems collaborate. In-scope: interactive learning from human feedback (beyond vanilla RLHF), human-in-the-loop annotation methods, calibrated uncertainty communication to users, adaptive explanation generation, collaborative writing/editing systems, preference elicitation, controllable generation with user intent.
+
+Contribution type: METHOD ONLY. Must propose a concrete algorithm or system mechanism — not a user study alone. Method validated via user study or simulation is ideal.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. HCI-style work is often light on compute, heavier on design and evaluation.
+2. Time: ≤16 days. Use existing open models + lightweight adaptation. If user study needed, design a small-scale simulated or crowdsourced protocol.
+3. Eval: task-specific metrics + human evaluation (inter-annotator agreement, preference rates, task completion time). Simulated user evaluation acceptable for ARR submission.
+
+Look for: adaptive interaction patterns, uncertainty-aware response generation, methods for user preference learning with minimal feedback, controllable generation beyond simple instruction following.
+
+Tag: direction=human_ai_interaction, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 4/10)
+{
+  "title": "Disagreement-Type-Conditioned Active Annotation Resolution Protocol",
+  "project_name": "type_aware_disagree_resolve",
+  "source": "web_research",
+  "level": "solid",
+  "core_problem": "When human annotators disagree, current annotation systems either collapse disagreement via majority voting or model its distribution passively without intervening. A principled typed taxonomy of NLI disagreement (Jiang & de Marneffe, TACL 2022) has been proposed, and Zhang et al. (ICML 2025, arXiv:2410.14632) have now shown that even RLHF reward models and LLM judges fail to account for annotator divergence when presented with typed preference data — confirming that passive LLM prediction cannot substitute for active resolution. Yet no system exploits disagreement type to select probe format, generate targeted resolution probes, collect structured annotator responses, and feed them back into model training as calibrated soft-label updates. The precise mechanism by which disagreement type should determine probe format, and how probe responses should update label distributions for downstream training, remains entirely unspecified in the literature.",
+  "opportunity": "CARE (EMNLP 2025, aclanthology 2025.emnlp-main.671) introduces disagreement detection via sub-concept alignment and counterfactual reasoning but is entirely passive — it does not type disagreements or generate resolution probes. A simultaneous structured disagreement analysis (arXiv 2604.19943, April 2026) shows task-level conceptual difficulty accounts for substantially more annotation variance than annotator identity, providing empirical grounding for type-conditioned probe selection. Zhang et al. (ICML 2025, arXiv:2410.14632) develop a 10-category disagreement taxonomy for RLHF preference annotation and find that standard reward modeling methods and LLM-as-Judge approaches 'fail to account for divergence between annotators' — a direct empirical motivation for DART's active probe-based approach: where passive LLM prediction fails, structured human probing through typed probes is required. ClarifyDelphi (ACL 2023, aclanthology.org/2023.acl-long.630) is the closest prior work on targeted clarification question generation, using RL with defeasibility rewards to elicit context for moral/social situations — but it operates in a narrow domain, does not pre-classify disagreement type before generating questions, generates background-context questions (not annotation-schema disambiguation probes), and does not connect to soft-label training. 'Will Annotators Disagree?' (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) predicts whether disagreement will occur on value-laden arguments (one of DART's three types), but predicts binary occurrence rather than typing it post-hoc and generates no probes. The NLP Annotation Disagreement Workshop (ACL 2025 co-located) and NLPerspectives at EMNLP 2025 confirm sustained community interest. Together, these works leave a specific gap: no system closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration.",
+  "landscape": "Current SOTA spans: CARE (EMNLP 2025) for disagreement detection; Jiang & de Marneffe's 10-category NLI disagreement taxonomy under three classes — sentence-meaning uncertainty, guideline underspecification, and annotator behavior (TACL 2022, aclanthology.org/2022.tacl-1.78) — which provides the most directly related typed treatment of annotation disagreement and direct training supervision for DART Stage 1; 'Diverging Preferences' (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632), which develops a 10-category taxonomy for RLHF preference annotation (pairwise A vs. B comparisons on MultiPref and HelpSteer2, spanning four high-level classes: Task, Response Style, Refusals, Errors) and finds that LLMs fail to account for annotator divergence — this null result for passive LLM prediction provides independent motivation for DART's active probing design, and distinguishes from DART in scope (pairwise RLHF preference data vs. general NLP multi-class annotation schemas), mechanism (post-hoc characterization without probe generation), and integration (no connection to annotation resolution or soft-label training); Beyond Consensus (arXiv 2601.09065, Jan 2026) for perspectivist evaluation; soft-label training (arXiv 2511.14117) for preserving epistemic uncertainty; DEM-MoE (arXiv 2508.02853) for demographic-aware expert modeling; STABLEVAL (arXiv 2605.02122, May 2026) for disagreement-aware evaluation; 'Will Annotators Disagree?' (EMNLP 2025 Findings) for predicting value-laden disagreement occurrence; 'Beyond Black-Box Labels' (arXiv 2604.17022, April 2026) for pre-annotation diagnostic criteria separation; and ClarifyDelphi (ACL 2023) for RL-based clarification question generation in moral/social contexts. Closest concurrent work is ReasonScaffold (arXiv 2603.21094, March 2026), which exposes LLM reasoning to annotators via a two-pass Delphi protocol but applies a uniform intervention regardless of disagreement type and does not generate targeted resolution probes. Annotator-Centric Active Learning (EMNLP 2024) selects which annotators to query about disputed items but does not generate type-conditioned probe content. None of these systems include an active protocol that (i) detects disagreement type, (ii) generates type-specific resolution probes, (iii) encodes structured annotator responses as calibrated soft-label updates, and (iv) feeds these into model training.",
+  "approach": "We propose DART (Disagreement-Aware Resolution through Type-conditioned probing), a four-stage active annotation protocol scoped to ~1,500 ProbeBank instances across two domains (toxicity detection and NLI) to fit within the compute budget. Stage 1 fine-tunes Qwen3-7B as a three-way disagreement-type classifier — conceptual ambiguity (annotators interpret the construct via different sub-definitions), value divergence (shared construct understanding but differing normative weighting), and borderline threshold (stimulus near a decision boundary) — using dual-source supervision: (a) direct supervision from Jiang & de Marneffe's TACL 2022 NLI disagreement taxonomy (their three high-level classes map directly: sentence-meaning uncertainty → borderline/conceptual ambiguity; guideline underspecification → conceptual ambiguity; annotator behavior → value divergence; approximately 300 instances with human-typed labels) and (b) CARE-derived weak supervision for the toxicity domain, where CARE's three output signals serve as proxy labels: sub-concept-alignment-sensitive instances (label changes when sub-concept definition is swapped) → conceptual ambiguity; rationale-stable but direction-divergent instances (rationale-to-critique output shows annotators identify the same features but weight them differently) → value divergence; counterfactual-sensitive instances (counterfactual-to-detection shows the disagreement resolves with small textual perturbation) → borderline threshold. Stage 2 uses Qwen3-72B to generate type-specific resolution probes (max two candidates per instance): conceptual ambiguity → definitional boundary probes with minimal contrastive pairs ('Does X count as Y if Z is absent?'); value divergence → explicit priority-ranking elicitation frames ('Please rank the following considerations by their relevance to your judgment...'); borderline threshold → counterfactual shift probes ('Would your judgment change if [minimal feature] were [perturbed]?'). Stage 3 collects structured probe responses: for a 100-instance human gold standard on Prolific (~50-75 annotator-hours, ~5-8 days including pilot and QC), and for the remaining ~1,400 instances via LLM persona responses — where demographically diverse personas respond to the constrained probe questions. Persona prompting yields modest improvements on high-disagreement annotation samples relative to unprompted baselines (Hu & Collier, ACL 2024, arXiv:2402.10811); however, demographic conditioning can redistribute error in ways that undermine subgroup fidelity on open-ended survey tasks (arXiv:2602.18462), motivating strict validation before full deployment. Persona responses on the gold standard must correlate with human responses at ρ ≥ 0.60 before deployment at scale. Concrete fallback: if persona responses fail to reach ρ ≥ 0.60 on the gold standard, the paper's primary results are reported on the 100-instance Prolific human gold standard only, with full-scale persona deployment repositioned as future work; this preserves a complete publishable contribution grounded entirely in human annotation. Stage 4 integrates probe-conditioned soft labels into model fine-tuning: probe responses are encoded as pseudo-annotator vote vectors over the label space using a lightweight encoder trained on the gold standard; these vectors are added to the existing annotation distribution as N_probe = 3 equivalent pseudo-annotator votes via weighted average (P_updated = (N_orig × P_orig + N_probe × P_probe) / (N_orig + N_probe)); the updated distribution is used directly as the soft-label target following arXiv 2511.14117. Evaluation fine-tunes Qwen3-7B on the DART-updated soft labels and compares against three baselines on ToxiGen (toxicity domain) and the MNLI validation split (NLI domain): (1) hard-label training using majority-vote labels, (2) soft-label training without DART probing using the original annotation distribution, and (3) DART-probed soft-label training. Primary metrics are macro-F1 and Expected Calibration Error (ECE); STABLEVAL score provides a secondary disagreement-aware evaluation. Reduction in residual annotation entropy on held-out instances is reported as an auxiliary analysis. The three-way comparison isolates the contribution of type-conditioned probing over both hard labeling and unprobed soft labeling. DART explicitly extends ClarifyDelphi (ACL 2023) in four dimensions: domain generality (any NLP annotation schema, not only moral/social situations), type-conditioned probe selection (not uniform question generation), annotation-schema disambiguation probes rather than background-context questions, and training integration via soft-label updates. We release ProbeBank-1.5K: 1,500 type-annotated disagreement instances with validated resolution probes across two NLP domains.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~100h A100 80GB (~50 H100-equivalent hours)",
+      "gpu_utilization": "Low (~20-30%) — compute bursts are short; GPU idles during Prolific study setup/pilot (~2 days), QC and re-annotation (~2 days), and manual experimental analysis",
+      "timeline": "3-4 months from start; targeting AAAI 2027 (expected deadline July-August 2026), beginning immediately in May 2026 is borderline feasible",
+      "team": "2 researchers (1 NLP lead, 1 annotation study coordinator)",
+      "estimated_gpu_cost": "~$150-250 (100h × $1.50-2.50/hr on RunPod/Lambda)",
+      "annotation_cost": "~$600-900 for 100-instance Prolific gold standard at $12/hr × ~60 annotator-hours"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150h A100 80GB (~75 H100-equivalent hours)",
+      "gpu_utilization": "Moderate (~50-60%) — agent handles hyperparameter sweeps, probe generation drafts, and evaluation runs; human approves gold-standard design, reviews probe quality samples, and checkpoints training decisions every ~45min",
+      "timeline": "4-6 weeks; recommended primary mode for AAAI 2027 target (expected deadline July-August 2026 — ~3 months available as of May 2026; this mode completes well within the window with buffer for revision)",
+      "team": "1 researcher, ~45min/day approval check-ins",
+      "claude_api_cost": "$100-200 (~1,000-2,000 turns for experiment orchestration, probe drafting, result summarization, and ProbeBank quality-filtering decisions)",
+      "estimated_gpu_cost": "~$225-375 (150h × $1.50-2.50/hr)",
+      "risk_note": "Prolific gold-standard collection (~5-8 days wall-clock) runs in parallel with data preparation and initial classifier experiments; with the AAAI 2027 deadline, this is not on the critical path and can be run in proper sequence if needed"
+    },
+    "auto_research": {
+      "gpu_hours": "~250-300h A100 80GB (~125-150 H100-equivalent hours, within 200 H100h budget)",
+      "gpu_utilization": "High (~80-90%) — agent runs hyperparameter sweeps, probe template ablations, persona simulation at scale, and evaluation continuously; idle time limited to API rate limits and data loading",
+      "timeline": "16-22 days (4× A100 cluster); fully feasible for AAAI 2027 with substantial buffer; Prolific gold-standard collection (~5-8 days) is no longer on a compressing critical path given the ~3-month window to deadline",
+      "team": "0 (setup only: ~3-4h to configure agent, provision datasets, deploy Prolific study, set persona simulation pipeline)",
+      "claude_api_cost": "$200-400 (~2,000-4,000 turns including failed runs, multi-seed ablations, persona response filtering, and paper draft generation)",
+      "estimated_gpu_cost": "~$375-750 (250-300h × $1.50-2.50/hr)",
+      "speed_bottleneck": "Prolific gold-standard collection is the irreducible wall-clock minimum (~5-8 days); secondary bottleneck is Qwen3-72B inference rate for probe generation (single-pass at 1,500 instances × 2 candidates ≈ 15-20h A100, manageable within budget)",
+      "risk_note": "LLM persona probe responses may converge on superficially fluent but diagnostically shallow answers despite type-conditioning; validated by requiring ρ ≥ 0.60 correlation with human responses on gold standard before full deployment. Concrete fallback: if threshold is not met, paper reports results on the 100-instance human gold standard as the primary contribution and repositions persona scaling as future work. Recommend one human spot-check of probe quality mid-run."
+    }
+  },
+  "target_venues": [
+    "AAAI 2027 (expected deadline July-August 2026 — primary target; feasible under human-in-loop mode starting immediately, with ~3 months available and 4-6 week execution time; auto-research mode also feasible at 16-22 days)",
+    "ARR September 2026 cycle → EMNLP 2027 (fallback if AAAI submission requires additional iteration)"
+  ],
+  "key_references": [
+    "CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement (EMNLP 2025, aclanthology 2025.emnlp-main.671)",
+    "Investigating Reasons for Disagreement in Natural Language Inference (Jiang & de Marneffe, TACL 2022, aclanthology.org/2022.tacl-1.78) — 10-category NLI taxonomy providing direct training supervision for Stage 1",
+    "Diverging Preferences: When do Annotators Disagree and do Models Know? (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632) — 10-category taxonomy for RLHF preference annotation (pairwise A vs. B; MultiPref and HelpSteer2 datasets) across four high-level classes (Task, Response Style, Refusals, Errors); finds that LLMs fail to capture annotator divergence, motivating DART's active probe approach; distinct from DART in targeting pairwise RLHF data (not general NLP multi-class schemas), not generating resolution probes, and not connecting to annotation resolution or soft-label training",
+    "ClarifyDelphi: Reinforced Clarification Questions with Defeasibility Rewards for Social and Moral Situations (ACL 2023, aclanthology.org/2023.acl-long.630) — closest predecessor in probe generation; DART extends to annotation-domain generality, type conditioning, schema disambiguation, and training integration",
+    "Will Annotators Disagree? Identifying Subjectivity in Value-Laden Arguments (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824) — partial prior coverage of value-divergence type (predicts binary occurrence, not type; no probe generation)",
+    "Quantifying the Persona Effect in LLM Simulations (Hu & Collier, ACL 2024, arXiv:2402.10811) — supports the narrow claim that persona prompting yields modest improvements on high-disagreement annotation samples; basis for Stage 3 persona deployment rationale",
+    "Assessing the Reliability of Persona-Conditioned LLMs as Synthetic Survey Respondents (arXiv:2602.18462, Feb 2026) — shows persona conditioning can redistribute error and undermine subgroup fidelity; motivates the ρ ≥ 0.60 validation threshold and the 100-instance human gold standard fallback",
+    "Structured Disagreement in Health-Literacy Annotation: Epistemic Stability, Conceptual Difficulty, and Agreement-Stratified Inference (arXiv 2604.19943, April 2026)",
+    "Beyond Black-Box Labels: Interpretable Criteria for Diagnosing Subjective NLP Tasks (arXiv 2604.17022, April 2026) — concurrent diagnostic approach; pre-annotation audit vs. DART's active resolution",
+    "Beyond Consensus: Perspectivist Modeling and Evaluation of Annotator Disagreement in NLP (arXiv 2601.09065, Jan 2026)",
+    "Soft-Label Training Preserves Epistemic Uncertainty (arXiv 2511.14117)",
+    "Modeling Annotator Disagreement with Demographic-Aware Experts and Synthetic Perspectives (DEM-MoE, arXiv 2508.02853)",
+    "STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems (arXiv 2605.02122, May 2026)",
+    "ReasonScaffold: Evaluating Reasoning-Based Scaffolds for Human-AI Co-Annotation (arXiv 2603.21094, March 2026)",
+    "Annotator-Centric Active Learning for Subjective NLP Tasks (EMNLP 2024)"
+  ],
+  "description": "DART (Disagreement-Aware Resolution through Type-conditioned probing) proposes the first active annotation protocol that closes the loop from disagreement-type detection to type-specific probe generation, structured response encoding, and soft-label training integration. Grounded in Jiang & de Marneffe's (TACL 2022) typed NLI taxonomy and findings that task-level conceptual difficulty dominates annotation variance, DART trains a Qwen3-7B three-way classifier (conceptual ambiguity / value divergence / borderline threshold) using dual-source supervision: direct labels from the TACL 2022 taxonomy for the NLI domain, and CARE-derived weak supervision for toxicity — where sub-concept-alignment sensitivity → conceptual ambiguity, rationale-stable but direction-divergent CARE output → value divergence, and counterfactual-sensitive CARE output → borderline threshold. Qwen3-72B generates type-specific probes: definitional boundary contrastive pairs for ambiguity, priority-ranking frames for value disputes, and counterfactual shift probes for borderline cases. Structured annotator responses (collected via LLM personas for ~1,400 instances, validated against a 100-instance Prolific human gold standard requiring ρ ≥ 0.60 correlation; persona prompting yields modest improvements on high-disagreement samples per Hu & Collier, ACL 2024, but can redistribute error in open-ended settings per arXiv:2602.18462, hence strict validation and a concrete fallback: if the threshold is not met, primary results are reported on the 100-instance gold standard only with persona scaling as future work) are encoded as pseudo-annotator vote vectors and integrated into the annotation distribution via weighted average, then used for soft-label training following arXiv 2511.14117. Evaluation fine-tunes Qwen3-7B on the DART-updated soft labels against three baselines — hard-label training, unprobed soft-label training, and DART-probed soft-label training — on ToxiGen (toxicity) and MNLI validation split (NLI), measuring macro-F1 and calibration ECE. Unlike 'Diverging Preferences' (Zhang, Pyatkin et al., ICML 2025), which develops a 10-category taxonomy for RLHF pairwise preference data and finds that LLMs fail to capture divergence — motivating active probing — DART targets general NLP multi-class annotation schemas, generates type-conditioned resolution probes, and completes the resolution-to-training loop. Unlike ClarifyDelphi (ACL 2023), which generates context-eliciting questions for moral situations without type pre-classification and without annotation workflow integration, DART operates across annotation schemas, conditions probe selection on disagreement type, and completes the resolution-to-training loop. Unlike 'Will Annotators Disagree?' (EMNLP 2025 Findings), which predicts binary value-laden disagreement occurrence pre-annotation, DART types disagreement post-hoc across all three categories and generates targeted probes. The scoped release — ProbeBank-1.5K, 1,500 type-annotated disagreement instances with validated probes across toxicity and NLI — provides the first benchmark for evaluating annotation resolution protocols within a 125-150 H100-equivalent-hour compute budget."
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["HARD CONSTRAINT VIOLATION: The user specified ≤200 H100-hours. Auto-research mode (the only EMNLP-2026-feasible mode) uses ~700 A100 hours ≈ 350 H100-equivalent hours, exceeding the budget by ~75%. Manual mode fits the compute budget (180 A100h ≈ 90 H100h) but requires 5–7 months. No configuration satisfies both the 200 H100h limit and the 16-day deadline simultaneously. The idea as currently scoped cannot reach EMNLP 2026 within user-stated constraints.", "UNCITED CRITICAL PRIOR WORK — ClarifyDelphi (ACL 2023, aclanthology.org/2023.acl-long.630): Generates targeted clarification questions for moral/social situations via RL with defeasibility rewards (maximizing divergence of potential answers). This directly pre-empts DART's Stage 2 probe generation concept. DART must cite and explicitly differentiate: ClarifyDelphi is domain-specific (moral/social), not annotation-context-general; it doesn't pre-classify disagreement type; and it doesn't feed into soft-label model training. These distinctions are real but must be made explicit.", "UNCITED RELEVANT PRIOR WORK — 'Will Annotators Disagree? Identifying Subjectivity in Value-Laden Arguments' (EMNLP 2025 Findings, aclanthology.org/2025.findings-emnlp.824): Predicts whether annotators will disagree specifically on value-laden content, overlapping significantly with DART's 'value-based divergence' type category in Stage 1. The generator claims DART's type taxonomy is new, but this paper partially covers one of the three types.", "HUMAN ANNOTATION BOTTLENECK IS UNDERESTIMATED FOR 16-DAY TIMELINE: The paper acknowledges 200–300 annotator-hours as an 'irreducible lower bound,' but crowdsourced annotation on Prolific in practice requires: study protocol finalization, platform setup and pilot (2–3 days), active annotation batch (3–5 days at reasonable pay rates), quality control and re-annotation of rejected HIT responses (2–3 days), and iteration. This alone consumes ~10 days, leaving essentially no time for classifier training, Qwen3-72B probe generation at scale, soft-label training, ablations, and paper writing.", "WEAK SUPERVISION SPECIFICATION GAP: Stage 1 claims to use 'CARE-derived rationale labels as weak supervision' for a 3-way classifier (conceptual ambiguity / value divergence / borderline threshold). However, CARE's output is concept-level alignment and counterfactual-based disagreement detection — it does not directly emit a conceptual-vs-value-vs-borderline partition. The label induction procedure mapping CARE outputs to these three types is critical and entirely unspecified. Without this, the classifier training step is undefined.", "QWEN3-72B INFERENCE SCALE: Stage 2 uses Qwen3-72B for probe generation across ~5,000 ProbeBank instances. Running a 72B model for batch inference over this scale is more expensive than the ~30h A100 estimate if generation requires substantial sampling or multi-candidate output per instance. The estimate assumes single-pass inference; any multi-sample or temperature-based diversity will multiply this cost.", "STAGE 4 TRAINING INTEGRATION IS UNDERSPECIFIED: The paper states probe-conditioned soft labels are 'fed into model fine-tuning following the arXiv 2511.14117 framework' but does not specify how the probe response modifies the label distribution (e.g., reweighting, Bayesian update, direct soft-label replacement). The arXiv 2511.14117 paper is a training method, not a label aggregation procedure — the connecting mechanism is missing."]
+Feedback: The core concept of DART — closing the loop from disagreement-type detection to type-specific probe generation to training integration — is intellectually sound and addresses a real gap. To make this submittable to EMNLP 2026 within user constraints, the generator should make three targeted revisions: (1) SCOPE REDUCTION TO FIT COMPUTE BUDGET: Reduce ProbeBank to ~1,500 instances across two domains (toxicity + NLI), use simulated annotators (LLM personas with demographic prompting, validated against a 100-instance human gold standard) for most ProbeBank construction, and restrict ablations to critical variants. This should bring auto-research compute to ~250 A100h ≈ 125 H100h, within the 200 H100h budget, and make the 16-day timeline tight but feasible. (2) CITE AND DIFFERENTIATE FROM ClarifyDelphi: Add ClarifyDelphi (ACL 2023) as a direct predecessor. Emphasize DART's distinctions: annotation-domain generality (not just moral/social situations), explicit three-way type classification before probe selection, structured annotator response encoding, and training integration via soft labels. Position ClarifyDelphi as the closest prior work in the probe-generation component and DART as extending it to the full annotation lifecycle. Also cite 'Will Annotators Disagree?' (EMNLP 2025 Findings) for the value-divergence type. (3) SPECIFY WEAK SUPERVISION LABEL INDUCTION: Describe concretely how CARE concept taxonomy and counterfactual outputs map to the three disagreement types. For example: instances where CARE identifies sub-concept misalignment → conceptual ambiguity; instances where construct understanding is stable but evaluation direction differs → value divergence; instances where counterfactual perturbations shift labels at low magnitude → borderline threshold. This operationalization is needed before Stage 1 training is feasible.
+
+### Round 2 review
+Verdict: revise
+Issues: ["TIMELINE STILL INFEASIBLE FOR EMNLP ARR: The proposal's own auto-research estimate is 16–22 days, but only 15 days remain before the May 25, 2026 ARR deadline (confirmed at https://2026.emnlp.org/calls/main_conference_papers/). Even the optimistic 16-day scenario places completion at May 26 — one day after the deadline. The proposal claims 'feasible' while citing an estimate that contradicts this claim. ARR requires complete papers with results; submitting with ongoing Prolific QC is not permissible.", "LLM PERSONA RELIABILITY RISK IS UNDERESTIMATED: Recent empirical literature shows LLM personas account for <10% of annotation variance (ACL 2024 'Quantifying the Persona Effect'), and that prompted LLMs 'fail to account for divergence between annotators' on preference tasks (ICML 2025 'Diverging Preferences'). Requiring ρ ≥ 0.60 between persona responses and human responses on annotation disagreement tasks is extremely optimistic. If this threshold is not met, the entire Stage 3 fallback requires 200–300 human annotator-hours, violating both the 200 H100h budget and the 15-day timeline simultaneously.", "UNCITED ICML 2025 CONCURRENT TAXONOMY WORK: 'Diverging Preferences: When do Annotators Disagree and do Models Know?' (Zhang, Pyatkin et al., ICML 2025, arXiv 2410.14632) develops a 10-category taxonomy across four high-level classes of annotator disagreement specifically for NLP tasks, published at a top venue. This is directly relevant to DART's Stage 1 three-way classifier. EMNLP reviewers familiar with this paper will expect explicit citation and differentiation. Without it, the novelty of Stage 1 will appear weaker than claimed.", "EVALUATION PLAN INSUFFICIENT FOR EMNLP MAIN: 'Reduction in residual annotation entropy' is not a standard validated metric in subjective NLP. EMNLP Main reviewers will expect at least one downstream task performance result (e.g., F1 on toxicity detection or NLI accuracy) where soft-label DART training outperforms standard baselines. The current plan mentions STABLEVAL-evaluated performance but does not specify what task/model/baseline is being evaluated, making the evaluation framework opaque.", "STAGE 4 DOWNSTREAM MODEL UNSPECIFIED: The proposal says probe-conditioned soft labels are fed into 'model fine-tuning' but never specifies what model architecture is fine-tuned, on what task, with what baseline comparison. This is a fundamental gap for reproducibility and for assessing whether Stage 4 produces measurable improvements.", "'PYATKIN ET AL. 2025' CITATION FOR PERSONA RELIABILITY APPEARS INCORRECT: The proposal claims 'persona simulation is more reliable than open-ended disagreement generation, per Pyatkin et al. 2025.' The Pyatkin group's most relevant 2025 paper is 'Diverging Preferences' (ICML 2025), which demonstrates LLMs fail to capture annotator divergence — the opposite of what the proposal claims. No paper by Pyatkin specifically validating LLM persona reliability for constrained annotation probe questions was found."]
+Feedback: DART's core architecture is now well-specified and the compute budget constraint from Round 1 is genuinely resolved. Three targeted revisions remain: (1) TIMELINE — Accept that EMNLP 2026 ARR is not achievable in 15 days given the 16–22 day estimate and the irreducible Prolific bottleneck. Retarget AAAI 2027 (deadline ~July–August 2026) as the primary venue, which allows manual or human-in-loop mode. Alternatively, if EMNLP 2026 must be the target, pilot the Prolific study and Stage 1 training in the next 3 days before submission, report partial results with complete methodology, and explicitly frame the paper as a methods proposal with preliminary validation — but this is risky and ARR may reject incomplete work. (2) LLM PERSONA RISK MITIGATION — Lower the gold standard correlation threshold to ρ ≥ 0.50 and plan a fallback: if personas fail validation on Stage 3, report human-evaluation-only results on the 100-instance gold standard (still sufficient to validate the protocol) and position the 1,400-instance persona extension as a future work. This isolates the methodology contribution (Stage 1+2+4) from the empirical scale contribution (Stage 3), making the paper robust to persona failure. (3) CITE AND DIFFERENTIATE FROM ICML 2025 CONCURRENT WORK — Add 'Diverging Preferences: When do Annotators Disagree and do Models Know?' (Zhang, Pyatkin et al., ICML 2025, arXiv 2410.14632) as a concurrent taxonomy paper. The key differentiator: that work focuses on preference/RLHF annotation contexts and does not generate probes or connect to soft-label training; DART targets general NLP annotation schemas and closes the full resolution loop. Correct the 'Pyatkin et al. 2025' citation for persona reliability or remove the claim. (4) EVALUATION — Add at least one concrete downstream task result: e.g., fine-tune a Qwen3-7B model on the DART-updated soft labels for toxicity detection, measure macro-F1 against a hard-label baseline and a naive soft-label baseline (without DART probing). This anchors the abstract entropy metric to something reviewers can evaluate.
+
+### Round 3 review
+Verdict: revise
+Issues: ["TIMELINE INFEASIBILITY — EMNLP 2026 CLAIM IS FALSE: Today is May 10; the ARR deadline is May 25 (15 days). The proposal's own auto-research estimate is '16-22 days,' with 5-8 days as the irreducible Prolific wall-clock minimum. Under the most optimistic scenario (16 days), completion falls on May 26 — one day after the deadline. Claiming EMNLP 2026 is 'feasible' while the proposal's own estimates disprove it is a direct contradiction that reviewers (and the user) will notice. This has been raised in both prior rounds without resolution.", "DIVERGING PREFERENCES (ICML 2025) STILL MISSING AFTER TWO EXPLICIT ROUNDS OF FEEDBACK: 'Diverging Preferences: When do Annotators Disagree and do Models Know?' (Zhang, Pyatkin, Hwang et al., ICML 2025, arXiv:2410.14632) proposes a 10-category annotator disagreement taxonomy across four high-level classes, published at a top ML venue. This paper is directly analogous to DART's Stage 1 classifier. It was cited as a critical missing reference in Round 1 and Round 2 feedback; it remains completely absent from the Round 3 key references and landscape. EMNLP reviewers familiar with this work will view the omission as either ignorance or evasion.", "PYATKIN CITATION INVERTS THE ACTUAL PAPER'S FINDING: The proposal states 'persona simulation is more reliable than open-ended disagreement generation, per Pyatkin et al. 2025.' The most relevant Pyatkin 2025 paper is 'Diverging Preferences' (ICML 2025, arXiv:2410.14632), which concludes that LLMs 'fail to account for divergence between annotators' — the precise opposite of the claim being made. This is not a minor attribution issue: it is a factually incorrect citation that undermines the theoretical justification for Stage 3.", "LLM PERSONA RELIABILITY RISK UNDERESTIMATED GIVEN 2026 EVIDENCE: 'Assessing the Reliability of Persona-Conditioned LLMs as Synthetic Survey Respondents' (arXiv:2602.18462, Feb 2026) shows persona prompting does not yield aggregate improvement and in many cases 'significantly degrades performance,' redistributing error in ways that 'undermine subgroup fidelity.' The ρ ≥ 0.60 validation threshold is still presented as a sufficient safeguard, but failure to meet this threshold on the gold standard would invalidate the entire 1,400-instance persona extension. A concrete fallback plan (human-evaluation-only results on the 100-instance gold standard as the primary submission result) is still absent.", "STAGE 4 EVALUATION STILL UNSPECIFIED AFTER THREE ROUNDS: The evaluation states 'STABLEVAL-evaluated performance on subjective NLP tasks' without naming the downstream model architecture, the dataset used for fine-tuning, or the baseline comparisons. Round 2 feedback explicitly requested: 'fine-tune a Qwen3-7B model on the DART-updated soft labels for toxicity detection, measure macro-F1 against a hard-label baseline and a naive soft-label baseline (without DART probing).' This has not been addressed."]
+Feedback: The methodology is now well-specified in its core components (CARE-derived weak supervision mapping, Stage 4 formula, probe type design). Four targeted changes will resolve all remaining blockers:
+
+(1) RETARGET TO AAAI 2027 — Remove the EMNLP 2026 entry from target_venues or explicitly mark it as infeasible. The auto-research timeline estimate (16-22 days) exceeds the available 15 days by definition. Commit to AAAI 2027 (expected deadline July-August 2026) as the primary venue, which allows human-in-loop mode with the Prolific study running in proper sequence.
+
+(2) ADD AND DIFFERENTIATE DIVERGING PREFERENCES (ICML 2025) — Add 'Diverging Preferences: When do Annotators Disagree and do Models Know?' (Zhang, Pyatkin et al., ICML 2025, arXiv:2410.14632) to key_references with this differentiation: that paper develops a 10-category taxonomy for RLHF/preference annotation contexts (A vs. B comparisons) and does not generate targeted probes or connect to annotation resolution; DART operates across general NLP annotation schemas (toxicity, NLI), conditions probe generation on pre-classified disagreement type, and closes the full resolution-to-training loop. This differentiation is genuine and credible — it just needs to be stated explicitly.
+
+(3) CORRECT THE PYATKIN CITATION AND ADDRESS PERSONA RISK — Remove 'per Pyatkin et al. 2025' as a citation supporting persona reliability. Instead, cite 'Quantifying the Persona Effect in LLM Simulations' (Hu & Collier, ACL 2024, arXiv:2402.10811) for the narrow claim that persona prompting provides modest improvements on high-disagreement samples. Acknowledge that persona reliability is a failure risk: add a concrete fallback — if personas fail the ρ ≥ 0.60 threshold, the paper reports results on the 100-instance human gold standard only and positions full-scale persona deployment as future work.
+
+(4) SPECIFY THE STAGE 4 EVALUATION — Name the downstream model (Qwen3-7B), dataset (ToxiGen or MNLI validation split), and baselines (hard-label training; soft-label training without DART probing, i.e., using the original annotation distribution). Report macro-F1 and calibration ECE. This anchors the entropy reduction metric to a standard benchmark reviewers can evaluate independently.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "1b36dbbe-b1b2-4759-b0e5-c0d3fe87d6a3",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T07:10:23.123Z_
+
+```json
+{
+  "parentUuid": "1b36dbbe-b1b2-4759-b0e5-c0d3fe87d6a3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5574f5f3-7f95-466e-8edc-48ca8e219fb3",
+  "timestamp": "2026-05-10T07:10:23.123Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T07:10:23.123Z_
+
+```json
+{
+  "parentUuid": "5574f5f3-7f95-466e-8edc-48ca8e219fb3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0f172a4a-0b4e-40e0-92ca-35c48877f208",
+  "timestamp": "2026-05-10T07:10:23.123Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0f172a4a-0b4e-40e0-92ca-35c48877f208",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disagreement-type-conditioned annotation resolution protocol",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T07:11:03.885Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this Round 4 submission of DART (Disagreement-Aware Resolution through Type-conditioned probing). This is a round 4 review, and the previous three rounds flagged specific issues. Let me check if those issues have been addressed in the current version, and also do my own independent research.
+
+Key issues from previous rounds:
+1. **Timeline infeasibility for EMNLP 2026** - The paper's own auto-research estimate is 16-22 days, exceeding the 15-day window to the May 25 deadline.
+2. **Diverging Preferences (ICML 2025)** - Zhang, Pyatkin et al., arXiv:2410.14632 was missing from key references.
+
+
+3. **Pyatkin citation** - incorrectly attributed persona reliability claim.
+4. **LLM persona reliability risk** - arXiv:2602.18462 shows issues with persona conditioning.
+5. **Stage 4 evaluation unspecified** - No downstream model/dataset/baseline specified.
+
+Looking at the Round 4 submission's target venues, they've shifted the primary target to AAAI 2027 with a July-August 2026 deadline, and ARR September 2026 as a fallback for EMNLP 2027, which addresses the timeline pressure from the original EMNLP 2026 goal.
+
+The Diverging Preferences paper by Zhang, Pyatkin et al. from ICML 2025 is now properly included in the key references, covering the 10-category taxonomy for RLHF preference annotation. And the persona prompting claim is now correctly attributed to Hu & Collier's ACL 2024 work, which shows modest improvements on high-disagreement samples rather than making broader reliability claims.
+
+For the persona reliability concern, the proposal establishes a concrete threshold—persona responses need to correlate with human responses at ρ ≥ 0.60 before scaling up. If that threshold isn't met, the paper falls back to reporting results on the 100-instance human gold standard only, with full-scale persona deployment deferred to future work, which keeps the contribution publishable and grounded in human annotation.
+
+The Stage 4 evaluation fine-tunes Qwen3-7B on DART-updated soft labels and compares three approaches: hard-label training with majority voting, soft-label training without DART probing, and DART-probed soft-label training, measuring performance on ToxiGen and MNLI validation using macro-F1 and Expected Calibration Error.
+
+Now I need to verify some of the key citations—checking whether Jiang & de Marneffe's taxonomy matches what's described, whether CARE is accurately characterized, and confirming the Zhang et al. paper actually exists.
+
+I'm also noticing a critical issue: the proposal has shifted to AAAI 2027 and EMNLP 2027, but the user originally specified EMNLP 2026 with an ARR deadline of May 25, 2026. That's a major deviation from the stated requirements.
+
+The reviewer guidelines are clear—I need to assess whether the idea actually meets what the user asked for, and if it doesn't match their explicit target, that's grounds for a "revise" or "fail" rating. The fact that the venue has been completely retargeted is a fundamental mismatch I should flag.
+
+But there's a tension here: the generator correctly identified that EMNLP 2026 is infeasible given the timeline constraints, and responsibly pivoted to AAAI 2027. The real issue is that the user's primary requirement—hitting EMNLP 2026—cannot be met by this idea at all. That's the core problem I need to surface.
+
+Now I'm checking the key references to validate the claims: CARE from EMNLP 2025, Diverging Preferences from ICML 2025, the Jiang & de Marneffe TACL paper, and any recent concurrent work from April-May 2026. I should also verify ReasonScaffold and STABLEVAL. Looking at the core novelty independent of citations, the pipeline itself—classifying disagreement types, generating type-specific probes, collecting structured responses, and updating soft labels—is sound and appears genuinely novel. The differentiations from prior work seem well-grounded. Stepping back, all four major issues from the previous round have actually been addressed, including the timeline retargeting. Looking at the venue fit more carefully—AAAI is too broad for this work, which really belongs at an NLP-focused conference like EMNLP, ACL, or NAACL. The pipeline itself is solid with the three-way classifier, probe generation, and soft-label integration working together coherently, and evaluating on ToxiGen and MNLI against proper baselines is sound. On novelty, DART's closed-loop approach across all four stages does something distinct from CARE, ClarifyDelphi, and ReasonScaffold, and the type-conditioned probes represent a genuine contribution. I need to verify some of these claims with actual searches before settling on a final assessment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f172a4a-0b4e-40e0-92ca-35c48877f208",
+  "isSidechain": false,
+  "requestId": "req_011CatUDpJnWUwJA9T15Vrwu",
+  "type": "assistant",
+  "uuid": "8860cbdd-829f-4cd6-9c7d-800bc804c16c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017diY55VuksuVuDZVJCmSGB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18721,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18721,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2450,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18721,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18721
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T07:11:04.024Z_
+
+I'll conduct independent research to verify the key claims in Round 4, then issue a verdict. Let me start with targeted searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8860cbdd-829f-4cd6-9c7d-800bc804c16c",
+  "isSidechain": false,
+  "requestId": "req_011CatUDpJnWUwJA9T15Vrwu",
+  "type": "assistant",
+  "uuid": "0b352a2d-215d-42d4-83d3-8face1e28253",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017diY55VuksuVuDZVJCmSGB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18721,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18721,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2450,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18721,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18721
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T07:11:04.027Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MQ15nUfhsdJFFysjoWETbn`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b352a2d-215d-42d4-83d3-8face1e28253",
+  "isSidechain": false,
+  "requestId": "req_011CatUDpJnWUwJA9T15Vrwu",
+  "type": "assistant",
+  "uuid": "05f985f4-f63a-4116-9814-6a75e14dbaac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_017diY55VuksuVuDZVJCmSGB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18721,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 2450,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18721,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2450,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 18721,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18721
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T07:11:04.066Z_
+
+<details><summary>↩ Tool result · `toolu_01MQ15nUfhsdJFFysjoWETbn`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "05f985f4-f63a-4116-9814-6a75e14dbaac",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "a2805d69-0abc-47cf-ba05-7e379922ea17",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "05f985f4-f63a-4116-9814-6a75e14dbaac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T07:11:08.537Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now conduct independent research to verify the key claims. I'll run multiple searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2805d69-0abc-47cf-ba05-7e379922ea17",
+  "isSidechain": false,
+  "requestId": "req_011CatUGqPbxcgc5bL9ktrsN",
+  "type": "assistant",
+  "uuid": "29b56c05-2d8b-4ef8-8299-af45f99e50ba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UUAp5mPEfuiFAyBEPDUC96",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3464,
+      "cache_read_input_tokens": 30352,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3464,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 30352,
+          "cache_creation_input_tokens": 3464,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3464
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T07:11:08.586Z_
+
+Conducting independent verification across multiple dimensions simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29b56c05-2d8b-4ef8-8299-af45f99e50ba",
+  "isSidechain": false,
+  "requestId": "req_011CatUGqPbxcgc5bL9ktrsN",
+  "type": "assistant",
+  "uuid": "d604fba4-d52e-442b-91f6-47172138a7a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UUAp5mPEfuiFAyBEPDUC96",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3464,
+      "cache_read_input_tokens": 30352,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3464,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 30352,
+          "cache_creation_input_tokens": 3464,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3464
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T07:11:08.893Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UFi3aWW8qA91WSCWx13qfk`</summary>
+
+```json
+{
+  "query": "Diverging Preferences annotators disagree models know Zhang Pyatkin ICML 2025 arXiv 2410.14632"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d604fba4-d52e-442b-91f6-47172138a7a2",
+  "isSidechain": false,
+  "requestId": "req_011CatUGqPbxcgc5bL9ktrsN",
+  "type": "assistant",
+  "uuid": "213fdff0-b115-4595-8136-eb252397487d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UUAp5mPEfuiFAyBEPDUC96",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3464,
+      "cache_read_input_tokens": 30352,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3464,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 30352,
+          "cache_creation_input_tokens": 3464,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3464
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T07:11:09.031Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012VZw4H7iaqkxCvXRt6Yj7v`</summary>
+
+```json
+{
+  "query": "CARE disagreement detection concept alignment reasoning EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "213fdff0-b115-4595-8136-eb252397487d",
+  "isSidechain": false,
+  "requestId": "req_011CatUGqPbxcgc5bL9ktrsN",
+  "type": "assistant",
+  "uuid": "b11c1f6a-827b-4841-99a4-9854c89c7c31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UUAp5mPEfuiFAyBEPDUC96",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3464,
+      "cache_read_input_tokens": 30352,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3464,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 30352,
+          "cache_creation_input_tokens": 3464,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3464
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T07:11:09.101Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AWEDhi4vWqDYPdDA5aqZzF`</summary>
+
+```json
+{
+  "query": "Jiang de Marneffe investigating reasons disagreement NLI TACL 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b11c1f6a-827b-4841-99a4-9854c89c7c31",
+  "isSidechain": false,
+  "requestId": "req_011CatUGqPbxcgc5bL9ktrsN",
+  "type": "assistant",
+  "uuid": "ac8fd7ee-4d0c-4e6c-bd42-d73740b53c73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01UUAp5mPEfuiFAyBEPDUC96",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3464,
+      "cache_read_input_tokens": 30352,
+      "output_tokens": 233,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3464,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 233,
+          "cache_read_input_tokens": 30352,
+          "cache_creation_input_tokens": 3464,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3464
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T07:11:15.236Z_
+
+<details><summary>↩ Tool result · `toolu_01AWEDhi4vWqDYPdDA5aqZzF`</summary>
+
+```text
+Web search results for query: "Jiang de Marneffe investigating reasons disagreement NLI TACL 2022"
+
+Links: [{"title":"Investigating Reasons for Disagreement in Natural Language Inference - ACL Anthology","url":"https://aclanthology.org/2022.tacl-1.78/"},{"title":"Investigating Reasons for Disagreement in Natural Language Inference | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00523/114372/Investigating-Reasons-for-Disagreement-in-Natural"},{"title":"[2209.03392] Investigating Reasons for Disagreement in Natural Language Inference","url":"https://arxiv.org/abs/2209.03392"},{"title":"Investigating Reasons for Disagreement in Natural Language Inference | Transactions of the Association for Computational Linguistics","url":"https://transacl.org/ojs/index.php/tacl/article/view/3837"},{"title":"GitHub - njjiang/NLI_disagreement_taxonomy · GitHub","url":"https://github.com/njjiang/NLI_disagreement_taxonomy"},{"title":"Investigating Reasons for Disagreement in Natural Language Inference","url":"https://aclanthology.org/2022.tacl-1.78.pdf"},{"title":"[PDF] Investigating Reasons for Disagreement in Natural Language Inference | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Investigating-Reasons-for-Disagreement-in-Natural-Jiang-Marneffe/f736613e4828e0e85d5a4c0f2002702d04451ef9"},{"title":"From Disagreement to Understanding: The Case for Ambiguity Detection in NLI","url":"https://arxiv.org/html/2507.15114"},{"title":"(PDF) Investigating Reasons for Disagreement in Natural Language Inference","url":"https://www.researchgate.net/publication/366860344_Investigating_Reasons_for_Disagreement_in_Natural_Language_Inference"},{"title":"LiTEx: A Linguistic Taxonomy of Explanations for Understanding Within-Label Variation in Natural Language Inference","url":"https://arxiv.org/html/2505.22848v2"}]
+
+I found the paper you were looking for. Here are the key details:
+
+## Paper Information
+
+The paper "Investigating Reasons for Disagreement in Natural Language Inference" is by Nan-Jiang Jiang and Marie-Catherine de Marneffe, and it was published in Transactions of the Association for Computational Linguistics, Volume 10 in 2022.
+
+## Main Contributions
+
+The paper investigates how disagreement in natural language inference (NLI) annotation arises and developed a taxonomy of disagreement sources with 10 categories spanning 3 high-level classes.
+
+The researchers found that some disagreements are due to uncertainty in the sentence meaning, others to annotator biases and task artifacts, leading to different interpretations of the label distribution.
+
+## Modeling Approaches
+
+The paper explores two modeling approaches for detecting items with potential disagreement: a 4-way classification with a "Complicated" label in addition to the three standard NLI labels, and a multilabel classification approach, finding that the multilabel classification is more expressive and gives better recall of the possible interpretations.
+
+The paper and related resources are available on the ACL Anthology and arXiv, and the authors have made their taxonomy annotations publicly available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac8fd7ee-4d0c-4e6c-bd42-d73740b53c73",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "b9f61432-4d8a-47a1-9a78-e02b0b384df7",
+  "toolUseResult": {
+    "query": "Jiang de Marneffe investigating reasons disagreement NLI TACL 2022",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CpNBkGTznixFKwGzP3KXFP",
+        "content": [
+          {
+            "title": "Investigating Reasons for Disagreement in Natural Language Inference - ACL Anthology",
+            "url": "https://aclanthology.org/2022.tacl-1.78/"
+          },
+          {
+            "title": "Investigating Reasons for Disagreement in Natural Language Inference | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00523/114372/Investigating-Reasons-for-Disagreement-in-Natural"
+          },
+          {
+            "title": "[2209.03392] Investigating Reasons for Disagreement in Natural Language Inference",
+            "url": "https://arxiv.org/abs/2209.03392"
+          },
+          {
+            "title": "Investigating Reasons for Disagreement in Natural Language Inference | Transactions of the Association for Computational Linguistics",
+            "url": "https://transacl.org/ojs/index.php/tacl/article/view/3837"
+          },
+          {
+            "title": "GitHub - njjiang/NLI_disagreement_taxonomy · GitHub",
+            "url": "https://github.com/njjiang/NLI_disagreement_taxonomy"
+          },
+          {
+            "title": "Investigating Reasons for Disagreement in Natural Language Inference",
+            "url": "https://aclanthology.org/2022.tacl-1.78.pdf"
+          },
+          {
+            "title": "[PDF] Investigating Reasons for Disagreement in Natural Language Inference | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Investigating-Reasons-for-Disagreement-in-Natural-Jiang-Marneffe/f736613e4828e0e85d5a4c0f2002702d04451ef9"
+          },
+          {
+            "title": "From Disagreement to Understanding: The Case for Ambiguity Detection in NLI",
+            "url": "https://arxiv.org/html/2507.15114"
+          },
+          {
+            "title": "(PDF) Investigating Reasons for Disagreement in Natural Language Inference",
+            "url": "https://www.researchgate.net/publication/366860344_Investigating_Reasons_for_Disagreement_in_Natural_Language_Inference"
+          },
+          {
+            "title": "LiTEx: A Linguistic Taxonomy of Explanations for Understanding Within-Label Variation in Natural Language Inference",
+            "url": "https://arxiv.org/html/2505.22848v2"
+          }
+        ]
+      },
+      "I found the paper you were looking for. Here are the key details:\n\n## Paper Information\n\nThe paper \"Investigating Reasons for Disagreement in Natural Language Inference\" is by Nan-Jiang Jiang and Marie-Catherine de Marneffe, and it was published in Transactions of the Association for Computational Linguistics, Volume 10 in 2022.\n\n## Main Contributions\n\nThe paper investigates how disagreement in natural language inference (NLI) annotation arises and developed a taxonomy of disagreement sources with 10 categories spanning 3 high-level classes.\n\nThe researchers found that some disagreements are due to uncertainty in the sentence meaning, others to annotator biases and task artifacts, leading to different interpretations of the label distribution.\n\n## Modeling Approaches\n\nThe paper explores two modeling approaches for detecting items with potential disagreement: a 4-way classification with a \"Complicated\" label in addition to the three standard NLI labels, and a multilabel classification approach, finding that the multilabel classification is more expressive and gives better recall of the possible interpretations.\n\nThe paper and related resources are available on the ACL Anthology and arXiv, and the authors have made their taxonomy annotations publicly available on GitHub."
+    ],
+    "durationSeconds": 6.129563281000002
+  },
+  "sourceToolAssistantUUID": "ac8fd7ee-4d0c-4e6c-bd42-d73740b53c73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T07:11:15.256Z_
+
+<details><summary>↩ Tool result · `toolu_01UFi3aWW8qA91WSCWx13qfk`</summary>
+
+```text
+Web search results for query: "Diverging Preferences annotators disagree models know Zhang Pyatkin ICML 2025 arXiv 2410.14632"
+
+Links: [{"title":"[2410.14632] Diverging Preferences: When do Annotators Disagree and do Models Know?","url":"https://arxiv.org/abs/2410.14632"},{"title":"Diverging Preferences: When do Annotators Disagree and do Models Know?","url":"https://arxiv.org/html/2410.14632"},{"title":"Diverging Preferences: When do Annotators Disagree and do Models Know? | OpenReview","url":"https://openreview.net/forum?id=qWgAAVhoXb"},{"title":"Diverging Preferences: When do Annotators Disagree and do Models Know?","url":"https://openreview.net/pdf?id=qWgAAVhoXb"},{"title":"(PDF) Diverging Preferences: When do Annotators Disagree and do Models Know?","url":"https://www.researchgate.net/publication/385091618_Diverging_Preferences_When_do_Annotators_Disagree_and_do_Models_Know"},{"title":"NeurIPS Diverging Preferences: Why do Annotators Sensibly Disagree?","url":"https://neurips.cc/virtual/2024/99066"},{"title":"Diverse Preference Optimization","url":"https://arxiv.org/html/2501.18101v3"},{"title":"GitHub - Zhen-Tan-dmml/LLM4Annotation · GitHub","url":"https://github.com/Zhen-Tan-dmml/LLM4Annotation"},{"title":"ICML 2025 Papers","url":"https://icml.cc/virtual/2025/papers.html"},{"title":"arXiv:2410.19133v5 [cs.CL] 30 May 2025","url":"https://arxiv.org/pdf/2410.19133"}]
+
+I found the paper you're looking for! Here's information about it:
+
+## "Diverging Preferences: When do Annotators Disagree and do Models Know?"
+
+The paper is authored by Michael JQ Zhang, Zhilin Wang, Jena D. Hwang, Yi Dong, Olivier Delalleau, Yejin Choi, Eunsol Choi, Xiang Ren, and Valentina Pyatkin.
+
+### Key Contributions
+
+The researchers develop a taxonomy of disagreement sources spanning ten categories across four high-level classes and find that the majority of disagreements are due to factors such as task underspecification or response style. The four high-level classes are: task underspecification, response style, refusals, and annotation errors.
+
+### Main Findings
+
+Their findings challenge a standard assumption in reward modeling methods that annotator disagreements can be attributed to simple noise. In their experiments, they demonstrate how standard reward modeling (e.g., Bradley-Terry) and LLM-as-Judge evaluation methods fail to account for divergence between annotators.
+
+### Publication
+
+The paper was published at ICML 2025 as a poster. The arXiv version is 2410.14632, with the latest version posted on March 3, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "213fdff0-b115-4595-8136-eb252397487d",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "290aa285-fe17-45ec-b1f6-dcbfa1a571ba",
+  "toolUseResult": {
+    "query": "Diverging Preferences annotators disagree models know Zhang Pyatkin ICML 2025 arXiv 2410.14632",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L6XsU6xbdnPE6FGWyq47Aq",
+        "content": [
+          {
+            "title": "[2410.14632] Diverging Preferences: When do Annotators Disagree and do Models Know?",
+            "url": "https://arxiv.org/abs/2410.14632"
+          },
+          {
+            "title": "Diverging Preferences: When do Annotators Disagree and do Models Know?",
+            "url": "https://arxiv.org/html/2410.14632"
+          },
+          {
+            "title": "Diverging Preferences: When do Annotators Disagree and do Models Know? | OpenReview",
+            "url": "https://openreview.net/forum?id=qWgAAVhoXb"
+          },
+          {
+            "title": "Diverging Preferences: When do Annotators Disagree and do Models Know?",
+            "url": "https://openreview.net/pdf?id=qWgAAVhoXb"
+          },
+          {
+            "title": "(PDF) Diverging Preferences: When do Annotators Disagree and do Models Know?",
+            "url": "https://www.researchgate.net/publication/385091618_Diverging_Preferences_When_do_Annotators_Disagree_and_do_Models_Know"
+          },
+          {
+            "title": "NeurIPS Diverging Preferences: Why do Annotators Sensibly Disagree?",
+            "url": "https://neurips.cc/virtual/2024/99066"
+          },
+          {
+            "title": "Diverse Preference Optimization",
+            "url": "https://arxiv.org/html/2501.18101v3"
+          },
+          {
+            "title": "GitHub - Zhen-Tan-dmml/LLM4Annotation · GitHub",
+            "url": "https://github.com/Zhen-Tan-dmml/LLM4Annotation"
+          },
+          {
+            "title": "ICML 2025 Papers",
+            "url": "https://icml.cc/virtual/2025/papers.html"
+          },
+          {
+            "title": "arXiv:2410.19133v5 [cs.CL] 30 May 2025",
+            "url": "https://arxiv.org/pdf/2410.19133"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's information about it:\n\n## \"Diverging Preferences: When do Annotators Disagree and do Models Know?\"\n\nThe paper is authored by Michael JQ Zhang, Zhilin Wang, Jena D. Hwang, Yi Dong, Olivier Delalleau, Yejin Choi, Eunsol Choi, Xiang Ren, and Valentina Pyatkin.\n\n### Key Contributions\n\nThe researchers develop a taxonomy of disagreement sources spanning ten categories across four high-level classes and find that the majority of disagreements are due to factors such as task underspecification or response style. The four high-level classes are: task underspecification, response style, refusals, and annotation errors.\n\n### Main Findings\n\nTheir findings challenge a standard assumption in reward modeling methods that annotator disagreements can be attributed to simple noise. In their experiments, they demonstrate how standard reward modeling (e.g., Bradley-Terry) and LLM-as-Judge evaluation methods fail to account for divergence between annotators.\n\n### Publication\n\nThe paper was published at ICML 2025 as a poster. The arXiv version is 2410.14632, with the latest version posted on March 3, 2026."
+    ],
+    "durationSeconds": 6.358388196
+  },
+  "sourceToolAssistantUUID": "213fdff0-b115-4595-8136-eb252397487d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "290aa285-fe17-45ec-b1f6-dcbfa1a571ba",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disagreement-type-conditioned annotation resolution protocol",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T07:11:15.869Z_
+
+<details><summary>↩ Tool result · `toolu_012VZw4H7iaqkxCvXRt6Yj7v`</summary>
+
+```text
+Web search results for query: "CARE disagreement detection concept alignment reasoning EMNLP 2025"
+
+Links: [{"title":"CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.671/"},{"title":"CARE: A Disagreement Detection Framework with Concept ...","url":"https://aclanthology.org/2025.emnlp-main.671.pdf"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"},{"title":"The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology","url":"https://aclanthology.org/events/emnlp-2025/"},{"title":"Debating for Better Reasoning in Vision-Language Models","url":"https://aclanthology.org/2025.findings-emnlp.853.pdf"},{"title":"EMNLP.2025 | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/EMNLP.2025"},{"title":"Multimodal Emotion Recognition in Conversations","url":"https://aclanthology.org/2025.findings-emnlp.332.pdf"},{"title":"Paper Digest: EMNLP 2025 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2025/11/emnlp-2025-papers-highlights/"},{"title":"King's College London NLP","url":"https://kclnlp.github.io/publications.html"},{"title":"Findings of the Association for Computational Linguistics: EMNLP 2025 - ACL Anthology","url":"https://aclanthology.org/volumes/2025.findings-emnlp/"}]
+
+I found the paper! Here's what I discovered about the CARE framework:
+
+## CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement
+
+CARE is a novel two-stage framework designed to address disagreement detection challenges in large language models by tackling conceptual gap and reasoning gap issues.
+
+### Framework Components
+
+The CARE framework consists of two main stages:
+
+1. **Concept Alignment (CA)**: This stage addresses the gap between expert and model by performing sub-concept taxonomy extraction, aligning the model's comprehension with human experts.
+
+2. **Reasoning Enhancement (RE)**: This stage improves the model's reasoning capabilities by introducing a curriculum learning workflow, which includes rationale to critique and counterfactual to detection for reducing spurious association.
+
+### Performance
+
+Extensive experiments on disagreement detection tasks demonstrate the effectiveness of the framework, showing superior performance in zero-shot and supervised learning settings, both within and across domains.
+
+### Publication Details
+
+The paper was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 13264–13279, in Suzhou, China by the Association for Computational Linguistics.
+
+The authors are Jiyuan Liu, Jielin Song, Yunhe Pang, Zhiyu Shen, and Yanghui Rao.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b11c1f6a-827b-4841-99a4-9854c89c7c31",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "f1325545-6434-470c-bf3d-5a6c1fd3ebd0",
+  "toolUseResult": {
+    "query": "CARE disagreement detection concept alignment reasoning EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EJUfx4tnpphxjnkU5z9XDy",
+        "content": [
+          {
+            "title": "CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-main.671/"
+          },
+          {
+            "title": "CARE: A Disagreement Detection Framework with Concept ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.671.pdf"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          },
+          {
+            "title": "The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology",
+            "url": "https://aclanthology.org/events/emnlp-2025/"
+          },
+          {
+            "title": "Debating for Better Reasoning in Vision-Language Models",
+            "url": "https://aclanthology.org/2025.findings-emnlp.853.pdf"
+          },
+          {
+            "title": "EMNLP.2025 | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/EMNLP.2025"
+          },
+          {
+            "title": "Multimodal Emotion Recognition in Conversations",
+            "url": "https://aclanthology.org/2025.findings-emnlp.332.pdf"
+          },
+          {
+            "title": "Paper Digest: EMNLP 2025 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2025/11/emnlp-2025-papers-highlights/"
+          },
+          {
+            "title": "King's College London NLP",
+            "url": "https://kclnlp.github.io/publications.html"
+          },
+          {
+            "title": "Findings of the Association for Computational Linguistics: EMNLP 2025 - ACL Anthology",
+            "url": "https://aclanthology.org/volumes/2025.findings-emnlp/"
+          }
+        ]
+      },
+      "I found the paper! Here's what I discovered about the CARE framework:\n\n## CARE: A Disagreement Detection Framework with Concept Alignment and Reasoning Enhancement\n\nCARE is a novel two-stage framework designed to address disagreement detection challenges in large language models by tackling conceptual gap and reasoning gap issues.\n\n### Framework Components\n\nThe CARE framework consists of two main stages:\n\n1. **Concept Alignment (CA)**: This stage addresses the gap between expert and model by performing sub-concept taxonomy extraction, aligning the model's comprehension with human experts.\n\n2. **Reasoning Enhancement (RE)**: This stage improves the model's reasoning capabilities by introducing a curriculum learning workflow, which includes rationale to critique and counterfactual to detection for reducing spurious association.\n\n### Performance\n\nExtensive experiments on disagreement detection tasks demonstrate the effectiveness of the framework, showing superior performance in zero-shot and supervised learning settings, both within and across domains.\n\n### Publication Details\n\nThe paper was published in the Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP), pages 13264–13279, in Suzhou, China by the Association for Computational Linguistics.\n\nThe authors are Jiyuan Liu, Jielin Song, Yunhe Pang, Zhiyu Shen, and Yanghui Rao."
+    ],
+    "durationSeconds": 6.835407455
+  },
+  "sourceToolAssistantUUID": "b11c1f6a-827b-4841-99a4-9854c89c7c31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-10T07:11:27.754Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the three key papers are verified:
+1. Diverging Preferences (ICML 2025, arXiv:2410.14632) - confirmed, published at ICML 2025 as a poster. Actually wait - I see one search result says "NeurIPS Diverging Preferences: Why do Annotators Sensibly Disagree?" from neurips.cc. Let me check if this paper was at NeurIPS 2024 rather than ICML 2025...
+
+Actually the search shows it's at both NeurIPS (neurips.cc/virtual/2024/99066) and ICML 2025 (the OpenReview link). Let me check more carefully.
+
+
+The arXiv preprint from October 2024 appears to have been presented at a NeurIPS 2024 workshop, then accepted to ICML 2025 as a full conference paper, so the proposal's citation to ICML 2025 is the correct venue.
+
+Now I'm verifying the other citations—CARE at EMNLP 2025 and Jiang & de Marneffe at TACL 2022 both check out. I should also look into some more recent concurrent work from 2026, including ReasonScaffold, STABLEVAL, and a paper on structured disagreement in health-literacy annotation, plus confirm the AAAI 2027 deadline to validate the venue claim.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1325545-6434-470c-bf3d-5a6c1fd3ebd0",
+  "isSidechain": false,
+  "requestId": "req_011CatUHhSto8Au9qbYVT1Zc",
+  "type": "assistant",
+  "uuid": "819c2a6c-861d-43ff-a6bd-436cf29826df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01GgHr7j9qCec27ncPeRfutF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1889,
+      "cache_read_input_tokens": 33816,
+      "output_tokens": 708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 708,
+          "cache_read_input_tokens": 33816,
+          "cache_creation_input_tokens": 1889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T07:11:27.791Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YYWNYWnucL5JmEKj8tRDWi`</summary>
+
+```json
+{
+  "query": "ReasonScaffold reasoning scaffolds human-AI co-annotation arXiv 2603.21094 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "819c2a6c-861d-43ff-a6bd-436cf29826df",
+  "isSidechain": false,
+  "requestId": "req_011CatUHhSto8Au9qbYVT1Zc",
+  "type": "assistant",
+  "uuid": "5b390cc0-3e6b-4a65-9f9d-1a4f79886514",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01GgHr7j9qCec27ncPeRfutF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1889,
+      "cache_read_input_tokens": 33816,
+      "output_tokens": 708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 708,
+          "cache_read_input_tokens": 33816,
+          "cache_creation_input_tokens": 1889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T07:11:27.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ARc4NhNn5Qa1nM5KqVxLfE`</summary>
+
+```json
+{
+  "query": "annotation disagreement type classification active learning probe generation NLP 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b390cc0-3e6b-4a65-9f9d-1a4f79886514",
+  "isSidechain": false,
+  "requestId": "req_011CatUHhSto8Au9qbYVT1Zc",
+  "type": "assistant",
+  "uuid": "85d155be-ea51-4e9b-ae39-4ea526a98955",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01GgHr7j9qCec27ncPeRfutF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1889,
+      "cache_read_input_tokens": 33816,
+      "output_tokens": 708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 708,
+          "cache_read_input_tokens": 33816,
+          "cache_creation_input_tokens": 1889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T07:11:27.804Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012Z6VjsJAi8jBTbCjWcxxSe`</summary>
+
+```json
+{
+  "query": "AAAI 2027 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85d155be-ea51-4e9b-ae39-4ea526a98955",
+  "isSidechain": false,
+  "requestId": "req_011CatUHhSto8Au9qbYVT1Zc",
+  "type": "assistant",
+  "uuid": "4fc8361c-eb87-4406-aab8-6f793afa1ea8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01GgHr7j9qCec27ncPeRfutF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1889,
+      "cache_read_input_tokens": 33816,
+      "output_tokens": 708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1889,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 708,
+          "cache_read_input_tokens": 33816,
+          "cache_creation_input_tokens": 1889,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1889
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T07:11:31.922Z_
+
+<details><summary>↩ Tool result · `toolu_012Z6VjsJAi8jBTbCjWcxxSe`</summary>
+
+```text
+Web search results for query: "AAAI 2027 submission deadline call for papers"
+
+Links: [{"title":"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot","url":"https://www.getpaperpilot.com/deadlines/aaai-2027.html"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"},{"title":"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...","url":"http://www.wikicfp.com/cfp/program?id=3"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"AAAI Conference on Artificial Intelligence - AAAI","url":"https://aaai.org/conference/aaai/"},{"title":"🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...","url":"https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"},{"title":"AAAI-26 Submission Instructions - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/submission-instructions/"},{"title":"AAAI 2027 Conference | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2027%2FConference"},{"title":"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf","url":"https://www.underleaf.ai/templates/aaai"}]
+
+Based on the search results, here's what I found about AAAI 2027:
+
+## Conference Details
+
+AAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.
+
+## Submission Deadline
+
+The AAAI 2027 paper submission deadline is TBD (UTC-12). However, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns.
+
+## Where to Find Official Information
+
+The official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/. You can also find the conference on OpenReview homepage for AAAI 2027 Conference.
+
+Since the exact deadlines have not yet been announced, I recommend checking the official AAAI website or OpenReview page for the most current information when the call for papers is officially released.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4fc8361c-eb87-4406-aab8-6f793afa1ea8",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "77222b56-69d5-4935-8867-09511e025825",
+  "toolUseResult": {
+    "query": "AAAI 2027 submission deadline call for papers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016cyXHKepGRV32GNWVTyNxX",
+        "content": [
+          {
+            "title": "AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot",
+            "url": "https://www.getpaperpilot.com/deadlines/aaai-2027.html"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32"
+          },
+          {
+            "title": "AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...",
+            "url": "http://www.wikicfp.com/cfp/program?id=3"
+          },
+          {
+            "title": "AI Deadlines – AI Conference Call For Paper Deadlines",
+            "url": "http://aideadlines.org/"
+          },
+          {
+            "title": "AAAI Conference on Artificial Intelligence - AAAI",
+            "url": "https://aaai.org/conference/aaai/"
+          },
+          {
+            "title": "🚨AAAI-26 Call for Papers🚨 AAAI-26 will in Singapore from ...",
+            "url": "https://www.facebook.com/AAAIOrg/posts/aaai-26-call-for-papersaaai-26-will-in-singapore-from-january-20-to-january-27-2/751564707547430/"
+          },
+          {
+            "title": "AAAI-26 Submission Instructions - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/submission-instructions/"
+          },
+          {
+            "title": "AAAI 2027 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2027%2FConference"
+          },
+          {
+            "title": "AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf",
+            "url": "https://www.underleaf.ai/templates/aaai"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AAAI 2027:\n\n## Conference Details\n\nAAAI 2027 is being held in Montréal, Québec, Canada on February 16-23, 2027.\n\n## Submission Deadline\n\nThe AAAI 2027 paper submission deadline is TBD (UTC-12). However, submission deadlines for AAAI 2027 are expected around July–August 2026 based on historical patterns.\n\n## Where to Find Official Information\n\nThe official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/. You can also find the conference on OpenReview homepage for AAAI 2027 Conference.\n\nSince the exact deadlines have not yet been announced, I recommend checking the official AAAI website or OpenReview page for the most current information when the call for papers is officially released."
+    ],
+    "durationSeconds": 4.1128301480000085
+  },
+  "sourceToolAssistantUUID": "4fc8361c-eb87-4406-aab8-6f793afa1ea8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T07:11:33.678Z_
+
+<details><summary>↩ Tool result · `toolu_01YYWNYWnucL5JmEKj8tRDWi`</summary>
+
+```text
+Web search results for query: "ReasonScaffold reasoning scaffolds human-AI co-annotation arXiv 2603.21094 2026"
+
+Links: [{"title":"ReasonScaffold: A Scaffolded Reasoning-based Annotation Protocol for Human-AI Co-Annotation","url":"https://arxiv.org/html/2603.21094"},{"title":"[2603.21094] Evaluating Reasoning-Based Scaffolds for Human-AI Co-Annotation: The ReasonAlign Annotation Protocol","url":"https://arxiv.org/abs/2603.21094"},{"title":"[2603.29317] Should I State or Should I Show? Aligning AI with Human Preferences","url":"https://arxiv.org/abs/2603.29317"},{"title":"A Conceptual Framework for Human-AI Collaborative Genome Annotation","url":"https://arxiv.org/html/2503.23691v1"},{"title":"An Interactive Human-Machine Learning Interface for Collecting and Learning from Complex Annotations","url":"https://arxiv.org/html/2403.19339v1"},{"title":"Automatic Analysis of Collaboration Through Human Conversational Data Resources: A Review","url":"https://arxiv.org/html/2603.19292"},{"title":"[2603.11511] Managing Cognitive Bias in Human Labeling Operations for Rare-Event AI: Evidence from a Field Experiment","url":"https://arxiv.org/abs/2603.11511"},{"title":"Transforming Data Annotation with AI Agents: A Review of Architectures, Reasoning, Applications, and Impact","url":"https://www.mdpi.com/1999-5903/17/8/353"},{"title":"Reframing Human-AI Collaboration for Generating Free- ...","url":"https://aclanthology.org/2022.naacl-main.47.pdf"},{"title":"MEGAnno+: A Human-LLM Collaborative Annotation System","url":"https://aclanthology.org/2024.eacl-demo.18.pdf"}]
+
+I found the paper you were looking for. Here are the results:
+
+ReasonScaffold is a scaffolded reasoning annotation protocol that exposes LLM-generated explanations while withholding predicted labels. It studies how reasoning affects human annotation behavior in a controlled setting, rather than evaluating annotation accuracy.
+
+Using a two-pass protocol inspired by Delphi-style revision, annotators first label instances independently and then revise their decisions after viewing model-generated reasoning. The approach is evaluated on sentiment classification and opinion detection tasks, analyzing changes in inter-annotator agreement and revision behavior.
+
+The system produces task-aligned reasoning via self-example prompting and chain-of-thought analysis, and these explanations act as interpretive scaffolds that annotators can use, question, or ignore, while retaining full control over their final decisions.
+
+The paper was authored by Smitha Muthya Sudheendra and Jaideep Srivastava from the University of Minnesota, Twin Cities, and was submitted to arXiv on March 22, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b390cc0-3e6b-4a65-9f9d-1a4f79886514",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "f9ac2f16-14d2-4976-867d-dd458ddb4189",
+  "toolUseResult": {
+    "query": "ReasonScaffold reasoning scaffolds human-AI co-annotation arXiv 2603.21094 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TVA8kvDSHDkqbTeDG8dDB2",
+        "content": [
+          {
+            "title": "ReasonScaffold: A Scaffolded Reasoning-based Annotation Protocol for Human-AI Co-Annotation",
+            "url": "https://arxiv.org/html/2603.21094"
+          },
+          {
+            "title": "[2603.21094] Evaluating Reasoning-Based Scaffolds for Human-AI Co-Annotation: The ReasonAlign Annotation Protocol",
+            "url": "https://arxiv.org/abs/2603.21094"
+          },
+          {
+            "title": "[2603.29317] Should I State or Should I Show? Aligning AI with Human Preferences",
+            "url": "https://arxiv.org/abs/2603.29317"
+          },
+          {
+            "title": "A Conceptual Framework for Human-AI Collaborative Genome Annotation",
+            "url": "https://arxiv.org/html/2503.23691v1"
+          },
+          {
+            "title": "An Interactive Human-Machine Learning Interface for Collecting and Learning from Complex Annotations",
+            "url": "https://arxiv.org/html/2403.19339v1"
+          },
+          {
+            "title": "Automatic Analysis of Collaboration Through Human Conversational Data Resources: A Review",
+            "url": "https://arxiv.org/html/2603.19292"
+          },
+          {
+            "title": "[2603.11511] Managing Cognitive Bias in Human Labeling Operations for Rare-Event AI: Evidence from a Field Experiment",
+            "url": "https://arxiv.org/abs/2603.11511"
+          },
+          {
+            "title": "Transforming Data Annotation with AI Agents: A Review of Architectures, Reasoning, Applications, and Impact",
+            "url": "https://www.mdpi.com/1999-5903/17/8/353"
+          },
+          {
+            "title": "Reframing Human-AI Collaboration for Generating Free- ...",
+            "url": "https://aclanthology.org/2022.naacl-main.47.pdf"
+          },
+          {
+            "title": "MEGAnno+: A Human-LLM Collaborative Annotation System",
+            "url": "https://aclanthology.org/2024.eacl-demo.18.pdf"
+          }
+        ]
+      },
+      "I found the paper you were looking for. Here are the results:\n\nReasonScaffold is a scaffolded reasoning annotation protocol that exposes LLM-generated explanations while withholding predicted labels. It studies how reasoning affects human annotation behavior in a controlled setting, rather than evaluating annotation accuracy.\n\nUsing a two-pass protocol inspired by Delphi-style revision, annotators first label instances independently and then revise their decisions after viewing model-generated reasoning. The approach is evaluated on sentiment classification and opinion detection tasks, analyzing changes in inter-annotator agreement and revision behavior.\n\nThe system produces task-aligned reasoning via self-example prompting and chain-of-thought analysis, and these explanations act as interpretive scaffolds that annotators can use, question, or ignore, while retaining full control over their final decisions.\n\nThe paper was authored by Smitha Muthya Sudheendra and Jaideep Srivastava from the University of Minnesota, Twin Cities, and was submitted to arXiv on March 22, 2026."
+    ],
+    "durationSeconds": 5.883058144000009
+  },
+  "sourceToolAssistantUUID": "5b390cc0-3e6b-4a65-9f9d-1a4f79886514",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-10T07:11:35.050Z_
+
+<details><summary>↩ Tool result · `toolu_01ARc4NhNn5Qa1nM5KqVxLfE`</summary>
+
+```text
+Web search results for query: "annotation disagreement type classification active learning probe generation NLP 2025 2026"
+
+Links: [{"title":"Active Learning Machine Learning: How It Reduces Labeling Costs in 2026 | Label Your Data","url":"https://labelyourdata.com/articles/active-learning-machine-learning"},{"title":"Enhancing the Interpretability of NLI Models Using LLMs and Active Learning Algorithms","url":"https://www.mdpi.com/2078-2489/17/2/119"},{"title":"Can Large Language Models Capture Human Annotator Disagreements? by Jingwei Ni, Yu Fan, Vilém Zouhar, Donya Rooein, Alexander Hoyle, Mrinmaya Sachan, Markus Leippold, Dirk Hovy, Elliott Ash :: SSRN","url":"https://papers.ssrn.com/sol3/Delivery.cfm/5319936.pdf?abstractid=5319936"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"},{"title":"Annotator-Centric Active Learning for Subjective NLP Tasks","url":"https://aclanthology.org/2024.emnlp-main.1031.pdf"},{"title":"Call for Papers: The 20th Linguistic Annotation Workshop (LAW XX), co-located with ACL 2026 | ACL Member Portal","url":"https://www.aclweb.org/portal/content/call-papers-20th-linguistic-annotation-workshop-law-xx-co-located-acl-2026"},{"title":"Enhancing Text Classification through LLM-Driven Active Learning and Human Annotation","url":"https://arxiv.org/html/2406.12114v1"},{"title":"Active Learning for Natural Language Processing Literature Review","url":"https://www.cs.cmu.edu/~shilpaa/active_learning_NLP_sachin_shilpa.pdf"},{"title":"Active learning for data streams: a survey | Machine Learning | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10994-023-06454-2"},{"title":"NeurIPS 2025 Orals","url":"https://neurips.cc/virtual/2025/loc/mexico-city/events/oral"}]
+
+Based on the web search results, here's what I found related to your query on annotation disagreement, type classification, active learning, probe generation, and NLP research in 2025-2026:
+
+## Key Findings
+
+**Annotation Disagreement and LLMs:**
+Human annotation variation (i.e., annotation disagreements) is common in NLP and often reflects important information such as task subjectivity and sample ambiguity. Recent research examines whether LLMs can predict annotation disagreements without access to repeated human labels, with results showing that LLMs struggle with modeling disagreements, which can be overlooked by majority label-based evaluations.
+
+**Active Learning Strategies:**
+In committee-based approaches, multiple models "vote" on unlabeled examples, with samples showing the most disagreement selected for labeling. Additionally, rather than selecting from existing data, some approaches generate synthetic examples the model finds hard, typically done using GANs, language models, or perturbation techniques.
+
+**Recent Research Areas (2025-2026):**
+The special theme of the Linguistic Annotation Workshop (LAW XX) for ACL 2026 is Errors in Annotation, with topics including error type classification and errors in LLM-generated annotations. There's also emerging work on detecting offensive language with annotation disagreement at ACL 2025.
+
+**Framework Approaches:**
+Recent frameworks propose active learning sampling algorithms that incorporate natural-language explanation information, with Large Language Models employed to automate explanation annotation, reducing dependence on human experts.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85d155be-ea51-4e9b-ae39-4ea526a98955",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "b0993d4d-f305-41b1-8545-4d61119cb138",
+  "toolUseResult": {
+    "query": "annotation disagreement type classification active learning probe generation NLP 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MfTEpB3uF3FP6gkCKZ7tR3",
+        "content": [
+          {
+            "title": "Active Learning Machine Learning: How It Reduces Labeling Costs in 2026 | Label Your Data",
+            "url": "https://labelyourdata.com/articles/active-learning-machine-learning"
+          },
+          {
+            "title": "Enhancing the Interpretability of NLI Models Using LLMs and Active Learning Algorithms",
+            "url": "https://www.mdpi.com/2078-2489/17/2/119"
+          },
+          {
+            "title": "Can Large Language Models Capture Human Annotator Disagreements? by Jingwei Ni, Yu Fan, Vilém Zouhar, Donya Rooein, Alexander Hoyle, Mrinmaya Sachan, Markus Leippold, Dirk Hovy, Elliott Ash :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/Delivery.cfm/5319936.pdf?abstractid=5319936"
+          },
+          {
+            "title": "Accepted Findings Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/find_papers/"
+          },
+          {
+            "title": "Annotator-Centric Active Learning for Subjective NLP Tasks",
+            "url": "https://aclanthology.org/2024.emnlp-main.1031.pdf"
+          },
+          {
+            "title": "Call for Papers: The 20th Linguistic Annotation Workshop (LAW XX), co-located with ACL 2026 | ACL Member Portal",
+            "url": "https://www.aclweb.org/portal/content/call-papers-20th-linguistic-annotation-workshop-law-xx-co-located-acl-2026"
+          },
+          {
+            "title": "Enhancing Text Classification through LLM-Driven Active Learning and Human Annotation",
+            "url": "https://arxiv.org/html/2406.12114v1"
+          },
+          {
+            "title": "Active Learning for Natural Language Processing Literature Review",
+            "url": "https://www.cs.cmu.edu/~shilpaa/active_learning_NLP_sachin_shilpa.pdf"
+          },
+          {
+            "title": "Active learning for data streams: a survey | Machine Learning | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10994-023-06454-2"
+          },
+          {
+            "title": "NeurIPS 2025 Orals",
+            "url": "https://neurips.cc/virtual/2025/loc/mexico-city/events/oral"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query on annotation disagreement, type classification, active learning, probe generation, and NLP research in 2025-2026:\n\n## Key Findings\n\n**Annotation Disagreement and LLMs:**\nHuman annotation variation (i.e., annotation disagreements) is common in NLP and often reflects important information such as task subjectivity and sample ambiguity. Recent research examines whether LLMs can predict annotation disagreements without access to repeated human labels, with results showing that LLMs struggle with modeling disagreements, which can be overlooked by majority label-based evaluations.\n\n**Active Learning Strategies:**\nIn committee-based approaches, multiple models \"vote\" on unlabeled examples, with samples showing the most disagreement selected for labeling. Additionally, rather than selecting from existing data, some approaches generate synthetic examples the model finds hard, typically done using GANs, language models, or perturbation techniques.\n\n**Recent Research Areas (2025-2026):**\nThe special theme of the Linguistic Annotation Workshop (LAW XX) for ACL 2026 is Errors in Annotation, with topics including error type classification and errors in LLM-generated annotations. There's also emerging work on detecting offensive language with annotation disagreement at ACL 2025.\n\n**Framework Approaches:**\nRecent frameworks propose active learning sampling algorithms that incorporate natural-language explanation information, with Large Language Models employed to automate explanation annotation, reducing dependence on human experts."
+    ],
+    "durationSeconds": 7.249392584000001
+  },
+  "sourceToolAssistantUUID": "85d155be-ea51-4e9b-ae39-4ea526a98955",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b0993d4d-f305-41b1-8545-4d61119cb138",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disagreement-type-conditioned annotation resolution protocol",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-10T07:11:41.805Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I have confirmed:
+1. ReasonScaffold (arXiv 2603.21094) exists and applies a "two-pass Delphi protocol" but doesn't type disagreements - confirmed.
+2. AAAI 2027 is being held in Montreal, and deadlines are TBD but expected around July-August 2026.
+3. Diverging Preferences is at ICML 2025 (confirmed via OpenReview).
+
+Let me now check the concurrent work more carefully - specifically the STABLEVAL paper (May 2026) and also the paper on structured disagreement in health-literacy annotation (arXiv 2604.19943).
+
+
+I should also look into the Ni et al. paper on whether large language models can capture human annotator disagreements, as that seems directly relevant to what I'm exploring.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0993d4d-f305-41b1-8545-4d61119cb138",
+  "isSidechain": false,
+  "requestId": "req_011CatUK7SKDSodUJHwnKWLt",
+  "type": "assistant",
+  "uuid": "7e832557-e699-43ee-9efe-959a5c83b767",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01VDh1wvzZZDPfwjf2dnBWzm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 814,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 35705,
+      "output_tokens": 359,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3332,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 814,
+          "output_tokens": 359,
+          "cache_read_input_tokens": 35705,
+          "cache_creation_input_tokens": 3332,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3332
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T07:11:41.909Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Wju3x7c5PFXPerd8SrNb8V`</summary>
+
+```json
+{
+  "query": "STABLEVAL disagreement-aware stable evaluation AI systems arXiv 2605.02122 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e832557-e699-43ee-9efe-959a5c83b767",
+  "isSidechain": false,
+  "requestId": "req_011CatUK7SKDSodUJHwnKWLt",
+  "type": "assistant",
+  "uuid": "6ad7256e-02f2-4a3d-9a56-74246fc36f27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01VDh1wvzZZDPfwjf2dnBWzm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 814,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 35705,
+      "output_tokens": 359,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3332,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 814,
+          "output_tokens": 359,
+          "cache_read_input_tokens": 35705,
+          "cache_creation_input_tokens": 3332,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3332
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T07:11:42.031Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TUZh699Lqmk9VGTkz5gofV`</summary>
+
+```json
+{
+  "query": "LLMs capture human annotator disagreements Ni Fan Zouhar Hoyle 2026 soft labels"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ad7256e-02f2-4a3d-9a56-74246fc36f27",
+  "isSidechain": false,
+  "requestId": "req_011CatUK7SKDSodUJHwnKWLt",
+  "type": "assistant",
+  "uuid": "39f428dc-696b-460f-bb20-d6eaa6935b36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01VDh1wvzZZDPfwjf2dnBWzm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 814,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 35705,
+      "output_tokens": 359,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3332,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 814,
+          "output_tokens": 359,
+          "cache_read_input_tokens": 35705,
+          "cache_creation_input_tokens": 3332,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3332
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T07:11:48.473Z_
+
+<details><summary>↩ Tool result · `toolu_01TUZh699Lqmk9VGTkz5gofV`</summary>
+
+```text
+Web search results for query: "LLMs capture human annotator disagreements Ni Fan Zouhar Hoyle 2026 soft labels"
+
+Links: [{"title":"Can Large Language Models Capture Human Annotator Disagreements? by Jingwei Ni, Yu Fan, Vilém Zouhar, Donya Rooein, Alexander Hoyle, Mrinmaya Sachan, Markus Leippold, Dirk Hovy, Elliott Ash :: SSRN","url":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5319936"},{"title":"Can Reasoning Help Large Language Models Capture Human Annotator Disagreement? - ACL Anthology","url":"https://aclanthology.org/2026.eacl-long.3/"},{"title":"[2506.19467v1] Can Large Language Models Capture Human Annotator Disagreements?","url":"http://arxiv.org/abs/2506.19467v1"},{"title":"Main Conference Accepted Papers -","url":"https://2026.eacl.org/program/main-accepted/"},{"title":"(PDF) Can Large Language Models Capture Human Annotator Disagreements?","url":"https://www.researchgate.net/publication/392980384_Can_Large_Language_Models_Capture_Human_Annotator_Disagreements"},{"title":"[2506.19467] Can Reasoning Help Large Language Models Capture Human Annotator Disagreement?","url":"https://arxiv.org/abs/2506.19467"},{"title":"Can Reasoning Help Large Language Models Capture ...","url":"https://aclanthology.org/2026.eacl-long.3.pdf"},{"title":"Human-LLM Collaborative Annotation Through Effective Verification of LLM Labels | Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems","url":"https://dl.acm.org/doi/10.1145/3613904.3641960"},{"title":"Paper page - Can Large Language Models Capture Human Annotator Disagreements?","url":"https://huggingface.co/papers/2506.19467"},{"title":"Large Language Models Can Extract Metadata for Annotation of Human Neuroimaging Publications - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12132202/"}]
+
+I found the research paper you were searching for. Here's what the study found:
+
+Variation in human annotation (i.e., disagreements) is common in NLP and often reflects important information like task subjectivity and sample ambiguity, and modeling this variation is important for applications that are sensitive to such information.
+
+The paper, authored by Jingwei Ni, Yu Fan, Vilém Zouhar, Donya Rooein, Alexander Hoyle, Mrinmaya Sachan, Markus Leippold, Dirk Hovy, and Elliott Ash, evaluates whether RLVR-style reasoning (Reinforcement Learning with Verifiable Rewards) enables LLMs to capture informative variation in human annotation, despite improving performance on many tasks.
+
+**Key findings:**
+
+RLVR-style reasoning degrades performance in disagreement modeling, while naive Chain-of-Thought (CoT) reasoning improves the performance of RLHF LLMs (RL from human feedback).
+
+These findings underscore the potential risk of replacing human annotators with reasoning LLMs, especially when disagreements are important.
+
+The paper was published in 2026 in the Proceedings of the 19th Conference of the European Chapter of the Association for Computational Linguistics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39f428dc-696b-460f-bb20-d6eaa6935b36",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "788ae296-a47c-4fdd-8c4d-e0e6c8924d59",
+  "toolUseResult": {
+    "query": "LLMs capture human annotator disagreements Ni Fan Zouhar Hoyle 2026 soft labels",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AAUQWKx87fje8XdrMH1KTX",
+        "content": [
+          {
+            "title": "Can Large Language Models Capture Human Annotator Disagreements? by Jingwei Ni, Yu Fan, Vilém Zouhar, Donya Rooein, Alexander Hoyle, Mrinmaya Sachan, Markus Leippold, Dirk Hovy, Elliott Ash :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5319936"
+          },
+          {
+            "title": "Can Reasoning Help Large Language Models Capture Human Annotator Disagreement? - ACL Anthology",
+            "url": "https://aclanthology.org/2026.eacl-long.3/"
+          },
+          {
+            "title": "[2506.19467v1] Can Large Language Models Capture Human Annotator Disagreements?",
+            "url": "http://arxiv.org/abs/2506.19467v1"
+          },
+          {
+            "title": "Main Conference Accepted Papers -",
+            "url": "https://2026.eacl.org/program/main-accepted/"
+          },
+          {
+            "title": "(PDF) Can Large Language Models Capture Human Annotator Disagreements?",
+            "url": "https://www.researchgate.net/publication/392980384_Can_Large_Language_Models_Capture_Human_Annotator_Disagreements"
+          },
+          {
+            "title": "[2506.19467] Can Reasoning Help Large Language Models Capture Human Annotator Disagreement?",
+            "url": "https://arxiv.org/abs/2506.19467"
+          },
+          {
+            "title": "Can Reasoning Help Large Language Models Capture ...",
+            "url": "https://aclanthology.org/2026.eacl-long.3.pdf"
+          },
+          {
+            "title": "Human-LLM Collaborative Annotation Through Effective Verification of LLM Labels | Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3613904.3641960"
+          },
+          {
+            "title": "Paper page - Can Large Language Models Capture Human Annotator Disagreements?",
+            "url": "https://huggingface.co/papers/2506.19467"
+          },
+          {
+            "title": "Large Language Models Can Extract Metadata for Annotation of Human Neuroimaging Publications - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12132202/"
+          }
+        ]
+      },
+      "I found the research paper you were searching for. Here's what the study found:\n\nVariation in human annotation (i.e., disagreements) is common in NLP and often reflects important information like task subjectivity and sample ambiguity, and modeling this variation is important for applications that are sensitive to such information.\n\nThe paper, authored by Jingwei Ni, Yu Fan, Vilém Zouhar, Donya Rooein, Alexander Hoyle, Mrinmaya Sachan, Markus Leippold, Dirk Hovy, and Elliott Ash, evaluates whether RLVR-style reasoning (Reinforcement Learning with Verifiable Rewards) enables LLMs to capture informative variation in human annotation, despite improving performance on many tasks.\n\n**Key findings:**\n\nRLVR-style reasoning degrades performance in disagreement modeling, while naive Chain-of-Thought (CoT) reasoning improves the performance of RLHF LLMs (RL from human feedback).\n\nThese findings underscore the potential risk of replacing human annotators with reasoning LLMs, especially when disagreements are important.\n\nThe paper was published in 2026 in the Proceedings of the 19th Conference of the European Chapter of the Association for Computational Linguistics."
+    ],
+    "durationSeconds": 6.438510968000002
+  },
+  "sourceToolAssistantUUID": "39f428dc-696b-460f-bb20-d6eaa6935b36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T07:11:49.191Z_
+
+<details><summary>↩ Tool result · `toolu_01Wju3x7c5PFXPerd8SrNb8V`</summary>
+
+```text
+Web search results for query: "STABLEVAL disagreement-aware stable evaluation AI systems arXiv 2605.02122 2026"
+
+Links: [{"title":"[2605.02122] STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems","url":"https://arxiv.org/abs/2605.02122"},{"title":"STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems","url":"https://arxiv.org/html/2605.02122"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=202&show=2000"},{"title":"Machine Learning Oct 2024","url":"https://arxiv.org/list/cs.LG/2024-10?skip=1475&show=2000"},{"title":"Heterogeneous Judge-Aware Ranking with Sensitivity, Disagreement, and Confidence","url":"https://arxiv.org/html/2605.05073"},{"title":"[2605.01168] Quantifying and Predicting Disagreement in Graded Human Ratings","url":"https://arxiv.org/abs/2605.01168"},{"title":"[2605.04410] Evaluation Cards for XAI Metrics","url":"https://arxiv.org/abs/2605.04410"},{"title":"The Value of Disagreement in AI Design, Evaluation, and Alignment","url":"https://arxiv.org/html/2505.07772v1"},{"title":"[2605.05073] Heterogeneous Judge-Aware Ranking with Sensitivity, Disagreement, and Confidence","url":"https://arxiv.org/abs/2605.05073"},{"title":"Evaluation Cards for XAI Metrics","url":"https://arxiv.org/html/2605.04410"}]
+
+I found the paper! Here's what the search returned:
+
+## STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems
+
+The paper arXiv:2605.02122 was submitted on May 4, 2026, authored by Akash Bonagiri, Gerard Janno Anderias, Saee Patil, Angelina Lai, Devang Borkar, Gezheng Kang, Ishant Gandhi, Setareh Rafatirad, and Houman Homayoun.
+
+**Key Problem:**
+Human evaluation remains the primary standard for assessing modern AI systems, yet annotator disagreement, bias, and variability make system rankings fragile under standard majority vote aggregation, which discards annotator reliability and item-level ambiguity, often yielding unstable comparisons across annotator subsets.
+
+**The Solution:**
+STABLEVAL is a disagreement-aware evaluation framework that models latent item correctness and annotator-specific confusion patterns to produce posterior expected item credit and calibrated agent-level scores. Unlike label-denoising approaches such as Dawid-Skene, STABLEVAL is explicitly designed for stable and uncertainty-aware system evaluation rather than hard label recovery.
+
+**Key Results:**
+Across controlled synthetic experiments and multiple real-world human-annotated benchmarks, majority vote exhibits increasing score error and ranking instability under annotator heterogeneity and adversarial noise, while STABLEVAL yields more stable and statistically grounded system rankings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ad7256e-02f2-4a3d-9a56-74246fc36f27",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "9e672b1b-7281-4da1-8a60-5fd867fdd212",
+  "toolUseResult": {
+    "query": "STABLEVAL disagreement-aware stable evaluation AI systems arXiv 2605.02122 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XpRvvrkRu2Txz1P76vwa82",
+        "content": [
+          {
+            "title": "[2605.02122] STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems",
+            "url": "https://arxiv.org/abs/2605.02122"
+          },
+          {
+            "title": "STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems",
+            "url": "https://arxiv.org/html/2605.02122"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/pastweek?skip=202&show=2000"
+          },
+          {
+            "title": "Machine Learning Oct 2024",
+            "url": "https://arxiv.org/list/cs.LG/2024-10?skip=1475&show=2000"
+          },
+          {
+            "title": "Heterogeneous Judge-Aware Ranking with Sensitivity, Disagreement, and Confidence",
+            "url": "https://arxiv.org/html/2605.05073"
+          },
+          {
+            "title": "[2605.01168] Quantifying and Predicting Disagreement in Graded Human Ratings",
+            "url": "https://arxiv.org/abs/2605.01168"
+          },
+          {
+            "title": "[2605.04410] Evaluation Cards for XAI Metrics",
+            "url": "https://arxiv.org/abs/2605.04410"
+          },
+          {
+            "title": "The Value of Disagreement in AI Design, Evaluation, and Alignment",
+            "url": "https://arxiv.org/html/2505.07772v1"
+          },
+          {
+            "title": "[2605.05073] Heterogeneous Judge-Aware Ranking with Sensitivity, Disagreement, and Confidence",
+            "url": "https://arxiv.org/abs/2605.05073"
+          },
+          {
+            "title": "Evaluation Cards for XAI Metrics",
+            "url": "https://arxiv.org/html/2605.04410"
+          }
+        ]
+      },
+      "I found the paper! Here's what the search returned:\n\n## STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems\n\nThe paper arXiv:2605.02122 was submitted on May 4, 2026, authored by Akash Bonagiri, Gerard Janno Anderias, Saee Patil, Angelina Lai, Devang Borkar, Gezheng Kang, Ishant Gandhi, Setareh Rafatirad, and Houman Homayoun.\n\n**Key Problem:**\nHuman evaluation remains the primary standard for assessing modern AI systems, yet annotator disagreement, bias, and variability make system rankings fragile under standard majority vote aggregation, which discards annotator reliability and item-level ambiguity, often yielding unstable comparisons across annotator subsets.\n\n**The Solution:**\nSTABLEVAL is a disagreement-aware evaluation framework that models latent item correctness and annotator-specific confusion patterns to produce posterior expected item credit and calibrated agent-level scores. Unlike label-denoising approaches such as Dawid-Skene, STABLEVAL is explicitly designed for stable and uncertainty-aware system evaluation rather than hard label recovery.\n\n**Key Results:**\nAcross controlled synthetic experiments and multiple real-world human-annotated benchmarks, majority vote exhibits increasing score error and ranking instability under annotator heterogeneity and adversarial noise, while STABLEVAL yields more stable and statistically grounded system rankings."
+    ],
+    "durationSeconds": 7.279367876000004
+  },
+  "sourceToolAssistantUUID": "6ad7256e-02f2-4a3d-9a56-74246fc36f27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36 · 2026-05-10T07:11:49.195Z_
+
+```json
+{
+  "parentUuid": "9e672b1b-7281-4da1-8a60-5fd867fdd212",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "505ea149-9fdd-412f-85be-039fd6d15ffe",
+  "timestamp": "2026-05-10T07:11:49.195Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-10T07:13:58.797Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! There's a paper at EACL 2026 - "Can Reasoning Help Large Language Models Capture Human Annotator Disagreement?" which is directly related to DART's motivation. Let me investigate this more closely.
+
+Also, I notice there's also a paper "Quantifying and Predicting Disagreement in Graded Human Ratings" (arXiv:2605.01168, May 2026) that appeared in the STABLEVAL search. Let me look more at this.
+
+Now let me assess the current state of the paper more carefully:
+
+**What's addressed from Round 3:**
+
+
+I'm checking off the key revisions - the target venue has shifted to AAAI 2027, the Diverging Preferences citation is properly integrated, the Pyatkin reference has been corrected with the right sources, there's now a concrete fallback strategy for persona risk using a gold standard set, and Stage 4 evaluation is specified with Qwen3-7B and additional details.
+
+Now I'm looking at the evaluation setup with ToxiGen, MNLI, macro-F1, and ECE metrics against three baselines. But I'm noticing some tension here - the user originally wanted EMNLP 2026, and while previous rounds established that's infeasible, AAAI 2027 might not be the ideal fit since this work on annotation disagreement and human-centered NLP aligns much better with *CL venues like EMNLP or ACL. There's also an EACL 2026 paper on reasoning and annotator disagreement that could be relevant to consider. The EACL 2026 paper on whether reasoning helps LLMs capture annotator disagreement actually supports DART's core argument rather than undermining it. Now I'm thinking through the venue strategy more carefully—the user wanted EMNLP 2026, but that's not feasible, and while AAAI 2027 is a top venue, it's not the best fit for annotation disagreement work since that's more of an ACL/EMNLP specialty. The proposal already mentions ARR September 2026 targeting EMNLP 2027 as a fallback, which is actually more appropriate than AAAI.
+
+On the timeline issue, the user set a hard constraint of ≤16 days, which was originally tied to the EMNLP 2026 deadline. The current proposal suggests 16-22 days for auto-research mode or 4-6 weeks for human-in-loop, both of which exceed that constraint. But now that the venue has shifted to AAAI 2027, the timeline pressure changes—there's roughly three months available instead of the original tight window.
+
+The auto-research mode at 16-22 days is borderline; the optimistic case just barely meets the constraint, though the Prolific crowdsourcing bottleneck of 5-8 days is unavoidable. Without that annotation step, the 16-day target becomes feasible.
+
+On compute, the auto-research mode estimates 250-300 H100-equivalent hours, which translates to roughly 125-150 H100-equivalent hours—well within the user's 200 H100-hour budget, so that constraint is satisfied.
+
+Now I need to check the venue and track alignment against what the user specified. Centered NLP and Human-AI Interaction" at EMNLP 2026. AAAI 2027 has different tracks. This annotation disagreement / active annotation work fits the EMNLP/ACL tracks much better than AAAI.
+
+**Issue 5: New concurrent work from EACL 2026**
+The "Can Reasoning Help LLMs Capture Human Annotator Disagreement?" paper from EACL 2026 is potentially relevant - it addresses whether reasoning LLMs can capture annotation disagreement. The DART proposal may need to cite this.
+
+Let me also check for any other very recent work I might be missing.
+
+Actually, let me re-read the proposal more carefully to assess whether all the Round 3 issues have been genuinely addressed, and then identify remaining issues.
+
+**Checking Round 3 issues:**
+
+1. **TIMELINE — EMNLP 2026 claim is false**: The updated venues now target AAAI 2027 as primary with ARR September 2026 → EMNLP 2027 as fallback, so that's fixed.
+
+2. **Diverging Preferences (ICML 2025) still missing**: The proposal now includes the Zhang et al. ICML 2025 paper on disagreement taxonomy for RLHF preference annotation in both the references and landscape section, addressing the earlier gap.
+
+3. **Pyatkin citation inverts actual finding**: The proposal now correctly uses Hu & Collier (ACL 2024) for persona claims instead of misrepresenting Pyatkin's work.
+
+4. **LLM Persona reliability risk underestimated**: The proposal now includes a concrete fallback strategy if persona responses don't reach ρ ≥ 0.60 on the gold standard.
+
+5. **Stage 2 evaluation plan is vague**: I need to check if this has been clarified.
+
+All the Round 3 issues seem to be resolved. Now let me do a fresh assessment of the proposal's overall quality. Looking at novelty, the four-stage pipeline combining type classification, type-specific probes, structured response encoding, and soft-label training is genuinely novel as an integrated system, though the individual components build on established prior work like CARE and ClarifyDelphi.
+
+The core claim about "closing the loop" holds up—no single existing paper does all four stages together. That said, it's somewhat incremental since it's really combining known techniques in a systematic way rather than introducing fundamentally new ideas. For a competitive venue like AAAI 2027, this novelty level feels borderline. On feasibility, the compute budget of 125-150 H100-equivalent hours is manageable, and the timeline of 4-6 weeks for human-in-the-loop or 16-22 days for auto-research is tight against the 16-day constraint. The Prolific study becomes a critical bottleneck that can't be compressed.
+
+On the technical side, using Qwen3-7B for the classifier and evaluation is solid, while Qwen3-72B for probe generation is the expensive piece but still reasonable at around 15-20 hours on A100. The labeled taxonomy data from Jiang & de Marneffe is publicly available on GitHub, and both ToxiGen and MNLI are accessible, so data availability isn't a blocker. The approach is now well-specified with clear stages, model choices, datasets, and metrics, plus honest differentiation from prior work and explicit fallback plans. The impact potential is moderate—the annotation disagreement community is engaged and would likely find value in this work, though it's not groundbreaking enough to reshape the field.
+
+The real tension is that AAAI 2027 isn't the best fit for human-centered annotation research; ACL, EMNLP, or NAACL would be stronger venues. The fallback plan of submitting to ARR in September 2026 for EMNLP 2027 makes more sense. There's also the constraint issue—the 16-day limit gets violated by the auto-research timeline and especially by the human-in-loop variant, which pushes into 4-6 weeks.
+
+The Prolific study creates a hard bottleneck that can't be compressed. I could theoretically skip it and use only LLM personas for the gold standard to hit the 16-day window, but that would weaken the human annotation component that's central to the work. The user specifically asked for the "Human-Centered NLP and Human-AI Interaction" track at EMNLP 2026, and AAAI 2027 has different track structures, so EMNLP 2027 is actually the better alignment. There's also the question of whether the ProbeBank-1.5K release and the evaluation claims around it are sufficiently scoped and distinct.
+
+Now I'm noticing some gaps in how the soft-label training and evaluation sets relate to each other. The proposal mentions evaluating on ToxiGen and MNLI validation splits, but ProbeBank-1.5K only has around 1,500 instances total. I need to clarify whether the instances used to train Qwen3-7B are the same ones in ProbeBank or if the held-out evaluation is actually separate. There's also the issue that the weak supervision mapping from CARE—translating sub-concept-alignment sensitivity into conceptual ambiguity and so on—hasn't been validated. It's a reasonable assumption but unproven. The fine-tuning plan for Qwen3-7B on roughly 300 NLI taxonomy instances plus CARE-derived signals is starting to take shape, but I need to make sure the data flows are actually coherent.
+
+Looking at the overall assessment, the Round 3 issues have been resolved and the methodology is solid now. The evaluation plan is complete and the literature is properly cited. But there are still some fundamental constraints: the user specifically wanted EMNLP 2026, which this timeline can't accommodate, and 16 days is still cutting it close. AAAI isn't the ideal venue for this work either. So this feels like it's hovering between a revision and a pass—the feasibility issues are real and the generator needs to be honest about those limitations.
+
+Let me calculate the scores to see where this lands. Novelty is 3.5 since it's an interesting combination but somewhat incremental. Feasibility is also 3.5 because while the compute is within budget, the timeline is borderline for a hard constraint. Clarity comes in at 4.0—the work is well-specified and clearly differentiated. Impact is 3.0 since it's a niche contribution that would be better suited for computational linguistics venues. Averaging those out gives 3.5, which falls below the 4.0 threshold needed for a pass.
+
+So this needs revision. The 16-day hard constraint is still the main blocker—the Prolific bottleneck is irreducible, so I should explore whether a simulation-only protocol could replace it entirely using persona simulation and inter-rater calibration on synthetic gold standards. EMNLP 2027 with an ARR September 2026 deadline is actually a better fit than AAAI 2027 for annotation-focused NLP work. I also need to specify a validation metric for the Stage 1 classifier—what held-out accuracy should we expect on the Jiang & de Marneffe taxonomy instances? And the evaluation section needs to clarify how the ProbeBank-1.5K training instances relate to the ToxiGen and MNLI evaluation sets.
+
+But wait, I should reconsider whether penalizing the 16-day constraint is even the right call here. The user's hard constraint was "≤16 days" and it was explicitly tied to using existing open models with lightweight adaptation in the context of the EMNLP 2026 ARR deadline. Now that we're targeting AAAI 2027, there's actually 3+ months of runway available, which changes the calculus. Re-reading the requirements though, the constraint says "HARD CONSTRAINTS: Time: ≤16 days" as a standalone item, independent of venue. The user also specified "If user study needed, design a small-scale simulated or crowdsourced protocol"—and the Prolific study is small-scale at 100 instances with roughly 60 annotator-hours, so the remaining 1,400 instances would need to come from somewhere else.
+
+The wall-clock time is the real issue: the Prolific study takes 5-8 days, and the full pipeline runs 16-22 days total. The constraint is ≤16 days, so we're either just barely making it or exceeding it depending on the scenario. But if the Prolific collection runs in parallel with data prep and initial classifier experiments, the critical path might actually compress—the bottleneck isn't necessarily sequential. For AAAI 2027 specifically, the Prolific timeline is less of a constraint since we have 3 months to work with.
+
+Now looking at the EACL 2026 paper on reasoning and annotator disagreement: it shows that RLVR-style reasoning actually hurts disagreement modeling, though naive chain-of-thought reasoning can help with RLHF performance on disagreement tasks. This is relevant context for understanding what approaches might work here.
+
+The key distinction is that DART's contribution centers on the active probing protocol itself, not on how LLMs model disagreement—so even though this EACL work touches on disagreement, it doesn't directly compete with what we're proposing.
+
+I should also flag that the user specifically asked for EMNLP 2026 with that 16-day deadline, but the proposal has been shifted to AAAI 2027 instead. That's a constraint issue rather than a methodology problem, but it's worth noting that this doesn't actually meet the original requirement.
+
+Looking more carefully at what the user specified: they want EMNLP 2026's special track on "Human-Centered NLP and Human-AI Interaction," which is a unique fit for this work and aligns with EMNLP's focus on agentic workflows. AAAI 2027 doesn't have that same track, so EMNLP 2027 or an ARR September 2026 submission would be more appropriate fallbacks than AAAI.
+
+My assessment is **revise**—the core issue is that the timeline doesn't match the user's EMNLP 2026 target, and AAAI 2027 isn't the best alternative venue given the work's focus on human-centered interaction.
+
+Scoring it out: Novelty at 3.5 for a genuinely new four-stage pipeline combination, Feasibility at 3.5 given the tight 16-day constraint and Prolific bottleneck, Clarity at 4.0 for well-specified methodology, and Impact at 3.0 for meaningful but niche contribution. That averages to 3.5, confirming the revise recommendation.
+
+Now I need to double-check the venue claim in the Diverging Preferences paper more carefully.
+
+Looking at the search results, I see both a NeurIPS 2024 workshop appearance and an ICML 2025 main conference publication. The NeurIPS result shows a different title format, so these might be separate venues or the same paper presented in different contexts. The OpenReview link points to ICML 2025 as the primary publication, which is what the generator cited, so that attribution appears correct. The generator has addressed all the major issues from the previous round, but there are still some fundamental misalignments with the user's requirements—particularly the EMNLP 2026 constraint and the choice of AAAI 2027 over more suitable venues like EMNLP or ACL 2027 through ARR. The compute timeline is tight, and a few technical details around the Stage 1 classifier and dataset relationships need clarification. I'm leaning toward a "revise" recommendation with specific guidance on these remaining gaps.
+
+But I should step back and really assess whether this proposal is actually meeting what the user asked for. Looking at the requirements checklist, the venue and track alignment is the critical issue—the user explicitly wanted EMNLP 2026 in the Human-Centered NLP track, and we've shifted to AAAI 2027, which doesn't match that vision even if the methodology itself is solid.
+
+The real question is whether EMNLP 2027 as a fallback venue makes sense for this work. At AAAI, annotation-focused research might get lost in the broader AI landscape, but EMNLP's human-centered NLP community would be a much better fit. If the plan is to target ARR in September 2026 with an EMNLP 2027 acceptance, that actually aligns better with the original intent than forcing it into AAAI.
+
+So my assessment stands: the paper needs revision. The main priorities are retargeting to EMNLP 2027 through ARR, validating the Stage 1 classifier properly, clarifying how ProbeBank-1.5K relates to the evaluation set, and acknowledging that the 16-day timeline constraint still isn't fully resolved. I should verify a couple of the cited papers—the structured disagreement work in health-literacy annotation and the "Beyond Black-Box Labels" paper—to make sure I have the references right before finalizing the review.
+
+I've now confirmed the core papers and timelines: Diverging Preferences at ICML 2025, CARE at EMNLP 2025, and the Jiang & de Marneffe TACL 2022 work all check out. STABLEVAL and ReasonScaffold are on track for May and March 2026 respectively, and the EACL 2026 paper on reasoning and annotator disagreement is related but won't preempt this work. AAAI 2027's deadline looks to be July-August 2026, which aligns with what the proposal claims. The core issue remains that EMNLP 2027 via ARR September 2026 would be a better fit for the human-centered NLP focus, and the Prolific study would need to compress to three days or less to actually satisfy the hard constraint on total timeline.
+
+The Stage 1 classifier needs more scrutiny—300 training instances for a three-way classifier is on the lean side, and I should flag that held-out accuracy estimates on the NLI data specifically would strengthen the validation. The EACL 2026 paper directly addresses LLM limitations in capturing disagreement, so it's worth citing as additional motivation for DART's active probing approach. Looking at the scores now: novelty sits at 3.5, feasibility at 3.5, clarity at 4.0, and impact at 3.5, which I'm inclined to bump up slightly from the initial 3.0.
+
+The average comes to 3.625, still below the 4.0 threshold, so a revision is warranted. Time to draft the review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "505ea149-9fdd-412f-85be-039fd6d15ffe",
+  "isSidechain": false,
+  "requestId": "req_011CatUL9uB3hcU6e9VWhdjr",
+  "type": "assistant",
+  "uuid": "136d1d0f-c36c-45b3-a6e5-4a42214aec94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013UtYWD4jgAWJzhh6oJZVTg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 918,
+      "cache_creation_input_tokens": 2109,
+      "cache_read_input_tokens": 39037,
+      "output_tokens": 7444,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 918,
+          "output_tokens": 7444,
+          "cache_read_input_tokens": 39037,
+          "cache_creation_input_tokens": 2109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T07:13:58.800Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y3fQBtAMXDkTy484itkMpP`</summary>
+
+```json
+{
+  "query": "active annotation resolution protocol disagreement type conditioned probing soft label 2025 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "136d1d0f-c36c-45b3-a6e5-4a42214aec94",
+  "isSidechain": false,
+  "requestId": "req_011CatUL9uB3hcU6e9VWhdjr",
+  "type": "assistant",
+  "uuid": "e836f433-1d93-4b06-ac7d-9176e1754458",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013UtYWD4jgAWJzhh6oJZVTg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 918,
+      "cache_creation_input_tokens": 2109,
+      "cache_read_input_tokens": 39037,
+      "output_tokens": 7444,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 918,
+          "output_tokens": 7444,
+          "cache_read_input_tokens": 39037,
+          "cache_creation_input_tokens": 2109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-10T07:13:59.403Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HocgsSttgNxQyXZvWZ9Yse`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2410.14632",
+  "prompt": "What is the key finding about annotator disagreement taxonomy and whether LLMs/models can account for annotator divergence? What are the four high-level classes and is this published at ICML 2025?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e836f433-1d93-4b06-ac7d-9176e1754458",
+  "isSidechain": false,
+  "requestId": "req_011CatUL9uB3hcU6e9VWhdjr",
+  "type": "assistant",
+  "uuid": "7d99536e-93d2-48ae-a250-f2eed81c220c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013UtYWD4jgAWJzhh6oJZVTg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 918,
+      "cache_creation_input_tokens": 2109,
+      "cache_read_input_tokens": 39037,
+      "output_tokens": 7444,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 918,
+          "output_tokens": 7444,
+          "cache_read_input_tokens": 39037,
+          "cache_creation_input_tokens": 2109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7d99536e-93d2-48ae-a250-f2eed81c220c",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disagreement-type-conditioned annotation resolution protocol",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-10T07:14:03.562Z_
+
+<details><summary>↩ Tool result · `toolu_01HocgsSttgNxQyXZvWZ9Yse`</summary>
+
+```text
+# Key Findings on Annotator Disagreement
+
+**Main Discovery:**
+The paper challenges the conventional assumption that disagreements among annotators are simply noise. Instead, researchers found that "the majority of disagreements are due to factors such as task underspecification or response style."
+
+**Model Accountability:**
+The study demonstrates that standard reward modeling approaches (like Bradley-Terry) and LLM-as-Judge evaluation methods fail to properly address divergence between annotators, indicating models don't adequately account for this variation.
+
+**Four High-Level Classes:**
+The abstract mentions a taxonomy spanning "ten categories across four high-level classes" but does not explicitly name these four classes in the provided excerpt.
+
+**Publication Status:**
+Yes, this work is confirmed as accepted to **ICML 2025**, as indicated in the paper's metadata.
+
+**Additional Context:**
+The researchers developed mitigation methods to identify diverging preferences and reduce their influence both during model evaluation and training, addressing broader challenges in creating pluralistically aligned language models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7d99536e-93d2-48ae-a250-f2eed81c220c",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "4daa9fa1-f24e-4a8e-a83c-d74ad4dd8bfd",
+  "toolUseResult": {
+    "bytes": 46745,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Findings on Annotator Disagreement\n\n**Main Discovery:**\nThe paper challenges the conventional assumption that disagreements among annotators are simply noise. Instead, researchers found that \"the majority of disagreements are due to factors such as task underspecification or response style.\"\n\n**Model Accountability:**\nThe study demonstrates that standard reward modeling approaches (like Bradley-Terry) and LLM-as-Judge evaluation methods fail to properly address divergence between annotators, indicating models don't adequately account for this variation.\n\n**Four High-Level Classes:**\nThe abstract mentions a taxonomy spanning \"ten categories across four high-level classes\" but does not explicitly name these four classes in the provided excerpt.\n\n**Publication Status:**\nYes, this work is confirmed as accepted to **ICML 2025**, as indicated in the paper's metadata.\n\n**Additional Context:**\nThe researchers developed mitigation methods to identify diverging preferences and reduce their influence both during model evaluation and training, addressing broader challenges in creating pluralistically aligned language models.",
+    "durationMs": 4156,
+    "url": "https://arxiv.org/abs/2410.14632"
+  },
+  "sourceToolAssistantUUID": "7d99536e-93d2-48ae-a250-f2eed81c220c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T07:14:05.650Z_
+
+<details><summary>↩ Tool result · `toolu_01Y3fQBtAMXDkTy484itkMpP`</summary>
+
+```text
+Web search results for query: "active annotation resolution protocol disagreement type conditioned probing soft label 2025 2026 arxiv"
+
+Links: [{"title":"STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems","url":"https://arxiv.org/html/2605.02122v1"},{"title":"[2603.25450] Cross-Model Disagreement as a Label-Free Correctness Signal","url":"https://arxiv.org/abs/2603.25450"},{"title":"Machine Learning Jun 2025","url":"https://arxiv.org/list/cs.LG/2025-06?skip=25&show=2000"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"},{"title":"1 Introduction","url":"https://arxiv.org/html/2602.09486"},{"title":"Machine Learning Jul 2025","url":"https://www.arxiv.org/list/cs.LG/2025-07?skip=1025&show=2000"},{"title":"Track: Poster Session 5 East","url":"https://icml.cc/virtual/2025/session/50267"},{"title":"[2504.00149] Towards Precise Action Spotting: Addressing Temporal Misalignment in Labels with Dynamic Label Assignment","url":"https://arxiv.org/abs/2504.00149"},{"title":"Machine Learning May 2025","url":"https://www.arxiv.org/list/cs.LG/2025-05?skip=1100&show=2000"},{"title":"Machine Learning Apr 2025","url":"https://www.arxiv.org/list/cs.LG/2025-04?skip=825&show=2000"}]
+
+Based on the search results, I found relevant recent work on disagreement modeling and annotation, though not a paper precisely matching all those specific keywords combined. Here are the most relevant findings:
+
+## Key Recent Work on Disagreement and Annotation
+
+STABLEVAL is a disagreement-aware evaluation framework that models latent item correctness and annotator-specific confusion patterns to produce posterior expected item credit and calibrated agent-level scores. This paper (from May 2026) addresses annotator disagreement comprehensively.
+
+Aggregating soft labels from crowd annotations improves uncertainty estimation compared to hard majority labels. This relates to your interest in soft label approaches.
+
+Methods that explicitly model annotator-specific behavior or group-level variation via demographic-aware experts and synthetic perspectives demonstrate improved representation of structured disagreement.
+
+## Related Work on Disagreement as Signal
+
+Cross-model disagreement is a simple, training-free signal that can be used for correctness indication, computing how surprised or uncertain a second verifier model is when reading an answer via a single forward pass, without generation from the verifying model or correctness labels.
+
+The search results suggest that the NLP and ML communities have recent interest in treating disagreement as meaningful signal rather than noise, with work on soft labels, type-conditioned modeling, and annotation protocols being active areas of research in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e836f433-1d93-4b06-ac7d-9176e1754458",
+  "isSidechain": false,
+  "promptId": "9f86de18-962f-4a5d-a61f-247857d8c429",
+  "type": "user",
+  "uuid": "52db7813-28ef-4017-bf24-e9bd840eddb6",
+  "toolUseResult": {
+    "query": "active annotation resolution protocol disagreement type conditioned probing soft label 2025 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019rdsmPqZSXkrHiXwYZrRv4",
+        "content": [
+          {
+            "title": "STABLEVAL: Disagreement-Aware and Stable Evaluation of AI Systems",
+            "url": "https://arxiv.org/html/2605.02122v1"
+          },
+          {
+            "title": "[2603.25450] Cross-Model Disagreement as a Label-Free Correctness Signal",
+            "url": "https://arxiv.org/abs/2603.25450"
+          },
+          {
+            "title": "Machine Learning Jun 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-06?skip=25&show=2000"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=3050&show=2000"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2602.09486"
+          },
+          {
+            "title": "Machine Learning Jul 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-07?skip=1025&show=2000"
+          },
+          {
+            "title": "Track: Poster Session 5 East",
+            "url": "https://icml.cc/virtual/2025/session/50267"
+          },
+          {
+            "title": "[2504.00149] Towards Precise Action Spotting: Addressing Temporal Misalignment in Labels with Dynamic Label Assignment",
+            "url": "https://arxiv.org/abs/2504.00149"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-05?skip=1100&show=2000"
+          },
+          {
+            "title": "Machine Learning Apr 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-04?skip=825&show=2000"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant recent work on disagreement modeling and annotation, though not a paper precisely matching all those specific keywords combined. Here are the most relevant findings:\n\n## Key Recent Work on Disagreement and Annotation\n\nSTABLEVAL is a disagreement-aware evaluation framework that models latent item correctness and annotator-specific confusion patterns to produce posterior expected item credit and calibrated agent-level scores. This paper (from May 2026) addresses annotator disagreement comprehensively.\n\nAggregating soft labels from crowd annotations improves uncertainty estimation compared to hard majority labels. This relates to your interest in soft label approaches.\n\nMethods that explicitly model annotator-specific behavior or group-level variation via demographic-aware experts and synthetic perspectives demonstrate improved representation of structured disagreement.\n\n## Related Work on Disagreement as Signal\n\nCross-model disagreement is a simple, training-free signal that can be used for correctness indication, computing how surprised or uncertain a second verifier model is when reading an answer via a single forward pass, without generation from the verifying model or correctness labels.\n\nThe search results suggest that the NLP and ML communities have recent interest in treating disagreement as meaningful signal rather than noise, with work on soft labels, type-conditioned modeling, and annotation protocols being active areas of research in 2025-2026."
+    ],
+    "durationSeconds": 6.844355930000019
+  },
+  "sourceToolAssistantUUID": "e836f433-1d93-4b06-ac7d-9176e1754458",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-10T07:14:28.242Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good - the Diverging Preferences paper is confirmed as published at ICML 2025, with the key finding that LLMs fail to account for annotator divergence.
+
+Now I have enough information to write my review. Let me also check one more thing - is there any work that specifically does "type-conditioned probe generation" for annotation disagreement, which would be the most direct preemption of DART.
+
+Based on my research:
+1. No work directly implements all four stages of DART (type classification → type-specific probes → structured response encoding → soft-label training).
+
+
+2. ReasonScaffold from March 2026 comes closest with its two-pass protocol, but it doesn't classify disagreement types or generate type-specific probes.
+3. ClarifyDelphi at ACL 2023 does generate probes for moral and social situations, though without the type pre-classification step.
+
+The novelty checks out. Now I'm ready to draft the review, but I need to flag a significant concern - the user originally requested EMNLP 2026, but the work has been retargeted to AAAI 2027, which may not be the ideal venue for annotation disagreement research.
+
+The timeline is also problematic. The auto-research mode runs 16-22 days, which technically violates the hard constraint of 16 days or less. The Prolific study creates an unavoidable bottleneck at 5-8 days, so meeting the deadline would require either dropping the human annotation component entirely in favor of synthetic validation, or compressing the Prolific batch to 2-3 days with increased compensation.
+
+There's also a concern with the Stage 1 classifier - training a 3-way disagreement classifier on roughly 300 NLI instances plus weak supervision from CARE-derived toxicity labels is quite limited, and I don't see a held-out accuracy estimate or performance projection.
+
+I'm noticing the EACL 2026 paper on reasoning LLMs and annotation disagreement is missing from the citations. That work directly contradicts the assumption that reasoning-based approaches capture human disagreement well, which actually strengthens the motivation for DART's active probing strategy.
+
+The ProbeBank evaluation setup also needs clarification - it's unclear whether the 1,500 soft-label training instances are the ProbeBank instances themselves, or whether the held-out evaluation uses the standard ToxiGen test split.
+
+Now I'm scoring the proposal across dimensions: novelty at 3.5 since the four-stage pipeline is genuinely novel as a combination even though individual techniques are established; feasibility at 3.5 given the compute budget is tight and the Prolific annotation bottleneck creates unavoidable delays; clarity at 4.0 since the specification is explicit with concrete fallbacks; and impact at 3.5 since it's primarily valuable to the NLP annotation community rather than having broader AI relevance.
+
+The average comes to 3.625, which falls below the 4.0 threshold, so this needs revision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52db7813-28ef-4017-bf24-e9bd840eddb6",
+  "isSidechain": false,
+  "requestId": "req_011CatUWDsKVMhEv84H5AcKK",
+  "type": "assistant",
+  "uuid": "2380e801-e515-43c3-8993-a058f8359a6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019671bug2RhkQ6Q4pA8bdNW",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 249,
+      "cache_creation_input_tokens": 9125,
+      "cache_read_input_tokens": 41146,
+      "output_tokens": 3292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9125,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 249,
+          "output_tokens": 3292,
+          "cache_read_input_tokens": 41146,
+          "cache_creation_input_tokens": 9125,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9125
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-10T07:15:07.708Z_
+
+I have sufficient evidence for a thorough verdict. Let me compile the full assessment.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 3.5,
+      "rationale": "The four-stage closed-loop (type classification → type-specific probes → structured response encoding → soft-label training) is genuinely novel as an integrated system; no single prior work combines all four stages. Individual components (CARE, ClarifyDelphi, soft-label training) are well-grounded, but the contribution is a principled composition rather than a conceptual breakthrough, which limits the ceiling for top-venue novelty."
+    },
+    "feasibility": {
+      "score": 3.5,
+      "rationale": "Compute is within budget (125–150 H100-equivalent hours verified realistic). However, the user's hard constraint of ≤16 days is technically violated: auto-research mode estimates 16–22 days, with a 5–8 day irreducible Prolific wall-clock bottleneck. Stage 1 classifier training on ~300 NLI-typed instances is small-data territory with unvalidated CARE→type mapping, adding execution risk."
+    },
+    "clarity": {
+      "score": 4.0,
+      "rationale": "All four Round 3 issues have been genuinely resolved: Diverging Preferences (ICML 2025) is now cited and differentiated, the Pyatkin citation is corrected, a concrete persona fallback is specified, and Stage 4 evaluation names model (Qwen3-7B), datasets (ToxiGen, MNLI), baselines (hard-label, unprobed soft-label), and metrics (macro-F1, ECE). The CARE weak-supervision mapping is operationalized."
+    },
+    "impact": {
+      "score": 3.5,
+      "rationale": "The annotation disagreement community is active (ACL 2025 co-located workshop, NLPerspectives at EMNLP 2025, LAW XX at ACL 2026 on annotation errors), and ProbeBank-1.5K would be a durable contribution. However, the retargeted primary venue (AAAI 2027) has poor track alignment with annotation-focused NLP; impact depends on landing in the right review pool."
+    }
+  },
+  "issues": [
+    "VENUE MISMATCH — AAAI 2027 IS THE WRONG PRIMARY TARGET: The user specified EMNLP 2026 / Track: Human-Centered NLP and Human-AI Interaction. While EMNLP 2026 is correctly acknowledged as infeasible, AAAI 2027 is a broad AI conference with no dedicated annotation/human-centered NLP track and a reviewer pool less familiar with perspectivist annotation, disagreement taxonomies, and soft-label training. The fallback already listed ('ARR September 2026 → EMNLP 2027') is the correct primary target: it preserves alignment with the user's track specification, the active disagreement community, and EMNLP's special theme. AAAI 2027 should be demoted to secondary or removed.",
+    "16-DAY HARD CONSTRAINT TECHNICALLY VIOLATED: The user specified ≤16 days as a hard constraint. Auto-research mode estimates 16–22 days, with the 5–8 day Prolific collection forming an irreducible wall-clock bottleneck. Even in the optimistic case, completion at 16 days is at the boundary, and any QC iteration on the Prolific batch pushes to 18–22 days. To genuinely meet ≤16 days, the Prolific study must be either (a) eliminated entirely in favor of a simulated gold standard (fully persona-based with cross-validation against synthetic disagreement cases), or (b) restructured as a minimal 24–48h batch (~20–30 instances at premium pay) with asynchronous QC. The current design acknowledges this only as a non-issue due to the AAAI 2027 three-month window — but the hard constraint is independent of venue.",
+    "STAGE 1 CLASSIFIER VALIDATION UNDERSPECIFIED: The three-way disagreement-type classifier is fine-tuned on ~300 NLI instances (Jiang & de Marneffe TACL 2022) plus CARE-derived weak supervision for toxicity. No held-out accuracy estimate, expected macro-F1, or calibration metric is given for Stage 1 output. The CARE→type mapping (sub-concept-alignment sensitivity → conceptual ambiguity; direction-divergent rationale-stable → value divergence; counterfactual-sensitive → borderline threshold) is operationalized but entirely unvalidated — no human-assessed inter-rater agreement on whether this proxy labeling is correct. If Stage 1 classifier accuracy is poor (e.g., <70% on held-out NLI instances), the downstream stages are undermined, and no mitigation is specified.",
+    "MISSING EACL 2026 CONCURRENT WORK: 'Can Reasoning Help Large Language Models Capture Human Annotator Disagreement?' (Ni, Fan, Zouhar, Hoyle et al., EACL 2026, aclanthology.org/2026.eacl-long.3) directly demonstrates that RLVR-style reasoning degrades annotator disagreement modeling performance, while naive CoT offers only marginal improvement in some settings. This reinforces DART's active probing motivation (passive LLM prediction insufficient) and should be cited as additional empirical motivation alongside Zhang et al. (ICML 2025). EMNLP 2027 reviewers will expect it.",
+    "EVALUATION STRUCTURE AMBIGUITY — PROBEBANK vs. EVAL BENCHMARKS: The proposal fine-tunes Qwen3-7B on 'DART-updated soft labels' and evaluates on ToxiGen and MNLI validation split, but does not clarify the data split architecture. Specifically: (a) are the 1,500 ProbeBank instances a subset of ToxiGen/MNLI training data, meaning DART-updated soft labels become the training signal? (b) Is the evaluation on held-out test instances not seen during ProbeBank construction? (c) How is train/dev/test split handled to prevent contamination between disagreement-probe instances and held-out evaluation instances? Without this, the evaluation section is not reproducible."
+  ],
+  "feedback": "DART's methodology is now well-grounded and all four Round 3 blockers are resolved. Four targeted revisions will close the remaining gaps:\n\n(1) RETARGET PRIMARY VENUE TO EMNLP 2027 VIA ARR SEPTEMBER 2026 — Swap primary and fallback: make 'ARR September 2026 → EMNLP 2027' the primary target and demote AAAI 2027 to secondary. Rationale: EMNLP has a dedicated Human-Centered NLP and Human-AI Interaction track directly matching the user specification; the annotation disagreement community publishes overwhelmingly at *CL venues; EMNLP 2027 reviewers will be familiar with CARE, ClarifyDelphi, and the disagreement taxonomy literature. ARR September 2026 deadline (~September 15) gives ~4 months from now, which accommodates human-in-loop mode comfortably. AAAI 2027 is worth retaining as a backup only.\n\n(2) EXPLICITLY ADDRESS THE 16-DAY CONSTRAINT — Add a 'constraint compliance note' to resource_estimate acknowledging that the user's ≤16 day hard constraint is only borderline met under auto-research mode and only if Prolific collection completes at the 5-day lower bound with no QC iteration. Propose a constraint-compliant variant: compress the Prolific batch to 20–30 instances at $24/hr (same total spend, 1-day turnaround on Prolific), achieving the ρ ≥ 0.60 validation check within 2 days, and running all other stages fully in parallel. This preserves a human gold standard while making 16 days genuinely achievable.\n\n(3) ADD STAGE 1 CLASSIFIER VALIDATION SPEC — Specify held-out evaluation of Stage 1: use an 80/20 split of the ~300 Jiang & de Marneffe NLI-typed instances; report macro-F1 (expected range: 70–80% given the small training set). Add a minimum-performance fallback: if Stage 1 F1 < 65% on the NLI held-out split, fall back to a rule-based classifier using the CARE proxy signals alone. This prevents Stage 1 failure from propagating silently through the pipeline.\n\n(4) CITE EACL 2026 AND CLARIFY EVALUATION ARCHITECTURE — Add 'Can Reasoning Help LLMs Capture Human Annotator Disagreement?' (Ni et al., EACL 2026) to key_references as additional motivation for active probing over passive LLM prediction. In the evaluation section, add two sentences clarifying data architecture: (a) ProbeBank-1.5K instances are drawn from training splits of ToxiGen and MNLI; (b) evaluation macro-F1 and ECE are computed on the standard ToxiGen test set and MNLI validation split (held out, no overlap with ProbeBank instances), ensuring clean train/eval separation.",
+  "reason": "All Round 3 blockers are resolved, but four fixable issues remain: wrong primary venue (AAAI vs. EMNLP 2027 for this topic), 16-day hard constraint borderline not met, Stage 1 classifier validation absent, and evaluation data split ambiguous."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2380e801-e515-43c3-8993-a058f8359a6b",
+  "isSidechain": false,
+  "requestId": "req_011CatUWDsKVMhEv84H5AcKK",
+  "type": "assistant",
+  "uuid": "2776f707-65c3-42cf-83c9-90ac864048cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019671bug2RhkQ6Q4pA8bdNW",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 249,
+      "cache_creation_input_tokens": 9125,
+      "cache_read_input_tokens": 41146,
+      "output_tokens": 3292,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9125,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 249,
+          "output_tokens": 3292,
+          "cache_read_input_tokens": 41146,
+          "cache_creation_input_tokens": 9125,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9125
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2776f707-65c3-42cf-83c9-90ac864048cf",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Disagreement-type-conditioned annotation resolution protocol",
+  "sessionId": "e82b1787-a633-441a-8e03-23d13d65e510"
+}
+```
+
+---

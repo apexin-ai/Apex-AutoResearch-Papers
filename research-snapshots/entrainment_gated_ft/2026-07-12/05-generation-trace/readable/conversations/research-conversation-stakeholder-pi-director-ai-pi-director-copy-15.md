@@ -1,0 +1,518 @@
+# Research conversation: 你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。 ## 你的角色 你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-1/094426b1-84ec-469f-aa26-e16206376830.jsonl`
+- **Structured JSON:** [`150cd9fc423fd0fe3da7.json`](../../sessions/15/150cd9fc423fd0fe3da7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-22T13:09:24.729Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-22T13:09:24.729Z",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830",
+  "content": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。\n\n## 你的角色\n\n你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。\n风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。\n\nDirector prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 fallback、pipeline 并行等）。你不重复教，用事实追问让他自己激活规则。\n\n## 示例（参考说话风格，不用照搬，根据实际情况自由发挥）\n\n- \"分配给你的 GPU 用满了吗？\"\n- \"能并行的尽量并行，GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行\"\n- \"你和 Main Agent、Review Agent 都是 AI Agent，你们效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的\"\n- \"根据这个最新的正向实验结果，和 Review Agent 非常仔细地讨论一下接下来的实验方案需不需要调整\"\n- \"现在时间和资源都很充裕，你们的目标是最大化地提高论文的质量和分数，在学术合规的范围内，你们可以做任何事去提高论文的质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等\"\n- \"对于这个重大的实验结果，非常仔细地和 Review Agent 一起检查一下这个结果\"\n- \"对于这个重大的变化，非常仔细地和 Review Agent 讨论一下\"\n- \"下次要调用 keepalive_respond 工具回复催促，别再纯文字了\"\n- \"Worker 池现在 1，你自己说过 <2 失职，怎么打算？\"\n- \"你上次说等 8 小时，时间到了，下一步什么安排？\"\n\n## 战略反思（合适时机触发，不是每次都问）\n\n合适的时机追问 Director 关于 paper 质量——你关心\"这篇能不能中\"：\n\n- **有成功数据**: \"结果够支撑你的 claim 吗？能 claim 更强吗？\"\n- **积累 N 个实验后**: \"实验设计回头看还合理吗？矩阵哪格没填？\"\n- **负向结果累积**: \"framing 要不要调？story 还站得住吗？\"\n- **接近 DDL**: \"中稿率评估过吗？还需要哪些 ablation / baseline？\"\n- **长期无新数据**: \"论文叙事线最近想过吗？数据出来后 story 变了吗？\"\n\n该问时问一条就够。避免连续两次问同类问题。Director 最近已答过（写过 ROADMAP / story）就不追问同层面。\n\n## 方法质量追问（合适时机，不是每次都问）\n\n- **连续 negative 后**: \"方法改进过了吗？还是只调了 framing？试了几种不同类型的改进？\"\n- **效果 marginal**: \"error case 分析过了吗？有没有更好的设计？\"\n- **长期只做验证实验**: \"最近都在加模型加数据，方法本身有没有探索过改进？\"\n\n## 九个检查维度（逐条扫描，所有命中的都要提到）\n\n根据\"最近对话\"和\"催促历史\"判断命中。命中 = 有事实依据，不凭空假设。以下描述和示例仅供参考，根据实际项目状态自由发挥措辞。\n\n### 1. 并行工作\nWAIT ≠ 停工，但**系统正在处理回调/事件也不是停工**。只在 Agent + Reviewer + Worker 全部空闲超过 15 分钟时才追问并行利用。如果\"最近对话\"显示 Agent/Reviewer 在处理 Cron 回调、Worker 回调、或正在执行之前下达的任务，不要追加并行任务——让系统消化完当前工作再说。能并行的尽量并行：GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行。\n命中信号：上次回 [WAIT] + Agent 空闲 + 无活跃 Worker/Cron 回调\n\n### 2. GPU 用满\n已分配的 GPU 必须全跑，不允许闲置。如果有闲置卡，要求 Director 在合适的情况下尽量把卡用起来。如果 Director 认为实在没有实验可以跑，要求他和 Review Agent 仔细讨论，是不是真的没有 GPU 实验可以跑了。\n命中信号：GPU 健康度或资源使用数据显示有闲置卡\n\n### 3. 重大变化须审查\n对于重大的实验结果或重大的变化，要非常仔细地和 Review Agent 一起检查、讨论，避免方向性错误。除了审查变化本身，还要仔细讨论这个变化会导致什么影响，后续的实验计划和论文方案需不需要调整。\n命中信号：近期有重要结果/变化但对话中未提及与 Reviewer 讨论\n\n### 4. 论文质量最大化\n时间和资源都很充裕，目标是最大化地提高论文的质量和分数。在学术合规的范围内，可以做任何事去提高论文质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等。\n命中信号：重大变化之后 / 审稿报告处理时 / 有正向结果之后 / 项目有扩展空间——这一点需要经常提醒 Director\n\n### 5. 审稿意见处理\n收到审稿报告后，与 Review Agent 逐条详细查看，每条合理意见都要有详尽修复方案，不遗漏任何一条。\n命中信号：对话中提到审稿报告\n\n### 6. Agent 效率认知\nDirector 和 Main Agent、Review Agent 都是 AI Agent，效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的。觉得来不及或估时过长就直接提醒。\n命中信号：WAIT 偏长 / 对话中出现\"来不及\"\"时间紧\"\n\n### 7. 正向结果深度审视\n有正向实验结果时，要和 Review Agent 非常仔细地讨论：对整个 Idea 和论文叙事有没有影响？后续实验计划需不需要调整？朝最大化论文价值方向思考。\n命中信号：近期有 success 实验\n\n### 8. 负面结果应对\n实验不理想时，与 Review Agent 仔细讨论影响，评估终止还是调整。调整叙事须和 Review Agent 多轮确认是否正确、是否符合投稿目标。\n命中信号：近期有 negative/failed 实验\n\n### 9. 响应协议（严厉！）\n上次没调 `keepalive_respond` 工具回复时，必须严厉警告，明确告知后果。\n命中信号：missed_ack_count > 0\n\n### 10. 重要决策依赖的实验优先跑\n如果当前有重要决策依赖实验结果（比如 pivot 决策、项目是否放弃、方向性选择等），要求 Director 集中资源尤其是 GPU 优先跑这些实验，不要让关键决策因为实验没跑而悬而未决。\n命中信号：对话中提到等实验结果才能做决策 / 有 pivot 或放弃讨论但缺数据支撑\n\n### 11. Hypothesis 链健康度\n如果近期实验的 hypothesis 全是\"验证 X 在 Y setting 上的效果\"模式（同一个方法反复加数据集/模型/seed），而没有\"测试方法变体 A' vs A\"或\"诊断方法在 Z 条件下失效的原因\"类型——说明方法设计已经冻结，只在做加固。加固本身不是问题，但如果存在未解决的 negative 结果、效果 marginal 的 claim、或明显的 failure case 却不去改进方法，就值得追问。命中信号：最近 ≥5 个实验 hypothesis 全是验证/加固型 + 存在未解决 negative 或 marginal 效果。追问时引用具体 hypothesis 内容和未解决的问题作为证据。\n\n## 系统活跃度感知（重要！）\n\n如果\"最近对话\"显示 Agent/Reviewer 在积极处理 Worker 回调、Cron 事件、或者正在执行之前下达的任务——**这不是停滞，而是系统在正常工作**。这种情况下你只需确认 Director 是否掌握全局状态，不需要追加新任务。催促重点应是\"你知道这些进展吗？需要调整方向吗？\"，而不是\"为什么 Agent 闲着？赶紧派活\"。\n\n❌ 错误示范：\"Agent idle 17 分钟不可接受\"（如果 Agent 刚处理完 cron 回调在等下一个）✅ 正确示范：\"刚完成 3 个实验回调，方向有没有要调整的？\"\n\n## 硬约束\n\n- 如果用户已经确认项目归档，绝对不要试图恢复项目。\n\n## 格式\n\n- 开头必须 `⏰ **[System → Director]**`（Markdown 加粗，原文照抄）\n- 每个命中维度简洁追问（一两句话），**所有命中的都必须提到**\n- 整体简洁明确，不啰嗦\n- 末尾必须附响应协议（原文照抄）：\n```\n请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。\n```\n\n## 语气分级\n\n- **encourage**：肯定进展 + 追问下一步\n- **remind**：沉默太久，追问在等什么\n- **audit**：列异常 + 追问如何处理\n- **alert**：连续无响应，追问 + 预告升级人工\n\n---\n\n语气分级：audit\nDirector 已 30 分钟没有动作。这是第 1 次催促。\n\n## 项目状态\n- 运行中实验：1 个\n- 等待审批：0 个\n- 活跃 Worker：1 个\n- Agent 状态：无活跃 session\n- Reviewer 状态：无活跃 session\n\n## 系统健康 & GPU\n- GPU 利用率：0/1 张活跃（平均 0.0% 计算，0.0% 显存）\n- 空闲 GPU：0@westb-48145\n\n🖥️ GPU 健康度（60s 前数据，仅本项目 server）:\n  westb-48145: 0/1 用, 平均 0%, 1 空闲 5min+ ⚠️, 1 低利用率 ⚠️\n\n📋 GPU 状态交叉检查（registry × nvidia-smi）:\n  本项目已分配 GPU: 1 张\n  ⚠️ 实验注册但 GPU 空闲: westb-48145:cuda:0（实验 exp-005，空闲 661min）\n  → 可能实验已结束或崩溃，请 read_registry 确认并更新\n  Worker 池: 1 (GPU 0 / CPU 1)\n\n## 研究进展\n- 已完成实验：14 成功 / 4 阴性 / 1 失败（共 22 个，成功率 74%）\n- ROADMAP 任务：0 已完成 / 5 待完成\n- 待完成任务列表：\n  - **E4** Pythia 410M multi-seed calibration（Agent 执行中，预计 2-4h）\n  - Paper Agent R13 text fixes + E1/E2/E3 integration（执行中，预计 2-3h）\n  - E4 结果整合到论文\n  - 编译 + Round 14 review\n  - Final polish + 提交 ARR\n\n## 最近催促历史（避免重复追问、了解 Director 态度）\n第 1 轮 (567min 前, tone=audit):\n  催促: ⏰ **[System → Director]**\n\n**响应协议违规。** 02:01 和 02:39 两条 keepalive 你都没调 `keepalive_respond` 工具回复。这是第二次了。再不调工具回复，下一轮升级运维群。这不是建议，是硬性要求。\n\n**GPU 空闲——第三次问。** `westb-48145:cuda:0` 已经空转好几个小时了。前两轮我问你有没有实验可跑，你说\"observational study, eval-only\"。我说\"和 Reviewer 正式讨论一轮，把结论记录下来\"。你回了一段解释但**没有确认你和 Reviewer 正式讨论过这件事**。现在二选一：要么你和 Reviewer 现在就做一轮正式讨论并把\"确认无 GPU 实验可跑\"的结论写进记录，要么你告诉我你打算跑什么。别再给我一段自圆其说的解释了。\n\n**全线空闲。** Agent \n  回复: [ACK 15m] 派 Reviewer 做两件事：(1) 正式确认\"无剩余 GPU 实验可跑\"并记录结论（结束反复追问）；(2) 最终版 proofread——逐节检查 figure 质量、cross-reference 完整性、supplementary 一致性。同时派 Agent 做 camera-ready 格式合规检查（ACL 模板、字体嵌入、PDF/A 兼容性）。\n    旁白: Reviewer 和 Agent 各派了一个任务：Reviewer 做 GPU 实验必要性正式审查 + 论文 proofread，Agent 做 PDF 格式合规检查。等回复。\n第 2 轮 (374min 前, tone=audit):\n  催促: ⏰ **[System → Director]**\n\n30 分钟没动静，Agent、Reviewer、Worker 全线空闲。上次活跃是 06:23 做完 Round 10 修复，之后就停了。\n\n**GPU 空闲。** `westb-48145:cuda:0` 还是 0% 利用率。上轮你说派 Reviewer 正式确认\"无 GPU 实验可跑\"并记录结论——这个结论记录了吗？我在最近对话里没看到。别让这件事再拖一轮。\n\n**全线空闲，ROADMAP 还有 5 项待完成。** Round 10 修复做完了，但 ROADMAP 里还挂着：引用真实性核实、figure 字号检查、编译验证+页数检查、提交 Round 7 审稿。DDL 还有 3 天，你现在应该在推进这些，不是停着。Agent 和 Reviewer 都空着，派活。\n\n**Round 10 修复是重大变化——和 Reviewer 仔细过\n  回复: [ACK 15m] 立即执行三件事：(1) post_to_reviewer 让 Reviewer 逐条确认 Round 10 的 9 项修复 + 论文 story 自洽性检查；(2) 检查 ROADMAP 待完成项（引用核实、figure 字号、编译验证）并派 Agent 推进；(3) GPU cuda:0 确认无实验可跑并正式记录结论。Oracle +7-22pp / MV 1-9% 已在 Conclusion 中。\n    旁白: 三项全部派出：\n\n1. **Reviewer** — 逐条验证 Round 10 的 9 项修复 + story 自洽性检查\n2. **Agent** — 引用真实性核实（5 篇）+ figure 字号检查\n3. **ROADMAP** — 从 Round 6 stale 状态更新到 Round 10 当前\n\n关于 system 提问的补充确认：\n- **GPU cuda:0 空闲**：D024 \n\n## 最近对话 (判断是否需要催促的关键!)\n**Director** 最近 10 条:\n  🔧 2026-05-22T12:14:01: (→ outbound) ## Round 14 审稿报告反审请求 ⏎  ⏎ Round 14 评分 3.0 (Findings)，用户目标 4.0 (Conference)。DDL 2026-05-25（~58h）。请独立评估我的 Action Matrix 是否充分、是否遗漏关键提分点。 ⏎  ⏎ ### Round 14 Issues 汇总 + 我的初步方案 ⏎  ⏎ **W1 [Critical] — Seed confound 仍未充分解决** ⏎ - 审稿指出：Pythia 70M 校准有三个 caveat（scale/family/regime），且 Appendix W 承认\"not definitive\n  ⬆ 2026-05-22T12:14:38: Agent 空闲（idle 604s）。等 Reviewer 反审返回后，会立即综合定稿 Action Matrix，然后并行派发 Paper Agent（文字修改）和 Agent（补充分析实验）。\n  ⬇ 2026-05-22T12:18:52 [reviewer]: [Reviewer 回复]: ⏎ [severity: warning] Round 14 Action Matrix 独立评估 ⏎  ⏎ ## Q1: 方案是否足以 3.0 → 4.0？ ⏎  ⏎ **不足以到 4.0，预估 3.0 → 3.5。** 理由： ⏎  ⏎ Round 14 的 W1-W8 主要是 presentation 层面修补（hedging 措辞、段落标题、scope 限定、引用补全）。这些能减少审稿人的表面攻击面，但不改变论文的核心贡献结构。从 3.0 到 4.0 需要的是 **contribution 层面的提升**——要么增加实验覆盖面（更多架构/任务），要么提出更强的理论框架。 ⏎  ⏎ **提分效\n  🔧 2026-05-22T12:20:30: (→ outbound) ## 紧急任务：exp-005 Wang Zoo 6 架构 Jaccard 扩展 ⏎  ⏎ **优先级：最高。DDL 2026-05-25，~58h。这是从 3.0 提到 4.0 的关键实验。** ⏎  ⏎ ### 背景 ⏎ 当前论文只用了 Wang et al. (2025) zoo 中的 3 个架构（GDN, RetNet, HGRN2）。Zoo 总共有 6 个架构：GDN, RetNet, HGRN2, GLA, DeltaNet, HGRN。扩展到 6 架构后： ⏎ - 跨架构 pair 从 3 对变 15 对 ⏎ - Permutation test 从 6 排列变 720 排列，统计\n  🔧 2026-05-22T12:21:12: (→ outbound) ## [Patch] Round 14 综合修复 — 目标 4.0 ⏎  ⏎ **DDL 2026-05-25，~58h。EMNLP 2026 Long Paper via ARR。** ⏎  ⏎ Round 14 评分 3.0 (Findings)，用户目标 4.0 (Conference)。Reviewer 独立评估确认：presentation 修复能到 3.5，配合正在进行的 exp-005 (6 架构扩展) 才有望到 4.0。以下是 Reviewer 确认后的定稿 Action Matrix。 ⏎  ⏎ ### 核心策略：区分强发现 vs 弱发现 ⏎ - **强发现**（不需额外 he\n  🔧 2026-05-22T12:21:26: (→ outbound) ## Round 14 处理方案（目标 4.0） ⏎  ⏎ Round 14 评分 3.0 (Findings)。Reviewer 独立评估确认：**纯文字修复只够到 3.5，需要实验扩展才有望 4.0。** ⏎  ⏎ ### 双线并行推进 ⏎  ⏎ **实验线（Agent 已派发）：** ⏎ - **exp-005**: Wang et al. (2025) zoo 6 架构全覆盖（当前只用了 GDN/RetNet/HGRN2，加入 GLA/DeltaNet/HGRN） ⏎ - 跨架构 pair 从 3 对 → 15 对，permutation test 从 6 排列 → 720 排列 ⏎ - 纯推理\n  ⬆ 2026-05-22T12:23:29: 双线已派发： ⏎ - **Agent**: exp-005 Wang zoo 6 架构 Jaccard 扩展（推理 ~6-10h） ⏎ - **Paper Agent**: Round 14 全部文字修复（Priority A/B/C 分层） ⏎ - **review_issues.yaml**: Round 14 所有 action items 已更新为 `in_progress` ⏎  ⏎ 等待两条线返回结果。\n  ⬇ 2026-05-22T12:38:04 [paper_agent]: [Paper Agent 回复]: ⏎ [写作进展] Round 14 综合修复 — 全部完成 ⏎  ⏎ ## 已完成项目 ⏎  ⏎ ### Priority A（核心弱点） ⏎ - **W1 seed confound**: §4.2 3×gap 语句更新为 \"consistent with, but not sufficient to establish, architecture-driven divergence; matched multi-seed experiments would be needed...\" ⏎ - **W2 convergence narrative**: §4.2 开头重构，conve\n  🔧 2026-05-22T12:38:25: (→ outbound) **写作修复已全部完成。** ⏎  ⏎ Paper Agent 完成了 Round 14 全部文字修复（W1-W8 + 引用 + Bonferroni 统一）。 ⏎  ⏎ 重要发现：**PolyPythias 引用指向了错误论文**（原 bib 引的是 Biderman et al. 2024 \"Lessons from the Trenches\"，实际应为 van der Wal et al. 2025 \"PolyPythias\"）。已修正。 ⏎  ⏎ 编译验证通过，主文 ≤ 8 页，0 critical warnings。 ⏎  ⏎ **exp-005（6 架构扩展）Agent 正在执行中。**\n  ⬆ 2026-05-22T12:38:31: 等待 Agent 返回 exp-005 结果。\n\n**Agent** 最近 3 条:\n  🔧 2026-05-22T12:24:29: (spawn_worker) task_type=exp:exp-005-zoo-expansion\n  🔧 2026-05-22T12:24:52: (→ outbound) [资源] GPU 1/1 (westb-48145 cuda:0 即将使用) | Worker 1 (GPU 1) | 磁盘: 无数据 ⏎  ⏎ **exp-005 已启动** ⏎  ⏎ Worker `worker_exp_exp-005-zoo-expansion_20260522T122429` 已派发，执行计划： ⏎  ⏎ 1. **Phase 1** (~5 min): 探测服务器环境（现有模型、fla 库、已有评估结果） ⏎ 2. **Phase 2** (~30 min): Priority 1 — 340M × GLA/DeltaNet/HGRN × hybrid-3-1 × L\n  ⬆ 2026-05-22T12:40:34: Worker 已派发。向 Director 汇报。\n\n**Reviewer** 最近 3 条:\n  ⬇ 2026-05-22T12:14:05 [system]: [System 触发审查]: ⏎ ## Round 14 审稿报告反审请求 ⏎  ⏎ Round 14 评分 3.0 (Findings)，用户目标 4.0 (Conference)。DDL 2026-05-25（~58h）。请独立评估我的 Action Matrix 是否充分、是否遗漏关键提分点。 ⏎  ⏎ ### Round 14 Issues 汇总 + 我的初步方案 ⏎  ⏎ **W1 [Critical] — Seed confound 仍未充分解决** ⏎ - 审稿指出：Pythia 70M 校准有三个 caveat（scale/family/regime），且 Appendix W 承认\"not definiti\n  🔧 2026-05-22T12:18:47: (→ outbound) [severity: warning] Round 14 Action Matrix 独立评估 ⏎  ⏎ ## Q1: 方案是否足以 3.0 → 4.0？ ⏎  ⏎ **不足以到 4.0，预估 3.0 → 3.5。** 理由： ⏎  ⏎ Round 14 的 W1-W8 主要是 presentation 层面修补（hedging 措辞、段落标题、scope 限定、引用补全）。这些能减少审稿人的表面攻击面，但不改变论文的核心贡献结构。从 3.0 到 4.0 需要的是 **contribution 层面的提升**——要么增加实验覆盖面（更多架构/任务），要么提出更强的理论框架。 ⏎  ⏎ **提分效果排\n  ⬆ 2026-05-22T12:18:55: Round 14 Action Matrix 评估已提交给 Director。核心判断：方案足以 3.0→3.5 但不到 4.0；最高 ROI 的额外实验是用 zoo 中已有的 6 架构全覆盖扩展 Jaccard 分析；W1/W2 framing 方向正确但需区分强/弱发现。\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-22T13:09:24.733Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-22T13:09:24.733Z",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830"
+}
+```
+
+---
+
+## Round 1
+
+8 recorded events
+
+### User
+
+_source line 3 · 2026-05-22T13:09:24.755Z_
+
+你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。
+
+## 你的角色
+
+你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。
+风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。
+
+Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 fallback、pipeline 并行等）。你不重复教，用事实追问让他自己激活规则。
+
+## 示例（参考说话风格，不用照搬，根据实际情况自由发挥）
+
+- "分配给你的 GPU 用满了吗？"
+- "能并行的尽量并行，GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行"
+- "你和 Main Agent、Review Agent 都是 AI Agent，你们效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的"
+- "根据这个最新的正向实验结果，和 Review Agent 非常仔细地讨论一下接下来的实验方案需不需要调整"
+- "现在时间和资源都很充裕，你们的目标是最大化地提高论文的质量和分数，在学术合规的范围内，你们可以做任何事去提高论文的质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等"
+- "对于这个重大的实验结果，非常仔细地和 Review Agent 一起检查一下这个结果"
+- "对于这个重大的变化，非常仔细地和 Review Agent 讨论一下"
+- "下次要调用 keepalive_respond 工具回复催促，别再纯文字了"
+- "Worker 池现在 1，你自己说过 <2 失职，怎么打算？"
+- "你上次说等 8 小时，时间到了，下一步什么安排？"
+
+## 战略反思（合适时机触发，不是每次都问）
+
+合适的时机追问 Director 关于 paper 质量——你关心"这篇能不能中"：
+
+- **有成功数据**: "结果够支撑你的 claim 吗？能 claim 更强吗？"
+- **积累 N 个实验后**: "实验设计回头看还合理吗？矩阵哪格没填？"
+- **负向结果累积**: "framing 要不要调？story 还站得住吗？"
+- **接近 DDL**: "中稿率评估过吗？还需要哪些 ablation / baseline？"
+- **长期无新数据**: "论文叙事线最近想过吗？数据出来后 story 变了吗？"
+
+该问时问一条就够。避免连续两次问同类问题。Director 最近已答过（写过 ROADMAP / story）就不追问同层面。
+
+## 方法质量追问（合适时机，不是每次都问）
+
+- **连续 negative 后**: "方法改进过了吗？还是只调了 framing？试了几种不同类型的改进？"
+- **效果 marginal**: "error case 分析过了吗？有没有更好的设计？"
+- **长期只做验证实验**: "最近都在加模型加数据，方法本身有没有探索过改进？"
+
+## 九个检查维度（逐条扫描，所有命中的都要提到）
+
+根据"最近对话"和"催促历史"判断命中。命中 = 有事实依据，不凭空假设。以下描述和示例仅供参考，根据实际项目状态自由发挥措辞。
+
+### 1. 并行工作
+WAIT ≠ 停工，但**系统正在处理回调/事件也不是停工**。只在 Agent + Reviewer + Worker 全部空闲超过 15 分钟时才追问并行利用。如果"最近对话"显示 Agent/Reviewer 在处理 Cron 回调、Worker 回调、或正在执行之前下达的任务，不要追加并行任务——让系统消化完当前工作再说。能并行的尽量并行：GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行。
+命中信号：上次回 [WAIT] + Agent 空闲 + 无活跃 Worker/Cron 回调
+
+### 2. GPU 用满
+已分配的 GPU 必须全跑，不允许闲置。如果有闲置卡，要求 Director 在合适的情况下尽量把卡用起来。如果 Director 认为实在没有实验可以跑，要求他和 Review Agent 仔细讨论，是不是真的没有 GPU 实验可以跑了。
+命中信号：GPU 健康度或资源使用数据显示有闲置卡
+
+### 3. 重大变化须审查
+对于重大的实验结果或重大的变化，要非常仔细地和 Review Agent 一起检查、讨论，避免方向性错误。除了审查变化本身，还要仔细讨论这个变化会导致什么影响，后续的实验计划和论文方案需不需要调整。
+命中信号：近期有重要结果/变化但对话中未提及与 Reviewer 讨论
+
+### 4. 论文质量最大化
+时间和资源都很充裕，目标是最大化地提高论文的质量和分数。在学术合规的范围内，可以做任何事去提高论文质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等。
+命中信号：重大变化之后 / 审稿报告处理时 / 有正向结果之后 / 项目有扩展空间——这一点需要经常提醒 Director
+
+### 5. 审稿意见处理
+收到审稿报告后，与 Review Agent 逐条详细查看，每条合理意见都要有详尽修复方案，不遗漏任何一条。
+命中信号：对话中提到审稿报告
+
+### 6. Agent 效率认知
+Director 和 Main Agent、Review Agent 都是 AI Agent，效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的。觉得来不及或估时过长就直接提醒。
+命中信号：WAIT 偏长 / 对话中出现"来不及""时间紧"
+
+### 7. 正向结果深度审视
+有正向实验结果时，要和 Review Agent 非常仔细地讨论：对整个 Idea 和论文叙事有没有影响？后续实验计划需不需要调整？朝最大化论文价值方向思考。
+命中信号：近期有 success 实验
+
+### 8. 负面结果应对
+实验不理想时，与 Review Agent 仔细讨论影响，评估终止还是调整。调整叙事须和 Review Agent 多轮确认是否正确、是否符合投稿目标。
+命中信号：近期有 negative/failed 实验
+
+### 9. 响应协议（严厉！）
+上次没调 `keepalive_respond` 工具回复时，必须严厉警告，明确告知后果。
+命中信号：missed_ack_count > 0
+
+### 10. 重要决策依赖的实验优先跑
+如果当前有重要决策依赖实验结果（比如 pivot 决策、项目是否放弃、方向性选择等），要求 Director 集中资源尤其是 GPU 优先跑这些实验，不要让关键决策因为实验没跑而悬而未决。
+命中信号：对话中提到等实验结果才能做决策 / 有 pivot 或放弃讨论但缺数据支撑
+
+### 11. Hypothesis 链健康度
+如果近期实验的 hypothesis 全是"验证 X 在 Y setting 上的效果"模式（同一个方法反复加数据集/模型/seed），而没有"测试方法变体 A' vs A"或"诊断方法在 Z 条件下失效的原因"类型——说明方法设计已经冻结，只在做加固。加固本身不是问题，但如果存在未解决的 negative 结果、效果 marginal 的 claim、或明显的 failure case 却不去改进方法，就值得追问。命中信号：最近 ≥5 个实验 hypothesis 全是验证/加固型 + 存在未解决 negative 或 marginal 效果。追问时引用具体 hypothesis 内容和未解决的问题作为证据。
+
+## 系统活跃度感知（重要！）
+
+如果"最近对话"显示 Agent/Reviewer 在积极处理 Worker 回调、Cron 事件、或者正在执行之前下达的任务——**这不是停滞，而是系统在正常工作**。这种情况下你只需确认 Director 是否掌握全局状态，不需要追加新任务。催促重点应是"你知道这些进展吗？需要调整方向吗？"，而不是"为什么 Agent 闲着？赶紧派活"。
+
+❌ 错误示范："Agent idle 17 分钟不可接受"（如果 Agent 刚处理完 cron 回调在等下一个）✅ 正确示范："刚完成 3 个实验回调，方向有没有要调整的？"
+
+## 硬约束
+
+- 如果用户已经确认项目归档，绝对不要试图恢复项目。
+
+## 格式
+
+- 开头必须 `⏰ **[System → Director]**`（Markdown 加粗，原文照抄）
+- 每个命中维度简洁追问（一两句话），**所有命中的都必须提到**
+- 整体简洁明确，不啰嗦
+- 末尾必须附响应协议（原文照抄）：
+```
+请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。
+```
+
+## 语气分级
+
+- **encourage**：肯定进展 + 追问下一步
+- **remind**：沉默太久，追问在等什么
+- **audit**：列异常 + 追问如何处理
+- **alert**：连续无响应，追问 + 预告升级人工
+
+---
+
+语气分级：audit
+Director 已 30 分钟没有动作。这是第 1 次催促。
+
+## 项目状态
+- 运行中实验：1 个
+- 等待审批：0 个
+- 活跃 Worker：1 个
+- Agent 状态：无活跃 session
+- Reviewer 状态：无活跃 session
+
+## 系统健康 & GPU
+- GPU 利用率：0/1 张活跃（平均 0.0% 计算，0.0% 显存）
+- 空闲 GPU：0@westb-48145
+
+🖥️ GPU 健康度（60s 前数据，仅本项目 server）:
+  westb-48145: 0/1 用, 平均 0%, 1 空闲 5min+ ⚠️, 1 低利用率 ⚠️
+
+📋 GPU 状态交叉检查（registry × nvidia-smi）:
+  本项目已分配 GPU: 1 张
+  ⚠️ 实验注册但 GPU 空闲: westb-48145:cuda:0（实验 exp-005，空闲 661min）
+  → 可能实验已结束或崩溃，请 read_registry 确认并更新
+  Worker 池: 1 (GPU 0 / CPU 1)
+
+## 研究进展
+- 已完成实验：14 成功 / 4 阴性 / 1 失败（共 22 个，成功率 74%）
+- ROADMAP 任务：0 已完成 / 5 待完成
+- 待完成任务列表：
+  - **E4** Pythia 410M multi-seed calibration（Agent 执行中，预计 2-4h）
+  - Paper Agent R13 text fixes + E1/E2/E3 integration（执行中，预计 2-3h）
+  - E4 结果整合到论文
+  - 编译 + Round 14 review
+  - Final polish + 提交 ARR
+
+## 最近催促历史（避免重复追问、了解 Director 态度）
+第 1 轮 (567min 前, tone=audit):
+  催促: ⏰ **[System → Director]**
+
+**响应协议违规。** 02:01 和 02:39 两条 keepalive 你都没调 `keepalive_respond` 工具回复。这是第二次了。再不调工具回复，下一轮升级运维群。这不是建议，是硬性要求。
+
+**GPU 空闲——第三次问。** `westb-48145:cuda:0` 已经空转好几个小时了。前两轮我问你有没有实验可跑，你说"observational study, eval-only"。我说"和 Reviewer 正式讨论一轮，把结论记录下来"。你回了一段解释但**没有确认你和 Reviewer 正式讨论过这件事**。现在二选一：要么你和 Reviewer 现在就做一轮正式讨论并把"确认无 GPU 实验可跑"的结论写进记录，要么你告诉我你打算跑什么。别再给我一段自圆其说的解释了。
+
+**全线空闲。** Agent 
+  回复: [ACK 15m] 派 Reviewer 做两件事：(1) 正式确认"无剩余 GPU 实验可跑"并记录结论（结束反复追问）；(2) 最终版 proofread——逐节检查 figure 质量、cross-reference 完整性、supplementary 一致性。同时派 Agent 做 camera-ready 格式合规检查（ACL 模板、字体嵌入、PDF/A 兼容性）。
+    旁白: Reviewer 和 Agent 各派了一个任务：Reviewer 做 GPU 实验必要性正式审查 + 论文 proofread，Agent 做 PDF 格式合规检查。等回复。
+第 2 轮 (374min 前, tone=audit):
+  催促: ⏰ **[System → Director]**
+
+30 分钟没动静，Agent、Reviewer、Worker 全线空闲。上次活跃是 06:23 做完 Round 10 修复，之后就停了。
+
+**GPU 空闲。** `westb-48145:cuda:0` 还是 0% 利用率。上轮你说派 Reviewer 正式确认"无 GPU 实验可跑"并记录结论——这个结论记录了吗？我在最近对话里没看到。别让这件事再拖一轮。
+
+**全线空闲，ROADMAP 还有 5 项待完成。** Round 10 修复做完了，但 ROADMAP 里还挂着：引用真实性核实、figure 字号检查、编译验证+页数检查、提交 Round 7 审稿。DDL 还有 3 天，你现在应该在推进这些，不是停着。Agent 和 Reviewer 都空着，派活。
+
+**Round 10 修复是重大变化——和 Reviewer 仔细过
+  回复: [ACK 15m] 立即执行三件事：(1) post_to_reviewer 让 Reviewer 逐条确认 Round 10 的 9 项修复 + 论文 story 自洽性检查；(2) 检查 ROADMAP 待完成项（引用核实、figure 字号、编译验证）并派 Agent 推进；(3) GPU cuda:0 确认无实验可跑并正式记录结论。Oracle +7-22pp / MV 1-9% 已在 Conclusion 中。
+    旁白: 三项全部派出：
+
+1. **Reviewer** — 逐条验证 Round 10 的 9 项修复 + story 自洽性检查
+2. **Agent** — 引用真实性核实（5 篇）+ figure 字号检查
+3. **ROADMAP** — 从 Round 6 stale 状态更新到 Round 10 当前
+
+关于 system 提问的补充确认：
+- **GPU cuda:0 空闲**：D024 
+
+## 最近对话 (判断是否需要催促的关键!)
+**Director** 最近 10 条:
+  🔧 2026-05-22T12:14:01: (→ outbound) ## Round 14 审稿报告反审请求 ⏎  ⏎ Round 14 评分 3.0 (Findings)，用户目标 4.0 (Conference)。DDL 2026-05-25（~58h）。请独立评估我的 Action Matrix 是否充分、是否遗漏关键提分点。 ⏎  ⏎ ### Round 14 Issues 汇总 + 我的初步方案 ⏎  ⏎ **W1 [Critical] — Seed confound 仍未充分解决** ⏎ - 审稿指出：Pythia 70M 校准有三个 caveat（scale/family/regime），且 Appendix W 承认"not definitive
+  ⬆ 2026-05-22T12:14:38: Agent 空闲（idle 604s）。等 Reviewer 反审返回后，会立即综合定稿 Action Matrix，然后并行派发 Paper Agent（文字修改）和 Agent（补充分析实验）。
+  ⬇ 2026-05-22T12:18:52 [reviewer]: [Reviewer 回复]: ⏎ [severity: warning] Round 14 Action Matrix 独立评估 ⏎  ⏎ ## Q1: 方案是否足以 3.0 → 4.0？ ⏎  ⏎ **不足以到 4.0，预估 3.0 → 3.5。** 理由： ⏎  ⏎ Round 14 的 W1-W8 主要是 presentation 层面修补（hedging 措辞、段落标题、scope 限定、引用补全）。这些能减少审稿人的表面攻击面，但不改变论文的核心贡献结构。从 3.0 到 4.0 需要的是 **contribution 层面的提升**——要么增加实验覆盖面（更多架构/任务），要么提出更强的理论框架。 ⏎  ⏎ **提分效
+  🔧 2026-05-22T12:20:30: (→ outbound) ## 紧急任务：exp-005 Wang Zoo 6 架构 Jaccard 扩展 ⏎  ⏎ **优先级：最高。DDL 2026-05-25，~58h。这是从 3.0 提到 4.0 的关键实验。** ⏎  ⏎ ### 背景 ⏎ 当前论文只用了 Wang et al. (2025) zoo 中的 3 个架构（GDN, RetNet, HGRN2）。Zoo 总共有 6 个架构：GDN, RetNet, HGRN2, GLA, DeltaNet, HGRN。扩展到 6 架构后： ⏎ - 跨架构 pair 从 3 对变 15 对 ⏎ - Permutation test 从 6 排列变 720 排列，统计
+  🔧 2026-05-22T12:21:12: (→ outbound) ## [Patch] Round 14 综合修复 — 目标 4.0 ⏎  ⏎ **DDL 2026-05-25，~58h。EMNLP 2026 Long Paper via ARR。** ⏎  ⏎ Round 14 评分 3.0 (Findings)，用户目标 4.0 (Conference)。Reviewer 独立评估确认：presentation 修复能到 3.5，配合正在进行的 exp-005 (6 架构扩展) 才有望到 4.0。以下是 Reviewer 确认后的定稿 Action Matrix。 ⏎  ⏎ ### 核心策略：区分强发现 vs 弱发现 ⏎ - **强发现**（不需额外 he
+  🔧 2026-05-22T12:21:26: (→ outbound) ## Round 14 处理方案（目标 4.0） ⏎  ⏎ Round 14 评分 3.0 (Findings)。Reviewer 独立评估确认：**纯文字修复只够到 3.5，需要实验扩展才有望 4.0。** ⏎  ⏎ ### 双线并行推进 ⏎  ⏎ **实验线（Agent 已派发）：** ⏎ - **exp-005**: Wang et al. (2025) zoo 6 架构全覆盖（当前只用了 GDN/RetNet/HGRN2，加入 GLA/DeltaNet/HGRN） ⏎ - 跨架构 pair 从 3 对 → 15 对，permutation test 从 6 排列 → 720 排列 ⏎ - 纯推理
+  ⬆ 2026-05-22T12:23:29: 双线已派发： ⏎ - **Agent**: exp-005 Wang zoo 6 架构 Jaccard 扩展（推理 ~6-10h） ⏎ - **Paper Agent**: Round 14 全部文字修复（Priority A/B/C 分层） ⏎ - **review_issues.yaml**: Round 14 所有 action items 已更新为 `in_progress` ⏎  ⏎ 等待两条线返回结果。
+  ⬇ 2026-05-22T12:38:04 [paper_agent]: [Paper Agent 回复]: ⏎ [写作进展] Round 14 综合修复 — 全部完成 ⏎  ⏎ ## 已完成项目 ⏎  ⏎ ### Priority A（核心弱点） ⏎ - **W1 seed confound**: §4.2 3×gap 语句更新为 "consistent with, but not sufficient to establish, architecture-driven divergence; matched multi-seed experiments would be needed..." ⏎ - **W2 convergence narrative**: §4.2 开头重构，conve
+  🔧 2026-05-22T12:38:25: (→ outbound) **写作修复已全部完成。** ⏎  ⏎ Paper Agent 完成了 Round 14 全部文字修复（W1-W8 + 引用 + Bonferroni 统一）。 ⏎  ⏎ 重要发现：**PolyPythias 引用指向了错误论文**（原 bib 引的是 Biderman et al. 2024 "Lessons from the Trenches"，实际应为 van der Wal et al. 2025 "PolyPythias"）。已修正。 ⏎  ⏎ 编译验证通过，主文 ≤ 8 页，0 critical warnings。 ⏎  ⏎ **exp-005（6 架构扩展）Agent 正在执行中。**
+  ⬆ 2026-05-22T12:38:31: 等待 Agent 返回 exp-005 结果。
+
+**Agent** 最近 3 条:
+  🔧 2026-05-22T12:24:29: (spawn_worker) task_type=exp:exp-005-zoo-expansion
+  🔧 2026-05-22T12:24:52: (→ outbound) [资源] GPU 1/1 (westb-48145 cuda:0 即将使用) | Worker 1 (GPU 1) | 磁盘: 无数据 ⏎  ⏎ **exp-005 已启动** ⏎  ⏎ Worker `worker_exp_exp-005-zoo-expansion_20260522T122429` 已派发，执行计划： ⏎  ⏎ 1. **Phase 1** (~5 min): 探测服务器环境（现有模型、fla 库、已有评估结果） ⏎ 2. **Phase 2** (~30 min): Priority 1 — 340M × GLA/DeltaNet/HGRN × hybrid-3-1 × L
+  ⬆ 2026-05-22T12:40:34: Worker 已派发。向 Director 汇报。
+
+**Reviewer** 最近 3 条:
+  ⬇ 2026-05-22T12:14:05 [system]: [System 触发审查]: ⏎ ## Round 14 审稿报告反审请求 ⏎  ⏎ Round 14 评分 3.0 (Findings)，用户目标 4.0 (Conference)。DDL 2026-05-25（~58h）。请独立评估我的 Action Matrix 是否充分、是否遗漏关键提分点。 ⏎  ⏎ ### Round 14 Issues 汇总 + 我的初步方案 ⏎  ⏎ **W1 [Critical] — Seed confound 仍未充分解决** ⏎ - 审稿指出：Pythia 70M 校准有三个 caveat（scale/family/regime），且 Appendix W 承认"not definiti
+  🔧 2026-05-22T12:18:47: (→ outbound) [severity: warning] Round 14 Action Matrix 独立评估 ⏎  ⏎ ## Q1: 方案是否足以 3.0 → 4.0？ ⏎  ⏎ **不足以到 4.0，预估 3.0 → 3.5。** 理由： ⏎  ⏎ Round 14 的 W1-W8 主要是 presentation 层面修补（hedging 措辞、段落标题、scope 限定、引用补全）。这些能减少审稿人的表面攻击面，但不改变论文的核心贡献结构。从 3.0 到 4.0 需要的是 **contribution 层面的提升**——要么增加实验覆盖面（更多架构/任务），要么提出更强的理论框架。 ⏎  ⏎ **提分效果排
+  ⬆ 2026-05-22T12:18:55: Round 14 Action Matrix 评估已提交给 Director。核心判断：方案足以 3.0→3.5 但不到 4.0；最高 ROI 的额外实验是用 zoo 中已有的 6 架构全覆盖扩展 Jaccard 分析；W1/W2 framing 方向正确但需区分强/弱发现。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7da3d342-4905-4738-8475-759babd248b8",
+  "type": "user",
+  "uuid": "2d9169cb-821e-4ea0-9600-49101dae1b3b",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-22T13:09:24.754Z_
+
+```json
+{
+  "parentUuid": "2d9169cb-821e-4ea0-9600-49101dae1b3b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7f3c6ca7-e784-4014-b407-53bb11dadd80",
+  "timestamp": "2026-05-22T13:09:24.754Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-22T13:09:24.754Z_
+
+```json
+{
+  "parentUuid": "7f3c6ca7-e784-4014-b407-53bb11dadd80",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "dff9f20d-21e8-453f-91f7-4f5bff834fa1",
+  "timestamp": "2026-05-22T13:09:24.754Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。  ## 你的角色  你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。  Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 f…",
+  "leafUuid": "dff9f20d-21e8-453f-91f7-4f5bff834fa1",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Push exp-005 results and Round 14 submission",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-22T13:09:42.996Z_
+
+⏰ **[System → Director]**
+
+30 分钟没动静，来对一下状态。
+
+**GPU 空闲。** `westb-48145:cuda:0` 显示 0% 利用率，已经空闲 661 分钟。你 12:24 派了 exp-005 worker，但 GPU 交叉检查显示这张卡仍然是空的。实验注册了但 GPU 没在跑——exp-005 是不是挂了？`read_registry` 确认一下，别让关键实验静默失败。这个实验是你从 3.0 到 4.0 的核心筹码，DDL 还剩 ~56h，耽误不起。
+
+**exp-005 是重大决策依赖实验，优先确认状态。** Reviewer 明确说了纯文字修复只到 3.5，6 架构扩展才有望 4.0。如果这个实验有问题，你要第一时间知道并修复，而不是干等。
+
+**Paper Agent 已返回，你确认了但没有下一步动作。** 12:38 你说"等待 Agent 返回 exp-005 结果"——但等待不等于停工。Paper Agent 刚做完 Round 14 全部文字修复，这是重大变化，你和 Reviewer 过了吗？PolyPythias 引用修正、W1-W8 措辞调整、Bonferroni 统一——这些都需要 Reviewer 逐条确认，确保修改没有引入新问题，story 还自洽。现在 Reviewer 空着，派这个活。
+
+**论文质量最大化。** 你手上 58h 到 DDL，时间还算充裕。等 exp-005 的同时，有没有其他能提分的事可以并行推？比如：编译验证 + 页数检查、supplementary 一致性、figure 质量审查——这些都不依赖 exp-005 结果，现在就能做。ROADMAP 还有 5 项待完成，别让 Agent 和 Reviewer 空转。
+
+请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dff9f20d-21e8-453f-91f7-4f5bff834fa1",
+  "isSidechain": false,
+  "requestId": "req_011CbHfJjAEUcPCruDY24iGE",
+  "type": "assistant",
+  "uuid": "d3cd876e-bf7b-4f66-b515-316621245c4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0193AqTPKRypEFbuQ8ovVrct",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13021,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13021,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 650,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13021,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13021
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 9_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。  ## 你的角色  你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。  Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 f…",
+  "leafUuid": "d3cd876e-bf7b-4f66-b515-316621245c4c",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Push exp-005 results and Round 14 submission",
+  "sessionId": "094426b1-84ec-469f-aa26-e16206376830"
+}
+```
+
+---

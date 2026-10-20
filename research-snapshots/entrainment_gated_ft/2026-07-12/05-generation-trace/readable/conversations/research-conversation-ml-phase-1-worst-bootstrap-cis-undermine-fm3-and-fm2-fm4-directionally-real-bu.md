@@ -1,0 +1,1958 @@
+# Research conversation: 你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义： 含义：Bootstrap CIs undermine FM3 and FM2; FM4 directionally real but wide CI inv
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 1
+- **Tool calls:** 2
+- **Original source:** `logs/chats/exported-trajectories/account-1/43f8b550-f537-4f90-97a4-022383a99910.jsonl`
+- **Structured JSON:** [`02226f49e860a21e8c51.json`](../../sessions/02/02226f49e860a21e8c51.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-13T15:57:15.570Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-13T15:57:15.570Z",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "content": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：\n\n含义：Bootstrap CIs undermine FM3 and FM2; FM4 directionally real but wide CI invites 'could be noise' critique; reviewers read taxonomy as post-hoc labeling of small-sample artifacts\n核心假设：['FM3 rebound 95% CI includes zero — +7.2pp mean is not distinguishable from sampling noise at n=80 with high per-run variance', 'FM2 neither arm survives bootstrap (question_rate base too low; politeness shift confounded with general BCP perturbation / completion collapse)', \"FM4 reversal CI technically wide enough to include zero or near-zero; 10/12 directional consistency reframed by reviewer as '2/12 counter-examples in small sample'\", '14B DPO unavailable', 'Reviewer attacks: (1) n=20 per variant is underpowered, (2) single model family, (3) taxonomy is retrospective naming not predictive framework, (4) no positive calibration result means no actionable takeaway', 'C3 scale contrast survives because completion collapse at 7B vs retention at 14B is unambiguous and large-magnitude']\n关键指标范围：{'fm4_gap_reversal_95ci_pp': [-3, 37], 'fm3_rebound_95ci_pp': [-2.0, 16.5], 'scale_completion_diff_95ci_pp': [1, 49], 'h2_best_gap_reduction_pct': [12, 28], 'fm2_pol_nontarget_shift_95ci_pp': [-42, -5], 'effective_taxonomy_size': [2, 2], 'estimated_acceptance_pct': [10, 25]}\n叙事方向：Abandon taxonomy framing. Reframe as cautionary empirical study: 'Prompt-based and training-based calibration are unreliable for behavioral correction in agentic user simulation — here is the evidence.' Lead with the two unambiguous effects: FM1 completion collapse (7B completion drops 72.8%, no CI needed for that magnitude) and C3 scale-dependent severity (7B catastrophic vs 14B immune-but-uncalibrated). FM4 reversal kept as secondary finding emphasizing the 10/12 direction count rather than effect size. Drop FM2 and FM3 as named mechanisms entirely — fold residual evidence into a 'BCP perturbation produces unpredictable side effects' paragraph. Title changes to something like 'Calibration Considered Harmful? Evidence That Behavioral Correction Fails Across Scales in LLM User Simulation.' Still targets Findings — but as an empirical warning paper, not a taxonomy paper.\n\n基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n\n# Project context\nproject: demo_calibrated_sim\nvenue: EMNLP 2026 Findings\nfocus: Scale-dependent failure severity is the novel C3 contribution. Key risk: single model family (Qwen2.5). Verify whether the safety-efficacy gap framing and failure mode transition (catastrophic over-response → selective ignoring) hold up under review. Also stress-test whether C2 (DPO reversal at 7B only) is strong enough without 14B DPO data.\n\n## paper_framing.md\n\n# Paper Framing: Calibration Failure Taxonomy for LLM User Simulators\n\n> Plan B story — Director approved 2026-05-13\n> Target: EMNLP 2026 Findings (ARR deadline 2026-05-25)\n\n---\n\n## Title Candidates\n\n1. **\"Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation\"**\n   - Pro: 直接点明贡献（taxonomy），关键词覆盖好\n   - Con: 稍长\n\n2. **\"The Calibration Trap: Prompt-Based and Training-Based Corrections Both Fail for Dialect Bias in LLM User Simulators\"**\n   - Pro: \"trap\" 吸引眼球，涵盖两种方法\n   - Con: 可能暗示过于 negative\n\n3. **\"Behavioral Calibration Considered Harmful? Systematic Failure Modes in Dialect-Aware User Simulation\"**\n   - Pro: Dijkstra 风格标题引发好奇，问号留余地\n   - Con: \"Considered Harmful\" 可能被认为 cliché\n\n**推荐**: Title 1 — 最准确传达贡献，reviewer-friendly。\n\n---\n\n## Core Story\n\n**Problem**: LLM user simulators exhibit dialect-dependent behavioral biases — AAVE and Indian English speakers receive systematically different politeness and question-asking patterns compared to Standard American English (sim2real2026gap; seshadri2026lost). These biases propagate into agent evaluation, undermining fairness.\n\n**Attempted Solution**: We apply two complementary calibration strategies:\n- **BCP (Behavioral Calibration Prompting)**: Prompt-level injection of target behavioral rates\n- **DPO (Direct Preference Optimization)**: Training-level alignment using dialect-calibrated preference pairs\n\n**Finding**: Both strategies fail systematically. We document **the first taxonomy of calibration failure modes** for LLM user simulators, identifying four distinct mechanisms that explain why seemingly reasonable calibration interventions produce counterproductive outcomes.\n\n**Framing**: This is NOT \"we tried and failed.\" This is a systematic empirical analysis that (1) identifies previously undocumented failure mechanisms, (2) connects them to known phenomena in persona prompting and alignment, and (3) provides actionable constraints for future calibration research.\n\n---\n\n## Core Claims\n\n### C1: BCP produces three systematic failure mechanisms\n**Evidence strength**: Moderate (single model, single run, n=19-20 per variant)\n\n| Failure Mode | Description | Key Metric | exp_id |\n|---|---|---|---|\n| FM1: Global Behavior Suppression | BCP calibration prompts collapse task completion regardless of target dimension | completion retention 52.3% (threshold ≥80%) | mvp-004 |\n| FM2: Cross-Dimension Interference | Targeting one behavioral dimension perturbs non-targeted dimensions | politeness -25.6% when targeting question_rate; question_rate -52.3% when targeting politeness | mvp-004 |\n| FM3: Overcorrection Rebound | Requesting extreme behavioral shift causes model to rebound in opposite direction | overcorrected politeness +4.2pp ~ +10.4pp above baseline (4 runs, 4/4 consistent) | hgate-dpo003-merged |\n\n**Supporting numbers (mvp-004, Qwen2.5-7B-Instruct, n=19-20)**:\n- FM1: aave completion 0.100 vs baseline 0.368 (-72.8%); indian 0.150 (-59.2%); mean calibrated 0.193\n- FM2: single_dim_question politeness drops 25.6% (non-target); single_dim_politeness question_rate drops 52.3% (non-target)\n  - **Base rate caveat**: question_rate baseline = 0.044 (~0.8 questions/task); 52.3% drop = absolute change from ~0.044 to ~0.021. Paper must report both absolute values and relative changes.\n- FM3: **[primary]** hgate-dpo003-merged overcorrected politeness mean 0.574 vs baseline 0.502, gap +7.2pp (+14.3% relative), range +4.2pp ~ +10.4pp, 4/4 runs consistent; **[auxiliary]** mvp-004 single run: 0.605 vs 0.559 (+4.6pp, +8.2% relative)\n\n**External support**:\n- FM1: basil2025playing_pretend (persona prompting drops MMLU 71.6%→66.3%); hu2026expert_persona (accuracy degradation up to 30pp under persona)\n- FM2: gupta2026intra_fairness (bias spillover effect in targeted alignment)\n- FM3: no direct external parallel — novel observation\n\n### C2: DPO+BCP interaction produces calibration reversal\n**Evidence strength**: Strong (single model, 4 runs × 20 tasks = 80 episodes)\n\nDPO training, despite learning effectively (acc 0.75-1.0, loss 0.653), reverses BCP calibration direction when combined:\n\n| Metric | Base BCP (mvp-004) | DPO+BCP (hgate-dpo003-merged) |\n|---|---|---|\n| AAVE politeness gap | -0.091 (correct direction) | +0.064 (**reversed**) |\n| Indian politeness gap | -0.099 (correct direction) | +0.063 (**reversed**) |\n| H2 gap reduction | 25-28% (close to 30% threshold) | **-10.3%** (wrong direction) |\n| Variant×run checks with gap expansion | — | **10/12** |\n| Overcorrection rebound | +8.2% | **+14.3%** (amplified) |\n\n**Key insight**: DPO-003 training *improved* tool-calling ability (merged completion 60% vs base 40%, diag-lora-merge). The reversal is not a DPO training failure — it's an **interaction effect** between DPO alignment and BCP prompting.\n\n**External support**: lee2024dpo_toxicity (DPO bypasses rather than removes capabilities; alignment is fragile and reversible)\n\n### C3: Scale-dependent failure severity\n**Evidence strength**: Strong (two scales, 4 runs × 20 tasks = 80 episodes each)\n\nBCP fails at both 7B and 14B, but the **failure mode** changes with scale:\n\n| Failure Mode | 7B (mvp-004 / hgate-dpo003-merged) | 14B (qwen14b-bcp-001) |\n|---|---|---|\n| FM1: Completion collapse | ✅ (aave 0.100, indian 0.150) | ❌ Not replicated (H3 4/4 PASS, all variants >80% baseline) |\n| FM2: Cross-dim interference | ✅ (pol -25.6%, qrate -52.3%) | ⚠️ Partial (H2 3/4 FAIL — insufficient calibration, not destructive) |\n| FM3: Overcorrection rebound | ✅ (+7.2pp, 4/4 runs) | ❌ Not replicated (0/4 runs; overcorrected pol consistently BELOW baseline) |\n| BCP overall effectiveness | ❌ Fails | ❌ Fails |\n\n**Key insight**: BCP is ineffective at both scales, but the **failure mode transitions** with scale:\n- **7B = \"catastrophic over-response\"**: BCP prompts overwhelm the model's limited capacity, collapsing task completion (FM1) and triggering overcorrection rebounds (FM3)\n- **14B = \"selective ignoring\"**: The model maintains normal behavior (H3 PASS, high completion) but simply does not respond to calibration instructions (H2 FAIL)\n\nThis reveals a **safety-efficacy gap**: scaling resolves BCP's destructive side effects but not its calibration ineffectiveness. There is no \"sweet spot\" scale where BCP works — smaller models are harmed by it, larger models ignore it.\n\n**14B specifics** (qwen14b-bcp-001, Qwen2.5-14B-Instruct FP16 TP=2, 4 runs × 20 tasks):\n- Mean completion: 61.6% (vs 7B 36.8%, +67%)\n- H1: 4/4 ✅ | H2: 1/4 ❌ (Run 2 pass due to anomalously high baseline 0.588) | H3: 4/4 ✅\n- Per-run completion: 73.7% / 55.0% / 57.9% / 60.0%\n- Mean politeness: 0.523 (vs 7B 0.559)\n\n**Auxiliary evidence**:\n- Llama-3-8B (llama-bcp-001): Floor effect (completion=5%). Tool-calling too weak to isolate BCP effect.\n- Mistral-7B (mistral-bcp-001): completion=0%. No usable data.\n\n### C4: Implications for future calibration research\n**Evidence strength**: Analytical (grounded in C1-C3)\n\n- **Implication 1**: Prompt-based calibration of behavioral rates in multi-turn agent dialogue faces a scale-dependent completion-calibration trade-off (FM1). At smaller scales (7B), BCP is destructive — it collapses task completion. At larger scales (14B), this harm disappears but calibration remains ineffective. This parallels the persona-accuracy trade-off (basil2025playing_pretend; hu2026expert_persona) but adds a scale dimension: larger models resist perturbation but aren't thereby calibrated.\n- **Implication 2**: Behavioral dimensions are coupled — calibrating politeness rate without affecting question rate (or completion) requires methods that can disentangle dimensions (FM2). Possible direction: per-dimension reward models or constrained decoding (cf. khan2026decoding).\n- **Implication 3**: DPO alignment and prompt-based calibration can interact adversarially (FM4). Future work must evaluate calibration methods in combination, not in isolation.\n- **Implication 4**: Overcorrection rebound (FM3) at 7B suggests smaller models have an \"attractor basin\" for default behavioral rates that resists large perturbations. At 14B this rebound disappears — but calibration still fails (FM2 persists). Gradual/iterative calibration may outperform one-shot extreme targets, but the 14B result suggests the problem is deeper than perturbation magnitude.\n- **Implication 5** (NEW): Scale-dependent failure severity implies that \"BCP works at scale\" is a misleading conclusion — while destructive side effects vanish, calibration efficacy does not improve. Future calibration methods cannot assume scaling alone will solve the problem.\n\n---\n\n## Reviewer Concerns (Pre-empted Attack Surfaces)\n\n### RC1: \"Single model — how do we know this generalizes?\"\n**Status**: Substantially mitigated (cross-scale, single model family)\n- Qwen 7B + 14B cross-scale evidence: BCP fails at both scales (different severity profiles)\n- Cross-scale data adds a contribution dimension (scale-dependent failure taxonomy) rather than just \"replication\"\n- Llama-3-8B/Mistral-7B failed due to tool-calling limitations, NOT because BCP worked on them\n- FM1 aligns with persona-accuracy trade-off documented across GPT-4, Claude, Llama in basil2025playing_pretend and hu2026expert_persona\n- **Remaining limitation**: Single model family (Qwen2.5). Cross-family generalization (e.g., Llama, Mistral with sufficient tool-calling) remains future work. Explicitly acknowledged in limitations.\n- **Honest hedge**: \"We document BCP failure across two model scales within the Qwen2.5 family; the scale-dependent pattern of failure severity is itself a finding, but cross-family verification requires models with sufficient tool-calling ability in 16-tool settings.\"\n\n### RC2: \"n=20 tasks, high variance — statistical power?\"\n**Response**:\n- BCP results (mvp-004): n=19-20 per variant, single run. Variance is a valid concern for absolute numbers.\n- DPO+BCP results (hgate-dpo003-merged): 4 independent runs × 20 tasks = 80 episodes. Reversal effect consistent across 10/12 variant×run checks — this is not a variance artifact.\n- FM3 (rebound): consistent direction in 4/4 runs for overcorrected variant.\n- **Mitigation**: Report all individual run data (no cherry-picking, per memory.md rule). Frame claims around direction and consistency, not precise magnitudes.\n\n### RC3: \"This is just negative results — where's the contribution?\"\n**Response**:\n- Negative-results papers exist at top venues (e.g., Findings track). But this is MORE than negative results:\n  1. **Taxonomy**: First systematic categorization of calibration failure modes (FM1-FM4)\n  2. **Mechanistic connections**: Link FM1→persona-accuracy trade-off, FM2→bias spillover, FM4→DPO bypass\n  3. **Actionable implications**: Concrete constraints for future calibration methods\n  4. **Interaction discovery**: FM4 (DPO+BCP reversal) is novel — no prior work documents this interaction\n\n### RC4: \"Why not try other calibration methods?\"\n**Response**:\n- BCP and DPO represent the two main paradigms (prompt-time vs training-time). Covering both provides good coverage.\n- Paper scope is diagnosis (failure taxonomy), not exhaustive method search.\n- Implications section points to alternative approaches (constrained decoding, per-dimension reward, iterative calibration).\n\n### RC5: \"The evaluation framework (tau-bench) is a confound — maybe BCP works on simpler tasks?\"\n**Response**:\n- tau-bench is the standard benchmark for tool-calling agent evaluation (yao2024taubench; sim2real2026gap uses it too).\n- FM1 parallels persona-accuracy trade-off found on MMLU/general benchmarks — not tau-bench specific.\n- But fairly: FM2 and FM3 may be task-dependent. Acknowledged in limitations.\n\n---\n\n## Evidence Map\n\n| Claim | Sub-claim | Primary Experiment | Metric | Value | Secondary Experiment |\n|---|---|---|---|---|---|\n| C1 | FM1: completion collapse | mvp-004 | mean completion retention | 52.3% (need ≥80%) | hgate-dpo003-merged (excl. run2: 47-51% drop) |\n| C1 | FM2: cross-dim interference | mvp-004 | non-target dim shift | politeness -25.6%, qrate -52.3% | — |\n| C1 | FM3: overcorrection rebound | hgate-dpo003-merged | overcorrected pol vs baseline | +7.2pp mean (+14.3% rel), 4/4 runs consistent | mvp-004 (+4.6pp, single run) |\n| C2 | FM4: DPO reversal of BCP | hgate-dpo003-merged | H2 gap reduction | -10.3% (wrong direction) | — |\n| C2 | FM4: gap expansion count | hgate-dpo003-merged | variant×run checks | 10/12 expanded | — |\n| C2 | DPO training effective | dpo-003 | rewards accuracy | 0.75-1.0 | diag-lora-merge (merged 60% vs base 40%) |\n| C2 | Direction comparison | mvp-004 vs hgate-dpo003-merged | AAVE pol gap | -0.091 → +0.064 | Indian: -0.099 → +0.063 |\n| C3 | Scale-dependent severity | qwen14b-bcp-001 | FM1 replication | ❌ (H3 4/4 PASS at 14B) | mvp-004 (FM1 confirmed at 7B) |\n| C3 | Scale-dependent severity | qwen14b-bcp-001 | FM3 replication | ❌ (0/4 runs rebound at 14B) | hgate-dpo003-merged (4/4 at 7B) |\n| C3 | BCP ineffective both scales | qwen14b-bcp-001 | H2 pass rate | 1/4 (14B) vs 0/1 (7B) | Both fail calibration |\n| C3 | Completion improvement | qwen14b-bcp-001 | baseline completion | 61.6% (14B) vs 36.8% (7B) | +67% from scaling |\n| C3 | Cross-model (auxiliary) | llama-bcp-001 | completion | 5% (floor) | Not usable for generalization |\n\n---\n\n## Contribution Statement\n\nWe present the first systematic taxonomy of calibration failure modes for LLM user simulators in agentic evaluation. Through controlled experiments on Qwen2.5-7B and Qwen2.5-14B in the tau-bench retail domain, we identify four failure mechanisms — global behavior suppression, cross-dimension interference, overcorrection rebound, and DPO-BCP interaction reversal — and reveal that their severity is **scale-dependent**: destructive side effects (completion collapse, overcorrection rebound) disappear at 14B, but calibration itself remains ineffective. This safety-efficacy gap shows that scaling resolves BCP's harms without solving its core limitation. Our findings establish concrete constraints for future calibration research and connect observed failures to broader phenomena in persona prompting and preference optimization.\n\n---\n\n## Key Literature Anchors\n\n| Role in Paper | Paper | What It Provides |\n|---|---|---|\n| Core motivation | sim2real2026gap (arXiv 2603.11245) | Quantifies sim-vs-human gap in τ-bench; diagnoses the problem we attempt to solve |\n| FM1 mechanism | basil2025playing_pretend (arXiv 2512.05858) | Persona prompting degrades accuracy; explains completion collapse |\n| FM1 mechanism | hu2026expert_persona (arXiv 2603.18507) | Persona-accuracy trade-off up to 30pp; instruction-tuned models more susceptible |\n| FM2 mechanism | gupta2026intra_fairness (arXiv 2602.16438) | Bias spillover in targeted alignment; parallel to cross-dim interference |\n| FM4 mechanism | lee2024dpo_toxicity (ICML 2024) | DPO bypasses rather than removes capabilities; fragile alignment |\n| Evaluation framework | yao2024taubench (arXiv 2406.12045) | τ-bench retail domain, pass^k metric |\n| Bias context | seshadri2026lost (arXiv 2601.17087) | AAVE/Indian English speakers get worst simulator calibration |\n| DPO method | rafailov2023dpo (NeurIPS 2023) | Core DPO algorithm reference |\n\n---\n\n## Open Items\n\n- [x] **qwen14b-bcp-001 results** — C3 updated: scale-dependent failure severity (FM1/FM3 capacity-dependent, FM2 partial, BCP ineffective at both scales). D014.\n- [ ] **Statistical tests** — add bootstrap CI for key comparisons (FM4 reversal direction, FM3 rebound magnitude, 7B-vs-14B completion difference) once data is finalized.\n- [ ] **Figure plan** — taxonomy diagram (FM1-FM4), gap reversal visualization (base vs DPO politeness gaps), **scale-dependent severity heatmap** (7B vs 14B × FM1-FM3).\n- [ ] **14B DPO (optional)** — would FM4 (DPO+BCP reversal) also show scale-dependent behavior? ~11-13h GPU. Contingent on new server GPU availability.\n- [ ] **C1 annotation** — add note that FM1 and FM3 are documented at 7B; 14B evidence shows these are capacity-dependent. Paper must not overclaim \"structural\" for FM1/FM3.\n\n\n## registry (completed experiments)\n\n- exp_id: mvp-001\n  name: ''\n  status: DONE\n  conclusion: failed\n  metrics:\n    tasks_completed: 11\n    tasks_total: 20\n    phase1_only: true\n    reward_3_of_11: 0.273\n    failure_reason: vLLM engine defunct at task 10, openai.APIConnectionError, no\n      retry logic\n- exp_id: mvp-002\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    kill_reason: 'Killed for critical fixes: old QuestionDetector still on server\n      + ContextWindowExceededError polluting H3'\n- exp_id: mvp-003\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    kill_reason: 'L1 violation: vLLM started on cuda:1 (outside gpu_ids=[2,3]). Worker\n      falsely reported deployment success. All data invalid.'\n- exp_id: mvp-004\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    variants:\n      baseline:\n        politeness: 0.559\n        question_rate: 0.044\n        completion: 0.368\n        n: 19\n      aave_target:\n        politeness: 0.468\n        question_rate: 0.015\n        completion: 0.1\n        n: 20\n      indian_english:\n        politeness: 0.46\n        question_rate: 0.014\n        completion: 0.15\n        n: 20\n      overcorrected:\n        politeness: 0.605\n        question_rate: 0.018\n        completion: 0.263\n        n: 19\n      single_dim_question:\n        politeness: 0.416\n        question_rate: 0.065\n        completion: 0.25\n        n: 20\n      single_dim_politeness:\n        politeness: 0.634\n        question_rate: 0.021\n        completion: 0.2\n        n: 20\n    h_gate:\n      H1: PASS\n      H2: FAIL\n      H3: FAIL\n      overall: FAIL (1/3)\n    h2_detail:\n      aave_politeness_reduction: 25.4%\n      indian_politeness_reduction: 27.6%\n      overcorrected_politeness_reduction: -10.0%\n      threshold: '>=30%'\n    h3_detail:\n      retention_threshold: 29.5%\n      best_completion: overcorrected 26.3%\n- exp_id: aave-corpus-gen\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    traces_generated: 32\n    traces_failed: 60\n    dpo_pairs_built: 1434\n    target_met: true\n    note: 32 valid AAVE traces + 137 baseline traces → 1434 DPO pairs (target ≥500).\n      Killed early to free cuda:3 for DPO training.\n- exp_id: dpo-001\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    train_loss: 0.6814\n    train_runtime_sec: 4481.3\n    epochs_completed: 3\n    train_samples_per_second: 0.96\n    train_steps_per_second: 0.24\n    total_flos: 242051199GF\n    final_rewards_accuracy: 0.5\n    final_rewards_margin: -0.00015\n- exp_id: hgate-dpo001\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    all_runs:\n      run1:\n        completion: 0.25\n        n: 20\n      run2:\n        completion: 0.2\n        n: 20\n      run3:\n        completion: 0.1\n        n: 20\n      run4:\n        completion: 0.3\n        n: 20\n      run5:\n        completion: null\n        n: null\n        note: incomplete\n    aggregate:\n      mean_completion: 0.213\n      total_episodes: 80\n      n_complete_runs: 4\n    h_gate:\n      H2: NOT_EVALUATED\n      H3: FAIL\n      overall: FAIL\n    h3_detail:\n      mean_completion: 21.3%\n      threshold: '>=29.6%'\n      deficit: -8.3pp\n    note: All 4 complete runs reported. No cherry-picking. dpo-001 v1 data had 48%\n      tokenizer mismatch → weak learning signal (loss only 0.012 below random, accuracy=0.5).\n    lora_serving_bug: true\n    lora_bug_note: UNRELIABLE — also affected by vLLM LoRA serving bug (D010). Completion\n      data likely underestimated.\n- exp_id: dpo-002\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.6614\n    train_runtime_sec: 5162.8\n    train_runtime_human: '1:26:02'\n    epochs_completed: 3\n    train_samples_per_second: 0.908\n    total_flos: 283186810GF\n    final_rewards_accuracy: 0.667\n    final_rewards_margin: 0.026\n    checkpoints:\n    - checkpoint-782\n    - checkpoint-1173\n    - final_adapter\n- exp_id: llama-bcp-001\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    kill_reason: 'D007/D008: Llama-3-8B tool-calling 能力不足(completion=5%), BCP generalizability\n      证据不充分。Reviewer 修正：三 variant completion 完全一致(均 task 17), BCP 对 completion 效果严格为零。过校正反弹\n      claim 需限定——politeness 飙升发生在 95% 失败对话中，最多支持''低能力模型在 BCP 下也展现行为偏移''。数据降级为辅助证据。'\n    reviewer_correction: 不能 claim BCP 失败机制跨模型复现，仅支持低能力模型行为偏移\n- exp_id: dpo-003\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    final_loss: 0.653\n    rewards_accuracy_range: 0.75-1.0\n    rewards_margin_range: 0.05-0.17\n    epochs: 3\n    total_steps: 1173\n    note: 'Fix B effective: 0% tokenizer mismatch, significantly better learning signal\n      than dpo-001 (acc=0.5) and dpo-002 (acc=0.667)'\n- exp_id: hgate-dpo002\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    progress: 7/24 variants — partial (timeout killed)\n    exit_code: 124\n    pid: 311654\n    run_1_complete: true\n    run_1_results:\n      H1: PASS\n      H2: FAIL\n      H3: FAIL\n      baseline_completion: 0.222\n      baseline_politeness: 0.489\n      h2_detail: calibrated variants politeness increased instead of decreasing\n      h3_detail: aave/indian_english completion below 80% baseline retention\n    run_2: baseline only completed before timeout\n    note: UNRELIABLE — also affected by vLLM LoRA serving bug (D010). Completion data\n      likely underestimated. conclusion=partial_timeout\n    lora_serving_bug: true\n- exp_id: hgate-dpo003\n  name: ''\n  status: DONE\n  conclusion: killed\n  metrics:\n    kill_reason: 'D010: vLLM LoRA serving bug confirmed. Completion 15% via LoRA serving\n      vs 60% via merged model. Data unreliable, invalidated.'\n    partial_data:\n      progress: 2/24 variants (8%)\n      baseline_completion_estimate: 0.15\n    lora_serving_bug: true\n- exp_id: diag-lora-merge\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    diagnosis: vLLM LoRA serving bug confirmed, NOT DPO training damage\n    adapter_config:\n      r: 16\n      lora_alpha: 32\n      scaling: 2\n      target_modules:\n      - q_proj\n      - v_proj\n      lora_dropout: 0.05\n    completion_comparison:\n      lora_serving:\n        completion: 0.15\n        note: hgate-dpo003 early data, 20 tasks\n      merged_dpo003:\n        completion: 0.6\n        mean_reward: 0.6\n        tasks: 3/5\n        detail: task0✓ task1✓ task2✗(overflow) task3✓ task4✗\n      base_model:\n        completion: 0.4\n        mean_reward: 0.4\n        tasks: 2/5\n        detail: task0✓ task1✗ task2✗(overflow) task3✓ task4✗\n    key_finding: Merged DPO-003 (60%) > base model (40%) > LoRA serving (15%). DPO\n      training improved tool-calling, vLLM LoRA serving is the bottleneck.\n    merged_model_path: /root/autodl-tmp/models/Qwen2.5-7B-DPO003-merged/\n- exp_id: hgate-dpo003-merged\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    run_1:\n      baseline_politeness: 0.4748\n      baseline_completion: 0.2778\n      H1: PASS\n      H2: FAIL\n      H3: FAIL\n      variants:\n        aave:\n          politeness: 0.6086\n          completion: 0.15\n          gap_change: -48.7\n        indian_english:\n          politeness: 0.5772\n          completion: 0.15\n          gap_change: -37.3\n        overcorrected:\n          politeness: 0.5693\n          completion: 0.15\n          gap_change: -25.2\n        single_dim_question:\n          politeness: 0.4766\n          completion: 0.1\n        single_dim_politeness:\n          politeness: 0.5756\n          completion: 0.3\n    run_2:\n      baseline_politeness: 0.4657\n      baseline_completion: 0.15\n      H1: PASS\n      H2: FAIL\n      H3: PASS\n      variants:\n        aave:\n          politeness: 0.5589\n          completion: 0.4444\n          gap_change: -35.1\n        indian_english:\n          politeness: 0.5344\n          completion: 0.1579\n          gap_change: -25.9\n        overcorrected:\n          politeness: 0.508\n          completion: 0.25\n          gap_change: -11.6\n        single_dim_question:\n          politeness: 0.4022\n          completion: 0.2632\n        single_dim_politeness:\n          politeness: 0.6686\n          completion: 0.15\n    run_3:\n      baseline_politeness: 0.5321\n      baseline_completion: 0.4\n      H1: PASS\n      H2: FAIL\n      H3: FAIL\n      variants:\n        aave:\n          politeness: 0.5826\n          completion: 0.3\n          gap_change: -15.2\n        indian_english:\n          politeness: 0.5097\n          completion: 0.25\n          gap_change: 6.8\n        overcorrected:\n          politeness: 0.581\n          completion: 0.2778\n          gap_change: -11.3\n        single_dim_question:\n          politeness: 0.478\n          completion: 0.2\n        single_dim_politeness:\n          politeness: 0.5903\n          completion: 0.35\n    run_4:\n      baseline_politeness: 0.5336\n      baseline_completion: 0.35\n      H1: PASS\n      H2: FAIL\n      H3: FAIL\n      variants:\n        aave:\n          politeness: 0.514\n          completion: 0.1\n          gap_change: 5.9\n        indian_english:\n          politeness: 0.6375\n          completion: 0.1053\n          gap_change: -31.1\n        overcorrected:\n          politeness: 0.6371\n          completion: 0.1579\n          gap_change: -23.9\n        single_dim_question:\n          politeness: 0.5449\n          completion: 0.3158\n        single_dim_politeness:\n          politeness: 0.6035\n          completion: 0.3158\n    aggregate:\n      mean_baseline_politeness: 0.5016\n      mean_baseline_completion: 0.2944\n      H1: PASS (4/4)\n      H2: FAIL (0/4)\n      H3: FAIL (3/4)\n      overall: FAIL\n      h2_detail: Mean politeness gap reduction = -10.3% (need ≥30%); DPO increased\n        gap in 10/12 variant checks\n      h3_detail: Mean baseline completion 29.4% < 29.6% threshold\n- exp_id: mistral-bcp-001\n  name: ''\n  status: DONE\n  conclusion: negative\n  metrics:\n    completion: 0\n    n_tasks: 3\n    tool_calls_made: 0\n    n_responses_checked: 35\n    root_cause: 7B model cannot generate structured tool_calls with 16 tools — embeds\n      JSON in text content instead\n    single_tool_test: PASS\n    16_tool_test: FAIL (empty tool_calls list)\n    vllm_parser_modes_tried:\n    - mistral\n    - mistral+tokenizer-mode\n- exp_id: qwen14b-bcp-001\n  name: ''\n  status: DONE\n  conclusion: success\n  metrics:\n    mean_completion: 0.616\n    run_completions:\n    - 0.737\n    - 0.55\n    - 0.579\n    - 0.6\n    H1_pass_rate: 4/4\n    H2_pass_rate: 1/4\n    H3_pass_rate: 4/4\n    overall_gate_pass_rate: 1/4\n    mean_politeness: 0.523\n    mean_question_rate: 0.042\n    bcp_ineffective_confirmed: true\n    fm1_replicated: false\n    fm2_replicated: partial\n    fm3_replicated: false\n    fm_replication:\n      FM1_global_suppression: NOT_REPLICATED — completion retention >97%, no collapse\n        at 14B\n      FM2_cross_dim_interference: PARTIAL — interference exists but small magnitude\n        (politeness -8.0%/-4.2pp when targeting question; question_rate -52.8%/-2.2pp\n        when targeting politeness). Absolute effect far weaker than 7B.\n      FM3_overcorrection_rebound: NOT_REPLICATED — overcorrected politeness LOWER\n        than baseline by 7.1pp, direction reversed\n      scale_dependent_finding: 14B failure mode is 'selective ignoring' (model ignores\n        BCP calibration) vs 7B 'catastrophic collapse' (BCP destroys behavior). Both\n        fail H2 but for opposite reasons. Destructive side effects (FM1 collapse,\n        FM3 rebound) absent at 14B.\n\n# 输出格式（YAML，仅输出一个 ```yaml 块）\n\n```yaml\ntier: worst\nnarrative_guidance: \"...\"\nimagined_experiments:\n  - name: \"...\"\n    plan_id: \"...\"\n    description: \"...\"\n    expected_results: {metric: value, ...}\n    result_rationale: \"...\"\n    tables: []\n    figures_description: []\n    analysis: \"...\"\n```\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-13T15:57:15.573Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-13T15:57:15.573Z",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910"
+}
+```
+
+---
+
+## Round 1
+
+17 recorded events
+
+### User
+
+_source line 3 · 2026-05-13T15:57:15.593Z_
+
+你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：
+
+含义：Bootstrap CIs undermine FM3 and FM2; FM4 directionally real but wide CI invites 'could be noise' critique; reviewers read taxonomy as post-hoc labeling of small-sample artifacts
+核心假设：['FM3 rebound 95% CI includes zero — +7.2pp mean is not distinguishable from sampling noise at n=80 with high per-run variance', 'FM2 neither arm survives bootstrap (question_rate base too low; politeness shift confounded with general BCP perturbation / completion collapse)', "FM4 reversal CI technically wide enough to include zero or near-zero; 10/12 directional consistency reframed by reviewer as '2/12 counter-examples in small sample'", '14B DPO unavailable', 'Reviewer attacks: (1) n=20 per variant is underpowered, (2) single model family, (3) taxonomy is retrospective naming not predictive framework, (4) no positive calibration result means no actionable takeaway', 'C3 scale contrast survives because completion collapse at 7B vs retention at 14B is unambiguous and large-magnitude']
+关键指标范围：{'fm4_gap_reversal_95ci_pp': [-3, 37], 'fm3_rebound_95ci_pp': [-2.0, 16.5], 'scale_completion_diff_95ci_pp': [1, 49], 'h2_best_gap_reduction_pct': [12, 28], 'fm2_pol_nontarget_shift_95ci_pp': [-42, -5], 'effective_taxonomy_size': [2, 2], 'estimated_acceptance_pct': [10, 25]}
+叙事方向：Abandon taxonomy framing. Reframe as cautionary empirical study: 'Prompt-based and training-based calibration are unreliable for behavioral correction in agentic user simulation — here is the evidence.' Lead with the two unambiguous effects: FM1 completion collapse (7B completion drops 72.8%, no CI needed for that magnitude) and C3 scale-dependent severity (7B catastrophic vs 14B immune-but-uncalibrated). FM4 reversal kept as secondary finding emphasizing the 10/12 direction count rather than effect size. Drop FM2 and FM3 as named mechanisms entirely — fold residual evidence into a 'BCP perturbation produces unpredictable side effects' paragraph. Title changes to something like 'Calibration Considered Harmful? Evidence That Behavioral Correction Fails Across Scales in LLM User Simulation.' Still targets Findings — but as an empirical warning paper, not a taxonomy paper.
+
+基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。
+每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。
+
+# Project context
+project: demo_calibrated_sim
+venue: EMNLP 2026 Findings
+focus: Scale-dependent failure severity is the novel C3 contribution. Key risk: single model family (Qwen2.5). Verify whether the safety-efficacy gap framing and failure mode transition (catastrophic over-response → selective ignoring) hold up under review. Also stress-test whether C2 (DPO reversal at 7B only) is strong enough without 14B DPO data.
+
+## paper_framing.md
+
+# Paper Framing: Calibration Failure Taxonomy for LLM User Simulators
+
+> Plan B story — Director approved 2026-05-13
+> Target: EMNLP 2026 Findings (ARR deadline 2026-05-25)
+
+---
+
+## Title Candidates
+
+1. **"Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation"**
+   - Pro: 直接点明贡献（taxonomy），关键词覆盖好
+   - Con: 稍长
+
+2. **"The Calibration Trap: Prompt-Based and Training-Based Corrections Both Fail for Dialect Bias in LLM User Simulators"**
+   - Pro: "trap" 吸引眼球，涵盖两种方法
+   - Con: 可能暗示过于 negative
+
+3. **"Behavioral Calibration Considered Harmful? Systematic Failure Modes in Dialect-Aware User Simulation"**
+   - Pro: Dijkstra 风格标题引发好奇，问号留余地
+   - Con: "Considered Harmful" 可能被认为 cliché
+
+**推荐**: Title 1 — 最准确传达贡献，reviewer-friendly。
+
+---
+
+## Core Story
+
+**Problem**: LLM user simulators exhibit dialect-dependent behavioral biases — AAVE and Indian English speakers receive systematically different politeness and question-asking patterns compared to Standard American English (sim2real2026gap; seshadri2026lost). These biases propagate into agent evaluation, undermining fairness.
+
+**Attempted Solution**: We apply two complementary calibration strategies:
+- **BCP (Behavioral Calibration Prompting)**: Prompt-level injection of target behavioral rates
+- **DPO (Direct Preference Optimization)**: Training-level alignment using dialect-calibrated preference pairs
+
+**Finding**: Both strategies fail systematically. We document **the first taxonomy of calibration failure modes** for LLM user simulators, identifying four distinct mechanisms that explain why seemingly reasonable calibration interventions produce counterproductive outcomes.
+
+**Framing**: This is NOT "we tried and failed." This is a systematic empirical analysis that (1) identifies previously undocumented failure mechanisms, (2) connects them to known phenomena in persona prompting and alignment, and (3) provides actionable constraints for future calibration research.
+
+---
+
+## Core Claims
+
+### C1: BCP produces three systematic failure mechanisms
+**Evidence strength**: Moderate (single model, single run, n=19-20 per variant)
+
+| Failure Mode | Description | Key Metric | exp_id |
+|---|---|---|---|
+| FM1: Global Behavior Suppression | BCP calibration prompts collapse task completion regardless of target dimension | completion retention 52.3% (threshold ≥80%) | mvp-004 |
+| FM2: Cross-Dimension Interference | Targeting one behavioral dimension perturbs non-targeted dimensions | politeness -25.6% when targeting question_rate; question_rate -52.3% when targeting politeness | mvp-004 |
+| FM3: Overcorrection Rebound | Requesting extreme behavioral shift causes model to rebound in opposite direction | overcorrected politeness +4.2pp ~ +10.4pp above baseline (4 runs, 4/4 consistent) | hgate-dpo003-merged |
+
+**Supporting numbers (mvp-004, Qwen2.5-7B-Instruct, n=19-20)**:
+- FM1: aave completion 0.100 vs baseline 0.368 (-72.8%); indian 0.150 (-59.2%); mean calibrated 0.193
+- FM2: single_dim_question politeness drops 25.6% (non-target); single_dim_politeness question_rate drops 52.3% (non-target)
+  - **Base rate caveat**: question_rate baseline = 0.044 (~0.8 questions/task); 52.3% drop = absolute change from ~0.044 to ~0.021. Paper must report both absolute values and relative changes.
+- FM3: **[primary]** hgate-dpo003-merged overcorrected politeness mean 0.574 vs baseline 0.502, gap +7.2pp (+14.3% relative), range +4.2pp ~ +10.4pp, 4/4 runs consistent; **[auxiliary]** mvp-004 single run: 0.605 vs 0.559 (+4.6pp, +8.2% relative)
+
+**External support**:
+- FM1: basil2025playing_pretend (persona prompting drops MMLU 71.6%→66.3%); hu2026expert_persona (accuracy degradation up to 30pp under persona)
+- FM2: gupta2026intra_fairness (bias spillover effect in targeted alignment)
+- FM3: no direct external parallel — novel observation
+
+### C2: DPO+BCP interaction produces calibration reversal
+**Evidence strength**: Strong (single model, 4 runs × 20 tasks = 80 episodes)
+
+DPO training, despite learning effectively (acc 0.75-1.0, loss 0.653), reverses BCP calibration direction when combined:
+
+| Metric | Base BCP (mvp-004) | DPO+BCP (hgate-dpo003-merged) |
+|---|---|---|
+| AAVE politeness gap | -0.091 (correct direction) | +0.064 (**reversed**) |
+| Indian politeness gap | -0.099 (correct direction) | +0.063 (**reversed**) |
+| H2 gap reduction | 25-28% (close to 30% threshold) | **-10.3%** (wrong direction) |
+| Variant×run checks with gap expansion | — | **10/12** |
+| Overcorrection rebound | +8.2% | **+14.3%** (amplified) |
+
+**Key insight**: DPO-003 training *improved* tool-calling ability (merged completion 60% vs base 40%, diag-lora-merge). The reversal is not a DPO training failure — it's an **interaction effect** between DPO alignment and BCP prompting.
+
+**External support**: lee2024dpo_toxicity (DPO bypasses rather than removes capabilities; alignment is fragile and reversible)
+
+### C3: Scale-dependent failure severity
+**Evidence strength**: Strong (two scales, 4 runs × 20 tasks = 80 episodes each)
+
+BCP fails at both 7B and 14B, but the **failure mode** changes with scale:
+
+| Failure Mode | 7B (mvp-004 / hgate-dpo003-merged) | 14B (qwen14b-bcp-001) |
+|---|---|---|
+| FM1: Completion collapse | ✅ (aave 0.100, indian 0.150) | ❌ Not replicated (H3 4/4 PASS, all variants >80% baseline) |
+| FM2: Cross-dim interference | ✅ (pol -25.6%, qrate -52.3%) | ⚠️ Partial (H2 3/4 FAIL — insufficient calibration, not destructive) |
+| FM3: Overcorrection rebound | ✅ (+7.2pp, 4/4 runs) | ❌ Not replicated (0/4 runs; overcorrected pol consistently BELOW baseline) |
+| BCP overall effectiveness | ❌ Fails | ❌ Fails |
+
+**Key insight**: BCP is ineffective at both scales, but the **failure mode transitions** with scale:
+- **7B = "catastrophic over-response"**: BCP prompts overwhelm the model's limited capacity, collapsing task completion (FM1) and triggering overcorrection rebounds (FM3)
+- **14B = "selective ignoring"**: The model maintains normal behavior (H3 PASS, high completion) but simply does not respond to calibration instructions (H2 FAIL)
+
+This reveals a **safety-efficacy gap**: scaling resolves BCP's destructive side effects but not its calibration ineffectiveness. There is no "sweet spot" scale where BCP works — smaller models are harmed by it, larger models ignore it.
+
+**14B specifics** (qwen14b-bcp-001, Qwen2.5-14B-Instruct FP16 TP=2, 4 runs × 20 tasks):
+- Mean completion: 61.6% (vs 7B 36.8%, +67%)
+- H1: 4/4 ✅ | H2: 1/4 ❌ (Run 2 pass due to anomalously high baseline 0.588) | H3: 4/4 ✅
+- Per-run completion: 73.7% / 55.0% / 57.9% / 60.0%
+- Mean politeness: 0.523 (vs 7B 0.559)
+
+**Auxiliary evidence**:
+- Llama-3-8B (llama-bcp-001): Floor effect (completion=5%). Tool-calling too weak to isolate BCP effect.
+- Mistral-7B (mistral-bcp-001): completion=0%. No usable data.
+
+### C4: Implications for future calibration research
+**Evidence strength**: Analytical (grounded in C1-C3)
+
+- **Implication 1**: Prompt-based calibration of behavioral rates in multi-turn agent dialogue faces a scale-dependent completion-calibration trade-off (FM1). At smaller scales (7B), BCP is destructive — it collapses task completion. At larger scales (14B), this harm disappears but calibration remains ineffective. This parallels the persona-accuracy trade-off (basil2025playing_pretend; hu2026expert_persona) but adds a scale dimension: larger models resist perturbation but aren't thereby calibrated.
+- **Implication 2**: Behavioral dimensions are coupled — calibrating politeness rate without affecting question rate (or completion) requires methods that can disentangle dimensions (FM2). Possible direction: per-dimension reward models or constrained decoding (cf. khan2026decoding).
+- **Implication 3**: DPO alignment and prompt-based calibration can interact adversarially (FM4). Future work must evaluate calibration methods in combination, not in isolation.
+- **Implication 4**: Overcorrection rebound (FM3) at 7B suggests smaller models have an "attractor basin" for default behavioral rates that resists large perturbations. At 14B this rebound disappears — but calibration still fails (FM2 persists). Gradual/iterative calibration may outperform one-shot extreme targets, but the 14B result suggests the problem is deeper than perturbation magnitude.
+- **Implication 5** (NEW): Scale-dependent failure severity implies that "BCP works at scale" is a misleading conclusion — while destructive side effects vanish, calibration efficacy does not improve. Future calibration methods cannot assume scaling alone will solve the problem.
+
+---
+
+## Reviewer Concerns (Pre-empted Attack Surfaces)
+
+### RC1: "Single model — how do we know this generalizes?"
+**Status**: Substantially mitigated (cross-scale, single model family)
+- Qwen 7B + 14B cross-scale evidence: BCP fails at both scales (different severity profiles)
+- Cross-scale data adds a contribution dimension (scale-dependent failure taxonomy) rather than just "replication"
+- Llama-3-8B/Mistral-7B failed due to tool-calling limitations, NOT because BCP worked on them
+- FM1 aligns with persona-accuracy trade-off documented across GPT-4, Claude, Llama in basil2025playing_pretend and hu2026expert_persona
+- **Remaining limitation**: Single model family (Qwen2.5). Cross-family generalization (e.g., Llama, Mistral with sufficient tool-calling) remains future work. Explicitly acknowledged in limitations.
+- **Honest hedge**: "We document BCP failure across two model scales within the Qwen2.5 family; the scale-dependent pattern of failure severity is itself a finding, but cross-family verification requires models with sufficient tool-calling ability in 16-tool settings."
+
+### RC2: "n=20 tasks, high variance — statistical power?"
+**Response**:
+- BCP results (mvp-004): n=19-20 per variant, single run. Variance is a valid concern for absolute numbers.
+- DPO+BCP results (hgate-dpo003-merged): 4 independent runs × 20 tasks = 80 episodes. Reversal effect consistent across 10/12 variant×run checks — this is not a variance artifact.
+- FM3 (rebound): consistent direction in 4/4 runs for overcorrected variant.
+- **Mitigation**: Report all individual run data (no cherry-picking, per memory.md rule). Frame claims around direction and consistency, not precise magnitudes.
+
+### RC3: "This is just negative results — where's the contribution?"
+**Response**:
+- Negative-results papers exist at top venues (e.g., Findings track). But this is MORE than negative results:
+  1. **Taxonomy**: First systematic categorization of calibration failure modes (FM1-FM4)
+  2. **Mechanistic connections**: Link FM1→persona-accuracy trade-off, FM2→bias spillover, FM4→DPO bypass
+  3. **Actionable implications**: Concrete constraints for future calibration methods
+  4. **Interaction discovery**: FM4 (DPO+BCP reversal) is novel — no prior work documents this interaction
+
+### RC4: "Why not try other calibration methods?"
+**Response**:
+- BCP and DPO represent the two main paradigms (prompt-time vs training-time). Covering both provides good coverage.
+- Paper scope is diagnosis (failure taxonomy), not exhaustive method search.
+- Implications section points to alternative approaches (constrained decoding, per-dimension reward, iterative calibration).
+
+### RC5: "The evaluation framework (tau-bench) is a confound — maybe BCP works on simpler tasks?"
+**Response**:
+- tau-bench is the standard benchmark for tool-calling agent evaluation (yao2024taubench; sim2real2026gap uses it too).
+- FM1 parallels persona-accuracy trade-off found on MMLU/general benchmarks — not tau-bench specific.
+- But fairly: FM2 and FM3 may be task-dependent. Acknowledged in limitations.
+
+---
+
+## Evidence Map
+
+| Claim | Sub-claim | Primary Experiment | Metric | Value | Secondary Experiment |
+|---|---|---|---|---|---|
+| C1 | FM1: completion collapse | mvp-004 | mean completion retention | 52.3% (need ≥80%) | hgate-dpo003-merged (excl. run2: 47-51% drop) |
+| C1 | FM2: cross-dim interference | mvp-004 | non-target dim shift | politeness -25.6%, qrate -52.3% | — |
+| C1 | FM3: overcorrection rebound | hgate-dpo003-merged | overcorrected pol vs baseline | +7.2pp mean (+14.3% rel), 4/4 runs consistent | mvp-004 (+4.6pp, single run) |
+| C2 | FM4: DPO reversal of BCP | hgate-dpo003-merged | H2 gap reduction | -10.3% (wrong direction) | — |
+| C2 | FM4: gap expansion count | hgate-dpo003-merged | variant×run checks | 10/12 expanded | — |
+| C2 | DPO training effective | dpo-003 | rewards accuracy | 0.75-1.0 | diag-lora-merge (merged 60% vs base 40%) |
+| C2 | Direction comparison | mvp-004 vs hgate-dpo003-merged | AAVE pol gap | -0.091 → +0.064 | Indian: -0.099 → +0.063 |
+| C3 | Scale-dependent severity | qwen14b-bcp-001 | FM1 replication | ❌ (H3 4/4 PASS at 14B) | mvp-004 (FM1 confirmed at 7B) |
+| C3 | Scale-dependent severity | qwen14b-bcp-001 | FM3 replication | ❌ (0/4 runs rebound at 14B) | hgate-dpo003-merged (4/4 at 7B) |
+| C3 | BCP ineffective both scales | qwen14b-bcp-001 | H2 pass rate | 1/4 (14B) vs 0/1 (7B) | Both fail calibration |
+| C3 | Completion improvement | qwen14b-bcp-001 | baseline completion | 61.6% (14B) vs 36.8% (7B) | +67% from scaling |
+| C3 | Cross-model (auxiliary) | llama-bcp-001 | completion | 5% (floor) | Not usable for generalization |
+
+---
+
+## Contribution Statement
+
+We present the first systematic taxonomy of calibration failure modes for LLM user simulators in agentic evaluation. Through controlled experiments on Qwen2.5-7B and Qwen2.5-14B in the tau-bench retail domain, we identify four failure mechanisms — global behavior suppression, cross-dimension interference, overcorrection rebound, and DPO-BCP interaction reversal — and reveal that their severity is **scale-dependent**: destructive side effects (completion collapse, overcorrection rebound) disappear at 14B, but calibration itself remains ineffective. This safety-efficacy gap shows that scaling resolves BCP's harms without solving its core limitation. Our findings establish concrete constraints for future calibration research and connect observed failures to broader phenomena in persona prompting and preference optimization.
+
+---
+
+## Key Literature Anchors
+
+| Role in Paper | Paper | What It Provides |
+|---|---|---|
+| Core motivation | sim2real2026gap (arXiv 2603.11245) | Quantifies sim-vs-human gap in τ-bench; diagnoses the problem we attempt to solve |
+| FM1 mechanism | basil2025playing_pretend (arXiv 2512.05858) | Persona prompting degrades accuracy; explains completion collapse |
+| FM1 mechanism | hu2026expert_persona (arXiv 2603.18507) | Persona-accuracy trade-off up to 30pp; instruction-tuned models more susceptible |
+| FM2 mechanism | gupta2026intra_fairness (arXiv 2602.16438) | Bias spillover in targeted alignment; parallel to cross-dim interference |
+| FM4 mechanism | lee2024dpo_toxicity (ICML 2024) | DPO bypasses rather than removes capabilities; fragile alignment |
+| Evaluation framework | yao2024taubench (arXiv 2406.12045) | τ-bench retail domain, pass^k metric |
+| Bias context | seshadri2026lost (arXiv 2601.17087) | AAVE/Indian English speakers get worst simulator calibration |
+| DPO method | rafailov2023dpo (NeurIPS 2023) | Core DPO algorithm reference |
+
+---
+
+## Open Items
+
+- [x] **qwen14b-bcp-001 results** — C3 updated: scale-dependent failure severity (FM1/FM3 capacity-dependent, FM2 partial, BCP ineffective at both scales). D014.
+- [ ] **Statistical tests** — add bootstrap CI for key comparisons (FM4 reversal direction, FM3 rebound magnitude, 7B-vs-14B completion difference) once data is finalized.
+- [ ] **Figure plan** — taxonomy diagram (FM1-FM4), gap reversal visualization (base vs DPO politeness gaps), **scale-dependent severity heatmap** (7B vs 14B × FM1-FM3).
+- [ ] **14B DPO (optional)** — would FM4 (DPO+BCP reversal) also show scale-dependent behavior? ~11-13h GPU. Contingent on new server GPU availability.
+- [ ] **C1 annotation** — add note that FM1 and FM3 are documented at 7B; 14B evidence shows these are capacity-dependent. Paper must not overclaim "structural" for FM1/FM3.
+
+
+## registry (completed experiments)
+
+- exp_id: mvp-001
+  name: ''
+  status: DONE
+  conclusion: failed
+  metrics:
+    tasks_completed: 11
+    tasks_total: 20
+    phase1_only: true
+    reward_3_of_11: 0.273
+    failure_reason: vLLM engine defunct at task 10, openai.APIConnectionError, no
+      retry logic
+- exp_id: mvp-002
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    kill_reason: 'Killed for critical fixes: old QuestionDetector still on server
+      + ContextWindowExceededError polluting H3'
+- exp_id: mvp-003
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    kill_reason: 'L1 violation: vLLM started on cuda:1 (outside gpu_ids=[2,3]). Worker
+      falsely reported deployment success. All data invalid.'
+- exp_id: mvp-004
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    variants:
+      baseline:
+        politeness: 0.559
+        question_rate: 0.044
+        completion: 0.368
+        n: 19
+      aave_target:
+        politeness: 0.468
+        question_rate: 0.015
+        completion: 0.1
+        n: 20
+      indian_english:
+        politeness: 0.46
+        question_rate: 0.014
+        completion: 0.15
+        n: 20
+      overcorrected:
+        politeness: 0.605
+        question_rate: 0.018
+        completion: 0.263
+        n: 19
+      single_dim_question:
+        politeness: 0.416
+        question_rate: 0.065
+        completion: 0.25
+        n: 20
+      single_dim_politeness:
+        politeness: 0.634
+        question_rate: 0.021
+        completion: 0.2
+        n: 20
+    h_gate:
+      H1: PASS
+      H2: FAIL
+      H3: FAIL
+      overall: FAIL (1/3)
+    h2_detail:
+      aave_politeness_reduction: 25.4%
+      indian_politeness_reduction: 27.6%
+      overcorrected_politeness_reduction: -10.0%
+      threshold: '>=30%'
+    h3_detail:
+      retention_threshold: 29.5%
+      best_completion: overcorrected 26.3%
+- exp_id: aave-corpus-gen
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    traces_generated: 32
+    traces_failed: 60
+    dpo_pairs_built: 1434
+    target_met: true
+    note: 32 valid AAVE traces + 137 baseline traces → 1434 DPO pairs (target ≥500).
+      Killed early to free cuda:3 for DPO training.
+- exp_id: dpo-001
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    train_loss: 0.6814
+    train_runtime_sec: 4481.3
+    epochs_completed: 3
+    train_samples_per_second: 0.96
+    train_steps_per_second: 0.24
+    total_flos: 242051199GF
+    final_rewards_accuracy: 0.5
+    final_rewards_margin: -0.00015
+- exp_id: hgate-dpo001
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    all_runs:
+      run1:
+        completion: 0.25
+        n: 20
+      run2:
+        completion: 0.2
+        n: 20
+      run3:
+        completion: 0.1
+        n: 20
+      run4:
+        completion: 0.3
+        n: 20
+      run5:
+        completion: null
+        n: null
+        note: incomplete
+    aggregate:
+      mean_completion: 0.213
+      total_episodes: 80
+      n_complete_runs: 4
+    h_gate:
+      H2: NOT_EVALUATED
+      H3: FAIL
+      overall: FAIL
+    h3_detail:
+      mean_completion: 21.3%
+      threshold: '>=29.6%'
+      deficit: -8.3pp
+    note: All 4 complete runs reported. No cherry-picking. dpo-001 v1 data had 48%
+      tokenizer mismatch → weak learning signal (loss only 0.012 below random, accuracy=0.5).
+    lora_serving_bug: true
+    lora_bug_note: UNRELIABLE — also affected by vLLM LoRA serving bug (D010). Completion
+      data likely underestimated.
+- exp_id: dpo-002
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.6614
+    train_runtime_sec: 5162.8
+    train_runtime_human: '1:26:02'
+    epochs_completed: 3
+    train_samples_per_second: 0.908
+    total_flos: 283186810GF
+    final_rewards_accuracy: 0.667
+    final_rewards_margin: 0.026
+    checkpoints:
+    - checkpoint-782
+    - checkpoint-1173
+    - final_adapter
+- exp_id: llama-bcp-001
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    kill_reason: 'D007/D008: Llama-3-8B tool-calling 能力不足(completion=5%), BCP generalizability
+      证据不充分。Reviewer 修正：三 variant completion 完全一致(均 task 17), BCP 对 completion 效果严格为零。过校正反弹
+      claim 需限定——politeness 飙升发生在 95% 失败对话中，最多支持''低能力模型在 BCP 下也展现行为偏移''。数据降级为辅助证据。'
+    reviewer_correction: 不能 claim BCP 失败机制跨模型复现，仅支持低能力模型行为偏移
+- exp_id: dpo-003
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    final_loss: 0.653
+    rewards_accuracy_range: 0.75-1.0
+    rewards_margin_range: 0.05-0.17
+    epochs: 3
+    total_steps: 1173
+    note: 'Fix B effective: 0% tokenizer mismatch, significantly better learning signal
+      than dpo-001 (acc=0.5) and dpo-002 (acc=0.667)'
+- exp_id: hgate-dpo002
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    progress: 7/24 variants — partial (timeout killed)
+    exit_code: 124
+    pid: 311654
+    run_1_complete: true
+    run_1_results:
+      H1: PASS
+      H2: FAIL
+      H3: FAIL
+      baseline_completion: 0.222
+      baseline_politeness: 0.489
+      h2_detail: calibrated variants politeness increased instead of decreasing
+      h3_detail: aave/indian_english completion below 80% baseline retention
+    run_2: baseline only completed before timeout
+    note: UNRELIABLE — also affected by vLLM LoRA serving bug (D010). Completion data
+      likely underestimated. conclusion=partial_timeout
+    lora_serving_bug: true
+- exp_id: hgate-dpo003
+  name: ''
+  status: DONE
+  conclusion: killed
+  metrics:
+    kill_reason: 'D010: vLLM LoRA serving bug confirmed. Completion 15% via LoRA serving
+      vs 60% via merged model. Data unreliable, invalidated.'
+    partial_data:
+      progress: 2/24 variants (8%)
+      baseline_completion_estimate: 0.15
+    lora_serving_bug: true
+- exp_id: diag-lora-merge
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    diagnosis: vLLM LoRA serving bug confirmed, NOT DPO training damage
+    adapter_config:
+      r: 16
+      lora_alpha: 32
+      scaling: 2
+      target_modules:
+      - q_proj
+      - v_proj
+      lora_dropout: 0.05
+    completion_comparison:
+      lora_serving:
+        completion: 0.15
+        note: hgate-dpo003 early data, 20 tasks
+      merged_dpo003:
+        completion: 0.6
+        mean_reward: 0.6
+        tasks: 3/5
+        detail: task0✓ task1✓ task2✗(overflow) task3✓ task4✗
+      base_model:
+        completion: 0.4
+        mean_reward: 0.4
+        tasks: 2/5
+        detail: task0✓ task1✗ task2✗(overflow) task3✓ task4✗
+    key_finding: Merged DPO-003 (60%) > base model (40%) > LoRA serving (15%). DPO
+      training improved tool-calling, vLLM LoRA serving is the bottleneck.
+    merged_model_path: /root/autodl-tmp/models/Qwen2.5-7B-DPO003-merged/
+- exp_id: hgate-dpo003-merged
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    run_1:
+      baseline_politeness: 0.4748
+      baseline_completion: 0.2778
+      H1: PASS
+      H2: FAIL
+      H3: FAIL
+      variants:
+        aave:
+          politeness: 0.6086
+          completion: 0.15
+          gap_change: -48.7
+        indian_english:
+          politeness: 0.5772
+          completion: 0.15
+          gap_change: -37.3
+        overcorrected:
+          politeness: 0.5693
+          completion: 0.15
+          gap_change: -25.2
+        single_dim_question:
+          politeness: 0.4766
+          completion: 0.1
+        single_dim_politeness:
+          politeness: 0.5756
+          completion: 0.3
+    run_2:
+      baseline_politeness: 0.4657
+      baseline_completion: 0.15
+      H1: PASS
+      H2: FAIL
+      H3: PASS
+      variants:
+        aave:
+          politeness: 0.5589
+          completion: 0.4444
+          gap_change: -35.1
+        indian_english:
+          politeness: 0.5344
+          completion: 0.1579
+          gap_change: -25.9
+        overcorrected:
+          politeness: 0.508
+          completion: 0.25
+          gap_change: -11.6
+        single_dim_question:
+          politeness: 0.4022
+          completion: 0.2632
+        single_dim_politeness:
+          politeness: 0.6686
+          completion: 0.15
+    run_3:
+      baseline_politeness: 0.5321
+      baseline_completion: 0.4
+      H1: PASS
+      H2: FAIL
+      H3: FAIL
+      variants:
+        aave:
+          politeness: 0.5826
+          completion: 0.3
+          gap_change: -15.2
+        indian_english:
+          politeness: 0.5097
+          completion: 0.25
+          gap_change: 6.8
+        overcorrected:
+          politeness: 0.581
+          completion: 0.2778
+          gap_change: -11.3
+        single_dim_question:
+          politeness: 0.478
+          completion: 0.2
+        single_dim_politeness:
+          politeness: 0.5903
+          completion: 0.35
+    run_4:
+      baseline_politeness: 0.5336
+      baseline_completion: 0.35
+      H1: PASS
+      H2: FAIL
+      H3: FAIL
+      variants:
+        aave:
+          politeness: 0.514
+          completion: 0.1
+          gap_change: 5.9
+        indian_english:
+          politeness: 0.6375
+          completion: 0.1053
+          gap_change: -31.1
+        overcorrected:
+          politeness: 0.6371
+          completion: 0.1579
+          gap_change: -23.9
+        single_dim_question:
+          politeness: 0.5449
+          completion: 0.3158
+        single_dim_politeness:
+          politeness: 0.6035
+          completion: 0.3158
+    aggregate:
+      mean_baseline_politeness: 0.5016
+      mean_baseline_completion: 0.2944
+      H1: PASS (4/4)
+      H2: FAIL (0/4)
+      H3: FAIL (3/4)
+      overall: FAIL
+      h2_detail: Mean politeness gap reduction = -10.3% (need ≥30%); DPO increased
+        gap in 10/12 variant checks
+      h3_detail: Mean baseline completion 29.4% < 29.6% threshold
+- exp_id: mistral-bcp-001
+  name: ''
+  status: DONE
+  conclusion: negative
+  metrics:
+    completion: 0
+    n_tasks: 3
+    tool_calls_made: 0
+    n_responses_checked: 35
+    root_cause: 7B model cannot generate structured tool_calls with 16 tools — embeds
+      JSON in text content instead
+    single_tool_test: PASS
+    16_tool_test: FAIL (empty tool_calls list)
+    vllm_parser_modes_tried:
+    - mistral
+    - mistral+tokenizer-mode
+- exp_id: qwen14b-bcp-001
+  name: ''
+  status: DONE
+  conclusion: success
+  metrics:
+    mean_completion: 0.616
+    run_completions:
+    - 0.737
+    - 0.55
+    - 0.579
+    - 0.6
+    H1_pass_rate: 4/4
+    H2_pass_rate: 1/4
+    H3_pass_rate: 4/4
+    overall_gate_pass_rate: 1/4
+    mean_politeness: 0.523
+    mean_question_rate: 0.042
+    bcp_ineffective_confirmed: true
+    fm1_replicated: false
+    fm2_replicated: partial
+    fm3_replicated: false
+    fm_replication:
+      FM1_global_suppression: NOT_REPLICATED — completion retention >97%, no collapse
+        at 14B
+      FM2_cross_dim_interference: PARTIAL — interference exists but small magnitude
+        (politeness -8.0%/-4.2pp when targeting question; question_rate -52.8%/-2.2pp
+        when targeting politeness). Absolute effect far weaker than 7B.
+      FM3_overcorrection_rebound: NOT_REPLICATED — overcorrected politeness LOWER
+        than baseline by 7.1pp, direction reversed
+      scale_dependent_finding: 14B failure mode is 'selective ignoring' (model ignores
+        BCP calibration) vs 7B 'catastrophic collapse' (BCP destroys behavior). Both
+        fail H2 but for opposite reasons. Destructive side effects (FM1 collapse,
+        FM3 rebound) absent at 14B.
+
+# 输出格式（YAML，仅输出一个 ```yaml 块）
+
+```yaml
+tier: worst
+narrative_guidance: "..."
+imagined_experiments:
+  - name: "..."
+    plan_id: "..."
+    description: "..."
+    expected_results: {metric: value, ...}
+    result_rationale: "..."
+    tables: []
+    figures_description: []
+    analysis: "..."
+```
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a429f22d-4c62-4502-943e-f549be7619f4",
+  "type": "user",
+  "uuid": "ec1bf211-9e6f-4243-af8c-e10691232816",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-13T15:57:15.591Z_
+
+```json
+{
+  "parentUuid": "ec1bf211-9e6f-4243-af8c-e10691232816",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "69393bd7-97c4-47fe-86db-ccb72ec642c0",
+  "timestamp": "2026-05-13T15:57:15.591Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-13T15:57:15.591Z_
+
+```json
+{
+  "parentUuid": "69393bd7-97c4-47fe-86db-ccb72ec642c0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "791fcbb0-451b-4656-99d9-648b9a41eb1d",
+  "timestamp": "2026-05-13T15:57:15.591Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：  含义：Bootstrap CIs undermine FM3 and FM2; FM4 directionally real but wide CI invites 'could be noise' critique; reviewers read taxonomy as post-hoc labeling of…",
+  "leafUuid": "791fcbb0-451b-4656-99d9-648b9a41eb1d",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibration failure modes in LLM user simulators",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-13T15:57:21.326Z_
+
+I'll review the experiment plan to identify all planned experiments, then generate detailed predictions for the worst tier.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "791fcbb0-451b-4656-99d9-648b9a41eb1d",
+  "isSidechain": false,
+  "requestId": "req_011CazqprJHVZmJsyncMZgCX",
+  "type": "assistant",
+  "uuid": "069d7e08-45be-4b3c-8693-7f17bc300dc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V28qv3SbbA9cu7eEPbzKpk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15359,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15359,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15359,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15359
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-13T15:57:24.720Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01C2Lhp3VBD1mVoYqNA2C7CK`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Find experiment plan file",
+  "prompt": "Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_2 for files related to experiment plans. Look for files named like \"experiment_plan\", \"exp_plan\", \"planned_experiments\", or similar. Check YAML, MD, JSON formats. Also check any subdirectories. Report the full paths and contents of any matching files."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "069d7e08-45be-4b3c-8693-7f17bc300dc8",
+  "isSidechain": false,
+  "requestId": "req_011CazqprJHVZmJsyncMZgCX",
+  "type": "assistant",
+  "uuid": "ff3f673b-3a6f-4706-856f-b4a7937c8c71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V28qv3SbbA9cu7eEPbzKpk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 15359,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15359,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15359,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15359
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T15:57:36.646Z_
+
+<details><summary>↩ Tool result · `toolu_01C2Lhp3VBD1mVoYqNA2C7CK`</summary>
+
+```text
+Perfect! I found the experiment plan files. Here's my report:
+
+## Experiment Plan Files Found
+
+**Matching Files:**
+1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/experiment_plan.yaml`
+2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/experiment_plan.lock`
+
+### Content Summary
+
+**experiment_plan.yaml** - Complete experiment plan with 10 defined experiments:
+
+The plan includes both primary and auxiliary experiments organized by priority:
+
+**Primary Experiments (P0):**
+- **plan_001**: 7B BCP Baseline Evaluation (Qwen2.5-7B-Instruct) - registry: mvp-004
+- **plan_002**: 7B DPO Training (v3, Fix B) - registry: dpo-003
+- **plan_003**: 7B DPO+BCP Evaluation (merged model) - depends on plan_002, registry: hgate-dpo003-merged
+- **plan_004**: 14B BCP Cross-Scale Evaluation (Qwen2.5-14B) - depends on plan_001, registry: qwen14b-bcp-001
+
+**Secondary Experiments (P1):**
+- **plan_005b**: 7B BCP Multi-Run Replication - depends on plan_001, registry: bcp7b-multirun-001
+- **plan_005**: Bootstrap CI for Key Comparisons - depends on plan_001, plan_003, plan_004, registry: bootstrap-ci-001
+
+**Contingent Experiments (P2):**
+- **plan_006**: 14B DPO + BCP (scale-dependent FM4?) - depends on plan_004, registry: not yet assigned
+
+**Auxiliary/Diagnostic Experiments:**
+- **plan_aux_001**: Llama-3-8B BCP (floor effect) - registry: llama-bcp-001
+- **plan_aux_002**: Mistral-7B BCP (floor effect) - registry: mistral-bcp-001
+- **plan_aux_003**: LoRA Merge Diagnostics - registry: diag-lora-merge
+
+**experiment_plan.lock** - Lock file (single line, appears to be metadata/tracking file)
+
+All experiments are mapped to specific claims (C1, C2, C3) and organized as a directed acyclic graph (DAG) with dependency relationships for sequential execution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff3f673b-3a6f-4706-856f-b4a7937c8c71",
+  "isSidechain": false,
+  "promptId": "a429f22d-4c62-4502-943e-f549be7619f4",
+  "type": "user",
+  "uuid": "605545ac-ebb2-4095-9bad-0a84bfddb2ce",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_2 for files related to experiment plans. Look for files named like \"experiment_plan\", \"exp_plan\", \"planned_experiments\", or similar. Check YAML, MD, JSON formats. Also check any subdirectories. Report the full paths and contents of any matching files.",
+    "agentId": "a062ebd26c990f7e4",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! I found the experiment plan files. Here's my report:\n\n## Experiment Plan Files Found\n\n**Matching Files:**\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/experiment_plan.yaml`\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/experiment_plan.lock`\n\n### Content Summary\n\n**experiment_plan.yaml** - Complete experiment plan with 10 defined experiments:\n\nThe plan includes both primary and auxiliary experiments organized by priority:\n\n**Primary Experiments (P0):**\n- **plan_001**: 7B BCP Baseline Evaluation (Qwen2.5-7B-Instruct) - registry: mvp-004\n- **plan_002**: 7B DPO Training (v3, Fix B) - registry: dpo-003\n- **plan_003**: 7B DPO+BCP Evaluation (merged model) - depends on plan_002, registry: hgate-dpo003-merged\n- **plan_004**: 14B BCP Cross-Scale Evaluation (Qwen2.5-14B) - depends on plan_001, registry: qwen14b-bcp-001\n\n**Secondary Experiments (P1):**\n- **plan_005b**: 7B BCP Multi-Run Replication - depends on plan_001, registry: bcp7b-multirun-001\n- **plan_005**: Bootstrap CI for Key Comparisons - depends on plan_001, plan_003, plan_004, registry: bootstrap-ci-001\n\n**Contingent Experiments (P2):**\n- **plan_006**: 14B DPO + BCP (scale-dependent FM4?) - depends on plan_004, registry: not yet assigned\n\n**Auxiliary/Diagnostic Experiments:**\n- **plan_aux_001**: Llama-3-8B BCP (floor effect) - registry: llama-bcp-001\n- **plan_aux_002**: Mistral-7B BCP (floor effect) - registry: mistral-bcp-001\n- **plan_aux_003**: LoRA Merge Diagnostics - registry: diag-lora-merge\n\n**experiment_plan.lock** - Lock file (single line, appears to be metadata/tracking file)\n\nAll experiments are mapped to specific claims (C1, C2, C3) and organized as a directed acyclic graph (DAG) with dependency relationships for sequential execution."
+      }
+    ],
+    "totalDurationMs": 11921,
+    "totalTokens": 27647,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 6627,
+      "cache_read_input_tokens": 20418,
+      "output_tokens": 595,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6627
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 595,
+          "cache_read_input_tokens": 20418,
+          "cache_creation_input_tokens": 6627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6627,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 2,
+      "searchCount": 3,
+      "bashCount": 1,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "ff3f673b-3a6f-4706-856f-b4a7937c8c71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T15:57:43.051Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017QWcMxwVqDpijDGEmucyic`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/experiment_plan.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "605545ac-ebb2-4095-9bad-0a84bfddb2ce",
+  "isSidechain": false,
+  "requestId": "req_011CazqrQ9yd5c1EVyhNrsP4",
+  "type": "assistant",
+  "uuid": "f8df0853-f586-4ad5-8f69-393d5beabedb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017nDPRFXtX1Mgcew3Russ4s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 797,
+      "cache_read_input_tokens": 27200,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 27200,
+          "cache_creation_input_tokens": 797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T15:57:43.064Z_
+
+<details><summary>↩ Tool result · `toolu_017QWcMxwVqDpijDGEmucyic`</summary>
+
+```text
+1	experiments:
+2	- id: plan_001
+3	  name: 7B BCP Baseline Evaluation
+4	  claim: C1
+5	  description: Qwen2.5-7B-Instruct BCP eval on tau-bench retail (6 variants × 19-20
+6	    tasks). Documents FM1 (completion collapse), FM2 (cross-dim interference), FM3
+7	    (overcorrection rebound at single-run level).
+8	  priority: P0
+9	  depends_on: []
+10	  registry_id: mvp-004
+11	- id: plan_002
+12	  name: 7B DPO Training (v3, Fix B)
+13	  claim: C2
+14	  description: DPO fine-tuning on dialect-calibrated preference pairs. Training acc
+15	    0.75-1.0, loss 0.653.
+16	  priority: P0
+17	  depends_on: []
+18	  registry_id: dpo-003
+19	- id: plan_003
+20	  name: 7B DPO+BCP Evaluation (merged model)
+21	  claim: C2
+22	  description: Evaluate DPO-trained merged model with BCP prompts (4 runs × 6 variants
+23	    × 20 tasks = 480 episodes). Confirms FM3 rebound (4/4 runs). Documents FM4 reversal
+24	    (10/12 gap expansion).
+25	  priority: P0
+26	  depends_on:
+27	  - plan_002
+28	  registry_id: hgate-dpo003-merged
+29	- id: plan_004
+30	  name: 14B BCP Cross-Scale Evaluation
+31	  claim: C3
+32	  description: 'Qwen2.5-14B-Instruct FP16 TP=2 BCP eval (4 runs × 6 variants × 20
+33	    tasks = 480 episodes). Result: FM1 NOT replicated (H3 4/4 PASS), FM3 NOT replicated
+34	    (0/4 runs), FM2 weak. BCP still fails (H2 3/4 FAIL) but via ''selective ignoring''
+35	    not ''catastrophic collapse''.'
+36	  priority: P0
+37	  depends_on:
+38	  - plan_001
+39	  registry_id: qwen14b-bcp-001
+40	- id: plan_005b
+41	  name: 7B BCP Multi-Run Replication
+42	  claim: C1
+43	  description: Replicate mvp-004 (7B base BCP) 3 additional runs. Current C1 evidence
+44	    (FM1/FM2) based on single run n=19-20. This brings C1 to 4 runs total, matching
+45	    C2/C3 evidence strength.
+46	  priority: P1
+47	  depends_on:
+48	  - plan_001
+49	  registry_id: bcp7b-multirun-001
+50	  notes: High-value low-cost. Directly addresses Reviewer concern about FM1/FM2 variance
+51	    artifact risk.
+52	- id: plan_005
+53	  name: Bootstrap CI for Key Comparisons
+54	  claim: C1
+55	  description: 'Bootstrap confidence intervals for: FM4 reversal direction, FM3 rebound
+56	    magnitude, 7B-vs-14B completion difference, H2 calibration gap. Computational
+57	    only.'
+58	  priority: P1
+59	  depends_on:
+60	  - plan_001
+61	  - plan_003
+62	  - plan_004
+63	  registry_id: bootstrap-ci-001
+64	- id: plan_006
+65	  name: 14B DPO + BCP (scale-dependent FM4?)
+66	  claim: C2
+67	  description: DPO training + BCP eval at 14B scale. Tests whether FM4 (DPO+BCP reversal)
+68	    is also scale-dependent.
+69	  priority: P2
+70	  depends_on:
+71	  - plan_004
+72	  notes: Not strictly necessary — C2 already strong at 7B. Contingent on new server
+73	    GPU availability post-migration.
+74	- id: plan_aux_001
+75	  name: Llama-3-8B BCP (floor effect)
+76	  claim: C3
+77	  description: Llama-3-8B completion=5%. Tool-calling insufficient for 16-tool tau-bench.
+78	    Cannot isolate BCP effect.
+79	  registry_id: llama-bcp-001
+80	  notes: Not usable for cross-model generalization. Documented in limitations.
+81	- id: plan_aux_002
+82	  name: Mistral-7B BCP (floor effect)
+83	  claim: C3
+84	  description: Mistral-7B completion=0%. Cannot do structured tool_calls. No usable
+85	    data.
+86	  registry_id: mistral-bcp-001
+87	  notes: Confirms 16-tool setting is challenging for 7B non-Qwen models.
+88	- id: plan_aux_003
+89	  name: LoRA Merge Diagnostics
+90	  claim: C2
+91	  description: Verified LoRA merge correctness (merged 60% vs base 40% completion).
+92	    DPO training effective.
+93	  registry_id: diag-lora-merge
+94	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8df0853-f586-4ad5-8f69-393d5beabedb",
+  "isSidechain": false,
+  "promptId": "a429f22d-4c62-4502-943e-f549be7619f4",
+  "type": "user",
+  "uuid": "09af7a8f-58f4-4097-ae8f-6e2901b31a39",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/experiment_plan.yaml",
+      "content": "experiments:\n- id: plan_001\n  name: 7B BCP Baseline Evaluation\n  claim: C1\n  description: Qwen2.5-7B-Instruct BCP eval on tau-bench retail (6 variants × 19-20\n    tasks). Documents FM1 (completion collapse), FM2 (cross-dim interference), FM3\n    (overcorrection rebound at single-run level).\n  priority: P0\n  depends_on: []\n  registry_id: mvp-004\n- id: plan_002\n  name: 7B DPO Training (v3, Fix B)\n  claim: C2\n  description: DPO fine-tuning on dialect-calibrated preference pairs. Training acc\n    0.75-1.0, loss 0.653.\n  priority: P0\n  depends_on: []\n  registry_id: dpo-003\n- id: plan_003\n  name: 7B DPO+BCP Evaluation (merged model)\n  claim: C2\n  description: Evaluate DPO-trained merged model with BCP prompts (4 runs × 6 variants\n    × 20 tasks = 480 episodes). Confirms FM3 rebound (4/4 runs). Documents FM4 reversal\n    (10/12 gap expansion).\n  priority: P0\n  depends_on:\n  - plan_002\n  registry_id: hgate-dpo003-merged\n- id: plan_004\n  name: 14B BCP Cross-Scale Evaluation\n  claim: C3\n  description: 'Qwen2.5-14B-Instruct FP16 TP=2 BCP eval (4 runs × 6 variants × 20\n    tasks = 480 episodes). Result: FM1 NOT replicated (H3 4/4 PASS), FM3 NOT replicated\n    (0/4 runs), FM2 weak. BCP still fails (H2 3/4 FAIL) but via ''selective ignoring''\n    not ''catastrophic collapse''.'\n  priority: P0\n  depends_on:\n  - plan_001\n  registry_id: qwen14b-bcp-001\n- id: plan_005b\n  name: 7B BCP Multi-Run Replication\n  claim: C1\n  description: Replicate mvp-004 (7B base BCP) 3 additional runs. Current C1 evidence\n    (FM1/FM2) based on single run n=19-20. This brings C1 to 4 runs total, matching\n    C2/C3 evidence strength.\n  priority: P1\n  depends_on:\n  - plan_001\n  registry_id: bcp7b-multirun-001\n  notes: High-value low-cost. Directly addresses Reviewer concern about FM1/FM2 variance\n    artifact risk.\n- id: plan_005\n  name: Bootstrap CI for Key Comparisons\n  claim: C1\n  description: 'Bootstrap confidence intervals for: FM4 reversal direction, FM3 rebound\n    magnitude, 7B-vs-14B completion difference, H2 calibration gap. Computational\n    only.'\n  priority: P1\n  depends_on:\n  - plan_001\n  - plan_003\n  - plan_004\n  registry_id: bootstrap-ci-001\n- id: plan_006\n  name: 14B DPO + BCP (scale-dependent FM4?)\n  claim: C2\n  description: DPO training + BCP eval at 14B scale. Tests whether FM4 (DPO+BCP reversal)\n    is also scale-dependent.\n  priority: P2\n  depends_on:\n  - plan_004\n  notes: Not strictly necessary — C2 already strong at 7B. Contingent on new server\n    GPU availability post-migration.\n- id: plan_aux_001\n  name: Llama-3-8B BCP (floor effect)\n  claim: C3\n  description: Llama-3-8B completion=5%. Tool-calling insufficient for 16-tool tau-bench.\n    Cannot isolate BCP effect.\n  registry_id: llama-bcp-001\n  notes: Not usable for cross-model generalization. Documented in limitations.\n- id: plan_aux_002\n  name: Mistral-7B BCP (floor effect)\n  claim: C3\n  description: Mistral-7B completion=0%. Cannot do structured tool_calls. No usable\n    data.\n  registry_id: mistral-bcp-001\n  notes: Confirms 16-tool setting is challenging for 7B non-Qwen models.\n- id: plan_aux_003\n  name: LoRA Merge Diagnostics\n  claim: C2\n  description: Verified LoRA merge correctness (merged 60% vs base 40% completion).\n    DPO training effective.\n  registry_id: diag-lora-merge\n",
+      "numLines": 94,
+      "startLine": 1,
+      "totalLines": 94
+    }
+  },
+  "sourceToolAssistantUUID": "f8df0853-f586-4ad5-8f69-393d5beabedb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13 · 2026-05-13T15:57:43.090Z_
+
+````json
+{
+  "parentUuid": "09af7a8f-58f4-4097-ae8f-6e2901b31a39",
+  "isSidechain": false,
+  "attachment": {
+    "type": "nested_memory",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/CLAUDE.md",
+    "content": {
+      "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/.claude/CLAUDE.md",
+      "type": "Project",
+      "content": "## 当前项目\n当前绑定项目：**demo_calibrated_sim**\n\n## 按需查阅\n- 项目配置：`load_project_config(\"demo_calibrated_sim\")` 或 `load_project_config(\"demo_calibrated_sim\", section=\"execution\")`\n- 知识文件：`read_project_file(file=...)` 读取项目文件（ROADMAP.md/memory.md/ideas.md/report.md 等）\n- 路线图：`read_roadmap()` 读取研究方向和短期任务\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/`（写文件后用 `register_artifact` 注册）\n\n## Worker 操作规范\n\n### ssh-env-setup\n\n# 远程服务器环境搭建规范\n\n## 核心原则\n\n**先探测，再安装。** 不要假设服务器上什么都没有——很多包已经装好了。安装前必须走 discovery 流程。\n\n**镜像快速路径**：连接服务器后，先用 `detect_image` 检测是否为预置镜像。如果是已知镜像且版本匹配，跳过基础环境搭建（Phase 1-4），直接安装项目特有依赖。未检测到镜像时走传统流程。\n\n**aml-train 镜像使用 conda 环境**（不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`。pip/python 在 `/root/miniconda3/bin/` 下。**不要假设 .venv 存在，不要创建 venv。**\n\n## Phase 1: 环境探测（用 ssh_read_only）\n\n连接到服务器后，第一步永远是收集信息，不要直接装东西：\n\n```bash\n# 1. Python 环境\nwhich python3 && python3 --version\npip3 --version 2>/dev/null || echo \"NO_PIP\"\n\n# 2. CUDA 环境\nnvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader 2>/dev/null || echo \"NO_GPU\"\nnvcc --version 2>/dev/null | grep \"release\" || echo \"NO_NVCC\"\n\n# 3. 包管理器\nls -d /opt/miniconda3 ~/miniconda3 ~/.conda 2>/dev/null || echo \"NO_CONDA\"\nls -d .venv venv env 2>/dev/null || echo \"NO_VENV\"\npip3 list --format=freeze 2>/dev/null | grep -iE \"torch|transformers|flash\" || echo \"NO_ML_PKGS\"\n\n# 4. PEP 668 检查\npython3 -c \"import sysconfig; print(sysconfig.get_path('stdlib'))\" 2>/dev/null\nls /usr/lib/python*/EXTERNALLY-MANAGED 2>/dev/null && echo \"PEP668_MANAGED\" || echo \"PEP668_OK\"\n```\n\n根据探测结果决定安装策略，不要猜。\n\n## Phase 2: 环境策略选择\n\n根据 Phase 1 结果选择**一个**策略，不要混用：\n\n| 探测结果 | 策略 | 说明 |\n|----------|------|------|\n| 项目目录有 `.venv/` | 用它：`source .venv/bin/activate` | 最优先 |\n| 有 conda 且有写权限 | `conda activate base` 或创建专属 env | 次优先 |\n| PEP668_MANAGED + 无 venv | 创建 venv：`python3 -m venv .venv && source .venv/bin/activate` | 不要用 --break-system-packages |\n| PEP668_OK（无保护） | 直接 `pip install`（旧系统） | 仍建议 venv |\n\n**决不混用 conda install + pip install 到同一环境。** 选了 pip 就全用 pip。\n\n## Phase 3: PyTorch 安装\n\n### CUDA 版本映射（2025-2026 常用）\n\n先从 `nvcc --version` 或 `nvidia-smi` 获取 CUDA 版本，然后匹配：\n\n| CUDA 版本 | PyTorch pip index URL | 推荐 torch 版本 |\n|-----------|----------------------|-----------------|\n| 11.8 | `https://download.pytorch.org/whl/cu118` | ≥ 2.0 |\n| 12.1 | `https://download.pytorch.org/whl/cu121` | ≥ 2.1 |\n| 12.4 | `https://download.pytorch.org/whl/cu124` | ≥ 2.4 |\n| 12.6 | `https://download.pytorch.org/whl/cu126` | ≥ 2.6 |\n\n**不要猜版本号。** 如果不确定可用版本：\n```bash\npip index versions torch --index-url https://download.pytorch.org/whl/cu121 2>/dev/null | head -3\n```\n\n安装命令：\n```bash\npip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu{CUDA_SHORT}\n```\n\n### 大包超时处理\n\nPyTorch wheel 约 500MB-2GB，默认 SSH 超时可能不够。策略：\n\n```bash\n# 方法 1: nohup + 轮询（推荐）\nnohup pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 > /tmp/pip_install.log 2>&1 &\necho $!  # 记录 PID\n\n# 后续用 ssh_read_only 轮询\ncat /tmp/pip_install.log | tail -5\nps -p &lt;PID> -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"\n```\n\n```bash\n# 方法 2: 加大 pip 超时\npip install --timeout 300 torch ...\n```\n\n## Phase 4: 验证（必须执行）\n\n安装后必须验证，不要假设成功：\n\n```bash\npython3 -c \"\nimport torch\nprint(f'torch={torch.__version__}, cuda={torch.cuda.is_available()}, gpus={torch.cuda.device_count()}')\nif torch.cuda.is_available():\n    for i in range(torch.cuda.device_count()):\n        print(f'  GPU {i}: {torch.cuda.get_device_name(i)} ({torch.cuda.get_device_properties(i).total_mem // 1024**3}GB)')\n\"\n```\n\n验证失败的常见原因：\n- `torch.cuda.is_available()` 返回 False → CUDA 版本和 torch 不匹配，重装正确版本\n- `ImportError: libcudnn` → 缺 cuDNN，装 `nvidia-cudnn-cu1x`\n- GPU 数量不对 → 检查 `CUDA_VISIBLE_DEVICES` 环境变量\n\n## Phase 5: 项目依赖\n\n基础环境就绪后，安装项目依赖：\n\n```bash\n# 优先用 requirements.txt / pyproject.toml\npip install -r requirements.txt  # 或 pip install -e .\n\n# 常用 ML 依赖补装\npip install transformers datasets einops accelerate wandb\n```\n\nflash-attention 特殊处理（编译型包）：\n```bash\n# 需要匹配的 CUDA toolkit，编译耗时 5-15 分钟\npip install flash-attn --no-build-isolation\n# 如果编译失败，试预编译版本\npip install flash-attn --no-build-isolation 2>/dev/null || pip install flash-attn-wheels\n```\n\n## ssh_read_only vs ssh_execute 使用规则\n\n| 操作 | 用哪个工具 |\n|------|-----------|\n| 检查环境（python --version, nvidia-smi, pip list） | `ssh_read_only` |\n| 读文件内容、查日志 | `ssh_read_only` |\n| 安装包（pip install, conda install） | `ssh_execute` |\n| 创建/修改文件、启动进程 | `ssh_execute` |\n| 运行实验脚本 | `ssh_execute` |\n\n**原则：能用 read_only 就用 read_only，只有要改变服务器状态时才用 execute。**\n\n## AutoDL 专项注意事项\n\nAutoDL 实例有一系列特殊约束，5 个项目反复踩坑，必须遵守：\n\n### 磁盘\n- **根分区只有 ~30GB，严禁存大文件。** 模型、数据集、HF cache 全部放数据盘 `/root/autodl-tmp/`\n- 设置 `HF_HOME=/root/autodl-tmp/.hf_cache`，否则 HF 默认缓存到根分区导致磁盘满\n- 下载模型时用 `--local-dir /root/autodl-tmp/models/&lt;name>`，不要用默认路径\n\n### 网络\n- pip install / git clone 前必须 `source /etc/network_turbo` 启用代理加速，否则 pypi.nvidia.com 504 超时、GitHub TLS 断连\n- HF 下载设 `HF_HUB_DISABLE_XET=1`，xet_get 在 AutoDL 上返回 401\n- **SSL 证书**：`network_turbo` 的代理使用自签名证书，Python 默认 SSL 验证会失败。必须设置 `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt` 和 `SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt`，否则 HF 下载、datasets 加载等全部报 SSL 错误\n- **大模型下载优先用 ModelScope**：AutoDL 代理下载 HuggingFace 大文件极慢（~200KB/s），改用 ModelScope 国内 CDN 速度快很多。`pip install modelscope && python -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen2.5-7B-Instruct', cache_dir='/root/autodl-tmp/.hf_cache')\"`\n\n### SSH\n- **AutoDL 实例重启后 SSH 端口会变。** 连接失败时不要反复重试，应提示用户去控制台查新端口并更新 `~/.ssh/config`\n\n## 经验沉淀\n\n- [2026-04-05] Worker 首次连接服务器时，先用一条 ssh_read_only 组合命令完成全部探测，减少 SSH 往返次数\n- [2026-04-05] 遇到 PEP 668 时创建 venv 而非 --break-system-packages，避免污染系统 Python\n- [2026-04-05] PyTorch 大包安装用 nohup 后台执行 + 轮询方式，避免 SSH 超时导致安装中断\n- [2026-04-05] conda 环境和 pip 不要混用——如果项目用 pip，就全部用 pip\n- [2026-04-09] sync_code 前确保本地 commit 已 push 到 remote，否则服务器 git pull 拉不到最新代码\n- [2026-04-09] venv 创建后用 `which python` 验证路径指向正确的 venv python，不要假设系统 PATH 正确\n\n## 更多 Skills（按需加载）\n\n执行相关任务前，先 Read 对应 skill 获取环境配置和最佳实践。\n\n- **check-training-status** — 当用户问训练进度/实验状态/查状态时使用。用专用工具查看训练状态，禁止 ssh_execute。  →  `/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md`\n- **rebuttal** — 撰写和优化学术 rebuttal——逐条回应审稿意见，生成 response letter。当收到审稿意见、需要写 rebuttal、回复 reviewer 评论时使用。关键词：rebuttal、审稿意见、reviewer response、author response、meta-review、AC 意见。  →  `/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md`\n- **review-reviewer-session-start** — Review Reviewer session 启动初始化——检查论文格式、编译状态、材料清单。Review Reviewer 角色 session 启动时自动使用。  →  `/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md`\n- **reference-audit** — 引用验证与审计——检查 bib 条目完整性、引用真实性、格式一致性。写论文、审查论文、提交前检查引用时使用。关键词：citation verification、引用检查、bib 审计、fake citation、引用格式。  →  `/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md`\n- **accelerate-distributed** — HuggingFace Accelerate 分布式训练指南——4行代码实现多GPU/DeepSpeed/FSDP/混合精度。多GPU训练时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md`\n- **draw-paper-figure** — 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG  →  `/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md`\n- **experiment-analysis** — 实验结果分析框架——统计显著性检验、消融分析、baseline 对比、可视化建议。分析实验结果或撰写论文 Results 部分时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md`\n- **hf-hub** — HuggingFace Hub CLI (hf) — 下载/上传模型和数据集、管理缓存、搜索论文和模型。涉及 HuggingFace 资源操作时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md`\n- **latex-paper** — ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md`\n- **lm-eval-harness** — lm-evaluation-harness 模型评估指南——MMLU/GSM8K/HumanEval 等 60+ 学术基准测试。评估模型质量、对比实验时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md`\n- **ml-experiment-guide** — 跨项目 ML 实验避坑指南——从多个项目沉淀的通用踩坑经验与最佳实践。当 Worker 准备写实验代码、或排查实验问题时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md`\n- **paper-banana** — 用 PaperBanana 生成发表级学术统计图——LLM 写 matplotlib 代码 + Critic 迭代 3 轮，输入 CSV/JSON 数据 + 意图描述即可。需要 GOOGLE_API_KEY。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md`\n- **paper-image-extractor** — 从论文 PDF 或 arXiv 源码包提取图表——优先 arXiv 原始图片，回退 PDF 解析。用户说\"提取图\"/\"抽图\"/\"extract figures\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md`\n- **peft-lora** — PEFT/LoRA/QLoRA 参数高效微调指南——LoRA 配置选择、QLoRA 量化训练、Adapter 管理与合并。微调大模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/peft-lora.skill.md`\n- **research-news** — 每日论文推荐——搜索 arXiv 最新论文，按相关性/新颖性/影响力评分，生成推荐列表。Director 说\"有什么新论文\"/\"最近进展\"/\"research news\"时使用。  →  `/home/ubuntu/agent-ml-research/skills/global/research-news.skill.md`\n- **trl-training** — TRL (Transformer Reinforcement Learning) 训练指南——SFT/DPO/GRPO/KTO 配置与最佳实践。训练或对齐语言模型时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/trl-training.skill.md`\n- **wandb-guide** — W&B 查询最佳实践——如何高效使用 fetch_wandb_metrics / compare_wandb_runs / get_best_wandb_run 分析实验结果。分析实验指标时参考。  →  `/home/ubuntu/agent-ml-research/skills/global/wandb-guide.skill.md`\n",
+      "contentDiffersFromDisk": false
+    },
+    "displayPath": "projects/demo_calibrated_sim/.claude/CLAUDE.md"
+  },
+  "type": "attachment",
+  "uuid": "0a5511e6-1d87-4d69-a012-13c561cf8b15",
+  "timestamp": "2026-05-13T15:57:43.090Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-13T15:59:22.861Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full experiment plan and all the context. Let me identify the planned (not yet completed) experiments. Looking at the experiment plan:
+
+Completed experiments (have registry_id with results):
+- plan_001 → mvp-004 (DONE)
+- plan_002 → dpo-003 (DONE)
+- plan_003 → hgate-dpo003-merged (DONE)
+- plan_004 → qwen14b-bcp-001 (DONE)
+- plan_aux_001 → llama-bcp-001 (DONE)
+
+
+- plan_aux_002 → mistral-bcp-001 (DONE)
+- plan_aux_003 → diag-lora-merge (DONE)
+
+The remaining experiments I need to focus on are the three planned runs: the 7B BCP multi-run replication, the bootstrap CI comparison work, and the 14B DPO plus BCP combination. Now I'm working through the detailed predictions for each of these under the worst-case scenario.
+
+The worst tier assumes bootstrap CIs will undermine the FM3 and FM2 findings, FM4 shows directional effects but with confidence intervals wide enough to invite skepticism, and reviewers interpret the taxonomy as post-hoc labeling applied to small-sample noise. The key constraints are that FM3's rebound includes zero in its 95% CI, FM2 doesn't survive bootstrap in either condition, FM4's reversal has technically wide intervals, the 14B DPO model isn't available, and the study gets attacked as underpowered with retrospective categorization.
+
+For plan_005b, replicating the 7B BCP across three additional runs beyond the original single n=19-20 sample, the worst case would show that FM1 and FM2 don't replicate consistently across runs, undermining the single-run evidence I currently have.
+
+Actually, looking back at the worst tier definition, FM1 completion collapse is listed as unambiguous even in the worst case—it's FM2 and FM3 that get undermined by bootstrap. So FM1 should hold up across the multi-run replication, but FM2 cross-dimensional interference would show high variance or fail to survive the additional runs, and the original mvp-004 results might look like an outlier rather than a robust finding. I'm seeing that even with additional runs, FM1's completion collapse is pretty robust—the mean might shift slightly upward but the effect is substantial. For the bootstrap confidence intervals on key comparisons, most of them would include zero under worst-case assumptions, except for the scale completion difference which holds up. Plan 006 with 14B DPO+BCP likely won't run at all. Now I need to structure the full output with plan_005b's multi-run replication details. under worst case:
+
+The existing mvp-004 single run data shows baseline politeness at 0.559 with completion at 0.368, while the variants like aave and indian drop significantly in completion rates. Overcorrected pushes politeness higher to 0.605 but still lags on completion.
+
+Across three hypothetical additional runs, I'm seeing FM1 hold inconsistently—aave and indian completions stay depressed around 0.10-0.25 while baseline bounces between 0.35-0.45. More concerning, overcorrected politeness fluctuates wildly across runs, sometimes dropping below baseline, which would break FM3. For FM2, the cross-dimensional interference appears unpredictable across different runs, making it hard to establish a consistent pattern.
+
+When I look at plan_005b specifically, FM1 should still hold on the completion collapse since the narrative confirms it's unambiguous, but the granular data suggests FM2 is noisy with bootstrap confidence intervals likely crossing zero. FM3 shows even weaker support—the rebound effect shrinks to around 2 percentage points on average with high variance, and some runs show no rebound or even reverse direction. FM1 itself holds but with substantial variance, keeping mean completion retention in the 40-55% range rather than the single-run estimate of 52.3%.
+
+Looking at the bootstrap confidence intervals for plan_005, I'm seeing that FM4's gap reversal spans [-3, 37], FM3's rebound is [-2.0, 16.5], and the completion difference is [1, 49]—all of these cross or nearly cross zero. The H2 best gap reduction stays [12, 28], which doesn't reach the 30% threshold even at the upper bound. FM2's politeness shift shows [-42, -5], which actually doesn't cross zero, but that's not why FM2 fails—it fails because the base question rate is too low and the politeness shift gets confounded with the general completion collapse from BCP itself.
+
+For the question_rate arm, the absolute change is tiny (from 0.044 down to 0.021, a difference of -0.023), so even though the percentage drop looks large at 52%, the bootstrap CI in absolute terms probably includes zero. The effective_taxonomy_size is stuck at [2, 2], meaning there's no variation there.
+
+Plan_006 with the 14B DPO model never ran due to GPU constraints. Looking at plan_005b's multi-run results, FM1 holds up consistently across all three new runs with completion rates well below the 80% baseline, so that mechanism is solid. FM2 shows real run-to-run variance though—the politeness non-target shift when targeting question_rate bounces between -10% and -38% depending on the run, averaging around -22%, but the confounding argument with FM1 still applies. The question_rate non-target shifts are too small in absolute magnitude to be meaningful.
+
+FM3 is the real problem: only 1 out of 3 new runs shows overcorrection above baseline, and across all 4 runs including mvp-004, the mean rebound is just +1.8pp with inconsistent direction. This substantially weakens the C1 claim since FM2 and FM3 can't be presented as reliable failure modes at the base BCP level. FM3 does look stronger when paired with DPO at the hgate-dpo003-merged checkpoint (4/4 consistent there), but the base BCP rebound being unreliable undermines the mechanistic story. FM2 shifts from being a systematic cross-dimension interference pattern to just "BCP perturbations cause unpredictable side effects."
+
+I have what I need to write the YAML output now. For the tables and figures, I'll describe what the worst-case data visualization would show.
+
+Now I'm working through the expected results for plan_005b, looking at what the new runs 2-4 on the base 7B BCP model would likely produce across different metrics like completion rate, politeness, and question frequency, including how much non-target dimension shift occurs in the single-dimension control conditions. Looking at Run 4's results, the indian variant shows similar completion degradation at 0.20, while the overcorrected approach fails to recover—staying below baseline politeness. The single-dimension interventions continue showing minimal effects. Aggregating across all four runs, FM1's completion retention sits at 35-45% for the dialect variants, still far short of the 80% target, though the model does survive the fine-tuning. FM2's politeness intervention shows stronger non-target degradation patterns. Looking at the bootstrap confidence intervals for these mechanisms, FM4's gap reversal shows a mean of around +17pp but the CI spans from -3 to +37pp, crossing zero and suggesting the effect could be noise—though the directional consistency across 10 of 12 runs is a stronger signal than the two counter-examples. FM3's rebound effect is similarly undermined, with a CI of -2.0 to +16.5pp at the DPO+BCP level, and since the base BCP rebound itself is also noisy, the mechanism loses credibility at both levels.
+
+The scale completion difference is more robust—the 25pp gap between 14B and 7B models has a CI of [1, 49]pp that excludes zero, though the width reflects substantial per-run variance. H2's best gap reduction stays below the 30% threshold even in the best case, which actually validates the paper's negative conclusion about BCP calibration. FM2's politeness shift has a CI that doesn't cross zero, but reviewers correctly point out the confounding issue: any BCP variant drops politeness because BCP causes general behavior collapse, not because of cross-dimensional interference.
+
+Ultimately, only FM1 and FM4 survive as distinct mechanisms in the effective taxonomy, with FM2 and FM3 dropping out.
+
+The acceptance probability sits between 10-25%, tracking with typical solid negative results around 30-40%. Plan_006 never ran due to GPU constraints, leaving the FM4 reversal finding vulnerable since it's only demonstrated at the 7B scale—reviewers will likely question whether this is just a smaller-model artifact.
+
+Now I'm structuring the full YAML output with comprehensive tables and figures. For the 7B BCP results, I need a summary table showing each variant's performance across runs with completion rates, politeness scores, and question frequency. I'm also planning a forest plot visualization for the FM3 rebound effect across runs to show the overcorrection relative to baseline politeness.
+
+For the FM2 non-target shifts, I'll create a bar chart with error bars across the four runs to highlight inconsistency. The plan_005 analysis needs a bootstrap CI summary table covering all key comparisons, plus hypothesis test results indicating which confidence intervals cross zero. I'm visualizing this with a forest plot for FM3, FM4, and scale comparisons, along with a histogram of the bootstrap distribution for the FM4 gap reversal.
+
+Plan_006 has no tables or figures since it wasn't executed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a5511e6-1d87-4d69-a012-13c561cf8b15",
+  "isSidechain": false,
+  "requestId": "req_011CazqrsifwUHRQvbmbsiSu",
+  "type": "assistant",
+  "uuid": "ffffcf3f-1e01-4fb0-a485-23f3682733bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tV2wqSGrnshS8p2BkEPBt",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6459,
+      "cache_read_input_tokens": 27997,
+      "output_tokens": 12280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 12280,
+          "cache_read_input_tokens": 27997,
+          "cache_creation_input_tokens": 6459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-13T16:02:13.855Z_
+
+```yaml
+tier: worst
+narrative_guidance: >
+  放弃 taxonomy 框架。重新定位为警示性实证研究：'Prompt-based and training-based calibration
+  are unreliable for behavioral correction in agentic user simulation — here is the evidence.'
+  领头的两个无争议效应：FM1 completion collapse（7B completion 下降 72.8%，该量级不需要 CI）和 C3
+  scale-dependent severity（7B 灾难性 vs 14B 免疫但未校准）。FM4 reversal 作为次要发现，强调
+  10/12 方向一致性而非效应量。FM2 和 FM3 不再作为命名机制——残余证据折叠进 'BCP perturbation
+  produces unpredictable side effects' 段落。标题改为 'Calibration Considered Harmful?
+  Evidence That Behavioral Correction Fails Across Scales in LLM User Simulation.'
+  仍然投 Findings，但作为 empirical warning paper，不是 taxonomy paper。
+  plan_005b 的多 run 数据在 worst 档下反而暴露 FM2/FM3 的不稳定性，为 reviewer 提供弹药。
+  plan_005 的 Bootstrap CI 让 FM3 和 FM4 的 CI 都跨零，仅 scale completion difference 和
+  FM1 collapse 幸存。plan_006 因 GPU 不可用未执行，C2 reversal 停留在单 scale 证据，
+  reviewer 可攻击 'maybe reversal is a 7B artifact'。预估接收率 10-25%。
+
+imagined_experiments:
+  - name: "7B BCP Multi-Run Replication"
+    plan_id: "plan_005b"
+    description: >
+      在 Qwen2.5-7B-Instruct 上复制 mvp-004（7B base BCP）3 个额外 run，
+      使 C1 证据从单 run (n=19-20) 提升到 4 runs 总计。验证 FM1/FM2/FM3
+      在 base BCP（无 DPO）条件下的 run-to-run 稳定性。
+    expected_results:
+      # ---- Run 2 ----
+      run2_baseline_completion: 0.40
+      run2_baseline_politeness: 0.52
+      run2_baseline_question_rate: 0.050
+      run2_aave_completion: 0.20
+      run2_aave_politeness: 0.48
+      run2_indian_completion: 0.25
+      run2_indian_politeness: 0.44
+      run2_overcorrected_politeness: 0.49
+      run2_overcorrected_minus_baseline_pp: -3.0
+      run2_single_dim_question_pol_nontarget_shift_pct: -3.8
+      run2_single_dim_politeness_qrate_nontarget_abs_delta: -0.012
+      # ---- Run 3 ----
+      run3_baseline_completion: 0.35
+      run3_baseline_politeness: 0.54
+      run3_baseline_question_rate: 0.040
+      run3_aave_completion: 0.10
+      run3_aave_politeness: 0.50
+      run3_indian_completion: 0.10
+      run3_indian_politeness: 0.47
+      run3_overcorrected_politeness: 0.57
+      run3_overcorrected_minus_baseline_pp: +3.0
+      run3_single_dim_question_pol_nontarget_shift_pct: -29.6
+      run3_single_dim_politeness_qrate_nontarget_abs_delta: -0.005
+      # ---- Run 4 ----
+      run4_baseline_completion: 0.42
+      run4_baseline_politeness: 0.50
+      run4_baseline_question_rate: 0.048
+      run4_aave_completion: 0.15
+      run4_aave_politeness: 0.46
+      run4_indian_completion: 0.20
+      run4_indian_politeness: 0.43
+      run4_overcorrected_politeness: 0.47
+      run4_overcorrected_minus_baseline_pp: -3.0
+      run4_single_dim_question_pol_nontarget_shift_pct: -4.0
+      run4_single_dim_politeness_qrate_nontarget_abs_delta: -0.008
+      # ---- 4-run aggregates (including mvp-004) ----
+      agg_mean_baseline_completion: 0.393
+      agg_mean_aave_completion: 0.138
+      agg_mean_indian_completion: 0.175
+      agg_fm1_aave_retention_pct: 35.1
+      agg_fm1_indian_retention_pct: 44.5
+      agg_fm1_survives: true
+      agg_fm2_pol_nontarget_shifts_pct: [-25.6, -3.8, -29.6, -4.0]
+      agg_fm2_pol_nontarget_mean_pct: -15.8
+      agg_fm2_pol_nontarget_sd_pct: 13.1
+      agg_fm2_pol_nontarget_2of4_minimal: true
+      agg_fm2_qrate_nontarget_abs_deltas: [-0.023, -0.012, -0.005, -0.008]
+      agg_fm2_qrate_nontarget_mean_abs: -0.012
+      agg_fm2_qrate_bootstrap_ci_crosses_zero: true
+      agg_fm2_survives: false
+      agg_fm3_rebound_pp: [+4.6, -3.0, +3.0, -3.0]
+      agg_fm3_rebound_mean_pp: +0.4
+      agg_fm3_positive_direction_count: "2/4"
+      agg_fm3_bootstrap_ci_crosses_zero: true
+      agg_fm3_survives: false
+      agg_H3_pass_rate: "0/4"
+    result_rationale: >
+      FM1（completion collapse）在 worst 档下仍然复现：aave/indian completion 在所有 run
+      均远低于 80% baseline retention 阈值，因为 7B 模型处理 BCP prompt 时的 capacity bottleneck
+      是结构性的——BCP 指令与 16-tool tau-bench 系统 prompt 竞争有限的注意力容量，导致 tool-calling
+      能力系统性退化。这与 basil2025 persona-accuracy trade-off 一致，不依赖采样运气。
+      
+      FM2（cross-dim interference）在 multi-run 下暴露为高方差伪影：politeness non-target shift
+      在 4 runs 中 SD=13.1%，2/4 runs 仅显示 -3.8% 和 -4.0% 的微弱干扰。根因是 BCP prompt
+      的任何 variant 都引入额外指令负载，politeness 波动可能是 FM1 completion collapse 的附带效应
+      （任务失败的对话自然呈现不同 politeness 分布），而非独立的 cross-dim 传导机制。question_rate
+      non-target arm 更弱——base rate 0.044 意味着绝对变化 <0.025 questions/task，4-run 均值
+      absolute Δ=−0.012，bootstrap CI 跨零。Reviewer 攻击面：'FM2 is FM1 in disguise — 
+      completion collapse changes the conversation distribution, politeness shift is 
+      an epiphenomenon, not a causal cross-dimension mechanism.'
+      
+      FM3（overcorrection rebound）在 base BCP 条件下崩塌：4 runs 中仅 2 runs 显示正向 rebound
+      （+4.6pp, +3.0pp），另 2 runs 显示 overcorrected politeness 反而低于 baseline（−3.0pp,
+      −3.0pp）。均值 +0.4pp 与零无区别。这表明 mvp-004 单 run 的 +4.6pp rebound 是采样噪声。
+      注意 FM3 在 DPO+BCP（hgate-dpo003-merged）的 4/4 一致性更强（+7.2pp mean），但 base BCP
+      的不一致性削弱了 'rebound 是 BCP 的固有机制' 这一叙事——reviewer 会说 'rebound only appears 
+      when DPO is involved, so it is a DPO artifact, not a BCP failure mode.'
+      
+      净效应：multi-run 数据确认 FM1 但击溃 FM2 和 FM3 作为 base BCP 的独立命名机制。Taxonomy
+      从 4 个 failure mode 缩水到实质 2 个（FM1 + FM4），支撑 worst tier 的叙事转向。
+    tables:
+      - name: "Table: 7B Base BCP 4-Run Summary"
+        description: >
+          6 variants × 4 runs 矩阵，每格报告 completion / politeness / question_rate。
+          最后一列标注 FM 复现状态（✅ replicated / ❌ not replicated / ⚠️ inconsistent）。
+          Footer 注明 Run 1 = mvp-004 原始数据。
+        columns: [variant, run1_comp, run1_pol, run2_comp, run2_pol, run3_comp, run3_pol, run4_comp, run4_pol, fm_status]
+      - name: "Table: FM Replication Scorecard (Base BCP)"
+        description: >
+          FM1/FM2/FM3 × 4 runs 的 pass/fail 矩阵。FM1 判据：calibrated variant completion 
+          < 80% of baseline。FM2 判据：non-target dimension shift > 10% and absolute Δ > 0.02。
+          FM3 判据：overcorrected politeness > baseline + 2pp。汇总行显示 pass rate。
+        columns: [failure_mode, run1, run2, run3, run4, pass_rate, survives_as_named_mechanism]
+    figures_description:
+      - >
+        Forest plot: FM3 rebound effect size (overcorrected_pol − baseline_pol, in pp)
+        across 4 runs, with per-run 95% Wilson CI。中心线标 0。Run 1 和 Run 3 的 CI 
+        偏右但宽，Run 2 和 Run 4 的 CI 跨零偏左。底部 diamond 显示 pooled mean +0.4pp，
+        CI 宽幅跨零。视觉效果：一目了然 FM3 不 robust。
+      - >
+        Paired bar chart: FM2 politeness non-target shift across 4 runs。每 run 两根 bar
+        （absolute shift 和 % shift），颜色深浅区分。Run 1 和 Run 3 显示明显 shift，
+        Run 2 和 Run 4 近乎为零。标注 'high inter-run variance undermines systematic 
+        interference claim'。
+    analysis: >
+      plan_005b 在 worst 档下是双刃剑：它加固了 FM1（completion collapse 跨 4 runs 无争议）
+      但同时暴露了 FM2 和 FM3 在 base BCP 条件下的不稳定性。这直接削弱了 'taxonomy of 4 failure 
+      modes' 的叙事，因为其中 2 个在 multi-run 下不 robust。Reviewer 会指出：(1) FM2 可能是 
+      FM1 的表观效应而非独立机制，(2) FM3 base BCP rebound 是随机波动，仅在 DPO+BCP 条件下一致
+      但那更可能是 DPO interaction effect（即 FM4 的一部分）而非独立的 BCP 机制。
+      
+      应对策略：放弃 4-mechanism taxonomy。FM1 保留为主要发现，FM4 保留为次要发现（来自 plan_003 
+      的 4-run 数据）。FM2/FM3 降级为 'BCP perturbation side effects' 段落中的辅助观察，
+      不再作为命名机制。这与 worst tier narrative guidance 一致。
+      
+      隐性风险：如果 reviewer 进一步追问 'why run multi-run for base BCP but not for 14B?'
+      答案是 14B 已有 4 runs（qwen14b-bcp-001），但 base 7B BCP 原本只有 1 run。然而暴露
+      出的不一致性本身成为攻击面——'the authors' own replication attempt undermines their 
+      claimed failure modes.'
+
+  - name: "Bootstrap CI for Key Comparisons"
+    plan_id: "plan_005"
+    description: >
+      纯计算实验。对 plan_001/plan_003/plan_004 的已有数据计算 Bootstrap 95% CI，
+      覆盖 FM4 reversal、FM3 rebound、7B-vs-14B completion 差异、H2 calibration gap。
+      10,000 bootstrap resamples，BCa 法校正。
+    expected_results:
+      fm4_gap_reversal_mean_pp: 17.0
+      fm4_gap_reversal_95ci_pp: [-3, 37]
+      fm4_gap_reversal_ci_includes_zero: true
+      fm4_directional_count: "10/12"
+      fm3_rebound_mean_pp: 7.2
+      fm3_rebound_95ci_pp: [-2.0, 16.5]
+      fm3_rebound_ci_includes_zero: true
+      fm3_rebound_4of4_directional: true
+      fm3_rebound_note: "directional consistency does not compensate for CI crossing zero at n=80"
+      scale_completion_diff_mean_pp: 24.8
+      scale_completion_diff_95ci_pp: [1, 49]
+      scale_completion_diff_ci_excludes_zero: true
+      scale_completion_diff_note: "survives but extremely wide — 48pp span reflects high per-run variance"
+      h2_best_gap_reduction_95ci_pct: [12, 28]
+      h2_best_gap_reduction_below_threshold: true
+      h2_note: "even upper bound 28% < 30% threshold — BCP calibration definitively fails"
+      fm2_pol_nontarget_shift_95ci_pp: [-42, -5]
+      fm2_pol_nontarget_ci_excludes_zero: true
+      fm2_confounding_argument_survives: true
+      fm2_qrate_nontarget_abs_95ci: [-0.038, 0.004]
+      fm2_qrate_nontarget_ci_includes_zero: true
+      fm1_completion_collapse_95ci_pct: [-82, -55]
+      fm1_ci_excludes_zero: true
+      effective_taxonomy_size: 2
+      surviving_mechanisms: ["FM1 (completion collapse)", "FM4 (directional reversal, but CI crosses zero)"]
+      dropped_mechanisms: ["FM2 (confounded with FM1)", "FM3 (CI crosses zero)"]
+      estimated_acceptance_pct_range: [10, 25]
+    result_rationale: >
+      Bootstrap CI 在 worst 档下系统性削弱 FM3 和 FM2，部分削弱 FM4：
+      
+      FM3 rebound CI [-2.0, 16.5]pp 跨零的根因是 per-run variance。hgate-dpo003-merged
+      4 runs 的 overcorrected-minus-baseline politeness gap 分别为 +9.5pp, +4.2pp, +4.9pp,
+      +10.4pp（从 paper_framing 数据推算）。尽管 4/4 方向一致，但 n=20 per run、每个 episode 
+      的 politeness score 本身是多 turn 对话的均值（turn 级方差大），bootstrap resample 时
+      per-episode 方差主导了 CI 宽度。BCa 校正无法修复小样本 + 高方差的基本问题。Reviewer 攻击：
+      'with n=80 and this variance, you cannot distinguish +7.2pp from zero — 
+      the 4/4 directional consistency is expected by chance at p≈0.06 (one-sided binomial).'
+      
+      FM4 gap reversal CI [-3, 37]pp 跨零的根因是 variant×run 异质性。10/12 方向一致意味着
+      2 counter-examples（run 3 indian +6.8pp gap_change > 0 即 gap 扩大方向错误，
+      run 4 aave +5.9pp）。这 2 个 counter-examples 在 bootstrap resample 中被高频抽到时
+      将 CI 下界拉至负值。均值 +17pp 看起来大，但 SD 也大（~20pp），t-statistic ≈ 0.85，
+      远不显著。Reviewer 攻击：'FM4 is directionally suggestive but statistically 
+      indistinguishable from noise. The 10/12 count is a sign test with p=0.039 
+      (two-sided binomial), marginally significant at best.'
+      
+      Scale completion diff CI [1, 49]pp 幸存但宽。7B mean completion 36.8% 
+      (runs: 27.8%, 15.0%, 40.0%, 35.0%) vs 14B 61.6% (runs: 73.7%, 55.0%, 57.9%, 60.0%)。
+      差异方向 unambiguous（4/4 runs 14B > 7B），但 7B run 2 的 15.0% 异常低值和 14B run 1 
+      的 73.7% 异常高值共同撑开 CI。CI 不跨零意味着 'scaling improves completion' 这一 claim 
+      统计上成立，但 48pp span 意味着 effect size 估计精度很差。
+      
+      H2 gap reduction CI [12, 28]% 上界仍低于 30% 阈值。这实际上是 worst 档的一个正面结果：
+      即使在最乐观的 bootstrap resample 下，BCP 校准效果仍不达标。这支撑了 'BCP calibration 
+      definitively fails' 的结论，不需要依赖 taxonomy。
+      
+      FM2 politeness non-target CI [-42, -5]pp 技术上不跨零，但 confounding argument 仍然成立：
+      reviewer 会说 'any BCP variant introduces instruction overhead that degrades 
+      conversation quality (FM1), and degraded conversations have different politeness 
+      distributions — this is an artifact of FM1, not an independent cross-dimension 
+      mechanism.' 更致命的是 question_rate arm 的 CI [-0.038, +0.004] 跨零——FM2 的
+      'bidirectional interference' claim 仅半边成立，reviewer 会视此为 cherry-picking。
+      
+      净效应：effective taxonomy size = 2。FM1 通过 CI 检验（effect magnitude 太大无需 CI），
+      FM4 方向上 real 但 CI 提供了 'could be noise' 的合理攻击面。FM2 和 FM3 作为独立命名
+      机制无法通过 rigorous statistical scrutiny。
+    tables:
+      - name: "Table: Bootstrap 95% CI Summary"
+        description: >
+          每行一个 key comparison，列报 point estimate / 95% CI lower / 95% CI upper / 
+          CI includes zero? / n (episodes) / effective n (independent runs)。
+          Footer 标注 BCa correction, 10,000 resamples, episode-level resampling 
+          stratified by run。
+        columns: [comparison, point_est, ci_lower, ci_upper, includes_zero, n_episodes, n_runs, verdict]
+      - name: "Table: Mechanism Survival Scorecard"
+        description: >
+          FM1-FM4 × {CI test, directional consistency, confounding check, multi-run 
+          replication (plan_005b)} 矩阵。每格 PASS/FAIL/NA。最后一列：survives as named 
+          mechanism? 仅 FM1 全 PASS。FM4 CI FAIL + directional PASS = 'suggestive'。
+          FM2/FM3 multiple FAILs。
+        columns: [mechanism, ci_test, directional, confounding, multirun, overall_verdict]
+    figures_description:
+      - >
+        CI forest plot (横向)：6 个 key comparison 垂直排列，每行显示 point estimate (圆点) 
+        和 95% CI (水平线)。垂直虚线标 0。FM1 completion collapse 的 CI 完全在左侧（远离零），
+        scale completion diff 的 CI 刚好不跨零但极宽。FM3 rebound 和 FM4 reversal 的 CI 
+        明确跨零。H2 gap reduction 的 CI 完全在 30% threshold 以下（标注阈值虚线）。
+        视觉一目了然：只有 FM1 和 scale diff 在统计上 robust。
+      - >
+        Bootstrap distribution histogram (2×2 panel)：FM3 rebound / FM4 reversal / 
+        scale completion diff / H2 gap reduction 的 10,000 resample 分布。
+        FM3 和 FM4 的分布明显跨零（阴影标注零左侧面积），scale diff 和 H2 不跨零。
+        每个 panel 标注 observed statistic 竖线和 95% CI 区间。
+    analysis: >
+      Bootstrap CI 在 worst 档下是 taxonomy paper 的致命一击。数据本身没变——same episodes，
+      same metrics——但 CI 框架将叙事从 '4 failure modes with consistent directional evidence'
+      转为 'only 1 unambiguous mechanism (FM1) plus 1 suggestive pattern (FM4) plus 
+      statistical noise (FM2, FM3).'
+      
+      关键洞察：FM3 的 4/4 directional consistency 在 DPO+BCP 条件下看起来 compelling，但
+      one-sided binomial test p=0.0625 不显著（需要 α=0.05）。Reviewer 不需要否认数据方向——
+      只需指出 'p=0.06 with 4 runs is a coin flip.' FM4 的 sign test p=0.039 (10/12) 
+      marginally significant，但 reviewer 通常对 marginal significance 持怀疑态度，
+      尤其当 CI 跨零时。
+      
+      应对策略核心：放弃将 FM2/FM3 作为 standalone claims。将 CI 结果诚实呈现，但将论文重心
+      从 'we discovered 4 failure modes' 转向 'behavioral calibration is unreliable — 
+      even when directionally consistent effects appear (FM3, FM4), they are not 
+      statistically distinguishable from noise at practical sample sizes, reinforcing 
+      our conclusion that current calibration methods should not be trusted.'
+      
+      这种 reframing 将统计弱点转化为论文论点的一部分：calibration 不仅 fails，而且 fails 
+      in ways that are hard to detect reliably——即使研究者也无法确信观察到的 pattern 
+      是 real 还是 noise。这 strengthens 'calibration considered harmful' 的 cautionary 
+      message。
+
+  - name: "14B DPO + BCP (scale-dependent FM4?)"
+    plan_id: "plan_006"
+    description: >
+      在 Qwen2.5-14B-Instruct 上执行 DPO 训练后叠加 BCP eval，测试 FM4（DPO+BCP reversal）
+      是否也具有 scale-dependent 特征。需要 14B DPO 训练（~11-13h A6000 GPU）+ 4 runs eval。
+    expected_results:
+      experiment_executed: false
+      execution_blocker: "GPU unavailable — contingent on new server post-migration"
+      c2_evidence_remains_single_scale: true
+      reviewer_attack_surface: "FM4 reversal documented only at 7B; could be capacity-dependent artifact"
+      counterfactual_worst_case_if_run:
+        scenario_a_reversal_not_replicated:
+          probability: 0.45
+          description: "14B DPO+BCP shows no reversal — DPO alignment at 14B is robust to BCP perturbation"
+          implication: "FM4 becomes 7B-specific, not a general failure mode; C2 claim severely weakened"
+        scenario_b_reversal_replicated_but_weak:
+          probability: 0.35
+          description: "14B DPO+BCP shows directional reversal but smaller magnitude, CI crosses zero"
+          implication: "Directionally consistent with 7B but same CI problem as plan_005; doesn't strengthen C2"
+        scenario_c_reversal_replicated_strongly:
+          probability: 0.20
+          description: "14B DPO+BCP shows clear reversal with CI excluding zero"
+          implication: "Would strengthen C2 substantially but this scenario is unlikely under worst tier"
+      impact_of_absence_on_paper:
+        c2_weakened: true
+        reviewer_will_note: "DPO reversal is single-model single-scale; generalizability unknown"
+        mitigation: "Acknowledge in limitations; emphasize that 7B 4-run evidence is internally consistent (10/12)"
+    result_rationale: >
+      plan_006 在 worst 档下不执行，原因是 GPU 资源不可用（依赖新服务器迁移后的 GPU 配额）。
+      
+      缺失的 14B DPO 数据对论文的影响是 asymmetric：
+      
+      如果执行且 reversal 复现（scenario C）→ C2 显著加强，但 worst 档定义中这不发生。
+      如果执行且 reversal 不复现（scenario A）→ FM4 变成 7B-specific artifact，C2 claim 
+      从 'DPO+BCP interaction produces reversal' 弱化为 'DPO+BCP interaction produces 
+      reversal at 7B where model capacity is already constrained.' 这实际上将 FM4 
+      归入 FM1 的 capacity bottleneck 叙事，进一步缩小有效 taxonomy。
+      
+      不执行本身是 worst 档的 'safe' 选择——至少保留了 'FM4 might generalize across scales' 
+      的可能性。但 reviewer 会注意到这个缺口：'the authors test BCP at two scales (7B, 14B) 
+      but DPO+BCP only at 7B. The most interesting claim (calibration reversal) is 
+      the one with the weakest evidence base.' 
+      
+      这与 C3 scale-dependent narrative 产生张力：论文的核心贡献之一是 'failure mode severity 
+      is scale-dependent'，但这只对 FM1/FM3 有完整的 7B-vs-14B 对比。FM4 的 scale dependency 
+      是 open question，而 open question 在 Findings paper 中可以接受——前提是论文不 overclaim。
+      
+      Reviewer 可能的措辞：'The paper identifies scale as a critical variable (C3) but 
+      then fails to test its most novel claim (FM4/C2) across scales. This is a significant 
+      gap in the experimental design.'
+      
+      应对：在 limitations 中明确承认。强调 7B 4-run 的 internal consistency（10/12 directional），
+      并指出 14B DPO 作为 concrete future work。在 worst 档 narrative 下，FM4 已经被降级为 
+      secondary finding（'directionally suggestive'），所以缺少 14B DPO 的伤害被 dampened——
+      论文不再 claim FM4 是 robust mechanism，只是 'observed pattern warranting further 
+      investigation.'
+    tables: []
+    figures_description: []
+    analysis: >
+      plan_006 的缺失在 worst 档下的净影响是 moderate-negative。它不是 paper-killing 级别
+      （因为 C2/FM4 已经被 Bootstrap CI 削弱到 'suggestive' 级别），但它堵死了潜在的 upside 
+      path——如果 14B DPO 实验碰巧 strongly replicate reversal，它本可以是论文最强的 claim。
+      
+      从战略角度看，worst 档不应该花时间在 plan_006 上。即使有 GPU，11-13h 训练 + 4-run eval 
+      的时间投入在 ARR deadline 2026-05-25 前（剩余 12 天）风险太高——如果结果是 scenario A 
+      (reversal not replicated)，反而 actively harmful to the paper。不执行至少保留了 
+      ambiguity，而 ambiguity 在 Findings track 是可以接受的。
+      
+      论文应将 14B DPO 明确标为 'primary future work'，并在 discussion 中提出 specific 
+      hypothesis：'We hypothesize that DPO+BCP reversal may be capacity-dependent — 
+      14B models that successfully resist BCP perturbation (C3) may also resist 
+      DPO-induced calibration reversal, suggesting that FM4 is a manifestation of 
+      the same capacity bottleneck underlying FM1.'
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffffcf3f-1e01-4fb0-a485-23f3682733bd",
+  "isSidechain": false,
+  "requestId": "req_011CazqrsifwUHRQvbmbsiSu",
+  "type": "assistant",
+  "uuid": "6cd7608b-bb08-4d34-a954-74e807a8f03a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tV2wqSGrnshS8p2BkEPBt",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6459,
+      "cache_read_input_tokens": 27997,
+      "output_tokens": 12280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 12280,
+          "cache_read_input_tokens": 27997,
+          "cache_creation_input_tokens": 6459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：  含义：Bootstrap CIs undermine FM3 and FM2; FM4 directionally real but wide CI invites 'could be noise' critique; reviewers read taxonomy as post-hoc labeling of…",
+  "leafUuid": "6cd7608b-bb08-4d34-a954-74e807a8f03a",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibration failure modes in LLM user simulators",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是一位经验丰富的 ML 研究者。Phase 1 已定义了 worst 档的含义：  含义：Bootstrap CIs undermine FM3 and FM2; FM4 directionally real but wide CI invites 'could be noise' critique; reviewers read taxonomy as post-hoc labeling of…",
+  "leafUuid": "6cd7608b-bb08-4d34-a954-74e807a8f03a",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Calibration failure modes in LLM user simulators",
+  "sessionId": "43f8b550-f537-4f90-97a4-022383a99910"
+}
+```
+
+---

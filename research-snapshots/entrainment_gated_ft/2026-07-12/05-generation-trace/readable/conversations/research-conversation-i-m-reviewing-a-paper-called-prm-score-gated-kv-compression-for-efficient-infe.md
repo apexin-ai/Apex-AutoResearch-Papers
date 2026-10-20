@@ -1,0 +1,2866 @@
+# Research conversation: I'm reviewing a paper called "PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Search" (PSG-KVC). The co
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 1
+- **Tool calls:** 20
+- **Original source:** `logs/chats/exported-trajectories/account-1/agent-a892fb915d3e8ef4f.jsonl`
+- **Structured JSON:** [`1dcfcf1463cb6373c1b4.json`](../../sessions/1d/1dcfcf1463cb6373c1b4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 1 · 2026-05-09T21:31:04.168Z_
+
+I'm reviewing a paper called "PRM-Score-Gated KV Compression for Efficient Inference-Time Tree Search" (PSG-KVC). The core claim is that it's the FIRST method to use PRM (process reward model) scores as a cross-trajectory signal to allocate differential KV cache bit-width/precision across multiple concurrent search branches during tree search inference.
+
+Please search for any papers that might challenge this novelty claim. Specifically look for:
+
+1. Papers combining KV cache compression with PRM/reward signals in tree search:
+   - Search: "KV cache" "tree search" "process reward model" compression 2025 2026
+   - Search: "KV cache" "beam search" "reward model" quantization precision
+   - Search: site:arxiv.org KV cache differential compression multi-trajectory
+
+2. Papers on adaptive per-trajectory compression in parallel decoding:
+   - Search: per-trajectory KV quantization inference
+   - Search: speculative decoding KV cache differential precision
+   - Search: multi-trajectory KV cache compression 2025
+
+3. Recent KV cache quantization papers (2025-2026) that might have covered cross-trajectory approaches:
+   - Search: KV cache quantization reasoning models 2025 2026 site:arxiv.org
+   - Search: site:openreview.net KV cache quantization tree search ICLR 2026
+
+4. EMNLP 2026 / ACL 2026 papers on efficient inference:
+   - Search: EMNLP 2026 efficient inference KV cache
+   - Search: ACL 2026 KV cache compression reasoning
+
+Report: Any papers that use quality/reward signals to differentially allocate KV precision across parallel trajectories. This is the specific novelty claim being made.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "ac6f6245-e1dd-4641-afed-d8ffa0783c85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-09T21:31:07.754Z_
+
+I'll conduct a comprehensive search for papers that might challenge the novelty claim of PSG-KVC. Let me search across multiple dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac6f6245-e1dd-4641-afed-d8ffa0783c85",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi3aYQ9QACEbr4nXUxH",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "1a8b7f85-1ef4-45ed-8220-fa5af97eb377",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013VrAeqbEBiamfET5NkqMFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 16155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 841,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-09T21:31:07.948Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A7pDe3qkprjbb5XisuhBz3`</summary>
+
+```json
+{
+  "query": "KV cache tree search process reward model compression 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a8b7f85-1ef4-45ed-8220-fa5af97eb377",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi3aYQ9QACEbr4nXUxH",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "db725977-89ec-49fa-8052-d178febbe286",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013VrAeqbEBiamfET5NkqMFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 16155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 841,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-09T21:31:08.060Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RS5dkrASJEXqFZU8Zw8SM7`</summary>
+
+```json
+{
+  "query": "KV cache beam search reward model quantization precision"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db725977-89ec-49fa-8052-d178febbe286",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi3aYQ9QACEbr4nXUxH",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "8ec6477c-de82-4b85-891a-f504125f11b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013VrAeqbEBiamfET5NkqMFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 16155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 841,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-09T21:31:08.130Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013Dm7svSLikNrU2FBrXcJPZ`</summary>
+
+```json
+{
+  "query": "site:arxiv.org KV cache differential compression multi-trajectory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ec6477c-de82-4b85-891a-f504125f11b7",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi3aYQ9QACEbr4nXUxH",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "74512dde-3dd9-4007-9e4b-9c35275d96c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013VrAeqbEBiamfET5NkqMFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 16155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 841,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-09T21:31:08.289Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012E7FA5cm3fQjd9UZ4MWj5D`</summary>
+
+```json
+{
+  "query": "per-trajectory KV quantization inference parallel decoding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74512dde-3dd9-4007-9e4b-9c35275d96c7",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi3aYQ9QACEbr4nXUxH",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "35d795dd-dab6-47ca-8bf4-d8ea5c218263",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013VrAeqbEBiamfET5NkqMFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 16155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 841,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-09T21:31:08.845Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FfWUFPsmsramo3yv6t2yZP`</summary>
+
+```json
+{
+  "query": "speculative decoding KV cache differential precision 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35d795dd-dab6-47ca-8bf4-d8ea5c218263",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi3aYQ9QACEbr4nXUxH",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "95f310a0-5d41-4935-951e-4b4f4ce8e79e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013VrAeqbEBiamfET5NkqMFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 16155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 841,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-09T21:31:09.338Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017M3dtNoU2JQsqYXWFuYa1g`</summary>
+
+```json
+{
+  "query": "multi-trajectory KV cache compression 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95f310a0-5d41-4935-951e-4b4f4ce8e79e",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi3aYQ9QACEbr4nXUxH",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "795a8a84-0617-4d6d-b0f4-3677af305772",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_013VrAeqbEBiamfET5NkqMFQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 841,
+      "cache_read_input_tokens": 16155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 841,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-09T21:31:14.831Z_
+
+<details><summary>↩ Tool result · `toolu_01FfWUFPsmsramo3yv6t2yZP`</summary>
+
+```text
+Web search results for query: "speculative decoding KV cache differential precision 2025"
+
+Links: [{"title":"QuantSpec: Self-Speculative Decoding with Hierarchical Quantized KV Cache","url":"https://www.stat.berkeley.edu/~mmahoney/pubs/9485_QuantSpec_Self_Speculativ.pdf"},{"title":"Revolutionizing AI Efficiency: Breakthroughs in KV Cache Compression and Speculative Decoding from Late 2025 Research | by Harsh Prakash | Medium","url":"https://medium.com/@hs5492349/revolutionizing-ai-efficiency-breakthroughs-in-kv-cache-compression-and-speculative-decoding-from-094588b6833f"},{"title":"QuantSpec: Self-Speculative Decoding with Hierarchical Quantized KV Cache | OpenReview","url":"https://openreview.net/forum?id=7SHbJENgHX"},{"title":"Speculative Decoding: Types and Optimizations","url":"https://www.aussieai.com/research/speculative-decoding"},{"title":"What's Hot in LLM Inference Optimization in 2025?","url":"http://www.aussieai.com/blog/hot-inference-optimization-2025"},{"title":"QuantSpec: Self-Speculative Decoding with Hierarchical Quantized KV Cache - Apple Machine Learning Research","url":"https://machinelearning.apple.com/research/quantspec"},{"title":"PARALLEL SPECULATIVE DECODING WITH ADAPTIVE ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/03b1043052700b1a471996b0baf309d4-Paper-Conference.pdf"},{"title":"[2512.11920] CXL-SpecKV: A Disaggregated FPGA Speculative KV-Cache for Datacenter LLM Serving","url":"https://arxiv.org/abs/2512.11920"},{"title":"Decoding Speculative Decoding","url":"https://aclanthology.org/2025.naacl-long.328.pdf"},{"title":"QuantSpec: Self-Speculative Decoding with Hierarchical Quantized KV Cache","url":"https://arxiv.org/html/2502.10424v1"}]
+
+Based on the search results, here's an overview of recent research on speculative decoding with KV cache differential precision from 2025:
+
+## Key Research Development
+
+QuantSpec is a novel self-speculative decoding framework where the draft model shares the architecture of the target model but employs a hierarchical 4-bit quantized KV cache and 4-bit quantized weights for acceleration. QuantSpec maintains high acceptance rates (>90%) and reliably provides consistent end-to-end speedups up to ~2.5×, outperforming other self-speculative decoding methods that use sparse KV cache for long-context LLM inference.
+
+## Technical Innovation
+
+A novel hierarchical quantization technique enables bit-sharing between the target and draft models' KV caches, eliminating the need for additional memory for the draft model. Additionally, a double full-precision cache buffer is used for storing the most recent KV cache in full precision to improve acceptance rates and eliminate wasteful quantization and dequantization operations.
+
+## Broader Context
+
+In the wider 2025 landscape, the industry standard is now to quantize three areas (e.g. "W4A4KV4 quantization" is INT4 for weights, activations, and the KV cache). KV cache compression remains hot because the KV cache is the main bottleneck for long context processing, with quantization of KV cache data to INT4 or INT2 now common.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95f310a0-5d41-4935-951e-4b4f4ce8e79e",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "0dd10cdd-488a-4cbb-98ff-90735e3bf331",
+  "sourceToolAssistantUUID": "95f310a0-5d41-4935-951e-4b4f4ce8e79e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-09T21:31:16.426Z_
+
+<details><summary>↩ Tool result · `toolu_012E7FA5cm3fQjd9UZ4MWj5D`</summary>
+
+```text
+Web search results for query: "per-trajectory KV quantization inference parallel decoding"
+
+Links: [{"title":"Optimizing Inference for Long Context and Large Batch Sizes with NVFP4 KV Cache | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/optimizing-inference-for-long-context-and-large-batch-sizes-with-nvfp4-kv-cache/"},{"title":"GitHub - SqueezeAILab/KVQuant: [NeurIPS 2024] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization · GitHub","url":"https://github.com/SqueezeAILab/KVQuant"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"INT4/INT8 KV Cache — lmdeploy","url":"https://lmdeploy.readthedocs.io/en/latest/quantization/kv_quant.html"},{"title":"WindowQuant: Mixed-Precision KV Cache Quantization based on Window-Level Similarity for VLMs Inference Optimization","url":"https://arxiv.org/html/2605.02262"},{"title":"GPU-Accelerated INT8 Quantization for KV Cache Compression in Large Language Models","url":"https://arxiv.org/html/2601.04719v1"},{"title":"QuantSpec: Self-Speculative Decoding with Hierarchical Quantized KV Cache","url":"https://www.stat.berkeley.edu/~mmahoney/pubs/9485_QuantSpec_Self_Speculativ.pdf"},{"title":"KITTY: ACCURATE AND EFFICIENT 2-BIT KV CACHE QUANTIZATION WITH","url":"https://www.arxiv.org/pdf/2511.18643"},{"title":"TurboQuant - Extreme KV Cache Quantization · ggml-org/llama.cpp · Discussion #20969","url":"https://github.com/ggml-org/llama.cpp/discussions/20969"},{"title":"LLM Inference Optimization: Quantization, KV Cache, and Serving at Scale - Perivitta Rajendran","url":"https://pr-peri.github.io/blogpost/2026/03/25/blogpost-llm-quantization-kv-cache.html"}]
+
+Based on the search results, I found information about KV quantization and parallel decoding techniques for LLM inference. Here's what I discovered:
+
+## KV Cache Quantization
+
+KVQuant addresses the memory bottleneck with long context length inference by quantizing the KV cache to low precision. KVQuant achieves high accuracy with low-precision KV cache quantization by considering several consistent patterns observed in cached KV values across different LLMs, and by developing methods to exploit these patterns, including: Per-channel, Pre-RoPE Key quantization to better match the outlier channels in Keys, Non-Uniform Quantization (NUQ) to better represent the non-uniform activations, and Dense-and-Sparse Quantization to mitigate the impacts of numerical outliers on quantization difficulty.
+
+## Parallel Processing and Decoding
+
+KVQuant has augmented its open-source support with additional kernels to perform parallel packing with multiple input tokens, and also modified their inference code to utilize the GPU for parallel topK when appending many value tokens in parallel.
+
+Speculative decoding uses a small, fast "draft" model to generate candidate tokens, then a large "target" model to verify them in parallel. Draft phase: Small model generates k candidate tokens autoregressively (e.g., 4 tokens). Verification phase: Large model verifies all k candidates in parallel.
+
+## Advanced Quantization Methods
+
+Recent approaches include combining per-channel key quantization, pre-RoPE key quantization (which avoids quantizing keys after positional embeddings have distorted the distribution), sensitivity-weighted non-uniform quantization that defines quantization levels from calibration data rather than fixed grids, and a dense-and-sparse decomposition that handles extreme outlier values separately from the bulk distribution. This combination allows pushing quantization to very low bit widths including sub-4-bit with better accuracy than fixed-precision schemes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "35d795dd-dab6-47ca-8bf4-d8ea5c218263",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "f5e1e4eb-45aa-44af-8eae-d6e053eed1ec",
+  "sourceToolAssistantUUID": "35d795dd-dab6-47ca-8bf4-d8ea5c218263",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-09T21:31:16.695Z_
+
+<details><summary>↩ Tool result · `toolu_013Dm7svSLikNrU2FBrXcJPZ`</summary>
+
+```text
+Web search results for query: "site:arxiv.org KV cache differential compression multi-trajectory"
+
+Links: [{"title":"[2412.03131] DiffKV: Differentiated Memory Management for Large Language Models with Parallel KV Compaction","url":"https://arxiv.org/abs/2412.03131"},{"title":"Beyond Speedup - Utilizing KV Cache for Sampling and Reasoning","url":"https://arxiv.org/html/2601.20326"},{"title":"[2407.01527] KV Cache Compression, But What Must We Give in Return? A Comprehensive Benchmark of Long Context Capable Approaches","url":"https://arxiv.org/abs/2407.01527"},{"title":"Understanding the Physics of Key-Value Cache Compression for LLMs through Attention Dynamics","url":"https://arxiv.org/html/2603.01426"},{"title":"KV Cache Quantization for Self-Forcing Video Generation: A 33-Method Empirical Study","url":"https://arxiv.org/html/2603.27469"},{"title":"DeltaKV: Residual-Based KV Cache Compression via Long-Range Similarity","url":"https://arxiv.org/html/2602.08005"},{"title":"EvolKV: Evolutionary KV Cache Compression for LLM Inference","url":"https://arxiv.org/html/2509.08315v1"},{"title":"Make Your LVLM KV Cache More Lightweight","url":"https://arxiv.org/html/2605.00789"},{"title":"EchoKV: Efficient KV Cache Compression via Similarity-Based Reconstruction","url":"https://arxiv.org/html/2603.22910"},{"title":"eOptShrinkQ: Near-Lossless KV Cache Compression Through Optimal Spectral Denoising and Quantization","url":"https://arxiv.org/html/2605.02905"}]
+
+Based on the web search results from arXiv, I found several papers related to KV cache compression techniques. Here's what I found:
+
+## Relevant Papers on KV Cache Compression
+
+Several papers on arXiv discuss KV cache compression with different approaches:
+
+1. **DiffKV**: DiffKV exploits three levels of differentiation in the KV cache: (1) the differing impact of keys and values on attention computation, (2) the varying importance of tokens, and (3) the diverse dynamic sparsity patterns across attention heads. DiffKV is able to compress the KV cache by 2.7× to 5.7× with near-lossless accuracy on complex workloads requiring sophisticated reasoning and long-generation capabilities, and enhances throughput by 1.9× to 5.4×.
+
+2. **DeltaKV**: DeltaKV reduces KV cache memory to 29% of the original while maintaining near-lossless accuracy on LongBench, SCBench, and AIME. When integrated with Sparse-vLLM, it achieves up to 2× throughput improvement over vLLM in long-context scenarios.
+
+3. **EvolKV**: EvolKV is an adaptive framework for layer-wise, task-driven KV cache compression that jointly optimizes the memory efficiency and task performance. By reformulating cache allocation as a multi-objective optimization problem, EvolKV leverages evolutionary search to dynamically configure layer budgets while directly maximizing downstream performance.
+
+4. **EchoKV**: EchoKV is a KV cache compression method that reconstructs the remaining cache using specific KV information. It enables flexible switching between full KV and compressed KV states.
+
+5. **eOptShrinkQ**: The key-value cache in transformer attention heads admits a natural decomposition into a low-rank shared context component and a full-rank per-token residual. eOptShrinkQ is a two-stage compression pipeline: optimal singular value shrinkage automatically extracts the shared structure, and the residual is quantized.
+
+While the search results don't specifically highlight a paper combining "differential compression" with "multi-trajectory" analysis, these papers represent the current state of KV cache compression research on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "74512dde-3dd9-4007-9e4b-9c35275d96c7",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "56cd9f74-21e8-43b4-8ef4-29183c2670ca",
+  "sourceToolAssistantUUID": "74512dde-3dd9-4007-9e4b-9c35275d96c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-09T21:31:16.750Z_
+
+<details><summary>↩ Tool result · `toolu_01RS5dkrASJEXqFZU8Zw8SM7`</summary>
+
+```text
+Web search results for query: "KV cache beam search reward model quantization precision"
+
+Links: [{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"Unlocking Longer Generation with Key-Value Cache Quantization","url":"https://huggingface.co/blog/kv-cache-quantization"},{"title":"Towards 10 Million Context Length LLM Inference with KV ...","url":"https://www.stat.berkeley.edu/~mmahoney/pubs/neurips-2024-kvquant.pdf"},{"title":"[2401.18079] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization","url":"https://arxiv.org/abs/2401.18079"},{"title":"blog/kv-cache-quantization.md at main · huggingface/blog","url":"https://github.com/huggingface/blog/blob/main/kv-cache-quantization.md"},{"title":"Optimizing Inference for Long Context and Large Batch Sizes with NVFP4 KV Cache | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/optimizing-inference-for-long-context-and-large-batch-sizes-with-nvfp4-kv-cache/"},{"title":"KITTY: ACCURATE AND EFFICIENT 2-BIT KV CACHE QUANTIZATION WITH","url":"https://www.arxiv.org/pdf/2511.18643"},{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview","url":"https://openreview.net/forum?id=Vem6FQvRvq"},{"title":"GitHub - SqueezeAILab/KVQuant: [NeurIPS 2024] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization · GitHub","url":"https://github.com/SqueezeAILab/KVQuant"},{"title":"Quantized KV Cache - vLLM","url":"https://docs.vllm.ai/en/latest/features/quantization/quantized_kvcache/"}]
+
+I've performed the web search for your query. Here are the key findings on KV cache, beam search, reward model quantization, and precision:
+
+## KV Cache Quantization Techniques
+
+Quantization methods like KIVI, KVQuant, and TurboQuant reduce memory without removing tokens, with KIVI achieving 2.6× combined peak memory reduction at 2-bit precision and TurboQuant achieving 6× memory reduction at 3-bit precision.
+
+### Low-Precision Quantization Approaches
+
+KVQuant uses several novel methods including Per-Channel Key Quantization, Pre-RoPE Key Quantization, Non-Uniform KV Cache Quantization with sensitivity-weighted non-uniform datatypes, and Per-Vector Dense-and-Sparse Quantization. These methods achieve less than 0.1 perplexity degradation with 3-bit quantization on both Wikitext-2 and C4.
+
+### Recent Advances
+
+TurboQuant is Google Research's latest contribution accepted at ICLR 2026, addressing bias in inner product estimation through a two-stage pipeline with random orthogonal rotation before quantization.
+
+Kitty cuts KV memory by nearly 8× with negligible accuracy loss, enabling up to 8× larger batches and 2.1×–4.1× higher throughput under the same memory budget.
+
+### Precision Trade-offs
+
+Quantizing the cache to int4 can offer roughly an x2.5 memory saving, though generation speed starts to decrease with higher batch sizes. NVFP4 cuts KV cache memory footprint by up to 50% and can effectively double context budgets.
+
+The search results focus heavily on KV cache quantization but don't provide specific details about beam search interactions with quantization or reward model quantization precision.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8ec6477c-de82-4b85-891a-f504125f11b7",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "10250f81-93a2-457d-9919-cac861bbeb78",
+  "sourceToolAssistantUUID": "8ec6477c-de82-4b85-891a-f504125f11b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-09T21:31:17.606Z_
+
+<details><summary>↩ Tool result · `toolu_01A7pDe3qkprjbb5XisuhBz3`</summary>
+
+```text
+Web search results for query: "KV cache tree search process reward model compression 2025 2026"
+
+Links: [{"title":"A Systematic Exploration of KV Cache Compression ...","url":"https://arxiv.org/pdf/2503.11816"},{"title":"ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference | OpenReview","url":"https://openreview.net/forum?id=20JDhbJqn3"},{"title":"KV Cache Optimization for LLMs 2026: Engineering Guide","url":"https://www.digitalapplied.com/blog/kv-cache-optimization-techniques-2026-engineering-guide"},{"title":"GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub","url":"https://github.com/NVIDIA/kvpress"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention","url":"https://arxiv.org/pdf/2510.00636"},{"title":"Utilizing KV Cache for Sampling and Reasoning","url":"https://arxiv.org/pdf/2601.20326"},{"title":"Revolutionizing AI Efficiency: Breakthroughs in KV Cache Compression and Speculative Decoding from Late 2025 Research | by Harsh Prakash | Medium","url":"https://medium.com/@hs5492349/revolutionizing-ai-efficiency-breakthroughs-in-kv-cache-compression-and-speculative-decoding-from-094588b6833f"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).","url":"https://github.com/October2001/Awesome-KV-Cache-Compression"},{"title":"[2501.04987] TreeKV: Smooth Key-Value Cache Compression with Tree Structures","url":"https://arxiv.org/abs/2501.04987"}]
+
+Based on the search results, I found several relevant recent developments in KV cache compression, tree search processes, and related techniques from 2025-2026:
+
+## KV Cache Compression Overview
+
+Large Language Models (LLMs) require significant GPU memory when processing long texts, with the key value (KV) cache consuming up to 70% of total memory during inference. Recent research has focused on multiple compression strategies.
+
+## Key Compression Techniques (2025-2026)
+
+Five technique families address KV optimization: paged attention, prefix caching, attention-layer compression (MQA, GQA, DeepSeek's MLA), and KV-cache quantization (INT8 and FP8), which when used together collapse long-context inference cost by 4-40×.
+
+DeepSeek's MLA is the architectural endgame for KV efficiency in 2026, compressing KV cache 7-14× by storing a low-rank projection instead of full keys and values.
+
+## Tree-Based Approaches
+
+TreeKV is a training-free method that employs a tree structure for smooth cache compression. Additionally, Yggdrasil bridges speculative decoding with a co-designed dynamic drafter and static runtime, using "equal-growth" trees where branches expand uniformly to balance compute, with latency-aware draft selection picking optimal sub-trees.
+
+## Recent Semantic and Reasoning-Aware Methods
+
+ChunkKV fundamentally reimagines KV cache compression by treating semantic chunks—rather than isolated tokens—as basic compression units, preserving complete linguistic structures and contextual integrity.
+
+The 2026 research frontier is moving toward latent-space compaction and reasoning-aware compression, with TriAttention achieving 10.7× memory reduction on AIME25 at matched accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db725977-89ec-49fa-8052-d178febbe286",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "221d9595-a3eb-4997-8fef-a5a8d96758f9",
+  "sourceToolAssistantUUID": "db725977-89ec-49fa-8052-d178febbe286",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-09T21:31:17.960Z_
+
+<details><summary>↩ Tool result · `toolu_017M3dtNoU2JQsqYXWFuYa1g`</summary>
+
+```text
+Web search results for query: "multi-trajectory KV cache compression 2025 2026"
+
+Links: [{"title":"Google’s TurboQuant Compression May Support Faster Inference, Same Accuracy on Less Capable Hardware - InfoQ","url":"https://www.infoq.com/news/2026/04/turboquant-compression-kv-cache/"},{"title":"TurboQuant: Google’s 6x KV Cache Compression for LLMs | byteiota","url":"https://byteiota.com/turboquant-googles-6x-kv-cache-compression-for-llms/"},{"title":"KV Cache Quantization for Self-Forcing Video Generation: A 33-Method Empirical Study","url":"https://arxiv.org/html/2603.27469"},{"title":"KVzip: Query-Agnostic KV Cache Compression with Context Reconstruction | OpenReview","url":"https://openreview.net/forum?id=JFygzwx8SJ"},{"title":"Published as a conference paper at ICLR 2026 KV CACHE TRANSFORM CODING","url":"https://openreview.net/pdf/1cef9774f0f0cf7bb9e4b167882e3ad3ef8cde16.pdf"},{"title":"GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub","url":"https://github.com/NVIDIA/kvpress"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"Google TurboQuant: The KV Cache Compression Math That Most Coverage Missed","url":"https://www.revolutioninai.com/2026/03/%20google-turboquant-kv-cache-compression-polarquant-qjl-explained-2026.html"},{"title":"TurboQuant KV Cache Compression: What Changes for LLM Inference","url":"https://www.kriraai.com/blog/turboquant-kv-cache-compression-changes-llm-inference"},{"title":"HybridKV: Efficient KV Cache Compression for Multimodal LLMs","url":"https://richlyai.com/blog/hybridkv-efficient-kv-cache-compression-for-multimodal-llms-ai-news/"}]
+
+Based on the web search results, here's what I found about multi-trajectory KV cache compression in 2025-2026:
+
+## Key Recent Developments
+
+Google Research unveiled TurboQuant, a novel quantization algorithm that compresses large language models' Key-Value caches by up to 6x, with 3.5-bit compression and near-zero accuracy loss, requiring no retraining. The algorithm was announced in March 2026 and presented at ICLR on April 23-25.
+
+## Technical Approaches
+
+The research landscape includes multiple compression strategies:
+
+1. **Quantization-Based Methods**: TurboQuant's PolarQuant stage applies a random orthogonal rotation to each key and value vector before quantization, redistributing variance uniformly across all coordinates.
+
+2. **Transform Coding**: Nvidia's KVTC achieves 20x compression with less than one percentage point accuracy penalty, tested on models from 1.5B to 70B parameters.
+
+3. **Query-Agnostic Methods**: KVzip is a query-agnostic KV cache eviction method enabling effective reuse of compressed KV caches across diverse queries, reducing KV cache size by 3-4× and FlashAttention decoding latency by approximately 2×.
+
+## Current State (2026)
+
+As of May 1, 2026, Google's official TurboQuant implementation hasn't shipped, with the official implementation expected in Q2 2026 and major framework integration likely arriving Q3-Q4 2026 at the earliest. The 2026 research frontier is moving toward latent-space compaction and reasoning-aware compression methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "795a8a84-0617-4d6d-b0f4-3677af305772",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "994b721b-37d1-4aac-9610-9d00a95cf6b9",
+  "sourceToolAssistantUUID": "795a8a84-0617-4d6d-b0f4-3677af305772",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-09T21:31:19.415Z_
+
+Let me continue with more specific searches focused on reasoning models, recent conferences, and reward-based approaches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "994b721b-37d1-4aac-9610-9d00a95cf6b9",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi4bVjKDxD7k8h8uaYL",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "0cae3de9-5fd4-438d-936f-bca4b5462a7d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DGPbKcz7zCZ8fPjuXfdHjN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7434,
+      "cache_read_input_tokens": 16996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7434,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-09T21:31:19.657Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BRT92zFLgAoSVzcM4df182`</summary>
+
+```json
+{
+  "query": "site:arxiv.org KV cache quantization reasoning models 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0cae3de9-5fd4-438d-936f-bca4b5462a7d",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi4bVjKDxD7k8h8uaYL",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "0029c293-3dce-4c1a-a804-eb2366bceff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DGPbKcz7zCZ8fPjuXfdHjN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7434,
+      "cache_read_input_tokens": 16996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7434,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-09T21:31:19.898Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JP96btNFiq4KqbSGBfH819`</summary>
+
+```json
+{
+  "query": "site:openreview.net KV cache quantization tree search"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0029c293-3dce-4c1a-a804-eb2366bceff2",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi4bVjKDxD7k8h8uaYL",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "a24cd52a-39f1-4e30-b880-b1292a9be2b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DGPbKcz7zCZ8fPjuXfdHjN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7434,
+      "cache_read_input_tokens": 16996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7434,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-09T21:31:20.139Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FmuXWPVe2dR4FxZYJsSAxV`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 efficient inference KV cache compression"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a24cd52a-39f1-4e30-b880-b1292a9be2b8",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi4bVjKDxD7k8h8uaYL",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "84b10478-97b6-4e2a-913f-477143f8aed1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DGPbKcz7zCZ8fPjuXfdHjN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7434,
+      "cache_read_input_tokens": 16996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7434,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-09T21:31:20.400Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CXQfGXddcpQfpSPSeYTxz3`</summary>
+
+```json
+{
+  "query": "ACL 2026 KV cache compression reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84b10478-97b6-4e2a-913f-477143f8aed1",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi4bVjKDxD7k8h8uaYL",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "fe1660ff-2ed3-45a4-aedf-307f7bd4fefb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DGPbKcz7zCZ8fPjuXfdHjN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7434,
+      "cache_read_input_tokens": 16996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7434,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-09T21:31:20.583Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012JUJ8aQTDZR413EaT5Uai9`</summary>
+
+```json
+{
+  "query": "adaptive KV cache quality-aware allocation inference branches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe1660ff-2ed3-45a4-aedf-307f7bd4fefb",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi4bVjKDxD7k8h8uaYL",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "76443474-96de-47f7-b6e1-e17bed07c8f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DGPbKcz7zCZ8fPjuXfdHjN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7434,
+      "cache_read_input_tokens": 16996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7434,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-09T21:31:20.765Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011o6C5iZVqxWcyncHwAfLtQ`</summary>
+
+```json
+{
+  "query": "beam search trajectory quality KV precision allocation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "76443474-96de-47f7-b6e1-e17bed07c8f8",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi4bVjKDxD7k8h8uaYL",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "04cccf24-b978-4351-9de4-387a90493435",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DGPbKcz7zCZ8fPjuXfdHjN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 7434,
+      "cache_read_input_tokens": 16996,
+      "output_tokens": 323,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7434
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 323,
+          "cache_read_input_tokens": 16996,
+          "cache_creation_input_tokens": 7434,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7434,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-09T21:31:27.237Z_
+
+<details><summary>↩ Tool result · `toolu_01JP96btNFiq4KqbSGBfH819`</summary>
+
+```text
+Web search results for query: "site:openreview.net KV cache quantization tree search"
+
+Links: [{"title":"ZipCache: Accurate and Efficient KV Cache Quantization with Salient Token Identification | OpenReview","url":"https://openreview.net/forum?id=5t4ZAkPiJs"},{"title":"KVTQ: Compressing the KV Cache to Hardware Efficient Ternary Digits by Fine-Grained Dynamic Quantization | OpenReview","url":"https://openreview.net/forum?id=eZAlb8fX5y"},{"title":"Cache Me If You Must: Adaptive Key-Value Quantization for Large Language Models | OpenReview","url":"https://openreview.net/forum?id=COowwJOAZi&noteId=eSHMRqb2AD"},{"title":"KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference | OpenReview","url":"https://openreview.net/forum?id=zDwipF6h06"},{"title":"KVLinC: KV Cache Quantization with Hadamard Rotation and Linear Correction | OpenReview","url":"https://openreview.net/forum?id=FkaDML963W"},{"title":"KV Cache is 1 Bit Per Channel: Efficient Large Language Model Inference with Coupled Quantization | OpenReview","url":"https://openreview.net/forum?id=pNnvzQsS4P"},{"title":"KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization | OpenReview","url":"https://openreview.net/forum?id=0LXotew9Du"},{"title":"QJL: 1-Bit Quantized JL Transform for KV Cache Quantization with Zero Overhead | OpenReview","url":"https://openreview.net/forum?id=xHPVGmLXjd"},{"title":"CommVQ: Commutative Vector Quantization for KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=sbbyCB39HN"},{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview","url":"https://openreview.net/forum?id=Vem6FQvRvq"}]
+
+The search returned several relevant papers from OpenReview on KV cache quantization. Here are the key findings:
+
+## KV Cache Quantization Research on OpenReview
+
+Several notable papers on KV cache quantization are available on OpenReview:
+
+1. **ZipCache**: An accurate and efficient KV cache quantization method for large language models using channel-separable tokenwise quantization.
+
+2. **KVTQ**: A method which compresses the KV cache to hardware efficient ternary digits.
+
+3. **AQUA-KV**: An adaptive quantization for Key-Value caches that relies on compact adapters to exploit existing dependencies between Keys and Values.
+
+4. **KVTuner**: A framework to adaptively search for the optimal hardware-friendly layer-wise KV quantization precision pairs for coarse-grained KV cache with multi-objective optimization.
+
+5. **KVLinC**: A framework that combines a Hadamard rotation with lightweight linear correction adapters to mitigate attention errors introduced by KV cache quantization.
+
+6. **Coupled Quantization (CQ)**: A method that couples multiple key/value channels together for quantization to exploit their interdependence.
+
+7. **KVQuant**: Incorporates several methods including per-channel key quantization and non-uniform KV cache quantization.
+
+8. **CommVQ**: A method to reduce memory usage for long-context LLM inference using additive quantization with a codebook designed to be commutative with Rotary Position Embedding.
+
+Note: The search results do not contain papers specifically combining KV cache quantization with tree search techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a24cd52a-39f1-4e30-b880-b1292a9be2b8",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "586148a8-d93f-455c-9b9b-33fa8afc4172",
+  "sourceToolAssistantUUID": "a24cd52a-39f1-4e30-b880-b1292a9be2b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-09T21:31:27.291Z_
+
+<details><summary>↩ Tool result · `toolu_01FmuXWPVe2dR4FxZYJsSAxV`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 efficient inference KV cache compression"
+
+Links: [{"title":"GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).","url":"https://github.com/October2001/Awesome-KV-Cache-Compression"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"ChunkKV: Semantic-Preserving KV Cache Compression for Efficient Long-Context LLM Inference | OpenReview","url":"https://openreview.net/forum?id=20JDhbJqn3"},{"title":"KV Cache Compression for Inference Efficiency in LLMs: A Review","url":"https://arxiv.org/pdf/2508.06297"},{"title":"KV Cache Compression for Inference Efficiency in LLMs: A Review | Proceedings of the 4th International Conference on Artificial Intelligence and Intelligent Information Processing","url":"https://dl.acm.org/doi/full/10.1145/3778534.3778567"},{"title":"Awesome-LLM-Compression/README.md at main · HuangOwen/Awesome-LLM-Compression","url":"https://github.com/HuangOwen/Awesome-LLM-Compression/blob/main/README.md"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention From Future Queries Distribution | OpenReview","url":"https://openreview.net/forum?id=VmojW15eRc"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=HGdg76iVo6"},{"title":"KVCompose: Efficient Structured KV Cache Compression with Composite Tokens | OpenReview","url":"https://openreview.net/forum?id=GNKIV7oSl2"},{"title":"Entropy-Guided KV Caching for Efficient LLM Inference","url":"https://www.mdpi.com/2227-7390/13/15/2366"}]
+
+Based on the search results, I found several relevant papers on KV cache compression for efficient LLM inference. Here are the key findings related to EMNLP 2026 and efficient inference:
+
+## EMNLP 2024 Papers on KV Cache Compression
+
+A Simple and Effective L2 Norm-Based Strategy for KV Cache Compression by Alessio Devoto, Yu Zhao, Simone Scardapane, and Pasquale Minervini was published at EMNLP 2024.
+
+InfiniPot: Infinite Context Processing on Memory-Constrained LLMs by Minsoo Kim, Kyuhong Shim, Jungwook Choi, and Simyung Chang was also published at EMNLP 2024.
+
+## Recent Advances in KV Cache Compression (2025-2026)
+
+The field is advancing rapidly with several cutting-edge approaches:
+
+PolarQuant: Quantizing KV Caches with Polar Transformation by Insu Han, Praneeth Kacham, Amin Karbasi, Vahab Mirrokni, and Amir Zandieh was presented at NeurIPS 2025.
+
+TurboQuant is Google Research's latest contribution accepted at ICLR 2026, addressing a weakness in prior quantization methods where MSE-optimal scalar quantizers introduce systematic bias in inner product estimation.
+
+The search results indicate active research in compression techniques including quantization, selective token strategies, and attention compression mechanisms, though specific EMNLP 2026 papers on this topic were not prominently featured in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "84b10478-97b6-4e2a-913f-477143f8aed1",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "510dfec7-3814-4257-b1c6-efbe2ce24524",
+  "sourceToolAssistantUUID": "84b10478-97b6-4e2a-913f-477143f8aed1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-09T21:31:28.213Z_
+
+<details><summary>↩ Tool result · `toolu_011o6C5iZVqxWcyncHwAfLtQ`</summary>
+
+```text
+Web search results for query: "beam search trajectory quality KV precision allocation 2025"
+
+Links: [{"title":"Utilizing KV Cache for Sampling and Reasoning","url":"https://arxiv.org/pdf/2601.20326"},{"title":"10.8. Beam Search — Dive into Deep Learning 1.0.3 documentation","url":"https://d2l.ai/chapter_recurrent-modern/beam-search.html"},{"title":"arXiv:2503.16915v2 [cs.NI] 1 Apr 2025 1 Joint Beamforming and Trajectory","url":"https://arxiv.org/pdf/2503.16915"},{"title":"Efficient Beam Search for LLMs Using Trie-Based Decoding","url":"https://aclanthology.org/2025.emnlp-main.748.pdf"},{"title":"Dynamic KV Cache Allocation for Efficient Multimodal Long ...","url":"https://aclanthology.org/2025.naacl-long.125.pdf"},{"title":"Beam Search Algorithm for Anti-Collision Trajectory Planning for Many-to-Many Encounter Situations with Autonomous Surface Vehicles - PubMed","url":"https://pubmed.ncbi.nlm.nih.gov/32722065/"},{"title":"Beam search - Wikipedia","url":"https://en.wikipedia.org/wiki/Beam_search"},{"title":"Introduction to Beam Search Algorithm | by Hey Amit | Biased-Algorithms | Medium","url":"https://medium.com/biased-algorithms/introduction-to-beam-search-algorithm-d598a77a4b4d"},{"title":"BeamVQ: Beam Search with Vector Quantization to Mitigate Data Scarcity in Physical Spatiotemporal Forecasting","url":"https://arxiv.org/html/2502.18925"},{"title":"Beam Search Algorithm for Anti-Collision Trajectory Planning for Many-to-Many Encounter Situations with Autonomous Surface Vehicles | MDPI","url":"https://www.mdpi.com/1424-8220/20/15/4115"}]
+
+I found several relevant research papers from 2025 related to your search query. Here are the key findings:
+
+## KV Cache and Trajectory-Based Methods (2025)
+
+A recent approach utilizes KV cache during decoding with negligible VRAM or FLOPs overhead, functioning as a modular component that can be seamlessly integrated into existing inference pipelines without modifications to the base model. Difficulty scores derived from the KV cache generalize well across tasks and models, enabling efficient and effective adaptive reasoning.
+
+## Beam Search for LLM Decoding
+
+A trie-based decoding approach shows no significant difference in quality metrics (ROUGE-L for CNN; Accuracy for HumanEval) across all models, datasets, and beam widths. This trie-based decoding consistently reduces memory usage, closely matching greedy decoding.
+
+## Trajectory Quality with Beam Search
+
+During inference, beam search retains multiple candidate trajectories, balancing exploration of rare phenomena with likely system trajectories. Ablation studies confirm the crucial roles of vector quantization and beam search in enhancing performance.
+
+These papers from 2025 address the intersection of beam search, KV cache optimization, and trajectory quality in language models and spatiotemporal forecasting systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04cccf24-b978-4351-9de4-387a90493435",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "f98925ac-20d5-4461-bb5b-07f90433bdef",
+  "sourceToolAssistantUUID": "04cccf24-b978-4351-9de4-387a90493435",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-09T21:31:28.671Z_
+
+<details><summary>↩ Tool result · `toolu_012JUJ8aQTDZR413EaT5Uai9`</summary>
+
+```text
+Web search results for query: "adaptive KV cache quality-aware allocation inference branches"
+
+Links: [{"title":"[2407.11550] Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference","url":"https://arxiv.org/abs/2407.11550"},{"title":"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget ...","url":"https://arxiv.org/pdf/2407.11550"},{"title":"ARKV: Adaptive and Resource-Efficient KV Cache Management under Limited Memory Budget for Long-Context Inference in LLMs","url":"https://arxiv.org/html/2603.08727"},{"title":"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference | OpenReview","url":"https://openreview.net/forum?id=tcisuhGsQZ"},{"title":"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference","url":"https://arxiv.org/html/2407.11550v5"},{"title":"[2407.11550v5] Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference","url":"https://arxiv.org/abs/2407.11550v5"},{"title":"QAQ: Quality Adaptive Quantization for LLM KV Cache Wen Cheng*","url":"https://openaccess.thecvf.com/content/ICCV2025W/U&ME/papers/Cheng_QAQ_Quality_Adaptive_Quantization_for_LLM_KV_Cache_ICCVW_2025_paper.pdf"},{"title":"KV Cache Compression for Inference Efficiency in LLMs: A Review","url":"https://arxiv.org/html/2508.06297v1"},{"title":"GitHub - FFY0/AdaKV: The Official Implementation of Ada-KV [NeurIPS 2025] · GitHub","url":"https://github.com/FFY0/AdaKV"},{"title":"One Pool, Two Caches: Adaptive HBM Partitioning for Accelerating Generative Recommender Serving","url":"https://arxiv.org/html/2605.04450"}]
+
+Based on the search results, here are the key findings about adaptive KV cache quality-aware allocation for inference:
+
+## Ada-KV: Adaptive Budget Allocation
+
+Ada-KV is the first head-wise adaptive budget allocation strategy for KV cache eviction, offering plug-and-play benefits that enable seamless integration with prior cache eviction methods.
+
+### The Problem It Addresses
+
+Existing cache eviction methods typically allocate compression budgets uniformly across all attention heads, ignoring the unique attention patterns of each head. Attention heads show varying concentration patterns—some focus narrowly on a small portion of the cache while others distribute attention more broadly, and uniform allocation results in inefficiencies by either wasting cache budgets on heads with sparse concentration or incurring significant eviction losses in heads with dispersed distribution.
+
+### Key Innovation
+
+The approach establishes a theoretical loss upper bound between pre- and post-eviction attention output, explaining the optimization target of prior cache eviction methods while guiding the optimization of adaptive budget allocation.
+
+### Implementation and Results
+
+Ada-KV seamlessly integrates into two existing state-of-the-art methods, introducing Ada-SnapKV and Ada-Pyramid, two adaptive eviction methods. Beyond the commonly studied question-aware compression, the methods are also evaluated in the more challenging question-agnostic compression scenario using the Ruler and LongBench benchmarks, demonstrating the effectiveness of adaptive budget allocation in both settings.
+
+## Related Work: ARKV
+
+Another related approach is ARKV, which computes attention-based entropy, variance, and kurtosis per layer during a prefill phase to derive per-layer Original-Quantization (OQ) ratios, guiding how precision budgets are distributed.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76443474-96de-47f7-b6e1-e17bed07c8f8",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "fbe8541d-9705-4e1a-9209-fe5b6d2170ed",
+  "sourceToolAssistantUUID": "76443474-96de-47f7-b6e1-e17bed07c8f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-09T21:31:28.958Z_
+
+<details><summary>↩ Tool result · `toolu_01BRT92zFLgAoSVzcM4df182`</summary>
+
+```text
+Web search results for query: "site:arxiv.org KV cache quantization reasoning models 2025 2026"
+
+Links: [{"title":"PM-KVQ: Progressive Mixed-precision KV Cache Quantization for Long-CoT LLMs | OpenReview","url":"https://openreview.net/forum?id=Vem6FQvRvq"},{"title":"Towards 10 Million Context Length LLM Inference with KV ...","url":"https://www.stat.berkeley.edu/~mmahoney/pubs/neurips-2024-kvquant.pdf"},{"title":"Accurate KV Cache Quantization with Outlier Tokens Tracing","url":"https://aclanthology.org/2025.acl-long.631.pdf"},{"title":"Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs","url":"https://arxiv.org/html/2604.04722v1"},{"title":"Is KV Cache Quantization Sabotaging Your Context? — We test the impact of quantizing caches on long-horizon agentic coding workloads.","url":"https://dasroot.net/posts/2026/05/kv-cache-quantization-agentic-coding-long-horizon/"},{"title":"[Feature Request] Per-phase KV cache quantization for reasoning models (DeepSeek-R1) · Issue #21679 · ggml-org/llama.cpp","url":"https://github.com/ggml-org/llama.cpp/issues/21679"},{"title":"NeurIPS Poster KV Cache is 1 Bit Per Channel: Efficient Large Language Model Inference with Coupled Quantization","url":"https://neurips.cc/virtual/2024/poster/93558"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"ICML Poster KVTuner: Sensitivity-Aware Layer-Wise Mixed-Precision KV Cache Quantization for Efficient and Nearly Lossless LLM Inference","url":"https://icml.cc/virtual/2025/poster/43487"},{"title":"[2401.18079] KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization","url":"https://arxiv.org/abs/2401.18079"}]
+
+I've performed a web search for KV cache quantization research on reasoning models from 2025-2026. Here are the key findings:
+
+## Recent Advances in KV Cache Quantization for Reasoning Models
+
+**PM-KVQ (Progressive Mixed-Precision KV Cache Quantization)**
+
+PM-KVQ addresses the challenge of memory overhead in reasoning-capable LLMs developed through long Chain-of-Thought techniques by proposing Progressive Mixed-Precision KV Cache Quantization. The approach proposes block-wise memory allocation to assign higher bit-widths to more sensitive transformer blocks. Extensive experiments on 7B–70B long-CoT LLMs show that PM-KVQ improves reasoning benchmark performance by up to 8% over state-of-the-art baselines under the same memory budget and achieves 2.73–5.18× throughput improvements over original 16-bit LLMs.
+
+**KVTuner (2025)**
+
+KVTuner proposes a framework to adaptively search for optimal hardware-friendly layer-wise KV quantization precision pairs with multi-objective optimization. It can achieve nearly lossless 3.25-bit mixed precision KV cache quantization for LLMs like Llama-3.1-8B-Instruct and 4.0-bit for sensitive models like Qwen2.5-7B-Instruct on mathematical reasoning tasks.
+
+**Adaptive KV-Cache Quantization (2026)**
+
+A learned policy approach assigns bit-width proportional to token importance, minimizing expected memory and latency without sacrificing competitive accuracy. For instance, with SmolLM-360M on HellaSwag, this method reduces decoding latency by 17.75% relative to static KV quantization while improving accuracy by 7.60 points.
+
+**Phase-Aware Quantization for Reasoning Models**
+
+Research addresses different quantization levels for think-phase versus answer-phase tokens in the KV cache for reasoning models like DeepSeek-R1, recognizing that the two phases have measurably different redundancy profiles.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0029c293-3dce-4c1a-a804-eb2366bceff2",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "19f75532-5511-45f0-826b-a6844a708082",
+  "sourceToolAssistantUUID": "0029c293-3dce-4c1a-a804-eb2366bceff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-09T21:31:29.560Z_
+
+<details><summary>↩ Tool result · `toolu_01CXQfGXddcpQfpSPSeYTxz3`</summary>
+
+```text
+Web search results for query: "ACL 2026 KV cache compression reasoning"
+
+Links: [{"title":"CacheNotes: Task-Aware Key-Value Cache Compression for Reasoning-Intensive Knowledge Tasks - ACL Anthology","url":"https://aclanthology.org/2026.eacl-long.309/"},{"title":"GitHub - jjiantong/Awesome-KV-Cache-Optimization: [ACL 2026] Towards Efficient Large Language Model Serving: A Survey on System-Aware KV Cache Optimization · GitHub","url":"https://github.com/jjiantong/Awesome-KV-Cache-Optimization"},{"title":"GitHub - dongwonjo/FastKV: [ACL Findings 2026] Official Implementation of \"FastKV: Decoupling of Context Reduction and KV Cache Compression for Prefill-Decoding Acceleration\" · GitHub","url":"https://github.com/dongwonjo/FastKV"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=HGdg76iVo6"},{"title":"GitHub - Zhihan-Zh/DASH-KV: [ACL 2026 Findings] DASH-KV: Accelerating Long-Context LLM Inference via Asymmetric KV Cache Hashing · GitHub","url":"https://github.com/Zhihan-Zh/DASH-KV"},{"title":"How Much Cache Does Reasoning Need? Depth–Cache Tradeoffs in KV-Compressed Transformers","url":"https://arxiv.org/html/2604.17935v1"},{"title":"GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).","url":"https://github.com/October2001/Awesome-KV-Cache-Compression"},{"title":"TriAttention | Efficient KV Cache Compression for Long-Context Reasoning","url":"https://weianmao.github.io/tri-attention-project-page/"},{"title":"🔥 Introducing TriAttention: A New KV Cache Compression Technique | by Mayur Jain | MLWorks | Apr, 2026 | Medium","url":"https://medium.com/mlworks/introducing-triattention-a-new-kv-cache-compression-technique-60d1215f5af2"}]
+
+I found several relevant papers on KV cache compression for reasoning from ACL 2026. Here's what the search revealed:
+
+## Key ACL 2026 Papers on KV Cache Compression for Reasoning
+
+**CacheNotes** - This approach generates Compression-Planning-Tokens (CPTs) offline to identify key information from a corpus, then uses them to guide compression into a compact, reusable KV cache for efficient inference. On Question-Answering tasks at 20× compression, it outperforms RAG by over 8 F1 points and reduces latency by over 4×.
+
+**DASH-KV** - This acceleration framework reformulates attention as approximate nearest-neighbor search via asymmetric deep hashing, with an asymmetric encoding architecture that differentially maps queries and keys to account for their distinctions in precision and reuse characteristics.
+
+**FastKV** - This method introduces a novel Token-Selective Propagation (TSP) approach, selectively propagating only critical tokens to later layers while retaining full-context information in early layers.
+
+## Related Reasoning-Focused Compression Techniques
+
+Existing KV cache compression methods underperform on reasoning models: token-dropping methods break reasoning integrity by discarding critical information, while head-reallocation methods mistakenly compress reasoning-critical heads since they are designed for retrieval tasks.
+
+TriAttention compresses KV cache for long-context reasoning by modeling stable pre-RoPE Q/K structure, enabling higher throughput and much lower memory use without losing reasoning accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe1660ff-2ed3-45a4-aedf-307f7bd4fefb",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "5d569982-19c3-44c1-b6d9-b3950edfc1e0",
+  "sourceToolAssistantUUID": "fe1660ff-2ed3-45a4-aedf-307f7bd4fefb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-09T21:31:31.658Z_
+
+Let me perform a few more targeted searches specifically looking for PRM/reward signal usage in inference optimization and tree search literature.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d569982-19c3-44c1-b6d9-b3950edfc1e0",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi5T6EYQGTLm6zJLeke",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "2ce3ac8e-da72-41bd-89d9-2a3f5ed41f26",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01FuQ4ir7Ja2ZLhzBVN1o46y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1839,
+      "cache_creation_input_tokens": 4804,
+      "cache_read_input_tokens": 24430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4804,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-09T21:31:31.947Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SRMtmDA8pPdN421FpubPEB`</summary>
+
+```json
+{
+  "query": "\"process reward model\" tree search inference optimization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ce3ac8e-da72-41bd-89d9-2a3f5ed41f26",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi5T6EYQGTLm6zJLeke",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "c33a9e94-393d-4125-95ae-c08796d88021",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01FuQ4ir7Ja2ZLhzBVN1o46y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1839,
+      "cache_creation_input_tokens": 4804,
+      "cache_read_input_tokens": 24430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4804,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-09T21:31:32.349Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FT8pd7bkqAVjAcA8jC8bbU`</summary>
+
+```json
+{
+  "query": "reward signal resource allocation LLM inference branches 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c33a9e94-393d-4125-95ae-c08796d88021",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi5T6EYQGTLm6zJLeke",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "18ac0402-226e-4f58-8272-224038d56a07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01FuQ4ir7Ja2ZLhzBVN1o46y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1839,
+      "cache_creation_input_tokens": 4804,
+      "cache_read_input_tokens": 24430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4804,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-09T21:31:32.533Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G4tUmaKgZB7bxJ1M8B6REk`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"cross-trajectory\" KV cache quantization compression"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18ac0402-226e-4f58-8272-224038d56a07",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi5T6EYQGTLm6zJLeke",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "1a80d640-c9a3-41f9-abef-22ab20553444",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01FuQ4ir7Ja2ZLhzBVN1o46y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1839,
+      "cache_creation_input_tokens": 4804,
+      "cache_read_input_tokens": 24430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4804,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-09T21:31:32.810Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018mLHgcPyDzfFD5CkWAifF7`</summary>
+
+```json
+{
+  "query": "Which heads matter reasoning RL-guided KV cache"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a80d640-c9a3-41f9-abef-22ab20553444",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi5T6EYQGTLm6zJLeke",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "04e46ee9-2d3c-4711-b6cd-364b5e940d79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01FuQ4ir7Ja2ZLhzBVN1o46y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1839,
+      "cache_creation_input_tokens": 4804,
+      "cache_read_input_tokens": 24430,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4804,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-09T21:31:35.613Z_
+
+<details><summary>↩ Tool result · `toolu_01G4tUmaKgZB7bxJ1M8B6REk`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "cross-trajectory" KV cache quantization compression"
+
+No links found.
+
+The search didn't return any results for that specific query. This could mean:
+
+1. There may not be any papers on arXiv.org that use all of those terms together
+2. The specific terminology "cross-trajectory" combined with KV cache quantization might not be commonly used in published papers
+3. The paper (if it exists) might use different terminology
+
+Would you like me to try a broader search? For example, I could search for:
+- Just "KV cache quantization compression" on arXiv
+- "cross-trajectory" with different AI/ML related terms
+- Papers about KV cache optimization more generally
+
+Let me know how you'd like me to refine the search!
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a80d640-c9a3-41f9-abef-22ab20553444",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "b61db4ea-a129-41e9-bc0d-38e3a7f3b1dc",
+  "sourceToolAssistantUUID": "1a80d640-c9a3-41f9-abef-22ab20553444",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-09T21:31:40.114Z_
+
+<details><summary>↩ Tool result · `toolu_01SRMtmDA8pPdN421FpubPEB`</summary>
+
+```text
+Web search results for query: ""process reward model" tree search inference optimization 2025 2026"
+
+Links: [{"title":"ReST-MCTS*: LLM Self-Training via Process Reward Guided Tree Search | OpenReview","url":"https://openreview.net/forum?id=8rcFOqEud5"},{"title":"Technical Report: Enhancing LLM Reasoning with Reward-guided Tree Search","url":"https://arxiv.org/html/2411.11694v3"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/html/2510.08049v3"},{"title":"[2406.03816] ReST-MCTS*: LLM Self-Training via Process Reward Guided Tree Search","url":"https://arxiv.org/abs/2406.03816"},{"title":"GitHub - JLZhong23/awesome-reward-models · GitHub","url":"https://github.com/JLZhong23/awesome-reward-models"},{"title":"From Mathematical Reasoning to Code: Generalization of Process Reward Models in Test-Time Scaling | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40289"},{"title":"FinePRM: Fine-grained Process Reward Model","url":"https://www.emergentmind.com/topics/fine-grained-process-reward-model-fineprm"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process","url":"https://arxiv.org/pdf/2510.08049"},{"title":"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub","url":"https://github.com/RyanLiu112/Awesome-Process-Reward-Models"},{"title":"MT-RewardTree: A Comprehensive Framework for Advancing LLM-Based Machine Translation via Reward Modeling | Request PDF","url":"https://www.researchgate.net/publication/397420751_MT-RewardTree_A_Comprehensive_Framework_for_Advancing_LLM-Based_Machine_Translation_via_Reward_Modeling"}]
+
+Based on the search results, here's what I found regarding process reward models, tree search, and inference-time optimization in 2025-2026:
+
+## Key Research Areas
+
+**ReST-MCTS* Approach:** ReST-MCTS* is a reinforced self-training approach based on integrating process reward guidance with tree search MCTS* for collecting higher-quality reasoning traces as well as per-step value to train policy and reward models. The tree-search policy in ReST-MCTS* achieves higher accuracy compared with prior LLM reasoning baselines such as Best-of-N and Tree-of-Thought, within the same search budget.
+
+**Test-Time Scaling:** Test-time scaling has garnered significant attention from the research community, largely due to advancements of the o1 model released by OpenAI. By allocating more computational resources during the inference phase, LLMs can extensively explore the solution space by generating more thought tokens or diverse solutions.
+
+**Evaluation Challenges:** Recent research has identified important challenges in 2025-2026. A Reward Model that achieves high accuracy on a static test set may fail catastrophically during dynamic inference (e.g., Tree Search or RL). This is primarily a calibration and Out-of-Distribution (OOD) robustness issue.
+
+**Cross-Domain Generalization:** Monte Carlo Tree Search is identified as the most effective test-time scaling method when computational resources are abundant, while Best-of-N Sampling serves as a practical alternative under resource-limited conditions. PRMs trained on mathematical datasets exhibit performance comparable to those tailored for code generation, suggesting robust cross-domain generalization.
+
+The research landscape shows active development in combining process reward models with tree search algorithms for more efficient and accurate LLM reasoning at inference time.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c33a9e94-393d-4125-95ae-c08796d88021",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "6a4cdf71-f627-4620-8cf0-3ad254ded56b",
+  "sourceToolAssistantUUID": "c33a9e94-393d-4125-95ae-c08796d88021",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-09T21:31:40.582Z_
+
+<details><summary>↩ Tool result · `toolu_018mLHgcPyDzfFD5CkWAifF7`</summary>
+
+```text
+Web search results for query: "Which heads matter reasoning RL-guided KV cache"
+
+Links: [{"title":"[2510.08525] Which Heads Matter for Reasoning? RL-Guided KV Cache Compression","url":"https://arxiv.org/abs/2510.08525"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=HGdg76iVo6"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression","url":"https://arxiv.org/html/2510.08525v1"},{"title":"[PDF] Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Which-Heads-Matter-for-Reasoning-RL-Guided-KV-Cache-Du-Jiang/bb15d15655a41d12c714b3cd88c810ee5bb2886e"},{"title":"Paper page - Which Heads Matter for Reasoning? RL-Guided KV Cache Compression","url":"https://huggingface.co/papers/2510.08525"},{"title":"WHICH HEADS MATTER FOR REASONING? RL-GUIDED ...","url":"https://openreview.net/pdf?id=HGdg76iVo6"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning | OpenReview","url":"https://openreview.net/forum?id=FJFVmeXusW"},{"title":"[2410.19258] Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://arxiv.org/abs/2410.19258"},{"title":"Neural Garbage Collection: Efficient LM Memory Management","url":"https://www.emergentmind.com/papers/2604.18002"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://arxiv.org/html/2410.19258"}]
+
+Based on the search results, here's an overview of "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression":
+
+## Overview
+
+This paper addresses KV cache compression challenges for reasoning large language models that exhibit complex reasoning behaviors via extended chain-of-thought generation. Existing token-dropping methods directly disrupt reasoning chains by removing intermediate steps, while head-reallocation methods, designed for retrieval tasks, fail to preserve the heads essential for generative reasoning.
+
+## The RLKV Method
+
+The paper proposes RLKV, which uses reinforcement learning as a probe to discover which heads contribute to reasoning quality by directly optimizing their cache usage against actual generation outcomes. This discovery naturally leads to an efficient compression strategy: allocating full KV cache to reasoning-critical heads while aggressively compressing others.
+
+## Technical Approach
+
+The gating adapters quantify each head's reliance on full versus local KV cache access, with L1 penalty encouraging sparsity. Through this RL optimization, the adapter values inherently distinguish reasoning heads from compressible heads, directly identifying which heads are essential for reasoning behaviors.
+
+## Results
+
+Experiments reveal that a fraction of heads proves essential for reasoning, enabling 20--50% cache reduction with near-lossless performance and up to 1.21x speedup.
+
+The paper was authored by Wenjie Du and colleagues, with recent versions available on arXiv and OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04e46ee9-2d3c-4711-b6cd-364b5e940d79",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "cf8b8882-c442-4448-8e7f-b118939b19f5",
+  "sourceToolAssistantUUID": "04e46ee9-2d3c-4711-b6cd-364b5e940d79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-09T21:31:41.021Z_
+
+<details><summary>↩ Tool result · `toolu_01FT8pd7bkqAVjAcA8jC8bbU`</summary>
+
+```text
+Web search results for query: "reward signal resource allocation LLM inference branches 2025"
+
+Links: [{"title":"Reward Modeling for Reinforcement Learning-Based LLM Reasoning: Design, Challenges, and Evaluation","url":"https://arxiv.org/html/2602.09305v1"},{"title":"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models","url":"https://arxiv.org/html/2510.08049v3"},{"title":"Reward Models and Learning Strategies","url":"https://aclanthology.org/2025.findings-emnlp.970.pdf"},{"title":"1 Overview of the reward signal generation pipeline","url":"https://arxiv.org/html/2603.06317"},{"title":"Towards Efficient Multi-LLM Inference","url":"https://arxiv.org/pdf/2506.06579"},{"title":"GitHub - bobxwu/learning-from-rewards-llm-papers: A comrephensive collection of learning from rewards in the post-training and test-time scaling of LLMs, with a focus on both reward models and learning strategies across training, inference, and post-inference stages. · GitHub","url":"https://github.com/bobxwu/learning-from-rewards-llm-papers"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"Reward Modeling for Reinforcement Learning-Based LLM ...","url":"https://openreview.net/pdf?id=TDfrN1TbGH"},{"title":"Inference-Time Reward Hacking in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=hSX7Dd8dxy"},{"title":"LLM-Based Reward Models","url":"https://www.emergentmind.com/topics/llm-based-reward-models"}]
+
+I found relevant search results about reward signals, resource allocation, and LLM inference. Here are the key findings:
+
+## Reward Signals for LLM Inference
+
+Reward signals serve as a unified mechanism for improving LLM inference-time reasoning and efficiency. Two main approaches have emerged:
+
+1. **Outcome Reward Models (ORM)**: EORM extends the ORM framework by representing outcome-level correctness using an energy function where lower values indicate higher quality of responses. During inference, the energy is inverted to produce a scalar reward signal, enabling smooth preference-based optimization while relying solely on outcome supervision.
+
+2. **Process Reward Models (PRM)**: PRMs have been proposed to evaluate the logical soundness of each step, providing a fine-grained assessment beyond final-answer accuracy.
+
+## Resource Allocation at Inference Time
+
+RM-guided inference, which allocates additional computation at inference time without changing the parameters of a learned verifier (e.g., an ORM or PRM), is effective in allowing the model to re-sample more strategically on challenging problems.
+
+Additionally, the ZOOTER algorithm uses reward distillation, where off-the-shelf reward models provide scalar rewards to train a routing function. This function learns to predict the likelihood that a specific model is optimal for a given query. During inference, the routing function directly assigns queries to the most capable model, avoiding the computational overhead of generating outputs from all candidates.
+
+## Challenges with Reward Hacking
+
+A Reward Model that achieves high accuracy on a static test set may fail catastrophically during dynamic inference (e.g., Tree Search or RL). A PRM optimized for static accuracy might lack the calibration necessary to effectively prune branches, leading to a divergence where improved benchmark metrics do not translate to downstream task success.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18ac0402-226e-4f58-8272-224038d56a07",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "232e547b-092e-416a-91df-abcd520ca7a9",
+  "sourceToolAssistantUUID": "18ac0402-226e-4f58-8272-224038d56a07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-09T21:31:42.720Z_
+
+Excellent! Now let me search specifically for the PSG-KVC paper itself and related recent work on PRM-based inference optimization.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "232e547b-092e-416a-91df-abcd520ca7a9",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi6J4HrQgX6CEv8z1GF",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "82c469c3-e4fd-45ed-9ec1-e86d8df94feb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0154RiBMPnFoLHC1tgAaazhr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1134,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 29234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4004,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-09T21:31:43.149Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J5QynsDA5RY9eQm5Huby2T`</summary>
+
+```json
+{
+  "query": "\"PSG-KVC\" OR \"PRM-Score-Gated\" KV cache compression tree search"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82c469c3-e4fd-45ed-9ec1-e86d8df94feb",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi6J4HrQgX6CEv8z1GF",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "43952ebe-8893-493c-b859-73e2620478c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0154RiBMPnFoLHC1tgAaazhr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1134,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 29234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4004,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-09T21:31:43.370Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W1qQqmR2J6mn2UCGyQrVqa`</summary>
+
+```json
+{
+  "query": "PRM gated adaptive quantization differential precision multiple trajectories 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43952ebe-8893-493c-b859-73e2620478c7",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi6J4HrQgX6CEv8z1GF",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "04d8e8cc-922f-4bbf-83b5-0f58385255bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0154RiBMPnFoLHC1tgAaazhr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1134,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 29234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4004,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-09T21:31:43.584Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017FqBux7kVZppDuKRCNxm91`</summary>
+
+```json
+{
+  "query": "process reward model differential quantization parallel sampling decoding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04d8e8cc-922f-4bbf-83b5-0f58385255bf",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi6J4HrQgX6CEv8z1GF",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "6ec069c9-7be9-4e0e-acef-b3726ded3942",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0154RiBMPnFoLHC1tgAaazhr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1134,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 29234,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4004,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-09T21:31:43.914Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RBVDA11jizMdp5iHixz2du`</summary>
+
+```json
+{
+  "query": "site:arxiv.org reward guided adaptive bit-width allocation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ec069c9-7be9-4e0e-acef-b3726ded3942",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi6J4HrQgX6CEv8z1GF",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "6f1642f3-1fc7-4cb6-859c-a8873935d47e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_0154RiBMPnFoLHC1tgAaazhr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1134,
+      "cache_creation_input_tokens": 4004,
+      "cache_read_input_tokens": 29234,
+      "output_tokens": 251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4004
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1134,
+          "output_tokens": 251,
+          "cache_read_input_tokens": 29234,
+          "cache_creation_input_tokens": 4004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4004,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-09T21:31:48.103Z_
+
+<details><summary>↩ Tool result · `toolu_01W1qQqmR2J6mn2UCGyQrVqa`</summary>
+
+```text
+Web search results for query: "PRM gated adaptive quantization differential precision multiple trajectories 2026"
+
+Links: [{"title":"Precision Neural Network Quantization via Learnable Adaptive Modules","url":"https://arxiv.org/html/2504.17263v1"},{"title":"ADAPTIVE QUANTIZATION WITH MIXED-PRECISION BASED ON LOW-COST PROXY","url":"https://arxiv.org/html/2402.17706v1"},{"title":"APreQEL: Adaptive Mixed Precision Quantization For Edge LLMs","url":"https://arxiv.org/html/2603.23575"},{"title":"PROGRESSIVE MIXED-PRECISION DECODING FOR ...","url":"https://openreview.net/pdf?id=OVxmpus9NA"},{"title":"GitHub - Efficient-ML/Awesome-Model-Quantization: A list of papers, docs, codes about model quantization. This repo is aimed to provide the info for model quantization research, we are continuously improving the project. Welcome to PR the works (papers, repositories) that are missed by the repo. · GitHub","url":"https://github.com/Efficient-ML/Awesome-Model-Quantization"},{"title":"GitHub - Kai-Liu001/Awesome-Model-Quantization: This repository contains low-bit quantization papers from 2020 to 2025 on top conference. · GitHub","url":"https://github.com/Kai-Liu001/Awesome-Model-Quantization"},{"title":"GitHub - pprp/Awesome-LLM-Quantization: Awesome list for LLM quantization · GitHub","url":"https://github.com/pprp/Awesome-LLM-Quantization"},{"title":"Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs","url":"https://arxiv.org/html/2604.04722v1"},{"title":"QTALE: Quantization-Robust Token-Adaptive Layer Execution for LLMs","url":"https://arxiv.org/html/2602.10431v1"},{"title":"Mixed-Precision Quantization for Language Models: Techniques and Prospects","url":"https://arxiv.org/html/2510.16805v1"}]
+
+I searched for that specific query, but the results don't contain papers directly matching all those terms together (PRM gated adaptive quantization differential precision multiple trajectories). 
+
+However, the search returned several relevant papers on quantization techniques published in 2025-2026, including:
+
+- Papers on adaptive and mixed-precision quantization for large language models
+- Recent ICLR 2026 submissions on various quantization approaches
+- Papers discussing differential approaches to quantization and precision allocation
+
+The search results show active research in quantization, but I wasn't able to find a paper with that exact combination of terms. It's possible that:
+
+1. This paper may use slightly different terminology
+2. It might be a very recent preprint not yet widely indexed
+3. The specific phrase combination might be from an internal technical document or dataset
+
+If you're looking for a specific paper, could you provide additional context such as the authors' names, a DOI, or where you encountered these terms? That would help me locate the exact work you're interested in.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04d8e8cc-922f-4bbf-83b5-0f58385255bf",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "038f9584-0bce-4c19-9ee5-f2d8209e5d19",
+  "sourceToolAssistantUUID": "04d8e8cc-922f-4bbf-83b5-0f58385255bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-09T21:31:48.960Z_
+
+<details><summary>↩ Tool result · `toolu_01J5QynsDA5RY9eQm5Huby2T`</summary>
+
+```text
+Web search results for query: ""PSG-KVC" OR "PRM-Score-Gated" KV cache compression tree search"
+
+Links: [{"title":"GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).","url":"https://github.com/October2001/Awesome-KV-Cache-Compression"},{"title":"KVzip: Query-Agnostic KV Cache Compression with Context Reconstruction | OpenReview","url":"https://openreview.net/forum?id=JFygzwx8SJ"},{"title":"GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub","url":"https://github.com/NVIDIA/kvpress"},{"title":"GitHub - IsaacRe/vllm-kvcompress: KV cache compression for high-throughput LLM inference · GitHub","url":"https://github.com/IsaacRe/vllm-kvcompress"},{"title":"GitHub - Zefan-Cai/KVCache-Factory: Unified KV Cache Compression Methods for Auto-Regressive Models · GitHub","url":"https://github.com/Zefan-Cai/KVCache-Factory"},{"title":"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling | OpenReview","url":"https://openreview.net/forum?id=jZVNmDiU86"},{"title":"GitHub - Janghyun1230/FastKVzip: Accurate and fast KV cache compression with a gating mechanism · GitHub","url":"https://github.com/Janghyun1230/FastKVzip"},{"title":"[2405.14366] MiniCache: KV Cache Compression in Depth Dimension for Large Language Models","url":"https://arxiv.org/abs/2405.14366"},{"title":"CodeComp: Structural KV Cache Compression for Agentic Coding","url":"https://arxiv.org/html/2604.10235"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention","url":"https://arxiv.org/pdf/2510.00636"}]
+
+Based on the search results, I found information about KV cache compression methods, but the specific methods you mentioned—"PSG-KVC" and "PRM-Score-Gated"—do not appear in these results. 
+
+The search returned information about various KV cache compression techniques for large language models, including:
+
+- KVzip (query-agnostic KV cache compression)
+- PyramidKV (dynamic compression based on pyramidal information funneling)
+- KVComposePress (attention-guided eviction)
+- MiniCache (compression across depth dimension)
+- CodeComp (structural compression for code tasks)
+- And several other compression methods
+
+However, the specific papers or methods you're searching for—"PSG-KVC" or "PRM-Score-Gated" with tree search—are not mentioned in these results. These may be:
+
+1. Very recent papers not yet widely indexed
+2. Internal or less-widely-published research
+3. Methods with different naming conventions than shown in the search results
+
+Would you like me to try a more specific search, or do you have additional details about these methods that might help locate the relevant research?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43952ebe-8893-493c-b859-73e2620478c7",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "30cbaa0c-2fbf-433b-88e9-7f013618b718",
+  "sourceToolAssistantUUID": "43952ebe-8893-493c-b859-73e2620478c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-09T21:31:50.715Z_
+
+<details><summary>↩ Tool result · `toolu_017FqBux7kVZppDuKRCNxm91`</summary>
+
+```text
+Web search results for query: "process reward model differential quantization parallel sampling decoding"
+
+Links: [{"title":"[2210.15458] Arithmetic Sampling: Parallel Diverse Decoding for Large Language Models","url":"https://arxiv.org/abs/2210.15458"},{"title":"Speculative Decoding and Beyond: An In-Depth Survey of Techniques","url":"https://arxiv.org/html/2502.19732v4"},{"title":"Decoding-Time Debiasing via Process Reward Models: From Controlled Fill-in to Open-Ended Generation","url":"https://arxiv.org/html/2605.02348"},{"title":"Speculative Decoding in vLLM: Complete Guide to Faster LLM Inference | Jarvis Labs Blog | Jarvis Labs","url":"https://jarvislabs.ai/blog/speculative-decoding-vllm-faster-llm-inference"},{"title":"QSpec: Speculative Decoding with Complementary Quantization Schemes","url":"https://arxiv.org/html/2410.11305v1"},{"title":"[2605.02348] Decoding-Time Debiasing via Process Reward Models: From Controlled Fill-in to Open-Ended Generation","url":"https://arxiv.org/abs/2605.02348"},{"title":"Quantizing Diffusion Models from a Sampling-Aware Perspective","url":"https://arxiv.org/html/2505.02242"},{"title":"Quantization (signal processing) - Wikipedia","url":"https://en.wikipedia.org/wiki/Quantization_(signal_processing)"},{"title":"Arithmetic Sampling: Parallel Diverse Decoding for Large Language Models","url":"https://arxiv.org/pdf/2210.15458"},{"title":"Speculative Decoding Meets Quantization: Compatibility Evaluation and Hierarchical Framework Design","url":"https://arxiv.org/html/2505.22179v1"}]
+
+Based on the search results, here's what I found about the query combining process reward models, differential quantization, parallel sampling, and decoding:
+
+## Key Research Areas
+
+The search results reveal several relevant research directions:
+
+### Process Reward Models (PRM)
+
+Process Reward Models can debias models at decoding time by treating bias mitigation as a structured search over candidate tokens without touching model weights, with a separate PRM acting as a judge to score each candidate for both fairness and fluency.
+
+### Differential Quantization and Decoding
+
+A quantization paradigm called QSpec (speculative decoding with complementary quantization execution) employs a pipeline for next-token prediction with varying activation precisions and shared low-precision quantized weights, instead of a constant single quantization scheme. The model initially speculates four tokens using a lower precision scheme (W4A4) and subsequently accepts all drafted tokens after verifying them through a higher precision scheme (W4A16).
+
+### Parallel Sampling and Decoding
+
+Decoding methods for large language models often trade-off between diversity of outputs and parallelism of computation. While LLMs must generate tokens one by one, they can verify multiple tokens in parallel because transformer architectures process entire sequences in a single forward pass, so instead of running the expensive target model N times to generate N tokens, it runs just once to verify N guessed tokens simultaneously.
+
+These concepts intersect in modern optimization techniques for efficient LLM inference that combine multiple strategies to improve speed and quality simultaneously.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ec069c9-7be9-4e0e-acef-b3726ded3942",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "0270f973-77e2-4080-a343-2d7cfad434e9",
+  "sourceToolAssistantUUID": "6ec069c9-7be9-4e0e-acef-b3726ded3942",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-09T21:31:52.173Z_
+
+<details><summary>↩ Tool result · `toolu_01RBVDA11jizMdp5iHixz2du`</summary>
+
+```text
+Web search results for query: "site:arxiv.org reward guided adaptive bit-width allocation 2025 2026"
+
+Links: [{"title":"Don’t Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs","url":"https://arxiv.org/html/2604.04722v1"},{"title":"Anda: Unlocking Efficient LLM Inference with a Variable- ...","url":"https://arxiv.org/pdf/2411.15982"},{"title":"ScaleBITS: Scalable Bitwidth Search for Hardware-Aligned Mixed-Precision LLMs","url":"https://arxiv.org/html/2602.17698"},{"title":"Anda: Unlocking Efficient LLM Inference with a Variable-Length Grouped Activation Data Format","url":"https://arxiv.org/html/2411.15982v1"},{"title":"Under review as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2505.11274v4"},{"title":"[2603.08659] CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning","url":"https://arxiv.org/abs/2603.08659"},{"title":"[2508.03002] Where and How to Enhance: Discovering Bit-Width Contribution for Mixed Precision Quantization","url":"https://arxiv.org/abs/2508.03002"},{"title":"Tilus: A Tile-Level GPGPU Programming Language for Low-Precision Computation","url":"https://arxiv.org/pdf/2504.12984"},{"title":"[2204.09992] Arbitrary Bit-width Network: A Joint Layer-Wise Quantization and Adaptive Inference Approach","url":"https://arxiv.org/abs/2204.09992"},{"title":"Nearly Lossless Adaptive Bit Switching Haiduo Huang∗ huanghd@stu.xjtu.edu.cn","url":"https://arxiv.org/pdf/2502.01199"}]
+
+I've performed the web search for papers on arxiv.org related to "reward guided adaptive bit-width allocation" from 2025-2026. Here are the results:
+
+## Key Findings:
+
+**Most Relevant Papers:**
+
+1. **"Don't Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs"** (April 2026)
+   - Proposes adaptive KV-cache quantization, a learned policy that assigns bit-width proportional to token importance, minimizing expected memory and latency
+
+2. **"CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning"** (March 2026)
+   - Proposes CODA, a method that operationalizes adaptive reasoning by allocating tokens via a policy-internal difficulty signal, estimating difficulty via group-based rollouts and mapping it to gates that modulate a length-dependent shaping term on top of the binary base reward
+
+3. **"ScaleBITS: Scalable Bitwidth Search for Hardware-Aligned Mixed-Precision LLMs"** (February 2026)
+   - Addresses automated precision search for LLMs with focus on layer-level and fine-grained decisions
+
+4. **"Anda: Unlocking Efficient LLM Inference with a Variable-Length Grouped Activation Data Format"** (November 2024)
+   - Develops an iterative post-training adaptive precision search algorithm that optimizes the bit-width for different LLM modules to balance model accuracy, energy efficiency, and inference speed
+
+5. **"SelfBudgeter"** (2025)
+   - Employs a reward function to guide the model in allocating appropriate token budgets based on its own capabilities and question difficulty, and generating solutions with optimal length while ensuring answer accuracy
+
+The search results show several papers addressing adaptive bit-width allocation in 2025-2026, with most focusing on LLM efficiency and some incorporating reward-guided approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f1642f3-1fc7-4cb6-859c-a8873935d47e",
+  "isSidechain": true,
+  "promptId": "c9f2d1f6-f52e-47fd-bba8-dae4abdbb706",
+  "agentId": "a892fb915d3e8ef4f",
+  "type": "user",
+  "uuid": "74120012-ac21-4dfe-bcc9-b0345ac6cee1",
+  "sourceToolAssistantUUID": "6f1642f3-1fc7-4cb6-859c-a8873935d47e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-09T21:32:10.925Z_
+
+Based on my comprehensive search across multiple academic databases and publication venues (2025-2026), here is my report on papers that might challenge the novelty claim of PSG-KVC:
+
+## Report: Papers Challenging PSG-KVC's Novelty Claim
+
+I conducted an extensive search for papers combining KV cache compression, reward/quality signals, and differential allocation across parallel trajectories. Here are my key findings:
+
+### Papers That Come Closest to the Claimed Novelty
+
+**1. "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression"**
+- **Status**: Strong predecessor work using reward signals for KV cache
+- **Link**: [arXiv:2510.08525](https://arxiv.org/abs/2510.08525) | [OpenReview](https://openreview.net/forum?id=HGdg76iVo6)
+- **Relevance**: Uses reinforcement learning (a reward signal) to guide which transformer heads to compress in the KV cache. Directly optimizes cache allocation against generation outcomes. However, this allocates at the head-level across all trajectories, not differentially across multiple concurrent search branches.
+
+**2. "PM-KVQ: Progressive Mixed-Precision KV Cache Quantization for Long-CoT LLMs"**
+- **Status**: Mixed-precision adaptive approach
+- **Link**: [OpenReview](https://openreview.net/forum?id=Vem6FQvRvq)
+- **Relevance**: Proposes block-wise (layer-wise) memory allocation using mixed precision. Assigns higher bit-widths to more sensitive transformer blocks. Different from PSG-KVC because it's static per layer, not dynamic across concurrent trajectories.
+
+**3. "CODA: Difficulty-Aware Compute Allocation for Adaptive Reasoning"**
+- **Status**: Difficulty-signal based resource allocation
+- **Link**: [arXiv:2603.08659](https://arxiv.org/abs/2603.08659)
+- **Relevance**: Uses a difficulty signal (derived from rollout-based probing) to dynamically allocate computational tokens during reasoning. Similar principle (quality signal → adaptive resource allocation) but for token budget, not KV cache precision.
+
+**4. "Don't Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs"**
+- **Status**: Token-importance based adaptive quantization
+- **Link**: [arXiv:2604.04722](https://arxiv.org/html/2604.04722v1)
+- **Relevance**: Learns a policy to assign bit-width proportional to token importance. Adaptive quantization but applied uniformly across a single trajectory, not differentially across multiple branches.
+
+**5. "Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference"**
+- **Status**: Head-wise adaptive budget allocation
+- **Link**: [arXiv:2407.11550](https://arxiv.org/abs/2407.11550) | [OpenReview](https://openreview.net/forum?id=tcisuhGsQZ)
+- **Relevance**: First head-wise adaptive budget allocation for KV cache. Allocates different cache budgets per attention head based on attention concentration patterns. Not specific to tree search or reward signals.
+
+### Papers Using Process Reward Models for Tree Search (But Not for KV Cache)
+
+**6. "ReST-MCTS*: LLM Self-Training via Process Reward Guided Tree Search"**
+- **Link**: [arXiv:2406.03816](https://arxiv.org/abs/2406.03816) | [OpenReview](https://openreview.net/forum?id=8rcFOqEud5)
+- **Relevance**: Uses process reward models to guide tree search at inference time. However, focuses on selecting trajectories/branches, not on adaptive KV cache compression. No mention of differential bit-width allocation.
+
+**7. "QSpec: Self-Speculative Decoding with Hierarchical Quantized KV Cache"**
+- **Status**: Uses hierarchical quantization with speculative decoding
+- **Link**: [Apple ML Research](https://machinelearning.apple.com/research/quantspec) | [OpenReview](https://openreview.net/forum?id=7SHbJENgHX)
+- **Relevance**: Employs hierarchical 4-bit quantization in speculative decoding (draft vs. target model). Different precision levels but across model variants, not across trajectory branches.
+
+### Papers on Differential Precision in Parallel Decoding
+
+**8. "QSpec: Speculative Decoding with Complementary Quantization Schemes"**
+- **Link**: [arXiv:2410.11305](https://arxiv.org/html/2410.11305v1)
+- **Relevance**: Uses different quantization precisions (W4A4 vs W4A16) for draft and verification phases. Not per-trajectory but per-phase of speculation.
+
+**9. "Speculative Decoding Meets Quantization: Compatibility Evaluation and Hierarchical Framework Design"**
+- **Link**: [arXiv:2505.22179](https://arxiv.org/html/2505.22179v1)
+- **Relevance**: Framework for combining speculative decoding with quantization. No explicit cross-trajectory quality-based allocation.
+
+### Critical Assessment
+
+**Key Finding**: I found NO papers that explicitly combine all three elements:
+1. **Process Reward Model (PRM) scores** as the signal
+2. **KV cache compression** (quantization/bit-width) as the mechanism
+3. **Cross-trajectory/cross-branch differential allocation** as the approach during tree search
+
+The closest works either:
+- Use reward signals for head selection or budget allocation (RLKV, Ada-KV, CODA) but not for per-trajectory KV precision
+- Use PRM signals for tree search pruning (ReST-MCTS*) but not for KV cache optimization
+- Implement mixed-precision KV cache (PM-KVQ, QSpec) but static per layer, not dynamic per trajectory
+- Apply adaptive quantization (Don't Waste Bits!) but to single generation paths, not multiple concurrent branches
+
+### Conclusion
+
+**The novelty claim appears defensible** based on my comprehensive search. The specific combination of using PRM scores as a cross-trajectory signal to allocate differential KV cache bit-width/precision across multiple concurrent search branches during tree search appears to be novel as of May 2026. However, this innovation sits at the intersection of well-established components:
+
+- Reward-guided inference optimization (ReST-MCTS*, CODA)
+- Adaptive KV cache compression (RLKV, Don't Waste Bits!, PM-KVQ)
+- Mixed-precision speculative decoding (QSpec variants)
+- Head/layer-wise adaptation (Ada-KV, KVTuner)
+
+The specific cross-trajectory instantiation appears genuinely novel, though incremental from an architectural perspective.
+
+### Sources
+
+Key papers referenced in this analysis:
+
+- [Which Heads Matter for Reasoning? RL-Guided KV Cache Compression](https://arxiv.org/abs/2510.08525)
+- [PM-KVQ on OpenReview](https://openreview.net/forum?id=Vem6FQvRvq)
+- [CODA: Difficulty-Aware Compute Allocation](https://arxiv.org/abs/2603.08659)
+- [Don't Waste Bits! Adaptive KV-Cache Quantization](https://arxiv.org/html/2604.04722v1)
+- [Ada-KV: Optimizing KV Cache Eviction](https://arxiv.org/abs/2407.11550)
+- [ReST-MCTS*: Process Reward Guided Tree Search](https://arxiv.org/abs/2406.03816)
+- [QSpec: Self-Speculative Decoding](https://machinelearning.apple.com/research/quantspec)
+- [QuantSpec on OpenReview](https://openreview.net/forum?id=7SHbJENgHX)
+- [Speculative Decoding Meets Quantization](https://arxiv.org/html/2505.22179v1)
+- [KV Cache Compression Review Survey](https://arxiv.org/pdf/2508.06297)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74120012-ac21-4dfe-bcc9-b0345ac6cee1",
+  "isSidechain": true,
+  "agentId": "a892fb915d3e8ef4f",
+  "requestId": "req_011Casi77iDpAgK4qp1NiTHm",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "d7df3879-becb-4b7e-852a-5a36c45de552",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "d3ffe915-bbca-4747-989d-6828c93a1613",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01PQomN4Y5K3iqSgMUBp46Th",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 4978,
+      "cache_read_input_tokens": 33238,
+      "output_tokens": 2011,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4978
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 2011,
+          "cache_read_input_tokens": 33238,
+          "cache_creation_input_tokens": 4978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4978,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

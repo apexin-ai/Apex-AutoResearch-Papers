@@ -1,0 +1,3326 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: kv_separatio
+
+**Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 3
+- **Tool calls:** 15
+- **Original source:** `logs/chats/exported-trajectories/account-1/160864cb-6adc-4861-bc34-5bc8f5a8afdc.jsonl`
+- **Structured JSON:** [`24ca39b8c2f922b3dc5b.json`](../../sessions/24/24ca39b8c2f922b3dc5b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T08:35:47.199Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T08:35:47.199Z",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: kv_separation\n- project: ratekv\n- server: westd-37397\n- log_path: /root/ratekv/kv_separation.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T08:35:47.202Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T08:35:47.202Z",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+## Round 1
+
+54 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T08:35:47.238Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: kv_separation
+- project: ratekv
+- server: westd-37397
+- log_path: /root/ratekv/kv_separation.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "d1031589-99da-45b3-8437-f625c0583116",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T08:35:47.238Z_
+
+```json
+{
+  "parentUuid": "d1031589-99da-45b3-8437-f625c0583116",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4c93fd9a-2a4c-432e-b6bf-4f4b81fdfb2f",
+  "timestamp": "2026-05-14T08:35:47.238Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T08:35:47.238Z_
+
+```json
+{
+  "parentUuid": "4c93fd9a-2a4c-432e-b6bf-4f4b81fdfb2f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7affe799-0c56-4435-ab08-6caadad85648",
+  "timestamp": "2026-05-14T08:35:47.238Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T08:35:47.238Z_
+
+```json
+{
+  "parentUuid": "7affe799-0c56-4435-ab08-6caadad85648",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "05bbc0b9-74e8-4300-bb6e-2d549d90f3d9",
+  "timestamp": "2026-05-14T08:35:47.238Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze kv_separation experiment results",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T08:35:52.617Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到 cron 回调：实验 `kv_separation` 进程正常退出，状态已转为 ANALYZING。需要执行 session-start 初始化，然后分析实验结果。
+
+先执行 session-start：
+1. read_registry
+2. reconcile_crons
+3. 读 report.md
+4. 读 ROADMAP.md
+5. 然后处理这个 cron 回调
+
+Let me load the necessary tools first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05bbc0b9-74e8-4300-bb6e-2d549d90f3d9",
+  "isSidechain": false,
+  "requestId": "req_011Cb29yCK8MdYN7z2PfZyxD",
+  "type": "assistant",
+  "uuid": "a22e9469-3cc4-41fd-9069-67f5100573bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014w9dRVYCFYHSpToC4sdemJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22911,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T08:35:53.620Z_
+
+Session 启动，执行初始化 + 分析 kv_separation 实验结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a22e9469-3cc4-41fd-9069-67f5100573bc",
+  "isSidechain": false,
+  "requestId": "req_011Cb29yCK8MdYN7z2PfZyxD",
+  "type": "assistant",
+  "uuid": "c4b8e096-2e89-4add-9b34-0669030f1d80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014w9dRVYCFYHSpToC4sdemJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22911,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T08:35:56.433Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LzhAd9nnXtB1febq7xJuin`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config",
+  "max_results": 11
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4b8e096-2e89-4add-9b34-0669030f1d80",
+  "isSidechain": false,
+  "requestId": "req_011Cb29yCK8MdYN7z2PfZyxD",
+  "type": "assistant",
+  "uuid": "584f6bfb-04ce-40d7-b8d6-e8e10a4d47e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014w9dRVYCFYHSpToC4sdemJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22911,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 401,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22911,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 401,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 22911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22911
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T08:35:56.440Z_
+
+<details><summary>↩ Tool result · `toolu_01LzhAd9nnXtB1febq7xJuin`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "584f6bfb-04ce-40d7-b8d6-e8e10a4d47e5",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "bcf0c547-874b-42e3-b6b2-1240f2aaaf91",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__load_project_config"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "584f6bfb-04ce-40d7-b8d6-e8e10a4d47e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T08:36:00.295Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me execute the session-start initialization steps in parallel: read registry, reconcile crons, read report.md, read ROADMAP.md, and load project config.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcf0c547-874b-42e3-b6b2-1240f2aaaf91",
+  "isSidechain": false,
+  "requestId": "req_011Cb29ysgyS7DRb1vPdp3MF",
+  "type": "assistant",
+  "uuid": "0164c960-6311-4cf0-b419-53149c8bd7ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnMmP9WQRFpxBVV9wWbd3F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 34752,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 34752,
+          "cache_creation_input_tokens": 4076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T08:36:01.252Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Add7eLywZ1HUYzh7XAeRFH`</summary>
+
+```json
+{
+  "project": "ratekv",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0164c960-6311-4cf0-b419-53149c8bd7ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb29ysgyS7DRb1vPdp3MF",
+  "type": "assistant",
+  "uuid": "5bc443d2-91ce-4873-a51d-a599033a1f7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnMmP9WQRFpxBVV9wWbd3F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 34752,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 34752,
+          "cache_creation_input_tokens": 4076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T08:36:01.256Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01Hn4kvD5cViPiAW8eD7sCXU`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bc443d2-91ce-4873-a51d-a599033a1f7e",
+  "isSidechain": false,
+  "requestId": "req_011Cb29ysgyS7DRb1vPdp3MF",
+  "type": "assistant",
+  "uuid": "51e8dfd4-ebd0-48d2-a0a9-202888e90dc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnMmP9WQRFpxBVV9wWbd3F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 34752,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 34752,
+          "cache_creation_input_tokens": 4076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T08:36:01.609Z_
+
+<details><summary>↩ Tool result · `toolu_01Add7eLywZ1HUYzh7XAeRFH`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (51.8KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-2-projects-ratekv--claude-sessions-agent-830db028/160864cb-6adc-4861-bc34-5bc8f5a8afdc/tool-results/toolu_01Add7eLywZ1HUYzh7XAeRFH.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"kv_separation\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:01:37.522Z\", \"updated_at\": \"2026-05-14T08:35:41.431Z\", \"hypothesis\": \"K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python -u run_kv_separation.py 2>&1 | tee kv_separation.log\\\"\", \"server\": \"westd-37397\", \"gpu\": [\"cuda:1\"], \"pid\": \"188298\", \"log_path\": \"~/runs/ratekv/kv_separation.log\", \"submitted_at\": \"2026-05-14T06:14:06.782Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:35:41.293Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:35:42.705546+00:00\"}]}}, \"multi_seed_error_bars\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:32:17.418Z\", \"updated_at\": \"2026-05-14T07:40:49.992Z\", \"spec\": {\"hypothesis\": \"Multi-seed error bars (plan_017): 3 different calibration subsets on Qwen2.5-7B, each runs constrained MCKP (k=8) + uniform 4-bit eval. Reports mean±std for statistical credibility. Dream review flagged all-single-run as critical gap.\", \"plan_id\": \"plan_017\", \"claim\": [1, 2], \"model_name\": \"Qwen2.5-7B\", \"server\": \"westd-37397\", \"command\": \"python3 run_multi_seed.py > multi_seed.log 2>&1\", \"data_path\": \"wikitext-103-raw-v1 train (calibration) + wikitext-2-raw-v1 test (eval)\", \"data_count\": \"64 seqs x 2048 tokens x 3 seeds\", \"seed\": \"0,1,2\"}, \"log_path\": \"/root/ratekv/multi_seed.log\", \"checkpoint_path\": \"/root/ratekv/multi_seed_results.json\"}, \"downstream_eval_qwen\": {\"status\": \"DONE\", 
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5bc443d2-91ce-4873-a51d-a599033a1f7e",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "0ec9c106-c19e-406d-a4a7-a3b9ff7d646b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"kv_separation\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:01:37.522Z\\\", \\\"updated_at\\\": \\\"2026-05-14T08:35:41.431Z\\\", \\\"hypothesis\\\": \\\"K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python -u run_kv_separation.py 2>&1 | tee kv_separation.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"188298\\\", \\\"log_path\\\": \\\"~/runs/ratekv/kv_separation.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:14:06.782Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T08:35:41.293Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T08:35:42.705546+00:00\\\"}]}}, \\\"multi_seed_error_bars\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:32:17.418Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:40:49.992Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Multi-seed error bars (plan_017): 3 different calibration subsets on Qwen2.5-7B, each runs constrained MCKP (k=8) + uniform 4-bit eval. Reports mean±std for statistical credibility. Dream review flagged all-single-run as critical gap.\\\", \\\"plan_id\\\": \\\"plan_017\\\", \\\"claim\\\": [1, 2], \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"command\\\": \\\"python3 run_multi_seed.py > multi_seed.log 2>&1\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train (calibration) + wikitext-2-raw-v1 test (eval)\\\", \\\"data_count\\\": \\\"64 seqs x 2048 tokens x 3 seeds\\\", \\\"seed\\\": \\\"0,1,2\\\"}, \\\"log_path\\\": \\\"/root/ratekv/multi_seed.log\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/multi_seed_results.json\\\"}, \\\"downstream_eval_qwen\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:53:02.087Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:32:03.906Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Downstream task evaluation: ARC-C/HellaSwag/PIQA/WinoGrande on Qwen2.5-7B at 4x compression. Verify PPL improvements translate to downstream accuracy. Compare baseline bf16 vs uniform 4-bit vs constrained MCKP (hires).\\\", \\\"plan_id\\\": \\\"plan_012\\\", \\\"claim\\\": [1, 2], \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"eval_data\\\": \\\"ARC-C, HellaSwag, PIQA, WinoGrande\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python3 run_downstream_eval.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"lm_eval datasets (arc_challenge, hellaswag, piqa, winogrande)\\\", \\\"data_count\\\": 14319}, \\\"metrics\\\": {\\\"avg_recovery\\\": 0.728, \\\"arc_c\\\": 0.5137, \\\"hellaswag\\\": 0.7684, \\\"piqa\\\": 0.7786, \\\"winogrande\\\": 0.6819, \\\"arc_c_delta_pp\\\": 3.16, \\\"hellaswag_delta_pp\\\": 4, \\\"piqa_delta_pp\\\": 1.25, \\\"winogrande_delta_pp\\\": 1.97}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"All 3 conditions complete (baseline bf16, uniform 4-bit, MCKP hires). MCKP hires consistently outperforms uniform on all 4 downstream tasks. Average: MCKP 0.6857 vs Uniform 0.6597 (+2.60pp). Recovery rate = 72.8% of uniform degradation. ARC-C: MCKP exceeds baseline (0.5137 vs 0.4957). Results align with PPL trend (baseline 9.81 → uniform 15.45 → MCKP 10.91). Allocation from exp_e constrained_allocation, bit distribution {8:4, 4:100, 2:8}.\\\", \\\"checkpoint_path\\\": \\\"N/A (eval-only experiment)\\\", \\\"log_path\\\": \\\"/root/ratekv/downstream_eval_results.json\\\", \\\"completed_at\\\": \\\"2026-05-14T07:27:40.056Z\\\"}, \\\"greedy_constrained_ablation\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:10:16.539Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:32:02.492Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"l0_heuristic_corrected\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:15:45.149Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:30:16.698Z\\\", \\\"hypothesis\\\": \\\"Budget-corrected L0 heuristic baseline (plan_015 修正版): 在 exact budget=0.25 下比较 3 种策略——(1) L0-random: L0@8-bit + k 个随机非 L0 heads@2-bit + rest@4-bit (5 seeds, mean±std), (2) MCKP optimal (已有结果), (3) Naive positional heuristic: L0@8-bit + 最深 k 个 heads@2-bit + rest@4-bit。k: Qwen=8, Llama/Mistral=16。直接量化 MCKP optimal selection 相对于随机/简单启发式的增益。\\\", \\\"notes\\\": \\\"Bug fixed and all conditions complete for all 3 models. Corrected MCKP PPLs: Qwen=10.9131, Llama=8.4498, Mistral=7.3231.\\\\n\\\\nQwen (k=8): MCKP=10.9131, L0-random mean=11.69±0.47, naive=12.23, uniform=15.45\\\\nLlama (k=16): MCKP=8.4498, data complete\\\\nMistral (k=16): MCKP=7.3231, L0-random mean=7.5604±0.0871, naive=7.4807, uniform=7.1314, baseline=7.0351\\\\n\\\\nMistral 结论: MCKP (7.32) beats L0-random (7.56) and naive (7.48), but all non-uniform strategies lose to uniform (7.13). Low heterogeneity = non-uniform allocation counterproductive at 4x.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_l0_heuristic_corrected.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-2-raw-v1\\\", \\\"data_count\\\": 298938, \\\"model_name\\\": \\\"Qwen2.5-7B / Llama-3.1-8B / Mistral-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"/root/ratekv/l0_heuristic_corrected_results/\\\", \\\"log_path\\\": \\\"/root/ratekv/l0_heuristic_corrected.log\\\"}, \\\"completed_at\\\": \\\"2026-05-14T07:04:36.648Z\\\", \\\"metrics\\\": {\\\"mckp_constrained_ppl\\\": 11.23, \\\"l0_random_mean_ppl\\\": 11.69, \\\"l0_random_std\\\": 0.47, \\\"naive_positional_ppl\\\": 12.23, \\\"uniform_4bit_ppl\\\": 15.45, \\\"qwen_l0_random_median\\\": 11.515, \\\"qwen_l0_random_seeds\\\": [11.486, 11.615, 11.325, 11.515, 12.515], \\\"llama_l0_random_mean\\\": 10.479, \\\"llama_l0_random_std\\\": 1.033, \\\"llama_l0_random_median\\\": 10.038, \\\"llama_l0_random_seeds\\\": [9.485, 10.488, 9.941, 10.038, 12.444], \\\"llama_naive_positional\\\": 9.941, \\\"llama_mckp\\\": 8.4498, \\\"llama_uniform\\\": 8.469, \\\"mistral_l0_random_mean\\\": 7.56, \\\"mistral_l0_random_std\\\": 0.087, \\\"mistral_l0_random_median\\\": 7.586, \\\"mistral_l0_random_seeds\\\": [7.523, 7.61, 7.413, 7.586, 7.669], \\\"mistral_naive_positional\\\": 7.481, \\\"mistral_mckp\\\": 7.3231, \\\"mistral_uniform\\\": 7.131}}, \\\"llama_k_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:20:29.712Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:29:31.419Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_k_ablation.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B/ --profiles llama_ppl_profiles_hires.json --gpu cuda:0 --k_values 4,8,12,16,18 --budget 0.25 --output llama_k_ablation_results.json\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/llama_ppl_profiles_hires.json\\\", \\\"data_count\\\": 256, \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"best_k\\\": 4, \\\"best_ppl\\\": 8.4498, \\\"uniform_4bit_ppl\\\": 8.469, \\\"k4_ppl\\\": 8.4498, \\\"k8_ppl\\\": 8.4498, \\\"k12_ppl\\\": 8.4498, \\\"k16_ppl\\\": 8.4498, \\\"k18_ppl\\\": 8.4498, \\\"natural_2bit_count\\\": 2}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/llama_k_ablation_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/llama_k_ablation.log\\\", \\\"completed_at\\\": \\\"2026-05-14T07:24:31.810Z\\\"}, \\\"mistral_hires_pipeline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:31:16.795Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:23:15.704Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Mistral-7B-v0.3 hires profiling 补救：用 64seq×2048tok 高分辨率 calibration 重做 profiling + constrained MCKP + bf16 eval。类比 exp_e 和 Llama hires 的改善。Pass: MCKP PPL < uniform 4-bit (7.131)。\\\", \\\"parent\\\": \\\"mistral_full_pipeline\\\", \\\"plan_id\\\": \\\"plan_003\\\", \\\"claim\\\": [1, 2], \\\"model_name\\\": \\\"Mistral-7B-v0.3\\\", \\\"data_path\\\": \\\"calibration_hires.json\\\", \\\"data_count\\\": 64, \\\"seed\\\": 0, \\\"eval_data\\\": \\\"WikiText-2\\\", \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 python run_mistral_hires_pipeline.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": 173653, \\\"checkpoint_path\\\": \\\"/root/ratekv/mistral_hires_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/mistral_hires_pipeline.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T05:43:04.808Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T05:43:05.178Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T05:43:06.074918+00:00\\\"}]}, \\\"metrics\\\": {\\\"mckp_ppl\\\": 7.323, \\\"uniform_4bit_ppl\\\": 7.131, \\\"baseline_ppl\\\": 7.035, \\\"delta_vs_uniform\\\": -0.192, \\\"memory_ratio\\\": 0.25}, \\\"notes\\\": \\\"Hires profiling (64×2048) 完成但 MCKP 仍劣于 uniform。原始 MCKP 使用 max_2bit=18（未严格施加 k=16 约束），PPL=7.3231。修正为 max_2bit=16 后 PPL=7.3106（改善仅 -0.013）。Uniform=7.1314, Baseline=7.0351。Mistral 架构 (GQA 4:1, 256 heads) head 异质性低，constrained MCKP 优化空间极窄。k ablation sweep (k∈{4,8,12,16,18}) 正在运行，将提供完整 k vs PPL 曲线。\\\"}, \\\"mistral_k_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:16:00.128Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:20:19.293Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_k_ablation.py --model /root/autodl-tmp/models/mistralai/Mistral-7B-v0___3/ --profiles mistral_ppl_profiles_hires.json --gpu cuda:0 --k_values 4,8,12,16,18 --budget 0.25 --output mistral_k_ablation_results.json\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/mistral_ppl_profiles_hires.json\\\", \\\"data_count\\\": 256, \\\"model_name\\\": \\\"Mistral-7B-v0.3\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"best_k\\\": 4, \\\"best_ppl\\\": 7.1648, \\\"uniform_4bit_ppl\\\": 7.131, \\\"k4_ppl\\\": 7.1648, \\\"k8_ppl\\\": 7.1997, \\\"k12_ppl\\\": 7.2448, \\\"k16_ppl\\\": 7.3106, \\\"k18_ppl\\\": 7.3231}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/mistral_k_ablation_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/mistral_k_ablation.log\\\", \\\"completed_at\\\": \\\"2026-05-14T07:20:19.293Z\\\"}, \\\"greedy_cardinality_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:09:05.394Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:14:47.987Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u run_greedy_constrained.py --gpu 0 --max_2bit 8 --budget 0.25\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"188833\\\", \\\"log_path\\\": \\\"/root/ratekv/greedy_constrained_k8_results.json\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:15:29.318Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/ratekv/full_bitwidth_results.json\\\", \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": null, \\\"data_count\\\": null, \\\"checkpoint_path\\\": \\\"/root/ratekv/greedy_constrained_k8_results.json\\\", \\\"wall_clock_seconds\\\": 584.9, \\\"gpu_hours\\\": 0.16}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T06:25:14.190Z\\\", \\\"metrics\\\": {\\\"greedy_constrained_ppl\\\": 11.2312, \\\"greedy_unconstrained_ppl\\\": 32.4467, \\\"mckp_constrained_ppl\\\": 11.23, \\\"delta_vs_mckp\\\": 0.0012, \\\"bit_distribution\\\": {\\\"2\\\": 8, \\\"4\\\": 100, \\\"8\\\": 4}, \\\"memory_ratio\\\": 0.25}, \\\"notes\\\": \\\"Verification complete (2026-05-14):\\\\n\\\\nIMPLEMENTATION: step-by-step (correct). Constraint checked at each iteration in solve_greedy_constrained() before selecting downgrade. NOT post-hoc.\\\\n\\\\nDELTA CORRECTION: Reported delta=0.0012 was artifact of hardcoded rounded ref_mckp_ppl=11.23. Actual MCKP PPL=11.2312 = Greedy PPL=11.2312. True delta=0.0000.\\\\n\\\\nPER-HEAD COMPARISON (with l0_exclude_2bit=True for both solvers):\\\\n- Qwen2.5-7B: 112/112 PERFECT MATCH. PPL identical.\\\\n- Llama-3.1-8B: 256/256 PERFECT MATCH. Distortion identical.\\\\n- Mistral-7B-v0.3: 255/256. One head differs (31,5: greedy=8bit, mckp=4bit). Cause: both 4-bit and 8-bit have 0 distortion for this head; greedy stops at 8-bit when budget met, MCKP jumps directly to 4-bit. Zero distortion impact.\\\\n\\\\nCONCLUSION: Cardinality constraint narrows solution space to where greedy = MCKP. Greedy is sufficient for constrained case. Paper can claim solver-invariance under cardinality constraints.\\\"}, \\\"qwen_bf16_reeval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:27:21.701Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:11:14.927Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_bf16_reeval.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-2-raw-v1 (test)\\\", \\\"data_count\\\": 298938, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"notes\\\": \\\"bf16 consistency re-eval: baseline + uniform 4-bit PPL. Prior fp16: baseline=9.81, uniform_4bit=15.45.\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/ratekv/bf16_reeval.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T06:32:03.594Z\\\", \\\"metrics\\\": {\\\"baseline_bf16_ppl\\\": 9.8106, \\\"baseline_fp16_ppl\\\": 9.81, \\\"delta_baseline\\\": 0.0006, \\\"uniform4_bf16_ppl\\\": 15.4454, \\\"uniform4_fp16_ppl\\\": 15.45, \\\"delta_uniform4\\\": 0.0046}}, \\\"l0_only_heuristic\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:09:03.553Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:07:45.249Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_l0_heuristic.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"189432\\\", \\\"log_path\\\": \\\"/root/ratekv/l0_heuristic.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:17:49.532Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext-2-raw-v1\\\", \\\"data_count\\\": 298938, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 2995.7, \\\"gpu_hours\\\": 0.83}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"KILLED: Director 修正 plan_015 设计——旧版 L0@8-bit + rest@4-bit 在 budget=0.25 下数学不可行（Qwen 实际 budget=0.259）。取消后由 l0_heuristic_corrected 替代。\\\", \\\"completed_at\\\": \\\"2026-05-14T07:07:45.249Z\\\"}, \\\"head_sensitivity_viz\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:53:04.344Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:07:44.291Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Generate paper-quality figures: per-head delta heatmap (3 models), compounding effect curve, budget allocation comparison.\\\", \\\"plan_id\\\": \\\"plan_011\\\", \\\"claim\\\": [1], \\\"model_name\\\": \\\"Qwen2.5-7B / Llama-3.1-8B / Mistral-7B\\\", \\\"command\\\": \\\"python generate_figures.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"profiling data from 3 models\\\", \\\"data_count\\\": 0, \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"/root/ratekv/figures/\\\", \\\"log_path\\\": \\\"/root/ratekv/generate_figures.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"3 张论文级图表生成完成。(1) fig1_head_delta_heatmap: 3 模型并排 heatmap (Qwen 28L×4H / Llama 32L×8H / Mistral 32L×8H)，统一 YlOrRd 色标，L0 高 delta 标注。(2) fig2_compounding_curve: k vs PPL 曲线，10 数据点，k=8 最优 (11.23) 标注，uniform 基线虚线。(3) fig3_allocation_comparison: Uniform vs MCKP stacked bar，L0@8-bit 保护可视化。文件位于 westd-37397:/root/ratekv/figures/，脚本 generate_figures.py。\\\", \\\"completed_at\\\": \\\"2026-05-14T07:07:44.291Z\\\"}, \\\"hires_reeval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:46:37.675Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:58:03.353Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_hires_reeval.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"data_path\\\": \\\"wikitext-2-raw-v1\\\", \\\"data_count\\\": 298938, \\\"seed\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/hires_reeval_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/hires_reeval_v2.log\\\", \\\"completed_at\\\": \\\"2026-05-14T06:58:01.324Z\\\", \\\"metrics\\\": {\\\"baseline_bf16_ppl\\\": 9.8106, \\\"uniform_4bit_bf16_ppl\\\": 15.4454, \\\"hires_mckp_bf16_ppl\\\": 10.9131}}, \\\"hires_mckp_reeval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:45:23.918Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:51:28.777Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/ratekv/run_hires_reeval.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"wikitext-2-raw-v1 (test)\\\", \\\"data_count\\\": 298938, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"description\\\": \\\"Re-eval hires MCKP allocation with current eval_ppl.py to resolve cross-version PPL inconsistency\\\", \\\"parent\\\": \\\"exp_e_hires_profile\\\", \\\"checkpoint_source\\\": \\\"exp_e constrained_allocation\\\", \\\"eval_data\\\": \\\"wikitext-2-raw-v1 test\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/ratekv/hires_reeval_results.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"baseline_ppl_bf16\\\": 9.8106, \\\"mckp_ppl_bf16\\\": 10.9131, \\\"uniform_4bit_ppl_bf16\\\": 15.4454, \\\"delta_mckp_vs_baseline\\\": 1.1025, \\\"delta_mckp_vs_uniform\\\": -4.5323, \\\"token_count\\\": 298938}, \\\"completed_at\\\": \\\"2026-05-14T06:51:28.777Z\\\"}, \\\"l0_heuristic_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:10:16.317Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:20:40.045Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_l0_heuristic.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"188038\\\", \\\"log_path\\\": \\\"~/runs/ratekv/l0_heuristic_baseline.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T06:13:37.019Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 423.0, \\\"gpu_hours\\\": 0.12}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"KILLED: Director 修正 plan_015 设计——旧版 budget 超标。由 l0_heuristic_corrected 替代。\\\", \\\"completed_at\\\": \\\"2026-05-14T06:20:40.045Z\\\"}, \\\"mistral_aggressive_compression\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:59:01.736Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:10:40.078Z\\\", \\\"hypothesis\\\": \\\"Aggressive compression (5.3x + 8x) 在低异质性架构 Mistral-7B (GQA 4:1, 256 heads) 上是否也能放大 MCKP 优势。与 Llama aggressive (success: 45x better at 5.3x) 对称验证。如果 MCKP 优势随压缩率增加而放大，即使在低异质性架构上也应显现。\\\", \\\"parent\\\": \\\"mistral_hires_pipeline\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_mistral_aggressive.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/mistral_ppl_profiles_hires.json\\\", \\\"data_count\\\": \\\"64seq x 2048tok\\\", \\\"model_name\\\": \\\"Mistral-7B-v0.3\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"budgets\\\": [0.1875, 0.125], \\\"compression_levels\\\": [\\\"5.3x\\\", \\\"8x\\\"], \\\"dtype\\\": \\\"bf16\\\", \\\"checkpoint_source\\\": \\\"mistral_hires_pipeline\\\", \\\"eval_data\\\": \\\"wikitext-2-raw-v1 (test split)\\\"}, \\\"metrics\\\": {\\\"mckp_5.3x_ppl\\\": 11.912, \\\"uniform_2bit_ppl\\\": 519.107, \\\"mckp_8x_ppl\\\": 399.901, \\\"uniform_2bit_8x_ppl\\\": 519.107, \\\"baseline_ppl\\\": 7.035, \\\"uniform_4bit_ppl\\\": 7.131, \\\"5.3x_bit_dist\\\": {\\\"2\\\": 128, \\\"4\\\": 128}, \\\"8x_bit_dist\\\": {\\\"2\\\": 248, \\\"4\\\": 8}, \\\"total_time_seconds\\\": 268.1}, \\\"log_path\\\": \\\"/root/ratekv/mistral_aggressive.log\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/mistral_aggressive_results.json\\\", \\\"notes\\\": \\\"5.3x: MCKP=11.91 vs Uniform 2-bit=519.11 (MCKP 43.6× better)。8x: MCKP=399.90 vs Uniform=519.11 (1.30× better)。跨架构对比: Llama 5.3x 45× vs Mistral 5.3x 43.6×, 倍率高度一致。Mistral 绝对 PPL 更低 (uniform 519 vs Llama 2644), 反映低异质性架构整体更鲁棒。5.3x bit分配: {4:128, 2:128} 半对半; 8x: {2:248, 4:8} 几乎全2-bit。结论: 压缩率增大放大 MCKP 优势的规律跨架构成立 (Llama GQA 4:1 + Mistral GQA 4:1)。5.3x 作为 MCKP 优势放大的跨架构证据，8x 作为 stress test (两者均不实用但 MCKP 仍优)。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T06:10:40.078Z\\\"}, \\\"llama_aggressive_compression\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:23:06.162Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:52:41.954Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"MCKP 优势在激进压缩下放大：Llama-3.1-8B budget=0.125 (8x, ~2-bit avg)，uniform 大幅退化时 MCKP 应有显著优势。用已有 hires profiling 数据，只需 solver+eval。\\\", \\\"parent\\\": \\\"llama_hires_pipeline\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"claim\\\": [2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"data_path\\\": \\\"llama_ppl_profiles_hires.json\\\", \\\"data_count\\\": 256, \\\"seed\\\": 0, \\\"eval_data\\\": \\\"WikiText-2\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python run_llama_aggressive.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"description\\\": \\\"Aggressive compression (5.3x + 8x) MCKP vs uniform 2-bit\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"tmux_session\\\": \\\"llama_aggressive\\\", \\\"log_path\\\": \\\"/root/ratekv/llama_aggressive.log\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/llama_aggressive_results.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T05:43:24.965Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T05:43:25.254Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T05:43:28.749579+00:00\\\"}]}, \\\"metrics\\\": {\\\"mckp_5.3x_ppl\\\": 57.6, \\\"uniform_2bit_ppl\\\": 2643.77, \\\"mckp_8x_ppl\\\": 2372.33, \\\"uniform_2bit_8x_ppl\\\": 2643.77}, \\\"notes\\\": \\\"5.3x: MCKP=57.60 vs Uniform 2-bit=2643.77 (MCKP 45× better, 验证假说——激进压缩下 MCKP 优势放大)。8x: MCKP=2372.33 vs Uniform=2643.77 (barely better, 两者都 catastrophic)。结论：MCKP 优势随压缩率增大而增大，但绝对 PPL 在 5.3x 以上不实用。论文定位：5.3x 作为 MCKP 优势放大的证据，8x 作为 stress test。\\\"}, \\\"llama_hires_pipeline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:17:45.441Z\\\", \\\"updated_at\\\": \\\"2026-05-14T05:21:13.265Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Llama-3.1-8B hires profiling 补救：用 64seq×2048tok 高分辨率 calibration 重做 profiling + constrained MCKP + bf16 eval。类比 exp_e 对 Qwen 的改善 (lowres PPL恶化2.52→hires 0.75, 70%改善)。Pass: MCKP PPL < uniform 4-bit (8.47)。\\\", \\\"parent\\\": \\\"llama_full_pipeline\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"claim\\\": [1, 2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"data_path\\\": \\\"calibration_hires.json\\\", \\\"data_count\\\": 64, \\\"seed\\\": 0, \\\"eval_data\\\": \\\"WikiText-2\\\", \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && CUDA_VISIBLE_DEVICES=0 python run_llama_hires_pipeline.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/llama_hires_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/llama_hires_pipeline.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"baseline_ppl\\\": 8.0918, \\\"uniform_4bit_ppl\\\": 8.469, \\\"lowres_mckp_ppl\\\": 8.6951, \\\"hires_mckp_ppl\\\": 8.4498, \\\"hires_improvement_ppl\\\": 0.2453, \\\"degradation_reduction_pct\\\": 40.7, \\\"profiling_time_min\\\": 173.4, \\\"total_time_min\\\": 175.1}, \\\"notes\\\": \\\"Hires MCKP (64x2048, max2=18) beats uniform 4-bit on Llama-3.1-8B: 8.4498 vs 8.4690 PPL. Degradation vs bf16 reduced 40.7% compared to lowres (0.3581 vs 0.6033). 255/256 heads got non-zero 2-bit allocation.\\\", \\\"completed_at\\\": \\\"2026-05-14T05:21:13.265Z\\\"}, \\\"mistral_full_pipeline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:22:50.015Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:31:09.035Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python run_mistral_pipeline.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"169374\\\", \\\"log_path\\\": \\\"/root/ratekv/mistral_pipeline.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T02:04:16.432Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"hypothesis\\\": \\\"Mistral-7B-v0.3 full pipeline: profiling (224 heads × {2,4,8}-bit) + constrained MCKP + PPL eval. 验证跨架构泛化性 (GQA 4:1, Mistral sliding window attention)。Pass: MCKP PPL < uniform 4-bit by ≥0.5, budget=0.25.\\\", \\\"plan_id\\\": \\\"plan_003\\\", \\\"claim\\\": [1, 2], \\\"data_path\\\": \\\"WikiText-2\\\", \\\"data_count\\\": 224, \\\"model_name\\\": \\\"Mistral-7B-v0.3\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"/root/ratekv/mistral_results.json\\\", \\\"wall_clock_seconds\\\": 1610.0, \\\"gpu_hours\\\": 0.45}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"mckp_ppl_bf16\\\": 7.564, \\\"uniform_4bit_ppl_bf16\\\": 7.131, \\\"baseline_ppl_bf16\\\": 7.035, \\\"delta_vs_uniform\\\": -0.433, \\\"memory_ratio\\\": 0.25}, \\\"completed_at\\\": \\\"2026-05-14T02:31:06.466Z\\\", \\\"notes\\\": \\\"bf16 eval 完成。MCKP PPL=7.564 vs Uniform 4-bit=7.131, Baseline=7.035。MCKP 劣于 uniform (+0.43)。与 Llama lowres 同一问题：lowres profiling → delta 同质化 → solver 盲目分配。需要 hires profiling 补救，登记为 mistral_hires_pipeline。\\\"}, \\\"llama_full_pipeline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:22:48.218Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:29:04.490Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Llama-3.1-8B full pipeline replication: profiling (256 heads × {2,4,8}-bit) + constrained MCKP + PPL eval. 验证跨架构泛化性 (GQA 4:1 vs Qwen 7:1)。Pass: MCKP PPL < uniform 4-bit by ≥0.5, budget=0.25.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"claim\\\": [1, 2], \\\"model_name\\\": \\\"Llama-3.1-8B\\\", \\\"data_path\\\": \\\"WikiText-2\\\", \\\"seed\\\": 0, \\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && CUDA_VISIBLE_DEVICES=0 python run_llama_pipeline.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_count\\\": 256, \\\"checkpoint_path\\\": \\\"/root/ratekv/llama_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/llama_pipeline.log\\\"}, \\\"notes\\\": \\\"bf16 eval 完成。MCKP PPL=8.70 vs Uniform 4-bit=8.47, Baseline=8.09。MCKP 劣于 uniform (+0.23)。根因：256 heads + lowres profiling (16×512) → delta 高度同质化 → solver 盲目分配。与 Qwen exp_e 情况一致（lowres PPL恶化2.52, hires降到0.75）。需要 hires profiling 补救，登记为 llama_hires_pipeline。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"mckp_ppl_bf16\\\": 8.7, \\\"uniform_4bit_ppl_bf16\\\": 8.47, \\\"baseline_ppl_bf16\\\": 8.09, \\\"delta_vs_uniform\\\": -0.23, \\\"memory_ratio\\\": 0.25}, \\\"completed_at\\\": \\\"2026-05-14T02:29:04.490Z\\\"}, \\\"exp_e_hires_profile\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:20:58.895Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:51:49.904Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"用高分辨率 calibration (64 seq × 2048 tokens, calibration_hires.json) 重新 profile 并跑 constrained MCKP (max_2bit=8 + L0 exclusion)。验证高分辨率 profiling 是否改善中间层分辨率、产出不同/更优的 bit 分配。对比 exp_c (低分辨率 profile)。\\\", \\\"parent\\\": \\\"exp_c_constrained_mckp\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python run_exp_e.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/calibration_hires.json\\\", \\\"data_count\\\": 64, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"wikitext-2\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/exp_e_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/exp_e.log\\\"}, \\\"notes\\\": \\\"Hires profiling (64seq×2048tok) vs lowres (16seq×512tok) 结果对比：\\\\n\\\\nProfile分辨率大幅提升: 100/112 non-zero 2-bit deltas (vs lowres 37/112, +63 heads)。4-bit deltas: 6/112 (vs 4/112)。Hires使solver获得2.7x更多2-bit量化信号。\\\\n\\\\nSolver产出: bit_dist={8:4, 2:8, 4:100}（宏观与exp_c一致）。8/112 heads分配变化: L1H3,L2H3,L3H2,L3H3从2bit→4bit; L5H1,L6H2,L10H1,L11H2从4bit→2bit。Hires倾向于保护浅层(L1-L3)同时在中层(L5-L11)更激进压缩。\\\\n\\\\nPPL (bf16 eval, 公平对比): exp_e=9.57, exp_c=11.34, baseline=8.82。exp_e vs exp_c: -1.78 PPL改善 (同budget=0.25)。PPL恶化量: exp_e +0.75 vs baseline, exp_c +2.52。Hires将PPL恶化从2.52降至0.75 (70%改善)。\\\\n\\\\n注意: 原eval_ppl.py compressed_forward在fp16下L27层overflow产生NaN (K range [-420,234])。修复为bf16后正常。exp_c原始PPL(11.23)是fp16结果, bf16重测为11.34。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T01:51:21.076Z\\\", \\\"metrics\\\": {\\\"constrained_ppl_bf16\\\": 9.569, \\\"baseline_ppl_bf16\\\": 8.819, \\\"exp_c_ppl_bf16\\\": 11.345, \\\"delta_vs_exp_c\\\": -1.776, \\\"memory_ratio\\\": 0.25, \\\"bit_distribution\\\": {\\\"2\\\": 8, \\\"4\\\": 100, \\\"8\\\": 4}, \\\"profile_resolution\\\": {\\\"hires_nonzero_2bit\\\": 100, \\\"lowres_nonzero_2bit\\\": 37, \\\"hires_nonzero_4bit\\\": 6, \\\"lowres_nonzero_4bit\\\": 4, \\\"total_heads\\\": 112}, \\\"allocation_diff_count\\\": 8, \\\"profiling_time_min\\\": 65.5}}, \\\"c4_cross_dataset_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:17:45.349Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:31:06.364Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"C4 cross-dataset evaluation: 用 C4 数据做 calibration + profiling + constrained MCKP solver + eval，与 WikiText-2 结果对比 (同 budget=0.25, max_2bit=8)。验证 (a) per-head 分配跨数据集一致性 (b) PPL 改善幅度跨数据集稳定性。\\\", \\\"plan_id\\\": \\\"plan_007\\\", \\\"claim\\\": [1, 2, 3], \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"data_path\\\": \\\"/root/ratekv/c4_calibration.json\\\", \\\"seed\\\": 42, \\\"command\\\": \\\"python run_c4_cross_dataset.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_count\\\": 64, \\\"checkpoint_path\\\": \\\"/root/ratekv/c4_eval_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/c4_phase2_4.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T01:28:48.100Z\\\", \\\"metrics\\\": {\\\"c4_mckp_ppl\\\": 11.3285, \\\"uniform4bit_ppl\\\": 15.4454, \\\"delta_over_uniform\\\": 4.117, \\\"allocation_agreement_rate\\\": 0.982, \\\"n_disagree\\\": 2, \\\"bit_distribution\\\": {\\\"2\\\": 8, \\\"4\\\": 100, \\\"8\\\": 4}, \\\"memory_ratio\\\": 0.25, \\\"wt2_ref_mckp_ppl\\\": 11.2312, \\\"wt2_ref_delta\\\": 4.2142, \\\"ppl_gap\\\": 0.097}, \\\"notes\\\": \\\"C4 calibration vs WikiText-2 calibration对比 (均 budget=0.25, max_2bit=8, Qwen2.5-7B)。MCKP PPL: C4-cal=11.33, WT2-cal=11.23 (gap仅0.10)。Uniform 4-bit PPL=15.45 (两者一致)。Delta: C4=+4.12, WT2=+4.21。Allocation agreement=98.2% (110/112 heads完全一致)。仅2处差异: L3H0 (WT2:4bit↔C4:2bit) 和 L4H2 (WT2:2bit↔C4:4bit) — 两个head互换2/4-bit分配,本质是边缘case。Bit distribution宏观完全一致: {8:4, 4:100, 2:8}。结论: MCKP分配对calibration数据集高度稳定,跨WT2/C4一致性极强。支撑Claims 1,2,3。\\\"}, \\\"budget_sweep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:51:52.095Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:18:54.267Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Budget sweep: constrained MCKP at compression ratios 2x/4x/8x (budget=0.5/0.25/0.125). Compare each against uniform baseline at same budget. Qwen2.5-7B, WikiText-2.\\\", \\\"plan_id\\\": \\\"plan_005\\\", \\\"claim\\\": [2], \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python run_budget_sweep.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/full_bitwidth_results.json\\\", \\\"data_count\\\": 112, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/ratekv/budget_sweep_results.json\\\", \\\"log_path\\\": \\\"/root/ratekv/budget_sweep.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T01:13:42.111Z\\\", \\\"notes\\\": \\\"FP16 PPL=9.81. 2x(budget=0.5): uniform-8bit=10.10, MCKP=10.66 (delta=-0.56, MCKP worse). 4x(budget=0.25): uniform-4bit=15.45, MCKP=11.23 (delta=+4.21, confirmed). 8x(budget=0.125): uniform-2bit=14758.92, MCKP=906.78 (delta=+13852, L0 protection critical).\\\\n\\\\n2x归因：PPL profiler在4-bit和8-bit之间分辨率坍缩（per-head PPL delta≈0），solver误判降级免费，将8个head不必要地推至2-bit。uniform 8-bit已近无损（+0.29 vs FP16），per-head优化无收益空间。\\\\n\\\\n论文定位：\\\\n- Claim 2限定为\\\\\\\"moderate-to-aggressive compression (≥4x)\\\\\\\"\\\\n- 2x诚实呈现：uniform 8-bit suffices, per-head优化无收益\\\\n- 8x表述：\\\\\\\"even at extreme compression, L0 protection prevents total collapse (906 vs 14759)\\\\\\\"，不claim实用性\\\\n- 整体叙事：\\\\\\\"MCKP provides most meaningful improvement at 4x sweet spot\\\\\\\"\\\\n- MCKP优势趋势：2×无优势 → 4× +27% → 8× collapse protection\\\"}, \\\"ratequant_greedy_comparison\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:49:20.894Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:05:19.258Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"RateQuant 的 greedy Algorithm 1 在离散 {2,4,8,16}-bit action space 上不再 optimal（polymatroid structure 不成立）。在 budget=0.25 下，greedy allocation 的 PPL 应劣于 constrained MCKP (11.23)。\\\", \\\"plan_id\\\": \\\"plan_008\\\", \\\"claim\\\": [2]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/ratequant_greedy_results.json\\\", \\\"log_path\\\": \\\"/tmp/ratequant_greedy.log\\\", \\\"completed_at\\\": \\\"2026-05-14T00:59:37.739Z\\\", \\\"notes\\\": \\\"Greedy PPL=32.45 vs MCKP PPL=11.23, Delta=+21.22。Greedy bit分配: {2:68, 4:30, 8:4, 16:10}; MCKP bit分配: {2:8, 4:100, 8:4}。两者mem_ratio均=0.2500。Greedy将68个非L0 head降至2-bit(MCKP仅8个)，同时保留10个16-bit head。Greedy L0分配: L0H0=8bit, L0H1=8bit, L0H2=16bit, L0H3=8bit——L0实际得到充分保护，greedy的真实问题是非L0的68个head被过度降级到2-bit，compounding error使PPL劣化3倍。非均匀bit间距{2,4,8,16}导致greedy过度激进：16→8省8bit看似高效，驱动大量head继续降至2-bit。结论: RateQuant greedy designed for consecutive integers fails on hardware-aligned discrete bit-widths——RateQuant在自己的连续整数设定{2,3,4,5,6}下works well(Proposition 6 optimality成立)，问题是硬件对齐的非连续{2,4,8,16}打破了polymatroid结构，greedy不再optimal。Paper表述应为'RateQuant greedy fails on hardware-aligned discrete bit-widths'，不应笼统说'RateQuant fails'。Constrained MCKP在practical discrete bit-widths上提供21 PPL gap的巨大优势。\\\"}, \\\"compounding_sweep_k10_12\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:49:17.613Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:57:05.447Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"补充 max_2bit={10,12} 数据点，确认 k=8 是 U 型曲线极值点而非 k=8-16 区间内的非极值。\\\", \\\"parent\\\": \\\"compounding_sweep\\\", \\\"plan_id\\\": \\\"plan_004\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python run_compounding_k10_12.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/full_bitwidth_results.json\\\", \\\"data_count\\\": 112, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"/root/ratekv/compounding_k10_12_results.json\\\", \\\"log_path\\\": \\\"/tmp/k10_12.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T00:56:46.841Z\\\", \\\"notes\\\": \\\"k=10: PPL=11.50, bit分配={2:10, 4:98, 8:4}, mem=0.2478; k=12: PPL=11.42, bit分配={2:12, 4:96, 8:3, 16:1}, mem=0.2500。完整曲线: k=0→15.45, k=4→11.77, k=8→11.23, k=10→11.50, k=12→11.42, k=16→11.81。k=8仍是极值点(11.23)，k=10和k=12均高于k=8，确认U型曲线底部在k=8附近。k=12(11.42)&lt;k=10(11.50)&lt;k=16(11.81)，说明曲线右侧单调上升但非陡峭。\\\"}, \\\"compounding_sweep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:27:18.498Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:42:43.212Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Compounding effect characterization: sweep max_2bit ∈ {0,4,8,16,24,48,75,112}, 每个值跑 constrained MCKP + eval PPL。映射 compounding threshold，为 cardinality constraint 选择提供 principled basis。\\\", \\\"parent\\\": \\\"exp_c_constrained_mckp\\\", \\\"plan_id\\\": \\\"plan_004\\\", \\\"claim\\\": [3], \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python run_compounding_sweep.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/full_bitwidth_results.json\\\", \\\"data_count\\\": 8, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"/root/ratekv/compounding_sweep_results.json\\\", \\\"log_path\\\": \\\"/tmp/compounding_sweep.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T00:42:35.742Z\\\", \\\"notes\\\": \\\"Compounding threshold clearly at max_2bit=8. U-shaped curve: PPL=15.45 (0) → 11.77 (4) → 11.23 (8, optimum) → 11.81 (16) → 13.14 (24) → 22.88 (48) → 35.35 (75/112). max_2bit=0 ≈ uniform 4-bit (15.45). max_2bit=8 matches exp_c (11.23). max_2bit=112 (unconstrained) saturates at 75 actual 2-bit heads with PPL=35.35, close to exp_b's 36.92. Sharp elbow at 24→48 2-bit heads. Sweet spot: 4-8 2-bit heads.\\\"}, \\\"exp_d_no_l0_exclusion\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:20:54.705Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:29:07.739Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"去掉 L0 排除约束，只保留 max_2bit=8 cardinality constraint。验证 solver 是否自动回避 L0 的 2-bit（即 solver 能否自动发现 Layer 0 sensitivity）。Pass: solver 不分配 L0 任何 2-bit head，且 PPL ≤ exp_c (11.23)。\\\", \\\"parent\\\": \\\"exp_c_constrained_mckp\\\", \\\"command\\\": \\\"python run_exp_d.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"/root/ratekv/full_bitwidth_results.json\\\", \\\"data_count\\\": 112, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/ratekv/exp_d.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T00:25:29.129Z\\\", \\\"notes\\\": \\\"Solver自动回避了L0的2-bit分配！L0四个head全部分配8bit，与exp_c（手动排除L0）结果完全一致。\\\\\\\\n\\\\\\\\n分配: 8bit:4(全部L0) 4bit:100 2bit:8 — 与exp_c完全相同\\\\\\\\n2-bit heads: L1H0,L1H2,L1H3,L2H2,L2H3,L3H2,L3H3,L4H2\\\\\\\\nPPL: 11.2312 ≈ exp_c的11.23\\\\\\\\nMemory ratio: 0.2500\\\\\\\\n\\\\\\\\n结论: profiler的distortion信号足以让solver自动发现L0 sensitivity，手动排除L0约束是冗余的。这对paper narrative非常有利——可以claim \\\\\\\\\\\\\\\"solver automatically discovers layer sensitivity without manual intervention\\\\\\\\\\\\\\\"。\\\", \\\"plan_id\\\": \\\"plan_001\\\"}, \\\"exp_c_no2bit\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:16:07.045Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:22:44.182Z\\\", \\\"hypothesis\\\": \\\"Path B: MCKP solver with {4,8,16}-bit action space (去掉 2-bit). 使用现有 profiling 数据重跑 solver. Pass: auto solver PPL < uniform 4-bit (15.45) by ≥0.5, budget ≤ 0.2500.\\\", \\\"parent\\\": \\\"exp_b_hires_quant\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_exp_c_no2bit.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"150328\\\", \\\"log_path\\\": \\\"/root/ratekv/exp_c_no2bit.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T00:20:54.332Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/ratekv/full_bitwidth_results.json\\\", \\\"data_count\\\": 112, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none\\\", \\\"eval_data\\\": \\\"wikitext-2\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/exp_c_no2bit_results.json\\\", \\\"wall_clock_seconds\\\": 105.8, \\\"gpu_hours\\\": 0.03}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T00:22:40.107Z\\\", \\\"metrics\\\": {\\\"mckp_ppl\\\": 15.4454, \\\"uniform_4bit_ppl\\\": 15.4454, \\\"baseline_ppl\\\": 9.8106, \\\"delta_vs_uniform\\\": 0, \\\"memory_ratio\\\": 0.25, \\\"bit_distribution\\\": {\\\"4\\\": 112}}}, \\\"exp_c_constrained_mckp\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:01:49.191Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:14:44.144Z\\\", \\\"hypothesis\\\": \\\"Constrained MCKP with {2,4,8,16}-bit action space + cardinality constraint count(2-bit)≤8 + Layer 0 excluded from 2-bit. Budget=0.25 (4x compression). Pass: auto solver PPL < uniform 4-bit (15.45) by ≥0.5. D009 修复方案。\\\", \\\"parent\\\": \\\"exp_b_hires_quant\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 run_exp_c.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"data_path\\\": \\\"full_bitwidth_results.json (reused PPL profiles)\\\", \\\"data_count\\\": 112, \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/ratekv/exp_c.log\\\", \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"WikiText-2\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T00:14:36.123Z\\\", \\\"notes\\\": \\\"PASS. Constrained MCKP PPL=11.23 vs uniform 4-bit PPL=15.45 (delta=+4.21). Memory ratio=0.25. Bit distribution: {8bit:4 (L0), 4bit:100, 2bit:8}. D009 constraints: max_2bit=8 + L0 excluded from 2-bit. Unconstrained MCKP collapsed to PPL=36.92 (75 heads at 2-bit). Key fix: skipped Pareto filtering in constrained solver to preserve fallback options when cardinality constraint binds. 2-bit heads allocated to L1-L4 (least sensitive). Results saved to exp_c_results.json.\\\"}, \\\"exp_b_hires_quant\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:22:41.820Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:55:15.163Z\\\", \\\"hypothesis\\\": \\\"PPL-guided quant-only MCKP with full bit-width action space {2,4,8,16-bit}. 之前 quant-only=uniform 是 tautology (只有 4-bit 选项)。现在 solver 可给 sensitive heads (Layer 0) 分 8/16-bit 保护, tolerant heads 分 2-bit 节省 budget。Budget=0.25 (4x 压缩). Pass: PPL < uniform 4-bit (15.45) by ≥0.5. Fail = 项目 archive.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"NEGATIVE (MCKP solver): MCKP PPL=36.92, 远差于 uniform 4-bit (15.45)。根因：PPL profiler 分辨率坍缩——112 heads 中仅 ~15 个有 non-zero 2-bit delta，其余全为 0.0。Solver 错误分配 75/112 heads 到 2-bit，实际 memory ratio 仅 0.18（target 0.25）。\\\\n\\\\nBUT 手工策略验证概念成立：\\\\n- S1 (L0@8bit, rest@4bit, budget=0.259): PPL=10.62 (+4.82 vs uniform)\\\\n- Budget-matched (L0@8bit, 8×least-sensitive@2bit, rest@4bit, budget=0.25): PPL=11.69 (+3.76 vs uniform)\\\\n- S2 (L0@16bit, 24@2bit, rest@4bit): PPL=17.74 (-2.30, 2-bit 太多)\\\\n\\\\n结论：非均匀分配概念被手工实验强力验证。问题在 profiler 信号质量（calibration PPL delta 对大部分 head 无区分度），而非优化框架本身。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python full_bitwidth_mckp.py + budget_matched_test.py + manual_strategy_test.py\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"calibration_data.json + WikiText-2\\\", \\\"data_count\\\": \\\"16 calibration seqs x 512 tokens + WikiText-2 298938 tokens eval\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (inference only)\\\", \\\"log_path\\\": \\\"/root/ratekv/full_bitwidth.log, /root/ratekv/budget_matched.log, /root/ratekv/manual_test.log\\\"}, \\\"completed_at\\\": \\\"2026-05-13T23:55:15.163Z\\\"}, \\\"exp_a_targeted_hybrid\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:22:39.045Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:29:36.314Z\\\", \\\"hypothesis\\\": \\\"Targeted Hybrid: Layer 0 cliff heads 用 eviction (因对 quant 极敏感), 其余 108 heads 用 4-bit quant. 假设: Layer 0 eviction 损伤 < Layer 0 量化损伤, 整体 PPL 优于 uniform 4-bit (15.45).\\\", \\\"spec\\\": {\\\"command\\\": \\\"targeted_hybrid.py smoke test (foreground)\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"WikiText-2\\\", \\\"data_count\\\": \\\"5000 eval tokens (smoke)\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A (foreground)\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"NEGATIVE: Eviction 路径全面死亡。Smoke test: L0 evict@50% PPL=205-249, L0 evict@25% 更差。Layer 0 无法承受任何 eviction。结合 P0-1 (全局 eviction compounding) 和本实验 (Layer 0 targeted eviction)，eviction 在所有配置下均伤害 PPL，彻底关闭 eviction 路径。\\\", \\\"completed_at\\\": \\\"2026-05-13T23:29:36.314Z\\\"}, \\\"mvp_004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T21:55:09.878Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:19:16.015Z\\\", \\\"hypothesis\\\": \\\"Fresh profiling: per-KV-head eviction/quantization crossover on Qwen2.5-7B (112 KV heads), joint MCKP 优于 quant-only ≥0.5 PPL. 使用新 calibration 数据 (拼接 WikiText-103, ≥1000 tokens/sample), 删除缓存 profiles.json 强制重新 profile.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c '...' (see mvp_004 original)\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"WikiText-103 concatenated calibration + WikiText-2 eval\\\", \\\"data_count\\\": \\\"20 calibration samples\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/ratekv/mvp_004.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"NEGATIVE: MSE distortion metric falsified. 实际日志数字：Full MCKP PPL=1084.56, Quant-only=5574.11, Uniform 4-bit=15.45. MSE-guided 分配与 PPL 完全不相关。需 pivot 到 PPL-based distortion metric（已完成，见 p0_1_ppl_fast）。\\\", \\\"completed_at\\\": \\\"2026-05-13T22:16:01.600Z\\\"}, \\\"p0_2_cliff_7B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:24:27.822Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:19:11.492Z\\\", \\\"hypothesis\\\": \\\"2-bit cliff effect 隔离测试 (Qwen2.5-7B, 112 KV heads): 验证 1.5B 上发现的 Layer 0 cliff 是否在 7B 上复现, 以及是否有额外敏感 head\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python cliff_test.py --model Qwen2.5-7B --bits 2,4,8 --max_eval_tokens 10000\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"141907\\\", \\\"data_path\\\": \\\"calibration_data.json\\\", \\\"data_count\\\": \\\"10000 eval tokens\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/ratekv/p0_2_cliff_7B.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"7B cliff test 完成。2-bit cliff: 3/112 (2.7%) — L0H0 +31.9%, L0H2 +23.2%, L0H3 +11.7%。4-bit cliff: 0/112。8-bit cliff: 0/112。与 1.5B 一致：cliff 集中在 Layer 0，但幅度更小（7B max +32% vs 1.5B max +297%）。4-bit 和 8-bit 对所有 head 安全。\\\", \\\"completed_at\\\": \\\"2026-05-13T23:19:11.492Z\\\"}, \\\"p0_1_ppl_fast\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:25:14.157Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:18:59.980Z\\\", \\\"hypothesis\\\": \\\"PPL-based distortion profiling (Qwen2.5-7B, fast mode): 用 PPL 增量替代 MSE 作为 distortion metric, 验证 PPL-guided MCKP 在 4x 压缩下能否优于 uniform 4-bit. Fast mode 只 profile budget-relevant actions (quant@4bit, evict@1/4).\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python run_ppl_mvp.py --model Qwen2.5-7B --device cuda:0 --fast\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"142134\\\", \\\"data_path\\\": \\\"calibration_data.json + WikiText-2\\\", \\\"data_count\\\": \\\"20 calibration samples + WikiText-2 298938 tokens\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"~/runs/ratekv/p0_1_ppl_fast.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"NEGATIVE: PPL-based distortion 仍无法让 Full MCKP 优于 uniform 4-bit。Full MCKP=28.07, Quant-only=15.45, Uniform 4-bit=15.45。Full MCKP 选了 47/112 heads evict，eviction 在 4x 压缩下仍然伤害 PPL（比 uniform 差 12.63）。Quant-only MCKP = Uniform 4-bit（符合预期：4x budget 下所有 head 选 4-bit 是唯一方案）。问题不在 distortion metric，而在 eviction@25% retention 本身在 4x 压缩下伤害过大。\\\", \\\"completed_at\\\": \\\"2026-05-13T23:18:59.980Z\\\"}, \\\"p0_2_cliff_1.5B\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:23:57.228Z\\\", \\\"updated_at\\\": \\\"2026-05-13T22:24:22.333Z\\\", \\\"hypothesis\\\": \\\"2-bit quantization cliff effect 隔离测试 (Qwen2.5-1.5B): 逐个 KV head 设为 2/4/8-bit, 检测是否存在 \\\\\\\"任一 head 低 bit 即灾难\\\\\\\" 的 cliff effect\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python cliff_test.py --model /root/autodl-tmp/models/Qwen2.5-1.5B --bits 2,4,8 --max_eval_tokens 10000\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"data_path\\\": \\\"calibration_data.json (WikiText-103 concat)\\\", \\\"data_count\\\": \\\"10000 eval tokens\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/ratekv/cliff_1.5B_results.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"2-bit cliff 仅限 Layer 0 (L0H0 +297%, L0H1 +241%)，其余 54/56 heads 的 2-bit delta 在 0-5.5%。4-bit 只有 L0H1 cliff (13.8%)。8-bit 零 cliff。结论：2-bit 非全局灾难，问题是 Layer 0 极度敏感。Solver 不应全局删除 2-bit，应仅限制 Layer 0。\\\", \\\"completed_at\\\": \\\"2026-05-13T22:24:22.333Z\\\"}, \\\"sanity_004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T21:51:10.636Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:52:38.076Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python run_mvp.py --model /root/autodl-tmp/models/Qwen2.5-1.5B --calibration_data calibration_data.json --device cuda:0 --output sanity_foreground_results.json\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"data_path\\\": \\\"WikiText-103 concatenated calibration + WikiText-2 eval\\\", \\\"data_count\\\": \\\"20 calibration samples\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (inference only)\\\", \\\"log_path\\\": \\\"/root/ratekv/sanity_foreground_results.json\\\"}, \\\"hypothesis\\\": \\\"前台验证: Qwen2.5-1.5B 完整 pipeline (profiling→solver→eval→crossover). 验证 pipeline 端到端正确性.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Pipeline PASS. Crossover: 89.3% heads prefer eviction at 0.125 budget. PPL: baseline 12.46, 2x 12.52/12.52, 4x 22.67/19.91, 8x 14065/14700. Full MCKP +635 better at 8x. WARNING: 4x budget Full MCKP (22.67) WORSE than quant-only (19.91). WARNING: profiles loaded from cached profiles.json (may be from old calibration data).\\\", \\\"completed_at\\\": \\\"2026-05-13T21:52:38.076Z\\\"}, \\\"sanity_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:56:03.562Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:35:28.933Z\\\", \\\"hypothesis\\\": \\\"Retry of sanity_001/002: Qwen2.5-1.5B pipeline 端到端正确性验证. Fixed cache_position bug.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/ --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json --output sanity_results.json\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 135075, \\\"log_path\\\": \\\"~/runs/ratekv/sanity_003.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:56:34.089Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"WikiText-103 subset (calibration local JSON) + WikiText-2 (eval HF cache)\\\", \\\"data_count\\\": \\\"100 calibration samples, 16 used\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 2334.8, \\\"gpu_hours\\\": 0.65}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"FAILED: ModelScope path Qwen2___5-1___5B with ___ treated as HF repo ID, HFValidationError\\\", \\\"completed_at\\\": \\\"2026-05-13T21:35:28.933Z\\\"}, \\\"sanity_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:58:52.606Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:35:28.231Z\\\", \\\"hypothesis\\\": \\\"Retry of sanity_001: Qwen2.5-1.5B pipeline 端到端正确性验证\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp.py --model Qwen/Qwen2.5-1.5B --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json --output sanity_results.json\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 131751, \\\"log_path\\\": \\\"~/runs/ratekv/sanity_002.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T19:59:22.309Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"WikiText-103 subset (calibration, local JSON) + WikiText-2 (eval, HF cache)\\\", \\\"data_count\\\": \\\"100 calibration samples, 16 used\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 5765.9, \\\"gpu_hours\\\": 1.6}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"FAILED: run_mvp.py 不支持 --output 参数，argparse 直接拒绝\\\", \\\"completed_at\\\": \\\"2026-05-13T21:35:28.231Z\\\"}, \\\"sanity_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:47:17.059Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:35:27.756Z\\\", \\\"hypothesis\\\": \\\"Pipeline 端到端正确性验证：用 Qwen2.5-1.5B 小模型快速跑通 profiling → MCKP solver → PPL eval 全流程，在 mvp_001 完成前发现潜在 bug\\\", \\\"parent\\\": \\\"\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp.py --model Qwen/Qwen2.5-1.5B --device cuda:0 --output sanity_results.json\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 130298, \\\"log_path\\\": \\\"~/runs/ratekv/sanity_001.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T19:47:41.243Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"allenai/c4 (calibration) + wikitext-2-raw-v1 (eval)\\\", \\\"data_count\\\": \\\"16 seq × 512 tokens (calibration)\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 6466.5, \\\"gpu_hours\\\": 1.8}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"FAILED: 同 mvp_001，tmux 缺少 proxy 环境变量导致 C4 下载失败\\\", \\\"completed_at\\\": \\\"2026-05-13T21:35:27.756Z\\\"}, \\\"mvp_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:56:03.114Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:35:26.814Z\\\", \\\"hypothesis\\\": \\\"Retry of mvp_001/002: per-KV-head eviction/quantization crossover on Qwen2.5-7B, joint MCKP 优于 quant-only ≥0.5 PPL. Fixed cache_position bug.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 134996, \\\"log_path\\\": \\\"~/runs/ratekv/mvp_003.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:56:32.086Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"WikiText-103 subset (calibration local JSON) + WikiText-2 (eval HF cache)\\\", \\\"data_count\\\": \\\"100 calibration samples, 16 used\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 2334.7, \\\"gpu_hours\\\": 0.65}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"FAILED: calibration data texts all shorter than 512 tokens (WikiText-103 paragraphs too short)\\\", \\\"completed_at\\\": \\\"2026-05-13T21:35:26.814Z\\\"}, \\\"mvp_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:58:52.295Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:35:25.874Z\\\", \\\"hypothesis\\\": \\\"Retry of mvp_001: per-KV-head eviction/quantization crossover on Qwen2.5-7B, joint MCKP 优于 quant-only ≥0.5 PPL\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 131672, \\\"log_path\\\": \\\"~/runs/ratekv/mvp_002.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T19:59:20.350Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"WikiText-103 subset (calibration, local JSON) + WikiText-2 (eval, HF cache)\\\", \\\"data_count\\\": \\\"100 calibration samples, 16 used\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 5765.5, \\\"gpu_hours\\\": 1.6}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"FAILED: IndexError: shape mismatch [0] vs [3584] in torch vmap/dynamo during profiling. Tensor indexing bug in eviction or quantization code.\\\", \\\"completed_at\\\": \\\"2026-05-13T21:35:25.874Z\\\"}, \\\"mvp_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T17:31:41.823Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:35:25.403Z\\\", \\\"hypothesis\\\": \\\"在 per-KV-head 粒度上 (Qwen2.5-7B, 28 layers × N KV heads)，eviction 和 quantization 存在 crossover——部分 head 在 matched memory budget 下 eviction distortion &lt; quantization distortion，且 joint allocation 优于 quant-only optimal allocation ≥0.5 PPL\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --device cuda:0\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 128388, \\\"log_path\\\": \\\"~/runs/ratekv/mvp_001.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T19:01:59.773Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"allenai/c4 (calibration) + wikitext-2-raw-v1 (eval)\\\", \\\"data_count\\\": \\\"16 seq × 512 tokens (calibration)\\\", \\\"model_name\\\": \\\"Qwen/Qwen2.5-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 9205.6, \\\"gpu_hours\\\": 2.56}, \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"FAILED: tmux non-interactive shell 未加载 /etc/network_turbo proxy，C4 数据集下载 ConnectionError: Network is unreachable\\\", \\\"completed_at\\\": \\\"2026-05-13T21:35:25.403Z\\\"}}, \\\"count\\\": 42, \\\"total\\\": 42, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0827}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"kv_separation\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:01:37.522Z\", \"updated_at\": \"2026-05-14T08:35:41.431Z\", \"hypothesis\": \"K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python -u run_kv_separation.py 2>&1 | tee kv_separation.log\\\"\", \"server\": \"westd-37397\", \"gpu\": [\"cuda:1\"], \"pid\": \"188298\", \"log_path\": \"~/runs/ratekv/kv_separation.log\", \"submitted_at\": \"2026-05-14T06:14:06.782Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T08:35:41.293Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T08:35:42.705546+00:00\"}]}}, \"multi_seed_error_bars\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:32:17.418Z\", \"updated_at\": \"2026-05-14T07:40:49.992Z\", \"spec\": {\"hypothesis\": \"Multi-seed error bars (plan_017): 3 different calibration subsets on Qwen2.5-7B, each runs constrained MCKP (k=8) + uniform 4-bit eval. Reports mean±std for statistical credibility. Dream review flagged all-single-run as critical gap.\", \"plan_id\": \"plan_017\", \"claim\": [1, 2], \"model_name\": \"Qwen2.5-7B\", \"server\": \"westd-37397\", \"command\": \"python3 run_multi_seed.py > multi_seed.log 2>&1\", \"data_path\": \"wikitext-103-raw-v1 train (calibration) + wikitext-2-raw-v1 test (eval)\", \"data_count\": \"64 seqs x 2048 tokens x 3 seeds\", \"seed\": \"0,1,2\"}, \"log_path\": \"/root/ratekv/multi_seed.log\", \"checkpoint_path\": \"/root/ratekv/multi_seed_results.json\"}, \"downstream_eval_qwen\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:53:02.087Z\", \"updated_at\": \"2026-05-14T07:32:03.906Z\", \"spec\": {\"hypothesis\": \"Downstream task evaluation: ARC-C/HellaSwag/PIQA/WinoGrande on Qwen2.5-7B at 4x compression. Verify PPL improvements translate to downstream accuracy. Compare baseline bf16 vs uniform 4-bit vs constrained MCKP (hires).\", \"plan_id\": \"plan_012\", \"claim\": [1, 2], \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"eval_data\": \"ARC-C, HellaSwag, PIQA, WinoGrande\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python3 run_downstream_eval.py\", \"server\": \"westd-37397\", \"data_path\": \"lm_eval datasets (arc_challenge, hellaswag, piqa, winogrande)\", \"data_count\": 14319}, \"metrics\": {\"avg_recovery\": 0.728, \"arc_c\": 0.5137, \"hellaswag\": 0.7684, \"piqa\": 0.7786, \"winogrande\": 0.6819, \"arc_c_delta_pp\": 3.16, \"hellaswag_delta_pp\": 4, \"piqa_delta_pp\": 1.25, \"winogrande_delta_pp\": 1.97}, \"conclusion\": \"success\", \"notes\": \"All 3 conditions complete (baseline bf16, uniform 4-bit, MCKP hires). MCKP hires consistently outperforms uniform on all 4 downstream tasks. Average: MCKP 0.6857 vs Uniform 0.6597 (+2.60pp). Recovery rate = 72.8% of uniform degradation. ARC-C: MCKP exceeds baseline (0.5137 vs 0.4957). Results align with PPL trend (baseline 9.81 → uniform 15.45 → MCKP 10.91). Allocation from exp_e constrained_allocation, bit distribution {8:4, 4:100, 2:8}.\", \"checkpoint_path\": \"N/A (eval-only experiment)\", \"log_path\": \"/root/ratekv/downstream_eval_results.json\", \"completed_at\": \"2026-05-14T07:27:40.056Z\"}, \"greedy_constrained_ablation\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:10:16.539Z\", \"updated_at\": \"2026-05-14T07:32:02.492Z\", \"conclusion\": \"killed\"}, \"l0_heuristic_corrected\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:15:45.149Z\", \"updated_at\": \"2026-05-14T07:30:16.698Z\", \"hypothesis\": \"Budget-corrected L0 heuristic baseline (plan_015 修正版): 在 exact budget=0.25 下比较 3 种策略——(1) L0-random: L0@8-bit + k 个随机非 L0 heads@2-bit + rest@4-bit (5 seeds, mean±std), (2) MCKP optimal (已有结果), (3) Naive positional heuristic: L0@8-bit + 最深 k 个 heads@2-bit + rest@4-bit。k: Qwen=8, Llama/Mistral=16。直接量化 MCKP optimal selection 相对于随机/简单启发式的增益。\", \"notes\": \"Bug fixed and all conditions complete for all 3 models. Corrected MCKP PPLs: Qwen=10.9131, Llama=8.4498, Mistral=7.3231.\\n\\nQwen (k=8): MCKP=10.9131, L0-random mean=11.69±0.47, naive=12.23, uniform=15.45\\nLlama (k=16): MCKP=8.4498, data complete\\nMistral (k=16): MCKP=7.3231, L0-random mean=7.5604±0.0871, naive=7.4807, uniform=7.1314, baseline=7.0351\\n\\nMistral 结论: MCKP (7.32) beats L0-random (7.56) and naive (7.48), but all non-uniform strategies lose to uniform (7.13). Low heterogeneity = non-uniform allocation counterproductive at 4x.\", \"conclusion\": \"success\", \"spec\": {\"command\": \"python run_l0_heuristic_corrected.py\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-2-raw-v1\", \"data_count\": 298938, \"model_name\": \"Qwen2.5-7B / Llama-3.1-8B / Mistral-7B\", \"seed\": 0, \"checkpoint_path\": \"/root/ratekv/l0_heuristic_corrected_results/\", \"log_path\": \"/root/ratekv/l0_heuristic_corrected.log\"}, \"completed_at\": \"2026-05-14T07:04:36.648Z\", \"metrics\": {\"mckp_constrained_ppl\": 11.23, \"l0_random_mean_ppl\": 11.69, \"l0_random_std\": 0.47, \"naive_positional_ppl\": 12.23, \"uniform_4bit_ppl\": 15.45, \"qwen_l0_random_median\": 11.515, \"qwen_l0_random_seeds\": [11.486, 11.615, 11.325, 11.515, 12.515], \"llama_l0_random_mean\": 10.479, \"llama_l0_random_std\": 1.033, \"llama_l0_random_median\": 10.038, \"llama_l0_random_seeds\": [9.485, 10.488, 9.941, 10.038, 12.444], \"llama_naive_positional\": 9.941, \"llama_mckp\": 8.4498, \"llama_uniform\": 8.469, \"mistral_l0_random_mean\": 7.56, \"mistral_l0_random_std\": 0.087, \"mistral_l0_random_median\": 7.586, \"mistral_l0_random_seeds\": [7.523, 7.61, 7.413, 7.586, 7.669], \"mistral_naive_positional\": 7.481, \"mistral_mckp\": 7.3231, \"mistral_uniform\": 7.131}}, \"llama_k_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:20:29.712Z\", \"updated_at\": \"2026-05-14T07:29:31.419Z\", \"spec\": {\"command\": \"python run_k_ablation.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B/ --profiles llama_ppl_profiles_hires.json --gpu cuda:0 --k_values 4,8,12,16,18 --budget 0.25 --output llama_k_ablation_results.json\", \"server\": \"westd-37397\", \"data_path\": \"/root/ratekv/llama_ppl_profiles_hires.json\", \"data_count\": 256, \"model_name\": \"Llama-3.1-8B\", \"seed\": 42}, \"metrics\": {\"best_k\": 4, \"best_ppl\": 8.4498, \"uniform_4bit_ppl\": 8.469, \"k4_ppl\": 8.4498, \"k8_ppl\": 8.4498, \"k12_ppl\": 8.4498, \"k16_ppl\": 8.4498, \"k18_ppl\": 8.4498, \"natural_2bit_count\": 2}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/ratekv/llama_k_ablation_results.json\", \"log_path\": \"/root/ratekv/llama_k_ablation.log\", \"completed_at\": \"2026-05-14T07:24:31.810Z\"}, \"mistral_hires_pipeline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:31:16.795Z\", \"updated_at\": \"2026-05-14T07:23:15.704Z\", \"spec\": {\"hypothesis\": \"Mistral-7B-v0.3 hires profiling 补救：用 64seq×2048tok 高分辨率 calibration 重做 profiling + constrained MCKP + bf16 eval。类比 exp_e 和 Llama hires 的改善。Pass: MCKP PPL < uniform 4-bit (7.131)。\", \"parent\": \"mistral_full_pipeline\", \"plan_id\": \"plan_003\", \"claim\": [1, 2], \"model_name\": \"Mistral-7B-v0.3\", \"data_path\": \"calibration_hires.json\", \"data_count\": 64, \"seed\": 0, \"eval_data\": \"WikiText-2\", \"checkpoint_source\": \"N/A\", \"command\": \"CUDA_VISIBLE_DEVICES=1 PYTHONUNBUFFERED=1 python run_mistral_hires_pipeline.py\", \"server\": \"westd-37397\", \"gpu\": [\"cuda:1\"], \"pid\": 173653, \"checkpoint_path\": \"/root/ratekv/mistral_hires_results.json\", \"log_path\": \"/root/ratekv/mistral_hires_pipeline.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T05:43:04.808Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T05:43:05.178Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:43:06.074918+00:00\"}]}, \"metrics\": {\"mckp_ppl\": 7.323, \"uniform_4bit_ppl\": 7.131, \"baseline_ppl\": 7.035, \"delta_vs_uniform\": -0.192, \"memory_ratio\": 0.25}, \"notes\": \"Hires profiling (64×2048) 完成但 MCKP 仍劣于 uniform。原始 MCKP 使用 max_2bit=18（未严格施加 k=16 约束），PPL=7.3231。修正为 max_2bit=16 后 PPL=7.3106（改善仅 -0.013）。Uniform=7.1314, Baseline=7.0351。Mistral 架构 (GQA 4:1, 256 heads) head 异质性低，constrained MCKP 优化空间极窄。k ablation sweep (k∈{4,8,12,16,18}) 正在运行，将提供完整 k vs PPL 曲线。\"}, \"mistral_k_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:16:00.128Z\", \"updated_at\": \"2026-05-14T07:20:19.293Z\", \"spec\": {\"command\": \"python run_k_ablation.py --model /root/autodl-tmp/models/mistralai/Mistral-7B-v0___3/ --profiles mistral_ppl_profiles_hires.json --gpu cuda:0 --k_values 4,8,12,16,18 --budget 0.25 --output mistral_k_ablation_results.json\", \"server\": \"westd-37397\", \"data_path\": \"/root/ratekv/mistral_ppl_profiles_hires.json\", \"data_count\": 256, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42}, \"metrics\": {\"best_k\": 4, \"best_ppl\": 7.1648, \"uniform_4bit_ppl\": 7.131, \"k4_ppl\": 7.1648, \"k8_ppl\": 7.1997, \"k12_ppl\": 7.2448, \"k16_ppl\": 7.3106, \"k18_ppl\": 7.3231}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/ratekv/mistral_k_ablation_results.json\", \"log_path\": \"/root/ratekv/mistral_k_ablation.log\", \"completed_at\": \"2026-05-14T07:20:19.293Z\"}, \"greedy_cardinality_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:09:05.394Z\", \"updated_at\": \"2026-05-14T07:14:47.987Z\", \"spec\": {\"command\": \"python -u run_greedy_constrained.py --gpu 0 --max_2bit 8 --budget 0.25\", \"server\": \"westd-37397\", \"gpu\": [\"cuda:1\"], \"pid\": \"188833\", \"log_path\": \"/root/ratekv/greedy_constrained_k8_results.json\", \"submitted_at\": \"2026-05-14T06:15:29.318Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/ratekv/full_bitwidth_results.json\", \"model_name\": \"Qwen2.5-7B\", \"seed\": null, \"data_count\": null, \"checkpoint_path\": \"/root/ratekv/greedy_constrained_k8_results.json\", \"wall_clock_seconds\": 584.9, \"gpu_hours\": 0.16}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:25:14.190Z\", \"metrics\": {\"greedy_constrained_ppl\": 11.2312, \"greedy_unconstrained_ppl\": 32.4467, \"mckp_constrained_ppl\": 11.23, \"delta_vs_mckp\": 0.0012, \"bit_distribution\": {\"2\": 8, \"4\": 100, \"8\": 4}, \"memory_ratio\": 0.25}, \"notes\": \"Verification complete (2026-05-14):\\n\\nIMPLEMENTATION: step-by-step (correct). Constraint checked at each iteration in solve_greedy_constrained() before selecting downgrade. NOT post-hoc.\\n\\nDELTA CORRECTION: Reported delta=0.0012 was artifact of hardcoded rounded ref_mckp_ppl=11.23. Actual MCKP PPL=11.2312 = Greedy PPL=11.2312. True delta=0.0000.\\n\\nPER-HEAD COMPARISON (with l0_exclude_2bit=True for both solvers):\\n- Qwen2.5-7B: 112/112 PERFECT MATCH. PPL identical.\\n- Llama-3.1-8B: 256/256 PERFECT MATCH. Distortion identical.\\n- Mistral-7B-v0.3: 255/256. One head differs (31,5: greedy=8bit, mckp=4bit). Cause: both 4-bit and 8-bit have 0 distortion for this head; greedy stops at 8-bit when budget met, MCKP jumps directly to 4-bit. Zero distortion impact.\\n\\nCONCLUSION: Cardinality constraint narrows solution space to where greedy = MCKP. Greedy is sufficient for constrained case. Paper can claim solver-invariance under cardinality constraints.\"}, \"qwen_bf16_reeval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:27:21.701Z\", \"updated_at\": \"2026-05-14T07:11:14.927Z\", \"spec\": {\"command\": \"python run_bf16_reeval.py\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-2-raw-v1 (test)\", \"data_count\": 298938, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"notes\": \"bf16 consistency re-eval: baseline + uniform 4-bit PPL. Prior fp16: baseline=9.81, uniform_4bit=15.45.\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/ratekv/bf16_reeval.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:32:03.594Z\", \"metrics\": {\"baseline_bf16_ppl\": 9.8106, \"baseline_fp16_ppl\": 9.81, \"delta_baseline\": 0.0006, \"uniform4_bf16_ppl\": 15.4454, \"uniform4_fp16_ppl\": 15.45, \"delta_uniform4\": 0.0046}}, \"l0_only_heuristic\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:09:03.553Z\", \"updated_at\": \"2026-05-14T07:07:45.249Z\", \"spec\": {\"command\": \"python run_l0_heuristic.py\", \"server\": \"westd-37397\", \"gpu\": [\"cuda:0\"], \"pid\": \"189432\", \"log_path\": \"/root/ratekv/l0_heuristic.log\", \"submitted_at\": \"2026-05-14T06:17:49.532Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-2-raw-v1\", \"data_count\": 298938, \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 2995.7, \"gpu_hours\": 0.83}, \"conclusion\": \"killed\", \"notes\": \"KILLED: Director 修正 plan_015 设计——旧版 L0@8-bit + rest@4-bit 在 budget=0.25 下数学不可行（Qwen 实际 budget=0.259）。取消后由 l0_heuristic_corrected 替代。\", \"completed_at\": \"2026-05-14T07:07:45.249Z\"}, \"head_sensitivity_viz\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:53:04.344Z\", \"updated_at\": \"2026-05-14T07:07:44.291Z\", \"spec\": {\"hypothesis\": \"Generate paper-quality figures: per-head delta heatmap (3 models), compounding effect curve, budget allocation comparison.\", \"plan_id\": \"plan_011\", \"claim\": [1], \"model_name\": \"Qwen2.5-7B / Llama-3.1-8B / Mistral-7B\", \"command\": \"python generate_figures.py\", \"server\": \"westd-37397\", \"data_path\": \"profiling data from 3 models\", \"data_count\": 0, \"seed\": 0, \"checkpoint_path\": \"/root/ratekv/figures/\", \"log_path\": \"/root/ratekv/generate_figures.log\"}, \"conclusion\": \"success\", \"notes\": \"3 张论文级图表生成完成。(1) fig1_head_delta_heatmap: 3 模型并排 heatmap (Qwen 28L×4H / Llama 32L×8H / Mistral 32L×8H)，统一 YlOrRd 色标，L0 高 delta 标注。(2) fig2_compounding_curve: k vs PPL 曲线，10 数据点，k=8 最优 (11.23) 标注，uniform 基线虚线。(3) fig3_allocation_comparison: Uniform vs MCKP stacked bar，L0@8-bit 保护可视化。文件位于 westd-37397:/root/ratekv/figures/，脚本 generate_figures.py。\", \"completed_at\": \"2026-05-14T07:07:44.291Z\"}, \"hires_reeval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:46:37.675Z\", \"updated_at\": \"2026-05-14T06:58:03.353Z\", \"spec\": {\"command\": \"python run_hires_reeval.py\", \"server\": \"westd-37397\", \"model_name\": \"Qwen2.5-7B\", \"data_path\": \"wikitext-2-raw-v1\", \"data_count\": 298938, \"seed\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/ratekv/hires_reeval_results.json\", \"log_path\": \"/root/ratekv/hires_reeval_v2.log\", \"completed_at\": \"2026-05-14T06:58:01.324Z\", \"metrics\": {\"baseline_bf16_ppl\": 9.8106, \"uniform_4bit_bf16_ppl\": 15.4454, \"hires_mckp_bf16_ppl\": 10.9131}}, \"hires_mckp_reeval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:45:23.918Z\", \"updated_at\": \"2026-05-14T06:51:28.777Z\", \"spec\": {\"command\": \"python /root/ratekv/run_hires_reeval.py\", \"server\": \"westd-37397\", \"data_path\": \"wikitext-2-raw-v1 (test)\", \"data_count\": 298938, \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"description\": \"Re-eval hires MCKP allocation with current eval_ppl.py to resolve cross-version PPL inconsistency\", \"parent\": \"exp_e_hires_profile\", \"checkpoint_source\": \"exp_e constrained_allocation\", \"eval_data\": \"wikitext-2-raw-v1 test\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/ratekv/hires_reeval_results.json\"}, \"conclusion\": \"success\", \"metrics\": {\"baseline_ppl_bf16\": 9.8106, \"mckp_ppl_bf16\": 10.9131, \"uniform_4bit_ppl_bf16\": 15.4454, \"delta_mckp_vs_baseline\": 1.1025, \"delta_mckp_vs_uniform\": -4.5323, \"token_count\": 298938}, \"completed_at\": \"2026-05-14T06:51:28.777Z\"}, \"l0_heuristic_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:10:16.317Z\", \"updated_at\": \"2026-05-14T06:20:40.045Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_l0_heuristic.py\\\"\", \"server\": \"westd-37397\", \"gpu\": [\"cuda:1\"], \"pid\": \"188038\", \"log_path\": \"~/runs/ratekv/l0_heuristic_baseline.log\", \"submitted_at\": \"2026-05-14T06:13:37.019Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 423.0, \"gpu_hours\": 0.12}, \"conclusion\": \"killed\", \"notes\": \"KILLED: Director 修正 plan_015 设计——旧版 budget 超标。由 l0_heuristic_corrected 替代。\", \"completed_at\": \"2026-05-14T06:20:40.045Z\"}, \"mistral_aggressive_compression\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:59:01.736Z\", \"updated_at\": \"2026-05-14T06:10:40.078Z\", \"hypothesis\": \"Aggressive compression (5.3x + 8x) 在低异质性架构 Mistral-7B (GQA 4:1, 256 heads) 上是否也能放大 MCKP 优势。与 Llama aggressive (success: 45x better at 5.3x) 对称验证。如果 MCKP 优势随压缩率增加而放大，即使在低异质性架构上也应显现。\", \"parent\": \"mistral_hires_pipeline\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_mistral_aggressive.py\", \"server\": \"westd-37397\", \"data_path\": \"/root/ratekv/mistral_ppl_profiles_hires.json\", \"data_count\": \"64seq x 2048tok\", \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"gpu\": \"cuda:0\", \"budgets\": [0.1875, 0.125], \"compression_levels\": [\"5.3x\", \"8x\"], \"dtype\": \"bf16\", \"checkpoint_source\": \"mistral_hires_pipeline\", \"eval_data\": \"wikitext-2-raw-v1 (test split)\"}, \"metrics\": {\"mckp_5.3x_ppl\": 11.912, \"uniform_2bit_ppl\": 519.107, \"mckp_8x_ppl\": 399.901, \"uniform_2bit_8x_ppl\": 519.107, \"baseline_ppl\": 7.035, \"uniform_4bit_ppl\": 7.131, \"5.3x_bit_dist\": {\"2\": 128, \"4\": 128}, \"8x_bit_dist\": {\"2\": 248, \"4\": 8}, \"total_time_seconds\": 268.1}, \"log_path\": \"/root/ratekv/mistral_aggressive.log\", \"checkpoint_path\": \"/root/ratekv/mistral_aggressive_results.json\", \"notes\": \"5.3x: MCKP=11.91 vs Uniform 2-bit=519.11 (MCKP 43.6× better)。8x: MCKP=399.90 vs Uniform=519.11 (1.30× better)。跨架构对比: Llama 5.3x 45× vs Mistral 5.3x 43.6×, 倍率高度一致。Mistral 绝对 PPL 更低 (uniform 519 vs Llama 2644), 反映低异质性架构整体更鲁棒。5.3x bit分配: {4:128, 2:128} 半对半; 8x: {2:248, 4:8} 几乎全2-bit。结论: 压缩率增大放大 MCKP 优势的规律跨架构成立 (Llama GQA 4:1 + Mistral GQA 4:1)。5.3x 作为 MCKP 优势放大的跨架构证据，8x 作为 stress test (两者均不实用但 MCKP 仍优)。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T06:10:40.078Z\"}, \"llama_aggressive_compression\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:23:06.162Z\", \"updated_at\": \"2026-05-14T05:52:41.954Z\", \"spec\": {\"hypothesis\": \"MCKP 优势在激进压缩下放大：Llama-3.1-8B budget=0.125 (8x, ~2-bit avg)，uniform 大幅退化时 MCKP 应有显著优势。用已有 hires profiling 数据，只需 solver+eval。\", \"parent\": \"llama_hires_pipeline\", \"plan_id\": \"plan_002\", \"claim\": [2], \"model_name\": \"Llama-3.1-8B\", \"data_path\": \"llama_ppl_profiles_hires.json\", \"data_count\": 256, \"seed\": 0, \"eval_data\": \"WikiText-2\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python run_llama_aggressive.py\", \"server\": \"westd-37397\", \"description\": \"Aggressive compression (5.3x + 8x) MCKP vs uniform 2-bit\", \"gpu\": [\"cuda:0\"], \"tmux_session\": \"llama_aggressive\", \"log_path\": \"/root/ratekv/llama_aggressive.log\", \"checkpoint_path\": \"/root/ratekv/llama_aggressive_results.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T05:43:24.965Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T05:43:25.254Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T05:43:28.749579+00:00\"}]}, \"metrics\": {\"mckp_5.3x_ppl\": 57.6, \"uniform_2bit_ppl\": 2643.77, \"mckp_8x_ppl\": 2372.33, \"uniform_2bit_8x_ppl\": 2643.77}, \"notes\": \"5.3x: MCKP=57.60 vs Uniform 2-bit=2643.77 (MCKP 45× better, 验证假说——激进压缩下 MCKP 优势放大)。8x: MCKP=2372.33 vs Uniform=2643.77 (barely better, 两者都 catastrophic)。结论：MCKP 优势随压缩率增大而增大，但绝对 PPL 在 5.3x 以上不实用。论文定位：5.3x 作为 MCKP 优势放大的证据，8x 作为 stress test。\"}, \"llama_hires_pipeline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:17:45.441Z\", \"updated_at\": \"2026-05-14T05:21:13.265Z\", \"spec\": {\"hypothesis\": \"Llama-3.1-8B hires profiling 补救：用 64seq×2048tok 高分辨率 calibration 重做 profiling + constrained MCKP + bf16 eval。类比 exp_e 对 Qwen 的改善 (lowres PPL恶化2.52→hires 0.75, 70%改善)。Pass: MCKP PPL < uniform 4-bit (8.47)。\", \"parent\": \"llama_full_pipeline\", \"plan_id\": \"plan_002\", \"claim\": [1, 2], \"model_name\": \"Llama-3.1-8B\", \"data_path\": \"calibration_hires.json\", \"data_count\": 64, \"seed\": 0, \"eval_data\": \"WikiText-2\", \"checkpoint_source\": \"N/A\", \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && CUDA_VISIBLE_DEVICES=0 python run_llama_hires_pipeline.py\", \"server\": \"westd-37397\", \"checkpoint_path\": \"/root/ratekv/llama_hires_results.json\", \"log_path\": \"/root/ratekv/llama_hires_pipeline.log\"}, \"conclusion\": \"success\", \"metrics\": {\"baseline_ppl\": 8.0918, \"uniform_4bit_ppl\": 8.469, \"lowres_mckp_ppl\": 8.6951, \"hires_mckp_ppl\": 8.4498, \"hires_improvement_ppl\": 0.2453, \"degradation_reduction_pct\": 40.7, \"profiling_time_min\": 173.4, \"total_time_min\": 175.1}, \"notes\": \"Hires MCKP (64x2048, max2=18) beats uniform 4-bit on Llama-3.1-8B: 8.4498 vs 8.4690 PPL. Degradation vs bf16 reduced 40.7% compared to lowres (0.3581 vs 0.6033). 255/256 heads got non-zero 2-bit allocation.\", \"completed_at\": \"2026-05-14T05:21:13.265Z\"}, \"mistral_full_pipeline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:22:50.015Z\", \"updated_at\": \"2026-05-14T02:31:09.035Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python run_mistral_pipeline.py\", \"server\": \"westd-37397\", \"gpu\": [\"cuda:1\"], \"pid\": \"169374\", \"log_path\": \"/root/ratekv/mistral_pipeline.log\", \"submitted_at\": \"2026-05-14T02:04:16.432Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"Mistral-7B-v0.3 full pipeline: profiling (224 heads × {2,4,8}-bit) + constrained MCKP + PPL eval. 验证跨架构泛化性 (GQA 4:1, Mistral sliding window attention)。Pass: MCKP PPL < uniform 4-bit by ≥0.5, budget=0.25.\", \"plan_id\": \"plan_003\", \"claim\": [1, 2], \"data_path\": \"WikiText-2\", \"data_count\": 224, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 0, \"checkpoint_path\": \"/root/ratekv/mistral_results.json\", \"wall_clock_seconds\": 1610.0, \"gpu_hours\": 0.45}, \"conclusion\": \"negative\", \"metrics\": {\"mckp_ppl_bf16\": 7.564, \"uniform_4bit_ppl_bf16\": 7.131, \"baseline_ppl_bf16\": 7.035, \"delta_vs_uniform\": -0.433, \"memory_ratio\": 0.25}, \"completed_at\": \"2026-05-14T02:31:06.466Z\", \"notes\": \"bf16 eval 完成。MCKP PPL=7.564 vs Uniform 4-bit=7.131, Baseline=7.035。MCKP 劣于 uniform (+0.43)。与 Llama lowres 同一问题：lowres profiling → delta 同质化 → solver 盲目分配。需要 hires profiling 补救，登记为 mistral_hires_pipeline。\"}, \"llama_full_pipeline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:22:48.218Z\", \"updated_at\": \"2026-05-14T02:29:04.490Z\", \"spec\": {\"hypothesis\": \"Llama-3.1-8B full pipeline replication: profiling (256 heads × {2,4,8}-bit) + constrained MCKP + PPL eval. 验证跨架构泛化性 (GQA 4:1 vs Qwen 7:1)。Pass: MCKP PPL < uniform 4-bit by ≥0.5, budget=0.25.\", \"plan_id\": \"plan_002\", \"claim\": [1, 2], \"model_name\": \"Llama-3.1-8B\", \"data_path\": \"WikiText-2\", \"seed\": 0, \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && CUDA_VISIBLE_DEVICES=0 python run_llama_pipeline.py\", \"server\": \"westd-37397\", \"data_count\": 256, \"checkpoint_path\": \"/root/ratekv/llama_results.json\", \"log_path\": \"/root/ratekv/llama_pipeline.log\"}, \"notes\": \"bf16 eval 完成。MCKP PPL=8.70 vs Uniform 4-bit=8.47, Baseline=8.09。MCKP 劣于 uniform (+0.23)。根因：256 heads + lowres profiling (16×512) → delta 高度同质化 → solver 盲目分配。与 Qwen exp_e 情况一致（lowres PPL恶化2.52, hires降到0.75）。需要 hires profiling 补救，登记为 llama_hires_pipeline。\", \"conclusion\": \"negative\", \"metrics\": {\"mckp_ppl_bf16\": 8.7, \"uniform_4bit_ppl_bf16\": 8.47, \"baseline_ppl_bf16\": 8.09, \"delta_vs_uniform\": -0.23, \"memory_ratio\": 0.25}, \"completed_at\": \"2026-05-14T02:29:04.490Z\"}, \"exp_e_hires_profile\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:20:58.895Z\", \"updated_at\": \"2026-05-14T01:51:49.904Z\", \"spec\": {\"hypothesis\": \"用高分辨率 calibration (64 seq × 2048 tokens, calibration_hires.json) 重新 profile 并跑 constrained MCKP (max_2bit=8 + L0 exclusion)。验证高分辨率 profiling 是否改善中间层分辨率、产出不同/更优的 bit 分配。对比 exp_c (低分辨率 profile)。\", \"parent\": \"exp_c_constrained_mckp\", \"command\": \"CUDA_VISIBLE_DEVICES=1 python run_exp_e.py\", \"server\": \"westd-37397\", \"data_path\": \"/root/ratekv/calibration_hires.json\", \"data_count\": 64, \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"checkpoint_source\": \"N/A\", \"eval_data\": \"wikitext-2\", \"checkpoint_path\": \"/root/ratekv/exp_e_results.json\", \"log_path\": \"/root/ratekv/exp_e.log\"}, \"notes\": \"Hires profiling (64seq×2048tok) vs lowres (16seq×512tok) 结果对比：\\n\\nProfile分辨率大幅提升: 100/112 non-zero 2-bit deltas (vs lowres 37/112, +63 heads)。4-bit deltas: 6/112 (vs 4/112)。Hires使solver获得2.7x更多2-bit量化信号。\\n\\nSolver产出: bit_dist={8:4, 2:8, 4:100}（宏观与exp_c一致）。8/112 heads分配变化: L1H3,L2H3,L3H2,L3H3从2bit→4bit; L5H1,L6H2,L10H1,L11H2从4bit→2bit。Hires倾向于保护浅层(L1-L3)同时在中层(L5-L11)更激进压缩。\\n\\nPPL (bf16 eval, 公平对比): exp_e=9.57, exp_c=11.34, baseline=8.82。exp_e vs exp_c: -1.78 PPL改善 (同budget=0.25)。PPL恶化量: exp_e +0.75 vs baseline, exp_c +2.52。Hires将PPL恶化从2.52降至0.75 (70%改善)。\\n\\n注意: 原eval_ppl.py compressed_forward在fp16下L27层overflow产生NaN (K range [-420,234])。修复为bf16后正常。exp_c原始PPL(11.23)是fp16结果, bf16重测为11.34。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T01:51:21.076Z\", \"metrics\": {\"constrained_ppl_bf16\": 9.569, \"baseline_ppl_bf16\": 8.819, \"exp_c_ppl_bf16\": 11.345, \"delta_vs_exp_c\": -1.776, \"memory_ratio\": 0.25, \"bit_distribution\": {\"2\": 8, \"4\": 100, \"8\": 4}, \"profile_resolution\": {\"hires_nonzero_2bit\": 100, \"lowres_nonzero_2bit\": 37, \"hires_nonzero_4bit\": 6, \"lowres_nonzero_4bit\": 4, \"total_heads\": 112}, \"allocation_diff_count\": 8, \"profiling_time_min\": 65.5}}, \"c4_cross_dataset_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:17:45.349Z\", \"updated_at\": \"2026-05-14T01:31:06.364Z\", \"spec\": {\"hypothesis\": \"C4 cross-dataset evaluation: 用 C4 数据做 calibration + profiling + constrained MCKP solver + eval，与 WikiText-2 结果对比 (同 budget=0.25, max_2bit=8)。验证 (a) per-head 分配跨数据集一致性 (b) PPL 改善幅度跨数据集稳定性。\", \"plan_id\": \"plan_007\", \"claim\": [1, 2, 3], \"model_name\": \"Qwen2.5-7B\", \"data_path\": \"/root/ratekv/c4_calibration.json\", \"seed\": 42, \"command\": \"python run_c4_cross_dataset.py\", \"server\": \"westd-37397\", \"data_count\": 64, \"checkpoint_path\": \"/root/ratekv/c4_eval_results.json\", \"log_path\": \"/root/ratekv/c4_phase2_4.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T01:28:48.100Z\", \"metrics\": {\"c4_mckp_ppl\": 11.3285, \"uniform4bit_ppl\": 15.4454, \"delta_over_uniform\": 4.117, \"allocation_agreement_rate\": 0.982, \"n_disagree\": 2, \"bit_distribution\": {\"2\": 8, \"4\": 100, \"8\": 4}, \"memory_ratio\": 0.25, \"wt2_ref_mckp_ppl\": 11.2312, \"wt2_ref_delta\": 4.2142, \"ppl_gap\": 0.097}, \"notes\": \"C4 calibration vs WikiText-2 calibration对比 (均 budget=0.25, max_2bit=8, Qwen2.5-7B)。MCKP PPL: C4-cal=11.33, WT2-cal=11.23 (gap仅0.10)。Uniform 4-bit PPL=15.45 (两者一致)。Delta: C4=+4.12, WT2=+4.21。Allocation agreement=98.2% (110/112 heads完全一致)。仅2处差异: L3H0 (WT2:4bit↔C4:2bit) 和 L4H2 (WT2:2bit↔C4:4bit) — 两个head互换2/4-bit分配,本质是边缘case。Bit distribution宏观完全一致: {8:4, 4:100, 2:8}。结论: MCKP分配对calibration数据集高度稳定,跨WT2/C4一致性极强。支撑Claims 1,2,3。\"}, \"budget_sweep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:51:52.095Z\", \"updated_at\": \"2026-05-14T01:18:54.267Z\", \"spec\": {\"hypothesis\": \"Budget sweep: constrained MCKP at compression ratios 2x/4x/8x (budget=0.5/0.25/0.125). Compare each against uniform baseline at same budget. Qwen2.5-7B, WikiText-2.\", \"plan_id\": \"plan_005\", \"claim\": [2], \"command\": \"CUDA_VISIBLE_DEVICES=0 python run_budget_sweep.py\", \"server\": \"westd-37397\", \"data_path\": \"/root/ratekv/full_bitwidth_results.json\", \"data_count\": 112, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"checkpoint_path\": \"/root/ratekv/budget_sweep_results.json\", \"log_path\": \"/root/ratekv/budget_sweep.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T01:13:42.111Z\", \"notes\": \"FP16 PPL=9.81. 2x(budget=0.5): uniform-8bit=10.10, MCKP=10.66 (delta=-0.56, MCKP worse). 4x(budget=0.25): uniform-4bit=15.45, MCKP=11.23 (delta=+4.21, confirmed). 8x(budget=0.125): uniform-2bit=14758.92, MCKP=906.78 (delta=+13852, L0 protection critical).\\n\\n2x归因：PPL profiler在4-bit和8-bit之间分辨率坍缩（per-head PPL delta≈0），solver误判降级免费，将8个head不必要地推至2-bit。uniform 8-bit已近无损（+0.29 vs FP16），per-head优化无收益空间。\\n\\n论文定位：\\n- Claim 2限定为\\\"moderate-to-aggressive compression (≥4x)\\\"\\n- 2x诚实呈现：uniform 8-bit suffices, per-head优化无收益\\n- 8x表述：\\\"even at extreme compression, L0 protection prevents total collapse (906 vs 14759)\\\"，不claim实用性\\n- 整体叙事：\\\"MCKP provides most meaningful improvement at 4x sweet spot\\\"\\n- MCKP优势趋势：2×无优势 → 4× +27% → 8× collapse protection\"}, \"ratequant_greedy_comparison\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:49:20.894Z\", \"updated_at\": \"2026-05-14T01:05:19.258Z\", \"spec\": {\"hypothesis\": \"RateQuant 的 greedy Algorithm 1 在离散 {2,4,8,16}-bit action space 上不再 optimal（polymatroid structure 不成立）。在 budget=0.25 下，greedy allocation 的 PPL 应劣于 constrained MCKP (11.23)。\", \"plan_id\": \"plan_008\", \"claim\": [2]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/ratekv/ratequant_greedy_results.json\", \"log_path\": \"/tmp/ratequant_greedy.log\", \"completed_at\": \"2026-05-14T00:59:37.739Z\", \"notes\": \"Greedy PPL=32.45 vs MCKP PPL=11.23, Delta=+21.22。Greedy bit分配: {2:68, 4:30, 8:4, 16:10}; MCKP bit分配: {2:8, 4:100, 8:4}。两者mem_ratio均=0.2500。Greedy将68个非L0 head降至2-bit(MCKP仅8个)，同时保留10个16-bit head。Greedy L0分配: L0H0=8bit, L0H1=8bit, L0H2=16bit, L0H3=8bit——L0实际得到充分保护，greedy的真实问题是非L0的68个head被过度降级到2-bit，compounding error使PPL劣化3倍。非均匀bit间距{2,4,8,16}导致greedy过度激进：16→8省8bit看似高效，驱动大量head继续降至2-bit。结论: RateQuant greedy designed for consecutive integers fails on hardware-aligned discrete bit-widths——RateQuant在自己的连续整数设定{2,3,4,5,6}下works well(Proposition 6 optimality成立)，问题是硬件对齐的非连续{2,4,8,16}打破了polymatroid结构，greedy不再optimal。Paper表述应为'RateQuant greedy fails on hardware-aligned discrete bit-widths'，不应笼统说'RateQuant fails'。Constrained MCKP在practical discrete bit-widths上提供21 PPL gap的巨大优势。\"}, \"compounding_sweep_k10_12\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:49:17.613Z\", \"updated_at\": \"2026-05-14T00:57:05.447Z\", \"spec\": {\"hypothesis\": \"补充 max_2bit={10,12} 数据点，确认 k=8 是 U 型曲线极值点而非 k=8-16 区间内的非极值。\", \"parent\": \"compounding_sweep\", \"plan_id\": \"plan_004\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python run_compounding_k10_12.py\", \"server\": \"westd-37397\", \"data_path\": \"/root/ratekv/full_bitwidth_results.json\", \"data_count\": 112, \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"checkpoint_path\": \"/root/ratekv/compounding_k10_12_results.json\", \"log_path\": \"/tmp/k10_12.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T00:56:46.841Z\", \"notes\": \"k=10: PPL=11.50, bit分配={2:10, 4:98, 8:4}, mem=0.2478; k=12: PPL=11.42, bit分配={2:12, 4:96, 8:3, 16:1}, mem=0.2500。完整曲线: k=0→15.45, k=4→11.77, k=8→11.23, k=10→11.50, k=12→11.42, k=16→11.81。k=8仍是极值点(11.23)，k=10和k=12均高于k=8，确认U型曲线底部在k=8附近。k=12(11.42)<k=10(11.50)<k=16(11.81)，说明曲线右侧单调上升但非陡峭。\"}, \"compounding_sweep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:27:18.498Z\", \"updated_at\": \"2026-05-14T00:42:43.212Z\", \"spec\": {\"hypothesis\": \"Compounding effect characterization: sweep max_2bit ∈ {0,4,8,16,24,48,75,112}, 每个值跑 constrained MCKP + eval PPL。映射 compounding threshold，为 cardinality constraint 选择提供 principled basis。\", \"parent\": \"exp_c_constrained_mckp\", \"plan_id\": \"plan_004\", \"claim\": [3], \"command\": \"CUDA_VISIBLE_DEVICES=0 python run_compounding_sweep.py\", \"server\": \"westd-37397\", \"data_path\": \"/root/ratekv/full_bitwidth_results.json\", \"data_count\": 8, \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"checkpoint_path\": \"/root/ratekv/compounding_sweep_results.json\", \"log_path\": \"/tmp/compounding_sweep.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T00:42:35.742Z\", \"notes\": \"Compounding threshold clearly at max_2bit=8. U-shaped curve: PPL=15.45 (0) → 11.77 (4) → 11.23 (8, optimum) → 11.81 (16) → 13.14 (24) → 22.88 (48) → 35.35 (75/112). max_2bit=0 ≈ uniform 4-bit (15.45). max_2bit=8 matches exp_c (11.23). max_2bit=112 (unconstrained) saturates at 75 actual 2-bit heads with PPL=35.35, close to exp_b's 36.92. Sharp elbow at 24→48 2-bit heads. Sweet spot: 4-8 2-bit heads.\"}, \"exp_d_no_l0_exclusion\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:20:54.705Z\", \"updated_at\": \"2026-05-14T00:29:07.739Z\", \"spec\": {\"hypothesis\": \"去掉 L0 排除约束，只保留 max_2bit=8 cardinality constraint。验证 solver 是否自动回避 L0 的 2-bit（即 solver 能否自动发现 Layer 0 sensitivity）。Pass: solver 不分配 L0 任何 2-bit head，且 PPL ≤ exp_c (11.23)。\", \"parent\": \"exp_c_constrained_mckp\", \"command\": \"python run_exp_d.py\", \"server\": \"westd-37397\", \"data_path\": \"/root/ratekv/full_bitwidth_results.json\", \"data_count\": 112, \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/ratekv/exp_d.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T00:25:29.129Z\", \"notes\": \"Solver自动回避了L0的2-bit分配！L0四个head全部分配8bit，与exp_c（手动排除L0）结果完全一致。\\\\n\\\\n分配: 8bit:4(全部L0) 4bit:100 2bit:8 — 与exp_c完全相同\\\\n2-bit heads: L1H0,L1H2,L1H3,L2H2,L2H3,L3H2,L3H3,L4H2\\\\nPPL: 11.2312 ≈ exp_c的11.23\\\\nMemory ratio: 0.2500\\\\n\\\\n结论: profiler的distortion信号足以让solver自动发现L0 sensitivity，手动排除L0约束是冗余的。这对paper narrative非常有利——可以claim \\\\\\\"solver automatically discovers layer sensitivity without manual intervention\\\\\\\"。\", \"plan_id\": \"plan_001\"}, \"exp_c_no2bit\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:16:07.045Z\", \"updated_at\": \"2026-05-14T00:22:44.182Z\", \"hypothesis\": \"Path B: MCKP solver with {4,8,16}-bit action space (去掉 2-bit). 使用现有 profiling 数据重跑 solver. Pass: auto solver PPL < uniform 4-bit (15.45) by ≥0.5, budget ≤ 0.2500.\", \"parent\": \"exp_b_hires_quant\", \"spec\": {\"command\": \"python3 run_exp_c_no2bit.py\", \"server\": \"westd-37397\", \"gpu\": [\"cuda:0\"], \"pid\": \"150328\", \"log_path\": \"/root/ratekv/exp_c_no2bit.log\", \"submitted_at\": \"2026-05-14T00:20:54.332Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/ratekv/full_bitwidth_results.json\", \"data_count\": 112, \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"checkpoint_source\": \"none\", \"eval_data\": \"wikitext-2\", \"checkpoint_path\": \"/root/ratekv/exp_c_no2bit_results.json\", \"wall_clock_seconds\": 105.8, \"gpu_hours\": 0.03}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T00:22:40.107Z\", \"metrics\": {\"mckp_ppl\": 15.4454, \"uniform_4bit_ppl\": 15.4454, \"baseline_ppl\": 9.8106, \"delta_vs_uniform\": 0, \"memory_ratio\": 0.25, \"bit_distribution\": {\"4\": 112}}}, \"exp_c_constrained_mckp\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:01:49.191Z\", \"updated_at\": \"2026-05-14T00:14:44.144Z\", \"hypothesis\": \"Constrained MCKP with {2,4,8,16}-bit action space + cardinality constraint count(2-bit)≤8 + Layer 0 excluded from 2-bit. Budget=0.25 (4x compression). Pass: auto solver PPL < uniform 4-bit (15.45) by ≥0.5. D009 修复方案。\", \"parent\": \"exp_b_hires_quant\", \"spec\": {\"command\": \"python3 run_exp_c.py\", \"server\": \"westd-37397\", \"data_path\": \"full_bitwidth_results.json (reused PPL profiles)\", \"data_count\": 112, \"model_name\": \"Qwen2.5-7B\", \"seed\": 0, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/ratekv/exp_c.log\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"WikiText-2\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T00:14:36.123Z\", \"notes\": \"PASS. Constrained MCKP PPL=11.23 vs uniform 4-bit PPL=15.45 (delta=+4.21). Memory ratio=0.25. Bit distribution: {8bit:4 (L0), 4bit:100, 2bit:8}. D009 constraints: max_2bit=8 + L0 excluded from 2-bit. Unconstrained MCKP collapsed to PPL=36.92 (75 heads at 2-bit). Key fix: skipped Pareto filtering in constrained solver to preserve fallback options when cardinality constraint binds. 2-bit heads allocated to L1-L4 (least sensitive). Results saved to exp_c_results.json.\"}, \"exp_b_hires_quant\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:41.820Z\", \"updated_at\": \"2026-05-13T23:55:15.163Z\", \"hypothesis\": \"PPL-guided quant-only MCKP with full bit-width action space {2,4,8,16-bit}. 之前 quant-only=uniform 是 tautology (只有 4-bit 选项)。现在 solver 可给 sensitive heads (Layer 0) 分 8/16-bit 保护, tolerant heads 分 2-bit 节省 budget。Budget=0.25 (4x 压缩). Pass: PPL < uniform 4-bit (15.45) by ≥0.5. Fail = 项目 archive.\", \"conclusion\": \"negative\", \"notes\": \"NEGATIVE (MCKP solver): MCKP PPL=36.92, 远差于 uniform 4-bit (15.45)。根因：PPL profiler 分辨率坍缩——112 heads 中仅 ~15 个有 non-zero 2-bit delta，其余全为 0.0。Solver 错误分配 75/112 heads 到 2-bit，实际 memory ratio 仅 0.18（target 0.25）。\\n\\nBUT 手工策略验证概念成立：\\n- S1 (L0@8bit, rest@4bit, budget=0.259): PPL=10.62 (+4.82 vs uniform)\\n- Budget-matched (L0@8bit, 8×least-sensitive@2bit, rest@4bit, budget=0.25): PPL=11.69 (+3.76 vs uniform)\\n- S2 (L0@16bit, 24@2bit, rest@4bit): PPL=17.74 (-2.30, 2-bit 太多)\\n\\n结论：非均匀分配概念被手工实验强力验证。问题在 profiler 信号质量（calibration PPL delta 对大部分 head 无区分度），而非优化框架本身。\", \"spec\": {\"command\": \"python full_bitwidth_mckp.py + budget_matched_test.py + manual_strategy_test.py\", \"server\": \"westd-37397\", \"gpu\": \"cuda:0\", \"data_path\": \"calibration_data.json + WikiText-2\", \"data_count\": \"16 calibration seqs x 512 tokens + WikiText-2 298938 tokens eval\", \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"checkpoint_path\": \"N/A (inference only)\", \"log_path\": \"/root/ratekv/full_bitwidth.log, /root/ratekv/budget_matched.log, /root/ratekv/manual_test.log\"}, \"completed_at\": \"2026-05-13T23:55:15.163Z\"}, \"exp_a_targeted_hybrid\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:39.045Z\", \"updated_at\": \"2026-05-13T23:29:36.314Z\", \"hypothesis\": \"Targeted Hybrid: Layer 0 cliff heads 用 eviction (因对 quant 极敏感), 其余 108 heads 用 4-bit quant. 假设: Layer 0 eviction 损伤 < Layer 0 量化损伤, 整体 PPL 优于 uniform 4-bit (15.45).\", \"spec\": {\"command\": \"targeted_hybrid.py smoke test (foreground)\", \"server\": \"westd-37397\", \"gpu\": \"cuda:0\", \"data_path\": \"WikiText-2\", \"data_count\": \"5000 eval tokens (smoke)\", \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A (foreground)\"}, \"conclusion\": \"negative\", \"notes\": \"NEGATIVE: Eviction 路径全面死亡。Smoke test: L0 evict@50% PPL=205-249, L0 evict@25% 更差。Layer 0 无法承受任何 eviction。结合 P0-1 (全局 eviction compounding) 和本实验 (Layer 0 targeted eviction)，eviction 在所有配置下均伤害 PPL，彻底关闭 eviction 路径。\", \"completed_at\": \"2026-05-13T23:29:36.314Z\"}, \"mvp_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:55:09.878Z\", \"updated_at\": \"2026-05-13T23:19:16.015Z\", \"hypothesis\": \"Fresh profiling: per-KV-head eviction/quantization crossover on Qwen2.5-7B (112 KV heads), joint MCKP 优于 quant-only ≥0.5 PPL. 使用新 calibration 数据 (拼接 WikiText-103, ≥1000 tokens/sample), 删除缓存 profiles.json 强制重新 profile.\", \"spec\": {\"command\": \"bash -c '...' (see mvp_004 original)\", \"server\": \"westd-37397\", \"gpu\": \"cuda:0\", \"data_path\": \"WikiText-103 concatenated calibration + WikiText-2 eval\", \"data_count\": \"20 calibration samples\", \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/ratekv/mvp_004.log\"}, \"conclusion\": \"negative\", \"notes\": \"NEGATIVE: MSE distortion metric falsified. 实际日志数字：Full MCKP PPL=1084.56, Quant-only=5574.11, Uniform 4-bit=15.45. MSE-guided 分配与 PPL 完全不相关。需 pivot 到 PPL-based distortion metric（已完成，见 p0_1_ppl_fast）。\", \"completed_at\": \"2026-05-13T22:16:01.600Z\"}, \"p0_2_cliff_7B\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:24:27.822Z\", \"updated_at\": \"2026-05-13T23:19:11.492Z\", \"hypothesis\": \"2-bit cliff effect 隔离测试 (Qwen2.5-7B, 112 KV heads): 验证 1.5B 上发现的 Layer 0 cliff 是否在 7B 上复现, 以及是否有额外敏感 head\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python cliff_test.py --model Qwen2.5-7B --bits 2,4,8 --max_eval_tokens 10000\", \"server\": \"westd-37397\", \"gpu\": \"cuda:1\", \"pid\": \"141907\", \"data_path\": \"calibration_data.json\", \"data_count\": \"10000 eval tokens\", \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/ratekv/p0_2_cliff_7B.log\"}, \"conclusion\": \"success\", \"notes\": \"7B cliff test 完成。2-bit cliff: 3/112 (2.7%) — L0H0 +31.9%, L0H2 +23.2%, L0H3 +11.7%。4-bit cliff: 0/112。8-bit cliff: 0/112。与 1.5B 一致：cliff 集中在 Layer 0，但幅度更小（7B max +32% vs 1.5B max +297%）。4-bit 和 8-bit 对所有 head 安全。\", \"completed_at\": \"2026-05-13T23:19:11.492Z\"}, \"p0_1_ppl_fast\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:25:14.157Z\", \"updated_at\": \"2026-05-13T23:18:59.980Z\", \"hypothesis\": \"PPL-based distortion profiling (Qwen2.5-7B, fast mode): 用 PPL 增量替代 MSE 作为 distortion metric, 验证 PPL-guided MCKP 在 4x 压缩下能否优于 uniform 4-bit. Fast mode 只 profile budget-relevant actions (quant@4bit, evict@1/4).\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python run_ppl_mvp.py --model Qwen2.5-7B --device cuda:0 --fast\", \"server\": \"westd-37397\", \"gpu\": \"cuda:0\", \"pid\": \"142134\", \"data_path\": \"calibration_data.json + WikiText-2\", \"data_count\": \"20 calibration samples + WikiText-2 298938 tokens\", \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"~/runs/ratekv/p0_1_ppl_fast.log\"}, \"conclusion\": \"negative\", \"notes\": \"NEGATIVE: PPL-based distortion 仍无法让 Full MCKP 优于 uniform 4-bit。Full MCKP=28.07, Quant-only=15.45, Uniform 4-bit=15.45。Full MCKP 选了 47/112 heads evict，eviction 在 4x 压缩下仍然伤害 PPL（比 uniform 差 12.63）。Quant-only MCKP = Uniform 4-bit（符合预期：4x budget 下所有 head 选 4-bit 是唯一方案）。问题不在 distortion metric，而在 eviction@25% retention 本身在 4x 压缩下伤害过大。\", \"completed_at\": \"2026-05-13T23:18:59.980Z\"}, \"p0_2_cliff_1.5B\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:23:57.228Z\", \"updated_at\": \"2026-05-13T22:24:22.333Z\", \"hypothesis\": \"2-bit quantization cliff effect 隔离测试 (Qwen2.5-1.5B): 逐个 KV head 设为 2/4/8-bit, 检测是否存在 \\\"任一 head 低 bit 即灾难\\\" 的 cliff effect\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python cliff_test.py --model /root/autodl-tmp/models/Qwen2.5-1.5B --bits 2,4,8 --max_eval_tokens 10000\", \"server\": \"westd-37397\", \"gpu\": \"cuda:1\", \"data_path\": \"calibration_data.json (WikiText-103 concat)\", \"data_count\": \"10000 eval tokens\", \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/ratekv/cliff_1.5B_results.json\"}, \"conclusion\": \"success\", \"notes\": \"2-bit cliff 仅限 Layer 0 (L0H0 +297%, L0H1 +241%)，其余 54/56 heads 的 2-bit delta 在 0-5.5%。4-bit 只有 L0H1 cliff (13.8%)。8-bit 零 cliff。结论：2-bit 非全局灾难，问题是 Layer 0 极度敏感。Solver 不应全局删除 2-bit，应仅限制 Layer 0。\", \"completed_at\": \"2026-05-13T22:24:22.333Z\"}, \"sanity_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:51:10.636Z\", \"updated_at\": \"2026-05-13T21:52:38.076Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python run_mvp.py --model /root/autodl-tmp/models/Qwen2.5-1.5B --calibration_data calibration_data.json --device cuda:0 --output sanity_foreground_results.json\", \"server\": \"westd-37397\", \"gpu\": \"cuda:1\", \"data_path\": \"WikiText-103 concatenated calibration + WikiText-2 eval\", \"data_count\": \"20 calibration samples\", \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"checkpoint_path\": \"N/A (inference only)\", \"log_path\": \"/root/ratekv/sanity_foreground_results.json\"}, \"hypothesis\": \"前台验证: Qwen2.5-1.5B 完整 pipeline (profiling→solver→eval→crossover). 验证 pipeline 端到端正确性.\", \"conclusion\": \"success\", \"notes\": \"Pipeline PASS. Crossover: 89.3% heads prefer eviction at 0.125 budget. PPL: baseline 12.46, 2x 12.52/12.52, 4x 22.67/19.91, 8x 14065/14700. Full MCKP +635 better at 8x. WARNING: 4x budget Full MCKP (22.67) WORSE than quant-only (19.91). WARNING: profiles loaded from cached profiles.json (may be from old calibration data).\", \"completed_at\": \"2026-05-13T21:52:38.076Z\"}, \"sanity_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:56:03.562Z\", \"updated_at\": \"2026-05-13T21:35:28.933Z\", \"hypothesis\": \"Retry of sanity_001/002: Qwen2.5-1.5B pipeline 端到端正确性验证. Fixed cache_position bug.\", \"spec\": {\"command\": \"python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/ --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json --output sanity_results.json\", \"server\": \"westd-37397\", \"gpu\": \"cuda:1\", \"pid\": 135075, \"log_path\": \"~/runs/ratekv/sanity_003.log\", \"submitted_at\": \"2026-05-13T20:56:34.089Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"WikiText-103 subset (calibration local JSON) + WikiText-2 (eval HF cache)\", \"data_count\": \"100 calibration samples, 16 used\", \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"wall_clock_seconds\": 2334.8, \"gpu_hours\": 0.65}, \"conclusion\": \"failed\", \"notes\": \"FAILED: ModelScope path Qwen2___5-1___5B with ___ treated as HF repo ID, HFValidationError\", \"completed_at\": \"2026-05-13T21:35:28.933Z\"}, \"sanity_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:58:52.606Z\", \"updated_at\": \"2026-05-13T21:35:28.231Z\", \"hypothesis\": \"Retry of sanity_001: Qwen2.5-1.5B pipeline 端到端正确性验证\", \"spec\": {\"command\": \"python run_mvp.py --model Qwen/Qwen2.5-1.5B --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json --output sanity_results.json\", \"server\": \"westd-37397\", \"gpu\": \"cuda:1\", \"pid\": 131751, \"log_path\": \"~/runs/ratekv/sanity_002.log\", \"submitted_at\": \"2026-05-13T19:59:22.309Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"WikiText-103 subset (calibration, local JSON) + WikiText-2 (eval, HF cache)\", \"data_count\": \"100 calibration samples, 16 used\", \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"wall_clock_seconds\": 5765.9, \"gpu_hours\": 1.6}, \"conclusion\": \"failed\", \"notes\": \"FAILED: run_mvp.py 不支持 --output 参数，argparse 直接拒绝\", \"completed_at\": \"2026-05-13T21:35:28.231Z\"}, \"sanity_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:47:17.059Z\", \"updated_at\": \"2026-05-13T21:35:27.756Z\", \"hypothesis\": \"Pipeline 端到端正确性验证：用 Qwen2.5-1.5B 小模型快速跑通 profiling → MCKP solver → PPL eval 全流程，在 mvp_001 完成前发现潜在 bug\", \"parent\": \"\", \"spec\": {\"command\": \"python run_mvp.py --model Qwen/Qwen2.5-1.5B --device cuda:0 --output sanity_results.json\", \"server\": \"westd-37397\", \"gpu\": \"cuda:1\", \"pid\": 130298, \"log_path\": \"~/runs/ratekv/sanity_001.log\", \"submitted_at\": \"2026-05-13T19:47:41.243Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"allenai/c4 (calibration) + wikitext-2-raw-v1 (eval)\", \"data_count\": \"16 seq × 512 tokens (calibration)\", \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"wall_clock_seconds\": 6466.5, \"gpu_hours\": 1.8}, \"conclusion\": \"failed\", \"notes\": \"FAILED: 同 mvp_001，tmux 缺少 proxy 环境变量导致 C4 下载失败\", \"completed_at\": \"2026-05-13T21:35:27.756Z\"}, \"mvp_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:56:03.114Z\", \"updated_at\": \"2026-05-13T21:35:26.814Z\", \"hypothesis\": \"Retry of mvp_001/002: per-KV-head eviction/quantization crossover on Qwen2.5-7B, joint MCKP 优于 quant-only ≥0.5 PPL. Fixed cache_position bug.\", \"spec\": {\"command\": \"python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json\", \"server\": \"westd-37397\", \"gpu\": \"cuda:0\", \"pid\": 134996, \"log_path\": \"~/runs/ratekv/mvp_003.log\", \"submitted_at\": \"2026-05-13T20:56:32.086Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"WikiText-103 subset (calibration local JSON) + WikiText-2 (eval HF cache)\", \"data_count\": \"100 calibration samples, 16 used\", \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"wall_clock_seconds\": 2334.7, \"gpu_hours\": 0.65}, \"conclusion\": \"failed\", \"notes\": \"FAILED: calibration data texts all shorter than 512 tokens (WikiText-103 paragraphs too short)\", \"completed_at\": \"2026-05-13T21:35:26.814Z\"}, \"mvp_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:58:52.295Z\", \"updated_at\": \"2026-05-13T21:35:25.874Z\", \"hypothesis\": \"Retry of mvp_001: per-KV-head eviction/quantization crossover on Qwen2.5-7B, joint MCKP 优于 quant-only ≥0.5 PPL\", \"spec\": {\"command\": \"python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json\", \"server\": \"westd-37397\", \"gpu\": \"cuda:0\", \"pid\": 131672, \"log_path\": \"~/runs/ratekv/mvp_002.log\", \"submitted_at\": \"2026-05-13T19:59:20.350Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"WikiText-103 subset (calibration, local JSON) + WikiText-2 (eval, HF cache)\", \"data_count\": \"100 calibration samples, 16 used\", \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"wall_clock_seconds\": 5765.5, \"gpu_hours\": 1.6}, \"conclusion\": \"failed\", \"notes\": \"FAILED: IndexError: shape mismatch [0] vs [3584] in torch vmap/dynamo during profiling. Tensor indexing bug in eviction or quantization code.\", \"completed_at\": \"2026-05-13T21:35:25.874Z\"}, \"mvp_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:31:41.823Z\", \"updated_at\": \"2026-05-13T21:35:25.403Z\", \"hypothesis\": \"在 per-KV-head 粒度上 (Qwen2.5-7B, 28 layers × N KV heads)，eviction 和 quantization 存在 crossover——部分 head 在 matched memory budget 下 eviction distortion &lt; quantization distortion，且 joint allocation 优于 quant-only optimal allocation ≥0.5 PPL\", \"spec\": {\"command\": \"python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --device cuda:0\", \"server\": \"westd-37397\", \"gpu\": \"cuda:0\", \"pid\": 128388, \"log_path\": \"~/runs/ratekv/mvp_001.log\", \"submitted_at\": \"2026-05-13T19:01:59.773Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"allenai/c4 (calibration) + wikitext-2-raw-v1 (eval)\", \"data_count\": \"16 seq × 512 tokens (calibration)\", \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"wall_clock_seconds\": 9205.6, \"gpu_hours\": 2.56}, \"conclusion\": \"failed\", \"notes\": \"FAILED: tmux non-interactive shell 未加载 /etc/network_turbo proxy，C4 数据集下载 ConnectionError: Network is unreachable\", \"completed_at\": \"2026-05-13T21:35:25.403Z\"}}, \"count\": 42, \"total\": 42, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0827}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5bc443d2-91ce-4873-a51d-a599033a1f7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T08:36:01.734Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01E7LYgfrtV1qJbqXSEgNjRU`</summary>
+
+```json
+{
+  "project": "ratekv",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ec9c106-c19e-406d-a4a7-a3b9ff7d646b",
+  "isSidechain": false,
+  "requestId": "req_011Cb29ysgyS7DRb1vPdp3MF",
+  "type": "assistant",
+  "uuid": "c072cd74-13c4-4027-bb86-50c74220b114",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnMmP9WQRFpxBVV9wWbd3F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 34752,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 34752,
+          "cache_creation_input_tokens": 4076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T08:36:02.257Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01JbeTysrgBCJZiv2viUvj8g`</summary>
+
+```json
+{
+  "project": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c072cd74-13c4-4027-bb86-50c74220b114",
+  "isSidechain": false,
+  "requestId": "req_011Cb29ysgyS7DRb1vPdp3MF",
+  "type": "assistant",
+  "uuid": "af323032-9217-47b4-b64d-c15b73d279b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnMmP9WQRFpxBVV9wWbd3F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 34752,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 34752,
+          "cache_creation_input_tokens": 4076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T08:36:02.789Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config · `toolu_01HGFtQzY14S7cCkfo3wvGK7`</summary>
+
+```json
+{
+  "project_name": "ratekv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af323032-9217-47b4-b64d-c15b73d279b0",
+  "isSidechain": false,
+  "requestId": "req_011Cb29ysgyS7DRb1vPdp3MF",
+  "type": "assistant",
+  "uuid": "0a610350-b517-47a6-a1c0-2c5ba7c0ed51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnMmP9WQRFpxBVV9wWbd3F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 34752,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 34752,
+          "cache_creation_input_tokens": 4076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T08:36:02.962Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01U6fFEretZfT9QHs4BWFX7E`</summary>
+
+```json
+{
+  "project": "ratekv",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a610350-b517-47a6-a1c0-2c5ba7c0ed51",
+  "isSidechain": false,
+  "requestId": "req_011Cb29ysgyS7DRb1vPdp3MF",
+  "type": "assistant",
+  "uuid": "fde611cd-df7b-498e-ab68-8fcad0b49d31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LnMmP9WQRFpxBVV9wWbd3F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 34752,
+      "output_tokens": 398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 398,
+          "cache_read_input_tokens": 34752,
+          "cache_creation_input_tokens": 4076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: kv_separation - project: ratekv - server: westd-37397 - log_path: /root/ratekv/kv_separatio…",
+  "leafUuid": "fde611cd-df7b-498e-ab68-8fcad0b49d31",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze kv_separation experiment results",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T08:36:03.364Z_
+
+<details><summary>↩ Tool result · `toolu_01Hn4kvD5cViPiAW8eD7sCXU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"multi_seed_error_bars\", \"success\": true, \"actions\": [\"Job still running (pid=199409)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51e8dfd4-ebd0-48d2-a0a9-202888e90dc7",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "e910a18e-1e8b-4241-b40c-1827394a7b7c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"multi_seed_error_bars\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=199409)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"multi_seed_error_bars\", \"success\": true, \"actions\": [\"Job still running (pid=199409)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "51e8dfd4-ebd0-48d2-a0a9-202888e90dc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T08:36:03.379Z_
+
+<details><summary>↩ Tool result · `toolu_01E7LYgfrtV1qJbqXSEgNjRU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T08:35:41Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 42 个实验 — ANALYZING 1, DONE 39, PREPARING 1, RUNNING 1\\n**DONE 分布**: failed 6, killed 2, negative 8, success 23\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-37397:cuda:0, westd-37397:cuda:1\\n- **空闲（分配了没跑）**: westd-37397:cuda:0, westd-37397:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `multi_seed_error_bars` | westd-37397 | ? | ? | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `downstream_eval_qwen` [success] — 2026-05-14T07:32:03\\n- `l0_heuristic_corrected` [success] — 2026-05-14T07:30:16\\n- `llama_k_ablation` [success] — 2026-05-14T07:29:31\\n- `mistral_hires_pipeline` [negative] — 2026-05-14T07:23:15 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `mistral_k_ablation` [success] — 2026-05-14T07:20:19\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| multi_seed_error_bars | — | — | — | — |\\n| kv_separation | K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。 | — | — | — |\\n\\n## 待处理\\n- greedy_constrained_ablation（准备中）\\n\\n## 近期结论\\n- **downstream_eval_qwen** (success): —\\n- **l0_heuristic_corrected** (success): Budget-corrected L0 heuristic baseline (plan_015 修正版): 在 exact budget=0.25 下比较 3 种策略——(1) L0-random: L0@8-bit + k 个随机非 L0 heads@2-bit + rest@4-bit (5 seeds, mean±std), (2) MCKP optimal (已有结果), (3) Naive positional heuristic: L0@8-bit + 最深 k 个 heads@2-bit + rest@4-bit。k: Qwen=8, Llama/Mistral=16。直接量化 MCKP optimal selection 相对于随机/简单启发式的增益。\\n  [plan_015_l0_heuristic_corrected_results](file:///root/ratekv/l0_heuristic_corrected_results.json)\\n- **llama_k_ablation** (success): —\\n  [llama_k_ablation_results](/api/workspace-files/projects/ratekv/artifacts/llama_k_ablation/data/llama_k_ablation_results.json)\\n\\n## 趋势\\n成功 23 / 负向 8 / 失败 6 / 共 39\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-37397: 无 GPU 信息\\n\\n## 告警\\n- mvp_001: 训练失败 — unknown\\n- sanity_001: 训练失败 — unknown\\n- mvp_002: 训练失败 — unknown\\n- sanity_002: 训练失败 — unknown\\n- mvp_003: 训练失败 — unknown\\n- sanity_003: 训练失败 — unknown\\n- l0_only_heuristic: 已被终止 — unknown\\n- l0_heuristic_baseline: 已被终止 — unknown\\n\", \"total_chars\": 2415, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c072cd74-13c4-4027-bb86-50c74220b114",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "78d87173-b312-4b1f-9fb1-a662869d0dd3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T08:35:41Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 42 个实验 — ANALYZING 1, DONE 39, PREPARING 1, RUNNING 1\\\\n**DONE 分布**: failed 6, killed 2, negative 8, success 23\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-37397:cuda:0, westd-37397:cuda:1\\\\n- **空闲（分配了没跑）**: westd-37397:cuda:0, westd-37397:cuda:1\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `multi_seed_error_bars` | westd-37397 | ? | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `downstream_eval_qwen` [success] — 2026-05-14T07:32:03\\\\n- `l0_heuristic_corrected` [success] — 2026-05-14T07:30:16\\\\n- `llama_k_ablation` [success] — 2026-05-14T07:29:31\\\\n- `mistral_hires_pipeline` [negative] — 2026-05-14T07:23:15 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `mistral_k_ablation` [success] — 2026-05-14T07:20:19\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| multi_seed_error_bars | — | — | — | — |\\\\n| kv_separation | K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- greedy_constrained_ablation（准备中）\\\\n\\\\n## 近期结论\\\\n- **downstream_eval_qwen** (success): —\\\\n- **l0_heuristic_corrected** (success): Budget-corrected L0 heuristic baseline (plan_015 修正版): 在 exact budget=0.25 下比较 3 种策略——(1) L0-random: L0@8-bit + k 个随机非 L0 heads@2-bit + rest@4-bit (5 seeds, mean±std), (2) MCKP optimal (已有结果), (3) Naive positional heuristic: L0@8-bit + 最深 k 个 heads@2-bit + rest@4-bit。k: Qwen=8, Llama/Mistral=16。直接量化 MCKP optimal selection 相对于随机/简单启发式的增益。\\\\n  [plan_015_l0_heuristic_corrected_results](file:///root/ratekv/l0_heuristic_corrected_results.json)\\\\n- **llama_k_ablation** (success): —\\\\n  [llama_k_ablation_results](/api/workspace-files/projects/ratekv/artifacts/llama_k_ablation/data/llama_k_ablation_results.json)\\\\n\\\\n## 趋势\\\\n成功 23 / 负向 8 / 失败 6 / 共 39\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-37397: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_001: 训练失败 — unknown\\\\n- sanity_001: 训练失败 — unknown\\\\n- mvp_002: 训练失败 — unknown\\\\n- sanity_002: 训练失败 — unknown\\\\n- mvp_003: 训练失败 — unknown\\\\n- sanity_003: 训练失败 — unknown\\\\n- l0_only_heuristic: 已被终止 — unknown\\\\n- l0_heuristic_baseline: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 2415, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T08:35:41Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 42 个实验 — ANALYZING 1, DONE 39, PREPARING 1, RUNNING 1\\n**DONE 分布**: failed 6, killed 2, negative 8, success 23\\n\\n### GPU 占用\\n- **分配**: 2 张 — westd-37397:cuda:0, westd-37397:cuda:1\\n- **空闲（分配了没跑）**: westd-37397:cuda:0, westd-37397:cuda:1\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `multi_seed_error_bars` | westd-37397 | ? | ? | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `downstream_eval_qwen` [success] — 2026-05-14T07:32:03\\n- `l0_heuristic_corrected` [success] — 2026-05-14T07:30:16\\n- `llama_k_ablation` [success] — 2026-05-14T07:29:31\\n- `mistral_hires_pipeline` [negative] — 2026-05-14T07:23:15 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `mistral_k_ablation` [success] — 2026-05-14T07:20:19\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| multi_seed_error_bars | — | — | — | — |\\n| kv_separation | K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。 | — | — | — |\\n\\n## 待处理\\n- greedy_constrained_ablation（准备中）\\n\\n## 近期结论\\n- **downstream_eval_qwen** (success): —\\n- **l0_heuristic_corrected** (success): Budget-corrected L0 heuristic baseline (plan_015 修正版): 在 exact budget=0.25 下比较 3 种策略——(1) L0-random: L0@8-bit + k 个随机非 L0 heads@2-bit + rest@4-bit (5 seeds, mean±std), (2) MCKP optimal (已有结果), (3) Naive positional heuristic: L0@8-bit + 最深 k 个 heads@2-bit + rest@4-bit。k: Qwen=8, Llama/Mistral=16。直接量化 MCKP optimal selection 相对于随机/简单启发式的增益。\\n  [plan_015_l0_heuristic_corrected_results](file:///root/ratekv/l0_heuristic_corrected_results.json)\\n- **llama_k_ablation** (success): —\\n  [llama_k_ablation_results](/api/workspace-files/projects/ratekv/artifacts/llama_k_ablation/data/llama_k_ablation_results.json)\\n\\n## 趋势\\n成功 23 / 负向 8 / 失败 6 / 共 39\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-37397: 无 GPU 信息\\n\\n## 告警\\n- mvp_001: 训练失败 — unknown\\n- sanity_001: 训练失败 — unknown\\n- mvp_002: 训练失败 — unknown\\n- sanity_002: 训练失败 — unknown\\n- mvp_003: 训练失败 — unknown\\n- sanity_003: 训练失败 — unknown\\n- l0_only_heuristic: 已被终止 — unknown\\n- l0_heuristic_baseline: 已被终止 — unknown\\n\", \"total_chars\": 2415, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c072cd74-13c4-4027-bb86-50c74220b114",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T08:36:03.400Z_
+
+<details><summary>↩ Tool result · `toolu_01JbeTysrgBCJZiv2viUvj8g`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/ROADMAP.md\", \"content\": \"# ratekv — Research Dashboard\\n\\n> 最后更新: 2026-05-14 07:18 UTC | 更新原因: D030: all make-or-break conditions resolved; Δ corrected to 0.0000; Mistral genuine negative confirmed\\n\\n## 核心方向\\nPer-KV-head 非均匀 bit-width 分配：**cardinality constraint 是核心方法贡献**——一个简单约束修正让任何 solver（greedy/MCKP）在 {2,4,8,16} 上找到完全相同的最优解（Δ=0.0000）。分析贡献：heterogeneity 决定 non-uniform 是否值得。详见 `paper_framing.md`。\\n\\n## 当前阶段: Research（Post-MVP）+ 审稿进行中\\n\\n**MVP 结果**: Constrained MCKP solver PPL=10.91 (hires) vs uniform 4-bit 15.45（29.3% 改善）\\n**投稿目标**: EMNLP 2026 Main (ARR May 25, 2026, 距今 11 天)\\n\\n## ✅ 所有 Make-or-Break 条件已解除 (D030)\\n\\n| 条件 | 结论 | 决策 |\\n|------|------|------|\\n| plan_016 greedy vs MCKP | ✅ Δ=0.0000，solver 完全等价 | D019-D021, D028, D030 |\\n| plan_015 L0-only vs constrained | ✅ MCKP 11.23 > L0-random 11.69±0.47 | D022-D023 |\\n| Mistral constraint 排查 | ✅ Genuine negative: profiler 零信号 | D029-D030 |\\n| Hires eval 一致性 | ✅ 统一 bf16 pipeline, MCKP=10.91 | D025-D026 |\\n\\n## 核心 Claims 证据状态\\n\\n**Claim 1 (Heterogeneity-dependent)**: ✅ CONFIRMED\\n- Qwen (GQA 7:1): +29.3% — strong positive\\n- Llama (GQA 4:1): +0.2% — marginal\\n- Mistral (GQA 4:1, SWA): -2.7% — genuine negative (profiler zero-signal)\\n- Diagnostic: Top-5% concentration > 0.50 → non-uniform recommended\\n\\n**Claim 2 (Constraint is THE contribution)**: ✅ CONFIRMED\\n- Solver equivalence: Δ=0.0000, 三模型逐头验证 PASS\\n- 两层贡献: constraint 防灾难 (32→11) + profiling 优化 (+0.46 PPL)\\n- L0-only heuristic 不如 constrained allocation\\n\\n**Claim 3 (Practical diagnostic)**: ✅ CONFIRMED\\n- Concentration metric works across 3 architectures\\n- New: total profiling distortion ≈ 0 → use uniform directly\\n\\n## 运行中实验\\n| exp_id | Plan | GPU | 备注 |\\n|--------|------|-----|------|\\n| kv_separation (plan_014) | P1 | cuda:1 | K/V 独立分配 |\\n| downstream_eval_qwen (plan_012) | P1 | — | Worker failed, 补跑中 |\\n\\n## 近期任务\\n- [ ] Agent 处理 queue depth=7 的 worker:done 回调\\n- [ ] paper_framing.md 更新 Δ=0.0000 + Mistral diagnostic + profiler zero-signal\\n- [ ] 评估 Paper Agent 激活时机（核心 story 已 solid）\\n- [ ] plan_017 multi-seed error bars（统计可信度）\\n- [ ] plan_018 runtime/latency benchmark\\n\\n## P1 实验队列\\n- [ ] plan_014 K/V separation (RUNNING)\\n- [ ] plan_012 Downstream eval (补跑中)\\n- [ ] plan_017 Multi-seed error bars (3 seeds)\\n- [ ] plan_018 Runtime/latency benchmark\\n\\n## P2\\n- [ ] plan_009 Oracle comparison\\n- [ ] plan_010 Cross-domain calibration\\n- [ ] plan_013 70B profiling-only\\n\\n## GPU 调度\\nwestd-37397: 2× RTX PRO 6000 96GB (cuda:0 + cuda:1)\\n- Agent queue depth=7, 正在消化 worker:done 回调 + Mistral/downstream 补跑指令\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D031 | 2026-05-14 | 审批 writing_plan.yaml：标题选 Option 2 问句格式，Mistral 用 b | downstream_eval_qwen, mistral_hires_pipeline |\\n| D030 | 2026-05-14 | Mistral negative confirmed as genuine (profiler ze | mckp_reeval, greedy_cardinality_ablation |\\n| D029 | 2026-05-14 | D029: Mistral/Llama k ablation sweep — k=18 was un | mckp_reeval, greedy_cardinality_ablation |\\n| D028 | 2026-05-14 | plan_016 confirms: cardinality constraint makes so | greedy_cardinality_ablation |\\n| D027 | 2026-05-14 | downstream_eval 确认 MCKP PPL 改善转化为 downstream accur | downstream_eval_qwen |\\n| D026 | 2026-05-14 | mckp_reeval 完成 — Qwen hires MCKP=10.91 (apple-to-a | hires_mckp_reeval, mckp_reeval |\\n| D025 | 2026-05-14 | eval_ppl.py 变更导致 exp_e hires 数字不可比 — 重评估为 hard blo | exp_e_hires_profile, l0_heuristic_corrected |\\n| D024 | 2026-05-14 | Hires MCKP 重评估列为 hard blocker；framing 措辞修正（necessa | exp_e |\\n| D023 | 2026-05-14 | Claim 2 从\\\"constraint-only\\\"调整为\\\"constraint + profili | l0_heuristic_corrected, greedy_cardinality_ablation |\\n| D022 | 2026-05-14 | Framing 修正：Claim 2 从 \\\"constraint is single critica | l0_heuristic_corrected, greedy_cardinality_ablation |\\n\\n\", \"lines\": 82}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af323032-9217-47b4-b64d-c15b73d279b0",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "fcc07087-2ccf-43b9-be06-1ee443839fa4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/ROADMAP.md\\\", \\\"content\\\": \\\"# ratekv — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 07:18 UTC | 更新原因: D030: all make-or-break conditions resolved; Δ corrected to 0.0000; Mistral genuine negative confirmed\\\\n\\\\n## 核心方向\\\\nPer-KV-head 非均匀 bit-width 分配：**cardinality constraint 是核心方法贡献**——一个简单约束修正让任何 solver（greedy/MCKP）在 {2,4,8,16} 上找到完全相同的最优解（Δ=0.0000）。分析贡献：heterogeneity 决定 non-uniform 是否值得。详见 `paper_framing.md`。\\\\n\\\\n## 当前阶段: Research（Post-MVP）+ 审稿进行中\\\\n\\\\n**MVP 结果**: Constrained MCKP solver PPL=10.91 (hires) vs uniform 4-bit 15.45（29.3% 改善）\\\\n**投稿目标**: EMNLP 2026 Main (ARR May 25, 2026, 距今 11 天)\\\\n\\\\n## ✅ 所有 Make-or-Break 条件已解除 (D030)\\\\n\\\\n| 条件 | 结论 | 决策 |\\\\n|------|------|------|\\\\n| plan_016 greedy vs MCKP | ✅ Δ=0.0000，solver 完全等价 | D019-D021, D028, D030 |\\\\n| plan_015 L0-only vs constrained | ✅ MCKP 11.23 > L0-random 11.69±0.47 | D022-D023 |\\\\n| Mistral constraint 排查 | ✅ Genuine negative: profiler 零信号 | D029-D030 |\\\\n| Hires eval 一致性 | ✅ 统一 bf16 pipeline, MCKP=10.91 | D025-D026 |\\\\n\\\\n## 核心 Claims 证据状态\\\\n\\\\n**Claim 1 (Heterogeneity-dependent)**: ✅ CONFIRMED\\\\n- Qwen (GQA 7:1): +29.3% — strong positive\\\\n- Llama (GQA 4:1): +0.2% — marginal\\\\n- Mistral (GQA 4:1, SWA): -2.7% — genuine negative (profiler zero-signal)\\\\n- Diagnostic: Top-5% concentration > 0.50 → non-uniform recommended\\\\n\\\\n**Claim 2 (Constraint is THE contribution)**: ✅ CONFIRMED\\\\n- Solver equivalence: Δ=0.0000, 三模型逐头验证 PASS\\\\n- 两层贡献: constraint 防灾难 (32→11) + profiling 优化 (+0.46 PPL)\\\\n- L0-only heuristic 不如 constrained allocation\\\\n\\\\n**Claim 3 (Practical diagnostic)**: ✅ CONFIRMED\\\\n- Concentration metric works across 3 architectures\\\\n- New: total profiling distortion ≈ 0 → use uniform directly\\\\n\\\\n## 运行中实验\\\\n| exp_id | Plan | GPU | 备注 |\\\\n|--------|------|-----|------|\\\\n| kv_separation (plan_014) | P1 | cuda:1 | K/V 独立分配 |\\\\n| downstream_eval_qwen (plan_012) | P1 | — | Worker failed, 补跑中 |\\\\n\\\\n## 近期任务\\\\n- [ ] Agent 处理 queue depth=7 的 worker:done 回调\\\\n- [ ] paper_framing.md 更新 Δ=0.0000 + Mistral diagnostic + profiler zero-signal\\\\n- [ ] 评估 Paper Agent 激活时机（核心 story 已 solid）\\\\n- [ ] plan_017 multi-seed error bars（统计可信度）\\\\n- [ ] plan_018 runtime/latency benchmark\\\\n\\\\n## P1 实验队列\\\\n- [ ] plan_014 K/V separation (RUNNING)\\\\n- [ ] plan_012 Downstream eval (补跑中)\\\\n- [ ] plan_017 Multi-seed error bars (3 seeds)\\\\n- [ ] plan_018 Runtime/latency benchmark\\\\n\\\\n## P2\\\\n- [ ] plan_009 Oracle comparison\\\\n- [ ] plan_010 Cross-domain calibration\\\\n- [ ] plan_013 70B profiling-only\\\\n\\\\n## GPU 调度\\\\nwestd-37397: 2× RTX PRO 6000 96GB (cuda:0 + cuda:1)\\\\n- Agent queue depth=7, 正在消化 worker:done 回调 + Mistral/downstream 补跑指令\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D031 | 2026-05-14 | 审批 writing_plan.yaml：标题选 Option 2 问句格式，Mistral 用 b | downstream_eval_qwen, mistral_hires_pipeline |\\\\n| D030 | 2026-05-14 | Mistral negative confirmed as genuine (profiler ze | mckp_reeval, greedy_cardinality_ablation |\\\\n| D029 | 2026-05-14 | D029: Mistral/Llama k ablation sweep — k=18 was un | mckp_reeval, greedy_cardinality_ablation |\\\\n| D028 | 2026-05-14 | plan_016 confirms: cardinality constraint makes so | greedy_cardinality_ablation |\\\\n| D027 | 2026-05-14 | downstream_eval 确认 MCKP PPL 改善转化为 downstream accur | downstream_eval_qwen |\\\\n| D026 | 2026-05-14 | mckp_reeval 完成 — Qwen hires MCKP=10.91 (apple-to-a | hires_mckp_reeval, mckp_reeval |\\\\n| D025 | 2026-05-14 | eval_ppl.py 变更导致 exp_e hires 数字不可比 — 重评估为 hard blo | exp_e_hires_profile, l0_heuristic_corrected |\\\\n| D024 | 2026-05-14 | Hires MCKP 重评估列为 hard blocker；framing 措辞修正（necessa | exp_e |\\\\n| D023 | 2026-05-14 | Claim 2 从\\\\\\\"constraint-only\\\\\\\"调整为\\\\\\\"constraint + profili | l0_heuristic_corrected, greedy_cardinality_ablation |\\\\n| D022 | 2026-05-14 | Framing 修正：Claim 2 从 \\\\\\\"constraint is single critica | l0_heuristic_corrected, greedy_cardinality_ablation |\\\\n\\\\n\\\", \\\"lines\\\": 82}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/ROADMAP.md\", \"content\": \"# ratekv — Research Dashboard\\n\\n> 最后更新: 2026-05-14 07:18 UTC | 更新原因: D030: all make-or-break conditions resolved; Δ corrected to 0.0000; Mistral genuine negative confirmed\\n\\n## 核心方向\\nPer-KV-head 非均匀 bit-width 分配：**cardinality constraint 是核心方法贡献**——一个简单约束修正让任何 solver（greedy/MCKP）在 {2,4,8,16} 上找到完全相同的最优解（Δ=0.0000）。分析贡献：heterogeneity 决定 non-uniform 是否值得。详见 `paper_framing.md`。\\n\\n## 当前阶段: Research（Post-MVP）+ 审稿进行中\\n\\n**MVP 结果**: Constrained MCKP solver PPL=10.91 (hires) vs uniform 4-bit 15.45（29.3% 改善）\\n**投稿目标**: EMNLP 2026 Main (ARR May 25, 2026, 距今 11 天)\\n\\n## ✅ 所有 Make-or-Break 条件已解除 (D030)\\n\\n| 条件 | 结论 | 决策 |\\n|------|------|------|\\n| plan_016 greedy vs MCKP | ✅ Δ=0.0000，solver 完全等价 | D019-D021, D028, D030 |\\n| plan_015 L0-only vs constrained | ✅ MCKP 11.23 > L0-random 11.69±0.47 | D022-D023 |\\n| Mistral constraint 排查 | ✅ Genuine negative: profiler 零信号 | D029-D030 |\\n| Hires eval 一致性 | ✅ 统一 bf16 pipeline, MCKP=10.91 | D025-D026 |\\n\\n## 核心 Claims 证据状态\\n\\n**Claim 1 (Heterogeneity-dependent)**: ✅ CONFIRMED\\n- Qwen (GQA 7:1): +29.3% — strong positive\\n- Llama (GQA 4:1): +0.2% — marginal\\n- Mistral (GQA 4:1, SWA): -2.7% — genuine negative (profiler zero-signal)\\n- Diagnostic: Top-5% concentration > 0.50 → non-uniform recommended\\n\\n**Claim 2 (Constraint is THE contribution)**: ✅ CONFIRMED\\n- Solver equivalence: Δ=0.0000, 三模型逐头验证 PASS\\n- 两层贡献: constraint 防灾难 (32→11) + profiling 优化 (+0.46 PPL)\\n- L0-only heuristic 不如 constrained allocation\\n\\n**Claim 3 (Practical diagnostic)**: ✅ CONFIRMED\\n- Concentration metric works across 3 architectures\\n- New: total profiling distortion ≈ 0 → use uniform directly\\n\\n## 运行中实验\\n| exp_id | Plan | GPU | 备注 |\\n|--------|------|-----|------|\\n| kv_separation (plan_014) | P1 | cuda:1 | K/V 独立分配 |\\n| downstream_eval_qwen (plan_012) | P1 | — | Worker failed, 补跑中 |\\n\\n## 近期任务\\n- [ ] Agent 处理 queue depth=7 的 worker:done 回调\\n- [ ] paper_framing.md 更新 Δ=0.0000 + Mistral diagnostic + profiler zero-signal\\n- [ ] 评估 Paper Agent 激活时机（核心 story 已 solid）\\n- [ ] plan_017 multi-seed error bars（统计可信度）\\n- [ ] plan_018 runtime/latency benchmark\\n\\n## P1 实验队列\\n- [ ] plan_014 K/V separation (RUNNING)\\n- [ ] plan_012 Downstream eval (补跑中)\\n- [ ] plan_017 Multi-seed error bars (3 seeds)\\n- [ ] plan_018 Runtime/latency benchmark\\n\\n## P2\\n- [ ] plan_009 Oracle comparison\\n- [ ] plan_010 Cross-domain calibration\\n- [ ] plan_013 70B profiling-only\\n\\n## GPU 调度\\nwestd-37397: 2× RTX PRO 6000 96GB (cuda:0 + cuda:1)\\n- Agent queue depth=7, 正在消化 worker:done 回调 + Mistral/downstream 补跑指令\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D031 | 2026-05-14 | 审批 writing_plan.yaml：标题选 Option 2 问句格式，Mistral 用 b | downstream_eval_qwen, mistral_hires_pipeline |\\n| D030 | 2026-05-14 | Mistral negative confirmed as genuine (profiler ze | mckp_reeval, greedy_cardinality_ablation |\\n| D029 | 2026-05-14 | D029: Mistral/Llama k ablation sweep — k=18 was un | mckp_reeval, greedy_cardinality_ablation |\\n| D028 | 2026-05-14 | plan_016 confirms: cardinality constraint makes so | greedy_cardinality_ablation |\\n| D027 | 2026-05-14 | downstream_eval 确认 MCKP PPL 改善转化为 downstream accur | downstream_eval_qwen |\\n| D026 | 2026-05-14 | mckp_reeval 完成 — Qwen hires MCKP=10.91 (apple-to-a | hires_mckp_reeval, mckp_reeval |\\n| D025 | 2026-05-14 | eval_ppl.py 变更导致 exp_e hires 数字不可比 — 重评估为 hard blo | exp_e_hires_profile, l0_heuristic_corrected |\\n| D024 | 2026-05-14 | Hires MCKP 重评估列为 hard blocker；framing 措辞修正（necessa | exp_e |\\n| D023 | 2026-05-14 | Claim 2 从\\\"constraint-only\\\"调整为\\\"constraint + profili | l0_heuristic_corrected, greedy_cardinality_ablation |\\n| D022 | 2026-05-14 | Framing 修正：Claim 2 从 \\\"constraint is single critica | l0_heuristic_corrected, greedy_cardinality_ablation |\\n\\n\", \"lines\": 82}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "af323032-9217-47b4-b64d-c15b73d279b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T08:36:03.419Z_
+
+<details><summary>↩ Tool result · `toolu_01HGFtQzY14S7cCkfo3wvGK7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"project\": \"ratekv\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/ratekv\", \"servers\": [\"westd-37397\"]}, \"feishu\": {\"chat_id\": \"oc_e886d722cc0b64fdb553f7bb0b99816c\", \"operational_chat_id\": \"oc_16f4cc04d259f364091fe7b4addd7912\", \"submission_chat_id\": \"oc_ec66209ede0ea4e3bda924778c210d8e\"}, \"project\": {\"created_at\": \"2026-05-13T17:11:53.681Z\", \"description\": \"RateKV: Input-Adaptive Rate-Distortion Allocation for Joint KV Cache Eviction and Quantization\", \"name\": \"ratekv\", \"phase\": \"research\", \"source_idea_id\": \"idea_017\"}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a610350-b517-47a6-a1c0-2c5ba7c0ed51",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "3cc240bf-b4e8-4758-9827-5ad3aacdb735",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"ratekv\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/ratekv\\\", \\\"servers\\\": [\\\"westd-37397\\\"]}, \\\"feishu\\\": {\\\"chat_id\\\": \\\"oc_e886d722cc0b64fdb553f7bb0b99816c\\\", \\\"operational_chat_id\\\": \\\"oc_16f4cc04d259f364091fe7b4addd7912\\\", \\\"submission_chat_id\\\": \\\"oc_ec66209ede0ea4e3bda924778c210d8e\\\"}, \\\"project\\\": {\\\"created_at\\\": \\\"2026-05-13T17:11:53.681Z\\\", \\\"description\\\": \\\"RateKV: Input-Adaptive Rate-Distortion Allocation for Joint KV Cache Eviction and Quantization\\\", \\\"name\\\": \\\"ratekv\\\", \\\"phase\\\": \\\"research\\\", \\\"source_idea_id\\\": \\\"idea_017\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"project\": \"ratekv\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/ratekv\", \"servers\": [\"westd-37397\"]}, \"feishu\": {\"chat_id\": \"oc_e886d722cc0b64fdb553f7bb0b99816c\", \"operational_chat_id\": \"oc_16f4cc04d259f364091fe7b4addd7912\", \"submission_chat_id\": \"oc_ec66209ede0ea4e3bda924778c210d8e\"}, \"project\": {\"created_at\": \"2026-05-13T17:11:53.681Z\", \"description\": \"RateKV: Input-Adaptive Rate-Distortion Allocation for Joint KV Cache Eviction and Quantization\", \"name\": \"ratekv\", \"phase\": \"research\", \"source_idea_id\": \"idea_017\"}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0a610350-b517-47a6-a1c0-2c5ba7c0ed51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T08:36:03.445Z_
+
+<details><summary>↩ Tool result · `toolu_01U6fFEretZfT9QHs4BWFX7E`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_file_transfer_figures_20260514T073344\", \"task_type\": \"file_transfer:figures\", \"project\": \"ratekv\", \"status\": \"running\", \"started_at\": \"2026-05-14T07:33:45.066982+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_util_copy_figures_20260514T073649\", \"task_type\": \"util:copy_figures\", \"project\": \"ratekv\", \"status\": \"running\", \"started_at\": \"2026-05-14T07:36:49.423316+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fde611cd-df7b-498e-ab68-8fcad0b49d31",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "a3ca9499-9ca9-48e2-a947-30fa241e5297",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_file_transfer_figures_20260514T073344\\\", \\\"task_type\\\": \\\"file_transfer:figures\\\", \\\"project\\\": \\\"ratekv\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T07:33:45.066982+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_util_copy_figures_20260514T073649\\\", \\\"task_type\\\": \\\"util:copy_figures\\\", \\\"project\\\": \\\"ratekv\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T07:36:49.423316+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_file_transfer_figures_20260514T073344\", \"task_type\": \"file_transfer:figures\", \"project\": \"ratekv\", \"status\": \"running\", \"started_at\": \"2026-05-14T07:33:45.066982+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_util_copy_figures_20260514T073649\", \"task_type\": \"util:copy_figures\", \"project\": \"ratekv\", \"status\": \"running\", \"started_at\": \"2026-05-14T07:36:49.423316+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fde611cd-df7b-498e-ab68-8fcad0b49d31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: kv_separation - project: ratekv - server: westd-37397 - log_path: /root/ratekv/kv_separatio…",
+  "leafUuid": "a3ca9499-9ca9-48e2-a947-30fa241e5297",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze kv_separation experiment results",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-14T08:36:22.752Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the full registry entry for kv_separation to understand the experiment details. I already have the key info from the registry read:
+
+kv_separation experiment:
+- Status: ANALYZING
+- Hypothesis: K和V heads作为独立MCKP items分别优化bit-width，允许K/V不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。
+- Server: westd-37397
+
+
+- Log path: ~/runs/ratekv/kv_separation.log
+- GPU: cuda:1
+- Process finished at 2026-05-14T08:35:41.293Z
+
+Now I need to spawn a Worker to SSH into the server and read the log file to extract the metrics and determine whether the experiment succeeded, failed, or showed negative results. Once I have that analysis, I can update the registry and report back to the Director.
+
+Looking at the full registry, kv_separation is currently in ANALYZING state with its spec containing the command, server, GPU, process ID, and log path. I can also see that multi_seed_error_bars is still running, there are two workers handling file transfers, and the overall experiment count shows 42 total with 39 completed, 1 analyzing, 1 running, and 1 preparing. The GPU allocation across westd-37397 needs to be verified since both cuda:0 and cuda:1 are showing as idle in the report.
+
+Before I spawn the analysis worker to read the kv_separation logs and extract metrics, I should first review the resource-saturation skill to ensure I'm following the right approach for reporting to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3ca9499-9ca9-48e2-a947-30fa241e5297",
+  "isSidechain": false,
+  "requestId": "req_011Cb29zPXM6ejDhGerUseaz",
+  "type": "assistant",
+  "uuid": "9e58ac97-f62a-4149-8ee4-ba9ce07d9c5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UP7cFpxKyajXg9foZg2kAU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5588,
+      "cache_read_input_tokens": 38828,
+      "output_tokens": 1539,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1539,
+          "cache_read_input_tokens": 38828,
+          "cache_creation_input_tokens": 5588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-14T08:36:24.409Z_
+
+初始化完成。当前状态：
+- `kv_separation`: ANALYZING（进程已退出，待分析）
+- `multi_seed_error_bars`: RUNNING（pid=199409）
+- 2 个 Worker 在跑（figures 相关）
+- GPU: cuda:0 + cuda:1 分配给 westd-37397
+
+派 Worker 分析 kv_separation 实验结果，同时读 resource-saturation skill。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e58ac97-f62a-4149-8ee4-ba9ce07d9c5f",
+  "isSidechain": false,
+  "requestId": "req_011Cb29zPXM6ejDhGerUseaz",
+  "type": "assistant",
+  "uuid": "fbf7ecfc-c494-4d77-afda-852482ffd861",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UP7cFpxKyajXg9foZg2kAU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5588,
+      "cache_read_input_tokens": 38828,
+      "output_tokens": 1539,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1539,
+          "cache_read_input_tokens": 38828,
+          "cache_creation_input_tokens": 5588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T08:36:37.458Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_016ko4Tu2V8ezE439DoSPb66`</summary>
+
+```json
+{
+  "task_type": "analysis:kv_separation",
+  "project": "ratekv",
+  "task_prompt": "## 任务：分析 kv_separation 实验结果\n\n### 背景\n实验 `kv_separation` 已在 westd-37397 上完成运行，进程正常退出。需要分析结果。\n\n**假设**: K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。\n\n**服务器**: westd-37397\n**项目路径**: /root/ratekv\n**日志文件**: /root/ratekv/kv_separation.log\n\n### 你的任务\n\n1. SSH 到 westd-37397，读取日志文件 `/root/ratekv/kv_separation.log`（用 ssh_read_only）\n2. 查找结果文件（如 `kv_separation_results.json` 或类似文件，在 `/root/ratekv/` 下搜索）\n3. 提取关键指标：\n   - K/V 分离后的 PPL（每个模型）\n   - K 和 V 各自的 avg bit-width\n   - 与 joint optimization 的对比（PPL 差异）\n   - 与 uniform 4-bit baseline 的对比\n4. 读取脚本 `run_kv_separation.py` 了解实验具体做了什么\n5. 判断 conclusion：\n   - success: K/V 分离带来显著改善\n   - negative: K/V 分离没有改善或改善微不足道\n   - failed: 运行出错\n\n### 产出\n用 `update_registry` 更新 kv_separation 实验：\n- 设置 `conclusion`（success/negative/failed）\n- 设置 `metrics`（包含所有关键数值）\n- 设置 `checkpoint_path`（结果文件路径）\n- 设置 `log_path`（确认日志路径）\n\n然后写一个简洁的分析总结到 Worker 输出中，包括：\n- 各模型的 PPL 对比表（joint vs separated vs uniform）\n- K/V 各自的 bit-width 分布\n- 结论和原因\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbf7ecfc-c494-4d77-afda-852482ffd861",
+  "isSidechain": false,
+  "requestId": "req_011Cb29zPXM6ejDhGerUseaz",
+  "type": "assistant",
+  "uuid": "d7b20f44-06f5-4030-9412-6970a5b62f92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UP7cFpxKyajXg9foZg2kAU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5588,
+      "cache_read_input_tokens": 38828,
+      "output_tokens": 1539,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1539,
+          "cache_read_input_tokens": 38828,
+          "cache_creation_input_tokens": 5588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T08:36:39.019Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YKrHSjdgkKUnnKJj1rA4af`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7b20f44-06f5-4030-9412-6970a5b62f92",
+  "isSidechain": false,
+  "requestId": "req_011Cb29zPXM6ejDhGerUseaz",
+  "type": "assistant",
+  "uuid": "d73f95b0-9e0a-459f-b38b-65e330159a24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UP7cFpxKyajXg9foZg2kAU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5588,
+      "cache_read_input_tokens": 38828,
+      "output_tokens": 1539,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1539,
+          "cache_read_input_tokens": 38828,
+          "cache_creation_input_tokens": 5588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T08:36:40.064Z_
+
+<details><summary>↩ Tool result · `toolu_016ko4Tu2V8ezE439DoSPb66`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_kv_separation_20260514T083637\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/logs/workers/worker_analysis_kv_separation_20260514T083637.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_kv_separation_20260514T083637 started. Use get_worker_status('worker_analysis_kv_separation_20260514T083637') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7b20f44-06f5-4030-9412-6970a5b62f92",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "95e91a83-fb75-47e6-9522-4b103457bbdb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_kv_separation_20260514T083637\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/logs/workers/worker_analysis_kv_separation_20260514T083637.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_kv_separation_20260514T083637 started. Use get_worker_status('worker_analysis_kv_separation_20260514T083637') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_kv_separation_20260514T083637\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/logs/workers/worker_analysis_kv_separation_20260514T083637.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_kv_separation_20260514T083637 started. Use get_worker_status('worker_analysis_kv_separation_20260514T083637') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d7b20f44-06f5-4030-9412-6970a5b62f92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T08:36:40.080Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01YKrHSjdgkKUnnKJj1rA4af`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d73f95b0-9e0a-459f-b38b-65e330159a24",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "2966c36c-77fc-4127-88be-4838feb0d1aa",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028.",
+  "sourceToolAssistantUUID": "d73f95b0-9e0a-459f-b38b-65e330159a24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-14T08:36:40.084Z_
+
+```json
+{
+  "parentUuid": "2966c36c-77fc-4127-88be-4838feb0d1aa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "312a3d10-959c-49c7-8642-68f11f78a31d",
+  "timestamp": "2026-05-14T08:36:40.084Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-14T08:36:44.470Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The resource-saturation skill file wasn't found at the expected path. Let me find it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "312a3d10-959c-49c7-8642-68f11f78a31d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A36J6FXa6iDF4bzJVn",
+  "type": "assistant",
+  "uuid": "dea3ab28-4dce-4dd3-b7d4-c81f2b8a3a13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LD5eMheZcEfEwvxNKCDcCd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1936,
+      "cache_read_input_tokens": 44416,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 44416,
+          "cache_creation_input_tokens": 1936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T08:36:45.026Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01QEnXCRqTA6oqq6cmeD14nh`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dea3ab28-4dce-4dd3-b7d4-c81f2b8a3a13",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A36J6FXa6iDF4bzJVn",
+  "type": "assistant",
+  "uuid": "cf6dae49-b845-47dc-8a27-793a7a2f5599",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LD5eMheZcEfEwvxNKCDcCd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1936,
+      "cache_read_input_tokens": 44416,
+      "output_tokens": 131,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 131,
+          "cache_read_input_tokens": 44416,
+          "cache_creation_input_tokens": 1936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T08:36:45.072Z_
+
+<details><summary>↩ Tool result · `toolu_01QEnXCRqTA6oqq6cmeD14nh`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf6dae49-b845-47dc-8a27-793a7a2f5599",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "b9a7d525-7e0f-4f8a-83ad-9242f9996a5d",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 35,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "cf6dae49-b845-47dc-8a27-793a7a2f5599",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T08:36:48.806Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01U2meP6sfdjGcChVgwfthjk`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9a7d525-7e0f-4f8a-83ad-9242f9996a5d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A3TaFxueqCrCrN2Rmc",
+  "type": "assistant",
+  "uuid": "dc680a70-2498-4a5d-b11f-fbffac83d148",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L8exMHC1Qrz2qEotCJZVtu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 146,
+      "cache_read_input_tokens": 46352,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 146,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 46352,
+          "cache_creation_input_tokens": 146,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 146
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T08:36:48.826Z_
+
+<details><summary>↩ Tool result · `toolu_01U2meP6sfdjGcChVgwfthjk`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc680a70-2498-4a5d-b11f-fbffac83d148",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "3093fa97-f824-496d-aec4-093fd4cbe499",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 18,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "dc680a70-2498-4a5d-b11f-fbffac83d148",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-14T08:36:52.076Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The resource-saturation skill file doesn't exist. Let me check the skills directory to see what's available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3093fa97-f824-496d-aec4-093fd4cbe499",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A3jn5zMPVcgytBfjaU",
+  "type": "assistant",
+  "uuid": "009edc0b-d7f8-4538-a0af-7af987ff9225",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nCTciNTvs1Q7ToTCK2CxC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 46498,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 46498,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T08:36:52.561Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01NjFvY97Au6TAQV9MhrcAVD`</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "009edc0b-d7f8-4538-a0af-7af987ff9225",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A3jn5zMPVcgytBfjaU",
+  "type": "assistant",
+  "uuid": "1d53e60e-3ea7-493c-84b0-428e7afb24b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nCTciNTvs1Q7ToTCK2CxC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 46498,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 46498,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T08:36:52.612Z_
+
+<details><summary>↩ Tool result · `toolu_01NjFvY97Au6TAQV9MhrcAVD`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d53e60e-3ea7-493c-84b0-428e7afb24b2",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "a93d8014-73db-4869-bb39-37ca3fc4a0a1",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 43,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "1d53e60e-3ea7-493c-84b0-428e7afb24b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T08:36:57.169Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018yb7rHmZjsGR4eiYMioHDX`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/agent-ml-research/skills/global/resource-saturation* 2>/dev/null || echo \"NOT_FOUND\"",
+  "description": "Find resource-saturation skill file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a93d8014-73db-4869-bb39-37ca3fc4a0a1",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A41o1Ba1YnmebwWwn5",
+  "type": "assistant",
+  "uuid": "06937ca5-078a-4fdf-8b78-0df3112af69d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018jadAjWRokhuUcHaEgoUyb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 147,
+      "cache_read_input_tokens": 46606,
+      "output_tokens": 109,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 109,
+          "cache_read_input_tokens": 46606,
+          "cache_creation_input_tokens": 147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T08:36:57.334Z_
+
+<details><summary>↩ Tool result · `toolu_018yb7rHmZjsGR4eiYMioHDX`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06937ca5-078a-4fdf-8b78-0df3112af69d",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "317bed9c-2873-4df2-ae24-2939b340968a",
+  "toolUseResult": {
+    "stdout": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "06937ca5-078a-4fdf-8b78-0df3112af69d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T08:36:59.526Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KF32fQCaJCCyu1Khxs3hmj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "317bed9c-2873-4df2-ae24-2939b340968a",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A4Muy2fjjbsWm2ph9r",
+  "type": "assistant",
+  "uuid": "07e734bf-d3d6-4454-8ee9-d673e49353f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0121Bqip6PcrfC9rQ4wMh8os",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 143,
+      "cache_read_input_tokens": 46753,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 143,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 46753,
+          "cache_creation_input_tokens": 143,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 143
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T08:36:59.535Z_
+
+<details><summary>↩ Tool result · `toolu_01KF32fQCaJCCyu1Khxs3hmj`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07e734bf-d3d6-4454-8ee9-d673e49353f3",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "a4833e6f-2ed5-4203-8e8e-d63b70dc2c2d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "07e734bf-d3d6-4454-8ee9-d673e49353f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: kv_separation - project: ratekv - server: westd-37397 - log_path: /root/ratekv/kv_separatio…",
+  "leafUuid": "a4833e6f-2ed5-4203-8e8e-d63b70dc2c2d",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze kv_separation experiment results",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-14T08:37:17.314Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the resource-saturation skill loaded. Let me assess the current state:
+
+**GPU status:**
+- Allocated: cuda:0, cuda:1 on westd-37397
+- Actually running: multi_seed_error_bars (RUNNING) - but its GPU is "?" in the report, need to check
+- kv_separation just finished (was on cuda:1)
+- So potentially cuda:0 and cuda:1 are now idle (kv_separation finished, multi_seed may be on one of them)
+
+**Worker pool:**
+- worker_file_transfer_figures (running)
+
+
+- worker_util_copy_figures (running)
+- worker_analysis_kv_separation (just spawned, running)
+- Total: 3 workers running, which is fine
+
+Now I need to wait for the analysis worker to complete. It'll SSH to read logs, extract metrics, update the registry, and report back. According to the instructions, I should spawn the worker and immediately notify the Director that it's been dispatched, then end this turn.
+
+But I'm also thinking about what else I can do in parallel. The kv_separation job just finished on cuda:1, so that GPU is now free. I need to check which GPU multi_seed_error_bars is running on to see if there are other resources available. Let me look at the full registry output to get those details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a4833e6f-2ed5-4203-8e8e-d63b70dc2c2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A4XQyMukCzMacciBbL",
+  "type": "assistant",
+  "uuid": "6a807433-2c9a-48ef-96b8-d0cba4e73f14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LijzV8EBFrLFqMvRSzsQ1Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 46896,
+      "output_tokens": 661,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 661,
+          "cache_read_input_tokens": 46896,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-14T08:37:17.353Z_
+
+Worker 已派发分析 kv_separation。让我检查完整 registry 了解 multi_seed_error_bars 的 GPU 分配情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a807433-2c9a-48ef-96b8-d0cba4e73f14",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A4XQyMukCzMacciBbL",
+  "type": "assistant",
+  "uuid": "31e95a6c-aa72-48c2-8f1d-b9cfa5b25734",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LijzV8EBFrLFqMvRSzsQ1Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 46896,
+      "output_tokens": 661,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 661,
+          "cache_read_input_tokens": 46896,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T08:37:18.289Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01S3uVDovmHKSLPEscVVUsjX`</summary>
+
+```json
+{
+  "project": "ratekv",
+  "filters": {
+    "status": "RUNNING"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31e95a6c-aa72-48c2-8f1d-b9cfa5b25734",
+  "isSidechain": false,
+  "requestId": "req_011Cb2A4XQyMukCzMacciBbL",
+  "type": "assistant",
+  "uuid": "4cb1ca70-f3f6-4607-9421-c2f98ba6112f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LijzV8EBFrLFqMvRSzsQ1Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 46896,
+      "output_tokens": 661,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 661,
+          "cache_read_input_tokens": 46896,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T08:37:18.412Z_
+
+<details><summary>↩ Tool result · `toolu_01S3uVDovmHKSLPEscVVUsjX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"multi_seed_error_bars\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:32:17.418Z\", \"updated_at\": \"2026-05-14T07:40:49.992Z\", \"spec\": {\"hypothesis\": \"Multi-seed error bars (plan_017): 3 different calibration subsets on Qwen2.5-7B, each runs constrained MCKP (k=8) + uniform 4-bit eval. Reports mean±std for statistical credibility. Dream review flagged all-single-run as critical gap.\", \"plan_id\": \"plan_017\", \"claim\": [1, 2], \"model_name\": \"Qwen2.5-7B\", \"server\": \"westd-37397\", \"command\": \"python3 run_multi_seed.py > multi_seed.log 2>&1\", \"data_path\": \"wikitext-103-raw-v1 train (calibration) + wikitext-2-raw-v1 test (eval)\", \"data_count\": \"64 seqs x 2048 tokens x 3 seeds\", \"seed\": \"0,1,2\"}, \"log_path\": \"/root/ratekv/multi_seed.log\", \"checkpoint_path\": \"/root/ratekv/multi_seed_results.json\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1115}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4cb1ca70-f3f6-4607-9421-c2f98ba6112f",
+  "isSidechain": false,
+  "promptId": "d754ea2e-433b-461b-88a2-0d9710e9ce35",
+  "type": "user",
+  "uuid": "40022ff3-9d97-4d0b-b051-d6ca3dc96c64",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"multi_seed_error_bars\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T07:32:17.418Z\\\", \\\"updated_at\\\": \\\"2026-05-14T07:40:49.992Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Multi-seed error bars (plan_017): 3 different calibration subsets on Qwen2.5-7B, each runs constrained MCKP (k=8) + uniform 4-bit eval. Reports mean±std for statistical credibility. Dream review flagged all-single-run as critical gap.\\\", \\\"plan_id\\\": \\\"plan_017\\\", \\\"claim\\\": [1, 2], \\\"model_name\\\": \\\"Qwen2.5-7B\\\", \\\"server\\\": \\\"westd-37397\\\", \\\"command\\\": \\\"python3 run_multi_seed.py > multi_seed.log 2>&1\\\", \\\"data_path\\\": \\\"wikitext-103-raw-v1 train (calibration) + wikitext-2-raw-v1 test (eval)\\\", \\\"data_count\\\": \\\"64 seqs x 2048 tokens x 3 seeds\\\", \\\"seed\\\": \\\"0,1,2\\\"}, \\\"log_path\\\": \\\"/root/ratekv/multi_seed.log\\\", \\\"checkpoint_path\\\": \\\"/root/ratekv/multi_seed_results.json\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1115}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"multi_seed_error_bars\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:32:17.418Z\", \"updated_at\": \"2026-05-14T07:40:49.992Z\", \"spec\": {\"hypothesis\": \"Multi-seed error bars (plan_017): 3 different calibration subsets on Qwen2.5-7B, each runs constrained MCKP (k=8) + uniform 4-bit eval. Reports mean±std for statistical credibility. Dream review flagged all-single-run as critical gap.\", \"plan_id\": \"plan_017\", \"claim\": [1, 2], \"model_name\": \"Qwen2.5-7B\", \"server\": \"westd-37397\", \"command\": \"python3 run_multi_seed.py > multi_seed.log 2>&1\", \"data_path\": \"wikitext-103-raw-v1 train (calibration) + wikitext-2-raw-v1 test (eval)\", \"data_count\": \"64 seqs x 2048 tokens x 3 seeds\", \"seed\": \"0,1,2\"}, \"log_path\": \"/root/ratekv/multi_seed.log\", \"checkpoint_path\": \"/root/ratekv/multi_seed_results.json\"}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1115}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4cb1ca70-f3f6-4607-9421-c2f98ba6112f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze kv_separation experiment results",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-14T11:38:31.374Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T11:38:31.374Z",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56 · 2026-05-14T11:38:31.374Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T11:38:31.374Z",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 57 · 2026-05-14T11:38:31.366Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40022ff3-9d97-4d0b-b051-d6ca3dc96c64",
+  "isSidechain": false,
+  "promptId": "861dd655-b313-44be-8604-61fae28ad37f",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "4d46e9b8-fb30-40b4-b885-5418aa1b2af5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-14T11:38:31.366Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d46e9b8-fb30-40b4-b885-5418aa1b2af5",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "6ead6bcd-e1a2-4991-8783-97aa75f04d6d",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "f303511e-ba0e-4131-bee0-bdaeb17652ef",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 59 · 2026-05-14T11:38:31.486Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ead6bcd-e1a2-4991-8783-97aa75f04d6d",
+  "isSidechain": false,
+  "promptId": "861dd655-b313-44be-8604-61fae28ad37f",
+  "type": "user",
+  "uuid": "fda9ca4c-5616-4f2d-ba92-39b5303858e4",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/ratekv/.claude/sessions/agent_830db028",
+  "sessionId": "160864cb-6adc-4861-bc34-5bc8f5a8afdc",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
