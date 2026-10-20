@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_accumulation_v3_bugfix_westd_20260519T081246_result.json",
     "occurrence": 1,
-    "bytes": 1765,
-    "sha256": "c6ed1b68bb8ad8d082780ae8464da3dae9ad6ab7018384b90343eb63bf6b9053"
+    "bytes": 1764,
+    "sha256": "e30667525f3904cdc2d3e73539373881416f5693304e2ecf818ad3b7a14407fc"
   },
   "statistics": {
     "messages": 1,

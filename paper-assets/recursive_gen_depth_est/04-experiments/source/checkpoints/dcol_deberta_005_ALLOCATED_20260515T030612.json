@@ -1,0 +1,30 @@
+{
+  "exp_id": "dcol_deberta_005",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:47:32.444Z",
+    "updated_at": "2026-05-15T03:06:12.099Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_lora_v5/ --batch_size 32 --epochs 10 --lr 3e-4 --margin_lr 1e-4 --cl_weight 1.0 --seed 42 --use_lora --lora_r 16 --lora_alpha 16 --warmup_ratio 0.05 --gpu 0\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "283191",
+      "log_path": "~/runs/recursive_gen_depth_est/dcol_deberta_005.log",
+      "submitted_at": "2026-05-15T02:47:32.313Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "DCOL v5 (LoRA r=16 alpha=16, margin_lr=1e-4): DeBERTa-v3-large + LoRA + Contrastive Ordinal Loss，修正 margin_lr 从 1e-3 到 1e-4 避免 embedding collapse",
+    "parent": "dcol_deberta_004",
+    "notes": "DCOL v5: LoRA (r=16, alpha=16) + margin_lr=1e-4 (v4的1e-3违反硬约束)。沿用 v4 代码（float32, warmup 5%, grad_clip 1.0）。输出: checkpoints/dcol_lora_v5/。PID 283191, cuda:1。"
+  },
+  "timestamp": "2026-05-15T03:06:12.184657+00:00",
+  "trigger": "update_registry"
+}

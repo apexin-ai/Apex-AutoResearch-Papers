@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_cloud_deploy_westd48862_20260517T160001_result.json",
     "occurrence": 1,
-    "bytes": 1158,
-    "sha256": "b7723b866b2269c143ddf6f7176692a076c6c4e146c8513a64b38a1790af1dcf"
+    "bytes": 1157,
+    "sha256": "a49be730ec27c75588bae29f77d3622565a70c4de7124e6b79c7502569ee9140"
   },
   "statistics": {
     "messages": 1,

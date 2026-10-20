@@ -1,0 +1,24 @@
+{
+  "exp_id": "two_stage_strategy_pipeline_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:37:03.133Z",
+    "updated_at": "2026-05-16T05:37:18.240Z",
+    "spec": {
+      "command": "python scripts/two_stage_pipeline.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/ (all 3x3 matrix cells)",
+      "data_count": "9 cells × 20000 samples",
+      "model_name": "RF (strategy classifier + depth classifier)",
+      "seed": 42,
+      "notes": "Two-stage pipeline: (1) classify strategy from features, (2) apply strategy-conditioned depth classifier. Supplements R3-N5 cross-strategy discussion."
+    },
+    "hypothesis": "Two-stage pipeline: 先分类 decoding strategy，再用 strategy-conditioned depth classifier。验证 Discussion 中提出的 two-stage 方案的可行性和瓶颈。"
+  },
+  "timestamp": "2026-05-16T05:37:18.496180+00:00",
+  "trigger": "update_registry"
+}

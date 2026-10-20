@@ -1,0 +1,33 @@
+{
+  "exp_id": "qwen25_14b_scale_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:03:47.502Z",
+    "updated_at": "2026-05-17T12:09:43.696Z",
+    "hypothesis": "Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.",
+    "notes": "plan_014: 14B FP16 scale validation. 5000 samples/depth, d0-d3, self-reference features (Qwen2.5-14B computes surprisal on its own generations). LoRA r=16 alpha=32 q/k/v_proj, 3 epochs, lr=2e-4. No quantization (unlike Qwen7B QLoRA experiment). Gradient checkpointing for VRAM management.",
+    "spec": {
+      "command": "bash scripts/run_qwen25_14b_scale_validation.sh",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b/",
+      "data_count": 20000,
+      "model_name": "Qwen/Qwen2.5-14B",
+      "seed": 42,
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "plan_id": "plan_014",
+      "checkpoint_source": "huggingface",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/qwen25_14b_scale_validation.log",
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/qwen25_14b/"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T12:09:43.904213+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_restart-qwen-base-pipeline_20260514T114711_result.json",
     "occurrence": 1,
-    "bytes": 970,
-    "sha256": "c5e3d1a3ded3909366c208fa4a1b646bf4b9469f02828cecb65f898b524b832e"
+    "bytes": 969,
+    "sha256": "ebcd7ff1db5855e61e07d660c6fb6a0c2b2a705717c4e7da1543723ae8328cc3"
   },
   "statistics": {
     "messages": 1,

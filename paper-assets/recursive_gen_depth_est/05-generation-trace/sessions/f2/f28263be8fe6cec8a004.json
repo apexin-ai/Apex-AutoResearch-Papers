@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_temp07_pilot_pythia_001_20260515T155152_result.json",
     "occurrence": 1,
-    "bytes": 706,
-    "sha256": "a494c3c9219ad89db3d6aeaafbd95f506afef60e0479a9946cb8b990cf1555c2"
+    "bytes": 705,
+    "sha256": "30fcfb89c7919cacafc233dc048f3cda6f19494c6daa453de95c1b57c4d07850"
   },
   "statistics": {
     "messages": 1,

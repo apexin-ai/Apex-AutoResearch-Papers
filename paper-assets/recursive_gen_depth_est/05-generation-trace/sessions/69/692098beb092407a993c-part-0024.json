@@ -532,7 +532,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex /tmp/anon_repo/paper/section_appendix.tex && cd /tmp/anon_repo && git add paper/section_appendix.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@review.org\" commit -m \"Fix p90_surprisal: note self-reference feature set differs from standard 19\" && git push https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git main 2>&1"
+              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/section_appendix.tex /tmp/anon_repo/paper/section_appendix.tex && cd /tmp/anon_repo && git add paper/section_appendix.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@review.org\" commit -m \"Fix p90_surprisal: note self-reference feature set differs from standard 19\" && git push https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git main 2>&1"
             }
           },
           "id": "event-004166"
@@ -724,7 +724,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex /tmp/anon_repo/paper/abstract.tex && cd /tmp/anon_repo && git add paper/abstract.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@review.org\" commit -m \"Update abstract footnote to anonymous.4open.science link\" && git push https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git main 2>&1"
+              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/abstract.tex /tmp/anon_repo/paper/abstract.tex && cd /tmp/anon_repo && git add paper/abstract.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@review.org\" commit -m \"Update abstract footnote to anonymous.4open.science link\" && git push https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git main 2>&1"
             }
           },
           "id": "event-004176"
@@ -2478,7 +2478,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp/anon_repo && cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex paper/related_work.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex paper/discussion.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex paper/generalization.tex && git add paper/related_work.tex paper/discussion.tex paper/generalization.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@review.org\" commit -m \"Reduce Related Work to 3 paragraphs; expand Discussion and cross-model transfer analysis\" && git push https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git main 2>&1"
+              "command": "cd /tmp/anon_repo && cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/related_work.tex paper/related_work.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/discussion.tex paper/discussion.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/generalization.tex paper/generalization.tex && git add paper/related_work.tex paper/discussion.tex paper/generalization.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@review.org\" commit -m \"Reduce Related Work to 3 paragraphs; expand Discussion and cross-model transfer analysis\" && git push https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git main 2>&1"
             }
           },
           "id": "event-004266"
@@ -2748,7 +2748,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex /tmp/anon_repo/paper/main.tex && cd /tmp/anon_repo && git add paper/main.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@review.org\" commit -m \"Remove clearpage before appendix\" && git push https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git main 2>&1"
+              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/main.tex /tmp/anon_repo/paper/main.tex && cd /tmp/anon_repo && git add paper/main.tex && git -c user.name=\"Anonymous\" -c user.email=\"anonymous@review.org\" commit -m \"Remove clearpage before appendix\" && git push https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git main 2>&1"
             }
           },
           "id": "event-004280"

@@ -1,0 +1,99 @@
+{
+  "exp_id": "multi_tau_ablation_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:56:04.055Z",
+    "updated_at": "2026-05-16T02:36:59.571Z",
+    "hypothesis": "R2-W3 multi-τ ablation: 4 τ values (0.5, 0.7, 0.9, 1.1) × Pythia-1.4B。验证 depth classification signal 跨温度的鲁棒性，特别是 d1v2 AUC 是否随 τ 单调变化或在特定 τ 出现 inversion。Cross-τ LOO 验证跨温度泛化能力。",
+    "spec": {
+      "command": "bash scripts/run_multi_tau_pipeline.sh",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/pythia_temp{05,07,09,11}/",
+      "data_count": 8000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T02:32:30.311Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T02:32:33.454006+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "data/pythia_temp{05,11}/lora_depth{0,1,2}/",
+    "log_path": "logs/multi_tau_pipeline.log",
+    "conclusion": "success",
+    "metrics": {
+      "within_tau": {
+        "tau_0.5": {
+          "4class_acc": 0.7725,
+          "d1v2_auc": 0.8423,
+          "d0v1_auc": 0.9962,
+          "d2v3_auc": 0.7636
+        },
+        "tau_0.7": {
+          "4class_acc": 0.754,
+          "d1v2_auc": 0.8505,
+          "d0v1_auc": 0.9966,
+          "d2v3_auc": 0.7197
+        },
+        "tau_0.9": {
+          "4class_acc": 0.759,
+          "d1v2_auc": 0.8083,
+          "d0v1_auc": 0.9911,
+          "d2v3_auc": 0.7805
+        },
+        "tau_1.1": {
+          "4class_acc": 0.5715,
+          "d1v2_auc": 0.5284,
+          "d0v1_auc": 0.9878,
+          "d2v3_auc": 0.5987
+        }
+      },
+      "cross_tau_loo": {
+        "holdout_0.5": {
+          "acc": 0.522,
+          "d1v2_auc": 0.1756
+        },
+        "holdout_0.7": {
+          "acc": 0.4095,
+          "d1v2_auc": 0.2985
+        },
+        "holdout_0.9": {
+          "acc": 0.464,
+          "d1v2_auc": 0.2774
+        },
+        "holdout_1.1": {
+          "acc": 0.471,
+          "d1v2_auc": 0.5251
+        },
+        "mean_acc": 0.4666,
+        "mean_d1v2_auc": 0.3192
+      },
+      "training_loss": {
+        "tau_0.5": {
+          "d0": 2.2727,
+          "d1": 0.4201,
+          "d2": 0.1589
+        },
+        "tau_1.1": {
+          "d0": 2.2726,
+          "d1": 1.9077,
+          "d2": 1.8517
+        }
+      }
+    },
+    "completed_at": "2026-05-16T02:36:59.571Z"
+  },
+  "timestamp": "2026-05-16T02:36:59.743923+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "zero_shot_llm_baseline_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:41:07.167Z",
+    "updated_at": "2026-05-15T06:47:58.554Z",
+    "hypothesis": "Zero-shot LLM baseline: DeepSeek V3.2 直接判断文本递归生成深度 (4-class)，无需统计特征提取。作为 upper-bound baseline 对比 feature-based 方法。",
+    "parent": "baseline_battery_001",
+    "spec": {
+      "command": "DeepSeek V3.2 API zero-shot classification",
+      "server": "API (no GPU)",
+      "data_path": "Pythia nucleus d0-d3 samples",
+      "data_count": 200,
+      "model_name": "DeepSeek V3.2",
+      "seed": 42,
+      "checkpoint_source": "DeepSeek V3.2 API (no checkpoint)",
+      "eval_data": "200 random samples from Pythia nucleus d0-d3 (50 per depth)",
+      "checkpoint_path": "N/A (API-based, no checkpoint)",
+      "log_path": "N/A (API-based, no training log)"
+    },
+    "metrics": {
+      "four_class_acc": 0.443,
+      "n_samples": 200,
+      "model": "DeepSeek V3.2",
+      "method": "zero-shot prompting",
+      "vs_rf_baseline": -0.339,
+      "vs_chance": 0.193,
+      "note": "44.3% well above chance (25%) but far below RF 78.2% (-33.9pp). Zero-shot LLM cannot reliably distinguish recursive depth from raw text alone."
+    },
+    "conclusion": "success",
+    "notes": "DeepSeek V3.2 zero-shot 4-class acc=44.3% (200 samples, 50/depth)。高于 chance 25% (+19.3pp) 但远低于 RF 78.2% (-33.9pp)。结论：即使最强 LLM 也无法从原始文本可靠判断递归深度——统计特征提取是必要的，这验证了本文 feature-based 方法的价值。Paper Agent 可从 registry 读取此结果用于 Baselines 对比表。",
+    "completed_at": "2026-05-15T06:47:58.554Z"
+  },
+  "timestamp": "2026-05-15T06:47:58.680596+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_read_mink_results_20260518T183528_result.json",
     "occurrence": 1,
-    "bytes": 1198,
-    "sha256": "000964b35cc25f819dbf0cfaee81ebfd5ea8442b65aeb9b3b8071b56a92a8ddb"
+    "bytes": 1197,
+    "sha256": "fa6f661619302eff8c6cd635561dca231a52248894c35cbeabbd2c3373603292"
   },
   "statistics": {
     "messages": 1,

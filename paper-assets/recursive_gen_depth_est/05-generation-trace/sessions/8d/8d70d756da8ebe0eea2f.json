@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_remove_dangerous_resume_script_20260514T230745_result.json",
     "occurrence": 1,
-    "bytes": 234,
-    "sha256": "7037329758cf4d1d68295dc37fe7cec25330e8734f018a9921ab2aed3e263962"
+    "bytes": 233,
+    "sha256": "1ef3a8acf1bd871a43f471922a60c257536ce3ac2cfc4fdf438e91ced6be39be"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,14 @@
+{
+  "exp_id": "olmo_temp09_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:34:19.885Z",
+    "updated_at": "2026-05-14T20:34:19.885Z"
+  },
+  "timestamp": "2026-05-14T20:34:19.964933+00:00",
+  "trigger": "update_registry"
+}

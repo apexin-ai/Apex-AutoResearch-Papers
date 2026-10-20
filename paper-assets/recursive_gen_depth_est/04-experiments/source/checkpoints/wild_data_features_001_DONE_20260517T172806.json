@@ -1,0 +1,73 @@
+{
+  "exp_id": "wild_data_features_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:18:51.338Z",
+    "updated_at": "2026-05-17T17:28:05.914Z",
+    "hypothesis": "Wild web corpora (C4, FineWeb) contain measurable proportions of text classified as recursive-generation depth d1+ by our RF estimator, providing evidence that model-generated text is present in training data.",
+    "parent": "mvp_pipeline_pythia_002",
+    "spec": {
+      "command": "/root/miniconda3/bin/python3.12 scripts/wild_data_features.py --input data/wild/c4_10k.jsonl,data/wild/fineweb_10k.jsonl --device cuda:0",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "788803",
+      "log_path": "~/runs/recursive_gen_depth_est/wild_data_features_001.log",
+      "submitted_at": "2026-05-17T15:19:01.801Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wild/c4_10k.jsonl,data/wild/fineweb_10k.jsonl",
+      "data_count": 20000,
+      "model_name": "pythia-1.4b (feature extractor)",
+      "seed": 42,
+      "checkpoint_source": "mvp_pipeline_pythia_002 (RF model + feature pipeline)",
+      "eval_data": "C4 10k + FineWeb 10k wild web corpora",
+      "wall_clock_seconds": 7744.1,
+      "gpu_hours": 2.15
+    },
+    "notes": "plan_015. Feature extraction complete (C4 10k + FineWeb 10k → 19-dim features). Awaiting RF classification to get depth distribution. Features at results/wild_features/*.csv.",
+    "conclusion": "success",
+    "metrics": {
+      "c4_depth_dist": {
+        "d0": 6598,
+        "d1": 3354,
+        "d2": 18,
+        "d3": 30
+      },
+      "c4_pct": {
+        "d0": 65.98,
+        "d1": 33.54,
+        "d2": 0.18,
+        "d3": 0.3
+      },
+      "c4_fpr": 34.02,
+      "fineweb_depth_dist": {
+        "d0": 8285,
+        "d1": 1708,
+        "d2": 4,
+        "d3": 3
+      },
+      "fineweb_pct": {
+        "d0": 82.85,
+        "d1": 17.08,
+        "d2": 0.04,
+        "d3": 0.03
+      },
+      "fineweb_fpr": 17.15,
+      "total_c4": 10000,
+      "total_fineweb": 10000,
+      "rf_n_estimators": 200,
+      "rf_train_samples": 20000
+    },
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/wild_features/",
+    "completed_at": "2026-05-17T17:28:05.914Z"
+  },
+  "timestamp": "2026-05-17T17:28:06.123808+00:00",
+  "trigger": "update_registry"
+}

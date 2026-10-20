@@ -1,0 +1,63 @@
+{
+  "exp_id": "gen_length_ablation_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:00:34.188Z",
+    "updated_at": "2026-05-17T06:19:45.065Z",
+    "hypothesis": "Depth signal scales with passage length: 128-token passages are detectable but weaker; 512-token passages match 256-token baseline; cross-length accuracy spread ≤ 5pp",
+    "parent": "mvp_pipeline_pythia_002",
+    "spec": {
+      "command": "bash scripts/run_gen_length_ablation.sh",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "650410",
+      "log_path": "~/runs/recursive_gen_depth_est/gen_length_ablation_001.log",
+      "submitted_at": "2026-05-17T05:00:44.000Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": 4000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/lora_depth_{0,1,2,3}",
+      "eval_data": "data/depth_{0,1,2,3}.jsonl (1000 samples/depth x 3 lengths)",
+      "wall_clock_seconds": 4741.1,
+      "gpu_hours": 1.32
+    },
+    "metrics": {
+      "acc_128": 0.6835,
+      "ci_128": [
+        0.6765,
+        0.6905
+      ],
+      "acc_256": 0.738,
+      "ci_256": [
+        0.7248,
+        0.7512
+      ],
+      "acc_512": 0.7782,
+      "ci_512": [
+        0.768,
+        0.7885
+      ],
+      "d1v2_auc_128": 0.7543,
+      "d1v2_auc_256": 0.8198,
+      "d1v2_auc_512": 0.8683,
+      "spread_pp": 9.47,
+      "delta_128v256_pp": -5.45,
+      "delta_512v256_pp": 4.02
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/gen_length_ablation/summary.json",
+    "completed_at": "2026-05-17T06:19:45.065Z"
+  },
+  "timestamp": "2026-05-17T06:19:45.278518+00:00",
+  "trigger": "update_registry"
+}

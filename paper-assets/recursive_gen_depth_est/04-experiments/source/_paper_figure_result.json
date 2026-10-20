@@ -1,0 +1,402 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "figures/fig_problem_illustration.pdf",
+      "caption": "Recursive generation depth estimation. A seed corpus $\\mathcal{D}_0$ feeds a LoRA finetuning--sampling loop producing successively deeper corpora. Given a passage~$x$, the task is to estimate its ordi",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "introduction.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/_latex_iso_s851ldn3/main.pdf"
+    },
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross_scale_confounds} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:additional} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:downstream} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:intro} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:compute} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{def:edd} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:gen:crossmodel} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:downstream} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:problem} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:topk_trajectories} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:atlas:id} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:edd} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:atlas:monotonicity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai_assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "atlas.tex:18"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "generalization.tex:21"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:70"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:108"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:229"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:289"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:339"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:396"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:443"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:466"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:493"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:522"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:557"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:620"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:963"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "section_appendix.tex:1018"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 34 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 3,
+          "num_cites": 0
+        },
+        {
+          "file": "atlas.tex",
+          "role": "other",
+          "num_numbers": 99,
+          "num_cites": 3
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 11,
+          "num_cites": 0
+        },
+        {
+          "file": "generalization.tex",
+          "role": "other",
+          "num_numbers": 72,
+          "num_cites": 3
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 10,
+          "num_cites": 8
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 15,
+          "num_cites": 3
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 59
+        },
+        {
+          "file": "section_appendix.tex",
+          "role": "other",
+          "num_numbers": 861,
+          "num_cites": 17
+        },
+        {
+          "file": "theory.tex",
+          "role": "other",
+          "num_numbers": 8,
+          "num_cites": 3
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'briesch2024selfconsuming' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'knowledge_collapse2025' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lakens2017' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'muennighoff2023scaling' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'synthetic_eggs2026' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wenzek2020_ccnet' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'zhang2024_minkpp' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\to"
+            ],
+            "atlas": [
+              "\\Delta",
+              "\\alpha",
+              "\\bar",
+              "\\dagger",
+              "\\in",
+              "\\leq",
+              "\\pm",
+              "\\rho",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "conclusion": [
+              "\\leq"
+            ],
+            "discussion": [
+              "\\leq"
+            ],
+            "generalization": [
+              "\\Delta",
+              "\\dagger",
+              "\\leq",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\approx",
+              "\\geq",
+              "\\times",
+              "\\to"
+            ],
+            "method": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\dagger",
+              "\\dots",
+              "\\geq",
+              "\\in",
+              "\\leq",
+              "\\lfloor",
+              "\\log",
+              "\\rfloor",
+              "\\tau",
+              "\\theta",
+              "\\times"
+            ],
+            "section_appendix": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\cdot",
+              "\\dagger",
+              "\\geq",
+              "\\in",
+              "\\langle",
+              "\\ldots",
+              "\\leq",
+              "\\pm",
+              "\\rangle",
+              "\\rho",
+              "\\sim",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "theory": [
+              "\\gamma",
+              "\\in",
+              "\\tau",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 7,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/docs/paper/_figure_backups/20260525_060326",
+  "error": "",
+  "timestamp": "2026-05-25T06:26:49.520931+00:00"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_status_check_3exp_20260518T151203_result.json",
     "occurrence": 1,
-    "bytes": 2597,
-    "sha256": "2e4493d9a2edf5cbab99223a9f038ba87124d834b58f252fbbe110d62ab039bd"
+    "bytes": 2596,
+    "sha256": "27e97422c008219d8a234b31cad560ecbdc56dac798ee8e57687b0049463ed83"
   },
   "statistics": {
     "messages": 1,

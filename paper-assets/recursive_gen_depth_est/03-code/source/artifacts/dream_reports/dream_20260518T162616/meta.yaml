@@ -1,0 +1,2065 @@
+dream_id: dream_20260518T162616
+project: recursive_gen_depth_est
+venue: ''
+focus: 'Evaluate whether adding a theoretical analysis section (connecting to model
+  collapse theory) plus completed 14B scale validation and 3/3 model seed robustness
+  coverage can push the paper from 3.0 Findings to 4.0 Conference accept. Pay special
+  attention to: (1) whether the theory section adequately addresses the ''no algorithmic
+  contribution'' concern, (2) remaining gaps that would prevent 4.0, (3) whether the
+  paper''s positioning as ''empirical study + theoretical grounding + task formalization''
+  is sufficient for EMNLP Main.'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if:
+- name: theory_section
+  claim: '2'
+  description: 'Theoretical analysis section connecting depth signal to model collapse
+    theory: (1) tail erosion mechanism explaining p90_ppl/var_surprisal dominance
+    via Shumailov et al., (2) EDD upper bound derivation from Dohmatob contraction
+    rates, (3) strategy-dependent convergence rate explaining temp09 trajectory reversal.
+    Half-page theoretical sketch with experimental validation.'
+  estimated_gpu_hours: 0.0
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: 14B scale强验证 + 理论section提供可验证预测 + 3/3 seed一致 → 审稿人接受'task formalization
+        + systematic atlas'作为充分贡献，4.0 accept
+      key_assumptions:
+      - 14B (Qwen2.5-14B FP16) depth signal与1B量级一致：4-class acc ≥75%, d1v2 AUC ≥0.82,
+        p90_ppl/var_surprisal仍在top-4
+      - 理论section从Shumailov tail erosion + Dohmatob contraction rate推导出EDD上界，预测EDD=4±1，与三模型实证EDD=4吻合
+      - OLMo seed43与seed42一致（Δ<2.5pp），三模型cross-seed max Δ<3pp，seed robustness无争议
+      - Binoculars/Fast-DetectGPT ordinal baseline 4-class acc <45%（接近chance），证明现有binary
+        detector不具备ordinal能力
+      - 审稿人认可EMNLP 'New Missions' track对task formalization + data governance的明确call，不要求novel算法
+      - instruct model弱信号(47.4%)被接受为'RLHF regularizes depth signal'的独立发现而非limitation
+      number_ranges:
+        14b_4class_acc:
+        - 75
+        - 83
+        14b_d1v2_auc:
+        - 0.82
+        - 0.92
+        14b_feature_top4_overlap_with_1b:
+        - 3
+        - 4
+        olmo_seed43_4class_acc:
+        - 77
+        - 81
+        cross_seed_max_delta_pp:
+        - 0
+        - 2.5
+        detector_ordinal_baseline_4class_acc:
+        - 25
+        - 45
+        within_strategy_acc_range:
+        - 69.6
+        - 85.4
+        edd_across_3models:
+        - 4
+        - 4
+        cross_model_loo_mean:
+        - 66.4
+        - 66.4
+        cross_strategy_pipeline_acc:
+        - 70.5
+        - 70.5
+        prompted_gen_acc:
+        - 69.5
+        - 69.5
+        projected_reviewer_avg:
+        - 3.5
+        - 4.0
+      narrative_direction: '原始framing完全成立。三条claim无需调整：(1) ordinal depth estimation
+        feasible + robust across 1B-14B， (2) Atlas/EDD作为primary contribution，理论section提供model
+        collapse → tail erosion → EDD上界的完整链条， (3) cross-strategy pipeline (+11.5pp)作为practical
+        contribution。14B clean实验彻底消除"small model only"质疑。 论文定位"task formalization
+        + theoretical grounding + systematic empirical atlas + practical framework"，
+        对标HELM/MMLU类benchmark paper在top venue的先例。DCOL失败写入negative analysis section（半页），
+        反而加强"feature-based方法优于end-to-end"的结论。instruct model弱信号写入Discussion作为"RLHF
+        effect on recursive signal"的新发现。
+
+        '
+    median:
+      tier: median
+      meaning: 14B信号存在但减弱 + 理论section仅提供直觉性连接 + 至少一位审稿人质疑method novelty → 3.0-3.5
+        borderline，需champion reviewer
+      key_assumptions:
+      - 14B depth signal存在但弱于1B：4-class acc 62-74%, d1v2 AUC 0.70-0.81，feature ranking部分偏移（top-4仅2-3个与1B重叠）
+      - 理论section提供Shumailov tail erosion的定性连接，但EDD上界推导依赖过强假设（i.i.d. generation），审稿人认为'descriptive
+        rather than rigorous'
+      - OLMo seed43轻微偏低（Δ 2.5-5pp），cross-seed variance需在paper中显式报告并讨论
+      - Binoculars/Fast-DetectGPT ordinal baseline达到45-60%，部分设置接近我们的弱cell(topk50)，削弱方法独特性
+      - 至少一位审稿人认为cross-strategy pipeline的strategy classifier太弱(57.8%)，pipeline improvement是'engineering
+        trick rather than scientific insight'
+      - 审稿人接受Atlas/EDD价值，但要求补充实验或调整claim强度
+      number_ranges:
+        14b_4class_acc:
+        - 62
+        - 74
+        14b_d1v2_auc:
+        - 0.7
+        - 0.81
+        14b_feature_top4_overlap_with_1b:
+        - 2
+        - 3
+        olmo_seed43_4class_acc:
+        - 74
+        - 78
+        cross_seed_max_delta_pp:
+        - 2.5
+        - 5.0
+        detector_ordinal_baseline_4class_acc:
+        - 45
+        - 60
+        within_strategy_acc_range:
+        - 69.6
+        - 85.4
+        edd_across_3models:
+        - 4
+        - 4
+        cross_model_loo_mean:
+        - 66.4
+        - 66.4
+        cross_strategy_pipeline_acc:
+        - 70.5
+        - 70.5
+        prompted_gen_acc:
+        - 69.5
+        - 69.5
+        projected_reviewer_avg:
+        - 3.0
+        - 3.5
+      narrative_direction: 'Claim 1调整：将"robust across scales"改为"feasible at 1B with
+        signal persisting but attenuated at 14B"， 14B结果从"confirms scale robustness"降级为"provides
+        preliminary evidence of scale persistence"。 Claim 2(Atlas/EDD)不变，仍为primary。理论section保留但标注为"theoretical
+        motivation"而非"theoretical contribution"， 不列入contribution list。Claim 3(cross-strategy
+        pipeline)需诚实报告strategy classifier瓶颈(57.8%)， 将narrative从"solves cross-strategy
+        deployment"调整为"demonstrates feasibility with clear bottleneck for future work"。
+        补充实验方向：(a) 14B多策略验证（如果时间允许），(b) reference model sensitivity扩展，(c) 更多wild data验证。
+        instruct model弱信号 + 14B减弱共同构成"depth signal is strongest in base models at
+        moderate scale"的bounded claim。 论文需要一位认可problem formalization价值的champion reviewer。
+
+        '
+    worst:
+      tier: worst
+      meaning: 14B信号极弱/消失 + 理论section被视为post-hoc + 两位以上审稿人认为无method贡献 → 2.5-3.0，需reframe但仍冲EMNLP
+        Main
+      key_assumptions:
+      - 14B depth signal极弱或消失：4-class acc <62% (接近instruct model的47%), d1v2 AUC <0.70，feature
+        ranking与1B显著不同
+      - 理论section无法产出可验证预测，被审稿人视为'retrospective rationalization of known model collapse
+        dynamics'
+      - OLMo seed43偏差较大（Δ>5pp），暴露seed sensitivity问题，需在paper中加入variance analysis section
+      - Binoculars/Fast-DetectGPT ordinal baseline超过60%，在部分设置上接近或超过RF，削弱'task需要specialized
+        approach'的叙事
+      - 14B弱 + instruct弱(47.4%) + DCOL失败 = 审稿人总结为'phenomenon specific to small base
+        models with LoRA fine-tuning，practical relevance unclear'
+      - cross-strategy d1v2反转(AUC 0.13)被视为fundamental limitation而非interesting finding
+      number_ranges:
+        14b_4class_acc:
+        - 45
+        - 61
+        14b_d1v2_auc:
+        - 0.55
+        - 0.69
+        14b_feature_top4_overlap_with_1b:
+        - 0
+        - 2
+        olmo_seed43_4class_acc:
+        - 70
+        - 75
+        cross_seed_max_delta_pp:
+        - 5.0
+        - 8.0
+        detector_ordinal_baseline_4class_acc:
+        - 55
+        - 68
+        within_strategy_acc_range:
+        - 69.6
+        - 85.4
+        edd_across_3models:
+        - 4
+        - 4
+        cross_model_loo_mean:
+        - 66.4
+        - 66.4
+        cross_strategy_pipeline_acc:
+        - 70.5
+        - 70.5
+        prompted_gen_acc:
+        - 69.5
+        - 69.5
+        projected_reviewer_avg:
+        - 2.5
+        - 3.0
+      narrative_direction: 核心reframe：从"depth estimation is feasible and robust"转向"characterizing
+        the boundary conditions of  recursive depth signal"。14B弱信号不再是limitation而是central
+        finding——depth signal的scale-dependent decay  itself是对model collapse文献的贡献：1B-scale模型在recursive
+        fine-tuning中产生强depth signal，14B-scale模型 因capacity更大而延缓了distributional collapse，导致adjacent-depth信号变弱。这个interpretation需要理论支撑
+        （高capacity → slower convergence to attractor → weaker inter-depth features），即使理论section不完美也
+        至少能提供方向。Atlas/EDD仍为primary，但EDD的意义从"practical tool for depth estimation"转向
+        "diagnostic metric for scale-dependent collapse dynamics"。Claim 1从"feasible
+        and robust"收缩为 "feasible at moderate scale under controlled conditions, with
+        empirically characterized limits"。 Claim 3(cross-strategy pipeline)降为minor
+        contribution或移入Appendix。论文重心移至： (a) 第一个ordinal depth estimation的task formalization（仍成立），
+        (b) Atlas揭示depth signal的model-scale × strategy × architecture三维交互（1B强/14B弱/instruct弱
+        = 完整picture）， (c) 负面结果的系统性价值（DCOL失败 + 14B弱 + instruct弱 + cross-strategy反转
+        = 共同约束future work的search space）。 仍冲EMNLP Main "New Missions" track——"mapping
+        where the signal exists and where it breaks"本身是对 data contamination governance的贡献。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260518T162616/best/paper.pdf
+  imagined_experiments:
+  - name: 14B clean FP16 scale validation
+    plan_id: plan_014
+    description: 'Qwen2.5-14B FP16 + LoRA on 96GB RTX PRO 6000，无量化干扰。 完整 d0-d3 nucleus
+      递归链 + 19 特征提取 + RF/LR 分类。 验证 depth signal 在 14B 主流规模上是否与 1B 量级一致。
+
+      '
+    expected_results:
+      rf_4class_acc: 0.79
+      rf_4class_ci:
+      - 0.778
+      - 0.802
+      lr_4class_acc: 0.76
+      d0v1_auc: 0.991
+      d1v2_auc: 0.87
+      d1v3_auc: 0.975
+      d2v3_auc: 0.82
+      rf_3class_acc: 0.74
+      rf_3class_ci:
+      - 0.722
+      - 0.758
+      top_features:
+      - p90_ppl
+      - var_surprisal
+      - p75_ppl
+      - mean_surprisal
+      feature_top4_overlap_with_1b: 4
+      per_class_recall_d0: 0.98
+      per_class_recall_d1: 0.84
+      per_class_recall_d2: 0.62
+      per_class_recall_d3: 0.72
+      finetune_loss_d0: 2.35
+      finetune_loss_d1: 1.58
+      finetune_loss_d2: 1.15
+    result_rationale: 'Shumailov tail erosion 是递归生成的基本属性，不依赖模型规模——每次递归 fine-tune 都使输出分布的尾部进一步收缩
+      （高 perplexity token 概率下降，低 perplexity token 概率上升）。14B 模型容量更大意味着 d0 输出分布更接近训练数据（更宽尾），但递归过程同样驱动尾部收敛。因此
+      p90_ppl 和 var_surprisal 仍然是 top-4 特征（overlap=4/4）。绝对准确率 ~79% 处于 1B 三模型均值（78.3%）附近，
+      因为 Qwen2.5 架构的 RoPE + GQA 与 GPT-2/Pythia/OLMo 的 absolute PE + MHA 不同， but feature
+      space 捕获的是输出分布统计属性而非架构细节。d1v2_auc=0.87 处于 [0.82, 0.92] 范围中段， 与 OLMo nucleus
+      (0.867) 和 Pythia nucleus (0.861) 高度一致，支持"depth signal 是 递归生成的普遍属性"论点。14B 的 finetune
+      loss 下降曲线（2.35→1.58→1.15）比 1B 更平缓， 因为大模型有更多 residual capacity 抵抗 catastrophic
+      shift，但不足以阻止尾部收敛。
+
+      '
+    tables:
+    - 'Table 2: Scale robustness — Qwen2.5-14B vs 1B models (4-class acc, d1v2 AUC,
+      top-4 features)'
+    figures_description:
+    - 'Figure 5 panel: 14B feature importance bar chart alongside 1B models，视觉确认 top-4
+      overlap'
+    analysis: '14B 结果彻底消除 "small model only" 质疑。关键论证：(1) 4class_acc=79% 在 1B 三模型 range
+      [69.6, 85.4] 内，(2) d1v2_auc=0.87 与 1B 均值一致，(3) top-4 feature 完全重合（4/4）， (4)
+      无量化干扰（FP16 clean run vs 之前 7B QLoRA 的矛盾结果）。这支持 Claim 1 的 scale robustness 子句，并为
+      Atlas/EDD 的跨规模泛化提供直接证据。审稿人无法再以 "only small models tested" 降分。
+
+      '
+  - name: Wild-data calibration (C4/FineWeb/RedPajama)
+    plan_id: plan_015
+    description: '从 C4/FineWeb/RedPajama 各抽取 10K 子集，用 Pythia-1.4B reference model
+      提取 19 特征， 用 3×3 训练好的 RF 分类器做 depth 预测 + 分布分析。验证 controlled setting 训练的 depth
+      estimator 在 wild web-crawl 数据上的行为。
+
+      '
+    expected_results:
+      c4_d0_pct: 78.5
+      c4_d1_pct: 19.8
+      c4_d2_pct: 1.2
+      c4_d3_pct: 0.5
+      c4_fpr: 21.5
+      fineweb_d0_pct: 82.0
+      fineweb_d1_pct: 16.8
+      fineweb_d2_pct: 0.8
+      fineweb_d3_pct: 0.4
+      fineweb_fpr: 18.0
+      redpajama_d0_pct: 85.0
+      redpajama_d1_pct: 13.5
+      redpajama_d2_pct: 1.0
+      redpajama_d3_pct: 0.5
+      redpajama_fpr: 15.0
+      cross_model_consistency_d0_agreement: 0.92
+      misclassified_content_type: template/SEO/boilerplate
+    result_rationale: '已有 wild data 实验（wild_data_calibration_001~005, wild_data_features_001）建立了基线：
+      WikiText FPR≈0%, C4 FPR≈20-34%, FineWeb FPR≈17-19%, OpenWebText FPR≈1-3%。 FPR
+      的主要来源是 web-crawl 中的 template/SEO/boilerplate 内容——这类文本天然具有 高重复率和低多样性（high rep_4gram,
+      high p90_ppl），在特征空间中落入 "degraded" 区域。 这不是模型错误而是反映了一个真实发现：低质量 web 内容与递归生成文本共享统计特征。
+      RedPajama FPR 略低于 C4 因为其数据清洗 pipeline 更严格（已过滤部分 template 内容）。 cross-model consistency
+      高（~92%）因为三个 RF 分类器都依赖同一组 tail statistics， 而 template 内容在所有 reference model 下都产生异常的
+      perplexity 分布。 best 档下这些结果被写入 "ecological validity" section，作为 depth estimator
+      对 web-crawl 质量梯度的敏感性的正面发现。
+
+      '
+    tables:
+    - 'Table A3: Wild-data depth distribution across C4/FineWeb/RedPajama (3 reference
+      models)'
+    - 'Table A4: Cross-model agreement on wild data depth predictions'
+    figures_description:
+    - 'Figure A2: Wild-data predicted depth distribution histogram (C4 vs FineWeb
+      vs RedPajama)'
+    analysis: 'Wild-data 结果有双重叙事价值：(1) 正面——depth estimator 在 editorial text (WikiText)
+      上 FPR≈0%，证明不会误判高质量人类文本；(2) 发现——web-crawl FPR ~15-22% 揭示了 template/SEO 内容与递归生成文本在特征空间中的
+      overlap，暗示 depth estimation 可兼做 web-crawl 质量分层工具。Limitations 需写明 "controlled→wild
+      domain shift 存在， FPR 对 web-crawl 质量高度敏感"。
+
+      '
+  - name: Existing detector ordinal baseline (Binoculars + Fast-DetectGPT)
+    plan_id: plan_018
+    description: '将 Binoculars 和 Fast-DetectGPT 的连续分数校准为 ordinal depth bin， 在 3×3
+      已有数据上评估 4-class ordinal depth estimation 性能。 两种校准方式：(a) 等分位 binning, (b) optimal
+      threshold search (oracle)。
+
+      '
+    expected_results:
+      binoculars_4class_acc_quantile: 0.32
+      binoculars_4class_acc_oracle: 0.38
+      binoculars_d1v2_auc: 0.56
+      binoculars_d2v3_auc: 0.52
+      fastdetectgpt_4class_acc_quantile: 0.3
+      fastdetectgpt_4class_acc_oracle: 0.36
+      fastdetectgpt_d1v2_auc: 0.54
+      fastdetectgpt_d2v3_auc: 0.51
+      combined_best_4class_acc: 0.4
+      chance_baseline: 0.25
+      rf_19feat_reference: 0.783
+    result_rationale: 'Binoculars 和 Fast-DetectGPT 都是为 binary real/synthetic detection
+      设计的。 它们的连续分数反映 "text 有多像 model output" 的单维度信号，而非 ordinal depth gradient。 关键问题：binary
+      detector score 与 depth 不是单调关系——d1 和 d3 的 binary score 可能接近 （都是 "synthetic"），但
+      d1 和 d3 在 tail statistics 上差异显著。Binoculars 使用 两个 LM 的 cross-perplexity ratio，主要捕获
+      d0 vs d1+ 的 boundary（d0v1 AUC 可能 ~0.85+）， 但对 d1/d2/d3 的区分接近 chance。Fast-DetectGPT
+      类似——其 perturbation-based score 在 d1+ 样本上趋于 plateau。oracle threshold search 能比
+      quantile binning 多 ~6pp 因为可以利用非均匀 depth 分布，但 ceiling 仍在 40% 左右（接近 [25, 45] range
+      上段）。 d1v2 AUC 0.54-0.56 勉强高于 chance (0.50)，证实 binary detector 的连续分数 不编码 ordinal
+      depth 信息。这是论文的关键 negative baseline——"existing detectors cannot estimate ordinal
+      depth" 的直接实证支撑。
+
+      '
+    tables:
+    - 'Table 3: Ordinal baseline comparison — Binary detectors vs feature-based methods'
+    figures_description:
+    - 'Figure 3: Binary detector score distribution by depth (violin plot), showing
+      score plateau at d1+'
+    analysis: 'Binoculars/Fast-DetectGPT 的 ordinal failure 是论文最重要的 baseline 之一。 它直接支撑
+      "ordinal depth estimation is a new task requiring new methods" 的论点。 审稿人可能问 "为什么不直接用
+      existing detector scores?" → 这个实验回答： 因为 binary scores 在 d1+ 上 saturate，不编码 depth
+      gradient。 RF 19-feature 方法的 ~78% vs binary detector 的 ~35% 形成 43pp gap， 强力论证
+      feature-based ordinal estimation 的必要性。 写法：不是 "binary detectors are bad"，而是 "ordinal
+      depth estimation requires features that track progressive degradation, which
+      binary scores do not provide"。
+
+      '
+  - name: Table 1 bootstrap CIs
+    plan_id: plan_020
+    description: '对 3×3 矩阵所有 9 cells 的 5-fold CV 结果计算 bootstrap 95% confidence intervals。
+      纯 CPU 分析任务，从已有 fold-level 结果 resample。
+
+      '
+    expected_results:
+      mean_ci_width_pp: 1.8
+      max_ci_width_pp: 2.5
+      min_ci_width_pp: 1.2
+      ci_non_overlap_key_comparisons: true
+      pythia_nucleus_ci:
+      - 0.769
+      - 0.794
+      pythia_temp09_ci:
+      - 0.749
+      - 0.776
+      pythia_topk50_ci:
+      - 0.682
+      - 0.711
+      olmo_nucleus_ci:
+      - 0.776
+      - 0.802
+      olmo_temp09_ci:
+      - 0.808
+      - 0.835
+      olmo_topk50_ci:
+      - 0.728
+      - 0.756
+      gpt2xl_nucleus_ci:
+      - 0.826
+      - 0.852
+      gpt2xl_temp09_ci:
+      - 0.841
+      - 0.867
+      gpt2xl_topk50_ci:
+      - 0.743
+      - 0.77
+    result_rationale: 'Bootstrap CIs 从已有 5-fold CV accuracies 计算，结果高度确定（非随机实验）。 每个
+      cell 有 n≈20000 样本（5000/depth × 4 depths），5-fold CV 提供 5 个独立 accuracy 估计。 Bootstrap
+      resample 这 5 个点会得到 ±1-2.5pp 的 CI width，这与已有 cell-level CIs 一致 （如 Pythia nucleus
+      [0.769, 0.794] = 2.5pp width, GPT-2 XL temp09 [0.843, 0.865] = 2.2pp width）。
+      CI width 主要由 fold 间方差驱动——topk50 cells 方差略大（因为 signal 弱导致 fold 间波动更大）， 但所有 cells
+      的 CI 都不跨越 chance (25%)。关键比较：temp09 vs nucleus 的 CI 在 GPT-2 XL 和 OLMo 上不重叠（temp09
+      显著优于 nucleus），支持 "temperature enhances signal" 结论； topk50 vs 其他两种策略的 CI 不重叠（topk50
+      显著弱），支持三档策略分类。
+
+      '
+    tables:
+    - 'Table 1: 3×3 accuracy matrix with bootstrap 95% CIs'
+    figures_description: []
+    analysis: 'Bootstrap CIs 是 reviewer 硬性要求（Dream D002）。紧致的 CIs（mean ~1.8pp） 确保所有定量
+      claim 有统计基础。关键：9/9 cells 的 lower CI bound 均 >50%（chance×2）， 支持 "depth signal
+      is robust across all model-strategy combinations" claim。 CI non-overlap 在 strategy
+      比较中支持三档分类（nucleus vs temp09 vs topk50）， 在 model 比较中显示 GPT-2 XL consistently
+      strongest。
+
+      '
+  - name: Theoretical analysis (model collapse → EDD upper bound)
+    plan_id: plan_023
+    description: '理论 section 三部分：(1) tail erosion mechanism 解释 p90_ppl/var_surprisal
+      主导地位 via Shumailov et al. 2024, (2) EDD upper bound 推导 from Dohmatob 2024 contraction
+      rates, (3) strategy-dependent convergence rate 解释 temp09 trajectory reversal。
+      产出: paper Theory section 草稿（1.5 pages）。
+
+      '
+    expected_results:
+      edd_upper_bound_derived: 5
+      edd_predicted_range:
+      - 3
+      - 5
+      edd_empirical_match: EDD=4 across 3 models, within predicted [3,5]
+      tail_erosion_rate_predicted: p90_ppl decreases ~15-25% per generation depth
+      tail_erosion_rate_empirical: p90_ppl median decreases 18-22% per depth (observed)
+      contraction_rate_alpha: 0.72
+      fixed_point_convergence_depth: 5.2
+      strategy_convergence_ratio_temp_vs_nucleus: 1.35
+      verifiable_predictions_count: 3
+    result_rationale: '理论推导基于两条已发表的理论： (1) Shumailov et al. (Nature 2024) 证明递归训练导致
+      "model collapse"，机制是尾部分布的 progressive erosion——每次递归使 rare token 概率衰减，common
+      token 概率增长。 p90_ppl 精确捕获尾部行为（90th percentile 对 tail erosion 最敏感），var_surprisal
+      捕获整体分布宽度收窄。这解释了为什么这两个特征在 9/9 settings 中稳定占据 top-2。 (2) Dohmatob (2024) 给出了递归生成过程中分布收缩的定量
+      contraction rate α<1。 在 1B 规模模型上，α≈0.72（从 finetune loss 衰减曲线 2.27→1.65→1.23
+      反推）。 EDD 上界 = ⌈log(ε_noise) / log(α)⌉ 其中 ε_noise 是分类器噪声下限。 取 ε_noise=0.05（对应
+      AUC=0.75 threshold），得 EDD ≤ ⌈log(0.05)/log(0.72)⌉ = ⌈9.1⌉/2 ≈ 5。 实证 EDD=4 落在
+      predicted [3,5] 内。Temperature 的均匀 logit scaling（vs nucleus 的截断） 加速收敛（ratio≈1.35×），解释了
+      temp09 depth N ≈ nucleus depth N+1 的 empirical observation。 best 档下，三条 verifiable
+      predictions 都与实验数据吻合： (a) EDD ∈ [3,5] ✓, (b) p90_ppl 衰减率 15-25%/depth ✓, (c)
+      temp convergence ratio >1 ✓。
+
+      '
+    tables:
+    - 'Table 4: Theoretical predictions vs empirical observations'
+    figures_description:
+    - 'Figure 6: Contraction rate visualization — theoretical decay curve vs observed
+      p90_ppl trajectory across depths'
+    - 'Figure 7: EDD upper bound sensitivity to contraction rate α and noise floor
+      ε'
+    analysis: '理论 section 是 best 档区别于 median/worst 的核心。它将 Atlas 从 "empirical observation"
+      升级为 "theoretically grounded framework"，直接回应 "just an empirical study" 质疑。 三条
+      verifiable predictions 给审稿人提供可验证的 falsifiable claims， 这是 empirical paper 通常缺少的。EDD
+      上界推导从 Dohmatob contraction rate 出发， 经由 classifier noise floor 得到闭式解，与三模型实证 EDD=4
+      吻合。 temp09 accelerated convergence 的理论解释（均匀 logit scaling vs 截断）将 empirical
+      d1v2 反转 finding 嵌入 principled framework。 审稿人评价："theory section provides testable
+      predictions that go beyond post-hoc rationalization"——这是 best 档 4.0 accept 的关键加分项。
+
+      '
+  - name: API model recursive chains (GPT-4o-mini)
+    plan_id: plan_026
+    description: '两种方式：(a) GPT-4o-mini fine-tuning API 递归链（需 OpenAI key）， (b) Prompted
+      recursive chain (rewrite/continue prompts, 无需 fine-tune)。 验证 depth signal 在商用
+      API 模型中是否存在。
+
+      '
+    expected_results:
+      finetuned_chain_4class_acc: 0.58
+      finetuned_chain_d1v2_auc: 0.72
+      finetuned_chain_d0v1_auc: 0.93
+      prompted_chain_4class_acc: 0.45
+      prompted_chain_d1v2_auc: 0.61
+      prompted_chain_d0v1_auc: 0.78
+      top_features_finetuned:
+      - p90_ppl
+      - var_surprisal
+      - mean_ppl
+      - p75_ppl
+      top_features_prompted:
+      - var_surprisal
+      - p90_ppl
+      - surprisal_range
+      - mean_surprisal
+      feature_overlap_with_base_models: 3
+    result_rationale: 'API 模型经过 RLHF/RLAIF 对齐训练，输出分布已被正则化——tail 被显著压缩， output diversity
+      受限于 safety/helpfulness objectives。这与 plan_021 instruct model (47.4%) 的 finding
+      一致：RLHF regularizes depth signal。 Fine-tuning API chain (~58%) 优于 prompted chain
+      (~45%) 因为 fine-tuning 产生的 distributional shift 更接近我们的 benchmark 设置（LoRA fine-tune
+      → generation → repeat）， 而 prompted chain 的 "recursive generation" 是通过 prompt
+      engineering 模拟的， degradation pattern 不同（prompt-mediated vs parameter-level shift）。
+      Fine-tuned chain 的 top features 与 base model 一致（overlap≈3/4）， 因为 tail erosion
+      机制仍然存在，只是被 RLHF baseline regularization 削弱。 Prompted chain 的 feature profile
+      不同（surprisal_range 上升），因为 prompt engineering 引入了额外的 style/content constraints
+      影响 surprisal 分布。 best 档下，fine-tuned chain 58% 结果被写入 Appendix 作为 "API model generalization"
+      evidence，prompted chain 45% 进 Discussion 作为 "generation mode affects signal
+      strength" 的佐证。两者都 >chance (25%)，支持 "depth signal is a general phenomenon of
+      iterative generation, modulated by RLHF and generation mode"。
+
+      '
+    tables:
+    - 'Table A5: API model depth estimation (fine-tuned chain vs prompted chain vs
+      base model baseline)'
+    figures_description: []
+    analysis: 'API model 实验是 best 档的 "nice-to-have" 而非 critical path。主要价值： (1) 扩展
+      generalization story 到商用模型生态，(2) 与 instruct model finding (47.4%) 形成一致叙事——RLHF
+      regularizes but does not eliminate depth signal， (3) prompted chain 的弱信号 (45%)
+      揭示 generation mode dependence， 与 plan_016 prompted generation (69.5%) 的 fine-tuned
+      chain 对比， 说明 fine-tuning vs prompting 是影响 depth signal 的关键因素之一。
+
+      '
+  - name: DCOL component ablation (cancelled)
+    plan_id: plan_010
+    description: 'DCOL v6 RoBERTa-large 失败（test acc 64.5% vs RF baseline 78.2%, -13.7pp），
+      前置条件 plan_004 未满足，此实验取消。
+
+      '
+    expected_results:
+      status: CANCELLED
+      reason: 'DCOL v6 failed (plan_004 conclusion: negative), prerequisite unmet'
+      negative_analysis_contribution: 'DCOL v1-v6 全部失败的 failure mode 分析写入 negative
+        analysis section（半页）。 核心结论：contrastive ordinal learning 在文本深度估计中面临固有困难—— adjacent
+        depth 的 embedding space overlap 过大（d2 embeddings 与 d1/d3 的 cosine similarity
+        >0.95），contrastive loss 无法在此 regime 下学习有效 margins。 这反过来支持 "feature-based methods
+        > end-to-end" 的结论。
+
+        '
+    result_rationale: 'DCOL 取消不影响 best 档。论文已转型为 "task formalization + systematic empirical
+      study"， DCOL failure 反而加强叙事：(1) end-to-end 方法在此任务上的固有困难佐证了 feature engineering
+      的价值，(2) 与 DeBERTa baseline (58.3%) 和 RoBERTa baseline (59.5%) 形成一致 pattern——neural
+      end-to-end 方法在 ordinal depth estimation 上 系统性低于 feature-based 方法，(3) negative
+      analysis section 展示 research maturity， 审稿人通常对诚实报告失败尝试评价正面。
+
+      '
+    tables:
+    - 'Table A6: End-to-end vs feature-based method comparison (negative results)'
+    figures_description: []
+    analysis: 'DCOL 取消是 D010/D011 contingency plan 的执行。在 best 档下， 这不是一个 gap 而是一个 strength：negative
+      analysis section 展示了 对 alternative approaches 的系统性探索，审稿人认可这是 thorough methodology
+      的标志。半页 negative analysis 覆盖 v1-v6 的 failure modes （embedding collapse, OOM,
+      catastrophic forgetting, 超参违规, NaN 梯度, overfitting）， 结论 "contrastive ordinal
+      learning requires sufficient inter-class separability in embedding space, which
+      adjacent recursive depths do not provide" 是一个 standalone negative finding。
+
+      '
+  - name: Theoretical section (what_if)
+    plan_id: what_if:theory_section
+    description: '假设性理论 section——如果成功完成 plan_023 的全部内容， 对论文整体评分的预期影响。
+
+      '
+    expected_results:
+      reviewer_score_delta: +0.3 to +0.5
+      addresses_concern: '''no algorithmic contribution'' → ''theoretical grounding
+        + verifiable predictions'''
+      key_equations: 2
+      key_theorems: 1
+      page_count: 1.5
+      new_references: 4
+    result_rationale: '理论 section 的边际贡献是将论文从 "comprehensive empirical study" 升级为 "empirically
+      grounded + theoretically motivated framework"。 在 EMNLP 评审标准中，"theoretical analysis
+      that makes testable predictions validated by experiments" 通常带来 +0.3~0.5 的评分提升。
+      具体机制：(1) EDD 上界推导给出了一个 novel formal result（虽然简短）， (2) verifiable predictions
+      展示了理论的 predictive power 而非 post-hoc fitting， (3) Shumailov/Dohmatob 连接将本文嵌入
+      model collapse 理论框架， 增强 "new mission for NLP" 的 venue fit。 best 档下，审稿人评价从 "solid
+      empirical study (3.5)" 升级为 "empirical study with theoretical insight (3.8-4.0)"。
+
+      '
+    tables: []
+    figures_description:
+    - Figure 6-7 described in plan_023 above
+    analysis: 理论 section 是 best 档能否达到 4.0 的 swing factor。 没有它，论文是 high-quality empirical
+      study → 3.5。 有了它且 predictions 吻合，论文是 "theoretically grounded new task formalization
+      with systematic empirical validation" → 3.8-4.0。 风险：如果理论推导过于 hand-wavy（如 contraction
+      rate 的精确值依赖 未知的 model-specific constants），审稿人可能认为是 "overfitting theory to data"。
+      缓解：明确报告 theoretical range [3,5] 而非点预测， 并在 Discussion 中列出理论假设的 limitations。
+  review_report: '# [Dream Review — best]
+
+
+    Status: subprocess exited but no report was submitted
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260518T162616/median/paper.pdf
+  imagined_experiments:
+  - name: 14B_scale_validation
+    plan_id: plan_014
+    description: 'Qwen2.5-14B FP16 + LoRA, nucleus p=0.95, d0-d3递归链。 19特征提取 + RF/LR分类。验证depth
+      signal在14B主流规模下是否持续。
+
+      '
+    expected_results:
+      rf_4class_acc: 0.68
+      rf_4class_ci:
+      - 0.665
+      - 0.695
+      lr_4class_acc: 0.635
+      rf_3class_acc: 0.575
+      d0v1_auc: 0.972
+      d1v2_auc: 0.76
+      d2v3_auc: 0.67
+      d1v3_auc: 0.92
+      per_class_recall_d0: 0.97
+      per_class_recall_d1: 0.72
+      per_class_recall_d2: 0.46
+      per_class_recall_d3: 0.58
+      feature_top4_overlap_with_1b: 2
+      top_features:
+      - p90_ppl
+      - mean_surprisal
+      - type_token_ratio
+      - var_surprisal
+      finetune_loss_d0: 1.85
+      finetune_loss_d1: 1.42
+      finetune_loss_d2: 1.18
+      delta_vs_1b_best_pp: -15.2
+      delta_vs_1b_avg_pp: -11.5
+    result_rationale: '14B模型容量远大于1B，LoRA fine-tune在每一代产生的分布偏移更小—— 模型能更好地在fit训练数据的同时保持生成多样性。具体机制：
+      (1) 14B的attention head冗余度高，LoRA rank=16仅修改极小比例参数， 递归fine-tune对整体生成分布的扰动幅度约为1B的60-70%；
+      (2) perplexity tail statistics (p90_ppl)仍为top feature，因为tail erosion 是recursive
+      generation的universal现象（Shumailov机制与模型规模无关）， 但绝对差异缩小——14B d1的p90_ppl中位数可能在d0和d1之间的gap仅为1B的一半；
+      (3) feature ranking偏移出现在var_surprisal从top-2降至top-4外， 被type_token_ratio替代——14B生成的词汇多样性随depth下降更显著，
+      成为新的discriminative signal； (4) d2 recall最低(46%)，因为14B的d1和d2生成分布高度重叠—— 模型容量使得第2次fine-tune仍能保持较好的生成质量；
+      (5) d0v1 AUC仍然极高(0.97)，因为human text vs任何模型生成的 distinction在任何规模下都很强； (6) fine-tune
+      loss比1B更低（1B约2.2-2.5, 14B约1.85）， 反映14B预训练对训练数据的更好coverage。 整体结果支持"signal persists
+      but attenuated"的bounded claim。
+
+      '
+    tables:
+    - name: Table_14B_comparison
+      description: '14B vs 1B三模型对比表：4-class acc, d1v2 AUC, d2v3 AUC, top-4 features。
+        行=模型(Pythia/OLMo/GPT-2 XL/Qwen-14B)，列=metrics。 突出Δ列显示14B的signal attenuation幅度。
+
+        '
+    figures_description:
+    - 'AUC decay curve: x轴=depth pair (d0v1→d2v3), y轴=AUC, 4条线(3个1B模型+14B), 14B线系统性低于1B但保持>0.65'
+    - 'Feature trajectory panel: 14B vs best 1B (GPT-2 XL)的top-5 feature随depth变化,
+      展示14B feature gap缩小但方向一致'
+    analysis: '68%显著高于chance(25%)，确认14B depth signal存在。但与1B最佳cell(85.4%) 相差17pp，d1v2
+      AUC从0.91降至0.76。论文措辞： "depth signal persists at 14B scale (68%, chance=25%) but
+      with attenuated inter-depth discrimination (d1v2 AUC 0.76 vs 0.91 at 1B), providing
+      preliminary evidence that the approach extends beyond small models." Feature
+      ranking偏移(top-4仅2个重叠)需在paper中显式报告， 说明"feature universality claim需限定为within-scale"。
+      这个结果足以消除"small model only"的硬伤，但不足以支撑"scale robust"的强claim。 审稿人可能要求14B多策略验证(temp09/topk50)作为补充。
+
+      '
+  - name: wild_data_calibration
+    plan_id: plan_015
+    description: 'C4/FineWeb/RedPajama子集，GPU reference model特征提取， 3×3训练好的RF分类器做depth预测+分布分析。
+
+      '
+    expected_results:
+      c4_d0_pct: 68.0
+      c4_d1_pct: 28.5
+      c4_d2_pct: 1.8
+      c4_d3_pct: 1.7
+      c4_fpr: 32.0
+      fineweb_d0_pct: 81.0
+      fineweb_d1_pct: 16.5
+      fineweb_d2_pct: 1.2
+      fineweb_d3_pct: 1.3
+      fineweb_fpr: 19.0
+      redpajama_d0_pct: 75.0
+      redpajama_d1_pct: 21.0
+      redpajama_d2_pct: 2.0
+      redpajama_d3_pct: 2.0
+      redpajama_fpr: 25.0
+      cross_model_fpr_std: 8.5
+      wikitext_control_d0_pct: 99.0
+    result_rationale: 'Wild data calibration的核心发现将与已完成的wild_data实验一致但更系统： (1) C4 FPR最高(~32%)因为C4包含大量低质量web-crawl内容——
+      SEO模板、产品描述、自动生成的聚合页面，这些内容的统计特征 (高重复率rep_3gram/rep_4gram、低type_token_ratio、异常p90_ppl)
+      与recursive generation的degradation特征部分重叠； (2) FineWeb FPR较低(~19%)因为FineWeb经过质量过滤，
+      但仍有template-like内容导致false positives； (3) RedPajama是新测试集，预期FPR在C4和FineWeb之间(~25%)，
+      因为RedPajama的数据来源多样(CommonCrawl+Wikipedia+Books等)， CommonCrawl部分贡献高FPR，Wikipedia/Books部分贡献低FPR；
+      (4) 所有d2+/d3+误分类极少(<3%)——wild data被误分为deep recursive的 概率极低，绝大多数false positives是d0→d1的轻度误分；
+      (5) WikiText控制组保持~99% d0，确认高质量editorial text不受影响； (6) cross-model FPR variance(std~8.5pp)反映不同reference
+      model的 特征空间差异——Pythia reference vs GPT-2 XL reference给出的FPR可能 差10+pp，因为reference
+      model的perplexity baseline影响特征分布。 这个variance是paper必须报告的limitation。
+
+      '
+    tables:
+    - name: Table_wild_data_depth_distribution
+      description: '行=数据集(C4/FineWeb/RedPajama/WikiText-control/OpenWebText-control),
+        列=predicted depth分布(d0%/d1%/d2%/d3%)+FPR+N。 附注：FPR定义为non-d0 predictions在已知human-text数据集上的比例。
+
+        '
+    figures_description:
+    - 'Feature distribution shift: 核心特征(p90_ppl, var_surprisal, rep_4gram)在controlled
+      d0 vs wild d0 vs wild FP的kernel density plot, 展示FP样本与template/SEO content的特征重叠'
+    analysis: 'Wild data结果支持"depth signal is detectable in controlled settings, with
+      web-crawl domain shift as a known limitation"的narrative。 ~20-32% FPR在web-crawl上看起来高，但(a)
+      全部集中在d0→d1轻度误分， (b) FP内容inspect后是template/SEO而非random noise， (c) high-quality
+      editorial data FPR<2%。 论文应在Limitations中明确写："deployment on web-crawl data requires
+      a domain-adapted threshold or supplementary quality filter to reduce FPR from
+      template content." 审稿人可能要求FPR的systematic analysis（已有数据支持）。
+
+      '
+  - name: detector_ordinal_baseline
+    plan_id: plan_018
+    description: 'Binoculars + Fast-DetectGPT连续分数校准为ordinal depth bin， 在3×3矩阵已有数据上评估4-class
+      ordinal accuracy。
+
+      '
+    expected_results:
+      binoculars_4class_acc_mean: 0.48
+      binoculars_4class_acc_range:
+      - 0.42
+      - 0.56
+      binoculars_d0v1_auc: 0.965
+      binoculars_d1v2_auc: 0.61
+      binoculars_d2v3_auc: 0.54
+      binoculars_best_cell: gpt2xl_temp09
+      binoculars_best_cell_acc: 0.56
+      binoculars_worst_cell: pythia_topk50
+      binoculars_worst_cell_acc: 0.42
+      fastdetectgpt_4class_acc_mean: 0.54
+      fastdetectgpt_4class_acc_range:
+      - 0.47
+      - 0.6
+      fastdetectgpt_d0v1_auc: 0.975
+      fastdetectgpt_d1v2_auc: 0.66
+      fastdetectgpt_d2v3_auc: 0.57
+      fastdetectgpt_best_cell: gpt2xl_temp09
+      fastdetectgpt_best_cell_acc: 0.6
+      fastdetectgpt_worst_cell: pythia_topk50
+      fastdetectgpt_worst_cell_acc: 0.47
+      gap_vs_rf_mean_pp: 25.0
+      gap_vs_rf_on_topk50_pp: 12.0
+      detector_3class_acc_mean: 0.41
+    result_rationale: 'Binoculars/Fast-DetectGPT设计目标是binary real-vs-synthetic detection，
+      其连续分数编码了text的"synthetic-ness"程度但不是ordinal depth gradient： (1) d0v1 AUC极高(0.96-0.98)——这正是这些检测器的设计强项，
+      human text vs 任何深度的synthetic text的boundary它们捕捉得很好； (2) d1v2和d2v3 AUC急剧下降(0.61-0.66,
+      0.54-0.57)—— 这些检测器的score在d1/d2/d3上趋于饱和，因为从binary视角看 d1/d2/d3都是"synthetic"，score的微小差异不足以支撑ordinal
+      ranking； (3) Fast-DetectGPT略优于Binoculars(+6pp)因为其概率曲率估计 对distribution tail更敏感，与depth
+      degradation的tail erosion机制 有间接对齐； (4) 最佳cell (gpt2xl_temp09, 60%)接近我们的topk50弱cell(69.6%)，
+      gap仅~10pp——这是reviewer质疑method novelty的弹药； (5) 3-class accuracy(排除d0)骤降至~41%，因为去掉最容易的d0类后，
+      detectors在pure ordinal任务上接近chance(33%)； (6) 按cell分析，detector在topk50设置上表现最接近我们的方法，
+      因为topk50本身信号弱，我们的feature-based方法也没有大优势。 这个baseline的存在要求论文narrative从"我们的方法优于existing
+      detectors" 转向"existing detectors retain partial ordinal signal but lack the
+      systematic coverage and feature-level understanding we provide"。
+
+      '
+    tables:
+    - name: Table_detector_ordinal_comparison
+      description: '行=方法(RF-19feat/CORAL/DivEye/Binoculars/Fast-DetectGPT/Chance),
+        列=9个cells的4-class acc + mean + 3-class mean。 最后两列=d1v2 AUC mean和d2v3 AUC mean。
+        加粗每列最高值。RF-19feat在8/9 cells最高， 但Binoculars/FDGPT在topk50 cells接近。
+
+        '
+    figures_description:
+    - '方法对比bar chart: 9 cells × 6 methods的4-class acc grouped bar chart, 直观显示RF/CORAL/DivEye的优势在temp09/nucleus
+      cells上最大, 在topk50 cells上缩小'
+    - 'AUC decay对比: d0v1→d2v3的AUC decay curve, RF vs Binoculars vs Fast-DetectGPT,
+      展示detectors在d0v1接近RF但在deeper pairs急剧下降'
+    analysis: 'Detector ordinal baseline的结果是双刃剑： 正面——确认ordinal depth estimation不是trivial的(detectors
+      <60%)， 我们的方法有15-25pp优势(mean)； 负面——在topk50弱cell上gap缩小到~10pp，且Fast-DetectGPT的60%
+      在absolute terms不低。论文必须诚实报告并重新定位优势： "Our feature-based approach provides 15-25pp
+      improvement over calibrated binary detectors on average, with the largest gains
+      in higher-signal settings (nucleus, temp09). The gap narrows for topk50, where
+      both approaches struggle with attenuated signal." 审稿人可能认为这表明"feature engineering的marginal
+      gain不够justify a full paper"——rebuttal需强调Atlas/EDD/feature universality finding
+      才是contribution，method accuracy是supporting evidence。
+
+      '
+  - name: bootstrap_confidence_intervals
+    plan_id: plan_020
+    description: '9个3×3 cells的5-fold CV bootstrap 95% CI计算，用于Table 1报告。
+
+      '
+    expected_results:
+      ci_width_mean_pp: 1.8
+      ci_width_range_pp:
+      - 1.2
+      - 2.8
+      gpt2xl_temp09_ci:
+      - 0.843
+      - 0.866
+      gpt2xl_nucleus_ci:
+      - 0.828
+      - 0.851
+      olmo_temp09_ci:
+      - 0.812
+      - 0.84
+      olmo_nucleus_ci:
+      - 0.776
+      - 0.803
+      pythia_nucleus_ci:
+      - 0.768
+      - 0.795
+      pythia_temp09_ci:
+      - 0.749
+      - 0.776
+      olmo_topk50_ci:
+      - 0.728
+      - 0.758
+      pythia_topk50_ci:
+      - 0.681
+      - 0.711
+      gpt2xl_topk50_ci:
+      - 0.743
+      - 0.77
+      overlapping_pairs: 3
+      all_above_chance: true
+    result_rationale: 'Bootstrap CI宽度由样本量和fold间variance决定： (1) 每个cell约20000 samples
+      (5000/depth), 5-fold CV的fold间 variance较小(std ~2-3pp), bootstrap 95% CI宽度在1.2-2.8pp；
+      (2) 高accuracy cells (gpt2xl_temp09 85.4%)的CI更窄(~2.2pp) 因为接近ceiling时variance更小；
+      (3) 中等accuracy cells (pythia_topk50 69.6%)的CI稍宽(~2.8pp) 因为错误率更高导致更大variance；
+      (4) 约3对adjacent cells有CI重叠(如olmo_nucleus vs pythia_nucleus, gpt2xl_topk50 vs
+      pythia_temp09)——这些重叠不影响main claims 因为跨model比较不是core claim； (5) 所有9个cells的CI下界都远高于chance(25%)，最低的
+      pythia_topk50下界约68.1%，支撑"well above chance"的claim。
+
+      '
+    tables:
+    - name: Table_1_with_CIs
+      description: '标准3×3 Table 1更新版：行=model(Pythia/OLMo/GPT-2 XL), 列=strategy(nucleus/temp09/topk50)。
+        每个cell显示"acc% [CI_low, CI_high]"。附行均值和列均值。
+
+        '
+    figures_description: []
+    analysis: 'Bootstrap CI是paper reporting质量的基本要求，审稿人三档均要求。 主要作用：(1) 证明所有cells统计显著高于chance；
+      (2) topk50的CI可能被reviewer用来argue"weakest setting接近 baseline"——但CI下界仍在68%以上； (3)
+      部分cells间CI重叠说明model effect和strategy effect的 大小关系需要在paper中显式讨论。
+
+      '
+  - name: theoretical_analysis_section
+    plan_id: plan_023
+    description: '理论分析section：(1) tail erosion连接p90_ppl/var_surprisal, (2) EDD上界推导,
+      (3) strategy-dependent convergence rate解释。
+
+      '
+    expected_results:
+      tail_erosion_connection: qualitative — links p90_ppl dominance to Shumailov
+        2024 tail collapse mechanism
+      edd_upper_bound_formula: EDD ≤ ⌈log(D_KL(P_0 || P_ref) / τ_disc) / log(1/γ)⌉
+        where γ is contraction rate
+      edd_bound_empirical_match: bound gives EDD≤6 for 1B models, empirical EDD=4
+        — bound is loose but directionally correct
+      iid_assumption_violation: acknowledged — LoRA recursive chain violates i.i.d.
+        because each depth uses different LoRA weights
+      strategy_convergence_explanation: temperature uniform scaling accelerates KL
+        contraction by factor ~1.3-1.5x vs truncation methods
+      section_length_pages: 1.5
+      contribution_list_included: false
+      section_label: Theoretical Motivation
+    result_rationale: '理论section在median档下仅提供定性连接： (1) Tail erosion连接：Shumailov et
+      al. 2024证明recursive training 使模型逐渐丧失对低概率token的生成能力(tail collapse)， 这直接解释了为什么p90_ppl(捕捉高perplexity
+      tail)和var_surprisal (捕捉surprisal分布宽度)是universal top features—— recursive generation系统性地压缩perplexity分布的right
+      tail， 使p90_ppl单调下降。这个连接是直觉性的、定性的，不构成新理论； (2) EDD上界推导：假设recursive generation是contraction
+      mapping (每代分布向attractor收敛，contraction rate γ<1)， EDD是相邻depths的KL divergence首次降至discriminability
+      threshold τ_disc以下的depth。推导得EDD ≤ ⌈log(D_0/τ)/log(1/γ)⌉。 问题：此推导假设i.i.d. generation（每代用同一个generative
+      process）， 但实际实验中每个depth用不同的LoRA checkpoint—— 审稿人会指出"the bound assumes a fixed
+      contraction operator, but your LoRA fine-tuning creates a different operator
+      at each depth"； (3) EDD bound给出≤6（1B模型），empirical EDD=4—— bound是loose的但方向正确，审稿人可能认为"a
+      bound that overestimates by 50% is descriptive rather than tight"； (4) Strategy
+      convergence rate解释：temperature对logit做uniform scaling (除以τ)保持分布shape但改变entropy，而nucleus/topk做truncation
+      (截断低概率tail)。Temperature使模型更快收敛到uniform-like attractor， 解释了temp09的d1→d2 feature
+      trajectory reversal。 这个解释有mechanistic basis但缺乏formal proof； (5) 整个section约1.5页，标注为"Theoretical
+      Motivation"， 不列入contribution list以避免审稿人的"no theoretical contribution"critique。
+
+      '
+    tables: []
+    figures_description:
+    - 'EDD bound vs empirical: 柱状图showing theoretical upper bound (6) vs empirical
+      EDD at T=0.75 across 3 models (all=4), 附contraction rate γ估计值'
+    - 'Tail erosion visualization: p90_ppl的empirical CDF across depths (d0-d3), 展示right
+      tail系统性左移, 连接到Shumailov tail collapse theory'
+    analysis: 'Median档下理论section的定位是"adds motivation but not substance"。 审稿人典型反应："The
+      theoretical sketch is helpful for intuition but the EDD bound relies on assumptions
+      that don''t hold in practice (i.i.d. generation). I appreciate the connection
+      to model collapse theory but would categorize this as ''descriptive'' rather
+      than ''a theoretical contribution''." 这意味着理论section不会提升reviewer score，但也不会扣分——
+      它防止了"no theoretical grounding at all"的批评。 关键是不要oversell：paper说"we provide theoretical
+      motivation connecting our empirical findings to model collapse theory" 而非"we
+      derive novel theoretical results"。
+
+      '
+  - name: api_model_recursive_chains
+    plan_id: plan_026
+    description: 'GPT-4o-mini fine-tuning API递归链 + prompted recursive chain (rewrite模式)，
+      验证depth signal在商用API模型中的存在性。
+
+      '
+    expected_results:
+      prompted_chain_4class_acc: 0.42
+      prompted_chain_d0v1_auc: 0.73
+      prompted_chain_d1v2_auc: 0.57
+      prompted_chain_d2v3_auc: 0.52
+      prompted_chain_top_features:
+      - surprisal_range
+      - prob_std
+      - var_surprisal
+      finetuned_chain_feasibility: limited — API fine-tuning constraints (no LoRA
+        control, fixed epochs) make recursive chain less controlled
+      finetuned_chain_4class_acc: 0.45
+      finetuned_chain_d1v2_auc: 0.59
+      delta_vs_base_1b_pp: -36.0
+      delta_vs_instruct_pp: -3.0
+    result_rationale: 'API模型结果弱于base model，与instruct model实验(plan_021, 47.4%)一致： (1)
+      Prompted recursive chain (rewrite prompting)：每次"rewrite"不等同于 LoRA fine-tune——fine-tune改变模型参数使分布永久偏移，
+      prompted rewrite仅在inference时施加instruction bias。 因此递归prompted generation的分布偏移幅度远小于LoRA递归链，
+      导致相邻depth的statistical features差异更小； (2) API fine-tuning (GPT-4o-mini)：OpenAI
+      fine-tuning API不暴露 LoRA rank/learning rate等超参数，默认训练3 epochs且有 内置regularization防止catastrophic
+      forgetting—— 这正是depth signal所需要的分布偏移的对立面。 递归fine-tune在API上产生的每代偏移可能仅为本地LoRA的30-40%；
+      (3) RLHF/instruction tuning引入的分布约束(alignment tax) 使模型生成更"standardized"——不同depth的生成在style/fluency上更一致，
+      压缩了statistical feature的variance； (4) Feature ranking偏移：p90_ppl不再dominant(被surprisal_range替代)，
+      因为API模型的perplexity tail被RLHF regularize过， tail erosion信号被alignment process预先消除；
+      (5) 42-45%的accuracy仍高于chance(25%)，说明signal exists but is weak—— 这支撑"depth signal
+      is strongest in base models at moderate scale" 的bounded claim。
+
+      '
+    tables:
+    - name: Table_model_type_comparison
+      description: '行=模型类型(Base 1B avg / Base 14B / Instruct 1.5B / API prompted /
+        API finetuned), 列=4class acc / d1v2 AUC / d0v1 AUC / top feature。 展示signal
+        strength随model regularization递减的gradient。
+
+        '
+    figures_description:
+    - 'Signal strength gradient: 条形图showing 4-class acc across model types (base→instruct→API),
+      展示从78%→47%→42%的递减趋势'
+    analysis: 'API模型结果确认"depth signal is a property of base model generation that
+      is attenuated by instruction tuning and RLHF alignment"。 论文framing：depth estimation
+      is most applicable to base model outputs in data feedback loops (the primary
+      use case), while instruct/API model chains show attenuated but non-zero signal.
+      审稿人可能将此解读为limitation("only works well on base models") 或strength("correctly
+      identifies that aligned models resist distributional drift")——取决于reviewer perspective。
+      Median档下至少一位审稿人会用这个结果argue "practical impact is limited since most real-world
+      synthetic text comes from instruct/API models"。
+
+      '
+  - name: dcol_component_ablation
+    plan_id: plan_010
+    description: DCOL组件消融实验——已取消，因前置条件plan_004(DCOL v6)结论为negative。
+    expected_results:
+      status: cancelled
+      reason: DCOL v6 RoBERTa-large failed (64.4% vs RF 78.2%, -13.7pp, severe overfitting).
+        No DCOL model to ablate.
+    result_rationale: 'DCOL v1-v6全部失败表明contrastive ordinal learning在text depth estimation
+      任务上有固有困难：(1) 文本的ordinal depth signal主要编码在statistical features (perplexity tail,
+      surprisal variance)中，而非token-level embeddings能直接捕捉的； (2) contrastive loss需要embedding空间中adjacent
+      depths有清晰的ordinal structure， 但RoBERTa的[CLS] embedding捕捉的是语义信息而非distributional
+      statistics； (3) 这个negative result本身支持Atlas/EDD作为primary contribution的定位—— 表明depth
+      estimation的贡献在于feature discovery和task formalization， 而非novel deep learning architecture。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Plan_010取消不影响论文结构。DCOL negative result已纳入paper的 negative analysis section
+      (Section 5或Appendix)， 作为"contrastive ordinal learning的固有局限"discussion。
+
+      '
+  - name: theory_section_whatif
+    plan_id: what_if:theory_section
+    description: '与plan_023重叠的theoretical analysis what-if。 在median档下评估其对reviewer
+      score的marginal impact。
+
+      '
+    expected_results:
+      marginal_score_impact: +0.0 to +0.25
+      reviewer_perception: appreciated as motivation, not counted as contribution
+      best_case: reviewer says 'nice connection to theory, strengthens the empirical
+        narrative'
+      worst_case: reviewer says 'the theoretical analysis is superficial and the EDD
+        bound is too loose to be useful'
+      champion_reviewer_probability: 0.35
+    result_rationale: '理论section在median档的marginal impact接近零到微正： (1) 正面场景(+0.25)：某位reviewer认可problem
+      formalization +  theoretical motivation的组合，认为"this paper doesn''t need novel
+      theory to be valuable — the empirical contribution is sufficient, and the theoretical
+      sketch adds context"； (2) 中性场景(+0.0)：reviewer认为理论section是nice-to-have但 不改变evaluation——"the
+      theory section provides some intuition but doesn''t affect my assessment of
+      the empirical claims"； (3) 微负场景(-0.1)：aggressive reviewer认为理论section raises
+      expectations it doesn''t meet——"including a ''theory'' section suggests the
+      authors believe they have a theoretical contribution, but the analysis is too
+      informal to qualify"。 Median档的结果是(2)或(1)，取决于reviewer composition。 Champion reviewer(认可formalization价值)的概率约35%——
+      需要恰好分配到有empirical study appreciation的reviewer。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: Theory section是low-risk low-reward的addition。 在median档下它不会pushing the
+      paper from 3.0 to 3.5， 但也不会hurt。其主要价值是在rebuttal中当reviewer问 "why these features?"时可以指向theory
+      section作为解释。 建议：保留theory section但严格控制scope和claim， 明确标注为"Theoretical Motivation"并在Introduction的
+      contribution list中不单独列出。
+  review_report: '---
+
+    dream_id: dream_20260518T162616
+
+    tier: median
+
+    overall_score: 3/6 Borderline Reject
+
+    timestamp: 2026-05-18T17:09:58.266056+00:00
+
+    ---
+
+
+    # Dream Review Report: Ordinal Depth Estimation for Recursive Model-Generated
+    Text
+
+
+    **Paper Title:** Ordinal Depth Estimation for Recursive Model-Generated Text:
+    A Depth Degradation Atlas
+
+
+    **Headline Assessment:** Borderline Reject (3/6)
+
+
+    **Reviewers:** R1 (Methods + Experiments), R2 (Novelty + Related Work)
+
+    **Rounds:** 3 (Round 1 independent → Round 2 cross-share → Round 3 convergence)
+
+    **Convergence:** Achieved. R1 score 3/6, R2 score 2.5/6; consolidated to 3/6.
+
+
+    ---
+
+
+    ## 1. Paper Summary
+
+
+    The paper formalizes ordinal generation depth estimation as a new task: given
+    a text passage and a reference language model, predict the recursive generation
+    depth d ∈ {0,1,2,3} where d=0 denotes human-written text. The authors construct
+    a controlled benchmark spanning 3 model families (Pythia-1.4B, OLMo-1B, GPT-2
+    XL), 3 decoding strategies (nucleus, temperature, top-k), and 4 depths via recursive
+    LoRA fine-tuning on WikiText-103. They extract 19 statistical features (perplexity,
+    surprisal, diversity) and evaluate 4 classifiers, finding that Random Forest achieves
+    70-85% four-class accuracy. The paper contributes a "Depth Degradation Atlas"
+    characterizing how features evolve across depths, an EDD (Effective Discriminable
+    Depth) metric, and a two-stage cross-strategy pipeline (+11.5pp over naive transfer).
+    Extended validation covers 14B scale (68% accuracy, nucleus only), API/instruct
+    models (42-45%), and wild data calibration (19-32% FPR on web-crawl).
+
+
+    ---
+
+
+    ## 2. Consolidated Strengths
+
+
+    **S1. Genuine task novelty.** Ordinal generation depth estimation is a meaningful
+    recast of the model collapse problem. No prior work estimates recursive depth
+    from text alone. The shift from "does recursion degrade?" to "how much?" is a
+    defensible epistemic repositioning with clear practical motivation for data curation.
+
+
+    **S2. Systematic and well-instrumented benchmark.** The 36-condition grid (3×3×4)
+    with 5,000 passages per cell provides strong statistical power. Bootstrap CIs
+    in Table 1 are appropriately reported. The design is principled and, with protocol
+    details added, independently replicable using publicly available model checkpoints.
+
+
+    **S3. Unusually honest limitation reporting.** The paper reports DCOL failure
+    (Section 9), API model attenuation (42-45%, Section 7.2), wild data FPR (19-32%,
+    Section 7.3), and cross-strategy brittleness (Section 6) without burying them.
+    This epistemic honesty is commendable and rare.
+
+
+    **S4. Meaningful baseline comparison.** Adapting Binoculars and Fast-DetectGPT
+    to the ordinal task (Table 3) is the right design choice. The pairwise AUC gaps
+    (d1vd2, d2vd3) are the most convincing evidence that binary detectors cannot address
+    ordinal depth.
+
+
+    **S5. Feature universality finding is actionable.** p90_ppl and var_surprisal
+    as universal top-4 features across all 9 cells (Section 4.3) connects to the tail
+    erosion mechanism from model collapse theory, providing interpretive grounding
+    beyond raw accuracy numbers.
+
+
+    **S6. 3-class metric (Section 4.4) pre-empts the obvious critique.** Reporting
+    59-82% accuracy excluding the easy d0 class demonstrates ordinal signal beyond
+    the human/machine boundary.
+
+
+    ---
+
+
+    ## 3. Consolidated Major Issues
+
+
+    ### Major Issue 1 [idea]: Missing adjacent baselines weaken novelty verification
+
+    **Source:** R2 Round 1, R1 partially concurred in Round 2
+
+
+    Membership inference methods (Min-K% Prob, Shi et al. 2024; DetectGPT, Mitchell
+    et al. 2023) produce continuous scores from token probabilities and are structurally
+    adjacent to ordinal depth estimation. These methods could potentially be calibrated
+    to ordinal depth bins, similar to how the paper calibrates Binoculars and Fast-DetectGPT
+    in Table 3. Corpus fingerprinting and text watermarking (Kirchenbauer et al. 2023;
+    Christ et al. 2024) provide alternative provenance tracking approaches. The Related
+    Work does not engage these literatures at all.
+
+
+    **Why Major:** A reviewer cannot confidently assess the novelty claim without
+    knowing whether membership inference methods, when adapted to the ordinal depth
+    task, already capture comparable signal. This is not a peripheral citation gap
+    but an experimental baseline gap. If Min-K% Prob achieves competitive ordinal
+    accuracy without depth-labeled training data, the contribution narrows significantly.
+
+
+    **R1 Cross-share nuance:** R1 noted these methods are designed for binary detection
+    and would require non-trivial adaptation for ordinal use. Including them as binary
+    recasts (d0 vs d1-d3) in Table 3 would be sufficient to address the concern.
+
+
+    **Fixability:** Medium. Requires running 1-2 additional baseline experiments and
+    adding Related Work discussion.
+
+
+    ---
+
+
+    ### Major Issue 2 [idea]: Practical scope substantially narrower than framed
+
+    **Source:** R2 Round 1, supported by R1''s W4 (wild FPR) and W5 (14B single-strategy)
+
+
+    The paper''s framing (Abstract, Introduction, Conclusion) implies practical relevance
+    for real-world data curation and AI content auditing. The experimental evidence
+    shows the system works well only when: (a) the source model is a base model (not
+    instruct/API), (b) the decoding strategy is known or identifiable, (c) the deployment
+    domain is clean (not web-crawl). Specifically:
+
+    - Base models: 70-85% accuracy
+
+    - Instruct/API models: 42-45% accuracy with qualitatively different feature regime
+    (p90_ppl → surprisal_range)
+
+    - Wild data FPR: 19-32% on web-crawl, prohibitive for deployment without domain
+    adaptation
+
+    - Cross-strategy: requires strategy identification at only 57.8% accuracy
+
+
+    This is a narrow operational regime. Most real-world AI-generated text in 2026
+    comes from instruction-tuned or API models.
+
+
+    **Why Major:** The Abstract claims "70-85% four-class accuracy" without qualifying
+    that this is within-strategy on base models only. The Introduction motivates the
+    work with "practical data curation" but the experiments show a controlled lab
+    setting. This is a story consistency failure between claims and evidence, not
+    merely a limitation.
+
+
+    **R1 Cross-share nuance:** R1 noted this is partially a method limitation (need
+    different features for different model types) and partially a task limitation
+    (depth signal is inherently regime-conditional). R1 recommended reframing as "regime-dependent
+    feature adaptation" rather than framework failure.
+
+
+    **Fixability:** Medium. Reframe claims to match base-model-only scope, or extend
+    experiments.
+
+
+    ---
+
+
+    ### Major Issue 3 [idea]: Atlas contribution is primarily observational without
+    demonstrated predictive power
+
+    **Source:** R2 Round 1, supported by R1''s W1 (shallow depth range)
+
+
+    The four Atlas findings are:
+
+    - (a) Perplexity tail statistics as universal markers — expected from model collapse
+    theory (Shumailov 2024)
+
+    - (b) Non-uniform inter-depth distances — unsurprising given progressive degradation
+
+    - (c) EDD boundary — a useful metric but the empirical coverage (d0-d3) is shallow
+    relative to the theoretical bound (EDD ≤ 6)
+
+    - (d) Strategy-dependent feature trajectory reversal — the most genuinely non-obvious
+    finding
+
+
+    The "Atlas" framing implies comprehensive empirical mapping, but the depth coverage
+    stops at d3 when theory predicts discriminability up to d5-d6. The 14B experiment
+    provides partial structural validation (p90_ppl remains top-feature, EDD decay
+    pattern consistent) but reveals feature ranking instability (only 2/4 top features
+    overlap with 1B). No experiment explicitly tests the Atlas''s predictive power
+    on unseen settings.
+
+
+    **Why Major:** If the Atlas reduces to "we computed 19 features and found some
+    track depth better than others," the paper''s novelty rests primarily on task
+    formalization + benchmark. A 3-model benchmark with Random Forest on handcrafted
+    features, without mechanistic grounding or demonstrated generalization, is below
+    the methodological bar for a top ML venue.
+
+
+    **R1 Cross-share nuance:** R1 argued that the Atlas DOES have partial predictive
+    value (EDD decay pattern correctly predicted 14B behavior; p90_ppl universality
+    partially confirmed). The feature trajectory reversal is genuinely non-obvious.
+    R2 concurred that the "Atlas" branding is the problem, not the underlying findings.
+
+
+    **Fixability:** Medium-High. Reframe as "exploratory empirical characterization"
+    rather than comprehensive Atlas. Alternatively, add d4+ experiments or mechanistic
+    grounding.
+
+
+    ---
+
+
+    ### Major Issue 4 [idea]: Cross-strategy pipeline contribution oversold relative
+    to strategy classifier performance
+
+    **Source:** R1 Round 1 (W3), R2 concurred in Round 2
+
+
+    The two-stage pipeline (strategy ID → conditioned depth classifier) achieves 70.5%
+    cross-strategy accuracy, a +11.5pp improvement over naive transfer (59.1%). However:
+
+    - Strategy classifier accuracy: 57.8% (chance = 33.3%)
+
+    - Oracle pipeline accuracy: 78.3%
+
+    - Gap lost to misrouting: 7.8pp
+
+    - No error propagation breakdown: accuracy conditioned on strategy classifier
+    correctness vs incorrectness not reported
+
+
+    **Why Major:** The paper presents the pipeline as Contribution 3, but the 57.8%
+    strategy classifier is a hard limit on deployment utility. Without a conditional
+    accuracy breakdown, the 70.5% number conflates pipeline success with partial luck.
+
+
+    **Cross-share convergence:** Both reviewers agreed the real contribution is the
+    DISCOVERY that cross-strategy transfer is structurally hard (feature trajectory
+    reversal under temperature scaling), not the pipeline solution. The pipeline should
+    be repositioned from a standalone contribution to a proof-of-concept illustrating
+    the discovery.
+
+
+    **Fixability:** High. Add conditional breakdown, reposition as proof-of-concept,
+    emphasize the discovery of cross-strategy difficulty as the contribution.
+
+
+    ---
+
+
+    ## 4. Consolidated Minor Issues
+
+
+    **m1 [presentation]: LoRA fine-tuning protocol underspecified.** Missing training
+    steps/epochs, learning rate, scheduler, adapter initialization strategy. Critical
+    for benchmark reproducibility. Originally R1 Major (W2), downgraded to Minor after
+    R2 cross-share confirmed this is fixable with an appendix paragraph and does not
+    affect the idea. *(Fixable with 2-3 sentences in methods/appendix.)*
+
+
+    **m2 [idea]: 14B scale validation is single-strategy (nucleus) only.** Strategy
+    effects dominate model effects in the 1B results (16pp strategy gap vs 7pp model
+    gap). A single-strategy 14B result cannot support scale generalization claims.
+    The Δ vs 1B best (-15.9pp) conflates scale and strategy confounds.
+
+
+    **m3 [idea]: Reference model (GPT-2 Large 774M) fixed and not ablated.** Feature
+    universality may be an artifact of the specific reference model''s token distribution
+    rather than a property of the depth signal. A second reference model ablation
+    would strengthen the universality claim. *(Section 10 mentions cross-model FPR
+    variance of 8.5pp, acknowledging sensitivity but not resolving it.)*
+
+
+    **m4 [idea]: Wild data FPR reported without calibration mitigation.** 32% FPR
+    on C4 is reported as a limitation but no threshold recalibration (Platt scaling,
+    isotonic regression) is attempted. This makes the result look worse than it may
+    need to be.
+
+
+    **m5 [presentation]: Decoding strategy effects subsection cites only 2 papers**
+    (Holtzman 2020, Garces Arias 2025), yet feature trajectory reversal is one of
+    the four core Atlas findings. Sparse coverage precisely where the paper''s most
+    interesting finding lives.
+
+
+    **m6 [presentation]: Binary baseline comparison evaluation regimes differ.** Within-strategy
+    RF (70-85%) uses oracle strategy labels. Cross-strategy pipeline (70.5%) uses
+    predicted labels. Binary detectors (48-54%) use no strategy conditioning. The
+    comparison in Section 5 should clarify these differences.
+
+
+    ---
+
+
+    ## 5. Questions for Authors
+
+
+    **Q1.** How do membership inference methods (e.g., Min-K% Prob calibrated to ordinal
+    bins) perform on your benchmark? If they achieve competitive accuracy without
+    depth-labeled training, what does this imply about the task''s novelty relative
+    to pretraining data detection?
+
+
+    **Q2.** Please provide the full LoRA training protocol: epochs per depth, learning
+    rate, scheduler, whether adapters at depth d are initialized from depth d-1 weights
+    or from scratch.
+
+
+    **Q3.** For the two-stage cross-strategy pipeline, what is the 4-class depth accuracy
+    conditioned on strategy classifier correctness vs incorrectness? What fraction
+    of the 70.5% overall accuracy comes from correctly-routed samples?
+
+
+    **Q4.** Was d4 generation attempted? If the recursive chain extends to d4-d6,
+    what happens to d3vd4 AUC? Even one data point would calibrate how close d3 is
+    to the discriminability ceiling.
+
+
+    **Q5.** For wild data FPR, did you attempt any post-hoc threshold calibration
+    (Platt scaling, domain-adapted threshold)? Reporting a precision-recall tradeoff
+    at the d0/d1 boundary would clarify whether 32% FPR is fundamental or a calibration
+    artifact.
+
+
+    ---
+
+
+    ## 6. Experiment Coverage Assessment
+
+
+    Compared to the full experiment design (review_context.yaml):
+
+
+    | Experiment | Status | Coverage Quality |
+
+    |---|---|---|
+
+    | 14B scale validation (plan_014) | Covered (Section 7.1) | Partial — nucleus
+    only, no multi-strategy |
+
+    | Wild data calibration (plan_015) | Covered (Section 7.3) | Good — 3 web-crawl
+    + 1 control |
+
+    | Detector ordinal baseline (plan_018) | Covered (Section 5) | Good — Binoculars
+    + Fast-DetectGPT |
+
+    | Bootstrap CIs (plan_020) | Covered (Table 1) | Complete |
+
+    | Theoretical analysis (plan_023) | Covered (Section 8) | Appropriately scoped
+    as "motivation" |
+
+    | API model chains (plan_026) | Covered (Section 7.2) | Good — prompted + fine-tuned
+    |
+
+    | DCOL ablation (plan_010) | Covered as negative result (Section 9) | Appropriate
+    |
+
+
+    All planned experiments are present. The paper is complete in scope relative to
+    the experiment plan.
+
+
+    ---
+
+
+    ## 7. Scoring
+
+
+    ### Individual Reviewer Scores
+
+    | Reviewer | Round 1 | Post-Cross-Share | Confidence |
+
+    |---|---|---|---|
+
+    | R1 (Methods + Experiments) | 3/6 | 3/6 | 4/5 |
+
+    | R2 (Novelty + Related Work) | 2.5/6 | 2.75/6 | 4/5 |
+
+
+    ### Consolidated Score: **3 / 6 (Borderline Reject)**
+
+
+    ### Calibration Justification
+
+    4 Major issues identified (missing baselines, narrow practical scope, Atlas primarily
+    observational, pipeline oversold). Per calibration rules, 3+ Major issues → not
+    higher than Borderline Reject. However:
+
+    - Major Issue 4 (pipeline) has high fixability and both reviewers agree to reposition
+
+    - Major Issue 3 (Atlas) could be substantially addressed through reframing
+
+    - The task formalization IS genuinely novel (no prior work)
+
+    - The paper demonstrates unusual intellectual honesty
+
+
+    The paper occupies a difficult position: genuine task novelty with modest methodological
+    contribution. For a top ML venue (25% acceptance rate), the combination of Random
+    Forest on handcrafted features, narrow operational scope, and missing adjacent
+    baselines keeps it below the acceptance threshold. The paper reads as a solid
+    empirical study that would benefit from either: (a) a stronger methodological
+    contribution (learned depth-discriminative representations that work), or (b)
+    substantially broader empirical scope (multiple scales, instruct models, deeper
+    recursion chains) to justify the "Atlas" framing.
+
+
+    **If claims are tightened to match actual scope** (base models at 1B scale, within-strategy
+    or known-strategy, controlled settings), **missing baselines are added**, and
+    **the pipeline is repositioned**, the score could move to 3.5-4.0 (Weak Accept
+    territory).
+
+
+    ---
+
+
+    ## 8. Actionable Revision Priorities
+
+
+    1. **[High priority]** Add membership inference baselines (Min-K% Prob, DetectGPT)
+    calibrated for ordinal depth to Table 3. Engage watermarking/fingerprinting literature
+    in Related Work.
+
+    2. **[High priority]** Reframe Abstract/Introduction claims to match base-model,
+    within-strategy scope. Change "70-85%" headline to either qualify it or use the
+    cross-strategy number.
+
+    3. **[Medium priority]** Add LoRA training protocol details (epochs, LR, adapter
+    initialization).
+
+    4. **[Medium priority]** Reposition cross-strategy pipeline from Contribution
+    3 to a practical proof-of-concept. Elevate the discovery of cross-strategy difficulty
+    as the contribution.
+
+    5. **[Medium priority]** Add conditional accuracy breakdown for the two-stage
+    pipeline.
+
+    6. **[Lower priority]** Attempt d4+ generation to test depth ceiling. Add threshold
+    calibration for wild data FPR. Ablate reference model choice.'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/artifacts/dream_reports/dream_20260518T162616/worst/paper.pdf
+  imagined_experiments:
+  - name: 14B_scale_validation_worst
+    plan_id: plan_014
+    description: Qwen2.5-14B FP16 + LoRA, nucleus p=0.95, d0-d3递归链, 19特征提取 + RF/LR分类
+    expected_results:
+      rf_4class_acc: 0.52
+      rf_4class_ci:
+      - 0.505
+      - 0.535
+      lr_4class_acc: 0.47
+      rf_3class_acc: 0.42
+      auc_d0v1: 0.88
+      auc_d1v2: 0.62
+      auc_d1v3: 0.78
+      auc_d2v3: 0.58
+      edd_at_075: 1
+      edd_at_070: 1
+      top_features:
+      - type_token_ratio
+      - p90_ppl
+      - rep_3gram
+      - surprisal_range
+      feature_top4_overlap_with_1b: 1
+      finetune_loss_d1: 2.48
+      finetune_loss_d2: 2.31
+      finetune_loss_d3: 2.22
+      delta_vs_1b_best: -0.334
+      delta_vs_instruct: 0.046
+    result_rationale: '14B模型有10倍于1.4B的参数量，LoRA仅调整~0.15%参数。递归fine-tuning对整体生成分布的扰动极小——
+      finetune loss从d0到d1仅下降~0.17（vs 1B的~0.6-0.9），说明模型容量足以在不大幅改变distributional characteristics的情况下拟合下一深度数据。p90_ppl和var_surprisal在1B有效是因为小模型在递归fine-tuning
+      中快速丢失tail distribution（Shumailov tail erosion），但14B的更大表达能力延缓了这一过程， adjacent
+      depth之间的统计特征差异被压缩到noise level。d0v1仍可分（0.88）因为human vs 1st-gen 差异不依赖递归collapse，而是LoRA适配本身的distributional
+      shift。但d1v2 AUC仅0.62，d2v3 0.58， 相邻深度几乎不可区分。feature ranking显著不同——type_token_ratio升至top1（因为14B在递归中
+      词汇多样性下降比perplexity shift更先出现），与1B的perplexity-dominated pattern仅1个重叠。 EDD=1意味着仅binary（d0
+      vs d1+）有意义，ordinal estimation在14B上实质失败。
+
+      '
+    tables:
+    - 'Table: 14B vs 1B scale comparison (4-class acc, d1v2 AUC, feature overlap)'
+    - 'Table: 14B per-class recall (d0 ~90%, d1 ~45%, d2 ~30%, d3 ~40%)'
+    figures_description:
+    - 'AUC decay curve: 14B curve平坦且快速跌破threshold，vs 1B的缓慢衰减'
+    analysis: '52%的4-class acc仅比instruct model（47.4%）高4.6pp，比random chance（25%）高27pp。
+      审稿人会总结为"depth signal exists but is practically negligible at 14B"。 d0v1=0.88说明binary
+      detection仍work，但这不是本文的contribution（已有大量binary detector）。 Feature ranking divergence（overlap
+      1/4）进一步说明1B发现的"perplexity tail universality" 不能推广到14B，是scale-specific phenomenon。论文必须将此定位为central
+      finding而非limitation： "depth signal exhibits scale-dependent decay, with 14B
+      confirming the theoretical prediction that higher capacity delays distributional
+      collapse"。但这个claim需要 theory section支撑，而theory section本身在worst档被视为post-hoc。
+
+      '
+  - name: wild_data_calibration_worst
+    plan_id: plan_015
+    description: C4/FineWeb/RedPajama子集，用3个已训练reference model提取19特征，3×3 RF分类器做depth预测+分布分析
+    expected_results:
+      c4_cross_model_d0_agreement: 0.61
+      c4_cross_model_d1plus_agreement: 0.23
+      fineweb_cross_model_d0_agreement: 0.68
+      fineweb_cross_model_d1plus_agreement: 0.19
+      redpajama_d0_pct_pythia: 0.72
+      redpajama_d0_pct_olmo: 0.91
+      redpajama_d0_pct_gpt2xl: 0.69
+      cross_model_kappa: 0.31
+      fpr_range_across_models:
+      - 4.7
+      - 34.0
+    result_rationale: '已有实验显示wild data FPR在不同reference model间差异巨大（OLMo C4 FPR=4.7%
+      vs Pythia=20.2% vs GPT-2 XL=22.4%）。3-model ensemble的cross-model agreement在d0上reasonable（~65%），
+      但在d1+上极低（~20%），因为不同reference model的decision boundary位于feature space的不同位置。 RedPajama结果会进一步放大这一不一致性，因为其内容多样性（代码、书籍、Common
+      Crawl混合） 比C4/FineWeb更heterogeneous。Cohen''s kappa ~0.31表示fair agreement，远未达到
+      "reliable depth estimation in the wild"的标准。审稿人会指出：如果三个reference model 对同一文本的depth预测不一致，那么depth
+      estimation的"practical relevance"存疑。 论文需诚实报告cross-model consistency低，定位为"future
+      work需要reference-model-invariant features或ensemble calibration"。
+
+      '
+    tables:
+    - 'Table: Cross-model depth prediction agreement matrix (C4/FineWeb/RedPajama
+      × 3 reference models)'
+    - 'Table: Per-model FPR comparison across 3 web corpora'
+    figures_description:
+    - 'Heatmap: cross-model agreement rate by predicted depth class'
+    analysis: '野生数据校准在worst档下暴露了方法的fundamental deployment gap：在controlled setting中
+      reference model choice对acc影响仅~4pp（ref_model_ablation_001），但在wild data中 因为没有ground
+      truth depth label，cross-model disagreement直接变成uncertainty。 FPR从4.7%到34%的range使得任何single-model
+      depth prediction都不可信。 这与14B信号弱共同构成"practical relevance unclear"的审稿人总结。 论文应将此定位为"open
+      challenge"而非failure，但不能claim wild data applicability。
+
+      '
+  - name: detector_ordinal_baseline_worst
+    plan_id: plan_018
+    description: Binoculars + Fast-DetectGPT连续分数校准为ordinal depth bins, 在3×3已有数据上评估
+    expected_results:
+      binoculars_4class_acc: 0.63
+      binoculars_4class_ci:
+      - 0.615
+      - 0.645
+      binoculars_d1v2_auc: 0.72
+      binoculars_d2v3_auc: 0.65
+      binoculars_3class_acc: 0.55
+      fastdetectgpt_4class_acc: 0.58
+      fastdetectgpt_d1v2_auc: 0.68
+      fastdetectgpt_d2v3_auc: 0.61
+      binoculars_coral_4class_acc: 0.65
+      fastdetectgpt_coral_4class_acc: 0.6
+      rf_19feat_baseline: 0.783
+      delta_binoculars_vs_rf: -0.153
+      delta_fastdetectgpt_vs_rf: -0.203
+      binoculars_per_strategy:
+        nucleus: 0.67
+        temp09: 0.64
+        topk50: 0.58
+      binoculars_best_cell_acc: 0.71
+      binoculars_worst_cell_acc: 0.52
+    result_rationale: 'Binoculars和Fast-DetectGPT的连续分数本质上捕捉了text的"synthetic-ness"程度，
+      而递归深度越大text越"synthetic"，所以这些分数天然具有与depth的单调相关性。 在worst档下，Binoculars利用cross-entropy和perplexity
+      ratio的连续值， 通过CORAL ordinal regression校准后可达65%——这比RF的78.3%低13pp， 但比chance（25%）高40pp，比instruct
+      model结果（47%）高18pp。 关键问题是在部分weak cells（topk50）上，Binoculars（58%）接近或超过RF（69.6%，
+      topk50 worst cell），gap缩小到<12pp。Fast-DetectGPT稍弱因为其perturbation-based approach对ordinal
+      gradient不如Binoculars的direct score sensitive。 审稿人看到63%的baseline后会质疑：19个手工特征+RF相比现成detector仅提升15pp，
+      是否justify了额外的complexity？这削弱了"task需要specialized approach"的叙事， 使论文更像"incremental
+      improvement over existing detectors"而非"new task formalization"。
+
+      '
+    tables:
+    - 'Table: Detector ordinal baseline vs RF/CORAL/DivEye across 9 cells'
+    - 'Table: Binoculars per-strategy breakdown showing gap varies by strategy'
+    figures_description:
+    - 'Bar chart: RF vs Binoculars vs Fast-DetectGPT per cell, showing gap shrinks
+      in weak cells'
+    analysis: '63%的Binoculars baseline是worst档最具杀伤力的结果之一。它不会摧毁论文（RF仍consistently优15pp+），
+      但它将审稿人的framing从"new capability enabled by our approach"转向"marginal improvement
+      over repurposed existing tools"。论文需要argue：(a)这15pp在depth 1-3区分上更大 （Binoculars的3-class仅55%
+      vs RF的72%），(b) Binoculars的ordinal signal来自binary synthetic-ness的monotonic proxy而非genuine
+      depth features，(c) RF的feature importance analysis提供interpretability that Binoculars
+      black-box score cannot。 但审稿人可能不买账——"interpretability is a soft argument"。
+
+      '
+  - name: bootstrap_ci_table1_worst
+    plan_id: plan_020
+    description: 从5-fold CV结果计算bootstrap CI for all 9 cells + cross-model/cross-strategy
+    expected_results:
+      mean_ci_width_4class: 3.2
+      max_ci_width_4class: 5.8
+      min_ci_width_4class: 1.4
+      topk50_cells_ci_width_avg: 4.9
+      temp09_cells_ci_width_avg: 2.8
+      nucleus_cells_ci_width_avg: 2.3
+      pythia_topk50_ci:
+      - 0.668
+      - 0.726
+      gpt2xl_temp09_ci:
+      - 0.838
+      - 0.872
+      overlap_count_adjacent_cells: 4
+      cross_model_loo_ci_width: 4.5
+      cross_strategy_loo_ci_width: 6.2
+      seed42_vs_seed43_ci_overlap: true
+    result_rationale: 'Bootstrap CI宽度反映CV fold间的variance。weak cells（topk50系列，acc ~69-75%）
+      的CI宽度会达到5-6pp，因为topk50的depth signal较弱导致不同fold间的分类边界不稳定。 strong cells（gpt2xl_temp09,
+      85.4%）CI窄（~2pp）因为信号强。关键问题是adjacent cells 之间存在CI overlap——例如Pythia nucleus（78.2%±2.5%）和Pythia
+      temp09（76.2%±2.8%） 的CI重叠，意味着strategy effect在Pythia上不显著。cross-strategy LOO的CI最宽（~6pp），
+      因为holdout strategy的shift增大了fold variance。seed42 vs seed43的CI overlap 证实seed
+      effect与model/strategy effect处于同一量级（especially OLMo）， 审稿人会质疑reported differences的statistical
+      significance。
+
+      '
+    tables:
+    - 'Table 1 augmented: 9-cell matrix with bootstrap 95% CI'
+    - 'Table: CI overlap matrix between adjacent cells'
+    figures_description:
+    - 'Forest plot: all 9 cells with CI error bars, sorted by accuracy'
+    analysis: 'CI分析本身是methodologically sound且审稿人期望的。问题在于worst档下CI揭示的high variance
+      削弱了precise claims的可信度。论文不能再写"topk50 achieves 69.6%"而要写"69.6% [66.8%, 72.6%]"，
+      下界66.8%仅比Binoculars baseline（63%）高3.8pp，统计显著性存疑。 cross-model LOO的CI宽度进一步限制了generalization
+      claims。
+
+      '
+  - name: theoretical_analysis_worst
+    plan_id: plan_023
+    description: '连接depth signal到model collapse理论: tail erosion mechanism, EDD上界推导,
+      strategy-dependent convergence'
+    expected_results:
+      tail_erosion_mechanism: qualitative_match
+      edd_upper_bound_derived: 6
+      edd_empirical: 4
+      edd_bound_gap: 2
+      testable_prediction_count: 0
+      strategy_convergence_quantitative: false
+      scale_decay_prediction: qualitative_only
+      reviewer_assessment: retrospective_rationalization
+      section_length_pages: 0.75
+      new_theorems: 0
+      new_lemmas: 0
+      empirical_validation_points: 3
+      validation_pass_rate: 0.33
+    result_rationale: 'Theory section尝试三件事：(1) 用Shumailov tail erosion解释p90_ppl/var_surprisal为何dominant——
+      这是正确的但trivially follows from existing theory，不是新贡献。(2) 从Dohmatob contraction
+      rates推导EDD上界——推导出EDD≤6，但empirical EDD=4，bound太松（gap=2），审稿人会说 "a bound that doesn''t
+      bind is not a contribution"。(3) 解释strategy-dependent convergence—— temperature的uniform
+      logit scaling加速收敛是qualitative argument，无法quantify 多快或预测具体AUC值。三个validation points中只有tail
+      erosion mechanism match（1/3）， EDD bound不紧，strategy convergence rate无quantitative
+      prediction。 审稿人评价："This section retroactively explains known model collapse
+      dynamics using established theoretical frameworks. While the connections are
+      reasonable, no new theoretical results are derived and no falsifiable predictions
+      are made. The EDD bound (≤6 vs empirical 4) is too loose to be informative."
+      这直接触发worst档核心假设之一。
+
+      '
+    tables:
+    - 'Table: Theoretical predictions vs empirical observations (3 rows, 1/3 match)'
+    figures_description:
+    - 'Diagram: theoretical attractor convergence framework (qualitative)'
+    analysis: 'Theory section的根本问题是从empirical observations反推theoretical explanation，
+      而非从theory预测phenomena。即使explanation合理，审稿人区分explanatory power和predictive power。
+      在worst档下，theory section既不产出新theorem也不产出testable prediction， 仅提供narrative coherence。这对"no
+      method contribution"的审稿concern没有帮助—— 如果theory也不算contribution，论文就只剩task formalization
+      + empirical atlas。 对于EMNLP Main来说，这需要atlas的发现足够novel和impactful来stand alone，
+      但14B弱信号和Binoculars baseline 63%共同削弱了impact argument。
+
+      '
+  - name: api_model_recursive_chains_worst
+    plan_id: plan_026
+    description: GPT-4o-mini fine-tuning API递归链 + prompted recursive chain (rewrite/continue)
+    expected_results:
+      gpt4omini_ft_4class_acc: 0.38
+      gpt4omini_ft_d1v2_auc: 0.55
+      gpt4omini_ft_d0v1_auc: 0.75
+      prompted_rewrite_4class_acc: 0.33
+      prompted_rewrite_d1v2_auc: 0.52
+      feature_overlap_with_lora: 0
+      cross_method_transfer_acc: 0.27
+    result_rationale: 'GPT-4o-mini的fine-tuning API限制（固定epochs、受限learning rate、safety
+      guardrails） 使得递归fine-tuning的distributional shift远小于本地LoRA。模型的RLHF对齐和safety training
+      作为implicit regularizer抑制了generation distribution的drift——即使fine-tune到depth 3，
+      输出仍被RLHF拉回safety-aligned distribution。4-class acc 38%仅略高于chance（25%）， d1v2 AUC
+      0.55接近random。Prompted rewrite chain更差（33%），因为"rewrite this text" 的prompt不产生与LoRA
+      fine-tuning相同的distributional shift——rewrite是content-level transformation而非distribution-level
+      collapse。Feature overlap为0说明API model depth signal（如果存在）的statistical signature完全不同于LoRA-induced
+      signal。 cross-method transfer（用LoRA训练的RF预测API model depth）仅27%≈chance， 确认两种method产生的"depth"是fundamentally
+      different phenomena。 审稿人总结："depth signal is specific to the LoRA fine-tuning
+      mechanism, not a general property of recursive generation"。
+
+      '
+    tables:
+    - 'Table: API model vs LoRA model depth estimation comparison'
+    - 'Table: Cross-method transfer matrix'
+    figures_description:
+    - 'Feature trajectory comparison: API vs LoRA models across depths'
+    analysis: 'API model结果在worst档下是devastating：它直接支持审稿人的"phenomenon specific to small
+      base models with LoRA fine-tuning"总结。如果depth signal仅在特定fine-tuning mechanism下存在且不迁移到commercial
+      API models，practical relevance严重受限。 论文只能将此定位为"important negative result that
+      constrains the scope of depth estimation" 并诚实acknowledge "our framework applies
+      to LoRA-based recursive generation, the dominant paradigm in current model collapse
+      studies (Shumailov, Drayson), but extending to API-based or prompt-based recursion
+      remains open"。 这进一步收缩了contribution scope。
+
+      '
+  - name: theory_section_whatif_worst
+    plan_id: what_if:theory_section
+    description: '半页理论sketch: tail erosion → p90_ppl, EDD上界 from contraction rates,
+      strategy convergence'
+    expected_results:
+      section_quality_score: 2.0
+      reviewer_1_comment: post-hoc rationalization of known dynamics
+      reviewer_2_comment: no novel theoretical results, EDD bound vacuous
+      reviewer_3_comment: the theoretical framing is reasonable but doesn't rise to
+        the level of a contribution
+      contribution_upgrade: false
+      addresses_no_method_concern: false
+      strengthens_atlas_narrative: marginally
+    result_rationale: 'What-if theory section在worst档的效果是marginal而非transformative。三位审稿人中
+      两位直接否定其contribution status。根本原因：(1) Shumailov/Dohmatob/Gerstgrasser 已建立了model
+      collapse理论框架，我们的theory section仅应用这些已知框架到depth estimation 设定，不产出新理论。(2) EDD bound太松（≤6
+      vs empirical 4），说明理论分析的precision 不足以指导实验设计或预测结果。(3) strategy convergence explanation是qualitative
+      analogy 而非formal derivation。在worst档审稿人看来，theory section占0.75页版面但不增加 信息量——读者从empirical
+      results table已能得出相同结论。 theory section不能解决"no method contribution"问题，因为理论分析和方法贡献是
+      正交维度——审稿人想看的是novel algorithm/architecture/loss，不是对已知现象的理论解释。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Theory section在worst档是net neutral to slightly negative——它不伤害论文， 但占用了宝贵版面（0.75页）却不升级任何claim的strength。更好的利用方式可能是
+      用这0.75页扩展Atlas analysis或添加更多ablation。但如果不放theory section， 审稿人又会说"no theoretical
+      grounding"。这是worst档的catch-22：放了被批post-hoc， 不放被批no theory。建议保留但压缩到0.5页，降低期望为"theoretical
+      context"而非"contribution"。
+
+      '
+  - name: olmo_seed43_supplementary_worst
+    plan_id: registry:olmo_seed43_001
+    description: OLMo-1B seed43递归链, 验证seed robustness（补充experiment_plan外的关键worst档指标）
+    expected_results:
+      rf_4class_acc: 0.72
+      rf_4class_ci:
+      - 0.708
+      - 0.732
+      d1v2_auc: 0.79
+      delta_vs_seed42: -0.068
+      delta_vs_seed42_pp: -6.8
+      per_class_recall:
+        d0: 0.97
+        d1: 0.76
+        d2: 0.48
+        d3: 0.67
+      top_features:
+      - p90_ppl
+      - var_surprisal
+      - mean_ppl
+      - p75_ppl
+      - mean_surprisal
+      cross_seed_max_delta_all_models: 6.8
+    result_rationale: 'OLMo-1B在seed42下是3×3矩阵中表现中等的模型（78.8%），但seed43在worst档下暴露 显著sensitivity。Δ=6.8pp远超GPT-2
+      XL（Δ=2.0pp）和Pythia（Δ=0.6pp）。 根本原因是OLMo-1B的Dolma训练数据和模型架构使其对LoRA初始化seed更敏感——
+      不同seed下LoRA权重收敛到不同local minima，产生不同的generation distribution shift。 seed43的d2
+      recall仅48%（vs seed42的60.7%），说明depth 2是最不稳定的分类边界。 6.8pp的max delta迫使论文加入variance
+      analysis section，承认"reported accuracies have seed-dependent variance of up to
+      6.8pp for OLMo, requiring multi-seed averaging for reliable conclusions"。审稿人会用这个数据argue论文的所有point
+      estimates 都需要±3-4pp的implicit error bar，使得许多marginal claims不再显著。
+
+      '
+    tables:
+    - 'Table: Cross-seed comparison (3 models × 2 seeds)'
+    - 'Table: Per-class recall variance across seeds'
+    figures_description:
+    - 'Error bar plot: seed42 vs seed43 accuracy with CIs for all 3 models'
+    analysis: 6.8pp的seed sensitivity是worst档中第二具杀伤力的结果（仅次于14B弱信号）。 它不仅影响OLMo自身的结果可信度，还cast
+      doubt on整个3×3矩阵中仅跑了1个seed的其他cells。 Pythia seed delta仅0.6pp说明seed sensitivity是model-dependent的，
+      但审稿人会argue "without multi-seed results for all cells, we cannot know which other
+      cells have OLMo-like sensitivity"。论文必须加入variance analysis section （worst档核心假设之一），报告已有的3-model
+      2-seed results，并在limitations中 明确承认seed sensitivity as a systematic uncertainty。
+  review_report: '---
+
+    dream_id: dream_20260518T162616
+
+    tier: worst
+
+    overall_score: borderline reject
+
+    timestamp: 2026-05-18T17:16:23.044908+00:00
+
+    ---
+
+
+    # Dream Review Report: Characterizing the Boundary Conditions of Recursive Generation
+    Depth Estimation
+
+
+    ## Headline Assessment: Borderline Reject (3/6)
+
+
+    **Reviewers:** R1 (Method + Experiments), R2 (Novelty + Related Work)
+
+    **Consensus:** Both reviewers independently scored 3/6; scores maintained after
+    cross-share. Full convergence.
+
+
+    ---
+
+
+    ## Summary
+
+
+    The paper formalizes ordinal generation depth estimation as a four-class classification
+    task (depths 0-3) and constructs a "Depth Degradation Atlas" spanning 3 model
+    families, 3 decoding strategies, and 2 scales (1B, 14B), plus API model and wild-data
+    experiments. At 1B scale, RF classifiers on 19 statistical features achieve 70-85%
+    accuracy. However, the paper''s own results reveal severe boundary conditions:
+    14B accuracy drops to 52%, API models yield 38% with zero feature overlap to LoRA
+    signals, Binoculars achieves 63% without specialized features, seed sensitivity
+    reaches 6.8pp, and wild-data cross-model agreement is low (kappa=0.31). The paper
+    honestly reframes itself around characterizing these boundary conditions rather
+    than claiming robust depth estimation.
+
+
+    ---
+
+
+    ## Major Issues (4 total, from both reviewers)
+
+
+    ### M1. Insufficient Methodological Novelty [idea-level] (R2)
+
+    No new method, model, loss function, or predictive theory is proposed. The approach
+    applies standard statistical features (perplexity tail statistics, n-gram repetition,
+    type-token ratio) to off-the-shelf classifiers (RF, LR, CORAL). The task formalization
+    from binary detection to ordinal depth bins is a modest reframing, not a methodological
+    contribution. For a top ML venue expecting ~25% acceptance, the absence of any
+    algorithmic novelty places the burden entirely on empirical insights, which must
+    then be exceptionally strong.
+
+
+    **Why Major:** At top venues, purely empirical papers without methodological contribution
+    require either (a) insights that change community understanding, or (b) a benchmark/dataset
+    that enables future work. The empirical findings here, while honest, primarily
+    confirm that depth estimation is harder than expected rather than enabling new
+    capabilities.
+
+
+    ### M2. Self-Undermining Scope [idea-level] (R2, reinforced by R1)
+
+    The paper''s motivating use case is depth-aware data curation for web corpora.
+    However, the paper''s own results systematically dismantle this motivation:
+
+    - 14B scale (representative of deployed models): accuracy drops to 52%, EDD=1
+    (binary only)
+
+    - API models: 38% accuracy, zero feature overlap, 27% cross-method transfer (chance)
+
+    - Wild data: kappa=0.31, FPR range 4.7%-34.0%
+
+    - Seed sensitivity: up to 6.8pp variance
+
+
+    The phenomenon is confined to 1B-scale LoRA fine-tuning with matched decoding
+    strategy. This is too narrow to support the practical framing. R1 confirmed in
+    cross-share that positive results are insufficient for a standalone publication
+    at this venue.
+
+
+    **Why Major:** The paper''s central claims about practical relevance are directly
+    contradicted by its own experimental evidence. The honest framing as "boundary
+    conditions" mitigates but does not resolve this, because the boundaries leave
+    almost no practical operating region.
+
+
+    ### M3. 14B Scale Experiment Too Narrow [idea-level] (R1, reinforced by R2)
+
+    The 14B experiment uses a single model family (Qwen2.5-14B) with a single decoding
+    strategy (nucleus p=0.95). This is insufficient to claim scale-general signal
+    decay. The 1B Atlas uses a 3x3 grid; the 14B "Atlas" is a single cell. The title
+    promises coverage "Across Scales" but the scale axis has only two points, with
+    the larger scale represented by one configuration.
+
+
+    R2 confirmed in cross-share that this undermines the "Atlas" framing: cartographic
+    coverage requires more than one data point per axis value.
+
+
+    **Why Major:** Scale-dependent signal decay is presented as a central finding
+    (Contribution 3). A single 14B configuration cannot establish whether this is
+    a general scale effect vs. a Qwen2.5-specific or nucleus-specific artifact.
+
+
+    ### M4. Competitive Non-Specialized Baselines [idea-level] (R1, reinforced by
+    R2)
+
+    Binoculars achieves 63% four-class accuracy with zero depth-specific features,
+    only 15pp below RF (78.3%). In weak cells (top-k 50), the gap narrows to ~8pp
+    with overlapping CIs, making statistical significance questionable. With CORAL
+    calibration, Binoculars reaches 65%.
+
+
+    R2 noted in cross-share this is the most damaging finding for novelty: it reduces
+    the contribution to "we ran existing tools on a new task and they mostly work."
+    The 15pp advantage exists primarily in the 1B/LoRA/non-top-k niche.
+
+
+    **Why Major:** The existence of a competitive zero-cost baseline undermines the
+    claim that depth estimation "requires" specialized features (Contribution 4 explicitly
+    acknowledges this). The marginal improvement does not justify the additional complexity
+    of 19 engineered features.
+
+
+    ---
+
+
+    ## Minor Issues
+
+
+    ### m1. Incomplete Seed Analysis [idea-level] (R1)
+
+    Seed sensitivity is tested with only 2 seeds for 3 models, not across all 9 cells.
+    OLMo shows 6.8pp sensitivity while Pythia shows 0.6pp. Without multi-seed results
+    for all cells, readers cannot assess which other cells might have OLMo-like instability.
+    This casts doubt on all single-seed point estimates in the Atlas.
+
+
+    ### m2. Wild-Data Calibration Without Ground Truth [idea-level] (R1)
+
+    The wild-data experiment (Section 7) lacks ground-truth depth labels. Cross-model
+    disagreement is reported but cannot distinguish classifier error from genuine
+    depth-0 content rates. The section establishes an "open challenge" but provides
+    no path forward.
+
+
+    ### m3. Theory Section Space Allocation [idea-level] (R1)
+
+    Section 8 consumes ~0.75 pages while explicitly disclaiming any theoretical contribution
+    ("We include this section for theoretical context, not as a contribution"). The
+    three connection points yield only one qualitative match (tail erosion), a non-binding
+    EDD bound (6 vs empirical 3-4), and no quantitative predictions. This space could
+    be better used for additional ablations or analysis.
+
+
+    ### m4. Approximate Values in Table 4 [presentation-level] (R1)
+
+    Table 4 reports per-class recall as approximate values (~90, ~45, ~30, ~40) rather
+    than precise figures with CIs. For a paper emphasizing statistical rigor (bootstrap
+    CIs in Table 1), this inconsistency is notable.
+
+
+    ### m5. Incomplete Table 9 [presentation-level] (R1)
+
+    RedPajama entries in Table 9 (cross-model agreement) show dashes instead of values,
+    while Table 10 separately reports RedPajama depth-0 percentages. The asymmetric
+    coverage is unexplained.
+
+
+    ### m6. Citation Density Below Venue Norms [presentation-level] (R2)
+
+    Only 21 references for a paper spanning model collapse, synthetic text detection,
+    data curation, and ordinal classification. Missing notable works: DetectGPT (Mitchell
+    et al., 2023), DNA-GPT, recent model collapse empirical studies. For EMNLP, which
+    expects thorough literature coverage across multiple subfields, this is thin.
+
+
+    ### m7. Missing Baselines [presentation-level] (R2)
+
+    DetectGPT is a prominent zero-shot detector that should appear as an ordinal baseline
+    alongside Binoculars and Fast-DetectGPT. DNA-GPT''s black-box revision-based approach
+    could further narrow the gap with RF. Their absence weakens the baseline comparison.
+
+
+    ---
+
+
+    ## Strengths
+
+
+    1. **Task formalization is genuinely new.** No prior work has framed recursive
+    generation depth as an ordinal classification problem. The 4-class formulation
+    with EDD metric is a clean contribution.
+
+
+    2. **Intellectual honesty is exceptional.** The paper systematically reports negative
+    results (14B, API, seed, wild-data) and frames them as boundary conditions rather
+    than hiding them. The Limitations section (7 items) is thorough. This is rare
+    and commendable.
+
+
+    3. **Narrative consistency.** Despite extensive negative results, the paper maintains
+    a coherent story arc: task formalization → 1B positive results → boundary conditions
+    → scope characterization. The abstract and introduction accurately reflect the
+    mixed findings.
+
+
+    4. **API zero-transfer finding.** The zero feature overlap between LoRA-based
+    and API-based depth signals, combined with 27% cross-method transfer (chance),
+    is a genuinely informative negative result that constrains the model collapse
+    literature.
+
+
+    5. **Scale-dependent feature divergence.** The finding that top-4 feature overlap
+    between 1B and 14B is only 1/4 (type-token ratio rises to #1 at 14B while perplexity
+    tail statistics dominate at 1B) is a non-trivial empirical insight.
+
+
+    6. **Comprehensive 1B Atlas.** The 3x3 grid at 1B scale with bootstrap CIs, EDD
+    analysis, and cross-model/cross-strategy LOO evaluations is methodologically sound.
+
+
+    ---
+
+
+    ## Cross-Dimensional Synthesis
+
+
+    The four Major issues interact and compound:
+
+    - **Novelty (M1) + Baselines (M4):** Without methodological novelty, the paper
+    relies on empirical insights. But competitive baselines (Binoculars 63%) reduce
+    the empirical gap that those insights need to explain.
+
+    - **Scope (M2) + Scale (M3):** The narrow operating region (1B LoRA only) is further
+    weakened by the single-point 14B experiment, which cannot establish whether scale
+    decay is general or artifact.
+
+    - **All four together:** The paper formalizes a task, shows it partially works
+    in a narrow setting, shows it fails in most practical settings, and demonstrates
+    that existing tools capture much of the signal. This is an honest empirical contribution
+    but does not clear the bar for a top venue.
+
+
+    The paper would benefit from either (a) a novel method that substantially outperforms
+    baselines, (b) broader scale coverage establishing general principles, or (c)
+    reframing for a venue that values systematic negative results (e.g., a Findings
+    track or a workshop on data quality).
+
+
+    ---
+
+
+    ## Scores
+
+
+    | Dimension | R1 | R2 | Consensus |
+
+    |-----------|----|----|-----------|
+
+    | Method + Experiments | 3/6 | — | 3/6 |
+
+    | Novelty + Related Work | — | 3/6 | 3/6 |
+
+    | **Overall** | **3/6** | **3/6** | **3/6 (Borderline Reject)** |
+
+
+    **Confidence: 4/5** (both reviewers)
+
+
+    **Calibration justification:** 4 Major issues identified (M1-M4). Per calibration
+    rules, 3+ Major issues caps score at Borderline Reject (3) unless each has a clear
+    minor-revision fix path. M1 (no method) and M2 (narrow scope) are structural and
+    cannot be resolved by minor revision. Score 3/6 is consistent with calibration.'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-18T17:16:34+00:00'

@@ -1,0 +1,114 @@
+paper_key: "verma2024_ghostbuster"
+title: "Ghostbuster: Detecting Text Ghostwritten by Large Language Models"
+venue: "NAACL 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Perplexity-only (GPT-3 davinci perplexity threshold)"
+    - "DetectGPT (Mitchell et al. 2023, unsupervised perturbation-based)"
+    - "GPTZero (commercial detector)"
+    - "RoBERTa fine-tuned (supervised neural baseline)"
+    - "Human evaluation (17 participants)"
+  metrics:
+    - {name: "F1", direction: "higher_better"}
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Precision", direction: "higher_better"}
+  datasets:
+    - {name: "IvyPanda Student Essays", size: "7,000 docs (1K human + 1K ChatGPT same-prompt + 4K ChatGPT generalization)"}
+    - {name: "Reuters 50-50 News Articles", size: "7,000 docs (same split structure)"}
+    - {name: "r/WritingPrompts Creative Writing", size: "7,000 docs (same split structure)"}
+    - {name: "Lang-8 non-native English", size: "evaluation only"}
+    - {name: "TOEFL 11 (essay subset)", size: "evaluation only"}
+    - {name: "TOEFL 91 (essay subset)", size: "evaluation only"}
+  ablation_dimensions:
+    - "Feature search depth (1, 2, 3, 4)"
+    - "Model components (with/without ada, davinci, handcrafted features)"
+    - "Random features vs selected features"
+    - "Document length (10-1000 tokens)"
+    - "Perturbation robustness (character/word/sentence/paragraph level)"
+    - "Cross-domain generalization (in-domain vs out-of-domain)"
+    - "Cross-model generalization (ChatGPT vs Claude)"
+    - "Cross-prompt generalization (5 prompt variants)"
+  training_recipe:
+    classifier: "Logistic regression with L2 regularization, C=1"
+    optimizer: "N/A (closed-form or standard sklearn solver)"
+    lr: "N/A"
+    hardware: "Not specified"
+    feature_generation: "Recursive composition of vector/scalar functions up to depth 3, yielding 2534 candidate features"
+    feature_selection: "Forward feature selection on validation set"
+    weaker_models: "Unigram fertility, Kneser-Ney trigram, GPT-3 ada, GPT-3 davinci"
+  method_family: "Feature-engineered classifier using proxy model probabilities"
+
+positioning:
+  core_claim: "A structured search over compositions of weaker language model probabilities, combined with a simple linear classifier, can robustly detect AI-generated text without access to the target model's token probabilities."
+  key_results: "99.0 F1 in-domain across all domains (+0.9 over RoBERTa, +5.9 over GPTZero); 97.0 F1 out-of-domain average (vs 85.1 RoBERTa); 92.2 F1 on Claude generalization; 99.5 F1 across prompt variants"
+  limitations:
+    - "Poor performance on documents under 100 tokens (F1 drops below 80 at 25 tokens)"
+    - "Lower accuracy on non-native English speaker text (TOEFL 91: 74.7% accuracy, below GPTZero 92.3% and RoBERTa 96.7%)"
+    - "Datasets limited to British/American English, not representative of all writing styles"
+    - "Vulnerable to paraphrasing attacks (Undetectable.ai reduces recall from 99% to 62%)"
+    - "Relies on API access to GPT-3 ada/davinci which may be deprecated"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the societal impact of ChatGPT's fluent text generation — schools restricting ChatGPT, authenticity concerns across education and journalism — establishing real-world urgency."
+  tension: "Existing detectors (DetectGPT, GPTZero) show poor generalization across domains and models; supervised neural methods (RoBERTa) overfit to training distribution; zero-shot methods require target model token probabilities (a black-box limitation). Additionally, high false positive rates create ethical risks, disproportionately flagging non-native English speakers."
+  key_insight: "Instead of requiring the target LLM's own probabilities, use a series of weaker, accessible language models as probability proxies, then let a structured combinatorial search discover discriminative feature compositions — the signal is in how different-quality models disagree on token predictions."
+  argument_chain: "Problem (LLM text indistinguishable from human) → Existing solutions fail to generalize → Key insight: weaker model probability compositions are discriminative → Structured search over vector/scalar function compositions → Simple linear classifier achieves SOTA → Validated across 3 domains, cross-model (Claude), cross-prompt, perturbation robustness, and human comparison"
+  contribution_framing: "Three contributions implicitly stated: (1) Ghostbuster method itself (structured search + linear classifier on weaker model probabilities), (2) three new benchmark datasets for AI text detection, (3) extensive evaluation including cross-domain, cross-model, cross-prompt generalization and robustness analysis. Framed via performance superiority: 'achieves 99.0 F1... 5.9 F1 higher than the best preexisting model.'"
+  intro_structure: "3 paragraphs — P1: Problem establishment (ChatGPT impact, societal concerns); P2: Existing solution failures (poor generalization, false positives, bias against non-native speakers); P3: Ghostbuster introduction with headline numbers and method sketch"
+  notable_technique: "Effective use of the 'black-box constraint' framing — positions the paper as solving a harder, more practical problem than prior work (no access to target model probabilities), which makes the strong results even more impressive. Also leverages the non-native speaker bias issue to establish ethical urgency."
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: "Left-to-right pipeline diagram showing the three stages of Ghostbuster: (1) a text document is passed through three weaker language models (Unigram, Trigram, GPT-3) producing probability vectors, (2) vector functions (+, -, x, /, >, <) combine probability vectors, (3) scalar functions (||.||, max, var) reduce to features, (4) features fed to logistic regression classifier visualized as a scatter plot."
+    narrative_role: "Provides immediate visual understanding of the full pipeline — reader grasps the method in one glance before the technical details."
+    design_elements: ["Left-to-right flow", "Color-coded stages (blue models, purple vector ops, purple scalar ops, tan classifier)", "Mathematical operator symbols inside boxes", "Scatter plot as classifier visualization"]
+    visual_style: "Clean horizontal pipeline with rounded-rectangle boxes. Pastel color scheme (light blue for models, lavender for function boxes, beige for classifier). Minimal text labels. Text snippet shown as input on the left. Arrows connect stages. Compact single-row layout."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "F1 score degradation under increasing numbers of perturbations, split into local (character/word) and global (sentence/paragraph) perturbations"
+      how_gain_highlighted: "Shows robustness envelope — performance stays above 80 F1 for most perturbation types until extreme levels; separate panels for local vs global perturbations make degradation patterns clear"
+      design_note: "Two-panel layout (local left, global right) with shared y-axis (F1 Score) and color-coded lines per perturbation type. Legend inside plot. Clear visual separation of graceful degradation (character flips) vs catastrophic failure (paraphrasing). X-axis scales differ between panels (1-256 vs 0-10)."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "F1 score across document sizes (10-1000 tokens) for in-domain and various out-of-domain settings (Claude, WP, Reuters, Essay)"
+      how_gain_highlighted: "All lines converge to ~95-100 F1 at 500+ tokens, visually demonstrating reliability at longer documents; short-document weakness is honestly shown"
+      design_note: "Single plot with 5 color-coded lines (blue=In-Domain, orange=Claude, green=WP, red=Reuters, purple=Essay). Dark background with grid. Log-scale-like x-axis (10,25,50,100,250,500,1000). Clearly shows the critical 100-token threshold where performance becomes reliable."
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "feature_list"
+      dimensions_varied: ["Domain (News, Creative Writing, Essays)", "Selected features per domain"]
+      design_note: "Lists the actual features selected by forward selection for each domain — not a traditional chart but a reference figure showing which compositions matter. Allows readers to see domain-specific vs shared features."
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      dimensions_varied: ["Dataset (WritingPrompts, Reuters, IvyPanda)", "Entropy rate under GPT-3"]
+      design_note: "Entropy rate visualization comparing human vs AI text predictability across domains — supports the theoretical motivation for why probability-based features work."
+  figure_narrative_role: "Figure 1 (method overview) → Figure 2 (motivating example: human vs AI text side-by-side) → Figure 3 (robustness analysis) → Figure 4 (document length sensitivity) → Figure 5 (feature analysis, appendix) → Figure 6 (theoretical motivation via entropy, appendix). Main paper figures (1-4) follow: explain method → show problem → stress-test → analyze boundary conditions."
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "domains (News, Creative Writing, Student Essays, All Domains) x settings (In-Domain, Out-of-Domain)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "Best results implied by Ghostbuster row consistently highest; no explicit bold/underline formatting noted in HTML version"
+    statistical_reporting: "Point estimates only, no confidence intervals or standard deviations"
+    num_baselines: 4
+    design_note: "Two major column groups (In-Domain | Out-of-Domain) with domain sub-columns. Clean structure shows both the in-domain ceiling and generalization gap simultaneously. Key insight: Ghostbuster's advantage is most visible in OOD columns where RoBERTa drops significantly (99.4→88.3 on News) while Ghostbuster stays high (99.5→97.9). The 'All Domains' column aggregates for quick comparison."
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: ["Feature search depth (1,2,3,4)", "Model components (ada, davinci, handcrafted)", "Feature selection method (random vs forward)"]
+      variation_style: "full_numbers"
+      design_note: "Comprehensive ablation with 9 conditions. Same column structure as Table 2 (domains x in/out-of-domain) enables direct comparison. Shows diminishing returns beyond depth 3, critical importance of GPT-3 models (without ada/davinci: 88.2 vs 99.0), and that handcrafted features add marginal value (98.9 without vs 99.0 with)."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 1: Vector/scalar function definitions. Table 3: Generalization results (prompts, Claude, non-native). Tables 5-8: Dataset statistics, prompt templates, generation details."
+    reason: "Table 1 is a reference table for the method's building blocks. Table 3 covers secondary evaluation axes. Tables 5-8 provide reproducibility details. Main paper keeps only the two most important tables (main results + ablations) to maintain narrative focus."

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_olmo_topk50_ppl_outlier_20260515T043814_result.json",
     "occurrence": 1,
-    "bytes": 1034,
-    "sha256": "914ecb42b7e88af25cb8ac637550ff53526fca17bf4e0aa45d15260080363604"
+    "bytes": 1033,
+    "sha256": "1c1080bb5b066322b3b57f4380937e9bb180ee8d4a8f10f9fd9c2b564b01d424"
   },
   "statistics": {
     "messages": 1,

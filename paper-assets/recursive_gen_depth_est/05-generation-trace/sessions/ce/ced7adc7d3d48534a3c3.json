@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_baseline-readiness-check_20260519T135553_result.json",
     "occurrence": 1,
-    "bytes": 815,
-    "sha256": "fd4c36324f57e18b59d5999df23f1750ea8f05f25f0578ea0dd7195de73aa369"
+    "bytes": 814,
+    "sha256": "5c0afc37cbde9278a5188672f9abbf11c204dfec0a9dd4f9889e19816d30c543"
   },
   "statistics": {
     "messages": 1,

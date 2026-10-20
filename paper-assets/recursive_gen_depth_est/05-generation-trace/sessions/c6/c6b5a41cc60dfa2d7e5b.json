@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_write_n2_patch_and_discussion_20260515T162335_result.json",
     "occurrence": 1,
-    "bytes": 1104,
-    "sha256": "a81f9ff4f74d9d1b8d8ebe63547c5fdd730871efd02361b54850984c74cb6ab6"
+    "bytes": 1103,
+    "sha256": "c423462800d5ed301b9cb419b4989378888a3564aff7fff89884bf472ef75757"
   },
   "statistics": {
     "messages": 1,

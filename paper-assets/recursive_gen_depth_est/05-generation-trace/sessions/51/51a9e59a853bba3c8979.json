@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r1n1-edd-verification_20260516T002842_result.json",
     "occurrence": 1,
-    "bytes": 156,
-    "sha256": "05e7b0cb504715add03cafc6ad5f70334a844388ee5f0e4471e4b3dab8b52ae8"
+    "bytes": 155,
+    "sha256": "5b84319a0d4b8870c1085a47ebe5fe070c4a7c1e5b9061d55f0c5deb2d462536"
   },
   "statistics": {
     "messages": 1,

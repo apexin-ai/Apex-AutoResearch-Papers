@@ -300,6 +300,21 @@
       }
     },
     {
+      "project": "distill_kv_rag_cache",
+      "title": "distill kv rag cache",
+      "catalog": "../paper-assets/distill_kv_rag_cache/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 65,
+        "messages": 6102,
+        "user_turns": 153,
+        "tool_calls": 2279,
+        "unparsed_lines": 31,
+        "result": 24,
+        "worker": 32,
+        "conversation": 9
+      }
+    },
+    {
       "project": "distill_sparse_swiglu",
       "title": "Output-Distribution Distillation for Contextual Sparsity Prediction in SwiGLU LLMs",
       "catalog": "../paper-assets/distill_sparse_swiglu/05-generation-trace/catalog.json",
@@ -392,6 +407,21 @@
         "result": 130,
         "conversation": 47,
         "history": 5
+      }
+    },
+    {
+      "project": "error_type_pref_optim",
+      "title": "error type pref optim",
+      "catalog": "../paper-assets/error_type_pref_optim/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 11,
+        "messages": 1643,
+        "user_turns": 11,
+        "tool_calls": 643,
+        "unparsed_lines": 5,
+        "worker": 5,
+        "result": 3,
+        "conversation": 3
       }
     },
     {
@@ -708,7 +738,7 @@
         "messages": 166550,
         "user_turns": 5043,
         "tool_calls": 67907,
-        "unparsed_lines": 663,
+        "unparsed_lines": 664,
         "result": 642,
         "worker": 686,
         "conversation": 347,

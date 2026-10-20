@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_check_deberta_n2_20260515T123057_result.json",
     "occurrence": 1,
-    "bytes": 427,
-    "sha256": "a4c668cc6303abbfa1f090d5179755cb0ab63d8f35ba9cd5e5c3f5e96d23458a"
+    "bytes": 426,
+    "sha256": "c72b1fb2b7fd8d18b7e05336b2064bbba10e26174a831ecdeeadc4e1a9f9abfd"
   },
   "statistics": {
     "messages": 1,

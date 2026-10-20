@@ -1,0 +1,27 @@
+paper_key: "fast_detectgpt2024"
+title: "Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["DetectGPT", "likelihood ratio", "rank-based methods", "supervised detectors"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "detection speed", direction: "higher_better"}
+  datasets:
+    - {name: "XSum", size: "N/A"}
+    - {name: "SQuAD", size: "N/A"}
+    - {name: "WritingPrompts", size: "N/A"}
+  ablation_dimensions: ["source model", "scoring model", "perturbation vs sampling"]
+  training_recipe: {optimizer: "N/A (zero-shot)", lr: "N/A", hardware: "N/A"}
+  method_family: "zero-shot detection via conditional probability curvature"
+
+positioning:
+  core_claim: "Replacing DetectGPT's perturbation step with conditional probability sampling achieves 340x speedup with ~75% relative improvement in both white-box and black-box settings"
+  key_results: "340x faster than DetectGPT; 75% relative improvement; 80% ChatGPT detection at 1% FPR"
+  limitations: ["still requires model access for scoring", "performance varies by domain"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

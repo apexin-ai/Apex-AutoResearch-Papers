@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_roberta_tmux_cleanup_resubmit_20260515T125715_result.json",
     "occurrence": 1,
-    "bytes": 470,
-    "sha256": "71ce3777bb0e481800a4c5b193986e8c7d6bdf7257652534fc211a8b9613e8e2"
+    "bytes": 469,
+    "sha256": "8767fdae3a289529d9cccdde8af58d7a75b8df712b7ce9ebb385d854976bee18"
   },
   "statistics": {
     "messages": 1,

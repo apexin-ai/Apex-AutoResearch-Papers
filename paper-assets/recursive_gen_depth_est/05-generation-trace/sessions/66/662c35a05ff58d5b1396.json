@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_westd-48862-investigate_20260519T145603_result.json",
     "occurrence": 1,
-    "bytes": 1069,
-    "sha256": "ceed899be84ee0bc069cc692e508d4217fcecbbdc26fc6852ab07baa370b7297"
+    "bytes": 1068,
+    "sha256": "a1e7c9d189e1c280d04a026490760f74234b6176e396df2332438d65bab1f136"
   },
   "statistics": {
     "messages": 1,

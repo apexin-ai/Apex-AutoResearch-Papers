@@ -1,0 +1,3 @@
+Remote files:
+  PDF: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/figures/shap_importance_heatmap.pdf (26KB)
+  PNG: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/shap_importance_heatmap.png (353KB)

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_p90_ppl_verify_20260518T160940_result.json",
     "occurrence": 1,
-    "bytes": 438,
-    "sha256": "148a934e9cd1bd0a6990da27cd5625dc58ded88157250aa142956bd9006949f2"
+    "bytes": 437,
+    "sha256": "42d41f131be5def9e637fcb00a49a0cf5c5f519a107fb365f64f4ee14638add8"
   },
   "statistics": {
     "messages": 1,

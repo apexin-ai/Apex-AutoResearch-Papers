@@ -1,0 +1,41 @@
+{
+  "exp_id": "qwen25_14b_scale_003",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T19:10:18.060Z",
+    "updated_at": "2026-05-18T19:11:12.287Z",
+    "hypothesis": "14B scale validation reproducibility: Qwen2.5-14B FP16 recursive chain on westd-48862 (RTX PRO 6000 Blackwell) produces consistent depth signal with gpu-6000pro-2 run, confirming results are not hardware-dependent.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python3 scripts/qwen25_14b_scale_validation.py",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "20694",
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25_14b_scale_003.log",
+      "submitted_at": "2026-05-17T19:10:27.385Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b",
+      "data_count": 20000,
+      "model_name": "Qwen/Qwen2.5-14B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/qwen25_14b",
+      "wall_clock_seconds": 86444.9,
+      "gpu_hours": 24.01
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T19:11:09.193Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T19:11:12.287Z"
+  },
+  "timestamp": "2026-05-18T19:11:12.557349+00:00",
+  "trigger": "update_registry"
+}

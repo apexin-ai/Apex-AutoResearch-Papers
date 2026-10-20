@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_verify-r3-tex-changes_20260516T012501_result.json",
     "occurrence": 1,
-    "bytes": 752,
-    "sha256": "7ee56b52319cb4174b515cb11e6f9f68af8c6ac6abbaf533c8314541edde3aac"
+    "bytes": 751,
+    "sha256": "f508ed35a1bfa3df8fb3644f484992bde3a172455713f7d1b6e049822f15868f"
   },
   "statistics": {
     "messages": 1,

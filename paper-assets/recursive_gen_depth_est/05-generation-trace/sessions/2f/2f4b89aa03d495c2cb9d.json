@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_data-migration-probe_20260520T110456_result.json",
     "occurrence": 1,
-    "bytes": 1387,
-    "sha256": "64422ca4c6b84cd6fa7e2e10853bc67c7995977a9e97dae5c46705e544ea6539"
+    "bytes": 1386,
+    "sha256": "a7e5220cd92658181a0b9af04bbea7c519f872742b092aa383f24a933c3a46bd"
   },
   "statistics": {
     "messages": 1,

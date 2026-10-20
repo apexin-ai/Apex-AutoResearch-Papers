@@ -1,0 +1,11 @@
+Recursive Generation Depth Estimation — Problem Illustration (Figure 1)
+
+This figure illustrates the core problem studied in our paper: ordinal generation depth estimation.
+
+The recursive generation process works as follows: Starting from human-written text (depth 0, denoted D_0), a language model is fine-tuned using LoRA on this text, then used to generate new synthetic text (depth 1, D_1). This synthetic text is then used to fine-tune a new model via LoRA, producing depth-2 text (D_2), and so on recursively up to depth K (D_K). Each generation involves LoRA fine-tuning followed by sampling.
+
+The depth estimation task: Given a text passage x sampled from some unknown depth d in this recursive chain, we train a classifier to predict which generation depth the passage belongs to. Unlike binary "real vs. synthetic" detection, our approach estimates the ordinal depth d ∈ {0, 1, ..., K}, providing a much finer-grained characterization.
+
+The classifier outputs a probability distribution over all possible depths. For example, given a depth-1 passage, the classifier might output: P(d=0)=5%, P(d=1)=70%, P(d=2)=15%, ..., P(d=K)=3%, yielding prediction d̂=1.
+
+Bottom comparison: "Binary: real vs. synthetic" (the conventional approach) versus "Ours: d̂ ∈ {0, 1, ..., K} (ordinal depth estimation)" (our contribution).

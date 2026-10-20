@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_deploy_urgent-baseline-scripts-gpu6000pro2_20260519T142327_result.json",
     "occurrence": 1,
-    "bytes": 1232,
-    "sha256": "d39e8d913d9fff41044b72c76c0e6cfdacd63753aa469aced3131ec97d71461b"
+    "bytes": 1231,
+    "sha256": "3d218edbbdeacbc5d19af115f7450fe18ef769ffb9203642936b0976a83c03f8"
   },
   "statistics": {
     "messages": 1,

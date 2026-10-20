@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9814abe92d6012939b9a",
+  "project": "distill_kv_rag_cache",
+  "kind": "worker",
+  "title": "code mvp validation and run",
+  "task_key": "worker_code_mvp-validation-and-run_20260514T061232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-validation-and-run_20260514T061232.log",
+    "occurrence": 1,
+    "bytes": 834915,
+    "sha256": "1c1cc2c413189d497c34ce9ca22de9352e1c91bb50c4f3e36b245dbb11f48c12"
+  },
+  "statistics": {
+    "messages": 406,
+    "user_turns": 0,
+    "tool_calls": 142,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 118,
+      "tool_call": 142,
+      "tool_result": 142,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 406,
+      "chunks": [
+        {
+          "path": "9814abe92d6012939b9a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9814abe92d6012939b9a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9814abe92d6012939b9a-part-0003.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mvp-validation-and-run.md"
+}

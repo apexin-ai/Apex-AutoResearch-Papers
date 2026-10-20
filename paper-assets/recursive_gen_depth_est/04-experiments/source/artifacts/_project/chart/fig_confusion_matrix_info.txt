@@ -1,0 +1,3 @@
+Remote path: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/figures/fig_confusion_matrix.{pdf,png}
+Formats: PDF (vector, 29KB) + PNG (300dpi, 144KB)
+Data: Left panel from 5-fold CV on 20000 Pythia nucleus samples (RF n=200). Right panel from cross_model_loo_detailed.json holdout_pythia (60000 test samples). d0 near-perfect recall in both; d2 lowest recall (26.8% in cross-model).

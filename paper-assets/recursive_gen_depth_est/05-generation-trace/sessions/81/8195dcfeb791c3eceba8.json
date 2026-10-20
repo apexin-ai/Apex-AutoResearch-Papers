@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r6_final_fixes_20260516T195621_result.json",
     "occurrence": 1,
-    "bytes": 1660,
-    "sha256": "532469d6a2d9ea5e8173086b30812d4a19c5f83f89a687e9a3f5a1ba7da2f1ae"
+    "bytes": 1659,
+    "sha256": "2c8bf6748ec8e131ce3fe5f81465c8bd0a0d0fc749110dafd7d12c711cdd5df7"
   },
   "statistics": {
     "messages": 1,

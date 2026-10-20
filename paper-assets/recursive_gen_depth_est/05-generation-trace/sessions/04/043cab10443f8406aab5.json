@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_dcol_deberta_002_oom_20260514T224140_result.json",
     "occurrence": 1,
-    "bytes": 586,
-    "sha256": "0d2635120453d160747a68aa201540a6c6dd69311f2dac2715e875f96d2de33c"
+    "bytes": 585,
+    "sha256": "c8289a860d2c07d4cbe7aca17815fe0c3a9e3828b840d400b24a769fd94c4c87"
   },
   "statistics": {
     "messages": 1,

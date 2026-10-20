@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_table2_caliber_a_unification_20260518T170347_result.json",
     "occurrence": 1,
-    "bytes": 1957,
-    "sha256": "835166dfa7420af058bcc46bc41d304d1b8bb06386be6784ed5075003e24d1fa"
+    "bytes": 1956,
+    "sha256": "e62380853d0ec27de9cfbf85a263efb87cd63f5b87f36ea43485a1d69a94c166"
   },
   "statistics": {
     "messages": 1,

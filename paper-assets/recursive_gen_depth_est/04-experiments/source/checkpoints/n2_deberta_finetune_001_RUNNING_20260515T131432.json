@@ -1,0 +1,40 @@
+{
+  "exp_id": "n2_deberta_finetune_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:12:06.592Z",
+    "updated_at": "2026-05-15T13:14:32.587Z",
+    "spec": {
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl",
+      "data_count": 20000,
+      "model_name": "DeBERTa-v3-base",
+      "seed": 42,
+      "hyperparams": {
+        "epochs": 3,
+        "batch_size": 16,
+        "lr": "2e-5",
+        "max_len": 512,
+        "cv_folds": 5
+      },
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/n2_deberta_finetune.py --model_name /root/autodl-tmp/models/deberta-v3-base --output_dir results/n2_deberta_finetune --gpu 0\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "231448",
+      "log_path": "~/runs/recursive_gen_depth_est/n2_deberta_finetune_001.log"
+    },
+    "hypothesis": "N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。",
+    "reproduce": {
+      "finished_at": "2026-05-15T13:14:31.043Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T13:14:32.725027+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "depth_extension_pythia_d4d5_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:56:37.582Z",
+    "updated_at": "2026-05-15T05:20:23.128Z",
+    "spec": {
+      "description": "Depth extension: Pythia-1.4B nucleus p=0.95, d3→d4→d5 finetune+generate+feature extraction+RF+EDD",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 42,
+      "command": "bash scripts/run_depth_extension.sh",
+      "pid": "29626",
+      "log_path": "~/runs/recursive_gen_depth_est/depth_extension_pythia_d4d5_001.log",
+      "submitted_at": "2026-05-15T04:01:46Z",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_3.jsonl",
+      "data_count": 5000,
+      "model_path": "/root/autodl-tmp/models/pythia-1.4b/",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "query_key_value"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "top_p": 0.95,
+        "decoding_strategy": "nucleus"
+      },
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_3/,lora_depth_4/",
+      "checkpoint_source": "checkpoints/lora_depth_2 (parent mvp_pipeline_pythia_002)",
+      "eval_data": "data/depth_0..depth_5.jsonl → 6-class RF classification"
+    },
+    "hypothesis": "Depth extension to d4/d5: EDD 从 d3 (当前 EDD=3 未饱和) 继续延伸——如果 d3v4 和 d4v5 AUC 仍 >0.75，则 EDD≥5，证明递归深度信号至少在 5 代内不饱和",
+    "parent": "mvp_pipeline_pythia_002",
+    "reproduce": {
+      "finished_at": "2026-05-15T05:13:49.837Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T05:13:51.466496+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T05:20:23.366687+00:00",
+  "trigger": "update_registry"
+}

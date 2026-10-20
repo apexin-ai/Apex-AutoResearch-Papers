@@ -1,0 +1,36 @@
+model:
+  name: "meta-llama/Llama-3.1-8B-Instruct"
+  attn_implementation: "eager"
+  dtype: "float16"
+
+dataset:
+  name: "google-research-datasets/natural_questions"
+  split: "validation"
+  num_samples: 500
+  jsonl_path: "/root/autodl-tmp/compresslink/data/nq_500.jsonl"
+
+chunking:
+  chunk_size: 512
+  block_size: 32
+
+budget:
+  total_recomputation: 0.20
+  # boundary ~= block_size / chunk_size = 32/512 ≈ 0.0625
+
+compression:
+  ratios: [6, 8]
+  max_bits: 16
+  use_greedy: true
+
+cegr:
+  beta: 1.0
+
+evaluation:
+  configs: ["A", "B", "C", "D", "E"]
+  metrics: ["em", "f1"]
+  max_new_tokens: 32
+  batch_size: 1
+
+output:
+  results_dir: "./results"
+  save_predictions: false

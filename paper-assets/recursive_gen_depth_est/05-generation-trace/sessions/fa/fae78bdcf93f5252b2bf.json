@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_theory_draft_plan_023_20260517T143535_result.json",
     "occurrence": 1,
-    "bytes": 1352,
-    "sha256": "36ae72f0cba1edf15e538931e91f12ae297ca9f32277e2e4807dbe9d43f02e30"
+    "bytes": 1351,
+    "sha256": "7ae5615d8098985556f8f489bda745c4a9f58e9d9dd1b5ce34f78967539fb59e"
   },
   "statistics": {
     "messages": 1,

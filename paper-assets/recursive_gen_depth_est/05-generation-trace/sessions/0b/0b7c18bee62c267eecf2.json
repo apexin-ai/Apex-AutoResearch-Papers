@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_accumulation_v3_restart_urgent_20260519T082158_result.json",
     "occurrence": 1,
-    "bytes": 850,
-    "sha256": "20b78eabbdfb50aee80b4ab871c8a214d70079269a27882e6e8a5e1bb2cd3bb2"
+    "bytes": 849,
+    "sha256": "95826fcb3779be469c72678f81ceafc216bc79469506afbdb158ebfc6bf9d269"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "65eb2ff2d0f994f59e1d",
+  "project": "distill_kv_rag_cache",
+  "kind": "result",
+  "title": "research prophetkv code survey",
+  "task_key": "worker_research_prophetkv-code-survey_20260514T044305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_prophetkv-code-survey_20260514T044305_result.json",
+    "occurrence": 1,
+    "bytes": 2106855,
+    "sha256": "d1ee38d746b7f09783febbde0fb03df470867d028fc88d3eabcd9b5e11f76ea1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2106875,
+                "serialized_sha256": "b78b48e5ff0d9aae1a47be76f4815032c44dcae6e1dff95c6c5c2af8b526ba8a",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-prophetkv-code-survey.md"
+}

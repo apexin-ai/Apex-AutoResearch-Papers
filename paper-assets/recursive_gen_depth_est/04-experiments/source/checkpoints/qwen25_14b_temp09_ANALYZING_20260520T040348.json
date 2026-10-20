@@ -1,0 +1,81 @@
+{
+  "exp_id": "qwen25_14b_temp09",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:55:16.309Z",
+    "updated_at": "2026-05-20T04:03:48.268Z",
+    "hypothesis": "Recursive generation depth signal persists at 14B scale under temperature sampling (τ=0.9), achieving RF 4-class accuracy above 25% baseline and comparable to scale_002 nucleus (54.05%). Validates Claim 2: Atlas spans 3 strategies at 14B. Directly addresses Dream worst review M3 \"14B too narrow\".",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_temp09.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": 776596,
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25_14b_temp09.log",
+      "submitted_at": "2026-05-19T03:00:03.894Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "5000 samples per depth d0-d3",
+      "model_name": "Qwen2.5-14B",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T03:57:26.084Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T03:57:32.433114+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rf_4class_acc": 0.505,
+      "rf_4class_ci": [
+        0.4976,
+        0.5124
+      ],
+      "lr_4class_acc": 0.4865,
+      "lr_4class_ci": [
+        0.4801,
+        0.4938
+      ],
+      "rf_3class_no_d0_acc": 0.5244,
+      "rf_3class_ci": [
+        0.5161,
+        0.5323
+      ],
+      "rf_d0v1_auc": 0.6318,
+      "rf_d0v2_auc": 0.9178,
+      "rf_d0v3_auc": 0.9584,
+      "rf_d1v2_auc": 0.7259,
+      "rf_d1v3_auc": 0.8447,
+      "rf_d2v3_auc": 0.6184,
+      "lr_d0v1_auc": 0.5637,
+      "lr_d1v2_auc": 0.7318,
+      "lr_d2v3_auc": 0.615,
+      "top5_features": [
+        "p90_ppl",
+        "skew_ppl",
+        "kurt_ppl",
+        "p90_surprisal",
+        "var_surprisal"
+      ],
+      "samples_per_depth": 5000,
+      "num_features": 19,
+      "runtime_hours": 24.9
+    },
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/qwen25_14b_temp09/",
+    "log_path": "~/runs/recursive_gen_depth_est/qwen25_14b_temp09.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T04:03:48.610935+00:00",
+  "trigger": "update_registry"
+}

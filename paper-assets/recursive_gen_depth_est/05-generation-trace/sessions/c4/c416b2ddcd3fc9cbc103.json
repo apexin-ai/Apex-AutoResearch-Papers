@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_gpt2xl_seed43_eval_v2_20260518T130134_result.json",
     "occurrence": 1,
-    "bytes": 2186,
-    "sha256": "0e0436f1d030bb32bf9545313ff08ec079c8554e3aff9942aca4559344c9e327"
+    "bytes": 2185,
+    "sha256": "cde5698896682587be961770927147a291bd7dabdb76401db0e78803b82d14ad"
   },
   "statistics": {
     "messages": 1,

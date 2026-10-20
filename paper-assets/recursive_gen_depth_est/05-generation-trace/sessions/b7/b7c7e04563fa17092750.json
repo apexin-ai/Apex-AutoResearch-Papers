@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_sync_remote_and_compile_20260517T065310_result.json",
     "occurrence": 1,
-    "bytes": 1040,
-    "sha256": "afdda134cc25b7b0bc6d37ab40bea345b2c91ab5753f2c155b8e294ab3872015"
+    "bytes": 1039,
+    "sha256": "9c07a4aa97490a7f2bb2b2f02919f31445235f5cb928a795f6350d825b7906bd"
   },
   "statistics": {
     "messages": 1,

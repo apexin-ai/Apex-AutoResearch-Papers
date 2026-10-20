@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_dcol_deberta_003_submit_20260515T020350_result.json",
     "occurrence": 1,
-    "bytes": 681,
-    "sha256": "2a569896fa278a21151e335333c4c8e9dd9994acbd4cc2dda3272894815e41eb"
+    "bytes": 680,
+    "sha256": "9177b334a98db2e95d4222d7d517540b883334897f201c3cc58bfd8f7ce38f35"
   },
   "statistics": {
     "messages": 1,

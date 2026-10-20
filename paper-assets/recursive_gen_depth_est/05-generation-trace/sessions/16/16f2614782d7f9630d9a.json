@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_d4_depth_extension_gpt2xl_20260518T183412_result.json",
     "occurrence": 1,
-    "bytes": 1193,
-    "sha256": "4bc82ed24126a577e8e5bfe8a1b439b5e854605b603ee1ae5f5f934fad3458d7"
+    "bytes": 1192,
+    "sha256": "7b1fb2622840657fd2d39afd7433fb5a7504d89aeecaaeda2a9d002ab86e5f11"
   },
   "statistics": {
     "messages": 1,

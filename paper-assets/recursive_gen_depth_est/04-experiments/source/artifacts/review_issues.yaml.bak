@@ -1,0 +1,805 @@
+issues:
+  # ============================================================
+  # Round 1-2 历史 issues（保留完整记录）
+  # ============================================================
+  - id: R1-N1
+    summary: "EDD 公式 (Eq.1) 存在系统性 off-by-one 错误，公式输出值比全文报告值小 1"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "R1 发现，R2 独立验证确认。Eq.1 定义 EDD_T=max{d*:AUC(d*,d*+1)>=T}，Pythia nucleus d0-d5 T=0.75 时公式得 3 但报告 4。Table 3 所有行均差 1。需修正公式为 max{d*+1:...} 或全文数值下调 1。"
+    action_items:
+      - round: 1
+        action: "修正 Eq.1 公式定义为 EDD_T = max{d*+1 : AUC(d*,d*+1)>=T}，报告值不变"
+        assigned_to: paper_agent
+        status: done
+    resolution: "method.tex Eq.1 已修正为 max{d*+1:...}，报告值不变。"
+    resolution_round: 2
+
+  - id: R1-N2
+    summary: "主实验 Table 1/2 无 std/CI/significance test，无法判断方法间差异是否显著"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "R1 列为 critical，R2 同意但建议分两级：Table 1 加 fold-level std (must-fix)，Table 2 方法间 significance test (should-fix)。5-fold CV 天然产生 fold estimates，报告 mean±std 成本为零。"
+    action_items:
+      - round: 1
+        action: "修改 atlas_v2_analysis.py 保存 fold-level metrics，重跑 9 cell，Table 1/2 加 ±std"
+        assigned_to: main_agent
+        status: done
+    resolution: "数据+叙事全部完成。fold std + bootstrap + Paper Agent D022 patch 均已落地。"
+    resolution_round: 1
+
+  - id: R1-N3
+    summary: "DCOL negative result 证据不足：仅 1 架构 6 配置（5 个失败），不足以支撑 end-to-end 方法劣于特征工程的结论"
+    category: experiment
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "两位 Reviewer 独立发现并达成完全共识。补充简单 end-to-end baselines 或弱化结论。"
+    action_items:
+      - round: 1
+        action: "补充 DeBERTa-v3-base + RoBERTa-base 直接 finetune 4-class baseline"
+        assigned_to: main_agent
+        status: done
+    resolution: "双 backbone (DeBERTa 58.3%, RoBERTa 59.5%) 均远低于 RF 78.2%，差距 ~19pp。论文已全面更新。"
+    resolution_round: 2
+
+  - id: R2-N2
+    summary: "Mohamed et al. (ACL 2025) 'LLM as a Broken Telephone' 高度相关但未讨论"
+    category: writing
+    severity: critical
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "R2 发现，R1 同意。同时恢复 dohmatob2024 两篇和 cloc2025 的引用。"
+    action_items:
+      - round: 1
+        action: "恢复 bib 条目 + Related Work 加讨论 Mohamed et al.、Dohmatob et al.、CLOC"
+        assigned_to: paper_agent
+        status: done
+    resolution: "related_work.tex 已加入 Mohamed et al. 讨论。"
+    resolution_round: 2
+
+  - id: R1-W1
+    summary: "Feature importance (Gini) 受 correlated features 影响，universality claim 可能不可靠"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "R1 提出，R2 同意。"
+      - round: 3
+        reviewers: [1, 2]
+        note: "Gini vs permutation importance 交叉验证已完成。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "R4 两位 Reviewer 再次独立提出：VIF>10 for 14-16/19 features 下，Gini/SHAP/Permutation 三种方法有相似 instability pattern，concordance 不能证明稳定性。Forward selection p90_ppl 首选仅 6/9 cells。建议在 feature group level 报告 importance 或弱化 'p90_ppl AND var_surprisal emerge as universal markers' 为 'perplexity tail statistics group is universally dominant'。"
+    action_items:
+      - round: 1
+        action: "计算 19×19 correlation matrix + permutation importance，加入 Appendix"
+        assigned_to: main_agent
+        status: done
+      - round: 4
+        action: "弱化 abstract/正文中 individual feature level 的 'universal marker' 表述为 feature group level dominant；或补充 conditional permutation importance"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R1-W2
+    summary: "Wikipedia seed text 引入 domain bias，d0 recall >99% 可能部分反映文体特征"
+    category: experiment
+    severity: warning
+    status: in_progress
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "3-class accuracy 缓解部分担忧。"
+      - round: 3
+        reviewers: [1, 2]
+        note: "R3 两位 Reviewer 再次独立提出 d0 inflation 问题。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "R4 再次确认 d0 inflation 是持续问题——cross-model 66.4% 中 d0 recall=99.3%，排除 d0 后 d1-d3 balanced acc = 55.4% (仅 1.66× chance)。Abstract 虽有括号注释但 transfer results 仍缺 qualification。"
+    action_items:
+      - round: 3
+        action: "Sub-B LOGO bug 修复"
+        assigned_to: main_agent
+        status: in_progress
+      - round: 4
+        action: "Abstract 和正文 transfer results 处对 d0-excluded metrics 加更醒目的 qualification（不仅是括号）"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R1-W3
+    summary: "LoRA 参数缺乏选择依据和 sensitivity analysis"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "添加标准参数引用即可。"
+    action_items:
+      - round: 1
+        action: "method.tex 加 LoRA 参数依据引用 Hu et al. 2022"
+        assigned_to: paper_agent
+        status: done
+    resolution: "method.tex 已加引用依据。"
+    resolution_round: 2
+
+  - id: R1-W4
+    summary: "Zero-shot LLM baseline 仅 200 samples，CI 宽"
+    category: experiment
+    severity: warning
+    status: in_progress
+    first_raised_round: 1
+    last_seen_round: 4
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "差距 38pp >> CI 6.8pp，统计上足以区分。"
+      - round: 3
+        reviewers: [1, 2]
+        note: "额外指出 prompt 设计未报告、仅一个 LLM baseline。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "R4 升级为 structural unfairness 问题——LLM 无法访问 perplexity feature space，对比方法论不成立。Sample size 已扩展到 500 (CI ≈ 4pp)，但核心问题是公平性而非统计功效。"
+    action_items:
+      - round: 3
+        action: "zeroshot_llm_500_001 已审批执行，扩展到 500 samples"
+        assigned_to: main_agent
+        status: in_progress
+      - round: 4
+        action: "重新定位 LLM baseline 为 'surface-level feature upper bound'——论证 raw text alone 不含 depth signal，必须经过 reference model 映射"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R1-W5
+    summary: "5-fold CV 未说明是否按 passage lineage 分组，存在数据泄漏风险"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "代码验证无条件生成（BOS token），passages 间无跨 depth lineage。问题不存在。"
+    action_items:
+      - round: 1
+        action: "method.tex 加一句澄清无条件生成设计"
+        assigned_to: paper_agent
+        status: done
+    resolution: "代码确认无条件生成，无 lineage 泄漏风险。论文已更新。"
+    resolution_round: 1
+
+  - id: R1-W6
+    summary: "Cross-strategy transfer 缺 per-class recall"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "从 cross_strategy_loo_001 已有数据提取即可。"
+    action_items:
+      - round: 1
+        action: "提取 per-class recall 加入论文"
+        assigned_to: main_agent
+        status: done
+    resolution: "per-class recall 已纳入 generalization.tex §5.2。"
+    resolution_round: 2
+
+  - id: R2-W2
+    summary: "术语不一致：var_surprisal vs var_surp 混用"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "统一为 var_surprisal。"
+    action_items:
+      - round: 1
+        action: "全文统一术语"
+        assigned_to: paper_agent
+        status: done
+    resolution: "术语已全文统一为 var_surprisal。"
+    resolution_round: 2
+
+  - id: R2-W3
+    summary: "Temperature inversion 仅在 τ=0.9 验证，缺乏 multi-τ 因果验证"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 3
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "弱化为 observational finding。"
+      - round: 3
+        reviewers: []
+        note: "multi_tau_ablation_001 完成。"
+    action_items:
+      - round: 1
+        action: "论文弱化因果表述为 observational finding"
+        assigned_to: paper_agent
+        status: done
+    resolution: "multi_tau_ablation_001 全面回应。因果表述已弱化。"
+    resolution_round: 3
+
+  - id: R2-W4
+    summary: "Limitations section 位置不符合 ACL 模板要求"
+    category: format
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "移至 Conclusion 之后作为独立 unnumbered section。"
+    action_items:
+      - round: 1
+        action: "移动 Limitations section"
+        assigned_to: paper_agent
+        status: done
+    resolution: "Limitations 已在 Conclusion 之后，符合 ACL 模板要求。"
+    resolution_round: 2
+
+  - id: R2-W6
+    summary: "4 个 orphan bib entries 未引用"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [1, 2]
+        note: "已全部引用。"
+    action_items:
+      - round: 1
+        action: "恢复并引用相关条目"
+        assigned_to: paper_agent
+        status: done
+    resolution: "所有 orphan bib entries 已被引用。"
+    resolution_round: 2
+
+  - id: R2-W1
+    summary: "DivEye venue 可能有误（ICLR vs TMLR）"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 1
+    last_seen_round: 1
+    mentions:
+      - round: 1
+        reviewers: [2]
+        note: "R2 提出，R1 rebut。需作者核实。"
+    action_items:
+      - round: 1
+        action: "核实 DivEye 正确 venue"
+        assigned_to: author
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: RR2-N1
+    summary: "atlas.tex line 80 OLMo d4v5 AUC 录入错误：写 0.694，registry 实际 0.684"
+    category: writing
+    severity: critical
+    status: resolved
+    first_raised_round: 2
+    last_seen_round: 2
+    mentions:
+      - round: 2
+        reviewers: [research_reviewer]
+        note: "录入错误已修正。"
+    action_items:
+      - round: 2
+        action: "atlas.tex line 80 修正 OLMo 0.694 → 0.684"
+        assigned_to: main_agent
+        status: done
+    resolution: "录入错误已修正，0.694→0.684。"
+    resolution_round: 2
+
+  # ============================================================
+  # Round 3 issues（保留完整记录）
+  # ============================================================
+  - id: R3-N1
+    summary: "EDD max 算子不要求连续可判别性——非单调 AUC 场景下可能报告误导性高值"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "已改为 ∀ formulation。"
+    action_items:
+      - round: 3
+        action: "修改 Eq.1 为连续版本"
+        assigned_to: paper_agent
+        status: done
+    resolution: "Eq.1 已改为 ∀ formulation。"
+    resolution_round: 3
+
+  - id: R3-N2
+    summary: "19 维特征共线性未量化，缺 top-2/top-5/per-category 消融"
+    category: method
+    severity: critical
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "消融完成，top-5=97.6%, effective dim ≈4-5。"
+    action_items:
+      - round: 3
+        action: "top-1/2/3/5/10/15/19 ablation + VIF"
+        assigned_to: main_agent
+        status: done
+    resolution: "abstract/introduction/atlas §4.2 已全面反映消融结果。"
+    resolution_round: 3
+
+  - id: R3-N3
+    summary: "Attention-importance 相关性方法论有缺陷"
+    category: method
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "SHAP TreeExplainer 替代 attention。"
+    action_items:
+      - round: 3
+        action: "SHAP 替换 attention-importance"
+        assigned_to: main_agent
+        status: done
+    resolution: "§5.4 已重组——SHAP 为主论据。"
+    resolution_round: 3
+
+  - id: R3-N4
+    summary: "递归生成定义过窄；'universal' 措辞暗示过广适用性"
+    category: framing
+    severity: warning
+    status: in_progress
+    first_raised_round: 3
+    last_seen_round: 4
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "scope 声明已添加。Wild-data pilot in progress。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "R4 两位 Reviewer 再次独立提出 'universal' overclaim——R1-N3 和 R2-N3 均指出 claims/evidence gap。BOS-seeded unconditional generation 进一步加剧 controlled vs wild 的差距。论文虽有 Limitations 承认但 abstract/introduction/discussion framing 未充分反映。"
+    action_items:
+      - round: 3
+        action: "显式界定 'universal' 范围"
+        assigned_to: paper_agent
+        status: done
+      - round: 3
+        action: "plan_015 wild-data calibration pilot"
+        assigned_to: main_agent
+        status: in_progress
+      - round: 4
+        action: "Abstract/Introduction 进一步弱化 deployment-oriented framing ('early-warning signal', 'provenance toolkit') 加更多 caveats 表明 controlled setting 范围"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R3-N5
+    summary: "跨策略 d1/d2 AUC 反转使 depth-graduated data curation 不可行"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "two-stage pipeline 讨论已添加。"
+    action_items:
+      - round: 3
+        action: "降低 Discussion 应用期望"
+        assigned_to: paper_agent
+        status: done
+    resolution: "discussion.tex 已修改。"
+    resolution_round: 3
+
+  - id: R3-W1
+    summary: "d0 recall >98% 严重膨胀 headline accuracy"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 4
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "Abstract 和 Tables 已并列报告含/不含 d0。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "R4 确认 in-distribution 部分已修复（Table 1 括号内含 d1-d3），但 transfer results (Table 4/5) 的 headline 仍受 d0 驱动。Cross-model 66.4% 对应 d1-d3 仅 55.4%，abstract 对 transfer 结果缺显式 qualification。合并到 R1-W2 持续追踪。"
+    action_items:
+      - round: 3
+        action: "Abstract 和 Table 并列报告"
+        assigned_to: paper_agent
+        status: done
+    resolution: "In-distribution 部分已修复。Transfer headline 的 qualification 由 R1-W2 round 4 action item 追踪。"
+    resolution_round: 3
+
+  - id: R3-W2
+    summary: "Discussion §6 仅 2 段 ~80 词，过于简短"
+    category: writing
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "已扩展至 ~650 词。"
+    action_items:
+      - round: 3
+        action: "扩展 Discussion"
+        assigned_to: paper_agent
+        status: done
+    resolution: "Discussion 从 ~80 词扩展至 ~650 词。"
+    resolution_round: 3
+
+  - id: R3-W3
+    summary: "'geometry-level shift' overclaim"
+    category: framing
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "已弱化为 'residual gap'。"
+    action_items:
+      - round: 3
+        action: "弱化措辞"
+        assigned_to: paper_agent
+        status: done
+    resolution: "全文 5 处已弱化。"
+    resolution_round: 3
+
+  - id: R3-W4
+    summary: "表格 caption 暴露 experiment tracking ID"
+    category: format
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "已清除。"
+    action_items:
+      - round: 3
+        action: "删除所有 experiment ID"
+        assigned_to: paper_agent
+        status: done
+    resolution: "全量审计通过。"
+    resolution_round: 3
+
+  - id: R3-W5
+    summary: "缺少 gradient boosting baseline"
+    category: experiment
+    severity: info
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "XGBoost/LightGBM 已加入。"
+    action_items:
+      - round: 3
+        action: "加入 XGBoost/LightGBM"
+        assigned_to: main_agent
+        status: done
+    resolution: "5 种分类器收敛到 78-79%。"
+    resolution_round: 3
+
+  - id: R3-W6
+    summary: "缺少混合深度语料库讨论"
+    category: experiment
+    severity: warning
+    status: resolved
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "Discussion 新增段落。"
+    action_items:
+      - round: 3
+        action: "Discussion 加混合深度讨论"
+        assigned_to: paper_agent
+        status: done
+    resolution: "已添加。"
+    resolution_round: 3
+
+  - id: R3-M1
+    summary: "Minor 修复合集：引用年份、Ethics Statement、Ghostbuster/M4/DNA-GPT 引用等"
+    category: writing
+    severity: info
+    status: in_progress
+    first_raised_round: 3
+    last_seen_round: 4
+    mentions:
+      - round: 3
+        reviewers: [1, 2]
+        note: "部分已完成。"
+      - round: 4
+        reviewers: [1, 2]
+        note: "R4 发现新 orphan entry yi2026_escaping_collapse（.bib 中存在但未被任何 .tex 引用）。Mohamed et al. (2025) 与本文区别仍仅一句，建议扩展。"
+    action_items:
+      - round: 3
+        action: "Paper Agent Wave 3 统一处理"
+        assigned_to: paper_agent
+        status: in_progress
+      - round: 4
+        action: "删除 orphan entry yi2026_escaping_collapse 或在正文中引用"
+        assigned_to: paper_agent
+        status: open
+      - round: 4
+        action: "扩展 Mohamed et al. (2025) 区别讨论至 2-3 句"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: RR3-W1
+    summary: "artifacts/_project/paper/ 残留旧版 section_*.tex 文件"
+    category: format
+    severity: warning
+    status: open
+    first_raised_round: 3
+    last_seen_round: 3
+    mentions:
+      - round: 3
+        reviewers: [research_reviewer]
+        note: "残留文件可能引起混淆。"
+    action_items:
+      - round: 3
+        action: "清理残留旧版文件"
+        assigned_to: main_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  # ============================================================
+  # Round 4 新发现
+  # ============================================================
+  - id: R4-N1
+    summary: "EDD₀.₇₅=4 的 abstract 无条件陈述缺乏统计支撑——GPT-2 XL bootstrap p=0.505 (non-significant)"
+    category: method
+    severity: critical
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R1 提出 critical，R2 完全同意。Abstract L6 'finding EDD₀.₇₅=4 for extended recursion chains' 是无条件通用陈述，但 §4.4 报告 GPT-2 XL d3v4 AUC=0.750 恰在阈值边界，bootstrap p=0.505。三模型中仅 Pythia (p=0.001) 统计显著，OLMo (p=0.091) marginal。'Graded confidence' 修饰未改变 abstract 中的 overclaim 本质。"
+    action_items:
+      - round: 4
+        action: "Abstract 修改为带统计限定的表述：'EDD₀.₇₅=4 (Pythia, p=0.001; consistent direction across models with graded support)' 或改用 T=0.70 使所有模型均显著"
+        assigned_to: paper_agent
+        status: open
+      - round: 4
+        action: "§4.4 脚注更新——'AUC profiles are empirically monotonically decreasing' 已被 Qwen2.5-7B U-shape 和 cross-strategy 反转违反"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-N2
+    summary: "Zero-shot LLM baseline 是结构性不公平对比——LLM 无法访问 perplexity feature space，'42pp superiority' 是 strawman 论证"
+    category: experiment
+    severity: critical
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R1 提出 critical，R2 完全同意。LLM 读 raw text 时无法获取 reference model perplexity distribution。对比的是 information accessibility 而非 method capability。论文在 §6 Discussion 中反复引用 '42pp superiority' 作为 primary comparison。正确定位应为 'oracle study showing perplexity features are necessary, not surface text'。R2 补充：zero-shot 无 ICL 的 prompt design 进一步降低公平性。"
+    action_items:
+      - round: 4
+        action: "重新定位 LLM baseline：从 'comparison demonstrating superiority' 改为 'ablation showing surface text features are insufficient for depth discrimination'"
+        assigned_to: paper_agent
+        status: open
+      - round: 4
+        action: "§6 Discussion 中修改 '42pp' 论述逻辑——不再是 'our method beats LLM' 而是 'depth signal requires statistical feature extraction beyond surface patterns'"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-N3
+    summary: "Cross-scale '泛化' 声明基于 N=2 个 confound-stacked 的 instruction-tuned 7B 模型，两模型行为完全矛盾"
+    category: experiment
+    severity: critical
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R1 提出 critical，R2 强烈同意。Confounds: (1) 4-bit NF4 QLoRA vs 1.4B standard LoRA (2) instruction-tuned vs base models (3) 500 samples vs 5000 (4) 仅 nucleus。Llama monotonic vs Qwen U-shaped——两个矛盾 data points 无法支撑 'scale generalization'。论文 §5.5 caveats 承认此问题但 abstract/discussion 未反映。"
+    action_items:
+      - round: 4
+        action: "降级 Contribution bullet 3 中 cross-scale 表述：从 'generalization' 改为 'preliminary cross-scale observations with multiple confounds (QLoRA, instruction-tuning, reduced samples)'"
+        assigned_to: paper_agent
+        status: open
+      - round: 4
+        action: "§5.4 开头增加显式 confound 清单 + abstract L9 加 qualification"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-N4
+    summary: "Cross-model recursive chain (84.75%) 存在 architecture-depth confound——高准确率可能部分反映 model identity 而非 pure depth signal"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R2 提出，R1 在交叉回应中完全同意（标注为 'R2 指出了我遗漏的重要 confound'）。Heterogeneous chain 设计 (d1=Pythia, d2=OLMo, d3=GPT-2 XL) 将 model identity 与 depth 完全 confound：Pythia reference model 对不同架构的 text 天然产生不同 perplexity profiles，分类器可能利用 architecture fingerprint 而非 depth signal。论文 Contribution bullet 3 claim 'depth signal is a property of the recursive process itself' 可能被此 confound 削弱。要证明 pure depth signal，需 randomize which model generates which depth 或对比 homogeneous vs heterogeneous chain 的 AUC profiles。"
+    action_items:
+      - round: 4
+        action: "在 Appendix cross-boundary 节加入 confound 讨论：(1) 解释为什么 architecture identity 可能 partially explain 84.75% (2) 讨论 AUC profile 是否与 within-model chains 一致作为间接证据"
+        assigned_to: paper_agent
+        status: open
+      - round: 4
+        action: "弱化 abstract L8 从 'demonstrating that the depth signal is a property of the recursive process itself' 到 'providing preliminary evidence consistent with a process-level depth signal, though architecture identity is a partial confound'"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-W1
+    summary: "Curation PoC 全部 rf vs unfiltered 对比 non-significant (p>0.4)——claim 'matches unfiltered with 44% data' 是 null result 非 positive finding"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R1 和 R2 独立提出并完全同意。5 seeds (df=4) 统计功效极低。rf vs random 显著可能仅反映 '保留 d0/d1 = 保留更好文本'，binary detection 即可实现。Oracle_strict PPL 反而 worse than unfiltered，说明 depth filtering mechanism 需重新解释。"
+    action_items:
+      - round: 4
+        action: "Discussion 中重新定位 Curation PoC：从 'proof-of-concept' 改为 'inconclusive pilot with insufficient statistical power'; 或增加 seeds 至 ≥20"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-W2
+    summary: "BOS-seeded 无条件生成降低生态效度——与 prompt-conditioned real-world recursive contamination 有本质区别"
+    category: experiment
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R1 提出，R2 initially REBUT（误以为是 prompt-conditioned）但论文 §3.2 明确写 'BOS-seeded, no prompt conditioning'。无条件生成的更高 repetition 和更低 coherence 可能人为放大 depth signal，使 in-distribution accuracy 偏高。Introduction/Discussion 的 deployment framing 与此 controlled setting 存在张力。"
+    action_items:
+      - round: 4
+        action: "在 Limitations 中明确讨论 BOS-seeded vs prompt-conditioned 对 feature distribution 的可能影响"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-W3
+    summary: "方法论新颖性有限——标准特征 + 标准分类器，无新算法/模型/理论框架"
+    category: framing
+    severity: warning
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R2 列为 critical (N2)，R1 AGREE with caveats——方法层面确实标准 (perplexity features + RF)，但 EMNLP 接收 'novel task + systematic empirical contribution' 型论文。最终共识：不构成 reject 理由但降低 excitement（R1 从 4.0 降至 3.5）。EDD 和 Atlas 是 naming 而非 methodological innovation。如有理论分析连接 model collapse theory 与 perplexity tail encoding depth，可显著提升。"
+    action_items:
+      - round: 4
+        action: "考虑在 Discussion 中加入 2-3 段理论分析：为什么 tail erosion encodes depth（连接 Dohmatob tail-cutting theory），或 formalize perplexity drift rate 与 depth 的关系"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-W4
+    summary: "orphan bib entry yi2026_escaping_collapse 未在正文引用"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [2]
+        note: "yi2026_escaping_collapse 在 references.bib 中存在但未在任何 .tex 文件中被 \\cite。"
+    action_items:
+      - round: 4
+        action: "删除 orphan entry 或在 Related Work 中引用"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null
+
+  - id: R4-W5
+    summary: "Abstract 信息密度过高（15+ 数字），增加误读风险"
+    category: writing
+    severity: info
+    status: open
+    first_raised_round: 4
+    last_seen_round: 4
+    mentions:
+      - round: 4
+        reviewers: [1, 2]
+        note: "R2 提出，R1 在交叉回应中同意。250 words 中 15+ 数字使读者难以抓住核心 message。建议精简至 3-4 个最核心数字（in-distribution range, EDD, 一个 transfer metric）。"
+    action_items:
+      - round: 4
+        action: "精简 abstract 数字密度——保留核心 3-4 个 key numbers，其余移至正文"
+        assigned_to: paper_agent
+        status: open
+    resolution: ""
+    resolution_round: null

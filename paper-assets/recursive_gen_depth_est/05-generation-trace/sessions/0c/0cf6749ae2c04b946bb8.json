@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_cross_seed_transfer_20260517T052138_result.json",
     "occurrence": 1,
-    "bytes": 935,
-    "sha256": "a51624f2be9cfa141115c085ecd972ae167440202158d1c22e4d5196a27fd29a"
+    "bytes": 934,
+    "sha256": "a108960c28d106a9b3a181648ebcef6593b2af219498c0486e9cf3cfaf722fe8"
   },
   "statistics": {
     "messages": 1,

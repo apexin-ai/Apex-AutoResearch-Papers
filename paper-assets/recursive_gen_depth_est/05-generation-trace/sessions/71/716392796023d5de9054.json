@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_qwen25_1p5b_instruct_001_20260517T161832_result.json",
     "occurrence": 1,
-    "bytes": 668,
-    "sha256": "6a2ba46307b2fca50c56a4f4b083a2034f3a4b7cdee334e67e420a7a8335201a"
+    "bytes": 667,
+    "sha256": "1140b1225dd4b33c459da1abfc1415fc4b0a887a57ce9a550a072b76e55ba6a6"
   },
   "statistics": {
     "messages": 1,

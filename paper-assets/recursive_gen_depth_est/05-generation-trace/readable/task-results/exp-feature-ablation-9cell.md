@@ -12,8 +12,34 @@ This page is a human-readable rendering of one source record. It preserves the r
 - **Original source:** `logs/workers/worker_exp_feature_ablation_9cell_20260515T171759_result.json`
 - **Structured JSON:** [`214306c732b8574541f2.json`](../../sessions/21/214306c732b8574541f2.json)
 
-## Browse this transcript
+## Before a recorded user message
 
-This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+1 recorded events
 
-[Part 1](exp-feature-ablation-9cell/part-001.md) · [Part 2](exp-feature-ablation-9cell/part-002.md) · [Part 3](exp-feature-ablation-9cell/part-003.md) · [Part 4](exp-feature-ablation-9cell/part-004.md)
+### Task result
+
+_source line 1_
+
+Large source content is retained in the sanitized trace archive.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "large_content_blocks": [
+    {
+      "index": 0,
+      "storage": "sanitized-trace-archive",
+      "source_line": 1,
+      "serialized_bytes": 2547324,
+      "serialized_sha256": "05c534abcdb3e44dade4535cea9b6c2a38dc5e04811cd094e2b6887197099f37",
+      "note": "Complete sanitized source is retained in trace-files.tar.gz."
+    }
+  ]
+}
+```
+
+</details>
+
+---

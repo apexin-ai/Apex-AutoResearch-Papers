@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_coral_ordinal_literature_20260519T103232_result.json",
     "occurrence": 1,
-    "bytes": 850,
-    "sha256": "212a706847c3417ce7f834915c5f37a4514ca609fca83db5d8876b07116bb38f"
+    "bytes": 849,
+    "sha256": "127ca2de15a0e867da0d2640efa14c954458262e36c694a874f1dd9ca009b51f"
   },
   "statistics": {
     "messages": 1,

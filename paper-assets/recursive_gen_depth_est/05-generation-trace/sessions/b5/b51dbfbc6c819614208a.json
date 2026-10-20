@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_fix_appendix_duplicate_20260516T184403_result.json",
     "occurrence": 1,
-    "bytes": 612,
-    "sha256": "71b1c5989a63593c20f4c90308e93f33ab74850be93e43e75008d60b93db46bd"
+    "bytes": 611,
+    "sha256": "76895c68acafab58d8d4a0091f8832cd391b1abdefd015e8d49d20fcc571d6ce"
   },
   "statistics": {
     "messages": 1,

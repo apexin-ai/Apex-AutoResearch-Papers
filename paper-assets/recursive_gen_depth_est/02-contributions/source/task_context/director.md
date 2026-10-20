@@ -10,7 +10,7 @@ updated: '2026-05-24T19:17:57+00:00'
 - EMNLP 2026 ARR：主文严格 8 页限制，abstract ≤200 words
 - 论文文本禁止 em dash（用逗号/括号替代）
 - TUM 服务（localhost:8001）当前不可用，secrets 无法通过 request_secret 解密；需要 API key 时走 feishu 卡片申请流程
-- GOOGLE_API_KEY: `[REDACTED_GOOGLE_TOKEN]`（已 store_secret，但因 TUM 宕机需显式传给 Agent）
+- GOOGLE_API_KEY: [REDACTED] store_secret，但因 TUM 宕机需显式传给 Agent）
 
 ### 2. 🖥️ 基础设施快照
 - 服务器：gpu-6000pro-2（分类 B，保留至 rebuttal）

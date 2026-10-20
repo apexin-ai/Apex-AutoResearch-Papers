@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_r2n2_literature_supplement_20260515T222540_result.json",
     "occurrence": 1,
-    "bytes": 4432,
-    "sha256": "1aba1f65409478b7c57e48fcc4ceffaf2276451459bb1441f477a3ca50a8082b"
+    "bytes": 4431,
+    "sha256": "aea1ecd1510c6e83007f7891014a78bd2fb98cf5c0616957d748a670dd963aa6"
   },
   "statistics": {
     "messages": 1,

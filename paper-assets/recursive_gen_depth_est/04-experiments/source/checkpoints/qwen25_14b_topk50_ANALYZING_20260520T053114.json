@@ -1,0 +1,30 @@
+{
+  "exp_id": "qwen25_14b_topk50",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:55:17.726Z",
+    "updated_at": "2026-05-20T05:31:14.035Z",
+    "hypothesis": "Recursive generation depth signal persists at 14B scale under top-k sampling (k=50), achieving RF 4-class accuracy above 25% baseline. Top-k typically yields lowest accuracy across strategies; if signal persists even here, 14B scale-generality claim is robust. Directly addresses Dream worst review M3.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_topk50.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "pid": 787051,
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "5000 samples per depth d0-d3",
+      "model_name": "Qwen2.5-14B",
+      "seed": 42,
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25_14b_topk50.log",
+      "note": "Restarted after GPU fix: original PID 776750 on cuda:0 due to hardcoded CUDA_VISIBLE_DEVICES. Fixed and resubmitted to cuda:1."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T05:31:13.137Z"
+    }
+  },
+  "timestamp": "2026-05-20T05:31:14.412360+00:00",
+  "trigger": "update_registry"
+}

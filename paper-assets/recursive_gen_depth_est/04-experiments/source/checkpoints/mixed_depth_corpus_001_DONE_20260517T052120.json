@@ -1,0 +1,56 @@
+{
+  "exp_id": "mixed_depth_corpus_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:55:22.771Z",
+    "updated_at": "2026-05-17T05:21:20.409Z",
+    "spec": {
+      "command": "python /root/autodl-tmp/recursive_gen_depth_est/scripts/mixed_depth_corpus_eval.py",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "638035",
+      "log_path": "~/runs/recursive_gen_depth_est/mixed_depth_corpus_001.log",
+      "submitted_at": "2026-05-17T03:55:22.473Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl",
+      "data_count": 20000,
+      "model_name": "RandomForest(n_estimators=200)",
+      "seed": 42,
+      "checkpoint_source": "trained_in_script (balanced RF)",
+      "eval_data": "features_all.jsonl mixed-depth subset (50/30/15/5%)",
+      "checkpoint_path": "N/A (in-memory RF)",
+      "wall_clock_seconds": 213.7,
+      "gpu_hours": 0.06
+    },
+    "hypothesis": "RF per-sample classifier does not rely on corpus-level depth distribution prior; accuracy on mixed-depth corpus (50/30/15/5%) should match balanced baseline within Δ ≤ 2pp",
+    "parent": "baseline_battery_001",
+    "metrics": {
+      "mixed_overall_acc": 0.855,
+      "balanced_overall_acc": 0.7814,
+      "delta_overall_pp": 7.36,
+      "mixed_macro_recall": 0.7652,
+      "balanced_macro_recall": 0.7814,
+      "delta_macro_recall_pp": -1.62,
+      "per_class_recall_delta": {
+        "d0": -0.68,
+        "d1": -2.43,
+        "d2": -1.12,
+        "d3": -2.24
+      },
+      "max_recall_delta_pp": 2.43
+    },
+    "notes": "Director downgrade to partial_success: pre-registered threshold ≤2pp per-class recall, d1 actual Δ=2.43pp exceeds. Macro-recall (-1.62pp) is primary metric for paper; max per-class delta noted. Registry only allows 'success' label; semantic status is partial_success.",
+    "conclusion": "negative",
+    "completed_at": "2026-05-17T03:58:56.184Z"
+  },
+  "timestamp": "2026-05-17T05:21:20.623820+00:00",
+  "trigger": "update_registry"
+}

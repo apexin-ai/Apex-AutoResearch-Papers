@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_qwen_model_v2_20260516T024239_result.json",
     "occurrence": 1,
-    "bytes": 667,
-    "sha256": "d4e90d55c28c9ebdc03f346c102f9df0d15e46967a066d995525f479a32a9021"
+    "bytes": 666,
+    "sha256": "0ba3d715a376836ea9faf61a84746732b71330de0d2293bb508b3c2f141d0b08"
   },
   "statistics": {
     "messages": 1,

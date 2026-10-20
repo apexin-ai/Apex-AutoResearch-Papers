@@ -1,0 +1,29 @@
+{
+  "exp_id": "cross_model_loo_v1",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:08:20.440Z",
+    "updated_at": "2026-05-15T04:08:36.697Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES='' python3 src/cross_model_loo.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "9-cell features (data/ + results/)",
+      "data_count": 180000,
+      "model_name": "RF(n_estimators=200, random_state=42)",
+      "seed": 42,
+      "description": "Cross-model LOO generalization: train on 2 model families (all 3 strategies), test on held-out 3rd family",
+      "plan": "plan_005",
+      "claim": "Claim 1: depth signal generalizes across models",
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/cross_model_loo.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T04:08:36.697Z"
+  },
+  "timestamp": "2026-05-15T04:08:36.782513+00:00",
+  "trigger": "update_registry"
+}

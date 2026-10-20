@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_deploy_mink-to-gpu6000pro2_20260519T140015_result.json",
     "occurrence": 1,
-    "bytes": 714,
-    "sha256": "03c447809db1a5400a4266a8ac87d8c35ffd2e00cda3143d7df5f85bb52f5f18"
+    "bytes": 713,
+    "sha256": "10c1ec508ab6ddc89fa659852e20689c1baa7a779eba9abb6bc58afdf7e64230"
   },
   "statistics": {
     "messages": 1,

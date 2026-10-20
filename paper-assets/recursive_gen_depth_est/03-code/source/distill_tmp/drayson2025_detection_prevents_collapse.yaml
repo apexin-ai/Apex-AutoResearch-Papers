@@ -1,0 +1,27 @@
+paper_key: "drayson2025_detection_prevents_collapse"
+title: "Machine-generated text detection prevents language model collapse"
+venue: "EMNLP 2025 Findings"
+full_text_available: false
+
+research:
+  baselines: ["training on purely human data", "training on unfiltered mixed data"]
+  metrics:
+    - {name: "perplexity", direction: "lower_better"}
+    - {name: "text diversity", direction: "higher_better"}
+    - {name: "downstream task performance", direction: "higher_better"}
+  datasets:
+    - {name: "GPT-2 generated text", size: "N/A"}
+    - {name: "SmolLM2 generated text", size: "N/A"}
+  ablation_dimensions: ["model family (GPT-2 vs SmolLM2)", "model size (124M to 1.7B)", "number of recursive generations", "detection threshold"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "detection-based filtering + importance resampling for collapse prevention"
+
+positioning:
+  core_claim: "Using machine-generated text detectors to filter training data not only prevents model collapse but improves performance beyond training on purely human data"
+  key_results: "Detection + resampling outperforms both pure human data and unfiltered mixed data across GPT-2 and SmolLM2 families"
+  limitations: ["limited model families tested", "relies on detector quality"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

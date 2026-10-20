@@ -1,0 +1,45 @@
+{
+  "exp_id": "coral_ordinal_9cell_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:28:42.291Z",
+    "updated_at": "2026-05-19T11:02:34.305Z",
+    "hypothesis": "CORAL ordinal regression with DNN backbone (19→64→32→CORAL) achieves comparable or superior 4-class accuracy to RF on all 9 atlas cells, while providing better ordinal consistency (monotonic predictions) and lower MAE due to ordinal-aware loss. Prior baseline_battery_9cell_001 showed RF≈CORAL with simple CORAL; DNN backbone may widen the gap. Algorithmic contribution: ordinal-specific classifier for depth estimation.",
+    "conclusion": "success",
+    "metrics": {
+      "coral_avg_4class_acc": 0.7778,
+      "rf_avg_4class_acc": 0.7842,
+      "delta_acc": -0.0064,
+      "coral_avg_qwk": 0.9004,
+      "rf_avg_qwk": 0.8923,
+      "delta_qwk": 0.0081,
+      "coral_avg_mae": 0.2315,
+      "rf_avg_mae": 0.2339,
+      "delta_mae": -0.0024,
+      "coral_avg_oc": 0.979,
+      "rf_avg_oc": 0.9738,
+      "delta_oc": 0.0052,
+      "coral_wins_qwk": "7/9 cells",
+      "coral_wins_mae": "7/9 cells",
+      "outlier": "gpt2xl_topk50 (feature overflow)",
+      "excl_outlier_delta_acc": -0.0023
+    },
+    "spec": {
+      "command": "python coral_ordinal_eval.py (CPU, gpu-6000pro-2)",
+      "server": "gpu-6000pro-2",
+      "data_path": "features.jsonl per cell (9 cells x 20000 samples)",
+      "data_count": 180000,
+      "model_name": "DNN 19-64-32-CORAL (PyTorch)",
+      "seed": 42,
+      "checkpoint_path": "artifacts/coral_ordinal/coral_ordinal_eval.py",
+      "log_path": "artifacts/coral_ordinal/coral_9cell_results.json"
+    },
+    "completed_at": "2026-05-19T11:02:34.305Z"
+  },
+  "timestamp": "2026-05-19T11:02:34.671778+00:00",
+  "trigger": "update_registry"
+}

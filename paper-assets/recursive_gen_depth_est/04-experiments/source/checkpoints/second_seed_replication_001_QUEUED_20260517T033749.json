@@ -1,0 +1,29 @@
+{
+  "exp_id": "second_seed_replication_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:37:28.658Z",
+    "updated_at": "2026-05-17T03:37:48.876Z",
+    "hypothesis": "递归生成 depth signal 是 recursive process 的固有属性而非特定 LoRA 权重的 idiosyncrasy；用不同 seed(=43) 训练的 LoRA 应产生与 seed=42 一致的 depth fingerprint（accuracy Δ ≤ 3pp vs 78.2%）",
+    "parent": "mvp_pipeline_pythia_002",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_second_seed_replication.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "631348",
+      "log_path": "~/runs/recursive_gen_depth_est/second_seed_replication_001.log",
+      "submitted_at": "2026-05-17T03:37:38.197Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T03:37:49.101683+00:00",
+  "trigger": "update_registry"
+}

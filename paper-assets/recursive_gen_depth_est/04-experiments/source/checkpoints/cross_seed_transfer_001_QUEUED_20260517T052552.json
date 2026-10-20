@@ -1,0 +1,16 @@
+{
+  "exp_id": "cross_seed_transfer_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:25:38.776Z",
+    "updated_at": "2026-05-17T05:25:52.151Z",
+    "hypothesis": "If depth signal is an inherent property of recursive generation, an RF trained on seed=42 features should generalize to seed=43 features with cross-seed acc ≥ 75% (Δ ≤ 3pp vs within-seed)",
+    "parent": "second_seed_replication_001"
+  },
+  "timestamp": "2026-05-17T05:25:52.370816+00:00",
+  "trigger": "update_registry"
+}

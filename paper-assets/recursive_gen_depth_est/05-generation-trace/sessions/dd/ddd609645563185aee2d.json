@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r2n2-literature-verification_20260516T003051_result.json",
     "occurrence": 1,
-    "bytes": 955,
-    "sha256": "ab0d87dc5a99425ad25182b7db858104a5e2dcb5a466b56c9aab15d0e3f7a6f3"
+    "bytes": 954,
+    "sha256": "e4d7e326f0e231149ff33cb8f32f153e443d446b130de5485ee8b73d1a1982d8"
   },
   "statistics": {
     "messages": 1,

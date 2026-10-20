@@ -6990,7 +6990,7 @@ _source line 2833 · 2026-05-21T15:42:41.797556+00:00_
 37	ssh_execute("echo $GOOGLE_API_KEY | head -c 10")
 38	
 39	# 如未配置，需要用户提供 key，然后：
-40	ssh_execute("echo 'export GOOGLE_API_KEY=&lt;key>' >> ~/.bashrc && source ~/.bashrc")
+40	ssh_execute("echo 'export GOOGLE_API_KEY=[REDACTED]' >> ~/.bashrc && source ~/.bashrc")
 41	
 42	# 安装 PaperBanana
 43	ssh_execute("pip install paperbanana -q")
@@ -7011,7 +7011,7 @@ _source line 2833 · 2026-05-21T15:42:41.797556+00:00_
 58	# Framework / Pipeline 图
 59	ssh_execute("""
 60	cd ~/my-project && \
-61	GOOGLE_API_KEY=$GOOGLE_API_KEY paperbanana plot \
+61	GOOGLE_API_KEY=[REDACTED] paperbanana plot \
 62	  --intent "Three-stage pipeline diagram flowing left to right:
 63	Stage 1 'Data Collection' (blue
 …[truncated 4521 chars]
@@ -7286,7 +7286,7 @@ called Bash
 
 ```json
 {
-  "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED_GOOGLE_TOKEN] paperbanana plot \\\n  --intent \"Academic paper Figure 1: Recursive generation depth estimation problem illustration. Layout: two horizontal rows.\n\nTOP ROW (main content): A left-to-right chain of 5 rounded rectangles representing text corpora at different recursive depths.\n- Box 1: 'D_0' (label 'Human') in solid steel blue\n- Box 2: 'D_1' (label 'Gen-1') slightly faded blue\n- Box 3: 'D_2' (label 'Gen-2') more faded\n- Box 4: 'D_3' (label 'Gen-3') even more faded\n- Box 5: 'D_K' (label 'Gen-K') very faded/washed out\nBetween boxes 1-4: solid arrows with small label 'LoRA ft + sample' above each arrow.\nBetween box 4 and box 5: three dots (ellipsis) indicating continuation.\nThe fading blue colors visually convey distributional drift/collapse.\n\nMIDDLE: A dashed red arrow from box 3 (D_2) pointing down to a dashed-border pale yellow box containing 'Text passage x' with 'depth d = ?' in red bold below it. This represents the estimation task.\n\nBOTTOM ROW: Two side-by-side comparison boxes separated by a thin vertical divider:\n- Left (gray text): 'Binary detection: real vs. synthetic' \n- Right (bold dark text): 'Depth estimation (ours): d in {0, 1, 2, ..., K} (ordinal)'\n\nWhite background, publication quality, clean academic style, no border, 300 DPI. Use LaTeX-style math formatting where possible. Single-column width figure (about 3.4 inches wide, 1.5 inches tall).\" \\\n  --iterations 3 \\\n  --output figures/paper/ 2>&1",
+  "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED] paperbanana plot \\\n  --intent \"Academic paper Figure 1: Recursive generation depth estimation problem illustration. Layout: two horizontal rows.\n\nTOP ROW (main content): A left-to-right chain of 5 rounded rectangles representing text corpora at different recursive depths.\n- Box 1: 'D_0' (label 'Human') in solid steel blue\n- Box 2: 'D_1' (label 'Gen-1') slightly faded blue\n- Box 3: 'D_2' (label 'Gen-2') more faded\n- Box 4: 'D_3' (label 'Gen-3') even more faded\n- Box 5: 'D_K' (label 'Gen-K') very faded/washed out\nBetween boxes 1-4: solid arrows with small label 'LoRA ft + sample' above each arrow.\nBetween box 4 and box 5: three dots (ellipsis) indicating continuation.\nThe fading blue colors visually convey distributional drift/collapse.\n\nMIDDLE: A dashed red arrow from box 3 (D_2) pointing down to a dashed-border pale yellow box containing 'Text passage x' with 'depth d = ?' in red bold below it. This represents the estimation task.\n\nBOTTOM ROW: Two side-by-side comparison boxes separated by a thin vertical divider:\n- Left (gray text): 'Binary detection: real vs. synthetic' \n- Right (bold dark text): 'Depth estimation (ours): d in {0, 1, 2, ..., K} (ordinal)'\n\nWhite background, publication quality, clean academic style, no border, 300 DPI. Use LaTeX-style math formatting where possible. Single-column width figure (about 3.4 inches wide, 1.5 inches tall).\" \\\n  --iterations 3 \\\n  --output figures/paper/ 2>&1",
   "description": "Generate problem illustration with PaperBanana",
   "timeout": "300000"
 }
@@ -7302,7 +7302,7 @@ called Bash
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED_GOOGLE_TOKEN] paperbanana plot \\\n  --intent \"Academic paper Figure 1: Recursive generation depth estimation problem illustration. Layout: two horizontal rows.\n\nTOP ROW (main content): A left-to-right chain of 5 rounded rectangles representing text corpora at different recursive depths.\n- Box 1: 'D_0' (label 'Human') in solid steel blue\n- Box 2: 'D_1' (label 'Gen-1') slightly faded blue\n- Box 3: 'D_2' (label 'Gen-2') more faded\n- Box 4: 'D_3' (label 'Gen-3') even more faded\n- Box 5: 'D_K' (label 'Gen-K') very faded/washed out\nBetween boxes 1-4: solid arrows with small label 'LoRA ft + sample' above each arrow.\nBetween box 4 and box 5: three dots (ellipsis) indicating continuation.\nThe fading blue colors visually convey distributional drift/collapse.\n\nMIDDLE: A dashed red arrow from box 3 (D_2) pointing down to a dashed-border pale yellow box containing 'Text passage x' with 'depth d = ?' in red bold below it. This represents the estimation task.\n\nBOTTOM ROW: Two side-by-side comparison boxes separated by a thin vertical divider:\n- Left (gray text): 'Binary detection: real vs. synthetic' \n- Right (bold dark text): 'Depth estimation (ours): d in {0, 1, 2, ..., K} (ordinal)'\n\nWhite background, publication quality, clean academic style, no border, 300 DPI. Use LaTeX-style math formatting where possible. Single-column width figure (about 3.4 inches wide, 1.5 inches tall).\" \\\n  --iterations 3 \\\n  --output figures/paper/ 2>&1",
+    "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED] paperbanana plot \\\n  --intent \"Academic paper Figure 1: Recursive generation depth estimation problem illustration. Layout: two horizontal rows.\n\nTOP ROW (main content): A left-to-right chain of 5 rounded rectangles representing text corpora at different recursive depths.\n- Box 1: 'D_0' (label 'Human') in solid steel blue\n- Box 2: 'D_1' (label 'Gen-1') slightly faded blue\n- Box 3: 'D_2' (label 'Gen-2') more faded\n- Box 4: 'D_3' (label 'Gen-3') even more faded\n- Box 5: 'D_K' (label 'Gen-K') very faded/washed out\nBetween boxes 1-4: solid arrows with small label 'LoRA ft + sample' above each arrow.\nBetween box 4 and box 5: three dots (ellipsis) indicating continuation.\nThe fading blue colors visually convey distributional drift/collapse.\n\nMIDDLE: A dashed red arrow from box 3 (D_2) pointing down to a dashed-border pale yellow box containing 'Text passage x' with 'depth d = ?' in red bold below it. This represents the estimation task.\n\nBOTTOM ROW: Two side-by-side comparison boxes separated by a thin vertical divider:\n- Left (gray text): 'Binary detection: real vs. synthetic' \n- Right (bold dark text): 'Depth estimation (ours): d in {0, 1, 2, ..., K} (ordinal)'\n\nWhite background, publication quality, clean academic style, no border, 300 DPI. Use LaTeX-style math formatting where possible. Single-column width figure (about 3.4 inches wide, 1.5 inches tall).\" \\\n  --iterations 3 \\\n  --output figures/paper/ 2>&1",
     "description": "Generate problem illustration with PaperBanana",
     "timeout": "300000"
   }
@@ -7630,7 +7630,7 @@ called Bash
 
 ```json
 {
-  "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED_GOOGLE_TOKEN] paperbanana generate \\\n  --input /tmp/fig1_description.txt \\\n  --caption \"Recursive generation depth estimation. A seed corpus D_0 feeds a LoRA finetuning-sampling loop producing successively deeper corpora. Given a passage x, the task is to estimate its ordinal depth d, going beyond binary real-vs-synthetic detection.\" \\\n  --output figures/paper/fig_problem_illustration_pb.png \\\n  --iterations 3 2>&1",
+  "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED] paperbanana generate \\\n  --input /tmp/fig1_description.txt \\\n  --caption \"Recursive generation depth estimation. A seed corpus D_0 feeds a LoRA finetuning-sampling loop producing successively deeper corpora. Given a passage x, the task is to estimate its ordinal depth d, going beyond binary real-vs-synthetic detection.\" \\\n  --output figures/paper/fig_problem_illustration_pb.png \\\n  --iterations 3 2>&1",
   "description": "Generate problem illustration with PaperBanana",
   "timeout": "300000"
 }
@@ -7646,7 +7646,7 @@ called Bash
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED_GOOGLE_TOKEN] paperbanana generate \\\n  --input /tmp/fig1_description.txt \\\n  --caption \"Recursive generation depth estimation. A seed corpus D_0 feeds a LoRA finetuning-sampling loop producing successively deeper corpora. Given a passage x, the task is to estimate its ordinal depth d, going beyond binary real-vs-synthetic detection.\" \\\n  --output figures/paper/fig_problem_illustration_pb.png \\\n  --iterations 3 2>&1",
+    "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED] paperbanana generate \\\n  --input /tmp/fig1_description.txt \\\n  --caption \"Recursive generation depth estimation. A seed corpus D_0 feeds a LoRA finetuning-sampling loop producing successively deeper corpora. Given a passage x, the task is to estimate its ordinal depth d, going beyond binary real-vs-synthetic detection.\" \\\n  --output figures/paper/fig_problem_illustration_pb.png \\\n  --iterations 3 2>&1",
     "description": "Generate problem illustration with PaperBanana",
     "timeout": "300000"
   }
@@ -7717,7 +7717,7 @@ called Bash
 
 ```json
 {
-  "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED_GOOGLE_TOKEN] paperbanana generate \\\n  --input /tmp/fig1_description.txt \\\n  --caption \"Recursive generation depth estimation problem illustration\" \\\n  --output figures/paper/fig_problem_illustration_pb.png \\\n  --vlm-model gemini-2.5-flash \\\n  --iterations 2 2>&1 | tail -30",
+  "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED] paperbanana generate \\\n  --input /tmp/fig1_description.txt \\\n  --caption \"Recursive generation depth estimation problem illustration\" \\\n  --output figures/paper/fig_problem_illustration_pb.png \\\n  --vlm-model gemini-2.5-flash \\\n  --iterations 2 2>&1 | tail -30",
   "description": "Try PaperBanana with gemini-2.5-flash",
   "timeout": "300000"
 }
@@ -7733,7 +7733,7 @@ called Bash
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED_GOOGLE_TOKEN] paperbanana generate \\\n  --input /tmp/fig1_description.txt \\\n  --caption \"Recursive generation depth estimation problem illustration\" \\\n  --output figures/paper/fig_problem_illustration_pb.png \\\n  --vlm-model gemini-2.5-flash \\\n  --iterations 2 2>&1 | tail -30",
+    "command": "source /tmp/pb_venv/bin/activate && cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=[REDACTED] paperbanana generate \\\n  --input /tmp/fig1_description.txt \\\n  --caption \"Recursive generation depth estimation problem illustration\" \\\n  --output figures/paper/fig_problem_illustration_pb.png \\\n  --vlm-model gemini-2.5-flash \\\n  --iterations 2 2>&1 | tail -30",
     "description": "Try PaperBanana with gemini-2.5-flash",
     "timeout": "300000"
   }
@@ -20376,7 +20376,7 @@ _source line 3242 · 2026-05-21T17:29:08.186169+00:00_
 37	ssh_execute("echo $GOOGLE_API_KEY | head -c 10")
 38	
 39	# 如未配置，需要用户提供 key，然后：
-40	ssh_execute("echo 'export GOOGLE_API_KEY=&lt;key>' >> ~/.bashrc && source ~/.bashrc")
+40	ssh_execute("echo 'export GOOGLE_API_KEY=[REDACTED]' >> ~/.bashrc && source ~/.bashrc")
 41	
 42	# 安装 PaperBanana
 43	ssh_execute("pip install paperbanana -q")
@@ -20397,7 +20397,7 @@ _source line 3242 · 2026-05-21T17:29:08.186169+00:00_
 58	# Framework / Pipeline 图
 59	ssh_execute("""
 60	cd ~/my-project && \
-61	GOOGLE_API_KEY=$GOOGLE_API_KEY paperbanana plot \
+61	GOOGLE_API_KEY=[REDACTED] paperbanana plot \
 62	  --intent "Three-stage pipeline diagram flowing left to right:
 63	Stage 1 'Data Collection' (blue
 …[truncated 4521 chars]
@@ -20935,7 +20935,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && \\\nGOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" \\\n/tmp/pb_venv/bin/paperbanana generate \\\n  -i /tmp/fig1_input.txt \\\n  -c \"Recursive generation depth estimation. A seed corpus D_0 feeds a LoRA finetuning-sampling loop producing successively deeper corpora D_1 through D_K. Given a passage x, the task is to estimate its ordinal depth d. Full-width, compact height, professional academic style with blue gradient boxes, serif math fonts, white background.\" \\\n  -o /tmp/fig1_paperbanana.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 5 \\\n  2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && \\\nGOOGLE_API_KEY=\"[REDACTED]\" \\\n/tmp/pb_venv/bin/paperbanana generate \\\n  -i /tmp/fig1_input.txt \\\n  -c \"Recursive generation depth estimation. A seed corpus D_0 feeds a LoRA finetuning-sampling loop producing successively deeper corpora D_1 through D_K. Given a passage x, the task is to estimate its ordinal depth d. Full-width, compact height, professional academic style with blue gradient boxes, serif math fonts, white background.\" \\\n  -o /tmp/fig1_paperbanana.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 5 \\\n  2>&1",
   "description": "Generate Figure 1 with PaperBanana",
   "timeout": "300000"
 }
@@ -20951,7 +20951,7 @@ called Bash
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && \\\nGOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" \\\n/tmp/pb_venv/bin/paperbanana generate \\\n  -i /tmp/fig1_input.txt \\\n  -c \"Recursive generation depth estimation. A seed corpus D_0 feeds a LoRA finetuning-sampling loop producing successively deeper corpora D_1 through D_K. Given a passage x, the task is to estimate its ordinal depth d. Full-width, compact height, professional academic style with blue gradient boxes, serif math fonts, white background.\" \\\n  -o /tmp/fig1_paperbanana.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 5 \\\n  2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && \\\nGOOGLE_API_KEY=\"[REDACTED]\" \\\n/tmp/pb_venv/bin/paperbanana generate \\\n  -i /tmp/fig1_input.txt \\\n  -c \"Recursive generation depth estimation. A seed corpus D_0 feeds a LoRA finetuning-sampling loop producing successively deeper corpora D_1 through D_K. Given a passage x, the task is to estimate its ordinal depth d. Full-width, compact height, professional academic style with blue gradient boxes, serif math fonts, white background.\" \\\n  -o /tmp/fig1_paperbanana.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 5 \\\n  2>&1",
     "description": "Generate Figure 1 with PaperBanana",
     "timeout": "300000"
   }
@@ -21142,7 +21142,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && \\\nGOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" \\\n/tmp/pb_venv/bin/paperbanana generate \\\n  -i /tmp/fig1_input.txt \\\n  -c \"STRICT LAYOUT REQUIREMENTS:\n1. Horizontal chain of 5 boxes LEFT TO RIGHT: D_0 (Human), D_1 (Gen-1), D_2 (Gen-2), D_3 (Gen-3), D_K (Gen-K). Ellipsis dots between D_3 and D_K. Do NOT skip D_3.\n2. Boxes use a GRADIENT of blue: D_0 is darkest blue (#2171B5), progressively lighter to D_K (#D4E6F1). Each box has document icons.\n3. Arrows between consecutive boxes labeled 'LoRA ft + sample' ABOVE the arrows.\n4. Below the chain, ONE dashed red arrow points DOWN from the chain to a SINGLE sample box.\n5. The sample box contains EXACTLY ONE line: 'Text passage x, depth d = ?' — do NOT repeat this text.\n6. At the very bottom, left side grayed: 'Binary: real vs. synthetic', right side bold blue: 'Ours: d in {0,1,...,K} (ordinal depth estimation)'.\n7. COMPACT HEIGHT: the figure should be wide (aspect ratio ~4:1), like a banner. Minimize vertical space.\n8. White background, serif math fonts, publication quality 300 DPI, academic paper style.\" \\\n  -o /tmp/fig1_paperbanana_v2.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 5 \\\n  2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && \\\nGOOGLE_API_KEY=\"[REDACTED]\" \\\n/tmp/pb_venv/bin/paperbanana generate \\\n  -i /tmp/fig1_input.txt \\\n  -c \"STRICT LAYOUT REQUIREMENTS:\n1. Horizontal chain of 5 boxes LEFT TO RIGHT: D_0 (Human), D_1 (Gen-1), D_2 (Gen-2), D_3 (Gen-3), D_K (Gen-K). Ellipsis dots between D_3 and D_K. Do NOT skip D_3.\n2. Boxes use a GRADIENT of blue: D_0 is darkest blue (#2171B5), progressively lighter to D_K (#D4E6F1). Each box has document icons.\n3. Arrows between consecutive boxes labeled 'LoRA ft + sample' ABOVE the arrows.\n4. Below the chain, ONE dashed red arrow points DOWN from the chain to a SINGLE sample box.\n5. The sample box contains EXACTLY ONE line: 'Text passage x, depth d = ?' — do NOT repeat this text.\n6. At the very bottom, left side grayed: 'Binary: real vs. synthetic', right side bold blue: 'Ours: d in {0,1,...,K} (ordinal depth estimation)'.\n7. COMPACT HEIGHT: the figure should be wide (aspect ratio ~4:1), like a banner. Minimize vertical space.\n8. White background, serif math fonts, publication quality 300 DPI, academic paper style.\" \\\n  -o /tmp/fig1_paperbanana_v2.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 5 \\\n  2>&1",
   "description": "Generate Figure 1 v2 with PaperBanana (more specific layout)",
   "timeout": "300000"
 }
@@ -21158,7 +21158,7 @@ called Bash
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && \\\nGOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" \\\n/tmp/pb_venv/bin/paperbanana generate \\\n  -i /tmp/fig1_input.txt \\\n  -c \"STRICT LAYOUT REQUIREMENTS:\n1. Horizontal chain of 5 boxes LEFT TO RIGHT: D_0 (Human), D_1 (Gen-1), D_2 (Gen-2), D_3 (Gen-3), D_K (Gen-K). Ellipsis dots between D_3 and D_K. Do NOT skip D_3.\n2. Boxes use a GRADIENT of blue: D_0 is darkest blue (#2171B5), progressively lighter to D_K (#D4E6F1). Each box has document icons.\n3. Arrows between consecutive boxes labeled 'LoRA ft + sample' ABOVE the arrows.\n4. Below the chain, ONE dashed red arrow points DOWN from the chain to a SINGLE sample box.\n5. The sample box contains EXACTLY ONE line: 'Text passage x, depth d = ?' — do NOT repeat this text.\n6. At the very bottom, left side grayed: 'Binary: real vs. synthetic', right side bold blue: 'Ours: d in {0,1,...,K} (ordinal depth estimation)'.\n7. COMPACT HEIGHT: the figure should be wide (aspect ratio ~4:1), like a banner. Minimize vertical space.\n8. White background, serif math fonts, publication quality 300 DPI, academic paper style.\" \\\n  -o /tmp/fig1_paperbanana_v2.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 5 \\\n  2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && \\\nGOOGLE_API_KEY=\"[REDACTED]\" \\\n/tmp/pb_venv/bin/paperbanana generate \\\n  -i /tmp/fig1_input.txt \\\n  -c \"STRICT LAYOUT REQUIREMENTS:\n1. Horizontal chain of 5 boxes LEFT TO RIGHT: D_0 (Human), D_1 (Gen-1), D_2 (Gen-2), D_3 (Gen-3), D_K (Gen-K). Ellipsis dots between D_3 and D_K. Do NOT skip D_3.\n2. Boxes use a GRADIENT of blue: D_0 is darkest blue (#2171B5), progressively lighter to D_K (#D4E6F1). Each box has document icons.\n3. Arrows between consecutive boxes labeled 'LoRA ft + sample' ABOVE the arrows.\n4. Below the chain, ONE dashed red arrow points DOWN from the chain to a SINGLE sample box.\n5. The sample box contains EXACTLY ONE line: 'Text passage x, depth d = ?' — do NOT repeat this text.\n6. At the very bottom, left side grayed: 'Binary: real vs. synthetic', right side bold blue: 'Ours: d in {0,1,...,K} (ordinal depth estimation)'.\n7. COMPACT HEIGHT: the figure should be wide (aspect ratio ~4:1), like a banner. Minimize vertical space.\n8. White background, serif math fonts, publication quality 300 DPI, academic paper style.\" \\\n  -o /tmp/fig1_paperbanana_v2.png \\\n  --vlm-model gemini-2.5-flash \\\n  -n 5 \\\n  2>&1",
     "description": "Generate Figure 1 v2 with PaperBanana (more specific layout)",
     "timeout": "300000"
   }

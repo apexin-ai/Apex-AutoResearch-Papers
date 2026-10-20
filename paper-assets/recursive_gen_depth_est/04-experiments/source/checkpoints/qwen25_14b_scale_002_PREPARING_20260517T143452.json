@@ -1,0 +1,35 @@
+{
+  "exp_id": "qwen25_14b_scale_002",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:12:02.367Z",
+    "updated_at": "2026-05-17T14:34:52.231Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_scale_validation.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "714992",
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log",
+      "submitted_at": "2026-05-17T13:13:08.752Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.",
+    "parent": "mvp_pipeline_pythia_002",
+    "notes": "plan_014 retry. Previous qwen25_14b_scale_001 failed during model download (session recovery). Qwen2.5-14B FP16 + LoRA r=16 alpha=32 q/k/v_proj, 3 epochs, lr=2e-4. Gradient checkpointing. Self-reference features. 5000 samples/depth d0-d3.",
+    "reproduce": {
+      "finished_at": "2026-05-17T14:34:49.299Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T14:34:52.489567+00:00",
+  "trigger": "update_registry"
+}

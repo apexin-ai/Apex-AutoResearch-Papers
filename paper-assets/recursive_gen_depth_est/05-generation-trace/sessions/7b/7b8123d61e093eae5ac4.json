@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_second_seed_status_20260517T043444_result.json",
     "occurrence": 1,
-    "bytes": 1253,
-    "sha256": "175815525650c36fc423c2b7e02a8c139f007bde5e2885fe803c5d2bde4df04b"
+    "bytes": 1252,
+    "sha256": "dfae9d8821a58d329bddca49fd392436bac978209b7a33e7e4d5535616e99617"
   },
   "statistics": {
     "messages": 1,

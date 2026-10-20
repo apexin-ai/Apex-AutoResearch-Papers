@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_matrix_analysis_warnings_20260515T021640_result.json",
     "occurrence": 1,
-    "bytes": 858,
-    "sha256": "84b2332c4ffc36de7cd5583d4e192028aa9ec77438b3281d26206da7122bebd1"
+    "bytes": 857,
+    "sha256": "b8ef039604fc05a4ff86411ec695be05a662b2e3e08bb548ed7b050b982c4352"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_cross_scale_qwen7b_001_20260516T054202_result.json",
     "occurrence": 1,
-    "bytes": 1525,
-    "sha256": "5327b9901e7ddf4b77fc402003ae34889886eedd172975dbd68d6e58d1aada6c"
+    "bytes": 1524,
+    "sha256": "0437182bc2f7bc02923c9ebb9a5ba00d096cb50c4f4cef14ae78dcca20473b61"
   },
   "statistics": {
     "messages": 1,

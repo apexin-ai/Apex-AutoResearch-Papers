@@ -1,0 +1,51 @@
+{
+  "exp_id": "downstream_benchmark_002",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:39:38.724Z",
+    "updated_at": "2026-05-17T18:05:32.810Z",
+    "hypothesis": "Fine-tuning on depth-0 (original) text produces lower held-out perplexity than fine-tuning on higher-depth (recursive) text, because d0 data has higher quality signal without recursive degradation artifacts.",
+    "parent": "downstream_benchmark_001",
+    "spec": {
+      "command": "python3 scripts/downstream_benchmark_v2.py",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "12148",
+      "log_path": "~/runs/recursive_gen_depth_est/downstream_benchmark_002.log",
+      "submitted_at": "2026-05-17T17:39:45.601Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/tmp/downstream_sampled.jsonl.gz",
+      "data_count": 2200,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/downstream_v2/",
+      "checkpoint_source": "train_from_scratch",
+      "eval_data": "held-out 200 samples (50 per depth 0-3)",
+      "wall_clock_seconds": 1547.2,
+      "gpu_hours": 0.43
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "baseline_ppl": 5.67,
+      "d0_only_ppl": 5.65,
+      "d1_only_ppl": 5.55,
+      "d2_only_ppl": 5.56,
+      "mixed_all_ppl": 5.55,
+      "best_model": "d1_only",
+      "ppl_improvement_vs_baseline": "0.12 (2.1%)"
+    },
+    "notes": "Hypothesis \"d0_only has lowest PPL\" NOT supported. d1_only (5.55) and mixed_all (5.55) tied for best, both beat baseline (5.67) and d0_only (5.65). Surprising: first-generation (d1) text is better training data than human (d0). Reframing: depth estimation enables non-trivial data curation—optimal depth is d1, not d0. 500 samples/subset, Pythia-410M LoRA, held-out PPL eval. Results: /root/autodl-tmp/recursive_gen_depth_est/results/downstream_benchmark_v2.json",
+    "log_path": "/root/runs/recursive_gen_depth_est/downstream_benchmark_002.log",
+    "completed_at": "2026-05-17T18:05:32.810Z"
+  },
+  "timestamp": "2026-05-17T18:05:33.032217+00:00",
+  "trigger": "update_registry"
+}

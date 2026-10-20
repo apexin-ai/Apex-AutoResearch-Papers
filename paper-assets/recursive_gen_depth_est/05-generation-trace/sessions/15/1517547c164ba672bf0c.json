@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_ensemble_reference_20260517T045532_result.json",
     "occurrence": 1,
-    "bytes": 922,
-    "sha256": "f0bb3dd25e0dd434157a7bdf483c1b4293aae3bccb4ff161e73bf8ad28d2c268"
+    "bytes": 921,
+    "sha256": "96582a914a121fb69b2800963490cd4b5d133b6d96873ae55b8c8b856837e5fc"
   },
   "statistics": {
     "messages": 1,

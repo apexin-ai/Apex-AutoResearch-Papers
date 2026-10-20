@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_cross_strategy_loo_20260515T040036_result.json",
     "occurrence": 1,
-    "bytes": 1695,
-    "sha256": "332f2b0a6b5088823aa5ab74256b29d6726daf58b85f651762aed5211b650f6e"
+    "bytes": 1694,
+    "sha256": "1d88a19374f80689ab2afd5af0aa5c7e1724613c29d1c1f06d691f4eb5ada51a"
   },
   "statistics": {
     "messages": 1,

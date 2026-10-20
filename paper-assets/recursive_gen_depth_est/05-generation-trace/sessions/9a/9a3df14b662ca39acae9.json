@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_discussion-expand-orphan-bib_20260515T233628_result.json",
     "occurrence": 1,
-    "bytes": 932,
-    "sha256": "e017b2e171b1fb8cb03950407471e57e19c7743d9ce1a4c866f80f920366545b"
+    "bytes": 931,
+    "sha256": "8bc3ba28750e5c6b0e80ef9dcd4932a52c13a4ca7cc5bbbc30cae605f5a010ee"
   },
   "statistics": {
     "messages": 1,

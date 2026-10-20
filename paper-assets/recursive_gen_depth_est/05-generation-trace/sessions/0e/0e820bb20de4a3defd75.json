@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_dcol_roberta_v6_prep_20260515T040134_result.json",
     "occurrence": 1,
-    "bytes": 1850,
-    "sha256": "acf143f904c7d9635121ee4e91bb6d5151274e2b0ffdf56408ad5de79a44757c"
+    "bytes": 1849,
+    "sha256": "54b846074e4263274305f2cc1aedb4e22602b23c9fc6851d3aa08e6afc7e6d10"
   },
   "statistics": {
     "messages": 1,

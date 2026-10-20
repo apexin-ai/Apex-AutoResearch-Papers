@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill_broken_roberta_20260515T123508_result.json",
     "occurrence": 1,
-    "bytes": 235,
-    "sha256": "f68f42dc67c254ad639a6b22bae6f54f01c99c0cd143e55aa8347cba9c9e516d"
+    "bytes": 234,
+    "sha256": "3df1ade629d852b4bb6f308c440c70c3078a63535544b3663e82cd2f80f580a4"
   },
   "statistics": {
     "messages": 1,

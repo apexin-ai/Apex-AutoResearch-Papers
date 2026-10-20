@@ -1,0 +1,36 @@
+{
+  "exp_id": "gpt2xl_seed43_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:19:31.443Z",
+    "updated_at": "2026-05-18T08:43:10.802Z",
+    "hypothesis": "GPT-2 XL recursive generation depth signal is reproducible across random seeds: seed=43 should yield 4-class RF accuracy within 5pp of seed=42 baseline (83.3%), confirming depth degradation is inherent to the recursive fine-tuning process rather than LoRA weight initialization.",
+    "parent": "cross_model_gpt2xl_001",
+    "spec": {
+      "command": "bash scripts/run_gpt2xl_seed43.sh",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "857779",
+      "log_path": "results/gpt2xl_seed43/pipeline.log",
+      "submitted_at": "2026-05-18T08:42:32.859Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/gpt2xl_seed43/",
+      "data_count": 5000,
+      "model_name": "gpt2-xl",
+      "seed": 43,
+      "checkpoint_path": "checkpoints/gpt2xl_seed43/",
+      "checkpoint_source": "trained from scratch (seed=43 LoRA)",
+      "eval_data": "data/gpt2xl_seed43/depth_0-3.jsonl"
+    }
+  },
+  "timestamp": "2026-05-18T08:43:11.038929+00:00",
+  "trigger": "update_registry"
+}

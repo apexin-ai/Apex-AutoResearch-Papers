@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_fix-conclusion-zscore-label_20260516T020410_result.json",
     "occurrence": 1,
-    "bytes": 175,
-    "sha256": "642e971cd85467e460fa1c0d90e2015bcb16e8e6be4c15484f9cfbbeb571a4c6"
+    "bytes": 174,
+    "sha256": "818d9cd03cb575777f776a42edf454616332029afa0b8ff6e543b640498e7a6f"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,68 @@
+{
+  "exp_id": "second_seed_replication_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:37:28.658Z",
+    "updated_at": "2026-05-17T04:54:47.616Z",
+    "hypothesis": "递归生成 depth signal 是 recursive process 的固有属性而非特定 LoRA 权重的 idiosyncrasy；用不同 seed(=43) 训练的 LoRA 应产生与 seed=42 一致的 depth fingerprint（accuracy Δ ≤ 3pp vs 78.2%）",
+    "parent": "mvp_pipeline_pythia_002",
+    "spec": {
+      "command": "bash scripts/run_second_seed_replication.sh",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": "631348",
+      "log_path": "~/runs/recursive_gen_depth_est/second_seed_replication_001.log",
+      "submitted_at": "2026-05-17T03:37:38.197Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "Pythia-1.4B",
+      "seed": 43,
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "decoding": "nucleus p=0.95",
+      "num_samples_per_depth": 500,
+      "checkpoint_source": "results/second_seed_replication/checkpoints/",
+      "eval_data": "results/second_seed_replication/features.jsonl"
+    },
+    "metrics": {
+      "4class_acc": 0.7715,
+      "ci_95": [
+        0.764,
+        0.7815
+      ],
+      "d1v2_auc": 0.8531,
+      "delta_vs_baseline": -0.0105,
+      "baseline_acc": 0.782,
+      "top_features": [
+        "var_surprisal",
+        "p90_ppl",
+        "mean_ppl",
+        "var_ppl",
+        "p75_ppl"
+      ],
+      "per_class_recall": {
+        "d0": 0.99,
+        "d1": 0.816,
+        "d2": 0.586,
+        "d3": 0.694
+      },
+      "fold_accuracies": [
+        0.77,
+        0.77,
+        0.79,
+        0.7675,
+        0.76
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T04:54:47.813194+00:00",
+  "trigger": "update_registry"
+}

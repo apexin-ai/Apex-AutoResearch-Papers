@@ -1,0 +1,27 @@
+{
+  "exp_id": "cross_model_loo_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:01:46.616Z",
+    "updated_at": "2026-05-15T04:14:13.243Z",
+    "spec": {
+      "description": "Cross-model LOO: train on 2 model families (all strategies), test on 3rd.",
+      "server": "gpu-6000pro-2",
+      "model_name": "RandomForest (CPU)",
+      "seed": 42,
+      "data_path": "9-cell features",
+      "data_count": 180000,
+      "command": "python src/cross_model_loo.py",
+      "checkpoint_path": "N/A",
+      "log_path": "results/cross_model_loo.json"
+    },
+    "hypothesis": "Cross-model LOO: 深度信号跨模型泛化，train on 2 families test on 3rd 的 4-class acc ≥ 45%（plan_005 gate）",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T04:14:13.322817+00:00",
+  "trigger": "update_registry"
+}

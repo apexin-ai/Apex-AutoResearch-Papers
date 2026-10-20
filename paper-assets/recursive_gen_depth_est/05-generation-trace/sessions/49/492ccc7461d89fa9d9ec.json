@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_curation_poc_writeup_and_bib_20260515T235442_result.json",
     "occurrence": 1,
-    "bytes": 1774,
-    "sha256": "cf6c988805b4feaee07261fe250b3f7c1363ad200fda9fdde8b4f57d50d21e1d"
+    "bytes": 1773,
+    "sha256": "7e49824ee7482d69348dfb558b7c3d7b25a3047ac8ad1f02568fe146d11c1fa5"
   },
   "statistics": {
     "messages": 1,

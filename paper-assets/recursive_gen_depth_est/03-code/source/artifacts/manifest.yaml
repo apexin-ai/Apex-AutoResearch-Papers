@@ -1,0 +1,2798 @@
+- id: art_20260514_005bbe
+  name: atlas_analysis_scripts
+  type: intermediate
+  description: Atlas 分析脚本套件，dry-run 验证通过。多模型分析等各 pipeline 完成后启用。
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/atlas_analysis_readme.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:14:36.739250+00:00'
+  tags:
+  - atlas
+  - analysis
+  - visualization
+- id: art_20260514_3a51b7
+  name: dcol_feature_based_train
+  type: intermediate
+  description: Feature-based DCOL 训练框架 (plan_004)。19维特征输入，N-pair contrastive loss
+    + CE，dry-run 2 epoch 73.9% acc。
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/dcol_feature_based_readme.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:24:14.366830+00:00'
+  tags:
+  - dcol
+  - training
+  - plan_004
+- id: art_20260514_9b5f1e
+  name: dcol_e2e_deberta_code
+  type: intermediate
+  description: End-to-end DeBERTa DCOL 训练框架 (plan_008 预研)。dcol_dataset.py + dcol_trainer.py
+    + dcol_eval.py + run_dcol_training.sh，共 1199 行。Dry-run 通过。
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/dcol_e2e_deberta_readme.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:31:55.628522+00:00'
+  tags:
+  - dcol
+  - deberta
+  - plan_008
+- id: art_20260514_11e780
+  name: baseline_battery_code
+  type: intermediate
+  description: 5 个 baseline 评估脚本 (plan_009)：PPL regression / CE-MLP / CORAL / DivEye
+    / RF。Dry-run 全部通过，结果保存在 results/baselines/。
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/baseline_battery_readme.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:33:26.656420+00:00'
+  tags:
+  - baseline
+  - evaluation
+  - plan_009
+- id: art_20260514_2cc952
+  name: baseline_battery_unified_7methods
+  type: data
+  description: 7 个 baseline 在统一 70/15/15 split 上的完整对比（含 RF+LR），results/baselines/baseline_results.json
+    已更新。
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/baseline_unified_comparison.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:49:25.346019+00:00'
+  tags:
+  - baseline
+  - evaluation
+  - plan_009
+- id: art_20260514_aa9aff
+  name: dcol_e2e_deberta_v2
+  type: intermediate
+  description: End-to-end DeBERTa DCOL 第二版代码（5文件496行）：模型/loss/数据/训练/评估分离架构，可学习 margin
+    矩阵，kNN eval。plan_008 备用。
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/dcol_e2e_v2_readme.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T16:57:21.886245+00:00'
+  tags:
+  - dcol
+  - deberta
+  - plan_008
+- id: art_20260514_f0b10a
+  name: diveye_citation_audit
+  type: report
+  description: DivEye citation verification report — Basani & Chen venue is TMLR 2026
+    not ICLR 2026
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/diveye_citation_audit.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T17:18:58.408766+00:00'
+  tags:
+  - citation-audit
+  - baseline
+  - diveye
+- id: art_20260514_84e83d
+  name: atlas_monotonicity_scores
+  type: data
+  description: Spearman rho + Kendall tau monotonicity scores for 19 features across
+    4 chains (Pythia nucleus/temp09, OLMo, GPT-2 XL). All top features show strong
+    negative correlation with depth.
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/monotonicity_scores.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:38:16.018249+00:00'
+  tags:
+  - atlas
+  - monotonicity
+  - claim2
+- id: art_20260514_ec8869
+  name: atlas_edd_matrix
+  type: data
+  description: Effective Degradation Distance matrix for 19 features x 4 chains. All
+    features show EDD=3 (no saturation within depth 0-3 range).
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/edd_matrix.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:38:22.825669+00:00'
+  tags:
+  - atlas
+  - edd
+  - claim2
+- id: art_20260514_a5f661
+  name: atlas_heatmap_data
+  type: data
+  description: Z-scored feature x model x depth heatmap data. 19 features x 4 models
+    x 4 depths with raw values and z-scores for cross-feature comparison.
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/heatmap_data.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:38:23.095251+00:00'
+  tags:
+  - atlas
+  - heatmap
+  - claim2
+- id: art_20260514_550101
+  name: atlas_feature_consistency
+  type: data
+  description: 'Cross-model feature importance consistency: Jaccard overlap and Spearman
+    rank correlation of importance vectors across 3 nucleus models. 3-way Jaccard=0.667,
+    all rank correlations p<0.01.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/feature_consistency.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:38:26.647537+00:00'
+  tags:
+  - atlas
+  - consistency
+  - claim2
+- id: art_20260514_37a6d8
+  name: pythia_topk50_001_results
+  type: report
+  description: Pythia-1.4B top-k k=50 实验结果分析报告，含4-class/3-class分类、AUC、feature importance、code
+    contamination、与baseline对比
+  path: projects/recursive_gen_depth_est/artifacts/pythia_topk50_001/report/pythia_topk50_001_analysis.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: pythia_topk50_001
+  skill: ''
+  created_at: '2026-05-14T20:31:51.945468+00:00'
+  tags:
+  - pythia
+  - topk50
+  - results
+  - matrix-cell-5
+- id: art_20260514_ddde61
+  name: pythia_topk50_001_analysis
+  type: report
+  description: Pythia top-k k=50 实验结果分析报告，含 vs baseline/temp09 对比
+  path: projects/recursive_gen_depth_est/artifacts/pythia_topk50_001/report/pythia_topk50_001_analysis_ddde61.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: pythia_topk50_001
+  skill: ''
+  created_at: '2026-05-14T20:31:52.427192+00:00'
+  tags:
+  - analysis
+  - topk
+  - pythia
+  - cross-strategy
+- id: art_20260514_57dd32
+  name: dcol_002_oom_diagnosis
+  type: report
+  description: dcol_deberta_002 CUDA OOM 诊断报告：原因分析、GPU 清理结果、重试建议
+  path: projects/recursive_gen_depth_est/artifacts/dcol_deberta_002/report/dcol_002_oom_diagnosis.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: dcol_deberta_002
+  skill: ''
+  created_at: '2026-05-14T22:44:49.049163+00:00'
+  tags:
+  - diagnosis
+  - oom
+  - gpu
+- id: art_20260514_0438df
+  name: baseline_battery_code
+  type: intermediate
+  description: 'Baseline battery 代码 (src/baselines.py, 966行): 8种方法 (PPL regression,
+    CE-MLP, CORAL, DivEye, RF, LR, zero-shot LLM)，统一 CLI 接口，已在服务器验证。初步结果: DivEye 78.2%
+    与 RF 持平。'
+  path: null
+  url: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/src/baselines.py
+  project: recursive_gen_depth_est
+  exp_id: plan_009
+  skill: ''
+  created_at: '2026-05-14T23:11:58.514816+00:00'
+  tags:
+  - baseline
+  - code
+  - plan_009
+- id: art_20260515_1f1376
+  name: atlas_v2_data
+  type: data
+  description: Atlas v2 统一数据：7/9 cell 的 metrics、feature importance、AUC、EDD，JSON 格式。等最后
+    2 cell 完成后扩展到 9/9。
+  path: projects/recursive_gen_depth_est/artifacts/atlas_v1_analysis/data/atlas_v2_data.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: atlas_v1_analysis
+  skill: ''
+  created_at: '2026-05-15T01:06:10.294214+00:00'
+  tags:
+  - atlas
+  - v2
+  - 3x3_matrix
+- id: art_20260515_9eab6d
+  name: atlas_v2_matrix_data
+  type: data
+  description: 'Atlas v2 统一格式数据: 3x3 矩阵 7/9 cells 完整数据 (accuracy, pairwise AUC, feature
+    importance, feature trajectory)'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/matrix_data.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:13:30.108017+00:00'
+  tags:
+  - atlas
+  - v2
+  - matrix
+  - cross-model
+  - cross-strategy
+- id: art_20260515_9be9d3
+  name: atlas_v2_analysis_code
+  type: intermediate
+  description: 'Atlas v2 分析框架脚本: monotonicity, EDD, heatmap, trajectory, Jaccard 五项分析'
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/atlas_v2.py
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:13:32.502333+00:00'
+  tags:
+  - atlas
+  - v2
+  - analysis
+  - code
+- id: art_20260515_dacaf8
+  name: atlas_v2_analysis_results
+  type: data
+  description: 'Atlas v2 分析输出: monotonicity_scores, edd_analysis, cross_model_heatmap,
+    feature_trajectory_summary, jaccard_matrix'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/cross_model_heatmap.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:13:34.863377+00:00'
+  tags:
+  - atlas
+  - v2
+  - results
+- id: art_20260515_lit_scan
+  name: literature_scan_20260515
+  type: report
+  description: 'Literature scan 2026 Jan-May: 13 papers surveyed, no direct competitor
+    found for recursive depth estimation. Key findings on DivEye features, non-monotonic
+    collapse dynamics, domain fragility of detection features.'
+  path: projects/recursive_gen_depth_est/artifacts/literature_scan_20260515.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:00:00.000000+00:00'
+  tags:
+  - literature
+  - survey
+  - 2026
+- id: art_20260515_16b1ce
+  name: 3x3 Matrix Comprehensive Analysis
+  type: report
+  description: 3模型×3解码策略递归生成深度估计矩阵综合分析：4-class/3-class accuracy、pairwise AUC、模型效应、策略效应、交互效应、feature
+    importance稳定性、code contamination模式、5条论文级findings
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/matrix_3x3_analysis.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:05:12.987438+00:00'
+  tags:
+  - matrix
+  - analysis
+  - 3x3
+  - cross-model
+  - cross-strategy
+  - paper-ready
+- id: art_20260515_abdee3
+  name: literature_scan_20260515
+  type: report
+  description: 文献扫描：无直接竞争者（序数深度回归空白）。DivEye/Breaking Generator Barrier/Why Detection
+    Fails/Model Collapse 新进展。
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/literature_scan_20260515.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:07:22.072155+00:00'
+  tags:
+  - literature
+  - related_work
+  - novelty
+- id: art_20260515_a1372f
+  name: atlas_v2_complete_results
+  type: data
+  description: Atlas v2 完整 8-cell 分析：完美 AUC 单调性、EDD 阈值敏感性(4档)、cross-model Jaccard=0.75、feature
+    monotonicity scores。含 edd_sensitivity.json 和 atlas_summary.json。
+  path: projects/recursive_gen_depth_est/artifacts/atlas_v1_analysis/data/atlas_v2_manifest.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: atlas_v1_analysis
+  skill: ''
+  created_at: '2026-05-15T02:13:51.735418+00:00'
+  tags:
+  - atlas
+  - v2
+  - 8cell
+  - edd_sensitivity
+- id: art_20260515_ed2dd6
+  name: atlas_v2_results
+  type: report
+  description: 'Atlas v2 complete analysis results: 8/9 cells, signal strength, cross-model/strategy,
+    EDD, feature ranking, monotonicity'
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/atlas_v2_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:14:26.530554+00:00'
+  tags:
+  - atlas
+  - v2
+  - analysis
+- id: art_20260515_2bd157
+  name: edd_threshold_sensitivity
+  type: data
+  description: 'EDD threshold sensitivity analysis: 4 thresholds (0.65, 0.70, 0.75,
+    0.80) × 8 cells. D002 requirement.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/edd_sensitivity_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:14:38.333237+00:00'
+  tags:
+  - edd
+  - sensitivity
+  - D002
+- id: art_20260515_fbd741
+  name: matrix_3x3_analysis
+  type: report
+  description: 3×3 matrix analysis document — corrected feature importance claims,
+    EDD section, olmo_topk50 supplementary metrics
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/matrix_3x3_analysis_fbd741.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:21:00.721638+00:00'
+  tags:
+  - matrix
+  - edd
+  - feature-importance
+  - reviewer-fix
+- id: art_20260515_c98e3e
+  name: atlas_v2_9cells_summary
+  type: report
+  description: Atlas v2 complete 3x3 matrix analysis report with all 9 cells. Signal
+    strength, model-strategy interaction, EDD, feature consistency, delta from 8-cell.
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/atlas_v2_9cells_summary.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:51:16.044374+00:00'
+  tags:
+  - atlas
+  - 9cells
+  - analysis
+  - complete-matrix
+- id: art_20260515_40c468
+  name: atlas_v2_9cells_data_json
+  type: data
+  description: Updated atlas_v2_data.json, atlas_v2_results.json, monotonicity_scores.json,
+    edd_sensitivity.json, cross_model_comparison.json, feature_trajectory.json — all
+    with 9 cells including gpt2xl_topk50. Located at server artifacts/atlas_v2/
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/atlas_v2_data_9cells_index.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T02:51:28.975232+00:00'
+  tags:
+  - atlas
+  - 9cells
+  - data
+- id: art_20260515_acdedc
+  name: EDD Threshold Sensitivity Analysis
+  type: data
+  description: EDD threshold sensitivity across 4 thresholds (0.65/0.70/0.75/0.80)
+    for all 9 cells of the 3x3 model-strategy matrix. Includes per-cell AUC data,
+    EDD vectors, bottleneck analysis, and recommended default threshold (0.75).
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/edd_threshold_sensitivity.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T03:23:40.669223+00:00'
+  tags:
+  - D002
+  - rebuttal
+  - edd
+  - threshold-sensitivity
+  - atlas-v2
+- id: art_20260515_503290
+  name: cross_strategy_loo_results
+  type: data
+  description: 'Cross-strategy LOO robustness test: 9 rotations (3 models x 3 hold-out
+    strategies), RF(200, seed=42). 4-class accuracy and pairwise AUC. Results on server
+    at /root/autodl-tmp/recursive_gen_depth_est/results/cross_strategy_loo.json'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/cross_strategy_loo_results.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:06:55.361969+00:00'
+  tags:
+  - plan_007
+  - claim1
+  - cross-strategy
+  - LOO
+  - robustness
+- id: art_20260515_f0f722
+  name: cross_model_loo_results
+  type: data
+  description: 'Cross-model LOO generalization test results (plan_005 Claim 1): RF
+    trained on 2 model families, tested on held-out 3rd family. Mean 4-class acc =
+    0.664.'
+  path: projects/recursive_gen_depth_est/artifacts/cross_model_loo_v1/data/cross_model_loo_results.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: cross_model_loo_v1
+  skill: ''
+  created_at: '2026-05-15T04:09:09.318756+00:00'
+  tags:
+  - plan_005
+  - claim1
+  - cross_model
+  - LOO
+  - generalization
+- id: art_20260515_d89c36
+  name: fig1_auc_decay
+  type: chart
+  description: 'AUC Decay Curve: 9 configurations (3 models × 3 strategies) showing
+    pairwise RF AUC decline across adjacent depth pairs. EDD threshold τ=0.75 annotated.
+    7/9 configs unsaturated at depth 3.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig1_auc_decay.png
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:12:14.345937+00:00'
+  tags:
+  - atlas
+  - paper-figure
+  - auc
+  - edd
+- id: art_20260515_23fafd
+  name: fig2_feature_trajectory
+  type: chart
+  description: 'Feature Trajectory Panel: 3 subplots (Pythia/OLMo/GPT-2 XL) showing
+    monotonic decrease of top-5 features (P90 PPL, P75 PPL, Var Surprisal, Mean Surprisal,
+    TTR) with recursive depth, normalized to depth 0.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig2_feature_trajectory.png
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:12:18.085030+00:00'
+  tags:
+  - atlas
+  - paper-figure
+  - features
+  - trajectory
+- id: art_20260515_25ff8e
+  name: fig3_confusion_matrix
+  type: chart
+  description: 'Confusion Matrix Heatmap: best (GPT-2 XL temp, 85.4%) vs worst (Pythia
+    topk, 69.6%) configurations. Row-normalized percentages, 5-fold CV RF predictions.
+    d2 is hardest to classify in both cases.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig3_confusion_matrix.png
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:12:21.370544+00:00'
+  tags:
+  - atlas
+  - paper-figure
+  - confusion-matrix
+- id: art_20260515_991f24
+  name: fig4_atlas_heatmap
+  type: chart
+  description: 'Atlas Heatmap Grid: 3×3 (models × strategies) showing 4-class RF accuracy.
+    GPT-2 XL temp=0.9 best (85.4%), Pythia topk worst (69.6%). Clear model effect
+    (GPT-2 XL > OLMo > Pythia) and strategy effect (topk worst).'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig4_atlas_heatmap.png
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:12:24.533956+00:00'
+  tags:
+  - atlas
+  - paper-figure
+  - heatmap
+  - accuracy
+- id: art_20260515_12b98b
+  name: 9cell_baseline_battery_results
+  type: data
+  description: 9-cell baseline battery (RF, LR, CORAL, DivEye) across 3 models x 3
+    decoding strategies. 4-class acc, 3-class acc, d1v2 AUC for all 36 combinations.
+    Paper Table 1 material.
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/9cell_baseline_battery.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:18:18.577640+00:00'
+  tags:
+  - baseline
+  - table1
+  - paper
+- id: art_20260515_8b4a91
+  name: feature_importance_9cell
+  type: data
+  description: 'Atlas v2 feature importance: RF Gini importance for all 9 cells (3
+    models x 3 strategies). p90_ppl top-2 in 9/9, var_surprisal top-2 in 7/9.'
+  path: projects/recursive_gen_depth_est/artifacts/atlas_v2_analysis/data/feature_importance_9cell.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: atlas_v2_analysis
+  skill: ''
+  created_at: '2026-05-15T04:32:30.294114+00:00'
+  tags:
+  - atlas
+  - feature-importance
+  - 9cell
+  - primary-contribution
+- id: art_20260515_8906ba
+  name: monotonicity_scores_9cell
+  type: data
+  description: 'Atlas v2 monotonicity: Spearman rho of top-5 feature means vs depth
+    for all 9 cells. ppl/surprisal features show rho=-1.0 monotonic decrease.'
+  path: projects/recursive_gen_depth_est/artifacts/atlas_v2_analysis/data/monotonicity_scores_9cell.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: atlas_v2_analysis
+  skill: ''
+  created_at: '2026-05-15T04:32:40.745905+00:00'
+  tags:
+  - atlas
+  - monotonicity
+  - 9cell
+  - primary-contribution
+- id: art_20260515_87668b
+  name: edd_analysis_9cell
+  type: data
+  description: 'Atlas v2 EDD: adjacent-depth AUC and EDD at T=0.65/0.70/0.75/0.80
+    for all 9 cells. EDD=3 at T=0.75 in 7/9 cells.'
+  path: projects/recursive_gen_depth_est/artifacts/atlas_v2_analysis/data/edd_analysis_9cell.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: atlas_v2_analysis
+  skill: ''
+  created_at: '2026-05-15T04:32:43.319837+00:00'
+  tags:
+  - atlas
+  - edd
+  - 9cell
+  - primary-contribution
+- id: art_20260515_8c5dbe
+  name: cross_comparison_9cell
+  type: data
+  description: 'Atlas v2 cross-model/strategy comparison: rank correlation [0.619,
+    0.954] mean=0.868, Jaccard top-3, accuracy consistency.'
+  path: projects/recursive_gen_depth_est/artifacts/atlas_v2_analysis/data/cross_comparison_9cell.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: atlas_v2_analysis
+  skill: ''
+  created_at: '2026-05-15T04:32:44.223216+00:00'
+  tags:
+  - atlas
+  - cross-comparison
+  - 9cell
+  - primary-contribution
+- id: art_20260515_fd24b7
+  name: atlas_figures_v2_bugfix
+  type: chart
+  description: '4张Atlas论文图修复版(v2): Bug1 EDD idx+1, Bug2 策略标注, Bug3 CV accuracy, Bug4
+    RF确认'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig1_auc_decay_fd24b7.png
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:36:51.018362+00:00'
+  tags:
+  - atlas
+  - figures
+  - bugfix
+  - reviewer
+- id: art_20260515_2da678
+  name: auc_data_unification_report
+  type: report
+  description: Three-way AUC comparison table (pipeline vs edd_sensitivity vs edd_9cell)
+    and deviation analysis
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/auc_unification_report.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:55:48.337250+00:00'
+  tags:
+  - auc
+  - data-unification
+  - reviewer
+- id: art_20260515_fcb9e8
+  name: data_reconciliation
+  type: report
+  description: 全局数据 reconciliation check：列出论文所有关键数值的权威来源、交叉验证结果和冲突分析
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/data_reconciliation.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T05:11:12.550204+00:00'
+  tags:
+  - paper
+  - data-integrity
+  - reconciliation
+- id: art_20260515_b9d288
+  name: cross_model_loo_detailed
+  type: data
+  description: 'Cross-model LOO detailed results: 4-class and 3-class accuracy, per-class
+    P/R/F1, confusion matrices, pairwise AUC for all 3 rotations. mean_4class_acc=0.664,
+    mean_3class_acc=0.5544, lowest_recall=d2(0.4086)'
+  path: projects/recursive_gen_depth_est/artifacts/cross_model_loo_v1/data/cross_model_loo_detailed.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: cross_model_loo_v1
+  skill: ''
+  created_at: '2026-05-15T05:11:15.998765+00:00'
+  tags:
+  - cross-model
+  - LOO
+  - generalization
+  - plan_005
+- id: art_20260515_bed875
+  name: cross_strategy_loo_zscore
+  type: report
+  description: 'Cross-strategy LOO with z-score standardization: negative result —
+    z-score does not fix temp09 d1v2 AUC inversion in RF (tree-based model is scale-invariant).
+    Raw results replicate cross_strategy_loo_001.'
+  path: projects/recursive_gen_depth_est/artifacts/cross_strategy_loo_zscore_001/report/cross_strategy_loo_zscore.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: cross_strategy_loo_zscore_001
+  skill: ''
+  created_at: '2026-05-15T05:12:37.077230+00:00'
+  tags:
+  - cross-strategy
+  - loo
+  - zscore
+  - covariate-shift
+  - negative-result
+- id: art_20260515_ee1db6
+  name: fig_auc_decay
+  type: chart
+  description: AUC decay curve showing pairwise AUC degradation across adjacent depth
+    pairs (d0→d5) for binary pairwise RF, 4-class pipeline, and 6-class pipeline.
+    EDD=4 threshold annotated at T=0.75.
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_auc_decay.pdf
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:44:40.410814+00:00'
+  tags:
+  - paper
+  - auc
+  - depth
+  - edd
+- id: art_20260515_beaed3
+  name: fig_auc_decay
+  type: chart
+  description: 'AUC decay curve across adjacent depth pairs (d0v1→d4v5) with EDD threshold
+    lines. Binary pairwise RF vs 4-class/6-class pipeline. EDD=4 at T=0.75. Data:
+    depth_extension_binary_pairwise_002, mvp_pipeline_pythia_002, depth_extension_pythia_d4d5_001.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_auc_decay_beaed3.pdf
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T07:01:58.965173+00:00'
+  tags:
+  - paper
+  - atlas
+  - edd
+  - figure
+- id: art_20260515_eac11b
+  name: fig_feature_trajectory
+  type: chart
+  description: '3-panel feature trajectory plot: top-5 features normalized depth means
+    (d0→d3) across Pythia-1.4B, OLMo-1B, GPT-2 XL. Shows monotonic decay with p90_ppl
+    fastest and TTR slowest.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_feature_trajectory.pdf
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:06:26.688622+00:00'
+  tags:
+  - paper
+  - figure
+  - feature_trajectory
+  - atlas_v2
+- id: art_20260515_93792f
+  name: fig_atlas_heatmap
+  type: chart
+  description: 'Feature Importance × 9-cell heatmap: top-7 features across 3 models
+    × 3 decoding strategies, with importance values and ranks annotated. Stars mark
+    universal top-2 features (p90_ppl, var_surprisal).'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_atlas_heatmap.pdf
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:43:35.831922+00:00'
+  tags:
+  - paper
+  - figure
+  - feature_importance
+  - heatmap
+  - atlas_v2
+- id: art_20260515_dbab81
+  name: fig_confusion_matrix
+  type: chart
+  description: '2-panel confusion matrix heatmap: best in-distribution (GPT-2 XL temp09,
+    85.4%) vs worst in-distribution (Pythia topk50, 69.6%). Shows d2/d3 confusion
+    pattern and d2 recall degradation in worst setting.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_confusion_matrix.pdf
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:03:18.847620+00:00'
+  tags:
+  - paper
+  - confusion_matrix
+  - in-distribution
+- id: art_20260515_74dd6a
+  name: section_method
+  type: paper
+  description: 'Section 3 (Task Formulation) for EMNLP 2026 paper: problem definition,
+    benchmark construction, 19 statistical features, and EDD metric.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_method.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T09:28:28.581789+00:00'
+  tags:
+  - latex
+  - section3
+  - task-formulation
+- id: art_20260515_9d424b
+  name: section_related_work
+  type: paper
+  description: 'Related Work section (§2) for recursive generation depth estimation
+    paper. 4 paragraphs: Model Collapse Theory, AI Text Detection, Adjacent Tasks,
+    Decoding Strategy Effects. ~600 words, ACL style.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_related_work.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T09:36:39.957688+00:00'
+  tags:
+  - paper
+  - related-work
+  - latex
+- id: art_20260515_c6af4b
+  name: section_discussion
+  type: paper
+  description: Discussion and Limitations section (§6) — implications of depth-graduated
+    curation, feature evolution, cross-strategy deployment warning; limitations on
+    controlled setting, reference model circularity, domain fragility, non-monotonic
+    dynamics, and curated pipelines.
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T09:39:19.032548+00:00'
+  tags:
+  - paper
+  - discussion
+  - limitations
+  - latex
+- id: art_20260515_bc05f7
+  name: lr_zscore_cross_strategy_results
+  type: data
+  description: 'LR cross-strategy LOO raw vs z-score results. Z-score fails to recover
+    temp09 holdout d1v2 AUC — paper claim NOT supported. GPT-2 XL temp09 d1v2: 0.50→0.24;
+    OLMo temp09 d1v2: 0.50→0.19.'
+  path: projects/recursive_gen_depth_est/artifacts/lr_zscore_cross_strategy_001/data/lr_zscore_cross_strategy_pointer.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: lr_zscore_cross_strategy_001
+  skill: ''
+  created_at: '2026-05-15T09:45:12.824419+00:00'
+  tags:
+  - lr
+  - zscore
+  - cross-strategy
+  - negative
+- id: art_20260515_530811
+  name: fig_confusion_matrix
+  type: chart
+  description: 'Confusion matrices: best in-distribution (GPT-2 XL temp09, 85.4%)
+    + best cross-model LOO (OLMo holdout, 69.2%). Data from gpt2xl_temp09_001 and
+    cross_model_loo_v1.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_confusion_matrix_530811.pdf
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-15T10:18:26.021205+00:00'
+  tags:
+  - paper
+  - generalization
+  - confusion_matrix
+- id: art_20260515_4a088d
+  name: n2_feature_overlap_analysis
+  type: report
+  description: 'DeBERTa attention vs RF permutation importance overlap analysis. Key
+    finding: Spearman ρ=-0.484 (p=0.036), top-5 overlap=0. DeBERTa encodes surface
+    features (TTR, n-gram repetition) while RF relies on perplexity distribution stats
+    (var_surprisal, p90_ppl) — explains 20pp finetune gap.'
+  path: projects/recursive_gen_depth_est/artifacts/n2_deberta_finetune_001/report/n2_feature_overlap_analysis.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: n2_deberta_finetune_001
+  skill: ''
+  created_at: '2026-05-15T13:20:43.003525+00:00'
+  tags:
+  - N2
+  - rebuttal
+  - feature-importance
+  - R1-N3
+- id: art_20260515_3b63f2
+  name: n2_roberta_feature_overlap_analysis
+  type: report
+  description: 'RoBERTa attention vs RF permutation importance overlap analysis. Confirms
+    DeBERTa findings: Spearman ρ=-0.456 (p=0.050), top-5 overlap=0. Cross-architecture
+    consistency proves transformer representation bias is systematic, not model-specific.'
+  path: projects/recursive_gen_depth_est/artifacts/n2_roberta_finetune_001/report/n2_roberta_feature_overlap_analysis.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: n2_roberta_finetune_001
+  skill: ''
+  created_at: '2026-05-15T13:28:37.413087+00:00'
+  tags:
+  - N2
+  - rebuttal
+  - feature-importance
+  - R1-N3
+- id: art_20260515_b88807
+  name: section_introduction
+  type: paper
+  description: Section 1 Introduction for recursive_gen_depth_est paper (~900 words).
+    Covers hook (recursive feedback loops in web corpora), gap (no ordinal depth estimation
+    method exists), insight (perplexity tail statistics as universal depth markers),
+    and four contributions (C1 task formalization + EDD + benchmark, C2 Depth Degradation
+    Atlas, C3 cross-model/cross-strategy generalization analysis, C4 negative results
+    on end-to-end learning).
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_introduction_b88807.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T15:55:32.806785+00:00'
+  tags:
+  - paper
+  - introduction
+  - latex
+- id: art_20260515_e30935
+  name: section_generalization
+  type: paper
+  description: 'Section 5: Generalization and Robustness — baseline comparison, cross-model/cross-strategy
+    LOO, end-to-end negative result'
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization_e30935.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T15:58:40.691536+00:00'
+  tags:
+  - paper
+  - section5
+  - generalization
+  - cross-model
+  - cross-strategy
+  - negative-result
+- id: art_20260515_6ebd75
+  name: section_atlas
+  type: paper
+  description: 'Section 4: The Depth Degradation Atlas — primary contribution section
+    with 5 subsections (in-distribution performance, feature universality, monotonicity,
+    EDD analysis, strategy-dependent trajectories)'
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_atlas_6ebd75.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:06:07.257741+00:00'
+  tags:
+  - paper
+  - section4
+  - atlas
+  - primary-contribution
+- id: art_20260515_d03c78
+  name: temp07_pilot_results
+  type: data
+  description: 'τ=0.7 Temperature Pilot results for Pythia-1.4B (500 samples/depth,
+    d0-d5). Key finding: d1v2 AUC RF=0.8378 (vs τ=0.9 baseline 0.8327) — no AUC inversion
+    at lower temperature. 6-class accuracy 57.3%.'
+  path: projects/recursive_gen_depth_est/artifacts/temp07_pilot/data/temp07_pilot_results.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: temp07_pilot
+  skill: ''
+  created_at: '2026-05-15T16:18:24.532915+00:00'
+  tags:
+  - temperature-ablation
+  - pythia-1.4b
+  - pairwise-auc
+  - pilot
+- id: art_20260515_d088f8
+  name: section_method
+  type: paper
+  description: Section 3 Task Formulation LaTeX — Problem Definition, Multi-Generational
+    Benchmark, Statistical Feature Design (19-feature table), EDD metric
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_method_d088f8.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:25:30.911338+00:00'
+  tags:
+  - paper
+  - section3
+  - method
+- id: art_20260515_1d7f7e
+  name: section_generalization
+  type: paper
+  description: §5 Generalization and Robustness — patched §5.4 with DeBERTa/RoBERTa
+    per-class F1, pairwise AUC, architecture-independence argument, and feature overlap
+    analysis
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_generalization_1d7f7e.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:27:10.232864+00:00'
+  tags:
+  - paper
+  - section5
+  - e2e-learning
+  - negative-result
+- id: art_20260515_1560ed
+  name: section_discussion
+  type: paper
+  description: §6 Discussion and Limitations — added PLM complementarity, three-tier
+    strategy classification (D015), z-score falsification (D014/D021), d0 recall dominance
+    limitation
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/section_discussion_1560ed.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:27:12.676060+00:00'
+  tags:
+  - paper
+  - section6
+  - discussion
+  - limitations
+- id: art_20260515_35523a
+  name: fig_auc_decay
+  type: chart
+  description: 'AUC Decay Curve: pairwise AUC vs depth pair (d1v2→d4v5) for Pythia/GPT-2
+    XL/OLMo, showing EDD=4 threshold'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_auc_decay_info.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T16:29:31.564853+00:00'
+  tags:
+  - paper
+  - figure
+  - D002
+- id: art_20260515_e0d0c0
+  name: fig_feature_trajectory
+  type: chart
+  description: 'Feature Trajectory: normalized top-5 feature values (p90_ppl, var_surprisal,
+    mean_surprisal, rep_2gram, rep_3gram) across depths d0-d3'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_feature_trajectory_info.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T16:29:35.822979+00:00'
+  tags:
+  - paper
+  - figure
+  - D002
+- id: art_20260515_c366e7
+  name: fig_confusion_matrix
+  type: chart
+  description: 'Confusion Matrix 2-panel: in-distribution Pythia nucleus 5-fold CV
+    RF vs cross-model LOO holdout Pythia'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_confusion_matrix_info.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T16:29:41.177121+00:00'
+  tags:
+  - paper
+  - figure
+  - D002
+- id: art_20260515_110306
+  name: fig_atlas_heatmap
+  type: chart
+  description: 'Atlas Heatmap: 3×3 grid (Pythia/OLMo/GPT-2 XL × nucleus/temp09/topk50)
+    of 4-class RF accuracy from 9-cell experiment'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_atlas_heatmap_info.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T16:29:45.164033+00:00'
+  tags:
+  - paper
+  - figure
+  - D002
+- id: art_20260515_40e413
+  name: SHAP TreeExplainer 9-cell Analysis
+  type: data
+  description: 'SHAP TreeExplainer feature importance for 9-cell RF models. PPL features
+    dominate (88.8%), top-5: p90_ppl, var_surprisal, p75_ppl, mean_surprisal, mean_ppl.
+    Confirms complementarity with DeBERTa. R3-N3 response.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/shap_analysis_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:37:06.567911+00:00'
+  tags:
+  - shap
+  - feature_importance
+  - R3-N3
+  - reviewer_response
+- id: art_20260515_0f069e
+  name: LR Cross-Strategy Z-Score Results
+  type: data
+  description: 'LR cross-strategy LOO with 3 conditions (raw/scaler/zscore). Z-score
+    recovers d1v2 AUC vs scaler: GPT-2 XL temp09 0.238→0.561, OLMo temp09 0.191→0.699.
+    Paper framing directionally correct but magnitudes need update. P0-1 verification.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/lr_zscore_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:37:14.587846+00:00'
+  tags:
+  - lr_zscore
+  - cross_strategy
+  - P0-1
+  - paper_framing
+- id: art_20260515_0d8eeb
+  name: zeroshot_llm_500_results
+  type: data
+  description: 'Zero-shot LLM baseline (DeepSeek-v3.2) on 500 balanced samples (125/depth).
+    4-class acc=36.2%, 95% CI=[32.0%, 40.4%], CI width=8.4pp. Per-class recall: d0=95.2%,
+    d1=12.8%, d2=24.8%, d3=12.0%. Confirms LLM far below RF baseline (78.2%). Addresses
+    R1-W4.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/zeroshot_llm_500_results.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:39:49.263154+00:00'
+  tags:
+  - zeroshot
+  - baseline
+  - deepseek
+  - 500-sample
+  - R1-W4
+- id: art_20260515_4cf76f
+  name: SHAP vs Permutation Importance Comparison
+  type: data
+  description: 'Per-cell Spearman ρ between SHAP and permutation importance rankings
+    with top-5 features. All 9 cells ρ ≥ 0.749 (p < 0.001). Remote: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/shap_vs_permutation.json'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/shap_vs_permutation.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:42:54.668748+00:00'
+  tags:
+  - shap
+  - permutation-importance
+  - R3-N3
+  - rebuttal
+- id: art_20260515_31b33a
+  name: SHAP Importance Heatmap
+  type: chart
+  description: 'Heatmap of mean |SHAP value| across 9 cells × 19 features. PDF+PNG
+    on remote server: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/figures/shap_importance_heatmap.pdf
+    and results/shap_analysis/shap_importance_heatmap.png'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/shap_importance_heatmap_info.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:42:58.464366+00:00'
+  tags:
+  - shap
+  - heatmap
+  - R3-N3
+  - rebuttal
+  - figure
+- id: art_20260515_55f101
+  name: SHAP vs Permutation Rank Scatter
+  type: chart
+  description: 'Scatter plot of SHAP rank vs permutation importance rank for 19 features
+    across 9 cells. Mean ρ=0.83. Remote: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/figures/shap_vs_perm_scatter.pdf'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/shap_vs_perm_scatter_info.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:43:01.396741+00:00'
+  tags:
+  - shap
+  - scatter
+  - R3-N3
+  - rebuttal
+  - figure
+- id: art_20260515_29664a
+  name: SHAP TreeExplainer 9-Cell Summary
+  type: data
+  description: SHAP mean |SHAP value| feature importance summary for all 9 cells.
+    p90_ppl and var_surprisal top-4 in 9/9 cells. Mean Spearman rho vs permutation
+    = 0.83.
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/shap_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:43:19.060697+00:00'
+  tags:
+  - shap
+  - feature-importance
+  - R3-N3
+  - rebuttal
+- id: art_20260515_8654e6
+  name: shap_9cell_analysis
+  type: data
+  description: 'SHAP TreeExplainer on 9 cells. Top-5: p90_ppl, var_surprisal, p75_ppl,
+    mean_surprisal, mean_ppl. PPL/surprisal = 88.8% SHAP contribution. Matches Gini
+    top-5. Addresses R3-N3.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/shap_9cell_and_zscore_correction.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:59:18.490543+00:00'
+  tags:
+  - R3-N3
+  - SHAP
+  - feature-importance
+- id: art_20260515_82fdde
+  name: pca_leave_one_group_out_analysis
+  type: report
+  description: PCA effective dimensions (6-7 PCs = 90% variance) + leave-one-group-out
+    ablation (perplexity group most critical, -3.5% acc). 9-cell analysis supplement
+    for R3 feature ablation response.
+  path: projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/report/pca_leave_one_group_out_analysis.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: feat_ablation_v1
+  skill: ''
+  created_at: '2026-05-15T18:04:28.338124+00:00'
+  tags:
+  - r3-response
+  - feature-ablation
+  - pca
+  - rebuttal
+- id: art_20260515_1770da
+  name: fig4_atlas_heatmap_fixed
+  type: chart
+  description: Fig 4 Atlas heatmap regenerated with per-experiment RF accuracy (matches
+    Table main_matrix). Fixed 0.2-1.2pp discrepancy from summary_9cell.json best-across-methods
+    values.
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig4_atlas_heatmap_fixed.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:09:51.268435+00:00'
+  tags:
+  - figure
+  - atlas
+  - heatmap
+  - r3-response
+- id: art_20260515_6a93cd
+  name: feature_ablation_phase1_summary
+  type: data
+  description: 'Feature ablation Phase 1 complete summary: top-k, category, LOGO,
+    PCA, VIF across 9 cells'
+  path: projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/data/feature_ablation_phase1_summary.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: feat_ablation_v1
+  skill: ''
+  created_at: '2026-05-15T19:01:27.948669+00:00'
+  tags:
+  - feature_ablation
+  - phase1
+  - R3-N3
+- id: art_20260515_a15690
+  name: SHAP TreeExplainer Analysis Report (R3-N3)
+  type: report
+  description: 'SHAP TreeExplainer analysis for 9-cell RF classifiers — R3-N3 reviewer
+    response replacing attention-importance with SHAP. Key finding: var_surprisal
+    + p90_ppl dominate in all 9 cells (88.8% PPL contribution), Spearman ρ=0.830 vs
+    permutation importance.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/shap_report.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:05:37.909942+00:00'
+  tags:
+  - shap
+  - R3-N3
+  - feature-importance
+  - reviewer-response
+- id: art_20260515_1ec027
+  name: R3-N3 SHAP TreeExplainer Analysis Report
+  type: report
+  description: SHAP TreeExplainer feature importance analysis for 9-cell RF models,
+    replacing attention-importance correlation for R3-N3 reviewer response
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/r3n3_shap_analysis_report.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:16:58.526246+00:00'
+  tags:
+  - R3-N3
+  - SHAP
+  - feature-importance
+  - reviewer-response
+- id: art_20260515_4bae4e
+  name: R3 Writing Fixes Log
+  type: report
+  description: Round 3 review writing fixes changelog — all 9 issues addressed, per-file
+    diffs and registry sources documented
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/r3_writing_fixes_log.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:29:29.600481+00:00'
+  tags:
+  - paper
+  - review
+  - r3
+- id: art_20260515_eee559
+  name: SHAP TreeExplainer 9-cell Analysis (R3-N3)
+  type: report
+  description: SHAP TreeExplainer analysis replacing attention-importance correlation.
+    Includes three-way comparison (SHAP vs Gini vs Permutation), beeswarm plots, cross-cell
+    consistency heatmap. Kendall W=0.90, SHAP-Gini ρ=0.93.
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/shap_analysis_r3n3_report.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:31:49.893220+00:00'
+  tags:
+  - shap
+  - r3-n3
+  - rebuttal
+  - feature-importance
+- id: art_20260515_824542
+  name: w2_domain_bias_results
+  type: data
+  description: 'W2 domain bias validation: 3 sub-experiments (d1-d3 only 3-class RF,
+    seed-stratified LOGO, negative control) across all 9 cells. Confirms depth signal
+    is NOT a domain artifact.'
+  path: null
+  url: ssh://gpu-6000pro-2/root/autodl-tmp/recursive_gen_depth_est/results/w2_domain_bias/w2_domain_bias_results.json
+  project: recursive_gen_depth_est
+  exp_id: w2_domain_bias_001
+  skill: ''
+  created_at: '2026-05-15T19:33:13.440707+00:00'
+  tags:
+  - rebuttal
+  - R1-W2
+  - R3-W1
+  - domain_bias
+- id: art_20260515_eeca44
+  name: R3-W5 XGBoost+LightGBM results
+  type: data
+  description: XGBoost (79.0%) and LightGBM (78.8%) 5-fold CV on Pythia nucleus095,
+    confirming RF 78.2% ceiling is feature-bound
+  path: projects/recursive_gen_depth_est/artifacts/xgboost_lgbm_baseline_001/data/r3w5_xgb_lgbm_results.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: xgboost_lgbm_baseline_001
+  skill: ''
+  created_at: '2026-05-15T19:43:03.818710+00:00'
+  tags:
+  - baseline
+  - xgboost
+  - lightgbm
+  - R3-W5
+- id: art_20260515_e69dad
+  name: xgboost_lgbm_table2_data
+  type: data
+  description: XGBoost/LightGBM baseline structured results for Paper Table 2, extracted
+    from r3w5_baselines experiment
+  path: projects/recursive_gen_depth_est/artifacts/xgboost_lgbm_baseline_001/data/xgboost_lgbm_table2_data.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: xgboost_lgbm_baseline_001
+  skill: ''
+  created_at: '2026-05-15T19:48:35.994480+00:00'
+  tags:
+  - paper
+  - R3-W5
+  - table2
+- id: art_20260515_2649b4
+  name: feat_ablation_structured_data
+  type: data
+  description: Feature ablation experiment structured data for paper writing. Contains
+    top-k ablation curves (9 cells), per-category accuracy, forward selection ranking,
+    VIF summary, and PCA effective dimensionality from feat_ablation_v1.
+  path: projects/recursive_gen_depth_est/artifacts/feat_ablation_v1/data/feat_ablation_structured_data.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: feat_ablation_v1
+  skill: ''
+  created_at: '2026-05-15T19:52:59.650384+00:00'
+  tags:
+  - paper
+  - R3-N2
+- id: art_20260515_df6c95
+  name: xgb_lgbm_3cell_results
+  type: data
+  description: '3-cell x 3-classifier (RF/XGBoost/LightGBM) unified evaluation results.
+    Remote: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/xgb_lgbm_3cell/results.json'
+  path: null
+  url: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/xgb_lgbm_3cell/results.json
+  project: recursive_gen_depth_est
+  exp_id: xgboost_lgbm_3cell_001
+  skill: ''
+  created_at: '2026-05-15T19:53:32.189775+00:00'
+  tags:
+  - baseline
+  - xgboost
+  - lightgbm
+  - rf
+  - 3cell
+  - unified-eval
+- id: art_20260515_40c852
+  name: w2_domain_bias_bc_rerun_results
+  type: data
+  description: W2 domain bias Sub-B (LOGO) and Sub-C (negative control) re-run results
+    after fixing per-depth seed assignment bug. Sub-B mean=72.1%, Sub-C seed_group=10.2%
+    (at chance).
+  path: projects/recursive_gen_depth_est/artifacts/w2_domain_bias_001/data/w2_domain_bias_bc_rerun_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: w2_domain_bias_001
+  skill: ''
+  created_at: '2026-05-15T20:11:57.404133+00:00'
+  tags:
+  - bugfix
+  - w2
+  - domain-bias
+  - rerun
+- id: art_20260515_ccd227
+  name: plan_015_wild_data_calibration
+  type: data
+  description: 'WikiText-103 wild-data calibration for Pythia-1.4B nucleus RF. 100%
+    d0 prediction rate on 546 WikiText passages. Server: results/plan_015_wild_data/'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/plan_015_results_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T21:35:02.337288+00:00'
+  tags:
+  - plan_015
+  - wild_data
+  - calibration
+  - wikitext
+  - pythia_nucleus
+- id: art_20260515_1db0aa
+  name: plan_015_c4_calibration
+  type: data
+  description: 'C4 web-crawl wild data calibration results: 5000 C4 validation passages
+    tested with RF depth estimator (Pythia-1.4B features). C4 d0 prediction rate=79.8%
+    vs WikiText-103 100%. 20.2% false positive rate on diverse web text.'
+  path: projects/recursive_gen_depth_est/artifacts/plan_015_c4_supplement/data/c4_calibration.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: plan_015_c4_supplement
+  skill: ''
+  created_at: '2026-05-15T22:36:19.137542+00:00'
+  tags:
+  - plan_015
+  - c4
+  - calibration
+  - wild_data
+  - ecological_validity
+- id: art_20260515_9499c0
+  name: gpt2xl_c4_calibration
+  type: data
+  description: 'GPT-2 XL RF wild-data calibration on C4: 77.62% d0 prediction rate,
+    cross-model consistent with Pythia (79.76%)'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/gpt2xl_c4_calibration.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:37:15.568463+00:00'
+  tags:
+  - plan_015
+  - wild-data
+  - gpt2xl
+  - c4
+  - calibration
+- id: art_20260515_8cef9c
+  name: placeholder_values
+  type: data
+  description: 'Computed paper placeholder values: 9-cell d0-excluded 3-class range
+    (58.8%-82.6%) and cross-strategy LOO d1-d3 accuracy (45.9%)'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/placeholder_values.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:33:08.987863+00:00'
+  tags:
+  - paper
+  - placeholder
+  - accuracy
+- id: art_20260515_3ef4f0
+  name: curation_poc_analysis_summary
+  type: data
+  description: 'Downstream curation PoC statistical analysis: 8 conditions x 5 seeds,
+    paired t-test + Cohen d. RF filtering not significant vs unfiltered; random filtering
+    significantly worse.'
+  path: projects/recursive_gen_depth_est/artifacts/downstream_curation_poc_001/data/curation_poc_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: downstream_curation_poc_001
+  skill: ''
+  created_at: '2026-05-15T23:53:06.780072+00:00'
+  tags:
+  - plan_013
+  - curation
+  - downstream
+  - negative_result
+- id: art_20260516_cb9503
+  name: r3_tex_verification
+  type: report
+  description: Verification report confirming all 6 R3 reviewer items are implemented
+    in paper .tex files
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/r3_tex_verification.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:26:41.717962+00:00'
+  tags:
+  - r3
+  - review
+  - verification
+  - paper
+- id: art_20260516_92e323
+  name: w2_domain_bias_v2_results
+  type: data
+  description: W2 Domain Bias v2 results — Sub-A/B/C with actual seed_id from raw
+    data (fixes RR3-W4)
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/w2_domain_bias_v2_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:29:10.741942+00:00'
+  tags:
+  - reviewer_response
+  - domain_bias
+  - LOGO
+  - RR3-W4
+- id: art_20260516_dbf86b
+  name: wild_data_calibration_v3_results
+  type: data
+  description: 'Wild data calibration v3: FineWeb 5000 passages FPR=19.46%, consistent
+    with C4 FPR=20.2%. Confirms web-crawl ~20% FPR driven by template/SEO content.'
+  path: null
+  url: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/wild_data_v3/calibration_results.json
+  project: recursive_gen_depth_est
+  exp_id: wild_data_calibration_003
+  skill: ''
+  created_at: '2026-05-16T01:52:01.581072+00:00'
+  tags:
+  - calibration
+  - wild-data
+  - fineweb
+  - fpr
+- id: art_20260516_32da66
+  name: r3_n5_cross_strategy_curation_analysis
+  type: data
+  description: 'R3-N5 cross-strategy curation feasibility: per-fold precision/recall
+    for 3 binary curation scenarios. Key finding: inverted folds have 99.3% precision
+    but 24.3% d1 recall (safe but wasteful).'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/r3_n5_curation_analysis_pointer.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:03:10.059574+00:00'
+  tags:
+  - r3-n5
+  - cross-strategy
+  - curation
+  - rebuttal
+- id: art_20260516_b5ee2b
+  name: zeroshot_qwen7b_500_results
+  type: data
+  description: Qwen2.5-7B-Instruct 4-bit zero-shot depth classification results on
+    500 balanced samples (acc=0.304, CI=[0.265, 0.346])
+  path: projects/recursive_gen_depth_est/artifacts/zeroshot_qwen7b_500_001/data/zeroshot_qwen7b_500_results.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: zeroshot_qwen7b_500_001
+  skill: ''
+  created_at: '2026-05-16T02:11:47.277079+00:00'
+  tags:
+  - baseline
+  - zero-shot
+  - qwen
+  - plan_009
+- id: art_20260516_e8afcc
+  name: multi_tau_ablation_001_analysis
+  type: report
+  description: 'Multi-τ ablation analysis: 4 temperature values × Pythia-1.4B depth
+    classification. Within-τ robust for τ≤0.9, cliff at τ=1.1. Cross-τ LOO fails (46.7%).'
+  path: null
+  url: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/multi_tau_ablation_001_analysis.json
+  project: recursive_gen_depth_est
+  exp_id: multi_tau_ablation_001
+  skill: ''
+  created_at: '2026-05-16T02:37:32.077205+00:00'
+  tags:
+  - multi-tau
+  - ablation
+  - R2-W3
+  - temperature
+  - robustness
+- id: art_20260516_6b2849
+  name: R3-N5 Two-Stage Pipeline Results
+  type: data
+  description: Two-stage pipeline experiment for R3-N5 rebuttal. Strategy cls acc=57.5%,
+    oracle two-stage=78.4%, predicted two-stage=70.6%, pooled=72.0%, LOO ref=59.1%.
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/two_stage_pipeline_pointer.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:04:52.444506+00:00'
+  tags:
+  - rebuttal
+  - R3-N5
+  - two-stage
+- id: art_20260516_42732e
+  name: wild_data_calibration_005_results
+  type: data
+  description: 'RedPajama V2 wild-data calibration: FPR=15.3%, d0_acc=84.7%. Consistent
+    with C4 (20.2%) and FineWeb (19.46%)'
+  path: null
+  url: ssh://gpu-6000pro-2/root/autodl-tmp/recursive_gen_depth_est/results/wild_data_calibration_005/calibration_results.json
+  project: recursive_gen_depth_est
+  exp_id: wild_data_calibration_005
+  skill: ''
+  created_at: '2026-05-16T05:13:28.355200+00:00'
+  tags:
+  - calibration
+  - wild-data
+  - redpajama
+  - fpr
+- id: art_20260516_8a12e2
+  name: paper_consistency_check
+  type: report
+  description: Paper metrics consistency check + citation verification for EMNLP ARR
+    May 2025 submission. 157 metrics verified, 2 citations verified, 0 mismatches.
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/paper_consistency_check.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:30:44.538582+00:00'
+  tags:
+  - paper
+  - verification
+  - metrics
+  - citation
+- id: art_20260516_aca4aa
+  name: Adversarial Review Round 1
+  type: report
+  description: 对抗性审稿报告（模拟 EMNLP reviewer），Rating 5/10 Borderline reject。3 个 Critical
+    + 6 Major + 6 Minor issues。
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/adversarial_review_round1.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:42:57.042620+00:00'
+  tags:
+  - review
+  - adversarial
+  - round1
+- id: art_20260516_6a1946
+  name: review_response_plan_r1
+  type: report
+  description: Adversarial Review Round 1 逐条回应方案：3 Critical + 5 Major + 6 Minor issues
+    的评估、已有回应、所需行动和优先级排序
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/review_response_plan_r1.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T05:48:57.539575+00:00'
+  tags:
+  - review
+  - response_plan
+  - adversarial_review
+  - r1
+- id: art_20260516_b63f72
+  name: ref_model_ablation_results
+  type: data
+  description: 'Reference model ablation: OLMo-1B (74.51%) vs Pythia-1.4B (78.55%),
+    delta=4.04pp, robust=YES. Blocks reviewer attack on self-model bias.'
+  path: projects/recursive_gen_depth_est/artifacts/ref_model_ablation_001/data/ref_model_ablation_001_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: ref_model_ablation_001
+  skill: ''
+  created_at: '2026-05-16T08:00:13.920977+00:00'
+  tags:
+  - ablation
+  - robustness
+  - reference-model
+- id: art_20260516_f8bd72
+  name: cross_model_reverse_chain_001 analysis summary
+  type: report
+  description: Analysis summary for reverse chain cross-model experiment (GPT2-XL→OLMo-1B→Pythia-1.4B),
+    86.8% 4-class acc, SUCCESS
+  path: projects/recursive_gen_depth_est/artifacts/cross_model_reverse_chain_001/report/analysis_summary.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: cross_model_reverse_chain_001
+  skill: ''
+  created_at: '2026-05-16T14:25:10.445899+00:00'
+  tags:
+  - cross-model
+  - reverse-chain
+  - N4
+  - success
+- id: art_20260516_3ce8ac
+  name: cross_scale_llama3_base_001 analysis report
+  type: report
+  description: 'Analysis of Llama-3.1-8B BASE cross-scale experiment: hypothesis test
+    for monotonic AUC decay (result: negative, BASE shows non-monotonicity at d3v4)'
+  path: projects/recursive_gen_depth_est/artifacts/cross_scale_llama3_base_001/report/analysis_summary_3ce8ac.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: cross_scale_llama3_base_001
+  skill: ''
+  created_at: '2026-05-16T16:38:44.191291+00:00'
+  tags:
+  - cross-scale
+  - llama3-base
+  - monotonicity
+  - hypothesis-test
+- id: art_20260516_56673a
+  name: final_paper_20260516
+  type: paper
+  description: EMNLP ARR May 25 submission PDF - 18 pages, includes Llama BASE EDD=2
+    fix, IT regularization finding, reverse chain results. 0 errors, 0 undefined refs.
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/final_paper.pdf
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T17:08:53.656573+00:00'
+  tags:
+  - submission
+  - emnlp-arr-may25
+  - v-final
+- id: art_20260517_ad6b9c
+  name: mixed_depth_corpus_summary
+  type: data
+  description: 'Mixed-depth corpus eval: RF distribution-agnosticism confirmed (macro-recall
+    delta=-1.62pp)'
+  path: projects/recursive_gen_depth_est/artifacts/mixed_depth_corpus_001/data/summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: mixed_depth_corpus_001
+  skill: ''
+  created_at: '2026-05-17T03:59:37.773618+00:00'
+  tags:
+  - robustness
+  - distribution-agnostic
+  - RF
+- id: art_20260517_00e248
+  name: reference_free_baseline_summary
+  type: report
+  description: 'Reference-free baseline results: 7 features achieve 53.68% 4-class
+    acc (vs 78.77% full). Hypothesis negative.'
+  path: projects/recursive_gen_depth_est/artifacts/reference_free_baseline_001/report/summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: reference_free_baseline_001
+  skill: ''
+  created_at: '2026-05-17T04:58:28.583780+00:00'
+  tags:
+  - reference-free
+  - ablation
+  - baseline
+- id: art_20260517_6b3d59
+  name: ensemble_reference_001_summary
+  type: report
+  description: 'Ensemble reference model experiment: 3-model avg surprisal 73.65%
+    acc (negative, -4.9pp vs Pythia alone)'
+  path: projects/recursive_gen_depth_est/artifacts/ensemble_reference_001/report/summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: ensemble_reference_001
+  skill: ''
+  created_at: '2026-05-17T05:01:05.966642+00:00'
+  tags: []
+- id: art_20260517_712a28
+  name: cross_strategy_pipeline_001_results
+  type: report
+  description: 'Two-stage pipeline results: strategy classification (57.8% RF) + per-strategy
+    depth estimation. Pipeline achieves 70.5% depth accuracy vs 59.1% naive LOO (+11.5pp).
+    Oracle upper bound 78.3%.'
+  path: projects/recursive_gen_depth_est/artifacts/cross_strategy_pipeline_001/report/cross_strategy_pipeline_001_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: cross_strategy_pipeline_001
+  skill: ''
+  created_at: '2026-05-17T08:58:00.653978+00:00'
+  tags:
+  - cross-strategy
+  - pipeline
+  - plan_017
+- id: art_20260517_7194e1
+  name: mlp_19feat_001_summary
+  type: report
+  description: 'MLP baseline results on 19 features: 3 variants all within 1pp of
+    RF baseline, confirming feature bottleneck'
+  path: null
+  url: server:gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/mlp_baseline/summary.json
+  project: recursive_gen_depth_est
+  exp_id: mlp_19feat_001
+  skill: ''
+  created_at: '2026-05-17T12:02:54.454541+00:00'
+  tags:
+  - mlp
+  - baseline
+  - feature-bottleneck
+- id: art_20260517_2a1856
+  name: text_length_sensitivity_summary
+  type: data
+  description: 'Text length sensitivity analysis: RF depth estimation accuracy at
+    50/100/200/500 token truncation lengths across 9 cells. 200 tokens is the cost-effective
+    inflection point (4-class 60.4%).'
+  path: projects/recursive_gen_depth_est/artifacts/text_length_sensitivity_001/data/text_length_sensitivity_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: text_length_sensitivity_001
+  skill: ''
+  created_at: '2026-05-17T13:53:39.487107+00:00'
+  tags:
+  - sensitivity
+  - text_length
+  - truncation
+  - plan_022
+- id: art_20260517_64defb
+  name: bootstrap_ci_table1
+  type: data
+  description: 'Bootstrap 95% CI (B=10000, stratified) for Table 1: 9 cells (3 models
+    x 3 strategies), RF & LR accuracy + pairwise AUC d1v2/d2v3. 5-fold stratified
+    CV with pooled out-of-fold predictions.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/bootstrap_ci_table1.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:32:45.810552+00:00'
+  tags:
+  - table1
+  - bootstrap
+  - confidence-interval
+  - 9cell
+- id: art_20260517_54df88
+  name: theory_draft
+  type: paper
+  description: 'Theory section LaTeX draft: tail contraction theorem, p90_ppl/var_surprisal
+    monotonicity proposition, EDD upper bound via contraction mapping, alignment with
+    experimental data'
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:39:32.459078+00:00'
+  tags:
+  - theory
+  - paper
+  - plan_023
+- id: art_20260517_faa00e
+  name: wild_data_features_script
+  type: intermediate
+  description: 'Feature extraction script for wild data (C4/FineWeb). Extracts 19
+    statistical features using frozen Pythia-1.4B. Remote path: /root/autodl-tmp/recursive_gen_depth_est/scripts/wild_data_features.py'
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/wild_data_features_script.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:47:21.250436+00:00'
+  tags:
+  - wild-data
+  - feature-extraction
+  - plan-015
+- id: art_20260517_92eb6a
+  name: wild_data_eval_script
+  type: intermediate
+  description: 'Wild data depth distribution evaluation script. Trains RF on features_all.jsonl,
+    classifies features, outputs depth stats + bar charts. Remote path: /root/autodl-tmp/recursive_gen_depth_est/scripts/wild_data_eval.py'
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/wild_data_eval_script.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:47:24.659351+00:00'
+  tags:
+  - wild-data
+  - evaluation
+  - plan-015
+- id: art_20260517_b5641a
+  name: wild_data_c4_fineweb_10k
+  type: data
+  description: C4 (10K) + FineWeb (10K) wild data samples for depth estimation evaluation.
+    JSONL format with text_id, source, text fields. seed=42, min_chars=200.
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/wild_data_c4_fineweb_10k.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:47:28.655335+00:00'
+  tags:
+  - wild-data
+  - c4
+  - fineweb
+  - plan-015
+- id: art_20260517_9afea4
+  name: detector_baselines_summary_v2
+  type: data
+  description: 'Full 9-cell detector baselines results: 5 detectors (Binoculars, Fast-DetectGPT,
+    Log-Rank, Entropy, LLR) + combined models evaluated on 3x3 grid for ordinal depth
+    estimation. Includes 4-class accuracy (LR/RF), pairwise AUC, and comparison with
+    RF-19feat reference.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/detector_baselines_summary_v2.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T14:48:03.580832+00:00'
+  tags:
+  - detector
+  - baseline
+  - binoculars
+  - fast-detectgpt
+  - log-rank
+  - depth-estimation
+  - ordinal-classification
+- id: art_20260517_4e8e94
+  name: Bootstrap 95% CI Table 1
+  type: data
+  description: Bootstrap 95% CIs (B=10000) for all 9 cells of 3×3 core matrix. RF
+    and LR accuracy CIs + pairwise AUC d1v2/d2v3 CIs.
+  path: projects/recursive_gen_depth_est/artifacts/bootstrap_ci_table1_001/data/bootstrap_ci_table1_summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: bootstrap_ci_table1_001
+  skill: ''
+  created_at: '2026-05-17T15:01:03.942841+00:00'
+  tags:
+  - bootstrap
+  - confidence-interval
+  - table1
+  - plan_020
+- id: art_20260517_04eecc
+  name: downstream_benchmark_pipeline
+  type: intermediate
+  description: Plan_024 downstream benchmark pipeline (5 scripts). Scores C4 10K data
+    with RF depth predictor → filters by depth → LoRA fine-tunes Pythia-410M → evaluates
+    on HellaSwag/ARC-Easy/PIQA via lm-eval-harness. RF validation acc=77.4%. Ready
+    to run on GPU.
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/downstream_pipeline_readme.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:00:36.436464+00:00'
+  tags:
+  - plan_024
+  - downstream
+  - benchmark
+  - curation
+- id: art_20260517_222868
+  name: plan025_learned_estimator_results
+  type: data
+  description: 'Plan 025 learned depth estimator sweep: XGBoost 67.2%, Ordinal MLP
+    67.0%, Prototypical 66.6% mean cross-model accuracy (all beat RF 66.4% baseline).
+    Results at results/learned_estimator/, scripts at scripts/learned_estimator_*.py'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/plan025_learned_estimator_results.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:26:22.015055+00:00'
+  tags:
+  - plan_025
+  - cross_model
+  - depth_estimation
+- id: art_20260517_f4eb78
+  name: wild_data_depth_distribution
+  type: data
+  description: 'RF depth classification results for C4 10K and FineWeb 10K wild data.
+    C4: 34% FPR (d1=33.5%), FineWeb: 17% FPR (d1=17.1%). Server path: /root/autodl-tmp/recursive_gen_depth_est/results/wild_features/depth_distribution.json'
+  path: projects/recursive_gen_depth_est/artifacts/wild_data_features_001/data/depth_distribution.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: wild_data_features_001
+  skill: ''
+  created_at: '2026-05-17T17:27:53.091798+00:00'
+  tags:
+  - wild_data
+  - rf_classification
+  - depth_distribution
+- id: art_20260517_de305b
+  name: prototypical_network_full_results
+  type: data
+  description: Prototypical Network leave-one-model-out results (3 holdouts) with
+    NaN fix. Mean accuracy 66.6%, mean AUC 0.874. Results on westd-48862:/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator/prototypical_{gpt2xl,pythia,olmo}.json
+  path: null
+  url: westd-48862:/root/autodl-tmp/recursive_gen_depth_est/results/learned_estimator/
+  project: recursive_gen_depth_est
+  exp_id: learned_estimator_proto_fix_001
+  skill: ''
+  created_at: '2026-05-17T18:36:40.106150+00:00'
+  tags:
+  - learned_estimator
+  - prototypical
+  - cross_model_transfer
+- id: art_20260517_11397e
+  name: learned_estimator_002_results
+  type: report
+  description: 'Full sweep results: 3 methods x 3 holdouts, NaN-fixed prototypical
+    network. Best: Proto-olmo 70.01%, XGBoost-olmo 69.76%.'
+  path: projects/recursive_gen_depth_est/artifacts/learned_estimator_002/report/learned_estimator_002_results.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: learned_estimator_002
+  skill: ''
+  created_at: '2026-05-17T18:43:10.489072+00:00'
+  tags:
+  - learned_estimator
+  - xgboost
+  - ordinal_mlp
+  - prototypical
+  - cross_model
+  - nan_fix
+- id: art_20260517_3bd3d2
+  name: theory_draft_corrected_v2
+  type: paper
+  description: Theory section (§5) with corrected AUC values, γ=0.75 in KL-divergence
+    space, and Pinsker inequality note. Ready for reviewer audit per C003.
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/theory_draft_3bd3d2.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T19:00:44.167599+00:00'
+  tags:
+  - theory
+  - C003
+  - reviewer-pending
+- id: art_20260517_1d43f5
+  name: results_summary
+  type: data
+  description: 'Paper data summary: all experiment results organized by section (core
+    3x3 matrix, baselines, cross-model, depth extension, etc.)'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/results_summary.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T19:23:35.671062+00:00'
+  tags:
+  - paper
+  - results
+  - summary
+- id: art_20260517_096c10
+  name: results_summary
+  type: data
+  description: Consolidated results summary for all completed experiments — 12 sections
+    covering core matrix, instruct, learned estimator, baselines, wild data, downstream,
+    theory AUC values. For Paper Agent reference.
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/results_summary_096c10.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T19:40:08.663219+00:00'
+  tags:
+  - paper
+  - results
+  - summary
+- id: art_20260518_a02f37
+  name: d4_extension_gpt2xl_results
+  type: data
+  description: 'GPT-2 XL nucleus d4 depth extension: 5-class RF acc=74.03%, d3v4 AUC=0.7273'
+  path: null
+  url: file:///root/autodl-tmp/recursive_gen_depth_est/results/d4_extension_gpt2xl/d4_extension_results.json
+  project: recursive_gen_depth_est
+  exp_id: d4_extension_gpt2xl_001
+  skill: ''
+  created_at: '2026-05-18T18:52:04.946610+00:00'
+  tags:
+  - d4
+  - gpt2xl
+  - nucleus
+  - depth-extension
+- id: art_20260519_bc9773
+  name: MDD Computation Results
+  type: report
+  description: 'Maximum Discriminable Depth (MDD) computation for 9-cell atlas + depth
+    extension. Key finding: MDD=EDD in all 12 profiles, all strictly monotonically
+    decreasing.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/mdd_results.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T07:22:02.731780+00:00'
+  tags:
+  - mdd
+  - edd
+  - auc
+  - analysis
+- id: art_20260519_5fd1e9
+  name: Rebuttal Templates W10 W11 W14 W15
+  type: report
+  description: '4 rebuttal argument templates for anticipated reviewer weaknesses:
+    W10 (cross-seed 3/9), W11 (no algorithmic contribution), W14 (single LoRA config),
+    W15 (prompted gen 1/9).'
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/rebuttal_templates.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T07:23:02.530200+00:00'
+  tags:
+  - rebuttal
+  - paper
+- id: art_20260519_3c01e7
+  name: accumulation_mix50_results
+  type: data
+  description: 'Accumulation experiment: 50% human mix, GPT-2 XL nucleus, RF 200 trees,
+    5-fold CV. Acc=0.3551 vs full-replacement 0.8421 (delta=-0.487)'
+  path: projects/recursive_gen_depth_est/artifacts/accum_mix50/data/results_mix50.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: accum_mix50
+  skill: ''
+  created_at: '2026-05-19T07:29:18.443777+00:00'
+  tags:
+  - accumulation
+  - mix50
+  - gpt2xl
+  - rf
+- id: art_20260519_95cf7d
+  name: accumulation_mix25_results
+  type: data
+  description: 'Accumulation experiment: 25% human mix, GPT-2 XL nucleus, RF 200 trees,
+    5-fold CV. Acc=0.6721 vs full-replacement 0.8421 (delta=-0.170)'
+  path: projects/recursive_gen_depth_est/artifacts/accum_mix25/data/results_mix25.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: accum_mix25
+  skill: ''
+  created_at: '2026-05-19T07:29:20.602324+00:00'
+  tags:
+  - accumulation
+  - mix25
+  - gpt2xl
+  - rf
+- id: art_20260519_f5d570
+  name: binoculars_ordinal_eval
+  type: intermediate
+  description: Binoculars (Hans et al., ICML 2024) ordinal depth baseline script.
+    Computes Binoculars scores (observer=pythia-1.4b, performer=pythia-410m) on 9-cell
+    atlas data, evaluates 4-class ordinal depth classification via 5 methods (equal-width,
+    CORAL, threshold, RF single-feature, RF multi-feature). 5-fold StratifiedKFold
+    CV matching existing baselines. Ready to run on westd-48862 after accumulation
+    completes.
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/binoculars_ordinal_eval.py
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T09:20:59.645138+00:00'
+  tags:
+  - baseline
+  - binoculars
+  - binary-detector
+  - rebuttal
+- id: art_20260519_6f34d3
+  name: coral_literature_survey
+  type: report
+  description: CORAL ordinal regression 及相关 ordinal classification 方法文献调研，含 9 篇论文引用信息和推荐引用策略
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/coral_literature_survey.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T10:36:00.357030+00:00'
+  tags:
+  - literature-survey
+  - CORAL
+  - ordinal-regression
+  - related-work
+- id: art_20260519_b1ee14
+  name: CORAL 9-Cell Results JSON
+  type: data
+  description: 'CORAL ordinal regression vs RF 9-cell evaluation results: per-cell
+    metrics (acc, bal_acc, MAE, QWK, ordinal consistency) with means and stds, plus
+    9-cell averages. CORAL wins ordinal metrics (QWK +0.0081, MAE -0.0024), RF marginal
+    accuracy edge (-0.0064).'
+  path: projects/recursive_gen_depth_est/artifacts/_project/data/coral_9cell_results.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:00:54.170639+00:00'
+  tags:
+  - coral
+  - ordinal-regression
+  - evaluation
+  - 9-cell
+- id: art_20260519_955eff
+  name: CORAL vs RF Comparison Report
+  type: report
+  description: 'Markdown comparison of CORAL ordinal regression vs RF across 9 cells
+    (3 models x 3 decoding). Per-cell tables for all 5 metrics, key findings: CORAL
+    wins ordinal metrics consistently, RF marginal accuracy edge, gpt2xl_topk50 outlier
+    analysis.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/coral_vs_rf_comparison.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:00:57.938165+00:00'
+  tags:
+  - coral
+  - ordinal-regression
+  - comparison
+  - 9-cell
+- id: art_20260519_7bfc72
+  name: CORAL Ordinal Eval Script
+  type: intermediate
+  description: 'Python evaluation script: CORAL DNN (19→64→32→CORAL) vs RF (200 trees),
+    5-fold StratifiedKFold, 5 metrics, 9-cell atlas. Includes inf/nan handling for
+    float32 overflow, thread limiting for CPU execution.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/coral_ordinal_eval.py
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:01:01.516550+00:00'
+  tags:
+  - coral
+  - ordinal-regression
+  - eval-script
+- id: art_20260519_8be321
+  name: dann_cross_strategy_results
+  type: data
+  description: DANN cross-strategy domain adaptation results. LOSO evaluation on 3
+    models x 3 folds. DANN 60.4% vs RF 59.2% vs two-stage 70.5%. Negative for main
+    method contribution (delta < 3pp vs two-stage), suitable for supplementary ablation.
+  path: projects/recursive_gen_depth_est/artifacts/cross_strategy_dann_001/data/dann_results.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: cross_strategy_dann_001
+  skill: ''
+  created_at: '2026-05-19T11:46:43.053589+00:00'
+  tags:
+  - dann
+  - cross-strategy
+  - domain-adaptation
+  - negative
+- id: art_20260519_ab2e2c
+  name: classifier_comparison_tables
+  type: paper
+  description: 'LaTeX supplementary tables: (1) classifier_comparison_table.tex —
+    RF vs CORAL vs DNN vs DANN vs Two-Stage across in-distribution and cross-strategy
+    settings; (2) coral_percell_table.tex — per-cell CORAL vs RF breakdown. Ready
+    to include in appendix.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/classifier_comparison_table.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:21:42.141473+00:00'
+  tags:
+  - supplementary
+  - coral
+  - dann
+  - classifier-comparison
+  - latex
+- id: art_20260519_ca0c62
+  name: accum_v3_results_analysis
+  type: report
+  description: 'Accumulation v3 (mix50/mix25) experiment results analysis — GPT-2
+    XL LoRA accumulation with Pythia-1.4B features. 4-class acc: mix50=69.1%, mix25=70.1%
+    vs full-replacement 85.9%.'
+  path: projects/recursive_gen_depth_est/artifacts/accum_v3_mix50/report/accum_v3_results_analysis.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: accum_v3_mix50
+  skill: ''
+  created_at: '2026-05-19T13:08:05.804660+00:00'
+  tags:
+  - accumulation
+  - gpt2xl
+  - lora
+  - mix50
+  - mix25
+  - pythia-1.4b
+- id: art_20260519_77d1f8
+  name: detectgpt_9cell_paper_patch
+  type: intermediate
+  description: DetectGPT 9/9 cell results consolidated for paper patch — per-cell
+    4-class accuracy by calibration method, combined from exp 002 (8 cells) + 004
+    (pythia_nucleus)
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/detectgpt_9cell_paper_patch.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T18:10:57.393588+00:00'
+  tags:
+  - paper-patch
+  - baseline
+  - detectgpt
+- id: art_20260519_023d75
+  name: binoculars_paper_patch
+  type: intermediate
+  description: 'Binoculars baseline paper patch material: main comparison table, feature
+    overlap analysis (6/11→6/19), discussion paragraph (convergence of independent
+    depth signals), rebuttal defense points (model-agnostic advantage, Claim 1 narrowing,
+    complementarity framing)'
+  path: projects/recursive_gen_depth_est/artifacts/binoculars_ordinal_baseline_001/intermediate/binoculars_paper_patch.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: binoculars_ordinal_baseline_001
+  skill: ''
+  created_at: '2026-05-19T18:51:22.232048+00:00'
+  tags:
+  - paper-patch
+  - binoculars
+  - D048
+  - baseline-comparison
+- id: art_20260519_7e841a
+  name: baseline_battery_patch
+  type: intermediate
+  description: 'Unified 3-in-1 baseline battery patch: DetectGPT (28.8%) + Min-K%
+    (33.2%) + Binoculars (78.1%) comparison table, three-tier narrative structure,
+    convergence discussion paragraph, level-vs-shape decomposition (threshold 69.8%
+    → RF_multi 78.1% = +8.3pp shape contribution), rebuttal defense points'
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/baseline_battery_patch_7e841a.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T18:54:21.507145+00:00'
+  tags:
+  - paper-patch
+  - baseline-battery
+  - D048
+  - detectgpt
+  - mink
+  - binoculars
+- id: art_20260519_b2bb7a
+  name: overlap_6feat_results
+  type: data
+  description: 'Experiment A: 6 overlap perplexity features RF, 9-cell 4-class accuracy
+    (mean 75.93%)'
+  path: projects/recursive_gen_depth_est/artifacts/feature_ablation_overlap_001/data/overlap_6feat_results.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: feature_ablation_overlap_001
+  skill: ''
+  created_at: '2026-05-19T19:43:00.295538+00:00'
+  tags:
+  - feature_ablation
+  - overlap
+  - rf
+- id: art_20260519_eb7f2b
+  name: merged_30feat_results
+  type: data
+  description: 'Experiment B: merged 30 features (19+11) RF, 9-cell 4-class accuracy
+    (mean 82.60%)'
+  path: projects/recursive_gen_depth_est/artifacts/feature_ablation_merged_001/data/merged_30feat_results.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: feature_ablation_merged_001
+  skill: ''
+  created_at: '2026-05-19T19:43:02.991584+00:00'
+  tags:
+  - feature_ablation
+  - merged
+  - rf
+- id: art_20260519_d06be3
+  name: feature_ablation_table
+  type: intermediate
+  description: Complete per-cell feature ablation table (6-overlap/19-feat/Bino-11/Merged-30),
+    model-dependency analysis, signal decomposition (core ppl 75.9% → +shape 78.3%
+    → +cross-model 82.6%), Discussion paragraph, Intro contribution bullet
+  path: projects/recursive_gen_depth_est/artifacts/_project/intermediate/feature_ablation_table_d06be3.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T20:34:47.298694+00:00'
+  tags:
+  - paper-patch
+  - feature-ablation
+  - ablation-table
+  - D048
+- id: art_20260519_1a15cc
+  name: rebuttal_full_draft_v1
+  type: report
+  description: 完整 ARR response letter 草稿 v1，基于 paper_framing.md 17 条 Anticipated Reviewer
+    Concerns 的预写防御材料。含 meta-response + W1-W17 逐条回应。W13 含四层递进防御结构。14B temp09/topk50
+    标注 TODO。
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/rebuttal_full_draft_v1.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T21:54:22.469173+00:00'
+  tags:
+  - rebuttal
+  - ARR
+  - EMNLP2026
+  - defense
+- id: art_20260519_404e9d
+  name: rebuttal_full_draft_v1
+  type: report
+  description: 完整 ARR response letter 草稿 v1：17 条 anticipated reviewer concerns 逐条回应，含四层递进
+    Binoculars 防御、experiment ID 标注、14B TODO 标记
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/rebuttal_full_draft_v1_404e9d.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: rebuttal
+  created_at: '2026-05-19T22:07:56.534463+00:00'
+  tags:
+  - rebuttal
+  - paper
+  - emnlp2026
+- id: art_20260520_c6f53c
+  name: 14b_progress_check
+  type: report
+  description: Qwen2.5-14B 两个实验 (temp09/topk50) 进度检查报告 2026-05-20
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/14b_progress_check.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:06:17.850149+00:00'
+  tags:
+  - 14b
+  - progress
+  - qwen25
+- id: art_20260520_d09abc
+  name: 14b_progress_check_2
+  type: report
+  description: 14B实验（temp09/topk50）第二次进度检查，两个都在Phase 3.3b生成d3
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/14b_progress_check_2.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:27:52.877669+00:00'
+  tags:
+  - 14b
+  - progress
+  - qwen25
+- id: art_20260520_312d80
+  name: qwen25_14b_temp09_analysis
+  type: report
+  description: 'Analysis report for qwen25_14b_temp09: Qwen2.5-14B temperature sampling
+    (τ=0.9) recursive generation depth estimation'
+  path: projects/recursive_gen_depth_est/artifacts/qwen25_14b_temp09/report/qwen25_14b_temp09_analysis.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: qwen25_14b_temp09
+  skill: ''
+  created_at: '2026-05-20T04:00:36.037508+00:00'
+  tags:
+  - analysis
+  - 14b
+  - temperature
+  - scale
+- id: art_20260520_189245
+  name: qwen25_14b_temp09_results
+  type: report
+  description: Qwen2.5-14B temperature=0.9 recursive generation depth estimation results
+    — RF 4-class 50.5%, pairwise AUC, feature importance
+  path: projects/recursive_gen_depth_est/artifacts/qwen25_14b_temp09/report/qwen25_14b_temp09_results.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: qwen25_14b_temp09
+  skill: ''
+  created_at: '2026-05-20T04:03:51.144138+00:00'
+  tags: []
+- id: art_20260520_d47efe
+  name: binoculars_14b_temp09_results
+  type: report
+  description: 'Binoculars baseline (5 calibration methods) + merged feature ablation
+    (19 stat + 11 bino = 30 features) on qwen25_14b_temp09 cell. Best single-method:
+    RF_multi 4class_acc=0.4252. Merged 30-feat RF: 4class_acc=0.5419, d1d3_bal=0.477.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/binoculars_14b_temp09_results.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T04:48:02.844100+00:00'
+  tags:
+  - binoculars
+  - ablation
+  - 14b_temp09
+  - baseline
+- id: art_20260520_b7a903
+  name: qwen25_14b_topk50_analysis
+  type: report
+  description: 'Analysis report for Qwen2.5-14B top-k 50 experiment: RF 4-class 47.93%,
+    signal persists under worst-case sampling at 14B scale'
+  path: projects/recursive_gen_depth_est/artifacts/qwen25_14b_topk50/report/qwen25_14b_topk50_analysis_b7a903.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: qwen25_14b_topk50
+  skill: ''
+  created_at: '2026-05-20T05:34:31.347713+00:00'
+  tags:
+  - 14B
+  - top-k
+  - sampling-robustness
+  - scale-generality
+- id: art_20260520_123200
+  name: qwen25_14b_topk50_results
+  type: report
+  description: '14B top-k (k=50) experiment results: 47.93% 4-class acc, strategy-specific
+    AUC patterns, 14B three-strategy summary table'
+  path: projects/recursive_gen_depth_est/artifacts/qwen25_14b_topk50/report/qwen25_14b_topk50_results.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: qwen25_14b_topk50
+  skill: ''
+  created_at: '2026-05-20T05:36:35.807247+00:00'
+  tags:
+  - 14B
+  - topk50
+  - cross-scale
+  - strategy-specific-AUC
+- id: art_20260520_df4395
+  name: binoculars_14b_topk50_results
+  type: report
+  description: Binoculars baseline + merged ablation results for Qwen2.5-14B top_k=50.
+    RF_multi 37.68%, merged 30-feat 51.49% (+3.56pp over stat-only 47.93%).
+  path: projects/recursive_gen_depth_est/artifacts/binoculars_14b_topk50/report/binoculars_14b_topk50_results.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: binoculars_14b_topk50
+  skill: ''
+  created_at: '2026-05-20T05:50:31.940811+00:00'
+  tags:
+  - binoculars
+  - ablation
+  - 14b
+  - topk50
+  - merged-features
+- id: art_20260520_07312d
+  name: binoculars_14b_topk50_results
+  type: report
+  description: Binoculars baseline + merged ablation results for Qwen2.5-14B topk50
+    cell. Merged 30-feat achieves 51.49% (+3.56pp vs main pipeline 47.93%).
+  path: projects/recursive_gen_depth_est/artifacts/binoculars_14b_topk50/report/binoculars_14b_topk50_results_07312d.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: binoculars_14b_topk50
+  skill: ''
+  created_at: '2026-05-20T05:51:23.967550+00:00'
+  tags:
+  - binoculars
+  - ablation
+  - topk50
+  - 14b
+  - merged-features
+- id: art_20260520_4d199e
+  name: supplementary_readme
+  type: paper
+  description: 'Supplementary material README for EMNLP 2026 submission: code structure,
+    data access, reproduction steps, hyperparameters, compute requirements'
+  path: projects/recursive_gen_depth_est/artifacts/_project/paper/README.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T10:34:34.333068+00:00'
+  tags:
+  - submission
+  - supplementary
+  - emnlp2026
+- id: art_20260521_c6a218
+  name: fpr_coverage_tradeoff
+  type: data
+  description: FPR vs Coverage tradeoff CSV for C4 5k/10k across 11 confidence thresholds
+    (0.50-0.99), with controlled d1-d3 balanced accuracy
+  path: projects/recursive_gen_depth_est/artifacts/fpr_coverage_001/data/fpr_coverage_tradeoff.csv
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: fpr_coverage_001
+  skill: ''
+  created_at: '2026-05-21T07:13:24.213971+00:00'
+  tags: []
+- id: art_20260521_2abdc3
+  name: fpr_coverage_curve
+  type: chart
+  description: 'Two-panel plot: (a) FPR vs Coverage on C4 5k/10k, (b) Controlled d1-d3
+    balanced accuracy vs coverage. Remote path: /root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/fpr_coverage_curve.png'
+  path: projects/recursive_gen_depth_est/artifacts/fpr_coverage_001/chart/fpr_coverage_curve_location.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: fpr_coverage_001
+  skill: ''
+  created_at: '2026-05-21T07:13:27.551164+00:00'
+  tags: []
+- id: art_20260522_e2342b
+  name: conditional_pi_latex_table
+  type: report
+  description: LaTeX table of conditional permutation importance rankings with bootstrap
+    95% CI, ready for paper appendix
+  path: projects/recursive_gen_depth_est/artifacts/conditional_pi_002/report/latex_table.tex
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: conditional_pi_002
+  skill: ''
+  created_at: '2026-05-22T04:44:14.573198+00:00'
+  tags:
+  - conditional_pi
+  - latex
+  - table
+  - paper
+- id: art_20260522_a10a02
+  name: conditional_pi_summary
+  type: data
+  description: 'Cross-cell aggregated conditional permutation importance: 9 cells,
+    19 features ranked by avg PI and bootstrap stability. Top family: surprisal (avg_pi=0.089).
+    Top feature: var_surprisal (rank 1.4, PI=0.260).'
+  path: projects/recursive_gen_depth_est/artifacts/conditional_pi_002/data/summary.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: conditional_pi_002
+  skill: ''
+  created_at: '2026-05-22T04:45:07.808929+00:00'
+  tags:
+  - conditional_pi
+  - feature_importance
+  - summary
+- id: art_20260522_f09f01
+  name: conditional_pi_family_grouped
+  type: data
+  description: Family-level grouped conditional PI with per-member breakdown across
+    9 cells
+  path: projects/recursive_gen_depth_est/artifacts/conditional_pi_002/data/family_grouped.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: conditional_pi_002
+  skill: ''
+  created_at: '2026-05-22T04:45:16.179673+00:00'
+  tags:
+  - conditional_pi
+  - feature_family
+  - grouped
+- id: art_20260522_27ab49
+  name: accumulation_results_summary
+  type: report
+  description: Complete summary of all 6 accumulation experiments with 4-class accuracy,
+    d1d3 balanced accuracy, pairwise AUC, and EDD(T=0.70)
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/accumulation_results_summary.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T07:58:24.689061+00:00'
+  tags:
+  - accumulation
+  - results
+  - summary
+  - edd
+  - pairwise_auc
+- id: art_20260522_ae874d
+  name: wild_data_calibration_comprehensive_results
+  type: data
+  description: 'Comprehensive wild-data calibration: C4/FineWeb/RedPajama 10K each,
+    unified threshold sweep, KS feature shift stats. Base FPR: C4 34%, FW 17%, RP
+    15.5%. At T=0.10: C4 0.89%, FW 0.14%, RP 6.98%.'
+  path: projects/recursive_gen_depth_est/artifacts/wild_data_calibration_015/data/comprehensive_results_pointer.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: wild_data_calibration_015
+  skill: ''
+  created_at: '2026-05-22T08:14:46.203175+00:00'
+  tags:
+  - plan_015
+  - wild_data
+  - calibration
+  - fpr
+  - threshold_sweep
+- id: art_20260522_46d805
+  name: accum_mix50_pairwise_auc_verified
+  type: report
+  description: 'Verified pairwise AUC for 3 mix50 accumulation cells (500-tree binary
+    RF, 5-fold stratified CV, seed=42). Confirms EDD claim: 2/3 mix50 cells EDD=3,
+    GPT-2 XL EDD=2.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/accum_mix50_verification_report.txt
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:16:24.363129+00:00'
+  tags:
+  - accumulation
+  - pairwise_auc
+  - verification
+  - edd
+  - baseline
+- id: art_20260522_801a8d
+  name: detection_baselines_ordinal_results
+  type: data
+  description: 'Plan_018: Binoculars + Fast-DetectGPT ordinal baseline results on
+    3x3 grid (3 models x 3 decoding). Includes per-cell 4-class LR accuracy, pairwise
+    AUC, Spearman rho, isotonic calibration, d0-binary accuracy. Mean 4-class acc:
+    RF=0.7844, Bino=0.4059, FDGPT=0.5060, Combined=0.5511. Confirms baselines lack
+    ordinal depth resolution.'
+  path: projects/recursive_gen_depth_est/artifacts/plan_018/data/results.json
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: plan_018
+  skill: ''
+  created_at: '2026-05-22T11:24:41.144532+00:00'
+  tags:
+  - baseline
+  - binoculars
+  - fast-detectgpt
+  - ordinal
+  - detection
+- id: art_20260525_1bd4b1
+  name: fig1_problem_illustration_v2
+  type: chart
+  description: 'Figure 1 (Hero): Recursive generation depth estimation concept diagram.
+    Redesigned with PaperBanana — cool-to-warm color gradient D0→DK, 4-bar depth output
+    chart (70%/15%), binary vs ordinal comparison strip.'
+  path: projects/recursive_gen_depth_est/artifacts/_project/chart/fig_problem_illustration.pdf
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-25T06:25:31.139460+00:00'
+  tags:
+  - figure
+  - hero
+  - paperbanana
+  - concept-diagram
+- id: art_20260525_553213
+  name: audit_main_text
+  type: report
+  description: 主文数据真实性审计报告：119个定量数字逐一交叉验证registry，100匹配/5不一致/14无出处/0内部矛盾
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/audit_main_text.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T19:55:13.828058+00:00'
+  tags:
+  - audit
+  - paper
+  - data-integrity
+- id: art_20260525_7cf034
+  name: audit_appendix
+  type: report
+  description: 附录定量审计报告：~220个数值交叉验证，7处不一致，~33处无出处
+  path: projects/recursive_gen_depth_est/artifacts/_project/report/audit_appendix.md
+  url: null
+  project: recursive_gen_depth_est
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:15:36.989063+00:00'
+  tags:
+  - audit
+  - appendix
+  - quantitative-verification

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_mdd_computation_20260519T070039_result.json",
     "occurrence": 1,
-    "bytes": 645,
-    "sha256": "7a3b1f40ee5bba543b3ce66c9d29388c8870036aa2f95cc605e1ef78aa4d30e8"
+    "bytes": 644,
+    "sha256": "fa68b8d74775253cfde05b1fe0ce535cf8f6ee5ee1818cdaaef4c32c0ee941e0"
   },
   "statistics": {
     "messages": 1,

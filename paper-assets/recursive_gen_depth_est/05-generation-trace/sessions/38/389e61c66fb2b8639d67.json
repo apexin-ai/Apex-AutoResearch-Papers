@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_n2_training_status_20260515T122935_result.json",
     "occurrence": 1,
-    "bytes": 1554,
-    "sha256": "4a748f535b29b26a1fab0f1a9aa10f1d259ac5deb7bcd3a9a7f0d7aafe591908"
+    "bytes": 1553,
+    "sha256": "af7f7856936df1453b65bdae4d4f2a36022bf4ca78da21bd742d29857ef71bcb"
   },
   "statistics": {
     "messages": 1,

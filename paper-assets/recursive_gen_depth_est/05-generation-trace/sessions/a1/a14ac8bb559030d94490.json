@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gpt2xl_seed43_001_20260518T081955_result.json",
     "occurrence": 1,
-    "bytes": 580,
-    "sha256": "6dd05b1e33f73786a502d3e5b5906bb6a2271c898e83de3238245acf1be989a9"
+    "bytes": 579,
+    "sha256": "9aeb8073f32788c0c6847233854a4dd0e6c624dccabc39350d26c3604fca2b08"
   },
   "statistics": {
     "messages": 1,

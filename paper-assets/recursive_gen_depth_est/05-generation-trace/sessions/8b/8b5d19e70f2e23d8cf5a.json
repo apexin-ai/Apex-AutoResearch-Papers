@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analyze_deberta_pilot_gpt2xl_temp09_20260519T172248_result.json",
     "occurrence": 1,
-    "bytes": 2565,
-    "sha256": "6679c2dffb86767044f82f8d9b3ecbb394438459dc1cd25d62fdc6a6c08a2d01"
+    "bytes": 2564,
+    "sha256": "0929bafdfad880a13002fdc03b8e0944a1d16370439f7dbd0b469f1123fc4c9d"
   },
   "statistics": {
     "messages": 1,

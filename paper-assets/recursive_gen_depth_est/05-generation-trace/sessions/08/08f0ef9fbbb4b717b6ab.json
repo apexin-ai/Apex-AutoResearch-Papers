@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_cross_strategy_conditional_decomp_20260518T175942_result.json",
     "occurrence": 1,
-    "bytes": 1512,
-    "sha256": "ae4c61d85c16634d0eac9ef0f76ed7ef8051b73a80157506aeb958ede31d22cf"
+    "bytes": 1511,
+    "sha256": "6b022a0486a7285bad5287b3f48cf97800281dedcd241108895ad3c0e9b3743c"
   },
   "statistics": {
     "messages": 1,

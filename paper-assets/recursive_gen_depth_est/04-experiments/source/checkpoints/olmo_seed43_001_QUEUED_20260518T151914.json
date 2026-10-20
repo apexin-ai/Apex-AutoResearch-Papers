@@ -1,0 +1,16 @@
+{
+  "exp_id": "olmo_seed43_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:16:25.425Z",
+    "updated_at": "2026-05-18T15:19:14.045Z",
+    "hypothesis": "OLMo-1B recursive generation depth signal is reproducible across seeds: seed=43 nucleus p=0.95 will achieve RF 4-class accuracy comparable to seed=42 baseline, completing 3/3 model family seed robustness coverage.",
+    "parent": "pythia_seed43_001"
+  },
+  "timestamp": "2026-05-18T15:19:14.362924+00:00",
+  "trigger": "update_registry"
+}

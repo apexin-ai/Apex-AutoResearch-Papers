@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan_018_binoculars_fdgpt_20260522T094023_result.json",
     "occurrence": 1,
-    "bytes": 2460796,
-    "sha256": "3886f64b8104155fbf0d81a2cf475c9d1be40a1b49f39dde9c0eeaef238a66b0"
+    "bytes": 2460795,
+    "sha256": "734951566abe9c2e197c601a22968796980e1332e4ac357d83a699cb4887269f"
   },
   "statistics": {
     "messages": 1,
@@ -26,13 +26,32 @@
     {
       "number": 0,
       "boundary": "no_preceding_user_message_recorded",
-      "message_count": 1,
-      "chunks": [
+      "messages": [
         {
-          "path": "a923542509b4d4affceb-part-0001.json",
-          "message_count": 1
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2460815,
+                "serialized_sha256": "ad5d06d064087e263af1de2376116782fca53fbe6d6112aabff26a626ae060e9",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
         }
-      ]
+      ],
+      "message_count": 1
     }
   ],
   "readable_path": "readable/task-results/code-plan-018-binoculars-fdgpt.md"

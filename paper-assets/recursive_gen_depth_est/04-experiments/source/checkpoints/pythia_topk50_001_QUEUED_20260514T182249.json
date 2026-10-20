@@ -1,0 +1,40 @@
+{
+  "exp_id": "pythia_topk50_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:49:28.112Z",
+    "updated_at": "2026-05-14T18:22:49.427Z",
+    "hypothesis": "解码策略鲁棒性: Pythia-1.4B 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "spec": {
+      "command": "bash scripts/run_pipeline_pythia_topk50.sh",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "model_path": "/root/autodl-tmp/models/pythia-1.4b/",
+      "seed": 42,
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "query_key_value"
+        ],
+        "epochs": 3,
+        "lr": 0.0002,
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "decoding_strategy": "topk",
+        "top_k": 50
+      }
+    }
+  },
+  "timestamp": "2026-05-14T18:22:49.491423+00:00",
+  "trigger": "update_registry"
+}

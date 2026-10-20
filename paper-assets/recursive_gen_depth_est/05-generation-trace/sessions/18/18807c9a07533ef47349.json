@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r2w3_multi_tau_paper_20260516T024635_result.json",
     "occurrence": 1,
-    "bytes": 687,
-    "sha256": "b876f63f50f402a78c6f042dfddb4741625287b8d84b51a06ef5bee9d7fe4bc0"
+    "bytes": 686,
+    "sha256": "17050a5cc5e90acd1f36486d8cde12a05b090a47429112b0afd95820e3d1d531"
   },
   "statistics": {
     "messages": 1,

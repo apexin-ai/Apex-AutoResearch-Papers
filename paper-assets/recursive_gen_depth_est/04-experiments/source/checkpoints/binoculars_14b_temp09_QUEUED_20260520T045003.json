@@ -1,0 +1,16 @@
+{
+  "exp_id": "binoculars_14b_temp09",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:49:48.206Z",
+    "updated_at": "2026-05-20T04:50:03.589Z",
+    "hypothesis": "Binoculars cross-perplexity features provide complementary signal at 14B scale when merged with 19 statistical features, yielding accuracy above stat-only baseline. Tests whether cross-model divergence channel persists at larger scale.",
+    "parent": "qwen25_14b_temp09"
+  },
+  "timestamp": "2026-05-20T04:50:03.953730+00:00",
+  "trigger": "update_registry"
+}

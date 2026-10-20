@@ -1,0 +1,28 @@
+{
+  "exp_id": "d4_extension_olmo_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:10:04.569Z",
+    "updated_at": "2026-05-18T19:10:32.331Z",
+    "hypothesis": "OLMo-1B nucleus d4 depth extension: recursive generation depth signal persists at d4, completing 3/3 model coverage for EDD >= 4 verification.",
+    "parent": "d4_extension_gpt2xl_001",
+    "spec": {
+      "command": "python run_d4_extension_olmo.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "results/d4_extension_olmo/",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "seed": 42,
+      "checkpoint_path": "results/d4_extension_olmo/",
+      "log_path": "results/d4_extension_olmo/",
+      "checkpoint_source": "d4_extension_gpt2xl_001",
+      "eval_data": "results/d4_extension_olmo/features_d4.jsonl"
+    }
+  },
+  "timestamp": "2026-05-18T19:10:32.575239+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_ablation_pca_supplement_20260515T173806_result.json",
     "occurrence": 1,
-    "bytes": 1135,
-    "sha256": "85c85f96fbcbf697ee1b7de6be4a8fdce60ad2f9ca1748fa370baee73f90d911"
+    "bytes": 1134,
+    "sha256": "301d1063b739557601b72b9139e85cde70326b4071f8b56fe36705ad4b9bb05d"
   },
   "statistics": {
     "messages": 1,

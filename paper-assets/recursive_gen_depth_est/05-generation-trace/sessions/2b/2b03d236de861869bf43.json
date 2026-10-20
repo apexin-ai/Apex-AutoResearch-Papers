@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_roberta_model_fix_20260515T124239_result.json",
     "occurrence": 1,
-    "bytes": 565,
-    "sha256": "1934f580c71930df94386cc03dbb13a589b468b616a7cec1679eab5befedb5da"
+    "bytes": 564,
+    "sha256": "64a5313c5c2e14dc98159d65682fac1666def7548aad78c309bc89c97435a1f8"
   },
   "statistics": {
     "messages": 1,

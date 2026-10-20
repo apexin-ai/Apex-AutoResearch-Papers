@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_narrative_upgrade_20260516T101458_result.json",
     "occurrence": 1,
-    "bytes": 698,
-    "sha256": "dc4f14e5892ac035cf257b1468b5028889c0212edd44af27a8293acfce792830"
+    "bytes": 697,
+    "sha256": "95e5cf86d10bc20638f468f7e880a92b3fa1a224a3c3689c6068f2bb1392ac01"
   },
   "statistics": {
     "messages": 1,

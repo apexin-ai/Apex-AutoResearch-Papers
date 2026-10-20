@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_mvp-evaluation-full_20260514T135351_result.json",
     "occurrence": 1,
-    "bytes": 2011,
-    "sha256": "fccf6a8162e606a4ab917b72a14193eb5c2af1a144a5327b38e17cbd410b2b63"
+    "bytes": 2010,
+    "sha256": "bb04af438b9119acc274c6ad3d33d6aa100ef625f78b3cbcae45dacbc179a82e"
   },
   "statistics": {
     "messages": 1,

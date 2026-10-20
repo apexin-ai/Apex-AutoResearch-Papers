@@ -1,0 +1,41 @@
+{
+  "exp_id": "olmo_topk50_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:30:51.656Z",
+    "updated_at": "2026-05-15T01:39:56.912Z",
+    "hypothesis": "解码策略鲁棒性: OLMo-1B 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "parent": "cross_model_olmo_002",
+    "plan_id": "plan_002c",
+    "notes": "OLMo-1B top-k k=50 pipeline 在 cuda:1 运行中 (PID 226461)。Symlink depth-0 LoRA adapter。3×3 矩阵最后一格（OLMo topk50）。",
+    "spec": {
+      "command": "bash -c \"export AML_EXP_ID=olmo_topk50_001 && export GPU=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_pipeline_olmo_topk50.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "226461",
+      "log_path": "~/runs/recursive_gen_depth_est/olmo_topk50_001.log",
+      "submitted_at": "2026-05-15T00:11:30.334Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/olmo/lora_depth_0 (symlinked)",
+      "eval_data": "data/depth_0.jsonl (seed) + generated depths 1-3",
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo_topk50/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T01:39:56.773Z"
+    }
+  },
+  "timestamp": "2026-05-15T01:39:56.971625+00:00",
+  "trigger": "update_registry"
+}

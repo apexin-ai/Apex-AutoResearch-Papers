@@ -1,0 +1,44 @@
+{
+  "exp_id": "dcol_deberta_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:27:49.873Z",
+    "updated_at": "2026-05-14T22:35:52.089Z",
+    "hypothesis": "DCOL (DeBERTa-v3-large + Contrastive Ordinal Loss with learnable margins) 从原始文本直接预测递归生成深度，优于统计特征+RF方法",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T20:19:37.991Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol/ --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-3 --cl_weight 0.5\""
+    },
+    "spec": {
+      "command": "python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol/ --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-3 --cl_weight 0.5",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/features_all.jsonl",
+      "model_name": "DeBERTa-v3-large",
+      "seed": "default",
+      "hyperparams": {
+        "batch_size": 32,
+        "epochs": 10,
+        "lr": "2e-5",
+        "margin_lr": "1e-3",
+        "cl_weight": 0.5,
+        "feature_dim": 19,
+        "contrastive_dim": 128
+      }
+    },
+    "pid": "193684",
+    "log_path": "~/runs/recursive_gen_depth_est/dcol_deberta_001.log",
+    "conclusion": "failed",
+    "notes": "Embedding collapse: margin_lr=1e-3 太高（与 base lr 2e-5 差 50x），导致 margins 过快收缩。CL loss 从 0.46 塌缩到 0.03，但 4-class acc 仅 31.5%（Epoch 6）。训练无意义，已 kill。修复方案：margin_lr→1e-4, 添加 L2 norm, cl_weight→1.0。",
+    "completed_at": "2026-05-14T22:35:52.089Z"
+  },
+  "timestamp": "2026-05-14T22:35:52.137963+00:00",
+  "trigger": "update_registry"
+}

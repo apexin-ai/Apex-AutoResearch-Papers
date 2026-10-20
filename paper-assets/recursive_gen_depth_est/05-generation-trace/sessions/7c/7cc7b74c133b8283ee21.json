@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_predownload-baseline-models_20260519T143814_result.json",
     "occurrence": 1,
-    "bytes": 738,
-    "sha256": "2f292e09e14b95f716b5d7a4d2701e601b6b2cf957b42cce62738a850cc820b1"
+    "bytes": 737,
+    "sha256": "88d8045bb9b2cf899f3ec727cc02a92645175e46a66be294aad01a5bd0597e88"
   },
   "statistics": {
     "messages": 1,

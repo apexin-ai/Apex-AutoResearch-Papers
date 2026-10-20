@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_latex-format-fix_20260526T031753_result.json",
     "occurrence": 1,
-    "bytes": 1203,
-    "sha256": "12ae9dbf5589dc8b0278d70d8d5a8c5b28bd09bf0f211e96d54f1911307adcf8"
+    "bytes": 1202,
+    "sha256": "c12fa63879a85d10808099999daabc73594b58f570795bc5807159de4da9c60f"
   },
   "statistics": {
     "messages": 1,

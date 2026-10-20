@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_plan_015_wild_data_design_20260515T193645_result.json",
     "occurrence": 1,
-    "bytes": 331,
-    "sha256": "9abd99101e072a9302cda335cb0aeba2f9f95fc35540b3b69c4c7cddc27904e9"
+    "bytes": 330,
+    "sha256": "c54fa678193e036d130e6c24a324facdc99e0e38f20a196934c6278041d0388c"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_olmo-pipeline-launch_20260514T141126_result.json",
     "occurrence": 1,
-    "bytes": 1050,
-    "sha256": "370c1dc39d573fb2aefab06595f9fad341a9a654df13bb13c118dbaa6775be4b"
+    "bytes": 1049,
+    "sha256": "8d34dcef310935850fc5ee89701b7478042c24062f79f6e6a5f3d07b62def575"
   },
   "statistics": {
     "messages": 1,

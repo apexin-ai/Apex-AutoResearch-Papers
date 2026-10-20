@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_pythia-variant-scripts-launch_20260514T145010_result.json",
     "occurrence": 1,
-    "bytes": 881,
-    "sha256": "6ea83b7eecbb17391260282a80155588cc8ecdbd11170f803db57358ae9ae69e"
+    "bytes": 880,
+    "sha256": "9c075861119fb12632ed068a405be9bfdfd94347eee612eadf73c9f5d3d7e132"
   },
   "statistics": {
     "messages": 1,

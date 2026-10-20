@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_literature-linkage-depth-extension_20260515T051604_result.json",
     "occurrence": 1,
-    "bytes": 4825,
-    "sha256": "8ac65fa0b31427672d56db6ecc87f69f7b7c6eae3df5f9836de4ca4c29e1eccb"
+    "bytes": 4824,
+    "sha256": "dcb7f61ab74715c71cb5c38ebf5aa2f602fd75b4ec5644e78ad6fa5ff64f5827"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_mvp_pipeline_pythia_002_20260514T135037_result.json",
     "occurrence": 1,
-    "bytes": 4364,
-    "sha256": "409f13c946b0fc7f6442a81ab6462352544750c25c5efcdbc4e7a9db61e0ca56"
+    "bytes": 4363,
+    "sha256": "5cde8756f983270df1fbe620443cd453d3078320fdb6fd45f3833b20446dc946"
   },
   "statistics": {
     "messages": 1,

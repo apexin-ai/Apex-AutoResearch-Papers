@@ -1,0 +1,15 @@
+{
+  "exp_id": "wild_data_calibration_015",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T08:04:11.520Z",
+    "updated_at": "2026-05-22T08:04:15.869Z",
+    "hypothesis": "Depth classifiers trained on controlled recursive chains maintain low false positive rates (FPR < 10% with confidence thresholding) on diverse wild web-crawl corpora (C4, FineWeb, RedPajama), with consistent depth distribution patterns across data sources, demonstrating real-world applicability of the depth estimation pipeline."
+  },
+  "timestamp": "2026-05-22T08:04:16.266234+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_gpu-status-check_20260515T020802_result.json",
     "occurrence": 1,
-    "bytes": 774,
-    "sha256": "c09ae25ae7ff241024da0d2c280e9f7789df571dd90078e32003b26a9e69d0e9"
+    "bytes": 773,
+    "sha256": "05c1b8699d5e3b2caa73992ccac0f41c10cd7b2bacbd83db811ea818cf8ace16"
   },
   "statistics": {
     "messages": 1,

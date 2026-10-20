@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_patch_cross_scale_llama3_20260516T101415_result.json",
     "occurrence": 1,
-    "bytes": 1047,
-    "sha256": "93c137ad338b5822bdfe2b4b462d99ddef044081f8834ff0435e518008678edb"
+    "bytes": 1046,
+    "sha256": "b5213d05011bc703911a634c699dda222e83b92ba5787bce192ec5a2a7544886"
   },
   "statistics": {
     "messages": 1,

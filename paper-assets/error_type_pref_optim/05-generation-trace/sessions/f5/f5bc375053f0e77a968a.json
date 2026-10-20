@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5bc375053f0e77a968a",
+  "project": "error_type_pref_optim",
+  "kind": "result",
+  "title": "code trajectory pipeline design",
+  "task_key": "worker_code_trajectory-pipeline-design_20260514T094752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_trajectory-pipeline-design_20260514T094752_result.json",
+    "occurrence": 1,
+    "bytes": 1671,
+    "sha256": "4a3854ec5d103bc40f9d9e785c31482a1bf3385dfeba7b6f0fb39a2701d5bdb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个脚本 dry-run 通过。汇总：\n\n## Phase A 数据采集 Pipeline 部署完成\n\n**服务器路径**: `/root/error_type_pref_optim/`\n\n| 脚本 | 大小 | 功能 | Dry-run |\n|------|------|------|---------|\n| `generate_trajectories.py` | 10,243B | Qwen3-8B 在 ALFWorld 生成 ~200 条轨迹 | **PASS** |\n| `classify_errors.py` | 12,548B | 零样本 LLM 错误分类 (action/verification/planning) | **PASS** |\n| `measure_correction_horizon.py` | 14,184B | 每个失败步 N=10 次纠正续写，测量 correction horizon | **PASS** |\n| `analyze_correction_spans.py` | 11,093B | 统计分析 + Mann-Whitney U + 可视化 | **PASS** |\n\n**执行顺序**:\n```\ngenerate_trajectories.py → classify_errors.py → measure_correction_horizon.py → analyze_correction_spans.py\n```\n\n**数据流**:\n```\ndata/trajectories.jsonl → data/classified_trajectories.jsonl → data/correction_measured_trajectories.jsonl → data/correction_analysis_summary.json + PDF plots\n```\n\n**ETO 仓库结构概述** (脚本设计参考):\n- `ETO/eval_agent/envs/alfworld_env.py` — ALFWorld 环境交互接口 (parse_action, process_ob, step)\n- `ETO/eval_agent/tasks/alfworld.py` — 任务加载 (train/dev/test splits: 3321/140/134)\n- `ETO/eval_agent/prompt/` — ICL 指令和示例 (conversation 格式)\n- `ETO/eval_agent/data/alfworld/base_config.yaml` — 环境配置\n- 模型路径: `/root/error_type_pref_optim/models/Qwen3-8B` (ModelScope 下载中)\n\n**注意**: Qwen3-8B 模型仍在通过 ModelScope 下载中（上次检查时 `._____temp/` 目录存在 `.incomplete` 文件），模型下载完成后即可执行 pipeline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-trajectory-pipeline-design.md"
+}

@@ -1,0 +1,26 @@
+paper_key: "mohamed2025_broken_telephone"
+title: "LLM as a Broken Telephone: Iterative Generation Distorts Information"
+venue: "ACL 2025"
+full_text_available: false
+
+research:
+  baselines: ["single-pass generation", "various prompting strategies"]
+  metrics:
+    - {name: "information distortion rate", direction: "lower_better"}
+    - {name: "semantic similarity to original", direction: "higher_better"}
+    - {name: "factual accuracy degradation", direction: "lower_better"}
+  datasets:
+    - {name: "translation chain experiments", size: "N/A"}
+  ablation_dimensions: ["number of iterative generations", "language choice", "chain complexity", "prompting strategy"]
+  training_recipe: {optimizer: "N/A (inference only)", lr: "N/A", hardware: "N/A"}
+  method_family: "empirical analysis of iterative LLM generation degradation"
+
+positioning:
+  core_claim: "LLMs systematically distort information when outputs are repeatedly processed, with distortion accumulating over iterations analogous to the broken telephone effect"
+  key_results: "Degradation is inevitable but mitigable through strategic prompting; language and chain complexity influence distortion rate"
+  limitations: ["primarily translation-based experiments", "limited model coverage"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,14 @@
+{
+  "exp_id": "zeroshot_llm_500_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:46:50.066Z",
+    "updated_at": "2026-05-15T15:46:50.066Z"
+  },
+  "timestamp": "2026-05-15T15:46:50.197088+00:00",
+  "trigger": "update_registry"
+}

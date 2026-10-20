@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_dcol_fix_leakage_20260514T162652_result.json",
     "occurrence": 1,
-    "bytes": 465,
-    "sha256": "74a68cdb24e128709588d7081d4fa910d67e5e0c42e6b45cbeaec2972c7b0215"
+    "bytes": 464,
+    "sha256": "62c6f9139b18e4a2f7267a547cedf64091f54a47b9363ad14eb08ac58768d708"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,35 @@
+{
+  "exp_id": "accum_pythia_nuc_002",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:47:16.064Z",
+    "updated_at": "2026-05-22T02:10:39.498Z",
+    "hypothesis": "Accumulation scenario with Pythia-1.4B nucleus sampling shows comparable depth signal degradation pattern to GPT-2 XL nucleus (accum_v3): mix25 ~70% and mix50 ~69%, confirming cross-model consistency of accumulation effects on depth estimation. Retry of accum_pythia_nuc_001 (failed due to cuda:1 not existing).",
+    "spec": {
+      "command": "python3 scripts/accumulation_pipeline_pythia_nucleus.py --mix_ratio 0.25 --seed 42",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": "374010",
+      "log_path": "~/runs/recursive_gen_depth_est/accum_pythia_nuc_002.log",
+      "submitted_at": "2026-05-21T11:48:45.312Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/pythia_nucleus/depth_0.jsonl + depth_1.jsonl",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b (LoRA) + EleutherAI/pythia-1.4b (feature ref)",
+      "seed": 42,
+      "mix_ratio": 0.25,
+      "lora_config": "r=16 alpha=32 target=[query_key_value] dropout=0.05 lr=2e-4 epochs=3 bs=4 grad_accum=4",
+      "feature_ref_model": "EleutherAI/pythia-1.4b",
+      "note": "Retry of accum_pythia_nuc_001 on cuda:0 (001 failed on non-existent cuda:1)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T02:10:39.916633+00:00",
+  "trigger": "update_registry"
+}

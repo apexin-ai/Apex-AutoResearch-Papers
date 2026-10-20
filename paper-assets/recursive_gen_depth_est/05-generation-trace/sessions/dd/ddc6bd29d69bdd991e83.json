@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_accum_v3_results_20260519T124613_result.json",
     "occurrence": 1,
-    "bytes": 974,
-    "sha256": "bc89a0385c7b4f29ee3c89cad19019a127bd3525920defbc9f72a876e465ca95"
+    "bytes": 973,
+    "sha256": "75207269c400330fc56b2a927d2abfe9cdec0cc43511b2e1e8313b58c2dc9ad5"
   },
   "statistics": {
     "messages": 1,

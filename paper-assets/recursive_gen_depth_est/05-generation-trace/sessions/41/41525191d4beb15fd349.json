@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_strategy_confusion_ppl_threshold_20260518T142943_result.json",
     "occurrence": 1,
-    "bytes": 1786,
-    "sha256": "5165b363ca617a67f6dc97579cdbfe59349a02ccf8c9e48fe98e2ba4ed48f126"
+    "bytes": 1785,
+    "sha256": "de49b18dab4aa6311ca38b89c449ce3fcd568d8b3b5076b3baf56470945142f4"
   },
   "statistics": {
     "messages": 1,

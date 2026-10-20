@@ -1,0 +1,15 @@
+{
+  "exp_id": "rf_21feature_augmented_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:16:17.391Z",
+    "updated_at": "2026-05-18T20:16:44.862Z",
+    "hypothesis": "Adding Min-K% Prob and DetectGPT scores to the 19 statistical features will either show redundancy (detection scores add no info beyond statistical features) or complementarity (detection scores capture unique signal), both outcomes strengthen the paper narrative"
+  },
+  "timestamp": "2026-05-18T20:16:45.121780+00:00",
+  "trigger": "update_registry"
+}

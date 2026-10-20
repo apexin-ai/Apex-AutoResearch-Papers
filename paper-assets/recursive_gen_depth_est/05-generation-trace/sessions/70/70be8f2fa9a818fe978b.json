@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figures_atlas_paper_figures_20260515T040104_result.json",
     "occurrence": 1,
-    "bytes": 1057,
-    "sha256": "c79a56e27e7fb0844c51f716f4247869c10ed5c0cdfa1523fea9ff7f6bf60056"
+    "bytes": 1056,
+    "sha256": "45e1c10557824cd6c1d8bfa6b2088624beba153cc37006bfeca4535d93db1c1d"
   },
   "statistics": {
     "messages": 1,

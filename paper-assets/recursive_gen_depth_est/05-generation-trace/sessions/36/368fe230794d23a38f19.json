@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_kill-orphan-mink-westd-v2_20260519T145938_result.json",
     "occurrence": 1,
-    "bytes": 261,
-    "sha256": "cda90a578f1b263a691f6f3752e41928e386530094670d722d29d450e1747c43"
+    "bytes": 260,
+    "sha256": "fa8a7e70da01aa9d41319715fff908ea638c7c351dfe3078c8034a84d271c44d"
   },
   "statistics": {
     "messages": 1,

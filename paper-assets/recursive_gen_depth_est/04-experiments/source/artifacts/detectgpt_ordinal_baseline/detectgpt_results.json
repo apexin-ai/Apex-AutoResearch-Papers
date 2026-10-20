@@ -1,0 +1,171 @@
+{
+  "gpt2xl_nucleus": {
+    "methodA": {
+      "4class_acc": 0.285,
+      "4class_acc_std": 0.0551,
+      "d1d3_bal_acc": 0.3183,
+      "d1d3_bal_acc_std": 0.0193
+    },
+    "methodB": {
+      "4class_acc": 0.25,
+      "4class_acc_std": 0.0324,
+      "d1d3_bal_acc": 0.325,
+      "d1d3_bal_acc_std": 0.0376
+    },
+    "methodC": {
+      "4class_acc": 0.4012,
+      "4class_acc_std": 0.016,
+      "d1d3_bal_acc": 0.31,
+      "d1d3_bal_acc_std": 0.02
+    }
+  },
+  "gpt2xl_temp09": {
+    "methodA": {
+      "4class_acc": 0.28,
+      "4class_acc_std": 0.015,
+      "d1d3_bal_acc": 0.3183,
+      "d1d3_bal_acc_std": 0.0122
+    },
+    "methodB": {
+      "4class_acc": 0.2963,
+      "4class_acc_std": 0.0287,
+      "d1d3_bal_acc": 0.37,
+      "d1d3_bal_acc_std": 0.0327
+    },
+    "methodC": {
+      "4class_acc": 0.4138,
+      "4class_acc_std": 0.0121,
+      "d1d3_bal_acc": 0.3017,
+      "d1d3_bal_acc_std": 0.0309
+    }
+  },
+  "gpt2xl_topk50": {
+    "methodA": {
+      "4class_acc": 0.3112,
+      "4class_acc_std": 0.0191,
+      "d1d3_bal_acc": 0.3233,
+      "d1d3_bal_acc_std": 0.0347
+    },
+    "methodB": {
+      "4class_acc": 0.265,
+      "4class_acc_std": 0.0249,
+      "d1d3_bal_acc": 0.3483,
+      "d1d3_bal_acc_std": 0.0392
+    },
+    "methodC": {
+      "4class_acc": 0.3688,
+      "4class_acc_std": 0.0265,
+      "d1d3_bal_acc": 0.24,
+      "d1d3_bal_acc_std": 0.0442
+    }
+  },
+  "olmo_nucleus": {
+    "methodA": {
+      "4class_acc": 0.2588,
+      "4class_acc_std": 0.0064,
+      "d1d3_bal_acc": 0.3383,
+      "d1d3_bal_acc_std": 0.0113
+    },
+    "methodB": {
+      "4class_acc": 0.2488,
+      "4class_acc_std": 0.0272,
+      "d1d3_bal_acc": 0.33,
+      "d1d3_bal_acc_std": 0.0367
+    },
+    "methodC": {
+      "4class_acc": 0.3088,
+      "4class_acc_std": 0.0287,
+      "d1d3_bal_acc": 0.2433,
+      "d1d3_bal_acc_std": 0.026
+    }
+  },
+  "olmo_temp09": {
+    "methodA": {
+      "4class_acc": 0.2538,
+      "4class_acc_std": 0.0129,
+      "d1d3_bal_acc": 0.325,
+      "d1d3_bal_acc_std": 0.019
+    },
+    "methodB": {
+      "4class_acc": 0.2525,
+      "4class_acc_std": 0.0188,
+      "d1d3_bal_acc": 0.3367,
+      "d1d3_bal_acc_std": 0.0251
+    },
+    "methodC": {
+      "4class_acc": 0.2975,
+      "4class_acc_std": 0.0161,
+      "d1d3_bal_acc": 0.1767,
+      "d1d3_bal_acc_std": 0.0339
+    }
+  },
+  "olmo_topk50": {
+    "methodA": {
+      "4class_acc": 0.2525,
+      "4class_acc_std": 0.0242,
+      "d1d3_bal_acc": 0.32,
+      "d1d3_bal_acc_std": 0.0504
+    },
+    "methodB": {
+      "4class_acc": 0.255,
+      "4class_acc_std": 0.0228,
+      "d1d3_bal_acc": 0.34,
+      "d1d3_bal_acc_std": 0.0305
+    },
+    "methodC": {
+      "4class_acc": 0.2425,
+      "4class_acc_std": 0.0292,
+      "d1d3_bal_acc": 0.2517,
+      "d1d3_bal_acc_std": 0.064
+    }
+  },
+  "pythia_temp09": {
+    "methodA": {
+      "4class_acc": 0.325,
+      "4class_acc_std": 0.0105,
+      "d1d3_bal_acc": 0.325,
+      "d1d3_bal_acc_std": 0.0105
+    },
+    "methodB": {
+      "4class_acc": 0.3317,
+      "4class_acc_std": 0.0082,
+      "d1d3_bal_acc": 0.3317,
+      "d1d3_bal_acc_std": 0.0082
+    },
+    "methodC": {
+      "4class_acc": 0.2183,
+      "4class_acc_std": 0.0585,
+      "d1d3_bal_acc": 0.2183,
+      "d1d3_bal_acc_std": 0.0585
+    }
+  },
+  "pythia_topk50": {
+    "methodA": {
+      "4class_acc": 0.3183,
+      "4class_acc_std": 0.02,
+      "d1d3_bal_acc": 0.3183,
+      "d1d3_bal_acc_std": 0.02
+    },
+    "methodB": {
+      "4class_acc": 0.3367,
+      "4class_acc_std": 0.0067,
+      "d1d3_bal_acc": 0.3367,
+      "d1d3_bal_acc_std": 0.0067
+    },
+    "methodC": {
+      "4class_acc": 0.2017,
+      "4class_acc_std": 0.0627,
+      "d1d3_bal_acc": 0.2017,
+      "d1d3_bal_acc_std": 0.0627
+    }
+  },
+  "summary": {
+    "mean_4class_acc": 0.2906,
+    "mean_d1d3_bal_acc": 0.302,
+    "n_cells": 8,
+    "samples_per_depth": 200,
+    "n_perturbations": 5,
+    "scoring_model": "openai-community/gpt2-large",
+    "perturbation_model": "google-t5/t5-large"
+  }
+}

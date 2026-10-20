@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_olmo_seed43_status_check_20260518T164700_result.json",
     "occurrence": 1,
-    "bytes": 1183,
-    "sha256": "5a53001f6b8cf1f57c6dc5120edd23c2168ed713d1a17d6dfdf3c18f49568423"
+    "bytes": 1182,
+    "sha256": "67be26c93cde42c4580f7b139b1ea465a48dd03b9a60f56f54e073580a440f43"
   },
   "statistics": {
     "messages": 1,

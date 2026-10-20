@@ -8426,7 +8426,7 @@ _source line 3634 · 2026-05-22T03:15:20.373829+00:00_
 37	ssh_execute("echo $GOOGLE_API_KEY | head -c 10")
 38	
 39	# 如未配置，需要用户提供 key，然后：
-40	ssh_execute("echo 'export GOOGLE_API_KEY=&lt;key>' >> ~/.bashrc && source ~/.bashrc")
+40	ssh_execute("echo 'export GOOGLE_API_KEY=[REDACTED]' >> ~/.bashrc && source ~/.bashrc")
 41	
 42	# 安装 PaperBanana
 43	ssh_execute("pip install paperbanana -q")
@@ -8447,7 +8447,7 @@ _source line 3634 · 2026-05-22T03:15:20.373829+00:00_
 58	# Framework / Pipeline 图
 59	ssh_execute("""
 60	cd ~/my-project && \
-61	GOOGLE_API_KEY=$GOOGLE_API_KEY paperbanana plot \
+61	GOOGLE_API_KEY=[REDACTED] paperbanana plot \
 62	  --intent "Three-stage pipeline diagram flowing left to right:
 63	Stage 1 'Data Collection' (blue
 …[truncated 4521 chars]

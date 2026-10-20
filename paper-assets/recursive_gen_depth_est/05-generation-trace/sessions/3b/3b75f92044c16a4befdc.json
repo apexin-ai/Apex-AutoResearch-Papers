@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_accum_pythia_nuc_002_20260521T114751_result.json",
     "occurrence": 1,
-    "bytes": 521,
-    "sha256": "27e4a4eee9da3ba22513d34d55f494bfec284759328b2227e586531133007bf1"
+    "bytes": 520,
+    "sha256": "ee3e67081d3fddef8cf8f14a21b74687d804596645f52449d60dc7ce1959c318"
   },
   "statistics": {
     "messages": 1,

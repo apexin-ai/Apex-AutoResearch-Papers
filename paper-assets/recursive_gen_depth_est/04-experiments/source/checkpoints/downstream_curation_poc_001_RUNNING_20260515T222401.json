@@ -1,0 +1,35 @@
+{
+  "exp_id": "downstream_curation_poc_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:37:21.710Z",
+    "updated_at": "2026-05-15T22:24:01.778Z",
+    "spec": {
+      "plan_id": "plan_013",
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/curation_poc.py --phase finetune --gpu 0",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/curation_poc/",
+      "data_count": 10000,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": "42,123,456,789,1024",
+      "description": "Downstream curation PoC: RF depth predictor for data curation to Pythia-410M LoRA finetune to WikiText-103 PPL. 8 conditions x 5 seeds = 40 runs.",
+      "conditions": [
+        "unfiltered",
+        "rf_strict",
+        "rf_moderate",
+        "rf_soft",
+        "oracle_strict",
+        "oracle_moderate",
+        "random_strict",
+        "random_moderate"
+      ],
+      "pid": 364466
+    }
+  },
+  "timestamp": "2026-05-15T22:24:01.942548+00:00",
+  "trigger": "update_registry"
+}

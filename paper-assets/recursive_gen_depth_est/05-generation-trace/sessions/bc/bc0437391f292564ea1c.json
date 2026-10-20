@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_cleanup_westd_orphan_processes_20260519T075512_result.json",
     "occurrence": 1,
-    "bytes": 590,
-    "sha256": "08536bbe4b2881e61c17a46bf730f8f6e83614e7f2d0b2cb1c8c48dc7578baf3"
+    "bytes": 589,
+    "sha256": "ae8fa9ce6520cdd8a79fdcd5a3b3087c08d97deddb19130158f3b7d1fada370c"
   },
   "statistics": {
     "messages": 1,

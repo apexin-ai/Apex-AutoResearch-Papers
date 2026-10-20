@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_olmo-script-verify_20260514T145240_result.json",
     "occurrence": 1,
-    "bytes": 2610,
-    "sha256": "74f6500df5e0ff998812389accf2fc05ed6a723b86629815792ec72ecdb5a857"
+    "bytes": 2609,
+    "sha256": "b84db9120c5c7f7bdb54177244c5828e4b68e20735563d1f89d0316e9ade22c1"
   },
   "statistics": {
     "messages": 1,

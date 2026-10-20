@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_deploy_baseline-scripts-and-extract-mink_20260519T140337_result.json",
     "occurrence": 1,
-    "bytes": 941,
-    "sha256": "d1d51616fa2b981282051732c1d6c7958bc5b6947fa039a250e53afac889be8c"
+    "bytes": 940,
+    "sha256": "c71caf468e3dc25294082bda56520e02709cb19f82c42b8e06301a208b24bc81"
   },
   "statistics": {
     "messages": 1,

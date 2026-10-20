@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_paper-polish-pagelimit_20260515T211857_result.json",
     "occurrence": 1,
-    "bytes": 875,
-    "sha256": "6966dca949902743c0e8668a62938f20f48d83816f92194ed807642a1b05fbee"
+    "bytes": 874,
+    "sha256": "44525e429eed2ca3f40733680676f9488af387bdd769e174ea35fdad93022eda"
   },
   "statistics": {
     "messages": 1,

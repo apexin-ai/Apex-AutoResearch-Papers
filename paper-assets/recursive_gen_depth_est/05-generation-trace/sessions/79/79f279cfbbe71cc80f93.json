@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_gpu0_data_contamination_fix_20260515T032636_result.json",
     "occurrence": 1,
-    "bytes": 1344,
-    "sha256": "64087b3c66f8b804fcb65a3ad31db288e1301c12e4a48209f0620ade4e5048d1"
+    "bytes": 1343,
+    "sha256": "ca8277b0c2822023e67d0dc433d95ec3eb0d41e30715617b52e88f042d827366"
   },
   "statistics": {
     "messages": 1,

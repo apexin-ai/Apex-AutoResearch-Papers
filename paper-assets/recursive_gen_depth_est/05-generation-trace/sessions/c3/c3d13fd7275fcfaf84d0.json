@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_cross_model_olmo_002_20260514T170358_result.json",
     "occurrence": 1,
-    "bytes": 3782,
-    "sha256": "4d19465df878e0ae2cdd3d3aa5d957d59ecdecbca7840d0ec853f106792e958f"
+    "bytes": 3781,
+    "sha256": "9742b093af6043796af1931f1e02668aeba771c17f19b6342ad0d6def3aa6217"
   },
   "statistics": {
     "messages": 1,

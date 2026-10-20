@@ -1,0 +1,80 @@
+{
+  "exp_id": "two_stage_strategy_pipeline_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:37:03.133Z",
+    "updated_at": "2026-05-16T05:37:50.172Z",
+    "spec": {
+      "command": "python scripts/two_stage_pipeline.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/ (all 3x3 matrix cells)",
+      "data_count": "9 cells",
+      "model_name": "RF (strategy classifier + depth classifier)",
+      "seed": 42,
+      "notes": "Two-stage pipeline: (1) classify strategy from features, (2) apply strategy-conditioned depth classifier. Supplements R3-N5 cross-strategy discussion.",
+      "checkpoint_path": "N/A (CPU-only analysis)",
+      "log_path": "results/two_stage_pipeline_results.json"
+    },
+    "hypothesis": "Two-stage pipeline: 先分类 decoding strategy，再用 strategy-conditioned depth classifier。验证 Discussion 中提出的 two-stage 方案的可行性和瓶颈。",
+    "conclusion": "success",
+    "metrics": {
+      "strategy_classification": {
+        "mean_acc": 0.575,
+        "chance": 0.333,
+        "pythia": {
+          "acc": 0.523,
+          "nucleus_recall": 0.533,
+          "temp09_recall": 0.414,
+          "topk50_recall": 0.622
+        },
+        "olmo": {
+          "acc": 0.548,
+          "nucleus_recall": 0.608,
+          "temp09_recall": 0.479,
+          "topk50_recall": 0.558
+        },
+        "gpt2xl": {
+          "acc": 0.654,
+          "nucleus_recall": 0.845,
+          "temp09_recall": 0.507,
+          "topk50_recall": 0.61
+        }
+      },
+      "depth_estimation": {
+        "cross_strategy_loo_ref": 0.591,
+        "predicted_two_stage": {
+          "pythia": 0.693,
+          "olmo": 0.695,
+          "gpt2xl": 0.73,
+          "mean": 0.706
+        },
+        "naive_pooled": {
+          "pythia": 0.709,
+          "olmo": 0.712,
+          "gpt2xl": 0.739,
+          "mean": 0.72
+        },
+        "oracle_two_stage": {
+          "pythia": 0.746,
+          "olmo": 0.785,
+          "gpt2xl": 0.82,
+          "mean": 0.784
+        },
+        "within_strategy_ref": {
+          "pythia": 0.745,
+          "olmo": 0.784,
+          "gpt2xl": 0.816,
+          "mean": 0.782
+        }
+      },
+      "key_finding": "Oracle two-stage (78.4%) matches within-strategy (78.2%), validating theory. But predicted two-stage (70.6%) < naive pooled (72.0%) due to strategy classification bottleneck (57.5%)."
+    },
+    "completed_at": "2026-05-16T05:37:50.172Z"
+  },
+  "timestamp": "2026-05-16T05:37:50.373625+00:00",
+  "trigger": "update_registry"
+}

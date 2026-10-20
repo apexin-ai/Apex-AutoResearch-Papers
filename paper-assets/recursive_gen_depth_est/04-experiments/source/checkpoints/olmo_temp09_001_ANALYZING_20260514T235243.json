@@ -1,0 +1,38 @@
+{
+  "exp_id": "olmo_temp09_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T20:34:19.885Z",
+    "updated_at": "2026-05-14T23:52:43.369Z",
+    "hypothesis": "解码策略鲁棒性: OLMo-1B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "parent": "cross_model_olmo_002",
+    "plan_id": "plan_002b",
+    "notes": "OLMo-1B temp09 pipeline 正常运行中 (PID 205384, cuda:1)。曾因 cron 子进程误报被错误标记为 failed，已修正。Step 1-3 完成 (depth-0 finetune loss=2.2684, depth-1 finetune loss=1.629), Step 4+ 进行中。",
+    "completed_at": "2026-05-14T22:58:51.654Z",
+    "failure_reason": null,
+    "extra": null,
+    "spec": {
+      "command": "bash scripts/run_pipeline_olmo_temp09.sh",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "model_path": "/root/autodl-tmp/models/olmo-1b-hf/",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo_temp09/",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_olmo_temp09.log",
+      "checkpoint_source": "self-trained LoRA adapters per depth",
+      "eval_data": "data/depth_0.jsonl (seed) + generated depths 1-3"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T23:52:43.231Z"
+    }
+  },
+  "timestamp": "2026-05-14T23:52:43.431446+00:00",
+  "trigger": "update_registry"
+}

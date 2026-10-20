@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_olmo_nucleus_eval_20260514T182449_result.json",
     "occurrence": 1,
-    "bytes": 2704,
-    "sha256": "d75c5cb23ddcb7031b54d1c2ad74a68166d6c97875ca989dcda61a9c6cae0a94"
+    "bytes": 2703,
+    "sha256": "fc790923c3a523b98d7d53b6d44c053bdfccd7f91aa11981d65b2337df797ddc"
   },
   "statistics": {
     "messages": 1,

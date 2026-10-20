@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_verify_gpu_split_20260519T045944_result.json",
     "occurrence": 1,
-    "bytes": 668,
-    "sha256": "8fe615f1d130f5d430e4b8b30b6796dab87538f16282185d5724ad1b653afb57"
+    "bytes": 667,
+    "sha256": "63c205b151a067a9961459e4006d583bca122061888b903439fdbc24e790129c"
   },
   "statistics": {
     "messages": 1,

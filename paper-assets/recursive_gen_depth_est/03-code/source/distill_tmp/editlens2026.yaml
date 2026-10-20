@@ -1,0 +1,27 @@
+paper_key: "editlens2026"
+title: "EditLens: Quantifying the Extent of AI Editing in Text"
+venue: "ICLR 2026"
+full_text_available: false
+
+research:
+  baselines: ["binary AI detectors (GPTZero, etc.)", "ternary classifiers"]
+  metrics:
+    - {name: "F1 (binary)", direction: "higher_better"}
+    - {name: "F1 (ternary)", direction: "higher_better"}
+    - {name: "regression correlation", direction: "higher_better"}
+  datasets:
+    - {name: "human-AI mixed editing dataset", size: "N/A"}
+    - {name: "Grammarly editing data", size: "N/A"}
+  ablation_dimensions: ["editing extent (continuous)", "similarity metric choice", "human annotation agreement"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "regression-based continuous AI editing quantification"
+
+positioning:
+  core_claim: "First to formalize AI editing detection as continuous regression rather than binary/ternary classification, achieving SOTA on both classification and regression tasks"
+  key_results: "Binary F1=94.7%, ternary F1=90.4%; validated against human annotators; practical Grammarly case study"
+  limitations: ["requires original human text for metric validation", "continuous scoring may be hard to interpret"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

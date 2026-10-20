@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_sync_remaining_baselines_20260514T222541_result.json",
     "occurrence": 1,
-    "bytes": 400,
-    "sha256": "c470d0637f3b9001ae9e3c59b9898605688be35e38f05a2fc54752cabb88c728"
+    "bytes": 399,
+    "sha256": "8a621496e3a2faeed530c35c66e620d1c22257a5cdf8b395aa767cc2e5ef4ea0"
   },
   "statistics": {
     "messages": 1,

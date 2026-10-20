@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r3n2-ablation-text_20260516T005001_result.json",
     "occurrence": 1,
-    "bytes": 255,
-    "sha256": "5c1011353b57d4d93135462a5f061327b1a623de65f4ad9b937bbcab330f7dcb"
+    "bytes": 254,
+    "sha256": "b7f692e8104e6bf0b6258eb72179566decf4b512ce560cf6b7ac3b18ca7dc021"
   },
   "statistics": {
     "messages": 1,

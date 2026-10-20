@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_bibliography-terminology_20260515T155105_result.json",
     "occurrence": 1,
-    "bytes": 946,
-    "sha256": "7fe1972205aef2f3228b1b642a1fa058979b03336216c0ff2dbc189ee8a38316"
+    "bytes": 945,
+    "sha256": "edbf70d228c1a86431d7ce26d904affe737d8b4a7cc923002481d381c78819e4"
   },
   "statistics": {
     "messages": 1,

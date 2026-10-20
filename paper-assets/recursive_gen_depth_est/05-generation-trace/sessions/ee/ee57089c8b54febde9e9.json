@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_granularity_ablation_rf_001_20260515T092808_result.json",
     "occurrence": 1,
-    "bytes": 678,
-    "sha256": "54b7bfb8509b0bad76f1d723d6078eaa12a8ffaf340e00001ebc17153a4000ae"
+    "bytes": 677,
+    "sha256": "273ba97580eed75388878385e03bf2aec61d33e234b990d064713f484ce9a9b8"
   },
   "statistics": {
     "messages": 1,

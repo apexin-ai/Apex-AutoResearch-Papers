@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_pareek_bib_entry_20260517T203612_result.json",
     "occurrence": 1,
-    "bytes": 416,
-    "sha256": "10256fdb6fc583432f32647986639d5982cf441bbd00753c328a83e9b70090b3"
+    "bytes": 415,
+    "sha256": "59c114d0af4e74ffea788a542f4ee431548b08a0fb776b912840a52ed5171b1e"
   },
   "statistics": {
     "messages": 1,

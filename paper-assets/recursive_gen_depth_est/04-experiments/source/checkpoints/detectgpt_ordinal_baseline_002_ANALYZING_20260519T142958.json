@@ -1,0 +1,46 @@
+{
+  "exp_id": "detectgpt_ordinal_baseline_002",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:08:25.575Z",
+    "updated_at": "2026-05-19T14:29:58.452Z",
+    "spec": {
+      "command": "python3 scripts/detection_baselines.py --method detectgpt",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "131658",
+      "log_path": "results/detectgpt_baseline/detectgpt_results.json",
+      "submitted_at": "2026-05-19T13:08:24.890Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "DetectGPT (Mitchell et al. 2023) + Fast-DetectGPT (Bao et al. 2024)",
+      "checkpoint_path": "N/A (evaluation-only baseline)",
+      "data_path": "data/ (9-cell atlas depth_0-3.jsonl, 8/9 cells)",
+      "data_count": 5000,
+      "seed": 42
+    },
+    "hypothesis": "DetectGPT (Mitchell et al., 2023) perturbation discrepancy scores, when calibrated to 4-class ordinal depth via equal-width/CORAL/threshold methods, achieve near-chance accuracy (~29%) on 8/9 atlas cells. Fast-DetectGPT (Bao et al., 2024) is a strictly stronger baseline; if even original DetectGPT fails at ordinal depth, Fast-DetectGPT would perform no better. Establishes that perturbation-based binary detection lacks ordinal resolution.",
+    "notes": "8/9 cells completed on westd-48862 (pythia_nucleus excluded — server released before completion). Results from original DetectGPT (Mitchell 2023, T5 perturbation). Director approved closing with 8/9 cells — sufficient to establish binary detection ≠ ordinal depth. Fast-DetectGPT (Bao 2024) noted in hypothesis as strictly stronger baseline for argumentative force.",
+    "metrics": {
+      "cells_complete": "8/9",
+      "excluded_cell": "pythia_nucleus (westd-48862 released before completion)",
+      "mean_4class_acc": 0.291,
+      "mean_d1d3_bal_acc": 0.302,
+      "n_perturbations": 5,
+      "scoring_model": "gpt2-large",
+      "perturbation_model": "t5-large",
+      "chance_level": 0.25,
+      "verdict": "Mean 4class_acc=29.1%, near chance. No calibration method reliably distinguishes ordinal depth from perturbation discrepancy scores."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T14:29:58.720069+00:00",
+  "trigger": "update_registry"
+}

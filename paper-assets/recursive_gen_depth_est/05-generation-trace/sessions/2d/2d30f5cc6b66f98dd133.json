@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mixed_depth_corpus_b_20260517T035401_result.json",
     "occurrence": 1,
-    "bytes": 795,
-    "sha256": "488ba0bad5cc6226b6648f7ebee3fff672eb8648880ede8aa98356569cd9eeb6"
+    "bytes": 794,
+    "sha256": "70421ed2d169a907f4d6e4a1ebaeef52e28c482df5846b557cf130c377aa96e5"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,36 @@
+{
+  "exp_id": "downstream_benchmark_002",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:39:38.724Z",
+    "updated_at": "2026-05-17T17:40:07.469Z",
+    "hypothesis": "Fine-tuning on depth-0 (original) text produces lower held-out perplexity than fine-tuning on higher-depth (recursive) text, because d0 data has higher quality signal without recursive degradation artifacts.",
+    "parent": "downstream_benchmark_001",
+    "spec": {
+      "command": "python3 scripts/downstream_benchmark_v2.py",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "12148",
+      "log_path": "~/runs/recursive_gen_depth_est/downstream_benchmark_002.log",
+      "submitted_at": "2026-05-17T17:39:45.601Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/tmp/downstream_sampled.jsonl.gz",
+      "data_count": 2200,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/downstream_v2/",
+      "checkpoint_source": "train_from_scratch",
+      "eval_data": "held-out 200 samples (50 per depth 0-3)"
+    }
+  },
+  "timestamp": "2026-05-17T17:40:07.685008+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "depth_extension_olmo_d4d5_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:23:04.007Z",
+    "updated_at": "2026-05-15T09:23:46.247Z",
+    "hypothesis": "OLMo-1B depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。OLMo 是 3×3 矩阵中间模型 (78.8%)，若 EDD≥4 则与 Pythia (EDD=4) 形成跨模型 EDD 一致性证据，3 模型 EDD 完整对比。",
+    "parent": "cross_model_olmo_002"
+  },
+  "timestamp": "2026-05-15T09:23:46.371076+00:00",
+  "trigger": "update_registry"
+}

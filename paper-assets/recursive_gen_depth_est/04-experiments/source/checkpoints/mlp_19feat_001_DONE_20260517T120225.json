@@ -1,0 +1,39 @@
+{
+  "exp_id": "mlp_19feat_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:00:00.822Z",
+    "updated_at": "2026-05-17T12:02:24.677Z",
+    "hypothesis": "2-layer MLP on 19 features achieves similar accuracy to RF (delta <= 3pp), confirming features rather than classifier as the performance bottleneck",
+    "parent": "mvp_pipeline_pythia_002",
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate && python scripts/mlp_baseline.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl",
+      "data_count": 20000,
+      "model_name": "sklearn.MLPClassifier",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/results/mlp_baseline/summary.json",
+      "checkpoint_source": "N/A",
+      "eval_data": "/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl"
+    },
+    "metrics": {
+      "mlp_128_128_acc": 0.7866,
+      "mlp_64_128_64_acc": 0.7895,
+      "mlp_poly_top5_acc": 0.7906,
+      "best_delta_vs_rf": 0.0086,
+      "d0v1_auc": 0.997,
+      "d1v2_auc": 0.878,
+      "d2v3_auc": 0.821
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T12:02:24.677Z"
+  },
+  "timestamp": "2026-05-17T12:02:25.008489+00:00",
+  "trigger": "update_registry"
+}

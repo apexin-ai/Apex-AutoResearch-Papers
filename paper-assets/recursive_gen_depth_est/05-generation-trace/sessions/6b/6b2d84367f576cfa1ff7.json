@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_plan_015_wild_features_gpu_20260517T151732_result.json",
     "occurrence": 1,
-    "bytes": 844,
-    "sha256": "e029bcdb7d246f8ef0d8694a02b8ebf5ca43104c298fa569d8763a3dc3c24055"
+    "bytes": 843,
+    "sha256": "587b11a81e2cfce246a35910d4af378a228b1716fcc43b0a593498645355da3e"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,187 @@
+{
+  "pythia_nucleus": {
+    "available": true,
+    "feature_rhos": {
+      "p90_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "mean_surprisal": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "var_surprisal": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "p75_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "mean_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "type_token_ratio": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "rep_2gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "rep_3gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "rep_4gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      }
+    },
+    "n_monotonic_decreasing": 6,
+    "n_monotonic_increasing": 3,
+    "summary": "6 features monotonically decrease, 3 increase with depth"
+  },
+  "pythia_temp09": {
+    "available": true,
+    "feature_rhos": {
+      "p90_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "mean_surprisal": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "var_surprisal": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "p75_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "mean_ppl": {
+        "rho": -0.4,
+        "pvalue": 0.6
+      },
+      "type_token_ratio": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "rep_2gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "rep_3gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "rep_4gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      }
+    },
+    "n_monotonic_decreasing": 5,
+    "n_monotonic_increasing": 3,
+    "summary": "5 features monotonically decrease, 3 increase with depth"
+  },
+  "pythia_topk50": {
+    "available": false
+  },
+  "olmo_nucleus": {
+    "available": true,
+    "feature_rhos": {
+      "p90_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "mean_surprisal": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "var_surprisal": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "p75_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "mean_ppl": {
+        "rho": 0.8,
+        "pvalue": 0.2
+      },
+      "type_token_ratio": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "rep_2gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "rep_3gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "rep_4gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      }
+    },
+    "n_monotonic_decreasing": 5,
+    "n_monotonic_increasing": 4,
+    "summary": "5 features monotonically decrease, 4 increase with depth"
+  },
+  "olmo_temp09": {
+    "available": false
+  },
+  "gpt2xl_nucleus": {
+    "available": true,
+    "feature_rhos": {
+      "p90_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "mean_surprisal": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "var_surprisal": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "p75_ppl": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "mean_ppl": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "type_token_ratio": {
+        "rho": -1.0,
+        "pvalue": 0.0
+      },
+      "rep_2gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "rep_3gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      },
+      "rep_4gram": {
+        "rho": 1.0,
+        "pvalue": 0.0
+      }
+    },
+    "n_monotonic_decreasing": 5,
+    "n_monotonic_increasing": 4,
+    "summary": "5 features monotonically decrease, 4 increase with depth"
+  },
+  "gpt2xl_temp09": {
+    "available": false
+  }
+}

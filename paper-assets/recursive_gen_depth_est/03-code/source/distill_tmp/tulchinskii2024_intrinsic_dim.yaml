@@ -1,0 +1,26 @@
+paper_key: "tulchinskii2024_intrinsic_dim"
+title: "Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: ["DetectGPT", "likelihood-based methods", "supervised classifiers"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "cross-domain accuracy", direction: "higher_better"}
+    - {name: "cross-model accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "multi-language text corpora (English, Chinese, etc.)", size: "N/A"}
+  ablation_dimensions: ["language", "generator model", "text domain", "writer proficiency level"]
+  training_recipe: {optimizer: "N/A (intrinsic dimension estimation)", lr: "N/A", hardware: "N/A"}
+  method_family: "geometric / manifold-based detection via intrinsic dimensionality"
+
+positioning:
+  core_claim: "Human texts have intrinsic dimensionality ~9 (alphabet languages) / ~7 (Chinese) while AI texts are ~1.5 lower, providing a language-agnostic, domain-invariant detection signal"
+  key_results: "Outperforms SOTA in model-agnostic and cross-domain scenarios; stable across languages, domains, and writer proficiency levels"
+  limitations: ["computational cost of dimension estimation", "may degrade with more human-like models"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

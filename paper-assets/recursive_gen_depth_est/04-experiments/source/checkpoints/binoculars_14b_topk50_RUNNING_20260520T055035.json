@@ -1,0 +1,84 @@
+{
+  "exp_id": "binoculars_14b_topk50",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:45:34.470Z",
+    "updated_at": "2026-05-20T05:50:35.493Z",
+    "hypothesis": "Binoculars cross-perplexity features provide complementary signal at 14B scale under top-k sampling when merged with 19 statistical features. Tests whether the merged feature gain (~+3.7pp at temp09) holds under the weakest decoding strategy.",
+    "parent": "qwen25_14b_topk50",
+    "spec": {
+      "command": "python scripts/binoculars_ordinal_eval.py + merged_ablation_14b_topk50.py on 14B topk50 data",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/",
+      "data_count": "5000 samples per depth d0-d3",
+      "model_name": "EleutherAI/pythia-1.4b (observer) + EleutherAI/pythia-410m (performer)",
+      "seed": 42,
+      "checkpoint_source": "qwen25_14b_topk50",
+      "eval_data": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_topk50/"
+    },
+    "metrics": {
+      "binoculars_baseline": {
+        "RF_multi_11feat": {
+          "4class_acc": 0.3768,
+          "4class_acc_std": 0.0071,
+          "d1d3_bal_acc": 0.3386,
+          "d1d3_bal_acc_std": 0.0075
+        },
+        "equal_width": {
+          "4class_acc": 0.2613,
+          "d1d3_bal_acc": 0.3065
+        },
+        "coral": {
+          "4class_acc": 0.2447,
+          "d1d3_bal_acc": 0.3263
+        },
+        "threshold": {
+          "4class_acc": 0.2843,
+          "d1d3_bal_acc": 0.2495
+        },
+        "RF_single": {
+          "4class_acc": 0.2523,
+          "d1d3_bal_acc": 0.2521
+        }
+      },
+      "merged_ablation": {
+        "stat_only_19feat": {
+          "4class_acc": 0.4884,
+          "4class_acc_std": 0.0082,
+          "d1d3_bal_acc": 0.4345,
+          "d1d3_bal_acc_std": 0.0091
+        },
+        "bino_only_11feat": {
+          "4class_acc": 0.3774,
+          "4class_acc_std": 0.009,
+          "d1d3_bal_acc": 0.3402,
+          "d1d3_bal_acc_std": 0.0097
+        },
+        "merged_30feat": {
+          "4class_acc": 0.5149,
+          "4class_acc_std": 0.0053,
+          "d1d3_bal_acc": 0.4637,
+          "d1d3_bal_acc_std": 0.0042
+        },
+        "bino_single": {
+          "4class_acc": 0.2523,
+          "d1d3_bal_acc": 0.2521
+        }
+      },
+      "baseline_alignment_plan_A": {
+        "main_pipeline_stat_only": 0.4793,
+        "merged_30feat": 0.5149,
+        "delta": 0.0356,
+        "note": "stat_only aligned to main pipeline (47.93%) per 方案A"
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T05:50:35.864494+00:00",
+  "trigger": "update_registry"
+}

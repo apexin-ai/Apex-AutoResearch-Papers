@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_monitor_training_progress_check_20260514T165444_result.json",
     "occurrence": 1,
-    "bytes": 1334,
-    "sha256": "d34abc1e61f2fdafc5d320bf2dfa1cf7f0f7fee3a1d605f19f71a7414b0dfd25"
+    "bytes": 1333,
+    "sha256": "dd93291f9ce6aed20d4414fc261129c4e681b65f22e17ccd7886726b0bcf5a36"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_cross_strategy_label_mapping_20260515T041543_result.json",
     "occurrence": 1,
-    "bytes": 1007,
-    "sha256": "717c55915a107ce29e786a039888cde448a5bbd5cc185aab484152ac40b6374a"
+    "bytes": 1006,
+    "sha256": "eb7c1d85ad7bb404e676c8830a38eded95729bbbf94f0d64b5fc8bb28eb147df"
   },
   "statistics": {
     "messages": 1,

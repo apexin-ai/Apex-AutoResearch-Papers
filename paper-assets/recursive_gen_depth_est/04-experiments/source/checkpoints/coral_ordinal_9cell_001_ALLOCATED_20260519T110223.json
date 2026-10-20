@@ -1,0 +1,16 @@
+{
+  "exp_id": "coral_ordinal_9cell_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:28:42.291Z",
+    "updated_at": "2026-05-19T11:02:23.503Z",
+    "hypothesis": "CORAL ordinal regression with DNN backbone (19→64→32→CORAL) achieves comparable or superior 4-class accuracy to RF on all 9 atlas cells, while providing better ordinal consistency (monotonic predictions) and lower MAE due to ordinal-aware loss. Prior baseline_battery_9cell_001 showed RF≈CORAL with simple CORAL; DNN backbone may widen the gap. Algorithmic contribution: ordinal-specific classifier for depth estimation.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T11:02:23.779031+00:00",
+  "trigger": "update_registry"
+}

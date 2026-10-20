@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_baseline_battery_20260514T185551_result.json",
     "occurrence": 1,
-    "bytes": 762,
-    "sha256": "6a195ec8ab1432228284e0bf2bdf76cefd541f4c26a44db861e544d89f68b8cb"
+    "bytes": 761,
+    "sha256": "00ecc9c43d0a58320549621b78fa685b35d15cf9ecf8ff90c195e1ed69222d8f"
   },
   "statistics": {
     "messages": 1,

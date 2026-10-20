@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_zeroshot_baseline_dryrun_20260515T015646_result.json",
     "occurrence": 1,
-    "bytes": 127,
-    "sha256": "3ac26ea0e4459c4516850e8c18e164b3a0b321d7d35c95f43c37542a23f1c72b"
+    "bytes": 126,
+    "sha256": "7a4585d641795ed6f4ee96ae612eaed262504f218bb4054062f215c8d2934d45"
   },
   "statistics": {
     "messages": 1,

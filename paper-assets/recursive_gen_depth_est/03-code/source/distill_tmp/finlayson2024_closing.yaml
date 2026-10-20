@@ -1,0 +1,26 @@
+paper_key: "finlayson2024_closing"
+title: "Closing the Curious Case of Neural Text Degeneration"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["nucleus sampling (top-p)", "top-k sampling", "greedy decoding", "threshold-based truncation methods"]
+  metrics:
+    - {name: "text quality (human eval)", direction: "higher_better"}
+    - {name: "text quality (automatic)", direction: "higher_better"}
+    - {name: "degeneration rate", direction: "lower_better"}
+  datasets:
+    - {name: "open-ended text generation benchmarks", size: "N/A"}
+  ablation_dimensions: ["truncation threshold", "entropy regime", "model size"]
+  training_recipe: {optimizer: "N/A (decoding strategy)", lr: "N/A", hardware: "N/A"}
+  method_family: "truncation sampling / decoding strategy analysis"
+
+positioning:
+  core_claim: "The softmax bottleneck causes models to assign nonzero probability to impossible tokens; truncation sampling works by removing these, and a principled approach without arbitrary thresholds is possible"
+  key_results: "Theoretical proof that threshold-free truncation using softmax bottleneck properties guarantees valid token sampling"
+  limitations: ["focused on open-ended generation", "theoretical assumptions about softmax bottleneck"]
+  relation_to_us: "orthogonal"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

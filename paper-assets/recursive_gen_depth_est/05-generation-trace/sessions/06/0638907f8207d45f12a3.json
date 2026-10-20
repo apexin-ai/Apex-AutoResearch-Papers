@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_d1d3_eval_mvp_20260514T160902_result.json",
     "occurrence": 1,
-    "bytes": 2183,
-    "sha256": "b6dab7dbd75e2a524186d98a562a77027b2363f053a74c05c93692bb95a9bc05"
+    "bytes": 2182,
+    "sha256": "d33bbf92c9c6a9fff4f2f84266fdd1bcacd9ec3fe745538fc4847f313e335492"
   },
   "statistics": {
     "messages": 1,

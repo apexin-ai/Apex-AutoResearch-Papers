@@ -1,0 +1,57 @@
+{
+  "exp_id": "mink_ordinal_baseline_002",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:08:23.042Z",
+    "updated_at": "2026-05-19T14:29:57.002Z",
+    "spec": {
+      "command": "python3 scripts/mink_prob_baseline.py",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "131522",
+      "log_path": "results/mink_prob_baseline/mink_prob_results.json",
+      "submitted_at": "2026-05-19T13:08:22.536Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/ (9-cell atlas depth_0-3.jsonl)",
+      "data_count": 5000,
+      "model_name": "Min-K% Prob (Shi et al. 2024)",
+      "seed": 42,
+      "checkpoint_path": "N/A (evaluation-only baseline)",
+      "wall_clock_seconds": 4894.5,
+      "gpu_hours": 1.36
+    },
+    "hypothesis": "Min-K% Prob (Shi et al. 2024) continuous membership-inference scores, when calibrated to 4-class ordinal depth via equal-width/CORAL/threshold methods, achieve near-chance accuracy (30-35%) on 9-cell atlas. Establishes that binary detection scores lack ordinal depth resolution. Rebuttal ammunition against \"did you test Min-K% for ordinal?\"",
+    "notes": "Server changed from westd-48862 (released) to gpu-6000pro-2. Scripts being deployed. Prior results (9/9 cells) may exist on gpu-6000pro-2. Will verify and extract after deployment.",
+    "metrics": {
+      "cells_complete": "9/9",
+      "mean_4class_acc_K20_methodB": 0.332,
+      "best_config": "K20_methodB",
+      "outlier": "gpt2xl_temp09 = 50.6% (methodB K20) — must mention in paper",
+      "per_cell_best_methodB_K20": {
+        "pythia_nucleus": 0.295,
+        "pythia_temp09": 0.336,
+        "pythia_topk50": 0.337,
+        "olmo_nucleus": 0.249,
+        "olmo_temp09": 0.253,
+        "olmo_topk50": 0.255,
+        "gpt2xl_nucleus": 0.25,
+        "gpt2xl_temp09": 0.506,
+        "gpt2xl_topk50": 0.265
+      },
+      "chance_level": 0.25,
+      "verdict": "Mean 33.2% (K20 methodB), near chance. gpt2xl_temp09 outlier at 50.6%. Binary detection scores lack ordinal depth resolution."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T14:29:57.002Z"
+  },
+  "timestamp": "2026-05-19T14:29:57.261034+00:00",
+  "trigger": "update_registry"
+}

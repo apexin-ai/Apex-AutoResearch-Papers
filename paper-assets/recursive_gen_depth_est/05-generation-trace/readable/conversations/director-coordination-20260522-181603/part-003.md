@@ -17155,7 +17155,7 @@ _source line 1828 · 2026-05-21T06:28:08.232196+00:00_
 37	ssh_execute("echo $GOOGLE_API_KEY | head -c 10")
 38	
 39	# 如未配置，需要用户提供 key，然后：
-40	ssh_execute("echo 'export GOOGLE_API_KEY=&lt;key>' >> ~/.bashrc && source ~/.bashrc")
+40	ssh_execute("echo 'export GOOGLE_API_KEY=[REDACTED]' >> ~/.bashrc && source ~/.bashrc")
 41	
 42	# 安装 PaperBanana
 43	ssh_execute("pip install paperbanana -q")
@@ -17176,7 +17176,7 @@ _source line 1828 · 2026-05-21T06:28:08.232196+00:00_
 58	# Framework / Pipeline 图
 59	ssh_execute("""
 60	cd ~/my-project && \
-61	GOOGLE_API_KEY=$GOOGLE_API_KEY paperbanana plot \
+61	GOOGLE_API_KEY=[REDACTED] paperbanana plot \
 62	  --intent "Three-stage pipeline diagram flowing left to right:
 63	Stage 1 'Data Collection' (blue
 …[truncated 1636 chars]
@@ -17643,7 +17643,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ````json
 {
-  "text": "任务：用 PaperBanana 画 method overview 概念图\n\n**先读 skill**：`Read skills/global/paper-banana.skill.md`\n\n**图的内容**：递归生成深度估计的完整 pipeline，L→R 流程图，分两层：\n\n**上层：数据生成（递归链）**\n- Seed Text (Wikipedia) → LoRA Fine-tune → Generate → 箭头回到 Fine-tune（recursive loop）\n- 标注 d0, d1, d2, d3 在每一轮\n- 用不同颜色深度表示递归深度加深\n\n**下层：深度估计 pipeline**\n- Text Passage → Reference Model (Pythia-1.4B) → 19 Statistical Features（分 4 组：perplexity tail stats, surprisal variance, lexical diversity, repetition）→ Random Forest → Depth Label (d0/d1/d2/d3)\n\n**设计要求**：\n- 白底，300 DPI，单栏宽度（~3.45 inches）\n- 颜色方案：蓝色系（数据生成）+ 橙色系（估计 pipeline）\n- 圆角矩形，箭头清晰，学术论文风格\n- 字体 8-9pt 适配栏宽\n\n**执行步骤**：\n1. 用 `request_secret(key_id=\"google_api_key\")` 获取 Gemini key\n2. 在 gpu-6000pro-2 上安装 paperbanana：`pip install paperbanana -q`\n3. 先测试 Gemini 连通性：`curl -s -o /dev/null -w '%{http_code}' https://generativelanguage.googleapis.com`\n4. 运行 PaperBanana：\n```bash\nGOOGLE_API_KEY=$KEY paperbanana plot \\\n  --intent \"<上面的描述>\" \\\n  --iterations 3 \\\n  --output /root/project/figures/paper/fig_method_overview.pdf\n```\n5. 把生成的 PDF 和 PNG 下载到本地 `docs/paper/figures/`\n6. 发给我看效果\n\n**注意**：中国大陆服务器可能连不上 Gemini API，先测连通性。如果被墙，回报我换方案。",
+  "text": "任务：用 PaperBanana 画 method overview 概念图\n\n**先读 skill**：`Read skills/global/paper-banana.skill.md`\n\n**图的内容**：递归生成深度估计的完整 pipeline，L→R 流程图，分两层：\n\n**上层：数据生成（递归链）**\n- Seed Text (Wikipedia) → LoRA Fine-tune → Generate → 箭头回到 Fine-tune（recursive loop）\n- 标注 d0, d1, d2, d3 在每一轮\n- 用不同颜色深度表示递归深度加深\n\n**下层：深度估计 pipeline**\n- Text Passage → Reference Model (Pythia-1.4B) → 19 Statistical Features（分 4 组：perplexity tail stats, surprisal variance, lexical diversity, repetition）→ Random Forest → Depth Label (d0/d1/d2/d3)\n\n**设计要求**：\n- 白底，300 DPI，单栏宽度（~3.45 inches）\n- 颜色方案：蓝色系（数据生成）+ 橙色系（估计 pipeline）\n- 圆角矩形，箭头清晰，学术论文风格\n- 字体 8-9pt 适配栏宽\n\n**执行步骤**：\n1. 用 `request_secret(key_id=\"google_api_key\")` 获取 Gemini key\n2. 在 gpu-6000pro-2 上安装 paperbanana：`pip install paperbanana -q`\n3. 先测试 Gemini 连通性：`curl -s -o /dev/null -w '%{http_code}' https://generativelanguage.googleapis.com`\n4. 运行 PaperBanana：\n```bash\nGOOGLE_API_KEY=[REDACTED] paperbanana plot \\\n  --intent \"<上面的描述>\" \\\n  --iterations 3 \\\n  --output /root/project/figures/paper/fig_method_overview.pdf\n```\n5. 把生成的 PDF 和 PNG 下载到本地 `docs/paper/figures/`\n6. 发给我看效果\n\n**注意**：中国大陆服务器可能连不上 Gemini API，先测连通性。如果被墙，回报我换方案。",
   "project": "recursive_gen_depth_est"
 }
 ````
@@ -17658,7 +17658,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "任务：用 PaperBanana 画 method overview 概念图\n\n**先读 skill**：`Read skills/global/paper-banana.skill.md`\n\n**图的内容**：递归生成深度估计的完整 pipeline，L→R 流程图，分两层：\n\n**上层：数据生成（递归链）**\n- Seed Text (Wikipedia) → LoRA Fine-tune → Generate → 箭头回到 Fine-tune（recursive loop）\n- 标注 d0, d1, d2, d3 在每一轮\n- 用不同颜色深度表示递归深度加深\n\n**下层：深度估计 pipeline**\n- Text Passage → Reference Model (Pythia-1.4B) → 19 Statistical Features（分 4 组：perplexity tail stats, surprisal variance, lexical diversity, repetition）→ Random Forest → Depth Label (d0/d1/d2/d3)\n\n**设计要求**：\n- 白底，300 DPI，单栏宽度（~3.45 inches）\n- 颜色方案：蓝色系（数据生成）+ 橙色系（估计 pipeline）\n- 圆角矩形，箭头清晰，学术论文风格\n- 字体 8-9pt 适配栏宽\n\n**执行步骤**：\n1. 用 `request_secret(key_id=\"google_api_key\")` 获取 Gemini key\n2. 在 gpu-6000pro-2 上安装 paperbanana：`pip install paperbanana -q`\n3. 先测试 Gemini 连通性：`curl -s -o /dev/null -w '%{http_code}' https://generativelanguage.googleapis.com`\n4. 运行 PaperBanana：\n```bash\nGOOGLE_API_KEY=$KEY paperbanana plot \\\n  --intent \"<上面的描述>\" \\\n  --iterations 3 \\\n  --output /root/project/figures/paper/fig_method_overview.pdf\n```\n5. 把生成的 PDF 和 PNG 下载到本地 `docs/paper/figures/`\n6. 发给我看效果\n\n**注意**：中国大陆服务器可能连不上 Gemini API，先测连通性。如果被墙，回报我换方案。",
+    "text": "任务：用 PaperBanana 画 method overview 概念图\n\n**先读 skill**：`Read skills/global/paper-banana.skill.md`\n\n**图的内容**：递归生成深度估计的完整 pipeline，L→R 流程图，分两层：\n\n**上层：数据生成（递归链）**\n- Seed Text (Wikipedia) → LoRA Fine-tune → Generate → 箭头回到 Fine-tune（recursive loop）\n- 标注 d0, d1, d2, d3 在每一轮\n- 用不同颜色深度表示递归深度加深\n\n**下层：深度估计 pipeline**\n- Text Passage → Reference Model (Pythia-1.4B) → 19 Statistical Features（分 4 组：perplexity tail stats, surprisal variance, lexical diversity, repetition）→ Random Forest → Depth Label (d0/d1/d2/d3)\n\n**设计要求**：\n- 白底，300 DPI，单栏宽度（~3.45 inches）\n- 颜色方案：蓝色系（数据生成）+ 橙色系（估计 pipeline）\n- 圆角矩形，箭头清晰，学术论文风格\n- 字体 8-9pt 适配栏宽\n\n**执行步骤**：\n1. 用 `request_secret(key_id=\"google_api_key\")` 获取 Gemini key\n2. 在 gpu-6000pro-2 上安装 paperbanana：`pip install paperbanana -q`\n3. 先测试 Gemini 连通性：`curl -s -o /dev/null -w '%{http_code}' https://generativelanguage.googleapis.com`\n4. 运行 PaperBanana：\n```bash\nGOOGLE_API_KEY=[REDACTED] paperbanana plot \\\n  --intent \"<上面的描述>\" \\\n  --iterations 3 \\\n  --output /root/project/figures/paper/fig_method_overview.pdf\n```\n5. 把生成的 PDF 和 PNG 下载到本地 `docs/paper/figures/`\n6. 发给我看效果\n\n**注意**：中国大陆服务器可能连不上 Gemini API，先测连通性。如果被墙，回报我换方案。",
     "project": "recursive_gen_depth_est"
   }
 }

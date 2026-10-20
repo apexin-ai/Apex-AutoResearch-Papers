@@ -1,0 +1,16 @@
+{
+  "exp_id": "granularity_ablation_rf_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:17:27.738Z",
+    "updated_at": "2026-05-15T09:18:40.403Z",
+    "hypothesis": "Granularity ablation: 对比 binary/3-class/4-class/6-class RF 性能，量化分类粒度对决策边界稀释的影响。预期 accuracy 随粒度增加单调下降，adjacent-pair AUC 在 binary 设置下最高。支持 Claim 1 (feasibility) + Claim 2 (EDD boundary dilution)。",
+    "parent": "baseline_battery_9cell_001"
+  },
+  "timestamp": "2026-05-15T09:18:40.529194+00:00",
+  "trigger": "update_registry"
+}

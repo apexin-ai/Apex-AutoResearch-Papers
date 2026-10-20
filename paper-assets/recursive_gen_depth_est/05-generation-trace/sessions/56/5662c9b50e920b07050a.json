@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fix_plan013_cuda1_20260515T231026_result.json",
     "occurrence": 1,
-    "bytes": 861,
-    "sha256": "b216d4ec8f00a300571d719ffc1166ecdaf95ba3b67372c044c277908b2efee9"
+    "bytes": 860,
+    "sha256": "ca750a0304db12ef7cc54b87d5348ce94724b8f3f903366e5ddead96b0565777"
   },
   "statistics": {
     "messages": 1,

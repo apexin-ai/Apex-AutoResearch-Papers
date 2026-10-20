@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_cross_boundary_section_20260516T075052_result.json",
     "occurrence": 1,
-    "bytes": 773,
-    "sha256": "debb9629f6f1c18db755b0a6209e18c5674d915af5e9fcb96d7651d31b539ba6"
+    "bytes": 772,
+    "sha256": "bfb7aa6ee045e02fe9f875c9c6df52c2ff355497bb2e9844bf9fd6629534c2a1"
   },
   "statistics": {
     "messages": 1,

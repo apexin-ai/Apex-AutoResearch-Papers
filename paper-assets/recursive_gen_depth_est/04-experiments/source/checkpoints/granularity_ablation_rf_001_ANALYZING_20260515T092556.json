@@ -1,0 +1,42 @@
+{
+  "exp_id": "granularity_ablation_rf_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:17:27.738Z",
+    "updated_at": "2026-05-15T09:25:55.895Z",
+    "hypothesis": "Granularity ablation: 对比 binary/3-class/4-class/6-class RF 性能，量化分类粒度对决策边界稀释的影响。预期 accuracy 随粒度增加单调下降，adjacent-pair AUC 在 binary 设置下最高。支持 Claim 1 (feasibility) + Claim 2 (EDD boundary dilution)。",
+    "parent": "baseline_battery_9cell_001",
+    "notes": "## 脚本准备完成，等待审批\n\n### 脚本路径\n`/root/autodl-tmp/recursive_gen_depth_est/src/granularity_ablation.py`\n\n### 运行命令\n```bash\ncd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/granularity_ablation.py\n```\n\n### 9 Cells 特征文件路径\n| Cell | Path |\n|------|------|\n| pythia_nucleus095 | data/features_all.jsonl (20000 samples, d0-d3) |\n| pythia_temp09 | data/pythia_temp09/features.jsonl |\n| pythia_topk50 | results/pythia_topk50/features.jsonl |\n| gpt2xl_nucleus095 | data/gpt2xl/features.jsonl |\n| gpt2xl_temp09 | results/gpt2xl_temp09/features.jsonl |\n| gpt2xl_topk50 | results/gpt2xl_topk50/features.jsonl |\n| olmo_nucleus095 | data/olmo/features.jsonl |\n| olmo_temp09 | results/olmo_temp09/features.jsonl |\n| olmo_topk50 | results/olmo_topk50/features.jsonl |\n\n### 6-class 数据路径\n`results/pythia_depth_extension/features_6class.jsonl` (30000 samples, 5000/depth, d0-d5, Pythia nucleus only)\n\n### Dry-run 结果 (pythia_nucleus095 only)\n| Setting | #Cls | Acc | 95% CI | Adjacent AUCs |\n|---------|------|-----|--------|---------------|\n| binary | 2 | 0.9980 | [0.9965, 0.9992] | d0v1=1.000 |\n| 3class | 3 | 0.7117 | [0.6947, 0.7283] | d1v2=0.861, d2v3=0.796 |\n| 4class | 4 | 0.7812 | [0.7677, 0.7935] | d0v1=0.998, d1v2=0.868, d2v3=0.804 |\n| 6class | 6 | 0.6292 | [0.6175, 0.6412] | d0v1=0.997, d1v2=0.830, d2v3=0.689, d3v4=0.692, d4v5=0.691 |\n\n决策边界稀释效应明显：accuracy 从 binary 99.8% → 4-class 78.1% → 6-class 62.9%；d2v3 AUC 从 3-class 0.796 降至 6-class 0.689。",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T09:23:30.113Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/granularity_ablation.py\"",
+      "finished_at": "2026-05-15T09:25:55.628Z",
+      "training_hours": 0.04
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/granularity_ablation.py\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "197792",
+      "log_path": "~/runs/recursive_gen_depth_est/granularity_ablation_rf_001.log",
+      "submitted_at": "2026-05-15T09:23:31.735Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "197792",
+    "log_path": "~/runs/recursive_gen_depth_est/granularity_ablation_rf_001.log"
+  },
+  "timestamp": "2026-05-15T09:25:56.007929+00:00",
+  "trigger": "update_registry"
+}

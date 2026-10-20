@@ -1,0 +1,3 @@
+Remote path: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/figures/fig_atlas_heatmap.{pdf,png}
+Formats: PDF (vector, 28KB) + PNG (300dpi, 107KB)
+Data: From summary_9cell.json RF acc_4class. GPT-2 XL temp09 best (85.3%), Pythia topk50 worst (68.7%). Temp09 consistently best strategy across models.

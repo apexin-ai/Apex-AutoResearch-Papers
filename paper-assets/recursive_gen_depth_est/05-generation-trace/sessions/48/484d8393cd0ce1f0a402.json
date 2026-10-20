@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_rebuttal_draft_20260519T214919_result.json",
     "occurrence": 1,
-    "bytes": 699,
-    "sha256": "c8cdb515b5fd9773feeaa5d158fed5947832526aa35fbb3f23defd7797a7475e"
+    "bytes": 698,
+    "sha256": "7da87ac6864afc68d0e010c5d816e07b4f8cb8d1cdce067cab8b89813269b98c"
   },
   "statistics": {
     "messages": 1,

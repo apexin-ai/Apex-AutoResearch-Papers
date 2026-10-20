@@ -1,0 +1,33 @@
+{
+  "exp_id": "cross_scale_qwen7b_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:32:44.583Z",
+    "updated_at": "2026-05-16T05:24:23.424Z",
+    "hypothesis": "Plan_014 7B cross-scale probe: Qwen2.5-7B nucleus p=0.95, d0-d5, 500 samples/depth。验证 depth signal 和 EDD 在 7B scale 上是否与 1-1.5B 模型一致。成功标准：4-class acc ≥ 60%, EDD 测定, pairwise AUC 衰减趋势方向一致。",
+    "spec": {
+      "command": "bash scripts/run_qwen7b_pipeline.sh",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "data/qwen7b_nucleus/ (d0-d5, 500 samples/depth)",
+      "data_count": 3000,
+      "model_name": "Qwen2.5-7B-Instruct (4-bit NF4 QLoRA)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/qwen7b_nucleus/",
+      "log_path": "logs/qwen7b_pipeline.log",
+      "plan_id": "plan_014",
+      "notes": "Prefix-based generation (32 tokens from prev depth as context). Using Instruct variant (base model not available on server). Feature extraction: Pythia-1.4B. Eval: RF 5-fold CV, 4-class + 6-class + EDD."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T05:24:22.956Z"
+    }
+  },
+  "timestamp": "2026-05-16T05:24:23.617103+00:00",
+  "trigger": "update_registry"
+}

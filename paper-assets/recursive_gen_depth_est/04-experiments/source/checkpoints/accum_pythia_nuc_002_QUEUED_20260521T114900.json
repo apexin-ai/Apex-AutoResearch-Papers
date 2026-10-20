@@ -1,0 +1,28 @@
+{
+  "exp_id": "accum_pythia_nuc_002",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:47:16.064Z",
+    "updated_at": "2026-05-21T11:49:00.490Z",
+    "hypothesis": "Accumulation scenario with Pythia-1.4B nucleus sampling shows comparable depth signal degradation pattern to GPT-2 XL nucleus (accum_v3): mix25 ~70% and mix50 ~69%, confirming cross-model consistency of accumulation effects on depth estimation. Retry of accum_pythia_nuc_001 (failed due to cuda:1 not existing).",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=0 python3 scripts/accumulation_pipeline_pythia_nucleus.py --mix_ratio 0.25 --seed 42\"",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "374010",
+      "log_path": "~/runs/recursive_gen_depth_est/accum_pythia_nuc_002.log",
+      "submitted_at": "2026-05-21T11:48:45.312Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T11:49:00.809262+00:00",
+  "trigger": "update_registry"
+}

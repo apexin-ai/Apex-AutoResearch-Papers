@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_qwen25_14b_scale_002_failure_20260518T181615_result.json",
     "occurrence": 1,
-    "bytes": 1737,
-    "sha256": "f6decd4913ae0416870f55726ed884e38dbbb9687f1e547ede66e2e19de4eb20"
+    "bytes": 1736,
+    "sha256": "3d54b705254b964fc2a174515963b3d2a83a0b80ff6f2030df821df7accbe8fb"
   },
   "statistics": {
     "messages": 1,

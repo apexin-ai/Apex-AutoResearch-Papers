@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fix_duplicate_pid_cuda0_20260516T020622_result.json",
     "occurrence": 1,
-    "bytes": 742,
-    "sha256": "275be5e202f25487ba27712e678a04a83be736bc48a5b817cf0ade03fb0a8b5b"
+    "bytes": 741,
+    "sha256": "45e805630ae5b64f3e47126f94fb90b5f8687407e16bd1267cc47601a58e00ed"
   },
   "statistics": {
     "messages": 1,

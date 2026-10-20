@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_post_restart_status_20260522T020905_result.json",
     "occurrence": 1,
-    "bytes": 1548,
-    "sha256": "1dcd82879597bf01ae73696e77b5a0c238383884e8b043ce8ff6f4feab4380f1"
+    "bytes": 1547,
+    "sha256": "445524a2bf53666a4e5b8c252c2f5998798b576193341bbe8c5a9f2f35b86173"
   },
   "statistics": {
     "messages": 1,

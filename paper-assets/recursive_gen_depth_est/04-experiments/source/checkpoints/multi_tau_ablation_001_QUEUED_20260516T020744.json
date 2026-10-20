@@ -1,0 +1,15 @@
+{
+  "exp_id": "multi_tau_ablation_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:56:04.055Z",
+    "updated_at": "2026-05-16T02:07:44.264Z",
+    "hypothesis": "R2-W3 multi-τ ablation: 4 τ values (0.5, 0.7, 0.9, 1.1) × Pythia-1.4B。验证 depth classification signal 跨温度的鲁棒性，特别是 d1v2 AUC 是否随 τ 单调变化或在特定 τ 出现 inversion。Cross-τ LOO 验证跨温度泛化能力。"
+  },
+  "timestamp": "2026-05-16T02:07:44.892942+00:00",
+  "trigger": "update_registry"
+}

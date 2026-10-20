@@ -1,0 +1,29 @@
+{
+  "exp_id": "domain_extension_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:33:51.264Z",
+    "updated_at": "2026-05-16T07:26:17.328Z",
+    "spec": {
+      "model_name": "Pythia-1.4B",
+      "server": "gpu-6000pro-2",
+      "data_count": 500,
+      "seed": 42,
+      "notes": "EXP-C: Domain extension. arXiv abstracts as seed instead of WikiText. Tests whether depth signal is domain-independent. After EXP-A/B.",
+      "command": "bash scripts/run_domain_extension_arxiv.sh",
+      "gpu": "cuda:1",
+      "data_path": "data/domain_extension/",
+      "pipeline": "arXiv seed → QLoRA finetune → generate (d0-d3, 500/depth) → feature extraction (Pythia-1.4B ref) → RF 5-fold CV",
+      "decoding": "nucleus p=0.95",
+      "log_path": "logs/domain_extension_001.log",
+      "checkpoint_path": "checkpoints/domain_extension/"
+    },
+    "hypothesis": "Domain extension: 用 arXiv abstracts 替代 WikiText 作为 seed，验证 depth signal 是否 domain-independent。成功标准：4-class acc ≥ 65%, top features 与 WikiText pipeline 一致。"
+  },
+  "timestamp": "2026-05-16T07:26:17.517726+00:00",
+  "trigger": "update_registry"
+}

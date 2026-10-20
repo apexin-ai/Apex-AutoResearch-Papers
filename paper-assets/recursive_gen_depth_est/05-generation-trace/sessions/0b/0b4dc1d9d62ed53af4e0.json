@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_zeroshot_cleanup_20260515T023844_result.json",
     "occurrence": 1,
-    "bytes": 1125,
-    "sha256": "b40dd80a101368f0dcf076b26c83a5e8202c434f3b0354a426a66650915ec093"
+    "bytes": 1124,
+    "sha256": "c3cd33deefc680e282b73d90606c6a7e5d6addd1960bc8c5894d8a6e347afe59"
   },
   "statistics": {
     "messages": 1,

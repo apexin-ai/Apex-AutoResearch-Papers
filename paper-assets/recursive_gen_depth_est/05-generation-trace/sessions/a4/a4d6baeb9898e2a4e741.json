@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_pythia_topk50_001_20260514T201559_result.json",
     "occurrence": 1,
-    "bytes": 1255,
-    "sha256": "05e49585ab680472467797dc87b222375adccd0dd64904719cdb88f63a39a24a"
+    "bytes": 1254,
+    "sha256": "23f43780b953d0868a3237b666369934f29623e85ba4aefa1ab584c3caf36252"
   },
   "statistics": {
     "messages": 1,

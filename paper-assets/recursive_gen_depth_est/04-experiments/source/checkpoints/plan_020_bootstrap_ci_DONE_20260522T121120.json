@@ -1,0 +1,33 @@
+{
+  "exp_id": "plan_020_bootstrap_ci",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T12:10:49.571Z",
+    "updated_at": "2026-05-22T12:11:19.945Z",
+    "spec": {
+      "command": "python scripts/bootstrap_ci_table1.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "9 cells x 4 depths x ~5000 samples",
+      "model_name": "N/A (CPU analysis)",
+      "seed": 42
+    },
+    "hypothesis": "B=10,000 bootstrap resampling of per-sample 5-fold CV predictions provides stable 95% CIs for the 9 atlas cells, confirming that B=1,000 CIs had already converged.",
+    "conclusion": "success",
+    "metrics": {
+      "bootstrap_B": 10000,
+      "ci_halfwidth_range": "0.46-0.59",
+      "vs_B1000_delta_max": 0.07,
+      "table1_updated": true
+    },
+    "checkpoint_path": "N/A (analysis experiment)",
+    "log_path": "results/bootstrap_ci_table1.json",
+    "completed_at": "2026-05-22T12:11:19.945Z"
+  },
+  "timestamp": "2026-05-22T12:11:20.305731+00:00",
+  "trigger": "update_registry"
+}

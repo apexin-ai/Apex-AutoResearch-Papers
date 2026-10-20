@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_fix-and-launch-pipeline_20260514T100803_result.json",
     "occurrence": 1,
-    "bytes": 1529,
-    "sha256": "e2f1a1eb578175c99053e5997c7259e664fa8ad8242dd041d06be0892eb571da"
+    "bytes": 1528,
+    "sha256": "c9444d48aab810c0765c380febc3d2af5d05608d8d2f086ca8fd374cf4e4f066"
   },
   "statistics": {
     "messages": 1,

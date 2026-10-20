@@ -1,0 +1,48 @@
+{
+  "exp_id": "mvp_pipeline_base_003",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:16:25.669Z",
+    "updated_at": "2026-05-14T11:26:02.628Z",
+    "spec": {
+      "command": "bash scripts/run_pipeline.sh (base model, 3x LoRA finetune + 3x generate)",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": 96139,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_base.log",
+      "submitted_at": "2026-05-14T11:16:25.661Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-1.5B (base)",
+      "model_path": "/root/autodl-tmp/models/Qwen2.5-1.5B/",
+      "seed": 42,
+      "hypothesis": "不同递归生成深度的文本具有可区分的统计模式 (base model, 替代被 kill 的 Instruct 版本 mvp_pipeline_004)",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "top_p": 0.95
+      }
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T11:26:02.667592+00:00",
+  "trigger": "update_registry"
+}

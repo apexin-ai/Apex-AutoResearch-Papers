@@ -1,0 +1,15 @@
+{
+  "exp_id": "14b_cross_ref_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:04:52.366Z",
+    "updated_at": "2026-05-21T07:12:22.051Z",
+    "hypothesis": "Cross-reference control: using Pythia-1.4B (same as Table 1 pipeline) instead of self-reference (Qwen2.5-14B) for feature extraction on 14B generated text yields comparable classification accuracy, confirming that the reference model choice does not fundamentally change the depth signal detection at 14B scale. Addresses R17 concern about self-reference vs cross-reference consistency."
+  },
+  "timestamp": "2026-05-21T07:12:22.370134+00:00",
+  "trigger": "update_registry"
+}

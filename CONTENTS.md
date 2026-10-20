@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **38 projects with manuscript PDFs** and **23 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **38 projects with manuscript PDFs** and **25 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -37,7 +37,7 @@ This catalogue covers **38 projects with manuscript PDFs** and **23 additional p
 | [provenance_weight_training](paper-assets/provenance_weight_training/README.md) | [PDF](paper-assets/provenance_weight_training/01-manuscript/paper.pdf) | 559 | 2,002 | 3,029 | 231,336 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
 | [recovery_aware_struct_prune](paper-assets/recovery_aware_struct_prune/README.md) | [PDF](paper-assets/recovery_aware_struct_prune/01-manuscript/paper.pdf) | 757 | 2,746 | 3,747 | 248,503 |
-| [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
+| [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 395 | 1,066 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
@@ -52,8 +52,10 @@ This catalogue covers **38 projects with manuscript PDFs** and **23 additional p
 | [contrastive_graph_jailbreak_detect](paper-assets/contrastive_graph_jailbreak_detect/README.md) | No PDF in snapshot | 28 | 15 | 28 | 3,080 |
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
 | [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |
+| [distill_kv_rag_cache](paper-assets/distill_kv_rag_cache/README.md) | No PDF in snapshot | 48 | 13 | 65 | 6,102 |
 | [eco_alpha_beta_diversity](paper-assets/eco_alpha_beta_diversity/README.md) | No PDF in snapshot | 22 | 40 | 20 | 1,818 |
 | [error_diag_dpo_recovery](paper-assets/error_diag_dpo_recovery/README.md) | No PDF in snapshot | 76 | 97 | 323 | 25,149 |
+| [error_type_pref_optim](paper-assets/error_type_pref_optim/README.md) | No PDF in snapshot | 12 | 1 | 11 | 1,643 |
 | [pgpf-collapse-filter](paper-assets/pgpf-collapse-filter/README.md) | No PDF in snapshot | 26 | 24 | 29 | 3,992 |
 | [prod42](paper-assets/prod42/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod43](paper-assets/prod43/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |

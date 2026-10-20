@@ -1,0 +1,28 @@
+{
+  "exp_id": "n2_deberta_finetune_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:12:06.592Z",
+    "updated_at": "2026-05-15T12:12:47.592Z",
+    "spec": {
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl",
+      "data_count": 20000,
+      "model_name": "DeBERTa-v3-base",
+      "seed": 42,
+      "hyperparams": {
+        "epochs": 3,
+        "batch_size": 16,
+        "lr": "2e-5",
+        "max_len": 512,
+        "cv_folds": 5
+      }
+    },
+    "hypothesis": "N2 reviewer concern: end-to-end DeBERTa-v3-base finetune baseline vs RF on hand-crafted features (78.2%). 若 DeBERTa acc < RF，证明手工特征确有独立贡献；若 ≥ RF，需重新定位 narrative。"
+  },
+  "timestamp": "2026-05-15T12:12:47.714505+00:00",
+  "trigger": "update_registry"
+}

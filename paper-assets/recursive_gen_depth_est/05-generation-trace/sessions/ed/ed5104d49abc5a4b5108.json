@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_kill-rogue-gpu-process_20260514T145519_result.json",
     "occurrence": 1,
-    "bytes": 2626,
-    "sha256": "6d7a721a7ad029ac7547e7d5ff9b4dcaa944549e3c05b96cbd3baabe8ce56883"
+    "bytes": 2625,
+    "sha256": "8a4e99823595a3ee4b8a5d7e71d3f7241342149d2db7b9b9a556a7120750724a"
   },
   "statistics": {
     "messages": 1,

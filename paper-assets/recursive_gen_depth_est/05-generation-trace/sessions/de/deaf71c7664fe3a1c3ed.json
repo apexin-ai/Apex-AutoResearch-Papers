@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_debug_false_failure_20260514T182414.log",
     "occurrence": 1,
-    "bytes": 630193,
-    "sha256": "c51ea38a4b8c277eb865bb155e0e9c6c59b0e83412523e3b41121859643d7b5d"
+    "bytes": 630167,
+    "sha256": "a48a5708a972c340ab72b528ae9cdab3fda656221364820156bc6b8aa085571b"
   },
   "statistics": {
     "messages": 277,

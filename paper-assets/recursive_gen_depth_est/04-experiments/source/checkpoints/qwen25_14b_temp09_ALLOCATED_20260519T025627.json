@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen25_14b_temp09",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:55:16.309Z",
+    "updated_at": "2026-05-19T02:56:26.876Z",
+    "hypothesis": "Recursive generation depth signal persists at 14B scale under temperature sampling (τ=0.9), achieving RF 4-class accuracy above 25% baseline and comparable to scale_002 nucleus (54.05%). Validates Claim 2: Atlas spans 3 strategies at 14B. Directly addresses Dream worst review M3 \"14B too narrow\"."
+  },
+  "timestamp": "2026-05-19T02:56:27.163401+00:00",
+  "trigger": "update_registry"
+}

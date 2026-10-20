@@ -1,0 +1,54 @@
+{
+  "per_cell": {
+    "pythia_nucleus": {
+      "coral": {"4class_acc": 0.7805, "d1d3_bal_acc": 0.7106, "mae": 0.228, "qwk": 0.9009, "ordinal_consistency": 0.9782, "4class_acc_std": 0.0068, "d1d3_bal_acc_std": 0.009, "mae_std": 0.0078, "qwk_std": 0.0043, "ordinal_consistency_std": 0.0021},
+      "rf": {"4class_acc": 0.786, "d1d3_bal_acc": 0.7166, "mae": 0.235, "qwk": 0.8906, "ordinal_consistency": 0.9723, "4class_acc_std": 0.0067, "d1d3_bal_acc_std": 0.0092, "mae_std": 0.0073, "qwk_std": 0.0041, "ordinal_consistency_std": 0.0021},
+      "delta": {"4class_acc": -0.0055, "d1d3_bal_acc": -0.006, "mae": -0.007, "qwk": 0.0103, "ordinal_consistency": 0.0059}
+    },
+    "pythia_temp09": {
+      "coral": {"4class_acc": 0.7643, "d1d3_bal_acc": 0.6891, "mae": 0.2441, "qwk": 0.8938, "ordinal_consistency": 0.9772, "4class_acc_std": 0.0066, "d1d3_bal_acc_std": 0.0083, "mae_std": 0.0061, "qwk_std": 0.003, "ordinal_consistency_std": 0.0016},
+      "rf": {"4class_acc": 0.7668, "d1d3_bal_acc": 0.6919, "mae": 0.2587, "qwk": 0.8776, "ordinal_consistency": 0.9685, "4class_acc_std": 0.0071, "d1d3_bal_acc_std": 0.0091, "mae_std": 0.0089, "qwk_std": 0.0052, "ordinal_consistency_std": 0.002},
+      "delta": {"4class_acc": -0.0025, "d1d3_bal_acc": -0.0028, "mae": -0.0146, "qwk": 0.0162, "ordinal_consistency": 0.0087}
+    },
+    "pythia_topk50": {
+      "coral": {"4class_acc": 0.684, "d1d3_bal_acc": 0.5865, "mae": 0.3325, "qwk": 0.8481, "ordinal_consistency": 0.9606, "4class_acc_std": 0.0024, "d1d3_bal_acc_std": 0.0037, "mae_std": 0.004, "qwk_std": 0.0032, "ordinal_consistency_std": 0.002},
+      "rf": {"4class_acc": 0.6888, "d1d3_bal_acc": 0.5894, "mae": 0.3569, "qwk": 0.8215, "ordinal_consistency": 0.9469, "4class_acc_std": 0.0017, "d1d3_bal_acc_std": 0.0038, "mae_std": 0.0033, "qwk_std": 0.0031, "ordinal_consistency_std": 0.0017},
+      "delta": {"4class_acc": -0.0048, "d1d3_bal_acc": -0.0029, "mae": -0.0244, "qwk": 0.0266, "ordinal_consistency": 0.0137}
+    },
+    "olmo_nucleus": {
+      "coral": {"4class_acc": 0.794, "d1d3_bal_acc": 0.7351, "mae": 0.2152, "qwk": 0.9074, "ordinal_consistency": 0.9818, "4class_acc_std": 0.0035, "d1d3_bal_acc_std": 0.0034, "mae_std": 0.0043, "qwk_std": 0.0024, "ordinal_consistency_std": 0.0012},
+      "rf": {"4class_acc": 0.7889, "d1d3_bal_acc": 0.7257, "mae": 0.229, "qwk": 0.8942, "ordinal_consistency": 0.9752, "4class_acc_std": 0.0043, "d1d3_bal_acc_std": 0.0058, "mae_std": 0.0058, "qwk_std": 0.0038, "ordinal_consistency_std": 0.0025},
+      "delta": {"4class_acc": 0.0051, "d1d3_bal_acc": 0.0094, "mae": -0.0138, "qwk": 0.0132, "ordinal_consistency": 0.0066}
+    },
+    "olmo_temp09": {
+      "coral": {"4class_acc": 0.8213, "d1d3_bal_acc": 0.7634, "mae": 0.1818, "qwk": 0.9261, "ordinal_consistency": 0.9865, "4class_acc_std": 0.0033, "d1d3_bal_acc_std": 0.0043, "mae_std": 0.0034, "qwk_std": 0.0016, "ordinal_consistency_std": 0.0014},
+      "rf": {"4class_acc": 0.8224, "d1d3_bal_acc": 0.7655, "mae": 0.1832, "qwk": 0.923, "ordinal_consistency": 0.9838, "4class_acc_std": 0.0044, "d1d3_bal_acc_std": 0.0059, "mae_std": 0.0045, "qwk_std": 0.0023, "ordinal_consistency_std": 0.0016},
+      "delta": {"4class_acc": -0.0011, "d1d3_bal_acc": -0.0021, "mae": -0.0014, "qwk": 0.0031, "ordinal_consistency": 0.0027}
+    },
+    "olmo_topk50": {
+      "coral": {"4class_acc": 0.7479, "d1d3_bal_acc": 0.6674, "mae": 0.2643, "qwk": 0.8869, "ordinal_consistency": 0.9729, "4class_acc_std": 0.0062, "d1d3_bal_acc_std": 0.0086, "mae_std": 0.0067, "qwk_std": 0.0042, "ordinal_consistency_std": 0.0027},
+      "rf": {"4class_acc": 0.7464, "d1d3_bal_acc": 0.6646, "mae": 0.2724, "qwk": 0.8759, "ordinal_consistency": 0.9667, "4class_acc_std": 0.0066, "d1d3_bal_acc_std": 0.0083, "mae_std": 0.0085, "qwk_std": 0.0058, "ordinal_consistency_std": 0.0026},
+      "delta": {"4class_acc": 0.0015, "d1d3_bal_acc": 0.0028, "mae": -0.0081, "qwk": 0.011, "ordinal_consistency": 0.0062}
+    },
+    "gpt2xl_nucleus": {
+      "coral": {"4class_acc": 0.8398, "d1d3_bal_acc": 0.7928, "mae": 0.1658, "qwk": 0.9278, "ordinal_consistency": 0.9883, "4class_acc_std": 0.0046, "d1d3_bal_acc_std": 0.0064, "mae_std": 0.0052, "qwk_std": 0.0032, "ordinal_consistency_std": 0.0016},
+      "rf": {"4class_acc": 0.8416, "d1d3_bal_acc": 0.7938, "mae": 0.168, "qwk": 0.9238, "ordinal_consistency": 0.9863, "4class_acc_std": 0.0045, "d1d3_bal_acc_std": 0.0047, "mae_std": 0.0051, "qwk_std": 0.0038, "ordinal_consistency_std": 0.0015},
+      "delta": {"4class_acc": -0.0018, "d1d3_bal_acc": -0.001, "mae": -0.0022, "qwk": 0.004, "ordinal_consistency": 0.002}
+    },
+    "gpt2xl_temp09": {
+      "coral": {"4class_acc": 0.8491, "d1d3_bal_acc": 0.8025, "mae": 0.1533, "qwk": 0.9373, "ordinal_consistency": 0.9908, "4class_acc_std": 0.0032, "d1d3_bal_acc_std": 0.0044, "mae_std": 0.0036, "qwk_std": 0.0018, "ordinal_consistency_std": 0.001},
+      "rf": {"4class_acc": 0.8588, "d1d3_bal_acc": 0.8146, "mae": 0.1444, "qwk": 0.9398, "ordinal_consistency": 0.9914, "4class_acc_std": 0.0043, "d1d3_bal_acc_std": 0.0054, "mae_std": 0.0052, "qwk_std": 0.0029, "ordinal_consistency_std": 0.0012},
+      "delta": {"4class_acc": -0.0097, "d1d3_bal_acc": -0.0121, "mae": 0.0089, "qwk": -0.0025, "ordinal_consistency": -0.0006}
+    },
+    "gpt2xl_topk50": {
+      "coral": {"4class_acc": 0.7193, "d1d3_bal_acc": 0.6302, "mae": 0.2988, "qwk": 0.8755, "ordinal_consistency": 0.9748, "4class_acc_std": 0.0423, "d1d3_bal_acc_std": 0.0566, "mae_std": 0.0501, "qwk_std": 0.0164, "ordinal_consistency_std": 0.0026},
+      "rf": {"4class_acc": 0.7581, "d1d3_bal_acc": 0.6821, "mae": 0.2576, "qwk": 0.884, "ordinal_consistency": 0.972, "4class_acc_std": 0.0069, "d1d3_bal_acc_std": 0.0084, "mae_std": 0.0063, "qwk_std": 0.0024, "ordinal_consistency_std": 0.0012},
+      "delta": {"4class_acc": -0.0388, "d1d3_bal_acc": -0.0519, "mae": 0.0412, "qwk": -0.0085, "ordinal_consistency": 0.0028}
+    }
+  },
+  "average": {
+    "coral": {"4class_acc": 0.7778, "d1d3_bal_acc": 0.7086, "mae": 0.2315, "qwk": 0.9004, "ordinal_consistency": 0.979},
+    "rf": {"4class_acc": 0.7842, "d1d3_bal_acc": 0.716, "mae": 0.2339, "qwk": 0.8923, "ordinal_consistency": 0.9738},
+    "delta": {"4class_acc": -0.0064, "d1d3_bal_acc": -0.0074, "mae": -0.0024, "qwk": 0.0081, "ordinal_consistency": 0.0052}
+  }
+}

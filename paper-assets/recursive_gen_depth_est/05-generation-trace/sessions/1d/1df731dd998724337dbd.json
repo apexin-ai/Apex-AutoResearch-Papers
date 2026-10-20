@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_missing_refs_and_bib_fixes_20260520T070535_result.json",
     "occurrence": 1,
-    "bytes": 1166,
-    "sha256": "514836f7f2f820f5fa806caa96de56855dffa73b210088bc0fa7f05e6b0f0cb9"
+    "bytes": 1165,
+    "sha256": "a3a464bcb803e98181f08c9b63c99599af85dfa3e3f15964bbb03a3abdb9c2e7"
   },
   "statistics": {
     "messages": 1,

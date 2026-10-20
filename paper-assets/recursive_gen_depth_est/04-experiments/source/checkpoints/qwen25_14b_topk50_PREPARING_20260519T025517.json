@@ -1,0 +1,14 @@
+{
+  "exp_id": "qwen25_14b_topk50",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:55:17.726Z",
+    "updated_at": "2026-05-19T02:55:17.726Z"
+  },
+  "timestamp": "2026-05-19T02:55:17.977916+00:00",
+  "trigger": "update_registry"
+}

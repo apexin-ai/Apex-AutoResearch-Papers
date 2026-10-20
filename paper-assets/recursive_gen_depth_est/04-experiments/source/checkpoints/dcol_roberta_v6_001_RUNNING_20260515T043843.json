@@ -1,0 +1,35 @@
+{
+  "exp_id": "dcol_roberta_v6_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:20:40.271Z",
+    "updated_at": "2026-05-15T04:38:43.175Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=1 python3 src/dcol_trainer_v6.py ...\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "136481",
+      "log_path": "~/runs/recursive_gen_depth_est/dcol_roberta_v6_001.log",
+      "submitted_at": "2026-05-15T04:30:38.666Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/features_all.jsonl",
+      "data_count": 180000,
+      "model_name": "RoBERTa-large (LoRA r=16 alpha=16)",
+      "seed": 42,
+      "checkpoint_source": "N/A (training from scratch with LoRA)",
+      "eval_data": "N/A (training experiment, not eval)"
+    },
+    "hypothesis": "DCOL v6: RoBERTa-large 替代 DeBERTa 解决数值不稳定。lr=5e-5 + grad clip 1.0 + NaN guard + collapse guard (step 500 acc&lt;30% kill)。若 4-class acc > RF baseline (78.2%) 则 DCOL 成功，否则降级为 negative result。",
+    "parent": "dcol_deberta_005"
+  },
+  "timestamp": "2026-05-15T04:38:43.282789+00:00",
+  "trigger": "update_registry"
+}

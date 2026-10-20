@@ -1,0 +1,67 @@
+{
+  "exp_id": "random_soft_control_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:56:44.943Z",
+    "updated_at": "2026-05-16T00:09:06.134Z",
+    "spec": {
+      "hypothesis": "Size-matched random control for rf_soft: random 4422 samples vs rf_soft 4422 samples",
+      "parent": "downstream_curation_poc_001",
+      "plan_id": "plan_013_supplement",
+      "command": "python src/curation_poc.py --phase finetune --conditions random_soft --seeds 42 123 456 789 1024",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/curation_poc/random_soft.jsonl",
+      "data_count": 4422,
+      "model_name": "EleutherAI/pythia-410m LoRA r=16 alpha=32",
+      "seed": [
+        42,
+        123,
+        456,
+        789,
+        1024
+      ],
+      "purpose": "size-matched random control for rf_soft (4422 samples), plan_013 downstream curation PoC"
+    },
+    "metrics": {
+      "random_soft_ppl": {
+        "seed_42": 15.99,
+        "seed_123": 16.0276,
+        "seed_456": 16.1682,
+        "seed_789": 15.9993,
+        "seed_1024": 16.1224,
+        "mean": 16.0615,
+        "std": 0.0794
+      },
+      "rf_soft_ppl": {
+        "seed_42": 15.7134,
+        "seed_123": 15.7014,
+        "seed_456": 15.7875,
+        "seed_789": 15.6956,
+        "seed_1024": 15.7689,
+        "mean": 15.7334,
+        "std": 0.042
+      },
+      "comparison": {
+        "delta_ppl": 0.3281,
+        "t_statistic": 17.9777,
+        "p_value": 5.6e-05,
+        "cohens_d": 8.0399,
+        "significant": true
+      },
+      "train_loss": {
+        "seed_42": 1.6748,
+        "seed_123": 1.6786,
+        "seed_456": 1.6721,
+        "seed_789": 1.6736,
+        "seed_1024": 1.6739
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T00:09:06.288072+00:00",
+  "trigger": "update_registry"
+}

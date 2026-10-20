@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_n2_roberta_feature_overlap_20260515T132452_result.json",
     "occurrence": 1,
-    "bytes": 2057,
-    "sha256": "02e2b3deef1471c0b0bd24025cc8cf75a25638c4d2b758e5eb6875dbfc37a5be"
+    "bytes": 2056,
+    "sha256": "b8781a530e81bb2077ce2b84471a90213297582e3bdd604b779d7a1548cdb85d"
   },
   "statistics": {
     "messages": 1,

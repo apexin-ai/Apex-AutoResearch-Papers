@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_prepare_olmo_temp09_submission_20260514T203347_result.json",
     "occurrence": 1,
-    "bytes": 1115,
-    "sha256": "fab97cba5c0221b663ada74012cf02554d4e852fd5a3c4fae0a3bf640788cba0"
+    "bytes": 1114,
+    "sha256": "f77821f5445374f15fc2738b31d98ffdbf413746cb153f16bac71ccd667d419b"
   },
   "statistics": {
     "messages": 1,

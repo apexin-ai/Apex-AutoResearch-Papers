@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_n2_roberta_finetune_001_20260515T122400_result.json",
     "occurrence": 1,
-    "bytes": 607,
-    "sha256": "e9610c56298bc912b45f573141a8806a16cc6b2cf6aae805ed839e694b2456b3"
+    "bytes": 606,
+    "sha256": "1ce60ea86b08ce0d67ee152cddd3c617e994d50ccbab7d12791b7aecf437445a"
   },
   "statistics": {
     "messages": 1,

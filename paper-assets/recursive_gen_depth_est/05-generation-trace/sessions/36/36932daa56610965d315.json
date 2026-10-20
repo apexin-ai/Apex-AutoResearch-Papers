@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_feat_ablation_parallel_20260515T193305_result.json",
     "occurrence": 1,
-    "bytes": 806,
-    "sha256": "df901553ec81bf6c1bd2e1736c231b03ce4f6c1b74be49bfafeafba7b64f6047"
+    "bytes": 805,
+    "sha256": "7f60b665e0a7187abfb35f8cc8b59cbac70965e858dd7a9d50031bb1556c7cd2"
   },
   "statistics": {
     "messages": 1,

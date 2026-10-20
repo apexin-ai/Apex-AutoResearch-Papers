@@ -1,0 +1,91 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model}
+\citation{drayson2025emnlp}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{cao2020coral}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and recursive generation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Synthetic text detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ordinal classification.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Benchmark Construction}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Extraction}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Per-model 4-class depth estimation (RF + 19 features). Accuracy with 95\% CI, MAE, and per-pair AUC. $\sim $1{,}200 samples per depth per strategy.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:per_model}{{1}{3}{Per-model 4-class depth estimation (RF + 19 features). Accuracy with 95\% CI, MAE, and per-pair AUC. $\sim $1{,}200 samples per depth per strategy}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}DCOL: Depth Contrastive Ordinal Learning}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Per-Model Recursive Chain Benchmarks}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:per_model}{{4.1}{3}{Per-Model Recursive Chain Benchmarks}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-strategy breakdown.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}DCOL and Baseline Comparison}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:baselines}{{4.2}{3}{DCOL and Baseline Comparison}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces OLMo-1B per-strategy 4-class results.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:olmo_strategy}{{2}{4}{OLMo-1B per-strategy 4-class results}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces GPT-2~XL per-strategy 4-class results.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:gpt2_strategy}{{3}{4}{GPT-2~XL per-strategy 4-class results}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{End-to-end DeBERTa analysis.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}DCOL Component Ablation}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:ablation}{{4.3}{4}{DCOL Component Ablation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Depth Degradation Atlas}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:atlas}{{4.4}{4}{Depth Degradation Atlas}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Effective Discriminable Depth (EDD).}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature monotonicity.}{4}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Full baseline comparison, pooled across 3 models $\times $ 3 strategies. $\Delta $ is relative to best baseline (CORAL).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:baselines}{{4}{5}{Full baseline comparison, pooled across 3 models $\times $ 3 strategies. $\Delta $ is relative to best baseline (CORAL)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces End-to-end DeBERTa vs DCOL vs RF.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:e2e}{{5}{5}{End-to-end DeBERTa vs DCOL vs RF}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Depth Extension and EDD Validation}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:extension}{{4.5}{5}{Depth Extension and EDD Validation}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Granularity Ablation}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:granularity}{{4.6}{5}{Granularity Ablation}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Model Generalization}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:cross_model}{{4.7}{5}{Cross-Model Generalization}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces DCOL component ablation (6-class accuracy, pooled).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:ablation}{{6}{6}{DCOL component ablation (6-class accuracy, pooled)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces EDD per model $\times $ strategy combination. Median EDD = 3.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:edd}{{7}{6}{EDD per model $\times $ strategy combination. Median EDD = 3}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Cross-Strategy Generalization}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:cross_strategy}{{4.8}{6}{Cross-Strategy Generalization}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Downstream Curation Proof-of-Concept}{6}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:curation}{{4.9}{6}{Downstream Curation Proof-of-Concept}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Top-5 features by monotonicity score (mean across 9 combos). Rank stability = number of combos where the feature ranks $\leq k$.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:monotonicity}{{8}{7}{Top-5 features by monotonicity score (mean across 9 combos). Rank stability = number of combos where the feature ranks $\leq k$}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Extended-depth pairwise AUC (Pythia-1.4B, nucleus).}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:extension}{{9}{7}{Extended-depth pairwise AUC (Pythia-1.4B, nucleus)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Cross-Scale Probe: 7B Models}{7}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:7b}{{4.10}{7}{Cross-Scale Probe: 7B Models}{subsection.4.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Wild-Data Calibration}{7}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:wild}{{4.11}{7}{Wild-Data Calibration}{subsection.4.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{EDD as a scientific contribution.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature dynamics beyond EDD.}{7}{section*.9}\protected@file@percent }
+\bibcite{shumailov2024model}{1}
+\bibcite{drayson2025emnlp}{2}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Granularity ablation (DCOL, pooled). Lift = accuracy $-$ chance.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:granularity}{{10}{8}{Granularity ablation (DCOL, pooled). Lift = accuracy $-$ chance}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Leave-one-model-out cross-generalization.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:lomo}{{11}{8}{Leave-one-model-out cross-generalization}{table.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\bibcite{cao2020coral}{3}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Leave-one-strategy-out cross-generalization.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:loso}{{12}{9}{Leave-one-strategy-out cross-generalization}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Downstream curation comparison.}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:curation}{{13}{9}{Downstream curation comparison}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Cross-scale transfer to 7B model.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:7b}{{14}{10}{Cross-scale transfer to 7B model}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Wild-data depth score correlations with quality proxies.}}{10}{table.15}\protected@file@percent }
+\newlabel{tab:wild_corr}{{15}{10}{Wild-data depth score correlations with quality proxies}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Predicted depth distribution on RedPajama sample.}}{10}{table.16}\protected@file@percent }
+\newlabel{tab:wild}{{16}{10}{Predicted depth distribution on RedPajama sample}{table.16}{}}
+\gdef \@abspage@last{10}

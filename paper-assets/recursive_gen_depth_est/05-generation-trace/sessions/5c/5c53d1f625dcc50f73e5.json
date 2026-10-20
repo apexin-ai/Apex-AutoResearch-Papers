@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gpt2xl_topk50_001_20260514T224607_result.json",
     "occurrence": 1,
-    "bytes": 396,
-    "sha256": "5f2f5f6bffce9d599a53db8e80fd7d4d0812e0066ff6fdc1e0a931412d154142"
+    "bytes": 395,
+    "sha256": "e2cd28c3450898109349f0c022f07a222aa081efe92d0c755c7d4d5534b9c51c"
   },
   "statistics": {
     "messages": 1,

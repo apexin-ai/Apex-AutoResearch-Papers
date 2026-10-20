@@ -1,0 +1,31 @@
+{
+  "exp_id": "olmo_topk50_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:30:51.656Z",
+    "updated_at": "2026-05-15T00:12:51.726Z",
+    "hypothesis": "解码策略鲁棒性: OLMo-1B 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "parent": "cross_model_olmo_002",
+    "plan_id": "plan_002c",
+    "notes": "空提交：之前 Worker 报 done 但实际未启动（无 log、无 GPU 进程、registry 仍 PREPARING）。cuda:1 被 olmo_temp09_001 占用。等 olmo_temp09_001 完成后重新提交，提交前必须 ssh_read_only 验证 cuda:1 空闲。",
+    "spec": {
+      "command": "bash -c \"export AML_EXP_ID=olmo_topk50_001 && export GPU=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_pipeline_olmo_topk50.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "226461",
+      "log_path": "~/runs/recursive_gen_depth_est/olmo_topk50_001.log",
+      "submitted_at": "2026-05-15T00:11:30.334Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T00:12:51.807526+00:00",
+  "trigger": "update_registry"
+}

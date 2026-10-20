@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_ref_ablation_writeup_20260516T080204_result.json",
     "occurrence": 1,
-    "bytes": 235,
-    "sha256": "79d7cc43fee614b9cdbf664a562a0960e0fb169873b75d23befefe4d383915d6"
+    "bytes": 234,
+    "sha256": "741af19addb7491b72c7fe5ef1ccf35acedd5200740d67018f7fa9f7f23e9e53"
   },
   "statistics": {
     "messages": 1,

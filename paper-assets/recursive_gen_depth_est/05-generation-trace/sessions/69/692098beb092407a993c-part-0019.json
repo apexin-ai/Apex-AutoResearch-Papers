@@ -1051,7 +1051,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"Recursive generation depth estimation: (a) recursive generation chain producing corpora at increasing depths, (b) depth estimation task with statistical features and RF classifier, (c) comparison with binary detection\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r1.png \\\n  --iterations 5 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"Recursive generation depth estimation: (a) recursive generation chain producing corpora at increasing depths, (b) depth estimation task with statistical features and RF classifier, (c) comparison with binary detection\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r1.png \\\n  --iterations 5 2>&1",
               "timeout": "300000"
             }
           },
@@ -1129,7 +1129,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_short.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r1b.png \\\n  --iterations 1 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_short.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r1b.png \\\n  --iterations 1 2>&1",
               "timeout": "300000"
             }
           },
@@ -1245,7 +1245,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r2.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r2.png \\\n  --iterations 5 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r2.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r2.png \\\n  --iterations 5 2>&1",
               "timeout": "600000"
             }
           },
@@ -1361,7 +1361,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r3.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r3.png \\\n  --iterations 1 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r3.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r3.png \\\n  --iterations 1 2>&1",
               "timeout": "300000"
             }
           },
@@ -1477,7 +1477,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r4.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r4.png \\\n  --iterations 1 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r4.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r4.png \\\n  --iterations 1 2>&1",
               "timeout": "300000"
             }
           },
@@ -1593,7 +1593,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r5.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r5.png \\\n  --iterations 1 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r5.txt \\\n  --caption \"Recursive generation depth estimation overview\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_r5.png \\\n  --iterations 1 2>&1",
               "timeout": "300000"
             }
           },
@@ -1628,7 +1628,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[Director 指令] 用户确认了 Figure 1 PaperBanana 版本的设计风格，但要求调整长宽比到约 2.5:1（当前太\"方\"了，需要更宽更扁）。\n\n## 具体要求\n\n1. 基于 `/tmp/fig1_round2.png` 的设计风格，修改 PaperBanana intent 描述，将 figsize 调整为约 2.5:1 的长宽比（例如 figsize (16, 6.4) 或 (15, 6)）\n2. 保持当前的配色、布局逻辑、文档图标、渐变色等所有设计元素不变\n3. 三个面板（递归生成链 / 深度分类器 / 任务对比）纵向排列，但各面板压缩高度、水平方向拉伸利用更多空间\n4. 用 PaperBanana 重新生成，`--vlm-model gemini-2.5-pro --iterations 5`\n5. GOOGLE_API_KEY: `[REDACTED_GOOGLE_TOKEN]`\n6. Read 生成的 PNG 做视觉检查，确认长宽比正确且元素不变形\n7. 满意后保存到：\n   - `docs/paper/figures/fig_problem_illustration.png`（覆盖旧版）\n   - `docs/paper/figures/fig_problem_illustration.pdf`（同步生成 PDF）\n\n之前的 intent 文件在 `/tmp/fig1_intent_r2.txt` 或 `/tmp/fig1_intent_r5.txt`，在此基础上改 figsize 和布局即可。"
+              "text": "[Director 指令] 用户确认了 Figure 1 PaperBanana 版本的设计风格，但要求调整长宽比到约 2.5:1（当前太\"方\"了，需要更宽更扁）。\n\n## 具体要求\n\n1. 基于 `/tmp/fig1_round2.png` 的设计风格，修改 PaperBanana intent 描述，将 figsize 调整为约 2.5:1 的长宽比（例如 figsize (16, 6.4) 或 (15, 6)）\n2. 保持当前的配色、布局逻辑、文档图标、渐变色等所有设计元素不变\n3. 三个面板（递归生成链 / 深度分类器 / 任务对比）纵向排列，但各面板压缩高度、水平方向拉伸利用更多空间\n4. 用 PaperBanana 重新生成，`--vlm-model gemini-2.5-pro --iterations 5`\n5. GOOGLE_API_KEY: [REDACTED]\n6. Read 生成的 PNG 做视觉检查，确认长宽比正确且元素不变形\n7. 满意后保存到：\n   - `docs/paper/figures/fig_problem_illustration.png`（覆盖旧版）\n   - `docs/paper/figures/fig_problem_illustration.pdf`（同步生成 PDF）\n\n之前的 intent 文件在 `/tmp/fig1_intent_r2.txt` 或 `/tmp/fig1_intent_r5.txt`，在此基础上改 figsize 和布局即可。"
             }
           ],
           "metadata": {
@@ -1690,7 +1690,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r4.txt \\\n  --caption \"Recursive generation depth estimation: chain produces corpora at increasing depths, depth classifier estimates ordinal depth from statistical features\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_wide_r1.png \\\n  --iterations 1 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r4.txt \\\n  --caption \"Recursive generation depth estimation: chain produces corpora at increasing depths, depth classifier estimates ordinal depth from statistical features\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_wide_r1.png \\\n  --iterations 1 2>&1",
               "timeout": "300000"
             }
           },
@@ -1805,7 +1805,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r2.txt \\\n  --caption \"Recursive generation depth estimation: wide format 2.5:1 aspect ratio concept diagram\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_wide_r2.png \\\n  --iterations 1 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r2.txt \\\n  --caption \"Recursive generation depth estimation: wide format 2.5:1 aspect ratio concept diagram\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_wide_r2.png \\\n  --iterations 1 2>&1",
               "timeout": "300000"
             }
           },
@@ -1844,7 +1844,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r3.txt \\\n  --caption \"Recursive generation depth estimation: wide format 2.5:1 aspect ratio concept diagram\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_wide_r3.png \\\n  --iterations 1 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent_r3.txt \\\n  --caption \"Recursive generation depth estimation: wide format 2.5:1 aspect ratio concept diagram\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_wide_r3.png \\\n  --iterations 1 2>&1",
               "timeout": "300000",
               "run_in_background": "True"
             }
@@ -1884,7 +1884,7 @@
             "session": "feishu:group:oc_5434474971bcc3bc52c4774796ba7f3d",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"Recursive generation depth estimation: wide format 2.5:1 aspect ratio concept diagram\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_wide_r0.png \\\n  --iterations 1 2>&1",
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est && GOOGLE_API_KEY=\"[REDACTED]\" .pb_venv/bin/paperbanana generate \\\n  --input /tmp/fig1_intent.txt \\\n  --caption \"Recursive generation depth estimation: wide format 2.5:1 aspect ratio concept diagram\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output /tmp/pb_fig1_wide_r0.png \\\n  --iterations 1 2>&1",
               "timeout": "300000",
               "run_in_background": "True"
             }
@@ -3485,7 +3485,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[Director 指令] 用户反馈 Figure 1 太空了，需要增加信息量，用 PaperBanana 重画。\n\n## 设计方向：增加信息密度\n\n在保持当前三面板结构的基础上，增加以下内容：\n\n### Panel (a) — Recursive Generation Chain\n- 保持 D₀ → D₁ → D₂ → ... → DK 链\n- **新增**：在箭头上方或旁边明确标注 LLM 模型图标（如 \"LLM θ\" 或齿轮+模型图标），表示每步都是 LoRA fine-tuning 同一个 base model 然后 sampling\n- **新增**：在每个 D 框下方加一行小字描述，如 D₀ \"seed corpus\"、D₁ \"1st-gen synthetic\"、DK \"K-th gen\"\n- **新增**：用小型渐变色条或箭头强调\"distribution shift accumulates\"\n\n### Panel (b) — Feature Extraction + Depth Classification（核心增密区域）\n- **拆分为两步**：\n  1. **Feature Extraction 框**：标注 \"19 Statistical Features\"，内部用 4 个小块展示特征类别：\n     - Perplexity Stats (9): mean, var, skew, kurt, p10-p90\n     - Surprisal Stats (3): mean, var, entropy\n     - Lexical Diversity (4): TTR, hapax, bigram/trigram entropy\n     - Repetition (3): repeated n-gram fractions\n  2. **Classifier 框**：Random Forest，箭头连接到输出\n- **新增小型 inset 图**：在 panel (b) 右侧或上方，画一个 mini line chart 展示 \"p90 perplexity across depths\"，x 轴 d=0,1,2,3，y 轴 p90_ppl，线条下降趋势，标注 \"tail decay = primary signal\"。这是论文核心发现的直接可视化\n- 保持右侧 bar chart 预测输出 d̂=1\n\n### Panel (c) — Task Comparison\n- 保持 Binary vs Ours 对比\n- **新增**：在 \"Ours\" 框内加一行小字 \"ordinal: d̂ ∈ {0,1,...,K}\"，旁边标注 \"4-class RF: 78.4% acc (chance=25%)\"，展示任务可行性\n\n## PaperBanana 执行\n\n1. 写详细 intent 到 `/tmp/fig1_dense_intent.txt`，包含完整的空间布局（每个子元素的位置占比）、所有文字内容、hex 颜色码、字号、圆角/阴影规格、反面约束\n2. 配色沿用之前确认的方案：D₀ #D6EAF8 (蓝灰) → D₁ #EAE0D4 → D₂ #E0CEB0 → DK #C4A47A (暖棕)；Classifier 深蓝 #2C3E50；Feature 类别用浅色区分\n3. `GOOGLE_API_KEY=[REDACTED_GOOGLE_TOKEN]`\n4. `paperbanana generate --input /tmp/fig1_dense_intent.txt --vlm-model gemini-2.5-pro --iterations 5 --output /tmp/fig1_dense_v1.png`\n5. 用 `.pb_venv/bin/paperbanana` 或 `/tmp/pb_venv/bin/paperbanana`\n6. **在本地 EC2 执行**\n7. **至少 5 轮外部迭代**，每轮 Read PNG 视觉检查\n8. 重点检查：信息是否太拥挤导致不可读（缩到 column width 后文字 ≥ 7pt）、小型 inset 图是否清晰、整体是否和谐\n\n## 美学要求\n- 300 DPI，白色背景\n- 顶会级别精致感（EMNLP best paper 标准）\n- Serif 字体，body 10-12pt，小标注 8-9pt\n- 圆角 8px，微妙投影\n- \"NO matplotlib default styling, NO gray background, NO tab10 colors\"\n- 信息密度要高但不能杂乱——用视觉层次（字号、颜色深浅、框线粗细）区分主次\n\n## 输出\n- 最终版保存到 `docs/paper/figures/fig_problem_illustration.png`（覆盖）\n- 同步生成 PDF 版本（注意源文件可能是 JPEG 格式，需先转真 PNG 再转 PDF）\n- 编译论文确认渲染正确\n\n完成后汇报。"
+              "text": "[Director 指令] 用户反馈 Figure 1 太空了，需要增加信息量，用 PaperBanana 重画。\n\n## 设计方向：增加信息密度\n\n在保持当前三面板结构的基础上，增加以下内容：\n\n### Panel (a) — Recursive Generation Chain\n- 保持 D₀ → D₁ → D₂ → ... → DK 链\n- **新增**：在箭头上方或旁边明确标注 LLM 模型图标（如 \"LLM θ\" 或齿轮+模型图标），表示每步都是 LoRA fine-tuning 同一个 base model 然后 sampling\n- **新增**：在每个 D 框下方加一行小字描述，如 D₀ \"seed corpus\"、D₁ \"1st-gen synthetic\"、DK \"K-th gen\"\n- **新增**：用小型渐变色条或箭头强调\"distribution shift accumulates\"\n\n### Panel (b) — Feature Extraction + Depth Classification（核心增密区域）\n- **拆分为两步**：\n  1. **Feature Extraction 框**：标注 \"19 Statistical Features\"，内部用 4 个小块展示特征类别：\n     - Perplexity Stats (9): mean, var, skew, kurt, p10-p90\n     - Surprisal Stats (3): mean, var, entropy\n     - Lexical Diversity (4): TTR, hapax, bigram/trigram entropy\n     - Repetition (3): repeated n-gram fractions\n  2. **Classifier 框**：Random Forest，箭头连接到输出\n- **新增小型 inset 图**：在 panel (b) 右侧或上方，画一个 mini line chart 展示 \"p90 perplexity across depths\"，x 轴 d=0,1,2,3，y 轴 p90_ppl，线条下降趋势，标注 \"tail decay = primary signal\"。这是论文核心发现的直接可视化\n- 保持右侧 bar chart 预测输出 d̂=1\n\n### Panel (c) — Task Comparison\n- 保持 Binary vs Ours 对比\n- **新增**：在 \"Ours\" 框内加一行小字 \"ordinal: d̂ ∈ {0,1,...,K}\"，旁边标注 \"4-class RF: 78.4% acc (chance=25%)\"，展示任务可行性\n\n## PaperBanana 执行\n\n1. 写详细 intent 到 `/tmp/fig1_dense_intent.txt`，包含完整的空间布局（每个子元素的位置占比）、所有文字内容、hex 颜色码、字号、圆角/阴影规格、反面约束\n2. 配色沿用之前确认的方案：D₀ #D6EAF8 (蓝灰) → D₁ #EAE0D4 → D₂ #E0CEB0 → DK #C4A47A (暖棕)；Classifier 深蓝 #2C3E50；Feature 类别用浅色区分\n3. `GOOGLE_API_KEY=[REDACTED]\n4. `paperbanana generate --input /tmp/fig1_dense_intent.txt --vlm-model gemini-2.5-pro --iterations 5 --output /tmp/fig1_dense_v1.png`\n5. 用 `.pb_venv/bin/paperbanana` 或 `/tmp/pb_venv/bin/paperbanana`\n6. **在本地 EC2 执行**\n7. **至少 5 轮外部迭代**，每轮 Read PNG 视觉检查\n8. 重点检查：信息是否太拥挤导致不可读（缩到 column width 后文字 ≥ 7pt）、小型 inset 图是否清晰、整体是否和谐\n\n## 美学要求\n- 300 DPI，白色背景\n- 顶会级别精致感（EMNLP best paper 标准）\n- Serif 字体，body 10-12pt，小标注 8-9pt\n- 圆角 8px，微妙投影\n- \"NO matplotlib default styling, NO gray background, NO tab10 colors\"\n- 信息密度要高但不能杂乱——用视觉层次（字号、颜色深浅、框线粗细）区分主次\n\n## 输出\n- 最终版保存到 `docs/paper/figures/fig_problem_illustration.png`（覆盖）\n- 同步生成 PDF 版本（注意源文件可能是 JPEG 格式，需先转真 PNG 再转 PDF）\n- 编译论文确认渲染正确\n\n完成后汇报。"
             }
           ],
           "metadata": {

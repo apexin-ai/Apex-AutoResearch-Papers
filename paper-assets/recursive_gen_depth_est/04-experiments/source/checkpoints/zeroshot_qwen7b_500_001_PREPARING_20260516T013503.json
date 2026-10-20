@@ -1,0 +1,15 @@
+{
+  "exp_id": "zeroshot_qwen7b_500_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:34:50.203Z",
+    "updated_at": "2026-05-16T01:35:03.706Z",
+    "hypothesis": "R1-W4 第二个 LLM baseline: Qwen2.5-7B-Instruct (4-bit) zero-shot depth classification, 500 samples。回应 R3 审稿人\"不止一个 LLM baseline\"要求。预期与 DeepSeek (36.2%) 类似，远低于 RF (78.2%)。"
+  },
+  "timestamp": "2026-05-16T01:35:03.899851+00:00",
+  "trigger": "update_registry"
+}

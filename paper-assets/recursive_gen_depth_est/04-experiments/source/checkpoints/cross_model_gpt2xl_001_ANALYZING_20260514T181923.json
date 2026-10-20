@@ -1,0 +1,51 @@
+{
+  "exp_id": "cross_model_gpt2xl_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:10:51.209Z",
+    "updated_at": "2026-05-14T18:19:22.970Z",
+    "spec": {
+      "command": "bash scripts/run_pipeline_gpt2xl.sh (GPT-2 XL, 3x LoRA finetune + 3x generate)",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "pid": 123650,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl.log",
+      "submitted_at": "2026-05-14T14:42:17.632Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "openai-community/gpt2-xl",
+      "model_path": "/root/autodl-tmp/models/gpt2-xl/",
+      "seed": 42,
+      "hypothesis": "跨模型泛化: GPT-2 XL 递归生成的统计特征与 Pythia-1.4B 一致，支持深度估计跨模型迁移",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "c_attn",
+          "c_proj"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "top_p": 0.95
+      },
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T18:19:22.901Z"
+    }
+  },
+  "timestamp": "2026-05-14T18:19:23.003619+00:00",
+  "trigger": "update_registry"
+}

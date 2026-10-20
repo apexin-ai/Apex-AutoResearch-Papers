@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_download_deberta_v3_large_20260514T161918_result.json",
     "occurrence": 1,
-    "bytes": 276,
-    "sha256": "076440bcf480b957de1d390e8f6322f91ea1933fff866e561cdbb3c8f70543cd"
+    "bytes": 275,
+    "sha256": "907dd9b089693b35d35707a6806f9d0e7532bdd9d26dac87a81a004933d65e39"
   },
   "statistics": {
     "messages": 1,

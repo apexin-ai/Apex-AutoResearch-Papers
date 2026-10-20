@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fdd0d68a698d6188284",
+  "project": "distill_kv_rag_cache",
+  "kind": "result",
+  "title": "code fix crash and stress test",
+  "task_key": "worker_code_fix-crash-and-stress-test_20260514T074814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-crash-and-stress-test_20260514T074814_result.json",
+    "occurrence": 1,
+    "bytes": 2347,
+    "sha256": "728b1201c82e483672940a79ea852fcc6a04d40e16ecb1a171d32dbb49374f7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。汇报结果。\n\n---\n\n## 结果汇报\n\n### P0-1: Crash Bug 修复\n\n**根因**：`eval_runner.py` 用 `full_text.index(split_marker)` 做字符串搜索拆分 context/query。`apply_chat_template` 的 Jinja2 模板有 `| trim` 操作，导致某些样本的 question 文本被修改后找不到原始 marker。\n\n**修复**：改用 token-level 拆分。分别用 `apply_chat_template` tokenize 完整 prompt（含 question）和 context-only prefix，通过 token 位置差计算拆分点。不再依赖字符串搜索。\n\n**验证**：10 条样本全部成功拆分，5 条 × 4 config 压力测试无 crash。\n\n### P0-2: 压力测试结果\n\n| Config | Ratio | EM | F1 |\n|--------|-------|----|----|\n| E | baseline | 0.200 | 0.314 |\n| A | 16x | 0.000 | 0.000 |\n| A | 24x | 0.000 | 0.000 |\n| A | 32x | 0.000 | 0.000 |\n\nBudget=0（无 restoration），16x 起输出已是乱码（`\"...................-S........-S-S-S-S\"`）。\n\n### 结论：Per-sample PCA 不是唯一根因\n\nEigenvalue 衰减分析（Sample 0, Head 0）：\n\n| Layer | Top 22 components 覆盖方差 | 99% 方差需要 components |\n|-------|---------------------------|----------------------|\n| 0 | 90.0% | 54/128 |\n| 8 | 69.8% | 89/128 |\n| 16 | 77.9% | 83/128 |\n| 24 | 78.1% | 100/128 |\n| 31 | 75.3% | 106/128 |\n\n6x 压缩（22 active components）只覆盖 **70-90% 方差**，存在 10-30% 信息丢失。Per-sample PCA 并非近乎无损。\n\n**三因素共同导致 config 无差异**：\n1. **Per-sample PCA**：最优基底使 6x 压缩覆盖 70-90%（比 shared basis 好但非无损）\n2. **20% restoration**：恢复关键 token 的原始 KV，补偿压缩损失\n3. **Greedy decoding argmax 不敏感**：logit 微小扰动不改变 top-1 token\n\n16x+budget=0 时，三个保护层全部击穿，质量立即崩塌。\n\n### 建议下一步\n\n1. **扫描有效压缩率边界**：在 budget=0 下测试 ratio=[4, 6, 8, 10, 12]，找到质量开始衰退的拐点\n2. **分离三因素**：固定 ratio=8，分别测试 budget=0 vs budget=0.2，量化 restoration 的贡献\n3. **考虑 shared PCA basis**：用少量 calibration 样本建共享 PCA basis，测试 6x 下是否出现差异\n4. **sampling 解码**：用 temperature=0.6 + top_p=0.9 替代 greedy，放大 logit 差异的可观测性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-crash-and-stress-test.md"
+}

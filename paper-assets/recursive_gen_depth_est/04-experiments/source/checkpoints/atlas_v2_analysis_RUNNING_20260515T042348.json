@@ -1,0 +1,28 @@
+{
+  "exp_id": "atlas_v2_analysis",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:12:09.137Z",
+    "updated_at": "2026-05-15T04:23:48.616Z",
+    "spec": {
+      "description": "Atlas v2 formal analysis: 9-cell feature importance + monotonicity + EDD + cross-model comparison",
+      "server": "gpu-6000pro-2",
+      "model_name": "RF(n_estimators=200, random_state=42)",
+      "data_count": 180000,
+      "seed": 42,
+      "command": "CUDA_VISIBLE_DEVICES='' python src/atlas_v2_analysis.py",
+      "data_path": "9 cells x 20000 samples from data/ and results/",
+      "checkpoint_source": "N/A (analysis experiment)",
+      "eval_data": "9 cells: pythia/gpt2xl/olmo x nucleus095/temp09/topk50"
+    },
+    "hypothesis": "Atlas v2 (9-cell): p90_ppl 和 var_surprisal 在所有 9 cells 中稳定为 top-2 features，EDD≥3 在多数 cells 成立，证明深度退化信号具有跨模型跨策略一致性",
+    "parent": "atlas_v1_analysis",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T04:23:48.711320+00:00",
+  "trigger": "update_registry"
+}

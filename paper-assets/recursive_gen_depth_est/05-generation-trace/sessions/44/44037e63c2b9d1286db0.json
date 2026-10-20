@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_plan_015_gpt2xl_wild_calibration_20260515T223324_result.json",
     "occurrence": 1,
-    "bytes": 886,
-    "sha256": "4caf704125b96e9e15210a129a4065e195d071bf5878b09436649f2d26eef804"
+    "bytes": 885,
+    "sha256": "92fa689e202c18e6e5d6c7202b5c560d7911ed36e457f4f354b3e2258852600c"
   },
   "statistics": {
     "messages": 1,

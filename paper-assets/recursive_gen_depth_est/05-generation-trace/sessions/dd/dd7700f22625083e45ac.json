@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_deberta-pilot-deploy-v2_20260519T150615_result.json",
     "occurrence": 1,
-    "bytes": 789,
-    "sha256": "686c053485328f26329d752259ad63678363b4fdadbc8c799b06b0085c431993"
+    "bytes": 788,
+    "sha256": "b137b79bd2fd6b148581b3bdf0d32172c0e769eb53f74e31d792e42e19857800"
   },
   "statistics": {
     "messages": 1,

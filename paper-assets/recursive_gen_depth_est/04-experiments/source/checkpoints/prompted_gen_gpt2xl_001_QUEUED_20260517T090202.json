@@ -1,0 +1,17 @@
+{
+  "exp_id": "prompted_gen_gpt2xl_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:01:04.651Z",
+    "updated_at": "2026-05-17T09:02:02.491Z",
+    "hypothesis": "Prompted generation preserves depth signal: GPT-2 XL topic-prompted 4-class acc >= 70%, delta <= 15pp vs BOS-seeded baseline (83.3%)",
+    "parent": "cross_model_gpt2xl_001",
+    "plan_id": "plan_016"
+  },
+  "timestamp": "2026-05-17T09:02:02.747905+00:00",
+  "trigger": "update_registry"
+}

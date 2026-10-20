@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_cross_model_reverse_chain_001_20260516T142302_result.json",
     "occurrence": 1,
-    "bytes": 964,
-    "sha256": "79d80e7587d899acfb6296dafc624148da539fcbebf982a27dbdd1c963038114"
+    "bytes": 963,
+    "sha256": "c0a3b57e14ddd142976e9e772a513d5e8173039595491c489c1bce76b1515b55"
   },
   "statistics": {
     "messages": 1,

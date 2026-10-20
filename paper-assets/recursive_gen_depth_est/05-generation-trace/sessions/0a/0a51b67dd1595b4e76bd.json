@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan_022_text_length_20260517T124748_result.json",
     "occurrence": 1,
-    "bytes": 134,
-    "sha256": "e819bd5a5345de5555edf1611791750db88915f5488a6bb55da9da32fd35047e"
+    "bytes": 133,
+    "sha256": "482e3384f84f59a2e84dd63e87f7a3f63fdbdefd2b14bd20bba1475540189b83"
   },
   "statistics": {
     "messages": 1,

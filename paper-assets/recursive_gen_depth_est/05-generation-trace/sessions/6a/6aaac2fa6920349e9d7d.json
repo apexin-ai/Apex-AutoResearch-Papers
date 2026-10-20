@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_rename_dcol_deprecated_20260514T193215_result.json",
     "occurrence": 1,
-    "bytes": 475,
-    "sha256": "cfa007eef37f8e2df9d623b1368d1d38a32a173f31209f49217fa7b7a06efe53"
+    "bytes": 474,
+    "sha256": "371fda31512c83cc2fcd9928c3d90ec24b3360c2367e380f1f3e047ad751c9a7"
   },
   "statistics": {
     "messages": 1,

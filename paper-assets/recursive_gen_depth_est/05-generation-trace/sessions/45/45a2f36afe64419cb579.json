@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_cpu_inference_benchmark_20260519T032144_result.json",
     "occurrence": 1,
-    "bytes": 1921,
-    "sha256": "821046fc7494d10363cb980d3bdccdb758a1570ea954541e335dd982f7859630"
+    "bytes": 1920,
+    "sha256": "55765985de724071e6121f4739c87617e9452cb85724516fc0b8f96585d8a9cd"
   },
   "statistics": {
     "messages": 1,

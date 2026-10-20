@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_paper-discussion-dcol-limitations_20260515T145324_result.json",
     "occurrence": 1,
-    "bytes": 1701,
-    "sha256": "b8484ada0afbd7062d35efb7e06e4911661602569a49e8dafe32f3942de9bf07"
+    "bytes": 1700,
+    "sha256": "ce3f755a8bbef63f19d8746fd5a9c03d03ada3602a94ce14feea875b32a527ee"
   },
   "statistics": {
     "messages": 1,

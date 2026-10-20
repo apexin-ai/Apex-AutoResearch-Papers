@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_gpt2xl-pipeline-launch_20260514T141146_result.json",
     "occurrence": 1,
-    "bytes": 1225,
-    "sha256": "72a6d4a29a8ee134252ae59abdb88bacb8735c00e2f5eda1249e7cf09a5d482c"
+    "bytes": 1224,
+    "sha256": "5979d1163a3c682cb55e91de3166ee9307d583650b482ebbb8e352e2b78ee2c1"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,42 @@
+% Classifier Comparison — Supplementary Table
+% RF vs CORAL vs Naive DNN vs DANN vs Two-Stage Pipeline
+% Data sources: coral_ordinal_9cell_001, cross_strategy_dann_001, baseline_battery_9cell_001
+
+\begin{table*}[t]
+\centering
+\caption{Classifier comparison across evaluation settings. \textbf{Panel A}: in-distribution evaluation (train and test within the same model-strategy cell, 5-fold CV, 9-cell average). \textbf{Panel B}: cross-strategy leave-one-strategy-out (LOSO) evaluation (train on 2 strategies, test on held-out, 3-model average). Best per metric in \textbf{bold}, second best \underline{underlined}.}
+\label{tab:classifier_comparison}
+\small
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+\textbf{Setting} & \textbf{Classifier} & \textbf{4-Class Acc (\%)} & \textbf{d1--d3 Bal Acc (\%)} & \textbf{MAE} & \textbf{QWK} & \textbf{OC (\%)} \\
+\midrule
+\multicolumn{7}{l}{\textit{Panel A: In-Distribution (9-cell average, 5-fold CV)}} \\
+\midrule
+& Random Forest & \textbf{78.4} & \textbf{71.6} & 0.234 & 0.892 & 97.4 \\
+& CORAL (DNN) & \underline{77.8} & \underline{70.9} & \textbf{0.232} & \textbf{0.900} & \textbf{97.9} \\
+\midrule
+\multicolumn{7}{l}{\textit{Panel B: Cross-Strategy LOSO (3-model average)}} \\
+\midrule
+& Random Forest & 59.2 & 46.1 & 0.497 & 0.716 & --- \\
+& DNN (no DA) & 59.4 & 46.2 & 0.499 & 0.714 & --- \\
+& DANN (GRL) & \underline{60.4} & \underline{47.5} & \underline{0.476} & \underline{0.732} & --- \\
+& Two-Stage Pipeline & \textbf{70.5} & --- & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\begin{minipage}{\textwidth}
+\footnotesize
+\textbf{Classifier details.}
+Random Forest: 200 trees, default hyperparameters.
+CORAL: DNN encoder (19$\to$64$\to$32) with CORAL ordinal loss \citep{cao2020coral}, Adam lr=1e-3, 100 epochs, early stopping.
+DNN (no DA): same encoder architecture as DANN without gradient reversal, serving as architecture-only control.
+DANN: domain-adversarial neural network \citep{ganin2016domain} with shared encoder + depth classifier + strategy discriminator via gradient reversal layer.
+Two-Stage Pipeline: strategy identification followed by strategy-specific RF classifiers (\S\ref{sec:exp:transfer}).
+All methods use the same 19 statistical features and 5-fold stratified CV with seed 42.
+\textbf{MAE}: mean absolute error (lower is better).
+\textbf{QWK}: quadratic weighted kappa.
+\textbf{OC}: ordinal consistency, the fraction of sample pairs whose predicted ordering matches their true depth ordering.
+\end{minipage}
+\end{table*}

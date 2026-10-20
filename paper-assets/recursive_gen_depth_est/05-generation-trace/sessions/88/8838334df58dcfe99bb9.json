@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_compression_round2_20260516T105828_result.json",
     "occurrence": 1,
-    "bytes": 1683,
-    "sha256": "22999a17efb6bc09e9d399d91980547e5a5f2366f9eda07eec05a9025a87ba02"
+    "bytes": 1682,
+    "sha256": "877cbb5748cd1786a254bdf3e43f1b92193657767d370966c1204eb140a61965"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figures_atlas_figure_bugfix_20260515T042039_result.json",
     "occurrence": 1,
-    "bytes": 1507,
-    "sha256": "76833a70403d3e64fcbe05770b40a1d67597896157e8d82c3608f40f6b256541"
+    "bytes": 1506,
+    "sha256": "df2f19d1e9b389c678fd46ac674cb6691bb3b0091eb6ddcd789fd1214809c5a8"
   },
   "statistics": {
     "messages": 1,

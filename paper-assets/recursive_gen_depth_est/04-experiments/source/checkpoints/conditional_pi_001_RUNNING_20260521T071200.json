@@ -1,0 +1,23 @@
+{
+  "exp_id": "conditional_pi_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:04:54.585Z",
+    "updated_at": "2026-05-21T07:12:00.193Z",
+    "hypothesis": "Perplexity tail features (p90_ppl, kurtosis_ppl, var_ppl, etc.) remain the top-ranked feature family under permutation importance (not Gini), with stable bootstrap rank CIs across all 9 model-strategy cells, refuting R17's concern that VIF>10 collinearity invalidates importance rankings.",
+    "spec": {
+      "command": "nohup python3 scripts/conditional_permutation_importance.py > results/conditional_pi/stdout.log 2>&1 &",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/ + results/ (9 cell feature JSONL files, 20k samples each)",
+      "data_count": 180000,
+      "model_name": "RandomForest (sklearn)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-21T07:12:00.518210+00:00",
+  "trigger": "update_registry"
+}

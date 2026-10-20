@@ -1,0 +1,101 @@
+{
+  "exp_id": "cross_model_olmo_002",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-14T14:52:05.783Z",
+    "updated_at": "2026-05-14T18:21:47.435Z",
+    "hypothesis": "跨模型泛化: OLMo-1B 递归生成的统计特征与 Pythia-1.4B 一致，支持深度估计跨模型迁移 (重跑 olmo_001, 修复脚本 bug)",
+    "parent": "cross_model_olmo_001",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-14T17:02:02.546Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T17:02:03.363819+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T18:19:28.049479+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash scripts/run_pipeline_olmo.sh (OLMo-1B, 3x LoRA finetune + 3x generate)",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": 150550,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_olmo_002.log",
+      "submitted_at": "2026-05-14T16:35:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "model_path": "/root/autodl-tmp/models/olmo-1b-hf/",
+      "seed": 42,
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "top_p": 0.95
+      },
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo/",
+      "checkpoint_source": "n/a (retry of olmo_001, full pipeline re-run)",
+      "eval_data": "n/a (training pipeline, not eval)",
+      "wall_clock_seconds": 6266.8,
+      "gpu_hours": 1.74
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T18:19:26.267Z"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "four_class_acc_rf": 0.788,
+      "four_class_acc_ci": [
+        0.776,
+        0.8
+      ],
+      "four_class_acc_lr": 0.751,
+      "auc_0v1": 0.9834,
+      "auc_1v2": 0.8673,
+      "auc_1v3": 0.9806,
+      "auc_2v3": 0.8124,
+      "finetune_losses": {
+        "depth_0": 2.269,
+        "depth_1": 1.65,
+        "depth_2": 1.226
+      },
+      "top_features": [
+        "p90_ppl (0.18)",
+        "var_surprisal (0.16)",
+        "p75_ppl (0.11)",
+        "mean_surprisal (0.08)",
+        "type_token_ratio (0.06)"
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T18:21:47.471394+00:00",
+  "trigger": "update_registry"
+}

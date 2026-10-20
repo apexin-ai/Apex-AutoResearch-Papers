@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_accumulation_v3_script_only_20260519T075454_result.json",
     "occurrence": 1,
-    "bytes": 907,
-    "sha256": "e60698834714f6334e7143905f8d669a916a5f8f558408bd7813dce4907d6264"
+    "bytes": 906,
+    "sha256": "9872b21b4174fdc4c8e6dcd83e5628eac08b702f06a278dee15a244a57a0f8ae"
   },
   "statistics": {
     "messages": 1,

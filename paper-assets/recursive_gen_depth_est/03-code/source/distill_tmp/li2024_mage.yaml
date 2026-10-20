@@ -1,0 +1,158 @@
+paper_key: "li2024_mage"
+title: "MAGE: Machine-generated Text Detection in the Wild"
+venue: "ACL 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Longformer (PLM-based classifier)"
+    - "GLTR (GPT-2-XL + logistic regression)"
+    - "FastText (word bi-gram features)"
+    - "DetectGPT (zero-shot, T5-3B mask infill + GPT-J-6B scoring)"
+    - "Human annotators"
+    - "ChatGPT querying"
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "AvgRec (average of HumanRec and MachineRec)", direction: "higher_better"}
+    - {name: "HumanRec (human text recall)", direction: "higher_better"}
+    - {name: "MachineRec (machine text recall)", direction: "higher_better"}
+  datasets:
+    - {name: "MAGE testbed (custom)", size: "95,596 human + 236,554 machine-generated texts from 7 domains x 27 LLMs"}
+    - {name: "Reddit ChangeMyView", size: "804 opinion statements"}
+    - {name: "Yelp", size: "1,000 reviews"}
+    - {name: "XSum", size: "1,000 news articles"}
+    - {name: "TLDR", size: "777 news summaries"}
+    - {name: "ELI5", size: "1,000 QA pairs"}
+    - {name: "Reddit WritingPrompts", size: "1,000 stories"}
+    - {name: "ROCStories", size: "1,000 stories"}
+    - {name: "HellaSwag", size: "1,000 commonsense reasoning"}
+    - {name: "SQuAD (Wikipedia)", size: "1,000 paragraphs"}
+    - {name: "SciXGen", size: "1,000 scientific abstracts"}
+    - {name: "CNN/DailyMail (frontier test)", size: "used in Testbed 7"}
+    - {name: "DialogSum (frontier test)", size: "used in Testbed 7"}
+    - {name: "PubMedQA (frontier test)", size: "used in Testbed 7"}
+    - {name: "IMDb (frontier test)", size: "used in Testbed 7"}
+  ablation_dimensions:
+    - "In-distribution vs out-of-distribution (8 testbed scenarios)"
+    - "Fixed-domain vs arbitrary-domain"
+    - "Model-specific vs arbitrary-model"
+    - "Unseen models (cross-validation over 7 model groups)"
+    - "Unseen domains (cross-validation over 10 domains)"
+    - "Decision boundary adjustment (0.1% in-domain data)"
+    - "Paraphrasing attack robustness (gpt-3.5-turbo)"
+    - "Prompt type (continuation vs topical vs specified)"
+    - "PLM backbone comparison"
+    - "Data balance effects"
+    - "Randomness analysis"
+  training_recipe:
+    optimizer: "Adam"
+    lr: "0.005"
+    dropout: "0.1"
+    epochs: "5"
+    hardware: "8x V100 GPUs"
+    validation_metric: "classification accuracy"
+    gltr_lm: "GPT-2-XL"
+    gltr_classifier: "logistic regression (scikit-learn, grid search)"
+    fasttext_epochs: "100"
+    detectgpt_mask_model: "T5-3B"
+    detectgpt_scoring_model: "GPT-J-6B"
+    detectgpt_mask_rate: "15%"
+    detectgpt_perturbations: "100"
+  method_family: "PLM-based binary classification (Longformer) + statistical/zero-shot baselines for machine-generated text detection"
+
+positioning:
+  core_claim: "First comprehensive 'in-the-wild' testbed for machine-generated text detection spanning 7 domains and 27 LLMs, revealing that perplexity is a double-edged sword — it enables clustering but causes systematic false positives on low-perplexity human text."
+  key_results: "Longformer achieves AUROC 0.99 in-distribution but drops to 0.95 on unseen models and 0.93 on unseen domains; with 0.1% boundary adjustment data, achieves 86.54% AvgRec on unseen domains + unseen model (GPT-4); paraphrasing attacks degrade AUROC to 0.75."
+  limitations:
+    - "Limited model coverage — new LLMs (Alpaca, Vicuna, etc.) continuously emerge and the testbed cannot keep up"
+    - "Benchmark data bias — source texts may overlap with LLM pretraining data, so detection performance may not transfer to truly novel online text"
+    - "Vulnerability to paraphrasing attacks (AvgRec drops to 62.92% even with boundary adjustment)"
+    - "Perplexity bias causes systematic misclassification of low-perplexity human texts as machine-generated"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLMs have achieved human-level text generation, creating urgent need for detection — but existing detection research only evaluates on specific domains or specific models, leaving open how detectors perform 'in the wild'."
+  tension: "Prior work assumes controlled settings (known domain, known generator). In reality, detectors face texts from unknown LLMs across diverse domains. The paper asks: can detection still work when we don't know the source?"
+  key_insight: "Perplexity is a double-edged sword — it is the fundamental feature separating human and machine text (machine text has lower perplexity), but detectors over-rely on it, systematically misclassifying low-perplexity human text. Diverse domains and models cause human-machine linguistic differences to converge, making detection harder."
+  argument_chain: "problem (detection in controlled settings ≠ detection in the wild) → testbed construction (7 domains × 27 LLMs × 3 prompt types) → 8 progressive evaluation scenarios (in-distribution → OOD) → empirical finding (performance degrades with diversity, especially OOD) → analysis (linguistic convergence + perplexity bias) → mitigation (boundary adjustment with 0.1% data) → feasibility demonstration (86.54% on GPT-4 unseen domain)"
+  contribution_framing: "Three contributions: (1) comprehensive testbed with texts from diverse human writings and LLMs, (2) empirical analysis revealing diminishing linguistic differences in open-domain settings, (3) discovery that perplexity serves as fundamental but biased clustering feature. Framed as 'first' comprehensive wild-scenario evaluation."
+  intro_structure: "~5 paragraphs: (1) LLMs generate human-level text → detection needed, (2) existing work limited to specific domains/models, (3) two research questions about wild detection, (4) testbed construction description, (5) key findings and contributions."
+  notable_technique: "Progressive difficulty design — 8 testbeds arranged from easiest (white-box, single domain, single model) to hardest (unseen domain + unseen model + paraphrasing attack), creating a compelling narrative arc that systematically reveals when and why detection fails."
+
+figures:
+  figure_count: 15
+  figure1:
+    type: "problem_illustration"
+    description: "Left side shows diverse input domains (News Title, Story Title, Question, Argument, Scientific Topic) as colored cards with arrows pointing to both Humans (stick figure at desk) and multiple LLMs (GPT-3.5, FLAN-T5, LLaMA, OPT, GLM, ...) listed vertically. The many-to-many arrows from domains to generators show the combinatorial explosion. Right side shows a 'Text' box passing through a magnifying glass 'Detector' with a question mark, leading to two possible outputs: 'Human' (messy scribble icon) and 'Machine' (clean stick figure). The layout flows left-to-right: sources → generators → mixed text → detection challenge."
+    narrative_role: "Establishes the core challenge — detection must handle the combinatorial space of domains × generators, not just one domain or one model."
+    design_elements: ["colored domain cards (purple/orange/green)", "many-to-many arrows showing combinatorial complexity", "magnifying glass as detector metaphor", "question mark conveying uncertainty", "stick figure icons for human vs machine"]
+    visual_style: "Clean line-art style with selective color on domain cards (purple, orange, green pastels). Horizontal left-to-right flow. Minimal decorative elements. Black-and-white for the detection side. Simple but effective at conveying the many-to-many challenge."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "grouped_bar_or_line"
+      what_compared: "OOD detection performance on unseen models, broken down by model family and prompt type"
+      how_gain_highlighted: "Shows which model families are hardest to detect (OpenAI, FLAN-T5) and which prompt types are most challenging (specified prompts)"
+      design_note: "Separates analysis by two dimensions (model family × prompt type) to give nuanced OOD understanding rather than single aggregate number"
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart_or_line"
+      what_compared: "Detection performance (AvgRec) on unseen domains, identifying ROC, XSum, TLDR as hardest"
+      how_gain_highlighted: "Links difficulty to domain perplexity characteristics"
+      design_note: "Per-domain breakdown reveals systematic pattern (low-perplexity domains harder) rather than just reporting aggregate OOD performance"
+    - figure_id: "Figure 4"
+      viz_type: "precision_recall_curve + bar_chart"
+      what_compared: "(a) PR curves before/after boundary adjustment, (b) performance improvement with 0.1% in-domain data"
+      how_gain_highlighted: "Direct before/after comparison shows dramatic improvement from minimal adaptation"
+      design_note: "Two-panel figure pairs theoretical (PR curve) with practical (data requirement) perspectives"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      dimensions_varied: ["domain diversity", "model diversity"]
+      design_note: "Jensen-Shannon distance heatmap showing linguistic convergence as diversity increases — visual proof that the detection problem gets fundamentally harder with diversity"
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      dimensions_varied: ["named entity types (ORDINAL, DATE, etc.)"]
+      design_note: "Shows entity distribution differences in fixed-domain setting as detection shortcuts that disappear with diversity"
+    - figure_id: "Figures 7-9"
+      viz_type: "histogram + scatter"
+      dimensions_varied: ["perplexity distributions", "prediction correctness", "paraphrasing effects"]
+      design_note: "Three-figure sequence builds the 'perplexity as double-edged sword' argument: (7) machine < human perplexity, (8) misclassified human texts have low perplexity, (9) paraphrasing shifts distributions"
+  figure_narrative_role: "Figure 1 (problem illustration) → Figures 2-3 (OOD performance breakdown by model/domain) → Figure 4 (boundary adjustment solution) → Figures 5-6 (linguistic convergence analysis) → Figures 7-9 (perplexity analysis arc) → Figures 10-15 (appendix: prompts, data distributions, linguistic stats). The main paper figures follow a 'problem → results → analysis → mitigation' narrative arc."
+
+tables:
+  table_count: 12
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods (Longformer, FastText, GLTR, DetectGPT)"
+    col_axis: "testbed scenarios (Testbed 2-6) × metrics (AUROC, AvgRec, HumanRec, MachineRec)"
+    row_organization: "flat"
+    col_organization: "grouped_by_testbed"
+    highlight_strategy: "best results in bold across methods per testbed"
+    statistical_reporting: "single run numbers (no std reported for main results)"
+    num_baselines: 4
+    design_note: "Comprehensive table spanning both in-distribution (Testbeds 2-4) and out-of-distribution (Testbeds 5-6) in one view, enabling direct comparison of how each method degrades from ID to OOD. Progressive difficulty across columns tells the degradation story."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["white-box detection (Testbed 1) — easiest setting as reference point"]
+      variation_style: "full_numbers"
+      design_note: "Separated from main table to establish performance ceiling before showing degradation"
+    - table_id: "Table 4"
+      what_varied: ["decision boundary adjustment effect on Testbeds 5-6"]
+      variation_style: "full_numbers (before vs after adjustment)"
+      design_note: "Shows boundary adjustment dramatically improves domain-shift performance (AvgRec 68.40→81.78 for unseen domains)"
+    - table_id: "Table 5"
+      what_varied: ["challenging frontier tests (Testbed 7: unseen domain+model with GPT-4, Testbed 8: paraphrasing attack)"]
+      variation_style: "full_numbers with before/after boundary adjustment"
+      design_note: "Most challenging scenarios isolated in separate table — clean before/after comparison for the proposed mitigation"
+    - table_id: "Table 1"
+      what_varied: ["naive baselines (ChatGPT querying, human annotators)"]
+      variation_style: "full_numbers"
+      design_note: "Establishes that even humans (~54.5% AvgRec) and ChatGPT (~54.5% AvgRec) struggle at wild detection, motivating the need for dedicated methods"
+    - table_id: "Tables 8-10"
+      what_varied: ["randomness analysis", "PLM backbone comparison", "data balance effects"]
+      variation_style: "full_numbers"
+      design_note: "Robustness checks in appendix ensure main findings are not artifacts of specific choices"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 6 (dataset statistics per domain), Table 7 (naive baseline test set composition), Tables 8-10 (robustness: randomness/backbone/balance), Table 11 (all methods on challenging test sets), Table 12 (length statistics)"
+    reason: "Main paper focuses on the progressive testbed story (Tables 1-5). Appendix holds dataset details and robustness checks that support but don't drive the narrative."

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_dcol_training_prep_20260514T160308_result.json",
     "occurrence": 1,
-    "bytes": 1520,
-    "sha256": "7b5b35ad766a6b7f0b1b2d18205410b067a65bb716d0d9828814bbabdfac041a"
+    "bytes": 1519,
+    "sha256": "4ae60b720a6f9b880e49abc1d5a6dce44577cf7f33e6d66d14e7a60cc18d7bcb"
   },
   "statistics": {
     "messages": 1,

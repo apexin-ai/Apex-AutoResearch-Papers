@@ -1,0 +1,252 @@
+{
+  "metadata": {
+    "version": "2.0",
+    "generated_at": "2026-05-15",
+    "n_cells_completed": 7,
+    "n_cells_total": 9,
+    "n_samples_per_depth": 5000,
+    "n_depths": 4,
+    "feature_count": 19,
+    "classifier": "RandomForest (primary), LogisticRegression (secondary)",
+    "data_source": "gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/",
+    "seed_data": "Wikipedia (depth_0.jsonl, 5000 samples)"
+  },
+  "grid": {
+    "models": ["Pythia-1.4B", "OLMo-1B", "GPT-2-XL"],
+    "strategies": ["nucleus_p095", "temperature_09", "topk_k50"],
+    "cell_keys": {
+      "Pythia-1.4B": {"nucleus_p095": "pythia_nucleus", "temperature_09": "pythia_temp09", "topk_k50": "pythia_topk50"},
+      "OLMo-1B": {"nucleus_p095": "olmo_nucleus", "temperature_09": "olmo_temp09", "topk_k50": "olmo_topk50"},
+      "GPT-2-XL": {"nucleus_p095": "gpt2xl_nucleus", "temperature_09": "gpt2xl_temp09", "topk_k50": "gpt2xl_topk50"}
+    }
+  },
+  "cells": {
+    "pythia_nucleus": {
+      "model": "Pythia-1.4B",
+      "strategy": "nucleus_p095",
+      "experiment_id": "mvp_pipeline_pythia_002",
+      "status": "done",
+      "acc_4class": {"random_forest": 0.782, "logistic_regression": 0.7492, "rf_ci": [0.769, 0.794]},
+      "acc_3class": {"random_forest": 0.708, "rf_ci": [0.692, 0.725]},
+      "acc_3class_filtered": {"random_forest": 0.747, "rf_ci": [0.727, 0.764]},
+      "pairwise_auc": {
+        "random_forest": {"d0v1": 0.9975, "d0v2": 0.9995, "d0v3": 0.9986, "d1v2": 0.8607, "d1v3": 0.9685, "d2v3": 0.8005},
+        "logistic_regression": {"d0v1": 0.9922, "d0v2": 0.9997, "d0v3": 0.9997, "d1v2": 0.7784, "d1v3": 0.9484, "d2v3": 0.7578}
+      },
+      "feature_importance": {
+        "var_surprisal": 0.1692, "p90_ppl": 0.1582, "mean_ppl": 0.1204, "mean_surprisal": 0.0884,
+        "p75_ppl": 0.0671, "skewness_ppl": 0.0392, "p50_ppl": 0.0366, "entropy_of_surprisal": 0.0350,
+        "kurtosis_ppl": 0.0344, "type_token_ratio": 0.0343, "hapax_ratio": 0.0316, "p25_ppl": 0.0308,
+        "bigram_entropy": 0.0290, "rep_2gram": 0.0268, "trigram_entropy": 0.0260, "p10_ppl": 0.0250,
+        "rep_4gram": 0.0243, "rep_3gram": 0.0224, "var_ppl": 0.0014
+      },
+      "top5_features": ["var_surprisal", "p90_ppl", "mean_ppl", "mean_surprisal", "p75_ppl"],
+      "finetune_losses": {"depth_0": 2.2411, "depth_1": 1.3894, "depth_2": 1.025},
+      "code_contamination_narrow": {"d0": 0.004, "d1": 0.050, "d2": 0.090, "d3": 0.120},
+      "feature_trajectory": {
+        "available": true,
+        "features_path": "data/features_all.jsonl",
+        "depth_means": {
+          "0": {"p90_ppl": 483.738, "mean_surprisal": 2.292, "var_surprisal": 6.497, "p75_ppl": 39.281, "mean_ppl": 25063.789, "type_token_ratio": 0.508, "rep_2gram": 0.166, "rep_3gram": 0.070, "rep_4gram": 0.033},
+          "1": {"p90_ppl": 61.383, "mean_surprisal": 1.508, "var_surprisal": 2.487, "p75_ppl": 14.288, "mean_ppl": 6828.883, "type_token_ratio": 0.417, "rep_2gram": 0.279, "rep_3gram": 0.166, "rep_4gram": 0.113},
+          "2": {"p90_ppl": 29.684, "mean_surprisal": 1.179, "var_surprisal": 1.856, "p75_ppl": 7.700, "mean_ppl": 3283.344, "type_token_ratio": 0.367, "rep_2gram": 0.351, "rep_3gram": 0.232, "rep_4gram": 0.171},
+          "3": {"p90_ppl": 18.152, "mean_surprisal": 0.951, "var_surprisal": 1.509, "p75_ppl": 5.064, "mean_ppl": 2418.228, "type_token_ratio": 0.313, "rep_2gram": 0.443, "rep_3gram": 0.326, "rep_4gram": 0.261}
+        }
+      }
+    },
+    "pythia_temp09": {
+      "model": "Pythia-1.4B",
+      "strategy": "temperature_09",
+      "experiment_id": "pythia_temp09_001",
+      "status": "done",
+      "acc_4class": {"random_forest": 0.7625, "logistic_regression": 0.7405, "rf_ci": [0.749, 0.7753]},
+      "acc_3class": {"random_forest": 0.6983, "rf_ci": [0.682, 0.715]},
+      "acc_3class_filtered": {"random_forest": 0.7252, "rf_ci": [0.7064, 0.7427]},
+      "pairwise_auc": {
+        "random_forest": {"d0v1": 0.9968, "d0v2": 0.9993, "d0v3": 0.9991, "d1v2": 0.8327, "d1v3": 0.9590, "d2v3": 0.7928},
+        "logistic_regression": {"d0v1": 0.9934, "d0v2": 0.9999, "d0v3": 0.9997, "d1v2": 0.7833, "d1v3": 0.9374, "d2v3": 0.7652}
+      },
+      "feature_importance": {
+        "var_surprisal": 0.1776, "p90_ppl": 0.1501, "mean_ppl": 0.1140, "mean_surprisal": 0.0889,
+        "p75_ppl": 0.0687, "p50_ppl": 0.0395, "type_token_ratio": 0.0356, "hapax_ratio": 0.0352,
+        "entropy_of_surprisal": 0.0335, "bigram_entropy": 0.0312, "p25_ppl": 0.0309, "trigram_entropy": 0.0295,
+        "rep_4gram": 0.0292, "rep_2gram": 0.0279, "skewness_ppl": 0.0275, "kurtosis_ppl": 0.0266,
+        "p10_ppl": 0.0265, "rep_3gram": 0.0253, "var_ppl": 0.0024
+      },
+      "top5_features": ["var_surprisal", "p90_ppl", "mean_ppl", "mean_surprisal", "p75_ppl"],
+      "finetune_losses": {"depth_0": 2.222, "depth_1": 1.370, "depth_2": 1.006},
+      "code_contamination_narrow": {"d0": 0.004, "d1": 0.077, "d2": 0.116, "d3": 0.136},
+      "feature_trajectory": {
+        "available": true,
+        "features_path": "data/pythia_temp09/features.jsonl",
+        "depth_means": {
+          "0": {"p90_ppl": 483.738, "mean_surprisal": 2.292, "var_surprisal": 6.497, "p75_ppl": 39.281, "mean_ppl": 25063.789, "type_token_ratio": 0.508, "rep_2gram": 0.166, "rep_3gram": 0.070, "rep_4gram": 0.033},
+          "1": {"p90_ppl": 63.242, "mean_surprisal": 1.485, "var_surprisal": 2.660, "p75_ppl": 12.623, "mean_ppl": 1687.519, "type_token_ratio": 0.411, "rep_2gram": 0.290, "rep_3gram": 0.175, "rep_4gram": 0.120},
+          "2": {"p90_ppl": 29.246, "mean_surprisal": 1.156, "var_surprisal": 1.987, "p75_ppl": 6.763, "mean_ppl": 8821.625, "type_token_ratio": 0.356, "rep_2gram": 0.372, "rep_3gram": 0.252, "rep_4gram": 0.188},
+          "3": {"p90_ppl": 17.394, "mean_surprisal": 0.927, "var_surprisal": 1.598, "p75_ppl": 4.442, "mean_ppl": 6395.753, "type_token_ratio": 0.302, "rep_2gram": 0.440, "rep_3gram": 0.325, "rep_4gram": 0.254}
+        }
+      }
+    },
+    "pythia_topk50": {
+      "model": "Pythia-1.4B",
+      "strategy": "topk_k50",
+      "experiment_id": "pythia_topk50_001",
+      "status": "done",
+      "acc_4class": {"random_forest": 0.696, "logistic_regression": 0.682, "rf_ci": [0.6825, 0.7107]},
+      "acc_3class": {"random_forest": 0.592, "rf_ci": [0.575, 0.6107]},
+      "acc_3class_filtered": {"random_forest": 0.6133, "rf_ci": [0.593, 0.6312]},
+      "pairwise_auc": {
+        "random_forest": {"d0v1": 0.9927, "d0v2": 0.9983, "d0v3": 0.9978, "d1v2": 0.7518, "d1v3": 0.9176, "d2v3": 0.6918},
+        "logistic_regression": {"d0v1": 0.9889, "d0v2": 0.9983, "d0v3": 0.9995, "d1v2": 0.7289, "d1v3": 0.9039, "d2v3": 0.6804}
+      },
+      "feature_importance": {
+        "var_surprisal": 0.1759, "p90_ppl": 0.1347, "mean_ppl": 0.1120, "mean_surprisal": 0.0702,
+        "p75_ppl": 0.0612, "type_token_ratio": 0.0416, "hapax_ratio": 0.0416, "p50_ppl": 0.0386,
+        "p25_ppl": 0.0373, "entropy_of_surprisal": 0.0368, "bigram_entropy": 0.0345, "trigram_entropy": 0.0333,
+        "p10_ppl": 0.0330, "skewness_ppl": 0.0327, "kurtosis_ppl": 0.0316, "rep_2gram": 0.0297,
+        "rep_4gram": 0.0281, "rep_3gram": 0.0264, "var_ppl": 0.0008
+      },
+      "top5_features": ["var_surprisal", "p90_ppl", "mean_ppl", "mean_surprisal", "p75_ppl"],
+      "finetune_losses": {"depth_0": 2.2406, "depth_1": 1.6704, "depth_2": 1.4374},
+      "code_contamination_narrow": {"d0": 0.004, "d1": 0.077, "d2": 0.123, "d3": 0.131},
+      "feature_trajectory": {
+        "available": false,
+        "note": "features.jsonl not saved during pipeline; rerun extract_features.py to generate"
+      }
+    },
+    "olmo_nucleus": {
+      "model": "OLMo-1B",
+      "strategy": "nucleus_p095",
+      "experiment_id": "cross_model_olmo_002",
+      "status": "done",
+      "acc_4class": {"random_forest": 0.788, "logistic_regression": 0.751, "rf_ci": [0.776, 0.800]},
+      "acc_3class": {"random_forest": 0.744, "rf_ci": [0.728, 0.760]},
+      "acc_3class_filtered": null,
+      "pairwise_auc": {
+        "random_forest": {"d0v1": 0.9834, "d0v2": 0.9949, "d0v3": 0.9989, "d1v2": 0.8673, "d1v3": 0.9806, "d2v3": 0.8124},
+        "logistic_regression": {"d0v1": 0.9809, "d0v2": 0.9921, "d0v3": 0.9945, "d1v2": 0.8296, "d1v3": 0.9629, "d2v3": 0.7661}
+      },
+      "feature_importance": {
+        "p90_ppl": 0.1803, "var_surprisal": 0.1608, "p75_ppl": 0.1110, "mean_surprisal": 0.0838,
+        "type_token_ratio": 0.0605, "hapax_ratio": 0.0441, "p50_ppl": 0.0411, "mean_ppl": 0.0395,
+        "p25_ppl": 0.0363, "rep_3gram": 0.0292, "p10_ppl": 0.0290, "rep_4gram": 0.0289,
+        "rep_2gram": 0.0279, "entropy_of_surprisal": 0.0268, "kurtosis_ppl": 0.0258, "skewness_ppl": 0.0245,
+        "bigram_entropy": 0.0234, "trigram_entropy": 0.0234, "var_ppl": 0.0036
+      },
+      "top5_features": ["p90_ppl", "var_surprisal", "p75_ppl", "mean_surprisal", "type_token_ratio"],
+      "finetune_losses": {"depth_0": 2.269, "depth_1": 1.650, "depth_2": 1.226},
+      "code_contamination_narrow": {"d0": 0.005, "d1": 0.027, "d2": 0.007, "d3": 0.008},
+      "feature_trajectory": {
+        "available": true,
+        "features_path": "data/olmo/features.jsonl",
+        "depth_means": {
+          "0": {"p90_ppl": 483.738, "mean_surprisal": 2.292, "var_surprisal": 6.497, "p75_ppl": 39.281, "mean_ppl": 25063.789, "type_token_ratio": 0.508, "rep_2gram": 0.166, "rep_3gram": 0.070, "rep_4gram": 0.033},
+          "1": {"p90_ppl": 136.061, "mean_surprisal": 2.036, "var_surprisal": 3.874, "p75_ppl": 26.769, "mean_ppl": 370430.397, "type_token_ratio": 0.424, "rep_2gram": 0.236, "rep_3gram": 0.121, "rep_4gram": 0.074},
+          "2": {"p90_ppl": 66.503, "mean_surprisal": 1.660, "var_surprisal": 3.012, "p75_ppl": 13.974, "mean_ppl": 1321936.921, "type_token_ratio": 0.364, "rep_2gram": 0.325, "rep_3gram": 0.203, "rep_4gram": 0.144},
+          "3": {"p90_ppl": 42.682, "mean_surprisal": 1.364, "var_surprisal": 2.487, "p75_ppl": 9.023, "mean_ppl": 569854.183, "type_token_ratio": 0.305, "rep_2gram": 0.432, "rep_3gram": 0.316, "rep_4gram": 0.253}
+        }
+      }
+    },
+    "olmo_temp09": {
+      "model": "OLMo-1B",
+      "strategy": "temperature_09",
+      "experiment_id": "olmo_temp09_001",
+      "status": "done",
+      "acc_4class": {"random_forest": 0.8203, "logistic_regression": 0.8155, "rf_ci": [0.8087, 0.8320]},
+      "acc_3class": null,
+      "acc_3class_filtered": {"random_forest": 0.7757},
+      "pairwise_auc": {
+        "random_forest": {"d0v1": 0.9960, "d0v2": 0.9997, "d0v3": 0.9995, "d1v2": 0.9010, "d1v3": 0.9874, "d2v3": 0.8214},
+        "logistic_regression": {"d0v1": 0.9976, "d0v2": 0.9999, "d0v3": 0.9999, "d1v2": 0.8910, "d1v3": 0.9842, "d2v3": 0.8160}
+      },
+      "feature_importance": {
+        "p90_ppl": 0.1987, "var_surprisal": 0.1741, "p75_ppl": 0.1263, "mean_surprisal": 0.1139,
+        "p50_ppl": 0.0510, "type_token_ratio": 0.0498, "rep_2gram": 0.0337, "p25_ppl": 0.0312,
+        "hapax_ratio": 0.0286, "entropy_of_surprisal": 0.0263, "p10_ppl": 0.0255, "rep_3gram": 0.0243,
+        "skewness_ppl": 0.0240, "trigram_entropy": 0.0233, "kurtosis_ppl": 0.0231, "bigram_entropy": 0.0221,
+        "rep_4gram": 0.0211, "mean_ppl": 0.0030, "var_ppl": 0.0001
+      },
+      "top5_features": ["p90_ppl", "var_surprisal", "p75_ppl", "mean_surprisal", "p50_ppl"],
+      "finetune_losses": {"depth_0": 2.270, "depth_1": 1.630, "depth_2": 1.180},
+      "code_contamination_narrow": {"d0": 0.005, "d1": 0.005, "d2": 0.005, "d3": 0.007},
+      "feature_trajectory": {
+        "available": false,
+        "note": "features.jsonl not saved during pipeline; rerun extract_features.py to generate"
+      }
+    },
+    "olmo_topk50": {
+      "model": "OLMo-1B",
+      "strategy": "topk_k50",
+      "experiment_id": "olmo_topk50_001",
+      "status": "running",
+      "placeholder": true
+    },
+    "gpt2xl_nucleus": {
+      "model": "GPT-2-XL",
+      "strategy": "nucleus_p095",
+      "experiment_id": "cross_model_gpt2xl_001",
+      "status": "done",
+      "acc_4class": {"random_forest": 0.833, "logistic_regression": 0.813, "rf_ci": [0.823, 0.845]},
+      "acc_3class": {"random_forest": 0.793, "rf_ci": [0.778, 0.806]},
+      "acc_3class_filtered": null,
+      "pairwise_auc": {
+        "random_forest": {"d0v1": 0.9941, "d0v2": 0.9965, "d0v3": 0.9988, "d1v2": 0.9131, "d1v3": 0.9857, "d2v3": 0.8829},
+        "logistic_regression": {"d0v1": 0.9808, "d0v2": 0.9941, "d0v3": 0.9937, "d1v2": 0.8469, "d1v3": 0.9686, "d2v3": 0.8651}
+      },
+      "feature_importance": {
+        "p90_ppl": 0.2082, "var_surprisal": 0.2079, "p75_ppl": 0.1034, "mean_surprisal": 0.0821,
+        "mean_ppl": 0.0645, "type_token_ratio": 0.0460, "p50_ppl": 0.0349, "entropy_of_surprisal": 0.0347,
+        "p25_ppl": 0.0316, "hapax_ratio": 0.0283, "skewness_ppl": 0.0221, "p10_ppl": 0.0211,
+        "kurtosis_ppl": 0.0210, "rep_2gram": 0.0204, "rep_4gram": 0.0191, "bigram_entropy": 0.0185,
+        "trigram_entropy": 0.0182, "rep_3gram": 0.0172, "var_ppl": 0.0007
+      },
+      "top5_features": ["p90_ppl", "var_surprisal", "p75_ppl", "mean_surprisal", "mean_ppl"],
+      "finetune_losses": {"depth_0": 2.550, "depth_1": 1.715, "depth_2": 1.342},
+      "code_contamination_narrow": {"d0": 0.005, "d1": 0.005, "d2": 0.013, "d3": 0.007},
+      "feature_trajectory": {
+        "available": true,
+        "features_path": "data/gpt2xl/features.jsonl",
+        "depth_means": {
+          "0": {"p90_ppl": 483.738, "mean_surprisal": 2.292, "var_surprisal": 6.497, "p75_ppl": 39.281, "mean_ppl": 25063.789, "type_token_ratio": 0.508, "rep_2gram": 0.166, "rep_3gram": 0.070, "rep_4gram": 0.033},
+          "1": {"p90_ppl": 128.113, "mean_surprisal": 1.983, "var_surprisal": 3.623, "p75_ppl": 25.447, "mean_ppl": 53972.778, "type_token_ratio": 0.429, "rep_2gram": 0.232, "rep_3gram": 0.118, "rep_4gram": 0.070},
+          "2": {"p90_ppl": 73.819, "mean_surprisal": 1.681, "var_surprisal": 3.073, "p75_ppl": 15.129, "mean_ppl": 678385.871, "type_token_ratio": 0.378, "rep_2gram": 0.305, "rep_3gram": 0.185, "rep_4gram": 0.128},
+          "3": {"p90_ppl": 57.643, "mean_surprisal": 1.487, "var_surprisal": 2.473, "p75_ppl": 10.823, "mean_ppl": 1076268.162, "type_token_ratio": 0.376, "rep_2gram": 0.316, "rep_3gram": 0.199, "rep_4gram": 0.141}
+        }
+      }
+    },
+    "gpt2xl_temp09": {
+      "model": "GPT-2-XL",
+      "strategy": "temperature_09",
+      "experiment_id": "gpt2xl_temp09_001",
+      "status": "done",
+      "acc_4class": {"random_forest": 0.8542, "logistic_regression": 0.8155, "rf_ci": [0.843, 0.8653]},
+      "acc_3class": {"random_forest": 0.820, "rf_ci": [0.806, 0.834]},
+      "acc_3class_filtered": {"random_forest": 0.815, "rf_ci": [0.7999, 0.8298]},
+      "pairwise_auc": {
+        "random_forest": {"d0v1": 0.9963, "d0v2": 0.9992, "d0v3": 1.0000, "d1v2": 0.9367, "d1v3": 0.9947, "d2v3": 0.8815},
+        "logistic_regression": {"d0v1": 0.9840, "d0v2": 0.9998, "d0v3": 1.0000, "d1v2": 0.8903, "d1v3": 0.9824, "d2v3": 0.8183}
+      },
+      "feature_importance": {
+        "p90_ppl": 0.2633, "mean_surprisal": 0.1479, "p75_ppl": 0.1461, "var_surprisal": 0.1212,
+        "p50_ppl": 0.0567, "type_token_ratio": 0.0300, "p25_ppl": 0.0298, "entropy_of_surprisal": 0.0297,
+        "hapax_ratio": 0.0249, "rep_2gram": 0.0215, "p10_ppl": 0.0209, "rep_3gram": 0.0197,
+        "trigram_entropy": 0.0192, "rep_4gram": 0.0181, "bigram_entropy": 0.0173, "skewness_ppl": 0.0171,
+        "kurtosis_ppl": 0.0168, "mean_ppl": 0.0000, "var_ppl": 0.0000
+      },
+      "top5_features": ["p90_ppl", "mean_surprisal", "p75_ppl", "var_surprisal", "p50_ppl"],
+      "finetune_losses": {"depth_0": 2.5498, "depth_1": 1.6972, "depth_2": 1.2922},
+      "code_contamination_narrow": {"d0": 0.004, "d1": 0.008, "d2": 0.016, "d3": 0.015},
+      "feature_trajectory": {
+        "available": false,
+        "note": "features.jsonl not saved during pipeline; rerun extract_features.py to generate"
+      }
+    },
+    "gpt2xl_topk50": {
+      "model": "GPT-2-XL",
+      "strategy": "topk_k50",
+      "experiment_id": "gpt2xl_topk50_001",
+      "status": "running",
+      "placeholder": true
+    }
+  }
+}

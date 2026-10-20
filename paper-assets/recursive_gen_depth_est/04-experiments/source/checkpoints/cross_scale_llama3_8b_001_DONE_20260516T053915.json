@@ -1,0 +1,32 @@
+{
+  "exp_id": "cross_scale_llama3_8b_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:33:46.508Z",
+    "updated_at": "2026-05-16T05:39:14.917Z",
+    "spec": {
+      "plan_id": "plan_014",
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "data_count": 500,
+      "seed": 42,
+      "notes": "EXP-A: Second 7B model for cross-scale validation. Nucleus p=0.95, d0-d5, 500 samples/depth. Feature extraction: Pythia-1.4B.",
+      "command": "bash scripts/run_llama3_8b_pipeline.sh",
+      "data_path": "data/llama3_8b_nucleus/",
+      "description": "Cross-scale 7B validation with Llama-3.1-8B-Instruct. QLoRA 4-bit NF4, nucleus p=0.95, d0-d5, 500 samples/depth. Prefix-based generation (32 tokens). Feature extraction: Pythia-1.4B. RF 5-fold CV.",
+      "checkpoint_path": "checkpoints/llama3_8b_nucleus/",
+      "log_path": "logs/llama3_8b_pipeline.log"
+    },
+    "hypothesis": "7B cross-scale probe (Llama-3-8B): 验证 depth signal 在 Llama-3 架构上的可检测性。Nucleus p=0.95, d0-d5, 500 samples/depth。成功标准：4-class acc ≥ 60%, EDD 测定, pairwise AUC 衰减趋势与 1-1.5B 模型方向一致。",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T05:39:14.917Z"
+  },
+  "timestamp": "2026-05-16T05:39:15.158602+00:00",
+  "trigger": "update_registry"
+}

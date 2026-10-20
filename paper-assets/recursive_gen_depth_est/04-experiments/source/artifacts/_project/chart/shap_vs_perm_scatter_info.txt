@@ -1,0 +1,3 @@
+Remote files:
+  PDF: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/figures/shap_vs_perm_scatter.pdf (20KB)
+  PNG: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/shap_vs_perm_scatter.png (128KB)

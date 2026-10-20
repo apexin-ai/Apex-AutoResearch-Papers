@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analyze_cross_model_gpt2xl_001_20260514T182129_result.json",
     "occurrence": 1,
-    "bytes": 2820,
-    "sha256": "d78b42bd39b7bab88153d3de80b92dc3f182988bcf785514450dea78dd3df419"
+    "bytes": 2819,
+    "sha256": "fa4622c2ffcc81b1a3f31934ba24d31c802cb378a1dc1ae69c628705ea7d0ff6"
   },
   "statistics": {
     "messages": 1,

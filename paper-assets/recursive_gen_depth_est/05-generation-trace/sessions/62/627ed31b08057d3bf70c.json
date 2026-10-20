@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_gpt2xl-seed43-feasibility_20260518T081522_result.json",
     "occurrence": 1,
-    "bytes": 2031,
-    "sha256": "e39833d4c31980b38e13b2aa0ca2be2268e22d1bc976eb2a221e4072a5a0ea36"
+    "bytes": 2030,
+    "sha256": "e7afe1407f080ba7c3e106e824f3e7907147949d745579cf972d1677194b41c8"
   },
   "statistics": {
     "messages": 1,

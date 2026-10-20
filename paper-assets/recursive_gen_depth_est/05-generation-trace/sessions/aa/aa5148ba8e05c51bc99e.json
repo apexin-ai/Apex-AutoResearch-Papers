@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_table2_rerun_5foldcv_200trees_20260518T172416_result.json",
     "occurrence": 1,
-    "bytes": 2614,
-    "sha256": "864aa9969df6d1cb9efe86929f7b2b6a4e3d1fab1cf1e332eb291e6e3e8cfbcc"
+    "bytes": 2613,
+    "sha256": "70582c31254aa40634d7a84870a56eca324a1f3ea11da77ff970e0ea7dd072f2"
   },
   "statistics": {
     "messages": 1,

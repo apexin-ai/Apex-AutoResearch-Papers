@@ -1,0 +1,40 @@
+{
+  "exp_id": "wild_data_calibration_002",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:21:24.666Z",
+    "updated_at": "2026-05-16T00:21:52.483Z",
+    "spec": {
+      "description": "Wild-data calibration on RedPajama-v2 (English) and Dolma (web) — 5000 passages each, GPT-2 base features, 3 RF classifiers",
+      "hypothesis": "Trained RF depth classifiers correctly classify large-scale wild web text as d0 with low FPR across both RedPajama-v2 and Dolma, confirming calibration generalizes beyond WikiText-103",
+      "plan_id": "plan_015",
+      "parent": "wild_data_calibration_001",
+      "datasets": {
+        "redpajama_v2": {
+          "source": "HF streaming togethercomputer/RedPajama-Data-V2, English subset",
+          "n_passages": 5000,
+          "gpu": "cuda:0"
+        },
+        "dolma": {
+          "source": "HF streaming allenai/dolma, web subset",
+          "n_passages": 5000,
+          "gpu": "cuda:1"
+        }
+      },
+      "model_name": "GPT-2 base (124M)",
+      "feature_dim": 19,
+      "classifiers": [
+        "Pythia-1.4B nucleus RF",
+        "OLMo-1B nucleus RF",
+        "GPT-2 XL nucleus RF"
+      ],
+      "server": "gpu-6000pro-2"
+    }
+  },
+  "timestamp": "2026-05-16T00:21:52.640238+00:00",
+  "trigger": "update_registry"
+}

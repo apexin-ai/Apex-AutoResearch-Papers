@@ -1,0 +1,43 @@
+{
+  "exp_id": "binoculars_14b_temp09",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T04:49:48.206Z",
+    "updated_at": "2026-05-20T05:26:33.886Z",
+    "hypothesis": "Binoculars cross-perplexity features provide complementary signal at 14B scale when merged with 19 statistical features, yielding accuracy above stat-only baseline. Tests whether cross-model divergence channel persists at larger scale.",
+    "parent": "qwen25_14b_temp09",
+    "spec": {
+      "command": "python scripts/binoculars_ordinal_eval.py + feature_ablation_both.py on 14B temp09 data",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/",
+      "data_count": "5000 samples per depth d0-d3",
+      "model_name": "EleutherAI/pythia-1.4b (observer) + EleutherAI/pythia-410m (performer)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_14b_temp09/",
+      "checkpoint_source": "qwen25_14b_temp09",
+      "eval_data": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_14b_temp09/"
+    },
+    "metrics": {
+      "bino_single_4class": 0.2917,
+      "bino_only_11feat_4class": 0.4258,
+      "stat_only_19feat_4class_ablation": 0.5183,
+      "stat_only_19feat_4class_aligned": 0.505,
+      "merged_30feat_4class": 0.5419,
+      "bino_only_11feat_d1d3_bal": 0.3724,
+      "stat_only_19feat_d1d3_bal": 0.4559,
+      "merged_30feat_d1d3_bal": 0.477,
+      "merged_delta_vs_main_pipeline": 3.7,
+      "note": "stat_only aligned to main pipeline (50.5%) per 方案A; ablation CV value was 51.83%"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T04:50:33.040Z"
+  },
+  "timestamp": "2026-05-20T05:26:34.222051+00:00",
+  "trigger": "update_registry"
+}

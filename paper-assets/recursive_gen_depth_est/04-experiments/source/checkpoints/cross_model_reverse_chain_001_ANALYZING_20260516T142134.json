@@ -1,0 +1,38 @@
+{
+  "exp_id": "cross_model_reverse_chain_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:10:45.403Z",
+    "updated_at": "2026-05-16T14:21:34.452Z",
+    "spec": {
+      "command": "bash scripts/run_reverse_chain_pipeline.sh",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "567407",
+      "log_path": "~/runs/recursive_gen_depth_est/cross_model_reverse_chain_001.log",
+      "submitted_at": "2026-05-16T14:10:45.098Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "model_name": "GPT-2 XL → OLMo-1B → Pythia-1.4B (reverse chain)",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "500 samples/depth, d0-d3",
+      "seed": 42,
+      "hypothesis": "Depth signal transfers across model architectures in reverse chain (GPT2XL→OLMo→Pythia), supporting N4 cross-model generalization claim"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T14:21:33.938Z"
+    }
+  },
+  "timestamp": "2026-05-16T14:21:34.682054+00:00",
+  "trigger": "update_registry"
+}

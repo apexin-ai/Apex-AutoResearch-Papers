@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_wild_data_pipeline_plan_015_20260517T143556_result.json",
     "occurrence": 1,
-    "bytes": 1085,
-    "sha256": "e00450407b373dda47c77816410c517b7abcec0719dbcaddec16a480afe7f806"
+    "bytes": 1084,
+    "sha256": "7e663a5b884443bad59fad135aa1ffa7c87ba66f759fbe6287f2e3dfd396b01f"
   },
   "statistics": {
     "messages": 1,

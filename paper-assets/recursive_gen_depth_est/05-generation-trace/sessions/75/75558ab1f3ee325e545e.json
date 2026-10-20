@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_verify_neural_baseline_gap_20260523T003147_result.json",
     "occurrence": 1,
-    "bytes": 1574,
-    "sha256": "55efdcdf09b410ed9c97a5800795ab1f14b40bf7c9072ab1da6a1e76e5fff707"
+    "bytes": 1573,
+    "sha256": "8333c53204bdf1a61cda56593fb00b2dd6809cf84c6f55216d461b762737fe11"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_proto_nan_fix_and_cron_check_20260517T174706_result.json",
     "occurrence": 1,
-    "bytes": 1602,
-    "sha256": "c1a14f318c2eec1e05d2e98adffe36cf5be839f3151dee1cbd8feb56b78dc58f"
+    "bytes": 1601,
+    "sha256": "9bd51c8f55547f1c2bc3112a107e42964e7d7665408584ef07e07a180820d5ab"
   },
   "statistics": {
     "messages": 1,

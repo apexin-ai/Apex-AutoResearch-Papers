@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_w2_seed_grouping_logic_20260515T194029_result.json",
     "occurrence": 1,
-    "bytes": 2672,
-    "sha256": "036a3fe3eea83c2a8b48fc9aff7919529d40ff86771fbf00d213c2d9703a3c19"
+    "bytes": 2671,
+    "sha256": "31958810b086fac5f4f26d24837e9517730199258641d38e97be70dfd7c00bec"
   },
   "statistics": {
     "messages": 1,

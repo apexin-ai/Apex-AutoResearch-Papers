@@ -1,0 +1,126 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model,alemohammad2024selfconsuming,dohmatob2024tale,gerstgrasser2024model}
+\citation{kirchenbauer2023watermark}
+\citation{hans2024binoculars,bao2024fastdetectgpt}
+\citation{uchendu2020authorship}
+\citation{drayson2025emnlp}
+\citation{shumailov2024model,drayson2025emnlp}
+\citation{stella2023editlens}
+\citation{hans2024binoculars}
+\citation{bao2024fastdetectgpt}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shumailov2024model}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{gerstgrasser2024model}
+\citation{drayson2025emnlp}
+\citation{kirchenbauer2023watermark}
+\citation{hans2024binoculars,bao2024fastdetectgpt}
+\citation{uchendu2020authorship}
+\citation{garcesarias2025coling}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and recursive generation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Synthetic text detection.}{2}{section*.2}\protected@file@percent }
+\citation{xie2023dsir}
+\citation{wettig2024qurating}
+\citation{holtzman2020curious}
+\citation{garcesarias2025coling}
+\@writefile{toc}{\contentsline {paragraph}{Data quality and curation.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding strategy effects.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Task Formalization and Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Definition}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Recursive Generation Protocol}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Extraction}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:features}{{3.3}{3}{Feature Extraction}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Classifiers}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Effective Discriminable Depth (EDD)}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Depth Degradation Atlas}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Universal depth markers.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Non-uniform inter-depth distances.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{EDD boundary and scale dependence.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Strategy-dependent feature trajectory reversal.}{4}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Within-strategy four-class depth estimation accuracy (\%) on the 1B benchmark. RF = Random Forest, LR = Logistic Regression. Chance = 25\%.}}{5}{table.caption.9}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:within-strategy}{{1}{5}{Within-strategy four-class depth estimation accuracy (\%) on the 1B benchmark. RF = Random Forest, LR = Logistic Regression. Chance = 25\%}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Within-Strategy Depth Estimation (1B Benchmark)}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:within-strategy}{{5.1}{5}{Within-Strategy Depth Estimation (1B Benchmark)}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Scale Robustness: 14B Validation}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:scale}{{5.2}{5}{Scale Robustness: 14B Validation}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Overall accuracy.}{5}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-class analysis.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale-dependent EDD.}{5}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scale comparison: 1B models (nucleus $p$=0.95 mean) vs.\ Qwen2.5-14B. $\Delta $ denotes the absolute change from 1B to 14B.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:scale-comparison}{{2}{6}{Scale comparison: 1B models (nucleus $p$=0.95 mean) vs.\ Qwen2.5-14B. $\Delta $ denotes the absolute change from 1B to 14B}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-class precision, recall, and F1 for Qwen2.5-14B (nucleus $p$=0.95).}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:14b-perclass}{{3}{6}{Per-class precision, recall, and F1 for Qwen2.5-14B (nucleus $p$=0.95)}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Feature importance at scale.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ecological Validity: Prompted Generation}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:prompted}{{5.3}{6}{Ecological Validity: Prompted Generation}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Signal retention.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-class analysis.}{6}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces EDD sensitivity analysis across AUC thresholds. 1B values represent the range across 3 models (nucleus $p$=0.95). 14B = Qwen2.5-14B.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:edd-sensitivity}{{4}{7}{EDD sensitivity analysis across AUC thresholds. 1B values represent the range across 3 models (nucleus $p$=0.95). 14B = Qwen2.5-14B}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Feature importance ranking comparison: 1B pooled (nucleus) vs.\ 14B. Arrows indicate rank shift from 1B to 14B.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:feature-rank}{{5}{7}{Feature importance ranking comparison: 1B pooled (nucleus) vs.\ 14B. Arrows indicate rank shift from 1B to 14B}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Feature importance stability.}{7}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Strategy Deployment: Two-Stage Pipeline}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cross-strategy}{{5.4}{7}{Cross-Strategy Deployment: Two-Stage Pipeline}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Strategy classification.}{7}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Depth estimation accuracy ladder.}{7}{section*.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces BOS-seeded vs.\ topic-seeded prompted generation for GPT-2 XL (nucleus $p$=0.95). Retention = prompted / BOS $\times $ 100.}}{8}{table.caption.19}\protected@file@percent }
+\newlabel{tab:prompted-comparison}{{6}{8}{BOS-seeded vs.\ topic-seeded prompted generation for GPT-2 XL (nucleus $p$=0.95). Retention = prompted / BOS $\times $ 100}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-class metrics for GPT-2 XL under BOS vs.\ prompted generation.}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:prompted-perclass}{{7}{8}{Per-class metrics for GPT-2 XL under BOS vs.\ prompted generation}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Gap analysis.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Negative Result: Contrastive Ordinal Learning}{8}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale-dependent attenuation, not disappearance.}{8}{section*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Feature importance comparison: BOS vs.\ prompted generation (GPT-2 XL, nucleus). Weight ratio = prompted weight / BOS weight.}}{9}{table.caption.23}\protected@file@percent }
+\newlabel{tab:prompted-features}{{8}{9}{Feature importance comparison: BOS vs.\ prompted generation (GPT-2 XL, nucleus). Weight ratio = prompted weight / BOS weight}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Strategy classification accuracy and per-strategy recall (\%). Three strategies: nucleus ($p$=0.95), temperature ($\tau $=0.9), top-$k$ ($k$=50). Chance = 33.3\%.}}{9}{table.caption.25}\protected@file@percent }
+\newlabel{tab:strategy-clf}{{9}{9}{Strategy classification accuracy and per-strategy recall (\%). Three strategies: nucleus ($p$=0.95), temperature ($\tau $=0.9), top-$k$ ($k$=50). Chance = 33.3\%}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{Prompted generation: same signal, lower SNR.}{9}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-strategy deployment: validated principle, identified bottleneck.}{9}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications for data curation.}{9}{section*.33}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Depth estimation accuracy (\%) under five deployment conditions, from least to most oracle knowledge. LOO = cross-strategy leave-one-out.}}{10}{table.caption.27}\protected@file@percent }
+\newlabel{tab:accuracy-ladder}{{10}{10}{Depth estimation accuracy (\%) under five deployment conditions, from least to most oracle knowledge. LOO = cross-strategy leave-one-out}{table.caption.27}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Gap analysis for cross-strategy depth estimation conditions.}}{10}{table.caption.29}\protected@file@percent }
+\newlabel{tab:gap-analysis}{{11}{10}{Gap analysis for cross-strategy depth estimation conditions}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{10}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Controlled vs.\ wild-type text.}{10}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale coverage.}{10}{section*.35}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-strategy deployment constraints.}{10}{section*.36}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompted generation attenuation.}{10}{section*.37}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reference model dependency.}{10}{section*.38}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{alemohammad2024selfconsuming}{{1}{2024}{{Alemohammad et~al.}}{{}}}
+\bibcite{bao2024fastdetectgpt}{{2}{2024}{{Bao et~al.}}{{}}}
+\bibcite{breiman2001random}{{3}{2001}{{Breiman}}{{}}}
+\bibcite{dohmatob2024tale}{{4}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{drayson2025emnlp}{{5}{2025}{{Drayson et~al.}}{{}}}
+\bibcite{garcesarias2025coling}{{6}{2025}{{Garc\'es~Arias et~al.}}{{}}}
+\bibcite{gerstgrasser2024model}{{7}{2024}{{Gerstgrasser et~al.}}{{}}}
+\bibcite{grover2019defending}{{8}{2019}{{Grover et~al.}}{{}}}
+\bibcite{hans2024binoculars}{{9}{2024}{{Hans et~al.}}{{}}}
+\bibcite{holtzman2020curious}{{10}{2020}{{Holtzman et~al.}}{{}}}
+\bibcite{hu2022lora}{{11}{2022}{{Hu et~al.}}{{}}}
+\bibcite{kirchenbauer2023watermark}{{12}{2023}{{Kirchenbauer et~al.}}{{}}}
+\bibcite{liang2023helm}{{13}{2023}{{Liang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{11}{section.8}\protected@file@percent }
+\bibcite{liu2019roberta}{{14}{2019}{{Liu et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{15}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{penedo2024fineweb}{{16}{2024}{{Penedo et~al.}}{{}}}
+\bibcite{shumailov2024model}{{17}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{stella2023editlens}{{18}{2023}{{Stella et~al.}}{{}}}
+\bibcite{uchendu2020authorship}{{19}{2020}{{Uchendu et~al.}}{{}}}
+\bibcite{wettig2024qurating}{{20}{2024}{{Wettig et~al.}}{{}}}
+\bibcite{xie2023dsir}{{21}{2023}{{Xie et~al.}}{{}}}
+\bibcite{yang2024qwen25}{{22}{2024}{{Yang et~al.}}{{}}}
+\bibcite{biderman2023pythia}{{23}{2023}{{Biderman et~al.}}{{}}}
+\bibcite{groeneveld2024olmo}{{24}{2024}{{Groeneveld et~al.}}{{}}}
+\bibcite{radford2019language}{{25}{2019}{{Radford et~al.}}{{}}}
+\gdef \@abspage@last{12}

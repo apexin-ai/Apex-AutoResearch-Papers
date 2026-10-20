@@ -1,0 +1,21 @@
+{
+  "exp_id": "atlas_v2_analysis",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:12:09.137Z",
+    "updated_at": "2026-05-15T04:12:09.137Z",
+    "spec": {
+      "description": "Atlas v2 formal analysis: 9-cell feature importance + monotonicity + EDD + cross-model comparison",
+      "server": "gpu-6000pro-2",
+      "model_name": "RF analysis (CPU)",
+      "data_count": 180000,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T04:12:09.261850+00:00",
+  "trigger": "update_registry"
+}

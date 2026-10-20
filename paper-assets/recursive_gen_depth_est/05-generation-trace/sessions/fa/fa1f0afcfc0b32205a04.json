@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure_fig_auc_decay_v2_20260515T072227_result.json",
     "occurrence": 1,
-    "bytes": 352,
-    "sha256": "ba408c65bc56d66ba6bc4974d5d04f20a4022278a2a50a2efe3dc1bc76bd443c"
+    "bytes": 351,
+    "sha256": "72a27bda29637e946f6f7e20fcfe1622657306a28fcfe281530d5a8ef7834eb4"
   },
   "statistics": {
     "messages": 1,

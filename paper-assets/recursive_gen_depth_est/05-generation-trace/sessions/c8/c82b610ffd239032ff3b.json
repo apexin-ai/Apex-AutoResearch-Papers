@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_downstream_literature_linkage_20260517T184955_result.json",
     "occurrence": 1,
-    "bytes": 3107,
-    "sha256": "45796dea0c87323fdb6d5cdd5a9a3c596a10f24ff2ead2a437a829f20d9e31e4"
+    "bytes": 3106,
+    "sha256": "e2737db030936586a8f31b6fad1bab57aa64b8ad5414beeaf4fcc66e22754780"
   },
   "statistics": {
     "messages": 1,

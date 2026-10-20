@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_verify_gpu_and_dcol_20260515T024659_result.json",
     "occurrence": 1,
-    "bytes": 1437,
-    "sha256": "dbce8db507bcc00426870655227262389794285eb3551d1f8863b1dc1b034d69"
+    "bytes": 1436,
+    "sha256": "fa5ffbb00300bb0bc875d503273cabfca0027b0ce7101bff9e7af71b6b0544df"
   },
   "statistics": {
     "messages": 1,

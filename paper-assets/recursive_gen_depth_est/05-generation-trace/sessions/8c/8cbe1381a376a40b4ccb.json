@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_w2_domain_bias_design_20260515T191751_result.json",
     "occurrence": 1,
-    "bytes": 2668,
-    "sha256": "a0148aebb5af786d80283e24158f8d7ac895cd4a5ef391f7e32bee489aa1aae2"
+    "bytes": 2667,
+    "sha256": "664c4dc11a178721257101a30dce67af4235b98fce378b54c00013938b19b8fa"
   },
   "statistics": {
     "messages": 1,

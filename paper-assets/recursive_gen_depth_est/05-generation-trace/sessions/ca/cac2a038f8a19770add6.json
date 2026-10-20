@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r3w1-d0-headline_20260516T005146_result.json",
     "occurrence": 1,
-    "bytes": 161,
-    "sha256": "e1b46126664aea84e2b148496fdc14c2882f5d68cb369a619c6f948c7cb06ed8"
+    "bytes": 160,
+    "sha256": "03d37c221e01a0811cc02abb1aa214b114b39bfc6b2aac7fde3ebc27b5098a05"
   },
   "statistics": {
     "messages": 1,

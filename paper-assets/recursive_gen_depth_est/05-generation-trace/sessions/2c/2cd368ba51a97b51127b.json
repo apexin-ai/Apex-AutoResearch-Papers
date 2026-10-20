@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_bib-integration-verified-refs_20260515T233017_result.json",
     "occurrence": 1,
-    "bytes": 340,
-    "sha256": "dea00fb7af3316469b1a5feff5741072fa7261b1418b47eaa3b4040c3b704a78"
+    "bytes": 339,
+    "sha256": "6deea72a190e38adf6d06f99ae5c03608a3962d8292fad9d255419e42c04167e"
   },
   "statistics": {
     "messages": 1,

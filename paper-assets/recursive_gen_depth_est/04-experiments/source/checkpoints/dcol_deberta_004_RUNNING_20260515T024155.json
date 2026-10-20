@@ -1,0 +1,22 @@
+{
+  "exp_id": "dcol_deberta_004",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:41:50.066Z",
+    "updated_at": "2026-05-15T02:41:55.873Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_lora/ --batch_size 32 --epochs 10 --lr 3e-4 --margin_lr 1e-3 --cl_weight 1.0 --seed 42 --use_lora --lora_r 16 --lora_alpha 16 --warmup_ratio 0.05 --gpu 0",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": 180000,
+      "model_name": "deberta-v3-large + LoRA r=16 alpha=16",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T02:41:55.958521+00:00",
+  "trigger": "update_registry"
+}

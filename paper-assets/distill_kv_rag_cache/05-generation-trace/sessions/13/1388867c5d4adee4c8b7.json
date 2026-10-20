@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1388867c5d4adee4c8b7",
+  "project": "distill_kv_rag_cache",
+  "kind": "result",
+  "title": "code sync eval runner fix",
+  "task_key": "worker_code_sync-eval-runner-fix_20260514T074543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync-eval-runner-fix_20260514T074543_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "4126ec0e1f2e19422f6ffd380d7dc0eec5b49ddc850801ad5c65f8b22fce413d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，共两处修改：\n\n1. **Prompt 构建重写**（原 172-183 行）：raw text 拼接 `\"Context: ...\\n\\nQuestion: ...\\nAnswer:\"` → 用 `apply_chat_template` 构建 system+user 消息，按 `\"Question:\"` 切分 context/query；`max_length` 从 2048 → 4096；context tokenization 加了 `add_special_tokens=False`。\n\n2. **新增 debug 打印**（原 206 行后）：前 5 个样本打印 `pred`、`gold`、`em`、`f1`，方便快速检查模型输出是否合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-eval-runner-fix.md"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_qwen25-1p5b-instruct-002_20260517T185750_result.json",
     "occurrence": 1,
-    "bytes": 642,
-    "sha256": "6ad167cb30085c8ecfa1a4129c7c17552b2467d2dd2ce2e5c81ae1a6287ff581"
+    "bytes": 641,
+    "sha256": "814504bc2ab95d0098b7b8bea11787503a2c26cc8f457114034a5f616fa91523"
   },
   "statistics": {
     "messages": 1,

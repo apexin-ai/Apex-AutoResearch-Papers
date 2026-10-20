@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_wild_data_rf_classify_20260517T172513_result.json",
     "occurrence": 1,
-    "bytes": 1083,
-    "sha256": "916cd9f430841702bf3fd49665551c858c08bbe6b2f84014de576b1b1a555dba"
+    "bytes": 1082,
+    "sha256": "b78fbe1c69db225a097c0eac3c453473b5883f6e30c63e00d9e441d53a1bcba1"
   },
   "statistics": {
     "messages": 1,

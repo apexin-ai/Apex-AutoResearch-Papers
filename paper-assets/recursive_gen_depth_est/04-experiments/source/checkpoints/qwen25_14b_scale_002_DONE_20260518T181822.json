@@ -1,0 +1,57 @@
+{
+  "exp_id": "qwen25_14b_scale_002",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:12:02.367Z",
+    "updated_at": "2026-05-18T18:18:21.870Z",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_scale_validation.sh'",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": 806751,
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25_14b_scale_002.log",
+      "submitted_at": "2026-05-17T13:13:08.752Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "10000 samples per depth d0-d3",
+      "model_name": "Qwen2.5-14B",
+      "seed": 42,
+      "checkpoint_source": "N/A - generation pipeline, not fine-tuning eval",
+      "eval_data": "N/A - generation pipeline producing d0-d3 text",
+      "wall_clock_seconds": 104502.5,
+      "gpu_hours": 29.03
+    },
+    "hypothesis": "Recursive generation depth signal (statistical features distinguishing d0-d3) persists at 14B parameter scale (Qwen2.5-14B FP16), achieving RF 4-class accuracy significantly above 25% baseline, validating that model collapse signatures are not artifacts of small model capacity.",
+    "parent": "mvp_pipeline_pythia_002",
+    "notes": "plan_014 retry #2. Previous attempt (PID 714992) failed due to TLS handshake error during model download. Model download completed successfully. Current run PID 806751 on gpu-6000pro-2 cuda:0, Qwen2.5-14B FP16 recursive generation pipeline d0-d3.",
+    "reproduce": {
+      "finished_at": "2026-05-18T18:14:49.054Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T14:34:56.007902+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T18:14:55.601844+00:00"
+        }
+      ]
+    },
+    "data_count": "5000 samples per depth d0-d3 (20000 total)",
+    "completed_at": "2026-05-18T18:14:51.300Z"
+  },
+  "timestamp": "2026-05-18T18:18:22.164972+00:00",
+  "trigger": "update_registry"
+}

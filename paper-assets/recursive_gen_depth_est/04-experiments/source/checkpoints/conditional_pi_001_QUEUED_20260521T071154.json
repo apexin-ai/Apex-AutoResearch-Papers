@@ -1,0 +1,15 @@
+{
+  "exp_id": "conditional_pi_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:04:54.585Z",
+    "updated_at": "2026-05-21T07:11:54.370Z",
+    "hypothesis": "Perplexity tail features (p90_ppl, kurtosis_ppl, var_ppl, etc.) remain the top-ranked feature family under permutation importance (not Gini), with stable bootstrap rank CIs across all 9 model-strategy cells, refuting R17's concern that VIF>10 collinearity invalidates importance rankings."
+  },
+  "timestamp": "2026-05-21T07:11:54.786957+00:00",
+  "trigger": "update_registry"
+}

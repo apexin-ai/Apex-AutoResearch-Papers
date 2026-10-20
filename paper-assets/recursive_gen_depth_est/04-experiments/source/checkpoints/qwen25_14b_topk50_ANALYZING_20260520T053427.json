@@ -1,0 +1,75 @@
+{
+  "exp_id": "qwen25_14b_topk50",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:55:17.726Z",
+    "updated_at": "2026-05-20T05:34:27.004Z",
+    "hypothesis": "Recursive generation depth signal persists at 14B scale under top-k sampling (k=50), achieving RF 4-class accuracy above 25% baseline. Top-k typically yields lowest accuracy across strategies; if signal persists even here, 14B scale-generality claim is robust. Directly addresses Dream worst review M3.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_qwen25_14b_topk50.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "pid": 787051,
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "5000 samples per depth d0-d3",
+      "model_name": "Qwen2.5-14B",
+      "seed": 42,
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25_14b_topk50.log",
+      "note": "Restarted after GPU fix: original PID 776750 on cuda:0 due to hardcoded CUDA_VISIBLE_DEVICES. Fixed and resubmitted to cuda:1."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T05:31:13.137Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T05:31:19.432178+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rf_4class_acc": 0.4793,
+      "rf_4class_ci": [
+        0.4726,
+        0.4859
+      ],
+      "lr_4class_acc": 0.4395,
+      "lr_4class_ci": [
+        0.4323,
+        0.4465
+      ],
+      "rf_3class_no_d0_acc": 0.5164,
+      "rf_3class_ci": [
+        0.5083,
+        0.5239
+      ],
+      "rf_d0v1_auc": 0.5607,
+      "rf_d0v2_auc": 0.8481,
+      "rf_d0v3_auc": 0.9253,
+      "rf_d1v2_auc": 0.6868,
+      "rf_d1v3_auc": 0.7935,
+      "rf_d2v3_auc": 0.6788,
+      "top5_features": [
+        "kurt_ppl",
+        "skew_ppl",
+        "var_surprisal",
+        "type_token_ratio",
+        "hapax_ratio"
+      ],
+      "samples_per_depth": 5000,
+      "num_features": 19,
+      "runtime_hours": 24.5
+    },
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/qwen25_14b_topk50/",
+    "log_path": "~/runs/recursive_gen_depth_est/qwen25_14b_topk50.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T05:34:27.345907+00:00",
+  "trigger": "update_registry"
+}

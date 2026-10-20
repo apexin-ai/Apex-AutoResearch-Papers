@@ -1,0 +1,143 @@
+{
+  "exp_id": "gpt2xl_topk50_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:30:51.976Z",
+    "updated_at": "2026-05-15T02:44:27.003Z",
+    "hypothesis": "解码策略鲁棒性: GPT-2 XL 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "parent": "cross_model_gpt2xl_001",
+    "plan_id": "plan_003c",
+    "spec": {
+      "command": "bash scripts/run_pipeline_topk.sh gpt2xl 50",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "211326",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_topk50.log",
+      "submitted_at": "2026-05-14T22:47:20.282Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_topk50/",
+      "data_count": 5000,
+      "model_name": "gpt2-xl",
+      "model_path": "/root/autodl-tmp/models/gpt2-xl/",
+      "seed": 42,
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "c_attn",
+          "c_proj"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "decoding_strategy": "topk",
+        "top_k": 50
+      },
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_topk50/",
+      "checkpoint_source": "checkpoints/gpt2xl/lora_depth_0 (symlinked for depth-0)",
+      "eval_data": "data/depth_0.jsonl (seed) + generated depths 1-3",
+      "decoding": "top-k k=50",
+      "wall_clock_seconds": 14226.7,
+      "gpu_hours": 3.95
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T02:16:55.268Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T02:16:56.661715+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "four_class": {
+        "rf_accuracy": 0.7445,
+        "rf_accuracy_ci": [
+          0.7302,
+          0.7578
+        ],
+        "lr_accuracy": 0.713,
+        "lr_accuracy_ci": [
+          0.699,
+          0.727
+        ]
+      },
+      "pairwise_auc": {
+        "lr": {
+          "d0v1": 0.9727,
+          "d0v2": 0.9839,
+          "d0v3": 0.9988,
+          "d1v2": 0.7813,
+          "d1v3": 0.9469,
+          "d2v3": 0.7282
+        },
+        "rf": {
+          "d0v1": 0.9906,
+          "d0v2": 0.9975,
+          "d0v3": 0.9986,
+          "d1v2": 0.8126,
+          "d1v3": 0.9708,
+          "d2v3": 0.7529
+        }
+      },
+      "three_class": {
+        "rf_accuracy": 0.6947,
+        "rf_accuracy_ci": [
+          0.677,
+          0.7107
+        ],
+        "lr_accuracy": 0.6507,
+        "lr_accuracy_ci": [
+          0.6337,
+          0.6673
+        ]
+      },
+      "three_class_auc": {
+        "lr": {
+          "d1v2": 0.7733,
+          "d1v3": 0.9548,
+          "d2v3": 0.7388
+        },
+        "rf": {
+          "d1v2": 0.8392,
+          "d1v3": 0.9726,
+          "d2v3": 0.7596
+        }
+      },
+      "feature_importance_top5": [
+        "p90_ppl (0.241)",
+        "p75_ppl (0.135)",
+        "mean_surprisal (0.110)",
+        "var_surprisal (0.096)",
+        "p50_ppl (0.044)"
+      ],
+      "finetune_loss": {
+        "depth_1": 1.9886,
+        "depth_2": 1.7554
+      },
+      "three_class_filtered": "not_available"
+    },
+    "completed_at": "2026-05-15T02:44:27.004Z"
+  },
+  "timestamp": "2026-05-15T02:44:27.131439+00:00",
+  "trigger": "update_registry"
+}

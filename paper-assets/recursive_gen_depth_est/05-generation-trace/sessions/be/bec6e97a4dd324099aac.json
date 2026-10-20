@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_edd_summary_stats_20260515T044024_result.json",
     "occurrence": 1,
-    "bytes": 105,
-    "sha256": "e8c9406158dbd67264a9d3fcc4bf2054a2193580cc956935e6cc0b80ad15e0af"
+    "bytes": 104,
+    "sha256": "e1702c22ac56bd1f04eb418e36c858d8ccc4f41460cb6ad79e11be716525b6a9"
   },
   "statistics": {
     "messages": 1,

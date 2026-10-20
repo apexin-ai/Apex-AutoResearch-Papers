@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_feature_ablation_9cell_harvest_20260515T184719_result.json",
     "occurrence": 1,
-    "bytes": 242,
-    "sha256": "ab620c66a79044d2c1b69fdd718f7becc08995fe194de0836dd5df9710e77413"
+    "bytes": 241,
+    "sha256": "7a3731a89dce619a0f0ffef88a245a48e0a3365b41536856d5f1fad1f00eee9b"
   },
   "statistics": {
     "messages": 1,

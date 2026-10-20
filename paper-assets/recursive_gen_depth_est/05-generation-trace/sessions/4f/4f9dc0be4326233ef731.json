@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_fpr_coverage_001_20260521T070655_result.json",
     "occurrence": 1,
-    "bytes": 1058,
-    "sha256": "46774c68f229fa491effcdc2b3adfa62f99cdb95a90449e98799285a7619cd7c"
+    "bytes": 1057,
+    "sha256": "bc4369fd42b6d770f97c2f909fed7ef89756ff36ef8f300dde8c81efbe253d83"
   },
   "statistics": {
     "messages": 1,

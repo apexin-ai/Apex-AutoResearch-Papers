@@ -1,0 +1,41 @@
+{
+  "exp_id": "olmo_temp09_002",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:59:50.217Z",
+    "updated_at": "2026-05-15T06:02:56.359Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=1 bash scripts/run_pipeline_olmo_temp09.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "179923",
+      "log_path": "~/runs/recursive_gen_depth_est/olmo_temp09_002.log",
+      "submitted_at": "2026-05-15T06:02:55.625Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "解码策略鲁棒性: OLMo-1B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致（olmo_temp09_001 重跑，从 Step 3 断点恢复）",
+    "parent": "olmo_temp09_001",
+    "conclusion": "success",
+    "notes": "Director 确认取消: olmo_temp09_001 已成功 (4-class RF 82.03%), 数据完整, 无需重跑。",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T06:00:23.377Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=1 bash scripts/run_pipeline_olmo_temp09.sh\""
+    },
+    "pid": "179923",
+    "log_path": "~/runs/recursive_gen_depth_est/olmo_temp09_002.log"
+  },
+  "timestamp": "2026-05-15T06:02:57.201854+00:00",
+  "trigger": "update_registry"
+}

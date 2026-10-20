@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_bibliography_audit_20260516T050307_result.json",
     "occurrence": 1,
-    "bytes": 1681,
-    "sha256": "b6fbcd88d4f9ccc3ba6b0fd507284074f399c6b95e3c7a38e049830d94b530dc"
+    "bytes": 1680,
+    "sha256": "3cbdbbe2ed6e47a03369ec5fcec3bb6868c6e8925c5ed97082eaa1c50da0783c"
   },
   "statistics": {
     "messages": 1,

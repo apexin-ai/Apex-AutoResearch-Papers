@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_atlas_tex_critical_review_20260515T161519_result.json",
     "occurrence": 1,
-    "bytes": 1173,
-    "sha256": "b6a6668b4d13111919616ed197ce8963816b5b26e41c6b614197cc0988e70467"
+    "bytes": 1172,
+    "sha256": "3690fc694b2d168778882f3444b1452153275ef1b904a865e218282dcf4af3fe"
   },
   "statistics": {
     "messages": 1,

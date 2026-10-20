@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_rf_21feature_augmented_20260518T195603_result.json",
     "occurrence": 1,
-    "bytes": 1556,
-    "sha256": "ce7408aa9de5f2861b1eb7b7e4e0e1c909ed020452a00a803ed70e26a19c0c31"
+    "bytes": 1555,
+    "sha256": "cb0e48868972c48cc33da902e2f1fc4a8b6f3dc39b619f77e1a95d3c37c56a08"
   },
   "statistics": {
     "messages": 1,

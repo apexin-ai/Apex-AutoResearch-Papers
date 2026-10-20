@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_d4v5_range_fix_20260517T190239_result.json",
     "occurrence": 1,
-    "bytes": 645,
-    "sha256": "4b324e9cd777d96e591dc0735321dab0c6c08923ddd55b1193ab1747dd737d84"
+    "bytes": 644,
+    "sha256": "003d32c3643083e2f824676629b0bed03c388d516fd6f667b3b28c5cc1071995"
   },
   "statistics": {
     "messages": 1,

@@ -1553,7 +1553,7 @@ _source line 33_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "env OPENAI_API_KEY=test OPENAI_BASE_URL=http://47.94.22.126/v1 python3 -c \"import openai; print('openai OK')\""
+  "command": "env OPENAI_API_KEY=[REDACTED] OPENAI_BASE_URL=http://47.94.22.126/v1 python3 -c \"import openai; print('openai OK')\""
 }
 ```
 
@@ -4536,7 +4536,7 @@ _source line 91 · 2026-05-15T16:39:03.622Z_
 
 ```text
 1	openrouter_api_key:
-2	  created_at: '2026-05-15T16:38:35.798697+00:00'
+[REDACTED]	  created_at: '2026-05-15T16:38:35.798697+00:00'
 3	  provider: OpenRouter (自建代理)
 4	  purpose: OpenRouter 兼容 API，base_url=http://47.94.22.126/v1，供项目调用多模型推理
 5	  updated_at: '2026-05-15T16:38:35.798716+00:00'
@@ -4558,7 +4558,7 @@ _source line 91 · 2026-05-15T16:39:03.622Z_
     "type": "text",
     "file": {
       "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/config/secrets/recursive_gen_depth_est/manifest.yaml",
-      "content": "openrouter_api_key:\n  created_at: '2026-05-15T16:38:35.798697+00:00'\n  provider: OpenRouter (自建代理)\n  purpose: OpenRouter 兼容 API，base_url=http://47.94.22.126/v1，供项目调用多模型推理\n  updated_at: '2026-05-15T16:38:35.798716+00:00'\n",
+      "content": "openrouter_api_key:\n  [REDACTED] '2026-05-15T16:38:35.798697+00:00'\n  provider: OpenRouter (自建代理)\n  purpose: OpenRouter 兼容 API，base_url=http://47.94.22.126/v1，供项目调用多模型推理\n  updated_at: '2026-05-15T16:38:35.798716+00:00'\n",
       "numLines": 6,
       "startLine": 1,
       "totalLines": 6
@@ -6272,7 +6272,7 @@ _source line 124_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" && export OPENAI_BASE_URL=\"http://47.94.22.126/v1\" && python3 -c \"\nimport openai\nclient = openai.OpenAI()\nresp = client.chat.completions.create(\n    model='deepseek/deepseek-v3.2',\n    max_tokens=50,\n    messages=[{'role': 'user', 'content': 'Say hello in 3 words'}]\n)\nprint('API OK:', resp.choices[0].message.content[:100])\n\"",
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"[REDACTED]\" && export OPENAI_BASE_URL=\"http://47.94.22.126/v1\" && python3 -c \"\nimport openai\nclient = openai.OpenAI()\nresp = client.chat.completions.create(\n    model='deepseek/deepseek-v3.2',\n    max_tokens=50,\n    messages=[{'role': 'user', 'content': 'Say hello in 3 words'}]\n)\nprint('API OK:', resp.choices[0].message.content[:100])\n\"",
   "warn": true
 }
 ```
@@ -6407,7 +6407,7 @@ _source line 127_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" && export OPENAI_BASE_URL=\"http://47.94.22.126/v1\" && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 &\necho \"PID=$!\""
+  "command": "cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"[REDACTED]\" && export OPENAI_BASE_URL=\"http://47.94.22.126/v1\" && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 &\necho \"PID=$!\""
 }
 ```
 
@@ -6459,7 +6459,7 @@ _source line 128 · 2026-05-15T16:40:46.672Z_
 <details><summary>↩ Tool result · `toolu_019216nrRaCn3DptTsjTi6gc`</summary>
 
 ```text
-{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export OPENAI_BASE_URL=\\\"http://47.94.22.126/v1\\\" && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269159\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.46}}"}
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export OPENAI_BASE_URL=\\\"http://47.94.22.126/v1\\\" && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269159\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.46}}"}
 ```
 
 </details>
@@ -6474,9 +6474,9 @@ _source line 128 · 2026-05-15T16:40:46.672Z_
   "session_id": "728d89f2-94a7-479b-89e0-527ba42e9901",
   "uuid": "dd7bbabc-09a8-49ea-8a99-4712a072570b",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\\\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && export OPENAI_BASE_URL=\\\\\\\"http://47.94.22.126/v1\\\\\\\" && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=269159\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.46}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && export OPENAI_BASE_URL=\\\\\\\"http://47.94.22.126/v1\\\\\\\" && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=269159\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.46}}\"}",
     "structuredContent": {
-      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export OPENAI_BASE_URL=\\\"http://47.94.22.126/v1\\\" && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269159\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.46}}"
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export OPENAI_BASE_URL=\\\"http://47.94.22.126/v1\\\" && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269159\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.46}}"
     }
   }
 }
@@ -7016,7 +7016,7 @@ _source line 140_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "kill 269159 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" && export PYTHONUNBUFFERED=1 && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 & echo \"PID=$!\"",
+  "command": "kill 269159 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"[REDACTED]\" && export PYTHONUNBUFFERED=1 && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 & echo \"PID=$!\"",
   "warn": true
 }
 ```
@@ -7069,7 +7069,7 @@ _source line 141 · 2026-05-15T16:41:44.611Z_
 <details><summary>↩ Tool result · `toolu_01FCGDH8b99Tv8EPT6Y6G66A`</summary>
 
 ```text
-{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269159 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export PYTHONUNBUFFERED=1 && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269347\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.1}}"}
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269159 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export PYTHONUNBUFFERED=1 && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269347\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.1}}"}
 ```
 
 </details>
@@ -7084,9 +7084,9 @@ _source line 141 · 2026-05-15T16:41:44.611Z_
   "session_id": "728d89f2-94a7-479b-89e0-527ba42e9901",
   "uuid": "69f75dcd-38ed-401c-a944-4980482be304",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'kill 269159 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\\\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && export PYTHONUNBUFFERED=1 && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=269347\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.1}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'kill 269159 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && export PYTHONUNBUFFERED=1 && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=269347\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.1}}\"}",
     "structuredContent": {
-      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269159 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export PYTHONUNBUFFERED=1 && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269347\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.1}}"
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269159 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && export PYTHONUNBUFFERED=1 && nohup python3 scripts/run_zeroshot_500.py > /tmp/zeroshot_500.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269347\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.1}}"
     }
   }
 }
@@ -8949,7 +8949,7 @@ _source line 182_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "kill 269347 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" && python3 -c \"\nimport openai, json, os, time\nclient = openai.OpenAI(base_url='http://47.94.22.126/v1', api_key=[REDACTED]'OPENAI_API_KEY'])\n\n# Load 1 sample\nwith open('data/depth_0.jsonl') as f:\n    text = json.loads(f.readline())['text'][:200]\n\nprint('Calling API...')\nt0 = time.time()\nresp = client.chat.completions.create(\n    model='deepseek/deepseek-v3.2',\n    max_tokens=256,\n    messages=[\n        {'role': 'system', 'content': 'You are a helpful assistant.'},\n        {'role': 'user', 'content': f'Classify this text depth (0-3): {text}. Reply with JSON.'}\n    ]\n)\nt1 = time.time()\nprint(f'Response in {t1-t0:.1f}s: {resp.choices[0].message.content[:200]}')\n\"",
+  "command": "kill 269347 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"[REDACTED]\" && python3 -c \"\nimport openai, json, os, time\nclient = openai.OpenAI(base_url='http://47.94.22.126/v1', api_key=[REDACTED]'OPENAI_API_KEY'])\n\n# Load 1 sample\nwith open('data/depth_0.jsonl') as f:\n    text = json.loads(f.readline())['text'][:200]\n\nprint('Calling API...')\nt0 = time.time()\nresp = client.chat.completions.create(\n    model='deepseek/deepseek-v3.2',\n    max_tokens=256,\n    messages=[\n        {'role': 'system', 'content': 'You are a helpful assistant.'},\n        {'role': 'user', 'content': f'Classify this text depth (0-3): {text}. Reply with JSON.'}\n    ]\n)\nt1 = time.time()\nprint(f'Response in {t1-t0:.1f}s: {resp.choices[0].message.content[:200]}')\n\"",
   "warn": true
 }
 ```
@@ -9139,7 +9139,7 @@ _source line 186_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "kill 269347 2>/dev/null; rm -f /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << 'SCRIPT'\n#!/bin/bash\nexport OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\nexport PYTHONUNBUFFERED=1\ncd /root/autodl-tmp/recursive_gen_depth_est\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\npython3 -u scripts/run_zeroshot_500.py\nSCRIPT\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \"PID=$!\"",
+  "command": "kill 269347 2>/dev/null; rm -f /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << 'SCRIPT'\n#!/bin/bash\nexport OPENAI_API_KEY=\"[REDACTED]\"\nexport PYTHONUNBUFFERED=1\ncd /root/autodl-tmp/recursive_gen_depth_est\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\npython3 -u scripts/run_zeroshot_500.py\nSCRIPT\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \"PID=$!\"",
   "warn": true
 }
 ```
@@ -9192,7 +9192,7 @@ _source line 187 · 2026-05-15T16:44:03.972Z_
 <details><summary>↩ Tool result · `toolu_0136WMKNVMtfrq4tkVpEWX6q`</summary>
 
 ```text
-{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269347 2>/dev/null; rm -f /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << \\\\'SCRIPT\\\\'\\\\n#!/bin/bash\\\\nexport OPENAI_API_KEY=\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\"\\\\nexport PYTHONUNBUFFERED=1\\\\ncd /root/autodl-tmp/recursive_gen_depth_est\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\npython3 -u scripts/run_zeroshot_500.py\\\\nSCRIPT\\\\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269617\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.72}}"}
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269347 2>/dev/null; rm -f /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << \\\\'SCRIPT\\\\'\\\\n#!/bin/bash\\\\nexport OPENAI_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\"\\\\nexport PYTHONUNBUFFERED=1\\\\ncd /root/autodl-tmp/recursive_gen_depth_est\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\npython3 -u scripts/run_zeroshot_500.py\\\\nSCRIPT\\\\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269617\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.72}}"}
 ```
 
 </details>
@@ -9207,9 +9207,9 @@ _source line 187 · 2026-05-15T16:44:03.972Z_
   "session_id": "728d89f2-94a7-479b-89e0-527ba42e9901",
   "uuid": "56714e1e-f549-4910-b174-2d046621a2b5",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'kill 269347 2>/dev/null; rm -f /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << \\\\\\\\'SCRIPT\\\\\\\\'\\\\\\\\n#!/bin/bash\\\\\\\\nexport OPENAI_API_KEY=\\\\\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\"\\\\\\\\nexport PYTHONUNBUFFERED=1\\\\\\\\ncd /root/autodl-tmp/recursive_gen_depth_est\\\\\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\\\\\nconda activate base\\\\\\\\npython3 -u scripts/run_zeroshot_500.py\\\\\\\\nSCRIPT\\\\\\\\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=269617\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.72}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'kill 269347 2>/dev/null; rm -f /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << \\\\\\\\'SCRIPT\\\\\\\\'\\\\\\\\n#!/bin/bash\\\\\\\\nexport OPENAI_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\"\\\\\\\\nexport PYTHONUNBUFFERED=1\\\\\\\\ncd /root/autodl-tmp/recursive_gen_depth_est\\\\\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\\\\\nconda activate base\\\\\\\\npython3 -u scripts/run_zeroshot_500.py\\\\\\\\nSCRIPT\\\\\\\\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=269617\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.72}}\"}",
     "structuredContent": {
-      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269347 2>/dev/null; rm -f /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << \\\\'SCRIPT\\\\'\\\\n#!/bin/bash\\\\nexport OPENAI_API_KEY=\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\"\\\\nexport PYTHONUNBUFFERED=1\\\\ncd /root/autodl-tmp/recursive_gen_depth_est\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\npython3 -u scripts/run_zeroshot_500.py\\\\nSCRIPT\\\\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269617\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.72}}"
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269347 2>/dev/null; rm -f /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500/checkpoint.json; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << \\\\'SCRIPT\\\\'\\\\n#!/bin/bash\\\\nexport OPENAI_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\"\\\\nexport PYTHONUNBUFFERED=1\\\\ncd /root/autodl-tmp/recursive_gen_depth_est\\\\nsource /root/miniconda3/etc/profile.d/conda.sh\\\\nconda activate base\\\\npython3 -u scripts/run_zeroshot_500.py\\\\nSCRIPT\\\\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=269617\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.72}}"
     }
   }
 }
@@ -9750,7 +9750,7 @@ _source line 199_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "kill 269617 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\" && python3 -u -c \"\nimport sys\nsys.path.insert(0, 'scripts')\nfrom run_zeroshot_500 import *\nimport openai, os, time, json\n\napi_key = [REDACTED]'OPENAI_API_KEY']\nclient = openai.OpenAI(base_url=BASE_URL, api_key=[REDACTED]\ntexts, labels = load_balanced_samples(DATA_DIR, SAMPLES_PER_DEPTH, SEED)\n\nprint(f'Testing first 5 samples...')\nfor i in range(5):\n    text = truncate_text(texts[i], MAX_SEQ_LEN)\n    t0 = time.time()\n    try:\n        resp = call_llm(text, MODEL, client)\n        depth, conf = parse_llm_response(resp)\n        print(f'  [{i}] true={labels[i]}, pred={depth}, conf={conf:.2f}, time={time.time()-t0:.1f}s')\n    except Exception as e:\n        print(f'  [{i}] ERROR: {e}')\n    time.sleep(0.5)\nprint('Done test.')\n\"",
+  "command": "kill 269617 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\"[REDACTED]\" && python3 -u -c \"\nimport sys\nsys.path.insert(0, 'scripts')\nfrom run_zeroshot_500 import *\nimport openai, os, time, json\n\napi_key = [REDACTED]'OPENAI_API_KEY']\nclient = openai.OpenAI(base_url=BASE_URL, api_key=[REDACTED]\ntexts, labels = load_balanced_samples(DATA_DIR, SAMPLES_PER_DEPTH, SEED)\n\nprint(f'Testing first 5 samples...')\nfor i in range(5):\n    text = truncate_text(texts[i], MAX_SEQ_LEN)\n    t0 = time.time()\n    try:\n        resp = call_llm(text, MODEL, client)\n        depth, conf = parse_llm_response(resp)\n        print(f'  [{i}] true={labels[i]}, pred={depth}, conf={conf:.2f}, time={time.time()-t0:.1f}s')\n    except Exception as e:\n        print(f'  [{i}] ERROR: {e}')\n    time.sleep(0.5)\nprint('Done test.')\n\"",
   "warn": true
 }
 ```
@@ -9803,7 +9803,7 @@ _source line 200 · 2026-05-15T16:45:12.478Z_
 <details><summary>↩ Tool result · `toolu_015jB1V9XhPYiTejpWVgudLT`</summary>
 
 ```text
-{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269617 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && python3 -u -c \\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\'scripts\\\\')\\\\nfrom run_zeroshot_500 import *\\\\nimport openai, os, time, json\\\\n\\\\napi_key = os.environ[\\\\'OPENAI_API_KEY\\\\']\\\\nclient = openai.OpenAI(base_url=BASE_URL, api_key=[REDACTED], labels = load_balanced_samples(DATA_DIR, SAMPLES_PER_DEPTH, SEED)\\\\n\\\\nprint(f\\\\'Testing first 5 samples...\\\\')\\\\nfor i in range(5):\\\\n    text = truncate_text(texts[i], MAX_SEQ_LEN)\\\\n    t0 = time.time()\\\\n    try:\\\\n        resp = call_llm(text, MODEL, client)\\\\n        depth, conf = parse_llm_response(resp)\\\\n        print(f\\\\'  [{i}] true={labels[i]}, pred={depth}, conf={conf:.2f}, time={time.time()-t0:.1f}s\\\\')\\\\n    except Exception as e:\\\\n        print(f\\\\'  [{i}] ERROR: {e}\\\\')\\\\n    time.sleep(0.5)\\\\nprint(\\\\'Done test.\\\\')\\\\n\\\"'\\n\\nStdout:\\n\\nLoaded 500 balanced samples. Distribution: {np.int64(0): 125, np.int64(1): 125, np.int64(2): 125, np.int64(3): 125}\\nTesting first 5 samples...\\n  [0] true=0, pred=0, conf=0.85, time=4.7s\\n  [1] true=0, pred=0, conf=0.95, time=7.5s\\n  [2] true=0, pred=0, conf=0.95, time=4.4s\\n  [3] true=0, pred=0, conf=0.85, time=5.0s\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.7}}"}
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269617 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && python3 -u -c \\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\'scripts\\\\')\\\\nfrom run_zeroshot_500 import *\\\\nimport openai, os, time, json\\\\n\\\\napi_key = [REDACTED]'OPENAI_API_KEY\\\\']\\\\nclient = openai.OpenAI(base_url=BASE_URL, api_key=[REDACTED], labels = load_balanced_samples(DATA_DIR, SAMPLES_PER_DEPTH, SEED)\\\\n\\\\nprint(f\\\\'Testing first 5 samples...\\\\')\\\\nfor i in range(5):\\\\n    text = truncate_text(texts[i], MAX_SEQ_LEN)\\\\n    t0 = time.time()\\\\n    try:\\\\n        resp = call_llm(text, MODEL, client)\\\\n        depth, conf = parse_llm_response(resp)\\\\n        print(f\\\\'  [{i}] true={labels[i]}, pred={depth}, conf={conf:.2f}, time={time.time()-t0:.1f}s\\\\')\\\\n    except Exception as e:\\\\n        print(f\\\\'  [{i}] ERROR: {e}\\\\')\\\\n    time.sleep(0.5)\\\\nprint(\\\\'Done test.\\\\')\\\\n\\\"'\\n\\nStdout:\\n\\nLoaded 500 balanced samples. Distribution: {np.int64(0): 125, np.int64(1): 125, np.int64(2): 125, np.int64(3): 125}\\nTesting first 5 samples...\\n  [0] true=0, pred=0, conf=0.85, time=4.7s\\n  [1] true=0, pred=0, conf=0.95, time=7.5s\\n  [2] true=0, pred=0, conf=0.95, time=4.4s\\n  [3] true=0, pred=0, conf=0.85, time=5.0s\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.7}}"}
 ```
 
 </details>
@@ -9818,9 +9818,9 @@ _source line 200 · 2026-05-15T16:45:12.478Z_
   "session_id": "728d89f2-94a7-479b-89e0-527ba42e9901",
   "uuid": "ec8674f2-8f69-448f-9bca-e76085077372",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'kill 269617 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\\\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && python3 -u -c \\\\\\\"\\\\\\\\nimport sys\\\\\\\\nsys.path.insert(0, \\\\\\\\'scripts\\\\\\\\')\\\\\\\\nfrom run_zeroshot_500 import *\\\\\\\\nimport openai, os, time, json\\\\\\\\n\\\\\\\\napi_key = os.environ[\\\\\\\\'OPENAI_API_KEY\\\\\\\\']\\\\\\\\nclient = openai.OpenAI(base_url=BASE_URL, api_key=[REDACTED], labels = load_balanced_samples(DATA_DIR, SAMPLES_PER_DEPTH, SEED)\\\\\\\\n\\\\\\\\nprint(f\\\\\\\\'Testing first 5 samples...\\\\\\\\')\\\\\\\\nfor i in range(5):\\\\\\\\n    text = truncate_text(texts[i], MAX_SEQ_LEN)\\\\\\\\n    t0 = time.time()\\\\\\\\n    try:\\\\\\\\n        resp = call_llm(text, MODEL, client)\\\\\\\\n        depth, conf = parse_llm_response(resp)\\\\\\\\n        print(f\\\\\\\\'  [{i}] true={labels[i]}, pred={depth}, conf={conf:.2f}, time={time.time()-t0:.1f}s\\\\\\\\')\\\\\\\\n    except Exception as e:\\\\\\\\n        print(f\\\\\\\\'  [{i}] ERROR: {e}\\\\\\\\')\\\\\\\\n    time.sleep(0.5)\\\\\\\\nprint(\\\\\\\\'Done test.\\\\\\\\')\\\\\\\\n\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nLoaded 500 balanced samples. Distribution: {np.int64(0): 125, np.int64(1): 125, np.int64(2): 125, np.int64(3): 125}\\\\nTesting first 5 samples...\\\\n  [0] true=0, pred=0, conf=0.85, time=4.7s\\\\n  [1] true=0, pred=0, conf=0.95, time=7.5s\\\\n  [2] true=0, pred=0, conf=0.95, time=4.4s\\\\n  [3] true=0, pred=0, conf=0.85, time=5.0s\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.7}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'kill 269617 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\\\\\" && python3 -u -c \\\\\\\"\\\\\\\\nimport sys\\\\\\\\nsys.path.insert(0, \\\\\\\\'scripts\\\\\\\\')\\\\\\\\nfrom run_zeroshot_500 import *\\\\\\\\nimport openai, os, time, json\\\\\\\\n\\\\\\\\napi_key = [REDACTED]'OPENAI_API_KEY\\\\\\\\']\\\\\\\\nclient = openai.OpenAI(base_url=BASE_URL, api_key=[REDACTED], labels = load_balanced_samples(DATA_DIR, SAMPLES_PER_DEPTH, SEED)\\\\\\\\n\\\\\\\\nprint(f\\\\\\\\'Testing first 5 samples...\\\\\\\\')\\\\\\\\nfor i in range(5):\\\\\\\\n    text = truncate_text(texts[i], MAX_SEQ_LEN)\\\\\\\\n    t0 = time.time()\\\\\\\\n    try:\\\\\\\\n        resp = call_llm(text, MODEL, client)\\\\\\\\n        depth, conf = parse_llm_response(resp)\\\\\\\\n        print(f\\\\\\\\'  [{i}] true={labels[i]}, pred={depth}, conf={conf:.2f}, time={time.time()-t0:.1f}s\\\\\\\\')\\\\\\\\n    except Exception as e:\\\\\\\\n        print(f\\\\\\\\'  [{i}] ERROR: {e}\\\\\\\\')\\\\\\\\n    time.sleep(0.5)\\\\\\\\nprint(\\\\\\\\'Done test.\\\\\\\\')\\\\\\\\n\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nLoaded 500 balanced samples. Distribution: {np.int64(0): 125, np.int64(1): 125, np.int64(2): 125, np.int64(3): 125}\\\\nTesting first 5 samples...\\\\n  [0] true=0, pred=0, conf=0.85, time=4.7s\\\\n  [1] true=0, pred=0, conf=0.95, time=7.5s\\\\n  [2] true=0, pred=0, conf=0.95, time=4.4s\\\\n  [3] true=0, pred=0, conf=0.85, time=5.0s\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.7}}\"}",
     "structuredContent": {
-      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269617 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=\\\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && python3 -u -c \\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\'scripts\\\\')\\\\nfrom run_zeroshot_500 import *\\\\nimport openai, os, time, json\\\\n\\\\napi_key = os.environ[\\\\'OPENAI_API_KEY\\\\']\\\\nclient = openai.OpenAI(base_url=BASE_URL, api_key=[REDACTED], labels = load_balanced_samples(DATA_DIR, SAMPLES_PER_DEPTH, SEED)\\\\n\\\\nprint(f\\\\'Testing first 5 samples...\\\\')\\\\nfor i in range(5):\\\\n    text = truncate_text(texts[i], MAX_SEQ_LEN)\\\\n    t0 = time.time()\\\\n    try:\\\\n        resp = call_llm(text, MODEL, client)\\\\n        depth, conf = parse_llm_response(resp)\\\\n        print(f\\\\'  [{i}] true={labels[i]}, pred={depth}, conf={conf:.2f}, time={time.time()-t0:.1f}s\\\\')\\\\n    except Exception as e:\\\\n        print(f\\\\'  [{i}] ERROR: {e}\\\\')\\\\n    time.sleep(0.5)\\\\nprint(\\\\'Done test.\\\\')\\\\n\\\"'\\n\\nStdout:\\n\\nLoaded 500 balanced samples. Distribution: {np.int64(0): 125, np.int64(1): 125, np.int64(2): 125, np.int64(3): 125}\\nTesting first 5 samples...\\n  [0] true=0, pred=0, conf=0.85, time=4.7s\\n  [1] true=0, pred=0, conf=0.95, time=7.5s\\n  [2] true=0, pred=0, conf=0.95, time=4.4s\\n  [3] true=0, pred=0, conf=0.85, time=5.0s\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.7}}"
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'kill 269617 2>/dev/null; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export OPENAI_API_KEY=[REDACTED]\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\\\" && python3 -u -c \\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\'scripts\\\\')\\\\nfrom run_zeroshot_500 import *\\\\nimport openai, os, time, json\\\\n\\\\napi_key = [REDACTED]'OPENAI_API_KEY\\\\']\\\\nclient = openai.OpenAI(base_url=BASE_URL, api_key=[REDACTED], labels = load_balanced_samples(DATA_DIR, SAMPLES_PER_DEPTH, SEED)\\\\n\\\\nprint(f\\\\'Testing first 5 samples...\\\\')\\\\nfor i in range(5):\\\\n    text = truncate_text(texts[i], MAX_SEQ_LEN)\\\\n    t0 = time.time()\\\\n    try:\\\\n        resp = call_llm(text, MODEL, client)\\\\n        depth, conf = parse_llm_response(resp)\\\\n        print(f\\\\'  [{i}] true={labels[i]}, pred={depth}, conf={conf:.2f}, time={time.time()-t0:.1f}s\\\\')\\\\n    except Exception as e:\\\\n        print(f\\\\'  [{i}] ERROR: {e}\\\\')\\\\n    time.sleep(0.5)\\\\nprint(\\\\'Done test.\\\\')\\\\n\\\"'\\n\\nStdout:\\n\\nLoaded 500 balanced samples. Distribution: {np.int64(0): 125, np.int64(1): 125, np.int64(2): 125, np.int64(3): 125}\\nTesting first 5 samples...\\n  [0] true=0, pred=0, conf=0.85, time=4.7s\\n  [1] true=0, pred=0, conf=0.95, time=7.5s\\n  [2] true=0, pred=0, conf=0.95, time=4.4s\\n  [3] true=0, pred=0, conf=0.85, time=5.0s\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.7}}"
     }
   }
 }
@@ -9943,7 +9943,7 @@ _source line 203_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "pkill -f run_zeroshot_500 2>/dev/null; rm -rf /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << 'SCRIPT'\n#!/bin/bash\nexport OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\nexport PYTHONUNBUFFERED=1\ncd /root/autodl-tmp/recursive_gen_depth_est\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\npython3 -u scripts/run_zeroshot_500.py\necho \"EXIT_CODE=$?\"\nSCRIPT\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \"STARTED PID=$!\"",
+  "command": "pkill -f run_zeroshot_500 2>/dev/null; rm -rf /root/autodl-tmp/recursive_gen_depth_est/results/zeroshot_llm_500; cd /root/autodl-tmp/recursive_gen_depth_est && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/run_zs500.sh << 'SCRIPT'\n#!/bin/bash\nexport OPENAI_API_KEY=\"[REDACTED]\"\nexport PYTHONUNBUFFERED=1\ncd /root/autodl-tmp/recursive_gen_depth_est\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\npython3 -u scripts/run_zeroshot_500.py\necho \"EXIT_CODE=$?\"\nSCRIPT\nchmod +x /tmp/run_zs500.sh && nohup bash /tmp/run_zs500.sh > /tmp/zeroshot_500.log 2>&1 & echo \"STARTED PID=$!\"",
   "warn": true
 }
 ```
@@ -10450,7 +10450,7 @@ _source line 214_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "cat > /tmp/run_zs500.sh << 'EOF'\n#!/bin/bash\nexport OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\nexport PYTHONUNBUFFERED=1\ncd /root/autodl-tmp/recursive_gen_depth_est\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\npython3 -u scripts/run_zeroshot_500.py\necho \"EXIT_CODE=$?\"\nEOF\nchmod +x /tmp/run_zs500.sh && echo \"script written\""
+  "command": "cat > /tmp/run_zs500.sh << 'EOF'\n#!/bin/bash\nexport OPENAI_API_KEY=\"[REDACTED]\"\nexport PYTHONUNBUFFERED=1\ncd /root/autodl-tmp/recursive_gen_depth_est\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\npython3 -u scripts/run_zeroshot_500.py\necho \"EXIT_CODE=$?\"\nEOF\nchmod +x /tmp/run_zs500.sh && echo \"script written\""
 }
 ```
 
@@ -14327,7 +14327,7 @@ _source line 301_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "cat > /tmp/run_zs500.sh << 'EOF'\n#!/bin/bash\nexport OPENAI_API_KEY=\"tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8\"\nexport PYTHONUNBUFFERED=1\ncd /root/autodl-tmp/recursive_gen_depth_est\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\nstdbuf -oL python3 -u scripts/run_zeroshot_500.py\necho \"EXIT_CODE=$?\"\nEOF\nchmod +x /tmp/run_zs500.sh && echo \"script ready\""
+  "command": "cat > /tmp/run_zs500.sh << 'EOF'\n#!/bin/bash\nexport OPENAI_API_KEY=\"[REDACTED]\"\nexport PYTHONUNBUFFERED=1\ncd /root/autodl-tmp/recursive_gen_depth_est\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\nstdbuf -oL python3 -u scripts/run_zeroshot_500.py\necho \"EXIT_CODE=$?\"\nEOF\nchmod +x /tmp/run_zs500.sh && echo \"script ready\""
 }
 ```
 

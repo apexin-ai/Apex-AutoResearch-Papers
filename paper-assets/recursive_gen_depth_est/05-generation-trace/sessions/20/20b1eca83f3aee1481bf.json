@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_s3-backup-upload-retry_20260525T215615_result.json",
     "occurrence": 1,
-    "bytes": 211,
-    "sha256": "40588419ddea9810e4793585ede1295478fa8c1e5d00ab8d8bfbc582f7b99d61"
+    "bytes": 210,
+    "sha256": "beff4c69924a97d801a7c5e10fe741219c60017fcf2f5775c872fb95d32ae09b"
   },
   "statistics": {
     "messages": 1,

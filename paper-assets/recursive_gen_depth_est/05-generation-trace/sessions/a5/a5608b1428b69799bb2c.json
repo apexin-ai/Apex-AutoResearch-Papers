@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_knowledge_memory_signal_degradation_20260514T203401_result.json",
     "occurrence": 1,
-    "bytes": 151,
-    "sha256": "abd23dd6d44d484e0073379a341996236d257089e38d87a602d53e31fffa20ad"
+    "bytes": 150,
+    "sha256": "913229c2885cb3f5fc40cfa5c67224d5071b04d27bfdec8cc2fb5fae409e0eca"
   },
   "statistics": {
     "messages": 1,

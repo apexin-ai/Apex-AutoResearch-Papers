@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_baseline_large_and_rename_20260514T195436_result.json",
     "occurrence": 1,
-    "bytes": 1119,
-    "sha256": "ac814aeaee4b383d7500decc5f75a32c330570cf8aaabb924884a3436ab13b48"
+    "bytes": 1118,
+    "sha256": "a85e5b660a5b3f5d9644f887454dffc0a72c7bd824bb9952a9405f572e9670a5"
   },
   "statistics": {
     "messages": 1,

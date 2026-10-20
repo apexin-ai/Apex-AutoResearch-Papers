@@ -1,0 +1,7 @@
+{
+  "description": "**Figure Description: Recursive Generation Depth Estimation Illustration**\n\nThis figure is designed to be exceptionally wide and short, with an aspect ratio of at least 3:1 (e.g., 3000x900 pixels), making it suitable for a full-width academic presentation. The entire figure is set against a pure, clean white background, conveying a minimalist and professional aesthetic. There are no overarching borders, drop shadows, or any section titles/headers anywhere in the figure. All lines are thin, and all box corners are subtly rounded.\n\nThe figure is structured into three distinct horizontal rows, stacked vertically and each spanning the full width of the canvas.\n\n---\n\n**1. Overall Layout**\n\nThe figure follows a left-to-right flow for the main processes within the top two rows. It is divided into three visually distinct horizontal bands:\n*   **Top Row**: Illustrates the recursive generation chain, showing the progression of text depths.\n*   **Middle Row**: Details the depth estimation task, from input text to classifier output.\n*   **Bottom Row**: Provides a concise, one-line comparison of the proposed approach with conventional methods.\n\n---\n\n**2. Components, Connections, Groupings, Labels, and Styling**\n\n**ROW 1 (Top): Recursive Generation Chain**\n\nThis row depicts a series of interconnected, subtly rounded",
+  "critique": {
+    "critic_suggestions": [],
+    "revised_description": null
+  }
+}

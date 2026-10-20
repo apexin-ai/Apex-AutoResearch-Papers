@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_conditional_pi_appendix_20260522T045550_result.json",
     "occurrence": 1,
-    "bytes": 639,
-    "sha256": "d4f71e098332c17aa39409e06b629af85e9d525170c583bd9aaec8834bed2996"
+    "bytes": 638,
+    "sha256": "c91af357945115d2bdb341e5e28eb192a74cc052ce94405f53eaff3a99f81c9a"
   },
   "statistics": {
     "messages": 1,

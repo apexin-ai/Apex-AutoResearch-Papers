@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_n2_deberta_status_20260515T121811_result.json",
     "occurrence": 1,
-    "bytes": 943,
-    "sha256": "afe9f68af90bbaa985cd0c257ab6c267b4e9520b20127989c8149bc83544a192"
+    "bytes": 942,
+    "sha256": "01a44eb376752a012bfb77c7817c059d58802fd3fb9e106a2042bf481bf05f23"
   },
   "statistics": {
     "messages": 1,

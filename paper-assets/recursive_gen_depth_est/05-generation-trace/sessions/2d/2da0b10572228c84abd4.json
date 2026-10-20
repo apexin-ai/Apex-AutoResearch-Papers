@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_research-phase-prep_20260514T140739_result.json",
     "occurrence": 1,
-    "bytes": 2289,
-    "sha256": "a17d091b55adf168d7c204188fbe19ab627a7474c0a22ca58581cb9573c484bf"
+    "bytes": 2288,
+    "sha256": "57c97ce1c1aa842deb2c724de3d821397a41370a09d121a9f04f12e80ea5d727"
   },
   "statistics": {
     "messages": 1,

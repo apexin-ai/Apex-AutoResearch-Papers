@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen25_14b_topk50",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:55:17.726Z",
+    "updated_at": "2026-05-19T02:55:34.132Z",
+    "hypothesis": "Recursive generation depth signal persists at 14B scale under top-k sampling (k=50), achieving RF 4-class accuracy above 25% baseline. Top-k typically yields lowest accuracy across strategies; if signal persists even here, 14B scale-generality claim is robust. Directly addresses Dream worst review M3."
+  },
+  "timestamp": "2026-05-19T02:55:34.392716+00:00",
+  "trigger": "update_registry"
+}

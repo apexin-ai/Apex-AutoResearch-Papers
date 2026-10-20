@@ -1,0 +1,7 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-14 04:52 UTC
+  summary: 本项目只使用 autodl-rtx6000 的 cuda:0 和 cuda:1，禁止在其他服务器或 GPU 上启动实验
+  scope: all
+  reason: Manager 分配了 2 张 RTX 6000 Pro 96GB，防止 GPU 越界使用他人资源

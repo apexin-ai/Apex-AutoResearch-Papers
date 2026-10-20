@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a01857e50e9898b06b5a",
+  "project": "distill_kv_rag_cache",
+  "kind": "result",
+  "title": "code compression sweep ab",
+  "task_key": "worker_code_compression-sweep-ab_20260514T075957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compression-sweep-ab_20260514T075957_result.json",
+    "occurrence": 1,
+    "bytes": 2023,
+    "sha256": "1f1b80783958e9ffcb1aa244c707c9626d63352cf50f565158dbdc710d61a7b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成（211s）。结果如下：\n\n---\n\n### TABLE A: 压缩率拐点（无任何 restoration）\n\n| Ratio | Config E EM/F1 | Config A (0% restore) EM/F1 | Δ EM |\n|-------|---------------|----------------------------|------|\n| 4x | 0.200/0.314 | 0.000/0.000 | -0.200 |\n| 6x | 0.200/0.314 | 0.000/0.000 | -0.200 |\n| 8x | 0.200/0.314 | 0.000/0.000 | -0.200 |\n| 10x | 0.200/0.314 | 0.000/0.000 | -0.200 |\n| 12x | 0.200/0.314 | 0.000/0.000 | -0.200 |\n\n### TABLE B: Restoration 分离（ratio=8）\n\n| Budget | Config A EM/F1 | Config E EM/F1 | Δ EM |\n|--------|---------------|----------------|------|\n| 0% (skip all) | 0.000/0.000 | 0.200/0.314 | -0.200 |\n| 5% (boundary only) | 0.200/0.200 | 0.200/0.314 | +0.000 |\n| 10% (boundary+3.75% CEGR) | 0.200/0.200 | 0.200/0.314 | +0.000 |\n| 20% (boundary+13.75% CEGR) | 0.200/0.200 | 0.200/0.314 | +0.000 |\n\n---\n\n### 结论\n\n1. **没有\"压缩率拐点\"——即使最温和的 4x 压缩，去掉 restoration 后也完全崩溃。** 输出从\"错误但合理的自然语言\"（4x-6x）退化到\"纯乱码循环\"（8x+）。PCA+量化的有损压缩在没有任何 token 恢复时，KV cache 已损坏到模型无法正常推理。\n\n2. **Restoration 贡献是决定性的，且 boundary restoration 是关键跳变点。**\n   - 0% → 5%（boundary only）：EM 从 0.000 跳到 0.200（追平 E baseline），输出从乱码恢复为正常语言。仅恢复 ~6.25% 的 boundary tokens 就挽救了生成质量。\n   - 5% → 10% → 20%：EM/F1 无进一步提升（在 5 样本上饱和），CEGR 额外恢复的 token 没有带来增量收益。\n\n3. **核心发现：之前 6x+20% restoration+greedy argmax 三重保护掩盖 config 差异的根因，不是压缩率太温和，而是 boundary restoration 单独就足以把质量拉回 baseline 水平。** CEGR/ProphetKV 的边际贡献在当前实验设置下接近零——真正的质量守护者是 boundary recomputation（chunk 边界 token 的无损恢复）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compression-sweep-ab.md"
+}

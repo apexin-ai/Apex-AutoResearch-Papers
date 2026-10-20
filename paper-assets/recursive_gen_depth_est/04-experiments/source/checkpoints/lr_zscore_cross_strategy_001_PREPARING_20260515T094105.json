@@ -1,0 +1,14 @@
+{
+  "exp_id": "lr_zscore_cross_strategy_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:41:05.302Z",
+    "updated_at": "2026-05-15T09:41:05.302Z"
+  },
+  "timestamp": "2026-05-15T09:41:05.420255+00:00",
+  "trigger": "update_registry"
+}

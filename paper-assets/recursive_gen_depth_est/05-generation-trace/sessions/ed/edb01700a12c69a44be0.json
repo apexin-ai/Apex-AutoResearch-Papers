@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_single_feature_p90ppl_20260517T224525_result.json",
     "occurrence": 1,
-    "bytes": 887,
-    "sha256": "a33b38dc96e0fa9500b84698c5b7416dc0cb474ac9a6c5a2112071a3b362ff51"
+    "bytes": 886,
+    "sha256": "d438a331a09670b2aac3e5f5c6b0efc5d9cff4f862a56b5ea326da90bfa27bce"
   },
   "statistics": {
     "messages": 1,

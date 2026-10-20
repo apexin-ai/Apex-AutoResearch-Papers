@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "76486875f63dbb1e95a3",
+  "project": "distill_kv_rag_cache",
+  "kind": "worker",
+  "title": "code dry run small model",
+  "task_key": "worker_code_dry-run-small-model_20260514T054908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dry-run-small-model_20260514T054908.log",
+    "occurrence": 1,
+    "bytes": 608323,
+    "sha256": "2aaf18f6c4f7385b808ee3ef478ab42778224f0c970cac095568613ed6dc7a37"
+  },
+  "statistics": {
+    "messages": 451,
+    "user_turns": 0,
+    "tool_calls": 199,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 199,
+      "tool_result": 199
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 451,
+      "chunks": [
+        {
+          "path": "76486875f63dbb1e95a3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "76486875f63dbb1e95a3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "76486875f63dbb1e95a3-part-0003.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-dry-run-small-model.md"
+}

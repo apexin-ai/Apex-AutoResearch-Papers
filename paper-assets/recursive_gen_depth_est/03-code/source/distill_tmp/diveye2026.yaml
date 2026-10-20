@@ -1,0 +1,25 @@
+paper_key: "diveye2026"
+title: "DivEye: Diversity Boosts AI-Generated Text Detection"
+venue: "TMLR 2026"
+full_text_available: false
+
+research:
+  baselines: ["DetectGPT", "Fast-DetectGPT", "Binoculars", "supervised fine-tuned classifiers"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "detection accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "multi-domain benchmarks", size: "N/A"}
+  ablation_dimensions: ["statistical features", "auxiliary signal integration", "paraphrasing robustness", "cross-domain transfer"]
+  training_recipe: {optimizer: "N/A (zero-shot statistical)", lr: "N/A", hardware: "N/A"}
+  method_family: "statistical feature-based detection using surprisal diversity"
+
+positioning:
+  core_claim: "Human text exhibits richer variability in lexical and structural unpredictability (surprisal diversity) than LLM outputs, and this signal is interpretable, robust, and complements existing detectors"
+  key_results: "Outperforms zero-shot detectors by up to 33.2%; improves existing detectors by up to 18.7% as auxiliary signal; robust to paraphrasing attacks"
+  limitations: ["statistical features may not capture all AI text patterns", "performance on very short texts unclear"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

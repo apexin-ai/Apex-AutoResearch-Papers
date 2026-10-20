@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analyze_deberta_pilot_pythia_temp09_20260519T173138_result.json",
     "occurrence": 1,
-    "bytes": 3256,
-    "sha256": "70676814832baad1f858d87e9a19fa10ff85e1da9c0c4759ae701aa52626c924"
+    "bytes": 3255,
+    "sha256": "32bd5b49c3ae665e30fbaffb0d93af8eef28e0fdb5cb3872f151fe57a7d9556a"
   },
   "statistics": {
     "messages": 1,

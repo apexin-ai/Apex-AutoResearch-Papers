@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_olmo_d4d5_002_status_20260515T112537_result.json",
     "occurrence": 1,
-    "bytes": 1064,
-    "sha256": "60bbd52d08fb3871dc053980cf3f2b7488d7ea54c7e0f7996aa2e0fd56fb1dbc"
+    "bytes": 1063,
+    "sha256": "d42834cdbc32d2a3e96fc13f1a47ad561803cd856582fcf54bdf107ca662dddc"
   },
   "statistics": {
     "messages": 1,

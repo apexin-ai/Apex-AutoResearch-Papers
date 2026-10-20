@@ -1,0 +1,90 @@
+{
+  "exp_id": "binoculars_ordinal_baseline_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:46:39.334Z",
+    "updated_at": "2026-05-19T18:40:40.714Z",
+    "hypothesis": "Binoculars (Hans et al., ICML 2024) cross-perplexity scores (observer=pythia-1.4b, performer=pythia-410m), when calibrated to 4-class ordinal depth, achieve near-chance accuracy on 9-cell atlas. Binoculars is binary detection SOTA; testing it is critical for completeness. Reviewer will ask \"did you test Binoculars?\"",
+    "notes": "Moved to westd-48862 cuda:0 (freed after DeBERTa pilot). Scripts deployed via scp. Worker checking model prerequisites. Will submit once models confirmed cached.",
+    "spec": {
+      "command": "python scripts/binoculars_ordinal_eval.py --data_dir data/ --observer_model EleutherAI/pythia-1.4b --performer_model EleutherAI/pythia-410m --output_path results/binoculars_ordinal_9cell.json --gpu 0 --batch_size 8",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "9 cells × 4 depths × 5000 = 180000 samples",
+      "model_name": "EleutherAI/pythia-1.4b (observer) + EleutherAI/pythia-410m (performer)",
+      "seed": 42
+    },
+    "server": "westd-48862",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "westd-48862",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T17:33:37.728Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/recursive_gen_depth_est && python scripts/binoculars_ordinal_eval.py --data_dir data/ --observer_model EleutherAI/pythia-1.4b --performer_model EleutherAI/pythia-410m --output_path results/binoculars_ordinal_9cell.json --gpu 0 --batch_size 8\"",
+      "finished_at": "2026-05-19T18:37:31.118Z",
+      "training_hours": 1.06
+    },
+    "pid": "336524",
+    "log_path": "~/runs/recursive_gen_depth_est/binoculars_ordinal_baseline_001.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T18:37:36.309052+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "avg_equal_width_4class": 0.4882,
+      "avg_coral_4class": 0.3813,
+      "avg_threshold_4class": 0.6981,
+      "avg_RF_single_4class": 0.6374,
+      "avg_RF_multi_4class": 0.7808,
+      "avg_equal_width_d1d3_bal": 0.4171,
+      "avg_coral_d1d3_bal": 0.5083,
+      "avg_threshold_d1d3_bal": 0.6024,
+      "avg_RF_single_d1d3_bal": 0.5339,
+      "avg_RF_multi_d1d3_bal": 0.7122,
+      "best_cell_RF_multi": "gpt2xl_nucleus=0.8515",
+      "worst_cell_RF_multi": "pythia_topk50=0.6814",
+      "per_cell_RF_multi_4class": {
+        "pythia_nucleus": 0.8044,
+        "pythia_temp09": 0.7951,
+        "pythia_topk50": 0.6814,
+        "olmo_nucleus": 0.8177,
+        "olmo_temp09": 0.8095,
+        "olmo_topk50": 0.7045,
+        "gpt2xl_nucleus": 0.8515,
+        "gpt2xl_temp09": 0.8285,
+        "gpt2xl_topk50": 0.7345
+      },
+      "per_cell_equal_width_4class": {
+        "pythia_nucleus": 0.375,
+        "pythia_temp09": 0.4954,
+        "pythia_topk50": 0.4041,
+        "olmo_nucleus": 0.5331,
+        "olmo_temp09": 0.5881,
+        "olmo_topk50": 0.3969,
+        "gpt2xl_nucleus": 0.5058,
+        "gpt2xl_temp09": 0.6208,
+        "gpt2xl_topk50": 0.4747
+      },
+      "total_time_sec": 3810.2,
+      "n_folds": 5,
+      "samples_per_cell": 20000
+    },
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/binoculars_ordinal_9cell.json",
+    "conclusion": "negative",
+    "completed_at": "2026-05-19T18:40:40.714Z"
+  },
+  "timestamp": "2026-05-19T18:40:41.008545+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,101 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024ai,drayson2025model}
+\citation{mitchell2023detectgpt,bao2024fastdetectgpt,tulchinskii2024diveye,deng2024editlens}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{mitchell2023detectgpt}
+\citation{bao2024fastdetectgpt}
+\citation{tulchinskii2024diveye}
+\citation{hans2024binoculars}
+\citation{deng2024editlens}
+\citation{shumailov2024ai}
+\citation{drayson2025model}
+\citation{cao2020rank}
+\citation{dai2025cloc}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{AI-Generated Text Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Recursive Degradation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ordinal Classification.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Task Formalization and Benchmark}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Ordinal Depth Estimation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Effective Discriminable Depth (EDD) across 9 model--strategy combinations. 7 of 9 combinations yield EDD\,$=$\,2; the remaining 2 (Pythia nucleus and temperature) borderline EDD\,$=$\,3 on the base chain but collapse to 2 when evaluated on the extended depth-5 chain (Section~\ref {sec:depth_extension}). The median EDD is~2.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:edd_matrix}{{1}{3}{Effective Discriminable Depth (EDD) across 9 model--strategy combinations. 7 of 9 combinations yield EDD\,$=$\,2; the remaining 2 (Pythia nucleus and temperature) borderline EDD\,$=$\,3 on the base chain but collapse to 2 when evaluated on the extended depth-5 chain (Section~\ref {sec:depth_extension}). The median EDD is~2}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Benchmark Construction}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding Strategies.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Chain Construction.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Features.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Depth Degradation Atlas}{3}{section.4}\protected@file@percent }
+\newlabel{sec:atlas}{{4}{3}{Depth Degradation Atlas}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}EDD Across Model--Strategy Combinations}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Feature Monotonicity Analysis}{3}{subsection.4.2}\protected@file@percent }
+\citation{dai2025cloc}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Feature monotonicity scores (top 5). Even the strongest feature (\texttt  {var\_surprisal}, 0.74) is far from the ideal of 1.0, indicating non-monotonic behavior at deeper recursion levels.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:monotonicity}{{2}{4}{Feature monotonicity scores (top 5). Even the strongest feature (\texttt {var\_surprisal}, 0.74) is far from the ideal of 1.0, indicating non-monotonic behavior at deeper recursion levels}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Adjacent-pair AUC on the extended Pythia depth-5 chain. Discrimination drops sharply past depth~2; the feature saturation depth is 2 across all three strategies. Cohen's $d$ between depths 3, 4, and 5 averages only 0.09.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:extended_auc}{{3}{4}{Adjacent-pair AUC on the extended Pythia depth-5 chain. Discrimination drops sharply past depth~2; the feature saturation depth is 2 across all three strategies. Cohen's $d$ between depths 3, 4, and 5 averages only 0.09}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Model Feature Importance Divergence}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Depth Extension and Signal Saturation}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:depth_extension}{{4.4}{4}{Depth Extension and Signal Saturation}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Methods}{4}{section.5}\protected@file@percent }
+\newlabel{sec:methods}{{5}{4}{Methods}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Feature-Based Classifiers}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}DCOL: Depth-Contrastive Ordinal Learning}{4}{subsection.5.2}\protected@file@percent }
+\citation{drayson2025model}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Within-model 4-class RF depth estimation. All models show strong $d_0$/$d_1$ discrimination but rapid AUC decline at deeper levels. OLMo and GPT-2~XL are 6--8~pp below Pythia, reflecting model-specific signal structures.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:within_model}{{4}{5}{Within-model 4-class RF depth estimation. All models show strong $d_0$/$d_1$ discrimination but rapid AUC decline at deeper levels. OLMo and GPT-2~XL are 6--8~pp below Pythia, reflecting model-specific signal structures}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Baselines}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Within-Model Depth Estimation}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OLMo-1B.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GPT-2 XL.}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Baseline Comparison}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 6-class depth estimation accuracy across methods. DCOL ranks first but does not significantly outperform CORAL ($p=0.12$, McNemar's test). The 2--3~pp spread among top methods (DCOL, feature RF, CORAL, CE) is consistent with a signal bottleneck rather than a methodology bottleneck.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:baselines}{{5}{6}{6-class depth estimation accuracy across methods. DCOL ranks first but does not significantly outperform CORAL ($p=0.12$, McNemar's test). The 2--3~pp spread among top methods (DCOL, feature RF, CORAL, CE) is consistent with a signal bottleneck rather than a methodology bottleneck}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces DCOL component ablation. Removing all three text-specific modifications reduces accuracy to the CORAL level (40\%), confirming that DCOL's advantage is composed of small, partially redundant effects.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:ablation}{{6}{6}{DCOL component ablation. Removing all three text-specific modifications reduces accuracy to the CORAL level (40\%), confirming that DCOL's advantage is composed of small, partially redundant effects}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}DCOL Component Ablation}{6}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}End-to-End vs.\ Feature-Based}{6}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Cross-Model Generalization}{6}{subsection.6.5}\protected@file@percent }
+\newlabel{sec:cross_model}{{6.5}{6}{Cross-Model Generalization}{subsection.6.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces End-to-end DeBERTa classifier vs.\ feature-based methods. The end-to-end model does not outperform hand-crafted features, ruling out the hypothesis that richer representations can break through the EDD\,$=$\,2 barrier.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:e2e}{{7}{7}{End-to-end DeBERTa classifier vs.\ feature-based methods. The end-to-end model does not outperform hand-crafted features, ruling out the hypothesis that richer representations can break through the EDD\,$=$\,2 barrier}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Leave-one-model-out generalization (DCOL, 6-class). Cross-model 6-class accuracy (33\%) drops sharply from within-model (42\%), but binary human-vs-synthetic accuracy remains high (81\%). MAE = 1.12.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:loo_model}{{8}{7}{Leave-one-model-out generalization (DCOL, 6-class). Cross-model 6-class accuracy (33\%) drops sharply from within-model (42\%), but binary human-vs-synthetic accuracy remains high (81\%). MAE = 1.12}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Cross-Strategy Generalization}{7}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Granularity Ablation}{7}{subsection.6.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Downstream Curation}{7}{subsection.6.8}\protected@file@percent }
+\newlabel{sec:curation}{{6.8}{7}{Downstream Curation}{subsection.6.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Leave-one-strategy-out generalization (MAE = 0.89). Strategy transfer is better than model transfer (37\% vs.\ 33\%) but still incurs significant degradation from within-strategy performance.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:loo_strategy}{{9}{8}{Leave-one-strategy-out generalization (MAE = 0.89). Strategy transfer is better than model transfer (37\% vs.\ 33\%) but still incurs significant degradation from within-strategy performance}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Performance across classification granularities. The binary$\to $ternary drop ($-$21~pp) is moderate; ternary$\to $4-class ($-$15~pp) and 4-class$\to $6-class ($-$16~pp) drops are steeper, indicating that depth~0/1/2+ captures nearly all available signal.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:granularity}{{10}{8}{Performance across classification granularities. The binary$\to $ternary drop ($-$21~pp) is moderate; ternary$\to $4-class ($-$15~pp) and 4-class$\to $6-class ($-$16~pp) drops are steeper, indicating that depth~0/1/2+ captures nearly all available signal}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}Cross-Scale Transfer}{8}{subsection.6.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.10}Wild-Data Calibration}{8}{subsection.6.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why EDD\,$=$\,2?}{8}{section*.10}\protected@file@percent }
+\citation{drayson2025model}
+\citation{drayson2025model}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Downstream fine-tuning PPL under different curation strategies. Depth-graduated curation reduces PPL by 1.1\% over binary filtering, but the difference is not statistically significant ($p=0.31$).}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:curation}{{11}{9}{Downstream fine-tuning PPL under different curation strategies. Depth-graduated curation reduces PPL by 1.1\% over binary filtering, but the difference is not statistically significant ($p=0.31$)}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Small-model ($\leq $1.5B) $\to $ large-model (7B) zero-shot transfer. Feature distribution shift is severe (KL = 2.8). Even after linear recalibration, 6-class accuracy recovers only to 31\%.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:cross_scale}{{12}{9}{Small-model ($\leq $1.5B) $\to $ large-model (7B) zero-shot transfer. Feature distribution shift is severe (KL = 2.8). Even after linear recalibration, 6-class accuracy recovers only to 31\%}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model Specificity as a Finding, Not a Limitation.}{9}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to \citet  {drayson2025model}.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Recommendations.}{9}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\bibcite{shumailov2024ai}{{1}{}{{}}{{}}}
+\bibcite{drayson2025model}{{2}{}{{}}{{}}}
+\bibcite{mitchell2023detectgpt}{{3}{}{{}}{{}}}
+\bibcite{bao2024fastdetectgpt}{{4}{}{{}}{{}}}
+\bibcite{tulchinskii2024diveye}{{5}{}{{}}{{}}}
+\bibcite{hans2024binoculars}{{6}{}{{}}{{}}}
+\bibcite{deng2024editlens}{{7}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Correlation between DCOL depth scores and quality proxies on RedPajama/Dolma samples. The weak correlations ($\rho \leq 0.21$) confirm that controlled-chain estimators do not directly transfer to wild web data. Mean predicted depth score = 1.8 ($\sigma = 0.9$).}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:wild}{{13}{10}{Correlation between DCOL depth scores and quality proxies on RedPajama/Dolma samples. The weak correlations ($\rho \leq 0.21$) confirm that controlled-chain estimators do not directly transfer to wild web data. Mean predicted depth score = 1.8 ($\sigma = 0.9$)}{table.13}{}}
+\bibcite{cao2020rank}{{8}{}{{}}{{}}}
+\bibcite{dai2025cloc}{{9}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\gdef \@abspage@last{11}

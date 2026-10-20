@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_feature-extraction-pythia_20260514T120845_result.json",
     "occurrence": 1,
-    "bytes": 962,
-    "sha256": "4f0bcd7cf7e55635a6c8e07b4762d3dfdb3afe6b26def2655085c0ac2ce929e2"
+    "bytes": 961,
+    "sha256": "5c1786421ae7361973651ff0a7762f103095663acefce2655b3eafcc27b8f3ab"
   },
   "statistics": {
     "messages": 1,

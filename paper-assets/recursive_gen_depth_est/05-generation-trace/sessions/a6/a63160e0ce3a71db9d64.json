@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_theory_critical_fixes_v2_20260517T193930_result.json",
     "occurrence": 1,
-    "bytes": 2315,
-    "sha256": "5a8d0faf6c1f73e606dab12fcdab62dfa53f8428831bf79e51612ababb2985cf"
+    "bytes": 2314,
+    "sha256": "5633a010471a37324945ca797c4913ddf0aa6a3a1be6738f9f1ee529803144a1"
   },
   "statistics": {
     "messages": 1,

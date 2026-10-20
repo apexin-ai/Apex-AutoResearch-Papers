@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r3n5-cross-strategy-curation_20260516T013349_result.json",
     "occurrence": 1,
-    "bytes": 738,
-    "sha256": "1fdb9cd9cde3a7f66b44a5bd21526c5581dfb5462c45b6f878beca0b30820310"
+    "bytes": 737,
+    "sha256": "b19080916fbafbe8adaef5990f888943831705405f2a505bce5727da3a555e33"
   },
   "statistics": {
     "messages": 1,

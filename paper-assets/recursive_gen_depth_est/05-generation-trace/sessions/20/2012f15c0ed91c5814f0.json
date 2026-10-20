@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_sync_and_dryrun_baselines_large_20260514T195519_result.json",
     "occurrence": 1,
-    "bytes": 674,
-    "sha256": "a11240a18d416bdd8318637f6002c56da59f7e84a0b51c7eddc247d50cbfd566"
+    "bytes": 673,
+    "sha256": "b1cb9b62523ffa5858d2e0166d9c2b7f023a9d04f44f433c23120f6c83aa5dbb"
   },
   "statistics": {
     "messages": 1,

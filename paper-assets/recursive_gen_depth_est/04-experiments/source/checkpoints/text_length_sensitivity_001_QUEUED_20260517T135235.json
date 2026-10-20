@@ -1,0 +1,15 @@
+{
+  "exp_id": "text_length_sensitivity_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:52:19.690Z",
+    "updated_at": "2026-05-17T13:52:35.226Z",
+    "hypothesis": "Depth estimation accuracy degrades gracefully with shorter text truncation because the key statistical features (surprisal moments, entropy) converge within the first 100-200 tokens, making the method practical for short-text scenarios."
+  },
+  "timestamp": "2026-05-17T13:52:35.451439+00:00",
+  "trigger": "update_registry"
+}

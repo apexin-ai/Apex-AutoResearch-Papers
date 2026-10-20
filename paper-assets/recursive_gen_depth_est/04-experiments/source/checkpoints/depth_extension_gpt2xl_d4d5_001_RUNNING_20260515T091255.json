@@ -1,0 +1,40 @@
+{
+  "exp_id": "depth_extension_gpt2xl_d4d5_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:32:10.348Z",
+    "updated_at": "2026-05-15T09:12:54.410Z",
+    "hypothesis": "GPT-2 XL depth extension: 从 d3 checkpoint 继续递归生成 d4/d5 各 5000 samples，binary pairwise RF 验证 EDD。GPT-2 XL 是 3×3 矩阵中信号最强的模型 (85.4%)，若 EDD≥4 则与 Pythia 结果 (EDD=4) 形成跨模型 EDD 一致性证据。",
+    "parent": "cross_model_gpt2xl_001",
+    "notes": "**代码准备完成 (2026-05-15)**\n\n## 文件路径\n- **GPT-2 XL d3 checkpoint**: `checkpoints/gpt2xl/lora_depth_2/` (用于生成 d3；尚无 lora_depth_3，需先 finetune d3 数据)\n- **d0-d3 数据**: `data/gpt2xl/depth_{0,1,2,3}.jsonl` (各 5000 samples)\n- **d0-d3 特征**: `data/gpt2xl/features.jsonl` (20000 samples, evaluator=GPT-2 XL)\n- **Pipeline 脚本**: `scripts/run_depth_extension_gpt2xl.sh`\n- **模型路径**: `/root/autodl-tmp/models/gpt2-xl`\n- **LoRA config**: r=16, alpha=32, dropout=0.05, target=c_attn,c_proj\n\n## Pipeline 步骤\n1. finetune d3 → lora_depth_3 (如已存在则跳过)\n2. generate d4 (5000 samples, nucleus p=0.95, seed=42)\n3. finetune d4 → lora_depth_4\n4. generate d5 (5000 samples)\n5. extract_features d0-d5 (evaluator=GPT-2 XL, 6-class)\n6. train_classifier (6-class RF/LR)\n7. binary_pairwise_eval (d1v2, d2v3, d3v4, d4v5)\n\n## 预估运行时间\n- finetune × 2: ~6 min\n- generate × 2: ~116 min (58 min/轮)\n- feature extraction: ~20 min\n- eval: ~2 min\n- **总计: ~2.5 小时**\n\n## Dry-run 验证结果\n- 4 个脚本 --help 全部正常\n- binary_pairwise_eval.py 已修改支持 --features_path/--output_dir\n- 在 d0-d3 特征上测试通过: d1v2 AUC=0.9574, d2v3 AUC=0.887 (binary RF)\n- bash -n 语法检查通过\n\n## 基线参考 (GPT-2 XL binary pairwise d0-d3)\n- d1v2: 0.9574 [0.9499, 0.9648]\n- d2v3: 0.8870 [0.8724, 0.9007]\n- 高于 Pythia d1v2=0.925, d2v3=0.823，确认 GPT-2 XL 信号最强\n\n## 风险\n- GPT-2 XL 1.5B 比 Pythia 1.4B 稍大，生成速度接近但内存略高，单卡 RTX 6000 Pro (48GB) 足够\n- d4/d5 生成占用 GPU 0 约 2 小时，需确认不与其他实验冲突",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T06:45:51.627Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_depth_extension_gpt2xl.sh 2>&1 | tee logs/depth_extension_gpt2xl_d4d5.log\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "194929",
+      "log_path": "~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log",
+      "submitted_at": "2026-05-15T09:12:53.290Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "194929",
+    "log_path": "~/runs/recursive_gen_depth_est/depth_extension_gpt2xl_d4d5_001.log"
+  },
+  "timestamp": "2026-05-15T09:12:55.294147+00:00",
+  "trigger": "update_registry"
+}

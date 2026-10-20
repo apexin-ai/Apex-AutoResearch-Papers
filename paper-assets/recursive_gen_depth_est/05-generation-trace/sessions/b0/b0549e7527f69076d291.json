@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_global_data_reconciliation_20260515T050156_result.json",
     "occurrence": 1,
-    "bytes": 565,
-    "sha256": "a7092b0dea7d45e242516a1c905c0a8756a6cde46d8f2351e2e4b6ab6cd8f551"
+    "bytes": 564,
+    "sha256": "4f2ef4b11b2f871017cffbb3c3cd4872166d0364458116fc024be0e62b468f9c"
   },
   "statistics": {
     "messages": 1,

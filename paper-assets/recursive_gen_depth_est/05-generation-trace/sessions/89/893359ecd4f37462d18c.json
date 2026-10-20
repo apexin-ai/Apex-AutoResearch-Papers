@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_dcol_readiness_check_20260514T193655_result.json",
     "occurrence": 1,
-    "bytes": 1926,
-    "sha256": "917ee13304c240000f5eb1337d75041b496aed9fd66cbe4fec0e41e5cc3d6b76"
+    "bytes": 1925,
+    "sha256": "48b699cd6fa82440f4f239bf5fc88f397a28accb79c228616c493e9715aea18b"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_d1d3_inconsistency_audit_v2_20260518T162720_result.json",
     "occurrence": 1,
-    "bytes": 4770,
-    "sha256": "5101a3d76d0694660bb3d343556947ea3e37e370852ee28452ec3ad7efd4f64c"
+    "bytes": 4769,
+    "sha256": "58f30869844eb04e70854a85ed6c4501af30392c1020dbbccaaa7f0c38b613ae"
   },
   "statistics": {
     "messages": 1,

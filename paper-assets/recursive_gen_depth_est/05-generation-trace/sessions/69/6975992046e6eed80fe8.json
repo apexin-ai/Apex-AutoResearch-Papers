@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_shap_and_lr_zscore_20260515T170353_result.json",
     "occurrence": 1,
-    "bytes": 1496,
-    "sha256": "e8ed905eec61bb78833086af4c0d4343891398e9a136ca3145d69021bdda7ff4"
+    "bytes": 1495,
+    "sha256": "ba44bdd7926dad641d9ebfa4cc0078606e0a1c6cb17addf9825e67332f760350"
   },
   "statistics": {
     "messages": 1,

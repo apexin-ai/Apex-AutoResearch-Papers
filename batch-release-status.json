@@ -922,6 +922,47 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
+    },
+    "recursive_gen_depth_est/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 235918397,
+        "etag": "\"65f40fee7196bbdc2ddc71de8cb72a13-29\"",
+        "modified": "2026-05-31T17:33:40+00:00"
+      },
+      "archive_sha256": "46ff9255389bd71b05a36880fa4485856313b10a42d3f491c5d4bef75902d99e",
+      "projects": [
+        "distill_kv_rag_cache",
+        "error_type_pref_optim",
+        "recursive_gen_depth_est"
+      ],
+      "counts": [
+        {
+          "project": "distill_kv_rag_cache",
+          "title": "distill kv rag cache",
+          "paper_pdf": null,
+          "code_count": 48,
+          "data_count": 13,
+          "trace_count": 65
+        },
+        {
+          "project": "error_type_pref_optim",
+          "title": "error type pref optim",
+          "paper_pdf": null,
+          "code_count": 12,
+          "data_count": 1,
+          "trace_count": 11
+        },
+        {
+          "project": "recursive_gen_depth_est",
+          "title": "How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints",
+          "paper_pdf": "paper.pdf",
+          "code_count": 395,
+          "data_count": 1066,
+          "trace_count": 1779
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
     }
   }
 }

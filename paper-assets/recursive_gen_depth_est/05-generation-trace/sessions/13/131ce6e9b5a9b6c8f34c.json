@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_add_sentinel_to_scripts_20260514T182350_result.json",
     "occurrence": 1,
-    "bytes": 889,
-    "sha256": "b6dd2ebf0c92f281854aeaaeb3055f70264ec43969cf578253c12e70f59c7983"
+    "bytes": 888,
+    "sha256": "247274b88cdc0029aad4c6e7eacc453c45d10447308604551e351ecc49d31037"
   },
   "statistics": {
     "messages": 1,

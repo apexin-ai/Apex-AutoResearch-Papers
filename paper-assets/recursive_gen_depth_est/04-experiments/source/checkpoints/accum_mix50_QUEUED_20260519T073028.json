@@ -1,0 +1,28 @@
+{
+  "exp_id": "accum_mix50",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:28:23.955Z",
+    "updated_at": "2026-05-19T07:30:28.075Z",
+    "spec": {
+      "command": "cd /root/autodl-tmp/recursive_gen_depth_est && python3 scripts/accumulation_experiment.py --mix_ratio 0.5 --seed 42 --output_dir results/accumulation/mix50/",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "108519",
+      "log_path": "~/runs/recursive_gen_depth_est/accum_mix50.log",
+      "submitted_at": "2026-05-19T07:28:23.589Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Accumulation scenario (50% human + 50% synthetic per depth) will degrade RF 4-class accuracy below full-replacement (84.2%), confirming that full-replacement results are an upper bound on feature separability. The degradation magnitude quantifies how much human-text mixing attenuates the depth signal."
+  },
+  "timestamp": "2026-05-19T07:30:28.358612+00:00",
+  "trigger": "update_registry"
+}

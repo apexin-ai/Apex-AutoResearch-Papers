@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r3n4-scope-claims_20260516T011030_result.json",
     "occurrence": 1,
-    "bytes": 1664,
-    "sha256": "eafeb0293c307790e53410f14de6b8be6feaab49f0de75c95375d1612ced34bb"
+    "bytes": 1663,
+    "sha256": "f1d386d548c6c4442b6bfb1e278f26fc7eee38f6d736d012a41b65de8085c42e"
   },
   "statistics": {
     "messages": 1,

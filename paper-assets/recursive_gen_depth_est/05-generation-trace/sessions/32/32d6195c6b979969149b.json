@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_feature_importance_stability_20260514T223439_result.json",
     "occurrence": 1,
-    "bytes": 918,
-    "sha256": "c0cb7ca95d7ffd2d124209b9cfd9db9a5ac923ee4ce61e64f026250466e82695"
+    "bytes": 917,
+    "sha256": "8f313dd6ff1185cb9fd41dc076add06073f00a30391ce33c37c32cd8fc222427"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,31 @@
+% CORAL vs RF Per-Cell Breakdown — Supplementary Table
+% Data source: coral_ordinal_9cell_001
+
+\begin{table*}[t]
+\centering
+\caption{Per-cell comparison of Random Forest and CORAL ordinal regression on the 9-cell atlas. CORAL consistently achieves lower MAE and higher QWK (7/9 cells each), while RF maintains a marginal accuracy advantage (0.6pp average). $\Delta$ columns show CORAL minus RF; positive values favor CORAL.}
+\label{tab:coral_percell}
+\small
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+& \multicolumn{2}{c}{\textbf{4-Class Acc (\%)}} & \multicolumn{2}{c}{\textbf{MAE}} & \multicolumn{2}{c}{\textbf{QWK}} & \multicolumn{2}{c}{\textbf{OC (\%)}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+\textbf{Cell} & RF & $\Delta$ & RF & $\Delta$ & RF & $\Delta$ & RF & $\Delta$ \\
+\midrule
+Pythia nucleus & 78.6 & $-$0.6 & 0.235 & $\mathbf{-0.007}$ & 0.891 & $\mathbf{+.010}$ & 97.2 & $\mathbf{+0.6}$ \\
+Pythia temp & 76.7 & $-$0.3 & 0.259 & $\mathbf{-0.015}$ & 0.878 & $\mathbf{+.016}$ & 96.9 & $\mathbf{+0.9}$ \\
+Pythia top-$k$ & 68.9 & $-$0.5 & 0.357 & $\mathbf{-0.024}$ & 0.822 & $\mathbf{+.027}$ & 94.7 & $\mathbf{+1.4}$ \\
+OLMo nucleus & 78.9 & $\mathbf{+0.5}$ & 0.229 & $\mathbf{-0.014}$ & 0.894 & $\mathbf{+.013}$ & 97.5 & $\mathbf{+0.7}$ \\
+OLMo temp & 82.2 & $-$0.1 & 0.183 & $\mathbf{-0.001}$ & 0.923 & $\mathbf{+.003}$ & 98.4 & $\mathbf{+0.3}$ \\
+OLMo top-$k$ & 74.6 & $\mathbf{+0.2}$ & 0.272 & $\mathbf{-0.008}$ & 0.876 & $\mathbf{+.011}$ & 96.7 & $\mathbf{+0.6}$ \\
+GPT-2 XL nucleus & 84.2 & $-$0.2 & 0.168 & $\mathbf{-0.002}$ & 0.924 & $\mathbf{+.004}$ & 98.6 & $\mathbf{+0.2}$ \\
+GPT-2 XL temp & 85.9 & $-$1.0 & 0.144 & $+$0.009 & 0.940 & $-$.003 & 99.1 & $-$0.1 \\
+GPT-2 XL top-$k$$^*$ & 75.8 & $-$3.9 & 0.258 & $+$0.041 & 0.884 & $-$.009 & 97.2 & $+$0.3 \\
+\midrule
+\textbf{Average} & 78.4 & $-$0.6 & 0.234 & $\mathbf{-0.002}$ & 0.892 & $\mathbf{+.008}$ & 97.4 & $\mathbf{+0.5}$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.3em}
+\footnotesize{$^*$GPT-2 XL top-$k$ exhibits feature overflow (extreme perplexity values exceeding float32 range), causing high training variance for CORAL (fold std = 0.042 vs typical 0.003--0.007). Excluding this cell, the accuracy gap narrows to 0.2pp.}
+\end{table*}

@@ -1,0 +1,231 @@
+paper_key: "shi2025_closer_look"
+title: "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective"
+venue: "NeurIPS 2025 (Spotlight)"
+full_text_available: true
+
+research:
+  baselines:
+    - "Vanilla replace paradigm (train on synthetic data only)"
+    - "Vanilla accumulate-subsample paradigm (uniform subsampling from real + all synthetic)"
+    - "Unconditional DDPM generation"
+    - "Classifier-Free Guidance (CFG, scale=2)"
+  metrics:
+    - {name: "Generalization Score (GS)", direction: "higher_better", definition: "Average L2 distance in DINOv2 feature space between each generated image and its nearest training neighbor"}
+    - {name: "FID (Frechet Inception Distance)", direction: "lower_better", definition: "InceptionV3-based distribution distance"}
+    - {name: "Estimated Entropy (Kozachenko-Leonenko)", direction: "higher_better", definition: "KL entropy estimator with gamma=1 on DINOv2 features"}
+  datasets:
+    - {name: "CIFAR-10", size: "32,768 images (32x32)", note: "Also used nested subsets: 1024/2048/4096/8192/16384/32768"}
+    - {name: "FFHQ", size: "8,192 images (downsampled to 32x32)"}
+    - {name: "MNIST", size: "12,000 images"}
+  ablation_dimensions:
+    - "Dataset size (1024 to 32768 in powers of 2)"
+    - "Training paradigm (replace vs accumulate-subsample)"
+    - "Selection method (Greedy Selection vs Threshold Decay Filter vs vanilla)"
+    - "Number of generated candidates (N vs 2N before selection)"
+    - "Threshold decay rate alpha (sensitivity analysis)"
+    - "Classifier-Free Guidance scale"
+    - "Entropy vs variance as correlation target"
+  training_recipe:
+    model: "UNet-based DDPM (~16-19M parameters)"
+    optimizer: "Adam"
+    lr: "1e-4"
+    weight_decay: "1e-6"
+    batch_size: 128
+    precision: "FP16 mixed"
+    diffusion_steps: 1000
+    epochs_cifar: 500
+    epochs_ffhq: 1000
+    hardware: "Single NVIDIA A100 GPU"
+    feature_extractor: "DINOv2 (for distance/entropy computation)"
+    unet_channels_cifar_ffhq: "[48, 48, 96, 96, 144, 144] with 6 down/up blocks"
+    unet_channels_mnist: "[64, 128, 256, 512] with 4 down/up blocks"
+  method_family: "Entropy-based data selection for mitigating model collapse in iterative generative training"
+
+positioning:
+  core_claim: "Model collapse in diffusion models manifests as a generalization-to-memorization transition driven by training data entropy shrinkage, not just variance collapse — and entropy-based data selection can effectively delay this transition."
+  key_results: >
+    Pearson r=0.91 between training data entropy and log(generalization score), dataset-size-independent.
+    FFHQ accumulate-subsample: vanilla FID=75.7 vs Greedy Selection FID=44.7 at iteration 8.
+    MNIST CFG: vanilla CFG FID=66.2 vs CFG+filtering FID=22.4 at iteration 8.
+    Greedy Selection preferentially retains real data (65% real by iteration 8 vs 12.5% uniform baseline).
+  limitations:
+    - "No rigorous theoretical explanation for why entropy collapses — only empirical demonstration"
+    - "Limited to image diffusion models; no validation on language models or discrete diffusion"
+    - "Greedy Selection is computationally expensive (quadratic in dataset size)"
+    - "Only tested on 32x32 resolution images with relatively small models (~16-19M params)"
+    - "No formal analysis of how many iterations can be sustained before memorization"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with the practical inevitability of synthetic data contamination: as diffusion models flood
+    the internet with generated content, future training sets will inevitably contain synthetic data,
+    creating a self-consuming loop. This is a real-world crisis framing, not hypothetical.
+  tension: >
+    Existing perspectives on model collapse (variance shrinkage, distribution shift) are shown to be
+    theoretically valid but practically insufficient — variance collapse requires "an extremely large
+    number of iterations" to manifest, making it "rarely a practical concern." This creates a gap:
+    the community has mathematical frameworks that don't explain what practitioners actually observe.
+  key_insight: >
+    Revealed in paragraph 3 of the intro: the transition from generalization to memorization is the
+    true practical manifestation of collapse. Models don't just get worse — they specifically lose the
+    ability to generate novel content and start copying training data. The entropy of the training set
+    (not the model) is the key diagnostic signal, with r=0.91 correlation to generalizability.
+  argument_chain: >
+    Real-world synthetic data contamination is inevitable →
+    Existing collapse perspectives miss practical manifestations →
+    We observe a generalization-to-memorization transition (Finding I) →
+    Training data entropy shrinks across iterations (Finding II) →
+    Entropy strongly correlates with generalization capability (Finding III, r=0.91) →
+    Entropy-based data selection preserves diversity and delays collapse →
+    Validated across 3 datasets, 2 paradigms, with CFG extension
+  contribution_framing: >
+    Three numbered contributions, each one sentence. Pattern: identify phenomenon → investigate
+    driving factor → propose and validate mitigation. Clean problem-insight-solution structure.
+    Contributions are framed as empirical discoveries rather than theoretical claims, matching the
+    paper's predominantly experimental nature.
+  intro_structure: >
+    3 paragraphs + "Our Contributions" subsection.
+    P1: Problem context — synthetic data proliferation and the self-consuming loop threat.
+    P2: Critique of existing perspectives — variance collapse and distribution shift are insufficient.
+    P3: Their perspective — generalization-to-memorization transition, entropy as diagnostic, proposed mitigation.
+    Contributions: 3 numbered items following identify-investigate-propose pattern.
+  notable_technique: >
+    The paper uses a "practical insufficiency" argument to distinguish itself from prior theoretical
+    work. Instead of claiming predecessors are wrong, it argues they are right but miss what matters
+    in practice. This is a diplomatically effective positioning that avoids direct conflict while
+    establishing clear novelty. The visual pairing of generated images with their nearest training
+    neighbors (Figure 2 left) makes the abstract concept of "memorization" viscerally obvious.
+
+figures:
+  figure_count: 9
+  figure1:
+    type: "method_overview"
+    description: >
+      Three-row pipeline diagram. Top row (green background): "Collapse Iteration" showing the
+      replace paradigm where D1 → Training → M1 → Sampling → D2 → Training → M2 → ... → Dn.
+      Middle row (blue background): "Mitigated Iteration" showing the accumulate-subsample paradigm
+      with a pie chart merging real data and previously generated data, plus a funnel icon for
+      "Selection" before constructing D2. Bottom right (orange background): "Evolution" panel showing
+      pairs of generated images (top) and their nearest training counterparts (bottom) at Iterations
+      1, 3, and n, with a horizontal arrow from "Generalization" to "Memorization" and "Degradation"
+      labels between iteration pairs.
+    narrative_role: >
+      Serves as the roadmap for the entire paper: defines the two paradigms (collapse vs mitigated),
+      introduces the selection intervention, and previews the core finding (generalization-to-memorization
+      transition) — all in one figure. The reader immediately grasps the problem, the setup, and the
+      paper's contribution.
+    design_elements:
+      - "Color-coded rows: green=collapse, blue=mitigated, orange=evolution"
+      - "Pipeline arrows connecting dataset→model→sampling→dataset"
+      - "Pie chart for data composition (real vs synthetic)"
+      - "Funnel icon for selection step"
+      - "Real face image pairs showing degradation progression"
+      - "Horizontal arrow from Generalization to Memorization"
+    visual_style: >
+      Clean horizontal flow with three visually distinct rows. Pastel background colors (green,
+      blue, orange) separate conceptual layers. Neural network icons for models, cylindrical icons
+      for datasets. The bottom-right evolution panel uses real face images to ground the abstract
+      pipeline in concrete visual evidence. Legend in bottom-left defines notation.
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "qualitative_comparison + line_plot"
+      what_compared: "Generated images vs their nearest training neighbors across iterations 1, 3, 8; GS decay curves for 6 dataset sizes"
+      how_gain_highlighted: "Left panel shows progressive visual convergence (memorization). Right panel uses color-coded curves with labeled 'Generalization Regime' and 'Memorization Regime' regions."
+      design_note: >
+        Powerful dual-panel design: qualitative evidence (left) paired with quantitative curves (right).
+        The image grid makes memorization viscerally obvious — generated faces become identical to
+        training neighbors. The right panel uses a horizontal dashed line to separate regimes and
+        annotated text labels for the two regions. Six dataset sizes in distinct colors show the
+        dataset-size effect on collapse rate. Log-scale y-axis on GS.
+    - figure_id: "Figure 4a"
+      viz_type: "scatter"
+      what_compared: "Estimated entropy (x-axis) vs generalization score (y-axis, log scale) across 6 dataset sizes"
+      how_gain_highlighted: "Red dashed regression line through all points from all dataset sizes, demonstrating r=0.91 universal correlation. Points from different sizes align on the same line."
+      design_note: >
+        The key evidence figure. Log-scale y-axis linearizes the relationship. Color coding by dataset
+        size (same palette as Figure 2) shows that different sizes fall on the same line — establishing
+        a dataset-size-independent law. Clean white background, no clutter. Contrast with Figure 4b
+        (variance) where the correlation is visibly weaker.
+    - figure_id: "Figure 5"
+      viz_type: "multi_panel_line_plot"
+      what_compared: "Generalization Score over iterations for vanilla vs Greedy Selection vs Threshold Decay Filter, across datasets and paradigms"
+      how_gain_highlighted: "Three lines per panel; selection methods consistently above vanilla, showing sustained higher GS"
+      design_note: "6 subfigures in a grid (datasets x paradigms). Independent y-axes per subfigure to show relative improvement. Clean legend with three line styles."
+    - figure_id: "Figure 6"
+      viz_type: "multi_panel_line_plot"
+      what_compared: "FID over iterations for vanilla vs Greedy Selection vs Threshold Decay Filter"
+      how_gain_highlighted: "Selection methods consistently lower FID curves than vanilla across all panels"
+      design_note: "Same grid layout as Figure 5 for parallel reading. FID improvement most dramatic on accumulate-subsample paradigm."
+    - figure_id: "Figure 8"
+      viz_type: "stacked_bar_chart_with_overlay_line"
+      what_compared: "Proportion of selected images from each iteration source; blue bars = real data proportion vs red 1/n baseline line"
+      how_gain_highlighted: "Blue bars (real data fraction) dramatically exceed the red 1/n line, especially in later iterations — the method naturally discovers that real data is more diverse"
+      design_note: >
+        Insightful visualization of an emergent behavior: the selection algorithm was not told to prefer
+        real data, but the entropy-maximizing objective naturally selects more real images as synthetic
+        data clusters tighten. The stacked bars show composition while the overlay line shows the
+        null expectation. Multiple panels for different datasets/methods.
+    - figure_id: "Figure 9"
+      viz_type: "qualitative_comparison + line_plot"
+      what_compared: "MNIST generation: unconditional (FID=74.4) vs CFG (FID=66.2) vs CFG+filtering (FID=22.4)"
+      how_gain_highlighted: "Side-by-side digit grids show dramatic quality improvement; entropy plot shows filtering maintains diversity that CFG alone destroys"
+      design_note: "Extension experiment demonstrating generality beyond unconditional setting. The 3x improvement in FID (66.2→22.4) is a compelling headline number."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot + 2D_scatter_projection"
+      dimensions_varied: ["iteration number", "dataset entropy"]
+      design_note: >
+        Three-panel figure. Left: entropy decay curves over iterations for different dataset sizes.
+        Middle and Right: 2D SVD projections of data distribution at iteration 1 (spread) vs
+        iteration 21 (collapsed into tight clusters). The SVD projections make entropy collapse
+        visually intuitive — you can see the distribution concentrating.
+    - figure_id: "Figure 7"
+      viz_type: "multi_panel_line_plot"
+      dimensions_varied: ["selection method", "training paradigm", "dataset"]
+      design_note: "Shows that selection methods maintain higher entropy across iterations. Same grid layout as Figures 5-6 for parallel comparison. Entropy serves as the mechanistic explanation for why GS and FID improve."
+    - figure_id: "Figure 4b"
+      viz_type: "scatter"
+      dimensions_varied: ["variance vs generalization score as alternative to entropy"]
+      design_note: "Deliberately placed next to Figure 4a to show that variance is a weaker predictor than entropy. The scatter is visibly more dispersed, making the entropy superiority obvious without needing statistics."
+  figure_narrative_role: >
+    Figure 1 (pipeline overview + generalization-to-memorization preview) →
+    Figure 2 (Finding I: generalization-to-memorization transition, qualitative + quantitative) →
+    Figure 3 (Finding II: entropy shrinkage + distribution collapse visualization) →
+    Figure 4 (Finding III: entropy-GS correlation, the key evidence; entropy vs variance comparison) →
+    Figures 5-7 (Mitigation results: GS/FID/entropy improvements with selection methods, parallel grid layout) →
+    Figure 8 (Mechanistic insight: selection naturally prefers real data) →
+    Figure 9 (Extension: CFG setting on MNIST).
+    The flow follows a clear discover-understand-mitigate-extend arc.
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: >
+      Notable design choice: this paper has NO tables in the main text. All quantitative results
+      are presented as line plots (Figures 5-7) and scatter plots (Figure 4). This is unusual for
+      a NeurIPS paper but works because the key story is about trends over iterations (naturally
+      suited to line plots) rather than point comparisons across methods. The absence of tables
+      keeps the paper visually unified around its "curves over iterations" motif.
+  ablation_tables:
+    - table_id: "N/A (Appendix C)"
+      what_varied: ["Number of generated candidates (N vs 2N)", "Threshold decay rate alpha"]
+      variation_style: "Presented as figures/plots rather than tables"
+      design_note: "Ablations are in the appendix and use the same figure-based presentation as the main paper."
+  supplementary_tables:
+    in_appendix: false
+    content: "No tables even in appendix; all results presented as multi-panel line plots and scatter plots"
+    reason: >
+      The paper's central argument is about trajectories over iterations, not about static
+      method-vs-method comparisons. Line plots naturally show this temporal evolution, making
+      tables unnecessary. The only potential table content (FID/GS at specific iterations) is
+      embedded in figure panels instead.

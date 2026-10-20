@@ -1,0 +1,71 @@
+{
+  "exp_id": "accum_v3_mix50",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:08:06.546Z",
+    "updated_at": "2026-05-19T13:08:35.103Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.5 --cuda 0 --seed 42\"",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "114337",
+      "log_path": "~/runs/recursive_gen_depth_est/accum_v3_mix50.log",
+      "submitted_at": "2026-05-19T08:17:14.577Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_0.jsonl + depth_1.jsonl",
+      "data_count": 5000,
+      "model_name": "gpt2-xl (LoRA) + EleutherAI/pythia-1.4b (feature ref)",
+      "seed": 42,
+      "mix_ratio": 0.5,
+      "lora_config": "r=16 alpha=32 target=[c_attn,c_proj] dropout=0.05 lr=2e-4 epochs=3 bs=8",
+      "feature_ref_model": "EleutherAI/pythia-1.4b",
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/accumulation_v2/mix50/",
+      "wall_clock_seconds": 17480.5,
+      "gpu_hours": 4.86
+    },
+    "hypothesis": "Under 50/50 accumulation (mixing 50% human + 50% previous-depth synthetic text at each depth, then LoRA fine-tune + generate), depth signal attenuates compared to full-replacement (84.2%), establishing that full-replacement results are a ceiling. Quantifies accumulation degradation for Discussion §6 accumulation paragraph. Parent: invalidated accum_mix50 (feature-space mixing error).",
+    "reproduce": {
+      "finished_at": "2026-05-19T12:44:58.087Z"
+    },
+    "metrics": {
+      "mix_ratio": 0.5,
+      "overall_accuracy": 0.6905,
+      "balanced_accuracy": 0.6905,
+      "d1_d3_balanced_accuracy": 0.5895,
+      "per_class_recall": {
+        "d0": 0.9936,
+        "d1": 0.7302,
+        "d2": 0.4204,
+        "d3": 0.618
+      },
+      "fold_accuracies": [
+        0.6815,
+        0.6915,
+        0.6913,
+        0.6967,
+        0.6917
+      ],
+      "training_loss": {
+        "d1": 2.131,
+        "d2": 1.892,
+        "d3": 1.789
+      },
+      "baseline_full_replacement_accuracy": 0.859,
+      "delta_vs_full_replacement": -0.1685,
+      "elapsed_hours": 4.28,
+      "feature_extractor": "pythia-1.4b"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T13:08:35.103Z"
+  },
+  "timestamp": "2026-05-19T13:08:35.423679+00:00",
+  "trigger": "update_registry"
+}

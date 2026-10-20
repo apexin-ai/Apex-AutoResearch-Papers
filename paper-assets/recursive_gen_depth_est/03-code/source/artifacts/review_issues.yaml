@@ -1,0 +1,1047 @@
+issues:
+# ============================================================
+# ROUND 20 — CRITICAL (Must-Fix)
+# ============================================================
+
+- id: R20-C1
+  summary: 解码策略贡献至少与模型架构相当 claim 基于 9-cell 均值比较无统计检验
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 20
+  last_seen_round: 20
+  mentions:
+  - round: 20
+    reviewers: [1, 2]
+    note: R2-N1 提出 R1 完全 AGREE。4.1 strategy gap 9.3pp vs model gap 7.2pp 差异 2.1pp 在 9 cells 上无统计效力。Introduction 列为三大发现之一但无 permutation/bootstrap test。
+  action_items:
+  - round: 20
+    action: 提供统计检验或将 claim 降级为 both contribute meaningfully
+    assigned_to: research_director
+    status: open
+  resolution: ''
+  resolution_round: null
+
+- id: R19-C1
+  summary: 泛化性 claim 与证据系统性失配——跨策略 45.9% 与 fingerprints 通用性暗示矛盾
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 17
+    reviewers: [1, 2]
+    note: R17-N3 跨策略 d1-d3 仅 45.9%
+  - round: 18
+    reviewers: [1, 2]
+    note: R18 继续追踪 Abstract 已加 within-strategy scope 声明
+  - round: 19
+    reviewers: [1, 2]
+    note: R1 AGREE R2-N2。标题 Statistical Fingerprints 暗示可迁移性与实证矛盾。
+  - round: 20
+    reviewers: [1, 2]
+    note: R1-W3 加 R2 部分 REBUT（论文未 claim cross-strategy solved）。共识 Should-Fix 级别 framing 需匹配证据。
+  action_items:
+  - round: 19
+    action: Abstract/Introduction 明确限定 claim scope 为 within known model-strategy configurations
+    assigned_to: research_director
+    status: in_progress
+  resolution: Intro Contribution 4 加 within the tested 1-1.5B regime scope 限定
+  resolution_round: null
+
+- id: R19-C2
+  summary: 14B 规模衰减 EDD_70=0 对论文立论的根本威胁——Discussion 传达不足
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 17
+    reviewers: [1, 2]
+    note: R17-N2 14B EDD=0 被 self-reference confound 污染
+  - round: 18
+    reviewers: [1, 2]
+    note: R18 继续追踪
+  - round: 19
+    reviewers: [1, 2]
+    note: R2-N3 Critical R1 AGREE EDD_70=0 不等于无信号但序数结构已坍塌
+  - round: 20
+    reviewers: [1, 2]
+    note: R1-N3 加 R2-N3 完全 AGREE。Qwen2.5-7B U 型 AUC 与 model collapse theory 矛盾。Abstract signal attenuates with scale 最多为 preliminary observation。
+  action_items:
+  - round: 19
+    action: Contribution list 增加规模限制声明
+    assigned_to: research_director
+    status: in_progress
+  - round: 20
+    action: Abstract 中 scale attenuation 降级为 preliminary observation 或删除
+    assigned_to: research_director
+    status: open
+  resolution: Discussion scale attenuation 改为 accuracy attenuation at 14B
+  resolution_round: null
+
+- id: R19-C3
+  summary: 参考模型依赖限制部署可行性——12/19 特征绑定 Pythia-1.4B 正文讨论不足
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 18
+    reviewers: [1, 2]
+    note: R18-W5 参考模型依赖性未充分讨论为部署限制
+  - round: 19
+    reviewers: [1, 2]
+    note: R1-N1 Critical R2-W3 后 AGREE
+  - round: 20
+    reviewers: [1, 2]
+    note: R1 restate confound 贯穿全部实验。R2 部分 REBUT 主 benchmark 6/9 cells 为 cross-reference 且表现良好。Director 判定 14B critical 1-1.5B mitigated 但正文讨论仍不足。
+  action_items:
+  - round: 19
+    action: 正文增加参考模型依赖的系统讨论
+    assigned_to: research_director
+    status: in_progress
+  resolution: Discussion Deployment 段加参考模型依赖句
+  resolution_round: null
+
+- id: R19-W2
+  summary: Full-replacement benchmark 与真实 accumulation 场景有根本性 gap
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 17
+    reviewers: [1, 2]
+    note: R17-N1 accumulation 场景无系统实验
+  - round: 18
+    reviewers: [1, 2]
+    note: 3-cell mix25 accumulation EDD 完成
+  - round: 19
+    reviewers: [1, 2]
+    note: R1-N3 Critical 后 R2 认为 Should-Fix
+  - round: 20
+    reviewers: [1, 2]
+    note: R1 补充 50% mixing 下 GPT-2 XL 失败 AUC=0.695 33% failure rate。5-10% 未测试。R2 完全 AGREE。Director 升级为 Critical。
+  action_items:
+  - round: 19
+    action: Discussion 明确承认当前基准是 idealized conditions 下的 proof-of-concept
+    assigned_to: research_director
+    status: in_progress
+  - round: 20
+    action: Limitations 将 full-replacement caveat 提升显著性
+    assigned_to: research_director
+    status: open
+  resolution: Discussion Accumulation 段已改写但仍需加强
+  resolution_round: null
+
+# ============================================================
+# ROUND 20 — WARNING (Should-Fix)
+# ============================================================
+
+- id: R20-W1
+  summary: Seed corpus 仅 Wikipedia far-domain 泛化未验证
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 20
+  last_seen_round: 20
+  mentions:
+  - round: 20
+    reviewers: [1, 2]
+    note: R2-W3 提出 R1 AGREE 但修正数字 cross-domain 降约4pp非14pp。arXiv 仍属学术文体 需测试对话创意写作等 far-domain。
+  action_items:
+  - round: 20
+    action: Discussion 讨论 domain 限制 至少承认 far-domain 未验证
+    assigned_to: research_director
+    status: open
+  resolution: ''
+  resolution_round: null
+
+- id: R20-W2
+  summary: LoRA r=16 统一配置 低秩约束可能人为压缩 depth signal 无 rank ablation
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 20
+  last_seen_round: 20
+  mentions:
+  - round: 20
+    reviewers: [1, 2]
+    note: R2-W4 提出 R1 AGREE。所有深度使用 identical LoRA config r=16 alpha=32 3 epochs。低秩约束系统性压缩分布偏移幅度 EDD 值可能 LoRA-specific。
+  action_items:
+  - round: 20
+    action: Discussion 或 Limitations 讨论 LoRA rank 对 depth signal 的潜在影响
+    assigned_to: research_director
+    status: open
+  resolution: ''
+  resolution_round: null
+
+- id: R20-W3
+  summary: PLM baseline 仅 frozen CLS 加 linear probing 信息输入不对等导致比较不公平
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 20
+  last_seen_round: 20
+  mentions:
+  - round: 20
+    reviewers: [1, 2]
+    note: R2-W2 提出 R1 AGREE。RF 用 12 个 reference-model perplexity 特征 PLM 仅看原文 CLS。Section 6 PLMs lag RF by 14-33pp 可信度依赖 baseline 强度。
+  action_items:
+  - round: 20
+    action: Section 6 PLM 比较加条件限定 under frozen CLS plus linear probing
+    assigned_to: research_director
+    status: open
+  resolution: ''
+  resolution_round: null
+
+- id: R17-N4
+  summary: VIF 大于 10 严重共线性下个体特征排名不可靠
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: []
+    note: R19 未作为独立 issue 提出 Section 4.2 已有 caveat 加 CPI 分析
+  - round: 20
+    reviewers: [1, 2]
+    note: R1-N4 升级为 Critical R2 REBUT 降为 Major（group-level ablation 加 CPI 加 4方法收敛是有效缓解）。Director 采纳 R2 论据判定 Warning。个体排名叙事需弱化 group-level 结论成立。
+  action_items:
+  - round: 20
+    action: Section 4.2 弱化个体特征排名因果叙事改为 group-level 叙述
+    assigned_to: research_director
+    status: open
+  resolution: ''
+  resolution_round: null
+
+- id: R19-C4
+  summary: 多重比较未校正但做实质性判断 需统一 FDR correction
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 17
+    reviewers: [1, 2]
+    note: R17-W2 多重比较未校正
+  - round: 18
+    reviewers: [1, 2]
+    note: R18 atlas.tex EDD bootstrap 已加 Bonferroni
+  - round: 19
+    reviewers: [1, 2]
+    note: R1-N2 Critical R2 部分 AGREE Director 降为 Warning
+  - round: 20
+    reviewers: [1, 2]
+    note: R1-N5 加 R2 AGREE。27+ AUC tests 需 BH FDR correction。脚注 5 exploratory 与正文 confirmatory 语气不匹配。
+  action_items:
+  - round: 19
+    action: Binoculars 措辞改为 not statistically distinguishable
+    assigned_to: research_director
+    status: in_progress
+  - round: 20
+    action: 对 27 次 depth-pair AUC 测试应用 BH FDR correction
+    assigned_to: research_director
+    status: open
+  resolution: ''
+  resolution_round: null
+
+- id: R19-W4
+  summary: BOS seeding artifact 与 prompted generation 差 13.8pp
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 16
+  last_seen_round: 20
+  mentions:
+  - round: 16
+    reviewers: [1, 2]
+    note: R16-W7 BOS-seeded generation 限制生态效度
+  - round: 17
+    reviewers: [1, 2]
+    note: R17 写作修复已加强 BOS caveat
+  - round: 19
+    reviewers: [1, 2]
+    note: R1-W5 Warning R2 AGREE
+  - round: 20
+    reviewers: [1, 2]
+    note: R1-W2 加 R2 AGREE。13.8pp gap 暗示 depth signal 部分源于 BOS seeding 特异性。
+  action_items:
+  - round: 19
+    action: Limitations 已加 BOS-seeded generation 13.8pp 差异句
+    assigned_to: research_director
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+
+- id: R19-W3
+  summary: Neural baseline 比较信息不对等 RF 有 reference model oracle PLM 仅看原文
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 17
+    reviewers: [1, 2]
+    note: R17-W3 Neural baselines 仅测试小于等于125M backbone
+  - round: 19
+    reviewers: [1, 2]
+    note: R1-W1 Warning R2 AGREE
+  - round: 20
+    reviewers: [1, 2]
+    note: 继续在 R20-W3 下以 PLM baseline 信息不对等角度追踪
+  action_items:
+  - round: 19
+    action: Discussion 或 Limitations 明确标注信息不对等
+    assigned_to: research_director
+    status: in_progress
+  resolution: Section 5.1 已加 RF features access reference-model log-probabilities 句
+  resolution_round: null
+
+- id: R19-M2
+  summary: 标题 Statistical Fingerprints 术语选择 弱迁移结果下 fingerprint 有 framing risk
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 19
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R2-M2 R1 轻微 REBUT forensics 文献常用
+  - round: 20
+    reviewers: [1, 2]
+    note: R1 cross-response 重申标题暗示的可迁移性与 45.95% 跨策略结果矛盾。升级为 Warning。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R19-W5
+  summary: 序数分类框架与实际方法脱节 强调 ordinal 但主管线不利用序数结构
+  category: method
+  severity: info
+  status: in_progress
+  first_raised_round: 19
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R2-W2 Warning R1 AGREE
+  - round: 20
+    reviewers: [1, 2]
+    note: R2 REBUT R1-W4 Appendix B.25 对比 ordinal methods 无显著增益。Director 采纳 R2 rebuttal 降级为 info。
+  action_items:
+  - round: 19
+    action: 正文简要讨论序数分类方法在此任务中边际改善的原因
+    assigned_to: research_director
+    status: in_progress
+  resolution: Discussion 已整合 CORAL +0.3pp 句
+  resolution_round: null
+
+- id: R19-W6
+  summary: 单 LoRA seed 主实验 2-seed replication 不足以估计方差分布
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 17
+    reviewers: [1, 2]
+    note: R17-W1
+  - round: 19
+    reviewers: [1, 2]
+    note: R1-W6 Warning R2 AGREE 程度较轻
+  - round: 20
+    reviewers: []
+    note: R20 未独立提出但 LoRA rank 问题 R20-W2 间接关联
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R19-W1
+  summary: 方法论创新不足 标准特征加标准分类器
+  category: method
+  severity: warning
+  status: wont_fix
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 17
+    reviewers: [1, 2]
+    note: R17-N5
+  - round: 18
+    reviewers: [1, 2]
+    note: R18 继续追踪
+  - round: 19
+    reviewers: [1, 2]
+    note: R2-W1 Warning R1 部分 REBUT EMNLP accepts empirical
+  - round: 20
+    reviewers: [1, 2]
+    note: R1 cross-response 对 R2-W1 REBUT EDD contiguous prefix 和 model collapse 对接是贡献。R2 未强力反驳。
+  action_items:
+  - round: 19
+    action: Discussion 增加一段分析原因
+    assigned_to: research_director
+    status: wont_fix
+  resolution: 页面空间不足。EDD 设计本身有贡献。
+  resolution_round: 19
+
+# ============================================================
+# ROUND 20 — MINOR (Info)
+# ============================================================
+
+- id: R19-M1
+  summary: Abstract 信息密度过高 14B 结果的 cross-ref vs self-ref 条件混用可能误导
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 19
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: Abstract 中 cross-reference EDD_70=2 与 self-reference EDD_70=0 混用需澄清条件
+  - round: 20
+    reviewers: [1, 2]
+    note: 继续追踪 scale attenuation claim 降级同时需清理 Abstract 14B 叙事
+  action_items:
+  - round: 19
+    action: Abstract 14B 结果拆分为独立句子明确标注 cross-reference 条件
+    assigned_to: research_director
+    status: open
+  resolution: ''
+  resolution_round: null
+
+- id: R19-M3
+  summary: Figure 2/3 字号偏小 打印可读性受限
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 19
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R2-M3 R1 AGREE
+  - round: 20
+    reviewers: []
+    note: 视觉审查确认 Figure 2 heatmap cell 约 6pt Figure 3 图例字号偏小
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R19-M4
+  summary: Section 3.5 标题过大 Theoretical Motivation 实为经验观察
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 19
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [2]
+    note: R2-M5 Empirical Motivation 可能更准确
+  - round: 20
+    reviewers: [2]
+    note: R20 再次提出 R1 未反驳。建议改为 Empirical Motivation。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R19-M5
+  summary: EDD 阈值 T=0.70 从 binary ROC 迁移到 ordinal pairwise AUC 缺理论论证
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R1-W2 R2 AGREE EDD 是操作性指标 多阈值 sensitivity 已报告
+  - round: 20
+    reviewers: [1, 2]
+    note: R1-W1 加 R2 AGREE。sensitivity analysis 部分缓解。建议正文明确为 operational choice。
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R19-M6
+  summary: Appendix B.20 Qwen2.5-7B Self-Reference 有 PLACEHOLDER 未填充
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 19
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: []
+    note: Director 发现 B.20 有 PLACEHOLDER 注释未填充
+  - round: 20
+    reviewers: []
+    note: 未重新检查 继续追踪
+  action_items:
+  - round: 19
+    action: B.20 PLACEHOLDER 必须在提交前补全或删除
+    assigned_to: research_director
+    status: open
+  resolution: ''
+  resolution_round: null
+
+- id: R19-M7
+  summary: Missing references stylometric analysis ordinal classification self-play
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 19
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: 推荐 Lakens 2017 Gutierrez 2016
+  - round: 20
+    reviewers: [1, 2]
+    note: 新增 Stamatatos 2009 stylometric survey。Frank and Hall 2001 ordinal decomposition。Chen et al 2024 Self-Play。Yuan et al 2024 Self-Rewarding。均 AGREE。
+  action_items: []
+  resolution: Lakens 2017 已加入 bib
+  resolution_round: null
+
+# ============================================================
+# HISTORICAL ISSUES (carried forward)
+# ============================================================
+
+- id: R17-N1
+  summary: Full-replacement 假设从根本上限制实用价值
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R19 继续在 R19-W2 下追踪
+  - round: 20
+    reviewers: [1, 2]
+    note: R20 继续在 R19-W2 下追踪 升级为 critical
+  action_items:
+  - round: 18
+    action: 3-cell mix25 accumulation EDD 计算完成
+    assigned_to: research_director
+    status: done
+  resolution: ''
+  resolution_round: null
+
+- id: R17-N2
+  summary: 14B EDD=0 被 self-reference confound 污染
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R19 继续在 R19-C2 下追踪
+  - round: 20
+    reviewers: [1, 2]
+    note: R20 继续在 R19-C2 下追踪
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R17-N3
+  summary: 跨策略迁移 d1-d3 仅 45.9%
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R19 继续在 R19-C1 下追踪
+  - round: 20
+    reviewers: [1, 2]
+    note: R20 继续在 R19-C1 下追踪
+  action_items:
+  - round: 17
+    action: Abstract 已加 within-strategy scope 声明
+    assigned_to: research_director
+    status: done
+  resolution: ''
+  resolution_round: null
+
+- id: R17-N5
+  summary: 方法层面 novelty 不足
+  category: method
+  severity: critical
+  status: wont_fix
+  first_raised_round: 17
+  last_seen_round: 19
+  resolution: 页面空间不足。R1 认为 EMNLP 接受 empirical contribution。
+  resolution_round: 19
+
+- id: R17-W1
+  summary: LoRA seed 仅 2 个 统计功效不足
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R19 继续在 R19-W6 下追踪
+  - round: 20
+    reviewers: []
+    note: R20 继续在 R19-W6 下追踪
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R17-W2
+  summary: 多重比较未校正但结论超出 exploratory 范畴
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R19 继续在 R19-C4 下追踪
+  - round: 20
+    reviewers: [1, 2]
+    note: R20 继续在 R19-C4 下追踪
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R17-W3
+  summary: Neural end-to-end baselines 仅测试小于等于125M backbone
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R19 继续在 R19-W3 下追踪
+  - round: 20
+    reviewers: [1, 2]
+    note: R20 继续在 R19-W3 和 R20-W3 下追踪
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R17-W5
+  summary: Binoculars 达到统计等价性能 78.1% vs 78.4% 削弱独特价值
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 19
+  mentions:
+  - round: 19
+    reviewers: []
+    note: R19 未作为独立 issue 提出
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R18-W5
+  summary: 参考模型依赖性未充分讨论为部署限制
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 18
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R19 继续在 R19-C3 下追踪
+  - round: 20
+    reviewers: [1, 2]
+    note: R20 继续在 R19-C3 下追踪
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R17-W8
+  summary: Downstream curation PoC 不显著但 Introduction 暗示实际应用
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 19
+  mentions:
+  - round: 19
+    reviewers: []
+    note: R19 未作为独立 issue 提出
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R17-M5
+  summary: 术语不一致 estimation vs classification
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 19
+  mentions:
+  - round: 19
+    reviewers: []
+    note: R19 未作为独立 issue 提出
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R18-M1
+  summary: d0 样本是否跨 cell 共享未显式声明
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 18
+  last_seen_round: 19
+  mentions:
+  - round: 19
+    reviewers: []
+    note: R19 未提及 Section 3.2 已加声明
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R17-M2
+  summary: CI 报告不一致
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 17
+  last_seen_round: 19
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R17-M4
+  summary: Missing references
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 17
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: 推荐 Lakens 2017 Gutierrez 2016
+  - round: 20
+    reviewers: [1, 2]
+    note: 新增 Stamatatos 2009 Frank and Hall 2001 Chen et al 2024 Yuan et al 2024
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R16-N1
+  summary: 14B 结果削弱核心叙事
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 18
+  resolution: Abstract 加 scope 限定 Section 6 新增 scale dependence
+  resolution_round: 16
+
+- id: R16-N2
+  summary: 方法贡献不足
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 18
+  resolution: Section 1 贡献重组
+  resolution_round: 16
+
+- id: R16-N3
+  summary: Cross-strategy transfer d1-d3 仅 45.9%
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 18
+  resolution: Section 5.3 reframed
+  resolution_round: 16
+
+- id: R16-W1
+  summary: Full-replacement vs accumulation 脱节
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 18
+  resolution: Section 6 新增段落
+  resolution_round: 16
+
+- id: R16-W2
+  summary: Self-reference confound Pythia dagger
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 12
+  last_seen_round: 16
+  resolution: Reviewer 确认 dagger 加 ref-model ablation 67-79% 已充分
+  resolution_round: 16
+
+- id: R16-W3
+  summary: 多重共线性对 feature importance 的影响
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 18
+  resolution: Section 4.2 group-level ablation
+  resolution_round: 17
+
+- id: R16-W4
+  summary: Abstract 信息过载
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 18
+  resolution: Abstract 精简
+  resolution_round: 16
+
+- id: R16-W5
+  summary: d0 膨胀 headline metrics
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 16
+  resolution: d1-d3 balanced accuracy 领头
+  resolution_round: 16
+
+- id: R16-W6
+  summary: EDD T=0.70 justification
+  category: method
+  severity: warning
+  status: wont_fix
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: Sensitivity analysis 已覆盖
+  resolution_round: 16
+
+- id: R16-W7
+  summary: BOS-seeded generation 限制生态效度
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 19
+  resolution: Section 3.2 BOS caveat 加强 R19 re-raised as R19-W4
+  resolution_round: 17
+
+- id: R16-W8
+  summary: Wild-data FPR 过高
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 15
+  last_seen_round: 18
+  resolution: Thresholding 方案已覆盖
+  resolution_round: 16
+
+- id: R16-W9
+  summary: Discussion 过于压缩
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 12
+  last_seen_round: 18
+  resolution: Section 6 扩展
+  resolution_round: 17
+
+- id: R16-W10
+  summary: 缺具体使用场景
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 16
+  resolution: Section 6 含 curation scenario
+  resolution_round: 16
+
+- id: R16-M1
+  summary: Figure 3 混淆矩阵数字极小
+  category: format
+  severity: info
+  status: wont_fix
+  first_raised_round: 15
+  last_seen_round: 17
+  resolution: Acceptable for review
+  resolution_round: 16
+
+- id: R16-M2
+  summary: 前 3 页无视觉锚点
+  category: format
+  severity: info
+  status: wont_fix
+  first_raised_round: 16
+  last_seen_round: 19
+  resolution: Pipeline 太简单不需要图
+  resolution_round: 16
+
+- id: R16-M3
+  summary: 页数合规性验证
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 19
+  resolution: 主文 8 页
+  resolution_round: 16
+
+- id: R16-M4
+  summary: Display items 分布不均
+  category: format
+  severity: info
+  status: wont_fix
+  first_raised_round: 16
+  last_seen_round: 18
+  resolution: Structural constraint
+  resolution_round: 16
+
+- id: R16-M5
+  summary: 术语不一致
+  category: writing
+  severity: info
+  status: in_progress
+  first_raised_round: 16
+  last_seen_round: 18
+  resolution: ''
+  resolution_round: null
+
+- id: R16-M6
+  summary: 遗漏引用 Strobl/Hooker
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 16
+  resolution: 已加入
+  resolution_round: 16
+
+- id: R16-M7
+  summary: DeBERTa/RoBERTa 失败原因分析不足
+  category: experiment
+  severity: info
+  status: wont_fix
+  first_raised_round: 16
+  last_seen_round: 16
+  resolution: Classifier convergence evidence sufficient
+  resolution_round: 16
+
+- id: R18-M3
+  summary: Section 3.5 标题过大
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 18
+  resolution: 已改为 Theoretical Motivation
+  resolution_round: 18
+
+- id: R18-M6
+  summary: 生成长度固定 512 tokens
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 18
+  last_seen_round: 19
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R18-M7
+  summary: RF 无超参搜索
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 18
+  last_seen_round: 19
+  action_items: []
+  resolution: ''
+  resolution_round: null
+
+- id: R15-W5
+  summary: LoRA 超参无 ablation
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 15
+  last_seen_round: 20
+  mentions:
+  - round: 20
+    reviewers: [1, 2]
+    note: R20-W2 重新从 LoRA rank 角度提出低秩约束可能压缩 depth signal
+  resolution: 项目收尾不再跑新实验
+  resolution_round: 16
+
+- id: R15-W8
+  summary: 多重比较未做校正
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 15
+  last_seen_round: 20
+  mentions:
+  - round: 19
+    reviewers: [1, 2]
+    note: R19 继续在 R19-C4 下追踪
+  - round: 20
+    reviewers: [1, 2]
+    note: R20 继续在 R19-C4 下追踪
+  resolution: ''
+  resolution_round: null
+
+- id: R15-MR1
+  summary: 遗漏 Markovian Generation Chains
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: Section 2 已引用
+  resolution_round: 16
+
+- id: R14-C2
+  summary: 主文超出 8 页
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 18
+  resolution: 编译验证通过
+  resolution_round: 16
+
+- id: R13-W3
+  summary: Cross-seed replication 仅 3/9 cells
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 13
+  last_seen_round: 15
+  resolution: 用户指示不再跑新实验
+  resolution_round: 14

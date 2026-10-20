@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_coral_ordinal_9cell_phase1_20260519T102830_result.json",
     "occurrence": 1,
-    "bytes": 557,
-    "sha256": "a42aa926313e013b15231b3726c26066a4bb8713fd09224815f635e0461f7bb2"
+    "bytes": 556,
+    "sha256": "cc625dcc95bccb59712d936c95f2fef9055cd073f223664bd500c1eef787c4fa"
   },
   "statistics": {
     "messages": 1,

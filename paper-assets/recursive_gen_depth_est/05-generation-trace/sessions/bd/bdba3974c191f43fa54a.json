@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_feature-extraction-v2_20260514T114749_result.json",
     "occurrence": 1,
-    "bytes": 1083,
-    "sha256": "4adb57fc2acc1729233134eff6a9f8639a7822bf1fdaf07ac60e144711f0537f"
+    "bytes": 1082,
+    "sha256": "76d2b7245b710027722c750ac1cb0434fb9dbd563bbe2dec0e3afa4fbfbb1769"
   },
   "statistics": {
     "messages": 1,

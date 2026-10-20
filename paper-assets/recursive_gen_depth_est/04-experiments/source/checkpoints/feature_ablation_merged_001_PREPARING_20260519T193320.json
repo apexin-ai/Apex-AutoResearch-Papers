@@ -1,0 +1,14 @@
+{
+  "exp_id": "feature_ablation_merged_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:33:20.456Z",
+    "updated_at": "2026-05-19T19:33:20.456Z"
+  },
+  "timestamp": "2026-05-19T19:33:20.740496+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_status-urgent_20260514T105857_result.json",
     "occurrence": 1,
-    "bytes": 3370,
-    "sha256": "37fb3230c4346de8068830c6f3a51eb7a40837a69d10b7454e767d36dd632b51"
+    "bytes": 3369,
+    "sha256": "d2154b2612ea634629c4140774c4cc66cd63ee86526a50fd27813cb18500f19d"
   },
   "statistics": {
     "messages": 1,

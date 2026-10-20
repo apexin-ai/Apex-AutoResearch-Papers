@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fix_gpt2xl_json_metadata_20260515T225200_result.json",
     "occurrence": 1,
-    "bytes": 290,
-    "sha256": "359370a183cd2142a3059de3083bcb3bae30245476a72013c8c097df9e4849d3"
+    "bytes": 289,
+    "sha256": "1cba6c9a1a6803db697f686b839210cc32f0635e060e13fb74ab56ee622dd39c"
   },
   "statistics": {
     "messages": 1,

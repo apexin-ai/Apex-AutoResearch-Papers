@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4ef51018d702ff3d01f",
+  "project": "error_type_pref_optim",
+  "kind": "result",
+  "title": "infra download qwen3 8b",
+  "task_key": "worker_infra_download-qwen3-8b_20260514T094718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-qwen3-8b_20260514T094718_result.json",
+    "occurrence": 1,
+    "bytes": 1169,
+    "sha256": "efd7e90b784b36b80778b00a865199bdb54066a9c0dc627a3efa1843e8b3ff07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载速度大幅下降到 ~300KB/s，但进程稳定运行中（nohup 后台）。当前进度摘要：\n\n| 文件 | 大小 | 已下载 | 进度 |\n|------|------|--------|------|\n| model-00001 | 3.72G | 1.1G | 29% |\n| model-00002 | 3.72G | 2.1G | 56% |\n| model-00003 | 3.69G | 2.4G | 65% |\n| model-00004 | 2.97G | 922M | 30% |\n| model-00005 | 1.16G | 1.1G | 95% |\n\n总进度约 48%（~7.6G/16G）。当前速度下还需约 2-3 小时完成。\n\n进程 PID 80423 在后台运行，会自动完成。可用以下命令随时检查：\n- 进度：`tail -5 /tmp/hf_download.log`\n- 进程状态：`ps -p 80423 -o pid=`\n- 完成标志：日志中出现 `DOWNLOAD_COMPLETE`\n\n完成后需要执行验证：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython -c \"from transformers import AutoTokenizer; tok = AutoTokenizer.from_pretrained('/root/error_type_pref_optim/models/Qwen3-8B'); print(f'Vocab size: {tok.vocab_size}'); print('Qwen3-8B download OK')\"\n```\n\n模型实际存储路径：`/root/autodl-tmp/models/Qwen3-8B/`，通过符号链接挂载到 `/root/error_type_pref_optim/models/Qwen3-8B`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen3-8b.md"
+}

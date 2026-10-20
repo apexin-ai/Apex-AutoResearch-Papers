@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r3w4-expid-cleanup_20260516T010841_result.json",
     "occurrence": 1,
-    "bytes": 266,
-    "sha256": "84b6b3b28d9f098fe2a4c60778724a3c05bd15c06fa0ed2936e768e2f8d57233"
+    "bytes": 265,
+    "sha256": "4cd7d42313e80eded2ad90e7b848f7bec1fae28346304e7deb40be90f6f3505d"
   },
   "statistics": {
     "messages": 1,

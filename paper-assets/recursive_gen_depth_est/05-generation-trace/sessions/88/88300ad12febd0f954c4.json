@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_r3-writing-fixes_20260515T191626_result.json",
     "occurrence": 1,
-    "bytes": 1130,
-    "sha256": "6e68bfacabc2fe91054d9ee9c7f57976a00cc4294f3bddc8537b9816cdbedb8f"
+    "bytes": 1129,
+    "sha256": "045dc7f77412f63f28e525a043831e6964a0058f227ac2ff03605b3961b6d64a"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_baseline_coral_diveye_fix_20260514T231457_result.json",
     "occurrence": 1,
-    "bytes": 1913,
-    "sha256": "5caceaeaf312ecbea4a91b405b65e773b6a707c80601dbd6f072b69d3b2ee934"
+    "bytes": 1912,
+    "sha256": "44ba75002027128605041cb87a6d5c869788c1b4483380d4dc93cb3054d0b02f"
   },
   "statistics": {
     "messages": 1,

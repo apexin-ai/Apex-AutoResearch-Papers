@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_seed_corpus_factcheck_20260515T173753_result.json",
     "occurrence": 1,
-    "bytes": 1973,
-    "sha256": "bb6259fa07c0df1b6647543021bea40fdb94f30ec23b8d5e695e3fb38442544f"
+    "bytes": 1972,
+    "sha256": "0aca62ec8547feb2db8f0185ab27448d899187e7844441d37f335ff0f1b06ab8"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_feat_ablation_v1_check_20260515T193449_result.json",
     "occurrence": 1,
-    "bytes": 1166,
-    "sha256": "2df371f6b66e1a2898b0ccdaa04f623ed86d8027a9009292c4c9bba170c18b79"
+    "bytes": 1165,
+    "sha256": "964268607c6b6a44b32becdf54c4f5c6f666d2d3dfe5fd41143c115e0aa5280e"
   },
   "statistics": {
     "messages": 1,

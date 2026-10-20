@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_decoding_strategy_signal_attenuation_20260514T203338_result.json",
     "occurrence": 1,
-    "bytes": 5414,
-    "sha256": "b1a4c1acfecdc104ecb6ffd94f6d7bc8463d88808b9243494d15e984284795f1"
+    "bytes": 5413,
+    "sha256": "5f1eeefe9e13d64f83b35fe5e18c2e109d5daa656f3f4e5b629431c8672fd1f2"
   },
   "statistics": {
     "messages": 1,

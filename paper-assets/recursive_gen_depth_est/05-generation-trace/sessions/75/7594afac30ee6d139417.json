@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_discussion-final-polish_20260516T011418_result.json",
     "occurrence": 1,
-    "bytes": 387,
-    "sha256": "06aaaaebaaf3acd7ed9d7d93873a73393a3e3176b2ea21863c7a557df00ab603"
+    "bytes": 386,
+    "sha256": "87b8fdb83a2b2d6825670f233167df74917484a2e7dce335234aac99174cd411"
   },
   "statistics": {
     "messages": 1,

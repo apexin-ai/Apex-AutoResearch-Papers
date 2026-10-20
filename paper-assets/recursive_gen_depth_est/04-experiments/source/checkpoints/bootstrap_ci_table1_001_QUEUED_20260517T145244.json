@@ -1,0 +1,15 @@
+{
+  "exp_id": "bootstrap_ci_table1_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:33:52.730Z",
+    "updated_at": "2026-05-17T14:52:44.516Z",
+    "hypothesis": "Bootstrap 95% CIs for all 9 cells of the 3×3 core matrix (3 models × 3 strategies) confirm that RF accuracy point estimates are stable (CI width ~1pp), and RF significantly outperforms LR in 8/9 cells."
+  },
+  "timestamp": "2026-05-17T14:52:44.747666+00:00",
+  "trigger": "update_registry"
+}

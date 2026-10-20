@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_downstream_benchmark_002_20260517T172537_result.json",
     "occurrence": 1,
-    "bytes": 776,
-    "sha256": "49394ad781fc2a9223730c30fc00303ac47ce530f61c2299579d4074572578d4"
+    "bytes": 775,
+    "sha256": "c545a9ef623f3364591ccc353c98380acd1c81afbfab19129f61c171fd1cbdc6"
   },
   "statistics": {
     "messages": 1,

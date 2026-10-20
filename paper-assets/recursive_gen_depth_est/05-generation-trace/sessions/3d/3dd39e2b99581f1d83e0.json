@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_llama3_base_status_20260516T134540_result.json",
     "occurrence": 1,
-    "bytes": 1345,
-    "sha256": "4f96b7fa680b714ca6f489ebbeb65e0a5ebdff6795ed684958af77a6e0a34425"
+    "bytes": 1344,
+    "sha256": "1773220f690edbbe2bd58d30aee531c74b4601ff146ff8b3ee0e48e1b5966ac2"
   },
   "statistics": {
     "messages": 1,

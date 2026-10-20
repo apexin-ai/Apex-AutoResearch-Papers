@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_qwen25_14b_scale_cuda0_20260517T174654_result.json",
     "occurrence": 1,
-    "bytes": 821,
-    "sha256": "2794dcf959302959a1968df45713bf0e42279ac0ae140a65f940ed6a586b7365"
+    "bytes": 820,
+    "sha256": "db081c2fdef6b8da633f1572ded433f25586f43b61650b87159f20bda57e29a7"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_bugfix_load_features_20260515T023831_result.json",
     "occurrence": 1,
-    "bytes": 2824,
-    "sha256": "0ac8f2038d4554545445d8be86be84fbe4c10b1a86b6fc0f1b10b31eba618294"
+    "bytes": 2823,
+    "sha256": "7d92f6a403dbf6a40dca73a0a6f7118a19cfb15df077c809006e9555312c515a"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r3n3-shap-text_20260516T005012_result.json",
     "occurrence": 1,
-    "bytes": 231,
-    "sha256": "73695873a11e5f22fcd6c6dbe449ecbcd7d5d59acc1922a5d43970fb96f33101"
+    "bytes": 230,
+    "sha256": "2487d0dadd77d1cb60d1ba8b87960ac319bb445b65b7360dca9badbaff26e4ef"
   },
   "statistics": {
     "messages": 1,

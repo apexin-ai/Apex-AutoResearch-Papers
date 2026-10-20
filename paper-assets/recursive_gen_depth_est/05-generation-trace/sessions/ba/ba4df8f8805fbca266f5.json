@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_wild_data_calibration_002_check_20260516T011141_result.json",
     "occurrence": 1,
-    "bytes": 899,
-    "sha256": "b463b05dd104b0b3629a68c273ef6a0517b82c6fa58fe19370e576b807e00a76"
+    "bytes": 898,
+    "sha256": "cb0a0b114101266efc63801e80b089353cdfb28c8c88aa10bfe0b26f8ad86a5f"
   },
   "statistics": {
     "messages": 1,

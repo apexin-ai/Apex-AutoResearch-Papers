@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_review_adversarial_round1_20260516T052117_result.json",
     "occurrence": 1,
-    "bytes": 660,
-    "sha256": "60c684891e03110dcbf607d21c0b93aeeaa007e40a69cd142c00c46385ae69ca"
+    "bytes": 659,
+    "sha256": "55f7f5c6aaa7f2d59a4c2d34c46deae25ac7588ddb82f90353ff623f95cf8aa0"
   },
   "statistics": {
     "messages": 1,

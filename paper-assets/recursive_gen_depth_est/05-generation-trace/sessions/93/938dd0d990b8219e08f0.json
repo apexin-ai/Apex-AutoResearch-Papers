@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gen_length_ablation_c_20260517T045550_result.json",
     "occurrence": 1,
-    "bytes": 622,
-    "sha256": "d67b3ce1097ceca90604738024eec8635f9fbff07b21e784b7c93933ead9a0bf"
+    "bytes": 621,
+    "sha256": "a62750c81dd7ecbb94dbf909e07dd7f924cf3e5c60c47bf07614eba4399951d3"
   },
   "statistics": {
     "messages": 1,

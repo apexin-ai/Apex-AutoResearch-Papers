@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_qwen25_7b_selfref_001_status_20260522T183615_result.json",
     "occurrence": 1,
-    "bytes": 1227,
-    "sha256": "61c17c5aaf66d6e81296023b8e9c77ff15245ad9892ab8c924a55d39c3b55df8"
+    "bytes": 1226,
+    "sha256": "6bb348635da9f8e814f0041e128a5dcd53d205710c02c6e75f9f5b783c51032d"
   },
   "statistics": {
     "messages": 1,

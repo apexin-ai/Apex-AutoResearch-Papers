@@ -1,0 +1,22 @@
+{
+  "exp_id": "zeroshot_llm_500_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:46:50.066Z",
+    "updated_at": "2026-05-15T15:51:19.106Z",
+    "hypothesis": "R1-W4 zero-shot 样本量扩展: 从 200→500 samples 缩窄 CI。当前 200 samples 的 CI 过宽，500 samples 可将 CI 宽度缩小 ~37%，更可靠地与 RF 78.2% 对比。",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T15:50:43.319Z"
+    }
+  },
+  "timestamp": "2026-05-15T15:51:19.258537+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_dcol_feature_based_20260514T161727_result.json",
     "occurrence": 1,
-    "bytes": 782,
-    "sha256": "048c2bba6523a6f9c4433ef31f5384c524e0e3e9d7af484a8ebed7933d818eeb"
+    "bytes": 781,
+    "sha256": "71cc35abb98b6b44a800c67dd08c2e6a338ee7e13e6777721b03159da370646e"
   },
   "statistics": {
     "messages": 1,

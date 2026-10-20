@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_cuda1-parallel-tasks_20260514T125138_result.json",
     "occurrence": 1,
-    "bytes": 1219,
-    "sha256": "0e0b62baaefab3b3eb4a7d6b7b5b8e384f8a9d11e45954f44e50188e72fc6bd4"
+    "bytes": 1218,
+    "sha256": "83720b7b45f1f49a7f25c410f5dc2d6386eeb1f393937e78726ddda1f1e7b45a"
   },
   "statistics": {
     "messages": 1,

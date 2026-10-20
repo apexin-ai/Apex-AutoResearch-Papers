@@ -1,0 +1,27 @@
+paper_key: "binoculars2024"
+title: "Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["DetectGPT", "Fast-DetectGPT", "likelihood thresholding", "supervised classifiers"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "TPR@1%FPR", direction: "higher_better"}
+    - {name: "TPR@0.01%FPR", direction: "higher_better"}
+  datasets:
+    - {name: "multi-domain text corpus (news, wiki, creative)", size: "N/A"}
+    - {name: "ChatGPT-generated samples", size: "N/A"}
+  ablation_dimensions: ["LLM pair choice", "document type", "source model"]
+  training_recipe: {optimizer: "N/A (zero-shot)", lr: "N/A", hardware: "N/A"}
+  method_family: "zero-shot detection via contrastive LLM scoring"
+
+positioning:
+  core_claim: "A simple score contrasting two closely related LLMs achieves SOTA zero-shot detection without any training data, detecting >90% of generated text at 0.01% FPR"
+  key_results: ">90% detection of ChatGPT at 0.01% FPR; generalizes across LLMs without model-specific tuning"
+  limitations: ["requires two LLMs at inference", "performance depends on LLM pair choice"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

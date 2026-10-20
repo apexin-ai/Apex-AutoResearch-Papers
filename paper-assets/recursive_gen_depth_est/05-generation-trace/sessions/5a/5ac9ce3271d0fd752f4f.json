@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_accumulation_experiment_westd_20260519T072407_result.json",
     "occurrence": 1,
-    "bytes": 1711,
-    "sha256": "506e4e826fe1dc9521353349f5ff265492ec260baf1b001c7ab27ca62249fc3d"
+    "bytes": 1710,
+    "sha256": "ad361e2048d729a1e110672702bccab42a3c3da8386d563d31907f08e2e5a00d"
   },
   "statistics": {
     "messages": 1,

@@ -259,7 +259,7 @@ _source line 5 · 2026-05-26T12:53:39.581Z_
 ```text
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026/recursive_gen_depth_est",
-3	  "push_url": "https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git",
 4	  "github_user": "anonymous-nlp-2026",
 5	  "repo_name": "recursive_gen_depth_est"
 6	}
@@ -281,7 +281,7 @@ _source line 5 · 2026-05-26T12:53:39.581Z_
     "type": "text",
     "file": {
       "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/recursive_gen_depth_est/_anonymous_repo.json",
-      "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026/recursive_gen_depth_est\",\n  \"push_url\": \"https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git\",\n  \"github_user\": \"anonymous-nlp-2026\",\n  \"repo_name\": \"recursive_gen_depth_est\"\n}\n",
+      "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026/recursive_gen_depth_est\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git\",\n  \"github_user\": \"anonymous-nlp-2026\",\n  \"repo_name\": \"recursive_gen_depth_est\"\n}\n",
       "numLines": 7,
       "startLine": 1,
       "totalLines": 7
@@ -400,7 +400,7 @@ _source line 8_
 
 ```json
 {
-  "command": "rm -rf /tmp/recursive_gen_depth_est_repo && git clone https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git /tmp/recursive_gen_depth_est_repo 2>&1 | tail -20",
+  "command": "rm -rf /tmp/recursive_gen_depth_est_repo && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git /tmp/recursive_gen_depth_est_repo 2>&1 | tail -20",
   "description": "Clone anonymous repo"
 }
 ```

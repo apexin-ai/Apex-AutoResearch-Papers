@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_dcol_v4_fix_and_submit_20260515T021114_result.json",
     "occurrence": 1,
-    "bytes": 735,
-    "sha256": "cb53f323ab90881e58a61b3c6bf0ddc9df55ceef08423f39ab280ee42c5f5d8c"
+    "bytes": 734,
+    "sha256": "db63d8ec951281207bdbf2a4ef05d134e6073c269c6ecdecc5cd46117698313b"
   },
   "statistics": {
     "messages": 1,

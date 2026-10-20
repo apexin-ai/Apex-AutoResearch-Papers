@@ -1,0 +1,30 @@
+{
+  "exp_id": "mink_ordinal_baseline_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:46:34.231Z",
+    "updated_at": "2026-05-19T14:30:48.626Z",
+    "hypothesis": "Min-K% Prob (Shi et al. 2024) continuous membership-inference scores, when calibrated to 4-class ordinal depth via equal-width/CORAL/threshold methods, achieve near-chance accuracy (30-35%) on 9-cell atlas. Establishes that binary detection scores lack ordinal depth resolution. Rebuttal ammunition against \"did you test Min-K% for ordinal?\"",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && python3 scripts/mink_prob_baseline.py\"",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "131084",
+      "log_path": "~/runs/recursive_gen_depth_est/mink_ordinal_baseline_001.log",
+      "submitted_at": "2026-05-19T13:05:36.137Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "notes": "SUPERSEDED by mink_ordinal_baseline_002. Duplicate entry with identical hypothesis. Process killed — westd-48862 released 2026-05-19. Do not resubmit; use 002 instead.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T14:30:48.927228+00:00",
+  "trigger": "update_registry"
+}

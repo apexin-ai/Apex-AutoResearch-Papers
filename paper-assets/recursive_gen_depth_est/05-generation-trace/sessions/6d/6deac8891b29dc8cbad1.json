@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_download_deberta_and_prep_dcol_20260514T192826_result.json",
     "occurrence": 1,
-    "bytes": 1993,
-    "sha256": "03dcf1098844527c04fd94038a29c6cb38335f96d66eb57149197ef2646e80df"
+    "bytes": 1992,
+    "sha256": "2d3ded81d8ec00ac3afca2f6e7b0bc3c68f79abea85a40c9562dfd257d26fa49"
   },
   "statistics": {
     "messages": 1,

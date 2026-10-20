@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_deberta-depth-pilot_20260519T145724_result.json",
     "occurrence": 1,
-    "bytes": 1234,
-    "sha256": "cb5a45aa317739d794341a0a9b500829d86dc2b4fc4f7c25b86a29b0e584ed11"
+    "bytes": 1233,
+    "sha256": "36b1faac1622ff91be70dc4bdd520f4420e37f36a92be057c4f7ab18429079a8"
   },
   "statistics": {
     "messages": 1,

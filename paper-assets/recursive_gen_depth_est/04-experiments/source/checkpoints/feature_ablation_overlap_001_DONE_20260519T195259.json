@@ -1,0 +1,40 @@
+{
+  "exp_id": "feature_ablation_overlap_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:33:18.590Z",
+    "updated_at": "2026-05-19T19:52:59.589Z",
+    "hypothesis": "The 6 overlapping features between Binoculars and our 19-feature set (ppl_mean, ppl_var, ppl_median, p10_ppl, p90_ppl, skewness_ppl) capture the core depth signal. If 6-feature RF ≈ 78%, the overlap features alone are sufficient and shape features add negligible value. If 6-feature RF significantly < 78%, the remaining shape features (var_surprisal, kurtosis, etc.) have independent discriminative contribution beyond mean-level displacement.",
+    "spec": {
+      "server": "westd-48862",
+      "command": "python feature_ablation_both.py",
+      "data_path": "19-feature JSONL (9 cells)",
+      "model_name": "RF n_estimators=200",
+      "seed": 42,
+      "data_count": "9 cells x 4 depths",
+      "checkpoint_path": "N/A (CPU-only RF evaluation)",
+      "log_path": "results/feature_ablation/overlap_6feat_results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "9cell_mean_acc": 75.93,
+      "pythia_nucleus": 76.71,
+      "pythia_temp09": 73.86,
+      "pythia_topk50": 65.27,
+      "olmo_nucleus": 76.4,
+      "olmo_temp09": 80.96,
+      "olmo_topk50": 72.48,
+      "gpt2xl_nucleus": 81.69,
+      "gpt2xl_temp09": 83.98,
+      "gpt2xl_topk50": 72.06,
+      "delta_vs_baseline": -2.47
+    },
+    "completed_at": "2026-05-19T19:52:59.589Z"
+  },
+  "timestamp": "2026-05-19T19:52:59.880693+00:00",
+  "trigger": "update_registry"
+}

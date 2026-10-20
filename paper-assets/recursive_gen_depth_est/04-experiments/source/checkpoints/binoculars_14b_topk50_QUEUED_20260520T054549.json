@@ -1,0 +1,16 @@
+{
+  "exp_id": "binoculars_14b_topk50",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:45:34.470Z",
+    "updated_at": "2026-05-20T05:45:49.543Z",
+    "hypothesis": "Binoculars cross-perplexity features provide complementary signal at 14B scale under top-k sampling when merged with 19 statistical features. Tests whether the merged feature gain (~+3.7pp at temp09) holds under the weakest decoding strategy.",
+    "parent": "qwen25_14b_topk50"
+  },
+  "timestamp": "2026-05-20T05:45:49.914160+00:00",
+  "trigger": "update_registry"
+}

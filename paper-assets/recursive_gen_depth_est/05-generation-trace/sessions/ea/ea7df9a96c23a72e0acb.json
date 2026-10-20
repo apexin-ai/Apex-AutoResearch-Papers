@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_olmo_topk50_001_prep_20260514T224618_result.json",
     "occurrence": 1,
-    "bytes": 539,
-    "sha256": "cbea53e8fd64b6ae13539407c8290e6e826f51d9bc8a9164d73886dfd353a27c"
+    "bytes": 538,
+    "sha256": "843c0d4b98b9ec39db417ab26e9d93d64e78a631a9433011b3c17b8818922bd5"
   },
   "statistics": {
     "messages": 1,

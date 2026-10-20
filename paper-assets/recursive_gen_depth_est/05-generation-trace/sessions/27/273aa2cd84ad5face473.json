@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_accum_olmo_temp_mix50_20260522T050620_result.json",
     "occurrence": 1,
-    "bytes": 790,
-    "sha256": "ddab39d1b79568502bae0deb85bbc614073b63209144965c6cabe252e902e87e"
+    "bytes": 789,
+    "sha256": "d550544ee3032293bab1c80ceff4888cd91c16ab849f32ed4dd790fe1a4c5cb8"
   },
   "statistics": {
     "messages": 1,

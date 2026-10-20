@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_dcol_v4_lora_clean_restart_20260515T022544_result.json",
     "occurrence": 1,
-    "bytes": 1552,
-    "sha256": "40300b6ed718ea85df323707969eab981ff5f7677c3c0eadeecd72f22fcc96f8"
+    "bytes": 1551,
+    "sha256": "770ab3b692a3c871d83150bba93bdf9562c547aa6481b4b0226676b517be0744"
   },
   "statistics": {
     "messages": 1,

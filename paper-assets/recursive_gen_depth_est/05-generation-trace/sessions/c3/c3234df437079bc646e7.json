@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_gpt2xl_results_and_submit_temp09_20260514T182600_result.json",
     "occurrence": 1,
-    "bytes": 959,
-    "sha256": "bedb3863c555a3ef363588e460cf5e69ce3b0385be76799ef5ec4b678eb01f1f"
+    "bytes": 958,
+    "sha256": "67c5f0b3f403a17dbbafddd3e58547404c337d52e156d871657b3902dc11222d"
   },
   "statistics": {
     "messages": 1,

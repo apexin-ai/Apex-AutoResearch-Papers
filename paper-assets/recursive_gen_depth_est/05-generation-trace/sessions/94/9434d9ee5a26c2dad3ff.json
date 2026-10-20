@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_pythia_temp09_001_20260514T163125_result.json",
     "occurrence": 1,
-    "bytes": 1453,
-    "sha256": "45f6d27d168eeeab8b2711ea7bd0dd90125a2a75c4883c2bb6840635d17137b8"
+    "bytes": 1452,
+    "sha256": "2f3aef8e08163f1e092048afb30c5fd17b79eb95c1be1f2aa7a690b41dcaa5b9"
   },
   "statistics": {
     "messages": 1,

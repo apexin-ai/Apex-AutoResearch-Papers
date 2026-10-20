@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_kill-instruct-download-base-restart_20260514T110510_result.json",
     "occurrence": 1,
-    "bytes": 1580,
-    "sha256": "ef7c02a24e29c308df64847ede6150b1a2d4187c6e9546d65179c51be86f081e"
+    "bytes": 1579,
+    "sha256": "52e47de61351f192a1a79a3b028fa96f114fe746b1999a8ad5f1ea8cd2ca18fd"
   },
   "statistics": {
     "messages": 1,

@@ -10779,7 +10779,7 @@ _source line 1107 · 2026-05-26T12:13:00.508442+00:00_
 
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026/recursive_gen_depth_est",
-3	  "push_url": "https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git",
 4	  "github_user": "anonymous-nlp-2026",
 5	  "repo_name": "recursive_gen_depth_est"
 6	}
@@ -11203,7 +11203,7 @@ I have successfully located the git repository information for the **recursive_g
 
 **Repository Location (Remote):**
 - **GitHub URL (Public):** `https://github.com/anonymous-nlp-2026/recursive_gen_depth_est`
-- **Push URL (Private):** `https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git`
+- **Push URL (Private):** `https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git`
 - **GitHub User:** `anonymous-nlp-2026`
 - **Repository Name:** `recursive_gen_depth_est`
 
@@ -11589,7 +11589,7 @@ _source line 1133 · 2026-05-26T12:17:10.474836+00:00_
 
 {
   "repo_public": "https://github.com/anonymous-nlp-2026/recursive_gen_depth_est",
-  "push_url": "https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git",
+  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git",
   "github_user": "anonymous-nlp-2026",
   "repo_name": "recursive_gen_depth_est"
 }
@@ -13399,13 +13399,13 @@ _source line 1194 · 2026-05-26T12:36:49.778157+00:00_
 
 你的仓库信息：
 - 仓库地址：https://github.com/anonymous-nlp-2026/recursive_gen_depth_est
-- Push URL：https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git
+- Push URL：https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git
 
 操作步骤：
 ```
 git config --global user.name "Anonymous"
 git config --global user.email "anonymous@example.com"
-git clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git
+git clone https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git
 cd recursive_gen_depth_est
 # 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容
 git add -A && git commit -m "sync with final paper" && git push
@@ -13496,7 +13496,7 @@ called Bash
 
 ```json
 {
-  "command": "rm -rf /tmp/recursive_gen_depth_est_repo && git clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git /tmp/recursive_gen_depth_est_repo 2>&1",
+  "command": "rm -rf /tmp/recursive_gen_depth_est_repo && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git /tmp/recursive_gen_depth_est_repo 2>&1",
   "timeout": "60000"
 }
 ```
@@ -13511,7 +13511,7 @@ called Bash
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "rm -rf /tmp/recursive_gen_depth_est_repo && git clone https://caoxiaoyu002:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git /tmp/recursive_gen_depth_est_repo 2>&1",
+    "command": "rm -rf /tmp/recursive_gen_depth_est_repo && git clone https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git /tmp/recursive_gen_depth_est_repo 2>&1",
     "timeout": "60000"
   }
 }

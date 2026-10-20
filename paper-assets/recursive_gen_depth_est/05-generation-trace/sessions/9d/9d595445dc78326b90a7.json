@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_warning-review-fixes_20260515T200308_result.json",
     "occurrence": 1,
-    "bytes": 1318,
-    "sha256": "a35fd31b2d1ea890745b6ce0ada62e8e72a39596798be8ceb3a48908f7d705d6"
+    "bytes": 1317,
+    "sha256": "50d48f11c69b75f111407a836786c519d6a8afa20b93444da48ad163a9e306ad"
   },
   "statistics": {
     "messages": 1,

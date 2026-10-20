@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_westd-48862-status-check_20260519T174333_result.json",
     "occurrence": 1,
-    "bytes": 1226,
-    "sha256": "f5efa54b94da4d8cc910703aca972cc2f2d9945535404e869e3996720d3dd702"
+    "bytes": 1225,
+    "sha256": "f6b7a6cf0ced73735f8e874e92e931b6228330ad8c47297a0ac84c293ea23177"
   },
   "statistics": {
     "messages": 1,

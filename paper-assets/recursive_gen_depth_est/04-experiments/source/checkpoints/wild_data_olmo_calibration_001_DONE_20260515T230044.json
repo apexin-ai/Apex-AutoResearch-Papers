@@ -1,0 +1,44 @@
+{
+  "exp_id": "wild_data_olmo_calibration_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:48:47.140Z",
+    "updated_at": "2026-05-15T23:00:44.218Z",
+    "spec": {
+      "hypothesis": "OLMo-1B RF replicates Pythia/GPT-2 XL wild-data calibration pattern",
+      "command": "python plan_015_olmo_wild_calibration.py --gpu 1",
+      "server": "gpu-6000pro-2",
+      "data_path": "WikiText-103 + C4 (en, validation) + OLMo nucleus d0-d3",
+      "data_count": "546 WikiText + 5000 C4 + 20000 controlled",
+      "model_name": "RandomForest (OLMo nucleus cell)",
+      "seed": 42,
+      "plan_id": "plan_015",
+      "checkpoint_source": "cross_model_olmo_002",
+      "eval_data": "WikiText-103 test + C4 en validation",
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/olmo_wild_calibration.json",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/olmo_wild_calibration.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "cv_accuracy": 0.7893,
+      "cv_std": 0.0039,
+      "wikitext_n_passages": 546,
+      "wikitext_d0_pct": 98.53,
+      "wikitext_non_d0": 8,
+      "c4_n_passages": 5000,
+      "c4_d0_pct": 95.28,
+      "c4_d1_pct": 2.92,
+      "c4_d2_pct": 0.5,
+      "c4_d3_pct": 1.3,
+      "c4_fpr": 4.72,
+      "finding": "OLMo C4 FPR (4.72%) far lower than Pythia (20.2%) and GPT-2 XL (22.4%). OLMo d1-d3 features diverge more from d0, creating wider d0 decision boundary that correctly classifies more C4 template content as d0."
+    },
+    "completed_at": "2026-05-15T23:00:44.218Z"
+  },
+  "timestamp": "2026-05-15T23:00:44.503412+00:00",
+  "trigger": "update_registry"
+}

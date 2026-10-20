@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_kill-qwen-download-pythia_20260514T112659_result.json",
     "occurrence": 1,
-    "bytes": 1674,
-    "sha256": "34701e2654a21b1613137182e4a1b204d3a043e1c44f437215dfebfa5ae6dccb"
+    "bytes": 1673,
+    "sha256": "57b3657f2f3ce823baafd4445810cb7bf87845775132cde04c17095b346c9ba6"
   },
   "statistics": {
     "messages": 1,

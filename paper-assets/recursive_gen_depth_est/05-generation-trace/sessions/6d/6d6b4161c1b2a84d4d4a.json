@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_cuda0_task_submit_20260515T030830_result.json",
     "occurrence": 1,
-    "bytes": 750,
-    "sha256": "9c0a4160612fffc0881a9c45e54d542839df4d718eec12343e75659fa7c7d3bf"
+    "bytes": 749,
+    "sha256": "ddaf7b582ec63ceef9d0a891b4defa8c7c03ee48b72bb953f9545397ff985e03"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_d23_edd_bootstrap_20260515T114730_result.json",
     "occurrence": 1,
-    "bytes": 1139,
-    "sha256": "da0d9b0270ada29b5626fbaaae0263e6eaffb488c6bef78f1036922d3ecd1be8"
+    "bytes": 1138,
+    "sha256": "0fdb01e6bbb190bca108d208772b3542e4e05c35fc004b290006e3af7aadd0ca"
   },
   "statistics": {
     "messages": 1,

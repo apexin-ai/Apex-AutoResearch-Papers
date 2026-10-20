@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_cross_scale_section_20260516T060926_result.json",
     "occurrence": 1,
-    "bytes": 909,
-    "sha256": "293f361ac8f39e52ad929044515d93765c869972fbb68f5cfa8db4dc1d2202af"
+    "bytes": 908,
+    "sha256": "085657812d7da647e3832078408373e4037b76a68e2ba2d03cef8f8da3140788"
   },
   "statistics": {
     "messages": 1,

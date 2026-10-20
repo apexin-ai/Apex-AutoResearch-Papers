@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fix_topk50_gpu_assignment_20260519T045752_result.json",
     "occurrence": 1,
-    "bytes": 910,
-    "sha256": "b17762dae7f2355d4d228333ce99ccaf316de475e41fedc45715137b9a21d41f"
+    "bytes": 909,
+    "sha256": "369db69936d2e58b132bfbb944218415cd49325e3c50168d2d6868a53cbc7031"
   },
   "statistics": {
     "messages": 1,

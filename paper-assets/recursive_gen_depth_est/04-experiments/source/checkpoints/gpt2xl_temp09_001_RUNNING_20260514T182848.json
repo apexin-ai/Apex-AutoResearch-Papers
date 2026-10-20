@@ -1,0 +1,51 @@
+{
+  "exp_id": "gpt2xl_temp09_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:28:04.139Z",
+    "updated_at": "2026-05-14T18:28:48.227Z",
+    "hypothesis": "解码策略鲁棒性: GPT-2 XL 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "parent": "cross_model_gpt2xl_001",
+    "spec": {
+      "command": "bash scripts/run_pipeline_gpt2xl_temp09.sh (GPT-2 XL, 3x LoRA finetune + 3x generate, temp_only τ=0.9)",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "pid": 168793,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl_temp09.log",
+      "submitted_at": "2026-05-14T18:28:10Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl_temp09/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "openai-community/gpt2-xl",
+      "model_path": "/root/autodl-tmp/models/gpt2-xl/",
+      "seed": 42,
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "c_attn",
+          "c_proj"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 0.9,
+        "decoding_strategy": "temp_only"
+      },
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl_temp09/",
+      "checkpoint_source": "n/a (full pipeline re-run with different decoding strategy)",
+      "eval_data": "n/a (training pipeline, not eval)"
+    }
+  },
+  "timestamp": "2026-05-14T18:28:48.306976+00:00",
+  "trigger": "update_registry"
+}

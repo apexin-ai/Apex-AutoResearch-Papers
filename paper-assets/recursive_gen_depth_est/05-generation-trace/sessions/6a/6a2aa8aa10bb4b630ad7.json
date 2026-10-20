@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_accum_v3_progress_check_20260519T103219_result.json",
     "occurrence": 1,
-    "bytes": 1935,
-    "sha256": "221264cdff2483011819faeb8ed3b0a0935a05342518737bfaf022175bd900bd"
+    "bytes": 1934,
+    "sha256": "318d7a4c5c89ef82750a35f52fd44a8a4f59cc61db1e560a58a64038017282f8"
   },
   "statistics": {
     "messages": 1,

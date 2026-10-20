@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_roberta_download_status_20260515T121100_result.json",
     "occurrence": 1,
-    "bytes": 739,
-    "sha256": "23f10c2f6bbdfe766d16680f95af3bc77f2f5a53b9d4b0276cc198825de76c95"
+    "bytes": 738,
+    "sha256": "11579bcd6660b9bad6aee7eecc28ef20e25c5c8a4c4b14aeaa8cd23c127da796"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_shap-treexplainer_20260515T191657_result.json",
     "occurrence": 1,
-    "bytes": 1259,
-    "sha256": "db46e596d96e9c9d3b6621b274cf915d9ec228bc84540db848b668f504c88d3b"
+    "bytes": 1258,
+    "sha256": "ff5ddc0787b24e110424083ba81d9bc86acbc00c79d4d86e17355f26e7dd22e9"
   },
   "statistics": {
     "messages": 1,

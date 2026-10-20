@@ -1,0 +1,53 @@
+{
+  "exp_id": "mink_ordinal_baseline_002",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:08:23.042Z",
+    "updated_at": "2026-05-19T14:05:46.216Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && python3 scripts/mink_prob_baseline.py\"",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "131522",
+      "log_path": "~/runs/recursive_gen_depth_est/mink_ordinal_baseline_002.log",
+      "submitted_at": "2026-05-19T13:08:22.536Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Min-K% Prob (Shi et al. 2024) continuous membership-inference scores, when calibrated to 4-class ordinal depth via equal-width/CORAL/threshold methods, achieve near-chance accuracy (30-35%) on 9-cell atlas. Establishes that binary detection scores lack ordinal depth resolution. Rebuttal ammunition against \"did you test Min-K% for ordinal?\"",
+    "notes": "Results extracted from gpu-6000pro-2. 9/9 cells complete. Previously ran on gpu-6000pro-2 (not westd-48862). All methods near chance (25%): methodA ~24-25%, methodC ~24-25%, methodB best at 29-33% but still far from useful. Hypothesis confirmed.",
+    "metrics": {
+      "cells_complete": "9/9",
+      "best_method": "K20_methodB",
+      "best_method_mean_4class_acc": 0.3323,
+      "best_method_mean_d1d3_bal_acc": 0.4039,
+      "overall_mean_4class_acc_methodA": {
+        "K10": 0.2495,
+        "K20": 0.2419,
+        "K30": 0.2226
+      },
+      "overall_mean_4class_acc_methodB": {
+        "K10": 0.2896,
+        "K20": 0.3323,
+        "K30": 0.3301
+      },
+      "overall_mean_4class_acc_methodC": {
+        "K10": 0.246,
+        "K20": 0.2459,
+        "K30": 0.2452
+      },
+      "chance_level": 0.25,
+      "verdict": "methodA/C at chance (~25%). methodB slightly above chance (29-33%) but far from useful. Confirms Min-K% cannot do ordinal depth classification."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T14:05:46.473343+00:00",
+  "trigger": "update_registry"
+}

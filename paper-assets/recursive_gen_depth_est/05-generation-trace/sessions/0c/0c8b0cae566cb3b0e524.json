@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_cleanup_tmux_and_submit_n2_20260515T121325_result.json",
     "occurrence": 1,
-    "bytes": 1055,
-    "sha256": "1df92864511d3896fb752fa133aaa0cdd7d56f5bd8d48b5d20a343f26d821eac"
+    "bytes": 1054,
+    "sha256": "bb2519848babee82520061e456c8d5eefe712b3cdb521ffc35b230330b6ed2e5"
   },
   "statistics": {
     "messages": 1,

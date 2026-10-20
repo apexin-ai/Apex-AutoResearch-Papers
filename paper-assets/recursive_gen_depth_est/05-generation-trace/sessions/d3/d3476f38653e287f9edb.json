@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_experiment_depth_extension_binary_pairwise_002_20260515T060515_result.json",
     "occurrence": 1,
-    "bytes": 874,
-    "sha256": "a7ffa273d2f4f5e44915e36d922e55edf55e971b0d76d91fd457ffd99441193e"
+    "bytes": 873,
+    "sha256": "2e8165271ade08e5267109d0518d416cf650245b5dfa2deabbcdefda35991b69"
   },
   "statistics": {
     "messages": 1,

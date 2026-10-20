@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_three_class_eval_persist_20260514T183740_result.json",
     "occurrence": 1,
-    "bytes": 615,
-    "sha256": "60cf4ddf9dbd4d305c5d8ca88888670e8e47d9b9901c80085f2a3a79932b1d23"
+    "bytes": 614,
+    "sha256": "aabe32ea8d9d2b739d03c47ba4fcd1b27a03b11952c33f8f6e55dbe649694e4b"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_atlas_analysis_prep_20260514T160337_result.json",
     "occurrence": 1,
-    "bytes": 1023,
-    "sha256": "43a61aed8c19266ec7a39bf6b486ebc0bba7a8049a7c6ff7267b9b697dfa5d75"
+    "bytes": 1022,
+    "sha256": "bb6554d45e980dd4804b9e46ed66582850160f2be493450e0d0b8a7400e4987f"
   },
   "statistics": {
     "messages": 1,

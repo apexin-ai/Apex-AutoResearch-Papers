@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_get_multi_tau_pid_20260516T023041_result.json",
     "occurrence": 1,
-    "bytes": 1208,
-    "sha256": "167cdf7bdf687fcb8ba47c0b914bd06f520d1b77b04939d012c649e550a8d777"
+    "bytes": 1207,
+    "sha256": "e00b4e0a6ab9ab5f9a8ce7b879251b8ae8f925fc662bcc253174d79f7f383240"
   },
   "statistics": {
     "messages": 1,

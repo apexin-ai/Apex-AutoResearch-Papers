@@ -1,0 +1,19 @@
+{
+  "exp_id": "binoculars_ordinal_baseline_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:46:39.334Z",
+    "updated_at": "2026-05-19T17:33:27.934Z",
+    "hypothesis": "Binoculars (Hans et al., ICML 2024) cross-perplexity scores (observer=pythia-1.4b, performer=pythia-410m), when calibrated to 4-class ordinal depth, achieve near-chance accuracy on 9-cell atlas. Binoculars is binary detection SOTA; testing it is critical for completeness. Reviewer will ask \"did you test Binoculars?\"",
+    "notes": "Moved to westd-48862 cuda:0 (freed after DeBERTa pilot). Scripts deployed via scp. Worker checking model prerequisites. Will submit once models confirmed cached.",
+    "spec": {
+      "server": "gpu-6000pro-2"
+    }
+  },
+  "timestamp": "2026-05-19T17:33:28.416235+00:00",
+  "trigger": "update_registry"
+}

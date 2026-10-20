@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_accum_baseline_and_check_baselines_20260519T131726_result.json",
     "occurrence": 1,
-    "bytes": 1178,
-    "sha256": "109812265ecab3d77e34ff8c80113225620b5d635503d1fd1ad22ae5a4e0af78"
+    "bytes": 1177,
+    "sha256": "c9673abaac901cd411fe43216a19010eb499854067142dcf4091f93e754a76a5"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_discussion-and-s54-expansion_20260515T200231_result.json",
     "occurrence": 1,
-    "bytes": 1392,
-    "sha256": "731dcb3f3189120f01a95f96db8eb8cacf200add65063567c114085a0768b466"
+    "bytes": 1391,
+    "sha256": "3ff5c3d558e2cf139a38aa36c0b92d3f91c28b481f36d8c53a234e04c779f8c0"
   },
   "statistics": {
     "messages": 1,

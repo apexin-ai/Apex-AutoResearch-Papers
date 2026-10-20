@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_plan_013_downstream_curation_poc_20260515T213758_result.json",
     "occurrence": 1,
-    "bytes": 804,
-    "sha256": "7b8b15ac48b282dfdacd0d101a2fdfe0695af343d67debecbc7df265da63bfde"
+    "bytes": 803,
+    "sha256": "09b72cfd529516c9111527c13414b19716464562a2838d1c75e2e67459109e5d"
   },
   "statistics": {
     "messages": 1,

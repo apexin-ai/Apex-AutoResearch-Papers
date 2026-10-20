@@ -1,0 +1,17 @@
+{
+  "exp_id": "cross_strategy_pipeline_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:53:20.150Z",
+    "updated_at": "2026-05-17T08:53:39.351Z",
+    "hypothesis": "Strategy classifier achieves >90% accuracy on 19 statistical features; two-stage pipeline (predict strategy then route to per-strategy depth RF) recovers cross-strategy depth accuracy to >=70% vs naive LOO 59.1%",
+    "parent": "cross_strategy_loo_001",
+    "plan_id": "plan_017"
+  },
+  "timestamp": "2026-05-17T08:53:39.579979+00:00",
+  "trigger": "update_registry"
+}

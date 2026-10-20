@@ -1,0 +1,293 @@
+{
+  "pythia": {
+    "model": "pythia",
+    "folds": {
+      "held_out_nucleus": {
+        "rf": {
+          "accuracy_4class": 0.6993,
+          "balanced_accuracy_d1d3": 0.5991,
+          "mae": 0.3576,
+          "cohen_kappa_weighted": 0.8246
+        },
+        "dnn": {
+          "accuracy_4class": 0.7417,
+          "balanced_accuracy_d1d3": 0.6565,
+          "mae": 0.3021,
+          "cohen_kappa_weighted": 0.8538
+        },
+        "dann": {
+          "accuracy_4class": 0.7260,
+          "balanced_accuracy_d1d3": 0.6362,
+          "mae": 0.3040,
+          "cohen_kappa_weighted": 0.8564
+        }
+      },
+      "held_out_temp": {
+        "rf": {
+          "accuracy_4class": 0.6370,
+          "balanced_accuracy_d1d3": 0.5159,
+          "mae": 0.4481,
+          "cohen_kappa_weighted": 0.7798
+        },
+        "dnn": {
+          "accuracy_4class": 0.6346,
+          "balanced_accuracy_d1d3": 0.5137,
+          "mae": 0.4642,
+          "cohen_kappa_weighted": 0.7713
+        },
+        "dann": {
+          "accuracy_4class": 0.6311,
+          "balanced_accuracy_d1d3": 0.5091,
+          "mae": 0.4323,
+          "cohen_kappa_weighted": 0.7930
+        }
+      },
+      "held_out_topk": {
+        "rf": {
+          "accuracy_4class": 0.5152,
+          "balanced_accuracy_d1d3": 0.3536,
+          "mae": 0.6875,
+          "cohen_kappa_weighted": 0.4735
+        },
+        "dnn": {
+          "accuracy_4class": 0.5074,
+          "balanced_accuracy_d1d3": 0.3443,
+          "mae": 0.7019,
+          "cohen_kappa_weighted": 0.4584
+        },
+        "dann": {
+          "accuracy_4class": 0.5075,
+          "balanced_accuracy_d1d3": 0.3447,
+          "mae": 0.6988,
+          "cohen_kappa_weighted": 0.4648
+        }
+      }
+    },
+    "methods": {
+      "rf": {
+        "accuracy_4class": 0.6172,
+        "accuracy_4class_std": 0.0765,
+        "balanced_accuracy_d1d3": 0.4895,
+        "balanced_accuracy_d1d3_std": 0.1019,
+        "mae": 0.4977,
+        "mae_std": 0.1392,
+        "cohen_kappa_weighted": 0.6926,
+        "cohen_kappa_weighted_std": 0.1560
+      },
+      "dnn": {
+        "accuracy_4class": 0.6279,
+        "accuracy_4class_std": 0.0958,
+        "balanced_accuracy_d1d3": 0.5048,
+        "balanced_accuracy_d1d3_std": 0.1276,
+        "mae": 0.4894,
+        "mae_std": 0.1642,
+        "cohen_kappa_weighted": 0.6945,
+        "cohen_kappa_weighted_std": 0.1703
+      },
+      "dann": {
+        "accuracy_4class": 0.6215,
+        "accuracy_4class_std": 0.0894,
+        "balanced_accuracy_d1d3": 0.4967,
+        "balanced_accuracy_d1d3_std": 0.1193,
+        "mae": 0.4784,
+        "mae_std": 0.1644,
+        "cohen_kappa_weighted": 0.7047,
+        "cohen_kappa_weighted_std": 0.1716
+      }
+    }
+  },
+  "olmo": {
+    "model": "olmo",
+    "folds": {
+      "held_out_nucleus": {
+        "rf": {
+          "accuracy_4class": 0.6538,
+          "balanced_accuracy_d1d3": 0.5455,
+          "mae": 0.3839,
+          "cohen_kappa_weighted": 0.8128
+        },
+        "dnn": {
+          "accuracy_4class": 0.6733,
+          "balanced_accuracy_d1d3": 0.5670,
+          "mae": 0.3633,
+          "cohen_kappa_weighted": 0.8277
+        },
+        "dann": {
+          "accuracy_4class": 0.6858,
+          "balanced_accuracy_d1d3": 0.5849,
+          "mae": 0.3541,
+          "cohen_kappa_weighted": 0.8299
+        }
+      },
+      "held_out_temp": {
+        "rf": {
+          "accuracy_4class": 0.5783,
+          "balanced_accuracy_d1d3": 0.4377,
+          "mae": 0.4857,
+          "cohen_kappa_weighted": 0.8002
+        },
+        "dnn": {
+          "accuracy_4class": 0.5593,
+          "balanced_accuracy_d1d3": 0.4133,
+          "mae": 0.5106,
+          "cohen_kappa_weighted": 0.7908
+        },
+        "dann": {
+          "accuracy_4class": 0.5743,
+          "balanced_accuracy_d1d3": 0.4343,
+          "mae": 0.4899,
+          "cohen_kappa_weighted": 0.7901
+        }
+      },
+      "held_out_topk": {
+        "rf": {
+          "accuracy_4class": 0.5481,
+          "balanced_accuracy_d1d3": 0.3974,
+          "mae": 0.5773,
+          "cohen_kappa_weighted": 0.5904
+        },
+        "dnn": {
+          "accuracy_4class": 0.5462,
+          "balanced_accuracy_d1d3": 0.3956,
+          "mae": 0.5859,
+          "cohen_kappa_weighted": 0.5781
+        },
+        "dann": {
+          "accuracy_4class": 0.5787,
+          "balanced_accuracy_d1d3": 0.4391,
+          "mae": 0.5230,
+          "cohen_kappa_weighted": 0.6479
+        }
+      }
+    },
+    "methods": {
+      "rf": {
+        "accuracy_4class": 0.5934,
+        "accuracy_4class_std": 0.0445,
+        "balanced_accuracy_d1d3": 0.4602,
+        "balanced_accuracy_d1d3_std": 0.0640,
+        "mae": 0.4823,
+        "mae_std": 0.0795,
+        "cohen_kappa_weighted": 0.7345,
+        "cohen_kappa_weighted_std": 0.0990
+      },
+      "dnn": {
+        "accuracy_4class": 0.5929,
+        "accuracy_4class_std": 0.0571,
+        "balanced_accuracy_d1d3": 0.4586,
+        "balanced_accuracy_d1d3_std": 0.0775,
+        "mae": 0.4866,
+        "mae_std": 0.0917,
+        "cohen_kappa_weighted": 0.7322,
+        "cohen_kappa_weighted_std": 0.1075
+      },
+      "dann": {
+        "accuracy_4class": 0.6129,
+        "accuracy_4class_std": 0.0516,
+        "balanced_accuracy_d1d3": 0.4861,
+        "balanced_accuracy_d1d3_std": 0.0673,
+        "mae": 0.4557,
+        "mae_std": 0.0706,
+        "cohen_kappa_weighted": 0.7560,
+        "cohen_kappa_weighted_std": 0.0789
+      }
+    }
+  },
+  "gpt2xl": {
+    "model": "gpt2xl",
+    "folds": {
+      "held_out_nucleus": {
+        "rf": {
+          "accuracy_4class": 0.5982,
+          "balanced_accuracy_d1d3": 0.5022,
+          "mae": 0.4247,
+          "cohen_kappa_weighted": 0.7987
+        },
+        "dnn": {
+          "accuracy_4class": 0.5951,
+          "balanced_accuracy_d1d3": 0.4835,
+          "mae": 0.4350,
+          "cohen_kappa_weighted": 0.7907
+        },
+        "dann": {
+          "accuracy_4class": 0.6300,
+          "balanced_accuracy_d1d3": 0.5231,
+          "mae": 0.3988,
+          "cohen_kappa_weighted": 0.8041
+        }
+      },
+      "held_out_temp": {
+        "rf": {
+          "accuracy_4class": 0.5618,
+          "balanced_accuracy_d1d3": 0.4157,
+          "mae": 0.4995,
+          "cohen_kappa_weighted": 0.7987
+        },
+        "dnn": {
+          "accuracy_4class": 0.5528,
+          "balanced_accuracy_d1d3": 0.4049,
+          "mae": 0.5134,
+          "cohen_kappa_weighted": 0.7916
+        },
+        "dann": {
+          "accuracy_4class": 0.5368,
+          "balanced_accuracy_d1d3": 0.3839,
+          "mae": 0.5326,
+          "cohen_kappa_weighted": 0.7662
+        }
+      },
+      "held_out_topk": {
+        "rf": {
+          "accuracy_4class": 0.5347,
+          "balanced_accuracy_d1d3": 0.3795,
+          "mae": 0.6084,
+          "cohen_kappa_weighted": 0.5693
+        },
+        "dnn": {
+          "accuracy_4class": 0.5347,
+          "balanced_accuracy_d1d3": 0.3801,
+          "mae": 0.6099,
+          "cohen_kappa_weighted": 0.5599
+        },
+        "dann": {
+          "accuracy_4class": 0.5659,
+          "balanced_accuracy_d1d3": 0.4222,
+          "mae": 0.5460,
+          "cohen_kappa_weighted": 0.6314
+        }
+      }
+    },
+    "methods": {
+      "rf": {
+        "accuracy_4class": 0.5649,
+        "accuracy_4class_std": 0.0260,
+        "balanced_accuracy_d1d3": 0.4325,
+        "balanced_accuracy_d1d3_std": 0.0515,
+        "mae": 0.5108,
+        "mae_std": 0.0754,
+        "cohen_kappa_weighted": 0.7222,
+        "cohen_kappa_weighted_std": 0.1081
+      },
+      "dnn": {
+        "accuracy_4class": 0.5609,
+        "accuracy_4class_std": 0.0253,
+        "balanced_accuracy_d1d3": 0.4229,
+        "balanced_accuracy_d1d3_std": 0.0441,
+        "mae": 0.5194,
+        "mae_std": 0.0715,
+        "cohen_kappa_weighted": 0.7141,
+        "cohen_kappa_weighted_std": 0.1090
+      },
+      "dann": {
+        "accuracy_4class": 0.5776,
+        "accuracy_4class_std": 0.0389,
+        "balanced_accuracy_d1d3": 0.4431,
+        "balanced_accuracy_d1d3_std": 0.0587,
+        "mae": 0.4925,
+        "mae_std": 0.0664,
+        "cohen_kappa_weighted": 0.7339,
+        "cohen_kappa_weighted_std": 0.0741
+      }
+    }
+  }
+}

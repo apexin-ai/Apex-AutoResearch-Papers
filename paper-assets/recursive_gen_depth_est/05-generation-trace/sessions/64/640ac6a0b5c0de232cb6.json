@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_depth_extension_olmo_d4d5_001_20260515T103056_result.json",
     "occurrence": 1,
-    "bytes": 917,
-    "sha256": "901c134f2c7a844c0e3055540cf3102653e29ac03b810a11b4ff207d62c99dcf"
+    "bytes": 916,
+    "sha256": "c6bb99c0a8104f766e6004630cbab21e9d9ebaa6aa9b42824eb77a5ba08a7ab6"
   },
   "statistics": {
     "messages": 1,

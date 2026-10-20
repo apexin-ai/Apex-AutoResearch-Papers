@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_westd_14b_download_check_cuda0_20260517T182519_result.json",
     "occurrence": 1,
-    "bytes": 913,
-    "sha256": "cbed8a76c11d69e9533a1e6914b42da044e16de04b57b04f46791acfb73168ee"
+    "bytes": 912,
+    "sha256": "06717d8180741212b1220d4efded61f6b77dc340d195b0d4b3b04ee612ce75be"
   },
   "statistics": {
     "messages": 1,

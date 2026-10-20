@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_learned_estimator_resweep_westd_20260517T180629_result.json",
     "occurrence": 1,
-    "bytes": 879,
-    "sha256": "f6841763df8ecaae5073b3d8eec0608dfeb3788a39a2f47e26da91c8186c5eb4"
+    "bytes": 878,
+    "sha256": "c8fa9bef607113684b5da1d8f99ea948a19358db3dcee7fceb58fb7c71328b6c"
   },
   "statistics": {
     "messages": 1,

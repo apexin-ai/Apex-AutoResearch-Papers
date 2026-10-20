@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_batch_feature_extraction_restart_20260515T035255_result.json",
     "occurrence": 1,
-    "bytes": 529,
-    "sha256": "f5cbb161e149a05006e26494475a0501eb6b33a6a248b75ceb78fd9300e3b838"
+    "bytes": 528,
+    "sha256": "6cf54872b5440d603e940bac5ef8feba176798de310d89012cbd2da4a8ef8560"
   },
   "statistics": {
     "messages": 1,

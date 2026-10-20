@@ -1,0 +1,105 @@
+paper_key: "dohmatob2025_strong_collapse"
+title: "Strong Model Collapse"
+venue: "ICLR 2025 Spotlight"
+full_text_available: true
+
+research:
+  baselines:
+    - "Training on pure real/original data (no synthetic contamination)"
+    - "Training on pure synthetic data"
+    - "Mixed real+synthetic data with various proportions p2"
+    - "Weighted single-step mixing (data weighting strategies)"
+    - "Dynamic multi-step mixing"
+  metrics:
+    - {name: "test error (E_test on real distribution)", direction: "lower_better"}
+    - {name: "test loss (cross-entropy for language modeling)", direction: "lower_better"}
+    - {name: "collapse term zeta (excess error from synthetic data)", direction: "lower_better"}
+  datasets:
+    - {name: "Gaussian synthetic data (random projections)", size: "n=500 samples, variable d"}
+    - {name: "MNIST", size: "standard 60K/10K, used for regression with two-layer networks"}
+    - {name: "BabiStories", size: "reproduction of TinyStories via Mixtral-8x7B; token counts up to ~3e10"}
+  ablation_dimensions:
+    - "synthetic data proportion p2 (fraction of training data that is synthetic)"
+    - "model size m (network width for random projections, depth/layers for GPT-2)"
+    - "synthetic data quality c^2 (distribution mismatch between real and synthetic)"
+    - "total training set size n (scaling behavior)"
+    - "parametrization rate psi=m/n (under- vs over-parameterized regime)"
+    - "interpolation threshold crossing (m=n boundary)"
+  training_recipe:
+    optimizer: "not explicitly detailed in accessible text; standard SGD/Adam for neural network experiments"
+    lr: "not explicitly detailed in accessible text"
+    hardware: "not explicitly detailed in accessible text"
+    details: "Random projections on Gaussian data (n=500); two-layer neural networks on MNIST (width m=2000); GPT-2 models (12-layer) on BabiStories; experiments vary p2 and model size systematically"
+  method_family: "theoretical analysis of model collapse via bias-variance decomposition and operator-valued free probability theory"
+
+positioning:
+  core_claim: "Model collapse persists even when mixing real and synthetic data, as long as the fraction of synthetic data does not vanish asymptotically — establishing a 'strong' form of collapse where no fixed-proportion mixing strategy can prevent performance degradation, and larger models amplify this effect in the under-parameterized regime."
+  key_results: "E_test = B + V + zeta decomposition where zeta is irreducible collapse term; in scaling laws regime (phi->0+), zeta ~ p2^2 * tr(Delta) remains bounded unless p2->0; 1% synthetic data sufficient to cause collapse plateau; larger models amplify collapse when real/synthetic distributions differ significantly; double-descent pattern where over-parameterized models (past m=n threshold) partially mitigate but do not eliminate collapse"
+  limitations:
+    - "Theory focuses on supervised regression with label shifts — does not directly model generative/autoregressive training"
+    - "Random projections model is a simplified approximation of actual neural networks (linearized regime)"
+    - "Gaussian feature distribution assumption with diagonal covariance matrices"
+    - "Proportionate scaling limit assumes d,n,m -> infinity with fixed ratios"
+    - "For fully-trained neural networks the theory does not directly apply, though authors anticipate general trends hold"
+    - "Does not address mitigation via data filtering, detection, or curation (only analyzes mixing/weighting)"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the observation that AI-generated content is increasingly contaminating web training corpora, and asks whether the standard approach of scaling up training data can still work when synthetic data is inevitably mixed in. Frames this as a fundamental threat to the scaling laws paradigm."
+  tension: "Prior model collapse work showed degradation in recursive (iterative) generation settings, but left open whether strategic mixing of real and synthetic data could prevent collapse. The natural hope is that diluting synthetic data with sufficient real data would restore normal scaling — this paper proves that hope is false."
+  key_insight: "The key insight is the bias-variance decomposition E_test = B + V + zeta, where zeta is an irreducible collapse term that persists as long as the synthetic data fraction p2 remains fixed (non-vanishing). This means no matter how much you scale total data n, the collapse term does not vanish — you must asymptotically eliminate synthetic data proportion entirely. Revealed through Theorem 1 (linear models) and Theorem 2 (random projections/neural approximation)."
+  argument_chain: "problem (synthetic data contamination is unavoidable) -> question (can mixing/scaling overcome it?) -> theory (bias-variance decomposition reveals irreducible collapse term zeta) -> scaling law implication (zeta plateaus unless p2->0) -> model size analysis (bigger models amplify collapse below interpolation threshold) -> double-descent (reversal above interpolation threshold but not elimination) -> data mixing strategies (weighted/dynamic mixing cannot fix fundamental issue) -> experimental validation (random projections, MNIST, GPT-2 on BabiStories confirm theory)"
+  contribution_framing: "Two main results explicitly labeled: Result #1 (Strong Model Collapse) — collapse persists with any fixed synthetic fraction; Result #2 (Model Size and Model Collapse) — bigger models amplify collapse except past interpolation threshold. Followed by experimental validation across three settings (toy, MNIST, language modeling)."
+  intro_structure: "~5 paragraphs: P1=hook (AI-generated content proliferating in training data), P2=problem framing (model collapse definition and prior work), P3=research questions (can mixing help? does model size matter?), P4=main results summary (Result #1 and #2), P5=experimental validation overview and paper organization. Section 1.1 details contributions, Section 1.2 covers related work."
+  notable_technique: "The 'strong' vs 'weak' framing is a powerful rhetorical device — it redefines the conversation by showing that even the most optimistic scenario (strategic mixing with fresh real data) still fails. The Pareto diagram (Figure 1) is an effective visual argument that immediately conveys the tradeoff. The paper also uses the mathematical elegance of the exact bias-variance-collapse decomposition to make a clean, falsifiable theoretical claim rather than just empirical observations."
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "motivation"
+    description: "Pareto diagram showing test error on real data distribution: training on mixed data (y-axis) vs training on real data only (x-axis). Points colored by synthetic data quality (c^2) for a random projections model with n=500. Lines show Pareto frontiers for different quality levels. Demonstrates that mixed training always incurs excess error (points above diagonal) and the tradeoff worsens with lower synthetic data quality."
+    narrative_role: "Immediately establishes the core claim visually — no combination of model size and data mixing achieves the performance of training on real data alone. Sets up the entire paper's argument in one figure."
+    design_elements: ["Pareto frontier visualization", "diagonal reference line (ideal = no collapse)", "colorbar for parametrization rate psi=m/n", "multiple quality levels compared"]
+    visual_style: "Scatter plot with Pareto frontiers; colorbar encoding model size; clean 2D layout that maps directly to the central question (mixed vs real-only performance)"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Strong model collapse in classical linear model — empirical confirmation of Corollary 1. Shows test error vs training set size for various synthetic data proportions p2, demonstrating that even small p2 causes scaling law plateau."
+      how_gain_highlighted: "Direct comparison of p2=0 (ideal scaling law) vs p2>0 curves; the plateau/saturation effect is visually stark"
+      design_note: "Log-log scale makes power-law behavior linear and the collapse plateau clearly visible as a horizontal asymptote; multiple p2 values show graduated severity"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Impact of model size (network width m) on model collapse for various data quality levels c^2 and mixing ratios p2"
+      how_gain_highlighted: "Shows test error as function of model size, revealing the double-descent pattern: collapse worsens up to interpolation threshold m=n, then partially reverses"
+      design_note: "Multiple panels for different c^2 values; vertical line or inflection at m=n marks the interpolation threshold — the key theoretical prediction"
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      what_compared: "Model collapse on MNIST with two-layer neural network (width m=2000) as function of synthetic data proportion"
+      how_gain_highlighted: "Validates that theoretical predictions from random projections model transfer to real image data"
+      design_note: "Bridges the theory-practice gap by testing on a real dataset"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      what_compared: "GPT-2 (12-layer) language model on BabiStories: (Left) test loss vs number of training tokens for various synthetic data proportions p2; (Right) test loss vs model depth showing larger models initially better but eventually worse"
+      how_gain_highlighted: "Left panel shows clear scaling law plateau with synthetic contamination; Right panel shows the depth-dependent collapse reversal predicted by theory"
+      design_note: "Most impactful experimental figure — demonstrates that theoretical predictions generalize to autoregressive language models despite theory being developed for regression"
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "schematic_diagram"
+      dimensions_varied: ["bias B", "variance V", "collapse term zeta"]
+      design_note: "Illustrates the bias-variance-collapse decomposition E_test = B + V + zeta; shows how c^2 (synthetic data quality) and interpolation threshold m=n interact. Functions as both explanation and ablation — decomposing total error into its components."
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["model size", "data quality", "mixing proportion"]
+      design_note: "Shows double-descent curves as function of model parametrization; demonstrates the reversal past interpolation threshold"
+  figure_narrative_role: "Figure 1 (Pareto motivation: collapse is unavoidable) -> Figure 2 (decomposition: why collapse happens via B+V+zeta) -> Figure 3 (theory validation: linear model confirms plateau) -> Figure 4 (model size: double-descent in collapse) -> Figure 5 (additional theory curves) -> Figure 6-7 (MNIST validation) -> Figure 8 (GPT-2 language model validation). Arc: visual claim -> theoretical mechanism -> toy validation -> model size effects -> real-world validation."
+
+tables:
+  table_count: 0
+  main_result_table:
+    note: "This paper contains NO tables. All results are presented through mathematical theorems (Theorem 1, 2, Corollary 1) and scaling curve figures. This is consistent with theoretical ML papers where contributions are equations/bounds rather than benchmark comparisons."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendices contain proofs (operator-valued free probability theory derivations), additional experimental figures, and experimental setup details (Appendix A.1: random projections hyperparameters, A.2: two-layer neural network configuration, A.3: language modeling training specifics)"
+    reason: "Theoretical paper — results are best expressed as scaling law equations and their visual verification via figures, not tabular benchmark comparisons"

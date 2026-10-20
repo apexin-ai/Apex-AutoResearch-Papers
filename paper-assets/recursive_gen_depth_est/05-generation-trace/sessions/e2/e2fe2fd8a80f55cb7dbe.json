@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_w2_logo_seed_rerun_20260515T200018_result.json",
     "occurrence": 1,
-    "bytes": 1099,
-    "sha256": "f2d11bb091c3baa7bb194eb80c17f11e8fb5f1333f5b15b37dc986d749a87c6d"
+    "bytes": 1098,
+    "sha256": "ff554643ab5643dfb4a08cebdda465dc7d69b8111ecd52036a8887bc9ef4f45c"
   },
   "statistics": {
     "messages": 1,

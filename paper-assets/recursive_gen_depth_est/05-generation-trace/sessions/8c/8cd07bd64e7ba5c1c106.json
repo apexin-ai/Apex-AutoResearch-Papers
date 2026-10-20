@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_westd_baseline_prep_20260519T112124_result.json",
     "occurrence": 1,
-    "bytes": 2743,
-    "sha256": "8f99b0835addd724b00665e3123279713e123045aaa6bb80106cd6e1ea63d73a"
+    "bytes": 2742,
+    "sha256": "56d23afe6038a6793d412ec77f6d381b1c44f9714027ed791a50105f3b11637f"
   },
   "statistics": {
     "messages": 1,

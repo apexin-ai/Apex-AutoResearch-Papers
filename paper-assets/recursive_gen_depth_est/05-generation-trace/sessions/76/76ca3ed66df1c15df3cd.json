@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_shap_files_check_20260515T191736_result.json",
     "occurrence": 1,
-    "bytes": 1216,
-    "sha256": "29a8ad30d4f789cec468f76df5b5ab915001ee60ffdb89c012f5f2a9b6513fc1"
+    "bytes": 1215,
+    "sha256": "b5fd16974e93cfd84b03877a825309d728f4737ff264cb6b0746b4c1cc7627a4"
   },
   "statistics": {
     "messages": 1,

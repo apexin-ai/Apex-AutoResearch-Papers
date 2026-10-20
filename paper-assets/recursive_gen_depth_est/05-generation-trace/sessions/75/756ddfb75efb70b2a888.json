@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_14b-status-westd48862_20260518T034420_result.json",
     "occurrence": 1,
-    "bytes": 817,
-    "sha256": "0653be249ec0d4cea75d8e43bdbcb3f67444c3009e177951700df28f909b6aa1"
+    "bytes": 816,
+    "sha256": "5cda6c09da1d1979c1bfa5a2414212db924e17b4c20e810cda517c5ee1220d87"
   },
   "statistics": {
     "messages": 1,

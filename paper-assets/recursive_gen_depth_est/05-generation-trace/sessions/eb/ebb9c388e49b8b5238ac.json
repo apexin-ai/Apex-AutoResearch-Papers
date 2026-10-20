@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_cross_strategy_dann_20260519T104344_result.json",
     "occurrence": 1,
-    "bytes": 878,
-    "sha256": "51f1baa3ee788d391c90511504d47ae5e791629110bdf6c1f625eab37525425b"
+    "bytes": 877,
+    "sha256": "abe4cab9a01536485872720d1af5e6e7b73697be7a3a0d5a87c8bfb70d41ea4f"
   },
   "statistics": {
     "messages": 1,

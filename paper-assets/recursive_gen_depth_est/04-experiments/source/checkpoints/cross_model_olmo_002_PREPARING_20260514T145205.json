@@ -1,0 +1,14 @@
+{
+  "exp_id": "cross_model_olmo_002",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:52:05.783Z",
+    "updated_at": "2026-05-14T14:52:05.783Z"
+  },
+  "timestamp": "2026-05-14T14:52:05.819223+00:00",
+  "trigger": "update_registry"
+}

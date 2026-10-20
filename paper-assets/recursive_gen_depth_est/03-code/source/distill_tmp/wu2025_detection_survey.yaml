@@ -1,0 +1,26 @@
+paper_key: "wu2025_detection_survey"
+title: "A Survey on LLM-Generated Text Detection: Necessity, Methods, and Future Directions"
+venue: "Computational Linguistics, Vol. 51, Issue 1, 2025"
+full_text_available: false
+
+research:
+  baselines: ["N/A (survey paper)"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "F1", direction: "higher_better"}
+    - {name: "TPR@FPR", direction: "higher_better"}
+  datasets:
+    - {name: "various detection benchmarks surveyed", size: "N/A"}
+  ablation_dimensions: ["method family (watermarking/statistical/neural/human-assisted)", "evaluation setting (in-domain/cross-domain/cross-model)", "attack type"]
+  training_recipe: {optimizer: "N/A (survey)", lr: "N/A", hardware: "N/A"}
+  method_family: "survey covering watermarking, statistics-based, neural-based, and human-assisted detection"
+
+positioning:
+  core_claim: "Comprehensive taxonomy of LLM text detection methods organized into 4 families, with analysis of challenges including OOD generalization, adversarial attacks, and evaluation framework deficiencies"
+  key_results: "Identifies key gaps: OOD robustness, attack resilience, real-world data handling, lack of standardized evaluation"
+  limitations: ["survey scope limited to text modality", "rapidly evolving field"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

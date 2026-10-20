@@ -1,0 +1,23 @@
+{
+  "exp_id": "mvp_pipeline_pythia_002",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:07:25.860Z",
+    "updated_at": "2026-05-14T12:07:25.860Z",
+    "spec": {
+      "hypothesis": "Pythia-1.4B (The Pile, 代码仅3.3%) 递归生成的文本具有可区分的统计模式，4-class acc > 40% 且 depth-1 vs depth-2 AUC > 0.6",
+      "model_name": "EleutherAI/pythia-1.4b",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T12:07:25.875528+00:00",
+  "trigger": "update_registry"
+}

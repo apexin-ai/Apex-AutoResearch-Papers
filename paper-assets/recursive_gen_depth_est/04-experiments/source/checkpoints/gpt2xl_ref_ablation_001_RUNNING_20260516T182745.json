@@ -1,0 +1,33 @@
+{
+  "exp_id": "gpt2xl_ref_ablation_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:44:18.711Z",
+    "updated_at": "2026-05-16T18:27:44.926Z",
+    "spec": {
+      "command": "python src/gpt2xl_ref_ablation.py --gpu 0 --batch_size 16",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "588517",
+      "log_path": "~/runs/recursive_gen_depth_est/gpt2xl_ref_ablation_001.log",
+      "submitted_at": "2026-05-16T17:44:18.395Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_{0,1,2,3}.jsonl",
+      "data_count": 20000,
+      "model_name": "gpt2-xl (ref) + pythia-1.4b (baseline)",
+      "seed": 42,
+      "hypothesis": "A2 reference model ablation: GPT-2 XL as reference model for surprisal features on Pythia nucleus-generated texts. Compare 4-class RF 5-fold CV accuracy with Pythia-as-ref baseline."
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T18:27:45.165131+00:00",
+  "trigger": "update_registry"
+}

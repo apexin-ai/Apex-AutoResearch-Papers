@@ -1,0 +1,3 @@
+Remote path: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/figures/fig_auc_decay.{pdf,png}
+Formats: PDF (vector, 20KB) + PNG (300dpi, 143KB)
+Data: Pythia d1v2=0.925→d4v5=0.683, GPT-2 XL d1v2=0.966→d4v5=0.681, OLMo d1v2=0.968→d4v5=0.684. All cross τ=0.75 at d4v5 → EDD=4.

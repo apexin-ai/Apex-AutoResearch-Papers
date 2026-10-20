@@ -1,0 +1,55 @@
+{
+  "exp_id": "accum_pythia_nuc_002",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:47:16.064Z",
+    "updated_at": "2026-05-22T02:10:47.642Z",
+    "hypothesis": "Accumulation scenario with Pythia-1.4B nucleus sampling shows comparable depth signal degradation pattern to GPT-2 XL nucleus (accum_v3): mix25 ~70% and mix50 ~69%, confirming cross-model consistency of accumulation effects on depth estimation. Retry of accum_pythia_nuc_001 (failed due to cuda:1 not existing).",
+    "spec": {
+      "command": "python3 scripts/accumulation_pipeline_pythia_nucleus.py --mix_ratio 0.25 --seed 42",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": "374010",
+      "log_path": "~/runs/recursive_gen_depth_est/accum_pythia_nuc_002.log",
+      "submitted_at": "2026-05-21T11:48:45.312Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/pythia_nucleus/depth_0.jsonl + depth_1.jsonl",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b (LoRA) + EleutherAI/pythia-1.4b (feature ref)",
+      "seed": 42,
+      "mix_ratio": 0.25,
+      "lora_config": "r=16 alpha=32 target=[query_key_value] dropout=0.05 lr=2e-4 epochs=3 bs=4 grad_accum=4",
+      "feature_ref_model": "EleutherAI/pythia-1.4b",
+      "note": "Retry of accum_pythia_nuc_001 on cuda:0 (001 failed on non-existent cuda:1)",
+      "wall_clock_seconds": 51722.3,
+      "gpu_hours": 14.37
+    },
+    "conclusion": "success",
+    "metrics": {
+      "mix_ratio": 0.25,
+      "overall_accuracy": 0.7077,
+      "balanced_accuracy": 0.7077,
+      "d1_d3_balanced_accuracy": 0.6115,
+      "per_class_recall": {
+        "d0": 0.996,
+        "d1": 0.706,
+        "d2": 0.439,
+        "d3": 0.69
+      },
+      "baseline_full_replacement": 0.8428,
+      "delta_vs_full_replacement": -0.1351,
+      "elapsed_hours": 2.4,
+      "feature_extractor": "pythia-1.4b"
+    },
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/accumulation_v3/pythia_nucleus/mix25/summary.json",
+    "completed_at": "2026-05-22T02:10:47.642Z"
+  },
+  "timestamp": "2026-05-22T02:10:48.112860+00:00",
+  "trigger": "update_registry"
+}

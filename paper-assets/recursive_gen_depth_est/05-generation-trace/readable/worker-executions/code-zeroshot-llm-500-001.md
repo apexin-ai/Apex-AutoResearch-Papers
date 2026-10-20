@@ -4401,7 +4401,7 @@ _source line 97_
 ```json
 {
   "server": "gpu-6000pro-2",
-  "command": "source /root/.bashrc 2>/dev/null; echo \"OPENAI_API_KEY=${OPENAI_API_KEY:-NOT_SET}\"; echo \"OPENAI_BASE_URL=${OPENAI_BASE_URL:-NOT_SET}\""
+  "command": "source /root/.bashrc 2>/dev/null; echo \"OPENAI_API_KEY=[REDACTED]}\"; echo \"OPENAI_BASE_URL=${OPENAI_BASE_URL:-NOT_SET}\""
 }
 ```
 
@@ -4452,7 +4452,7 @@ _source line 98 · 2026-05-15T16:13:54.459Z_
 <details><summary>↩ Tool result · `toolu_01KPehdMVaoJwjAvqcFqu3LC`</summary>
 
 ```text
-{"result":"{\"success\": true, \"data\": {\"stdout\": \"OPENAI_API_KEY=NOT_SET\\nOPENAI_BASE_URL=NOT_SET\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OPENAI_API_KEY=[REDACTED]", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
 ```
 
 </details>
@@ -4467,9 +4467,9 @@ _source line 98 · 2026-05-15T16:13:54.459Z_
   "session_id": "d13bf357-9b74-410b-9d7a-e80d0cb6b8a0",
   "uuid": "04781df9-d191-4ad7-8773-603811e3a14e",
   "tool_use_result": {
-    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OPENAI_API_KEY=NOT_SET\\\\nOPENAI_BASE_URL=NOT_SET\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OPENAI_API_KEY=[REDACTED]\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
     "structuredContent": {
-      "result": "{\"success\": true, \"data\": {\"stdout\": \"OPENAI_API_KEY=NOT_SET\\nOPENAI_BASE_URL=NOT_SET\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"OPENAI_API_KEY=[REDACTED]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
     }
   }
 }
@@ -5515,7 +5515,7 @@ shell 脚本注释 `# OPENAI_API_KEY 由外部注入`，服务器 `.bashrc` 和�
 
 运行方式（拿到 key 后）：
 ```bash
-export OPENAI_API_KEY="your_key_here"
+export OPENAI_API_KEY="[REDACTED]"
 bash scripts/run_zeroshot_500.sh
 ```
 
@@ -5578,7 +5578,7 @@ shell 脚本注释 `# OPENAI_API_KEY 由外部注入`，服务器 `.bashrc` 和�
 
 运行方式（拿到 key 后）：
 ```bash
-export OPENAI_API_KEY="your_key_here"
+export OPENAI_API_KEY="[REDACTED]"
 bash scripts/run_zeroshot_500.sh
 ```
 

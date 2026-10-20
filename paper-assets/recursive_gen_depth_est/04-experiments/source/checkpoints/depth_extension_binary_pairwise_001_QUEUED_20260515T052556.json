@@ -1,0 +1,16 @@
+{
+  "exp_id": "depth_extension_binary_pairwise_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:22:13.190Z",
+    "updated_at": "2026-05-15T05:25:56.047Z",
+    "hypothesis": "Dedicated binary pairwise RF 评估 d3v4 和 d4v5 可区分性。6-class RF 的 pairwise AUC 因决策边界稀释不可靠（d2v3 从 4-class 0.80 降到 0.69 是 artifact）。Binary classifier 消除此 artifact，与原 4-class pipeline 的 d0v1/d1v2/d2v3 AUC 可比。判定标准：binary d3v4 AUC > 0.75 且 d4v5 AUC > 0.75 → EDD≥5；d3v4 > 0.75 但 d4v5 < 0.75 → EDD=4。",
+    "parent": "depth_extension_pythia_d4d5_001"
+  },
+  "timestamp": "2026-05-15T05:25:56.141855+00:00",
+  "trigger": "update_registry"
+}

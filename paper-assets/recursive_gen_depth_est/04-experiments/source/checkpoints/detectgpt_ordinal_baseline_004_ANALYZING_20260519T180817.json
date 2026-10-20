@@ -1,0 +1,61 @@
+{
+  "exp_id": "detectgpt_ordinal_baseline_004",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:57:54.621Z",
+    "updated_at": "2026-05-19T18:08:17.516Z",
+    "hypothesis": "DetectGPT perturbation discrepancy scores on pythia_nucleus cell achieve near-chance 4-class ordinal accuracy, completing the 9/9 cell coverage. Extends detectgpt_ordinal_baseline_002 (8/9 cells, 29.1%) with the missing pythia_nucleus cell. Script fixed with cell→directory mapping for pythia_nucleus (\".\").",
+    "parent": "detectgpt_ordinal_baseline_003",
+    "server": "westd-48862",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "westd-48862",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-19T17:58:13.331Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/recursive_gen_depth_est && python scripts/detectgpt_baseline_v2.py --cells pythia_nucleus --output results/detectgpt_baseline/detectgpt_pythia_nucleus.json\"",
+      "finished_at": "2026-05-19T18:00:58.613Z",
+      "training_hours": 0.05
+    },
+    "spec": {
+      "command": "python scripts/detectgpt_baseline_v2.py --cells pythia_nucleus --output results/detectgpt_baseline/detectgpt_pythia_nucleus.json",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/",
+      "data_count": "1 cell × 4 depths × 200 = 800 samples",
+      "model_name": "gpt2-large (scoring) + t5-large (perturbation)",
+      "seed": 42,
+      "checkpoint_source": "detectgpt_ordinal_baseline_002 (8/9 cells)",
+      "eval_data": "pythia_nucleus only (completing 9/9)"
+    },
+    "pid": "786624",
+    "log_path": "~/runs/recursive_gen_depth_est/detectgpt_ordinal_baseline_004.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T18:01:04.850657+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "pythia_nucleus_methodA_4class": 0.2538,
+      "pythia_nucleus_methodB_4class": 0.2512,
+      "pythia_nucleus_methodC_4class": 0.29,
+      "pythia_nucleus_mean_4class": 0.265,
+      "pythia_nucleus_methodA_d1d3_bal": 0.3383,
+      "pythia_nucleus_methodB_d1d3_bal": 0.335,
+      "pythia_nucleus_methodC_d1d3_bal": 0.12,
+      "pythia_nucleus_mean_d1d3_bal": 0.2644
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T18:08:17.795751+00:00",
+  "trigger": "update_registry"
+}

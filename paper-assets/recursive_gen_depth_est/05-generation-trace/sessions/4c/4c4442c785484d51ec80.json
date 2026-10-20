@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_monitor_multi_tau_ablation_001_20260516T022605_result.json",
     "occurrence": 1,
-    "bytes": 158,
-    "sha256": "bcc801f166ed5fd69fe917b75db3d8a3e7f1fac9d77bb64b5705b46f100bf094"
+    "bytes": 157,
+    "sha256": "33bc0a2a9ec826e3adc9804cfbb0dfdb736bd1efc413213f9f3426952fdad668"
   },
   "statistics": {
     "messages": 1,

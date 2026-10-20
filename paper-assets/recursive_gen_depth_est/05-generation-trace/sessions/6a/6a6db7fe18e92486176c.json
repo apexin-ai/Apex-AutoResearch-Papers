@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_pythia-pipeline-launch_20260514T120805_result.json",
     "occurrence": 1,
-    "bytes": 100,
-    "sha256": "887125f55f838578e524d4c176601dbc9248ebcce48ce5e52a0cd71c33731ebb"
+    "bytes": 99,
+    "sha256": "db6bc856cdab397aa6748bdcd196986c5c03b69ba12294e23392149adff077a6"
   },
   "statistics": {
     "messages": 1,

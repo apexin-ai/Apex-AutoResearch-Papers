@@ -1,0 +1,29 @@
+paper_key: "cloc2025"
+title: "CLOC: Contrastive Learning for Ordinal Classification with Multi-Margin N-pair Loss"
+venue: "CVPR 2025"
+full_text_available: false
+
+research:
+  baselines: ["standard contrastive learning", "ordinal regression methods", "cross-entropy classification"]
+  metrics:
+    - {name: "MAE (mean absolute error)", direction: "lower_better"}
+    - {name: "classification accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "Adience (age estimation)", size: "N/A"}
+    - {name: "Historical Colour Image Dating", size: "N/A"}
+    - {name: "Knee Osteoarthritis", size: "N/A"}
+    - {name: "Indian Diabetic Retinopathy Image", size: "N/A"}
+    - {name: "Breast Carcinoma Subtyping", size: "N/A"}
+  ablation_dimensions: ["margin type", "number of margins", "contrastive pair selection"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "contrastive learning for ordinal classification"
+
+positioning:
+  core_claim: "Multi-margin N-pair loss enables flexible decision boundaries across adjacent ordinal categories, preserving class ordering while reducing overfitting to training bias"
+  key_results: "Outperforms existing ordinal classification methods on 5 real-world datasets"
+  limitations: ["image-focused evaluation", "limited to moderate number of ordinal classes"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

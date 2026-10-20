@@ -7,7 +7,7 @@
     "messages": 166550,
     "user_turns": 5043,
     "tool_calls": 67907,
-    "unparsed_lines": 663,
+    "unparsed_lines": 664,
     "result": 642,
     "worker": 686,
     "conversation": 347,
@@ -22078,7 +22078,7 @@
       "ended_at": null,
       "preview": "",
       "reported_errors": 0,
-      "unparsed_lines": 0,
+      "unparsed_lines": 1,
       "readable_path": "readable/task-results/code-zeroshot-llm-500-001-copy-2.md",
       "path": "sessions/84/84034538fd4220d35304.json"
     },

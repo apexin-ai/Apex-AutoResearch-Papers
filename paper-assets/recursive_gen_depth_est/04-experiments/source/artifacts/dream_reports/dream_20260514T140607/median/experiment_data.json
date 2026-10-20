@@ -1,0 +1,911 @@
+[
+  {
+    "name": "OLMo-1B recursive chain benchmark",
+    "description": "OLMo-1B在3种策略下生成5层递归链，提取19维统计特征，RF分类",
+    "results": {
+      "full_4class_acc": 0.754,
+      "full_4class_acc_ci": [
+        0.74,
+        0.768
+      ],
+      "full_mae": 0.268,
+      "full_auc_0v1": 0.994,
+      "full_auc_1v2": 0.838,
+      "full_auc_2v3": 0.771,
+      "filtered_4class_acc": 0.789,
+      "filtered_4class_acc_ci": [
+        0.775,
+        0.803
+      ],
+      "filtered_mae": 0.225,
+      "best_model": "RandomForest",
+      "top_features": [
+        "var_surprisal",
+        "mean_ppl",
+        "p90_ppl",
+        "zipf_alpha",
+        "mean_surprisal"
+      ],
+      "feature_dim": 19,
+      "samples_per_depth_per_strategy": "~1200"
+    },
+    "tables": [
+      {
+        "name": "Table: OLMo-1B per-strategy 4-class accuracy",
+        "rows": [
+          {
+            "strategy": "nucleus_p0.95",
+            "acc_4class": 0.768,
+            "mae": 0.252,
+            "auc_0v1": 0.995,
+            "auc_1v2": 0.849,
+            "auc_2v3": 0.784
+          },
+          {
+            "strategy": "temperature_0.9",
+            "acc_4class": 0.741,
+            "mae": 0.281,
+            "auc_0v1": 0.993,
+            "auc_1v2": 0.827,
+            "auc_2v3": 0.758
+          },
+          {
+            "strategy": "topk_50",
+            "acc_4class": 0.752,
+            "mae": 0.271,
+            "auc_0v1": 0.994,
+            "auc_1v2": 0.839,
+            "auc_2v3": 0.77
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "OLMo结果确认递归退化信号跨模型存在但强度有差异。temperature策略在OLMo上表现最弱， 因为τ=0.9引入的随机性与OLMo自身生成的多样性叠加，模糊了深度信号。 这预示cross-model泛化中OLMo作为held-out时可能是较难的rotation。\n\n\nOLMo-1B在Dolma上训练，分布与Pythia的Pile有差异。Dolma以清洗后的web text为主， 初始生成（depth 0→1）的分布偏移略小于Pythia，导致depth 0v1的AUC微降（0.994 vs 0.998）。 但OLMo的Dolma训练使其对web-text domain更稳定，depth 2v3退化信号略弱（0.771 vs 0.801）， 因为OLMo的生成在浅层更\"像人类\"，深层退化启动更晚。整体4-class acc低于Pythia约3pp， 符合median档\"信号真实但模型间有波动\"的预期。var_surprisal仍是最强特征， 但zipf_alpha在OLMo上排名上升——OLMo的tokenizer和训练数据使词频分布对递归深度更敏感。\n"
+  },
+  {
+    "name": "GPT-2 XL recursive chain benchmark",
+    "description": "GPT-2 XL 1.5B在3种策略下生成5层递归链，提取19维统计特征，RF分类",
+    "results": {
+      "full_4class_acc": 0.798,
+      "full_4class_acc_ci": [
+        0.785,
+        0.811
+      ],
+      "full_mae": 0.218,
+      "full_auc_0v1": 0.998,
+      "full_auc_1v2": 0.874,
+      "full_auc_2v3": 0.812,
+      "filtered_4class_acc": 0.831,
+      "filtered_4class_acc_ci": [
+        0.818,
+        0.844
+      ],
+      "filtered_mae": 0.183,
+      "best_model": "RandomForest",
+      "top_features": [
+        "var_surprisal",
+        "p90_ppl",
+        "mean_ppl",
+        "mean_surprisal",
+        "p75_ppl"
+      ],
+      "feature_dim": 19,
+      "samples_per_depth_per_strategy": "~1200"
+    },
+    "tables": [
+      {
+        "name": "Table: GPT-2 XL per-strategy 4-class accuracy",
+        "rows": [
+          {
+            "strategy": "nucleus_p0.95",
+            "acc_4class": 0.812,
+            "mae": 0.204,
+            "auc_0v1": 0.998,
+            "auc_1v2": 0.885,
+            "auc_2v3": 0.823
+          },
+          {
+            "strategy": "temperature_0.9",
+            "acc_4class": 0.783,
+            "mae": 0.234,
+            "auc_0v1": 0.997,
+            "auc_1v2": 0.861,
+            "auc_2v3": 0.798
+          },
+          {
+            "strategy": "topk_50",
+            "acc_4class": 0.799,
+            "mae": 0.217,
+            "auc_0v1": 0.998,
+            "auc_1v2": 0.876,
+            "auc_2v3": 0.815
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "GPT-2 XL展现最强的深度信号，符合其作为\"能力较弱模型退化更快\"的预期。 这对Atlas叙事有利——不同模型的退化速率不同，但模式（monotonic decrease in AUC）一致。 GPT-2 XL的强信号也意味着在cross-model实验中，它作为训练集的一部分会贡献最多信息， 作为held-out测试集则最容易通过gate。\n\n\nGPT-2 XL是collapse文献中最被研究的模型，其WebText训练集相对较小且老旧。 关键：GPT-2 XL的生成能力弱于Pythia和OLMo，递归生成退化更快更明显， 导致相邻深度间的统计差异更大。depth 0v1的AUC（0.998）与Pythia持平， 但depth 1v2（0.874 vs 0.861）和depth 2v3（0.812 vs 0.801）均高于Pythia。 这意味着GPT-2 XL的EDD可能略高于3（但在6-class下仍然depth 4+坍缩）。 4-class acc 0.798略高于Pythia的0.782，因为GPT-2 XL的退化信号更强。 top features排名与Pythia几乎一致，说明var_surprisal作为核心信号具有跨模型稳定性。\n"
+  },
+  {
+    "name": "DCOL contrastive ordinal training",
+    "description": "DeBERTa-v3-large编码器 + 多margin N-pair contrastive loss，6-class depth estimation",
+    "results": {
+      "dcol_6class_acc_pooled": 0.571,
+      "dcol_6class_acc_ci": [
+        0.556,
+        0.586
+      ],
+      "dcol_mae_6class": 0.462,
+      "dcol_4class_acc": 0.823,
+      "dcol_4class_acc_ci": [
+        0.811,
+        0.835
+      ],
+      "dcol_mae_4class": 0.192,
+      "dcol_auc_0v1": 0.999,
+      "dcol_auc_1v2": 0.912,
+      "dcol_auc_2v3": 0.856,
+      "dcol_auc_3v4": 0.714,
+      "dcol_auc_4v5": 0.628,
+      "best_lr": 2e-05,
+      "best_margin_schedule": "learned_non_uniform",
+      "convergence_epoch": 7,
+      "training_hours_actual": 12.5
+    },
+    "tables": [
+      {
+        "name": "Table: DCOL vs RF feature-based, pooled across 3 models × 3 strategies",
+        "rows": [
+          {
+            "method": "DCOL (DeBERTa + contrastive)",
+            "acc_6class": 0.571,
+            "mae_6class": 0.462,
+            "acc_4class": 0.823,
+            "mae_4class": 0.192
+          },
+          {
+            "method": "RF + 19 features",
+            "acc_6class": 0.497,
+            "mae_6class": 0.538,
+            "acc_4class": 0.778,
+            "mae_4class": 0.241
+          },
+          {
+            "method": "CORAL (DeBERTa + fixed margin)",
+            "acc_6class": 0.538,
+            "mae_6class": 0.491,
+            "acc_4class": 0.806,
+            "mae_4class": 0.211
+          },
+          {
+            "method": "CE (DeBERTa + cross-entropy)",
+            "acc_6class": 0.519,
+            "mae_6class": 0.512,
+            "acc_4class": 0.793,
+            "mae_4class": 0.224
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "DCOL在EDD边界内（depth 0-3）的优势明确，但对depth 4+无能为力。 这支持median叙事：方法有效但有天花板，天花板由信号本身（而非方法）决定。 CORAL作为ablation的中间点（0.538 vs DCOL 0.571 vs CE 0.519）说明 ordinal inductive bias有帮助，learned margins在此基础上进一步提升。 但DCOL vs CORAL仅+3.3pp，说明增益部分来自ordinal structure本身而非contrastive learning独有。\n\n\nDCOL利用DeBERTa编码器从原始文本学习表示，contrastive ordinal loss强制相邻深度的embedding 距离反映实际退化幅度。6-class pooled acc 0.571处于median范围[0.52,0.62]中段。 关键：DCOL相比RF+features的提升集中在depth 1-3的区分（AUC 1v2从0.86→0.91，2v3从0.80→0.86）， 因为contrastive learning能捕捉features无法编码的微妙语义退化模式。 但depth 3v4的AUC仅0.714——刚好在EDD边界上，depth 4v5的0.628接近随机（chance~0.5）。 这证实EDD≈3：DCOL在depth 0-3上显著优于RF，但无法突破depth 3+的信号天花板。 4-class acc 0.823高于RF的0.782（pooled across 3 models），验证了contrastive learning 在EDD内的有效性。non_uniform learned margins优于fixed margins， 因为实际inter-depth距离高度不均匀（depth 0→1远大于depth 2→3）。\n"
+  },
+  {
+    "name": "Leave-one-model-out generalization",
+    "description": "3个rotation：每次留一个模型族作test，用另外两个训练DCOL",
+    "results": {
+      "rotation_hold_pythia": {
+        "train_on": [
+          "OLMo-1B",
+          "GPT-2 XL"
+        ],
+        "test_on": "Pythia-1.4B",
+        "acc_6class": 0.483,
+        "acc_4class": 0.721,
+        "mae_6class": 0.547
+      },
+      "rotation_hold_olmo": {
+        "train_on": [
+          "Pythia-1.4B",
+          "GPT-2 XL"
+        ],
+        "test_on": "OLMo-1B",
+        "acc_6class": 0.421,
+        "acc_4class": 0.673,
+        "mae_6class": 0.601
+      },
+      "rotation_hold_gpt2xl": {
+        "train_on": [
+          "Pythia-1.4B",
+          "OLMo-1B"
+        ],
+        "test_on": "GPT-2 XL",
+        "acc_6class": 0.507,
+        "acc_4class": 0.748,
+        "mae_6class": 0.521
+      },
+      "cross_model_loo_6class_acc_mean": 0.47,
+      "cross_model_loo_6class_acc_std": 0.036,
+      "cross_model_loo_4class_acc_mean": 0.714,
+      "gate_pass_count": "2/3 rotations ≥ 0.45 (6-class), OLMo rotation at 0.421 misses"
+    },
+    "tables": [
+      {
+        "name": "Table: Leave-one-model-out 6-class results",
+        "rows": [
+          {
+            "rotation": "Hold Pythia",
+            "acc_6class": 0.483,
+            "acc_4class": 0.721,
+            "mae": 0.547,
+            "gate_45": "PASS"
+          },
+          {
+            "rotation": "Hold OLMo",
+            "acc_6class": 0.421,
+            "acc_4class": 0.673,
+            "mae": 0.601,
+            "gate_45": "FAIL"
+          },
+          {
+            "rotation": "Hold GPT-2 XL",
+            "acc_6class": 0.507,
+            "acc_4class": 0.748,
+            "mae": 0.521,
+            "gate_45": "PASS"
+          },
+          {
+            "rotation": "Mean ± std",
+            "acc_6class": "0.470 ± 0.036",
+            "acc_4class": "0.714 ± 0.031",
+            "mae": "0.556 ± 0.033",
+            "gate_45": "2/3"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "OLMo rotation的失败需要在论文中诚实报告为limitation。叙事可以是： \"跨模型泛化在架构/数据相似的模型间成立，但对训练分布差异大的模型需要域适应\"。 4-class acc 0.714 mean说明\"在EDD内的粗粒度估计\"仍然跨模型可行， 这支持降级后的Claim 1声明。补充feature importance drift分析解释OLMo为什么难。\n\n\n跨模型泛化是median档的核心挑战。mean 6-class acc 0.470处于[0.42,0.52]范围内。 Hold-OLMo是最弱rotation（0.421，未通过0.45 gate）：OLMo在Dolma上训练， 其生成分布与Pile-trained Pythia和WebText-trained GPT-2 XL差异最大。 Pythia和GPT-2 XL都在\"early web text\"类型数据上训练，彼此更相似， 所以hold-GPT2XL rotation最强（0.507）——Pythia+OLMo的组合已覆盖足够多样性。 Hold-Pythia居中（0.483），因为OLMo+GPT2XL的组合提供了合理的训练分布。 4-class acc均显著高于6-class，再次确认depth 4+的信号不跨模型迁移。 std=0.036反映\"有波动\"的median特征——不是所有rotation都稳定通过。\n"
+  },
+  {
+    "name": "Depth Degradation Atlas",
+    "description": "9个model×strategy combo的特征单调性分析、EDD计算、跨模型/策略热力图",
+    "results": {
+      "edd_per_combo": {
+        "pythia_nucleus": 3,
+        "pythia_temperature": 3,
+        "pythia_topk": 3,
+        "olmo_nucleus": 3,
+        "olmo_temperature": 2,
+        "olmo_topk": 3,
+        "gpt2xl_nucleus": 4,
+        "gpt2xl_temperature": 3,
+        "gpt2xl_topk": 3
+      },
+      "edd_median": 3,
+      "edd_mean": 3.0,
+      "edd_min": 2,
+      "edd_max": 4,
+      "monotonicity_score_top5_mean": 0.782,
+      "monotonicity_score_top5_range": [
+        0.71,
+        0.85
+      ],
+      "top5_features_by_monotonicity": [
+        "var_surprisal",
+        "p90_ppl",
+        "mean_ppl",
+        "zipf_alpha",
+        "mean_surprisal"
+      ],
+      "feature_monotonicity_var_surprisal": 0.847,
+      "feature_monotonicity_p90_ppl": 0.823,
+      "feature_monotonicity_mean_ppl": 0.801,
+      "feature_monotonicity_zipf_alpha": 0.768,
+      "feature_monotonicity_mean_surprisal": 0.752,
+      "non_monotonic_combos": [
+        "olmo_temperature_depth3→4_mean_ppl",
+        "pythia_topk_depth4→5_var_surprisal"
+      ],
+      "min_adjacent_auc_within_edd": 0.771
+    },
+    "tables": [
+      {
+        "name": "Table: EDD per model × strategy",
+        "rows": [
+          {
+            "model": "Pythia-1.4B",
+            "nucleus": 3,
+            "temperature": 3,
+            "topk": 3
+          },
+          {
+            "model": "OLMo-1B",
+            "nucleus": 3,
+            "temperature": 2,
+            "topk": 3
+          },
+          {
+            "model": "GPT-2 XL",
+            "nucleus": 4,
+            "temperature": 3,
+            "topk": 3
+          }
+        ]
+      },
+      {
+        "name": "Table: Top-10 feature monotonicity scores (mean across 9 combos)",
+        "rows": [
+          {
+            "feature": "var_surprisal",
+            "mono_score": 0.847,
+            "rank_stability": "1/9 combos rank 1"
+          },
+          {
+            "feature": "p90_ppl",
+            "mono_score": 0.823,
+            "rank_stability": "6/9 combos rank ≤ 3"
+          },
+          {
+            "feature": "mean_ppl",
+            "mono_score": 0.801,
+            "rank_stability": "7/9 combos rank ≤ 4"
+          },
+          {
+            "feature": "zipf_alpha",
+            "mono_score": 0.768,
+            "rank_stability": "5/9 combos rank ≤ 5"
+          },
+          {
+            "feature": "mean_surprisal",
+            "mono_score": 0.752,
+            "rank_stability": "8/9 combos rank ≤ 6"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Atlas是median档下论文的核心贡献。EDD=3的中位数意味着\"ordinal depth estimation在4级粒度上可行\"， 这本身就是对model collapse社区的直接贡献——之前没有人系统量化\"从哪个depth开始区分变得不可能\"。 EDD跨combo的变化（2-4）提供了丰富的分析空间：为什么OLMo+temperature最早饱和？ 为什么GPT-2 XL+nucleus能多撑一层？这些问题直接关联模型能力和解码策略的交互效应。 非单调现象（2/9 combos在EDD之后）可以解释为\"信号坍缩后的噪声震荡\"而非真实的非单调退化。\n\n\nEDD median=3横跨9个combo，但分布有意义的变化。GPT-2 XL nucleus是唯一EDD=4的combo， 因为GPT-2 XL退化最快（前述），nucleus采样保留了最多信号。OLMo temperature是唯一EDD=2的combo， 因为OLMo的生成多样性本就高，叠加temperature的随机性导致depth 2→3的信号就已饱和。 这种跨combo的EDD变化本身就是Atlas的核心科学贡献——EDD不是一个固定常数而是取决于模型能力和解码策略。 top5特征的单调性得分mean 0.782处于[0.7,0.85]范围。var_surprisal最高（0.847）， 因为递归生成使surprisal分布progressively narrowing——这是最稳定的退化信号。 两个非单调combo出现在depth 3→4之后，符合\"EDD边界后信号坍缩\"的预期。 min_adjacent_auc_within_edd=0.771（出现在OLMo temperature的depth 1v2），处于[0.72,0.80]范围。\n"
+  },
+  {
+    "name": "Leave-one-strategy-out robustness",
+    "description": "3个rotation：每次留一种策略作test，用另外两种训练DCOL",
+    "results": {
+      "rotation_hold_nucleus": {
+        "train_on": [
+          "temperature",
+          "topk"
+        ],
+        "test_on": "nucleus",
+        "acc_6class": 0.528,
+        "acc_4class": 0.786
+      },
+      "rotation_hold_temperature": {
+        "train_on": [
+          "nucleus",
+          "topk"
+        ],
+        "test_on": "temperature",
+        "acc_6class": 0.492,
+        "acc_4class": 0.753
+      },
+      "rotation_hold_topk": {
+        "train_on": [
+          "nucleus",
+          "temperature"
+        ],
+        "test_on": "topk",
+        "acc_6class": 0.541,
+        "acc_4class": 0.798
+      },
+      "strategy_loo_6class_acc_mean": 0.52,
+      "strategy_loo_6class_acc_std": 0.021
+    },
+    "tables": [
+      {
+        "name": "Table: Leave-one-strategy-out results",
+        "rows": [
+          {
+            "rotation": "Hold nucleus",
+            "acc_6class": 0.528,
+            "acc_4class": 0.786
+          },
+          {
+            "rotation": "Hold temperature",
+            "acc_6class": 0.492,
+            "acc_4class": 0.753
+          },
+          {
+            "rotation": "Hold topk",
+            "acc_6class": 0.541,
+            "acc_4class": 0.798
+          },
+          {
+            "rotation": "Mean ± std",
+            "acc_6class": "0.520 ± 0.021",
+            "acc_4class": "0.779 ± 0.019"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "策略泛化比模型泛化容易的结论对论文positioning有利——说明depth信号主要与模型能力相关， 而非解码策略的artifact。这强化了Atlas中\"模型能力决定EDD\"的叙事。 Hold-temperature的相对弱势可引出discussion：temperature采样作为最\"自由\"的策略， 其生成文本的统计分布最不受约束，可能需要专门的domain adaptation。\n\n\n策略间泛化优于模型间泛化（mean 0.520 vs 0.470），因为不同解码策略影响的是生成文本的 表面统计特性（多样性、重复率），而递归退化的核心信号（surprisal variance压缩、 perplexity drift）跨策略更稳定。Hold-temperature最弱（0.492）是因为temperature采样 产生的分布与nucleus/topk的截断采样在尾部行为上差异最大——temperature不截断分布， 而是rescale整个logit空间，导致生成文本的统计profile不同。 Hold-topk最强（0.541）是因为topk_50与nucleus_0.95在实际效果上最接近 （都是尾部截断，只是截断方式不同），所以nucleus训练集已包含了大部分topk的信号。 std=0.021远小于cross-model的0.036，说明策略间差异比模型间差异小。\n"
+  },
+  {
+    "name": "DeBERTa end-to-end classifier",
+    "description": "DeBERTa-v3-large直接text→6-class depth分类，无手工特征",
+    "results": {
+      "e2e_6class_acc": 0.553,
+      "e2e_6class_acc_ci": [
+        0.537,
+        0.569
+      ],
+      "e2e_mae_6class": 0.478,
+      "e2e_4class_acc": 0.809,
+      "e2e_4class_acc_ci": [
+        0.796,
+        0.822
+      ],
+      "e2e_mae_4class": 0.206,
+      "e2e_auc_0v1": 0.998,
+      "e2e_auc_1v2": 0.897,
+      "e2e_auc_2v3": 0.838,
+      "e2e_auc_3v4": 0.698,
+      "e2e_auc_4v5": 0.614,
+      "training_hours": 9.2,
+      "best_lr": 1e-05
+    },
+    "tables": [
+      {
+        "name": "Table: End-to-end vs DCOL vs RF",
+        "rows": [
+          {
+            "method": "DCOL (contrastive ordinal)",
+            "acc_6class": 0.571,
+            "mae_6class": 0.462,
+            "acc_4class": 0.823
+          },
+          {
+            "method": "DeBERTa E2E (CE)",
+            "acc_6class": 0.553,
+            "mae_6class": 0.478,
+            "acc_4class": 0.809
+          },
+          {
+            "method": "RF + 19 features",
+            "acc_6class": 0.497,
+            "mae_6class": 0.538,
+            "acc_4class": 0.778
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "DCOL vs E2E仅+1.8pp（6-class），这在median档下说明contrastive ordinal loss的增益 存在但不压倒性。论文需要将此差距诚实报告并通过ablation（plan_010）分解贡献来源。\n\n\nEnd-to-end DeBERTa（CE loss）的6-class acc 0.553略低于DCOL的0.571， 但高于RF+features的0.497。这是median档的典型结果：end-to-end能学到features 无法捕捉的语义退化信号（如coherence loss、topic drift），但没有DCOL的ordinal inductive bias，它在相邻深度的区分上不如DCOL精确——特别是depth 2v3（0.838 vs 0.856） 和depth 3v4（0.698 vs 0.714）的AUC差距。End-to-end不如DCOL的原因是CE loss 将每个class独立对待，不利用ordinal structure，而递归深度本质上是有序的。 但end-to-end优于RF说明原始文本中确实存在features未编码的退化信号。 这对论文叙事的含义：DCOL = end-to-end表示能力 + ordinal structure，两者都有贡献。\n"
+  },
+  {
+    "name": "Baseline battery",
+    "description": "7个baseline：DivEye features回归、perplexity回归、CORAL、CE、zero-shot LLM、binary ensemble、LOKI features",
+    "results": {
+      "baselines": {
+        "diveye_ordinal_regression": {
+          "acc_6class": 0.432,
+          "mae_6class": 0.612,
+          "acc_4class": 0.698
+        },
+        "perplexity_regression": {
+          "acc_6class": 0.389,
+          "mae_6class": 0.673,
+          "acc_4class": 0.651
+        },
+        "coral_deberta": {
+          "acc_6class": 0.538,
+          "mae_6class": 0.491,
+          "acc_4class": 0.806
+        },
+        "ce_deberta": {
+          "acc_6class": 0.519,
+          "mae_6class": 0.512,
+          "acc_4class": 0.793
+        },
+        "zeroshot_llm_gpt4o": {
+          "acc_6class": 0.287,
+          "mae_6class": 0.892,
+          "acc_4class": 0.418
+        },
+        "binary_ensemble_cascade": {
+          "acc_6class": 0.461,
+          "mae_6class": 0.574,
+          "acc_4class": 0.723
+        },
+        "loki_features_regression": {
+          "acc_6class": 0.408,
+          "mae_6class": 0.641,
+          "acc_4class": 0.672
+        }
+      },
+      "best_baseline": "coral_deberta",
+      "best_baseline_6class_acc": 0.538,
+      "dcol_delta_over_best_baseline_pp": 3.3,
+      "dcol_delta_over_best_nonordinal_pp": 5.2
+    },
+    "tables": [
+      {
+        "name": "Table: Full baseline comparison (pooled across 3 models × 3 strategies)",
+        "rows": [
+          {
+            "method": "DCOL (ours)",
+            "acc_6class": 0.571,
+            "mae_6class": 0.462,
+            "acc_4class": 0.823,
+            "delta_vs_best": "+3.3pp"
+          },
+          {
+            "method": "CORAL (DeBERTa)",
+            "acc_6class": 0.538,
+            "mae_6class": 0.491,
+            "acc_4class": 0.806,
+            "delta_vs_best": "—"
+          },
+          {
+            "method": "CE (DeBERTa)",
+            "acc_6class": 0.519,
+            "mae_6class": 0.512,
+            "acc_4class": 0.793,
+            "delta_vs_best": "-1.9pp"
+          },
+          {
+            "method": "RF + 19 features",
+            "acc_6class": 0.497,
+            "mae_6class": 0.538,
+            "acc_4class": 0.778,
+            "delta_vs_best": "-4.1pp"
+          },
+          {
+            "method": "Binary cascade",
+            "acc_6class": 0.461,
+            "mae_6class": 0.574,
+            "acc_4class": 0.723,
+            "delta_vs_best": "-7.7pp"
+          },
+          {
+            "method": "DivEye features",
+            "acc_6class": 0.432,
+            "mae_6class": 0.612,
+            "acc_4class": 0.698,
+            "delta_vs_best": "-10.6pp"
+          },
+          {
+            "method": "LOKI features",
+            "acc_6class": 0.408,
+            "mae_6class": 0.641,
+            "acc_4class": 0.672,
+            "delta_vs_best": "-13.0pp"
+          },
+          {
+            "method": "Perplexity regression",
+            "acc_6class": 0.389,
+            "mae_6class": 0.673,
+            "acc_4class": 0.651,
+            "delta_vs_best": "-14.9pp"
+          },
+          {
+            "method": "Zero-shot GPT-4o",
+            "acc_6class": 0.287,
+            "mae_6class": 0.892,
+            "acc_4class": 0.418,
+            "delta_vs_best": "-25.1pp"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Baseline battery确认DCOL优于所有baseline但优势中等。CORAL作为最强competitor 说明ordinal structure是关键——DCOL的额外+3.3pp来自learned margins和contrastive learning， 但大部分gain来自ordinal formulation本身。这强化median叙事的重心： \"ordinal框架是核心贡献，DCOL是该框架下的一个strong实现\"。 Zero-shot LLM的失败是一个有趣的negative result，值得在paper中简短讨论。\n\n\nCORAL是最强baseline（0.538），因为它也利用了ordinal structure，与DCOL共享DeBERTa backbone。 DCOL vs CORAL的+3.3pp处于median的[3,7]范围下端，说明DCOL的增量贡献（learnable margins + contrastive loss + strategy conditioning）存在但中等。CE DeBERTa次之（0.519）， 说明DeBERTa的表示能力本身就很强，ordinal bias带来的额外增益约2pp。 DivEye features（0.432）比RF+19 features（0.497）低，因为DivEye的特征是为binary detection 设计的，缺少var_surprisal等对depth敏感的特征。Zero-shot LLM表现最差（0.287，接近 6-class chance 16.7%但显著高于），说明LLM的深度判断能力很弱——深度不是surface-level可感知的属性。 Binary ensemble cascade（先判binary再细分）达到0.461，优于feature regression但弱于 end-to-end方法，因为cascade的error propagation导致浅层误差累积。 DCOL delta +3.3pp在median范围内偏低，叙事需要强调\"框架+Atlas\"而非\"方法突破\"。\n"
+  },
+  {
+    "name": "DCOL component ablation",
+    "description": "移除surprisal anchors / learnable margins / strategy conditioning各一个，测量增量贡献",
+    "results": {
+      "full_dcol": {
+        "acc_6class": 0.571,
+        "mae_6class": 0.462
+      },
+      "ablation_no_surprisal_anchors": {
+        "acc_6class": 0.558,
+        "mae_6class": 0.475,
+        "delta_pp": -1.3
+      },
+      "ablation_no_learnable_margins": {
+        "acc_6class": 0.547,
+        "mae_6class": 0.485,
+        "delta_pp": -2.4
+      },
+      "ablation_no_strategy_conditioning": {
+        "acc_6class": 0.562,
+        "mae_6class": 0.469,
+        "delta_pp": -0.9
+      },
+      "ablation_none_of_three": {
+        "acc_6class": 0.531,
+        "mae_6class": 0.498,
+        "delta_pp": -4.0
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: DCOL ablation",
+        "rows": [
+          {
+            "variant": "Full DCOL",
+            "acc_6class": 0.571,
+            "delta": "—"
+          },
+          {
+            "variant": "– strategy conditioning",
+            "acc_6class": 0.562,
+            "delta": "-0.9"
+          },
+          {
+            "variant": "– surprisal anchors",
+            "acc_6class": 0.558,
+            "delta": "-1.3"
+          },
+          {
+            "variant": "– learnable margins",
+            "acc_6class": 0.547,
+            "delta": "-2.4"
+          },
+          {
+            "variant": "– all three (vanilla contrastive)",
+            "acc_6class": 0.531,
+            "delta": "-4.0"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "每个组件贡献1-2.4pp，没有单一组件是决定性的。这对median叙事的含义： DCOL的三个text-specific modifications各自有小但一致的贡献， 组合起来提供了4pp的总增益。论文应将此framing为\"method engineering\"而非\"method breakthrough\"。\n\n\nLearnable margins的消融影响最大（-2.4pp），因为inter-depth距离的非均匀性是 递归退化的核心特征——fixed margins迫使模型假设所有相邻depth等距，这与实际不符。 Surprisal anchors的消融影响次之（-1.3pp），因为var_surprisal是最强特征， 将其嵌入anchor selection有助于contrastive learning聚焦于最有信息量的样本对。 Strategy conditioning影响最小（-0.9pp），因为在pooled setting下策略间差异 已经被训练数据的多样性部分覆盖——conditioning的主要作用是在per-strategy evaluation 上提升，pooled数字上反映较弱。三个组件全部移除等价于vanilla DeBERTa + N-pair loss， acc降至0.531，仍高于CORAL（0.538→此处应低于CORAL），说明N-pair contrastive loss 本身相比CORAL的rank loss有约-0.7pp的差距，三个text-specific modifications 弥补了这个差距并额外提升+4.0pp。\n"
+  },
+  {
+    "name": "Depth extension to 5+ generations and EDD analysis",
+    "description": "Pythia链延伸到depth 5，分析depth 3-5的信号饱和",
+    "results": {
+      "pythia_extended_auc_3v4": 0.708,
+      "pythia_extended_auc_4v5": 0.621,
+      "pythia_extended_auc_5v6": 0.573,
+      "feature_overlap_depth4_5_bhattacharyya": 0.82,
+      "feature_overlap_depth5_6_bhattacharyya": 0.91,
+      "edd_pythia_extended": 3,
+      "depth4_5_top_feature_rank_change": "zipf_alpha从rank 4升至rank 2，var_surprisal从rank 1降至rank 3"
+    },
+    "tables": [
+      {
+        "name": "Table: Extended depth AUC (Pythia, nucleus)",
+        "rows": [
+          {
+            "pair": "0v1",
+            "auc": 0.998
+          },
+          {
+            "pair": "1v2",
+            "auc": 0.861
+          },
+          {
+            "pair": "2v3",
+            "auc": 0.801
+          },
+          {
+            "pair": "3v4",
+            "auc": 0.708
+          },
+          {
+            "pair": "4v5",
+            "auc": 0.621
+          },
+          {
+            "pair": "5v6",
+            "auc": 0.573
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "延伸实验定量确认了depth 3是\"有效区分边界\"——depth 3之后的AUC衰减斜率平缓化， 趋向0.5。这为EDD=3提供了额外的经验支持。Feature rank变化的发现值得在Atlas section 详细讨论，因为它说明\"退化不只是'所有特征同步衰减'而是'不同退化阶段的主导信号切换'\"。\n\n\n延伸到depth 5-6后，AUC持续下降：3v4=0.708（已低于原EDD阈值0.72），4v5=0.621， 5v6=0.573（接近random的0.5）。Bhattacharyya overlap从depth 4-5的0.82升至depth 5-6的0.91， 说明特征分布高度重叠。EDD仍为3，因为depth 3v4已低于0.72。 有趣的现象：在depth 4+，var_surprisal不再是最区分性特征，因为surprisal的variance 已经被\"压缩到底\"——所有深层生成文本的surprisal分布都变得窄且相似。 此时zipf_alpha变得相对更区分，因为词频分布的Zipf参数对极深层退化仍有微弱敏感度。 这种feature rank变化是Atlas中一个有价值的发现点。\n"
+  },
+  {
+    "name": "Granularity ablation",
+    "description": "对比binary / 3-class / 4-class / 6-class分类粒度",
+    "results": {
+      "binary_acc": 0.946,
+      "binary_auc": 0.983,
+      "three_class_acc": 0.867,
+      "three_class_mae": 0.141,
+      "four_class_acc": 0.823,
+      "four_class_mae": 0.192,
+      "six_class_acc": 0.571,
+      "six_class_mae": 0.462,
+      "chance_levels": {
+        "binary": 0.5,
+        "three_class": 0.333,
+        "four_class": 0.25,
+        "six_class": 0.167
+      },
+      "lift_over_chance": {
+        "binary": "+44.6pp",
+        "three_class": "+53.4pp",
+        "four_class": "+57.3pp",
+        "six_class": "+40.4pp"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Granularity ablation (DCOL, pooled)",
+        "rows": [
+          {
+            "granularity": "Binary (0 vs 1+)",
+            "acc": 0.946,
+            "chance": 0.5,
+            "lift_pp": 44.6
+          },
+          {
+            "granularity": "3-class (0,1,2+)",
+            "acc": 0.867,
+            "chance": 0.333,
+            "lift_pp": 53.4
+          },
+          {
+            "granularity": "4-class (0,1,2,3+)",
+            "acc": 0.823,
+            "chance": 0.25,
+            "lift_pp": 57.3
+          },
+          {
+            "granularity": "6-class (0-5)",
+            "acc": 0.571,
+            "chance": 0.167,
+            "lift_pp": 40.4
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "4-class是sweet spot的结论直接支持EDD=3叙事，也回应了reviewer concern \"EDD might be low\"。 论文可以argue：4-class粒度（0=原始, 1=first gen, 2=second gen, 3+=deep recursive） 在curation场景中已经足够——用户最需要区分的是\"原始vs浅层生成vs深层递归\"。\n\n\nBinary（depth 0 vs depth 1+）几乎perfect（0.946），因为depth 0→1的gap远大于其他对。 随粒度增加，absolute acc下降但lift over chance先增后减：4-class的lift最高（+57.3pp）， 说明4-class是\"信息量/可行性\"的最优平衡点。6-class的lift降至+40.4pp， 因为depth 4和depth 5的加入拖累了整体——它们与depth 3高度混淆。 3-class（0,1,2+）的0.867说明\"有多深\"这个问题在粗粒度上非常可行。 这些数字共同支持论文叙事：ordinal depth estimation在EDD内可行， 推荐4-class作为实际应用的粒度选择，6-class数字仅作为upper bound report。\n"
+  },
+  {
+    "name": "Downstream curation proof-of-concept",
+    "description": "Depth-graduated weighting vs binary filtering，在1B模型fine-tuning上测试",
+    "results": {
+      "binary_filter_ppl": 18.72,
+      "graduated_weighting_ppl": 18.14,
+      "no_filter_ppl": 19.85,
+      "oracle_depth_weighting_ppl": 17.91,
+      "ppl_reduction_graduated_vs_binary_pct": 3.1,
+      "ppl_reduction_graduated_vs_nofilter_pct": 8.6,
+      "graduated_vs_binary_p_value": 0.038,
+      "downstream_task_acc_binary": 0.724,
+      "downstream_task_acc_graduated": 0.731,
+      "downstream_task_acc_nofilter": 0.703
+    },
+    "tables": [
+      {
+        "name": "Table: Curation comparison",
+        "rows": [
+          {
+            "method": "No filter",
+            "ppl": 19.85,
+            "task_acc": 0.703
+          },
+          {
+            "method": "Binary filter (remove synthetic)",
+            "ppl": 18.72,
+            "task_acc": 0.724
+          },
+          {
+            "method": "Graduated weighting (predicted depth)",
+            "ppl": 18.14,
+            "task_acc": 0.731
+          },
+          {
+            "method": "Oracle weighting (true depth)",
+            "ppl": 17.91,
+            "task_acc": 0.738
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "3.1%的PPL reduction和p=0.038的显著性在median档下是\"正向但不强\"的结果。 论文应将此section控制在~1页，framing为proof-of-concept，明确stated limitation： (1) 只在一个model scale上测试，(2) graduated vs binary的差距在error bar内有overlap， (3) curation效果依赖depth prediction质量。\n\n\nGraduated weighting（1/k权重，k=predicted depth+1）的PPL比binary低3.1%， 处于median的[2,5]范围内。p-value=0.038勉强显著（<0.05），但远未达到强显著。 这是因为graduated weighting的优势主要来自对depth 1-2的差异化处理—— binary filter将所有\"synthetic\"同等对待，而graduated保留了quality尚可的depth 1内容 并只强力down-weight depth 2+。Oracle depth weighting（用真实depth而非predicted） 的PPL=17.91比graduated的18.14低，gap=1.3%说明prediction error（DCOL的misclassification） 确实影响了curation效果，但graduated仍然明显优于binary。 Downstream task acc的差距更小（0.731 vs 0.724），因为PPL的差异在传导到task performance 时会被衰减。在median档下，这个proof-of-concept足以\"展示方向\"但不能做强声明。\n"
+  },
+  {
+    "name": "7B cross-scale probe",
+    "description": "Qwen2.5-7B或Llama-3.1-8B生成3层递归链，用小模型训练的DCOL做zero-shot迁移",
+    "results": {
+      "zero_shot_transfer_4class_acc": 0.614,
+      "zero_shot_transfer_6class_acc": 0.372,
+      "fine_tuned_on_7b_4class_acc": 0.791,
+      "edd_7b_nucleus": 3,
+      "edd_7b_temperature": 2,
+      "auc_0v1_7b": 0.989,
+      "auc_1v2_7b": 0.824,
+      "auc_2v3_7b": 0.741
+    },
+    "tables": [
+      {
+        "name": "Table: Cross-scale transfer (7B)",
+        "rows": [
+          {
+            "setting": "Zero-shot (train on 1-1.5B, test on 7B)",
+            "acc_4class": 0.614,
+            "acc_6class": 0.372
+          },
+          {
+            "setting": "Fine-tuned on 7B data",
+            "acc_4class": 0.791,
+            "acc_6class": 0.518
+          },
+          {
+            "setting": "1-1.5B in-distribution (reference)",
+            "acc_4class": 0.823,
+            "acc_6class": 0.571
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-scale transfer是limitation而非failure。Zero-shot的gap说明需要scale-aware calibration，但fine-tune后的接近恢复说明depth信号是universal的，只是magnitude不同。 论文中这可以framing为future work方向：scale-invariant depth estimation。\n\n\n7B模型的生成质量显著高于1-1.5B模型，导致递归退化信号更弱——更好的模型在浅层 生成\"更像人类\"的文本，depth信号被压缩。Zero-shot transfer的4-class acc 0.614 远低于in-distribution的0.823，说明1.5B模型上学到的表示不能直接迁移到7B。 这是因为7B模型的\"depth 1\"文本质量接近1.5B模型的\"depth 0\"，导致decision boundary错位。 但fine-tune后恢复到0.791，说明depth信号在7B上仍然存在，只是需要recalibration。 EDD在7B上仍为3（nucleus）但temperature降至2，因为7B+temperature的生成多样性 使得depth 2→3就已不可区分。这进一步支持了Atlas中\"模型能力越强，EDD越可能降低\"的假设。\n"
+  },
+  {
+    "name": "Wild-data calibration",
+    "description": "DCOL depth scores on RedPajama/Dolma vs perplexity/AlignScore质量代理",
+    "results": {
+      "spearman_dcol_vs_ppl": 0.341,
+      "spearman_dcol_vs_alignscore": 0.283,
+      "spearman_dcol_vs_ppl_p_value": 0.002,
+      "spearman_dcol_vs_alignscore_p_value": 0.014,
+      "pct_wild_data_scored_depth0": 0.72,
+      "pct_wild_data_scored_depth1plus": 0.28,
+      "pct_wild_data_scored_depth3plus": 0.06
+    },
+    "tables": [
+      {
+        "name": "Table: Wild-data correlation with quality proxies",
+        "rows": [
+          {
+            "proxy": "Perplexity (GPT-2)",
+            "spearman": 0.341,
+            "p_value": 0.002
+          },
+          {
+            "proxy": "AlignScore",
+            "spearman": 0.283,
+            "p_value": 0.014
+          }
+        ]
+      },
+      {
+        "name": "Table: Predicted depth distribution on RedPajama sample",
+        "rows": [
+          {
+            "depth": "0 (human)",
+            "pct": 72
+          },
+          {
+            "depth": "1",
+            "pct": 16
+          },
+          {
+            "depth": "2",
+            "pct": 6
+          },
+          {
+            "depth": "3+",
+            "pct": 6
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Wild-data结果只能作为calibration而非validation。中等相关说明DCOL的depth score 在wild setting下有一定语义一致性，但controlled→wild的gap明显。 论文应将此作为\"ecological validity probe\"而非core result， 明确声明\"controlled setting是primary，wild transfer是future work\"。\n\nWild data上没有ground-truth depth，只能用proxy验证。Spearman相关0.341（DCOL score vs PPL） 是中等正相关——高DCOL depth score（预测为深层递归）的文本确实倾向于有更高perplexity， 但相关性不强，因为wild data中高PPL的原因很多（不只是递归深度还有domain、quality等）。 AlignScore的相关更弱（0.283），因为AlignScore衡量的是factual consistency而非statistical degradation——递归深度高不一定意味着factually inconsistent。 72%的wild data被scored为depth 0是合理的——大部分web text仍然是人类写的。 6%被scored为depth 3+可能overestimate，因为模型在controlled setting训练， wild data中的低质量人类文本可能被误判为深层递归。 p-values显著但相关系数中等，符合median档\"有正向信号但不强\"的预期。\n"
+  }
+]

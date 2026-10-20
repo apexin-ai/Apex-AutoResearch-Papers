@@ -1,0 +1,36 @@
+{
+  "exp_id": "qwen25-1p5b-instruct-001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:59:15.218Z",
+    "updated_at": "2026-05-17T16:05:19.395Z",
+    "spec": {
+      "command": "python scripts/qwen25_1.5b_instruct_pipeline.py",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "795692",
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25-1p5b-instruct-001.log",
+      "submitted_at": "2026-05-17T15:13:22.008Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_1.5b_instruct/",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen2.5-1.5B-Instruct",
+      "eval_data": "self-generated d0-d3 recursive chain"
+    },
+    "hypothesis": "Depth signal persists in instruction-tuned models: Qwen2.5-1.5B-Instruct recursive chain (nucleus p=0.95, d0-d3) achieves RF 4-class accuracy significantly above 25% baseline, demonstrating that instruction tuning does not eliminate model collapse signatures.",
+    "parent": "mvp_pipeline_pythia_002",
+    "notes": "plan_021: Qwen2.5-1.5B-Instruct instruct-model validation. Nucleus p=0.95, d0-d3, 5000 samples/depth, LoRA r=16 alpha=32 q/k/v_proj, 3 epochs lr=2e-4. Self-reference 19-dim features + RF/LR 5-fold CV. GPU: cuda:1. PATCHED: generate_d0 and generate_next_depth now use chat template (apply_chat_template with \"Write a passage about a random topic.\" prompt) instead of BOS-seeded generation, since instruct models expect chat format. Killed 2 orphan duplicate pipeline processes; kept tmux session qwen25-1p5b-instruct-001 (PID 788285). aria2c downloading model.safetensors (~65%, ETA ~15min)."
+  },
+  "timestamp": "2026-05-17T16:05:19.705203+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1 @@
+Strategy RF acc: 57.8%, LR acc: 52.9%. Pipeline depth acc: 70.5% (vs LOO 59.1%, +11.5pp). Oracle: 78.3%. Per-model pipeline: Pythia 69.3%, OLMo 69.4%, GPT-2 XL 73.0%. Top strategy features: mean_ppl, var_ppl, var_surprisal. Server path: results/cross_strategy_pipeline/summary.json

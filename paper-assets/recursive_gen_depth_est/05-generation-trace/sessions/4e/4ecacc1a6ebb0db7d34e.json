@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen25_14b_restart_20260517T130946_result.json",
     "occurrence": 1,
-    "bytes": 593,
-    "sha256": "db381f94445933d3d8c719953a512137175056ab9445c5391bb9d2402406a15e"
+    "bytes": 592,
+    "sha256": "472423c85df06e7f8dc56cd4f0468d12341a54100bc4cfdc1162d5e080956bba"
   },
   "statistics": {
     "messages": 1,

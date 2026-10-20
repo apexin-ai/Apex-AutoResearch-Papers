@@ -1,0 +1,114 @@
+{
+  "exp_id": "pythia_topk50_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:49:28.112Z",
+    "updated_at": "2026-05-14T20:32:54.105Z",
+    "hypothesis": "解码策略鲁棒性: Pythia-1.4B 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "spec": {
+      "command": "bash scripts/run_pipeline_pythia_topk50.sh",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": 165810,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_topk50.log",
+      "submitted_at": "2026-05-14T18:22:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/pythia_topk50/depth_0.jsonl",
+      "data_count": 20000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "model_path": "/root/autodl-tmp/models/pythia-1.4b/",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/pythia_topk50/",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "query_key_value"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "decoding_strategy": "topk",
+        "top_k": 50
+      },
+      "wall_clock_seconds": 7769.3,
+      "gpu_hours": 2.16
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T20:15:02.419Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T20:15:03.379345+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "rf_4class_acc": 0.696,
+      "rf_4class_acc_ci": [
+        0.6825,
+        0.7107
+      ],
+      "lr_4class_acc": 0.682,
+      "rf_3class_acc": 0.592,
+      "rf_3class_acc_ci": [
+        0.575,
+        0.6107
+      ],
+      "rf_3class_filtered_acc": 0.6133,
+      "rf_3class_filtered_acc_ci": [
+        0.593,
+        0.6312
+      ],
+      "pairwise_auc_rf": {
+        "d0v1": 0.9927,
+        "d0v2": 0.9983,
+        "d0v3": 0.9978,
+        "d1v2": 0.7518,
+        "d1v3": 0.9176,
+        "d2v3": 0.6918
+      },
+      "pairwise_auc_3class_filtered_rf": {
+        "d1v2": 0.768,
+        "d1v3": 0.9323,
+        "d2v3": 0.7013
+      },
+      "feature_importance_top5": [
+        "var_surprisal",
+        "p90_ppl",
+        "mean_ppl",
+        "mean_surprisal",
+        "p75_ppl"
+      ],
+      "finetune_loss": {
+        "depth_0": 2.2406,
+        "depth_1": 1.6704,
+        "depth_2": 1.4374
+      },
+      "code_contamination_narrow": {
+        "depth_0": 0.004,
+        "depth_1": 0.077,
+        "depth_2": 0.123,
+        "depth_3": 0.131
+      }
+    },
+    "notes": "## pythia_topk50_001 分析结果\n\n### 核心指标\n- RF 4-class acc: 69.6% (chance 25%), PASS\n- RF 3-class acc: 59.2% (chance 33.3%)\n- RF 3-class filtered acc: 61.3%\n- d1v2 AUC: 0.7518, d2v3 AUC: 0.6918\n\n### vs Baseline (nucleus p=0.95) 对比\n| Metric | topk50 | baseline | delta |\n|--------|--------|----------|-------|\n| 4-class acc | 69.6% | 78.2% | -8.6pp |\n| 3-class acc | 59.2% | 70.8% | -11.6pp |\n| d0v1 AUC | 0.9927 | 0.9975 | -0.005 |\n| d1v2 AUC | 0.7518 | 0.8607 | -0.109 |\n| d2v3 AUC | 0.6918 | 0.8005 | -0.109 |\n\n### vs temp09 对比\n| Metric | topk50 | temp09 | delta |\n|--------|--------|--------|-------|\n| 4-class acc | 69.6% | 76.25% | -6.65pp |\n| 3-class acc | 59.2% | 69.83% | -10.6pp |\n| d1v2 AUC | 0.7518 | 0.8327 | -0.081 |\n| d2v3 AUC | 0.6918 | 0.7928 | -0.101 |\n\n### Feature importance 一致性\nTop-5 与 baseline 完全一致: var_surprisal, p90_ppl, mean_ppl, mean_surprisal, p75_ppl\n\n### Code contamination (narrow)\nd0=0.4%, d1=7.7%, d2=12.3%, d3=13.1%（高于 baseline，top-k 产生更多 code-like text）\nFiltered 3-class 性能反而略高于 unfiltered (61.3% vs 59.2%)，说明 code contamination 不是性能的主要驱动\n\n### 结论\nSUCCESS — 深度信号在 top-k 采样下仍然存在（69.6% >> 25% chance），但信号强度显著低于 nucleus (-8.6pp) 和 temp09 (-6.65pp)。\n跨策略泛化成立（信号存在），但不同采样策略对信号强度有影响。Top-k 的截断式采样比连续概率重分配（nucleus/temperature）保留的深度信号更弱。",
+    "completed_at": "2026-05-14T20:31:29.326Z"
+  },
+  "timestamp": "2026-05-14T20:32:54.148300+00:00",
+  "trigger": "update_registry"
+}

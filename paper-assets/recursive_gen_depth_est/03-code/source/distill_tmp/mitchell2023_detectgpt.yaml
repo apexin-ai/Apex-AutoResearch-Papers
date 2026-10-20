@@ -1,0 +1,27 @@
+paper_key: "mitchell2023_detectgpt"
+title: "DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature"
+venue: "ICML 2023"
+full_text_available: false
+
+research:
+  baselines: ["likelihood thresholding", "entropy-based methods", "supervised classifiers (RoBERTa)"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+  datasets:
+    - {name: "XSum", size: "N/A"}
+    - {name: "SQuAD", size: "N/A"}
+    - {name: "WritingPrompts", size: "N/A"}
+    - {name: "fake news (GPT-NeoX generated)", size: "N/A"}
+  ablation_dimensions: ["perturbation model", "number of perturbations", "source model size"]
+  training_recipe: {optimizer: "N/A (zero-shot)", lr: "N/A", hardware: "N/A"}
+  method_family: "zero-shot detection via log probability curvature"
+
+positioning:
+  core_claim: "Machine-generated text occupies negative curvature regions of the source model's log probability function, enabling detection without training a classifier"
+  key_results: "GPT-NeoX 20B fake news: AUROC 0.81 → 0.95 vs strongest baseline"
+  limitations: ["requires perturbation model (slow)", "requires white-box or proxy model access", "short texts challenging"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

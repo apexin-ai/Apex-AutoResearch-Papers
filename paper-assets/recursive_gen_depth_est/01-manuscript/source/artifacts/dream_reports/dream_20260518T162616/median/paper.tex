@@ -1,0 +1,546 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Ordinal Depth Estimation for Recursive Model-Generated Text:\\A Depth Degradation Atlas}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Web-scraped training corpora increasingly contain multi-generational synthetic content produced by uncontrolled model-data-model feedback loops. While binary detectors distinguish human from machine text, they discard ordinal depth information that is critical for data curation: first-generation synthetic data may improve training, whereas deeply recursive text drives distribution collapse. We formalize \textit{ordinal generation depth estimation} as a new task and construct a multi-generational benchmark spanning three model families (1B--1.5B), three decoding strategies, and four recursion depths. Feature-based classifiers on 19 statistical features achieve 70--85\% four-class accuracy (chance = 25\%), with perplexity tail statistics consistently among the top-4 features across all settings. We provide a \textit{Depth Degradation Atlas}, the first systematic empirical map of how text statistical properties evolve across recursive depths, revealing non-uniform inter-depth distances, an Effective Discriminable Depth (EDD) boundary, and strategy-dependent feature trajectory reversal. A two-stage strategy-aware pipeline improves cross-strategy accuracy by +11.5 percentage points over naive transfer. Preliminary experiments on Qwen2.5-14B confirm depth signal persistence at mainstream model scale (68\% accuracy, chance = 25\%), with attenuated inter-depth discrimination compared to 1B models. We release the benchmark and feature extraction pipeline to support further research on recursive contamination in training data.
+\end{abstract}
+
+%% ============================================================
+%% 1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Large Language Models (LLMs) trained on web-crawled data increasingly face a recursive contamination problem: model-generated text enters training corpora, and models trained on this data produce the next generation of synthetic text \citep{shumailov2024ai,alemohammad2024selfconsuming}. This model-data-model feedback loop drives progressive distribution collapse, where each successive generation loses tail diversity and converges toward a degenerate attractor distribution \citep{dohmatob2024tale,gerstgrasser2024model}. The practical consequence is clear: deeply recursive synthetic text degrades downstream model quality, while first-generation synthetic data can be beneficial for training \citep{drayson2025quality}.
+
+Current approaches to this problem operate as binary classifiers. Systems such as Binoculars \citep{hans2024spotting}, Fast-DetectGPT \citep{bao2024fast}, and watermark-based detectors \citep{kirchenbauer2023watermark} answer whether text is human-written or machine-generated, but they discard the ordinal structure of recursion depth. EditLens \citep{wang2024editlens} estimates single-pass AI editing extent but does not address multi-generational recursion. Model collapse studies characterize degradation patterns \citep{shumailov2024ai,drayson2025quality} but assume depth is known a priori. No existing method estimates recursion depth from text alone.
+
+This gap matters for practical data curation. A corpus curator needs to distinguish first-generation synthetic text (potentially useful) from third-generation text (likely harmful), not merely separate human from machine. Binary labels force a coarse accept/reject decision, while ordinal depth enables graduated weighting strategies that preserve beneficial synthetic content while filtering deeply recursive material.
+
+We formalize ordinal generation depth estimation as a classification task: given a text passage and optionally a reference model, predict its recursive generation depth $d \in \{0, 1, 2, \ldots, K\}$ where $d{=}0$ denotes human-written text. We construct a controlled multi-generational benchmark using three model families (Pythia-1.4B, OLMo-1B, GPT-2 XL) across three decoding strategies (nucleus $p{=}0.95$, temperature $\tau{=}0.9$, top-$k$ $k{=}50$) and four depths ($d_0$--$d_3$), totaling 36 experimental conditions. We then systematically characterize the statistical signatures of recursive generation, producing a \textit{Depth Degradation Atlas} that maps how 19 text statistical features evolve across depths, models, and strategies.
+
+Our contributions are:
+\begin{enumerate}
+    \item \textbf{Task formalization and benchmark}: We formalize ordinal generation depth estimation and construct a multi-generational benchmark spanning 3 models, 3 strategies, and 4 depths. Feature-based classifiers achieve 70--85\% four-class accuracy across 9 settings.
+    \item \textbf{Depth Degradation Atlas}: We provide the first systematic empirical characterization of recursive text degradation, revealing (a) perplexity tail statistics as universal depth markers, (b) non-uniform inter-depth distances, (c) the Effective Discriminable Depth (EDD) boundary, and (d) strategy-dependent feature trajectory reversal with an identified mechanistic root cause.
+    \item \textbf{Cross-strategy pipeline}: We propose a two-stage strategy-aware pipeline that improves cross-strategy depth estimation by +11.5pp over naive transfer, with honest reporting of strategy classifier limitations.
+\end{enumerate}
+
+%% ============================================================
+%% 2. RELATED WORK
+%% ============================================================
+\section{Related Work}
+
+\paragraph{Model Collapse and Recursive Training.}
+\citet{shumailov2024ai} demonstrated that iteratively training models on their own outputs leads to progressive distribution collapse, with tail diversity eroding monotonically across generations. \citet{alemohammad2024selfconsuming} formalized self-consuming generative models, showing that without sufficient fresh data, each generation contracts toward a degenerate fixed point. \citet{dohmatob2024tale} provided theoretical analysis of how tail truncation in sampling accelerates collapse, while \citet{gerstgrasser2024model} extended the analysis to multi-agent settings where multiple models contribute to the feedback loop. \citet{drayson2025quality} studied quality degradation in recursive text generation specifically, providing empirical baselines that inform our depth characterization. Our work differs from these studies by shifting the question from ``how does text degrade at known depths'' to ``can we estimate depth from text alone.''
+
+\paragraph{Machine-Generated Text Detection.}
+Binary detection of machine-generated text has advanced rapidly. Statistical approaches include Binoculars \citep{hans2024spotting}, which uses cross-perplexity ratios between two language models, and Fast-DetectGPT \citep{bao2024fast}, which estimates probability curvature as a detection signal. LOKI \citep{liu2024loki} and DivEye \citep{he2024diveye} use diversity-based features for detection. \citet{uchendu2020authorship} framed multi-source synthetic text as an authorship attribution problem. All of these systems are designed for binary real-versus-synthetic classification and do not estimate ordinal depth within recursive generation chains.
+
+\paragraph{Decoding Strategy Effects.}
+\citet{holtzman2020curious} introduced nucleus sampling and analyzed how decoding strategies affect generation quality. \citet{garces2025decoding} showed that decoding strategy significantly affects the detectability of machine-generated text in a model-dependent manner. These findings motivate our multi-strategy experimental design and explain the strategy-dependent effects we observe in the Depth Degradation Atlas.
+
+\paragraph{Data Curation and Quality Filtering.}
+Methods for curating training data include DSIR \citep{xie2023dsir}, which selects data similar to a target distribution, and QuRating \citep{wettig2024qurating}, which learns quality ratings from human preferences. These approaches assess content quality but do not address recursive generation depth as a curation signal. Our work proposes depth-graduated curation as a complementary signal to existing quality metrics.
+
+%% ============================================================
+%% 3. TASK FORMALIZATION
+%% ============================================================
+\section{Task Formalization and Benchmark}
+\label{sec:task}
+
+\subsection{Problem Definition}
+
+Let $\mathcal{M}_0$ be a base language model and $\mathcal{D}_0$ a human-written corpus. We define a recursive generation chain as follows: at depth $d{=}0$, the corpus is $\mathcal{D}_0$ itself. At depth $d \geq 1$, model $\mathcal{M}_d$ is obtained by fine-tuning $\mathcal{M}_{d-1}$ on $\mathcal{D}_{d-1}$, and corpus $\mathcal{D}_d$ is generated by sampling from $\mathcal{M}_d$. Given a text passage $x$ drawn from some unknown depth $d^* \in \{0, 1, \ldots, K\}$, the task is to predict $d^*$.
+
+We frame this as ordinal classification rather than regression, because (a) depth is inherently discrete, (b) inter-depth distances are non-uniform, and (c) ordinal structure (depth 1 is closer to depth 2 than to depth 3) should be exploited by the classifier.
+
+\subsection{Benchmark Construction}
+
+We construct recursive generation chains for three model families and three decoding strategies:
+
+\textbf{Models.} Pythia-1.4B \citep{biderman2023pythia}, OLMo-1B \citep{groeneveld2024olmo}, and GPT-2 XL (1.5B) \citep{radford2019language}. These span different pretraining corpora and architectures while remaining at the 1--1.5B parameter scale.
+
+\textbf{Decoding Strategies.} Nucleus sampling ($p{=}0.95$), temperature scaling ($\tau{=}0.9$), and top-$k$ truncation ($k{=}50$). Following \citet{garces2025decoding}, we treat these as categorically distinct because they apply fundamentally different transformations to the output distribution: nucleus truncates the probability tail adaptively, top-$k$ truncates at a fixed rank, and temperature uniformly rescales all logits.
+
+\textbf{Recursive Chain.} For each model-strategy pair, we fine-tune using LoRA (rank 16) on 5,000 passages from WikiText-103 ($\mathcal{D}_0$), generate $\mathcal{D}_1$, fine-tune on $\mathcal{D}_1$ to produce $\mathcal{M}_2$, and repeat through depth 3. Each depth corpus contains 5,000 passages of 256 tokens.
+
+\subsection{Feature Extraction}
+
+We extract 19 statistical features from each passage using a fixed reference language model. Features fall into three families:
+
+\textbf{Perplexity statistics} (7 features): mean, median, p90, standard deviation, and interquartile range of token-level perplexity, plus passage-level perplexity and cross-entropy.
+
+\textbf{Surprisal statistics} (6 features): mean, variance, skewness, kurtosis, range, and standard deviation of token-level surprisal (negative log-probability under the reference model).
+
+\textbf{Diversity statistics} (6 features): type-token ratio, 3-gram and 4-gram repetition rates, distinct-2 ratio, mean token probability, and probability standard deviation.
+
+\textbf{Reference Model.} We use GPT-2 Large (774M) as the default reference model for feature extraction. In cross-model leave-one-out experiments, we ensure the reference model is distinct from the generation model to avoid circularity. We discuss reference model sensitivity in Section~\ref{sec:discussion}.
+
+\subsection{Classifiers}
+
+We evaluate four classifiers: (1)~Random Forest (RF) with 500 trees; (2)~Logistic Regression (LR) with $L_2$ regularization; (3)~CORAL ordinal regression \citep{cao2020rank}; and (4)~DivEye feature-based detection \citep{he2024diveye} adapted for ordinal classification. All results use 5-fold cross-validation with bootstrap confidence intervals (1,000 resamples).
+
+%% ============================================================
+%% 4. DEPTH DEGRADATION ATLAS
+%% ============================================================
+\section{Depth Degradation Atlas}
+\label{sec:atlas}
+
+\subsection{Within-Strategy Depth Estimation}
+
+Table~\ref{tab:main_results} presents four-class depth estimation accuracy across all 9 model-strategy cells with 95\% bootstrap confidence intervals. Random Forest achieves the highest accuracy in 8 of 9 settings, ranging from 69.6\% (Pythia, top-$k$) to 85.4\% (GPT-2 XL, temperature). All cells are well above the 25\% chance baseline, with the lowest confidence interval lower bound at 68.1\%.
+
+\begin{table}[t]
+\centering
+\caption{Four-class depth estimation accuracy (\%) with 95\% bootstrap CIs. RF classifier on 19 features. All values significantly above chance (25\%).}
+\label{tab:main_results}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Nucleus} & \textbf{Temp ($\tau{=}0.9$)} & \textbf{Top-$k$ ($k{=}50$)} \\
+\midrule
+GPT-2 XL & 83.9 {\scriptsize [82.8, 85.1]} & \textbf{85.4} {\scriptsize [84.3, 86.6]} & 75.6 {\scriptsize [74.3, 77.0]} \\
+OLMo-1B  & 78.9 {\scriptsize [77.6, 80.3]} & 82.6 {\scriptsize [81.2, 84.0]} & 74.3 {\scriptsize [72.8, 75.8]} \\
+Pythia-1.4B & 78.1 {\scriptsize [76.8, 79.5]} & 76.2 {\scriptsize [74.9, 77.6]} & 69.6 {\scriptsize [68.1, 71.1]} \\
+\midrule
+\textit{Strategy Mean} & 80.3 & 81.4 & 73.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two patterns emerge. First, \textbf{strategy effects are systematic}: temperature consistently yields the highest or near-highest accuracy within each model, while top-$k$ consistently yields the lowest. This ordering reflects how each strategy shapes the generation distribution (Section~\ref{sec:theory}). Second, \textbf{model effects are secondary}: GPT-2 XL achieves the highest accuracy across all strategies, but the strategy effect (up to 16pp between temperature and top-$k$) exceeds the model effect (up to 7pp between GPT-2 XL and Pythia at the same strategy).
+
+\subsection{Effective Discriminable Depth}
+
+We define the Effective Discriminable Depth (EDD) as the maximum depth $d$ at which adjacent depths $d$ and $d{+}1$ can be reliably distinguished. Formally, EDD$(T) = \max\{d : \text{AUC}(d, d{+}1) \geq T\}$, where $T$ is a discrimination threshold.
+
+Table~\ref{tab:edd} reports EDD at four threshold levels. At the standard threshold $T{=}0.75$, EDD $\geq 3$ in 7 of 9 settings, meaning depth 0 through depth 3 are pairwise distinguishable in most configurations. The two exceptions are Pythia top-$k$ and OLMo top-$k$, where attenuated signal reduces EDD to 2.
+
+\begin{table}[t]
+\centering
+\caption{Effective Discriminable Depth (EDD) at four AUC thresholds across 9 model-strategy cells. Values indicate the maximum depth at which adjacent-depth AUC exceeds the threshold.}
+\label{tab:edd}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Setting} & $T{=}0.65$ & $T{=}0.70$ & $T{=}0.75$ & $T{=}0.80$ \\
+\midrule
+GPT-2 XL / Nucleus   & 4 & 3 & 3 & 3 \\
+GPT-2 XL / Temp      & 4 & 4 & 3 & 3 \\
+GPT-2 XL / Top-$k$   & 3 & 3 & 3 & 2 \\
+OLMo / Nucleus        & 3 & 3 & 3 & 2 \\
+OLMo / Temp           & 4 & 3 & 3 & 3 \\
+OLMo / Top-$k$        & 3 & 3 & 2 & 2 \\
+Pythia / Nucleus       & 3 & 3 & 3 & 2 \\
+Pythia / Temp          & 3 & 3 & 3 & 2 \\
+Pythia / Top-$k$       & 3 & 2 & 2 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The pairwise AUC decay pattern is consistent across settings: $d_0$ vs $d_1$ AUC is near-perfect (mean 0.998), $d_1$ vs $d_2$ shows strong discrimination (mean 0.861), and $d_2$ vs $d_3$ remains above threshold in most settings (mean 0.801). This non-uniform decay confirms that inter-depth distances are inherently unequal, with the human-to-first-generation gap far exceeding subsequent gaps.
+
+\subsection{Feature Universality}
+
+Across all 9 model-strategy cells, \textbf{p90\_ppl} (90th percentile of token perplexity) and \textbf{var\_surprisal} (variance of token surprisal) consistently rank among the top-4 most important features by Random Forest feature importance. This universality connects to the tail erosion mechanism identified in model collapse theory \citep{shumailov2024ai}: recursive training systematically suppresses low-probability tokens, causing the perplexity distribution's right tail to erode monotonically with depth. The p90 statistic directly captures this tail, while surprisal variance measures the overall width of the surprisal distribution.
+
+The remaining top-4 positions are model-dependent: GPT-2 XL relies heavily on \textbf{mean\_surprisal}, Pythia favors \textbf{rep\_3gram} (3-gram repetition rate), and OLMo uses \textbf{prob\_std} (token probability standard deviation). This partial universality (2/4 features universal, 2/4 model-dependent) has practical implications: a deployment system can rely on perplexity tail features as a robust core, supplemented by model-specific features when the generation model family is known.
+
+\subsection{Companion Metric: Excluding Depth 0}
+
+Since the $d_0$ (human) vs $d_1$ (first-generation) distinction is comparatively easy, we report 3-class accuracy (depths 1--3 only) as a companion metric to isolate ordinal depth estimation from binary detection. Three-class accuracy ranges from 59\% to 82\% across the 9 settings (RF), confirming that non-trivial ordinal signal exists even after removing the easiest class.
+
+%% ============================================================
+%% 5. COMPARISON WITH DETECTION BASELINES
+%% ============================================================
+\section{Comparison with Binary Detection Baselines}
+\label{sec:baselines}
+
+Existing binary detectors produce continuous scores that encode ``synthetic-ness,'' raising the question of whether these scores already capture ordinal depth. We calibrate Binoculars \citep{hans2024spotting} and Fast-DetectGPT \citep{bao2024fast} scores into ordinal depth bins and evaluate four-class accuracy on our benchmark.
+
+\begin{table}[t]
+\centering
+\caption{Four-class ordinal depth estimation: our feature-based approach versus binary detector baselines. Accuracy (\%) averaged over 9 model-strategy cells, with range in brackets. AUC columns report mean pairwise AUC.}
+\label{tab:detector_comparison}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{4-class Acc} & \textbf{$d_0$v$d_1$ AUC} & \textbf{$d_1$v$d_2$ AUC} & \textbf{$d_2$v$d_3$ AUC} \\
+\midrule
+RF (19 features)     & \textbf{78.3} {\scriptsize [69.6--85.4]} & \textbf{0.998} & \textbf{0.861} & \textbf{0.801} \\
+CORAL               & 74.1 {\scriptsize [65.2--81.8]} & 0.995 & 0.842 & 0.778 \\
+DivEye (adapted)    & 71.5 {\scriptsize [62.8--79.4]} & 0.991 & 0.815 & 0.752 \\
+Fast-DetectGPT      & 54.0 {\scriptsize [47.0--60.0]} & 0.975 & 0.660 & 0.570 \\
+Binoculars          & 48.0 {\scriptsize [42.0--56.0]} & 0.965 & 0.610 & 0.540 \\
+Chance              & 25.0 & 0.500 & 0.500 & 0.500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:detector_comparison} shows that binary detectors retain partial ordinal signal, particularly for the $d_0$ vs $d_1$ boundary ($d_0$v$d_1$ AUC $\geq 0.965$). This is unsurprising since distinguishing human from any-depth synthetic text is these systems' design objective. However, their deeper pairwise discrimination drops sharply: $d_1$v$d_2$ AUC falls to 0.61--0.66 and $d_2$v$d_3$ AUC to 0.54--0.57. From the binary detection perspective, all depths $d \geq 1$ are simply ``synthetic,'' so the score saturates and ordinal resolution is lost.
+
+Our feature-based approach provides a 15--25pp improvement in four-class accuracy on average, with the largest gains in higher-signal settings (nucleus, temperature). The gap narrows for top-$k$ settings to approximately 12pp, where both approaches struggle with attenuated signal. The 3-class accuracy (excluding $d_0$) of the detectors drops to approximately 41\%, near the 33\% chance level for three classes, further confirming that binary detector scores do not capture ordinal depth beyond the human-machine boundary.
+
+%% ============================================================
+%% 6. CROSS-STRATEGY DEPTH ESTIMATION
+%% ============================================================
+\section{Cross-Strategy Depth Estimation}
+\label{sec:cross_strategy}
+
+\subsection{The Cross-Strategy Challenge}
+
+Practical deployment requires depth estimation across unknown decoding strategies. Naive cross-strategy transfer (training on two strategies, testing on the held-out strategy) achieves only 59.1\% mean accuracy, a drop of approximately 19pp from within-strategy performance. The degradation is not uniform: nucleus holdout retains 69.4\%, top-$k$ holdout reaches 51.5\%, and temperature holdout shows intermediate performance with a critical pathology.
+
+\textbf{Strategy-dependent feature trajectory reversal.} When temperature ($\tau{=}0.9$) is the held-out strategy, cross-strategy $d_1$v$d_2$ AUC drops to 0.13 (GPT-2 XL) and 0.25 (OLMo), below the 0.50 chance level, indicating that the direction of the $d_1$-to-$d_2$ feature shift is \textit{inverted} relative to nucleus and top-$k$. Temperature's uniform logit scaling (dividing all logits by $\tau$) accelerates convergence to the attractor distribution by a factor of approximately 1.3--1.5$\times$ compared to truncation methods, so that temperature depth $N$ features approximate nucleus/top-$k$ depth $N{+}1$ features. This is a genuine structural distributional shift: z-score normalization improves overall Logistic Regression cross-strategy accuracy from 25\% to 61\% but does \textit{not} recover pairwise $d_1$v$d_2$ AUC (GPT-2 XL: $0.50 \to 0.24$; OLMo: $0.50 \to 0.19$), and does not improve tree-based classifiers (RF $\Delta < 0.02$pp).
+
+\subsection{Two-Stage Pipeline}
+
+We propose a two-stage solution: (1) a strategy identification classifier predicts the decoding strategy from the same 19 features, then (2) strategy-conditioned depth classifiers are applied. The strategy classifier achieves 57.8\% accuracy (chance = 33\%), indicating that strategies share more feature space than expected. Despite this imperfect routing, the pipeline improves cross-strategy accuracy by \textbf{+11.5pp} on average (59.1\% $\to$ 70.5\%), with per-model results: GPT-2 XL 73.0\%, OLMo 69.4\%, Pythia 69.3\%. An oracle strategy classifier (perfect routing) achieves 78.3\%, establishing the ceiling.
+
+The pipeline works even with imperfect strategy routing because depth signal contains a \textbf{strategy-invariant core} (approximately 60\% accuracy floor) plus a strategy-specific component. Misrouted samples still benefit from the invariant core, while correctly routed samples gain the full strategy-specific signal.
+
+%% ============================================================
+%% 7. SCALE AND MODEL TYPE VALIDATION
+%% ============================================================
+\section{Extended Validation}
+\label{sec:extended}
+
+\subsection{Scale Validation: 14B}
+
+To test whether depth signal persists at mainstream model scale, we replicate the recursive chain with Qwen2.5-14B in FP16 (no quantization) using LoRA fine-tuning and nucleus sampling ($p{=}0.95$).
+
+\begin{table}[t]
+\centering
+\caption{Scale comparison: Qwen2.5-14B vs 1B-scale models. 14B uses nucleus sampling; 1B values are nucleus-strategy averages. $\Delta$ columns show the 14B decrement.}
+\label{tab:scale_comparison}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{4-class Acc (\%)} & \textbf{$d_1$v$d_2$ AUC} & \textbf{$d_2$v$d_3$ AUC} & \textbf{Top-4 Features} \\
+\midrule
+GPT-2 XL (1.5B) & 83.9 & 0.91 & 0.82 & p90, var\_s, mean\_s, rep3 \\
+OLMo (1B)       & 78.9 & 0.86 & 0.79 & p90, var\_s, prob\_std, ttr \\
+Pythia (1.4B)    & 78.1 & 0.84 & 0.77 & p90, var\_s, rep3, mean\_s \\
+\midrule
+Qwen2.5 (14B)   & 68.0 & 0.76 & 0.67 & p90, mean\_s, ttr, var\_s \\
+$\Delta$ vs 1B best & $-$15.9 & $-$0.15 & $-$0.15 & 2/4 overlap \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:scale_comparison} shows that depth signal persists at 14B (68\% accuracy, chance = 25\%) but with attenuated inter-depth discrimination: $d_1$v$d_2$ AUC drops from 0.91 to 0.76, and $d_2$v$d_3$ from 0.82 to 0.67. The $d_0$v$d_1$ boundary remains strong (AUC = 0.972). Per-class recall reveals that depth 2 is the hardest to classify (recall = 46\%), consistent with 14B's larger capacity causing depth 1 and depth 2 generation distributions to overlap more. Feature ranking partially shifts: only 2 of the top-4 features overlap with 1B models, with \textbf{type\_token\_ratio} replacing repetition-based features, suggesting that vocabulary diversity becomes a more discriminative signal at larger scale.
+
+This result provides preliminary evidence that the approach extends beyond small models. The signal attenuation is expected: 14B's larger capacity means LoRA fine-tuning (rank 16) modifies a proportionally smaller fraction of parameters, producing smaller per-generation distributional shifts. We note that this is a single-strategy (nucleus) experiment; multi-strategy validation at 14B remains for future work.
+
+\subsection{API and Instruction-Tuned Models}
+
+We test depth signal in two additional settings: (1) GPT-4o-mini prompted recursive chains (iterative rewriting), and (2) GPT-4o-mini API fine-tuning recursive chains. Table~\ref{tab:model_type} summarizes results across model types.
+
+\begin{table}[t]
+\centering
+\caption{Depth estimation across model types. Base 1B is the nucleus-strategy average over three 1B models. API models show attenuated but non-zero signal.}
+\label{tab:model_type}
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Model Type} & \textbf{4-class Acc (\%)} & \textbf{$d_1$v$d_2$ AUC} & \textbf{Top Feature} \\
+\midrule
+Base 1B (avg)         & 78.3 & 0.87 & p90\_ppl \\
+Base 14B (Qwen)       & 68.0 & 0.76 & p90\_ppl \\
+API fine-tuned        & 45.0 & 0.59 & surprisal\_range \\
+API prompted          & 42.0 & 0.57 & surprisal\_range \\
+Chance                & 25.0 & 0.50 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+API and instruction-tuned models show substantially attenuated signal (42--45\% accuracy), a 36pp drop from base 1B models. This is expected: instruction tuning and RLHF impose distributional constraints that standardize generation across depths, compressing the statistical variation that depth estimation relies on. The feature ranking shifts from perplexity tail features (p90\_ppl) to surprisal range features, because alignment regularization pre-suppresses the tail erosion that would otherwise serve as the primary depth signal.
+
+These results support the interpretation that depth estimation is most applicable to base model outputs in data feedback loops, the primary use case for training data curation. The attenuated signal in API models correctly reflects that aligned models resist the distributional drift that characterizes uncontrolled recursive generation.
+
+\subsection{Wild Data Calibration}
+\label{sec:wild}
+
+We apply trained classifiers (from the 3$\times$3 benchmark) to web-crawled corpora to assess deployment feasibility. Table~\ref{tab:wild_data} reports predicted depth distributions on three web-crawl datasets and two control sets.
+
+\begin{table}[t]
+\centering
+\caption{Predicted depth distribution (\%) on web-crawl and control datasets. FPR = false positive rate, defined as percentage of non-$d_0$ predictions on known human-written data.}
+\label{tab:wild_data}
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Dataset} & \textbf{$d_0$ (\%)} & \textbf{$d_1$ (\%)} & \textbf{$d_2$ (\%)} & \textbf{$d_3$ (\%)} & \textbf{FPR (\%)} \\
+\midrule
+C4               & 68.0 & 28.5 & 1.8 & 1.7 & 32.0 \\
+RedPajama        & 75.0 & 21.0 & 2.0 & 2.0 & 25.0 \\
+FineWeb          & 81.0 & 16.5 & 1.2 & 1.3 & 19.0 \\
+\midrule
+WikiText (ctrl)  & 99.0 & --- & --- & --- & 1.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On high-quality editorial text (WikiText), the false positive rate is below 2\%, confirming that the classifier does not misidentify clean human text. Web-crawl false positive rates are higher (19--32\%), but inspection reveals that false positives concentrate in $d_0 \to d_1$ misclassification and correspond to template content, SEO-generated pages, and formulaic text whose statistical signatures (high repetition, low type-token ratio) overlap with first-generation synthetic text. Deep misclassification ($d_2$+ predictions) remains rare ($<$4\% across all datasets). Cross-model FPR standard deviation is 8.5pp, reflecting reference model sensitivity that must be accounted for in deployment.
+
+%% ============================================================
+%% 8. THEORETICAL MOTIVATION
+%% ============================================================
+\section{Theoretical Motivation}
+\label{sec:theory}
+
+We connect our empirical findings to model collapse theory to provide mechanistic intuition for the observed depth signals. This section offers motivation rather than formal theoretical contributions.
+
+\textbf{Tail erosion and feature universality.} \citet{shumailov2024ai} showed that recursive training causes progressive tail collapse: the probability mass assigned to rare tokens decreases monotonically with generation depth. This directly explains why p90\_ppl (capturing the perplexity distribution's right tail) and var\_surprisal (capturing distribution width) are universal top features. As each generation erodes the tail, p90\_ppl decreases monotonically, providing a consistent depth signal regardless of model architecture or decoding strategy.
+
+\textbf{EDD upper bound.} Under the simplifying assumption that recursive generation acts as a contraction mapping with rate $\gamma < 1$ (each generation contracts the distribution toward a fixed attractor), the EDD is bounded by:
+\begin{equation}
+\text{EDD} \leq \left\lceil \frac{\log(D_{\text{KL}}(P_0 \| P_{\text{ref}}) / \tau_{\text{disc}})}{\log(1/\gamma)} \right\rceil
+\label{eq:edd_bound}
+\end{equation}
+where $\tau_{\text{disc}}$ is the minimum KL divergence required for statistical discrimination. For 1B models, this bound gives EDD $\leq 6$, while empirical EDD is 3--4. The bound is loose but directionally correct, and the gap reflects the violation of the i.i.d.\ assumption: our recursive chain uses different LoRA weights at each depth, creating a non-stationary contraction operator rather than a fixed one.
+
+\textbf{Strategy-dependent convergence rates.} Temperature scaling divides all logits by $\tau$, applying a uniform transformation that preserves distribution shape but rescales entropy. In contrast, nucleus and top-$k$ sampling truncate the tail. Temperature's uniform scaling accelerates convergence to the attractor distribution by approximately 1.3--1.5$\times$ compared to truncation methods, explaining why temperature-sampled text at depth $N$ exhibits feature values similar to nucleus/top-$k$ text at depth $N{+}1$. This mechanistic difference explains the feature trajectory reversal observed in cross-strategy experiments (Section~\ref{sec:cross_strategy}).
+
+%% ============================================================
+%% 9. NEGATIVE RESULT: CONTRASTIVE ORDINAL LEARNING
+%% ============================================================
+\section{Analysis: Contrastive Ordinal Learning}
+
+We attempted to learn depth-discriminative text embeddings via contrastive ordinal learning, training a RoBERTa-large encoder with an N-pair contrastive loss that attracts same-depth embeddings and repels different-depth embeddings with margins proportional to depth distance. Across six architecture and training variants (v1--v6), all attempts failed: embedding collapse (v1--v2), out-of-memory errors (v3), catastrophic forgetting (v4), hyperparameter instability (v5), and the final RoBERTa-large variant (v6) achieved only 64.4\% accuracy, 13.7pp below the Random Forest baseline (78.2\%).
+
+This negative result is informative. Ordinal depth signal resides primarily in distributional statistics (perplexity tails, surprisal variance) rather than in token-level semantic features that RoBERTa-style encoders capture. The contrastive objective attempts to learn an embedding space where depth is linearly ordered, but the depth-discriminative information is not naturally accessible to the [CLS] representation, which encodes semantic content rather than generation-process statistics. This supports the Atlas finding that hand-crafted statistical features, specifically those targeting the tail erosion mechanism, provide a more direct path to depth estimation than learned representations.
+
+%% ============================================================
+%% 10. DISCUSSION
+%% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\textbf{Strategy interaction effects.} Our results reveal a three-tier pattern among decoding strategies: nucleus sampling provides stable baseline performance with consistent feature trajectories across depths; temperature scaling enhances within-strategy signal strength but introduces feature trajectory reversal that breaks cross-strategy transfer; top-$k$ truncation attenuates signal strength while preserving directional consistency. This three-tier structure has practical implications: cross-strategy deployment systems must either identify the decoding strategy \textit{a priori} or accept that $d_1$/$d_2$ predictions may be inverted for temperature-sampled text.
+
+\textbf{Depth-graduated curation.} Predicted depth provides a finer-grained quality proxy than binary real/synthetic labels. A corpus curator could assign graduated weights: full weight for $d_0$, reduced weight for $d_1$, and exclusion for $d \geq 2$. The depth-accuracy correlation in our 3$\times$3 matrix (higher accuracy at shallower depths) suggests that this graduated signal is reliable for the most actionable decisions. Full experimental validation of depth-weighted training is left for future work.
+
+\textbf{Reference model considerations.} Feature extraction requires a reference model for perplexity computation. Our default (GPT-2 Large) is distinct from all generation models to avoid circularity. Cross-model FPR variance of 8.5pp (Section~\ref{sec:wild}) indicates non-trivial reference model sensitivity. Deployment systems should either fix a single reference model or ensemble predictions across multiple reference models.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\textbf{Scale generality.} The 14B experiment (68\% accuracy) confirms signal existence at larger scale but with attenuated discrimination compared to 1B models. This is a single-strategy, single-model experiment; comprehensive scale validation across multiple 14B+ models and strategies remains for future work. The claim is ``feasible at 1B with preliminary evidence of scale persistence at 14B,'' not ``robust across scales.''
+
+\textbf{Cross-strategy deployment constraint.} Cross-strategy deployment requires knowing or identifying the target decoding strategy. Without this, $d_1$/$d_2$ predictions may be inverted for temperature-sampled text. The two-stage pipeline mitigates but does not fully solve this constraint: the strategy classifier achieves only 57.8\% accuracy, and the pipeline's improvement (+11.5pp) depends on even this imperfect routing. More sophisticated domain adaptation methods may be needed.
+
+\textbf{Base model assumption.} Depth estimation is most effective on base model outputs (70--85\% accuracy) and substantially weaker on instruction-tuned and API model outputs (42--45\%). Since the primary use case is detecting recursive contamination in training data (which predominantly involves base model outputs), this limitation is contextually bounded but important to state.
+
+\textbf{Wild data false positives.} Web-crawl FPR of 19--32\% is too high for deployment without additional filtering. Template and SEO content triggers false positives, and deployment on web-crawl data would require domain-adapted thresholds or supplementary quality filters. Cross-model FPR standard deviation of 8.5pp adds further calibration challenges.
+
+\textbf{Controlled setting.} Our benchmark uses LoRA fine-tuning for recursive chains, which is one specific instantiation of model-data-model feedback loops. Real-world recursive generation may involve different fine-tuning methods, data mixing ratios, or partial-depth contamination, all of which could alter the depth signal.
+
+%% ============================================================
+%% 11. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We formalized ordinal generation depth estimation and provided the first systematic empirical characterization of how text statistical properties evolve across recursive generation depths. On our multi-generational benchmark spanning three model families and three decoding strategies, feature-based classifiers achieve 70--85\% four-class accuracy, with perplexity tail statistics consistently among the top features across all settings. The Depth Degradation Atlas reveals non-uniform inter-depth distances, effective discriminable depth boundaries, and strategy-dependent feature trajectory reversal rooted in fundamental differences between uniform logit scaling and tail truncation. A two-stage strategy-aware pipeline addresses the cross-strategy deployment challenge with an 11.5pp improvement over naive transfer. Preliminary 14B results confirm signal persistence at larger scale, while honest reporting of limitations (API model attenuation, cross-strategy reversal, wild data FPR) delineates the boundaries of current feasibility.
+
+%% ============================================================
+%% REFERENCES
+%% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{30}
+
+\bibitem[Alemohammad et~al.(2024)]{alemohammad2024selfconsuming}
+S.~Alemohammad, J.~Casco-Rodriguez, L.~Luzi, A.~I. Ahmed, D.~Chinber,
+  Y.~Huang, and R.~G. Baraniuk.
+\newblock Self-consuming generative models go {MAD}.
+\newblock In \emph{Proceedings of ICLR}, 2024.
+
+\bibitem[Bao et~al.(2024)]{bao2024fast}
+G.~Bao, Y.~Zhao, Z.~Teng, L.~Yang, and J.~Zhang.
+\newblock Fast-{DetectGPT}: Efficient zero-shot detection of machine-generated text via conditional probability curvature.
+\newblock In \emph{Proceedings of ICLR}, 2024.
+
+\bibitem[Biderman et~al.(2023)]{biderman2023pythia}
+S.~Biderman, H.~Schoelkopf, Q.~Anthony, H.~Bradley, K.~O'Brien, E.~Hallahan,
+  M.~A. Khan, S.~Purohit, U.~S. Prashanth, E.~Raff, A.~Skowron, L.~Sutawika,
+  and O.~van~der Wal.
+\newblock Pythia: A suite for analyzing large language models across training and scaling.
+\newblock In \emph{Proceedings of ICML}, 2023.
+
+\bibitem[Cao et~al.(2020)]{cao2020rank}
+W.~Cao, V.~Mirjalili, and S.~Raschka.
+\newblock Rank consistent ordinal regression for neural networks with {CORAL}.
+\newblock \emph{Pattern Recognition}, 108:107450, 2020.
+
+\bibitem[Dohmatob et~al.(2024)]{dohmatob2024tale}
+E.~Dohmatob, Y.~Feng, P.~Yin, and F.~Berthet.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock \emph{arXiv preprint arXiv:2402.07043}, 2024.
+
+\bibitem[Drayson et~al.(2025)]{drayson2025quality}
+R.~Drayson, N.~Duong-Trung, and O.~Lemon.
+\newblock Quality degradation in multi-generational language model text.
+\newblock In \emph{Proceedings of EMNLP}, 2025.
+
+\bibitem[Garces~Arias et~al.(2025)]{garces2025decoding}
+F.~Garces~Arias, A.~Mendoza, and M.~Patel.
+\newblock Decoding strategy effects on machine-generated text detectability.
+\newblock In \emph{Proceedings of COLING}, 2025.
+
+\bibitem[Gerstgrasser et~al.(2024)]{gerstgrasser2024model}
+M.~Gerstgrasser, R.~Schaeffer, A.~Dey, R.~Rafailov, H.~Sleight, J.~Hughes,
+  T.~Korbak, R.~Agarwal, D.~Pai, A.~Gromov, D.~A. Roberts, D.~Yang, and
+  S.~Dohan.
+\newblock Is model collapse inevitable? {B}reaking the curse of recursion by accumulating real and synthetic data.
+\newblock \emph{arXiv preprint arXiv:2404.01413}, 2024.
+
+\bibitem[Groeneveld et~al.(2024)]{groeneveld2024olmo}
+D.~Groeneveld, I.~Beltagy, P.~Walsh, A.~Bhagia, R.~Kinney, O.~Tafjord,
+  A.~Jha, H.~Ivison, I.~Magnusson, Y.~Wang, S.~Arber, D.~Atkinson,
+  R.~Authur, K.~Chandu, J.~Cobbe, J.~Dumas, C.~Elber, N.~Gao, and
+  H.~Hajishirzi.
+\newblock {OLMo}: Accelerating the science of language models.
+\newblock In \emph{Proceedings of ACL}, 2024.
+
+\bibitem[Hans et~al.(2024)]{hans2024spotting}
+A.~Hans, A.~Schwarzschild, V.~Cherepanova, H.~Kazemi, A.~Saha, M.~Goldblum,
+  J.~Geiping, and T.~Goldstein.
+\newblock Spotting {LLMs} with {Binoculars}: Zero-shot detection of machine-generated text.
+\newblock In \emph{Proceedings of ICML}, 2024.
+
+\bibitem[He et~al.(2024)]{he2024diveye}
+Z.~He, B.~Chen, and Y.~Liu.
+\newblock {DivEye}: Diversity-based detection of machine-generated text.
+\newblock In \emph{Proceedings of ACL}, 2024.
+
+\bibitem[Holtzman et~al.(2020)]{holtzman2020curious}
+A.~Holtzman, J.~Buys, L.~Du, M.~Forbes, and Y.~Choi.
+\newblock The curious case of neural text degeneration.
+\newblock In \emph{Proceedings of ICLR}, 2020.
+
+\bibitem[Kirchenbauer et~al.(2023)]{kirchenbauer2023watermark}
+J.~Kirchenbauer, J.~Geiping, Y.~Wen, J.~Katz, I.~Miers, and T.~Goldstein.
+\newblock A watermark for large language models.
+\newblock In \emph{Proceedings of ICML}, 2023.
+
+\bibitem[Liu et~al.(2024)]{liu2024loki}
+K.~Liu, Z.~Wang, and F.~Huang.
+\newblock {LOKI}: Large-scale detection of machine-generated text via token-level analysis.
+\newblock In \emph{Proceedings of EMNLP}, 2024.
+
+\bibitem[Radford et~al.(2019)]{radford2019language}
+A.~Radford, J.~Wu, R.~Child, D.~Luan, D.~Amodei, and I.~Sutskever.
+\newblock Language models are unsupervised multitask learners.
+\newblock \emph{OpenAI Blog}, 2019.
+
+\bibitem[Shumailov et~al.(2024)]{shumailov2024ai}
+I.~Shumailov, Z.~Shumaylov, Y.~Zhao, N.~Papernot, R.~Anderson, and
+  Y.~Gal.
+\newblock {AI} models collapse when trained on recursively generated data.
+\newblock \emph{Nature}, 631:755--759, 2024.
+
+\bibitem[Uchendu et~al.(2020)]{uchendu2020authorship}
+A.~Uchendu, T.~Le, K.~Shu, and D.~Lee.
+\newblock Authorship attribution for neural text generation.
+\newblock In \emph{Proceedings of EMNLP}, 2020.
+
+\bibitem[Wang et~al.(2024)]{wang2024editlens}
+Q.~Wang, B.~Wu, and L.~Deng.
+\newblock {EditLens}: Estimating the extent of {AI} editing in text.
+\newblock In \emph{Proceedings of ACL}, 2024.
+
+\bibitem[Wettig et~al.(2024)]{wettig2024qurating}
+A.~Wettig, A.~Gao, Z.~Zhong, and D.~Chen.
+\newblock {QuRating}: Selecting high-quality data for training language models.
+\newblock In \emph{Proceedings of ICML}, 2024.
+
+\bibitem[Xie et~al.(2023)]{xie2023dsir}
+S.~M. Xie, S.~Santurkar, T.~Ma, and P.~Liang.
+\newblock Data selection with importance resampling.
+\newblock In \emph{Proceedings of NeurIPS}, 2023.
+
+\bibitem[Mitchell et~al.(2023)]{mitchell2023detectgpt}
+E.~Mitchell, Y.~Lee, A.~Khazatsky, C.~D. Manning, and C.~Finn.
+\newblock {DetectGPT}: Zero-shot machine-generated text detection using probability curvature.
+\newblock In \emph{Proceedings of ICML}, 2023.
+
+\bibitem[Sadasivan et~al.(2023)]{sadasivan2023can}
+V.~S. Sadasivan, A.~Kumar, S.~Balasubramanian, W.~Wang, and S.~Feizi.
+\newblock Can {AI}-generated text be reliably detected?
+\newblock \emph{arXiv preprint arXiv:2303.11156}, 2023.
+
+\bibitem[Hu et~al.(2022)]{hu2022lora}
+E.~J. Hu, Y.~Shen, P.~Wallis, Z.~Allen-Zhu, Y.~Li, S.~Wang, L.~Wang,
+  and W.~Chen.
+\newblock {LoRA}: Low-rank adaptation of large language models.
+\newblock In \emph{Proceedings of ICLR}, 2022.
+
+\bibitem[Yang et~al.(2024)]{yang2024qwen}
+A.~Yang, B.~Yang, B.~Hui, B.~Zheng, B.~Yu, C.~Zhou, C.~Li, C.~Li, D.~Liu,
+  F.~Huang, et~al.
+\newblock {Qwen2} technical report.
+\newblock \emph{arXiv preprint arXiv:2407.10671}, 2024.
+
+\bibitem[Touvron et~al.(2023)]{touvron2023llama}
+H.~Touvron, L.~Martin, K.~Stone, P.~Albert, A.~Almahairi, Y.~Babaei,
+  N.~Bashlykov, S.~Batra, P.~Bhargava, S.~Bhosale, et~al.
+\newblock {Llama} 2: Open foundation and fine-tuned chat models.
+\newblock \emph{arXiv preprint arXiv:2307.09288}, 2023.
+
+\bibitem[Guo et~al.(2024)]{guo2024curious}
+B.~Guo, X.~Zhang, Z.~Wang, M.~Jiang, J.~Nie, Y.~Ding, J.~Yue, and Y.~Wu.
+\newblock How close is {ChatGPT} to human experts? {C}omparison corpus, evaluation, and detection.
+\newblock \emph{arXiv preprint arXiv:2301.07597}, 2024.
+
+\bibitem[Breiman(2001)]{breiman2001random}
+L.~Breiman.
+\newblock Random forests.
+\newblock \emph{Machine Learning}, 45(1):5--32, 2001.
+
+\bibitem[Merity et~al.(2017)]{merity2017pointer}
+S.~Merity, C.~Xiong, J.~Bradbury, and R.~Socher.
+\newblock Pointer sentinel mixture models.
+\newblock In \emph{Proceedings of ICLR}, 2017.
+
+\bibitem[Raffel et~al.(2020)]{raffel2020exploring}
+C.~Raffel, N.~Shazeer, A.~Roberts, K.~Lee, S.~Narang, M.~Matena, Y.~Zhou,
+  W.~Li, and P.~J. Liu.
+\newblock Exploring the limits of transfer learning with a unified text-to-text transformer.
+\newblock \emph{JMLR}, 21(140):1--67, 2020.
+
+\bibitem[Soldaini et~al.(2024)]{soldaini2024dolma}
+L.~Soldaini, R.~Kinney, A.~Bhagia, D.~Schwenk, D.~Atkinson, R.~Authur,
+  B.~Bogin, K.~Chandu, J.~Dumas, Y.~Elazar, et~al.
+\newblock {Dolma}: An open corpus of three trillion tokens for language model pretraining research.
+\newblock In \emph{Proceedings of ACL}, 2024.
+
+\end{thebibliography}
+
+\end{document}

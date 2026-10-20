@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure_fig_confusion_matrix_v2_20260515T100213_result.json",
     "occurrence": 1,
-    "bytes": 382,
-    "sha256": "27d22c33835d82c23474a4bdca64a13520873e83f4818882590994439da5456d"
+    "bytes": 381,
+    "sha256": "865e150e0231eef24060a322eef1253e8ac4e173855f8d306113503080f050b5"
   },
   "statistics": {
     "messages": 1,

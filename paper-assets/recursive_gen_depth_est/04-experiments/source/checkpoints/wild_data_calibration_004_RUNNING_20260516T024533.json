@@ -1,0 +1,34 @@
+{
+  "exp_id": "wild_data_calibration_004",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:05:56.813Z",
+    "updated_at": "2026-05-16T02:45:33.288Z",
+    "spec": {
+      "command": "python plan_015_wild_data_v2.py",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "453643",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data_v2/",
+      "submitted_at": "2026-05-16T02:05:56.513Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "OpenWebText + WikiText-103",
+      "data_count": 15000,
+      "model_name": "Pythia-1.4B (feature extractor)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data_v2/"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T02:45:33.549534+00:00",
+  "trigger": "update_registry"
+}

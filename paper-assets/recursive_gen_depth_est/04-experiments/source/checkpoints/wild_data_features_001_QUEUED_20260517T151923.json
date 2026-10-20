@@ -1,0 +1,29 @@
+{
+  "exp_id": "wild_data_features_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:18:51.338Z",
+    "updated_at": "2026-05-17T15:19:23.290Z",
+    "hypothesis": "Wild web corpora (C4, FineWeb) contain measurable proportions of text classified as recursive-generation depth d1+ by our RF estimator, providing evidence that model-generated text is present in training data.",
+    "parent": "mvp_pipeline_pythia_002",
+    "spec": {
+      "command": "/root/miniconda3/bin/python3.12 /root/autodl-tmp/recursive_gen_depth_est/scripts/wild_data_features.py --input data/wild/c4_10k.jsonl,data/wild/fineweb_10k.jsonl --device cuda:0",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "788803",
+      "log_path": "~/runs/recursive_gen_depth_est/wild_data_features_001.log",
+      "submitted_at": "2026-05-17T15:19:01.801Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T15:19:23.534588+00:00",
+  "trigger": "update_registry"
+}

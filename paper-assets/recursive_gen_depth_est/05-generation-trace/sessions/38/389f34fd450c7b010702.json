@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_d4_depth_extension_pythia_20260518T185442_result.json",
     "occurrence": 1,
-    "bytes": 1021,
-    "sha256": "31ef2219a5fcb153c20bd1b4676178e20cc0dec6e22d9c571c33dbf3d4f856ec"
+    "bytes": 1020,
+    "sha256": "faaf847a8ce5ce874bdd3f11b4c3b389dd86eb76310ab2026fe4e1720f25bc78"
   },
   "statistics": {
     "messages": 1,

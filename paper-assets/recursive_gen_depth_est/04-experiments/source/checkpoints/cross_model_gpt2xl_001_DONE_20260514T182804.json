@@ -1,0 +1,101 @@
+{
+  "exp_id": "cross_model_gpt2xl_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:10:51.209Z",
+    "updated_at": "2026-05-14T18:28:04.432Z",
+    "spec": {
+      "command": "bash scripts/run_pipeline_gpt2xl.sh (GPT-2 XL, 3x LoRA finetune + 3x generate)",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "pid": 123650,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl.log",
+      "submitted_at": "2026-05-14T14:42:17.632Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "openai-community/gpt2-xl",
+      "model_path": "/root/autodl-tmp/models/gpt2-xl/",
+      "seed": 42,
+      "hypothesis": "跨模型泛化: GPT-2 XL 递归生成的统计特征与 Pythia-1.4B 一致，支持深度估计跨模型迁移",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "c_attn",
+          "c_proj"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "top_p": 0.95
+      },
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl/",
+      "wall_clock_seconds": 13529.5,
+      "gpu_hours": 3.76
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T18:19:22.901Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T18:19:23.750176+00:00"
+        }
+      ]
+    },
+    "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_gpt2xl.log",
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/gpt2xl/",
+    "metrics": {
+      "four_class_acc_rf": 0.833,
+      "four_class_acc_ci": [
+        0.823,
+        0.845
+      ],
+      "four_class_acc_lr": 0.813,
+      "auc_0v1": 0.9941,
+      "auc_0v2": 0.9965,
+      "auc_0v3": 0.9988,
+      "auc_1v2": 0.9131,
+      "auc_1v3": 0.9857,
+      "auc_2v3": 0.8829,
+      "lr_auc_0v1": 0.9808,
+      "lr_auc_1v2": 0.8469,
+      "lr_auc_2v3": 0.8651,
+      "finetune_losses": {
+        "depth_0": 2.55,
+        "depth_1": 1.715,
+        "depth_2": 1.342
+      },
+      "top_features": [
+        "p90_ppl (0.2082)",
+        "var_surprisal (0.2079)",
+        "p75_ppl (0.1034)",
+        "mean_surprisal (0.0821)",
+        "mean_ppl (0.0645)"
+      ],
+      "code_contamination": {
+        "d1": 0.005,
+        "d2": 0.013,
+        "d3": 0.007
+      }
+    },
+    "notes": "生成阶段完成 (3x finetune + 3x generate)。4 个 depth 各 5000 样本。Loss 递减正常: 2.55→1.715→1.342。分类和代码污染检查尚未执行，需单独运行 extract_features + train_classifier + filter_code。",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T18:27:47.143Z"
+  },
+  "timestamp": "2026-05-14T18:28:04.484916+00:00",
+  "trigger": "update_registry"
+}

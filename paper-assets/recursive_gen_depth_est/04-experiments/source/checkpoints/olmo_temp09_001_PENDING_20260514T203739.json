@@ -1,0 +1,17 @@
+{
+  "exp_id": "olmo_temp09_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:34:19.885Z",
+    "updated_at": "2026-05-14T20:37:39.575Z",
+    "hypothesis": "解码策略鲁棒性: OLMo-1B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "parent": "cross_model_olmo_002",
+    "plan_id": "plan_002b"
+  },
+  "timestamp": "2026-05-14T20:37:39.620465+00:00",
+  "trigger": "update_registry"
+}

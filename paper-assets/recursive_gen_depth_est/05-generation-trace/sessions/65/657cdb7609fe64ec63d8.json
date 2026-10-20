@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_gpt2xl_topk50_reextract_20260515T030647_result.json",
     "occurrence": 1,
-    "bytes": 542,
-    "sha256": "667b36c30fecf6172962fdefded9c213e6c7069e769c7f7758ec07f3d9c717e5"
+    "bytes": 541,
+    "sha256": "0ee6b7eab15cb2d9840c910177f24dc3c43b075c6235e3035487ddca8682d27e"
   },
   "statistics": {
     "messages": 1,

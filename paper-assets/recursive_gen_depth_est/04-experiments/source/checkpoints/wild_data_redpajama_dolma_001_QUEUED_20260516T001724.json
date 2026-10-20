@@ -1,0 +1,19 @@
+{
+  "exp_id": "wild_data_redpajama_dolma_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:17:24.032Z",
+    "updated_at": "2026-05-16T00:17:24.032Z",
+    "spec": {
+      "hypothesis": "RF classifiers maintain low FPR on large-scale web corpora (RedPajama-v2, Dolma) beyond WikiText/C4",
+      "plan_id": "plan_015",
+      "parent": "wild_data_olmo_calibration_001"
+    }
+  },
+  "timestamp": "2026-05-16T00:17:24.207180+00:00",
+  "trigger": "update_registry"
+}

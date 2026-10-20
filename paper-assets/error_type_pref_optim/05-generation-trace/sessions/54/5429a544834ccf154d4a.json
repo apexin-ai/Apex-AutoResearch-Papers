@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5429a544834ccf154d4a",
+  "project": "error_type_pref_optim",
+  "kind": "result",
+  "title": "infra env setup eto",
+  "task_key": "worker_infra_env-setup-eto_20260514T094706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-eto_20260514T094706_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "8b8f851d66620022893c1495944c1e295876cdb92d53040461966fbbb6dc8fc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。环境搭建完成。\n\n## 环境搭建结果\n\n| 组件 | 版本/状态 |\n|---|---|\n| **Python** | 3.12.3 (conda base) |\n| **PyTorch** | 2.10.0+cu128, CUDA=True |\n| **GPU** | 2 × NVIDIA RTX PRO 6000 Blackwell 94GB |\n| **CUDA** | 12.8 (nvcc), 驱动 595.58.03 |\n| **transformers** | 4.37.2 |\n| **trl** | 0.7.7 |\n| **peft** | 0.7.1 |\n| **accelerate** | 1.13.0 |\n| **wandb** | 0.26.0 |\n| **datasets** | 4.8.4 |\n| **alfworld** | 0.4.2 |\n| **flash-attn** | 未安装（Blackwell sm_120 不支持编译，PyTorch SDPA 可替代） |\n\n**ETO 仓库**: `/root/error_type_pref_optim/ETO/`，结构完整（envs, eval_agent, fastchat）\n\n**ETO 训练数据**: alfworld_sft (3119), sciworld_sft (1483), webshop_sft (1824)\n\n**ALFWorld 数据**: `/root/autodl-tmp/alfworld_data/`，包含 train, valid_seen, valid_unseen, valid_train\n\n**环境变量**（已写入 .bashrc）:\n- `ALFWORLD_DATA=/root/autodl-tmp/alfworld_data`\n- `HF_HOME=/root/autodl-tmp/.hf_cache`\n\n**注意事项**:\n- 关键包（transformers, peft, trl, tokenizers, huggingface-hub）版本已固定。后续 `pip install` 其他包时加 `--no-deps` 以防版本被覆盖\n- flash-attn 在 Blackwell GPU 上无法编译，需在 ETO 代码中禁用 flash attention 或依赖 PyTorch 内置 SDPA"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-eto.md"
+}

@@ -1,0 +1,43 @@
+{
+  "exp_id": "feat_ablation_v1",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:11:38.111Z",
+    "updated_at": "2026-05-15T19:37:24.437Z",
+    "spec": {
+      "command": "python3 src/feature_ablation_9cell.py",
+      "server": "gpu-6000pro-2",
+      "model_name": "RF (n_estimators=200)"
+    },
+    "notes": "Phase 1 COMPLETE (9/9 cells): topk_ablation, category_ablation, LOGO, PCA, VIF. Phase 2 IN PROGRESS: forward selection v2 (4/9 cells done, olmo_temp09 running). Key findings: (1) var_surprisal is top-1 in 6/9 cells, p90_ppl in 3/9; (2) top-3 features reach 93% of full accuracy; (3) perplexity category alone captures 92-99% of full acc; (4) LOGO: removing perplexity costs -3.5pp mean, all other categories <-0.6pp; (5) PCA effective dim 6-7 from 19 features; (6) VIF: 14-16/19 features with VIF>10. Results at /root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/",
+    "conclusion": "success",
+    "log_path": "/tmp/feature_ablation.log",
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/feature_ablation/",
+    "completed_at": "2026-05-15T19:35:51.176Z",
+    "metrics": {
+      "full_19_mean_acc": 0.7847,
+      "full_19_std": 0.0494,
+      "top5_mean_acc": 0.7678,
+      "top5_std": 0.0527,
+      "top2_mean_acc": 0.7152,
+      "top2_std": 0.0581,
+      "n_features_95pct_mean": 4.2,
+      "n_features_95pct_max": 5,
+      "best_category_all_cells": "perplexity",
+      "perplexity_cat_mean_acc": 0.7668,
+      "surprisal_cat_mean_acc": 0.7333,
+      "lexdiv_cat_mean_acc": 0.4618,
+      "repetition_cat_mean_acc": 0.4374,
+      "ngram_entropy_cat_mean_acc": 0.3952,
+      "first_selected_feature_mode": "p90_ppl (6/9)",
+      "first_selected_feature_alt": "var_surprisal (3/9)",
+      "total_runtime_sec": 7822
+    }
+  },
+  "timestamp": "2026-05-15T19:37:24.580938+00:00",
+  "trigger": "update_registry"
+}

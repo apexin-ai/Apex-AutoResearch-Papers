@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_binoculars_ordinal_baseline_001_20260519T183847_result.json",
     "occurrence": 1,
-    "bytes": 1883,
-    "sha256": "2c552e58d691316c36f13aa5364b86331159beffa88f36a37c113fd38f59fcb1"
+    "bytes": 1882,
+    "sha256": "03d6588ad20c3fad1f7c891b5c4001be03a391a7a75d9e4256cb7e7fc349a988"
   },
   "statistics": {
     "messages": 1,

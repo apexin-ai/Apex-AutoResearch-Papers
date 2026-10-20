@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_westd-48862-binoculars-prereq_20260519T172917_result.json",
     "occurrence": 1,
-    "bytes": 1156,
-    "sha256": "7e9eef0845cc6ad4d1ac7f61d767eaa00e743f7080ec8bd330b9cec2594b75a1"
+    "bytes": 1155,
+    "sha256": "39a6700917bb219456e7273a1227f82ad3f0b05bb97c7b6d027922fa33c9af72"
   },
   "statistics": {
     "messages": 1,

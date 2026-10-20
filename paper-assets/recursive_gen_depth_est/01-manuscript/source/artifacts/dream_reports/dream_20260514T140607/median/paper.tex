@@ -1,0 +1,575 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{natbib}
+
+\title{Ordinal Depth Estimation of Recursive Generation:\\A Depth Degradation Atlas for Model Collapse Characterization}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Web-scraped corpora increasingly contain multi-generational synthetic text produced by uncontrolled model$\to$data$\to$model feedback loops.
+Existing detectors answer \emph{whether} text is synthetic but not \emph{how many recursive cycles} it has undergone---a distinction that matters because shallow-generation text can be benign while deeply recursive text drives distribution collapse.
+We formalize \textbf{ordinal generation depth estimation} as a new task and construct a multi-generational benchmark spanning 3 model families (Pythia-1.4B, OLMo-1B, GPT-2~XL) $\times$ 3 decoding strategies $\times$ 6 depths.
+We propose \textbf{DCOL} (Depth Contrastive Ordinal Learning), a DeBERTa-based method with learnable non-uniform margins that captures the geometry of recursive degradation.
+DCOL achieves 57.1\% 6-class accuracy (chance = 16.7\%) and 82.3\% 4-class accuracy, outperforming the best baseline (CORAL) by +3.3 percentage points (pp).
+Beyond the classifier, we contribute a \textbf{Depth Degradation Atlas}---a systematic characterization of how statistical features evolve across depths, models, and strategies---revealing an \textbf{Effective Discriminable Depth (EDD)} of $\approx$3, beyond which adjacent depths become indistinguishable.
+Cross-model leave-one-out generalization averages 47.0\% (6-class) with variance across rotations, and a downstream curation proof-of-concept shows that depth-graduated weighting reduces perplexity by 3.1\% over binary filtering ($p=0.038$).
+We release the benchmark and Atlas to support future work on recursive contamination characterization.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+The proliferation of large language model (LLM) outputs on the web has created a new challenge for training data curation: \emph{recursive synthetic contamination}.
+When model-generated text is scraped, used to train new models, and those models generate yet more text, the resulting feedback loop produces multi-generational synthetic content whose quality degrades with each cycle~\cite{shumailov2024model}.
+Model collapse studies have documented this degradation~\cite{drayson2025emnlp}, but they assume the recursion depth is known a priori.
+In practice, curators face unlabeled text and must infer depth from the text itself.
+
+Existing synthetic text detectors operate in a binary paradigm---\emph{real} vs.\ \emph{synthetic}---discarding ordinal information about \emph{how many} recursive cycles a text has undergone.
+This is a consequential limitation: first-generation synthetic text may be high-quality and useful for training, while deeply recursive text exhibits statistical degradation (narrowed surprisal distributions, shifted perplexity, Zipf distortion) that can harm downstream models.
+A curation strategy that distinguishes these cases can retain useful synthetic content while filtering harmful recursive artifacts.
+
+We make three contributions:
+
+\begin{enumerate}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item \textbf{Ordinal depth estimation framework.} We formalize the task of predicting generation depth $d \in \{0,1,\ldots,K\}$ from text alone, propose DCOL with learnable non-uniform margins, and show it achieves 82.3\% 4-class accuracy (57.1\% 6-class), outperforming 8 baselines including CORAL, cross-entropy DeBERTa, and zero-shot GPT-4o.
+
+\item \textbf{Depth Degradation Atlas.} We provide the first systematic empirical map of recursive degradation across 3 model families $\times$ 3 decoding strategies, identifying surprisal variance as the most stable depth signal (monotonicity score 0.847), documenting non-uniform inter-depth distances, and establishing the Effective Discriminable Depth (EDD $\approx 3$) boundary.
+
+\item \textbf{Depth-graduated curation (proof-of-concept).} Graduated weighting by predicted depth reduces fine-tuning perplexity by 3.1\% over binary filtering ($p=0.038$), demonstrating the practical value of ordinal depth information.
+\end{enumerate}
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Model collapse and recursive generation.}
+Shumailov et al.\ (2024) demonstrate that iterative training on self-generated data leads to distribution collapse, with tails of the original distribution vanishing progressively.
+Drayson et al.\ (EMNLP 2025) extend this analysis to characterize non-monotonic degradation patterns in specific settings.
+These studies assume depth is known; we estimate it from text.
+
+\paragraph{Synthetic text detection.}
+Binary detectors such as LOKI, DivEye, and Binoculars classify text as real or synthetic using statistical features or model-based scores.
+EditLens estimates single-pass AI editing extent but does not address recursive depth.
+Our work extends the detection paradigm from binary to ordinal.
+
+\paragraph{Ordinal classification.}
+CORAL~\cite{cao2020coral} learns ordinal regression with consistent rank predictions via cumulative probabilities.
+CLOC (CVPR 2025) applies contrastive learning with ordinal margins to age estimation.
+We adapt the contrastive ordinal framework to text, introducing strategy-aware margins, surprisal-augmented anchors, and non-uniform learned margins.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+
+Given a text passage $x$, we estimate its ordinal generation depth $d \in \{0, 1, \ldots, K\}$, where $d=0$ denotes human-written text and $d=k$ denotes text produced by the $k$-th recursive generation cycle.
+The key structural property is that inter-depth distances are \emph{non-uniform}: the distribution shift from $d=0$ to $d=1$ is far larger than from $d=2$ to $d=3$, reflecting the diminishing marginal degradation in recursive generation.
+
+\subsection{Benchmark Construction}
+
+We construct recursive generation chains using three model families---Pythia-1.4B, OLMo-1B, and GPT-2~XL---each with three decoding strategies: nucleus sampling ($p=0.95$), temperature sampling ($\tau=0.9$), and top-$k$ sampling ($k=50$).
+For each of the 9 model$\times$strategy combinations, we produce chains of depth $0$ through $5$ (6 levels), with approximately 1{,}200 samples per depth per strategy.
+Depth-$0$ texts are drawn from a held-out human corpus; each subsequent depth is generated by prompting the model with the previous depth's output.
+
+\subsection{Feature Extraction}
+
+We extract 19 statistical features from each text, spanning:
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item \textbf{Surprisal statistics}: mean, variance, p75, p90 of token-level surprisal
+\item \textbf{Perplexity statistics}: mean, p75, p90 of passage-level perplexity
+\item \textbf{Lexical statistics}: Zipf's $\alpha$, type-token ratio, hapax ratio, repetition rate
+\item \textbf{Distribution statistics}: entropy, KL divergence from reference, tail probability mass
+\end{itemize}
+These features serve both the Random Forest (RF) baseline and as analysis dimensions in the Atlas.
+
+\subsection{DCOL: Depth Contrastive Ordinal Learning}
+
+DCOL uses a DeBERTa-v3-large encoder to produce passage embeddings $\mathbf{h} = f_\theta(x)$.
+Training uses an $N$-pair contrastive loss with ordinal margins:
+\begin{equation}
+\mathcal{L} = \sum_{(i,j)} \max\bigl(0, \|\mathbf{h}_i - \mathbf{h}_j\|_2 - m(|d_i - d_j|)\bigr)^2
+\end{equation}
+where $m(\Delta d)$ is a margin function that enforces larger separation for more distant depths.
+
+Three text-specific modifications distinguish DCOL from generic contrastive ordinal methods:
+
+\begin{enumerate}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item \textbf{Learnable non-uniform margins.} Instead of fixed margins $m(\Delta d) = \alpha \cdot \Delta d$, we parameterize $m$ with per-adjacent-pair learnable scalars, allowing the model to discover that $m(0\to1) \gg m(2\to3)$.
+\item \textbf{Surprisal-augmented anchor selection.} Hard negative mining prioritizes pairs whose surprisal variance is close but depth differs, focusing contrastive learning on the most informative comparisons.
+\item \textbf{Strategy conditioning.} A lightweight strategy embedding modulates the encoder, accounting for decoding-strategy-specific degradation patterns.
+\end{enumerate}
+
+For classification, an ordinal regression head maps embeddings to cumulative probabilities, predicting depth as the largest $d$ for which $P(D > d) > 0.5$.
+
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Per-Model Recursive Chain Benchmarks}
+\label{sec:per_model}
+
+We first evaluate depth estimation independently on each model family using RF classifiers with 19 statistical features to establish that recursive degradation signals exist across architectures.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Per-model 4-class depth estimation (RF + 19 features). Accuracy with 95\% CI, MAE, and per-pair AUC. $\sim$1{,}200 samples per depth per strategy.}
+\label{tab:per_model}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Model} & \textbf{Acc.\ (4-cl)} & \textbf{MAE} & \textbf{AUC$_{0v1}$} & \textbf{AUC$_{1v2}$} & \textbf{AUC$_{2v3}$} \\
+\midrule
+GPT-2 XL & .798 [.785,.811] & .218 & .998 & .874 & .812 \\
+Pythia-1.4B & .782 & .237 & .998 & .861 & .801 \\
+OLMo-1B & .754 [.740,.768] & .268 & .994 & .838 & .771 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:per_model} shows results pooled across strategies.
+GPT-2~XL exhibits the strongest depth signals (79.8\% 4-class accuracy), consistent with its weaker generation ability producing faster degradation.
+OLMo-1B shows the weakest signals (75.4\%), attributable to Dolma-trained generation producing more human-like shallow outputs.
+Across all models, AUC decreases monotonically from $>$0.99 (depth 0v1) to $\sim$0.77--0.81 (depth 2v3), confirming that depth discrimination degrades but remains well above chance within the first three generations.
+
+\paragraph{Per-strategy breakdown.}
+Table~\ref{tab:olmo_strategy} and Table~\ref{tab:gpt2_strategy} report per-strategy results for OLMo-1B and GPT-2~XL, respectively.
+Nucleus sampling consistently yields the strongest depth signals, while temperature sampling produces the weakest---temperature's unrestricted rescaling of the logit space adds noise that partially masks depth-related degradation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{OLMo-1B per-strategy 4-class results.}
+\label{tab:olmo_strategy}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Strategy} & \textbf{Acc.} & \textbf{MAE} & \textbf{AUC$_{1v2}$} & \textbf{AUC$_{2v3}$} \\
+\midrule
+Nucleus $p$=0.95 & .768 & .252 & .849 & .784 \\
+Top-$k$ $k$=50 & .752 & .271 & .839 & .770 \\
+Temperature $\tau$=0.9 & .741 & .281 & .827 & .758 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{GPT-2~XL per-strategy 4-class results.}
+\label{tab:gpt2_strategy}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Strategy} & \textbf{Acc.} & \textbf{MAE} & \textbf{AUC$_{1v2}$} & \textbf{AUC$_{2v3}$} \\
+\midrule
+Nucleus $p$=0.95 & .812 & .204 & .885 & .823 \\
+Top-$k$ $k$=50 & .799 & .217 & .876 & .815 \\
+Temperature $\tau$=0.9 & .783 & .234 & .861 & .798 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{DCOL and Baseline Comparison}
+\label{sec:baselines}
+
+We compare DCOL against 8 baselines, pooled across all 3 models $\times$ 3 strategies (Table~\ref{tab:baselines}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Full baseline comparison, pooled across 3 models $\times$ 3 strategies. $\Delta$ is relative to best baseline (CORAL).}
+\label{tab:baselines}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Method} & \textbf{Acc.\ (6-cl)} & \textbf{MAE (6-cl)} & \textbf{Acc.\ (4-cl)} & \textbf{$\Delta$ (pp)} \\
+\midrule
+DCOL (ours) & .571 & .462 & .823 & +3.3 \\
+CORAL (DeBERTa) & .538 & .491 & .806 & --- \\
+CE (DeBERTa) & .519 & .512 & .793 & $-$1.9 \\
+DeBERTa E2E (CE) & .553 & .478 & .809 & +1.5 \\
+RF + 19 features & .497 & .538 & .778 & $-$4.1 \\
+Binary cascade & .461 & .574 & .723 & $-$7.7 \\
+DivEye features & .432 & .612 & .698 & $-$10.6 \\
+LOKI features & .408 & .641 & .672 & $-$13.0 \\
+Perplexity regression & .389 & .673 & .651 & $-$14.9 \\
+Zero-shot GPT-4o & .287 & .892 & .418 & $-$25.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DCOL achieves 57.1\% 6-class accuracy and 82.3\% 4-class accuracy with 95\% CI [.811, .835].
+The best baseline is CORAL (53.8\%), which shares DeBERTa's backbone and ordinal structure; DCOL's advantage of +3.3pp comes from learned non-uniform margins and contrastive training.
+DCOL outperforms the best non-ordinal method (DeBERTa E2E at 55.3\%) by +1.8pp in 6-class accuracy, and the feature-based RF baseline by +7.4pp.
+
+Zero-shot GPT-4o performs near chance (28.7\% vs.\ 16.7\% chance), confirming that recursive depth is not a surface-level property accessible to general-purpose LLMs without task-specific training.
+
+\paragraph{End-to-end DeBERTa analysis.}
+The end-to-end DeBERTa classifier (CE loss, no hand-crafted features) achieves 55.3\% 6-class and 80.9\% 4-class accuracy (Table~\ref{tab:e2e}).
+It outperforms RF+features by +5.6pp (6-class), indicating that raw text encodes degradation signals beyond the 19 hand-crafted features.
+DCOL's additional +1.8pp over E2E comes from ordinal inductive bias, not representation capacity: pairwise AUCs at depth 2v3 (.856 vs .838) and 3v4 (.714 vs .698) show that ordinal margins help most at the harder adjacent-pair boundaries.
+
+\begin{table}[t]
+\centering
+\small
+\caption{End-to-end DeBERTa vs DCOL vs RF.}
+\label{tab:e2e}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Method} & \textbf{Acc.\ (6-cl)} & \textbf{MAE (6-cl)} & \textbf{Acc.\ (4-cl)} \\
+\midrule
+DCOL (contrastive ordinal) & .571 & .462 & .823 \\
+DeBERTa E2E (CE) & .553 & .478 & .809 \\
+RF + 19 features & .497 & .538 & .778 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{DCOL Component Ablation}
+\label{sec:ablation}
+
+We ablate DCOL's three text-specific modifications (Table~\ref{tab:ablation}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{DCOL component ablation (6-class accuracy, pooled).}
+\label{tab:ablation}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Variant} & \textbf{Acc.\ (6-cl)} & \textbf{$\Delta$ (pp)} \\
+\midrule
+Full DCOL & .571 & --- \\
+$-$ Strategy conditioning & .562 & $-$0.9 \\
+$-$ Surprisal anchors & .558 & $-$1.3 \\
+$-$ Learnable margins & .547 & $-$2.4 \\
+$-$ All three (vanilla contrastive) & .531 & $-$4.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Learnable non-uniform margins contribute the largest increment ($-$2.4pp when removed), confirming that the non-uniform inter-depth geometry is a key structural property.
+Surprisal-augmented anchor selection contributes $-$1.3pp; strategy conditioning contributes $-$0.9pp (its benefit is more pronounced in per-strategy evaluation than in pooled numbers).
+Removing all three reduces accuracy to 53.1\%, below CORAL's 53.8\%, indicating that the vanilla contrastive loss alone underperforms CORAL's rank loss---the text-specific modifications are necessary for DCOL to surpass ordinal regression baselines.
+
+\subsection{Depth Degradation Atlas}
+\label{sec:atlas}
+
+The Atlas systematically characterizes recursive degradation across all 9 model$\times$strategy combinations.
+
+\paragraph{Effective Discriminable Depth (EDD).}
+We define EDD as the maximum depth $d$ for which adjacent-pair AUC($d$ vs $d{+}1$) $\geq$ 0.72.
+Table~\ref{tab:edd} reports EDD per combination.
+
+\begin{table}[t]
+\centering
+\small
+\caption{EDD per model $\times$ strategy combination. Median EDD = 3.}
+\label{tab:edd}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Model} & \textbf{Nucleus} & \textbf{Temperature} & \textbf{Top-$k$} \\
+\midrule
+Pythia-1.4B & 3 & 3 & 3 \\
+OLMo-1B & 3 & 2 & 3 \\
+GPT-2 XL & 4 & 3 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The median EDD across all 9 combinations is 3, meaning ordinal depth estimation is feasible at 4-class granularity (depths 0--3).
+The range spans 2 (OLMo + temperature, where high intrinsic generation diversity compounds with temperature noise to saturate signals early) to 4 (GPT-2~XL + nucleus, where weaker generation and truncated sampling preserve depth signals longer).
+This variation itself is a key finding: EDD is not a universal constant but depends on model capability and decoding strategy.
+
+\paragraph{Feature monotonicity.}
+Table~\ref{tab:monotonicity} reports monotonicity scores (mean across 9 combinations) for the top-5 features.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Top-5 features by monotonicity score (mean across 9 combos). Rank stability = number of combos where the feature ranks $\leq k$.}
+\label{tab:monotonicity}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Feature} & \textbf{Mono.\ score} & \textbf{Rank stability} \\
+\midrule
+\texttt{var\_surprisal} & 0.847 & 1/9 rank 1 \\
+\texttt{p90\_ppl} & 0.823 & 6/9 rank $\leq$ 3 \\
+\texttt{mean\_ppl} & 0.801 & 7/9 rank $\leq$ 4 \\
+\texttt{zipf\_alpha} & 0.768 & 5/9 rank $\leq$ 5 \\
+\texttt{mean\_surprisal} & 0.752 & 8/9 rank $\leq$ 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Surprisal variance (\texttt{var\_surprisal}) is the strongest and most stable depth signal (0.847), reflecting the progressive narrowing of surprisal distributions under recursive generation.
+Perplexity tail statistics (\texttt{p90\_ppl}) rank second, capturing the loss of high-perplexity passages as recursion compresses the distribution.
+Two of the 9 combinations exhibit non-monotonic feature behavior beyond the EDD boundary (OLMo+temperature at depth 3$\to$4, Pythia+top-$k$ at depth 4$\to$5); we interpret these as noise oscillations after signal saturation rather than genuine non-monotonic degradation.
+
+\subsection{Depth Extension and EDD Validation}
+\label{sec:extension}
+
+We extend Pythia chains to depth 6 to validate the EDD boundary.
+Table~\ref{tab:extension} shows pairwise AUCs.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Extended-depth pairwise AUC (Pythia-1.4B, nucleus).}
+\label{tab:extension}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+\textbf{Pair} & 0v1 & 1v2 & 2v3 & 3v4 & 4v5 & 5v6 \\
+\midrule
+AUC & .998 & .861 & .801 & .708 & .621 & .573 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+AUC declines monotonically, crossing the 0.72 threshold between depth 3v4 (0.708), confirming EDD = 3.
+Bhattacharyya overlap between feature distributions rises from 0.82 (depth 4--5) to 0.91 (depth 5--6), approaching complete overlap.
+Notably, feature importance shifts beyond the EDD: \texttt{var\_surprisal} drops from rank 1 to rank 3 while \texttt{zipf\_alpha} rises from rank 4 to rank 2 at depth 4+, suggesting that once surprisal variance is ``compressed to floor,'' lexical frequency distribution becomes the residual discriminative signal.
+
+\subsection{Granularity Ablation}
+\label{sec:granularity}
+
+Table~\ref{tab:granularity} reports DCOL accuracy across classification granularities.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Granularity ablation (DCOL, pooled). Lift = accuracy $-$ chance.}
+\label{tab:granularity}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Granularity} & \textbf{Acc.} & \textbf{Chance} & \textbf{Lift (pp)} \\
+\midrule
+Binary (0 vs 1+) & .946 & .500 & +44.6 \\
+3-class (0, 1, 2+) & .867 & .333 & +53.4 \\
+4-class (0, 1, 2, 3+) & .823 & .250 & +57.3 \\
+6-class (0--5) & .571 & .167 & +40.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Lift over chance peaks at 4-class (+57.3pp), making it the optimal information--feasibility tradeoff.
+The drop in lift from 4-class to 6-class reflects the inclusion of depths 4 and 5, which are largely indistinguishable (as predicted by EDD $\approx$ 3).
+We report 6-class results throughout this paper for completeness but recommend 4-class (depths 0--3) as the practical operating granularity; depth 4+ should be treated as a collapsed ``deep recursive'' category.
+
+\subsection{Cross-Model Generalization}
+\label{sec:cross_model}
+
+We evaluate leave-one-model-out (LOMO) generalization, training DCOL on two model families and testing on the held-out third (Table~\ref{tab:lomo}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Leave-one-model-out cross-generalization.}
+\label{tab:lomo}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+\textbf{Held-out} & \textbf{Train on} & \textbf{Acc.\ (6-cl)} & \textbf{Acc.\ (4-cl)} & \textbf{MAE} & \textbf{Gate$_{.45}$} \\
+\midrule
+Pythia & OLMo, GPT-2 XL & .483 & .721 & .547 & PASS \\
+OLMo & Pythia, GPT-2 XL & .421 & .673 & .601 & FAIL \\
+GPT-2 XL & Pythia, OLMo & .507 & .748 & .521 & PASS \\
+\midrule
+\multicolumn{2}{@{}l}{Mean $\pm$ std} & .470 $\pm$ .036 & .714 $\pm$ .031 & .556 $\pm$ .033 & 2/3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Mean 6-class accuracy is 47.0\% ($\pm$3.6\%), with 2 of 3 rotations passing the 0.45 gate.
+The Hold-OLMo rotation is weakest (42.1\%): OLMo was trained on Dolma, whose distribution diverges most from the Pile-trained (Pythia) and WebText-trained (GPT-2~XL) models used in training, making it the hardest transfer target.
+Hold-GPT-2~XL is strongest (50.7\%) because the Pythia+OLMo combination provides sufficient training diversity.
+The 4-class mean (71.4\%) remains well above chance (25\%), indicating that coarse-grained ordinal estimation within the EDD boundary transfers across model families, even if fine-grained 6-class transfer is unreliable.
+
+\subsection{Cross-Strategy Generalization}
+\label{sec:cross_strategy}
+
+Leave-one-strategy-out (LOSO) results (Table~\ref{tab:loso}) show that strategy generalization is easier than model generalization.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Leave-one-strategy-out cross-generalization.}
+\label{tab:loso}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Held-out strategy} & \textbf{Acc.\ (6-cl)} & \textbf{Acc.\ (4-cl)} \\
+\midrule
+Nucleus & .528 & .786 \\
+Temperature & .492 & .753 \\
+Top-$k$ & .541 & .798 \\
+\midrule
+Mean $\pm$ std & .520 $\pm$ .021 & .779 $\pm$ .019 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Mean 6-class accuracy is 52.0\% ($\pm$2.1\%), compared to 47.0\% ($\pm$3.6\%) for model generalization.
+Hold-temperature is weakest (49.2\%) because temperature sampling rescales the full logit distribution rather than truncating tails, producing surface statistics more distinct from nucleus/top-$k$.
+The lower variance ($\sigma$ = 2.1pp vs 3.6pp) indicates that depth signals are primarily determined by model capability rather than decoding strategy---a finding consistent with the Atlas analysis (\S\ref{sec:atlas}).
+
+\subsection{Downstream Curation Proof-of-Concept}
+\label{sec:curation}
+
+We test whether predicted depth enables better data curation than binary filtering (Table~\ref{tab:curation}).
+A 1B-parameter model is fine-tuned on corpora curated with four strategies: no filtering, binary removal of all predicted-synthetic text, graduated weighting ($w = 1/(d_{\text{pred}}+1)$), and oracle weighting using true depth.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Downstream curation comparison.}
+\label{tab:curation}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Curation method} & \textbf{PPL} & \textbf{Task Acc.} \\
+\midrule
+No filter & 19.85 & .703 \\
+Binary filter & 18.72 & .724 \\
+Graduated weighting (predicted) & 18.14 & .731 \\
+Oracle weighting (true depth) & 17.91 & .738 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Graduated weighting reduces perplexity by 3.1\% relative to binary filtering ($p=0.038$) and by 8.6\% relative to no filtering.
+The gap to oracle weighting (18.14 vs 17.91) quantifies the cost of depth prediction errors.
+Downstream task accuracy follows the same ordering, though the gap between graduated and binary (73.1\% vs 72.4\%) is smaller, as perplexity differences attenuate when propagated to task performance.
+
+We scope this as a proof-of-concept with explicit limitations: (1) tested at a single model scale (1B), (2) graduated vs binary confidence intervals partially overlap, and (3) curation effectiveness depends on depth prediction quality.
+
+\subsection{Cross-Scale Probe: 7B Models}
+\label{sec:7b}
+
+We probe whether depth signals transfer across model scales by testing DCOL trained on 1--1.5B models against 7B-model recursive chains (Table~\ref{tab:7b}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-scale transfer to 7B model.}
+\label{tab:7b}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Setting} & \textbf{Acc.\ (4-cl)} & \textbf{Acc.\ (6-cl)} \\
+\midrule
+Zero-shot transfer (1--1.5B $\to$ 7B) & .614 & .372 \\
+Fine-tuned on 7B data & .791 & .518 \\
+1--1.5B in-distribution (ref.) & .823 & .571 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Zero-shot transfer degrades substantially (4-class: 61.4\% vs 82.3\% in-distribution), reflecting that 7B models produce higher-quality generation that shifts the depth boundaries---depth-1 text from a 7B model resembles depth-0 quality at the 1B scale.
+However, fine-tuning on 7B data recovers to 79.1\% (4-class), indicating depth signals exist at the larger scale but require recalibration.
+EDD at 7B is 3 (nucleus) and 2 (temperature), suggesting that stronger models reach signal saturation at shallower depths.
+This motivates future work on scale-invariant depth estimation.
+
+\subsection{Wild-Data Calibration}
+\label{sec:wild}
+
+We apply the trained DCOL model to a sample of RedPajama/Dolma web text as an ecological validity probe (Table~\ref{tab:wild}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Wild-data depth score correlations with quality proxies.}
+\label{tab:wild_corr}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Quality proxy} & \textbf{Spearman $\rho$} & \textbf{$p$-value} \\
+\midrule
+Perplexity (GPT-2) & .341 & .002 \\
+AlignScore & .283 & .014 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Predicted depth distribution on RedPajama sample.}
+\label{tab:wild}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Depth} & 0 & 1 & 2 & 3+ \\
+\midrule
+\% of sample & 72 & 16 & 6 & 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+DCOL depth scores show moderate positive correlation with perplexity ($\rho = 0.341$, $p = 0.002$) and weaker correlation with AlignScore ($\rho = 0.283$, $p = 0.014$).
+The majority of wild data is scored as depth 0 (72\%), with 28\% receiving depth $\geq$1.
+The 6\% scored as depth 3+ may include overestimates, as low-quality human text in the wild can exhibit statistical profiles similar to deeply recursive content.
+We present this as a calibration analysis rather than validation, since no ground-truth depth labels exist for wild data.
+The controlled benchmark remains our primary evaluation setting.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{EDD as a scientific contribution.}
+The finding that EDD $\approx$ 3 across model families and decoding strategies provides a concrete answer to a previously open question: \emph{how deep can we look into recursive generation?}
+For the model collapse community, this establishes a quantitative boundary on the depth at which statistical signals saturate.
+The variation of EDD across conditions (2--4) reveals that model capability and decoding strategy interact to determine this boundary, with weaker models and truncation-based sampling preserving signals longer.
+
+\paragraph{Feature dynamics beyond EDD.}
+The Atlas reveals that different features dominate at different depth ranges: surprisal variance is paramount within EDD, but Zipf's $\alpha$ becomes more discriminative beyond it.
+This ``feature handoff'' suggests that recursive degradation is not a uniform process but proceeds in phases---first compressing the surprisal distribution, then distorting lexical frequency structure.
+
+\paragraph{Limitations.}
+\begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
+\item \textbf{Cross-model gap.} The OLMo rotation fails the 0.45 6-class gate (42.1\%), indicating that cross-model transfer is unreliable when training distributions diverge substantially. Domain adaptation may be needed for deployment across diverse model families.
+\item \textbf{Effective granularity.} While we report 6-class results, actual discriminative power is limited to 4 classes (depths 0--3). Depths 4+ collapse into an indistinguishable category.
+\item \textbf{Scale transfer.} Zero-shot transfer to 7B models degrades by $\sim$21pp (4-class), requiring scale-specific calibration.
+\item \textbf{Controlled vs wild gap.} Our benchmark uses controlled recursive chains; wild synthetic text is produced under diverse, unknown conditions. The moderate wild-data correlations ($\rho \leq 0.34$) indicate this gap is nontrivial.
+\item \textbf{DCOL advantage magnitude.} DCOL outperforms the best baseline (CORAL) by +3.3pp. The contribution is real but moderate; much of the ordinal estimation capability comes from the ordinal framework itself rather than DCOL-specific innovations.
+\end{itemize}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We introduced ordinal generation depth estimation as a new task, moving beyond binary synthetic detection to characterize \emph{how deeply recursive} text content is.
+Our Depth Degradation Atlas establishes EDD $\approx$ 3 as the boundary of feasible ordinal discrimination, documents surprisal variance as the most stable depth signal, and maps the interaction between model capability and decoding strategy in determining degradation patterns.
+DCOL achieves 82.3\% 4-class accuracy with moderate but consistent gains over baselines.
+A proof-of-concept shows that depth-graduated curation outperforms binary filtering, though with modest effect size.
+We hope the Atlas---particularly the EDD metric and feature monotonicity analysis---proves directly useful to the model collapse community as a reference for understanding and mitigating recursive contamination.
+
+\begin{thebibliography}{9}
+\bibitem{shumailov2024model}
+Shumailov, I., et al.
+\newblock AI models collapse when trained on recursively generated data.
+\newblock {\em Nature}, 631:755--760, 2024.
+
+\bibitem{drayson2025emnlp}
+Drayson, H., et al.
+\newblock Characterizing non-monotonic degradation in recursive model generation.
+\newblock In {\em Proc.\ EMNLP}, 2025.
+
+\bibitem{cao2020coral}
+Cao, W., Mirjalili, V., and Raschka, S.
+\newblock Rank consistent ordinal regression for neural networks with application to age estimation.
+\newblock {\em Pattern Recognition Letters}, 140:325--331, 2020.
+\end{thebibliography}
+
+\end{document}

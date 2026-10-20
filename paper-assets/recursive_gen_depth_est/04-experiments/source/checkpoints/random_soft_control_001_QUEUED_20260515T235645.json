@@ -1,0 +1,19 @@
+{
+  "exp_id": "random_soft_control_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:56:44.943Z",
+    "updated_at": "2026-05-15T23:56:44.943Z",
+    "spec": {
+      "hypothesis": "Size-matched random control for rf_soft: random 4422 samples vs rf_soft 4422 samples",
+      "parent": "downstream_curation_poc_001",
+      "plan_id": "plan_013_supplement"
+    }
+  },
+  "timestamp": "2026-05-15T23:56:45.192475+00:00",
+  "trigger": "update_registry"
+}

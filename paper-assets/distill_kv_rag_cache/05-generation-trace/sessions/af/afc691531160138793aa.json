@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afc691531160138793aa",
+  "project": "distill_kv_rag_cache",
+  "kind": "result",
+  "title": "code fix model download",
+  "task_key": "worker_code_fix-model-download_20260514T054101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-model-download_20260514T054101_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "3a147bd6d7d9414fa0192e35de36e9dc502f65a8c60d69d79f7bb6a657ac8b46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型验证通过。\n\n## 产出总结\n\n| 项目 | 结果 |\n|------|------|\n| **原始状态** | PID 3830 ModelScope + network_turbo 代理，~500 kB/s，预计 4+ 小时 |\n| **加速方案** | 方案 A：去掉代理直连 ModelScope 国内 CDN + 跳过 original/ 目录 |\n| **最终速度** | 3-17 MB/s（平均约 6 MB/s），提升 10-30 倍 |\n| **总耗时** | 954 秒（约 16 分钟） |\n| **模型路径** | `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct` |\n| **符号链接** | `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3.1-8B-Instruct` → 上述路径 |\n| **验证** | LlamaForCausalLM, hidden=4096, layers=32, vocab=128256, tokenizer OK |\n\n关键发现：`network_turbo` 代理反而减慢了 ModelScope 的国内 CDN 下载速度。去掉代理后直连速度提升了约 200 倍（初始峰值 137 MB/s，稳定 3-17 MB/s）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-model-download.md"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "pythia_temp09_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:49:27.459Z",
+    "updated_at": "2026-05-14T14:54:27.800Z",
+    "hypothesis": "解码策略鲁棒性: Pythia-1.4B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_pipeline_pythia_temp09.sh\"",
+      "server": "autodl-rtx6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "125067",
+      "log_path": "~/runs/recursive_gen_depth_est/pythia_temp09_001.log",
+      "submitted_at": "2026-05-14T14:51:48.919Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T14:54:27.832756+00:00",
+  "trigger": "update_registry"
+}

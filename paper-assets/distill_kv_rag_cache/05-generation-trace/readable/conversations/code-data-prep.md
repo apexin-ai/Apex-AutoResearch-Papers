@@ -1,0 +1,1712 @@
+# code data prep
+
+**distill kv rag cache** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 28
+- **Original source:** `logs/chats/worker_code_data-prep_20260514T051737.jsonl`
+- **Structured JSON:** [`77d75040749c0eaf91da.json`](../../sessions/77/77d75040749c0eaf91da.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+57 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T05:22:35.447509+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T05:22:35.447824+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T05:22:35.448021+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/ 2>/dev/null || echo \"DIR_NOT_EXISTS\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/ 2>/dev/null || echo \"DIR_NOT_EXISTS\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T05:22:35.448163+00:00_
+
+total 20
+drwxr-xr-x 5 ubuntu ubuntu 4096 May 14 05:14 .
+drwxr-xr-x 4 ubuntu ubuntu 4096 May 14 05:14 ..
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 05:14 compresslink
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 05:14 configs
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 05:14 tests
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T05:22:35.448295+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/ -type f 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/ -type f 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T05:22:35.448416+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T05:22:35.448542+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/{compresslink,configs,tests,scripts} 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/{compresslink,configs,tests,scripts} 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T05:22:35.448660+00:00_
+
+Exit code 2
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink:
+total 8
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 05:14 .
+drwxr-xr-x 5 ubuntu ubuntu 4096 May 14 05:14 ..
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/configs:
+total 8
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 05:14 .
+drwxr-xr-x 5 ubuntu ubuntu 4096 May 14 05:14 ..
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests:
+total 8
+drwxr-xr-x 2 ubuntu ubuntu 4096 May 14 05:14 .
+drwxr-xr-x 5 ubuntu ubuntu 4096 May 14 05:14 ..
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T05:22:35.448919+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T05:22:35.449068+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T05:22:35.449200+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/__init__.py",
+  "content": "\"\"\"CompressLink: KV cache compression with chunk-level token merging for RAG.\"\"\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/__init__.py",
+    "content": "\"\"\"CompressLink: KV cache compression with chunk-level token merging for RAG.\"\"\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T05:22:35.449321+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/__init__.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T05:22:35.449481+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/metrics.py",
+  "content": "\"\"\"SQuAD-style evaluation metrics for extractive QA.\"\"\"\n\nimport re\nimport string\nfrom collections import Counter\nfrom typing import List\n\n\ndef normalize_answer(s: str) -> str:\n    \"\"\"Normalize answer string following SQuAD official evaluation.\"\"\"\n    s = s.lower()\n    # Remove articles\n    s = re.sub(r\"\\b(a|an|the)\\b\", \" \", s)\n    # Remove punctuation\n    s = \"\".join(ch for ch in s if ch not in string.punctuation)\n    # Collapse whitespace\n    s = \" \".join(s.split())\n    return s\n\n\ndef compute_exact_match(prediction: str, answers: List[str]) -> float:\n    \"\"\"Return 1.0 if normalized prediction matches any normalized answer.\"\"\"\n    norm_pred = normalize_answer(prediction)\n    return float(any(norm_pred == normalize_answer(a) for a in answers))\n\n\ndef compute_f1(prediction: str, answers: List[str]) -> float:\n    \"\"\"Token-level F1 against the best-matching answer.\"\"\"\n    pred_tokens = normalize_answer(prediction).split()\n\n    best_f1 = 0.0\n    for answer in answers:\n        ans_tokens = normalize_answer(answer).split()\n        common = Counter(pred_tokens) & Counter(ans_tokens)\n        num_common = sum(common.values())\n        if num_common == 0:\n            continue\n        precision = num_common / len(pred_tokens)\n        recall = num_common / len(ans_tokens)\n        f1 = 2 * precision * recall / (precision + recall)\n        best_f1 = max(best_f1, f1)\n\n    return best_f1\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/metrics.py",
+    "content": "\"\"\"SQuAD-style evaluation metrics for extractive QA.\"\"\"\n\nimport re\nimport string\nfrom collections import Counter\nfrom typing import List\n\n\ndef normalize_answer(s: str) -> str:\n    \"\"\"Normalize answer string following SQuAD official evaluation.\"\"\"\n    s = s.lower()\n    # Remove articles\n    s = re.sub(r\"\\b(a|an|the)\\b\", \" \", s)\n    # Remove punctuation\n    s = \"\".join(ch for ch in s if ch not in string.punctuation)\n    # Collapse whitespace\n    s = \" \".join(s.split())\n    return s\n\n\ndef compute_exact_match(prediction: str, answers: List[str]) -> float:\n    \"\"\"Return 1.0 if normalized prediction matches any normalized answer.\"\"\"\n    norm_pred = normalize_answer(prediction)\n    return float(any(norm_pred == normalize_answer(a) for a in answers))\n\n\ndef compute_f1(prediction: str, answers: List[str]) -> float:\n    \"\"\"Token-level F1 against the best-matching answer.\"\"\"\n    pred_tokens = normalize_answer(prediction).split()\n\n    best_f1 = 0.0\n    for answer in answers:\n        ans_tokens = normalize_answer(answer).split()\n        common = Counter(pred_tokens) & Counter(ans_tokens)\n        num_common = sum(common.values())\n        if num_common == 0:\n            continue\n        precision = num_common / len(pred_tokens)\n        recall = num_common / len(ans_tokens)\n        f1 = 2 * precision * recall / (precision + recall)\n        best_f1 = max(best_f1, f1)\n\n    return best_f1\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T05:22:35.449638+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/metrics.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T05:22:35.449777+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/data_loader.py",
+  "content": "\"\"\"NaturalQuestions data loading and prompt formatting for RAG evaluation.\"\"\"\n\nimport json\nfrom pathlib import Path\nfrom typing import Dict, List, Optional, Tuple\n\n\nclass NQDataLoader:\n    \"\"\"Load NaturalQuestions data from pre-processed JSONL (output of prepare_nq_data.py).\n\n    Each record: {id, question, context, answers, context_tokens, question_tokens}\n    \"\"\"\n\n    def __init__(\n        self,\n        data_path: str,\n        num_queries: int = 500,\n        max_context_length: int = 4096,\n        seed: int = 42,\n    ):\n        self.data_path = Path(data_path)\n        self.num_queries = num_queries\n        self.max_context_length = max_context_length\n        self.seed = seed\n\n    def load(self) -> List[Dict]:\n        \"\"\"Load and filter records from JSONL file.\n\n        Returns:\n            List of dicts with keys:\n              id, question, context, answers, context_tokens, question_tokens\n        \"\"\"\n        records: List[Dict] = []\n        with open(self.data_path) as f:\n            for line in f:\n                rec = json.loads(line)\n                if rec.get(\"context_tokens\", 0) > self.max_context_length:\n                    rec[\"context_tokens\"] = self.max_context_length\n                records.append(rec)\n                if len(records) >= self.num_queries:\n                    break\n        return records\n\n    # ------------------------------------------------------------------\n    # Prompt formatting\n    # ------------------------------------------------------------------\n\n    PROMPT_TEMPLATE = (\n        \"Answer the question based on the context below.\\n\\n\"\n        \"Context:\\n{context}\\n\\n\"\n        \"Question: {question}\\n\"\n        \"Answer:\"\n    )\n\n    def format_prompt(\n        self, question: str, context: str, tokenizer\n    ) -> Dict:\n        \"\"\"Format question + context into model inputs.\n\n        Returns dict with:\n          input_ids        – full token ids\n          context_end_pos  – token index where context ends\n          chunk_boundaries – list of chunk start positions (if chunked)\n        \"\"\"\n        prompt = self.PROMPT_TEMPLATE.format(context=context, question=question)\n        encoded = tokenizer(prompt, return_tensors=\"pt\", truncation=False)\n        input_ids = encoded[\"input_ids\"][0]\n\n        context_prefix = \"Answer the question based on the context below.\\n\\nContext:\\n\"\n        prefix_len = len(tokenizer.encode(context_prefix, add_special_tokens=False))\n\n        context_ids = tokenizer.encode(context, add_special_tokens=False)\n        if len(context_ids) > self.max_context_length:\n            context_ids = context_ids[: self.max_context_length]\n        context_end_pos = prefix_len + len(context_ids)\n\n        chunks, boundaries = self.chunk_context(context_ids)\n        boundaries = [b + prefix_len for b in boundaries]\n\n        return {\n            \"input_ids\": input_ids,\n            \"context_end_pos\": context_end_pos,\n            \"chunk_boundaries\": boundaries,\n        }\n\n    # ------------------------------------------------------------------\n    # Chunk splitting\n    # ------------------------------------------------------------------\n\n    @staticmethod\n    def chunk_context(\n        context_ids: List[int], chunk_size: int = 512\n    ) -> Tuple[List[List[int]], List[int]]:\n        \"\"\"Split context token ids into fixed-size chunks.\n\n        Returns:\n            chunks          – list of token-id lists\n            chunk_boundaries – start position of each chunk\n        \"\"\"\n        chunks: List[List[int]] = []\n        boundaries: List[int] = []\n        for start in range(0, len(context_ids), chunk_size):\n            boundaries.append(start)\n            chunks.append(context_ids[start : start + chunk_size])\n        return chunks, boundaries\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/data_loader.py",
+    "content": "\"\"\"NaturalQuestions data loading and prompt formatting for RAG evaluation.\"\"\"\n\nimport json\nfrom pathlib import Path\nfrom typing import Dict, List, Optional, Tuple\n\n\nclass NQDataLoader:\n    \"\"\"Load NaturalQuestions data from pre-processed JSONL (output of prepare_nq_data.py).\n\n    Each record: {id, question, context, answers, context_tokens, question_tokens}\n    \"\"\"\n\n    def __init__(\n        self,\n        data_path: str,\n        num_queries: int = 500,\n        max_context_length: int = 4096,\n        seed: int = 42,\n    ):\n        self.data_path = Path(data_path)\n        self.num_queries = num_queries\n        self.max_context_length = max_context_length\n        self.seed = seed\n\n    def load(self) -> List[Dict]:\n        \"\"\"Load and filter records from JSONL file.\n\n        Returns:\n            List of dicts with keys:\n              id, question, context, answers, context_tokens, question_tokens\n        \"\"\"\n        records: List[Dict] = []\n        with open(self.data_path) as f:\n            for line in f:\n                rec = json.loads(line)\n                if rec.get(\"context_tokens\", 0) > self.max_context_length:\n                    rec[\"context_tokens\"] = self.max_context_length\n                records.append(rec)\n                if len(records) >= self.num_queries:\n                    break\n        return records\n\n    # ------------------------------------------------------------------\n    # Prompt formatting\n    # ------------------------------------------------------------------\n\n    PROMPT_TEMPLATE = (\n        \"Answer the question based on the context below.\\n\\n\"\n        \"Context:\\n{context}\\n\\n\"\n        \"Question: {question}\\n\"\n        \"Answer:\"\n    )\n\n    def format_prompt(\n        self, question: str, context: str, tokenizer\n    ) -> Dict:\n        \"\"\"Format question + context into model inputs.\n\n        Returns dict with:\n          input_ids        – full token ids\n          context_end_pos  – token index where context ends\n          chunk_boundaries – list of chunk start positions (if chunked)\n        \"\"\"\n        prompt = self.PROMPT_TEMPLATE.format(context=context, question=question)\n        encoded = tokenizer(prompt, return_tensors=\"pt\", truncation=False)\n        input_ids = encoded[\"input_ids\"][0]\n\n        context_prefix = \"Answer the question based on the context below.\\n\\nContext:\\n\"\n        prefix_len = len(tokenizer.encode(context_prefix, add_special_tokens=False))\n\n        context_ids = tokenizer.encode(context, add_special_tokens=False)\n        if len(context_ids) > self.max_context_length:\n            context_ids = context_ids[: self.max_context_length]\n        context_end_pos = prefix_len + len(context_ids)\n\n        chunks, boundaries = self.chunk_context(context_ids)\n        boundaries = [b + prefix_len for b in boundaries]\n\n        return {\n            \"input_ids\": input_ids,\n            \"context_end_pos\": context_end_pos,\n            \"chunk_boundaries\": boundaries,\n        }\n\n    # ------------------------------------------------------------------\n    # Chunk splitting\n    # ------------------------------------------------------------------\n\n    @staticmethod\n    def chunk_context(\n        context_ids: List[int], chunk_size: int = 512\n    ) -> Tuple[List[List[int]], List[int]]:\n        \"\"\"Split context token ids into fixed-size chunks.\n\n        Returns:\n            chunks          – list of token-id lists\n            chunk_boundaries – start position of each chunk\n        \"\"\"\n        chunks: List[List[int]] = []\n        boundaries: List[int] = []\n        for start in range(0, len(context_ids), chunk_size):\n            boundaries.append(start)\n            chunks.append(context_ids[start : start + chunk_size])\n        return chunks, boundaries\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T05:22:35.449984+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/data_loader.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T05:22:35.450139+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/calibration.py",
+  "content": "\"\"\"KVTC PCA calibration: collect NoPE KV cache and compute per-head PCA.\"\"\"\n\nimport os\nfrom pathlib import Path\nfrom typing import Dict, List, Optional\n\nimport torch\n\n\nclass KVTCCalibrator:\n    \"\"\"Collect NoPE (pre-RoPE) keys and values, then compute PCA basis per head.\n\n    Workflow:\n        1. Install forward hooks on k_proj / v_proj of each attention layer.\n        2. Run a small set of calibration texts through the model.\n        3. Reshape collected projections to (layer, head, tokens, head_dim).\n        4. SVD → per-head eigenvalues, eigenvectors, mean.\n        5. Save / load the calibration artefact.\n    \"\"\"\n\n    def __init__(\n        self,\n        model,\n        tokenizer,\n        num_samples: int = 10,\n        save_dir: str = \"/root/autodl-tmp/compresslink/calibration\",\n    ):\n        self.model = model\n        self.tokenizer = tokenizer\n        self.num_samples = num_samples\n        self.save_dir = Path(save_dir)\n\n        config = model.config\n        self.num_layers = config.num_hidden_layers\n        self.num_kv_heads = getattr(config, \"num_key_value_heads\", config.num_attention_heads)\n        self.head_dim = config.hidden_size // config.num_attention_heads\n\n        self._hooks: list = []\n        self._collected: Dict[tuple, List[torch.Tensor]] = {}\n\n    # ------------------------------------------------------------------\n    # Hook management\n    # ------------------------------------------------------------------\n\n    def _get_attention_layers(self):\n        \"\"\"Yield (layer_idx, attention_module) for supported architectures.\"\"\"\n        if hasattr(self.model, \"model\") and hasattr(self.model.model, \"layers\"):\n            layers = self.model.model.layers\n        elif hasattr(self.model, \"transformer\") and hasattr(self.model.transformer, \"h\"):\n            layers = self.model.transformer.h\n        else:\n            raise ValueError(\"Unsupported model architecture for hook installation\")\n\n        for idx, layer in enumerate(layers):\n            attn = getattr(layer, \"self_attn\", None) or getattr(layer, \"attention\", None)\n            if attn is None:\n                raise ValueError(f\"Cannot locate attention sub-module in layer {idx}\")\n            yield idx, attn\n\n    def _make_hook(self, layer_idx: int, kind: str):\n        def hook(_module, _input, output):\n            if isinstance(output, tuple):\n                output = output[0]\n            bsz, seq_len, _ = output.shape\n            reshaped = output.view(bsz, seq_len, self.num_kv_heads, self.head_dim)\n            self._collected.setdefault((layer_idx, kind), []).append(\n                reshaped.detach().cpu()\n            )\n        return hook\n\n    def _install_hooks(self):\n        for layer_idx, attn in self._get_attention_layers():\n            for proj_name, kind in [(\"k_proj\", \"key\"), (\"v_proj\", \"value\")]:\n                proj = getattr(attn, proj_name, None)\n                if proj is None:\n                    raise ValueError(f\"Layer {layer_idx} has no {proj_name}\")\n                handle = proj.register_forward_hook(self._make_hook(layer_idx, kind))\n                self._hooks.append(handle)\n\n    def _remove_hooks(self):\n        for h in self._hooks:\n            h.remove()\n        self._hooks.clear()\n\n    # ------------------------------------------------------------------\n    # Collection\n    # ------------------------------------------------------------------\n\n    @torch.no_grad()\n    def collect_nope_kv(self, texts: List[str]) -> Dict[tuple, torch.Tensor]:\n        \"\"\"Forward-pass calibration texts and collect NoPE key/value tensors.\n\n        Hooks capture k_proj / v_proj outputs (before RoPE), so the collected\n        keys are already in NoPE form.\n\n        Returns:\n            Dict mapping (layer_idx, 'key'|'value') →\n                Tensor of shape (total_tokens, num_kv_heads, head_dim)\n        \"\"\"\n        self._collected.clear()\n        self._install_hooks()\n        self.model.eval()\n\n        try:\n            for text in texts[: self.num_samples]:\n                inputs = self.tokenizer(\n                    text, return_tensors=\"pt\", truncation=True, max_length=2048\n                ).to(self.model.device)\n                self.model(**inputs)\n        finally:\n            self._remove_hooks()\n\n        merged: Dict[tuple, torch.Tensor] = {}\n        for key, tensor_list in self._collected.items():\n            merged[key] = torch.cat(tensor_list, dim=1).squeeze(0)\n        self._collected.clear()\n        return merged\n\n    # ------------------------------------------------------------------\n    # PCA\n    # ------------------------------------------------------------------\n\n    def compute_pca(self, kv_data: Dict[tuple, torch.Tensor]) -> Dict:\n        \"\"\"SVD per (layer, head, key/value).\n\n        Args:\n            kv_data: output of collect_nope_kv\n\n        Returns:\n            Dict[(layer, head, kind)] → {mean, eigenvalues, components}\n        \"\"\"\n        calibration: Dict = {}\n        for (layer_idx, kind), data in kv_data.items():\n            # data: (total_tokens, num_kv_heads, head_dim)\n            for head_idx in range(self.num_kv_heads):\n                head_data = data[:, head_idx, :].float()  # (N, head_dim)\n                mean = head_data.mean(dim=0)\n                centered = head_data - mean\n\n                _, S, Vh = torch.linalg.svd(centered, full_matrices=False)\n                eigenvalues = S ** 2 / max(centered.shape[0] - 1, 1)\n\n                calibration[(layer_idx, head_idx, kind)] = {\n                    \"mean\": mean,\n                    \"eigenvalues\": eigenvalues,\n                    \"components\": Vh,  # (head_dim, head_dim)\n                }\n        return calibration\n\n    # ------------------------------------------------------------------\n    # Persistence\n    # ------------------------------------------------------------------\n\n    def save(self, calibration_data: Dict, path: Optional[str] = None):\n        \"\"\"Save calibration data as a .pt file.\"\"\"\n        save_path = Path(path) if path else self.save_dir / \"calibration.pt\"\n        save_path.parent.mkdir(parents=True, exist_ok=True)\n\n        serialisable = {}\n        for key, val in calibration_data.items():\n            str_key = f\"{key[0]}_{key[1]}_{key[2]}\"\n            serialisable[str_key] = {k: v for k, v in val.items()}\n\n        torch.save(\n            {\"data\": serialisable, \"num_kv_heads\": self.num_kv_heads, \"head_dim\": self.head_dim},\n            save_path,\n        )\n\n    @staticmethod\n    def load(path: str) -> Dict:\n        \"\"\"Load calibration data from a .pt file.\"\"\"\n        raw = torch.load(path, map_location=\"cpu\", weights_only=False)\n        calibration: Dict = {}\n        for str_key, val in raw[\"data\"].items():\n            parts = str_key.split(\"_\")\n            key = (int(parts[0]), int(parts[1]), parts[2])\n            calibration[key] = val\n        return calibration\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/calibration.py",
+    "content": "\"\"\"KVTC PCA calibration: collect NoPE KV cache and compute per-head PCA.\"\"\"\n\nimport os\nfrom pathlib import Path\nfrom typing import Dict, List, Optional\n\nimport torch\n\n\nclass KVTCCalibrator:\n    \"\"\"Collect NoPE (pre-RoPE) keys and values, then compute PCA basis per head.\n\n    Workflow:\n        1. Install forward hooks on k_proj / v_proj of each attention layer.\n        2. Run a small set of calibration texts through the model.\n        3. Reshape collected projections to (layer, head, tokens, head_dim).\n        4. SVD → per-head eigenvalues, eigenvectors, mean.\n        5. Save / load the calibration artefact.\n    \"\"\"\n\n    def __init__(\n        self,\n        model,\n        tokenizer,\n        num_samples: int = 10,\n        save_dir: str = \"/root/autodl-tmp/compresslink/calibration\",\n    ):\n        self.model = model\n        self.tokenizer = tokenizer\n        self.num_samples = num_samples\n        self.save_dir = Path(save_dir)\n\n        config = model.config\n        self.num_layers = config.num_hidden_layers\n        self.num_kv_heads = getattr(config, \"num_key_value_heads\", config.num_attention_heads)\n        self.head_dim = config.hidden_size // config.num_attention_heads\n\n        self._hooks: list = []\n        self._collected: Dict[tuple, List[torch.Tensor]] = {}\n\n    # ------------------------------------------------------------------\n    # Hook management\n    # ------------------------------------------------------------------\n\n    def _get_attention_layers(self):\n        \"\"\"Yield (layer_idx, attention_module) for supported architectures.\"\"\"\n        if hasattr(self.model, \"model\") and hasattr(self.model.model, \"layers\"):\n            layers = self.model.model.layers\n        elif hasattr(self.model, \"transformer\") and hasattr(self.model.transformer, \"h\"):\n            layers = self.model.transformer.h\n        else:\n            raise ValueError(\"Unsupported model architecture for hook installation\")\n\n        for idx, layer in enumerate(layers):\n            attn = getattr(layer, \"self_attn\", None) or getattr(layer, \"attention\", None)\n            if attn is None:\n                raise ValueError(f\"Cannot locate attention sub-module in layer {idx}\")\n            yield idx, attn\n\n    def _make_hook(self, layer_idx: int, kind: str):\n        def hook(_module, _input, output):\n            if isinstance(output, tuple):\n                output = output[0]\n            bsz, seq_len, _ = output.shape\n            reshaped = output.view(bsz, seq_len, self.num_kv_heads, self.head_dim)\n            self._collected.setdefault((layer_idx, kind), []).append(\n                reshaped.detach().cpu()\n            )\n        return hook\n\n    def _install_hooks(self):\n        for layer_idx, attn in self._get_attention_layers():\n            for proj_name, kind in [(\"k_proj\", \"key\"), (\"v_proj\", \"value\")]:\n                proj = getattr(attn, proj_name, None)\n                if proj is None:\n                    raise ValueError(f\"Layer {layer_idx} has no {proj_name}\")\n                handle = proj.register_forward_hook(self._make_hook(layer_idx, kind))\n                self._hooks.append(handle)\n\n    def _remove_hooks(self):\n        for h in self._hooks:\n            h.remove()\n        self._hooks.clear()\n\n    # ------------------------------------------------------------------\n    # Collection\n    # ------------------------------------------------------------------\n\n    @torch.no_grad()\n    def collect_nope_kv(self, texts: List[str]) -> Dict[tuple, torch.Tensor]:\n        \"\"\"Forward-pass calibration texts and collect NoPE key/value tensors.\n\n        Hooks capture k_proj / v_proj outputs (before RoPE), so the collected\n        keys are already in NoPE form.\n\n        Returns:\n            Dict mapping (layer_idx, 'key'|'value') →\n                Tensor of shape (total_tokens, num_kv_heads, head_dim)\n        \"\"\"\n        self._collected.clear()\n        self._install_hooks()\n        self.model.eval()\n\n        try:\n            for text in texts[: self.num_samples]:\n                inputs = self.tokenizer(\n                    text, return_tensors=\"pt\", truncation=True, max_length=2048\n                ).to(self.model.device)\n                self.model(**inputs)\n        finally:\n            self._remove_hooks()\n\n        merged: Dict[tuple, torch.Tensor] = {}\n        for key, tensor_list in self._collected.items():\n            merged[key] = torch.cat(tensor_list, dim=1).squeeze(0)\n        self._collected.clear()\n        return merged\n\n    # ------------------------------------------------------------------\n    # PCA\n    # ------------------------------------------------------------------\n\n    def compute_pca(self, kv_data: Dict[tuple, torch.Tensor]) -> Dict:\n        \"\"\"SVD per (layer, head, key/value).\n\n        Args:\n            kv_data: output of collect_nope_kv\n\n        Returns:\n            Dict[(layer, head, kind)] → {mean, eigenvalues, components}\n        \"\"\"\n        calibration: Dict = {}\n        for (layer_idx, kind), data in kv_data.items():\n            # data: (total_tokens, num_kv_heads, head_dim)\n            for head_idx in range(self.num_kv_heads):\n                head_data = data[:, head_idx, :].float()  # (N, head_dim)\n                mean = head_data.mean(dim=0)\n                centered = head_data - mean\n\n                _, S, Vh = torch.linalg.svd(centered, full_matrices=False)\n                eigenvalues = S ** 2 / max(centered.shape[0] - 1, 1)\n\n                calibration[(layer_idx, head_idx, kind)] = {\n                    \"mean\": mean,\n                    \"eigenvalues\": eigenvalues,\n                    \"components\": Vh,  # (head_dim, head_dim)\n                }\n        return calibration\n\n    # ------------------------------------------------------------------\n    # Persistence\n    # ------------------------------------------------------------------\n\n    def save(self, calibration_data: Dict, path: Optional[str] = None):\n        \"\"\"Save calibration data as a .pt file.\"\"\"\n        save_path = Path(path) if path else self.save_dir / \"calibration.pt\"\n        save_path.parent.mkdir(parents=True, exist_ok=True)\n\n        serialisable = {}\n        for key, val in calibration_data.items():\n            str_key = f\"{key[0]}_{key[1]}_{key[2]}\"\n            serialisable[str_key] = {k: v for k, v in val.items()}\n\n        torch.save(\n            {\"data\": serialisable, \"num_kv_heads\": self.num_kv_heads, \"head_dim\": self.head_dim},\n            save_path,\n        )\n\n    @staticmethod\n    def load(path: str) -> Dict:\n        \"\"\"Load calibration data from a .pt file.\"\"\"\n        raw = torch.load(path, map_location=\"cpu\", weights_only=False)\n        calibration: Dict = {}\n        for str_key, val in raw[\"data\"].items():\n            parts = str_key.split(\"_\")\n            key = (int(parts[0]), int(parts[1]), parts[2])\n            calibration[key] = val\n        return calibration\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T05:22:35.450382+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/calibration.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T05:22:35.450524+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/prepare_nq_data.py",
+  "content": "\"\"\"Download NaturalQuestions and prepare a filtered JSONL subset for RAG evaluation.\n\nUses HuggingFace `natural_questions` (validation split, streamed) to avoid\ndownloading the full 42 GB dataset.  Filters for examples with non-empty\nshort answers whose long-answer context falls within the desired token range.\n\nUsage:\n    python scripts/prepare_nq_data.py \\\n        --output /root/autodl-tmp/compresslink/data/nq_500.jsonl \\\n        --num-queries 500 --max-context-length 4096 --seed 42\n\"\"\"\n\nimport argparse\nimport json\nimport random\nimport re\nfrom pathlib import Path\n\n\ndef _strip_html_tokens(tokens: list, is_html: list) -> str:\n    \"\"\"Join non-HTML tokens into plain text.\"\"\"\n    parts = [t for t, h in zip(tokens, is_html) if not h]\n    text = \" \".join(parts)\n    text = re.sub(r\"\\s+\", \" \", text).strip()\n    return text\n\n\ndef _extract_span(tokens: list, is_html: list, start: int, end: int) -> str:\n    parts = [tokens[i] for i in range(start, end) if not is_html[i]]\n    return \" \".join(parts).strip()\n\n\ndef process_dataset(args):\n    from datasets import load_dataset\n    from transformers import AutoTokenizer\n\n    tokenizer = AutoTokenizer.from_pretrained(\"meta-llama/Llama-3.1-8B-Instruct\")\n\n    ds = load_dataset(\"natural_questions\", split=\"validation\", streaming=True)\n\n    candidates = []\n    for example in ds:\n        doc_tokens = example[\"document\"][\"tokens\"][\"token\"]\n        doc_is_html = example[\"document\"][\"tokens\"][\"is_html\"]\n        question = example[\"question\"][\"text\"]\n        annotations = example[\"annotations\"]\n\n        la_starts = annotations[\"long_answer\"][\"start_token\"]\n        la_ends = annotations[\"long_answer\"][\"end_token\"]\n        sa_list = annotations[\"short_answers\"]\n\n        la_start = la_starts[0] if la_starts else -1\n        la_end = la_ends[0] if la_ends else -1\n        short_answers_raw = sa_list[0] if sa_list else {\"start_token\": [], \"end_token\": []}\n\n        if la_start < 0:\n            continue\n\n        sa_starts = short_answers_raw.get(\"start_token\", [])\n        sa_ends = short_answers_raw.get(\"end_token\", [])\n        if not sa_starts:\n            continue\n\n        answers = []\n        for s, e in zip(sa_starts, sa_ends):\n            ans = _extract_span(doc_tokens, doc_is_html, s, e)\n            if ans:\n                answers.append(ans)\n        if not answers:\n            continue\n\n        context = _extract_span(doc_tokens, doc_is_html, la_start, la_end)\n        if not context:\n            continue\n\n        ctx_toks = len(tokenizer.encode(context, add_special_tokens=False))\n        q_toks = len(tokenizer.encode(question, add_special_tokens=False))\n\n        if ctx_toks < 64 or ctx_toks > args.max_context_length:\n            continue\n\n        candidates.append(\n            {\n                \"id\": str(example[\"id\"]),\n                \"question\": question,\n                \"context\": context,\n                \"answers\": answers,\n                \"context_tokens\": ctx_toks,\n                \"question_tokens\": q_toks,\n            }\n        )\n\n        if len(candidates) >= args.num_queries * 3:\n            break\n\n    random.seed(args.seed)\n    random.shuffle(candidates)\n    selected = candidates[: args.num_queries]\n\n    output_path = Path(args.output)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        for rec in selected:\n            f.write(json.dumps(rec, ensure_ascii=False) + \"\\n\")\n\n    print(f\"Saved {len(selected)} records to {output_path}\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Prepare NQ subset for RAG evaluation\")\n    parser.add_argument(\"--output\", type=str, required=True)\n    parser.add_argument(\"--num-queries\", type=int, default=500)\n    parser.add_argument(\"--max-context-length\", type=int, default=4096)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    args = parser.parse_args()\n    process_dataset(args)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/prepare_nq_data.py",
+    "content": "\"\"\"Download NaturalQuestions and prepare a filtered JSONL subset for RAG evaluation.\n\nUses HuggingFace `natural_questions` (validation split, streamed) to avoid\ndownloading the full 42 GB dataset.  Filters for examples with non-empty\nshort answers whose long-answer context falls within the desired token range.\n\nUsage:\n    python scripts/prepare_nq_data.py \\\n        --output /root/autodl-tmp/compresslink/data/nq_500.jsonl \\\n        --num-queries 500 --max-context-length 4096 --seed 42\n\"\"\"\n\nimport argparse\nimport json\nimport random\nimport re\nfrom pathlib import Path\n\n\ndef _strip_html_tokens(tokens: list, is_html: list) -> str:\n    \"\"\"Join non-HTML tokens into plain text.\"\"\"\n    parts = [t for t, h in zip(tokens, is_html) if not h]\n    text = \" \".join(parts)\n    text = re.sub(r\"\\s+\", \" \", text).strip()\n    return text\n\n\ndef _extract_span(tokens: list, is_html: list, start: int, end: int) -> str:\n    parts = [tokens[i] for i in range(start, end) if not is_html[i]]\n    return \" \".join(parts).strip()\n\n\ndef process_dataset(args):\n    from datasets import load_dataset\n    from transformers import AutoTokenizer\n\n    tokenizer = AutoTokenizer.from_pretrained(\"meta-llama/Llama-3.1-8B-Instruct\")\n\n    ds = load_dataset(\"natural_questions\", split=\"validation\", streaming=True)\n\n    candidates = []\n    for example in ds:\n        doc_tokens = example[\"document\"][\"tokens\"][\"token\"]\n        doc_is_html = example[\"document\"][\"tokens\"][\"is_html\"]\n        question = example[\"question\"][\"text\"]\n        annotations = example[\"annotations\"]\n\n        la_starts = annotations[\"long_answer\"][\"start_token\"]\n        la_ends = annotations[\"long_answer\"][\"end_token\"]\n        sa_list = annotations[\"short_answers\"]\n\n        la_start = la_starts[0] if la_starts else -1\n        la_end = la_ends[0] if la_ends else -1\n        short_answers_raw = sa_list[0] if sa_list else {\"start_token\": [], \"end_token\": []}\n\n        if la_start < 0:\n            continue\n\n        sa_starts = short_answers_raw.get(\"start_token\", [])\n        sa_ends = short_answers_raw.get(\"end_token\", [])\n        if not sa_starts:\n            continue\n\n        answers = []\n        for s, e in zip(sa_starts, sa_ends):\n            ans = _extract_span(doc_tokens, doc_is_html, s, e)\n            if ans:\n                answers.append(ans)\n        if not answers:\n            continue\n\n        context = _extract_span(doc_tokens, doc_is_html, la_start, la_end)\n        if not context:\n            continue\n\n        ctx_toks = len(tokenizer.encode(context, add_special_tokens=False))\n        q_toks = len(tokenizer.encode(question, add_special_tokens=False))\n\n        if ctx_toks < 64 or ctx_toks > args.max_context_length:\n            continue\n\n        candidates.append(\n            {\n                \"id\": str(example[\"id\"]),\n                \"question\": question,\n                \"context\": context,\n                \"answers\": answers,\n                \"context_tokens\": ctx_toks,\n                \"question_tokens\": q_toks,\n            }\n        )\n\n        if len(candidates) >= args.num_queries * 3:\n            break\n\n    random.seed(args.seed)\n    random.shuffle(candidates)\n    selected = candidates[: args.num_queries]\n\n    output_path = Path(args.output)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        for rec in selected:\n            f.write(json.dumps(rec, ensure_ascii=False) + \"\\n\")\n\n    print(f\"Saved {len(selected)} records to {output_path}\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Prepare NQ subset for RAG evaluation\")\n    parser.add_argument(\"--output\", type=str, required=True)\n    parser.add_argument(\"--num-queries\", type=int, default=500)\n    parser.add_argument(\"--max-context-length\", type=int, default=4096)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    args = parser.parse_args()\n    process_dataset(args)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T05:22:35.450701+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/prepare_nq_data.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T05:22:35.450837+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/run_calibration.py",
+  "content": "\"\"\"Run KVTC PCA calibration on a set of texts and save the result.\n\nUsage:\n    python scripts/run_calibration.py \\\n        --model meta-llama/Llama-3.1-8B-Instruct \\\n        --output /root/autodl-tmp/compresslink/calibration/ \\\n        --num-samples 10\n\"\"\"\n\nimport argparse\nimport json\nfrom pathlib import Path\n\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nfrom compresslink.calibration import KVTCCalibrator\n\n\nDEFAULT_CALIBRATION_TEXTS = [\n    \"The history of artificial intelligence began in antiquity, with myths and stories of artificial beings endowed with intelligence.\",\n    \"Machine learning is a subset of artificial intelligence that provides systems the ability to learn and improve from experience.\",\n    \"Natural language processing is a subfield of linguistics, computer science, and artificial intelligence concerned with interactions between computers and human language.\",\n    \"Deep learning is part of a broader family of machine learning methods based on artificial neural networks with representation learning.\",\n    \"Reinforcement learning is an area of machine learning concerned with how intelligent agents ought to take actions in an environment.\",\n    \"Computer vision is an interdisciplinary scientific field that deals with how computers can gain high-level understanding from digital images or videos.\",\n    \"Robotics is an interdisciplinary branch of computer science and engineering that involves the design, construction, operation, and use of robots.\",\n    \"Quantum computing is the use of quantum phenomena such as superposition and entanglement to perform computation.\",\n    \"Cryptography is the practice and study of techniques for secure communication in the presence of adversarial behavior.\",\n    \"Information retrieval is the activity of obtaining information system resources that are relevant to an information need from a collection.\",\n    \"Knowledge representation and reasoning is the field of artificial intelligence dedicated to representing information about the world in a form that a computer system can use.\",\n    \"The Transformer architecture was introduced in the paper 'Attention Is All You Need' and has since become the dominant architecture in natural language processing.\",\n]\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Run KVTC PCA calibration\")\n    parser.add_argument(\"--model\", type=str, default=\"meta-llama/Llama-3.1-8B-Instruct\")\n    parser.add_argument(\"--output\", type=str, default=\"/root/autodl-tmp/compresslink/calibration/\")\n    parser.add_argument(\"--num-samples\", type=int, default=10)\n    parser.add_argument(\"--data\", type=str, default=None, help=\"JSONL file; uses 'context' field as calibration text\")\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\", choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    torch_dtype = dtype_map[args.dtype]\n\n    print(f\"Loading model {args.model} ...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model,\n        torch_dtype=torch_dtype,\n        device_map=\"auto\",\n    )\n\n    if args.data:\n        texts = []\n        with open(args.data) as f:\n            for line in f:\n                rec = json.loads(line)\n                texts.append(rec[\"context\"])\n                if len(texts) >= args.num_samples:\n                    break\n    else:\n        texts = DEFAULT_CALIBRATION_TEXTS\n\n    calibrator = KVTCCalibrator(\n        model=model,\n        tokenizer=tokenizer,\n        num_samples=args.num_samples,\n        save_dir=args.output,\n    )\n\n    print(f\"Collecting NoPE KV from {min(len(texts), args.num_samples)} samples ...\")\n    kv_data = calibrator.collect_nope_kv(texts)\n\n    print(\"Computing PCA ...\")\n    calibration = calibrator.compute_pca(kv_data)\n\n    save_path = str(Path(args.output) / \"calibration.pt\")\n    calibrator.save(calibration, save_path)\n    print(f\"Saved calibration to {save_path}\")\n\n    num_entries = len(calibration)\n    sample_key = next(iter(calibration))\n    sample = calibration[sample_key]\n    explained = sample[\"eigenvalues\"].cumsum(0) / sample[\"eigenvalues\"].sum()\n    dim_90 = (explained < 0.9).sum().item() + 1\n    print(f\"  {num_entries} entries (layer, head, kind)\")\n    print(f\"  Example {sample_key}: 90% variance in {dim_90}/{sample['eigenvalues'].shape[0]} dims\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/run_calibration.py",
+    "content": "\"\"\"Run KVTC PCA calibration on a set of texts and save the result.\n\nUsage:\n    python scripts/run_calibration.py \\\n        --model meta-llama/Llama-3.1-8B-Instruct \\\n        --output /root/autodl-tmp/compresslink/calibration/ \\\n        --num-samples 10\n\"\"\"\n\nimport argparse\nimport json\nfrom pathlib import Path\n\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nfrom compresslink.calibration import KVTCCalibrator\n\n\nDEFAULT_CALIBRATION_TEXTS = [\n    \"The history of artificial intelligence began in antiquity, with myths and stories of artificial beings endowed with intelligence.\",\n    \"Machine learning is a subset of artificial intelligence that provides systems the ability to learn and improve from experience.\",\n    \"Natural language processing is a subfield of linguistics, computer science, and artificial intelligence concerned with interactions between computers and human language.\",\n    \"Deep learning is part of a broader family of machine learning methods based on artificial neural networks with representation learning.\",\n    \"Reinforcement learning is an area of machine learning concerned with how intelligent agents ought to take actions in an environment.\",\n    \"Computer vision is an interdisciplinary scientific field that deals with how computers can gain high-level understanding from digital images or videos.\",\n    \"Robotics is an interdisciplinary branch of computer science and engineering that involves the design, construction, operation, and use of robots.\",\n    \"Quantum computing is the use of quantum phenomena such as superposition and entanglement to perform computation.\",\n    \"Cryptography is the practice and study of techniques for secure communication in the presence of adversarial behavior.\",\n    \"Information retrieval is the activity of obtaining information system resources that are relevant to an information need from a collection.\",\n    \"Knowledge representation and reasoning is the field of artificial intelligence dedicated to representing information about the world in a form that a computer system can use.\",\n    \"The Transformer architecture was introduced in the paper 'Attention Is All You Need' and has since become the dominant architecture in natural language processing.\",\n]\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Run KVTC PCA calibration\")\n    parser.add_argument(\"--model\", type=str, default=\"meta-llama/Llama-3.1-8B-Instruct\")\n    parser.add_argument(\"--output\", type=str, default=\"/root/autodl-tmp/compresslink/calibration/\")\n    parser.add_argument(\"--num-samples\", type=int, default=10)\n    parser.add_argument(\"--data\", type=str, default=None, help=\"JSONL file; uses 'context' field as calibration text\")\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\", choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    torch_dtype = dtype_map[args.dtype]\n\n    print(f\"Loading model {args.model} ...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model,\n        torch_dtype=torch_dtype,\n        device_map=\"auto\",\n    )\n\n    if args.data:\n        texts = []\n        with open(args.data) as f:\n            for line in f:\n                rec = json.loads(line)\n                texts.append(rec[\"context\"])\n                if len(texts) >= args.num_samples:\n                    break\n    else:\n        texts = DEFAULT_CALIBRATION_TEXTS\n\n    calibrator = KVTCCalibrator(\n        model=model,\n        tokenizer=tokenizer,\n        num_samples=args.num_samples,\n        save_dir=args.output,\n    )\n\n    print(f\"Collecting NoPE KV from {min(len(texts), args.num_samples)} samples ...\")\n    kv_data = calibrator.collect_nope_kv(texts)\n\n    print(\"Computing PCA ...\")\n    calibration = calibrator.compute_pca(kv_data)\n\n    save_path = str(Path(args.output) / \"calibration.pt\")\n    calibrator.save(calibration, save_path)\n    print(f\"Saved calibration to {save_path}\")\n\n    num_entries = len(calibration)\n    sample_key = next(iter(calibration))\n    sample = calibration[sample_key]\n    explained = sample[\"eigenvalues\"].cumsum(0) / sample[\"eigenvalues\"].sum()\n    dim_90 = (explained < 0.9).sum().item() + 1\n    print(f\"  {num_entries} entries (layer, head, kind)\")\n    print(f\"  Example {sample_key}: 90% variance in {dim_90}/{sample['eigenvalues'].shape[0]} dims\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T05:22:35.451035+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/run_calibration.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T05:22:35.451163+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests/__init__.py",
+  "content": ""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests/__init__.py",
+    "content": ""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T05:22:35.451279+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests/__init__.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T05:22:35.451423+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests/test_metrics.py",
+  "content": "\"\"\"Unit tests for compresslink.metrics.\"\"\"\n\nimport unittest\n\nfrom compresslink.metrics import compute_exact_match, compute_f1, normalize_answer\n\n\nclass TestNormalizeAnswer(unittest.TestCase):\n    def test_lowercase(self):\n        self.assertEqual(normalize_answer(\"Barack Obama\"), \"barack obama\")\n\n    def test_articles(self):\n        self.assertEqual(normalize_answer(\"the United States of America\"), \"united states of america\")\n\n    def test_punctuation(self):\n        self.assertEqual(normalize_answer(\"hello, world!\"), \"hello world\")\n\n    def test_whitespace(self):\n        self.assertEqual(normalize_answer(\"  foo   bar  \"), \"foo bar\")\n\n    def test_combined(self):\n        self.assertEqual(normalize_answer(\"The cat's pajamas!\"), \"cats pajamas\")\n\n    def test_empty(self):\n        self.assertEqual(normalize_answer(\"\"), \"\")\n\n\nclass TestExactMatch(unittest.TestCase):\n    def test_exact(self):\n        self.assertEqual(compute_exact_match(\"Barack Obama\", [\"Barack Obama\"]), 1.0)\n\n    def test_case_insensitive(self):\n        self.assertEqual(compute_exact_match(\"barack obama\", [\"Barack Obama\"]), 1.0)\n\n    def test_article_removal(self):\n        self.assertEqual(compute_exact_match(\"the president\", [\"president\"]), 1.0)\n\n    def test_no_match(self):\n        self.assertEqual(compute_exact_match(\"George Bush\", [\"Barack Obama\"]), 0.0)\n\n    def test_multiple_answers(self):\n        self.assertEqual(\n            compute_exact_match(\"NYC\", [\"New York City\", \"NYC\", \"New York\"]), 1.0\n        )\n\n    def test_multiple_no_match(self):\n        self.assertEqual(\n            compute_exact_match(\"LA\", [\"New York City\", \"NYC\"]), 0.0\n        )\n\n\nclass TestF1(unittest.TestCase):\n    def test_perfect(self):\n        self.assertAlmostEqual(compute_f1(\"Barack Obama\", [\"Barack Obama\"]), 1.0)\n\n    def test_partial(self):\n        f1 = compute_f1(\"Barack Hussein Obama\", [\"Barack Obama\"])\n        self.assertGreater(f1, 0.5)\n        self.assertLess(f1, 1.0)\n\n    def test_no_overlap(self):\n        self.assertAlmostEqual(compute_f1(\"cat\", [\"dog\"]), 0.0)\n\n    def test_multiple_answers(self):\n        f1 = compute_f1(\"New York\", [\"New York City\", \"NYC\"])\n        self.assertGreater(f1, 0.5)\n\n    def test_empty_prediction(self):\n        self.assertAlmostEqual(compute_f1(\"\", [\"Barack Obama\"]), 0.0)\n\n    def test_subset_tokens(self):\n        # \"obama\" is 1 of 2 answer tokens → precision=1.0, recall=0.5, F1=0.667\n        f1 = compute_f1(\"obama\", [\"Barack Obama\"])\n        self.assertAlmostEqual(f1, 2 / 3, places=3)\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests/test_metrics.py",
+    "content": "\"\"\"Unit tests for compresslink.metrics.\"\"\"\n\nimport unittest\n\nfrom compresslink.metrics import compute_exact_match, compute_f1, normalize_answer\n\n\nclass TestNormalizeAnswer(unittest.TestCase):\n    def test_lowercase(self):\n        self.assertEqual(normalize_answer(\"Barack Obama\"), \"barack obama\")\n\n    def test_articles(self):\n        self.assertEqual(normalize_answer(\"the United States of America\"), \"united states of america\")\n\n    def test_punctuation(self):\n        self.assertEqual(normalize_answer(\"hello, world!\"), \"hello world\")\n\n    def test_whitespace(self):\n        self.assertEqual(normalize_answer(\"  foo   bar  \"), \"foo bar\")\n\n    def test_combined(self):\n        self.assertEqual(normalize_answer(\"The cat's pajamas!\"), \"cats pajamas\")\n\n    def test_empty(self):\n        self.assertEqual(normalize_answer(\"\"), \"\")\n\n\nclass TestExactMatch(unittest.TestCase):\n    def test_exact(self):\n        self.assertEqual(compute_exact_match(\"Barack Obama\", [\"Barack Obama\"]), 1.0)\n\n    def test_case_insensitive(self):\n        self.assertEqual(compute_exact_match(\"barack obama\", [\"Barack Obama\"]), 1.0)\n\n    def test_article_removal(self):\n        self.assertEqual(compute_exact_match(\"the president\", [\"president\"]), 1.0)\n\n    def test_no_match(self):\n        self.assertEqual(compute_exact_match(\"George Bush\", [\"Barack Obama\"]), 0.0)\n\n    def test_multiple_answers(self):\n        self.assertEqual(\n            compute_exact_match(\"NYC\", [\"New York City\", \"NYC\", \"New York\"]), 1.0\n        )\n\n    def test_multiple_no_match(self):\n        self.assertEqual(\n            compute_exact_match(\"LA\", [\"New York City\", \"NYC\"]), 0.0\n        )\n\n\nclass TestF1(unittest.TestCase):\n    def test_perfect(self):\n        self.assertAlmostEqual(compute_f1(\"Barack Obama\", [\"Barack Obama\"]), 1.0)\n\n    def test_partial(self):\n        f1 = compute_f1(\"Barack Hussein Obama\", [\"Barack Obama\"])\n        self.assertGreater(f1, 0.5)\n        self.assertLess(f1, 1.0)\n\n    def test_no_overlap(self):\n        self.assertAlmostEqual(compute_f1(\"cat\", [\"dog\"]), 0.0)\n\n    def test_multiple_answers(self):\n        f1 = compute_f1(\"New York\", [\"New York City\", \"NYC\"])\n        self.assertGreater(f1, 0.5)\n\n    def test_empty_prediction(self):\n        self.assertAlmostEqual(compute_f1(\"\", [\"Barack Obama\"]), 0.0)\n\n    def test_subset_tokens(self):\n        # \"obama\" is 1 of 2 answer tokens → precision=1.0, recall=0.5, F1=0.667\n        f1 = compute_f1(\"obama\", [\"Barack Obama\"])\n        self.assertAlmostEqual(f1, 2 / 3, places=3)\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T05:22:35.451586+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests/test_metrics.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T05:22:35.451723+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code && python -m pytest tests/test_metrics.py -v 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code && python -m pytest tests/test_metrics.py -v 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T05:22:35.451842+00:00_
+
+Exit code 127
+/bin/bash: line 1: python: command not found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T05:22:35.451978+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code && python -c \"from compresslink.data_loader import NQDataLoader; from compresslink.calibration import KVTCCalibrator; from compresslink.metrics import compute_exact_match, compute_f1; print('All imports OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code && python -c \"from compresslink.data_loader import NQDataLoader; from compresslink.calibration import KVTCCalibrator; from compresslink.metrics import compute_exact_match, compute_f1; print('All imports OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T05:22:35.452095+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cd /home/ubuntu/.agent-ml-research-idea_…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T05:22:35.452209+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code && python3 -m pytest tests/test_metrics.py -v 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code && python3 -m pytest tests/test_metrics.py -v 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T05:22:35.452319+00:00_
+
+Exit code 1
+/usr/bin/python3: No module named pytest
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T05:22:35.452426+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code && python3 -m unittest tests.test_metrics -v 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code && python3 -m unittest tests.test_metrics -v 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T05:22:35.452540+00:00_
+
+test_article_removal (tests.test_metrics.TestExactMatch.test_article_removal) ... ok
+test_case_insensitive (tests.test_metrics.TestExactMatch.test_case_insensitive) ... ok
+test_exact (tests.test_metrics.TestExactMatch.test_exact) ... ok
+test_multiple_answers (tests.test_metrics.TestExactMatch.test_multiple_answers) ... ok
+test_multiple_no_match (tests.test_metrics.TestExactMatch.test_multiple_no_match) ... ok
+test_no_match (tests.test_metrics.TestExactMatch.test_no_match) ... ok
+test_empty_prediction (tests.test_metrics.TestF1.test_empty_prediction) ... ok
+test_multiple_answers (tests.test_metrics.TestF1.test_multiple_answers) ... ok
+test_no_overlap (tests.test_metrics.TestF1.test_no_overlap) ... ok
+test_partial (tests.test_metrics.TestF1.test_partial) ... ok
+test_perfect (tests.test_metrics.TestF1.test_perfect) ... ok
+test_subset_tokens (tests.test_metrics.TestF1.test_subset_tokens) ... ok
+test_articles (tests.test_metrics.TestNormalizeAnswer.test_articles) ... ok
+test_combined (tests.test_metrics.TestNormalizeAnswer.test_combined) ... ok
+test_empty (tests.test_metrics.TestNormalizeAnswer.test_empty) ... ok
+test_lowercase (tests.test_metrics.TestNormalizeAnswer.test_lowercase) ... ok
+test_punctuation (tests.test_metrics.TestNormalizeAnswer.test_punctuation) ... ok
+test_whitespace (tests.test_metrics.TestNormalizeAnswer.test_whitespace) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.001s
+
+OK
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T05:22:35.452672+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"from compresslink.data_loader import NQDataLoader; from compresslink.calibration import KVTCCalibrator; from compresslink.metrics import compute_exact_match, compute_f1, normalize_answer; print('All imports OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"from compresslink.data_loader import NQDataLoader; from compresslink.calibration import KVTCCalibrator; from compresslink.metrics import compute_exact_match, compute_f1, normalize_answer; print('All imports OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T05:22:35.452794+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 1, in &lt;module>
+    from compresslink.data_loader import NQDataLoader; from compresslink.calibration import KVTCCalibrator; from compresslink.metrics import compute_exact_match, compute_f1, normalize_answer; print('All imports OK')
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/calibration.py", line 7, in &lt;module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T05:22:35.452948+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"from compresslink.data_loader import NQDataLoader; from compresslink.metrics import compute_exact_match, compute_f1; print('data_loader + metrics: OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"from compresslink.data_loader import NQDataLoader; from compresslink.metrics import compute_exact_match, compute_f1; print('data_loader + metrics: OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T05:22:35.453063+00:00_
+
+data_loader + metrics: OK
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T05:22:35.453173+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"import ast, sys; ast.parse(open('compresslink/calibration.py').read()); print('calibration.py: syntax OK')\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"import ast, sys; ast.parse(open('compresslink/calibration.py').read()); print('calibration.py: syntax OK')\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T05:22:35.453279+00:00_
+
+calibration.py: syntax OK
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T05:22:35.453396+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T05:22:35.453525+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T05:22:35.453639+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "NQ DataLoader & KVTC Calibration Code",
+  "type": "intermediate",
+  "description": "NaturalQuestions数据加载(data_loader.py)、KVTC PCA校准(calibration.py)、SQuAD评估指标(metrics.py)、数据准备脚本(prepare_nq_data.py)、校准运行脚本(run_calibration.py)、指标单元测试(test_metrics.py)",
+  "project": "distill_kv_rag_cache",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code",
+  "tags": "['data', 'calibration', 'metrics', 'nq', 'kvtc']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "NQ DataLoader & KVTC Calibration Code",
+    "type": "intermediate",
+    "description": "NaturalQuestions数据加载(data_loader.py)、KVTC PCA校准(calibration.py)、SQuAD评估指标(metrics.py)、数据准备脚本(prepare_nq_data.py)、校准运行脚本(run_calibration.py)、指标单元测试(test_metrics.py)",
+    "project": "distill_kv_rag_cache",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code",
+    "tags": "['data', 'calibration', 'metrics', 'nq', 'kvtc']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T05:22:35.453760+00:00_
+
+Error executing tool register_artifact: [Errno 21] Is a directory: '/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T05:22:35.453904+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "compresslink data_loader",
+  "type": "intermediate",
+  "description": "NQDataLoader: 加载NQ JSONL数据、格式化RAG prompt、chunk切分context",
+  "project": "distill_kv_rag_cache",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/data_loader.py",
+  "tags": "['data', 'nq', 'rag']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "compresslink data_loader",
+    "type": "intermediate",
+    "description": "NQDataLoader: 加载NQ JSONL数据、格式化RAG prompt、chunk切分context",
+    "project": "distill_kv_rag_cache",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/data_loader.py",
+    "tags": "['data', 'nq', 'rag']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T05:22:35.454060+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_35b4cc\", \"name\": \"compresslink data_loader\", \"type\": \"intermediate\", \"description\": \"NQDataLoader: 加载NQ JSONL数据、格式化RAG prompt、chunk切分context\", \"path\": \"projects/distill_kv_rag_cache/artifacts/_project/intermediate/data_loader.py\", \"url\": null, \"project\": \"distill_kv_rag_cache\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T05:22:10.612282+00:00\", \"tags\": [\"data\", \"nq\", \"rag\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T05:22:35.454189+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "compresslink calibration",
+  "type": "intermediate",
+  "description": "KVTCCalibrator: 收集NoPE KV cache、计算per-head PCA、保存校准数据",
+  "project": "distill_kv_rag_cache",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/calibration.py",
+  "tags": "['calibration', 'kvtc', 'pca']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "compresslink calibration",
+    "type": "intermediate",
+    "description": "KVTCCalibrator: 收集NoPE KV cache、计算per-head PCA、保存校准数据",
+    "project": "distill_kv_rag_cache",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/calibration.py",
+    "tags": "['calibration', 'kvtc', 'pca']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T05:22:35.454330+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_44b621\", \"name\": \"compresslink calibration\", \"type\": \"intermediate\", \"description\": \"KVTCCalibrator: 收集NoPE KV cache、计算per-head PCA、保存校准数据\", \"path\": \"projects/distill_kv_rag_cache/artifacts/_project/intermediate/calibration.py\", \"url\": null, \"project\": \"distill_kv_rag_cache\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T05:22:12.962825+00:00\", \"tags\": [\"calibration\", \"kvtc\", \"pca\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T05:22:35.454456+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "compresslink metrics",
+  "type": "intermediate",
+  "description": "SQuAD-style EM/F1评估指标：normalize_answer、compute_exact_match、compute_f1",
+  "project": "distill_kv_rag_cache",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/metrics.py",
+  "tags": "['metrics', 'evaluation']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "compresslink metrics",
+    "type": "intermediate",
+    "description": "SQuAD-style EM/F1评估指标：normalize_answer、compute_exact_match、compute_f1",
+    "project": "distill_kv_rag_cache",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/metrics.py",
+    "tags": "['metrics', 'evaluation']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T05:22:35.454648+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_be358b\", \"name\": \"compresslink metrics\", \"type\": \"intermediate\", \"description\": \"SQuAD-style EM/F1评估指标：normalize_answer、compute_exact_match、compute_f1\", \"path\": \"projects/distill_kv_rag_cache/artifacts/_project/intermediate/metrics.py\", \"url\": null, \"project\": \"distill_kv_rag_cache\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T05:22:15.314432+00:00\", \"tags\": [\"metrics\", \"evaluation\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T05:22:35.454868+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "prepare_nq_data script",
+  "type": "intermediate",
+  "description": "从HuggingFace natural_questions流式下载并准备500条NQ子集JSONL",
+  "project": "distill_kv_rag_cache",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/prepare_nq_data.py",
+  "tags": "['script', 'data', 'nq']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "prepare_nq_data script",
+    "type": "intermediate",
+    "description": "从HuggingFace natural_questions流式下载并准备500条NQ子集JSONL",
+    "project": "distill_kv_rag_cache",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/prepare_nq_data.py",
+    "tags": "['script', 'data', 'nq']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T05:22:35.455091+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_41178b\", \"name\": \"prepare_nq_data script\", \"type\": \"intermediate\", \"description\": \"从HuggingFace natural_questions流式下载并准备500条NQ子集JSONL\", \"path\": \"projects/distill_kv_rag_cache/artifacts/_project/intermediate/prepare_nq_data.py\", \"url\": null, \"project\": \"distill_kv_rag_cache\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T05:22:17.265611+00:00\", \"tags\": [\"script\", \"data\", \"nq\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T05:22:35.455233+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "run_calibration script",
+  "type": "intermediate",
+  "description": "加载模型运行KVTC PCA校准的CLI脚本，支持自定义数据源和dtype",
+  "project": "distill_kv_rag_cache",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/run_calibration.py",
+  "tags": "['script', 'calibration', 'kvtc']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "run_calibration script",
+    "type": "intermediate",
+    "description": "加载模型运行KVTC PCA校准的CLI脚本，支持自定义数据源和dtype",
+    "project": "distill_kv_rag_cache",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/scripts/run_calibration.py",
+    "tags": "['script', 'calibration', 'kvtc']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T05:22:35.455380+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_cc6975\", \"name\": \"run_calibration script\", \"type\": \"intermediate\", \"description\": \"加载模型运行KVTC PCA校准的CLI脚本，支持自定义数据源和dtype\", \"path\": \"projects/distill_kv_rag_cache/artifacts/_project/intermediate/run_calibration.py\", \"url\": null, \"project\": \"distill_kv_rag_cache\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T05:22:19.684897+00:00\", \"tags\": [\"script\", \"calibration\", \"kvtc\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T05:22:35.455510+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "test_metrics",
+  "type": "intermediate",
+  "description": "metrics模块单元测试：18个测试覆盖normalize_answer、EM、F1",
+  "project": "distill_kv_rag_cache",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests/test_metrics.py",
+  "tags": "['test', 'metrics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "test_metrics",
+    "type": "intermediate",
+    "description": "metrics模块单元测试：18个测试覆盖normalize_answer、EM、F1",
+    "project": "distill_kv_rag_cache",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/tests/test_metrics.py",
+    "tags": "['test', 'metrics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T05:22:35.455658+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_4f754a\", \"name\": \"test_metrics\", \"type\": \"intermediate\", \"description\": \"metrics模块单元测试：18个测试覆盖normalize_answer、EM、F1\", \"path\": \"projects/distill_kv_rag_cache/artifacts/_project/intermediate/test_metrics.py\", \"url\": null, \"project\": \"distill_kv_rag_cache\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T05:22:21.553711+00:00\", \"tags\": [\"test\", \"metrics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_data-prep_20260514T051737",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57 · 2026-05-14T05:22:35.455833+00:00_
+
+全部完成。文件结构：
+
+```
+compresslink_code/
+├── compresslink/
+│   ├── __init__.py
+│   ├── data_loader.py      # NQDataLoader: JSONL加载、prompt格式化、chunk切分
+│   ├── calibration.py      # KVTCCalibrator: hook收集NoPE KV → per-head SVD → save/load .pt
+│   └── metrics.py          # normalize_answer, compute_exact_match, compute_f1
+├── scripts/
+│   ├── prepare_nq_data.py  # 流式下载NQ validation → 筛选500条 → JSONL
+│   └── run_calibration.py  # CLI: 加载模型 → 校准 → 保存calibration.pt
+└── tests/
+    ├── __init__.py
+    └── test_metrics.py      # 18个单元测试，全部通过
+```
+
+关键设计点：
+- **calibration.py** 通过 `k_proj`/`v_proj` 的 forward hook 捕获 RoPE 之前的 key/value（即 NoPE 形式），无需修改模型代码
+- **prepare_nq_data.py** 使用 streaming 模式加载 `natural_questions`，避免下载 42GB 全量数据；从 long_answer span 提取 context，从 short_answers 提取答案
+- **data_loader.py** 的 `format_prompt` 返回 `context_end_pos` 和 `chunk_boundaries`，供后续 boundary recomputation 使用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_data-prep_20260514T051737"
+}
+```
+
+</details>
+
+---

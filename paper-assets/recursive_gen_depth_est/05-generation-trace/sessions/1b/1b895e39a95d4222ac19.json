@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_w2-domain-bias-paper-update_20260516T013302_result.json",
     "occurrence": 1,
-    "bytes": 850,
-    "sha256": "989a8cdd7bb3259eeb5a3507b33912aaee384a946a032d2639288d8e42febcab"
+    "bytes": 849,
+    "sha256": "ad4ad4819b2a98e45b63207d891bd1f763ae75bf5113984e4e28c75ca0e7a066"
   },
   "statistics": {
     "messages": 1,

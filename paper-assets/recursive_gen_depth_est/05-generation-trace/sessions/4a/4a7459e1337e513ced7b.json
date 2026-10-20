@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_pythia_seed43_check_20260518T132653_result.json",
     "occurrence": 1,
-    "bytes": 1225,
-    "sha256": "47b4c0419a132f0c815d20a42743fc1c5a55db6b21907db7006f2ff5ed4f3055"
+    "bytes": 1224,
+    "sha256": "ac20bee8dd2a56155bdcd9ddf19fd9458620f220fc04d1cc123e5d66bf7f619b"
   },
   "statistics": {
     "messages": 1,

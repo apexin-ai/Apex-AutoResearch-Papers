@@ -1,0 +1,40 @@
+{
+  "exp_id": "shap_supplement_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:34:08.559Z",
+    "updated_at": "2026-05-15T19:37:13.606Z",
+    "spec": {
+      "command": "python3 src/shap_supplement.py (PID 78513)",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/results/ + data/",
+      "data_count": "9 cells x 20000 samples",
+      "model_name": "RF (n_estimators=200) + SHAP TreeExplainer",
+      "seed": 42,
+      "hypothesis": "R3-N3 feature importance cross-validation: SHAP TreeExplainer 替代 attention-importance，验证三方法（SHAP/Gini/Permutation）一致性",
+      "reviewer_issue": "R3-N3: attention-importance 方法论缺陷",
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/shap_analysis/",
+      "log_path": "/tmp/shap_supplement.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T19:34:24.987Z",
+    "metrics": {
+      "kendalls_w_three_way": 0.8955,
+      "rho_shap_gini": 0.9312,
+      "rho_shap_permutation": 0.8392,
+      "rho_gini_permutation": 0.76,
+      "cross_cell_shap_consistency_mean_rho": 0.8,
+      "p90_ppl_top2_cells": "9/9",
+      "var_surprisal_top2_cells": "8/9",
+      "ppl_surprisal_shap_share": 0.888,
+      "shap_top5": "p90_ppl, var_surprisal, p75_ppl, mean_surprisal, mean_ppl",
+      "addresses": "R3-N3 feature importance cross-validation"
+    }
+  },
+  "timestamp": "2026-05-15T19:37:13.867085+00:00",
+  "trigger": "update_registry"
+}

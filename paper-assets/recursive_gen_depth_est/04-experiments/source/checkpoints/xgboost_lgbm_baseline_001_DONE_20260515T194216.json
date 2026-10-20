@@ -1,0 +1,53 @@
+{
+  "exp_id": "xgboost_lgbm_baseline_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:41:35.921Z",
+    "updated_at": "2026-05-15T19:42:16.807Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -u /root/autodl-tmp/recursive_gen_depth_est/src/r3w5_xgboost_lgbm.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/features_all.jsonl",
+      "data_count": 20000,
+      "model_name": "XGBoost+LightGBM",
+      "seed": 42,
+      "hypothesis": "R3-W5: XGBoost/LightGBM baselines on Pythia nucleus095 19-dim features. If gradient boosting also converges to ~78% like RF, confirms signal ceiling is in features not classifier.",
+      "methods": [
+        "XGBoost (n_est=200, depth=6, lr=0.1, GPU)",
+        "LightGBM (n_est=200, depth=6, lr=0.1, GPU/CPU fallback)"
+      ],
+      "eval": "5-fold stratified CV, 4-class acc, pairwise AUC (d0v1/d1v2/d2v3), per-class recall",
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/results/r3w5_baselines_log.txt"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "xgb_acc": 0.79,
+      "xgb_std": 0.0046,
+      "xgb_d0v1_auc": 1,
+      "xgb_d1v2_auc": 0.931,
+      "xgb_d2v3_auc": 0.816,
+      "lgbm_acc": 0.788,
+      "lgbm_std": 0.0077,
+      "lgbm_d0v1_auc": 1,
+      "lgbm_d1v2_auc": 0.931,
+      "lgbm_d2v3_auc": 0.814,
+      "rf_acc_ref": 0.782,
+      "xgb_recall_d0": 0.994,
+      "xgb_recall_d1": 0.816,
+      "xgb_recall_d2": 0.596,
+      "xgb_recall_d3": 0.754,
+      "lgbm_recall_d0": 0.994,
+      "lgbm_recall_d1": 0.815,
+      "lgbm_recall_d2": 0.596,
+      "lgbm_recall_d3": 0.747
+    },
+    "completed_at": "2026-05-15T19:42:16.807Z"
+  },
+  "timestamp": "2026-05-15T19:42:16.955796+00:00",
+  "trigger": "update_registry"
+}

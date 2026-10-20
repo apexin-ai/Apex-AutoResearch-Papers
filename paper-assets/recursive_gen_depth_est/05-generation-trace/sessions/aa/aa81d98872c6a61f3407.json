@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_citation_mismatch_check_20260519T032126_result.json",
     "occurrence": 1,
-    "bytes": 6260,
-    "sha256": "157a04d7dea36c80aeb57d66eed9c9f4ab7e61780bc932c26cc434b094d67d39"
+    "bytes": 6259,
+    "sha256": "97f7811f6566bc253a8886c3dd2879fe4e14af6c728eb65857a221832af23d67"
   },
   "statistics": {
     "messages": 1,

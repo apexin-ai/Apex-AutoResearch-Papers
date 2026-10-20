@@ -1,0 +1,144 @@
+{
+  "exp_id": "olmo_topk50_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:30:51.656Z",
+    "updated_at": "2026-05-15T01:54:42.103Z",
+    "hypothesis": "解码策略鲁棒性: OLMo-1B 在 top-k k=50 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "parent": "cross_model_olmo_002",
+    "plan_id": "plan_002c",
+    "notes": "OLMo-1B top-k k=50 pipeline 在 cuda:1 运行中 (PID 226461)。Symlink depth-0 LoRA adapter。3×3 矩阵最后一格（OLMo topk50）。",
+    "spec": {
+      "command": "bash -c \"export AML_EXP_ID=olmo_topk50_001 && export GPU=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_pipeline_olmo_topk50.sh\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "226461",
+      "log_path": "~/runs/recursive_gen_depth_est/olmo_topk50_001.log",
+      "submitted_at": "2026-05-15T00:11:30.334Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/olmo/lora_depth_0 (symlinked)",
+      "eval_data": "data/depth_0.jsonl (seed) + generated depths 1-3",
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/olmo_topk50/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T01:39:56.773Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T01:39:58.044943+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "four_class": {
+        "lr_accuracy": 0.757,
+        "lr_accuracy_ci": [
+          0.7425,
+          0.7702
+        ],
+        "rf_accuracy": 0.742,
+        "rf_accuracy_ci": [
+          0.7282,
+          0.7555
+        ]
+      },
+      "pairwise_auc": {
+        "lr": {
+          "d0v1": 0.9969,
+          "d0v2": 0.9995,
+          "d0v3": 0.9998,
+          "d1v2": 0.8293,
+          "d1v3": 0.9592,
+          "d2v3": 0.7497
+        },
+        "rf": {
+          "d0v1": 0.993,
+          "d0v2": 0.9983,
+          "d0v3": 0.9991,
+          "d1v2": 0.8305,
+          "d1v3": 0.9591,
+          "d2v3": 0.7357
+        }
+      },
+      "three_class": {
+        "lr_accuracy": 0.6567,
+        "lr_accuracy_ci": [
+          0.6403,
+          0.6733
+        ],
+        "rf_accuracy": 0.6517,
+        "rf_accuracy_ci": [
+          0.635,
+          0.6687
+        ]
+      },
+      "three_class_filtered": {
+        "lr_accuracy": 0.6703,
+        "lr_accuracy_ci": [
+          0.653,
+          0.6882
+        ],
+        "rf_accuracy": 0.6699,
+        "rf_accuracy_ci": [
+          0.6537,
+          0.6875
+        ]
+      },
+      "three_class_filtered_auc": {
+        "lr": {
+          "d1v2": 0.7903,
+          "d1v3": 0.97,
+          "d2v3": 0.7501
+        },
+        "rf": {
+          "d1v2": 0.8071,
+          "d1v3": 0.9645,
+          "d2v3": 0.7364
+        }
+      },
+      "feature_importance_top5": [
+        "p90_ppl",
+        "var_surprisal",
+        "p75_ppl",
+        "mean_surprisal",
+        "p25_ppl"
+      ],
+      "finetune_loss": {
+        "depth_1": 1.946,
+        "depth_2": 1.726
+      },
+      "code_contamination": {
+        "narrow_pct": {
+          "depth_0": 0.4,
+          "depth_1": 0.8,
+          "depth_2": 0.3,
+          "depth_3": 0.4
+        },
+        "broad_pct": {
+          "depth_0": 0.5,
+          "depth_1": 2.5,
+          "depth_2": 0.8,
+          "depth_3": 0.7
+        }
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T01:54:42.171353+00:00",
+  "trigger": "update_registry"
+}

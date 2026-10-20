@@ -1,0 +1,27 @@
+paper_key: "qurating2024"
+title: "QuRating: Selecting High-Quality Data for Training Language Models"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["uniform random sampling", "perplexity-based filtering"]
+  metrics:
+    - {name: "perplexity", direction: "lower_better"}
+    - {name: "in-context learning accuracy", direction: "higher_better"}
+    - {name: "training efficiency (steps to target)", direction: "lower_better"}
+  datasets:
+    - {name: "260B token pre-training corpus", size: "260B tokens"}
+    - {name: "30B token subsets sampled by quality", size: "30B tokens"}
+  ablation_dimensions: ["quality dimension (writing style, expertise, facts, educational value)", "quality threshold", "quality-diversity balance"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "1.3B parameter LMs"}
+  method_family: "LLM-based data quality rating for pre-training data selection"
+
+positioning:
+  core_claim: "LLMs can learn quality ratings from pairwise judgments across 4 dimensions, and training on educational-value-selected data matches uniform sampling with 50% fewer steps"
+  key_results: "Educational value selection most impactful; quality-diversity balance is critical; 1.3B models trained on 30B quality-filtered tokens"
+  limitations: ["limited to 1.3B scale", "quality dimensions may not cover all aspects"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

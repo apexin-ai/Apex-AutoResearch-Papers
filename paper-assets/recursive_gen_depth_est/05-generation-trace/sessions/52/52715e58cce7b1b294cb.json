@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_qwen7b_and_prep_cross_scale_20260516T024608_result.json",
     "occurrence": 1,
-    "bytes": 1541,
-    "sha256": "eba3d19e21c33144bd8ba5df1e8af7f8ca0fd2b0ae47551bb26f8195bd566319"
+    "bytes": 1540,
+    "sha256": "302e5af674f306c2db19390b2cb8246f11e98c19a607d9e80ad998866ddb1502"
   },
   "statistics": {
     "messages": 1,

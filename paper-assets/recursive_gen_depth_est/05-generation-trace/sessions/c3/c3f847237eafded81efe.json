@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_plan_015_olmo_wild_calibration_20260515T224354_result.json",
     "occurrence": 1,
-    "bytes": 1044,
-    "sha256": "552aa29576e41565c7d070c264985c2e3ab41aefde4aa81abf1b1db454226c29"
+    "bytes": 1043,
+    "sha256": "5b786d4fa2b6a00af7e731c95c928eb47220de4062ddcfd0c5fd3f9d9b03156a"
   },
   "statistics": {
     "messages": 1,

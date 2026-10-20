@@ -1,0 +1,14 @@
+{
+  "exp_id": "depth_extension_gpt2xl_d4d5_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:32:10.348Z",
+    "updated_at": "2026-05-15T06:32:10.348Z"
+  },
+  "timestamp": "2026-05-15T06:32:10.445299+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_review-text-fixes-batch2_20260515T220651_result.json",
     "occurrence": 1,
-    "bytes": 1806,
-    "sha256": "ebad8e958cf211a0b3d2fd42d3c68f0948d9a6ff5f853c63345fbb86a15a7962"
+    "bytes": 1805,
+    "sha256": "8259efacb10d2fbb765f9137bf392fb67ceb5b9adc3bc74f7613311d91c11b8c"
   },
   "statistics": {
     "messages": 1,

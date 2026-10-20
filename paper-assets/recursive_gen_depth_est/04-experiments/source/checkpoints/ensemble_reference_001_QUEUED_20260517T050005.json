@@ -1,0 +1,16 @@
+{
+  "exp_id": "ensemble_reference_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:59:54.150Z",
+    "updated_at": "2026-05-17T05:00:05.248Z",
+    "hypothesis": "Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp",
+    "parent": "gpt2xl_ref_ablation_001"
+  },
+  "timestamp": "2026-05-17T05:00:05.506477+00:00",
+  "trigger": "update_registry"
+}

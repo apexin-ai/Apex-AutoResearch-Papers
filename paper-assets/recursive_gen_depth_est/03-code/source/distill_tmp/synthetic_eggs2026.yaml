@@ -1,0 +1,28 @@
+paper_key: "synthetic_eggs2026"
+title: "Synthetic Eggs in Many Baskets: Impact of Synthetic Data Diversity on LLM Fine-Tuning"
+venue: "ACL 2026 Findings"
+full_text_available: false
+
+research:
+  baselines: ["human data fine-tuning", "single-source synthetic fine-tuning", "multi-source synthetic fine-tuning"]
+  metrics:
+    - {name: "distribution collapse measures", direction: "lower_better"}
+    - {name: "adversarial robustness", direction: "higher_better"}
+    - {name: "self-preference bias", direction: "lower_better"}
+    - {name: "output quality", direction: "higher_better"}
+    - {name: "text diversity", direction: "higher_better"}
+  datasets:
+    - {name: "synthetic data from multiple LLM sources", size: "N/A"}
+  ablation_dimensions: ["number of source models", "human vs synthetic ratio", "source model diversity"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "synthetic data diversity analysis for fine-tuning"
+
+positioning:
+  core_claim: "Fine-tuning on diverse multi-source synthetic data mitigates distribution collapse while preserving output distribution breadth, but adversarial robustness decreases"
+  key_results: "Multi-source synthetic > single-source for distribution collapse; human data best for reducing self-preference bias; synthetic data yields higher quality but lower robustness"
+  limitations: ["limited to fine-tuning (not pre-training)", "specific LLM families"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

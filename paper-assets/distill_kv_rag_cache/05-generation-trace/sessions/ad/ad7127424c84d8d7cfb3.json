@@ -1,0 +1,964 @@
+{
+  "schema_version": "1.0",
+  "id": "ad7127424c84d8d7cfb3",
+  "project": "distill_kv_rag_cache",
+  "kind": "worker",
+  "title": "code sync eval runner fix",
+  "task_key": "worker_code_sync-eval-runner-fix_20260514T074543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync-eval-runner-fix_20260514T074543.log",
+    "occurrence": 1,
+    "bytes": 89589,
+    "sha256": "371cf3c0305fdfbd00ac3cf553603fa55b63118a9a1e805cfd5221f3923722a8"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache",
+                "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d28400a2-0a71-4760-b944-8a823a7d6855",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-2-projects-distill-kv-rag-cache/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778751600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1f20b943-19bc-495b-9331-3b26cd4dcfe2",
+                "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the server version and local version of eval_runner.py in parallel.",
+              "signature": "EooCClkIDRgCKkD0uEYNAfJYF88C/HldOM0riAbqbAFT0+dSILk1DZDwXHe92FXXjn3jk74eIc8Zi4SYBRoFfJPH1Etd6JfOtrTTMg9jbGF1ZGUtb3B1cy00LTY4ABIMJZFYWp1efxc27KlSGgw5uqdh5AQCvVRhT5kiMLTyOXvYsAxZ7u64odJrzem+TT2W1a1o82VKkHz2a30IDBdDaKc5BVbIh7LxpDmDECpfGPzUJbiiXZSeXCnQNiqzMeWD5nfM18yo/qYD34eWwnWR5FzvC95APIABtIKCayWpp8oUlPH+LlpvD5hqUtSseMQFnOQ1UhWJdTJ0nQ46tcRavrtatJOkA0NDtZyw/sYYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "c7dab989-a1d7-4403-a4ab-33c24d39caf5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017EeJAx8fHdtkgjJzBSQ6Q3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11181,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11181
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取服务器和本地版本进行对比。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "6900bb0f-00d0-467b-84df-5dee88d04ed7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017EeJAx8fHdtkgjJzBSQ6Q3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11181,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11181
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NbjumtwRXMmcvdoNQTPdgA",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "b57a7d42-76ff-479d-9f07-99a6dce63fb1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017EeJAx8fHdtkgjJzBSQ6Q3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11181,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11181
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T07:45:54.222Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01NbjumtwRXMmcvdoNQTPdgA",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "0e7dd194-90d9-4607-92d9-b2a5cbf54eb8",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011my9aobnXbW3ouCy7jPRg5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/eval_runner.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "887108be-d5d3-4fe6-b99e-2909b93434de",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017EeJAx8fHdtkgjJzBSQ6Q3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11181,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11181
+                },
+                "output_tokens": 24,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T07:45:54.532Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011my9aobnXbW3ouCy7jPRg5",
+              "type": "tool_result",
+              "content": "1\t\"\"\"MVP evaluation script: run CompressLink configs and report EM/F1 metrics.\"\"\"\n2\t\n3\timport argparse\n4\timport json\n5\timport re\n6\timport string\n7\timport time\n8\tfrom collections import Counter\n9\tfrom pathlib import Path\n10\tfrom typing import List, Dict\n11\t\n12\timport torch\n13\timport yaml\n14\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n15\t\n16\tfrom .nope_attention import patch_model_for_nope\n17\tfrom .pipeline import CompressLinkPipeline\n18\t\n19\t\n20\tdef normalize_answer(s: str) -> str:\n21\t    s = s.lower()\n22\t    s = re.sub(r\"\\b(a|an|the)\\b\", \" \", s)\n23\t    s = s.translate(str.maketrans(\"\", \"\", string.punctuation))\n24\t    s = \" \".join(s.split())\n25\t    return s.strip()\n26\t\n27\t\n28\tdef compute_em(prediction: str, ground_truths: List[str]) -> float:\n29\t    pred_norm = normalize_answer(prediction)\n30\t    return float(any(normalize_answer(gt) == pred_norm for gt in ground_truths))\n31\t\n32\t\n33\tdef compute_f1(prediction: str, ground_truths: List[str]) -> float:\n34\t    pred_tokens = normalize_answer(prediction).split()\n35\t    if not pred_tokens:\n36\t        return 0.0\n37\t\n38\t    best_f1 = 0.0\n39\t    for gt in ground_truths:\n40\t        gt_tokens = normalize_answer(gt).split()\n41\t        if not gt_tokens:\n42\t            continue\n43\t        common = Counter(pred_tokens) & Counter(gt_tokens)\n44\t        num_same = sum(common.values())\n45\t        if num_same == 0:\n46\t            continue\n47\t        precision = num_same / len(pred_tokens)\n48\t        recall = num_same / len(gt_tokens)\n49\t        f1 = 2 * precision * recall / (precision + recall)\n50\t        best_f1 = max(best_f1, f1)\n51\t\n52\t    return best_f1\n53\t\n54\t\n55\tdef load_dataset_samples(config: dict, num_samples: int) -> List[Dict]:\n56\t    \"\"\"Load evaluation samples with context + question + answers.\n57\t\n58\t    Prefers pre-processed JSONL (from prepare_nq_data.py) over raw HF dataset\n59\t    since NQ requires HTML parsing for context extraction.\n60\t    \"\"\"\n61\t    jsonl_path = config.get(\"jsonl_path\")\n62\t    if jsonl_path and Path(jsonl_path).exists():\n63\t        samples = []\n64\t        with open(jsonl_path) as f:\n65\t            for line in f:\n66\t                if len(samples) >= num_samples:\n67\t                    break\n68\t                item = json.loads(line)\n69\t                samples.append({\n70\t                    \"context\": item[\"context\"],\n71\t                    \"question\": item[\"question\"],\n72\t                    \"answers\": item[\"answers\"],\n73\t                })\n74\t        return samples\n75\t\n76\t    from datasets import load_dataset\n77\t\n78\t    dataset_name = config.get(\"name\", \"google-research-datasets/natural_questions\")\n79\t    split = config.get(\"split\", \"validation\")\n80\t\n81\t    ds = load_dataset(dataset_name, split=f\"{split}[:{num_samples}]\", streaming=False)\n82\t\n83\t    samples = []\n84\t    for item in ds:\n85\t        question = item.get(\"question\", \"\")\n86\t        if isinstance(question, dict):\n87\t            question = question.get(\"text\", \"\")\n88\t\n89\t        context = item.get(\"context\", item.get(\"passage\", \"\"))\n90\t\n91\t        if \"answers\" in item:\n92\t            ans = item[\"answers\"]\n93\t            if isinstance(ans, dict):\n94\t                answers = ans.get(\"text\", [])\n95\t            elif isinstance(ans, list):\n96\t                answers = ans\n97\t            else:\n98\t                answers = [str(ans)]\n99\t        elif \"answer\" in item:\n100\t            ans = item[\"answer\"]\n101\t            answers = ans if isinstance(ans, list) else [ans]\n102\t        else:\n103\t            answers = []\n104\t\n105\t        if context and question:\n106\t            samples.append(\n107\t                {\"context\": context, \"question\": question, \"answers\": answers}\n108\t            )\n109\t\n110\t    return samples\n111\t\n112\t\n113\tdef run_evaluation(config_path: str, gpu: str = \"cuda:0\") -> Dict:\n114\t    with open(config_path) as f:\n115\t        config = yaml.safe_load(f)\n116\t\n117\t    device = torch.device(gpu)\n118\t\n119\t    # Load model\n120\t    model_name = config[\"model\"][\"name\"]\n121\t    dtype = getattr(torch, config[\"model\"].get(\"dtype\", \"float16\"))\n122\t\n123\t    print(f\"Loading model: {model_name}\")\n124\t    tokenizer = AutoTokenizer.from_pretrained(model_name)\n125\t    model = AutoModelForCausalLM.from_pretrained(\n126\t        model_name,\n127\t        dtype=dtype,\n128\t        attn_implementation=\"eager\",\n129\t        device_map=gpu,\n130\t    )\n131\t    model.eval()\n132\t\n133\t    patch_model_for_nope(model)\n134\t\n135\t    if tokenizer.pad_token is None:\n136\t        tokenizer.pad_token = tokenizer.eos_token\n137\t\n138\t    # Load dataset\n139\t    num_samples = config[\"dataset\"].get(\"num_samples\", 500)\n140\t    samples = load_dataset_samples(config[\"dataset\"], num_samples)\n141\t    print(f\"Loaded {len(samples)} samples\")\n142\t\n143\t    # Pipeline config\n144\t    head_dim = model.config.hidden_size // model.config.num_attention_heads\n145\t    pipeline_config = {\n146\t        \"chunk_size\": config[\"chunking\"][\"chunk_size\"],\n147\t        \"block_size\": config[\"chunking\"][\"block_size\"],\n148\t        \"total_budget\": config[\"budget\"][\"total_recomputation\"],\n149\t        \"beta\": config[\"cegr\"][\"beta\"],\n150\t        \"head_dim\": head_dim,\n151\t        \"max_bits\": config[\"compression\"][\"max_bits\"],\n152\t        \"max_new_tokens\": config[\"evaluation\"].get(\"max_new_tokens\", 32),\n153\t    }\n154\t\n155\t    pipeline = CompressLinkPipeline(model, tokenizer, pipeline_config)\n156\t\n157\t    # Run evaluation\n158\t    eval_configs = config[\"evaluation\"][\"configs\"]\n159\t    ratios = config[\"compression\"][\"ratios\"]\n160\t\n161\t    results = {}\n162\t\n163\t    for cfg_name in eval_configs:\n164\t        run_ratios = [0] if cfg_name == \"E\" else ratios\n165\t\n166\t        for ratio in run_ratios:\n167\t            run_key = f\"{cfg_name}_{'baseline' if ratio == 0 else f'{ratio}x'}\"\n168\t            print(f\"\\nRunning config: {run_key}\")\n169\t\n170\t            ems, f1s, latencies = [], [], []\n171\t\n172\t            for idx, sample in enumerate(samples):\n173\t                ctx_enc = tokenizer(\n174\t                    f\"Context: {sample['context']}\\n\\n\",\n175\t                    return_tensors=\"pt\",\n176\t                    truncation=True,\n177\t                    max_length=2048,\n178\t                )\n179\t                q_enc = tokenizer(\n180\t                    f\"Question: {sample['question']}\\nAnswer:\",\n181\t                    return_tensors=\"pt\",\n182\t                    add_special_tokens=False,\n183\t                )\n184\t\n185\t                t0 = time.time()\n186\t                try:\n187\t                    result = pipeline.run_single(\n188\t                        context_ids=ctx_enc.input_ids,\n189\t                        query_ids=q_enc.input_ids,\n190\t                        config_name=cfg_name,\n191\t                        compression_ratio=max(ratio, 1),\n192\t                    )\n193\t                    pred = result[\"generated_text\"].split(\"\\n\")[0].strip()\n194\t                except Exception as e:\n195\t                    print(f\"  Sample {idx} error: {e}\")\n196\t                    pred = \"\"\n197\t                latency = time.time() - t0\n198\t\n199\t                em = compute_em(pred, sample[\"answers\"])\n200\t                f1 = compute_f1(pred, sample[\"answers\"])\n201\t\n202\t                ems.append(em)\n203\t                f1s.append(f1)\n204\t                latencies.append(latency)\n205\t\n206\t                if (idx + 1) % 50 == 0:\n207\t                    print(\n208\t                        f\"  {idx+1}/{len(samples)}: \"\n209\t                        f\"EM={sum(ems)/len(ems):.3f}, F1={sum(f1s)/len(f1s):.3f}\"\n210\t                    )\n211\t\n212\t            results[run_key] = {\n213\t                \"config\": cfg_name,\n214\t                \"compression_ratio\": ratio,\n215\t                \"em\": sum(ems) / len(ems),\n216\t                \"f1\": sum(f1s) / len(f1s),\n217\t                \"avg_latency\": sum(latencies) / len(latencies),\n218\t                \"num_samples\": len(samples),\n219\t            }\n220\t            print(\n221\t                f\"  Final: EM={results[run_key]['em']:.3f}, \"\n222\t                f\"F1={results[run_key]['f1']:.3f}\"\n223\t            )\n224\t\n225\t    # Save results\n226\t    output_dir = Path(config[\"output\"][\"results_dir\"])\n227\t    output_dir.mkdir(parents=True, exist_ok=True)\n228\t    output_path = output_dir / \"mvp_results.json\"\n229\t\n230\t    with open(output_path, \"w\") as f:\n231\t        json.dump(results, f, indent=2)\n232\t\n233\t    print(f\"\\nResults saved to {output_path}\")\n234\t    return results\n235\t\n236\t\n237\tif __name__ == \"__main__\":\n238\t    parser = argparse.ArgumentParser(description=\"CompressLink MVP Evaluation\")\n239\t    parser.add_argument(\"--config\", type=str, default=\"configs/mvp_config.yaml\")\n240\t    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n241\t    args = parser.parse_args()\n242\t\n243\t    run_evaluation(args.config, args.gpu)\n244\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "1ee558dc-d8dd-4f8a-9a77-f78082479462",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/eval_runner.py",
+                "content": "\"\"\"MVP evaluation script: run CompressLink configs and report EM/F1 metrics.\"\"\"\n\nimport argparse\nimport json\nimport re\nimport string\nimport time\nfrom collections import Counter\nfrom pathlib import Path\nfrom typing import List, Dict\n\nimport torch\nimport yaml\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nfrom .nope_attention import patch_model_for_nope\nfrom .pipeline import CompressLinkPipeline\n\n\ndef normalize_answer(s: str) -> str:\n    s = s.lower()\n    s = re.sub(r\"\\b(a|an|the)\\b\", \" \", s)\n    s = s.translate(str.maketrans(\"\", \"\", string.punctuation))\n    s = \" \".join(s.split())\n    return s.strip()\n\n\ndef compute_em(prediction: str, ground_truths: List[str]) -> float:\n    pred_norm = normalize_answer(prediction)\n    return float(any(normalize_answer(gt) == pred_norm for gt in ground_truths))\n\n\ndef compute_f1(prediction: str, ground_truths: List[str]) -> float:\n    pred_tokens = normalize_answer(prediction).split()\n    if not pred_tokens:\n        return 0.0\n\n    best_f1 = 0.0\n    for gt in ground_truths:\n        gt_tokens = normalize_answer(gt).split()\n        if not gt_tokens:\n            continue\n        common = Counter(pred_tokens) & Counter(gt_tokens)\n        num_same = sum(common.values())\n        if num_same == 0:\n            continue\n        precision = num_same / len(pred_tokens)\n        recall = num_same / len(gt_tokens)\n        f1 = 2 * precision * recall / (precision + recall)\n        best_f1 = max(best_f1, f1)\n\n    return best_f1\n\n\ndef load_dataset_samples(config: dict, num_samples: int) -> List[Dict]:\n    \"\"\"Load evaluation samples with context + question + answers.\n\n    Prefers pre-processed JSONL (from prepare_nq_data.py) over raw HF dataset\n    since NQ requires HTML parsing for context extraction.\n    \"\"\"\n    jsonl_path = config.get(\"jsonl_path\")\n    if jsonl_path and Path(jsonl_path).exists():\n        samples = []\n        with open(jsonl_path) as f:\n            for line in f:\n                if len(samples) >= num_samples:\n                    break\n                item = json.loads(line)\n                samples.append({\n                    \"context\": item[\"context\"],\n                    \"question\": item[\"question\"],\n                    \"answers\": item[\"answers\"],\n                })\n        return samples\n\n    from datasets import load_dataset\n\n    dataset_name = config.get(\"name\", \"google-research-datasets/natural_questions\")\n    split = config.get(\"split\", \"validation\")\n\n    ds = load_dataset(dataset_name, split=f\"{split}[:{num_samples}]\", streaming=False)\n\n    samples = []\n    for item in ds:\n        question = item.get(\"question\", \"\")\n        if isinstance(question, dict):\n            question = question.get(\"text\", \"\")\n\n        context = item.get(\"context\", item.get(\"passage\", \"\"))\n\n        if \"answers\" in item:\n            ans = item[\"answers\"]\n            if isinstance(ans, dict):\n                answers = ans.get(\"text\", [])\n            elif isinstance(ans, list):\n                answers = ans\n            else:\n                answers = [str(ans)]\n        elif \"answer\" in item:\n            ans = item[\"answer\"]\n            answers = ans if isinstance(ans, list) else [ans]\n        else:\n            answers = []\n\n        if context and question:\n            samples.append(\n                {\"context\": context, \"question\": question, \"answers\": answers}\n            )\n\n    return samples\n\n\ndef run_evaluation(config_path: str, gpu: str = \"cuda:0\") -> Dict:\n    with open(config_path) as f:\n        config = yaml.safe_load(f)\n\n    device = torch.device(gpu)\n\n    # Load model\n    model_name = config[\"model\"][\"name\"]\n    dtype = getattr(torch, config[\"model\"].get(\"dtype\", \"float16\"))\n\n    print(f\"Loading model: {model_name}\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_name,\n        dtype=dtype,\n        attn_implementation=\"eager\",\n        device_map=gpu,\n    )\n    model.eval()\n\n    patch_model_for_nope(model)\n\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    # Load dataset\n    num_samples = config[\"dataset\"].get(\"num_samples\", 500)\n    samples = load_dataset_samples(config[\"dataset\"], num_samples)\n    print(f\"Loaded {len(samples)} samples\")\n\n    # Pipeline config\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n    pipeline_config = {\n        \"chunk_size\": config[\"chunking\"][\"chunk_size\"],\n        \"block_size\": config[\"chunking\"][\"block_size\"],\n        \"total_budget\": config[\"budget\"][\"total_recomputation\"],\n        \"beta\": config[\"cegr\"][\"beta\"],\n        \"head_dim\": head_dim,\n        \"max_bits\": config[\"compression\"][\"max_bits\"],\n        \"max_new_tokens\": config[\"evaluation\"].get(\"max_new_tokens\", 32),\n    }\n\n    pipeline = CompressLinkPipeline(model, tokenizer, pipeline_config)\n\n    # Run evaluation\n    eval_configs = config[\"evaluation\"][\"configs\"]\n    ratios = config[\"compression\"][\"ratios\"]\n\n    results = {}\n\n    for cfg_name in eval_configs:\n        run_ratios = [0] if cfg_name == \"E\" else ratios\n\n        for ratio in run_ratios:\n            run_key = f\"{cfg_name}_{'baseline' if ratio == 0 else f'{ratio}x'}\"\n            print(f\"\\nRunning config: {run_key}\")\n\n            ems, f1s, latencies = [], [], []\n\n            for idx, sample in enumerate(samples):\n                ctx_enc = tokenizer(\n                    f\"Context: {sample['context']}\\n\\n\",\n                    return_tensors=\"pt\",\n                    truncation=True,\n                    max_length=2048,\n                )\n                q_enc = tokenizer(\n                    f\"Question: {sample['question']}\\nAnswer:\",\n                    return_tensors=\"pt\",\n                    add_special_tokens=False,\n                )\n\n                t0 = time.time()\n                try:\n                    result = pipeline.run_single(\n                        context_ids=ctx_enc.input_ids,\n                        query_ids=q_enc.input_ids,\n                        config_name=cfg_name,\n                        compression_ratio=max(ratio, 1),\n                    )\n                    pred = result[\"generated_text\"].split(\"\\n\")[0].strip()\n                except Exception as e:\n                    print(f\"  Sample {idx} error: {e}\")\n                    pred = \"\"\n                latency = time.time() - t0\n\n                em = compute_em(pred, sample[\"answers\"])\n                f1 = compute_f1(pred, sample[\"answers\"])\n\n                ems.append(em)\n                f1s.append(f1)\n                latencies.append(latency)\n\n                if (idx + 1) % 50 == 0:\n                    print(\n                        f\"  {idx+1}/{len(samples)}: \"\n                        f\"EM={sum(ems)/len(ems):.3f}, F1={sum(f1s)/len(f1s):.3f}\"\n                    )\n\n            results[run_key] = {\n                \"config\": cfg_name,\n                \"compression_ratio\": ratio,\n                \"em\": sum(ems) / len(ems),\n                \"f1\": sum(f1s) / len(f1s),\n                \"avg_latency\": sum(latencies) / len(latencies),\n                \"num_samples\": len(samples),\n            }\n            print(\n                f\"  Final: EM={results[run_key]['em']:.3f}, \"\n                f\"F1={results[run_key]['f1']:.3f}\"\n            )\n\n    # Save results\n    output_dir = Path(config[\"output\"][\"results_dir\"])\n    output_dir.mkdir(parents=True, exist_ok=True)\n    output_path = output_dir / \"mvp_results.json\"\n\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\nResults saved to {output_path}\")\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"CompressLink MVP Evaluation\")\n    parser.add_argument(\"--config\", type=str, default=\"configs/mvp_config.yaml\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n    args = parser.parse_args()\n\n    run_evaluation(args.config, args.gpu)\n",
+                "numLines": 244,
+                "startLine": 1,
+                "totalLines": 244
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GhqeVHuLwz8PbQFP2EMrxs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "command": "cat /root/autodl-tmp/compresslink/compresslink/eval_runner.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "e99f13a5-aac9-4ec7-a0fd-66c9515e08f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJnerjiYAqM7wG5qHSNiBN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3433,
+                "cache_read_input_tokens": 23022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3433
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T07:45:59.297Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GhqeVHuLwz8PbQFP2EMrxs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MVP evaluation script: run CompressLink configs and report EM/F1 metrics.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport re\\\\nimport string\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom typing import List, Dict\\\\n\\\\nimport torch\\\\nimport yaml\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nfrom .nope_attention import patch_model_for_nope\\\\nfrom .pipeline import CompressLinkPipeline\\\\n\\\\n\\\\ndef normalize_answer(s: str) -> str:\\\\n    s = s.lower()\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\b(a|an|the)\\\\\\\\b\\\\\\\", \\\\\\\" \\\\\\\", s)\\\\n    s = s.translate(str.maketrans(\\\\\\\"\\\\\\\", \\\\\\\"\\\\\\\", string.punctuation))\\\\n    s = \\\\\\\" \\\\\\\".join(s.split())\\\\n    return s.strip()\\\\n\\\\n\\\\ndef compute_em(prediction: str, ground_truths: List[str]) -> float:\\\\n    pred_norm = normalize_answer(prediction)\\\\n    return float(any(normalize_answer(gt) == pred_norm for gt in ground_truths))\\\\n\\\\n\\\\ndef compute_f1(prediction: str, ground_truths: List[str]) -> float:\\\\n    pred_tokens = normalize_answer(prediction).split()\\\\n    if not pred_tokens:\\\\n        return 0.0\\\\n\\\\n    best_f1 = 0.0\\\\n    for gt in ground_truths:\\\\n        gt_tokens = normalize_answer(gt).split()\\\\n        if not gt_tokens:\\\\n            continue\\\\n        common = Counter(pred_tokens) & Counter(gt_tokens)\\\\n        num_same = sum(common.values())\\\\n        if num_same == 0:\\\\n            continue\\\\n        precision = num_same / len(pred_tokens)\\\\n        recall = num_same / len(gt_tokens)\\\\n        f1 = 2 * precision * recall / (precision + recall)\\\\n        best_f1 = max(best_f1, f1)\\\\n\\\\n    return best_f1\\\\n\\\\n\\\\ndef load_dataset_samples(config: dict, num_samples: int) -> List[Dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load evaluation samples with context + question + answers.\\\\n\\\\n    Prefers pre-processed JSONL (from prepare_nq_data.py) over raw HF dataset\\\\n    since NQ requires HTML parsing for context extraction.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    jsonl_path = config.get(\\\\\\\"jsonl_path\\\\\\\")\\\\n    if jsonl_path and Path(jsonl_path).exists():\\\\n        samples = []\\\\n        with open(jsonl_path) as f:\\\\n            for line in f:\\\\n                if len(samples) >= num_samples:\\\\n                    break\\\\n                item = json.loads(line)\\\\n                samples.append({\\\\n                    \\\\\\\"context\\\\\\\": item[\\\\\\\"context\\\\\\\"],\\\\n                    \\\\\\\"question\\\\\\\": item[\\\\\\\"question\\\\\\\"],\\\\n                    \\\\\\\"answers\\\\\\\": item[\\\\\\\"answers\\\\\\\"],\\\\n                })\\\\n        return samples\\\\n\\\\n    from datasets import load_dataset\\\\n\\\\n    dataset_name = config.get(\\\\\\\"name\\\\\\\", \\\\\\\"google-research-datasets/natural_questions\\\\\\\")\\\\n    split = config.get(\\\\\\\"split\\\\\\\", \\\\\\\"validation\\\\\\\")\\\\n\\\\n    ds = load_dataset(dataset_name, split=f\\\\\\\"{split}[:{num_samples}]\\\\\\\", streaming=False)\\\\n\\\\n    samples = []\\\\n    for item in ds:\\\\n        question = item.get(\\\\\\\"question\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if isinstance(question, dict):\\\\n            question = question.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\\n        context = item.get(\\\\\\\"context\\\\\\\", item.get(\\\\\\\"passage\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n\\\\n        if \\\\\\\"answers\\\\\\\" in item:\\\\n            ans = item[\\\\\\\"answers\\\\\\\"]\\\\n            if isinstance(ans, dict):\\\\n                answers = ans.get(\\\\\\\"text\\\\\\\", [])\\\\n            elif isinstance(ans, list):\\\\n                answers = ans\\\\n            else:\\\\n                answers = [str(ans)]\\\\n        elif \\\\\\\"answer\\\\\\\" in item:\\\\n            ans = item[\\\\\\\"answer\\\\\\\"]\\\\n            answers = ans if isinstance(ans, list) else [ans]\\\\n        else:\\\\n            answers = []\\\\n\\\\n        if context and question:\\\\n            samples.append(\\\\n                {\\\\\\\"context\\\\\\\": context, \\\\\\\"question\\\\\\\": question, \\\\\\\"answers\\\\\\\": answers}\\\\n            )\\\\n\\\\n    return samples\\\\n\\\\n\\\\ndef run_evaluation(config_path: str, gpu: str = \\\\\\\"cuda:0\\\\\\\") -> Dict:\\\\n    with open(config_path) as f:\\\\n        config = yaml.safe_load(f)\\\\n\\\\n    device = torch.device(gpu)\\\\n\\\\n    # Load model\\\\n    model_name = config[\\\\\\\"model\\\\\\\"][\\\\\\\"name\\\\\\\"]\\\\n    dtype = getattr(torch, config[\\\\\\\"model\\\\\\\"].get(\\\\\\\"dtype\\\\\\\", \\\\\\\"float16\\\\\\\"))\\\\n\\\\n    print(f\\\\\\\"Loading model: {model_name}\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_name,\\\\n        dtype=dtype,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n        device_map=gpu,\\\\n    )\\\\n    model.eval()\\\\n\\\\n    patch_model_for_nope(model)\\\\n\\\\n    if toke\\\\n\\\\n... [截断: 输出过长，省略 554 字符] ...\\\\n\\\\nputation\\\\\\\"],\\\\n        \\\\\\\"beta\\\\\\\": config[\\\\\\\"cegr\\\\\\\"][\\\\\\\"beta\\\\\\\"],\\\\n        \\\\\\\"head_dim\\\\\\\": head_dim,\\\\n        \\\\\\\"max_bits\\\\\\\": config[\\\\\\\"compression\\\\\\\"][\\\\\\\"max_bits\\\\\\\"],\\\\n        \\\\\\\"max_new_tokens\\\\\\\": config[\\\\\\\"evaluation\\\\\\\"].get(\\\\\\\"max_new_tokens\\\\\\\", 32),\\\\n    }\\\\n\\\\n    pipeline = CompressLinkPipeline(model, tokenizer, pipeline_config)\\\\n\\\\n    # Run evaluation\\\\n    eval_configs = config[\\\\\\\"evaluation\\\\\\\"][\\\\\\\"configs\\\\\\\"]\\\\n    ratios = config[\\\\\\\"compression\\\\\\\"][\\\\\\\"ratios\\\\\\\"]\\\\n\\\\n    results = {}\\\\n\\\\n    for cfg_name in eval_configs:\\\\n        run_ratios = [0] if cfg_name == \\\\\\\"E\\\\\\\" else ratios\\\\n\\\\n        for ratio in run_ratios:\\\\n            run_key = f\\\\\\\"{cfg_name}_{'baseline' if ratio == 0 else f'{ratio}x'}\\\\\\\"\\\\n            print(f\\\\\\\"\\\\\\\\nRunning config: {run_key}\\\\\\\")\\\\n\\\\n            ems, f1s, latencies = [], [], []\\\\n\\\\n            for idx, sample in enumerate(samples):\\\\n                sys_content = \\\\\\\"Answer the question based on the given context. Provide ONLY the answer as a short phrase.\\\\\\\"\\\\n                user_content = f\\\\\\\"Context: {sample['context']}\\\\\\\\n\\\\\\\\nQuestion: {sample['question']}\\\\\\\"\\\\n                messages = [\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": sys_content},\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_content},\\\\n                ]\\\\n                full_text = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)\\\\n                split_marker = f\\\\\\\"Question: {sample['question']}\\\\\\\"\\\\n                split_idx = full_text.index(split_marker)\\\\n                ctx_text = full_text[:split_idx]\\\\n                q_text = full_text[split_idx:]\\\\n                ctx_enc = tokenizer(ctx_text, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=4096, add_special_tokens=False)\\\\n                q_enc = tokenizer(q_text, return_tensors=\\\\\\\"pt\\\\\\\", add_special_tokens=False)\\\\n\\\\n                t0 = time.time()\\\\n                try:\\\\n                    result = pipeline.run_single(\\\\n                        context_ids=ctx_enc.input_ids,\\\\n                        query_ids=q_enc.input_ids,\\\\n                        config_name=cfg_name,\\\\n                        compression_ratio=max(ratio, 1),\\\\n                    )\\\\n                    pred = result[\\\\\\\"generated_text\\\\\\\"].split(\\\\\\\"\\\\\\\\n\\\\\\\")[0].strip()\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"  Sample {idx} error: {e}\\\\\\\")\\\\n                    pred = \\\\\\\"\\\\\\\"\\\\n                latency = time.time() - t0\\\\n\\\\n                em = compute_em(pred, sample[\\\\\\\"answers\\\\\\\"])\\\\n                f1 = compute_f1(pred, sample[\\\\\\\"answers\\\\\\\"])\\\\n\\\\n                ems.append(em)\\\\n                f1s.append(f1)\\\\n                latencies.append(latency)\\\\n\\\\n                if idx < 5:\\\\n                    print(f\\\\\\\"  [{idx}] pred={repr(pred[:80])} gold={sample['answers']} em={em:.1f} f1={f1:.3f}\\\\\\\")\\\\n\\\\n                if (idx + 1) % 50 == 0:\\\\n                    print(\\\\n                        f\\\\\\\"  {idx+1}/{len(samples)}: \\\\\\\"\\\\n                        f\\\\\\\"EM={sum(ems)/len(ems):.3f}, F1={sum(f1s)/len(f1s):.3f}\\\\\\\"\\\\n                    )\\\\n\\\\n            results[run_key] = {\\\\n                \\\\\\\"config\\\\\\\": cfg_name,\\\\n                \\\\\\\"compression_ratio\\\\\\\": ratio,\\\\n                \\\\\\\"em\\\\\\\": sum(ems) / len(ems),\\\\n                \\\\\\\"f1\\\\\\\": sum(f1s) / len(f1s),\\\\n                \\\\\\\"avg_latency\\\\\\\": sum(latencies) / len(latencies),\\\\n                \\\\\\\"num_samples\\\\\\\": len(samples),\\\\n            }\\\\n            print(\\\\n                f\\\\\\\"  Final: EM={results[run_key]['em']:.3f}, \\\\\\\"\\\\n                f\\\\\\\"F1={results[run_key]['f1']:.3f}\\\\\\\"\\\\n            )\\\\n\\\\n    # Save results\\\\n    output_dir = Path(config[\\\\\\\"output\\\\\\\"][\\\\\\\"results_dir\\\\\\\"])\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    output_path = output_dir / \\\\\\\"mvp_results.json\\\\\\\"\\\\n\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\")\\\\n    return results\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"CompressLink MVP Evaluation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--config\\\\\\\", type=str, default=\\\\\\\"configs/mvp_config.yaml\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    run_evaluation(args.config, args.gpu)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "67780ce7-9d3d-4c1a-8a01-2e33a2e47e57",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MVP evaluation script: run CompressLink configs and report EM/F1 metrics.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport re\\\\nimport string\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom typing import List, Dict\\\\n\\\\nimport torch\\\\nimport yaml\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nfrom .nope_attention import patch_model_for_nope\\\\nfrom .pipeline import CompressLinkPipeline\\\\n\\\\n\\\\ndef normalize_answer(s: str) -> str:\\\\n    s = s.lower()\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\b(a|an|the)\\\\\\\\b\\\\\\\", \\\\\\\" \\\\\\\", s)\\\\n    s = s.translate(str.maketrans(\\\\\\\"\\\\\\\", \\\\\\\"\\\\\\\", string.punctuation))\\\\n    s = \\\\\\\" \\\\\\\".join(s.split())\\\\n    return s.strip()\\\\n\\\\n\\\\ndef compute_em(prediction: str, ground_truths: List[str]) -> float:\\\\n    pred_norm = normalize_answer(prediction)\\\\n    return float(any(normalize_answer(gt) == pred_norm for gt in ground_truths))\\\\n\\\\n\\\\ndef compute_f1(prediction: str, ground_truths: List[str]) -> float:\\\\n    pred_tokens = normalize_answer(prediction).split()\\\\n    if not pred_tokens:\\\\n        return 0.0\\\\n\\\\n    best_f1 = 0.0\\\\n    for gt in ground_truths:\\\\n        gt_tokens = normalize_answer(gt).split()\\\\n        if not gt_tokens:\\\\n            continue\\\\n        common = Counter(pred_tokens) & Counter(gt_tokens)\\\\n        num_same = sum(common.values())\\\\n        if num_same == 0:\\\\n            continue\\\\n        precision = num_same / len(pred_tokens)\\\\n        recall = num_same / len(gt_tokens)\\\\n        f1 = 2 * precision * recall / (precision + recall)\\\\n        best_f1 = max(best_f1, f1)\\\\n\\\\n    return best_f1\\\\n\\\\n\\\\ndef load_dataset_samples(config: dict, num_samples: int) -> List[Dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load evaluation samples with context + question + answers.\\\\n\\\\n    Prefers pre-processed JSONL (from prepare_nq_data.py) over raw HF dataset\\\\n    since NQ requires HTML parsing for context extraction.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    jsonl_path = config.get(\\\\\\\"jsonl_path\\\\\\\")\\\\n    if jsonl_path and Path(jsonl_path).exists():\\\\n        samples = []\\\\n        with open(jsonl_path) as f:\\\\n            for line in f:\\\\n                if len(samples) >= num_samples:\\\\n                    break\\\\n                item = json.loads(line)\\\\n                samples.append({\\\\n                    \\\\\\\"context\\\\\\\": item[\\\\\\\"context\\\\\\\"],\\\\n                    \\\\\\\"question\\\\\\\": item[\\\\\\\"question\\\\\\\"],\\\\n                    \\\\\\\"answers\\\\\\\": item[\\\\\\\"answers\\\\\\\"],\\\\n                })\\\\n        return samples\\\\n\\\\n    from datasets import load_dataset\\\\n\\\\n    dataset_name = config.get(\\\\\\\"name\\\\\\\", \\\\\\\"google-research-datasets/natural_questions\\\\\\\")\\\\n    split = config.get(\\\\\\\"split\\\\\\\", \\\\\\\"validation\\\\\\\")\\\\n\\\\n    ds = load_dataset(dataset_name, split=f\\\\\\\"{split}[:{num_samples}]\\\\\\\", streaming=False)\\\\n\\\\n    samples = []\\\\n    for item in ds:\\\\n        question = item.get(\\\\\\\"question\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        if isinstance(question, dict):\\\\n            question = question.get(\\\\\\\"text\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\\n        context = item.get(\\\\\\\"context\\\\\\\", item.get(\\\\\\\"passage\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n\\\\n        if \\\\\\\"answers\\\\\\\" in item:\\\\n            ans = item[\\\\\\\"answers\\\\\\\"]\\\\n            if isinstance(ans, dict):\\\\n                answers = ans.get(\\\\\\\"text\\\\\\\", [])\\\\n            elif isinstance(ans, list):\\\\n                answers = ans\\\\n            else:\\\\n                answers = [str(ans)]\\\\n        elif \\\\\\\"answer\\\\\\\" in item:\\\\n            ans = item[\\\\\\\"answer\\\\\\\"]\\\\n            answers = ans if isinstance(ans, list) else [ans]\\\\n        else:\\\\n            answers = []\\\\n\\\\n        if context and question:\\\\n            samples.append(\\\\n                {\\\\\\\"context\\\\\\\": context, \\\\\\\"question\\\\\\\": question, \\\\\\\"answers\\\\\\\": answers}\\\\n            )\\\\n\\\\n    return samples\\\\n\\\\n\\\\ndef run_evaluation(config_path: str, gpu: str = \\\\\\\"cuda:0\\\\\\\") -> Dict:\\\\n    with open(config_path) as f:\\\\n        config = yaml.safe_load(f)\\\\n\\\\n    device = torch.device(gpu)\\\\n\\\\n    # Load model\\\\n    model_name = config[\\\\\\\"model\\\\\\\"][\\\\\\\"name\\\\\\\"]\\\\n    dtype = getattr(torch, config[\\\\\\\"model\\\\\\\"].get(\\\\\\\"dtype\\\\\\\", \\\\\\\"float16\\\\\\\"))\\\\n\\\\n    print(f\\\\\\\"Loading model: {model_name}\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        model_name,\\\\n        dtype=dtype,\\\\n        attn_implementation=\\\\\\\"eager\\\\\\\",\\\\n        device_map=gpu,\\\\n    )\\\\n    model.eval()\\\\n\\\\n    patch_model_for_nope(model)\\\\n\\\\n    if toke\\\\n\\\\n... [截断: 输出过长，省略 554 字符] ...\\\\n\\\\nputation\\\\\\\"],\\\\n        \\\\\\\"beta\\\\\\\": config[\\\\\\\"cegr\\\\\\\"][\\\\\\\"beta\\\\\\\"],\\\\n        \\\\\\\"head_dim\\\\\\\": head_dim,\\\\n        \\\\\\\"max_bits\\\\\\\": config[\\\\\\\"compression\\\\\\\"][\\\\\\\"max_bits\\\\\\\"],\\\\n        \\\\\\\"max_new_tokens\\\\\\\": config[\\\\\\\"evaluation\\\\\\\"].get(\\\\\\\"max_new_tokens\\\\\\\", 32),\\\\n    }\\\\n\\\\n    pipeline = CompressLinkPipeline(model, tokenizer, pipeline_config)\\\\n\\\\n    # Run evaluation\\\\n    eval_configs = config[\\\\\\\"evaluation\\\\\\\"][\\\\\\\"configs\\\\\\\"]\\\\n    ratios = config[\\\\\\\"compression\\\\\\\"][\\\\\\\"ratios\\\\\\\"]\\\\n\\\\n    results = {}\\\\n\\\\n    for cfg_name in eval_configs:\\\\n        run_ratios = [0] if cfg_name == \\\\\\\"E\\\\\\\" else ratios\\\\n\\\\n        for ratio in run_ratios:\\\\n            run_key = f\\\\\\\"{cfg_name}_{'baseline' if ratio == 0 else f'{ratio}x'}\\\\\\\"\\\\n            print(f\\\\\\\"\\\\\\\\nRunning config: {run_key}\\\\\\\")\\\\n\\\\n            ems, f1s, latencies = [], [], []\\\\n\\\\n            for idx, sample in enumerate(samples):\\\\n                sys_content = \\\\\\\"Answer the question based on the given context. Provide ONLY the answer as a short phrase.\\\\\\\"\\\\n                user_content = f\\\\\\\"Context: {sample['context']}\\\\\\\\n\\\\\\\\nQuestion: {sample['question']}\\\\\\\"\\\\n                messages = [\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": sys_content},\\\\n                    {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": user_content},\\\\n                ]\\\\n                full_text = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)\\\\n                split_marker = f\\\\\\\"Question: {sample['question']}\\\\\\\"\\\\n                split_idx = full_text.index(split_marker)\\\\n                ctx_text = full_text[:split_idx]\\\\n                q_text = full_text[split_idx:]\\\\n                ctx_enc = tokenizer(ctx_text, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=4096, add_special_tokens=False)\\\\n                q_enc = tokenizer(q_text, return_tensors=\\\\\\\"pt\\\\\\\", add_special_tokens=False)\\\\n\\\\n                t0 = time.time()\\\\n                try:\\\\n                    result = pipeline.run_single(\\\\n                        context_ids=ctx_enc.input_ids,\\\\n                        query_ids=q_enc.input_ids,\\\\n                        config_name=cfg_name,\\\\n                        compression_ratio=max(ratio, 1),\\\\n                    )\\\\n                    pred = result[\\\\\\\"generated_text\\\\\\\"].split(\\\\\\\"\\\\\\\\n\\\\\\\")[0].strip()\\\\n                except Exception as e:\\\\n                    print(f\\\\\\\"  Sample {idx} error: {e}\\\\\\\")\\\\n                    pred = \\\\\\\"\\\\\\\"\\\\n                latency = time.time() - t0\\\\n\\\\n                em = compute_em(pred, sample[\\\\\\\"answers\\\\\\\"])\\\\n                f1 = compute_f1(pred, sample[\\\\\\\"answers\\\\\\\"])\\\\n\\\\n                ems.append(em)\\\\n                f1s.append(f1)\\\\n                latencies.append(latency)\\\\n\\\\n                if idx < 5:\\\\n                    print(f\\\\\\\"  [{idx}] pred={repr(pred[:80])} gold={sample['answers']} em={em:.1f} f1={f1:.3f}\\\\\\\")\\\\n\\\\n                if (idx + 1) % 50 == 0:\\\\n                    print(\\\\n                        f\\\\\\\"  {idx+1}/{len(samples)}: \\\\\\\"\\\\n                        f\\\\\\\"EM={sum(ems)/len(ems):.3f}, F1={sum(f1s)/len(f1s):.3f}\\\\\\\"\\\\n                    )\\\\n\\\\n            results[run_key] = {\\\\n                \\\\\\\"config\\\\\\\": cfg_name,\\\\n                \\\\\\\"compression_ratio\\\\\\\": ratio,\\\\n                \\\\\\\"em\\\\\\\": sum(ems) / len(ems),\\\\n                \\\\\\\"f1\\\\\\\": sum(f1s) / len(f1s),\\\\n                \\\\\\\"avg_latency\\\\\\\": sum(latencies) / len(latencies),\\\\n                \\\\\\\"num_samples\\\\\\\": len(samples),\\\\n            }\\\\n            print(\\\\n                f\\\\\\\"  Final: EM={results[run_key]['em']:.3f}, \\\\\\\"\\\\n                f\\\\\\\"F1={results[run_key]['f1']:.3f}\\\\\\\"\\\\n            )\\\\n\\\\n    # Save results\\\\n    output_dir = Path(config[\\\\\\\"output\\\\\\\"][\\\\\\\"results_dir\\\\\\\"])\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    output_path = output_dir / \\\\\\\"mvp_results.json\\\\\\\"\\\\n\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\")\\\\n    return results\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"CompressLink MVP Evaluation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--config\\\\\\\", type=str, default=\\\\\\\"configs/mvp_config.yaml\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    run_evaluation(args.config, args.gpu)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MVP evaluation script: run CompressLink configs and report EM/F1 metrics.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport re\\nimport string\\nimport time\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom typing import List, Dict\\n\\nimport torch\\nimport yaml\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nfrom .nope_attention import patch_model_for_nope\\nfrom .pipeline import CompressLinkPipeline\\n\\n\\ndef normalize_answer(s: str) -> str:\\n    s = s.lower()\\n    s = re.sub(r\\\"\\\\b(a|an|the)\\\\b\\\", \\\" \\\", s)\\n    s = s.translate(str.maketrans(\\\"\\\", \\\"\\\", string.punctuation))\\n    s = \\\" \\\".join(s.split())\\n    return s.strip()\\n\\n\\ndef compute_em(prediction: str, ground_truths: List[str]) -> float:\\n    pred_norm = normalize_answer(prediction)\\n    return float(any(normalize_answer(gt) == pred_norm for gt in ground_truths))\\n\\n\\ndef compute_f1(prediction: str, ground_truths: List[str]) -> float:\\n    pred_tokens = normalize_answer(prediction).split()\\n    if not pred_tokens:\\n        return 0.0\\n\\n    best_f1 = 0.0\\n    for gt in ground_truths:\\n        gt_tokens = normalize_answer(gt).split()\\n        if not gt_tokens:\\n            continue\\n        common = Counter(pred_tokens) & Counter(gt_tokens)\\n        num_same = sum(common.values())\\n        if num_same == 0:\\n            continue\\n        precision = num_same / len(pred_tokens)\\n        recall = num_same / len(gt_tokens)\\n        f1 = 2 * precision * recall / (precision + recall)\\n        best_f1 = max(best_f1, f1)\\n\\n    return best_f1\\n\\n\\ndef load_dataset_samples(config: dict, num_samples: int) -> List[Dict]:\\n    \\\"\\\"\\\"Load evaluation samples with context + question + answers.\\n\\n    Prefers pre-processed JSONL (from prepare_nq_data.py) over raw HF dataset\\n    since NQ requires HTML parsing for context extraction.\\n    \\\"\\\"\\\"\\n    jsonl_path = config.get(\\\"jsonl_path\\\")\\n    if jsonl_path and Path(jsonl_path).exists():\\n        samples = []\\n        with open(jsonl_path) as f:\\n            for line in f:\\n                if len(samples) >= num_samples:\\n                    break\\n                item = json.loads(line)\\n                samples.append({\\n                    \\\"context\\\": item[\\\"context\\\"],\\n                    \\\"question\\\": item[\\\"question\\\"],\\n                    \\\"answers\\\": item[\\\"answers\\\"],\\n                })\\n        return samples\\n\\n    from datasets import load_dataset\\n\\n    dataset_name = config.get(\\\"name\\\", \\\"google-research-datasets/natural_questions\\\")\\n    split = config.get(\\\"split\\\", \\\"validation\\\")\\n\\n    ds = load_dataset(dataset_name, split=f\\\"{split}[:{num_samples}]\\\", streaming=False)\\n\\n    samples = []\\n    for item in ds:\\n        question = item.get(\\\"question\\\", \\\"\\\")\\n        if isinstance(question, dict):\\n            question = question.get(\\\"text\\\", \\\"\\\")\\n\\n        context = item.get(\\\"context\\\", item.get(\\\"passage\\\", \\\"\\\"))\\n\\n        if \\\"answers\\\" in item:\\n            ans = item[\\\"answers\\\"]\\n            if isinstance(ans, dict):\\n                answers = ans.get(\\\"text\\\", [])\\n            elif isinstance(ans, list):\\n                answers = ans\\n            else:\\n                answers = [str(ans)]\\n        elif \\\"answer\\\" in item:\\n            ans = item[\\\"answer\\\"]\\n            answers = ans if isinstance(ans, list) else [ans]\\n        else:\\n            answers = []\\n\\n        if context and question:\\n            samples.append(\\n                {\\\"context\\\": context, \\\"question\\\": question, \\\"answers\\\": answers}\\n            )\\n\\n    return samples\\n\\n\\ndef run_evaluation(config_path: str, gpu: str = \\\"cuda:0\\\") -> Dict:\\n    with open(config_path) as f:\\n        config = yaml.safe_load(f)\\n\\n    device = torch.device(gpu)\\n\\n    # Load model\\n    model_name = config[\\\"model\\\"][\\\"name\\\"]\\n    dtype = getattr(torch, config[\\\"model\\\"].get(\\\"dtype\\\", \\\"float16\\\"))\\n\\n    print(f\\\"Loading model: {model_name}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        model_name,\\n        dtype=dtype,\\n        attn_implementation=\\\"eager\\\",\\n        device_map=gpu,\\n    )\\n    model.eval()\\n\\n    patch_model_for_nope(model)\\n\\n    if toke\\n\\n... [截断: 输出过长，省略 554 字符] ...\\n\\nputation\\\"],\\n        \\\"beta\\\": config[\\\"cegr\\\"][\\\"beta\\\"],\\n        \\\"head_dim\\\": head_dim,\\n        \\\"max_bits\\\": config[\\\"compression\\\"][\\\"max_bits\\\"],\\n        \\\"max_new_tokens\\\": config[\\\"evaluation\\\"].get(\\\"max_new_tokens\\\", 32),\\n    }\\n\\n    pipeline = CompressLinkPipeline(model, tokenizer, pipeline_config)\\n\\n    # Run evaluation\\n    eval_configs = config[\\\"evaluation\\\"][\\\"configs\\\"]\\n    ratios = config[\\\"compression\\\"][\\\"ratios\\\"]\\n\\n    results = {}\\n\\n    for cfg_name in eval_configs:\\n        run_ratios = [0] if cfg_name == \\\"E\\\" else ratios\\n\\n        for ratio in run_ratios:\\n            run_key = f\\\"{cfg_name}_{'baseline' if ratio == 0 else f'{ratio}x'}\\\"\\n            print(f\\\"\\\\nRunning config: {run_key}\\\")\\n\\n            ems, f1s, latencies = [], [], []\\n\\n            for idx, sample in enumerate(samples):\\n                sys_content = \\\"Answer the question based on the given context. Provide ONLY the answer as a short phrase.\\\"\\n                user_content = f\\\"Context: {sample['context']}\\\\n\\\\nQuestion: {sample['question']}\\\"\\n                messages = [\\n                    {\\\"role\\\": \\\"system\\\", \\\"content\\\": sys_content},\\n                    {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_content},\\n                ]\\n                full_text = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)\\n                split_marker = f\\\"Question: {sample['question']}\\\"\\n                split_idx = full_text.index(split_marker)\\n                ctx_text = full_text[:split_idx]\\n                q_text = full_text[split_idx:]\\n                ctx_enc = tokenizer(ctx_text, return_tensors=\\\"pt\\\", truncation=True, max_length=4096, add_special_tokens=False)\\n                q_enc = tokenizer(q_text, return_tensors=\\\"pt\\\", add_special_tokens=False)\\n\\n                t0 = time.time()\\n                try:\\n                    result = pipeline.run_single(\\n                        context_ids=ctx_enc.input_ids,\\n                        query_ids=q_enc.input_ids,\\n                        config_name=cfg_name,\\n                        compression_ratio=max(ratio, 1),\\n                    )\\n                    pred = result[\\\"generated_text\\\"].split(\\\"\\\\n\\\")[0].strip()\\n                except Exception as e:\\n                    print(f\\\"  Sample {idx} error: {e}\\\")\\n                    pred = \\\"\\\"\\n                latency = time.time() - t0\\n\\n                em = compute_em(pred, sample[\\\"answers\\\"])\\n                f1 = compute_f1(pred, sample[\\\"answers\\\"])\\n\\n                ems.append(em)\\n                f1s.append(f1)\\n                latencies.append(latency)\\n\\n                if idx < 5:\\n                    print(f\\\"  [{idx}] pred={repr(pred[:80])} gold={sample['answers']} em={em:.1f} f1={f1:.3f}\\\")\\n\\n                if (idx + 1) % 50 == 0:\\n                    print(\\n                        f\\\"  {idx+1}/{len(samples)}: \\\"\\n                        f\\\"EM={sum(ems)/len(ems):.3f}, F1={sum(f1s)/len(f1s):.3f}\\\"\\n                    )\\n\\n            results[run_key] = {\\n                \\\"config\\\": cfg_name,\\n                \\\"compression_ratio\\\": ratio,\\n                \\\"em\\\": sum(ems) / len(ems),\\n                \\\"f1\\\": sum(f1s) / len(f1s),\\n                \\\"avg_latency\\\": sum(latencies) / len(latencies),\\n                \\\"num_samples\\\": len(samples),\\n            }\\n            print(\\n                f\\\"  Final: EM={results[run_key]['em']:.3f}, \\\"\\n                f\\\"F1={results[run_key]['f1']:.3f}\\\"\\n            )\\n\\n    # Save results\\n    output_dir = Path(config[\\\"output\\\"][\\\"results_dir\\\"])\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    output_path = output_dir / \\\"mvp_results.json\\\"\\n\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n    return results\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    parser = argparse.ArgumentParser(description=\\\"CompressLink MVP Evaluation\\\")\\n    parser.add_argument(\\\"--config\\\", type=str, default=\\\"configs/mvp_config.yaml\\\")\\n    parser.add_argument(\\\"--gpu\\\", type=str, default=\\\"cuda:0\\\")\\n    args = parser.parse_args()\\n\\n    run_evaluation(args.config, args.gpu)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me parse the server version carefully. The key differences are in the `for idx, sample in enumerate(samples):` block. Let me compare:\n\n**Local version (lines 172-183):**\n```python\n            for idx, sample in enumerate(samples):\n                ctx_enc = tokenizer(\n                    f\"Context: {sample['context']}\\n\\n\",\n                    return_tensors=\"pt\",\n                    truncation=True,\n                    max_length=2048,\n                )\n\n\n```\n\n**Server version:**\n```python\n            for idx, sample in enumerate(samples):\n                sys_content = \"Answer the question based on the given context. Provide ONLY the answer as a short phrase.\"\n                user_content = f\"Context: {sample['context']}\\n\\nQuestion: {sample['question']}\"\n                messages = [\n                    {\"role\": \"system\", \"content\": sys_content},\n                    {\"role\": \"user\", \"content\": user_content},\n                ]\n                full_text = tokenizer.apply_chat_template(messages, add_generation\n```\n\nBuilding the chat template... Adding debug output for the first few predictions...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "8179e816-d040-476e-a98b-6d18a9a7616c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmKokmFeywtdcz8SUtk16f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3225,
+                "cache_read_input_tokens": 26455,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3225
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "差异明确，有两处修改。同步到本地。\n\n**修改 1**: prompt 构建从 raw text 改为 `apply_chat_template`，max_length 从 2048 改为 4096。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "cb520ed3-e64f-443f-a9b5-6849f6885ce6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmKokmFeywtdcz8SUtk16f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3225,
+                "cache_read_input_tokens": 26455,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3225
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DyW6hAMJv864yszBy6WbLU",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/eval_runner.py",
+                "old_string": "            for idx, sample in enumerate(samples):\n                ctx_enc = tokenizer(\n                    f\"Context: {sample['context']}\\n\\n\",\n                    return_tensors=\"pt\",\n                    truncation=True,\n                    max_length=2048,\n                )\n                q_enc = tokenizer(\n                    f\"Question: {sample['question']}\\nAnswer:\",\n                    return_tensors=\"pt\",\n                    add_special_tokens=False,\n                )",
+                "new_string": "            for idx, sample in enumerate(samples):\n                sys_content = \"Answer the question based on the given context. Provide ONLY the answer as a short phrase.\"\n                user_content = f\"Context: {sample['context']}\\n\\nQuestion: {sample['question']}\"\n                messages = [\n                    {\"role\": \"system\", \"content\": sys_content},\n                    {\"role\": \"user\", \"content\": user_content},\n                ]\n                full_text = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)\n                split_marker = f\"Question: {sample['question']}\"\n                split_idx = full_text.index(split_marker)\n                ctx_text = full_text[:split_idx]\n                q_text = full_text[split_idx:]\n                ctx_enc = tokenizer(ctx_text, return_tensors=\"pt\", truncation=True, max_length=4096, add_special_tokens=False)\n                q_enc = tokenizer(q_text, return_tensors=\"pt\", add_special_tokens=False)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "ea7b0b64-1e2f-467a-bae5-e4652d414ebb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WmKokmFeywtdcz8SUtk16f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3225,
+                "cache_read_input_tokens": 26455,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3225
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T07:46:13.346Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DyW6hAMJv864yszBy6WbLU",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/eval_runner.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "fdd2df9b-10ca-4805-bd5c-26febf11d31d",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/eval_runner.py",
+              "oldString": "            for idx, sample in enumerate(samples):\n                ctx_enc = tokenizer(\n                    f\"Context: {sample['context']}\\n\\n\",\n                    return_tensors=\"pt\",\n                    truncation=True,\n                    max_length=2048,\n                )\n                q_enc = tokenizer(\n                    f\"Question: {sample['question']}\\nAnswer:\",\n                    return_tensors=\"pt\",\n                    add_special_tokens=False,\n                )",
+              "newString": "            for idx, sample in enumerate(samples):\n                sys_content = \"Answer the question based on the given context. Provide ONLY the answer as a short phrase.\"\n                user_content = f\"Context: {sample['context']}\\n\\nQuestion: {sample['question']}\"\n                messages = [\n                    {\"role\": \"system\", \"content\": sys_content},\n                    {\"role\": \"user\", \"content\": user_content},\n                ]\n                full_text = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)\n                split_marker = f\"Question: {sample['question']}\"\n                split_idx = full_text.index(split_marker)\n                ctx_text = full_text[:split_idx]\n                q_text = full_text[split_idx:]\n                ctx_enc = tokenizer(ctx_text, return_tensors=\"pt\", truncation=True, max_length=4096, add_special_tokens=False)\n                q_enc = tokenizer(q_text, return_tensors=\"pt\", add_special_tokens=False)",
+              "originalFile": "\"\"\"MVP evaluation script: run CompressLink configs and report EM/F1 metrics.\"\"\"\n\nimport argparse\nimport json\nimport re\nimport string\nimport time\nfrom collections import Counter\nfrom pathlib import Path\nfrom typing import List, Dict\n\nimport torch\nimport yaml\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nfrom .nope_attention import patch_model_for_nope\nfrom .pipeline import CompressLinkPipeline\n\n\ndef normalize_answer(s: str) -> str:\n    s = s.lower()\n    s = re.sub(r\"\\b(a|an|the)\\b\", \" \", s)\n    s = s.translate(str.maketrans(\"\", \"\", string.punctuation))\n    s = \" \".join(s.split())\n    return s.strip()\n\n\ndef compute_em(prediction: str, ground_truths: List[str]) -> float:\n    pred_norm = normalize_answer(prediction)\n    return float(any(normalize_answer(gt) == pred_norm for gt in ground_truths))\n\n\ndef compute_f1(prediction: str, ground_truths: List[str]) -> float:\n    pred_tokens = normalize_answer(prediction).split()\n    if not pred_tokens:\n        return 0.0\n\n    best_f1 = 0.0\n    for gt in ground_truths:\n        gt_tokens = normalize_answer(gt).split()\n        if not gt_tokens:\n            continue\n        common = Counter(pred_tokens) & Counter(gt_tokens)\n        num_same = sum(common.values())\n        if num_same == 0:\n            continue\n        precision = num_same / len(pred_tokens)\n        recall = num_same / len(gt_tokens)\n        f1 = 2 * precision * recall / (precision + recall)\n        best_f1 = max(best_f1, f1)\n\n    return best_f1\n\n\ndef load_dataset_samples(config: dict, num_samples: int) -> List[Dict]:\n    \"\"\"Load evaluation samples with context + question + answers.\n\n    Prefers pre-processed JSONL (from prepare_nq_data.py) over raw HF dataset\n    since NQ requires HTML parsing for context extraction.\n    \"\"\"\n    jsonl_path = config.get(\"jsonl_path\")\n    if jsonl_path and Path(jsonl_path).exists():\n        samples = []\n        with open(jsonl_path) as f:\n            for line in f:\n                if len(samples) >= num_samples:\n                    break\n                item = json.loads(line)\n                samples.append({\n                    \"context\": item[\"context\"],\n                    \"question\": item[\"question\"],\n                    \"answers\": item[\"answers\"],\n                })\n        return samples\n\n    from datasets import load_dataset\n\n    dataset_name = config.get(\"name\", \"google-research-datasets/natural_questions\")\n    split = config.get(\"split\", \"validation\")\n\n    ds = load_dataset(dataset_name, split=f\"{split}[:{num_samples}]\", streaming=False)\n\n    samples = []\n    for item in ds:\n        question = item.get(\"question\", \"\")\n        if isinstance(question, dict):\n            question = question.get(\"text\", \"\")\n\n        context = item.get(\"context\", item.get(\"passage\", \"\"))\n\n        if \"answers\" in item:\n            ans = item[\"answers\"]\n            if isinstance(ans, dict):\n                answers = ans.get(\"text\", [])\n            elif isinstance(ans, list):\n                answers = ans\n            else:\n                answers = [str(ans)]\n        elif \"answer\" in item:\n            ans = item[\"answer\"]\n            answers = ans if isinstance(ans, list) else [ans]\n        else:\n            answers = []\n\n        if context and question:\n            samples.append(\n                {\"context\": context, \"question\": question, \"answers\": answers}\n            )\n\n    return samples\n\n\ndef run_evaluation(config_path: str, gpu: str = \"cuda:0\") -> Dict:\n    with open(config_path) as f:\n        config = yaml.safe_load(f)\n\n    device = torch.device(gpu)\n\n    # Load model\n    model_name = config[\"model\"][\"name\"]\n    dtype = getattr(torch, config[\"model\"].get(\"dtype\", \"float16\"))\n\n    print(f\"Loading model: {model_name}\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_name,\n        dtype=dtype,\n        attn_implementation=\"eager\",\n        device_map=gpu,\n    )\n    model.eval()\n\n    patch_model_for_nope(model)\n\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    # Load dataset\n    num_samples = config[\"dataset\"].get(\"num_samples\", 500)\n    samples = load_dataset_samples(config[\"dataset\"], num_samples)\n    print(f\"Loaded {len(samples)} samples\")\n\n    # Pipeline config\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n    pipeline_config = {\n        \"chunk_size\": config[\"chunking\"][\"chunk_size\"],\n        \"block_size\": config[\"chunking\"][\"block_size\"],\n        \"total_budget\": config[\"budget\"][\"total_recomputation\"],\n        \"beta\": config[\"cegr\"][\"beta\"],\n        \"head_dim\": head_dim,\n        \"max_bits\": config[\"compression\"][\"max_bits\"],\n        \"max_new_tokens\": config[\"evaluation\"].get(\"max_new_tokens\", 32),\n    }\n\n    pipeline = CompressLinkPipeline(model, tokenizer, pipeline_config)\n\n    # Run evaluation\n    eval_configs = config[\"evaluation\"][\"configs\"]\n    ratios = config[\"compression\"][\"ratios\"]\n\n    results = {}\n\n    for cfg_name in eval_configs:\n        run_ratios = [0] if cfg_name == \"E\" else ratios\n\n        for ratio in run_ratios:\n            run_key = f\"{cfg_name}_{'baseline' if ratio == 0 else f'{ratio}x'}\"\n            print(f\"\\nRunning config: {run_key}\")\n\n            ems, f1s, latencies = [], [], []\n\n            for idx, sample in enumerate(samples):\n                ctx_enc = tokenizer(\n                    f\"Context: {sample['context']}\\n\\n\",\n                    return_tensors=\"pt\",\n                    truncation=True,\n                    max_length=2048,\n                )\n                q_enc = tokenizer(\n                    f\"Question: {sample['question']}\\nAnswer:\",\n                    return_tensors=\"pt\",\n                    add_special_tokens=False,\n                )\n\n                t0 = time.time()\n                try:\n                    result = pipeline.run_single(\n                        context_ids=ctx_enc.input_ids,\n                        query_ids=q_enc.input_ids,\n                        config_name=cfg_name,\n                        compression_ratio=max(ratio, 1),\n                    )\n                    pred = result[\"generated_text\"].split(\"\\n\")[0].strip()\n                except Exception as e:\n                    print(f\"  Sample {idx} error: {e}\")\n                    pred = \"\"\n                latency = time.time() - t0\n\n                em = compute_em(pred, sample[\"answers\"])\n                f1 = compute_f1(pred, sample[\"answers\"])\n\n                ems.append(em)\n                f1s.append(f1)\n                latencies.append(latency)\n\n                if (idx + 1) % 50 == 0:\n                    print(\n                        f\"  {idx+1}/{len(samples)}: \"\n                        f\"EM={sum(ems)/len(ems):.3f}, F1={sum(f1s)/len(f1s):.3f}\"\n                    )\n\n            results[run_key] = {\n                \"config\": cfg_name,\n                \"compression_ratio\": ratio,\n                \"em\": sum(ems) / len(ems),\n                \"f1\": sum(f1s) / len(f1s),\n                \"avg_latency\": sum(latencies) / len(latencies),\n                \"num_samples\": len(samples),\n            }\n            print(\n                f\"  Final: EM={results[run_key]['em']:.3f}, \"\n                f\"F1={results[run_key]['f1']:.3f}\"\n            )\n\n    # Save results\n    output_dir = Path(config[\"output\"][\"results_dir\"])\n    output_dir.mkdir(parents=True, exist_ok=True)\n    output_path = output_dir / \"mvp_results.json\"\n\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\nResults saved to {output_path}\")\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"CompressLink MVP Evaluation\")\n    parser.add_argument(\"--config\", type=str, default=\"configs/mvp_config.yaml\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n    args = parser.parse_args()\n\n    run_evaluation(args.config, args.gpu)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 170,
+                  "oldLines": 17,
+                  "newStart": 170,
+                  "newLines": 19,
+                  "lines": [
+                    "             ems, f1s, latencies = [], [], []",
+                    " ",
+                    "             for idx, sample in enumerate(samples):",
+                    "-                ctx_enc = tokenizer(",
+                    "-                    f\"Context: {sample['context']}\\n\\n\",",
+                    "-                    return_tensors=\"pt\",",
+                    "-                    truncation=True,",
+                    "-                    max_length=2048,",
+                    "-                )",
+                    "-                q_enc = tokenizer(",
+                    "-                    f\"Question: {sample['question']}\\nAnswer:\",",
+                    "-                    return_tensors=\"pt\",",
+                    "-                    add_special_tokens=False,",
+                    "-                )",
+                    "+                sys_content = \"Answer the question based on the given context. Provide ONLY the answer as a short phrase.\"",
+                    "+                user_content = f\"Context: {sample['context']}\\n\\nQuestion: {sample['question']}\"",
+                    "+                messages = [",
+                    "+                    {\"role\": \"system\", \"content\": sys_content},",
+                    "+                    {\"role\": \"user\", \"content\": user_content},",
+                    "+                ]",
+                    "+                full_text = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)",
+                    "+                split_marker = f\"Question: {sample['question']}\"",
+                    "+                split_idx = full_text.index(split_marker)",
+                    "+                ctx_text = full_text[:split_idx]",
+                    "+                q_text = full_text[split_idx:]",
+                    "+                ctx_enc = tokenizer(ctx_text, return_tensors=\"pt\", truncation=True, max_length=4096, add_special_tokens=False)",
+                    "+                q_enc = tokenizer(q_text, return_tensors=\"pt\", add_special_tokens=False)",
+                    " ",
+                    "                 t0 = time.time()",
+                    "                 try:"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**修改 2**: 新增前 5 个样本的 debug 打印。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "5f04b188-8b24-4458-b04d-7514e33f7643",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Axs5BqoB4mTUCVXaEBZzZC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1219,
+                "cache_read_input_tokens": 29680,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1219
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JGh6gCr5wJTyN2YXVUwiPe",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/eval_runner.py",
+                "old_string": "                ems.append(em)\n                f1s.append(f1)\n                latencies.append(latency)\n\n                if (idx + 1) % 50 == 0:",
+                "new_string": "                ems.append(em)\n                f1s.append(f1)\n                latencies.append(latency)\n\n                if idx < 5:\n                    print(f\"  [{idx}] pred={repr(pred[:80])} gold={sample['answers']} em={em:.1f} f1={f1:.3f}\")\n\n                if (idx + 1) % 50 == 0:"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "03236103-f501-41c0-92f9-0d1260c51fd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Axs5BqoB4mTUCVXaEBZzZC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1219,
+                "cache_read_input_tokens": 29680,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1219
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T07:46:18.626Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JGh6gCr5wJTyN2YXVUwiPe",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/eval_runner.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "562b9c04-7b85-4746-9446-74b3c929be27",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_2/projects/distill_kv_rag_cache/artifacts/compresslink_code/compresslink/eval_runner.py",
+              "oldString": "                ems.append(em)\n                f1s.append(f1)\n                latencies.append(latency)\n\n                if (idx + 1) % 50 == 0:",
+              "newString": "                ems.append(em)\n                f1s.append(f1)\n                latencies.append(latency)\n\n                if idx < 5:\n                    print(f\"  [{idx}] pred={repr(pred[:80])} gold={sample['answers']} em={em:.1f} f1={f1:.3f}\")\n\n                if (idx + 1) % 50 == 0:",
+              "originalFile": "\"\"\"MVP evaluation script: run CompressLink configs and report EM/F1 metrics.\"\"\"\n\nimport argparse\nimport json\nimport re\nimport string\nimport time\nfrom collections import Counter\nfrom pathlib import Path\nfrom typing import List, Dict\n\nimport torch\nimport yaml\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nfrom .nope_attention import patch_model_for_nope\nfrom .pipeline import CompressLinkPipeline\n\n\ndef normalize_answer(s: str) -> str:\n    s = s.lower()\n    s = re.sub(r\"\\b(a|an|the)\\b\", \" \", s)\n    s = s.translate(str.maketrans(\"\", \"\", string.punctuation))\n    s = \" \".join(s.split())\n    return s.strip()\n\n\ndef compute_em(prediction: str, ground_truths: List[str]) -> float:\n    pred_norm = normalize_answer(prediction)\n    return float(any(normalize_answer(gt) == pred_norm for gt in ground_truths))\n\n\ndef compute_f1(prediction: str, ground_truths: List[str]) -> float:\n    pred_tokens = normalize_answer(prediction).split()\n    if not pred_tokens:\n        return 0.0\n\n    best_f1 = 0.0\n    for gt in ground_truths:\n        gt_tokens = normalize_answer(gt).split()\n        if not gt_tokens:\n            continue\n        common = Counter(pred_tokens) & Counter(gt_tokens)\n        num_same = sum(common.values())\n        if num_same == 0:\n            continue\n        precision = num_same / len(pred_tokens)\n        recall = num_same / len(gt_tokens)\n        f1 = 2 * precision * recall / (precision + recall)\n        best_f1 = max(best_f1, f1)\n\n    return best_f1\n\n\ndef load_dataset_samples(config: dict, num_samples: int) -> List[Dict]:\n    \"\"\"Load evaluation samples with context + question + answers.\n\n    Prefers pre-processed JSONL (from prepare_nq_data.py) over raw HF dataset\n    since NQ requires HTML parsing for context extraction.\n    \"\"\"\n    jsonl_path = config.get(\"jsonl_path\")\n    if jsonl_path and Path(jsonl_path).exists():\n        samples = []\n        with open(jsonl_path) as f:\n            for line in f:\n                if len(samples) >= num_samples:\n                    break\n                item = json.loads(line)\n                samples.append({\n                    \"context\": item[\"context\"],\n                    \"question\": item[\"question\"],\n                    \"answers\": item[\"answers\"],\n                })\n        return samples\n\n    from datasets import load_dataset\n\n    dataset_name = config.get(\"name\", \"google-research-datasets/natural_questions\")\n    split = config.get(\"split\", \"validation\")\n\n    ds = load_dataset(dataset_name, split=f\"{split}[:{num_samples}]\", streaming=False)\n\n    samples = []\n    for item in ds:\n        question = item.get(\"question\", \"\")\n        if isinstance(question, dict):\n            question = question.get(\"text\", \"\")\n\n        context = item.get(\"context\", item.get(\"passage\", \"\"))\n\n        if \"answers\" in item:\n            ans = item[\"answers\"]\n            if isinstance(ans, dict):\n                answers = ans.get(\"text\", [])\n            elif isinstance(ans, list):\n                answers = ans\n            else:\n                answers = [str(ans)]\n        elif \"answer\" in item:\n            ans = item[\"answer\"]\n            answers = ans if isinstance(ans, list) else [ans]\n        else:\n            answers = []\n\n        if context and question:\n            samples.append(\n                {\"context\": context, \"question\": question, \"answers\": answers}\n            )\n\n    return samples\n\n\ndef run_evaluation(config_path: str, gpu: str = \"cuda:0\") -> Dict:\n    with open(config_path) as f:\n        config = yaml.safe_load(f)\n\n    device = torch.device(gpu)\n\n    # Load model\n    model_name = config[\"model\"][\"name\"]\n    dtype = getattr(torch, config[\"model\"].get(\"dtype\", \"float16\"))\n\n    print(f\"Loading model: {model_name}\")\n    tokenizer = AutoTokenizer.from_pretrained(model_name)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_name,\n        dtype=dtype,\n        attn_implementation=\"eager\",\n        device_map=gpu,\n    )\n    model.eval()\n\n    patch_model_for_nope(model)\n\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    # Load dataset\n    num_samples = config[\"dataset\"].get(\"num_samples\", 500)\n    samples = load_dataset_samples(config[\"dataset\"], num_samples)\n    print(f\"Loaded {len(samples)} samples\")\n\n    # Pipeline config\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n    pipeline_config = {\n        \"chunk_size\": config[\"chunking\"][\"chunk_size\"],\n        \"block_size\": config[\"chunking\"][\"block_size\"],\n        \"total_budget\": config[\"budget\"][\"total_recomputation\"],\n        \"beta\": config[\"cegr\"][\"beta\"],\n        \"head_dim\": head_dim,\n        \"max_bits\": config[\"compression\"][\"max_bits\"],\n        \"max_new_tokens\": config[\"evaluation\"].get(\"max_new_tokens\", 32),\n    }\n\n    pipeline = CompressLinkPipeline(model, tokenizer, pipeline_config)\n\n    # Run evaluation\n    eval_configs = config[\"evaluation\"][\"configs\"]\n    ratios = config[\"compression\"][\"ratios\"]\n\n    results = {}\n\n    for cfg_name in eval_configs:\n        run_ratios = [0] if cfg_name == \"E\" else ratios\n\n        for ratio in run_ratios:\n            run_key = f\"{cfg_name}_{'baseline' if ratio == 0 else f'{ratio}x'}\"\n            print(f\"\\nRunning config: {run_key}\")\n\n            ems, f1s, latencies = [], [], []\n\n            for idx, sample in enumerate(samples):\n                sys_content = \"Answer the question based on the given context. Provide ONLY the answer as a short phrase.\"\n                user_content = f\"Context: {sample['context']}\\n\\nQuestion: {sample['question']}\"\n                messages = [\n                    {\"role\": \"system\", \"content\": sys_content},\n                    {\"role\": \"user\", \"content\": user_content},\n                ]\n                full_text = tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)\n                split_marker = f\"Question: {sample['question']}\"\n                split_idx = full_text.index(split_marker)\n                ctx_text = full_text[:split_idx]\n                q_text = full_text[split_idx:]\n                ctx_enc = tokenizer(ctx_text, return_tensors=\"pt\", truncation=True, max_length=4096, add_special_tokens=False)\n                q_enc = tokenizer(q_text, return_tensors=\"pt\", add_special_tokens=False)\n\n                t0 = time.time()\n                try:\n                    result = pipeline.run_single(\n                        context_ids=ctx_enc.input_ids,\n                        query_ids=q_enc.input_ids,\n                        config_name=cfg_name,\n                        compression_ratio=max(ratio, 1),\n                    )\n                    pred = result[\"generated_text\"].split(\"\\n\")[0].strip()\n                except Exception as e:\n                    print(f\"  Sample {idx} error: {e}\")\n                    pred = \"\"\n                latency = time.time() - t0\n\n                em = compute_em(pred, sample[\"answers\"])\n                f1 = compute_f1(pred, sample[\"answers\"])\n\n                ems.append(em)\n                f1s.append(f1)\n                latencies.append(latency)\n\n                if (idx + 1) % 50 == 0:\n                    print(\n                        f\"  {idx+1}/{len(samples)}: \"\n                        f\"EM={sum(ems)/len(ems):.3f}, F1={sum(f1s)/len(f1s):.3f}\"\n                    )\n\n            results[run_key] = {\n                \"config\": cfg_name,\n                \"compression_ratio\": ratio,\n                \"em\": sum(ems) / len(ems),\n                \"f1\": sum(f1s) / len(f1s),\n                \"avg_latency\": sum(latencies) / len(latencies),\n                \"num_samples\": len(samples),\n            }\n            print(\n                f\"  Final: EM={results[run_key]['em']:.3f}, \"\n                f\"F1={results[run_key]['f1']:.3f}\"\n            )\n\n    # Save results\n    output_dir = Path(config[\"output\"][\"results_dir\"])\n    output_dir.mkdir(parents=True, exist_ok=True)\n    output_path = output_dir / \"mvp_results.json\"\n\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\nResults saved to {output_path}\")\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"CompressLink MVP Evaluation\")\n    parser.add_argument(\"--config\", type=str, default=\"configs/mvp_config.yaml\")\n    parser.add_argument(\"--gpu\", type=str, default=\"cuda:0\")\n    args = parser.parse_args()\n\n    run_evaluation(args.config, args.gpu)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 205,
+                  "oldLines": 6,
+                  "newStart": 205,
+                  "newLines": 9,
+                  "lines": [
+                    "                 f1s.append(f1)",
+                    "                 latencies.append(latency)",
+                    " ",
+                    "+                if idx < 5:",
+                    "+                    print(f\"  [{idx}] pred={repr(pred[:80])} gold={sample['answers']} em={em:.1f} f1={f1:.3f}\")",
+                    "+",
+                    "                 if (idx + 1) % 50 == 0:",
+                    "                     print(",
+                    "                         f\"  {idx+1}/{len(samples)}: \""
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，共两处修改：\n\n1. **Prompt 构建重写**（原 172-183 行）：raw text 拼接 `\"Context: ...\\n\\nQuestion: ...\\nAnswer:\"` → 用 `apply_chat_template` 构建 system+user 消息，按 `\"Question:\"` 切分 context/query；`max_length` 从 2048 → 4096；context tokenization 加了 `add_special_tokens=False`。\n\n2. **新增 debug 打印**（原 206 行后）：前 5 个样本打印 `pred`、`gold`、`em`、`f1`，方便快速检查模型输出是否合理。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "uuid": "d59043ae-4bd8-43ce-bb15-572c0f6678cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019LppgG64EPemuqUMQPAAqm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 30899,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，共两处修改：\n\n1. **Prompt 构建重写**（原 172-183 行）：raw text 拼接 `\"Context: ...\\n\\nQuestion: ...\\nAnswer:\"` → 用 `apply_chat_template` 构建 system+user 消息，按 `\"Question:\"` 切分 context/query；`max_length` 从 2048 → 4096；context tokenization 加了 `add_special_tokens=False`。\n\n2. **新增 debug 打印**（原 206 行后）：前 5 个样本打印 `pred`、`gold`、`em`、`f1`，方便快速检查模型输出是否合理。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 34462,
+            "duration_api_ms": 33709,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "cd73ef2f-1666-4947-8685-a02d34b8789d",
+            "total_cost_usd": 0.23315275000000002,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 19449,
+              "cache_read_input_tokens": 121897,
+              "output_tokens": 1980,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19449,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 193,
+                  "cache_read_input_tokens": 30899,
+                  "cache_creation_input_tokens": 391,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 391
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1013,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001108,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1980,
+                "cacheReadInputTokens": 121897,
+                "cacheCreationInputTokens": 19449,
+                "webSearchRequests": 0,
+                "costUSD": 0.23204475000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3f74ad23-f753-44fa-86c7-9ec06a15af93"
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sync-eval-runner-fix.md"
+}

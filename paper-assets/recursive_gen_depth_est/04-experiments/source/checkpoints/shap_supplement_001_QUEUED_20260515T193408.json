@@ -1,0 +1,14 @@
+{
+  "exp_id": "shap_supplement_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:34:08.559Z",
+    "updated_at": "2026-05-15T19:34:08.559Z"
+  },
+  "timestamp": "2026-05-15T19:34:08.733913+00:00",
+  "trigger": "update_registry"
+}

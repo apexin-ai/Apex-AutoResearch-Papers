@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill_duplicate_zeroshot_v2_20260515T170123_result.json",
     "occurrence": 1,
-    "bytes": 556,
-    "sha256": "075a7740d710329a6aa08ad7bd7b8f3af9c50262d03c3810b5c0dcd9502ccc99"
+    "bytes": 555,
+    "sha256": "c192b3a790cea01b7d5e1aa9cab06d7ed209e63aa022644d0e793f4b8b487369"
   },
   "statistics": {
     "messages": 1,

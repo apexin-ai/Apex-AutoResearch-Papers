@@ -1,0 +1,16 @@
+{
+  "exp_id": "qwen25_14b_scale_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:03:47.502Z",
+    "updated_at": "2026-05-17T09:05:06.200Z",
+    "hypothesis": "Depth signal persists at 14B scale without quantization: Qwen2.5-14B FP16 achieves 4-class acc >= 65% with top features including p90_ppl/var_surprisal, confirming recursive degradation is model-scale-invariant",
+    "notes": "plan_014: 14B FP16 scale validation. 5000 samples/depth, d0-d3, self-reference features (Qwen2.5-14B computes surprisal on its own generations). LoRA r=16 alpha=32 q/k/v_proj, 3 epochs, lr=2e-4. No quantization (unlike Qwen7B QLoRA experiment). Gradient checkpointing for VRAM management."
+  },
+  "timestamp": "2026-05-17T09:05:06.401498+00:00",
+  "trigger": "update_registry"
+}

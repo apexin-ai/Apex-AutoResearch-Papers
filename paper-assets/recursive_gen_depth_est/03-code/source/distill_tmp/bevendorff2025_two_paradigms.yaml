@@ -1,0 +1,132 @@
+paper_key: "bevendorff2025_two_paradigms"
+title: "The Two Paradigms of LLM Detection: Authorship Attribution vs. Authorship Verification"
+venue: "ACL 2025 Findings"
+full_text_available: true
+
+research:
+  baselines:
+    - "Binoculars (Hans et al., 2024) zero-shot detector"
+    - "SVM with TF-IDF word unigrams (800 features)"
+    - "LoRA-fine-tuned Mistral-7B binary classifier"
+    - "OpenAI RoBERTa-based GPT-2 detector (Solaiman et al., 2019)"
+    - "Ghostbuster (Verma et al., 2024)"
+    - "GPT-Sentinel (Chen et al., 2023)"
+    - "DetectGPT (Mitchell et al., 2023)"
+    - "Fast-DetectGPT (Bao et al., 2023)"
+    - "DetectLLM (Su et al., 2023a)"
+    - "LLMDet (Wu et al., 2023)"
+  metrics:
+    - {name: "False Negative Rate (FNR)", direction: "lower_better"}
+    - {name: "False Positive Rate (FPR)", direction: "lower_better"}
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "Accuracy", direction: "higher_better"}
+    - {name: "Precision-Recall curve", direction: "higher_better"}
+    - {name: "c@1 (accuracy with non-answers)", direction: "higher_better"}
+    - {name: "Cohen's d (effect size)", direction: "N/A"}
+    - {name: "Character 3-gram entropy (bits)", direction: "N/A"}
+    - {name: "MTLD (lexical diversity)", direction: "N/A"}
+    - {name: "Flesch reading ease", direction: "N/A"}
+    - {name: "Compression-based cosine (CBC)", direction: "lower_better"}
+  datasets:
+    - {name: "PAN'24 (extended with GPT-4o, 4o-mini, o1)", size: "1,359 human + 23,094 LLM texts, 15 LLMs"}
+    - {name: "Human Detectors (HD)", size: "150 human + 150 LLM texts, 5 LLMs"}
+    - {name: "Ghostbuster (GB) Essays", size: "994 human + 6,000 LLM texts, 6 LLMs"}
+    - {name: "Ghostbuster (GB) Reuters", size: "1,000 human + 6,000 LLM texts, 6 LLMs"}
+    - {name: "RAID", size: "153,217 human + 2,443,073 LLM texts, 6 LLMs"}
+    - {name: "RAID (no attacks)", size: "12,766 human + 202,593 LLM texts, 6 LLMs"}
+    - {name: "M4", size: "59,032 human + 57,253 LLM texts, 7 LLMs"}
+    - {name: "MAGE", size: "152,382 human + 284,224 LLM texts, 131 model labels combined into 4 families"}
+  ablation_dimensions:
+    - "Model family used for training vs. testing (cross-model generalization)"
+    - "In-domain vs. out-of-domain evaluation"
+    - "Text length cutoffs (entropy analysis at increasing character lengths)"
+    - "Feature set size in unmasking (top 250 vs. top 500 n-grams)"
+    - "Operating point threshold (accuracy vs. low FPR vs. low FNR)"
+    - "Genre-controlled vs. mixed-genre datasets"
+    - "Dataset used for training (PAN vs. RAID)"
+  training_recipe:
+    optimizer: "Not specified for SVM; LoRA fine-tuning for Mistral-7B"
+    lr: "Not specified"
+    hardware: "3x A100 GPUs for 2x12h (Mistral-7B LoRA, 20M trainable parameters)"
+  method_family: "Authorship analytics / computational stylometry applied to LLM detection"
+
+positioning:
+  core_claim: "LLM detection is fundamentally an authorship verification (open-set one-class) problem, not an authorship attribution (closed-set binary classification) problem, and conflating the two paradigms explains the contradictory reports of detector success and failure."
+  key_results: "SVM in-domain FNR 0-7%, FPR 0-3%; OpenAI o1 is undetectable by non-o1 detectors; Binoculars FPR near zero but fails completely on o1; GPT-4o is first model with entropy consistent with human text beyond 4,000 chars; word length alone yields remarkable detection accuracy on genre-controlled datasets (Cohen's d up to 4.11)"
+  limitations:
+    - "Key assumption that future LLMs will become increasingly human-like in style could be wrong -- LLMs may converge to a distinct 'mean style' centroid"
+    - "Only a limited number of datasets and detectors were analyzed; more experiments needed to corroborate practical implications"
+    - "Humans exposed to LLM writing may adopt LLM stylistic properties, creating a feedback loop"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Generative AI is everywhere -- then immediately juxtaposes contradictory evidence: detectors regularly 'beat' benchmarks yet OpenAI shut down their own detector after 6 months citing lack of accuracy."
+  tension: "The conflicting reports of success and failure in LLM detection create a puzzle. The paper frames this as a fundamental misunderstanding: researchers build attribution-style detectors but evaluate them under verification assumptions, leading to systematic errors."
+  key_insight: "Revealed in Section 3.3 via a scaling thought experiment: as you add more human authors to distinguish from an LLM, the attribution approach fails because the number of humans classified as LLM asymptotically approaches all of humanity. This is exactly what current research does by compiling ever-larger corpora. The insight bridges two previously disconnected communities (authorship analytics and LLM detection)."
+  argument_chain: "Contradiction in detector reports -> bridge to authorship analytics (attribution vs verification) -> theoretical argument that attribution cannot scale (Section 3.3) -> empirical evidence that LLM text properties are converging toward human (Section 4, entropy/MTLD/readability) -> detector evaluation confirming attribution works in-domain but fails cross-model especially for o1 (Section 5) -> discussion of benchmark quality and evaluation metric issues (Section 6) -> conclusion that verification framing is necessary"
+  contribution_framing: "Four numbered contributions at end of intro: (1) reconcile authorship analytics with LLM detection, showing it is verification; (2) corpus analysis of how LLM text differs from human text; (3) show SOTA detectors solve attribution well; (4) discuss benchmark quality and evaluation needs for verification."
+  intro_structure: "4 paragraphs: P1 sets scene (LLM text is everywhere, risks, detector interest); P2 presents the contradiction (detectors beat benchmarks vs. serious concerns, OpenAI shutting down detector); P3 frames the explanation (mix-up of attribution vs verification, bridging two communities, explains why attribution fails at scale); P4 lists four contributions with section pointers."
+  notable_technique: "The thought experiment in Section 3.3 is the rhetorical centerpiece -- it takes a simple two-author scenario and iteratively adds authors to show how attribution inherently breaks down. The paper also excels at connecting a 'new' problem (LLM detection) to a well-established field (authorship analytics) that developed independently, making the reader see that the wheel is being reinvented poorly."
+
+figures:
+  figure_count: 21
+  figure1:
+    type: "problem_illustration"
+    description: "Mean character 3-gram entropy over increasing text length with 95% confidence intervals across three datasets (PAN'24, RAID, M4). Shows per-model entropy curves diverging from human baseline after ~2,500-4,000 characters."
+    narrative_role: "Core empirical evidence that LLM text has lower entropy than human text, but newer models (GPT-4o, o1) are closing the gap -- supporting the verification framing."
+    design_elements: ["Multi-panel (a,b,c) by dataset", "Confidence interval shading", "Color-coded per model family", "Human baseline highlighted", "X-axis is text length, Y-axis is entropy"]
+    visual_style: "Three-panel line plot with shaded confidence intervals. Clean academic style, models labeled directly on curves. Divergence point visible around 2,500 chars."
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "heatmap"
+      what_compared: "FNR and FPR of SVM, Binoculars, and Mistral-7B detectors across training model families (rows) vs test model families (columns)"
+      how_gain_highlighted: "Diagonal shows best in-domain performance; o1 row/column visually stands out as failing for all non-o1 detectors"
+      design_note: "Complex multi-panel figure (4a-4d) combining heatmaps for SVM cross-model, SVM on PAN, Binoculars on PAN, and Mistral on PAN/RAID. Packs maximum information by varying both training and test conditions."
+    - figure_id: "Figure 5 (Appendix A)"
+      viz_type: "line_plot"
+      what_compared: "ROC vs Precision-Recall curves at different class prevalence ratios (P/N = 0.2 to 5.0)"
+      how_gain_highlighted: "Directly shows ROC is invariant to prevalence while precision degrades, supporting the argument that AUROC is misleading"
+      design_note: "Side-by-side comparison with color-coded prevalence ratios makes the divergence between ROC and PR curves visually immediate."
+    - figure_id: "Figure 6 (Appendix B)"
+      viz_type: "box_plot"
+      what_compared: "Entropy distributions at 4,500 characters as a discriminator on PAN dataset, per model"
+      how_gain_highlighted: "Box spread shows which models are separable from humans on entropy alone"
+      design_note: "Single compact figure showing discriminability limits of a simple feature."
+    - figure_id: "Figures 7-9 (Appendix D)"
+      viz_type: "heatmap"
+      what_compared: "AUROC of SVM, Binoculars, and fine-tuned Mistral across all datasets"
+      how_gain_highlighted: "Color intensity shows where each detector type succeeds/fails"
+      design_note: "Supplements Figure 4 with AUROC values; includes bar charts for per-dataset breakdown."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["Model (Llama2-70b, GPT-3.5, GPT-4o, OpenAI o1)", "Feature set size (top 250 vs top 500 n-grams)", "Pairing type (Human/Human, LLM/LLM, Human/LLM)"]
+      design_note: "8-panel grid (4 models x 2 feature sizes) showing unmasking curves with IQR shading. Reveals that older models are 'inconsistently' discriminable (high in top-250 but low in top-500), while newer models like o1 are more consistent -- key evidence for the verification argument."
+    - figure_id: "Figures 18-19 (Appendix G)"
+      viz_type: "line_plot"
+      dimensions_varied: ["All 10 model families on PAN'24", "HD dataset models"]
+      design_note: "Extended unmasking curves for all models, supplementing Figure 3's selected models."
+    - figure_id: "Figures 20-21 (Appendix G)"
+      viz_type: "density_plot"
+      dimensions_varied: ["Compression-based cosine (CBC) score distributions across model pairings"]
+      design_note: "KDE density plots showing CBC score separation between same-author and cross-author pairs."
+  figure_narrative_role: "Figure 1 (entropy divergence) -> Figure 2 (human entropy varies by genre) -> Figure 3 (unmasking reveals inconsistency in older LLMs vs consistency in newer ones) -> Figure 4 (detector evaluation confirms attribution works in-domain but fails cross-model). Appendix figures (5-21) provide exhaustive supporting evidence for each main-text claim. The flow is: statistical properties of text -> stylometric analysis -> detector performance."
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "N/A -- this paper primarily uses figures (heatmaps/line plots) for main results rather than traditional result tables"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "t-tests with Cohen's d effect sizes reported inline in text; Bonferroni correction for multiple comparisons"
+    num_baselines: 3
+    design_note: "Unusual for the field: main results are presented as heatmap figures (Figure 4) rather than tables. This is a deliberate choice that makes cross-model generalization patterns visually immediate. Statistical tests are reported inline rather than in tables."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 1-5 in appendix contain qualitative examples of low-quality/short texts from RAID, MAGE, M4, and BLOOMz datasets. Table 6 provides dataset statistics (text counts, human/LLM splits, number of LLMs per dataset)."
+    reason: "Tables are used for qualitative evidence (bad data examples) and dataset metadata rather than quantitative results. All quantitative comparisons use figures. This split reflects the paper's emphasis on data quality critique -- the appendix tables serve as 'exhibit evidence' for the argument that benchmarks are flawed."

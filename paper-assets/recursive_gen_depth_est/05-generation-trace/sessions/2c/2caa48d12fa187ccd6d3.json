@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan_024_downstream_benchmark_20260517T155538_result.json",
     "occurrence": 1,
-    "bytes": 819,
-    "sha256": "5acaf8e7b32c5e538d7256ad35b3820ac9fe1b2fc7a86f6b4a580bfb71316dc4"
+    "bytes": 818,
+    "sha256": "0e404ec7b07b21c17d8d84d4c4123d4a64e8b1827569afae2c10c804ca78a3c5"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp_pipeline_002",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:21:10.897Z",
+    "updated_at": "2026-05-14T12:06:40.975Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_pipeline.sh 2>&1 | tee logs/pipeline.log\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "89048",
+      "log_path": "~/runs/recursive_gen_depth_est/mvp_pipeline_002.log",
+      "submitted_at": "2026-05-14T10:21:10.894Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T12:06:40.989576+00:00",
+  "trigger": "update_registry"
+}

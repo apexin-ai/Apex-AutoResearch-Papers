@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_covariate_shift_literature_20260515T050056_result.json",
     "occurrence": 1,
-    "bytes": 1043,
-    "sha256": "1f58056b5c7046ddd60c7ee3c26fb6dda4957b899154dffb9a8ac05ebea9d3e1"
+    "bytes": 1042,
+    "sha256": "50dd21af212ed87e537bcaf7adb296e077e7d9c403b966d52f6dbc2ea771e8c6"
   },
   "statistics": {
     "messages": 1,

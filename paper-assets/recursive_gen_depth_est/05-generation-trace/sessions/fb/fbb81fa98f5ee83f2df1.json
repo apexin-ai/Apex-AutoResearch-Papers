@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_w6_cross_strategy_per_class_recall_20260515T110628_result.json",
     "occurrence": 1,
-    "bytes": 1613,
-    "sha256": "22bd9e9d98b2d246f59f69aea64479d62d11f1751600890f16e12370aa90d6ca"
+    "bytes": 1612,
+    "sha256": "ea70bfef99aa9f2dfc62a0dee0f26e4bd419e8cc96ec0e7b3eabc3385c7c346b"
   },
   "statistics": {
     "messages": 1,

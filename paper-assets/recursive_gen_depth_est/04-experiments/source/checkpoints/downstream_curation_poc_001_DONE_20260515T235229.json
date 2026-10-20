@@ -1,0 +1,96 @@
+{
+  "exp_id": "downstream_curation_poc_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:37:21.710Z",
+    "updated_at": "2026-05-15T23:52:29.055Z",
+    "spec": {
+      "hypothesis": "RF depth-based data curation improves downstream finetune perplexity vs unfiltered data",
+      "command": "python src/curation_poc.py --phase finetune (40 runs: 8 conditions × 5 seeds)",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/curation_poc/ (8 JSONL files)",
+      "data_count": "10k mixed d0-d3, filtered to 2500-10000 per condition",
+      "model_name": "Pythia-410M LoRA (r=16)",
+      "seed": "42,123,456,789,1024",
+      "plan_id": "plan_013",
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/curation_poc/",
+      "log_path": "/tmp/finetune_full.log",
+      "dry_run_ppl": 15.74,
+      "dry_run_train_loss": 1.655,
+      "post_completion_cmd": "python src/curation_poc.py --phase analyze"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "unfiltered": {
+        "ppl_mean": 15.776,
+        "ppl_std": 0.066,
+        "n_samples": 10000
+      },
+      "rf_strict": {
+        "ppl_mean": 15.81,
+        "ppl_std": 0.061,
+        "n_samples": 2496,
+        "delta": "-0.034",
+        "p": 0.607,
+        "d": -0.528
+      },
+      "rf_moderate": {
+        "ppl_mean": 15.756,
+        "ppl_std": 0.056,
+        "n_samples": 4940,
+        "delta": "+0.021",
+        "p": 0.492,
+        "d": 0.334
+      },
+      "rf_soft": {
+        "ppl_mean": 15.733,
+        "ppl_std": 0.038,
+        "n_samples": 4422,
+        "delta": "+0.043",
+        "p": 0.407,
+        "d": 0.792
+      },
+      "oracle_strict": {
+        "ppl_mean": 15.879,
+        "ppl_std": 0.128,
+        "n_samples": 2500,
+        "delta": "-0.103",
+        "p": 0.216,
+        "d": -1.004
+      },
+      "oracle_moderate": {
+        "ppl_mean": 15.809,
+        "ppl_std": 0.103,
+        "n_samples": 5000,
+        "delta": "-0.033",
+        "p": 0.485,
+        "d": -0.384
+      },
+      "random_strict": {
+        "ppl_mean": 16.239,
+        "ppl_std": 0.165,
+        "n_samples": 2496,
+        "delta": "-0.463",
+        "p": 0.013,
+        "d": -3.671,
+        "sig": true
+      },
+      "random_moderate": {
+        "ppl_mean": 15.998,
+        "ppl_std": 0.09,
+        "n_samples": 5000,
+        "delta": "-0.222",
+        "p": 0.028,
+        "d": -2.809,
+        "sig": true
+      }
+    },
+    "completed_at": "2026-05-15T23:52:29.055Z"
+  },
+  "timestamp": "2026-05-15T23:52:29.254833+00:00",
+  "trigger": "update_registry"
+}

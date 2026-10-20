@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_13b_scale_validation_20260517T084540_result.json",
     "occurrence": 1,
-    "bytes": 800,
-    "sha256": "d835ae05d2f17ef5fffb168a16ff74b36887fdc223da0f4d89af1404af807665"
+    "bytes": 799,
+    "sha256": "da1e34bc6170fb850eebc7b1db43c7facf85db2369404465fa2ab75abc86b737"
   },
   "statistics": {
     "messages": 1,

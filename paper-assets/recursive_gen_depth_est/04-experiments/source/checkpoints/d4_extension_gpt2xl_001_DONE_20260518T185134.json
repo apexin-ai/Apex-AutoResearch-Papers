@@ -1,0 +1,63 @@
+{
+  "exp_id": "d4_extension_gpt2xl_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:49:14.211Z",
+    "updated_at": "2026-05-18T18:51:33.815Z",
+    "hypothesis": "GPT-2 XL nucleus d4 depth extension: recursive generation depth signal persists at d4 (5th recursive iteration). 5-class RF (d0-d4) accuracy remains significantly above 20% chance level, d3-vs-d4 pairwise AUC > 0.6, and key features (p90_ppl, var_surprisal, mean_ppl) continue monotonic trends observed in d0-d3.",
+    "parent": "gpt2xl_seed43_001",
+    "spec": {
+      "command": "python scripts/d4_extension_eval.py",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "204802",
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/d4_extension_gpt2xl.log",
+      "submitted_at": "2026-05-18T18:49:22.697Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/gpt2xl/",
+      "data_count": 25000,
+      "model_name": "pythia-1.4b (ref model)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 131.1,
+      "gpu_hours": 0.04
+    },
+    "conclusion": "success",
+    "metrics": {
+      "rf_5class_acc": 0.7403,
+      "rf_5class_ci": [
+        0.739,
+        0.7417
+      ],
+      "d3v4_auc": 0.7273,
+      "per_class_recall": {
+        "d0": 0.9842,
+        "d1": 0.8732,
+        "d2": 0.718,
+        "d3": 0.4874,
+        "d4": 0.6386
+      },
+      "feature_trends_p90_ppl_monotonic": true,
+      "feature_trends_var_surprisal_monotonic": true,
+      "feature_trends_mean_ppl_monotonic_break_at_d4": true,
+      "top_features": [
+        "p90_ppl",
+        "var_surprisal",
+        "p75_ppl",
+        "mean_surprisal",
+        "mean_ppl"
+      ]
+    },
+    "completed_at": "2026-05-18T18:51:33.815Z"
+  },
+  "timestamp": "2026-05-18T18:51:34.068366+00:00",
+  "trigger": "update_registry"
+}

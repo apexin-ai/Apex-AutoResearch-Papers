@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_extract_9cell_recall_20260515T230016_result.json",
     "occurrence": 1,
-    "bytes": 1892,
-    "sha256": "12fa1fbed00677960037634e1fef634064f9b59d52ad974ba9ee7901c6473c02"
+    "bytes": 1891,
+    "sha256": "3fceb0dde7c4ee0c67ef8db22c4f09a23d6923c9e5fbf721a083cf1cec75555f"
   },
   "statistics": {
     "messages": 1,

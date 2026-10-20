@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_design_plan_013_downstream_curation_20260515T212947_result.json",
     "occurrence": 1,
-    "bytes": 663,
-    "sha256": "3441f90ec4d2e4adc435d01e8f77905b719757f26735e6d8ed93d2eca694e4e3"
+    "bytes": 662,
+    "sha256": "aa255734232c73a09a08212ae8bf7a5eded13f06c0cecdb524aa97a105d52359"
   },
   "statistics": {
     "messages": 1,

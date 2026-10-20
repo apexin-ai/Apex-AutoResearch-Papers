@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_cpi_table7_missing_data_20260522T163614_result.json",
     "occurrence": 1,
-    "bytes": 1761,
-    "sha256": "e66f98a48d0078e43f8e73e8fa89328f567767b71c0ed1656ec98fb81ddd11f3"
+    "bytes": 1760,
+    "sha256": "0864fcb74229688c02798ca4d2eccf16ed529392eacb396ba66927d6891bc07c"
   },
   "statistics": {
     "messages": 1,

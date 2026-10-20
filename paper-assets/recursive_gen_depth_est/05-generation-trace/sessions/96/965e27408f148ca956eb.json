@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_atlas_20260515T155256_result.json",
     "occurrence": 1,
-    "bytes": 1492,
-    "sha256": "06ddac03f2dc01505b7721fecdb2e56b20dd72fa7ee7a3488a411dc7a13dd415"
+    "bytes": 1491,
+    "sha256": "d25f8216bab2c381a79dec67dcef08ecfeca48b201cf6e7fd0828bd9b88be8ad"
   },
   "statistics": {
     "messages": 1,

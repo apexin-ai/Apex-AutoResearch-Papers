@@ -1,0 +1,26 @@
+{
+  "exp_id": "ensemble_reference_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:59:54.150Z",
+    "updated_at": "2026-05-17T05:00:17.023Z",
+    "hypothesis": "Ensemble reference (mean surprisal across multiple ref models) improves robustness vs worst single-model reference; ensemble acc should exceed GPT-2 XL-only (67.3%) by ≥5pp",
+    "parent": "gpt2xl_ref_ablation_001",
+    "spec": {
+      "command": "python3 ensemble_eval.py (inline script)",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/features_all.jsonl + results/ref_model_ablation_001/olmo_features.jsonl + results/gpt2xl_ref_model/features_gpt2xl_ref.jsonl",
+      "data_count": 20000,
+      "model_name": "RandomForest(n=200)",
+      "seed": 42,
+      "checkpoint_source": "N/A (sklearn RF, no checkpoint)",
+      "eval_data": "20000 samples from 3 feature files (pythia+olmo+gpt2xl)"
+    }
+  },
+  "timestamp": "2026-05-17T05:00:17.227798+00:00",
+  "trigger": "update_registry"
+}

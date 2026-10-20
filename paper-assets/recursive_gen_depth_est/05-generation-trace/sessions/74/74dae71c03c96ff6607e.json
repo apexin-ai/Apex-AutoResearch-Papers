@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_atlas-edd-r1n1_20260515T155041_result.json",
     "occurrence": 1,
-    "bytes": 951,
-    "sha256": "5f65b331815dd347b95770ede371299bba0cc87320be84f59618f3a9b03d6f1f"
+    "bytes": 950,
+    "sha256": "d74b1430b2b399988172f07cf7f1caaeb63e5e916a4e1fc541ca94d1e5385470"
   },
   "statistics": {
     "messages": 1,

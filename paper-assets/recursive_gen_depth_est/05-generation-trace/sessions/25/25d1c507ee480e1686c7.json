@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_director_revision_final_20260516T102030_result.json",
     "occurrence": 1,
-    "bytes": 839,
-    "sha256": "83cba46b8834133b9db166dc0935a51397d0ecda8dab612719f95c78ee5f55a7"
+    "bytes": 838,
+    "sha256": "e45485f9ed88a678391eb096a73a322340f7ca8a00d36cc6ddbd9ac9a348ae9e"
   },
   "statistics": {
     "messages": 1,

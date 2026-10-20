@@ -1,0 +1,118 @@
+dreams:
+  dream_20260514T140607:
+    dream_id: dream_20260514T140607
+    project: recursive_gen_depth_est
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: EMNLP 2026
+    focus: 'Core novelty is problem formalization (ordinal depth estimation) + Atlas,
+      not method alone. DCOL adapts CLOC — reviewers may question method novelty.
+      MVP shows 78.2% 4-class acc with simple RF, so the signal is strong. Key risks:
+      (1) EDD might be low, (2) cross-model generalization unknown, (3) controlled
+      vs wild gap.'
+    what_if: []
+    pid: 109801
+    chat_id: oc_5d269fdb74af3f4ab8d78b82a993f5cf
+    card_message_id: om_x100b6f69223124acc497ca105455488
+    started_at: '2026-05-14T14:06:07+00:00'
+    updated_at: '2026-05-14T15:06:01+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 558071838dcbcb785fa8961af240e1ef45a24ee68d4c1f2897d2c938c1138948
+  dream_20260517T075852:
+    dream_id: dream_20260517T075852
+    project: recursive_gen_depth_est
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: EMNLP 2026 Main
+    focus: 评估升级后的叙事能否冲正会。重点关注：(1) 13B clean FP16 实验是否足够回应 scale concern，(2) prompted
+      generation 是否足够回应 ecological validity，(3) 两阶段 cross-strategy pipeline 作为 Claim
+      3 是否将论文从纯 analysis 升级为有 practical method contribution，(4) 三项新实验加入后论文是否从 Findings
+      水平提升到 Main Conference 竞争力
+    what_if: []
+    pid: 627629
+    chat_id: oc_5d269fdb74af3f4ab8d78b82a993f5cf
+    card_message_id: om_x100b6fa31d3950b0c433bea411c7f17
+    started_at: '2026-05-17T07:58:52+00:00'
+    updated_at: '2026-05-17T09:06:54+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 494183cfc02215654269efabc11f513d329db1e99a8646c520100e66864dd797
+  dream_20260518T160031:
+    dream_id: dream_20260518T160031
+    project: recursive_gen_depth_est
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Evaluate whether adding a theoretical analysis section (connecting to
+      model collapse theory) plus completed 14B scale validation and 3/3 model seed
+      robustness coverage can push the paper from 3.0 Findings to 4.0 Conference accept.
+      Pay special attention to: (1) whether the theory section adequately addresses
+      the ''no algorithmic contribution'' concern, (2) remaining gaps that would prevent
+      4.0, (3) whether the paper''s positioning as ''empirical study + theoretical
+      grounding + task formalization'' is sufficient for EMNLP Main.'
+    what_if:
+    - name: theory_section
+      claim: '2'
+      description: 'Theoretical analysis section connecting depth signal to model
+        collapse theory: (1) tail erosion mechanism explaining p90_ppl/var_surprisal
+        dominance via Shumailov et al., (2) EDD upper bound derivation from Dohmatob
+        contraction rates, (3) strategy-dependent convergence rate explaining temp09
+        trajectory reversal. Half-page theoretical sketch with experimental validation.'
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_5d269fdb74af3f4ab8d78b82a993f5cf
+    card_message_id: om_x100b6f8737355cb0c34988542577b45
+    started_at: '2026-05-18T16:00:31+00:00'
+    updated_at: '2026-05-18T16:26:00+00:00'
+    stages_completed:
+    - imagine
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 813a120b2d8283b73a6e48304ea80d46c26b9e13f378d32783a82e5cb23da72c
+  dream_20260518T162616:
+    dream_id: dream_20260518T162616
+    project: recursive_gen_depth_est
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Evaluate whether adding a theoretical analysis section (connecting to
+      model collapse theory) plus completed 14B scale validation and 3/3 model seed
+      robustness coverage can push the paper from 3.0 Findings to 4.0 Conference accept.
+      Pay special attention to: (1) whether the theory section adequately addresses
+      the ''no algorithmic contribution'' concern, (2) remaining gaps that would prevent
+      4.0, (3) whether the paper''s positioning as ''empirical study + theoretical
+      grounding + task formalization'' is sufficient for EMNLP Main.'
+    what_if:
+    - name: theory_section
+      claim: '2'
+      description: 'Theoretical analysis section connecting depth signal to model
+        collapse theory: (1) tail erosion mechanism explaining p90_ppl/var_surprisal
+        dominance via Shumailov et al., (2) EDD upper bound derivation from Dohmatob
+        contraction rates, (3) strategy-dependent convergence rate explaining temp09
+        trajectory reversal. Half-page theoretical sketch with experimental validation.'
+      estimated_gpu_hours: 0.0
+    pid: 846811
+    chat_id: oc_5d269fdb74af3f4ab8d78b82a993f5cf
+    card_message_id: om_x100b6f87944800a0c312cdf059bcfc7
+    started_at: '2026-05-18T16:26:16+00:00'
+    updated_at: '2026-05-18T17:16:34+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 813a120b2d8283b73a6e48304ea80d46c26b9e13f378d32783a82e5cb23da72c

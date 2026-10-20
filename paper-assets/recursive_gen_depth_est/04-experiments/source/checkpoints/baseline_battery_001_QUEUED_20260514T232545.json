@@ -1,0 +1,26 @@
+{
+  "exp_id": "baseline_battery_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:25:45.021Z",
+    "updated_at": "2026-05-14T23:25:45.021Z",
+    "spec": {
+      "command": "python src/baselines.py --method all --features_path data/features_all.jsonl",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/features_all.jsonl",
+      "data_count": 20000,
+      "model_name": "Multiple (RF/LR/CORAL/CE-MLP/DivEye/PPL-Reg)",
+      "seed": 42,
+      "hypothesis": "Baseline battery: 6种基线方法在统计特征上的深度分类性能，为 Atlas 和 DCOL 提供对比基准",
+      "plan_id": "plan_009",
+      "checkpoint_path": "results/baselines/",
+      "log_path": "results/baselines/baseline_results.json"
+    }
+  },
+  "timestamp": "2026-05-14T23:25:45.103296+00:00",
+  "trigger": "update_registry"
+}

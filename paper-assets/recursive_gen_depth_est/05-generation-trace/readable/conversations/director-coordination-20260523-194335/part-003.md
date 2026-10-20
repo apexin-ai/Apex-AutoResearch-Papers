@@ -3280,7 +3280,7 @@ git remote -v
 **如果显示 `git@github.com:...` (SSH)，必须改成 HTTPS+token：**
 
 ```bash
-git remote set-url origin 'https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git'
+git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git'
 ```
 
 确认显示 `https://...` 之后，正常 push：
@@ -3490,7 +3490,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ````json
 {
-  "text": "检查匿名仓库的 git remote 配置，如果是 SSH 需要改成 HTTPS+token。\n\n步骤：\n1. `cd /tmp/anon_repo && git remote -v`\n2. 如果显示 `git@github.com:...`（SSH），执行：\n   ```\n   git remote set-url origin 'https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git'\n   ```\n3. 确认 `git remote -v` 显示 HTTPS\n4. 如果改了 remote，执行 `git push origin main` 确保能正常 push\n5. 如果本来就是 HTTPS，直接回报\"已是 HTTPS\"\n\n注意：token 不要写入任何代码文件或 commit。",
+  "text": "检查匿名仓库的 git remote 配置，如果是 SSH 需要改成 HTTPS+token。\n\n步骤：\n1. `cd /tmp/anon_repo && git remote -v`\n2. 如果显示 `git@github.com:...`（SSH），执行：\n   ```\n   git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git'\n   ```\n3. 确认 `git remote -v` 显示 HTTPS\n4. 如果改了 remote，执行 `git push origin main` 确保能正常 push\n5. 如果本来就是 HTTPS，直接回报\"已是 HTTPS\"\n\n注意：token 不要写入任何代码文件或 commit。",
   "project": "recursive_gen_depth_est"
 }
 ````
@@ -3505,7 +3505,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "检查匿名仓库的 git remote 配置，如果是 SSH 需要改成 HTTPS+token。\n\n步骤：\n1. `cd /tmp/anon_repo && git remote -v`\n2. 如果显示 `git@github.com:...`（SSH），执行：\n   ```\n   git remote set-url origin 'https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git'\n   ```\n3. 确认 `git remote -v` 显示 HTTPS\n4. 如果改了 remote，执行 `git push origin main` 确保能正常 push\n5. 如果本来就是 HTTPS，直接回报\"已是 HTTPS\"\n\n注意：token 不要写入任何代码文件或 commit。",
+    "text": "检查匿名仓库的 git remote 配置，如果是 SSH 需要改成 HTTPS+token。\n\n步骤：\n1. `cd /tmp/anon_repo && git remote -v`\n2. 如果显示 `git@github.com:...`（SSH），执行：\n   ```\n   git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git'\n   ```\n3. 确认 `git remote -v` 显示 HTTPS\n4. 如果改了 remote，执行 `git push origin main` 确保能正常 push\n5. 如果本来就是 HTTPS，直接回报\"已是 HTTPS\"\n\n注意：token 不要写入任何代码文件或 commit。",
     "project": "recursive_gen_depth_est"
   }
 }
@@ -3681,7 +3681,7 @@ _source line 1422 · 2026-05-23T18:56:41.903219+00:00_
 
    **正确的 HTTPS+token URL：**
    ```
-   https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git
+   https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git
    ```
 
 4. **完成后向我汇报**：

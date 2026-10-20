@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_paper-atlas-results-method_20260515T145251_result.json",
     "occurrence": 1,
-    "bytes": 1648,
-    "sha256": "6f51a0d1b5846f31fc6a7f7fcdfb26a3cf8442c7e71d4f041389464aa2c10fb0"
+    "bytes": 1647,
+    "sha256": "d5a611d9251c3d4af715ba51d9c1d4645d90aab21b2c9205e34a1b0ebd7b12d6"
   },
   "statistics": {
     "messages": 1,

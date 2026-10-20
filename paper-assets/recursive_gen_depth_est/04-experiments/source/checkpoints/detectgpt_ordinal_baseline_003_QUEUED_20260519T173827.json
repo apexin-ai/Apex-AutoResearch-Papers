@@ -1,0 +1,16 @@
+{
+  "exp_id": "detectgpt_ordinal_baseline_003",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:38:15.969Z",
+    "updated_at": "2026-05-19T17:38:27.441Z",
+    "hypothesis": "Fast-DetectGPT (Mitchell et al. 2023) perturbation discrepancy scores, when calibrated to 4-class ordinal depth via equal-width/CORAL/threshold methods, achieve near-chance accuracy on full 9-cell atlas. Extends detectgpt_ordinal_baseline_002 (8/9 cells, 29.1%) to include pythia_nucleus. Confirms perturbation-based binary detection lacks ordinal resolution.",
+    "parent": "detectgpt_ordinal_baseline_002"
+  },
+  "timestamp": "2026-05-19T17:38:27.772502+00:00",
+  "trigger": "update_registry"
+}

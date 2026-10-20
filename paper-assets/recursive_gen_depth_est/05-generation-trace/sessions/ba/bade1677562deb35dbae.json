@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_restart_13b_mirror_20260517T113254_result.json",
     "occurrence": 1,
-    "bytes": 744,
-    "sha256": "d59fa7d381113e5d1fae4762fad890bfa835445ca54f0f283257fa068f311062"
+    "bytes": 743,
+    "sha256": "c21567f07956c346908e0a8586b5341cec85102f513e6f592f2ff7033fd32ff0"
   },
   "statistics": {
     "messages": 1,

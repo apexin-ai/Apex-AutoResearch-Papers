@@ -1,0 +1,16 @@
+{
+  "exp_id": "detectgpt_ordinal_baseline_004",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:57:54.621Z",
+    "updated_at": "2026-05-19T17:58:00.329Z",
+    "hypothesis": "DetectGPT perturbation discrepancy scores on pythia_nucleus cell achieve near-chance 4-class ordinal accuracy, completing the 9/9 cell coverage. Extends detectgpt_ordinal_baseline_002 (8/9 cells, 29.1%) with the missing pythia_nucleus cell. Script fixed with cell→directory mapping for pythia_nucleus (\".\").",
+    "parent": "detectgpt_ordinal_baseline_003"
+  },
+  "timestamp": "2026-05-19T17:58:00.646179+00:00",
+  "trigger": "update_registry"
+}

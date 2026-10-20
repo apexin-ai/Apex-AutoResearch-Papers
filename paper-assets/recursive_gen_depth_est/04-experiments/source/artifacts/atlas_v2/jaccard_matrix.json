@@ -1,0 +1,135 @@
+{
+  "Pythia-1.4B": {
+    "strategy_features": {
+      "Nucleus p=0.95": [
+        "mean_ppl",
+        "mean_surprisal",
+        "p75_ppl",
+        "p90_ppl",
+        "var_surprisal"
+      ],
+      "Temp τ=0.9": [
+        "mean_ppl",
+        "mean_surprisal",
+        "p75_ppl",
+        "p90_ppl",
+        "var_surprisal"
+      ],
+      "Top-k k=50": [
+        "mean_ppl",
+        "mean_surprisal",
+        "p75_ppl",
+        "p90_ppl",
+        "var_surprisal"
+      ]
+    },
+    "pairwise_jaccard": {
+      "Nucleus p=0.95 vs Temp τ=0.9": {
+        "jaccard": 1.0,
+        "overlap": [
+          "mean_ppl",
+          "mean_surprisal",
+          "p75_ppl",
+          "p90_ppl",
+          "var_surprisal"
+        ],
+        "only_first": [],
+        "only_second": []
+      },
+      "Nucleus p=0.95 vs Top-k k=50": {
+        "jaccard": 1.0,
+        "overlap": [
+          "mean_ppl",
+          "mean_surprisal",
+          "p75_ppl",
+          "p90_ppl",
+          "var_surprisal"
+        ],
+        "only_first": [],
+        "only_second": []
+      },
+      "Temp τ=0.9 vs Top-k k=50": {
+        "jaccard": 1.0,
+        "overlap": [
+          "mean_ppl",
+          "mean_surprisal",
+          "p75_ppl",
+          "p90_ppl",
+          "var_surprisal"
+        ],
+        "only_first": [],
+        "only_second": []
+      }
+    }
+  },
+  "OLMo-1B": {
+    "strategy_features": {
+      "Nucleus p=0.95": [
+        "mean_surprisal",
+        "p75_ppl",
+        "p90_ppl",
+        "type_token_ratio",
+        "var_surprisal"
+      ],
+      "Temp τ=0.9": [
+        "mean_surprisal",
+        "p50_ppl",
+        "p75_ppl",
+        "p90_ppl",
+        "var_surprisal"
+      ]
+    },
+    "pairwise_jaccard": {
+      "Nucleus p=0.95 vs Temp τ=0.9": {
+        "jaccard": 0.6667,
+        "overlap": [
+          "mean_surprisal",
+          "p75_ppl",
+          "p90_ppl",
+          "var_surprisal"
+        ],
+        "only_first": [
+          "type_token_ratio"
+        ],
+        "only_second": [
+          "p50_ppl"
+        ]
+      }
+    }
+  },
+  "GPT-2-XL": {
+    "strategy_features": {
+      "Nucleus p=0.95": [
+        "mean_ppl",
+        "mean_surprisal",
+        "p75_ppl",
+        "p90_ppl",
+        "var_surprisal"
+      ],
+      "Temp τ=0.9": [
+        "mean_surprisal",
+        "p50_ppl",
+        "p75_ppl",
+        "p90_ppl",
+        "var_surprisal"
+      ]
+    },
+    "pairwise_jaccard": {
+      "Nucleus p=0.95 vs Temp τ=0.9": {
+        "jaccard": 0.6667,
+        "overlap": [
+          "mean_surprisal",
+          "p75_ppl",
+          "p90_ppl",
+          "var_surprisal"
+        ],
+        "only_first": [
+          "mean_ppl"
+        ],
+        "only_second": [
+          "p50_ppl"
+        ]
+      }
+    }
+  }
+}

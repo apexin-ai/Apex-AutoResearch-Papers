@@ -1,0 +1,79 @@
+{
+  "exp_id": "temp07_pilot_pythia_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:46:49.321Z",
+    "updated_at": "2026-05-15T16:38:04.729Z",
+    "hypothesis": "R2-W3 multi-τ: τ=0.7 temperature pilot with Pythia-1.4B. 验证 d1v2 inversion 是否在 τ=0.7 也出现（对比 τ=0.9 的 GPT-2 XL 0.129 / OLMo 0.253）。若出现则 temperature inversion 是 τ<1 的通用现象；若不出现则 τ=0.9 是边界条件。",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-15T15:50:42.735Z"
+    },
+    "spec": {
+      "command": "python src/temp07_pilot.py",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "N/A",
+      "data_path": "data/pythia_temp07/depth_{0..5}.jsonl",
+      "data_count": 3000,
+      "model_name": "Pythia-1.4B",
+      "seed": 42,
+      "hyperparams": {
+        "temperature": 0.7,
+        "top_p": 1,
+        "samples_per_depth": 500,
+        "depths": 6
+      },
+      "log_path": "results/temp07_pilot/",
+      "checkpoint_path": "results/temp07_pilot/results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "samples_per_depth": 500,
+      "depths": 6,
+      "six_class_rf_accuracy": 0.5733,
+      "six_class_rf_ci95": [
+        0.5333,
+        0.615
+      ],
+      "six_class_lr_accuracy": 0.5467,
+      "pairwise_auc_rf": {
+        "d0v1": 0.9981,
+        "d1v2": 0.8378,
+        "d2v3": 0.635,
+        "d3v4": 0.5997,
+        "d4v5": 0.6025
+      },
+      "pairwise_auc_lr": {
+        "d0v1": 0.9954,
+        "d1v2": 0.8031,
+        "d2v3": 0.608,
+        "d3v4": 0.6525,
+        "d4v5": 0.5652
+      },
+      "vs_temp09_d1v2_rf": "0.8378 vs 0.8327 (+0.005)",
+      "vs_temp09_d1v2_lr": "0.8031 vs 0.7833 (+0.020)",
+      "d1v2_inversion": false,
+      "top_features": [
+        "p90_ppl",
+        "var_surprisal",
+        "mean_surprisal",
+        "mean_ppl",
+        "p75_ppl"
+      ]
+    },
+    "notes": "Pipeline 完成 (d0-d5, 500 samples/depth)。**d1v2 inversion 未出现**: d1v2 AUC RF=0.8378 (vs temp09 0.8327), LR=0.8031 (vs temp09 0.7833)。τ=0.7 within-strategy separability 与 τ=0.9 几乎相同。注意：cross-strategy LOO 中的 d1v2 inversion (GPT-2 XL: 0.129, OLMo: 0.253) 是跨策略泛化问题，非 within-strategy 问题。τ=0.7 的 within-strategy 结果正常，说明 temperature 均匀缩放 logit 不影响组内深度可分性。EDD 估计: d2v3=0.635<0.75 → EDD≈2 (6-class setting, 500 samples)。Feature importance 与 temp09 一致: perplexity 分布统计量主导 (p90_ppl, var_surprisal, mean_surprisal)。",
+    "completed_at": "2026-05-15T16:38:04.729Z"
+  },
+  "timestamp": "2026-05-15T16:38:04.871912+00:00",
+  "trigger": "update_registry"
+}

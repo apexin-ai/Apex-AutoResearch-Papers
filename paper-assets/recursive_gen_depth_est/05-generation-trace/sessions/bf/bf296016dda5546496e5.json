@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_dcol_midtraining_check_20260514T223230_result.json",
     "occurrence": 1,
-    "bytes": 1492,
-    "sha256": "145e6fb00e1bf6c17f3f29f1201f5053b9d39ee4dfff3cb62cee0f1219715855"
+    "bytes": 1491,
+    "sha256": "7b817bf7fe62fa0d0412101eaf4dd7a2b436d4d98bf2af72e00061b02f1d9cc8"
   },
   "statistics": {
     "messages": 1,

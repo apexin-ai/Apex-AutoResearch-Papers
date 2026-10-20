@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_migration-final-verify_20260520T122010_result.json",
     "occurrence": 1,
-    "bytes": 2016,
-    "sha256": "f69b6f227f0bf4730854047196fb18dbe258463365674d5fc42dde9c109f8b28"
+    "bytes": 2015,
+    "sha256": "e8e60577cc78be6ed2b9969998df4bf26f0749a49733cc90a00a31b5b196d7a5"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_kill_dcol_v5_urgent_20260515T034609_result.json",
     "occurrence": 1,
-    "bytes": 389,
-    "sha256": "587167e088801949bb9297977c23296957e56bedf7a730c04ef00ffaab911492"
+    "bytes": 388,
+    "sha256": "213595bab42a739ec248e0c060fda911d4b5334e98185a809ba5df9eed9da0b6"
   },
   "statistics": {
     "messages": 1,

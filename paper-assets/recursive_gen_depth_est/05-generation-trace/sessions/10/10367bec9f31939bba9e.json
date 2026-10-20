@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_cross_scale_llama3_base_001_20260516T130518_result.json",
     "occurrence": 1,
-    "bytes": 1512,
-    "sha256": "fc828a92c613b4ae1b7c45f2d683e3dac0e2503e3b1b44e9ba9c16a9ebf790c5"
+    "bytes": 1511,
+    "sha256": "1b2f5dc6fd66b9feaf3ec5498e3c70276a2f17fdf461c80e468f84fe9dfcd310"
   },
   "statistics": {
     "messages": 1,

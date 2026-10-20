@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_cross_strategy_pipeline_20260517T084621_result.json",
     "occurrence": 1,
-    "bytes": 689,
-    "sha256": "2db746c4a216823af96f83eb100671deeb404b34ff6f131a29b72d049a1a1b50"
+    "bytes": 688,
+    "sha256": "fe3b044ebcf66dff09a5fd6fac48f665cf6b122837aa0fb36eb9ec6a6a48d6dc"
   },
   "statistics": {
     "messages": 1,

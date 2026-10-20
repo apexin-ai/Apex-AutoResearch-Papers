@@ -1,0 +1,15 @@
+{
+  "exp_id": "d4_extension_pythia_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:01:39.631Z",
+    "updated_at": "2026-05-18T19:01:50.454Z",
+    "hypothesis": "Pythia-1.4B nucleus d4 depth extension: recursive generation depth signal persists at d4, providing second model evidence for EDD >= 4. d3v4 pairwise AUC > 0.70, 5-class RF accuracy well above 20% chance."
+  },
+  "timestamp": "2026-05-18T19:01:50.803811+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,615 @@
+tier: worst
+narrative_guidance: '核心 reframe：从 "robust framework for depth estimation" 转为 "first
+  systematic characterization of recursive depth phenomena and the boundary conditions
+  of feature-based detection." Atlas (Claim 2) 升为唯一 primary contribution。Claim 1 重写为
+  bounded conclusion："ordinal depth estimation is feasible and accurate under controlled
+  conditions (1–1.5B, BOS-seeded, within-strategy, 70–85%); signal significantly attenuates
+  at larger scales and under prompted generation, indicating that current statistical-feature
+  approaches capture a real but fragile signal." 13B 弱结果 + prompted 弱结果写入主体 Section
+  6 "Boundary Conditions of the Depth Signal"，与 EDD 分析并列。Characterizing these boundaries
+  IS the contribution。 Claim 3 降为 Discussion future work。论文定位：task definition + controlled-setting
+  empirical atlas + boundary characterization。EMNLP "New Missions" track 仍首选， 但论文类型从
+  "framework paper" 退到 "diagnostic/benchmark paper"。
+
+  '
+imagined_experiments:
+- name: DCOL component ablation
+  plan_id: plan_010
+  description: DCOL v6 (RoBERTa-large) 失败后前置条件 plan_004 未满足，此实验已取消。
+  expected_results:
+    status: cancelled
+    reason: DCOL v6 conclusion=negative (test_acc=64.5% vs RF baseline 78.2%, -13.7pp)，无可消融的成功模型
+  result_rationale: 'DCOL v1-v6 全线失败，最好结果仅 64.5%（RoBERTa-large v6），远低于 RF baseline。
+    contrastive ordinal learning 在文本深度估计上存在固有困难：(1) 文本嵌入空间的深度梯度 远弱于 19 维统计特征空间中的梯度，(2)
+    端到端学习需要从原始文本中同时学习特征提取和序数 排列，数据量不足以支撑。消融无意义——没有成功的完整模型可以消融。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 'plan_010 取消对论文无影响。DCOL 失败本身写入 negative analysis section（约 0.5 页）， 论述"为何
+    contrastive ordinal learning 在此 task 上比 feature engineering 差"。 这反而强化 Atlas（Claim
+    2）的 primary 定位——统计特征方法的优越性不是因为缺乏更好方法， 而是因为任务特性（稀疏信号、微弱梯度）使端到端学习困难。
+
+    '
+- name: 13B clean FP16 scale validation (Qwen2.5-14B)
+  plan_id: plan_014
+  description: 'Qwen2.5-14B FP16 + LoRA on 96GB RTX PRO 6000，nucleus p=0.95 decoding，
+    d0-d3 递归链 + Pythia-160M reference model 19 特征提取 + RF/LR 分类。 验证 depth signal 在主流模型规模上是否持续。
+
+    '
+  expected_results:
+    four_class_acc_rf: 0.55
+    four_class_acc_rf_ci:
+    - 0.53
+    - 0.57
+    four_class_acc_lr: 0.51
+    d0v1_auc: 0.96
+    d1v2_auc: 0.62
+    d2v3_auc: 0.56
+    d1v3_auc: 0.81
+    three_class_acc: 0.44
+    three_class_acc_ci:
+    - 0.42
+    - 0.46
+    edd_at_075: 1
+    edd_at_070: 2
+    feature_top2_in_top4: false
+    top_features_predicted:
+    - mean_ppl
+    - p75_ppl
+    - type_token_ratio
+    - rep_3gram
+    - p90_ppl
+    u_shape_artifact: true
+    u_shape_pattern: d1v2=0.62, d2v3=0.56 (trough), possible d2v3 < d3v4 recovery
+    finetune_loss_d0: 1.85
+    finetune_loss_d1: 1.52
+    finetune_loss_d2: 1.38
+    finetune_loss_d3: 1.31
+    loss_convergence_gap_d1_d2: 0.14
+    per_class_recall:
+      d0: 0.93
+      d1: 0.48
+      d2: 0.32
+      d3: 0.47
+    acc_vs_best_1_5b_retention_pct: 64.4
+  result_rationale: 'Worst tier 核心机制：Pythia-160M reference model 对 14B 输出的 perplexity
+    特征 区分力严重不足。14B 模型的词汇分布远比 1-1.5B 复杂——Pythia-160M 对所有 14B 输出 都给出极高 perplexity（因为
+    14B 的选词模式超出 160M 的建模能力），导致 p90_ppl 和 var_surprisal 的深度梯度被压缩到一个高 perplexity plateau
+    上，信噪比骤降。
+
+    具体机制链：(1) Qwen2.5-14B 的 BPE 词表（151K tokens）与 Pythia 词表（50K tokens） 不匹配，Pythia
+    需要更多 subword tokens 来编码 14B 的输出，系统性地膨胀 perplexity baseline；(2) 14B 模型容量大，LoRA
+    rank=16 的微调在每个深度迭代中只轻微扰动模型—— finetune loss 序列 1.85→1.52→1.38→1.31 的衰减斜率远小于 1-1.5B
+    的 2.2→1.4→1.0， 说明 14B 的 LoRA 适配器修改的分布偏移量远小于小模型；(3) 由于每步分布偏移小， Pythia 测量到的深度间特征差异在噪声水平附近——d1v2
+    AUC 仅 0.62，d2v3 仅 0.56。
+
+    U-shape artifact 的来源：与 Qwen 7B（cross_scale_qwen7b_001, U-shape confirmed） 同源。d2v3
+    出现 trough 是因为 depth-2 和 depth-3 的 LoRA 叠加效应使模型在某些 高频 token 上出现非单调的 logit 变化，Pythia
+    的 perplexity 在这些位置产生混淆信号。 Llama3 8B base 也出现了 U-shape（d2v3=0.68, d3v4=0.73 recovery），进一步支持
+    这是跨规模特征迁移的系统性问题而非 Qwen 特有。
+
+    Feature importance 结构破坏：p90_ppl 和 var_surprisal 不再占据 top-2，因为在高 perplexity plateau
+    上，尾部统计量的信噪比下降最快。mean_ppl 和 p75_ppl 因为 信号更平滑反而排名上升，但整体区分力弱。
+
+    EDD=1（T=0.75）意味着只有 d0v1 可靠区分，即 13B 条件下 depth estimation 实质 退化为 binary real-vs-synthetic
+    detection。
+
+    '
+  tables:
+  - name: 'Table S1: 13B vs 1-1.5B 4-class accuracy comparison'
+    columns:
+    - model
+    - scale
+    - 4class_acc_rf
+    - d1v2_auc
+    - d2v3_auc
+    - edd_075
+    rows:
+    - - Pythia-1.4B
+      - 1.4B
+      - 0.782
+      - 0.861
+      - 0.801
+      - 3
+    - - OLMo-1B
+      - 1B
+      - 0.788
+      - 0.867
+      - 0.812
+      - 3
+    - - GPT-2 XL
+      - 1.5B
+      - 0.833
+      - 0.913
+      - 0.883
+      - 3
+    - - Qwen2.5-14B
+      - 14B
+      - 0.55
+      - 0.62
+      - 0.56
+      - 1
+    - - Qwen-7B (QLoRA ref)
+      - 7B
+      - 0.601
+      - 0.729
+      - 0.709
+      - '>5 (U-shape)'
+  - name: 'Table S2: 13B feature importance vs 1-1.5B consensus'
+    columns:
+    - rank
+    - 1-1.5B consensus
+    - 13B predicted
+    rows:
+    - - 1
+      - p90_ppl / var_surprisal
+      - mean_ppl
+    - - 2
+      - var_surprisal / p90_ppl
+      - p75_ppl
+    - - 3
+      - mean_ppl / p75_ppl
+      - type_token_ratio
+    - - 4
+      - mean_surprisal
+      - rep_3gram
+    - - 5
+      - p75_ppl / mean_ppl
+      - p90_ppl
+  figures_description:
+  - 'Fig S1: AUC decay curve 1-1.5B vs 13B — 三条 1-1.5B 曲线呈 monotonic decay（d0v1≈0.99→d2v3≈0.80-0.88），13B
+    曲线在显著更低位置且可能呈 U-shape（d1v2=0.62, d2v3=0.56, 可能 d3v4 轻微回升）。EDD threshold lines
+    at T=0.70/0.75 将 13B 的 EDD 压到 1-2。'
+  - 'Fig S2: Finetune loss curve comparison — 1-1.5B 曲线陡峭（2.2→1.0 across 3 depths），13B
+    曲线平坦（1.85→1.31），说明 LoRA 在 14B 上的 per-depth distributional shift 远小于 1-1.5B。'
+  analysis: '13B 结果证实 worst tier 核心假设：Pythia reference model 对大规模模型输出的 perplexity
+    特征区分力本质受限。55% 4-class accuracy 虽然显著高于 chance（25%）， 但相比 1-1.5B 的 70-85% 有 >20pp
+    衰减。更关键的是 EDD=1，意味着 ordinal depth estimation 在 13B 条件下实质退化为 binary detection。
+
+    叙事处理：此结果不写入 Limitations，而是写入 Section 6 "Boundary Conditions" 的 Scale Dimension
+    子节。结论："feature-based depth estimation captures a real signal at 14B scale (55%
+    vs 25% chance, p<0.001), but the signal is severely attenuated compared to 1-1.5B,
+    with EDD collapsing from 3 to 1. The primary bottleneck is the cross-scale perplexity
+    measurement gap: a 160M reference model''s perplexity landscape compresses the
+    depth gradient of 14B outputs."
+
+    这为 future work 指出明确方向：(1) scale-matched reference models（用 7B 作为 14B 的 reference），(2)
+    reference-free features（但 reference_free_baseline_001 已证明 reference-free 在 1-1.5B
+    上就差 25pp），(3) 直接使用 14B 自身的 internal representations 而非外部 perplexity。
+
+    '
+- name: Wild-data calibration on RedPajama/Dolma
+  plan_id: plan_015
+  description: '在 RedPajama 和 Dolma 真实 web 数据上评估训练好的 depth classifiers 的 calibration
+    和 false positive rate。验证 controlled-setting 训练的分类器在 wild data 上的可靠性。
+
+    '
+  expected_results:
+    redpajama_n_passages: 5000
+    redpajama_d0_pct: 72.0
+    redpajama_fpr_pct: 28.0
+    redpajama_d1_pct: 18.5
+    redpajama_d2_pct: 5.8
+    redpajama_d3_pct: 3.7
+    dolma_n_passages: 5000
+    dolma_d0_pct: 76.5
+    dolma_fpr_pct: 23.5
+    dolma_d1_pct: 16.2
+    dolma_d2_pct: 4.3
+    dolma_d3_pct: 3.0
+    cross_model_fpr_range_pp: 18
+    mean_p_d0_redpajama: 0.68
+    mean_p_d0_dolma: 0.72
+    pythia_fpr: 28.0
+    gpt2xl_fpr: 30.5
+    olmo_fpr: 12.0
+    calibration_brier_score: 0.28
+  result_rationale: 'Worst tier 预期 FPR 在 23-30% 范围，与已有 wild data 结果一致但偏高端。
+
+    机制分析：(1) RedPajama 包含大量 CommonCrawl 数据，其中 template content、 SEO 文本、自动生成的产品描述占比显著。这些文本的统计特征（高
+    rep_3gram/rep_4gram、 低 type_token_ratio、异常 p90_ppl）与递归生成文本在特征空间中重叠，导致误分类。 已有证据：C4
+    FPR=20.2%（Pythia）、FineWeb FPR=19.5%，但 RedPajama 的 CommonCrawl 质量过滤比 C4 更宽松，预期
+    FPR 更高。
+
+    (2) Dolma 由 AI2 策划，含 CommonCrawl + Wikipedia + Books + GitHub + arXiv 等 多域混合。Wikipedia/Books
+    子集 FPR 极低（参考 WikiText 0% FPR），但 CommonCrawl 子集拉高整体 FPR。混合后预期 FPR ~23.5%。
+
+    (3) Cross-model FPR 一致性差（range=18pp）是因为不同 reference model 的 perplexity landscape
+    对 web 噪声的敏感度不同——OLMo 在 Dolma 上训练（域匹配），FPR 较低（参考 olmo_calibration_001 C4 FPR=4.7%），而
+    Pythia/GPT-2 XL 域失配导致 FPR 飙升。
+
+    (4) Calibration 差（Brier score 0.28）说明分类器的置信度在 wild data 上不可靠， 限制了任何基于预测概率的 graduated
+    curation 方案。
+
+    这些结果证实：controlled-setting 训练的分类器在 wild data 部署面临严重的 domain shift 问题，FPR 的高方差（12-30%
+    取决于 reference model）使得实际部署需要 domain-specific calibration，大幅限制了 Claim 1 的 practical
+    applicability。
+
+    '
+  tables:
+  - name: 'Table S3: Wild-data FPR across datasets and reference models'
+    columns:
+    - dataset
+    - pythia_fpr
+    - gpt2xl_fpr
+    - olmo_fpr
+    - mean_fpr
+    rows:
+    - - WikiText-103
+      - 0.0
+      - 1.4
+      - 1.5
+      - 1.0
+    - - OpenWebText
+      - 0.9
+      - 1.4
+      - 2.8
+      - 1.7
+    - - C4
+      - 20.2
+      - 22.4
+      - 4.7
+      - 15.8
+    - - FineWeb
+      - 19.5
+      - ~20
+      - ~5
+      - ~15
+    - - RedPajama (predicted)
+      - 28.0
+      - 30.5
+      - 12.0
+      - 23.5
+    - - Dolma (predicted)
+      - 25.0
+      - 27.0
+      - 10.0
+      - 20.7
+  figures_description:
+  - 'Fig S3: FPR vs dataset quality gradient — X 轴从 WikiText（高编辑质量）到 RedPajama（低质量
+    web crawl），Y 轴为 FPR。三条 reference model 线均呈单调上升，但 OLMo 曲线斜率显著低于 Pythia/GPT-2 XL（域匹配效应）。'
+  analysis: 'Wild-data 结果在 worst tier 下强化 "boundary conditions" 叙事的第四维度： domain shift。Controlled-setting
+    分类器在 editorial-quality 数据上表现优异 （WikiText FPR<2%），但在 web-crawl 数据上 FPR 高达 23-30%，且
+    reference model 依赖性强。
+
+    这不会进入论文主体（plan_015 延后到 AAAI），但如果包含，应写入 Section 6 "Boundary Conditions" 的 Domain
+    Dimension：depth signal 的第四个衰减边界。 与 scale（>1.5B attenuation）、generation mode（prompted
+    attenuation）、 depth（EDD=4）并列。
+
+    对 EMNLP 投稿的影响：不纳入此实验是正确决策。Wild-data calibration 的复杂度 足以支撑一篇独立 follow-up 论文，强行塞入当前论文会分散
+    Atlas 核心贡献的注意力。
+
+    '
+- name: Prompted generation ecological validity (GPT-2 XL, topic-seeded)
+  plan_id: plan_016
+  description: 'GPT-2 XL nucleus p=0.95，用 topic prompt 前缀（"The following article discusses..."等）
+    生成 d0，LoRA fine-tune 后生成 d1-d3，提取 19 特征 + RF 分类。验证 depth signal 是否为 BOS-seeded
+    无条件生成的 artifact。
+
+    '
+  expected_results:
+    four_class_acc_rf: 0.5
+    four_class_acc_rf_ci:
+    - 0.48
+    - 0.52
+    four_class_acc_lr: 0.46
+    d0v1_auc: 0.93
+    d1v2_auc: 0.58
+    d2v3_auc: 0.54
+    d1v3_auc: 0.77
+    three_class_acc: 0.4
+    three_class_acc_ci:
+    - 0.38
+    - 0.42
+    acc_retention_vs_bos_pct: 58.6
+    acc_retention_vs_bos_pct_range:
+    - 55
+    - 62
+    edd_at_075: 1
+    edd_at_070: 1
+    feature_top5_predicted:
+    - p90_ppl
+    - var_surprisal
+    - mean_ppl
+    - mean_surprisal
+    - p75_ppl
+    feature_importance_structure_preserved: true
+    feature_importance_magnitude_attenuation_pct: 35
+    per_class_recall:
+      d0: 0.88
+      d1: 0.42
+      d2: 0.28
+      d3: 0.42
+    bos_reference_acc: 0.854
+    prompted_acc: 0.5
+    delta_pp: -35.4
+    finetune_loss_d0: 2.1
+    finetune_loss_d1: 1.65
+    finetune_loss_d2: 1.35
+    finetune_loss_d3: 1.15
+  result_rationale: 'Worst tier 核心机制：prompted generation 从根本上改变了 perplexity 特征的信号
+    结构，使 depth gradient 严重衰减。
+
+    具体机制链：
+
+    (1) Prompt anchoring effect：topic prompt 前缀（"The following article discusses climate
+    change..."等）约束了生成文本的词汇分布和主题范围。BOS-seeded 生成是 完全无条件的——模型从空白开始，每个深度的分布偏移完整体现在输出中。Prompted
+    生成中，prompt 提供了一个 distributional anchor，LoRA fine-tuning 在每个深度 迭代中需要同时 (a) 适配 prompt-conditioned
+    分布 和 (b) 引入深度相关的偏移。 这两个目标部分冲突——prompt anchor 限制了可偏移的分布空间。
+
+    (2) Perplexity floor effect：Pythia-160M 对 prompted text 的 perplexity 整体 更低且更集中（因为
+    prompt 提供了上下文，Pythia 的下文预测更准），导致 p90_ppl 和 var_surprisal 的动态范围被压缩。具体来说，BOS-seeded
+    d0 的 p90_ppl ≈ 180-220， 但 prompted d0 可能只有 120-150（prompt 提供了 context），深度梯度的绝对变化量
+    从 ~80 points 压缩到 ~30 points，信噪比下降约 60%。
+
+    (3) Feature importance 结构保留但幅度衰减：p90_ppl 和 var_surprisal 仍在 top-5 （不同于 13B 的结构性破坏），因为
+    prompted generation 不改变哪些特征有信息量， 只是缩小了信息量的幅度。这是 worst tier 中一个"不是最差"的维度——prompted
+    的 问题是信号衰减而非信号结构破坏。
+
+    (4) d1v2 AUC 0.58 的来源：depth-1 和 depth-2 的 prompted 输出在 Pythia 视角 下几乎不可区分，因为 LoRA
+    在 prompted 条件下的 per-depth 分布偏移量更小（loss convergence gap d1-d2 仅 0.30 vs BOS 模式下的
+    0.84）。prompt 的 constraint 使得连续深度的输出分布差异主要体现在远离 prompt 的 token 位置，而特征提取 使用固定 truncation
+    length（498 tokens），可能截断了信号最强的尾部区域。
+
+    (5) 58.6% retention 意味着 prompted 条件下约 41% 的信号丢失。GPT-2 XL 是 1-1.5B 中信号最强的（85.4%），如果它在
+    prompted 模式下降到 50%，那么 Pythia 和 OLMo 在 prompted 模式下可能只有 40-45%，接近 chance。这使得 "depth
+    signal persists under prompted generation" 的 Claim 1 表述不可持续。
+
+    (6) EDD=1（T=0.75 和 T=0.70）意味着在 prompted 条件下只有 d0v1 boundary 可靠，depth estimation
+    退化为 binary real-vs-synthetic detection，与 13B worst tier 的结论一致。
+
+    '
+  tables:
+  - name: 'Table S4: Prompted vs BOS-seeded accuracy (GPT-2 XL nucleus)'
+    columns:
+    - condition
+    - 4class_acc
+    - d1v2_auc
+    - d2v3_auc
+    - edd_075
+    - retention_pct
+    rows:
+    - - BOS-seeded
+      - 0.854
+      - 0.937
+      - 0.882
+      - 3
+      - 100
+    - - Prompted (worst)
+      - 0.5
+      - 0.58
+      - 0.54
+      - 1
+      - 58.6
+    - - Delta
+      - -0.354
+      - -0.357
+      - -0.342
+      - -2
+      - null
+  - name: 'Table S5: Prompted per-class recall vs BOS'
+    columns:
+    - depth
+    - bos_recall
+    - prompted_recall
+    - delta
+    rows:
+    - - d0
+      - 0.996
+      - 0.88
+      - -0.116
+    - - d1
+      - 0.816
+      - 0.42
+      - -0.396
+    - - d2
+      - 0.596
+      - 0.28
+      - -0.316
+    - - d3
+      - 0.754
+      - 0.42
+      - -0.334
+  - name: 'Table S6: Finetune loss comparison'
+    columns:
+    - depth
+    - bos_loss
+    - prompted_loss
+    - delta
+    rows:
+    - - d0
+      - 2.55
+      - 2.1
+      - -0.45
+    - - d1
+      - 1.72
+      - 1.65
+      - -0.07
+    - - d2
+      - 1.29
+      - 1.35
+      - 0.06
+    - - d3
+      - null
+      - 1.15
+      - null
+  figures_description:
+  - 'Fig S4: Feature distribution violin plots (BOS vs Prompted) — p90_ppl 和 var_surprisal
+    的 4-depth violin plots 并排比较。BOS 版本显示清晰的深度梯度（d0 宽高分布→d3 窄低分布），Prompted 版本整体压缩且深度间重叠严重，尤其
+    d1/d2 几乎完全重叠。'
+  - 'Fig S5: AUC decay curve overlay — BOS 曲线（smooth monotonic decay from 0.99 to
+    0.88）vs Prompted 曲线（steep drop, d1v2=0.58, d2v3=0.54），两者在 d0v1 接近但迅速分离。EDD threshold
+    line 显示 prompted EDD=1 vs BOS EDD=3。'
+  analysis: 'Prompted generation 在 worst tier 下证实了 ecological validity 核心假设失败： depth
+    signal 高度依赖 BOS-seeded 无条件生成模式。50% accuracy（vs BOS 85.4%） 意味着 prompted 条件下分类器只比
+    chance 高 25pp，而 BOS 条件下高 60pp—— 超过 60% 的相对信号在 prompted 模式下消失。
+
+    叙事处理：此结果写入 Section 6 "Boundary Conditions of the Depth Signal" 的 Generation Mode
+    Dimension。关键措辞："The depth signal is substantially attenuated under prompted (topic-seeded)
+    generation — 4-class accuracy drops from 85.4% (BOS-seeded) to 50.0% (prompted),
+    with EDD collapsing from 3 to 1. This indicates that a significant portion of
+    the BOS-seeded depth signal arises from the unconstrained distributional freedom
+    of unconditional generation, which LoRA fine-tuning can fully exploit at each
+    depth iteration. Prompted generation constrains this freedom, compressing the
+    per-depth distributional shift and reducing the feature-space gradient available
+    to classifiers."
+
+    好消息：feature importance 结构保留（p90_ppl/var_surprisal 仍 top-2），说明 信号的性质不变（同类特征仍最有信息量），只是幅度衰减。这支持"信号是真实的但
+    脆弱的"叙事，而非"信号是 artifact"。
+
+    对论文定位的影响：Claim 1 必须退到 "feasible under controlled conditions"， ecological validity
+    成为一个明确的 boundary condition 而非已解决的问题。 这与 "diagnostic/boundary characterization
+    paper" 定位一致。
+
+    '
+- name: Cross-strategy two-stage pipeline (strategy clf + conditioned depth)
+  plan_id: plan_017
+  description: '两阶段方案：(a) 19 特征 → 3-class strategy classifier (nucleus/temp/topk)，
+    (b) 识别策略后用策略专属 RF 估深度。解决 59.1% 跨策略准确率问题。
+
+    '
+  expected_results:
+    strategy_clf_overall_acc: 0.575
+    strategy_clf_per_model:
+      pythia: 0.523
+      olmo: 0.548
+      gpt2xl: 0.654
+    strategy_clf_per_strategy_recall:
+      nucleus: 0.662
+      temp09: 0.467
+      topk50: 0.597
+    predicted_two_stage_acc:
+      pythia: 0.693
+      olmo: 0.695
+      gpt2xl: 0.73
+      mean: 0.706
+    naive_pooled_acc:
+      pythia: 0.709
+      olmo: 0.712
+      gpt2xl: 0.739
+      mean: 0.72
+    oracle_two_stage_acc:
+      pythia: 0.746
+      olmo: 0.785
+      gpt2xl: 0.82
+      mean: 0.784
+    within_strategy_ref_acc:
+      pythia: 0.745
+      olmo: 0.784
+      gpt2xl: 0.816
+      mean: 0.782
+    predicted_vs_naive_gap_pp: -1.4
+    oracle_vs_within_gap_pp: 0.2
+    strategy_clf_bottleneck: true
+    temp09_clf_recall: 0.467
+    temp09_misclass_as_nucleus_pct: 38
+  result_rationale: 'Worst tier 核心问题：strategy classifier 准确率仅 57.5%（chance=33.3%），
+    远低于预期的 >90%，导致 predicted two-stage（70.6%）反而低于 naive pooled （72.0%），pipeline 无实际价值。
+
+    机制分析：
+
+    (1) 策略不可分性的根因：19 个 perplexity/surprisal 统计特征的设计目的是 捕捉深度信号，不是策略信号。深度梯度（across depths
+    within a strategy）远大于 策略梯度（across strategies within a depth）——这恰恰是深度估计成功的原因， 但也是策略分类失败的原因。三种策略在
+    depth-0 上使用相同 base model 生成， 特征完全相同；depth-1+ 的策略差异主要体现在 token-level 分布形状（nucleus
+    截断 vs temperature 缩放 vs topk 截断），而 19 个 summary statistics 将 500 tokens 的 token-level
+    信息压缩为单个数值，丢失了大部分策略判别信息。
+
+    (2) Temperature 最难分类（recall 46.7%）：temperature sampling 的均匀 logit 缩放不改变 token
+    rank order，只改变 softmax 后的概率分布平滑度。在 Pythia reference model 的 perplexity 视角下，这种平滑度变化被
+    mean_ppl 和 p90_ppl 部分吸收但不够 distinctive——temperature 的很多样本在特征空间中落入 nucleus 和 topk
+    的重叠区域。38% 的 temp09 样本被误分为 nucleus，因为两者的 perplexity 尾部分布高度相似（nucleus 截断概率 < 0.05
+    的 tokens，temperature 降低但保留 所有 tokens 的概率——在 Pythia 眼中，两者都产生 "somewhat surprising"
+    的输出）。
+
+    (3) Predicted < Naive 的数学原因：设 strategy clf error rate = e ≈ 0.425。 误分类的样本被送入错误的
+    strategy-conditioned depth classifier，其性能等于 cross-strategy LOO 水平（~59%）。正确分类的样本使用
+    within-strategy classifier （~78%）。加权平均：0.575 × 0.78 + 0.425 × 0.59 = 0.449 + 0.251
+    = 0.700 ≈ 70.6%。 Naive pooled（全部数据 train single RF）≈ 72%，因为 pooling 虽然模糊了策略边界，
+    但避免了 misrouting 的惩罚。当 strategy clf acc < ~75% 时，two-stage 数学上 必然劣于 naive pooled。
+
+    (4) Oracle vs within-strategy gap 仅 0.2pp（78.4% vs 78.2%），完美验证了 理论：如果策略已知，conditioned
+    depth estimation 可以完全恢复 within-strategy 性能。但这是 oracle 条件——现实中策略未知，pipeline 的瓶颈完全在策略识别环节。
+
+    (5) Worst tier 结论：strategy classification 准确率无法超过 60%（因为 19 个 特征的设计先天不适合策略判别），predicted
+    two-stage 始终 ≤ naive pooled， pipeline 无实际部署价值。Claim 3 不具备作为独立 contribution 的条件。
+
+    '
+  tables:
+  - name: 'Table S7: Two-stage pipeline accuracy decomposition'
+    columns:
+    - condition
+    - pythia
+    - olmo
+    - gpt2xl
+    - mean
+    rows:
+    - - Cross-strategy LOO (baseline)
+      - 0.612
+      - 0.595
+      - 0.566
+      - 0.591
+    - - Naive pooled
+      - 0.709
+      - 0.712
+      - 0.739
+      - 0.72
+    - - Predicted two-stage
+      - 0.693
+      - 0.695
+      - 0.73
+      - 0.706
+    - - Oracle two-stage
+      - 0.746
+      - 0.785
+      - 0.82
+      - 0.784
+    - - Within-strategy (ceiling)
+      - 0.745
+      - 0.784
+      - 0.816
+      - 0.782
+  - name: 'Table S8: Strategy classification confusion matrix (3-model mean)'
+    columns:
+    - true/predicted
+    - nucleus
+    - temp09
+    - topk50
+    rows:
+    - - nucleus
+      - 0.662
+      - 0.182
+      - 0.156
+    - - temp09
+      - 0.38
+      - 0.467
+      - 0.153
+    - - topk50
+      - 0.163
+      - 0.24
+      - 0.597
+  figures_description:
+  - 'Fig S6: Strategy classification accuracy vs depth estimation gain — 横轴 strategy
+    clf acc (40-100%)，纵轴 depth estimation acc。两条线：predicted two-stage（从 ~59% at clf=33%
+    上升到 ~78% at clf=100%）和 naive pooled（水平线 72%）。交叉点在 clf≈75%，标注 ''breakeven point''。当前
+    clf=57.5% 明确低于 breakeven。'
+  analysis: 'Two-stage pipeline 在 worst tier 下证实了 Claim 3 的失败：strategy classifier
+    的 57.5% 准确率是结构性瓶颈，不是可以通过调参或更多数据解决的——19 个特征 从设计上就不携带足够的策略判别信息。Pipeline 不仅没有改善跨策略性能，反而因为
+    misrouting penalty 比 naive pooling 差 1.4pp。
+
+    对论文结构的影响：Claim 3 从独立 contribution 降为 Discussion future work， 措辞改为 "We explored
+    a two-stage strategy-aware pipeline and found that while oracle strategy identification
+    perfectly recovers within-strategy accuracy (78.4% vs 78.2%), strategy classification
+    from the same 19 perplexity features reaches only 57.5% — insufficient to outperform
+    naive pooling (70.6% vs 72.0%). This reveals that perplexity summary statistics,
+    while effective for depth discrimination, do not carry sufficient information
+    to distinguish decoding strategies. Future work should explore strategy-specific
+    features (e.g., token-level probability distributions, softmax entropy profiles)
+    for the first stage."
+
+    Oracle 结果（78.4% ≈ within-strategy 78.2%）本身是有价值的 finding——它证明 跨策略问题的根源完全是策略混淆而非深度信号的策略依赖性。这与
+    temperature 反转分析（Section 6 的 Strategy Dimension）一致：策略不是 noise，而是信号的 structural
+    moderator。策略已知时，信号完全可恢复。
+
+    但在 worst tier 叙事下，这个 positive oracle 结果只能作为 "theoretical validation" 写入 Discussion，不能撑起一个独立
+    Claim。论文退到两个 Claims： Claim 1（bounded feasibility）+ Claim 2（Atlas/EDD, PRIMARY）。'

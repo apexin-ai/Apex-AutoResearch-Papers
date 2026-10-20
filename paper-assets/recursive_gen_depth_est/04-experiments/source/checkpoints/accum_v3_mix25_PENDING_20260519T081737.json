@@ -1,0 +1,28 @@
+{
+  "exp_id": "accum_v3_mix25",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T08:08:08.342Z",
+    "updated_at": "2026-05-19T08:17:37.507Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/recursive_gen_depth_est && bash scripts/run_accumulation_gpt2xl_nucleus.sh --mix_ratio 0.25 --cuda 1 --seed 42\"",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "114471",
+      "log_path": "~/runs/recursive_gen_depth_est/accum_v3_mix25.log",
+      "submitted_at": "2026-05-19T08:17:16.372Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Under 25/75 accumulation (mixing 25% human + 75% previous-depth synthetic text at each depth, then LoRA fine-tune + generate), depth signal attenuates more than 50/50 mix but remains above chance (25%), establishing a degradation curve parameterized by human-text proportion. Together with mix50, characterizes how accumulation ratio affects depth separability."
+  },
+  "timestamp": "2026-05-19T08:17:37.756855+00:00",
+  "trigger": "update_registry"
+}

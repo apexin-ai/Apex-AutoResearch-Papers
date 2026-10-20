@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mlp_19feat_baseline_20260517T115718_result.json",
     "occurrence": 1,
-    "bytes": 717,
-    "sha256": "faafe63f508ac1b33e477ef612384fc049e1ed8e775d08aebafb0883a9c53e7e"
+    "bytes": 716,
+    "sha256": "a97cafac3ba2a47fb429f65c79ab7570323ad9c3ad46915c7d782b339bed02b5"
   },
   "statistics": {
     "messages": 1,

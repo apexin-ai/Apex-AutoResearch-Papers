@@ -1,0 +1,86 @@
+{
+  "exp_id": "qwen25-1p5b-instruct-001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:59:15.218Z",
+    "updated_at": "2026-05-17T19:17:13.625Z",
+    "spec": {
+      "command": "python scripts/qwen25_1.5b_instruct_pipeline.py",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "795692",
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25-1p5b-instruct-001.log",
+      "submitted_at": "2026-05-17T15:13:22.008Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_1.5b_instruct/",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen2.5-1.5B-Instruct",
+      "eval_data": "self-generated d0-d3 recursive chain",
+      "wall_clock_seconds": 13317.9,
+      "gpu_hours": 3.7
+    },
+    "hypothesis": "Depth signal persists in instruction-tuned models: Qwen2.5-1.5B-Instruct recursive chain (nucleus p=0.95, d0-d3) achieves RF 4-class accuracy significantly above 25% baseline, demonstrating that instruction tuning does not eliminate model collapse signatures.",
+    "parent": "mvp_pipeline_pythia_002",
+    "notes": "plan_021: Qwen2.5-1.5B-Instruct instruct-model validation. Phase 1-3 完成（d0-d3 数据生成 + LoRA 微调），Phase 4 特征提取崩溃。失败原因: TypeError: Got unsupported ScalarType BFloat16 — compute_token_surprisals() 中 token_log_probs.squeeze(0).cpu().numpy() 不支持 BF16。修复: 加 .float() 转换。数据和 checkpoint 完好，可从 Phase 4 重跑。",
+    "reproduce": {
+      "finished_at": "2026-05-17T18:55:15.958Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "success",
+    "completed_at": "2026-05-17T18:55:19.858Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T18:55:24.456378+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "rf_4class_acc": 0.4742,
+      "rf_4class_ci": [
+        0.467,
+        0.4811
+      ],
+      "lr_4class_acc": 0.4256,
+      "rf_3class_acc": 0.4987,
+      "pairwise_auc_rf": {
+        "d0v1": 0.653,
+        "d0v2": 0.819,
+        "d0v3": 0.902,
+        "d1v2": 0.62,
+        "d1v3": 0.807,
+        "d2v3": 0.664
+      },
+      "pairwise_auc_lr": {
+        "d0v1": 0.619,
+        "d0v2": 0.773,
+        "d0v3": 0.838,
+        "d1v2": 0.594,
+        "d1v3": 0.734,
+        "d2v3": 0.621
+      },
+      "top_features": [
+        "surprisal_range",
+        "surprisal_position_corr",
+        "prob_std",
+        "surprisal_first_half_minus_second",
+        "surprisal_std"
+      ],
+      "n_samples": 19992
+    }
+  },
+  "timestamp": "2026-05-17T19:17:13.881766+00:00",
+  "trigger": "update_registry"
+}

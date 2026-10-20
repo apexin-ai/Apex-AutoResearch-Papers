@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d114f7ea6ed4f3d6126",
+  "project": "distill_kv_rag_cache",
+  "kind": "result",
+  "title": "code mvp validation and run",
+  "task_key": "worker_code_mvp-validation-and-run_20260514T061232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-validation-and-run_20260514T061232_result.json",
+    "occurrence": 1,
+    "bytes": 1441,
+    "sha256": "108f6775e9ac326d6823caf6d712f56015e1f3267fc62897766a21f105a4c491"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双 GPU 评估正在运行：\n- **GPU 0**: Config A_6x 开始（共 A/B/C × 6x/8x = 6 runs × 500 samples）\n- **GPU 1**: Config D_6x 开始（共 D/E × 6x/8x = 3 runs × 500 samples，E 只有 baseline）\n\nGPU 内存使用约 17.6GB/96GB，利用率正常。\n\n## 验证总结\n\n| 项目 | 状态 |\n|------|------|\n| **模型路径** | `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct` (tokenizer vocab_size=128000) |\n| **NQ 数据** | 500 条合成样本（NQ 格式，avg context ~5783 chars）。真实 NQ 因 AutoDL 网络限制下载极慢，后续需通过其他方式获取 |\n| **代码修复** | 3 处 transformers 4.57.6 兼容性修复：① `num_heads` → `config.num_attention_heads`，② NoPE RoPE dtype cast，③ DynamicCache API (`key_cache` → `layers[i].keys`)，④ attention 返回值从 3 改为 2，⑤ `_quantize` device 统一 |\n| **验证结果** | 5 个 config 全部通过（A/B/C/D/E），无报错。F1=0.091（合成数据），延迟 baseline 0.77s，压缩 configs ~4.6s |\n| **正式运行** | 双 GPU 已启动。GPU0 跑 A/B/C（PID 13497），GPU1 跑 D/E（PID 13722）|\n\n**注意**：合成数据上各 config 的 EM/F1 完全相同，这是预期的（合成文本模式单一，模型生成相似输出）。需要真实 NQ 数据才能观察到 config 间的质量差异。建议后续通过 scp 或其他渠道将 NQ 数据传输到服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-validation-and-run.md"
+}

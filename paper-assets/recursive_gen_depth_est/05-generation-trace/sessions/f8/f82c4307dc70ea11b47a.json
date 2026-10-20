@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r3w1-d0-inflation_20260516T010831_result.json",
     "occurrence": 1,
-    "bytes": 1204,
-    "sha256": "b054a9d77a155cb87d5f7a89f7e26d4e08ff58494485878c22dcd4576e9d0468"
+    "bytes": 1203,
+    "sha256": "19ddf5891c3f53fecd34f288b011e653bd65189e353f1c4a608b60d9b5e8404d"
   },
   "statistics": {
     "messages": 1,

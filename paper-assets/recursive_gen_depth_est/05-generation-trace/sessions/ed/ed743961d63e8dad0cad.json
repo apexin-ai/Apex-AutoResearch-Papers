@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_check_accum_mix50_20260522T045137_result.json",
     "occurrence": 1,
-    "bytes": 895,
-    "sha256": "9bb436b8b6cdeb536485a0f629de53def85f8c4d176a36e8e1e1288b136b7e61"
+    "bytes": 894,
+    "sha256": "4ab3c4163f06ca8465ffdd8e6c32f395063b99e3953153d04d537612235903c3"
   },
   "statistics": {
     "messages": 1,

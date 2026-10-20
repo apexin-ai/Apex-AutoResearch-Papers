@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_n2_deberta_finetune_20260515T112648_result.json",
     "occurrence": 1,
-    "bytes": 2071,
-    "sha256": "f02fe52ee50123e9f2e2d62e37320784855b65296adc3a89caea9a3d91a5e784"
+    "bytes": 2070,
+    "sha256": "94209b9da5fb17521b1bf18418f04edd1f559617339fc10628a145ef36043adb"
   },
   "statistics": {
     "messages": 1,

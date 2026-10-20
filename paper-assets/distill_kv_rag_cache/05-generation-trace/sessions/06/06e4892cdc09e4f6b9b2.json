@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06e4892cdc09e4f6b9b2",
+  "project": "distill_kv_rag_cache",
+  "kind": "result",
+  "title": "code prepare hotpotqa data",
+  "task_key": "worker_code_prepare-hotpotqa-data_20260514T072737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-hotpotqa-data_20260514T072737_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "43c6fde75ad6dc1c43ec1d26fe66f00d631eb40bac7296d19fef50ae901a5afb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输成功。汇报结果：\n\n**产出汇报**\n\n| 指标 | 值 |\n|------|-----|\n| 样本数 | 500 条（全部 bridge type） |\n| Context 词数 min | 114 |\n| Context 词数 max | 2,250 |\n| Context 词数 median | 931.5 |\n| Context 词数 mean | 952 |\n| Context > 512 words | 495/500 (99%) |\n| Context > 300 words | 499/500 |\n| 空答案 | 0 |\n\n**典型样本**\n\n1. **Q:** What government position was held by the woman who portrayed Corliss Archer in the film Kiss and Tell? **A:** Chief of Protocol — context 831 words\n2. **Q:** What science fantasy young adult series, told in first person, has a set of comp... **A:** Animorphs — context 1,061 words\n3. **Q:** The director of the romantic comedy \"Big Stone Gap\" is based in what New York ci... **A:** Greenwich Village, New York City — context 950 words\n\n文件已传输到服务器 `/root/autodl-tmp/compresslink/data/hotpotqa_500.jsonl`，500 行确认无误。99% 样本 context 超过 512 words，在 chunk_size=512 下会产生充足的 multi-chunk 和 boundary tokens。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-hotpotqa-data.md"
+}

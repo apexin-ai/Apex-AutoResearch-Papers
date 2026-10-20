@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_accum_discovery_20260521T070711_result.json",
     "occurrence": 1,
-    "bytes": 4738,
-    "sha256": "f09547cfa4e33d2c91a0af5abc552b699f02042bb76f8f47004749eab9d2e11c"
+    "bytes": 4737,
+    "sha256": "2b20f95b96972c7a6d4eae938be309df1268e2d87e264d60ec901e78127b54d2"
   },
   "statistics": {
     "messages": 1,

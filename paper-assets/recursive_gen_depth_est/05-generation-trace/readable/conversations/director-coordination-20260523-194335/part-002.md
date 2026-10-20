@@ -23422,7 +23422,7 @@ Panel (b): Cross-strategy transfer — 3 组 bars (holdout = nucleus/temp/top-k)
 [飞书用户 运维(匿名仓库分发)]: 📦 **匿名仓库已建好，请将本项目代码 push 到匿名仓库（EMNLP 2026 投稿用）**
 
 **仓库地址：** https://github.com/anonymous-nlp-2026/recursive_gen_depth_est
-**带 token 的 push URL：** https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git
+**带 token 的 push URL：** https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git
 
 **任务：**
 请整理本项目的代码到一个匿名分支并 push 到上述仓库。
@@ -23577,7 +23577,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ```json
 {
-  "text": "两个任务，按优先级排序：\n\n**任务 1（紧急）：匿名仓库推送**\n\n运维已建好匿名仓库，需要将项目代码 push 上去（EMNLP 2026 投稿用）。\n\n仓库地址：https://github.com/anonymous-nlp-2026/recursive_gen_depth_est\n带 token 的 push URL：https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git\n\n清单：\n1. 包含：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. 排除：实验日志、checkpoints、wandb/、data/、本框架的 .agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、任何 token\n3. 匿名化（必须）：\n   - 替换代码 / commit message / git author 里的：caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名、机构名、wandb entity 名\n   - git author 改成 Anonymous &lt;anonymous@example.com>\n   - 重写历史：新建仓库重新提交一次即可\n4. 审稿人能复现：保留 requirements/setup 脚本，README 写清楚怎么跑\n\n完成后汇报：repo URL、文件数、commit 数。有疑问先问我。\n\n**任务 2：不急，等任务 1 完成后再做。**\n后续可能需要你在本地跑 matplotlib 脚本生成一张新图（cross-model vs cross-strategy 对比面板），我会另行通知。",
+  "text": "两个任务，按优先级排序：\n\n**任务 1（紧急）：匿名仓库推送**\n\n运维已建好匿名仓库，需要将项目代码 push 上去（EMNLP 2026 投稿用）。\n\n仓库地址：https://github.com/anonymous-nlp-2026/recursive_gen_depth_est\n带 token 的 push URL：https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git\n\n清单：\n1. 包含：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. 排除：实验日志、checkpoints、wandb/、data/、本框架的 .agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、任何 token\n3. 匿名化（必须）：\n   - 替换代码 / commit message / git author 里的：caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名、机构名、wandb entity 名\n   - git author 改成 Anonymous &lt;anonymous@example.com>\n   - 重写历史：新建仓库重新提交一次即可\n4. 审稿人能复现：保留 requirements/setup 脚本，README 写清楚怎么跑\n\n完成后汇报：repo URL、文件数、commit 数。有疑问先问我。\n\n**任务 2：不急，等任务 1 完成后再做。**\n后续可能需要你在本地跑 matplotlib 脚本生成一张新图（cross-model vs cross-strategy 对比面板），我会另行通知。",
   "project": "recursive_gen_depth_est"
 }
 ```
@@ -23592,7 +23592,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_5d269fdb74af3f4ab8d78b82a993f5cf:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "两个任务，按优先级排序：\n\n**任务 1（紧急）：匿名仓库推送**\n\n运维已建好匿名仓库，需要将项目代码 push 上去（EMNLP 2026 投稿用）。\n\n仓库地址：https://github.com/anonymous-nlp-2026/recursive_gen_depth_est\n带 token 的 push URL：https://anonymous-nlp-2026:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git\n\n清单：\n1. 包含：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. 排除：实验日志、checkpoints、wandb/、data/、本框架的 .agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、任何 token\n3. 匿名化（必须）：\n   - 替换代码 / commit message / git author 里的：caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名、机构名、wandb entity 名\n   - git author 改成 Anonymous &lt;anonymous@example.com>\n   - 重写历史：新建仓库重新提交一次即可\n4. 审稿人能复现：保留 requirements/setup 脚本，README 写清楚怎么跑\n\n完成后汇报：repo URL、文件数、commit 数。有疑问先问我。\n\n**任务 2：不急，等任务 1 完成后再做。**\n后续可能需要你在本地跑 matplotlib 脚本生成一张新图（cross-model vs cross-strategy 对比面板），我会另行通知。",
+    "text": "两个任务，按优先级排序：\n\n**任务 1（紧急）：匿名仓库推送**\n\n运维已建好匿名仓库，需要将项目代码 push 上去（EMNLP 2026 投稿用）。\n\n仓库地址：https://github.com/anonymous-nlp-2026/recursive_gen_depth_est\n带 token 的 push URL：https://[REDACTED]@github.com/anonymous-nlp-2026/recursive_gen_depth_est.git\n\n清单：\n1. 包含：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. 排除：实验日志、checkpoints、wandb/、data/、本框架的 .agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、任何 token\n3. 匿名化（必须）：\n   - 替换代码 / commit message / git author 里的：caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名、机构名、wandb entity 名\n   - git author 改成 Anonymous &lt;anonymous@example.com>\n   - 重写历史：新建仓库重新提交一次即可\n4. 审稿人能复现：保留 requirements/setup 脚本，README 写清楚怎么跑\n\n完成后汇报：repo URL、文件数、commit 数。有疑问先问我。\n\n**任务 2：不急，等任务 1 完成后再做。**\n后续可能需要你在本地跑 matplotlib 脚本生成一张新图（cross-model vs cross-strategy 对比面板），我会另行通知。",
     "project": "recursive_gen_depth_est"
   }
 }

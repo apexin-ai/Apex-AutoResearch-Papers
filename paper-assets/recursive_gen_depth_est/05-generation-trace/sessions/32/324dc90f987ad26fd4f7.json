@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_n4_reverse_chain_results_20260516T142452_result.json",
     "occurrence": 1,
-    "bytes": 1011,
-    "sha256": "a9dd3a4da708a1bc28926d1bb783edded721e27230c57d7e146ea47fa44eed0e"
+    "bytes": 1010,
+    "sha256": "be258dbdae002a6196ebb6d3d768084d3724bcbccbb6653c4eaabaf1b536eb97"
   },
   "statistics": {
     "messages": 1,

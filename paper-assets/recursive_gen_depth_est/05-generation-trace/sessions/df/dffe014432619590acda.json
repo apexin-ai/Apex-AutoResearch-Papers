@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_14b_gpu6000pro2_20260517T211449_result.json",
     "occurrence": 1,
-    "bytes": 685,
-    "sha256": "3dd0ac5b564d21269bffb21588557c5b9c69dc861be86fc628a9b6b68b0fcf53"
+    "bytes": 684,
+    "sha256": "2267b0a56c3b36cec8fb5388897b5e39ded042ad968fd456806061277848bfd6"
   },
   "statistics": {
     "messages": 1,

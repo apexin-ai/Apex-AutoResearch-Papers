@@ -1,0 +1,14 @@
+{
+  "exp_id": "gpt2xl_topk50_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:30:51.976Z",
+    "updated_at": "2026-05-14T22:30:51.976Z"
+  },
+  "timestamp": "2026-05-14T22:30:52.022931+00:00",
+  "trigger": "update_registry"
+}

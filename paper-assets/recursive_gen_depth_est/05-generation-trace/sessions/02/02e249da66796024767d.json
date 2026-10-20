@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_fix-d2-recall-audit_20260525T203931_result.json",
     "occurrence": 1,
-    "bytes": 2321,
-    "sha256": "9f37339b1b34bdc1f0cd8adf39ae5d70cd39e8284e87d497c1b21195512b021b"
+    "bytes": 2320,
+    "sha256": "6559cad9e8d3c23126219ca4c5e96b16cd7d909e9372cd7f4d03cded6907f891"
   },
   "statistics": {
     "messages": 1,

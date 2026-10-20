@@ -1,0 +1,61 @@
+{
+  "exp_id": "pythia_seed43_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:04:28.629Z",
+    "updated_at": "2026-05-18T16:46:51.786Z",
+    "hypothesis": "Pythia-1.4B recursive generation chain with seed=43 will produce depth-discriminative statistical features comparable to seed=42 (83.3% 4-class RF accuracy), confirming depth signal is inherent to recursive process not seed-specific.",
+    "parent": "",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 bash scripts/run_pythia_seed43.sh",
+      "server": "gpu-6000pro-2",
+      "data_path": "results/pythia_seed43/",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 43,
+      "gpu_id": "cuda:1",
+      "tmux_session": "pythia_seed43_001",
+      "pid": 880015,
+      "note": "Status stuck at ANALYZING but pipeline is actively running Step 2/7 (depth_1 generation). Cannot revert to RUNNING due to state machine."
+    },
+    "conclusion": "success",
+    "metrics": {
+      "rf_4class_acc": 0.7884,
+      "rf_4class_ci_lower": 0.7813,
+      "rf_4class_ci_upper": 0.7952,
+      "d1v2_auc": 0.8759,
+      "per_class_recall": {
+        "d0": 0.992,
+        "d1": 0.8248,
+        "d2": 0.5882,
+        "d3": 0.7486
+      },
+      "fold_accs": [
+        0.8015,
+        0.7855,
+        0.786,
+        0.7932,
+        0.7758
+      ],
+      "delta_vs_seed42": 0.0064,
+      "seed42_baseline": 0.782,
+      "top_features": [
+        "var_surprisal",
+        "p90_ppl",
+        "mean_ppl",
+        "var_ppl",
+        "mean_surprisal"
+      ]
+    },
+    "notes": "Full pipeline completed: LoRA d0-d3 + generation + feature extraction + RF eval. seed43 78.84% vs seed42 78.2% (+0.64pp), within 5pp, hypothesis confirmed. d2 recall 偏低 (58.8%) 符合其他实验的 d2 弱势 pattern. np.clip 防护已内置。",
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/models/pythia_seed43/",
+    "log_path": "/root/autodl-tmp/recursive_gen_depth_est/results/pythia_seed43/",
+    "completed_at": "2026-05-18T16:46:51.786Z"
+  },
+  "timestamp": "2026-05-18T16:46:52.091982+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_recursive-gen-chain_20260514T095847_result.json",
     "occurrence": 1,
-    "bytes": 666,
-    "sha256": "f67b7252604fc78f5c0d832f1d472c9ead295e96bdbc4f808c5a4cc773f98855"
+    "bytes": 665,
+    "sha256": "6c23d06aabdaa7632179f13035ee2ed13b4501357c69f79c91453a5a2e94cd92"
   },
   "statistics": {
     "messages": 1,

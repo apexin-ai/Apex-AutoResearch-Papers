@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_remaining_3x3_scripts_20260514T193717_result.json",
     "occurrence": 1,
-    "bytes": 891,
-    "sha256": "fcab31e57e4642f5604a47c640269e777a6979609482028210f4b9f92f33c760"
+    "bytes": 890,
+    "sha256": "a33a4137b20e03a5e84d0b91ef7451dfc32a25743ad1c8eafc3dc8f200d3ce34"
   },
   "statistics": {
     "messages": 1,

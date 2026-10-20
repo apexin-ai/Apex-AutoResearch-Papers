@@ -1,0 +1,51 @@
+{
+  "exp_id": "qwen25_7b_selfref_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T12:17:03.624Z",
+    "updated_at": "2026-05-23T02:39:26.565Z",
+    "hypothesis": "Recursive generation depth signal (d0-d3) should persist in Qwen2.5-7B with self-reference feature extraction, similar to 14B scale results, supporting that the phenomenon is not model-scale-specific.",
+    "parent": "cross_scale_qwen7b_001",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-22T12:18:14.401Z",
+      "finished_at": "2026-05-23T02:39:25.822Z",
+      "training_hours": 14.35
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python scripts/qwen25_7b_selfref_validation.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/qwen25_7b/",
+      "data_count": 20000,
+      "model_name": "Qwen2.5-7B (base, FP16, self-reference)",
+      "seed": 42,
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "825140",
+      "log_path": "~/runs/recursive_gen_depth_est/qwen25_7b_selfref_001.log",
+      "submitted_at": "2026-05-22T12:50:57.747Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 4,
+        "grad_accum": 4,
+        "precision": "FP16/BF16",
+        "strategy": "nucleus_p0.95"
+      }
+    }
+  },
+  "timestamp": "2026-05-23T02:39:26.878045+00:00",
+  "trigger": "update_registry"
+}

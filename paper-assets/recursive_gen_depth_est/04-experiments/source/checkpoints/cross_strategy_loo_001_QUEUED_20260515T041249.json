@@ -1,0 +1,14 @@
+{
+  "exp_id": "cross_strategy_loo_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:12:49.407Z",
+    "updated_at": "2026-05-15T04:12:49.407Z"
+  },
+  "timestamp": "2026-05-15T04:12:49.512598+00:00",
+  "trigger": "update_registry"
+}

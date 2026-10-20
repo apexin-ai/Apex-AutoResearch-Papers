@@ -1,0 +1,54 @@
+{
+  "exp_id": "dcol_deberta_003",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T22:45:36.720Z",
+    "updated_at": "2026-05-15T02:22:04.446Z",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T02:06:48.866Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_v3/ --batch_size 32 --epochs 10 --lr 2e-5 --margin_lr 1e-4 --cl_weight 1.0 --seed 42\""
+    },
+    "notes": "DCOL v3 retry #2 在 cuda:1 独占运行 (PID 241769)。首次提交因 v2 残留进程 (PID 239543, 57GB) OOM。已清理残留后重提交。参数: margin_lr=1e-4, cl_weight=1.0, L2 norm, batch_size=32, epochs=10。输出: checkpoints/dcol_v3/。",
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 512.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 310.25 MiB is free. Process 239543 has 57.35 GiB memory in use. Including non-PyTorch memory, this process has 37.31 GiB memory in use. Of the allocate",
+    "completed_at": "2026-05-15T02:04:28.226Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T02:04:29.703147+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "DCOL v3 在 cuda:1 独占运行 (PID 240552)。修复参数: margin_lr=1e-4, cl_weight=1.0, L2 norm。v1 失败(embedding collapse), v2 失败(OOM+GPU竞争)。v3 清理旧 tmux session 后成功提交。输出: checkpoints/dcol_v3/。"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && python src/dcol_trainer.py --data_dir data/ --model_path /root/autodl-tmp/models/deberta-v3-large --features_path data/features_all.jsonl --output_dir checkpoints/dcol_v4/ --batch_size 8 --gradient_accumulation_steps 4 --epochs 10 --lr 2e-5 --margin_lr 1e-4 --cl_weight 1.0 --gpu 0 --seed 42\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "262897",
+      "log_path": "~/runs/recursive_gen_depth_est/dcol_deberta_003.log",
+      "submitted_at": "2026-05-15T02:19:54.443Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "241769",
+    "log_path": "~/runs/recursive_gen_depth_est/dcol_deberta_003.log",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T02:22:04.559896+00:00",
+  "trigger": "update_registry"
+}

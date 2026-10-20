@@ -1,0 +1,30 @@
+{
+  "exp_id": "prompted_gen_gpt2xl_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T09:01:04.651Z",
+    "updated_at": "2026-05-17T12:09:42.125Z",
+    "hypothesis": "Prompted generation preserves depth signal: GPT-2 XL topic-prompted 4-class acc >= 70%, delta <= 15pp vs BOS-seeded baseline (83.3%)",
+    "parent": "cross_model_gpt2xl_001",
+    "plan_id": "plan_016",
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate && python scripts/prompted_generation_eval.py --gpu 1",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/prompted_gen/",
+      "data_count": 20000,
+      "model_name": "gpt2-xl",
+      "seed": 42,
+      "checkpoint_source": "freshly trained LoRA per depth (r=16, alpha=32, c_attn+c_proj)",
+      "eval_data": "50 topic prompts x 100 samples = 5000 per depth, 4 depths"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T12:09:42.125Z"
+  },
+  "timestamp": "2026-05-17T12:09:42.329261+00:00",
+  "trigger": "update_registry"
+}

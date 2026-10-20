@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r4_compile_and_deep_compress_20260516T134740_result.json",
     "occurrence": 1,
-    "bytes": 1007,
-    "sha256": "e706376162c53ba13378f088605c50e675b7981ae50cdfde1b5cafb540ffb14e"
+    "bytes": 1006,
+    "sha256": "eb49ec3595bd89920fe4e7935ec0a7ef375d8f1b17dd478ea7968c9c33e58079"
   },
   "statistics": {
     "messages": 1,

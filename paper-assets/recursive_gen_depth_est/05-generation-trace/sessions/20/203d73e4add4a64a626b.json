@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_lora_rank_ablation_a1_20260516T174023_result.json",
     "occurrence": 1,
-    "bytes": 617,
-    "sha256": "687c4c595e95d0fbdc91eb02312eeb7fe08241d624da469a0be543b4ec02bac0"
+    "bytes": 616,
+    "sha256": "67784924d99d0dd74324d88329a019c7e40836dcc5b07633389e51d3f6b29dcf"
   },
   "statistics": {
     "messages": 1,

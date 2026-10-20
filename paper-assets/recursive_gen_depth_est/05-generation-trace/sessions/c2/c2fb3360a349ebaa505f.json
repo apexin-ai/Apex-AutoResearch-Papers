@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_experiment_lr_zscore_cross_strategy_001_20260515T094139_result.json",
     "occurrence": 1,
-    "bytes": 1123,
-    "sha256": "7b39268f35dba452fb1edc75b37b7672232309ede0da577d6d6ac43c8bb2fe1f"
+    "bytes": 1122,
+    "sha256": "51d8e74e1281e58a799eabafaef85c6fae693803a2f953f12b7e7db23d52ae3c"
   },
   "statistics": {
     "messages": 1,

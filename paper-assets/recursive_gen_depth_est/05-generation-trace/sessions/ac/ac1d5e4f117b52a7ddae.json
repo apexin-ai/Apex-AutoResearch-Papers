@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_git-sync-check_20260526T121346_result.json",
     "occurrence": 1,
-    "bytes": 242,
-    "sha256": "25adf1bcc54a1c0a3ed2aa05a2632646b2b6280e7457170f8bb321cf47b55879"
+    "bytes": 241,
+    "sha256": "952ac46b156ed2e4ef989e12d1ffe72f80f82d22df73a17cd964533d63e77295"
   },
   "statistics": {
     "messages": 1,

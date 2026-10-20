@@ -1,0 +1,96 @@
+{
+  "exp_id": "14b_cross_ref_001",
+  "project": "recursive_gen_depth_est",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:04:52.366Z",
+    "updated_at": "2026-05-21T07:24:07.407Z",
+    "hypothesis": "Cross-reference control: using Pythia-1.4B (same as Table 1 pipeline) instead of self-reference (Qwen2.5-14B) for feature extraction on 14B generated text yields comparable classification accuracy, confirming that the reference model choice does not fundamentally change the depth signal detection at 14B scale. Addresses R17 concern about self-reference vs cross-reference consistency.",
+    "spec": {
+      "command": "python scripts/cross_ref_14b.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "data/qwen25_14b{,_temp09,_topk50}/depth_{0..3}.jsonl",
+      "data_count": "~58837 (5K/depth x 4 depths x 3 strategies, nucleus d3=3837)",
+      "model_name": "Pythia-1.4B (cross-ref) on Qwen2.5-14B generated text",
+      "seed": 42
+    },
+    "metrics": {
+      "nucleus": {
+        "cross_ref_4class_acc": 0.4497,
+        "self_ref_4class_acc": 0.5405,
+        "delta": -0.0908,
+        "d1d3_bal_acc": 0.3947,
+        "per_class_recall": {
+          "d0": 0.5918,
+          "d1": 0.333,
+          "d2": 0.5,
+          "d3": 0.3511
+        },
+        "pairwise_auc": {
+          "d0v1": 0.7016,
+          "d0v2": 0.8829,
+          "d0v3": 0.927,
+          "d1v2": 0.7308,
+          "d1v3": 0.809,
+          "d2v3": 0.5987
+        },
+        "edd_T070": 2
+      },
+      "temp09": {
+        "cross_ref_4class_acc": 0.4633,
+        "self_ref_4class_acc": 0.505,
+        "delta": -0.0417,
+        "d1d3_bal_acc": 0.4029,
+        "per_class_recall": {
+          "d0": 0.6446,
+          "d1": 0.327,
+          "d2": 0.347,
+          "d3": 0.5346
+        },
+        "pairwise_auc": {
+          "d0v1": 0.7392,
+          "d0v2": 0.9087,
+          "d0v3": 0.9451,
+          "d1v2": 0.7238,
+          "d1v3": 0.8207,
+          "d2v3": 0.6145
+        },
+        "edd_T070": 2
+      },
+      "topk50": {
+        "cross_ref_4class_acc": 0.4085,
+        "self_ref_4class_acc": 0.4793,
+        "delta": -0.0708,
+        "d1d3_bal_acc": 0.3527,
+        "per_class_recall": {
+          "d0": 0.576,
+          "d1": 0.258,
+          "d2": 0.3664,
+          "d3": 0.4336
+        },
+        "pairwise_auc": {
+          "d0v1": 0.699,
+          "d0v2": 0.861,
+          "d0v3": 0.8823,
+          "d1v2": 0.681,
+          "d1v3": 0.728,
+          "d2v3": 0.5415
+        },
+        "edd_T070": 0
+      },
+      "avg_cross_ref_acc": 0.4405,
+      "avg_self_ref_acc": 0.5083,
+      "avg_delta": -0.0678,
+      "total_time_sec": 619.1,
+      "reference_model": "Pythia-1.4B",
+      "n_features": 19,
+      "rf_config": "200 trees, 5-fold CV, seed=42"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T07:24:07.733291+00:00",
+  "trigger": "update_registry"
+}

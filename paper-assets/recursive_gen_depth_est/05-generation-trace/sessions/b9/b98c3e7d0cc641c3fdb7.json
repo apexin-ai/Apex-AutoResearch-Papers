@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_rf_seed_robustness_20260517T203625_result.json",
     "occurrence": 1,
-    "bytes": 512,
-    "sha256": "a0661944b8bb3c3164ded3473623671b26b206d8c3dddfdc7670659357a27758"
+    "bytes": 511,
+    "sha256": "9a35f9dcd4bc70f7ba808646182a6b2115a284c7980d80c1aee4120b011a7cb9"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_reference_free_baseline_20260517T045516_result.json",
     "occurrence": 1,
-    "bytes": 635,
-    "sha256": "13f3e0c6c317e9289fba8aed493406a522e06d0162a7db3e374160d03b3830c3"
+    "bytes": 634,
+    "sha256": "fcae2d484537360ded98bef06bf7f563460bab1ddd7d10fa840dba05b5c9d6d6"
   },
   "statistics": {
     "messages": 1,

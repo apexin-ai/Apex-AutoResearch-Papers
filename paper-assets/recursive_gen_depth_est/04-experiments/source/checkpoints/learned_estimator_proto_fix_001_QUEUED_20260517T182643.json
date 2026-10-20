@@ -1,0 +1,29 @@
+{
+  "exp_id": "learned_estimator_proto_fix_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T18:26:09.964Z",
+    "updated_at": "2026-05-17T18:26:43.377Z",
+    "hypothesis": "Prototypical Network with NaN fix (torch.clamp + nan_to_num on distance computation) achieves ~67.1% leave-one-model-out accuracy on 19 statistical features, comparable to RF baseline (66.4%), completing the learned estimator comparison matrix.",
+    "parent": "learned_estimator_001",
+    "spec": {
+      "command": "bash /root/autodl-tmp/recursive_gen_depth_est/scripts/run_proto_full.sh",
+      "server": "westd-48862",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/recursive_gen_depth_est/learned_estimator_proto_fix_001.log",
+      "submitted_at": "2026-05-17T18:26:25.739Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T18:26:43.619940+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_atlas_olmo_d4v5_typo_20260515T150214_result.json",
     "occurrence": 1,
-    "bytes": 104,
-    "sha256": "2209714900ff3e8bcce09b2aef1f0c5ee8135ad85903db3af8542fc5b28f3356"
+    "bytes": 103,
+    "sha256": "890d877dcd578b95881661284bcfc986c28cbe3b4e2eb3403fe55a2ff7af696a"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_conditional_pi_001_20260521T070638_result.json",
     "occurrence": 1,
-    "bytes": 242,
-    "sha256": "59e6bc079f6875da344f7da4d541ce19d07888d73263eab9b6c5ac8b4993c3b3"
+    "bytes": 241,
+    "sha256": "861d01b79a0e1f4a89f6d0c96626fd2e2eb7f33e577ee8d1983a68fa6481eb09"
   },
   "statistics": {
     "messages": 1,

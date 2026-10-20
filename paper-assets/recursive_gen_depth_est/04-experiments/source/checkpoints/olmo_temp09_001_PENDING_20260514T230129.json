@@ -1,0 +1,26 @@
+{
+  "exp_id": "olmo_temp09_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T20:34:19.885Z",
+    "updated_at": "2026-05-14T23:01:28.994Z",
+    "hypothesis": "解码策略鲁棒性: OLMo-1B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "parent": "cross_model_olmo_002",
+    "plan_id": "plan_002b",
+    "notes": "Pipeline 在 Step 3 (finetune depth-1) 67% 处被 kill，无 traceback。已完成: depth-0 finetune (loss=2.2684) + depth-1 生成 (5000 samples)。残留: data/olmo_temp09/depth_1.jsonl, checkpoints/olmo_temp09/lora_depth_0/ (完整), lora_depth_1/checkpoint-626 (中间态)。重跑可从 Step 3 断点恢复。",
+    "completed_at": "2026-05-14T22:58:51.654Z",
+    "failure_reason": "进程在 Step 3 (depth-1 finetune, 67% at step 626/939) 被 kill，无 traceback。大概率是实例关机或 OOM。depth_0 finetune 和 depth_1 data (5000条) 完好可复用。",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "Pipeline 在 Step 3 (finetune depth-1) 67% 处被 kill，无 traceback。已完成: depth-0 finetune (loss=2.2684) + depth-1 生成 (5000 samples)。残留: data/olmo_temp09/depth_1.jsonl, checkpoints/olmo_temp09/lora_depth_0/ (完整), lora_depth_1/checkpoint-626 (中间态)。重跑可从 Step 3 断点恢复。"
+      }
+    }
+  },
+  "timestamp": "2026-05-14T23:01:29.059764+00:00",
+  "trigger": "update_registry"
+}

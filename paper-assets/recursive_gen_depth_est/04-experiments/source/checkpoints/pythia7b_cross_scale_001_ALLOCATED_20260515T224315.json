@@ -1,0 +1,22 @@
+{
+  "exp_id": "pythia7b_cross_scale_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:31:42.435Z",
+    "updated_at": "2026-05-15T22:43:14.965Z",
+    "server": "gpu-6000pro-2",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T22:32:29.755Z"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T22:43:15.136124+00:00",
+  "trigger": "update_registry"
+}

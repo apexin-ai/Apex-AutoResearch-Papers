@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_data_seed-prep_20260514T095557_result.json",
     "occurrence": 1,
-    "bytes": 880,
-    "sha256": "2d702b80ca026bd7721fc540be448704202d0afb6a00330f96d3d349ed9d6cf4"
+    "bytes": 879,
+    "sha256": "49eb426e35bd7c57f68f43a4e6449cd875d0e7b1fd852e67eb0be96a9b3b8f76"
   },
   "statistics": {
     "messages": 1,

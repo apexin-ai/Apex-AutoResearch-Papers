@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_global_reconciliation_check_20260515T045928_result.json",
     "occurrence": 1,
-    "bytes": 1305,
-    "sha256": "f6426487c5427ed9014a3283be9c1c9c97e20e329b7e96c9dee030b5cead2c27"
+    "bytes": 1304,
+    "sha256": "f9419606f4578918426cfd07f5952a7dd826cbe63faaebf2c1cd382005dcbf57"
   },
   "statistics": {
     "messages": 1,

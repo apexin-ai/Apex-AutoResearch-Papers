@@ -1,0 +1,52 @@
+{
+  "exp_id": "mvp_pipeline_004",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:23:02.280Z",
+    "updated_at": "2026-05-14T11:05:26.253Z",
+    "spec": {
+      "command": "bash scripts/run_pipeline.sh (3x LoRA finetune + 3x generate)",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": 89779,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline.log",
+      "submitted_at": "2026-05-14T10:23:02.276Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+      "seed": 42,
+      "hypothesis": "不同递归生成深度的文本具有可区分的统计模式，支持序数深度估计",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "q_proj",
+          "v_proj"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "top_p": 0.95
+      },
+      "kill_reason": "Instruct 模型生成内容为代码/HTML而非自然语言——代码先验太强，5K Wikipedia LoRA 无法覆盖。分类结果是域混淆信号不是 depth signal。",
+      "checkpoint_path": "N/A (invalidated)",
+      "wall_clock_seconds": 2544.0,
+      "gpu_hours": 0.71
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T11:05:26.253Z"
+  },
+  "timestamp": "2026-05-14T11:05:26.266425+00:00",
+  "trigger": "update_registry"
+}

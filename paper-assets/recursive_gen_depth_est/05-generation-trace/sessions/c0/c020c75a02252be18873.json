@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_check_topk50_and_submit_dcol_20260514T193803_result.json",
     "occurrence": 1,
-    "bytes": 483,
-    "sha256": "39336f4a063151850a2b079ccd85ea366f71be8e7fc6ea20fe93854701ab8dd6"
+    "bytes": 482,
+    "sha256": "2331e4ec1ee2ce5436cd9a02e7ef8effea9fe273b92e6fc1b9fb2eab5fb6942d"
   },
   "statistics": {
     "messages": 1,

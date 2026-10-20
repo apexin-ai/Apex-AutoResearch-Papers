@@ -1,0 +1,147 @@
+paper_key: "penedo2024_fineweb"
+title: "The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale"
+venue: "NeurIPS 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - RefinedWeb
+    - C4
+    - The Pile
+    - SlimPajama
+    - RedPajama v2
+    - Dolma 1.6
+    - Dolma 1.7
+    - Matrix
+    - CC-100
+    - Colossal-OSCAR
+  metrics:
+    - {name: "Aggregate Accuracy (avg of 9 benchmarks)", direction: "higher_better"}
+    - {name: "HellaSwag", direction: "higher_better"}
+    - {name: "MMLU", direction: "higher_better"}
+    - {name: "ARC", direction: "higher_better"}
+    - {name: "PIQA", direction: "higher_better"}
+    - {name: "WinoGrande", direction: "higher_better"}
+    - {name: "OpenBookQA", direction: "higher_better"}
+    - {name: "CommonSenseQA", direction: "higher_better"}
+    - {name: "SIQA", direction: "higher_better"}
+  datasets:
+    - {name: "FineWeb", size: "15T tokens from 96 Common Crawl snapshots"}
+    - {name: "FineWeb-Edu", size: "1.3T tokens (educational subset of FineWeb)"}
+    - {name: "RefinedWeb", size: "500B tokens"}
+    - {name: "C4", size: "172B tokens"}
+    - {name: "The Pile", size: "340B tokens"}
+    - {name: "SlimPajama", size: "627B tokens"}
+    - {name: "RedPajama v2", size: "20T tokens"}
+    - {name: "Dolma 1.6", size: "3T tokens"}
+    - {name: "Dolma 1.7", size: "1.2T tokens"}
+    - {name: "Matrix", size: "1.3T tokens"}
+    - {name: "CC-100", size: "70B tokens"}
+    - {name: "Colossal-OSCAR", size: "850B tokens"}
+  ablation_dimensions:
+    - text_extraction_method (WARC trafilatura vs WET htmlparser)
+    - base_filtering (URL blocklist + language ID + quality/repetition filters)
+    - deduplication_scope (global vs per-snapshot MinHash)
+    - deduplication_parameters (n-gram size, hash count, bucket structure, similarity threshold)
+    - C4_filter_components (terminal punctuation, JS removal, ToS, doc length, lorem ipsum)
+    - custom_heuristic_filters (50+ candidate statistics, 17 tested in Table 2)
+    - educational_quality_threshold (0-5 scale, threshold sweep)
+    - training_scale (28B tokens for filter ablations vs 350B for dedup ablations)
+  training_recipe:
+    model: "1.82B parameters (including embeddings), Llama architecture"
+    optimizer: "not explicitly stated (likely AdamW given Llama architecture)"
+    lr: "not explicitly stated"
+    batch_size: "~2M tokens global batch size"
+    sequence_length: 2048
+    tokenizer: "GPT-2 tokenizer"
+    hardware: "H100 GPUs, ~80,000 GPU-hours for 70+ ablation models"
+    filter_ablation_tokens: "~28B tokens"
+    dedup_ablation_tokens: "350B tokens"
+    edu_classifier_cost: "6,000 H100 GPU-hours for classifying 15T tokens"
+  method_family: "large-scale web data curation pipeline (extraction + filtering + deduplication + quality classification)"
+
+positioning:
+  core_claim: "Systematic, transparent web data curation with carefully ablated design choices produces 15T-token FineWeb and 1.3T-token FineWeb-Edu that outperform all existing open pretraining datasets, closing the gap between proprietary and public data knowledge."
+  key_results: "FineWeb: ~52% aggregate accuracy at 350B tokens (top among all open datasets). FineWeb-Edu: MMLU 33%->37% (+12% relative), ARC 46%->57% (+24% relative), ~2% aggregate accuracy gain over FineWeb, reaching 33.6% MMLU at 38B tokens vs Matrix needing 300B tokens for similar."
+  limitations:
+    - "Entirely web content from Common Crawl; no books, speech transcripts, or other data types"
+    - "Most ablation experiments at smaller scale (~28B tokens) due to compute constraints; dataset design at realistic pretraining scale could give more reliable guidance"
+    - "Evaluation limited to academic benchmarks without instruction tuning or alignment; does not reflect current LLM usage patterns"
+    - "Educational quality classifier may amplify biases in what Llama-3-70B-Instruct considers 'educational'"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Opens with the ubiquity of LLMs and immediately pivots to the dirty secret: [REDACTED] pretraining datasets behind the best open models (Llama 3, Mixtral) are not public, and curation strategies are 'closely guarded trade secrets.' Frames a growing gap between proprietary and public knowledge."
+  tension: "Despite LLM performance depending heavily on data quality, the community lacks both access to high-quality large-scale datasets AND knowledge of how to build them. Existing open datasets are either too small, poorly documented, or underperform. The reader is made to feel the asymmetry between what industry knows and what the public can access."
+  key_insight: "Global deduplication across all 96 Common Crawl snapshots paradoxically HURTS performance because it upsamples lower-quality data from older crawls. The data removed by global dedup was actually higher quality than the data retained. Per-snapshot individual deduplication is the correct approach. This counterintuitive finding is the paper's most distinctive empirical contribution."
+  argument_chain: "problem (data curation is a black box) -> foundation (review existing datasets/methods) -> systematic pipeline construction (text extraction -> base filtering -> deduplication -> C4 filters -> custom filters, each ablated independently) -> counterintuitive dedup finding drives design -> cumulative pipeline = FineWeb 15T -> educational filtering via LLM annotation + lightweight classifier = FineWeb-Edu 1.3T -> validation against 10 baselines at 350B scale"
+  contribution_framing: "Contributions woven into intro prose rather than bulleted list. Six implicit contributions: (1) FineWeb 15T dataset, (2) FineWeb-Edu 1.3T educational subset, (3) systematic ablation of all design choices, (4) in-depth deduplication investigation, (5) datatrove curation codebase, (6) all ablation models publicly released. Framed as 'advancing understanding' not just 'beating baselines.'"
+  intro_structure: "Single long paragraph (~15 sentences) that covers: LLM success -> data importance -> scale + quality matter -> curation as trade secrets -> open models with closed data -> knowledge gap concern -> FineWeb introduction -> FineWeb-Edu introduction -> ablation methodology -> public release commitment. Unusually dense single-paragraph intro rather than multi-paragraph."
+  notable_technique: "The 'ablation-as-narrative' structure: each section of the pipeline (extraction, filtering, dedup) is presented as a mini-experiment with its own hypothesis, ablation, finding, and decision. This makes a data engineering paper read like a sequence of scientific investigations. The counterintuitive global-dedup finding (Section 3.4) serves as the paper's dramatic peak, breaking reader expectations."
+
+figures:
+  figure_count: 27
+  figure1:
+    type: "motivation"
+    description: "Line plot comparing aggregate accuracy (%) vs training tokens (billions, 0-28B) for two text extraction methods: WARC data processed with trafilatura (blue) vs WET default htmlparser (pink). Both start at ~33% and diverge steadily, with WARC reaching ~39.5% and WET plateauing at ~37.5% by 28B tokens."
+    narrative_role: "Establishes the very first pipeline decision (text extraction) as consequential. Sets the pattern for all subsequent ablation figures: same axes, same comparison logic. Justifies the non-trivial compute cost of trafilatura over default WET."
+    design_elements:
+      - "Clean two-line comparison on same axes"
+      - "Continuous training curves (not bar charts) showing the gap widens with scale"
+      - "Minimal design: no grid clutter, clear legend below"
+      - "Blue vs pink color coding for proposed vs baseline"
+    visual_style: "Minimalist line plot, white background with faint horizontal gridlines. Two smoothly rising curves, blue (WARC/trafilatura) consistently above pink (WET). Legend below plot. Axes: y=Aggregate Acc (%), x=Training tokens (billions). Clean academic style, no unnecessary decoration."
+  result_figures:
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      what_compared: "Cumulative pipeline steps: base filtering vs +individual minhash vs +C4 filters vs full FineWeb, all at 350B token scale"
+      how_gain_highlighted: "Four stacked training curves with clear vertical separation; FineWeb (orange) consistently on top, base filtering (green) consistently on bottom, showing each step adds measurable gain"
+      design_note: "Uses same axis style as all ablation figures for visual continuity. Four colors clearly differentiated. Shows pipeline is monotonically improving—each step helps."
+    - figure_id: "Figure 10"
+      viz_type: "line_plot"
+      what_compared: "FineWeb and FineWeb-Edu (Ours) vs 10 competing open datasets, all at 350B token scale"
+      how_gain_highlighted: "FineWeb-Edu (orange) clearly on top reaching ~52%, FineWeb (green) in upper pack at ~50.5%. Color coding: 'Ours' in warm colors (orange, green) while competitors in cooler/darker colors. Visual dominance of FineWeb-Edu curve is immediate."
+      design_note: "12 lines in one plot—aggressive but effective for showing FineWeb-Edu's dominance. Legend organized in 4 columns below. The visual message is clear even with crowded lines because the 'Ours' curves are distinctly above the pack."
+    - figure_id: "Figure 11"
+      viz_type: "line_plot"
+      what_compared: "FineWeb-Edu vs competitors on MMLU specifically, showing token efficiency"
+      how_gain_highlighted: "FineWeb-Edu reaches 33.6% at 38B tokens while Matrix needs 300B tokens for similar—10x token efficiency. The gap is visually dramatic."
+      design_note: "Single-benchmark focus plot to highlight the most impressive result. Token efficiency narrative is more compelling than raw accuracy."
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      dimensions_varied: ["individual C4 filter components"]
+      design_note: "Bar chart showing each C4 filter's individual contribution to HellaSwag. Reveals terminal punctuation filter is most impactful but also most aggressive (removes ~30% tokens)."
+    - figure_id: "Figure 7"
+      viz_type: "bar_chart"
+      dimensions_varied: ["custom filter combinations vs C4 vs baseline"]
+      design_note: "Shows custom FineWeb filters outperform C4 while removing less data. Efficiency argument (better accuracy per token removed)."
+    - figure_id: "Figure 8"
+      viz_type: "histogram"
+      dimensions_varied: ["deduplication method effect on punctuation distribution"]
+      design_note: "Histogram of document-level punctuation ratios under different dedup methods. Reveals mechanism behind global dedup's failure: it shifts distribution toward low-punctuation (lower quality) documents."
+    - figure_id: "Figure 16"
+      viz_type: "line_plot"
+      dimensions_varied: ["FineWeb-Edu educational quality threshold (0-5 scale)"]
+      design_note: "Threshold sweep ablation for educational classifier. Shows threshold=3 is optimal; lower includes too much noise, higher is too aggressive."
+  figure_narrative_role: "Fig 1-2 (text extraction + base filtering foundations) -> Fig 3-5 (dedup exploration: global failure -> individual success) -> Fig 6-8 (filter development: C4 decomposition -> custom filters -> mechanism analysis) -> Fig 9-10 (cumulative victory: pipeline steps + competitive comparison) -> Fig 11 (FineWeb-Edu headline result) -> Fig 12-16 (appendix: parameter details + threshold ablation) -> Fig 17-27 (bias analysis: distribution + association heatmaps). The narrative arc follows the pipeline construction chronologically, building evidence cumulatively."
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    description: "Full list of heuristic filters tested"
+    row_axis: "candidate filter metrics with thresholds"
+    col_axis: "metric | threshold | aggregate accuracy (%) | tokens removed (%)"
+    row_organization: "by_performance"
+    col_organization: "flat"
+    highlight_strategy: "implicit ranking by aggregate accuracy (descending), no explicit bold/underline"
+    statistical_reporting: "single-run accuracy and token removal percentage"
+    num_baselines: 16
+    design_note: "Unusual 'main table'—not a method-vs-baseline comparison but a filter candidate evaluation. The real main comparison is in Figure 10 (line plot), not a table. This reflects the paper's nature as a data engineering study where the 'results' are pipeline design choices, not model benchmarks. The table serves as a filter selection guide."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 3 (bias analysis subgroups/terms). Additional dataset field documentation tables. The paper relies heavily on figures rather than tables for ablation results."
+    reason: "Pipeline ablations are shown as training curves (line plots) because the temporal dynamics of how performance evolves with tokens is more informative than single-point numbers. Tables are reserved for enumeration tasks (filter list, bias terms, data fields)."

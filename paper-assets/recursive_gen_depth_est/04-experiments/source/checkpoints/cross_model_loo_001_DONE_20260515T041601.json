@@ -1,0 +1,80 @@
+{
+  "exp_id": "cross_model_loo_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:01:46.616Z",
+    "updated_at": "2026-05-15T04:16:01.028Z",
+    "spec": {
+      "description": "Cross-model LOO: train on 2 model families (all strategies), test on 3rd.",
+      "server": "gpu-6000pro-2",
+      "model_name": "RandomForest (CPU)",
+      "seed": 42,
+      "data_path": "9-cell features",
+      "data_count": 180000,
+      "command": "python src/cross_model_loo.py",
+      "checkpoint_path": "N/A",
+      "log_path": "results/cross_model_loo.json"
+    },
+    "hypothesis": "Cross-model LOO: 深度信号跨模型泛化，train on 2 families test on 3rd 的 4-class acc ≥ 45%（plan_005 gate）",
+    "conclusion": "killed",
+    "metrics": {
+      "mean_4class_acc": 0.664,
+      "holdout_pythia": {
+        "acc": 0.6242,
+        "ci": [
+          0.6206,
+          0.6282
+        ],
+        "d1v2_auc": 0.5617,
+        "d2v3_auc": 0.6534
+      },
+      "holdout_olmo": {
+        "acc": 0.6921,
+        "ci": [
+          0.6886,
+          0.6959
+        ],
+        "d1v2_auc": 0.7687,
+        "d2v3_auc": 0.6862
+      },
+      "holdout_gpt2xl": {
+        "acc": 0.6756,
+        "ci": [
+          0.6719,
+          0.6792
+        ],
+        "d1v2_auc": 0.8157,
+        "d2v3_auc": 0.6639
+      },
+      "per_class_recall": {
+        "holdout_pythia": {
+          "d0": 1,
+          "d1": 0.493,
+          "d2": 0.268,
+          "d3": 0.736
+        },
+        "holdout_olmo": {
+          "d0": 0.993,
+          "d1": 0.755,
+          "d2": 0.433,
+          "d3": 0.588
+        },
+        "holdout_gpt2xl": {
+          "d0": 0.985,
+          "d1": 0.747,
+          "d2": 0.526,
+          "d3": 0.445
+        }
+      },
+      "gate_passed": true,
+      "gate_threshold": 0.45
+    },
+    "completed_at": "2026-05-15T04:15:44.604Z"
+  },
+  "timestamp": "2026-05-15T04:16:01.114480+00:00",
+  "trigger": "update_registry"
+}

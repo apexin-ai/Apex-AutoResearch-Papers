@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_gpu6000pro2-status-check_20260519T174328_result.json",
     "occurrence": 1,
-    "bytes": 1508,
-    "sha256": "e064df6d3e44c2569d3635dc3033e004d704b9bf45a1527339ae3437b1f4dd2c"
+    "bytes": 1507,
+    "sha256": "a0bcde1054ea58898e383b053b44df6893a9f20e0c706c7fbf1da1cef60b4b67"
   },
   "statistics": {
     "messages": 1,

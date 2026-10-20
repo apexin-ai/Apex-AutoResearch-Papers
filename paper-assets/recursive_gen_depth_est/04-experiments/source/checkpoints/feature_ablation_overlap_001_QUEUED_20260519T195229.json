@@ -1,0 +1,15 @@
+{
+  "exp_id": "feature_ablation_overlap_001",
+  "project": "recursive_gen_depth_est",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:33:18.590Z",
+    "updated_at": "2026-05-19T19:52:29.095Z",
+    "hypothesis": "The 6 overlapping features between Binoculars and our 19-feature set (ppl_mean, ppl_var, ppl_median, p10_ppl, p90_ppl, skewness_ppl) capture the core depth signal. If 6-feature RF ≈ 78%, the overlap features alone are sufficient and shape features add negligible value. If 6-feature RF significantly < 78%, the remaining shape features (var_surprisal, kurtosis, etc.) have independent discriminative contribution beyond mean-level displacement."
+  },
+  "timestamp": "2026-05-19T19:52:29.563309+00:00",
+  "trigger": "update_registry"
+}

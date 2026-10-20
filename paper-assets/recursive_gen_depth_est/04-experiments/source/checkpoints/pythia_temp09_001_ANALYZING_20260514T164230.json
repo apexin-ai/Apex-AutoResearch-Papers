@@ -1,0 +1,162 @@
+{
+  "exp_id": "pythia_temp09_001",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:49:27.459Z",
+    "updated_at": "2026-05-14T16:42:30.948Z",
+    "hypothesis": "解码策略鲁棒性: Pythia-1.4B 在 temperature-only τ=0.9 下递归生成的深度信号与 nucleus p=0.95 一致，支持跨策略泛化",
+    "spec": {
+      "command": "bash scripts/run_pipeline_pythia_temp09.sh (Pythia-1.4B, 3x LoRA finetune + 3x generate, temp_only τ=0.9)",
+      "server": "westb-52439",
+      "gpu": "cuda:0",
+      "pid": 125067,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia_temp09.log",
+      "submitted_at": "2026-05-14T14:51:48Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "model_path": "/root/autodl-tmp/models/pythia-1.4b/",
+      "seed": 42,
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "query_key_value"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 0.9,
+        "decoding_strategy": "temp_only"
+      },
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/pythia_temp09/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T16:29:56.194Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T16:29:55.620608+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/models/pythia_temp09/",
+    "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/",
+    "metrics": {
+      "four_class": {
+        "rf_accuracy": 0.7625,
+        "rf_accuracy_ci": [
+          0.749,
+          0.7753
+        ],
+        "lr_accuracy": 0.7405,
+        "lr_accuracy_ci": [
+          0.7265,
+          0.7545
+        ],
+        "pairwise_auc": {
+          "0v1": 0.9968,
+          "0v2": 0.9993,
+          "0v3": 0.9991,
+          "1v2": 0.8327,
+          "1v3": 0.959,
+          "2v3": 0.7928
+        },
+        "top_features": [
+          "var_surprisal (0.1776)",
+          "p90_ppl (0.1501)",
+          "mean_ppl (0.1140)",
+          "mean_surprisal (0.0889)",
+          "p75_ppl (0.0687)"
+        ],
+        "feature_dim": 19,
+        "truncation_length": 498
+      },
+      "three_class_full": {
+        "accuracy": 0.6983,
+        "accuracy_ci": [
+          0.682,
+          0.715
+        ],
+        "mae": 0.3357,
+        "recall": {
+          "d1": 0.802,
+          "d2": 0.554,
+          "d3": 0.739
+        },
+        "precision": {
+          "d1": 0.792,
+          "d2": 0.608,
+          "d3": 0.686
+        },
+        "f1": {
+          "d1": 0.797,
+          "d2": 0.58,
+          "d3": 0.712
+        },
+        "pairwise_auc": {
+          "d1v2": 0.8354,
+          "d1v3": 0.9631,
+          "d2v3": 0.8043
+        }
+      },
+      "three_class_filtered": {
+        "accuracy": 0.7252,
+        "accuracy_ci": [
+          0.7064,
+          0.7427
+        ],
+        "mae": 0.2953,
+        "recall": {
+          "d1": 0.842,
+          "d2": 0.596,
+          "d3": 0.735
+        },
+        "precision": {
+          "d1": 0.821,
+          "d2": 0.628,
+          "d3": 0.715
+        },
+        "f1": {
+          "d1": 0.831,
+          "d2": 0.611,
+          "d3": 0.725
+        },
+        "pairwise_auc": {
+          "d1v2": 0.8656,
+          "d1v3": 0.9772,
+          "d2v3": 0.8295
+        },
+        "n_samples": 11445,
+        "n_removed": 3555
+      },
+      "finetune_losses": {
+        "depth_0": 2.222,
+        "depth_1": 1.37,
+        "depth_2": 1.006
+      },
+      "code_contamination": {
+        "d0": 0.004,
+        "d1": 0.077,
+        "d2": 0.116,
+        "d3": 0.136
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T16:42:30.979252+00:00",
+  "trigger": "update_registry"
+}

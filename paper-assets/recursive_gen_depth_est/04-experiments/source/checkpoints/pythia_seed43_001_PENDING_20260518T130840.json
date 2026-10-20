@@ -1,0 +1,16 @@
+{
+  "exp_id": "pythia_seed43_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:04:28.629Z",
+    "updated_at": "2026-05-18T13:08:40.403Z",
+    "hypothesis": "Pythia-1.4B recursive generation chain with seed=43 will produce depth-discriminative statistical features comparable to seed=42 (83.3% 4-class RF accuracy), confirming depth signal is inherent to recursive process not seed-specific.",
+    "parent": "second_seed_replication_001"
+  },
+  "timestamp": "2026-05-18T13:08:40.657350+00:00",
+  "trigger": "update_registry"
+}

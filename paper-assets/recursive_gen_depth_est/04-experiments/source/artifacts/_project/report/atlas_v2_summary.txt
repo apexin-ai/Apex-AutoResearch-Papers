@@ -1,0 +1,1 @@
+Atlas v2 analysis complete. 8/9 matrix cells. Output: gpu-6000pro-2:/root/autodl-tmp/recursive_gen_depth_est/artifacts/atlas_v2/ (29 files: 6 JSON + 11 PDF + 11 PNG + README.md). Key results: mean RF acc 78.5%, best=gpt2xl_temp09 (85.4%), worst=pythia_topk50 (69.6%). EDD sensitivity shows top-k decoding most vulnerable: pythia_topk50 drops from EDD=3 at τ=0.65 to EDD=1 at τ=0.80.

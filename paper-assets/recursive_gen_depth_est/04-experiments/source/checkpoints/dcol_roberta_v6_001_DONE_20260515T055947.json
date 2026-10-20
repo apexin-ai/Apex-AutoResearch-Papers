@@ -1,0 +1,66 @@
+{
+  "exp_id": "dcol_roberta_v6_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:20:40.271Z",
+    "updated_at": "2026-05-15T05:59:47.351Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/recursive_gen_depth_est && CUDA_VISIBLE_DEVICES=1 python3 src/dcol_trainer_v6.py ...\"",
+      "server": "gpu-6000pro-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "136481",
+      "log_path": "~/runs/recursive_gen_depth_est/dcol_roberta_v6_001.log",
+      "submitted_at": "2026-05-15T04:30:38.666Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/features_all.jsonl",
+      "data_count": 180000,
+      "model_name": "RoBERTa-large (LoRA r=16 alpha=16)",
+      "seed": 42,
+      "checkpoint_source": "N/A (training from scratch with LoRA)",
+      "eval_data": "N/A (training experiment, not eval)",
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/dcol_roberta_v6/best_model.pt",
+      "wall_clock_seconds": 5348.7,
+      "gpu_hours": 1.49
+    },
+    "hypothesis": "DCOL v6: RoBERTa-large 替代 DeBERTa 解决数值不稳定。lr=5e-5 + grad clip 1.0 + NaN guard + collapse guard (step 500 acc&lt;30% kill)。若 4-class acc > RF baseline (78.2%) 则 DCOL 成功，否则降级为 negative result。",
+    "parent": "dcol_deberta_005",
+    "reproduce": {
+      "finished_at": "2026-05-15T05:56:24.787Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T05:56:26.416631+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "test_acc": 0.6448,
+      "test_mae": 0.4052,
+      "best_val_acc": 0.6436,
+      "best_epoch": 1,
+      "epochs_run": 4,
+      "early_stopping": true,
+      "train_acc_final": 0.75,
+      "rf_baseline": 0.782,
+      "delta_vs_baseline": -0.137,
+      "overfitting": "severe (train 75% vs val 64.4% at best epoch)",
+      "stability": "resolved (no NaN, no collapse, collapse guard passed at step 500)"
+    },
+    "notes": "DCOL v6 (RoBERTa-large) 正常完成，解决了 DeBERTa 数值稳定性问题（无 NaN/collapse）。但 test acc=64.5% 远低于 RF baseline 78.2% (-13.7pp)。严重过拟合：train acc 60→75%，val acc epoch 1 后持续下降。Early stopping 在 epoch 4 触发。DCOL v1-v6 全部失败：v1-v5 DeBERTa 数值崩溃，v6 RoBERTa 稳定但准确率不足。结论：DCOL contrastive ordinal loss 对此 4-class depth estimation 任务表达能力不足。符合 D011 framing（DCOL 降级为 negative analysis section）。Checkpoint: /root/autodl-tmp/recursive_gen_depth_est/checkpoints/dcol_roberta_v6/best_model.pt",
+    "completed_at": "2026-05-15T05:59:47.351Z"
+  },
+  "timestamp": "2026-05-15T05:59:47.444280+00:00",
+  "trigger": "update_registry"
+}

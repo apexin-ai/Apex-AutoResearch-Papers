@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_r1n1_edd_formula_20260515T222601_result.json",
     "occurrence": 1,
-    "bytes": 1025,
-    "sha256": "495f041e3c5361bdc7d9ea6d1357858a3c270e5168f6abf17c1c5d1a8c71bc1d"
+    "bytes": 1024,
+    "sha256": "530797cdee7744a5c7a4bfc0cf6d8d2f71b407478ab4fe69757f6819a6b190a9"
   },
   "statistics": {
     "messages": 1,

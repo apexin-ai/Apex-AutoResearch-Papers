@@ -1,0 +1,79 @@
+{
+  "pythia_nucleus": {
+    "edd": null,
+    "saturated": false,
+    "adjacent_aucs": {
+      "depth0_vs_depth1": 0.9975,
+      "depth1_vs_depth2": 0.8607,
+      "depth2_vs_depth3": 0.8005
+    },
+    "threshold": 0.7,
+    "interpretation": "Signal persists through depth 3 (no saturation within measured range)"
+  },
+  "pythia_temp09": {
+    "edd": null,
+    "saturated": false,
+    "adjacent_aucs": {
+      "depth0_vs_depth1": 0.9968,
+      "depth1_vs_depth2": 0.8327,
+      "depth2_vs_depth3": 0.7928
+    },
+    "threshold": 0.7,
+    "interpretation": "Signal persists through depth 3 (no saturation within measured range)"
+  },
+  "pythia_topk50": {
+    "edd": 3,
+    "saturated": true,
+    "adjacent_aucs": {
+      "depth0_vs_depth1": 0.9927,
+      "depth1_vs_depth2": 0.7518,
+      "depth2_vs_depth3": 0.6918
+    },
+    "threshold": 0.7,
+    "interpretation": "Signal saturates at depth 3"
+  },
+  "olmo_nucleus": {
+    "edd": null,
+    "saturated": false,
+    "adjacent_aucs": {
+      "depth0_vs_depth1": 0.9834,
+      "depth1_vs_depth2": 0.8673,
+      "depth2_vs_depth3": 0.8124
+    },
+    "threshold": 0.7,
+    "interpretation": "Signal persists through depth 3 (no saturation within measured range)"
+  },
+  "olmo_temp09": {
+    "edd": null,
+    "saturated": false,
+    "adjacent_aucs": {
+      "depth0_vs_depth1": 0.996,
+      "depth1_vs_depth2": 0.901,
+      "depth2_vs_depth3": 0.8214
+    },
+    "threshold": 0.7,
+    "interpretation": "Signal persists through depth 3 (no saturation within measured range)"
+  },
+  "gpt2xl_nucleus": {
+    "edd": null,
+    "saturated": false,
+    "adjacent_aucs": {
+      "depth0_vs_depth1": 0.9941,
+      "depth1_vs_depth2": 0.9131,
+      "depth2_vs_depth3": 0.8829
+    },
+    "threshold": 0.7,
+    "interpretation": "Signal persists through depth 3 (no saturation within measured range)"
+  },
+  "gpt2xl_temp09": {
+    "edd": null,
+    "saturated": false,
+    "adjacent_aucs": {
+      "depth0_vs_depth1": 0.9963,
+      "depth1_vs_depth2": 0.9367,
+      "depth2_vs_depth3": 0.8815
+    },
+    "threshold": 0.7,
+    "interpretation": "Signal persists through depth 3 (no saturation within measured range)"
+  }
+}

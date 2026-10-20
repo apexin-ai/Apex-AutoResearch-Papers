@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_random_soft_control_20260515T235714_result.json",
     "occurrence": 1,
-    "bytes": 632,
-    "sha256": "0f46578c522321cb19ed488b9e80ea71ddb7cecc73971d905f51a5ceb6edd32a"
+    "bytes": 631,
+    "sha256": "4a5888bf51ea81921645fbca5afce77d507e23e86ae31ebc3ca19d2ad9fcf756"
   },
   "statistics": {
     "messages": 1,

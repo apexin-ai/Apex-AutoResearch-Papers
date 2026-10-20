@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_compute-placeholder-values_20260515T233122_result.json",
     "occurrence": 1,
-    "bytes": 688,
-    "sha256": "0718d910f07bde7c3d6d5491a8d1a885c42a53a11562f609a5f997f4bee1c98c"
+    "bytes": 687,
+    "sha256": "7d82ceba79202a9de05263959b42e79b1c1cb5f70977f6bb05b12f4d6352e28b"
   },
   "statistics": {
     "messages": 1,

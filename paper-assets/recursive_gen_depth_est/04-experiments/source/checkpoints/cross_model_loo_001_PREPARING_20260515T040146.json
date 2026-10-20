@@ -1,0 +1,20 @@
+{
+  "exp_id": "cross_model_loo_001",
+  "project": "recursive_gen_depth_est",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:01:46.616Z",
+    "updated_at": "2026-05-15T04:01:46.617Z",
+    "spec": {
+      "description": "Cross-model LOO: train on 2 model families, test on 3rd. RF classifier on 9-cell features.",
+      "server": "gpu-6000pro-2",
+      "model_name": "RandomForest (CPU)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T04:01:46.695770+00:00",
+  "trigger": "update_registry"
+}

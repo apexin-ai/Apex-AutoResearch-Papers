@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_diveye_citation_verify_20260514T195449_result.json",
     "occurrence": 1,
-    "bytes": 939,
-    "sha256": "17a84d886824955ae8540bbc5e2268b83b86c0dfd1ea97374c297f0e72635371"
+    "bytes": 938,
+    "sha256": "da0f8f74eb5d357c201f3463179f85338ad94cd5bd36028b4de631888a652fbf"
   },
   "statistics": {
     "messages": 1,

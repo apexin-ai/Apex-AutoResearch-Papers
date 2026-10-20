@@ -1,0 +1,171 @@
+- id: art_20260514_43a9d0
+  name: KVTC 代码库深度调研报告
+  type: report
+  description: 'OnlyTerp/kvtc 代码库全面调研: 架构分析、DP solver 详解 (quantize.py:16-56)、error
+    function 确认 (variance/4^bits)、RABA 修改方案 (含代码 diff, ~55 行改动)、压缩比评估 (8x 可达)、entropy
+    coding 流程、集成风险分析'
+  path: projects/distill_kv_rag_cache/artifacts/_project/report/kvtc_survey.md
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:28:38.748513+00:00'
+  tags:
+  - kvtc
+  - survey
+  - raba
+  - dp-solver
+  - kv-cache-compression
+- id: art_20260514_d89b5b
+  name: ProphetKV 及 Query-Aware KV Cache 方法调研报告
+  type: report
+  description: ProphetKV 论文深度分析 + SnapKV/H2O/Expected Attention/PyramidKV 对比 + CompressLink
+    query relevance probe (p_r(t)) 三种实现方案 + RABA/CEGR 接口设计
+  path: projects/distill_kv_rag_cache/artifacts/_project/report/prophetkv_survey.md
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:50:16.016623+00:00'
+  tags:
+  - prophetkv
+  - query-relevance
+  - kv-cache
+  - attention-score
+  - survey
+- id: art_20260514_85846a
+  name: MEPIC 技术调研报告
+  type: report
+  description: MEPIC (Memory-Efficient Position-Independent Caching) 深度技术调研：NoPE KV存储机制、RoPE数学推导、boundary
+    recomputation、与KVTC/CEGR兼容性分析、HuggingFace transformers实现方案
+  path: projects/distill_kv_rag_cache/artifacts/_project/report/mepic_survey.md
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:51:39.828106+00:00'
+  tags:
+  - MEPIC
+  - NoPE
+  - RoPE
+  - KV-cache
+  - position-independent
+  - survey
+- id: art_20260514_80c1f0
+  name: prophetkv_survey_v2
+  type: report
+  description: ProphetKV/SnapKV/kvpress 调研报告 v2：方法对比、核心公式、CompressLink query relevance
+    probe 实现方案、代码量估计
+  path: projects/distill_kv_rag_cache/artifacts/_project/report/prophetkv_survey_80c1f0.md
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:59:41.662534+00:00'
+  tags:
+  - prophetkv
+  - snapkv
+  - kvpress
+  - query-relevance
+  - kv-cache
+  - survey
+- id: art_20260514_35b4cc
+  name: compresslink data_loader
+  type: intermediate
+  description: 'NQDataLoader: 加载NQ JSONL数据、格式化RAG prompt、chunk切分context'
+  path: projects/distill_kv_rag_cache/artifacts/_project/intermediate/data_loader.py
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:22:10.612282+00:00'
+  tags:
+  - data
+  - nq
+  - rag
+- id: art_20260514_44b621
+  name: compresslink calibration
+  type: intermediate
+  description: 'KVTCCalibrator: 收集NoPE KV cache、计算per-head PCA、保存校准数据'
+  path: projects/distill_kv_rag_cache/artifacts/_project/intermediate/calibration.py
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:22:12.962825+00:00'
+  tags:
+  - calibration
+  - kvtc
+  - pca
+- id: art_20260514_be358b
+  name: compresslink metrics
+  type: intermediate
+  description: SQuAD-style EM/F1评估指标：normalize_answer、compute_exact_match、compute_f1
+  path: projects/distill_kv_rag_cache/artifacts/_project/intermediate/metrics.py
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:22:15.314432+00:00'
+  tags:
+  - metrics
+  - evaluation
+- id: art_20260514_41178b
+  name: prepare_nq_data script
+  type: intermediate
+  description: 从HuggingFace natural_questions流式下载并准备500条NQ子集JSONL
+  path: projects/distill_kv_rag_cache/artifacts/_project/intermediate/prepare_nq_data.py
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:22:17.265611+00:00'
+  tags:
+  - script
+  - data
+  - nq
+- id: art_20260514_cc6975
+  name: run_calibration script
+  type: intermediate
+  description: 加载模型运行KVTC PCA校准的CLI脚本，支持自定义数据源和dtype
+  path: projects/distill_kv_rag_cache/artifacts/_project/intermediate/run_calibration.py
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:22:19.684897+00:00'
+  tags:
+  - script
+  - calibration
+  - kvtc
+- id: art_20260514_4f754a
+  name: test_metrics
+  type: intermediate
+  description: metrics模块单元测试：18个测试覆盖normalize_answer、EM、F1
+  path: projects/distill_kv_rag_cache/artifacts/_project/intermediate/test_metrics.py
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:22:21.553711+00:00'
+  tags:
+  - test
+  - metrics
+- id: art_20260514_756ca9
+  name: CompressLink MVP Core Implementation
+  type: data
+  description: CompressLink MVP 核心代码：NoPE attention、RABA、CEGR-MSE、budget manager、query
+    probe、pipeline、eval_runner，含 4 组测试
+  path: projects/distill_kv_rag_cache/artifacts/_project/data/__init__.py
+  url: null
+  project: distill_kv_rag_cache
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:37:15.816346+00:00'
+  tags:
+  - code
+  - mvp
+  - compresslink
+  - raba
+  - cegr
+  - nope

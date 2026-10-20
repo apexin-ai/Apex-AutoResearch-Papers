@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_zeroshot_llm_500_001_20260515T163627.log",
     "occurrence": 1,
-    "bytes": 1180323,
-    "sha256": "023aa72e6f6581708e2b94b712800377b978499134dbae58dbd31285f17ee735"
+    "bytes": 1180008,
+    "sha256": "93354fe4c0ad87810400fb033c85ed78f5674988070a060e850772cae46cd938"
   },
   "statistics": {
     "messages": 892,

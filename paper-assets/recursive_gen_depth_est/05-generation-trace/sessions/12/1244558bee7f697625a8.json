@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_proto_full_rerun_westd_cuda1_20260517T182509_result.json",
     "occurrence": 1,
-    "bytes": 759,
-    "sha256": "b15250d41e3907bbae22d43541f3324dadadf12e344f57c65af6a0dc9acdf8d8"
+    "bytes": 758,
+    "sha256": "9ced6b850ca5677e86e54f269fa1fe9a891cf54c57cdb12895fd9ef15fbfc85a"
   },
   "statistics": {
     "messages": 1,

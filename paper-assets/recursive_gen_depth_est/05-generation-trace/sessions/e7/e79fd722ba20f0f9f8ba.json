@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill_dual_gpu_llama3_20260516T140019_result.json",
     "occurrence": 1,
-    "bytes": 238,
-    "sha256": "7334ff09dfbe6136263fed3004c5a0797ccd1702447eab51f23bdd3ebdcd5b50"
+    "bytes": 237,
+    "sha256": "f2ac01a9801a197a0ef65934c20d5a1388b87d2ae192ca634234fe4aa3a9da37"
   },
   "statistics": {
     "messages": 1,

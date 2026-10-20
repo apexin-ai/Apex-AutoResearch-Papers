@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_eval_binoculars_14b_topk50_20260520T053504_result.json",
     "occurrence": 1,
-    "bytes": 787,
-    "sha256": "612a7b0ce5d9514e80a27cbae94448fc9ab0d939a247c17a78489bc87a416e03"
+    "bytes": 786,
+    "sha256": "b9f0b66cb61866b27aeff2eed3cd47d502d71e7f7615db700d27016dd15717bd"
   },
   "statistics": {
     "messages": 1,

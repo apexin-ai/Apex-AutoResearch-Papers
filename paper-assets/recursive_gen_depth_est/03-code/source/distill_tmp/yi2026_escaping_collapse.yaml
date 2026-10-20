@@ -1,0 +1,113 @@
+paper_key: "yi2026_escaping_collapse"
+title: "Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence"
+venue: "ICLR 2026 (Poster)"
+full_text_available: true
+
+research:
+  baselines:
+    - "Unfiltered synthetic retraining (no verifier)"
+    - "Real-data-only OLS estimator"
+    - "VAE trained on full 60K MNIST (upper bound)"
+  metrics:
+    - {name: "MSE (parameter estimation error)", direction: "lower_better"}
+    - {name: "FID (Frechet Inception Distance)", direction: "lower_better"}
+    - {name: "ELBO (Evidence Lower Bound)", direction: "lower_better"}
+  datasets:
+    - {name: "Simulated linear regression", size: "dimension p=8, varying sample sizes (500->2000, 1000->4000, 2000->8000)"}
+    - {name: "MNIST", size: "500 real images for init, 60K for discriminator training"}
+  ablation_dimensions:
+    - "Verifier bias (Delta: 0.0-0.7)"
+    - "Verifier selectivity/radius (r: 0.05-0.5 for linear; top-10% for VAE)"
+    - "Training sample size schedule (real->synthetic ratio)"
+    - "Verifier quality (discriminator trained on 500/1K/5K/10K/20K/40K/60K real images)"
+    - "Filtered vs unfiltered synthetic data"
+  training_recipe:
+    optimizer: "OLS (closed-form) for linear regression; standard SGD for CVAE"
+    lr: "N/A for OLS; not specified for VAE"
+    hardware: "Not specified"
+    iterations: "60 rounds for linear regression; 40 rounds for VAE"
+  method_family: "Verifier-guided synthetic data filtering for iterative model retraining"
+
+positioning:
+  core_claim: "External verifier-based filtering of synthetic data prevents model collapse in the short term via bias-variance tradeoff, but long-term performance converges to the verifier's knowledge center rather than ground truth -- unless the verifier is perfectly unbiased."
+  key_results: "Linear regression: filtered retraining keeps MSE near 0.05 across 60 iterations while unfiltered diverges to 0.3-0.8. VAE/MNIST: FID drops from ~110 to ~40 with 60K-trained verifier over 40 iterations; with only 500-image verifier, FID plateaus at ~130."
+  limitations:
+    - "Theoretical analysis restricted to linear regression; generalization to neural networks remains open"
+    - "VAE verifier (discriminator) is relatively simple and may reject harder-to-generate modes"
+    - "Synthetic retraining initialized with only 500 real images limits diversity recovery"
+    - "Verifier quality directly bounds long-term performance ceiling -- biased verifier leads to biased convergence"
+    - "No experiments on large language models or more complex generative tasks"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Synthetic data is increasingly used to train frontier generative models, but iterative retraining on self-generated data causes model collapse -- a well-documented performance degradation phenomenon."
+  tension: "Prior work establishes collapse as seemingly inevitable under recursive self-training, but real practitioners already use external verification (human feedback, reward models). The question is: can verification provably escape collapse, and if so, what are the limits?"
+  key_insight: "Verification creates a bias-variance tradeoff: filtering reduces variance (by discarding low-quality samples) but introduces bias (toward the verifier's knowledge center). Short-term gains are real but long-term convergence is to the verifier's center, not ground truth. Presented through Theorem 3.1 (one-round decomposition) and Theorem 4.1 (long-term contraction)."
+  argument_chain: "model collapse problem -> prior work shows unfiltered retraining diverges -> introduce verifier-based filtering framework (Generate-Verify-Retrain) -> theoretical analysis: one-round improvement via bias-variance decomposition (Theorem 3.1) -> long-term convergence to verifier center (Theorem 4.1) -> empirical validation on linear regression + VAE/MNIST -> conclusion: verification helps but is fundamentally bounded by verifier quality"
+  contribution_framing: "Three research questions framed as Q1 (does verification help short-term?), Q2 (do gains sustain long-term?), Q3 (empirical validation). Each answered with a theorem or experiment. Contribution count: 3 clearly delineated."
+  intro_structure: "4 paragraphs: (1) motivation on synthetic data and model collapse concern, (2) research questions about verifier-based filtering, (3) prior literature context and gaps, (4) bullet-point contributions with theorem references"
+  notable_technique: "Framing the two results as a deliberate tension -- short-term improvement (good news) vs long-term convergence to verifier center (cautionary news) -- creates a 'promise and peril' narrative arc that is more nuanced than a pure positive-result paper."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "Three-panel comparison showing VAE-generated MNIST digits: (left) original data, (center-top) with verified synthetic data after 40 rounds showing maintained quality, (center-bottom) without verification showing severe collapse/degradation. (right) upper bound from training on all 60K real images."
+    narrative_role: "Immediately demonstrates the paper's core claim visually -- verification prevents collapse while unfiltered retraining produces unrecognizable outputs. Placed before any theory to motivate the reader."
+    design_elements: ["Before/after comparison", "With/without verification contrast", "Real sample grids", "Upper bound reference", "Arrow annotations connecting panels"]
+    visual_style: "Black background with white MNIST digit grids arranged horizontally. Arrows with text labels ('With Data Verification' / 'Without Data Verification') connect the initial model to the two outcomes. Clean, high-contrast layout. Roughly 4-panel horizontal arrangement."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap + heatmap"
+      what_compared: "One-round improvement landscape as function of verifier bias (Delta) and selectivity radius (r). Left (3a): theory-predicted loss landscape. Right (3b): empirical simulation."
+      how_gain_highlighted: "Green regions indicate improvement (log ratio > 0), red regions indicate degradation. Theory-empirical match validates the theoretical framework."
+      design_note: "Diverging green-red colormap centered at 0 makes improvement/degradation regions immediately readable. Side-by-side theory vs empirical layout validates theoretical predictions visually. Axes are interpretable parameters (bias, radius)."
+    - figure_id: "Figure 4a"
+      viz_type: "line_plot"
+      what_compared: "Convergence of parameter estimate to verifier center (theta_c) over 60 iterations for different verifier radii (r=0.1, 0.5, 1, 1.5) with biased verifier"
+      how_gain_highlighted: "All curves converge to near-zero distance from theta_c, confirming Theorem 4.1. Smaller radius = faster convergence."
+      design_note: "Clean line plot with distinct colors for each radius value. Y-axis is distance to verifier center, clearly showing contraction. Legend is simple and readable."
+    - figure_id: "Figure 4b"
+      viz_type: "line_plot"
+      what_compared: "Filtered (solid) vs unfiltered (dashed) retraining across different sample size schedules (500->2000, 1000->4000, 2000->8000) over 60 iterations with unbiased verifier"
+      how_gain_highlighted: "Solid lines (filtered) stay flat near 0.05 while dashed lines (unfiltered) diverge upward to 0.3-0.8. Dramatic visual separation between the two groups."
+      design_note: "Solid vs dashed line encoding for filtered/unfiltered is effective. Three colors for three sample size conditions. The divergence of dashed lines visually dramatizes model collapse."
+    - figure_id: "Figure 5a"
+      viz_type: "line_plot"
+      what_compared: "VAE FID scores over 40 iterations comparing different VAE training sample sizes and filtered vs unfiltered conditions"
+      how_gain_highlighted: "Filtered curves decrease steadily; unfiltered curves increase (collapse). Separation grows over iterations."
+      design_note: "Multiple colored lines with solid/dashed encoding. FID on y-axis with clear downward = better convention."
+    - figure_id: "Figure 5b"
+      viz_type: "line_plot"
+      what_compared: "Effect of verifier quality (discriminator trained on 500/1K/5K/10K/20K/40K/60K real images) on FID over 40 iterations"
+      how_gain_highlighted: "Clear monotonic relationship: more verifier training data = lower FID. 60K verifier achieves FID ~40; 500-image verifier plateaus at ~130."
+      design_note: "Seven colored lines ordered by verifier quality create a clean gradient pattern. Demonstrates the paper's key insight that verification quality bounds final performance. Well-chosen range of verifier sizes."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "heatmap"
+      dimensions_varied: ["Verifier bias (Delta)", "Verifier selectivity radius (r)"]
+      design_note: "Effectively an ablation over the two key verifier hyperparameters. Heatmap format makes the full landscape visible at once rather than requiring multiple line plots."
+    - figure_id: "Figure 5b"
+      viz_type: "line_plot"
+      dimensions_varied: ["Verifier training dataset size (quality proxy)"]
+      design_note: "Ablation over verifier quality showing monotonic improvement. Seven conditions provide fine granularity."
+  figure_narrative_role: "Figure 1 (teaser: visual proof of concept) -> Figure 2 (pipeline: method overview) -> Figure 3 (theory validation: one-round landscape) -> Figure 4 (long-term dynamics: convergence behavior) -> Figure 5 (real-world validation: VAE experiments). Progression from motivation to theory to practice."
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "Paper has no tables in main text. All results presented through figures (heatmaps and line plots). This is unusual but appropriate for a theory-focused paper where the key results are continuous landscapes and convergence dynamics rather than discrete benchmark comparisons."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix A: 1D Gaussian analysis toolkit. Appendix B: Full proofs of Theorems 3.1 and 4.1. Appendix C: VAE experiment details including data preprocessing, discriminator architecture specifications, synthetic generation procedures, and supplementary ELBO results."
+    reason: "All heavy mathematical proofs and implementation details moved to appendix to keep main paper focused on the two theorems and their experimental validation. Consistent with theory-paper conventions."

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c27555ee923b86b769b4",
+  "project": "distill_kv_rag_cache",
+  "kind": "result",
+  "title": "research mepic code survey",
+  "task_key": "worker_research_mepic-code-survey_20260514T044250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_mepic-code-survey_20260514T044250_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "eddb37babcedb5817f5e794d36e32ea8ed3f421b922035506386d4536f4092ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已完成并注册。核心结论：\n\n**MEPIC 未开源**，但核心算法可从论文完整复现，预估 ~710 行代码。关键技术点：\n\n1. **NoPE KV 存储**: 存 key 时跳过 RoPE，仅对 query 应用 RoPE。RoPE 的 apply/remove 是简单旋转操作 `(x * cos) ± (rotate_half(x) * sin)`\n2. **Fused RoPE Attention**: attention 计算前动态对 NoPE key 施加 RoPE — 标准 Flash Attention 不直接支持，需自定义 kernel 或 eager attention fallback\n3. **First-Block Recomputation**: 每个 cached chunk 仅重算第一个 block（~16 tokens），处理拼接边界效应\n4. **与 KVTC 天然互补**: 两者都依赖 RoPE-free keys，MEPIC 生产的 NoPE KV 可直接送入 KVTC 压缩\n5. **与 CEGR 正交**: MEPIC 修复拼接边界误差，CEGR 修复压缩误差，可叠加使用\n\nEPIC（MEPIC 前身）有[开源代码](https://github.com/DerekHJH/epic)，但技术路线不同（post-RoPE + token-level recomputation），参考价值有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-mepic-code-survey.md"
+}

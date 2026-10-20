@@ -1,0 +1,103 @@
+{
+  "exp_id": "mvp_pipeline_pythia_002",
+  "project": "recursive_gen_depth_est",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:07:25.860Z",
+    "updated_at": "2026-05-14T14:01:42.621Z",
+    "spec": {
+      "command": "bash scripts/run_pipeline.sh (Pythia-1.4B, 3x LoRA finetune + 3x generate)",
+      "server": "gpu-6000pro-2",
+      "gpu": "cuda:0",
+      "pid": 103739,
+      "log_path": "/root/autodl-tmp/recursive_gen_depth_est/logs/pipeline_pythia.log",
+      "submitted_at": "2026-05-14T12:10:06.848Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/data/depth_0.jsonl",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "model_path": "/root/autodl-tmp/models/pythia-1.4b/",
+      "seed": 42,
+      "hypothesis": "Pythia-1.4B (The Pile, 代码仅3.3%) 递归生成的文本具有可区分的统计模式，4-class acc > 40% 且 depth-1 vs depth-2 AUC > 0.6",
+      "hyperparams": {
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "target_modules": [
+          "query_key_value"
+        ],
+        "epochs": 3,
+        "lr": "2e-4",
+        "batch_size": 8,
+        "gradient_accumulation": 2,
+        "max_seq_len": 512,
+        "max_new_tokens": 512,
+        "temperature": 1,
+        "top_p": 0.95
+      },
+      "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/checkpoints/lora_depth_{0,1,2}/",
+      "wall_clock_seconds": 6420,
+      "gpu_hours": 1.78,
+      "pipeline_metrics": {
+        "finetune_loss_d0": 2.2411,
+        "finetune_loss_d1": 1.3894,
+        "finetune_loss_d2": 1.025,
+        "finetune_time_each_s": 268,
+        "generate_time_each_min": 28,
+        "code_contamination_d1_pct": 5,
+        "code_contamination_d2_pct": 9,
+        "code_contamination_d3_pct": 12
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T13:49:19.028Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T13:49:19.779486+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "full_4class_acc": 0.782,
+      "full_4class_acc_ci": [
+        0.769,
+        0.794
+      ],
+      "full_mae": 0.2367,
+      "full_auc_0v1": 0.9975,
+      "full_auc_1v2": 0.8607,
+      "full_auc_2v3": 0.8005,
+      "filtered_4class_acc": 0.816,
+      "filtered_4class_acc_ci": [
+        0.803,
+        0.829
+      ],
+      "filtered_mae": 0.1995,
+      "filtered_auc_0v1": 0.9977,
+      "filtered_auc_1v2": 0.8782,
+      "filtered_auc_2v3": 0.8323,
+      "filtered_sample_count": 16993,
+      "best_model": "RandomForest",
+      "top_features": [
+        "var_surprisal",
+        "p90_ppl",
+        "mean_ppl",
+        "mean_surprisal",
+        "p75_ppl"
+      ],
+      "truncation_length": 498,
+      "feature_dim": 19
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T14:01:42.642275+00:00",
+  "trigger": "update_registry"
+}

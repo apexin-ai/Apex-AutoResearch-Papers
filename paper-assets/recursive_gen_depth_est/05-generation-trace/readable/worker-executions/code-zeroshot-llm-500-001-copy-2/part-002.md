@@ -12067,7 +12067,7 @@ Summary:
    - **`/tmp/run_zs500.sh`** - Wrapper script written to server for nohup execution:
      ```bash
      #!/bin/bash
-     export OPENAI_API_KEY="tum_XXB3sZILRCg8llb3NjxVbbRNzFpsYVFdiogFkavpGn8"
+     export OPENAI_API_KEY="[REDACTED]"
      export PYTHONUNBUFFERED=1
      cd /root/autodl-tmp/recursive_gen_depth_est
      source /root/miniconda3/etc/profile.d/conda.sh

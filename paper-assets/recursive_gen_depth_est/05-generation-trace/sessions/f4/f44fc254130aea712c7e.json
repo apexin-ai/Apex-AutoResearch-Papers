@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_plan_015_dolma_supplement_20260515T214713_result.json",
     "occurrence": 1,
-    "bytes": 1109,
-    "sha256": "f250fc0bf73504b2cc53b78dab6c889752a2bb2b79d21c0f9a5a7f978007b949"
+    "bytes": 1108,
+    "sha256": "9a77397a192fc325e944f78622695c869399b346197347f029978abdabd13daf"
   },
   "statistics": {
     "messages": 1,

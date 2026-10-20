@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_writing_r5_page_compression_20260516T184150_result.json",
     "occurrence": 1,
-    "bytes": 1422,
-    "sha256": "74460189718c298efaf6a454abc7eab493f0485d4f12ed3fad7c0af23cc49f5b"
+    "bytes": 1421,
+    "sha256": "8e7c63dc9e51b998d0168675f602facf0d4a290ebc87a012edfb380418a232f9"
   },
   "statistics": {
     "messages": 1,

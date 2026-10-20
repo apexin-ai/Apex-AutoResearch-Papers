@@ -1,0 +1,27 @@
+paper_key: "alemohammad2024_mad"
+title: "Self-Consuming Generative Models Go MAD"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["real data baseline", "mixed real+synthetic training"]
+  metrics:
+    - {name: "precision (quality)", direction: "higher_better"}
+    - {name: "recall (diversity)", direction: "higher_better"}
+    - {name: "FID", direction: "lower_better"}
+  datasets:
+    - {name: "FFHQ (image generation)", size: "70K"}
+    - {name: "MNIST", size: "60K"}
+  ablation_dimensions: ["fresh real data ratio", "number of autophagous generations", "quality-diversity tradeoff"]
+  training_recipe: {optimizer: "N/A (generative models)", lr: "N/A", hardware: "N/A"}
+  method_family: "theoretical + empirical analysis of autophagous (self-consuming) generative loops"
+
+positioning:
+  core_claim: "Without sufficient fresh real data in each generation, self-consuming generative models are doomed to have quality or diversity progressively decrease (Model Autophagy Disorder)"
+  key_results: "Three regimes identified: fully synthetic → collapse; synthetic+sampling bias → quality loss; synthetic+fresh data → stable if ratio sufficient"
+  limitations: ["primarily image domain", "simplified generation pipeline"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_zeroshot_qwen7b_500_001_20260516T013534_result.json",
     "occurrence": 1,
-    "bytes": 125,
-    "sha256": "a7f50dbf0452a4f9d0dcb008b51d7f86a24617a8a2598c8001548128c2e0d1cd"
+    "bytes": 124,
+    "sha256": "02e09110e09043722f2fc66b1686c99eebc5e1e257295276605a65b82c1772e8"
   },
   "statistics": {
     "messages": 1,

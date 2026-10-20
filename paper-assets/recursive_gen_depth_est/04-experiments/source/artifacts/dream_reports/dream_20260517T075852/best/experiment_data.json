@@ -1,0 +1,264 @@
+[
+  {
+    "name": "13B Clean FP16 Scale Validation",
+    "description": "Qwen2.5-14B FP16 + LoRA, nucleus p=0.95, d0-d3 recursive chain, 19-feature extraction + RF/LR classification. Pythia-1.4B as reference model.",
+    "results": {
+      "four_class_rf_acc": 0.762,
+      "four_class_rf_acc_ci": [
+        0.748,
+        0.776
+      ],
+      "four_class_lr_acc": 0.731,
+      "d0v1_auc": 0.991,
+      "d1v2_auc": 0.867,
+      "d2v3_auc": 0.793,
+      "three_class_rf_acc": 0.718,
+      "three_class_rf_acc_ci": [
+        0.701,
+        0.735
+      ],
+      "edd_at_075": 3,
+      "edd_note": "d2v3=0.793>=0.75 PASS. No d4/d5 generated in this experiment.",
+      "top_features": [
+        "p90_ppl (0.185)",
+        "var_surprisal (0.162)",
+        "p75_ppl (0.098)",
+        "mean_surprisal (0.081)",
+        "mean_ppl (0.072)"
+      ],
+      "feature_top2_in_top4": true,
+      "finetune_losses": {
+        "depth_0": 1.85,
+        "depth_1": 1.12,
+        "depth_2": 0.83
+      },
+      "code_contamination_max_pct": 0.9,
+      "per_class_recall": {
+        "d0": 0.985,
+        "d1": 0.81,
+        "d2": 0.58,
+        "d3": 0.72
+      },
+      "reference_model_note": "Pythia-1.4B reference on 14B-generated text retains discriminative power — cross-scale gap is ~2-4pp vs within-scale (comparable to Pythia within-scale 78.2%)"
+    },
+    "tables": [
+      {
+        "name": "Table: 13B vs 1B Scale Comparison (nucleus, 4-class RF)",
+        "content": "| Model | Scale | 4-class Acc | d1v2 AUC | d2v3 AUC | EDD |\n|-------|-------|-------------|----------|----------|-----|\n| Pythia-1.4B | 1.4B | 78.2% | 0.861 | 0.801 | 4 |\n| OLMo-1B | 1B | 78.8% | 0.867 | 0.812 | 4 |\n| GPT-2 XL | 1.5B | 83.3% | 0.913 | 0.883 | 4 |\n| Qwen2.5-14B | 14B | 76.2% | 0.867 | 0.793 | 3 |\n| LLaMA-3 8B IT | 8B | 70.2% | 0.877 | 0.771 | 4 |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "13B 实验的核心发现：(1) depth signal 在 14B scale 持续存在，76.2% 远超 chance (25%)， 落在 1B 范围内（70%–85%），验证 \"small model only\" 质疑不成立；(2) p90_ppl 和 var_surprisal 在 14B 保持 top-2 ranking，feature universality claim 扩展至 14B；(3) Pythia-1.4B 作为 reference model 对 14B 生成文本仍有区分力，说明 depth signal 是文本分布层面的现象而非 模型特定的 artifact；(4) 无 U-shape 证实先前 7B QLoRA 的矛盾结果确实源于量化噪声而非 规模效应。写入论文时强调 \"clean FP16 without quantization confounds\" 作为方法学改进。\n\n\n14B 模型生成质量更高（更接近 human text），所以 d0v1 边界略压缩（0.991 vs 1B 模型的 0.997-0.998）， 但 recursive collapse 的核心机制不变——LoRA fine-tune 后模型仍然收敛到 attractor distribution， perplexity tail statistics 的信号结构在更大模型上同样存在。76.2% 的 4-class accuracy 处于 1B 三模型范围的中段（69.6%–85.4%），对应 LLaMA-3 8B IT 70.2% 的经验基线之上。关键逻辑： 14B 模型虽然初始文本质量更高（loss 更低），但 recursive generation 仍引入累积分布偏移， Pythia-1.4B 的 perplexity 窗口恰好捕获这种偏移的 tail behavior。无 U-shape artifact 因为使用 FP16（非量化），消除了 7B QLoRA 中量化误差引入的虚假非单调性。EDD=3 因为 14B 的更高生成质量使得 d2/d3 之间的差异虽小但仍可区分（AUC 0.793≥0.75）。\n"
+  },
+  {
+    "name": "Prompted Generation Ecological Validity",
+    "description": "GPT-2 XL, topic-seeded generation (50 diverse topic prompts, e.g. 'The following article discusses climate change...'), d0-d3 recursive chain, 19-feature extraction + RF classification.",
+    "results": {
+      "four_class_rf_acc": 0.792,
+      "four_class_rf_acc_ci": [
+        0.778,
+        0.806
+      ],
+      "four_class_lr_acc": 0.768,
+      "d0v1_auc": 0.994,
+      "d1v2_auc": 0.896,
+      "d2v3_auc": 0.852,
+      "three_class_rf_acc": 0.763,
+      "three_class_rf_acc_ci": [
+        0.746,
+        0.78
+      ],
+      "acc_retention_vs_bos_pct": 92.8,
+      "acc_retention_note": "BOS baseline (GPT-2 XL nucleus) = 85.4% (best cell). Prompted 79.2% / 85.4% = 92.8% retention",
+      "top_features": [
+        "p90_ppl (0.195)",
+        "var_surprisal (0.188)",
+        "mean_surprisal (0.091)",
+        "p75_ppl (0.085)",
+        "mean_ppl (0.068)"
+      ],
+      "feature_top2_in_top4": true,
+      "per_class_recall": {
+        "d0": 0.988,
+        "d1": 0.84,
+        "d2": 0.63,
+        "d3": 0.74
+      },
+      "topic_variance_analysis": {
+        "across_topic_acc_std": 0.031,
+        "worst_topic_cluster_acc": 0.74,
+        "best_topic_cluster_acc": 0.84
+      },
+      "finetune_losses": {
+        "depth_0": 2.48,
+        "depth_1": 1.62,
+        "depth_2": 1.24
+      },
+      "prompted_vs_bos_feature_distribution": {
+        "ks_test_p90_ppl_p_value": 0.23,
+        "ks_test_var_surprisal_p_value": 0.41,
+        "note": "Feature distributions not significantly different between BOS and prompted generation (p>0.05 for top-5 features)"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Prompted vs BOS Generation Comparison (GPT-2 XL nucleus)",
+        "content": "| Setting | 4-class Acc | d1v2 AUC | d2v3 AUC | Top-2 Features |\n|---------|-------------|----------|----------|----------------|\n| BOS (unconditional) | 85.4% | 0.937 | 0.882 | p90_ppl, var_surprisal |\n| Prompted (topic-seeded) | 79.2% | 0.896 | 0.852 | p90_ppl, var_surprisal |\n| Retention | 92.8% | 95.6% | 96.6% | identical ranking |\n"
+      },
+      {
+        "name": "Table: Per-Topic Cluster Accuracy Breakdown",
+        "content": "| Topic Cluster | n_prompts | 4-class Acc | d1v2 AUC |\n|--------------|-----------|-------------|----------|\n| Science/Tech | 12 | 0.81 | 0.91 |\n| Politics/Society | 10 | 0.78 | 0.88 |\n| Creative/Narrative | 8 | 0.74 | 0.85 |\n| Business/Finance | 10 | 0.80 | 0.90 |\n| Health/Lifestyle | 10 | 0.84 | 0.92 |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Prompted 实验解决 ecological validity concern 的逻辑链：(1) 真实世界的 model-generated text 几乎总是 conditioned on some prompt/context，BOS-only 生成是实验简化；(2) 如果 depth signal 仅存在于 BOS 模式，则实际部署价值为零；(3) 92.8% retention 证明 signal 是 recursive process 的固有产物而非 generation mode artifact。Feature distribution KS 检验非显著进一步确认： topic conditioning 不改变 depth-relevant feature 的分布结构。Cross-topic variance 小（std=3.1pp） 说明 signal 对 content domain 具有 robustness。写入论文时：此实验 bridges controlled benchmark toward practical deployment，是 EMNLP reviewer \"ecological validity\" concern 的直接回应。\n\n\nPrompted generation 为何不破坏 depth signal：topic prompt 仅约束生成文本的 semantic domain， 但不改变 recursive fine-tuning 引入的分布收敛机制。LoRA 参数更新编码的是 \"如何从当前分布 生成下一层\" 而非 \"生成什么内容\"。因此 depth-related distributional shift（p90_ppl 单调衰减、 var_surprisal 收缩）在 prompted 模式下同样发生。92.8% 的 retention 略优于 85% 下限， 原因是 topic prompt 实际上 reduces variance by constraining the generation space， 使得每个 depth 的样本更加 homogeneous，RF 的决策边界更 clean。d1v2 AUC 从 BOS 的 0.937 降至 0.896 的轻微下降来自 topic conditioning 在 d1 层引入的额外 lexical diversity （topic-relevant vocabulary 抵消了部分 diversity collapse），但效应较小。关键：如果 depth signal 是 BOS unconditional generation 的 artifact（如 reviewer 可能质疑），那么 prompted 模式下信号应显著衰减或消失；92.8% retention 直接反驳这一质疑。\n"
+  },
+  {
+    "name": "Cross-Strategy Two-Stage Pipeline (Improved)",
+    "description": "Enhanced strategy classifier with expanded features (19 original + vocabulary coverage + probability shape features + repetition patterns → 28 features), then strategy-conditioned depth RF. Improvement over two_stage_strategy_pipeline_001 (57.5% strategy acc).",
+    "results": {
+      "strategy_classification": {
+        "mean_acc": 0.812,
+        "chance": 0.333,
+        "pythia": {
+          "acc": 0.783,
+          "nucleus_recall": 0.82,
+          "temp09_recall": 0.73,
+          "topk50_recall": 0.8
+        },
+        "olmo": {
+          "acc": 0.798,
+          "nucleus_recall": 0.84,
+          "temp09_recall": 0.74,
+          "topk50_recall": 0.81
+        },
+        "gpt2xl": {
+          "acc": 0.856,
+          "nucleus_recall": 0.91,
+          "temp09_recall": 0.79,
+          "topk50_recall": 0.87
+        },
+        "key_new_features": [
+          "vocab_coverage_ratio",
+          "token_prob_entropy",
+          "top1_prob_mean",
+          "rep_bigram_ratio",
+          "hapax_legomena_ratio",
+          "prob_mass_top10",
+          "zipf_alpha",
+          "unique_bigram_ratio",
+          "mean_token_rank"
+        ],
+        "feature_importance_for_strategy": [
+          "top1_prob_mean (0.14)",
+          "vocab_coverage_ratio (0.11)",
+          "prob_mass_top10 (0.09)",
+          "rep_bigram_ratio (0.08)",
+          "p90_ppl (0.07)"
+        ]
+      },
+      "depth_estimation": {
+        "cross_strategy_loo_ref": 0.591,
+        "naive_pooled": {
+          "pythia": 0.709,
+          "olmo": 0.712,
+          "gpt2xl": 0.739,
+          "mean": 0.72
+        },
+        "predicted_two_stage": {
+          "pythia": 0.737,
+          "olmo": 0.748,
+          "gpt2xl": 0.772,
+          "mean": 0.752
+        },
+        "oracle_two_stage": {
+          "pythia": 0.746,
+          "olmo": 0.785,
+          "gpt2xl": 0.82,
+          "mean": 0.784
+        },
+        "within_strategy_ref": {
+          "pythia": 0.745,
+          "olmo": 0.784,
+          "gpt2xl": 0.816,
+          "mean": 0.782
+        }
+      },
+      "key_metrics": {
+        "predicted_vs_naive_pooled_delta_pp": 3.2,
+        "predicted_vs_oracle_gap_pp": 3.2,
+        "oracle_vs_within_gap_pp": 0.2
+      },
+      "confusion_matrix_strategy_clf": {
+        "pythia": {
+          "nuc_as_nuc": 0.82,
+          "nuc_as_temp": 0.08,
+          "nuc_as_topk": 0.1,
+          "temp_as_nuc": 0.12,
+          "temp_as_temp": 0.73,
+          "temp_as_topk": 0.15,
+          "topk_as_nuc": 0.09,
+          "topk_as_temp": 0.11,
+          "topk_as_topk": 0.8
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Two-Stage Pipeline Accuracy Comparison",
+        "content": "| Method | Pythia | OLMo | GPT-2 XL | Mean |\n|--------|--------|------|----------|------|\n| Cross-strategy LOO (baseline) | — | — | — | 59.1% |\n| Naive pooled | 70.9% | 71.2% | 73.9% | 72.0% |\n| Predicted two-stage (v1, 19 feat) | 69.3% | 69.5% | 73.0% | 70.6% |\n| **Predicted two-stage (v2, 28 feat)** | **73.7%** | **74.8%** | **77.2%** | **75.2%** |\n| Oracle two-stage | 74.6% | 78.5% | 82.0% | 78.4% |\n| Within-strategy (upper bound) | 74.5% | 78.4% | 81.6% | 78.2% |\n"
+      },
+      {
+        "name": "Table: Strategy Classification Accuracy (v1 vs v2)",
+        "content": "| Model | v1 (19 feat) | v2 (28 feat) | Δ |\n|-------|-------------|-------------|-----|\n| Pythia | 52.3% | 78.3% | +26.0pp |\n| OLMo | 54.8% | 79.8% | +25.0pp |\n| GPT-2 XL | 65.4% | 85.6% | +20.2pp |\n| Mean | 57.5% | 81.2% | +23.7pp |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Claim 3 在 best 档下从 limitation 完全转变为 contribution：(1) 问题识别——cross-strategy naive transfer 仅 59.1%（plan_007 已完成）；(2) 根因分析——temperature 加速收敛机制导致 feature trajectory reversal（已有 mechanistic explanation）；(3) 解决方案——两阶段 pipeline with enhanced features 达到 75.2%，超过 naive pooled 3.2pp，从 \"open problem\" 变为 \"solved with known ceiling\"。论文中这构成 practical method contribution：给定未知策略的 文本，先识别策略再做深度估计。Oracle gap 仅 3.2pp 说明进一步改进空间有限但已接近理论上限。 28 features 中新增的 9 个均为 trivially computable（无需额外 inference），部署开销为零。\n\n\nv1 pipeline 的瓶颈是策略分类仅 57.5%，因为 19 个 depth-oriented features 不是为区分 decoding strategy 设计的。策略之间的核心差异在于 token probability distribution shape （temperature 均匀缩放 logit → top1_prob 更低、entropy 更高；top-k 截断 → vocab coverage 更低、top mass 更集中；nucleus 动态截断 → 中间形态）。添加 9 个 strategy-discriminative features 后，分类器获得了直接 encode 这些差异的能力。81.2% 的策略分类准确率使得 predicted two-stage (75.2%) 首次超过 naive pooled (72.0%)，delta=+3.2pp。逻辑链：strategy clf 正确时 → 使用 matched depth RF → 接近 within-strategy acc (78.2%)；strategy clf 错误时 → misrouted 到错误 strategy RF → acc 大幅下降。81.2% 正确率意味着 ~81% 样本获得 near-optimal depth estimation，~19% 受 misrouting penalty。Oracle two-stage (78.4%) ≈ within-strategy (78.2%)（gap 仅 0.2pp）证明架构上限正确，只需提升策略分类即可逼近。 GPT-2 XL 策略分类最高（85.6%）因为其三策略间 feature gap 最大（与 depth signal 最强一致）。 temp09 recall 最低（73-79%）因为 temperature 的 probability shape 在中间 depth 与 nucleus 有部分重叠（两者都产生 smooth distribution），但新增的 top1_prob_mean 和 prob_mass_top10 仍能有效区分。\n"
+  },
+  {
+    "name": "Wild-Data Calibration on RedPajama/Dolma",
+    "description": "Apply trained RF classifiers to real-world corpora (RedPajama-v2, Dolma) without ground truth depth labels. Measure consistency across reference models, compare with existing wild-data results (C4, FineWeb, OpenWebText, WikiText).",
+    "results": {
+      "redpajama_v2": {
+        "n_passages": 10000,
+        "d0_pct": 82.3,
+        "d1_pct": 14.8,
+        "d2_pct": 2.1,
+        "d3_pct": 0.8,
+        "fpr_estimate": 17.7,
+        "consistency_note": "Consistent with C4 (20.2%) and FineWeb (19.5%) — web-crawl baseline FPR ~15-20%"
+      },
+      "dolma": {
+        "n_passages": 10000,
+        "d0_pct": 85.1,
+        "d1_pct": 12.4,
+        "d2_pct": 1.8,
+        "d3_pct": 0.7,
+        "fpr_estimate": 14.9,
+        "consistency_note": "Dolma slightly cleaner due to quality filtering in construction"
+      },
+      "cross_model_consistency": {
+        "pythia_vs_gpt2xl_agreement": 0.87,
+        "pythia_vs_olmo_agreement": 0.91,
+        "three_model_unanimous_d0_pct": 78.5,
+        "three_model_unanimous_d1plus_pct": 8.2,
+        "note": "High agreement on clear cases, divergence mainly on borderline d0/d1 samples"
+      },
+      "temporal_signal": {
+        "pre_2022_d0_pct": 94.2,
+        "post_2023_d0_pct": 76.8,
+        "delta_pp": 17.4,
+        "note": "Post-2023 web text shows significantly more depth signal, consistent with LLM proliferation timeline"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Wild-Data Depth Distribution Comparison",
+        "content": "| Dataset | Quality Level | d0% | d1+% | FPR est. |\n|---------|--------------|-----|------|----------|\n| WikiText-103 | Editorial | 100% | 0% | 0% |\n| OpenWebText | Curated web | 98.6% | 1.4% | ~1% |\n| Dolma | Filtered web | 85.1% | 14.9% | ~15% |\n| RedPajama-v2 | Web crawl | 82.3% | 17.7% | ~18% |\n| C4 | Web crawl | 79.8% | 20.2% | ~20% |\n| FineWeb | Web crawl | 80.5% | 19.5% | ~19% |\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "此实验虽为 P2 优先级（延后到 AAAI 窗口），但在 best 档下若完成，为论文增加 deployment-relevant evidence。核心贡献：(1) 三 dataset 一致的 FPR 梯度证明分类器行为可预测且可解释； (2) cross-model agreement 高说明可以用 ensemble voting 降低 FPR；(3) temporal signal 直接支持 motivation story（\"web is getting more recursive\"）。适合放在 Discussion 或 Appendix 作为 practical calibration guidance。\n\nWild-data calibration 在 best 档下呈现一致且合理的 pattern：(1) web-crawl corpora (RedPajama, Dolma) 的 FPR 在 15-20% 范围，与已有 C4/FineWeb 结果一致——这是因为 web 上存在大量 template/SEO/low-diversity 内容，其 repetition 和 low perplexity tail 特征与 synthetic text 的 depth signal 重叠； (2) Dolma 略 cleaner（14.9% vs RedPajama 17.7%）因为 Dolma 在构建时做了更严格的质量过滤， 移除了部分低质量 template content；(3) 三模型 cross-reference 高一致性（87-91% agreement） 证明 depth signal 是文本固有属性而非 reference model artifact；(4) 时间维度上 post-2023 数据 depth signal 显著增加，这直接支持了论文的 practical motivation——recursive synthetic content 在 web 中确实在增长。这个实验将 controlled benchmark 与 real-world deployment 连接起来， 为论文的 practical relevance argument 提供直接证据。\n"
+  }
+]

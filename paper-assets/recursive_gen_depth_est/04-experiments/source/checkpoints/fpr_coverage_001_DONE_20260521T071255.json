@@ -1,0 +1,41 @@
+{
+  "exp_id": "fpr_coverage_001",
+  "project": "recursive_gen_depth_est",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:04:56.729Z",
+    "updated_at": "2026-05-21T07:12:54.883Z",
+    "hypothesis": "Confidence thresholding on RF max_prob can reduce C4 FPR substantially while maintaining reasonable coverage, providing a practical operating point for deployment where users can trade coverage for lower false positive rates.",
+    "spec": {
+      "command": "python fpr_coverage_sweep.py",
+      "server": "gpu-6000pro-2",
+      "data_path": "/root/autodl-tmp/recursive_gen_depth_est/results/plan_015_wild_data/c4_predictions.jsonl",
+      "data_count": 15000,
+      "model_name": "RandomForest-200trees",
+      "seed": 42
+    },
+    "metrics": {
+      "c4_5k_base_fpr": 0.202,
+      "c4_10k_base_fpr": 0.34,
+      "c4_5k_t070_fpr": 0.014,
+      "c4_5k_t070_coverage": 0.752,
+      "c4_10k_t070_fpr": 0.035,
+      "c4_10k_t070_coverage": 0.645,
+      "c4_5k_t075_fpr": 0.004,
+      "c4_5k_t075_coverage": 0.734,
+      "c4_10k_t075_fpr": 0.004,
+      "c4_10k_t075_coverage": 0.615,
+      "ctrl_t070_bal_acc_d1d3": 0.858,
+      "ctrl_t075_bal_acc_d1d3": 0.869
+    },
+    "checkpoint_path": "/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/",
+    "log_path": "/root/autodl-tmp/recursive_gen_depth_est/results/fpr_coverage/summary.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T07:12:54.883Z"
+  },
+  "timestamp": "2026-05-21T07:12:55.228356+00:00",
+  "trigger": "update_registry"
+}
