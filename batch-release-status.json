@@ -1237,6 +1237,83 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
+    },
+    "turn_residual_gating/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 637040213,
+        "etag": "\"648b854fd1b6fdad2c9541e0efcaa0b1-76\"",
+        "modified": "2026-05-31T17:35:41+00:00"
+      },
+      "archive_sha256": "6ff497f2a6f9a171f3ace9ef6a18ee9af5ed3ea68e042dc484c7f76cb82d95f5",
+      "projects": [
+        "redundancy-compound-sparsity-2",
+        "ec_hte_codex_a",
+        "verifier-tts-struct-ie",
+        "turn-hier-kv-compress",
+        "redundancy-compound-sparsity",
+        "turn_residual_gating",
+        "phase-gated-compound-sparse"
+      ],
+      "counts": [
+        {
+          "project": "redundancy-compound-sparsity-2",
+          "title": "redundancy compound sparsity 2",
+          "paper_pdf": null,
+          "code_count": 57,
+          "data_count": 103,
+          "trace_count": 190
+        },
+        {
+          "project": "ec_hte_codex_a",
+          "title": "ec hte codex a",
+          "paper_pdf": null,
+          "code_count": 25,
+          "data_count": 40,
+          "trace_count": 30
+        },
+        {
+          "project": "verifier-tts-struct-ie",
+          "title": "verifier tts struct ie",
+          "paper_pdf": null,
+          "code_count": 18,
+          "data_count": 19,
+          "trace_count": 29
+        },
+        {
+          "project": "turn-hier-kv-compress",
+          "title": "turn hier kv compress",
+          "paper_pdf": null,
+          "code_count": 26,
+          "data_count": 51,
+          "trace_count": 45
+        },
+        {
+          "project": "redundancy-compound-sparsity",
+          "title": "When Does KV Redundancy Predict MLP Sparsity? Architecture Dependence of Cross-Axis Signals in Reasoning Inference",
+          "paper_pdf": "paper.pdf",
+          "code_count": 31,
+          "data_count": 71,
+          "trace_count": 70
+        },
+        {
+          "project": "turn_residual_gating",
+          "title": "Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue",
+          "paper_pdf": "paper.pdf",
+          "code_count": 288,
+          "data_count": 625,
+          "trace_count": 1054
+        },
+        {
+          "project": "phase-gated-compound-sparse",
+          "title": "Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models",
+          "paper_pdf": "paper.pdf",
+          "code_count": 413,
+          "data_count": 1167,
+          "trace_count": 2272
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39397907680"
     }
   }
 }

@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **48 projects with manuscript PDFs** and **31 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **51 projects with manuscript PDFs** and **35 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -36,11 +36,13 @@ This catalogue covers **48 projects with manuscript PDFs** and **31 additional p
 | [nlp_variance_gtheory](paper-assets/nlp_variance_gtheory/README.md) | [PDF](paper-assets/nlp_variance_gtheory/01-manuscript/paper.pdf) | 396 | 519 | 815 | 81,448 |
 | [occsafe_vla](paper-assets/occsafe_vla/README.md) | [PDF](paper-assets/occsafe_vla/01-manuscript/paper.pdf) | 510 | 1,517 | 2,573 | 167,803 |
 | [persuasion_turn_jailbreak_detect](paper-assets/persuasion_turn_jailbreak_detect/README.md) | [PDF](paper-assets/persuasion_turn_jailbreak_detect/01-manuscript/paper.pdf) | 242 | 788 | 984 | 125,176 |
+| [phase-gated-compound-sparse](paper-assets/phase-gated-compound-sparse/README.md) | [PDF](paper-assets/phase-gated-compound-sparse/01-manuscript/paper.pdf) | 413 | 1,167 | 2,272 | 147,551 |
 | [policy_ambiguity_safety](paper-assets/policy_ambiguity_safety/README.md) | [PDF](paper-assets/policy_ambiguity_safety/01-manuscript/paper.pdf) | 319 | 3,297 | 356 | 58,856 |
 | [provenance_weight_training](paper-assets/provenance_weight_training/README.md) | [PDF](paper-assets/provenance_weight_training/01-manuscript/paper.pdf) | 559 | 2,002 | 3,029 | 231,336 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
 | [recovery_aware_struct_prune](paper-assets/recovery_aware_struct_prune/README.md) | [PDF](paper-assets/recovery_aware_struct_prune/01-manuscript/paper.pdf) | 757 | 2,746 | 3,747 | 248,503 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 395 | 1,066 | 1,779 | 166,550 |
+| [redundancy-compound-sparsity](paper-assets/redundancy-compound-sparsity/README.md) | [PDF](paper-assets/redundancy-compound-sparsity/01-manuscript/paper.pdf) | 31 | 71 | 70 | 6,671 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 378 | 676 | 1,242 | 131,771 |
 | [schema_semantic_constrained_ie](paper-assets/schema_semantic_constrained_ie/README.md) | [PDF](paper-assets/schema_semantic_constrained_ie/01-manuscript/paper.pdf) | 451 | 1,384 | 2,527 | 204,987 |
 | [simgate-modular-routing](paper-assets/simgate-modular-routing/README.md) | [PDF](paper-assets/simgate-modular-routing/01-manuscript/paper.pdf) | 336 | 806 | 2,025 | 177,700 |
@@ -51,6 +53,7 @@ This catalogue covers **48 projects with manuscript PDFs** and **31 additional p
 | [symb_invariant_consensus](paper-assets/symb_invariant_consensus/README.md) | [PDF](paper-assets/symb_invariant_consensus/01-manuscript/paper.pdf) | 625 | 1,219 | 2,623 | 260,972 |
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
 | [trace-verdict-study](paper-assets/trace-verdict-study/README.md) | [PDF](paper-assets/trace-verdict-study/01-manuscript/paper.pdf) | 426 | 1,550 | 2,404 | 184,986 |
+| [turn_residual_gating](paper-assets/turn_residual_gating/README.md) | [PDF](paper-assets/turn_residual_gating/01-manuscript/paper.pdf) | 288 | 625 | 1,054 | 91,580 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 | [action_cond_info_bottleneck](paper-assets/action_cond_info_bottleneck/README.md) | No PDF in snapshot | 172 | 255 | 800 | 45,967 |
 | [afford_invar](paper-assets/afford_invar/README.md) | No PDF in snapshot | 34 | 50 | 172 | 15,216 |
@@ -64,6 +67,7 @@ This catalogue covers **48 projects with manuscript PDFs** and **31 additional p
 | [crosscoder-behavioral-circuit-transplant](paper-assets/crosscoder-behavioral-circuit-transplant/README.md) | No PDF in snapshot | 13 | 33 | 20 | 1,393 |
 | [diagprm-stage-reasoning](paper-assets/diagprm-stage-reasoning/README.md) | No PDF in snapshot | 15 | 1 | 18 | 851 |
 | [distill_kv_rag_cache](paper-assets/distill_kv_rag_cache/README.md) | No PDF in snapshot | 48 | 13 | 65 | 6,102 |
+| [ec_hte_codex_a](paper-assets/ec_hte_codex_a/README.md) | No PDF in snapshot | 25 | 40 | 30 | 3,330 |
 | [ec_hte_codex_b](paper-assets/ec_hte_codex_b/README.md) | No PDF in snapshot | 38 | 92 | 9 | 2,848 |
 | [eco_alpha_beta_diversity](paper-assets/eco_alpha_beta_diversity/README.md) | No PDF in snapshot | 22 | 40 | 20 | 1,818 |
 | [error_diag_dpo_recovery](paper-assets/error_diag_dpo_recovery/README.md) | No PDF in snapshot | 76 | 97 | 323 | 25,149 |
@@ -74,6 +78,7 @@ This catalogue covers **48 projects with manuscript PDFs** and **31 additional p
 | [prod43](paper-assets/prod43/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prov_grounded_uie](paper-assets/prov_grounded_uie/README.md) | No PDF in snapshot | 52 | 171 | 221 | 18,264 |
+| [redundancy-compound-sparsity-2](paper-assets/redundancy-compound-sparsity-2/README.md) | No PDF in snapshot | 57 | 103 | 190 | 12,837 |
 | [rl-active-probe-fl](paper-assets/rl-active-probe-fl/README.md) | No PDF in snapshot | 47 | 70 | 110 | 7,227 |
 | [robust_circuit_editing](paper-assets/robust_circuit_editing/README.md) | No PDF in snapshot | 10 | 2 | 5 | 287 |
 | [schema-conform-ie-training](paper-assets/schema-conform-ie-training/README.md) | No PDF in snapshot | 35 | 140 | 110 | 9,882 |
@@ -81,7 +86,9 @@ This catalogue covers **48 projects with manuscript PDFs** and **31 additional p
 | [tbab_multi_turn](paper-assets/tbab_multi_turn/README.md) | No PDF in snapshot | 45 | 60 | 116 | 10,572 |
 | [temp-adv-distill-vla](paper-assets/temp-adv-distill-vla/README.md) | No PDF in snapshot | 20 | 25 | 52 | 9,052 |
 | [trace_distill_repair](paper-assets/trace_distill_repair/README.md) | No PDF in snapshot | 96 | 126 | 410 | 31,538 |
+| [turn-hier-kv-compress](paper-assets/turn-hier-kv-compress/README.md) | No PDF in snapshot | 26 | 51 | 45 | 4,510 |
 | [verification_triggered_retrieval](paper-assets/verification_triggered_retrieval/README.md) | No PDF in snapshot | 11 | 17 | 13 | 4,203 |
+| [verifier-tts-struct-ie](paper-assets/verifier-tts-struct-ie/README.md) | No PDF in snapshot | 18 | 19 | 29 | 4,573 |
 | [xling_calab_direction](paper-assets/xling_calab_direction/README.md) | No PDF in snapshot | 0 | 0 | 2 | 404 |
 
 [Interactive asset catalogue](paper-assets/index.html) · [Full asset matrix](paper-assets/asset-matrix.csv) · [Readable trace guides](traces/README.md)

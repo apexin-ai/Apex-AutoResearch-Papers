@@ -395,6 +395,21 @@
       }
     },
     {
+      "project": "ec_hte_codex_a",
+      "title": "ec hte codex a",
+      "catalog": "../paper-assets/ec_hte_codex_a/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 30,
+        "messages": 3330,
+        "user_turns": 85,
+        "tool_calls": 1013,
+        "unparsed_lines": 22,
+        "worker": 17,
+        "result": 9,
+        "conversation": 4
+      }
+    },
+    {
       "project": "ec_hte_codex_b",
       "title": "ec hte codex b",
       "catalog": "../paper-assets/ec_hte_codex_b/05-generation-trace/catalog.json",
@@ -725,6 +740,22 @@
       }
     },
     {
+      "project": "phase-gated-compound-sparse",
+      "title": "Phase-Modulated Compound Sparsity Severity in 7B-Scale Mathematical Reasoning Models",
+      "catalog": "../paper-assets/phase-gated-compound-sparse/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2272,
+        "messages": 147551,
+        "user_turns": 4492,
+        "tool_calls": 60087,
+        "unparsed_lines": 723,
+        "result": 687,
+        "worker": 724,
+        "conversation": 591,
+        "history": 270
+      }
+    },
+    {
       "project": "policy_ambiguity_safety",
       "title": "Policy Ambiguity Is Nocuous: Clause-Level Causal Effects on Customer-Service Agent Safety",
       "catalog": "../paper-assets/policy_ambiguity_safety/05-generation-trace/catalog.json",
@@ -852,6 +883,37 @@
         "worker": 686,
         "conversation": 347,
         "history": 104
+      }
+    },
+    {
+      "project": "redundancy-compound-sparsity",
+      "title": "When Does KV Redundancy Predict MLP Sparsity? Architecture Dependence of Cross-Axis Signals in Reasoning Inference",
+      "catalog": "../paper-assets/redundancy-compound-sparsity/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 70,
+        "messages": 6671,
+        "user_turns": 169,
+        "tool_calls": 2499,
+        "unparsed_lines": 28,
+        "worker": 28,
+        "result": 27,
+        "conversation": 15
+      }
+    },
+    {
+      "project": "redundancy-compound-sparsity-2",
+      "title": "redundancy compound sparsity 2",
+      "catalog": "../paper-assets/redundancy-compound-sparsity-2/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 190,
+        "messages": 12837,
+        "user_turns": 377,
+        "tool_calls": 4989,
+        "unparsed_lines": 75,
+        "worker": 75,
+        "result": 72,
+        "conversation": 35,
+        "history": 8
       }
     },
     {
@@ -1122,6 +1184,37 @@
       }
     },
     {
+      "project": "turn-hier-kv-compress",
+      "title": "turn hier kv compress",
+      "catalog": "../paper-assets/turn-hier-kv-compress/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 45,
+        "messages": 4510,
+        "user_turns": 118,
+        "tool_calls": 1764,
+        "unparsed_lines": 23,
+        "worker": 23,
+        "result": 16,
+        "conversation": 6
+      }
+    },
+    {
+      "project": "turn_residual_gating",
+      "title": "Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue",
+      "catalog": "../paper-assets/turn_residual_gating/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1054,
+        "messages": 91580,
+        "user_turns": 3201,
+        "tool_calls": 37029,
+        "unparsed_lines": 451,
+        "result": 428,
+        "worker": 450,
+        "conversation": 160,
+        "history": 16
+      }
+    },
+    {
       "project": "verification_triggered_retrieval",
       "title": "verification triggered retrieval",
       "catalog": "../paper-assets/verification_triggered_retrieval/05-generation-trace/catalog.json",
@@ -1134,6 +1227,21 @@
         "result": 4,
         "worker": 5,
         "conversation": 4
+      }
+    },
+    {
+      "project": "verifier-tts-struct-ie",
+      "title": "verifier tts struct ie",
+      "catalog": "../paper-assets/verifier-tts-struct-ie/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 29,
+        "messages": 4573,
+        "user_turns": 89,
+        "tool_calls": 1867,
+        "unparsed_lines": 13,
+        "result": 11,
+        "worker": 13,
+        "conversation": 5
       }
     },
     {
