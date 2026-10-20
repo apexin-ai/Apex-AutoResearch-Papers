@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "id": "a88c1dfb8933d4f376f3",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目: cert_manip_resist_eval 服务器: seetacloud-rtx6000, 4x RTX PRO 6000 Blackwell 98GB conda 环境: source /roo",
+  "task_key": "2f5c3149-cd80-4777-99a0-3c047fda8c72",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/2f5c3149-cd80-4777-99a0-3c047fda8c72.jsonl",
+    "occurrence": 1,
+    "bytes": 2633373,
+    "sha256": "e2a87473336955b0cd9c51ce2fc613d6fd973ead0f73dcbb42de177dfbcb643e"
+  },
+  "statistics": {
+    "messages": 1267,
+    "user_turns": 3,
+    "tool_calls": 454,
+    "roles": {
+      "record": 216,
+      "user": 3,
+      "assistant": 138,
+      "tool_call": 454,
+      "tool_result": 454,
+      "system": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 501,
+      "chunks": [
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0003.json",
+          "message_count": 163
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 713,
+      "chunks": [
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0003.json",
+          "message_count": 17
+        },
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0007.json",
+          "message_count": 156
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0007.json",
+          "message_count": 24
+        },
+        {
+          "path": "a88c1dfb8933d4f376f3-part-0008.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-cert-manip-resist-eval-seetacloud-rtx6000-4x-rtx-pro-6000-blackw.md"
+}

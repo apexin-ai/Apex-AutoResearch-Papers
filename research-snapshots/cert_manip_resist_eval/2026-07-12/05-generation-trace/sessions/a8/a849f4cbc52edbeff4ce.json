@@ -1,0 +1,1269 @@
+{
+  "schema_version": "1.0",
+  "id": "a849f4cbc52edbeff4ce",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: xling_calib_direction ## 运行环境 - 服务器名: westd-13176 - SSH 账户: root（调用 ssh_execute / submit_trainin",
+  "task_key": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/0e0ccea9-1905-40b4-aac5-b341df699f87.jsonl",
+    "occurrence": 1,
+    "bytes": 95474,
+    "sha256": "f10d7784b18d07b7d4240ba4507a16f85904f40a2be153812b24c5197ff8d02f"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T22:11:31.985Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T22:11:31.985Z",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+                "content": "<project_context>\n# 项目: xling_calib_direction\n\n## 运行环境\n- 服务器名: westd-13176\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/xling_calib_direction\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：验证 M007 梯度修复 + 部署 train_caclr.py 到服务器\n\n### 服务器：westd-13176\n\n### Step 1: 部署 train_caclr.py\n\n本地文件在 `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/code/train_caclr.py`。\n需要在服务器上创建这个文件。先 Read 本地文件获取完整内容，然后通过 SSH 写入服务器的两个位置：\n- `/root/xling_calib_direction/code/train_caclr.py`\n- `/root/xling_calib_direction/train_caclr.py`\n\n用 ssh_execute 写入文件（cat > ... << 'EOF' 方式）。\n\n### Step 2: 梯度验证\n\n在服务器上执行以下验证脚本：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/xling_calib_direction\n\npython -c \"\nimport torch\nimport sys\nsys.path.insert(0, 'code')\nfrom train_caclr import CaCLRProbe, mmd_loss\n\n# Create a simple probe\nprobe = CaCLRProbe(input_dim=10, l2_weight=1.0)\n\n# Create fake data\nX_en = torch.randn(32, 10)\nX_tgt = torch.randn(32, 10)\n\n# Forward through probe\nlogits_en = probe(X_en)\nlogits_tgt = probe(X_tgt)\n\n# Compute MMD on logits\nloss_mmd = mmd_loss(logits_en.unsqueeze(1), logits_tgt.unsqueeze(1))\n\nprint(f'requires_grad: {loss_mmd.requires_grad}')\nprint(f'grad_fn: {loss_mmd.grad_fn}')\nassert loss_mmd.requires_grad, 'FAIL: MMD loss does not require grad!'\nassert loss_mmd.grad_fn is not None, 'FAIL: MMD loss has no grad_fn!'\n\n# Verify gradient flows to probe weights\nloss_mmd.backward()\ngrad = probe.linear.weight.grad\nprint(f'probe weight grad norm: {grad.norm().item():.6f}')\nassert grad is not None and grad.norm().item() > 0, 'FAIL: probe weight grad is zero!'\n\nprint('ALL GRADIENT CHECKS PASSED')\n\"\n```\n\n### Step 3: 验证结果报告\n\n报告：\n1. 文件部署确认（两个位置）\n2. requires_grad 值\n3. grad_fn 值\n4. probe weight grad norm 值\n5. 是否全部通过"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T22:11:31.988Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T22:11:31.988Z",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T22:11:32.030Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: xling_calib_direction\n\n## 运行环境\n- 服务器名: westd-13176\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/xling_calib_direction\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：验证 M007 梯度修复 + 部署 train_caclr.py 到服务器\n\n### 服务器：westd-13176\n\n### Step 1: 部署 train_caclr.py\n\n本地文件在 `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/code/train_caclr.py`。\n需要在服务器上创建这个文件。先 Read 本地文件获取完整内容，然后通过 SSH 写入服务器的两个位置：\n- `/root/xling_calib_direction/code/train_caclr.py`\n- `/root/xling_calib_direction/train_caclr.py`\n\n用 ssh_execute 写入文件（cat > ... << 'EOF' 方式）。\n\n### Step 2: 梯度验证\n\n在服务器上执行以下验证脚本：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/xling_calib_direction\n\npython -c \"\nimport torch\nimport sys\nsys.path.insert(0, 'code')\nfrom train_caclr import CaCLRProbe, mmd_loss\n\n# Create a simple probe\nprobe = CaCLRProbe(input_dim=10, l2_weight=1.0)\n\n# Create fake data\nX_en = torch.randn(32, 10)\nX_tgt = torch.randn(32, 10)\n\n# Forward through probe\nlogits_en = probe(X_en)\nlogits_tgt = probe(X_tgt)\n\n# Compute MMD on logits\nloss_mmd = mmd_loss(logits_en.unsqueeze(1), logits_tgt.unsqueeze(1))\n\nprint(f'requires_grad: {loss_mmd.requires_grad}')\nprint(f'grad_fn: {loss_mmd.grad_fn}')\nassert loss_mmd.requires_grad, 'FAIL: MMD loss does not require grad!'\nassert loss_mmd.grad_fn is not None, 'FAIL: MMD loss has no grad_fn!'\n\n# Verify gradient flows to probe weights\nloss_mmd.backward()\ngrad = probe.linear.weight.grad\nprint(f'probe weight grad norm: {grad.norm().item():.6f}')\nassert grad is not None and grad.norm().item() > 0, 'FAIL: probe weight grad is zero!'\n\nprint('ALL GRADIENT CHECKS PASSED')\n\"\n```\n\n### Step 3: 验证结果报告\n\n报告：\n1. 文件部署确认（两个位置）\n2. requires_grad 值\n3. grad_fn 值\n4. probe weight grad norm 值\n5. 是否全部通过"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "0e069c8d-a493-42f8-8971-e3d54ca6492c",
+            "type": "user",
+            "uuid": "de34812f-bf6d-47be-b327-0cd05a2c009b",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T22:11:32.029Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "de34812f-bf6d-47be-b327-0cd05a2c009b",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "36da6a9d-c15e-4e94-882c-4fad4feaa0ac",
+                "timestamp": "2026-05-20T22:11:32.029Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T22:11:32.029Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "36da6a9d-c15e-4e94-882c-4fad4feaa0ac",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "4a85b500-cf96-4020-876d-257d88214083",
+                "timestamp": "2026-05-20T22:11:32.029Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T22:11:32.029Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4a85b500-cf96-4020-876d-257d88214083",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "68c198bd-2b41-48a1-8b0d-48f63b77002e",
+                "timestamp": "2026-05-20T22:11:32.029Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy train_caclr.py and verify gradient fix",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T22:11:34.379Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reading the local file first, then deploying and verifying."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68c198bd-2b41-48a1-8b0d-48f63b77002e",
+            "isSidechain": false,
+            "requestId": "req_011CbEb2cwWMP2f2pJoYfapB",
+            "type": "assistant",
+            "uuid": "37336111-cbb6-42a5-833d-d6e93369af5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N27h3LwH1WRfDTWpPPqnxE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11800,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11800,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11800,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11800
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T22:11:34.744Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RLfHBFVNVu3QVkHLoLidZ5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/code/train_caclr.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37336111-cbb6-42a5-833d-d6e93369af5a",
+            "isSidechain": false,
+            "requestId": "req_011CbEb2cwWMP2f2pJoYfapB",
+            "type": "assistant",
+            "uuid": "33c4eb42-16e6-43be-8ec0-0a19c3a2191f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N27h3LwH1WRfDTWpPPqnxE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11800,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11800,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11800,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11800
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T22:11:34.756Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RLfHBFVNVu3QVkHLoLidZ5",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tCaCLR: Calibration-aware Cross-Lingual Regularization.\n3\t\n4\tTrain a linear probe with two additional regularization terms beyond BCE:\n5\t  Loss = L_BCE + α · L_SB-ECE + β · L_consistency(MMD)\n6\t\n7\t  - L_SB-ECE: differentiable soft-binning ECE (calibration regularizer)\n8\t  - L_consistency: MMD with Gaussian RBF kernel (cross-lingual consistency)\n9\t\n10\tInput:  per-language activation .pt files from extract_activations.py\n11\t        (each file has {\"activations\": Tensor, \"labels\": Tensor})\n12\tOutput: trained probe .pkl compatible with transfer_eval.py\n13\t        (pickle dict with {\"model\": CaCLRProbe, \"scaler\": StandardScaler, ...})\n14\t\n15\tUsage:\n16\t  # Single run\n17\t  python train_caclr.py \\\n18\t    --activations_dir ./activations --output_dir ./probes_caclr \\\n19\t    --layer 16 --languages zh ar hi sw ko --alpha 1.0 --beta 0.1\n20\t\n21\t  # Sweep over α × β\n22\t  python train_caclr.py \\\n23\t    --activations_dir ./activations --output_dir ./probes_caclr \\\n24\t    --layer 16 --languages zh ar hi sw ko \\\n25\t    --alpha_sweep 0.01,0.1,0.5,1.0,2.0,5.0,10.0 \\\n26\t    --beta_sweep 0.001,0.01,0.05,0.1,0.5,1.0\n27\t\"\"\"\n28\t\n29\timport argparse\n30\timport os\n31\timport pickle\n32\tfrom itertools import product\n33\t\n34\timport numpy as np\n35\timport torch\n36\timport torch.nn as nn\n37\timport torch.nn.functional as F\n38\tfrom sklearn.linear_model import LogisticRegression\n39\tfrom sklearn.model_selection import train_test_split\n40\tfrom sklearn.preprocessing import StandardScaler\n41\tfrom sklearn.metrics import roc_auc_score, brier_score_loss\n42\t\n43\t\n44\t# ---------------------------------------------------------------------------\n45\t# Loss components\n46\t# ---------------------------------------------------------------------------\n47\t\n48\tdef bce_loss(logits, labels):\n49\t    \"\"\"Standard binary cross-entropy on probe logits.\"\"\"\n50\t    return F.binary_cross_entropy_with_logits(logits, labels)\n51\t\n52\t\n53\tdef sb_ece_loss(probs, labels, n_bins=10, temperature=0.05):\n54\t    \"\"\"Differentiable soft-binning ECE approximation.\n55\t\n56\t    Hard-histogram ECE is non-differentiable. We replace indicator-based bin\n57\t    assignment with Gaussian soft assignment:\n58\t      bin centers c_k = (k + 0.5) / n_bins,  k = 0, ..., n_bins-1\n59\t      weights  w_{ik} = softmax( -|p_i - c_k|^2 / temperature )\n60\t\n61\t    Per-bin calibration error:\n62\t      CE_k = | Σ_i w_{ik} * (label_i - p_i) | / (Σ_i w_{ik} + ε)\n63\t\n64\t    SB-ECE = Σ_k (Σ_i w_{ik} / N) * CE_k\n65\t    \"\"\"\n66\t    centers = torch.linspace(0.5 / n_bins, 1.0 - 0.5 / n_bins, n_bins,\n67\t                             device=probs.device)                          # (K,)\n68\t    # Pairwise distances: (N, K)\n69\t    dists = (probs.unsqueeze(1) - centers.unsqueeze(0)) ** 2               # (N, K)\n70\t    weights = F.softmax(-dists / temperature, dim=1)                       # (N, K)\n71\t\n72\t    bin_counts = weights.sum(dim=0)                                        # (K,)\n73\t    # Weighted calibration gap per bin\n74\t    gap = labels.unsqueeze(1) - probs.unsqueeze(1)                         # (N, K) broadcast\n75\t    weighted_gap = (weights * gap).sum(dim=0)                              # (K,)\n76\t    per_bin_ce = weighted_gap.abs() / (bin_counts + 1e-8)\n77\t\n78\t    ece = (bin_counts / probs.shape[0] * per_bin_ce).sum()\n79\t    return ece\n80\t\n81\t\n82\tdef gaussian_rbf_kernel(x, y, bandwidth=None):\n83\t    \"\"\"Gaussian RBF kernel matrix.\n84\t\n85\t    k(x, y) = exp( -||x - y||^2 / (2 * bandwidth^2) )\n86\t\n87\t    If bandwidth is None, uses the median heuristic:\n88\t      bandwidth = sqrt( median(||x_i - y_j||^2) / 2 )\n89\t    \"\"\"\n90\t    xx = torch.cdist(x, x) ** 2    # (N, N)\n91\t    yy = torch.cdist(y, y) ** 2    # (M, M)\n92\t    xy = torch.cdist(x, y) ** 2    # (N, M)\n93\t\n94\t    if bandwidth is None:\n95\t        # Median heuristic over cross-distances\n96\t        all_dists = xy.detach().reshape(-1)\n97\t        median_dist = all_dists.median()\n98\t        bandwidth = torch.sqrt(median_dist / 2.0).clamp(min=1e-5)\n99\t\n100\t    gamma = 1.0 / (2.0 * bandwidth ** 2)\n101\t    K_xx = torch.exp(-gamma * xx)\n102\t    K_yy = torch.exp(-gamma * yy)\n103\t    K_xy = torch.exp(-gamma * xy)\n104\t    return K_xx, K_yy, K_xy, bandwidth\n105\t\n106\t\n107\tdef mmd_loss(x_en, x_tgt, bandwidth=None):\n108\t    \"\"\"Unbiased estimate of MMD^2 between English and target representations.\n109\t\n110\t    MMD^2 = E[k(x,x')] + E[k(y,y')] - 2·E[k(x,y)]\n111\t\n112\t    where k is a Gaussian RBF kernel with median heuristic bandwidth.\n113\t    \"\"\"\n114\t    K_xx, K_yy, K_xy, bw = gaussian_rbf_kernel(x_en, x_tgt, bandwidth)\n115\t    n = K_xx.shape[0]\n116\t    m = K_yy.shape[0]\n117\t\n118\t    # Unbiased: zero out diagonal for self-terms\n119\t    sum_xx = (K_xx.sum() - K_xx.diagonal().sum()) / (n * (n - 1)) if n > 1 else K_xx.mean()\n120\t    sum_yy = (K_yy.sum() - K_yy.diagonal().sum()) / (m * (m - 1)) if m > 1 else K_yy.mean()\n121\t    sum_xy = K_xy.mean()\n122\t\n123\t    return sum_xx + sum_yy - 2.0 * sum_xy\n124\t\n125\t\n126\t# ---------------------------------------------------------------------------\n127\t# CaCLR Probe model\n128\t# ---------------------------------------------------------------------------\n129\t\n130\tclass CaCLRProbe(nn.Module):\n131\t    \"\"\"Linear probe with CaCLR regularization.\n132\t\n133\t    Functionally equivalent to sklearn LogisticRegression (single Linear layer),\n134\t    but trained with gradient descent plus L_SB-ECE and L_MMD regularizers.\n135\t\n136\t    Exposes predict_proba() and decision_function() for compatibility with\n137\t    transfer_eval.py's evaluate_probe().\n138\t    \"\"\"\n139\t\n140\t    def __init__(self, input_dim, l2_weight=1.0):\n141\t        super().__init__()\n142\t        self.linear = nn.Linear(input_dim, 1)\n143\t        self.l2_weight = l2_weight\n144\t\n145\t    def forward(self, x):\n146\t        \"\"\"Return raw logits (N,).\"\"\"\n147\t        return self.linear(x).squeeze(-1)\n148\t\n149\t    def predict_proba(self, x):\n150\t        \"\"\"Return (N, 2) numpy array of [P(class=0), P(class=1)].\n151\t\n152\t        Accepts numpy array or torch Tensor. Returns numpy for sklearn compat.\n153\t        \"\"\"\n154\t        if isinstance(x, np.ndarray):\n155\t            x = torch.from_numpy(x).float().to(self.linear.weight.device)\n156\t        with torch.no_grad():\n157\t            p1 = torch.sigmoid(self.forward(x)).cpu().numpy()\n158\t        return np.column_stack([1 - p1, p1])\n159\t\n160\t    def decision_function(self, x):\n161\t        \"\"\"Return logits as 1-D numpy array (sklearn compat).\"\"\"\n162\t        if isinstance(x, np.ndarray):\n163\t            x = torch.from_numpy(x).float().to(self.linear.weight.device)\n164\t        with torch.no_grad():\n165\t            return self.forward(x).cpu().numpy()\n166\t\n167\t    def l2_reg(self):\n168\t        \"\"\"L2 penalty on weights (not bias), matching sklearn C = 1/l2_weight.\"\"\"\n169\t        return self.l2_weight * (self.linear.weight ** 2).sum()\n170\t\n171\t    @classmethod\n172\t    def from_sklearn(cls, sklearn_probe, scaler, l2_weight=1.0):\n173\t        \"\"\"Initialize from a trained sklearn LogisticRegression + StandardScaler.\n174\t\n175\t        Copies weight and bias so CaCLR starts from the converged LR solution.\n176\t        The scaler is applied externally (same as sklearn pipeline), so we only\n177\t        need the LR parameters here.\n178\t        \"\"\"\n179\t        input_dim = sklearn_probe.coef_.shape[1]\n180\t        model = cls(input_dim, l2_weight=l2_weight)\n181\t        with torch.no_grad():\n182\t            model.linear.weight.copy_(torch.from_numpy(sklearn_probe.coef_).float())\n183\t            model.linear.bias.copy_(torch.from_numpy(sklearn_probe.intercept_).float())\n184\t        return model\n185\t\n186\t\n187\t# ---------------------------------------------------------------------------\n188\t# Training loop\n189\t# ---------------------------------------------------------------------------\n190\t\n191\tdef train_caclr(\n192\t    X_en, y_en,\n193\t    X_tgt_dict,\n194\t    alpha=1.0,\n195\t    beta=0.1,\n196\t    lr=1e-3,\n197\t    epochs=100,\n198\t    l2_weight=1.0,\n199\t    init_from_sklearn=True,\n200\t    seed=42,\n201\t    verbose=True,\n202\t):\n203\t    \"\"\"Train CaCLR probe.\n204\t\n205\t    Steps:\n206\t      1. Fit StandardScaler on English data.\n207\t      2. Train standard LogisticRegression on English (sklearn).\n208\t      3. Initialize CaCLRProbe from LR weights.\n209\t      4. Fine-tune with L_BCE + α·L_SB-ECE + β·L_MMD.\n210\t\n211\t    Args:\n212\t        X_en: (N_en, D) numpy array of English activations.\n213\t        y_en: (N_en,) numpy array of binary labels.\n214\t        X_tgt_dict: {lang: (X_tgt, y_tgt)} numpy arrays for target languages.\n215\t        alpha: weight on SB-ECE calibration loss.\n216\t        beta: weight on MMD consistency loss.\n217\t        lr: learning rate for Adam optimizer.\n218\t        epochs: number of training epochs.\n219\t        l2_weight: L2 regularization weight (sklearn C = 1/l2_weight).\n220\t        init_from_sklearn: if True, warm-start from sklearn LR solution.\n221\t        seed: random seed.\n222\t        verbose: print training progress.\n223\t\n224\t    Returns:\n225\t        probe: trained CaCLRProbe (on CPU).\n226\t        scaler: fitted StandardScaler.\n227\t        history: dict with keys \"total\", \"bce\", \"sb_ece\", \"mmd\" (lists of per-epoch losses).\n228\t    \"\"\"\n229\t    torch.manual_seed(seed)\n230\t    np.random.seed(seed)\n231\t    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n232\t\n233\t    # 1. Fit scaler on English data\n234\t    scaler = StandardScaler()\n235\t    X_en_s = scaler.fit_transform(X_en)\n236\t\n237\t    # 2. Train sklearn LR as initialization\n238\t    sklearn_C = 1.0 / l2_weight if l2_weight > 0 else 1e6\n239\t    sklearn_lr = LogisticRegression(\n240\t        C=sklearn_C, penalty=\"l2\", solver=\"lbfgs\", max_iter=2000, random_state=seed,\n241\t    )\n242\t    sklearn_lr.fit(X_en_s, y_en)\n243\t\n244\t    # 3. Initialize CaCLRProbe\n245\t    if init_from_sklearn:\n246\t        probe = CaCLRProbe.from_sklearn(sklearn_lr, scaler, l2_weight=l2_weight)\n247\t    else:\n248\t        probe = CaCLRProbe(X_en_s.shape[1], l2_weight=l2_weight)\n249\t    probe = probe.to(device)\n250\t\n251\t    # Convert data to tensors\n252\t    X_en_t = torch.from_numpy(X_en_s).float().to(device)\n253\t    y_en_t = torch.from_numpy(y_en.astype(np.float32)).to(device)\n254\t\n255\t    tgt_tensors = {}\n256\t    for lang, (X_tgt, y_tgt) in X_tgt_dict.items():\n257\t        X_tgt_s = scaler.transform(X_tgt)\n258\t        tgt_tensors[lang] = (\n259\t            torch.from_numpy(X_tgt_s).float().to(device),\n260\t            torch.from_numpy(y_tgt.astype(np.float32)).to(device),\n261\t        )\n262\t\n263\t    # 4. Fine-tune with CaCLR loss\n264\t    optimizer = torch.optim.Adam(probe.parameters(), lr=lr)\n265\t    history = {\"total\": [], \"bce\": [], \"sb_ece\": [], \"mmd\": [], \"l2\": []}\n266\t\n267\t    for epoch in range(epochs):\n268\t        probe.train()\n269\t        optimizer.zero_grad()\n270\t\n271\t        logits_en = probe(X_en_t)\n272\t        probs_en = torch.sigmoid(logits_en)\n273\t\n274\t        loss_bce = bce_loss(logits_en, y_en_t)\n275\t        loss_sb_ece = sb_ece_loss(probs_en, y_en_t)\n276\t        loss_l2 = probe.l2_reg()\n277\t\n278\t        # MMD: average over all target languages\n279\t        loss_mmd = torch.tensor(0.0, device=device)\n280\t        if beta > 0 and len(tgt_tensors) > 0:\n281\t            # Note: linear probe logits are 1-D, so MMD operates in a 1-dimensional space.\n282\t            # This limits MMD's ability to capture complex distributional differences.\n283\t            # This is a design trade-off, not a bug — observe in experiments and discuss in paper.\n284\t            mmd_terms = []\n285\t            for lang, (X_tgt_t, _) in tgt_tensors.items():\n286\t                n_sub = min(512, X_en_t.shape[0], X_tgt_t.shape[0])\n287\t                idx_en = torch.randperm(X_en_t.shape[0], device=device)[:n_sub]\n288\t                idx_tgt = torch.randperm(X_tgt_t.shape[0], device=device)[:n_sub]\n289\t                logits_en_sub = probe(X_en_t[idx_en])\n290\t                logits_tgt_sub = probe(X_tgt_t[idx_tgt])\n291\t                mmd_terms.append(mmd_loss(logits_en_sub.unsqueeze(1), logits_tgt_sub.unsqueeze(1)))\n292\t            loss_mmd = torch.stack(mmd_terms).mean()\n293\t\n294\t        total = loss_bce + alpha * loss_sb_ece + beta * loss_mmd + loss_l2\n295\t        total.backward()\n296\t        optimizer.step()\n297\t\n298\t        history[\"total\"].append(total.item())\n299\t        history[\"bce\"].append(loss_bce.item())\n300\t        history[\"sb_ece\"].append(loss_sb_ece.item())\n301\t        history[\"mmd\"].append(loss_mmd.item())\n302\t        history[\"l2\"].append(loss_l2.item())\n303\t\n304\t        if verbose and (epoch + 1) % max(1, epochs // 10) == 0:\n305\t            print(f\"  epoch {epoch+1:>4d}/{epochs}  \"\n306\t                  f\"total={total.item():.4f}  bce={loss_bce.item():.4f}  \"\n307\t                  f\"sb_ece={loss_sb_ece.item():.4f}  mmd={loss_mmd.item():.4f}\")\n308\t\n309\t    probe = probe.cpu().eval()\n310\t    return probe, scaler, history\n311\t\n312\t\n313\t# ---------------------------------------------------------------------------\n314\t# Evaluation helper (quick validation during sweep)\n315\t# ---------------------------------------------------------------------------\n316\t\n317\tdef compute_ece(probs, labels, n_bins=10):\n318\t    \"\"\"Histogram-based ECE (numpy, matches train_probe.py).\"\"\"\n319\t    bin_edges = np.linspace(0, 1, n_bins + 1)\n320\t    ece = 0.0\n321\t    for lo, hi in zip(bin_edges[:-1], bin_edges[1:]):\n322\t        mask = (probs > lo) & (probs <= hi)\n323\t        if lo == 0.0:\n324\t            mask = (probs >= lo) & (probs <= hi)\n325\t        n_in_bin = mask.sum()\n326\t        if n_in_bin == 0:\n327\t            continue\n328\t        ece += (n_in_bin / len(probs)) * abs(labels[mask].mean() - probs[mask].mean())\n329\t    return ece\n330\t\n331\t\n332\tdef quick_eval(probe, scaler, X, y):\n333\t    \"\"\"AUROC + ECE + Brier on held-out data.\"\"\"\n334\t    X_s = scaler.transform(X)\n335\t    probs = probe.predict_proba(X_s)[:, 1]\n336\t    logits = probe.decision_function(X_s)\n337\t    if len(np.unique(y)) < 2:\n338\t        return None, None, None\n339\t    return roc_auc_score(y, logits), compute_ece(probs, y), brier_score_loss(y, probs)\n340\t\n341\t\n342\t# ---------------------------------------------------------------------------\n343\t# CLI\n344\t# ---------------------------------------------------------------------------\n345\t\n346\tdef parse_args():\n347\t    p = argparse.ArgumentParser(description=\"CaCLR probe training\")\n348\t    p.add_argument(\"--activations_dir\", default=\"./activations\")\n349\t    p.add_argument(\"--output_dir\", default=\"./probes_caclr\")\n350\t    p.add_argument(\"--layer\", type=int, required=True,\n351\t                   help=\"Layer index to train on\")\n352\t    p.add_argument(\"--languages\", nargs=\"+\", default=[\"zh\", \"ar\", \"hi\", \"sw\", \"ko\"],\n353\t                   help=\"Target languages for MMD consistency loss\")\n354\t    p.add_argument(\"--alpha\", type=float, default=1.0,\n355\t                   help=\"SB-ECE calibration loss weight\")\n356\t    p.add_argument(\"--beta\", type=float, default=0.1,\n357\t                   help=\"MMD consistency loss weight\")\n358\t    p.add_argument(\"--alpha_sweep\", type=str, default=None,\n359\t                   help=\"Comma-separated alpha values for grid search \"\n360\t                        \"(e.g., '0.01,0.1,1.0,10.0')\")\n361\t    p.add_argument(\"--beta_sweep\", type=str, default=None,\n362\t                   help=\"Comma-separated beta values for grid search\")\n363\t    p.add_argument(\"--lr\", type=float, default=1e-3)\n364\t    p.add_argument(\"--epochs\", type=int, default=100)\n365\t    p.add_argument(\"--l2_weight\", type=float, default=1.0)\n366\t    p.add_argument(\"--test_size\", type=float, default=0.2,\n367\t                   help=\"English held-out fraction for sweep selection\")\n368\t    p.add_argument(\"--ece_weight\", type=float, default=0.1,\n369\t                   help=\"Weight for ECE penalty in sweep selection: score = auroc - ece_weight * ece\")\n370\t    p.add_argument(\"--seed\", type=int, default=42)\n371\t    return p.parse_args()\n372\t\n373\t\n374\tdef main():\n375\t    args = parse_args()\n376\t    os.makedirs(args.output_dir, exist_ok=True)\n377\t\n378\t    # Load English activations\n379\t    en_path = os.path.join(args.activations_dir, f\"layer{args.layer}_en.pt\")\n380\t    en_data = torch.load(en_path, weights_only=True)\n381\t    X_en = en_data[\"activations\"].numpy()\n382\t    y_en = en_data[\"labels\"].numpy()\n383\t    print(f\"English data: {X_en.shape[0]} samples, dim={X_en.shape[1]}\")\n384\t\n385\t    # Load target language activations\n386\t    X_tgt_dict = {}\n387\t    for lang in args.languages:\n388\t        tgt_path = os.path.join(args.activations_dir, f\"layer{args.layer}_{lang}.pt\")\n389\t        if not os.path.exists(tgt_path):\n390\t            print(f\"  [SKIP] {tgt_path} not found\")\n391\t            continue\n392\t        tgt_data = torch.load(tgt_path, weights_only=True)\n393\t        X_tgt_dict[lang] = (tgt_data[\"activations\"].numpy(), tgt_data[\"labels\"].numpy())\n394\t        print(f\"  {lang}: {X_tgt_dict[lang][0].shape[0]} samples\")\n395\t\n396\t    # Determine if sweep mode\n397\t    sweep_mode = args.alpha_sweep is not None or args.beta_sweep is not None\n398\t    alphas = [float(v) for v in args.alpha_sweep.split(\",\")] if args.alpha_sweep else [args.alpha]\n399\t    betas = [float(v) for v in args.beta_sweep.split(\",\")] if args.beta_sweep else [args.beta]\n400\t\n401\t    if sweep_mode:\n402\t        # Hold out English validation set for selecting best (alpha, beta)\n403\t        X_train, X_val, y_train, y_val = train_test_split(\n404\t            X_en, y_en, test_size=args.test_size, random_state=args.seed, stratify=y_en,\n405\t        )\n406\t        print(f\"\\nSweep mode: {len(alphas)} alphas × {len(betas)} betas = {len(alphas)*len(betas)} runs\")\n407\t        print(f\"Train: {len(y_train)}, Val: {len(y_val)}\")\n408\t        print(f\"{'alpha':>8s} {'beta':>8s} {'AUROC':>7s} {'ECE':>7s} {'Brier':>7s}\")\n409\t        print(\"-\" * 42)\n410\t\n411\t        best_score = -float(\"inf\")\n412\t        best_result = None\n413\t\n414\t        for a, b in product(alphas, betas):\n415\t            probe, scaler, history = train_caclr(\n416\t                X_train, y_train, X_tgt_dict,\n417\t                alpha=a, beta=b, lr=args.lr, epochs=args.epochs,\n418\t                l2_weight=args.l2_weight, seed=args.seed, verbose=False,\n419\t            )\n420\t            auroc, ece, brier = quick_eval(probe, scaler, X_val, y_val)\n421\t            score = (auroc or 0.0) - args.ece_weight * (ece or 1.0)\n422\t            print(f\"{a:>8.3f} {b:>8.4f} {auroc or 0:>7.4f} {ece or 0:>7.4f} {brier or 0:>7.4f}\"\n423\t                  f\"{'  *' if score > best_score else ''}\")\n424\t\n425\t            if score > best_score:\n426\t                best_score = score\n427\t                best_result = {\n428\t                    \"probe\": probe, \"scaler\": scaler, \"alpha\": a, \"beta\": b,\n429\t                    \"history\": history, \"val_auroc\": auroc, \"val_ece\": ece, \"val_brier\": brier,\n430\t                }\n431\t\n432\t        # Retrain best on full English data\n433\t        print(f\"\\nBest: alpha={best_result['alpha']}, beta={best_result['beta']} \"\n434\t              f\"(val AUROC={best_result['val_auroc']:.4f}, ECE={best_result['val_ece']:.4f})\")\n435\t        print(\"Retraining on full English data...\")\n436\t        probe, scaler, history = train_caclr(\n437\t            X_en, y_en, X_tgt_dict,\n438\t            alpha=best_result[\"alpha\"], beta=best_result[\"beta\"],\n439\t            lr=args.lr, epochs=args.epochs, l2_weight=args.l2_weight,\n440\t            seed=args.seed, verbose=True,\n441\t        )\n442\t        save_dict = {\n443\t            \"model\": probe, \"scaler\": scaler,\n444\t            \"alpha\": best_result[\"alpha\"], \"beta\": best_result[\"beta\"],\n445\t            \"history\": history,\n446\t            \"sweep_best\": {\"val_auroc\": best_result[\"val_auroc\"],\n447\t                           \"val_ece\": best_result[\"val_ece\"],\n448\t                           \"val_brier\": best_result[\"val_brier\"]},\n449\t        }\n450\t    else:\n451\t        # Single run\n452\t        probe, scaler, history = train_caclr(\n453\t            X_en, y_en, X_tgt_dict,\n454\t            alpha=args.alpha, beta=args.beta, lr=args.lr, epochs=args.epochs,\n455\t            l2_weight=args.l2_weight, seed=args.seed, verbose=True,\n456\t        )\n457\t        save_dict = {\n458\t            \"model\": probe, \"scaler\": scaler,\n459\t            \"alpha\": args.alpha, \"beta\": args.beta,\n460\t            \"history\": history,\n461\t        }\n462\t\n463\t    # Save probe (compatible with transfer_eval.py)\n464\t    out_path = os.path.join(args.output_dir, f\"probe_layer{args.layer}.pkl\")\n465\t    with open(out_path, \"wb\") as f:\n466\t        pickle.dump(save_dict, f)\n467\t    print(f\"\\nProbe saved to {out_path}\")\n468\t\n469\t\n470\tif __name__ == \"__main__\":\n471\t    main()\n472\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33c4eb42-16e6-43be-8ec0-0a19c3a2191f",
+            "isSidechain": false,
+            "promptId": "0e069c8d-a493-42f8-8971-e3d54ca6492c",
+            "type": "user",
+            "uuid": "d5d9c302-dc42-4080-ba7a-571e569455e2",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction/code/train_caclr.py",
+                "content": "\"\"\"\nCaCLR: Calibration-aware Cross-Lingual Regularization.\n\nTrain a linear probe with two additional regularization terms beyond BCE:\n  Loss = L_BCE + α · L_SB-ECE + β · L_consistency(MMD)\n\n  - L_SB-ECE: differentiable soft-binning ECE (calibration regularizer)\n  - L_consistency: MMD with Gaussian RBF kernel (cross-lingual consistency)\n\nInput:  per-language activation .pt files from extract_activations.py\n        (each file has {\"activations\": Tensor, \"labels\": Tensor})\nOutput: trained probe .pkl compatible with transfer_eval.py\n        (pickle dict with {\"model\": CaCLRProbe, \"scaler\": StandardScaler, ...})\n\nUsage:\n  # Single run\n  python train_caclr.py \\\n    --activations_dir ./activations --output_dir ./probes_caclr \\\n    --layer 16 --languages zh ar hi sw ko --alpha 1.0 --beta 0.1\n\n  # Sweep over α × β\n  python train_caclr.py \\\n    --activations_dir ./activations --output_dir ./probes_caclr \\\n    --layer 16 --languages zh ar hi sw ko \\\n    --alpha_sweep 0.01,0.1,0.5,1.0,2.0,5.0,10.0 \\\n    --beta_sweep 0.001,0.01,0.05,0.1,0.5,1.0\n\"\"\"\n\nimport argparse\nimport os\nimport pickle\nfrom itertools import product\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.metrics import roc_auc_score, brier_score_loss\n\n\n# ---------------------------------------------------------------------------\n# Loss components\n# ---------------------------------------------------------------------------\n\ndef bce_loss(logits, labels):\n    \"\"\"Standard binary cross-entropy on probe logits.\"\"\"\n    return F.binary_cross_entropy_with_logits(logits, labels)\n\n\ndef sb_ece_loss(probs, labels, n_bins=10, temperature=0.05):\n    \"\"\"Differentiable soft-binning ECE approximation.\n\n    Hard-histogram ECE is non-differentiable. We replace indicator-based bin\n    assignment with Gaussian soft assignment:\n      bin centers c_k = (k + 0.5) / n_bins,  k = 0, ..., n_bins-1\n      weights  w_{ik} = softmax( -|p_i - c_k|^2 / temperature )\n\n    Per-bin calibration error:\n      CE_k = | Σ_i w_{ik} * (label_i - p_i) | / (Σ_i w_{ik} + ε)\n\n    SB-ECE = Σ_k (Σ_i w_{ik} / N) * CE_k\n    \"\"\"\n    centers = torch.linspace(0.5 / n_bins, 1.0 - 0.5 / n_bins, n_bins,\n                             device=probs.device)                          # (K,)\n    # Pairwise distances: (N, K)\n    dists = (probs.unsqueeze(1) - centers.unsqueeze(0)) ** 2               # (N, K)\n    weights = F.softmax(-dists / temperature, dim=1)                       # (N, K)\n\n    bin_counts = weights.sum(dim=0)                                        # (K,)\n    # Weighted calibration gap per bin\n    gap = labels.unsqueeze(1) - probs.unsqueeze(1)                         # (N, K) broadcast\n    weighted_gap = (weights * gap).sum(dim=0)                              # (K,)\n    per_bin_ce = weighted_gap.abs() / (bin_counts + 1e-8)\n\n    ece = (bin_counts / probs.shape[0] * per_bin_ce).sum()\n    return ece\n\n\ndef gaussian_rbf_kernel(x, y, bandwidth=None):\n    \"\"\"Gaussian RBF kernel matrix.\n\n    k(x, y) = exp( -||x - y||^2 / (2 * bandwidth^2) )\n\n    If bandwidth is None, uses the median heuristic:\n      bandwidth = sqrt( median(||x_i - y_j||^2) / 2 )\n    \"\"\"\n    xx = torch.cdist(x, x) ** 2    # (N, N)\n    yy = torch.cdist(y, y) ** 2    # (M, M)\n    xy = torch.cdist(x, y) ** 2    # (N, M)\n\n    if bandwidth is None:\n        # Median heuristic over cross-distances\n        all_dists = xy.detach().reshape(-1)\n        median_dist = all_dists.median()\n        bandwidth = torch.sqrt(median_dist / 2.0).clamp(min=1e-5)\n\n    gamma = 1.0 / (2.0 * bandwidth ** 2)\n    K_xx = torch.exp(-gamma * xx)\n    K_yy = torch.exp(-gamma * yy)\n    K_xy = torch.exp(-gamma * xy)\n    return K_xx, K_yy, K_xy, bandwidth\n\n\ndef mmd_loss(x_en, x_tgt, bandwidth=None):\n    \"\"\"Unbiased estimate of MMD^2 between English and target representations.\n\n    MMD^2 = E[k(x,x')] + E[k(y,y')] - 2·E[k(x,y)]\n\n    where k is a Gaussian RBF kernel with median heuristic bandwidth.\n    \"\"\"\n    K_xx, K_yy, K_xy, bw = gaussian_rbf_kernel(x_en, x_tgt, bandwidth)\n    n = K_xx.shape[0]\n    m = K_yy.shape[0]\n\n    # Unbiased: zero out diagonal for self-terms\n    sum_xx = (K_xx.sum() - K_xx.diagonal().sum()) / (n * (n - 1)) if n > 1 else K_xx.mean()\n    sum_yy = (K_yy.sum() - K_yy.diagonal().sum()) / (m * (m - 1)) if m > 1 else K_yy.mean()\n    sum_xy = K_xy.mean()\n\n    return sum_xx + sum_yy - 2.0 * sum_xy\n\n\n# ---------------------------------------------------------------------------\n# CaCLR Probe model\n# ---------------------------------------------------------------------------\n\nclass CaCLRProbe(nn.Module):\n    \"\"\"Linear probe with CaCLR regularization.\n\n    Functionally equivalent to sklearn LogisticRegression (single Linear layer),\n    but trained with gradient descent plus L_SB-ECE and L_MMD regularizers.\n\n    Exposes predict_proba() and decision_function() for compatibility with\n    transfer_eval.py's evaluate_probe().\n    \"\"\"\n\n    def __init__(self, input_dim, l2_weight=1.0):\n        super().__init__()\n        self.linear = nn.Linear(input_dim, 1)\n        self.l2_weight = l2_weight\n\n    def forward(self, x):\n        \"\"\"Return raw logits (N,).\"\"\"\n        return self.linear(x).squeeze(-1)\n\n    def predict_proba(self, x):\n        \"\"\"Return (N, 2) numpy array of [P(class=0), P(class=1)].\n\n        Accepts numpy array or torch Tensor. Returns numpy for sklearn compat.\n        \"\"\"\n        if isinstance(x, np.ndarray):\n            x = torch.from_numpy(x).float().to(self.linear.weight.device)\n        with torch.no_grad():\n            p1 = torch.sigmoid(self.forward(x)).cpu().numpy()\n        return np.column_stack([1 - p1, p1])\n\n    def decision_function(self, x):\n        \"\"\"Return logits as 1-D numpy array (sklearn compat).\"\"\"\n        if isinstance(x, np.ndarray):\n            x = torch.from_numpy(x).float().to(self.linear.weight.device)\n        with torch.no_grad():\n            return self.forward(x).cpu().numpy()\n\n    def l2_reg(self):\n        \"\"\"L2 penalty on weights (not bias), matching sklearn C = 1/l2_weight.\"\"\"\n        return self.l2_weight * (self.linear.weight ** 2).sum()\n\n    @classmethod\n    def from_sklearn(cls, sklearn_probe, scaler, l2_weight=1.0):\n        \"\"\"Initialize from a trained sklearn LogisticRegression + StandardScaler.\n\n        Copies weight and bias so CaCLR starts from the converged LR solution.\n        The scaler is applied externally (same as sklearn pipeline), so we only\n        need the LR parameters here.\n        \"\"\"\n        input_dim = sklearn_probe.coef_.shape[1]\n        model = cls(input_dim, l2_weight=l2_weight)\n        with torch.no_grad():\n            model.linear.weight.copy_(torch.from_numpy(sklearn_probe.coef_).float())\n            model.linear.bias.copy_(torch.from_numpy(sklearn_probe.intercept_).float())\n        return model\n\n\n# ---------------------------------------------------------------------------\n# Training loop\n# ---------------------------------------------------------------------------\n\ndef train_caclr(\n    X_en, y_en,\n    X_tgt_dict,\n    alpha=1.0,\n    beta=0.1,\n    lr=1e-3,\n    epochs=100,\n    l2_weight=1.0,\n    init_from_sklearn=True,\n    seed=42,\n    verbose=True,\n):\n    \"\"\"Train CaCLR probe.\n\n    Steps:\n      1. Fit StandardScaler on English data.\n      2. Train standard LogisticRegression on English (sklearn).\n      3. Initialize CaCLRProbe from LR weights.\n      4. Fine-tune with L_BCE + α·L_SB-ECE + β·L_MMD.\n\n    Args:\n        X_en: (N_en, D) numpy array of English activations.\n        y_en: (N_en,) numpy array of binary labels.\n        X_tgt_dict: {lang: (X_tgt, y_tgt)} numpy arrays for target languages.\n        alpha: weight on SB-ECE calibration loss.\n        beta: weight on MMD consistency loss.\n        lr: learning rate for Adam optimizer.\n        epochs: number of training epochs.\n        l2_weight: L2 regularization weight (sklearn C = 1/l2_weight).\n        init_from_sklearn: if True, warm-start from sklearn LR solution.\n        seed: random seed.\n        verbose: print training progress.\n\n    Returns:\n        probe: trained CaCLRProbe (on CPU).\n        scaler: fitted StandardScaler.\n        history: dict with keys \"total\", \"bce\", \"sb_ece\", \"mmd\" (lists of per-epoch losses).\n    \"\"\"\n    torch.manual_seed(seed)\n    np.random.seed(seed)\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\n    # 1. Fit scaler on English data\n    scaler = StandardScaler()\n    X_en_s = scaler.fit_transform(X_en)\n\n    # 2. Train sklearn LR as initialization\n    sklearn_C = 1.0 / l2_weight if l2_weight > 0 else 1e6\n    sklearn_lr = LogisticRegression(\n        C=sklearn_C, penalty=\"l2\", solver=\"lbfgs\", max_iter=2000, random_state=seed,\n    )\n    sklearn_lr.fit(X_en_s, y_en)\n\n    # 3. Initialize CaCLRProbe\n    if init_from_sklearn:\n        probe = CaCLRProbe.from_sklearn(sklearn_lr, scaler, l2_weight=l2_weight)\n    else:\n        probe = CaCLRProbe(X_en_s.shape[1], l2_weight=l2_weight)\n    probe = probe.to(device)\n\n    # Convert data to tensors\n    X_en_t = torch.from_numpy(X_en_s).float().to(device)\n    y_en_t = torch.from_numpy(y_en.astype(np.float32)).to(device)\n\n    tgt_tensors = {}\n    for lang, (X_tgt, y_tgt) in X_tgt_dict.items():\n        X_tgt_s = scaler.transform(X_tgt)\n        tgt_tensors[lang] = (\n            torch.from_numpy(X_tgt_s).float().to(device),\n            torch.from_numpy(y_tgt.astype(np.float32)).to(device),\n        )\n\n    # 4. Fine-tune with CaCLR loss\n    optimizer = torch.optim.Adam(probe.parameters(), lr=lr)\n    history = {\"total\": [], \"bce\": [], \"sb_ece\": [], \"mmd\": [], \"l2\": []}\n\n    for epoch in range(epochs):\n        probe.train()\n        optimizer.zero_grad()\n\n        logits_en = probe(X_en_t)\n        probs_en = torch.sigmoid(logits_en)\n\n        loss_bce = bce_loss(logits_en, y_en_t)\n        loss_sb_ece = sb_ece_loss(probs_en, y_en_t)\n        loss_l2 = probe.l2_reg()\n\n        # MMD: average over all target languages\n        loss_mmd = torch.tensor(0.0, device=device)\n        if beta > 0 and len(tgt_tensors) > 0:\n            # Note: linear probe logits are 1-D, so MMD operates in a 1-dimensional space.\n            # This limits MMD's ability to capture complex distributional differences.\n            # This is a design trade-off, not a bug — observe in experiments and discuss in paper.\n            mmd_terms = []\n            for lang, (X_tgt_t, _) in tgt_tensors.items():\n                n_sub = min(512, X_en_t.shape[0], X_tgt_t.shape[0])\n                idx_en = torch.randperm(X_en_t.shape[0], device=device)[:n_sub]\n                idx_tgt = torch.randperm(X_tgt_t.shape[0], device=device)[:n_sub]\n                logits_en_sub = probe(X_en_t[idx_en])\n                logits_tgt_sub = probe(X_tgt_t[idx_tgt])\n                mmd_terms.append(mmd_loss(logits_en_sub.unsqueeze(1), logits_tgt_sub.unsqueeze(1)))\n            loss_mmd = torch.stack(mmd_terms).mean()\n\n        total = loss_bce + alpha * loss_sb_ece + beta * loss_mmd + loss_l2\n        total.backward()\n        optimizer.step()\n\n        history[\"total\"].append(total.item())\n        history[\"bce\"].append(loss_bce.item())\n        history[\"sb_ece\"].append(loss_sb_ece.item())\n        history[\"mmd\"].append(loss_mmd.item())\n        history[\"l2\"].append(loss_l2.item())\n\n        if verbose and (epoch + 1) % max(1, epochs // 10) == 0:\n            print(f\"  epoch {epoch+1:>4d}/{epochs}  \"\n                  f\"total={total.item():.4f}  bce={loss_bce.item():.4f}  \"\n                  f\"sb_ece={loss_sb_ece.item():.4f}  mmd={loss_mmd.item():.4f}\")\n\n    probe = probe.cpu().eval()\n    return probe, scaler, history\n\n\n# ---------------------------------------------------------------------------\n# Evaluation helper (quick validation during sweep)\n# ---------------------------------------------------------------------------\n\ndef compute_ece(probs, labels, n_bins=10):\n    \"\"\"Histogram-based ECE (numpy, matches train_probe.py).\"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    ece = 0.0\n    for lo, hi in zip(bin_edges[:-1], bin_edges[1:]):\n        mask = (probs > lo) & (probs <= hi)\n        if lo == 0.0:\n            mask = (probs >= lo) & (probs <= hi)\n        n_in_bin = mask.sum()\n        if n_in_bin == 0:\n            continue\n        ece += (n_in_bin / len(probs)) * abs(labels[mask].mean() - probs[mask].mean())\n    return ece\n\n\ndef quick_eval(probe, scaler, X, y):\n    \"\"\"AUROC + ECE + Brier on held-out data.\"\"\"\n    X_s = scaler.transform(X)\n    probs = probe.predict_proba(X_s)[:, 1]\n    logits = probe.decision_function(X_s)\n    if len(np.unique(y)) < 2:\n        return None, None, None\n    return roc_auc_score(y, logits), compute_ece(probs, y), brier_score_loss(y, probs)\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"CaCLR probe training\")\n    p.add_argument(\"--activations_dir\", default=\"./activations\")\n    p.add_argument(\"--output_dir\", default=\"./probes_caclr\")\n    p.add_argument(\"--layer\", type=int, required=True,\n                   help=\"Layer index to train on\")\n    p.add_argument(\"--languages\", nargs=\"+\", default=[\"zh\", \"ar\", \"hi\", \"sw\", \"ko\"],\n                   help=\"Target languages for MMD consistency loss\")\n    p.add_argument(\"--alpha\", type=float, default=1.0,\n                   help=\"SB-ECE calibration loss weight\")\n    p.add_argument(\"--beta\", type=float, default=0.1,\n                   help=\"MMD consistency loss weight\")\n    p.add_argument(\"--alpha_sweep\", type=str, default=None,\n                   help=\"Comma-separated alpha values for grid search \"\n                        \"(e.g., '0.01,0.1,1.0,10.0')\")\n    p.add_argument(\"--beta_sweep\", type=str, default=None,\n                   help=\"Comma-separated beta values for grid search\")\n    p.add_argument(\"--lr\", type=float, default=1e-3)\n    p.add_argument(\"--epochs\", type=int, default=100)\n    p.add_argument(\"--l2_weight\", type=float, default=1.0)\n    p.add_argument(\"--test_size\", type=float, default=0.2,\n                   help=\"English held-out fraction for sweep selection\")\n    p.add_argument(\"--ece_weight\", type=float, default=0.1,\n                   help=\"Weight for ECE penalty in sweep selection: score = auroc - ece_weight * ece\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    return p.parse_args()\n\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    # Load English activations\n    en_path = os.path.join(args.activations_dir, f\"layer{args.layer}_en.pt\")\n    en_data = torch.load(en_path, weights_only=True)\n    X_en = en_data[\"activations\"].numpy()\n    y_en = en_data[\"labels\"].numpy()\n    print(f\"English data: {X_en.shape[0]} samples, dim={X_en.shape[1]}\")\n\n    # Load target language activations\n    X_tgt_dict = {}\n    for lang in args.languages:\n        tgt_path = os.path.join(args.activations_dir, f\"layer{args.layer}_{lang}.pt\")\n        if not os.path.exists(tgt_path):\n            print(f\"  [SKIP] {tgt_path} not found\")\n            continue\n        tgt_data = torch.load(tgt_path, weights_only=True)\n        X_tgt_dict[lang] = (tgt_data[\"activations\"].numpy(), tgt_data[\"labels\"].numpy())\n        print(f\"  {lang}: {X_tgt_dict[lang][0].shape[0]} samples\")\n\n    # Determine if sweep mode\n    sweep_mode = args.alpha_sweep is not None or args.beta_sweep is not None\n    alphas = [float(v) for v in args.alpha_sweep.split(\",\")] if args.alpha_sweep else [args.alpha]\n    betas = [float(v) for v in args.beta_sweep.split(\",\")] if args.beta_sweep else [args.beta]\n\n    if sweep_mode:\n        # Hold out English validation set for selecting best (alpha, beta)\n        X_train, X_val, y_train, y_val = train_test_split(\n            X_en, y_en, test_size=args.test_size, random_state=args.seed, stratify=y_en,\n        )\n        print(f\"\\nSweep mode: {len(alphas)} alphas × {len(betas)} betas = {len(alphas)*len(betas)} runs\")\n        print(f\"Train: {len(y_train)}, Val: {len(y_val)}\")\n        print(f\"{'alpha':>8s} {'beta':>8s} {'AUROC':>7s} {'ECE':>7s} {'Brier':>7s}\")\n        print(\"-\" * 42)\n\n        best_score = -float(\"inf\")\n        best_result = None\n\n        for a, b in product(alphas, betas):\n            probe, scaler, history = train_caclr(\n                X_train, y_train, X_tgt_dict,\n                alpha=a, beta=b, lr=args.lr, epochs=args.epochs,\n                l2_weight=args.l2_weight, seed=args.seed, verbose=False,\n            )\n            auroc, ece, brier = quick_eval(probe, scaler, X_val, y_val)\n            score = (auroc or 0.0) - args.ece_weight * (ece or 1.0)\n            print(f\"{a:>8.3f} {b:>8.4f} {auroc or 0:>7.4f} {ece or 0:>7.4f} {brier or 0:>7.4f}\"\n                  f\"{'  *' if score > best_score else ''}\")\n\n            if score > best_score:\n                best_score = score\n                best_result = {\n                    \"probe\": probe, \"scaler\": scaler, \"alpha\": a, \"beta\": b,\n                    \"history\": history, \"val_auroc\": auroc, \"val_ece\": ece, \"val_brier\": brier,\n                }\n\n        # Retrain best on full English data\n        print(f\"\\nBest: alpha={best_result['alpha']}, beta={best_result['beta']} \"\n              f\"(val AUROC={best_result['val_auroc']:.4f}, ECE={best_result['val_ece']:.4f})\")\n        print(\"Retraining on full English data...\")\n        probe, scaler, history = train_caclr(\n            X_en, y_en, X_tgt_dict,\n            alpha=best_result[\"alpha\"], beta=best_result[\"beta\"],\n            lr=args.lr, epochs=args.epochs, l2_weight=args.l2_weight,\n            seed=args.seed, verbose=True,\n        )\n        save_dict = {\n            \"model\": probe, \"scaler\": scaler,\n            \"alpha\": best_result[\"alpha\"], \"beta\": best_result[\"beta\"],\n            \"history\": history,\n            \"sweep_best\": {\"val_auroc\": best_result[\"val_auroc\"],\n                           \"val_ece\": best_result[\"val_ece\"],\n                           \"val_brier\": best_result[\"val_brier\"]},\n        }\n    else:\n        # Single run\n        probe, scaler, history = train_caclr(\n            X_en, y_en, X_tgt_dict,\n            alpha=args.alpha, beta=args.beta, lr=args.lr, epochs=args.epochs,\n            l2_weight=args.l2_weight, seed=args.seed, verbose=True,\n        )\n        save_dict = {\n            \"model\": probe, \"scaler\": scaler,\n            \"alpha\": args.alpha, \"beta\": args.beta,\n            \"history\": history,\n        }\n\n    # Save probe (compatible with transfer_eval.py)\n    out_path = os.path.join(args.output_dir, f\"probe_layer{args.layer}.pkl\")\n    with open(out_path, \"wb\") as f:\n        pickle.dump(save_dict, f)\n    print(f\"\\nProbe saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 472,
+                "startLine": 1,
+                "totalLines": 472
+              }
+            },
+            "sourceToolAssistantUUID": "33c4eb42-16e6-43be-8ec0-0a19c3a2191f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "d5d9c302-dc42-4080-ba7a-571e569455e2",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy train_caclr.py and verify gradient fix",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T22:11:37.656Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to deploy this file to the server at two locations, then run the verification script. Let me load the SSH tools first.",
+              "signature": "EscCCmMIDRgCKkAKM0/ns2W1yqFfMIcgVpJBBHJiN/n06ppXscoqtzbLhMVgWJg6AT0Q7LuUvEDt8pZ/UKMFCQszwb27keHuf0abMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDE/hHvmGczLnVaynlhoM3W61+dufVLPA3iofIjC2R3qRx18FseLR48AfnE4I24EFoSVoceKxu8oDGxztB09yANBfEQG4woivSrrOOr0qkQFYgkllBamkQfhEPokSE4BfJRfQtd3pND8BC+xk4GZxKjpl5pDfGphs2dvlkXeKkJHaA2zWRRWmbuOh5C81481ygK9mOySBvrCCBhpYoaNotiOQAFnV9sOg4Q+8Yxj7FcZy71nvLOaO9DLXhWjG2T8TF1n8MGXBjP7PphQZRXjjE8ylFj95W78fFtOlR+6jptIKGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5d9c302-dc42-4080-ba7a-571e569455e2",
+            "isSidechain": false,
+            "requestId": "req_011CbEb2pW2NhQdkmeKTcL2J",
+            "type": "assistant",
+            "uuid": "b6378c6f-2c38-45c2-90cd-44843c72a74a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XjMe55bxnWdzrFPmfeumX6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7577,
+                "cache_read_input_tokens": 23641,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7577,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 23641,
+                    "cache_creation_input_tokens": 7577,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7577
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T22:11:38.726Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File is 472 lines. Now loading SSH tools and deploying."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6378c6f-2c38-45c2-90cd-44843c72a74a",
+            "isSidechain": false,
+            "requestId": "req_011CbEb2pW2NhQdkmeKTcL2J",
+            "type": "assistant",
+            "uuid": "171767a4-15c3-4b41-9d1a-8959756ab746",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XjMe55bxnWdzrFPmfeumX6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7577,
+                "cache_read_input_tokens": 23641,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7577,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 23641,
+                    "cache_creation_input_tokens": 7577,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7577
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T22:11:40.096Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QzVVTeW54EuK1aHBkEda6u",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "171767a4-15c3-4b41-9d1a-8959756ab746",
+            "isSidechain": false,
+            "requestId": "req_011CbEb2pW2NhQdkmeKTcL2J",
+            "type": "assistant",
+            "uuid": "24d64642-2680-439c-985c-ed7a087ad67a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XjMe55bxnWdzrFPmfeumX6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7577,
+                "cache_read_input_tokens": 23641,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7577,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 23641,
+                    "cache_creation_input_tokens": 7577,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7577
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T22:11:40.101Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QzVVTeW54EuK1aHBkEda6u",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24d64642-2680-439c-985c-ed7a087ad67a",
+            "isSidechain": false,
+            "promptId": "0e069c8d-a493-42f8-8971-e3d54ca6492c",
+            "type": "user",
+            "uuid": "010857ca-1969-4694-8a1e-7831a8499b72",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 26
+            },
+            "sourceToolAssistantUUID": "24d64642-2680-439c-985c-ed7a087ad67a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T22:11:43.033Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to deploy the file to both locations on the server. The file is 472 lines long, so I'll use cat > ... << 'EOF' to write it. Let me do both locations in one command to be efficient.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "010857ca-1969-4694-8a1e-7831a8499b72",
+            "isSidechain": false,
+            "requestId": "req_011CbEb3DQRtU2XSgyWrHmed",
+            "type": "assistant",
+            "uuid": "14593f60-ee65-46fb-867e-f1e799679979",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018CipLBKoTmgzm5VUtrK6UD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 728,
+                "cache_read_input_tokens": 31218,
+                "output_tokens": 6708,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 728,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6708,
+                    "cache_read_input_tokens": 31218,
+                    "cache_creation_input_tokens": 728,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 728
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T22:11:43.590Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Deploying the file to both server locations."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14593f60-ee65-46fb-867e-f1e799679979",
+            "isSidechain": false,
+            "requestId": "req_011CbEb3DQRtU2XSgyWrHmed",
+            "type": "assistant",
+            "uuid": "1f368019-6ed3-4378-aecb-ac4096a9fb0d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018CipLBKoTmgzm5VUtrK6UD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 728,
+                "cache_read_input_tokens": 31218,
+                "output_tokens": 6708,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 728,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6708,
+                    "cache_read_input_tokens": 31218,
+                    "cache_creation_input_tokens": 728,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 728
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T22:13:17.668Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mv1r9xqTnHqSFNqFebzk8h",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-13176",
+                "account": "root",
+                "command": "mkdir -p /root/xling_calib_direction/code && cat > /root/xling_calib_direction/code/train_caclr.py << 'ENDOFFILE'\n\"\"\"\nCaCLR: Calibration-aware Cross-Lingual Regularization.\n\nTrain a linear probe with two additional regularization terms beyond BCE:\n  Loss = L_BCE + α · L_SB-ECE + β · L_consistency(MMD)\n\n  - L_SB-ECE: differentiable soft-binning ECE (calibration regularizer)\n  - L_consistency: MMD with Gaussian RBF kernel (cross-lingual consistency)\n\nInput:  per-language activation .pt files from extract_activations.py\n        (each file has {\"activations\": Tensor, \"labels\": Tensor})\nOutput: trained probe .pkl compatible with transfer_eval.py\n        (pickle dict with {\"model\": CaCLRProbe, \"scaler\": StandardScaler, ...})\n\nUsage:\n  # Single run\n  python train_caclr.py \\\n    --activations_dir ./activations --output_dir ./probes_caclr \\\n    --layer 16 --languages zh ar hi sw ko --alpha 1.0 --beta 0.1\n\n  # Sweep over α × β\n  python train_caclr.py \\\n    --activations_dir ./activations --output_dir ./probes_caclr \\\n    --layer 16 --languages zh ar hi sw ko \\\n    --alpha_sweep 0.01,0.1,0.5,1.0,2.0,5.0,10.0 \\\n    --beta_sweep 0.001,0.01,0.05,0.1,0.5,1.0\n\"\"\"\n\nimport argparse\nimport os\nimport pickle\nfrom itertools import product\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.metrics import roc_auc_score, brier_score_loss\n\n\n# ---------------------------------------------------------------------------\n# Loss components\n# ---------------------------------------------------------------------------\n\ndef bce_loss(logits, labels):\n    \"\"\"Standard binary cross-entropy on probe logits.\"\"\"\n    return F.binary_cross_entropy_with_logits(logits, labels)\n\n\ndef sb_ece_loss(probs, labels, n_bins=10, temperature=0.05):\n    \"\"\"Differentiable soft-binning ECE approximation.\n\n    Hard-histogram ECE is non-differentiable. We replace indicator-based bin\n    assignment with Gaussian soft assignment:\n      bin centers c_k = (k + 0.5) / n_bins,  k = 0, ..., n_bins-1\n      weights  w_{ik} = softmax( -|p_i - c_k|^2 / temperature )\n\n    Per-bin calibration error:\n      CE_k = | Σ_i w_{ik} * (label_i - p_i) | / (Σ_i w_{ik} + ε)\n\n    SB-ECE = Σ_k (Σ_i w_{ik} / N) * CE_k\n    \"\"\"\n    centers = torch.linspace(0.5 / n_bins, 1.0 - 0.5 / n_bins, n_bins,\n                             device=probs.device)                          # (K,)\n    # Pairwise distances: (N, K)\n    dists = (probs.unsqueeze(1) - centers.unsqueeze(0)) ** 2               # (N, K)\n    weights = F.softmax(-dists / temperature, dim=1)                       # (N, K)\n\n    bin_counts = weights.sum(dim=0)                                        # (K,)\n    # Weighted calibration gap per bin\n    gap = labels.unsqueeze(1) - probs.unsqueeze(1)                         # (N, K) broadcast\n    weighted_gap = (weights * gap).sum(dim=0)                              # (K,)\n    per_bin_ce = weighted_gap.abs() / (bin_counts + 1e-8)\n\n    ece = (bin_counts / probs.shape[0] * per_bin_ce).sum()\n    return ece\n\n\ndef gaussian_rbf_kernel(x, y, bandwidth=None):\n    \"\"\"Gaussian RBF kernel matrix.\n\n    k(x, y) = exp( -||x - y||^2 / (2 * bandwidth^2) )\n\n    If bandwidth is None, uses the median heuristic:\n      bandwidth = sqrt( median(||x_i - y_j||^2) / 2 )\n    \"\"\"\n    xx = torch.cdist(x, x) ** 2    # (N, N)\n    yy = torch.cdist(y, y) ** 2    # (M, M)\n    xy = torch.cdist(x, y) ** 2    # (N, M)\n\n    if bandwidth is None:\n        # Median heuristic over cross-distances\n        all_dists = xy.detach().reshape(-1)\n        median_dist = all_dists.median()\n        bandwidth = torch.sqrt(median_dist / 2.0).clamp(min=1e-5)\n\n    gamma = 1.0 / (2.0 * bandwidth ** 2)\n    K_xx = torch.exp(-gamma * xx)\n    K_yy = torch.exp(-gamma * yy)\n    K_xy = torch.exp(-gamma * xy)\n    return K_xx, K_yy, K_xy, bandwidth\n\n\ndef mmd_loss(x_en, x_tgt, bandwidth=None):\n    \"\"\"Unbiased estimate of MMD^2 between English and target representations.\n\n    MMD^2 = E[k(x,x')] + E[k(y,y')] - 2·E[k(x,y)]\n\n    where k is a Gaussian RBF kernel with median heuristic bandwidth.\n    \"\"\"\n    K_xx, K_yy, K_xy, bw = gaussian_rbf_kernel(x_en, x_tgt, bandwidth)\n    n = K_xx.shape[0]\n    m = K_yy.shape[0]\n\n    # Unbiased: zero out diagonal for self-terms\n    sum_xx = (K_xx.sum() - K_xx.diagonal().sum()) / (n * (n - 1)) if n > 1 else K_xx.mean()\n    sum_yy = (K_yy.sum() - K_yy.diagonal().sum()) / (m * (m - 1)) if m > 1 else K_yy.mean()\n    sum_xy = K_xy.mean()\n\n    return sum_xx + sum_yy - 2.0 * sum_xy\n\n\n# ---------------------------------------------------------------------------\n# CaCLR Probe model\n# ---------------------------------------------------------------------------\n\nclass CaCLRProbe(nn.Module):\n    \"\"\"Linear probe with CaCLR regularization.\n\n    Functionally equivalent to sklearn LogisticRegression (single Linear layer),\n    but trained with gradient descent plus L_SB-ECE and L_MMD regularizers.\n\n    Exposes predict_proba() and decision_function() for compatibility with\n    transfer_eval.py's evaluate_probe().\n    \"\"\"\n\n    def __init__(self, input_dim, l2_weight=1.0):\n        super().__init__()\n        self.linear = nn.Linear(input_dim, 1)\n        self.l2_weight = l2_weight\n\n    def forward(self, x):\n        \"\"\"Return raw logits (N,).\"\"\"\n        return self.linear(x).squeeze(-1)\n\n    def predict_proba(self, x):\n        \"\"\"Return (N, 2) numpy array of [P(class=0), P(class=1)].\n\n        Accepts numpy array or torch Tensor. Returns numpy for sklearn compat.\n        \"\"\"\n        if isinstance(x, np.ndarray):\n            x = torch.from_numpy(x).float().to(self.linear.weight.device)\n        with torch.no_grad():\n            p1 = torch.sigmoid(self.forward(x)).cpu().numpy()\n        return np.column_stack([1 - p1, p1])\n\n    def decision_function(self, x):\n        \"\"\"Return logits as 1-D numpy array (sklearn compat).\"\"\"\n        if isinstance(x, np.ndarray):\n            x = torch.from_numpy(x).float().to(self.linear.weight.device)\n        with torch.no_grad():\n            return self.forward(x).cpu().numpy()\n\n    def l2_reg(self):\n        \"\"\"L2 penalty on weights (not bias), matching sklearn C = 1/l2_weight.\"\"\"\n        return self.l2_weight * (self.linear.weight ** 2).sum()\n\n    @classmethod\n    def from_sklearn(cls, sklearn_probe, scaler, l2_weight=1.0):\n        \"\"\"Initialize from a trained sklearn LogisticRegression + StandardScaler.\n\n        Copies weight and bias so CaCLR starts from the converged LR solution.\n        The scaler is applied externally (same as sklearn pipeline), so we only\n        need the LR parameters here.\n        \"\"\"\n        input_dim = sklearn_probe.coef_.shape[1]\n        model = cls(input_dim, l2_weight=l2_weight)\n        with torch.no_grad():\n            model.linear.weight.copy_(torch.from_numpy(sklearn_probe.coef_).float())\n            model.linear.bias.copy_(torch.from_numpy(sklearn_probe.intercept_).float())\n        return model\n\n\n# ---------------------------------------------------------------------------\n# Training loop\n# ---------------------------------------------------------------------------\n\ndef train_caclr(\n    X_en, y_en,\n    X_tgt_dict,\n    alpha=1.0,\n    beta=0.1,\n    lr=1e-3,\n    epochs=100,\n    l2_weight=1.0,\n    init_from_sklearn=True,\n    seed=42,\n    verbose=True,\n):\n    \"\"\"Train CaCLR probe.\n\n    Steps:\n      1. Fit StandardScaler on English data.\n      2. Train standard LogisticRegression on English (sklearn).\n      3. Initialize CaCLRProbe from LR weights.\n      4. Fine-tune with L_BCE + α·L_SB-ECE + β·L_MMD.\n\n    Args:\n        X_en: (N_en, D) numpy array of English activations.\n        y_en: (N_en,) numpy array of binary labels.\n        X_tgt_dict: {lang: (X_tgt, y_tgt)} numpy arrays for target languages.\n        alpha: weight on SB-ECE calibration loss weight.\n        beta: weight on MMD consistency loss.\n        lr: learning rate for Adam optimizer.\n        epochs: number of training epochs.\n        l2_weight: L2 regularization weight (sklearn C = 1/l2_weight).\n        init_from_sklearn: if True, warm-start from sklearn LR solution.\n        seed: random seed.\n        verbose: print training progress.\n\n    Returns:\n        probe: trained CaCLRProbe (on CPU).\n        scaler: fitted StandardScaler.\n        history: dict with keys \"total\", \"bce\", \"sb_ece\", \"mmd\" (lists of per-epoch losses).\n    \"\"\"\n    torch.manual_seed(seed)\n    np.random.seed(seed)\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n\n    # 1. Fit scaler on English data\n    scaler = StandardScaler()\n    X_en_s = scaler.fit_transform(X_en)\n\n    # 2. Train sklearn LR as initialization\n    sklearn_C = 1.0 / l2_weight if l2_weight > 0 else 1e6\n    sklearn_lr = LogisticRegression(\n        C=sklearn_C, penalty=\"l2\", solver=\"lbfgs\", max_iter=2000, random_state=seed,\n    )\n    sklearn_lr.fit(X_en_s, y_en)\n\n    # 3. Initialize CaCLRProbe\n    if init_from_sklearn:\n        probe = CaCLRProbe.from_sklearn(sklearn_lr, scaler, l2_weight=l2_weight)\n    else:\n        probe = CaCLRProbe(X_en_s.shape[1], l2_weight=l2_weight)\n    probe = probe.to(device)\n\n    # Convert data to tensors\n    X_en_t = torch.from_numpy(X_en_s).float().to(device)\n    y_en_t = torch.from_numpy(y_en.astype(np.float32)).to(device)\n\n    tgt_tensors = {}\n    for lang, (X_tgt, y_tgt) in X_tgt_dict.items():\n        X_tgt_s = scaler.transform(X_tgt)\n        tgt_tensors[lang] = (\n            torch.from_numpy(X_tgt_s).float().to(device),\n            torch.from_numpy(y_tgt.astype(np.float32)).to(device),\n        )\n\n    # 4. Fine-tune with CaCLR loss\n    optimizer = torch.optim.Adam(probe.parameters(), lr=lr)\n    history = {\"total\": [], \"bce\": [], \"sb_ece\": [], \"mmd\": [], \"l2\": []}\n\n    for epoch in range(epochs):\n        probe.train()\n        optimizer.zero_grad()\n\n        logits_en = probe(X_en_t)\n        probs_en = torch.sigmoid(logits_en)\n\n        loss_bce = bce_loss(logits_en, y_en_t)\n        loss_sb_ece = sb_ece_loss(probs_en, y_en_t)\n        loss_l2 = probe.l2_reg()\n\n        # MMD: average over all target languages\n        loss_mmd = torch.tensor(0.0, device=device)\n        if beta > 0 and len(tgt_tensors) > 0:\n            # Note: linear probe logits are 1-D, so MMD operates in a 1-dimensional space.\n            # This limits MMD's ability to capture complex distributional differences.\n            # This is a design trade-off, not a bug — observe in experiments and discuss in paper.\n            mmd_terms = []\n            for lang, (X_tgt_t, _) in tgt_tensors.items():\n                n_sub = min(512, X_en_t.shape[0], X_tgt_t.shape[0])\n                idx_en = torch.randperm(X_en_t.shape[0], device=device)[:n_sub]\n                idx_tgt = torch.randperm(X_tgt_t.shape[0], device=device)[:n_sub]\n                logits_en_sub = probe(X_en_t[idx_en])\n                logits_tgt_sub = probe(X_tgt_t[idx_tgt])\n                mmd_terms.append(mmd_loss(logits_en_sub.unsqueeze(1), logits_tgt_sub.unsqueeze(1)))\n            loss_mmd = torch.stack(mmd_terms).mean()\n\n        total = loss_bce + alpha * loss_sb_ece + beta * loss_mmd + loss_l2\n        total.backward()\n        optimizer.step()\n\n        history[\"total\"].append(total.item())\n        history[\"bce\"].append(loss_bce.item())\n        history[\"sb_ece\"].append(loss_sb_ece.item())\n        history[\"mmd\"].append(loss_mmd.item())\n        history[\"l2\"].append(loss_l2.item())\n\n        if verbose and (epoch + 1) % max(1, epochs // 10) == 0:\n            print(f\"  epoch {epoch+1:>4d}/{epochs}  \"\n                  f\"total={total.item():.4f}  bce={loss_bce.item():.4f}  \"\n                  f\"sb_ece={loss_sb_ece.item():.4f}  mmd={loss_mmd.item():.4f}\")\n\n    probe = probe.cpu().eval()\n    return probe, scaler, history\n\n\n# ---------------------------------------------------------------------------\n# Evaluation helper (quick validation during sweep)\n# ---------------------------------------------------------------------------\n\ndef compute_ece(probs, labels, n_bins=10):\n    \"\"\"Histogram-based ECE (numpy, matches train_probe.py).\"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    ece = 0.0\n    for lo, hi in zip(bin_edges[:-1], bin_edges[1:]):\n        mask = (probs > lo) & (probs <= hi)\n        if lo == 0.0:\n            mask = (probs >= lo) & (probs <= hi)\n        n_in_bin = mask.sum()\n        if n_in_bin == 0:\n            continue\n        ece += (n_in_bin / len(probs)) * abs(labels[mask].mean() - probs[mask].mean())\n    return ece\n\n\ndef quick_eval(probe, scaler, X, y):\n    \"\"\"AUROC + ECE + Brier on held-out data.\"\"\"\n    X_s = scaler.transform(X)\n    probs = probe.predict_proba(X_s)[:, 1]\n    logits = probe.decision_function(X_s)\n    if len(np.unique(y)) < 2:\n        return None, None, None\n    return roc_auc_score(y, logits), compute_ece(probs, y), brier_score_loss(y, probs)\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"CaCLR probe training\")\n    p.add_argument(\"--activations_dir\", default=\"./activations\")\n    p.add_argument(\"--output_dir\", default=\"./probes_caclr\")\n    p.add_argument(\"--layer\", type=int, required=True,\n                   help=\"Layer index to train on\")\n    p.add_argument(\"--languages\", nargs=\"+\", default=[\"zh\", \"ar\", \"hi\", \"sw\", \"ko\"],\n                   help=\"Target languages for MMD consistency loss\")\n    p.add_argument(\"--alpha\", type=float, default=1.0,\n                   help=\"SB-ECE calibration loss weight\")\n    p.add_argument(\"--beta\", type=float, default=0.1,\n                   help=\"MMD consistency loss weight\")\n    p.add_argument(\"--alpha_sweep\", type=str, default=None,\n                   help=\"Comma-separated alpha values for grid search \"\n                        \"(e.g., '0.01,0.1,1.0,10.0')\")\n    p.add_argument(\"--beta_sweep\", type=str, default=None,\n                   help=\"Comma-separated beta values for grid search\")\n    p.add_argument(\"--lr\", type=float, default=1e-3)\n    p.add_argument(\"--epochs\", type=int, default=100)\n    p.add_argument(\"--l2_weight\", type=float, default=1.0)\n    p.add_argument(\"--test_size\", type=float, default=0.2,\n                   help=\"English held-out fraction for sweep selection\")\n    p.add_argument(\"--ece_weight\", type=float, default=0.1,\n                   help=\"Weight for ECE penalty in sweep selection: score = auroc - ece_weight * ece\")\n    p.add_argument(\"--seed\", type=int, default=42)\n    return p.parse_args()\n\n\ndef main():\n    args = parse_args()\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    # Load English activations\n    en_path = os.path.join(args.activations_dir, f\"layer{args.layer}_en.pt\")\n    en_data = torch.load(en_path, weights_only=True)\n    X_en = en_data[\"activations\"].numpy()\n    y_en = en_data[\"labels\"].numpy()\n    print(f\"English data: {X_en.shape[0]} samples, dim={X_en.shape[1]}\")\n\n    # Load target language activations\n    X_tgt_dict = {}\n    for lang in args.languages:\n        tgt_path = os.path.join(args.activations_dir, f\"layer{args.layer}_{lang}.pt\")\n        if not os.path.exists(tgt_path):\n            print(f\"  [SKIP] {tgt_path} not found\")\n            continue\n        tgt_data = torch.load(tgt_path, weights_only=True)\n        X_tgt_dict[lang] = (tgt_data[\"activations\"].numpy(), tgt_data[\"labels\"].numpy())\n        print(f\"  {lang}: {X_tgt_dict[lang][0].shape[0]} samples\")\n\n    # Determine if sweep mode\n    sweep_mode = args.alpha_sweep is not None or args.beta_sweep is not None\n    alphas = [float(v) for v in args.alpha_sweep.split(\",\")] if args.alpha_sweep else [args.alpha]\n    betas = [float(v) for v in args.beta_sweep.split(\",\")] if args.beta_sweep else [args.beta]\n\n    if sweep_mode:\n        # Hold out English validation set for selecting best (alpha, beta)\n        X_train, X_val, y_train, y_val = train_test_split(\n            X_en, y_en, test_size=args.test_size, random_state=args.seed, stratify=y_en,\n        )\n        print(f\"\\nSweep mode: {len(alphas)} alphas × {len(betas)} betas = {len(alphas)*len(betas)} runs\")\n        print(f\"Train: {len(y_train)}, Val: {len(y_val)}\")\n        print(f\"{'alpha':>8s} {'beta':>8s} {'AUROC':>7s} {'ECE':>7s} {'Brier':>7s}\")\n        print(\"-\" * 42)\n\n        best_score = -float(\"inf\")\n        best_result = None\n\n        for a, b in product(alphas, betas):\n            probe, scaler, history = train_caclr(\n                X_train, y_train, X_tgt_dict,\n                alpha=a, beta=b, lr=args.lr, epochs=args.epochs,\n                l2_weight=args.l2_weight, seed=args.seed, verbose=False,\n            )\n            auroc, ece, brier = quick_eval(probe, scaler, X_val, y_val)\n            score = (auroc or 0.0) - args.ece_weight * (ece or 1.0)\n            print(f\"{a:>8.3f} {b:>8.4f} {auroc or 0:>7.4f} {ece or 0:>7.4f} {brier or 0:>7.4f}\"\n                  f\"{'  *' if score > best_score else ''}\")\n\n            if score > best_score:\n                best_score = score\n                best_result = {\n                    \"probe\": probe, \"scaler\": scaler, \"alpha\": a, \"beta\": b,\n                    \"history\": history, \"val_auroc\": auroc, \"val_ece\": ece, \"val_brier\": brier,\n                }\n\n        # Retrain best on full English data\n        print(f\"\\nBest: alpha={best_result['alpha']}, beta={best_result['beta']} \"\n              f\"(val AUROC={best_result['val_auroc']:.4f}, ECE={best_result['val_ece']:.4f})\")\n        print(\"Retraining on full English data...\")\n        probe, scaler, history = train_caclr(\n            X_en, y_en, X_tgt_dict,\n            alpha=best_result[\"alpha\"], beta=best_result[\"beta\"],\n            lr=args.lr, epochs=args.epochs, l2_weight=args.l2_weight,\n            seed=args.seed, verbose=True,\n        )\n        save_dict = {\n            \"model\": probe, \"scaler\": scaler,\n            \"alpha\": best_result[\"alpha\"], \"beta\": best_result[\"beta\"],\n            \"history\": history,\n            \"sweep_best\": {\"val_auroc\": best_result[\"val_auroc\"],\n                           \"val_ece\": best_result[\"val_ece\"],\n                           \"val_brier\": best_result[\"val_brier\"]},\n        }\n    else:\n        # Single run\n        probe, scaler, history = train_caclr(\n            X_en, y_en, X_tgt_dict,\n            alpha=args.alpha, beta=args.beta, lr=args.lr, epochs=args.epochs,\n            l2_weight=args.l2_weight, seed=args.seed, verbose=True,\n        )\n        save_dict = {\n            \"model\": probe, \"scaler\": scaler,\n            \"alpha\": args.alpha, \"beta\": args.beta,\n            \"history\": history,\n        }\n\n    # Save probe (compatible with transfer_eval.py)\n    out_path = os.path.join(args.output_dir, f\"probe_layer{args.layer}.pkl\")\n    with open(out_path, \"wb\") as f:\n        pickle.dump(save_dict, f)\n    print(f\"\\nProbe saved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nENDOFFILE\ncp /root/xling_calib_direction/code/train_caclr.py /root/xling_calib_direction/train_caclr.py && echo \"DEPLOY_OK\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f368019-6ed3-4378-aecb-ac4096a9fb0d",
+            "isSidechain": false,
+            "requestId": "req_011CbEb3DQRtU2XSgyWrHmed",
+            "type": "assistant",
+            "uuid": "66350ffc-a6d3-46c0-ae0f-76e8cac57186",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018CipLBKoTmgzm5VUtrK6UD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 728,
+                "cache_read_input_tokens": 31218,
+                "output_tokens": 6708,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 728,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6708,
+                    "cache_read_input_tokens": 31218,
+                    "cache_creation_input_tokens": 728,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 728
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T22:13:18.862Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mv1r9xqTnHqSFNqFebzk8h",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DEPLOY_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66350ffc-a6d3-46c0-ae0f-76e8cac57186",
+            "isSidechain": false,
+            "promptId": "0e069c8d-a493-42f8-8971-e3d54ca6492c",
+            "type": "user",
+            "uuid": "9fac7107-af4c-4f06-828b-81171b7be4f2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DEPLOY_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"DEPLOY_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+              }
+            },
+            "sourceToolAssistantUUID": "66350ffc-a6d3-46c0-ae0f-76e8cac57186",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T22:13:23.295Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已部署。运行梯度验证。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9fac7107-af4c-4f06-828b-81171b7be4f2",
+            "isSidechain": false,
+            "requestId": "req_011CbEbAVbTM4kyc7eK8S6gp",
+            "type": "assistant",
+            "uuid": "3fc7871d-3c24-4788-9d54-3ba5e44bb0a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RcspzKiNdjk88eHm8v5tp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6788,
+                "cache_read_input_tokens": 31946,
+                "output_tokens": 514,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6788,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 514,
+                    "cache_read_input_tokens": 31946,
+                    "cache_creation_input_tokens": 6788,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6788
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T22:13:30.114Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pkbk4FJRJAahZh34iXtYi3",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-13176",
+                "account": "root",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/xling_calib_direction && python -c \"\nimport torch\nimport sys\nsys.path.insert(0, 'code')\nfrom train_caclr import CaCLRProbe, mmd_loss\n\n# Create a simple probe\nprobe = CaCLRProbe(input_dim=10, l2_weight=1.0)\n\n# Create fake data\nX_en = torch.randn(32, 10)\nX_tgt = torch.randn(32, 10)\n\n# Forward through probe\nlogits_en = probe(X_en)\nlogits_tgt = probe(X_tgt)\n\n# Compute MMD on logits\nloss_mmd = mmd_loss(logits_en.unsqueeze(1), logits_tgt.unsqueeze(1))\n\nprint(f'requires_grad: {loss_mmd.requires_grad}')\nprint(f'grad_fn: {loss_mmd.grad_fn}')\nassert loss_mmd.requires_grad, 'FAIL: MMD loss does not require grad!'\nassert loss_mmd.grad_fn is not None, 'FAIL: MMD loss has no grad_fn!'\n\n# Verify gradient flows to probe weights\nloss_mmd.backward()\ngrad = probe.linear.weight.grad\nprint(f'probe weight grad norm: {grad.norm().item():.6f}')\nassert grad is not None and grad.norm().item() > 0, 'FAIL: probe weight grad is zero!'\n\nprint('ALL GRADIENT CHECKS PASSED')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3fc7871d-3c24-4788-9d54-3ba5e44bb0a7",
+            "isSidechain": false,
+            "requestId": "req_011CbEbAVbTM4kyc7eK8S6gp",
+            "type": "assistant",
+            "uuid": "912fcf5c-c977-4a9a-85f4-d54bfbd24827",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015RcspzKiNdjk88eHm8v5tp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6788,
+                "cache_read_input_tokens": 31946,
+                "output_tokens": 514,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6788,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 514,
+                    "cache_read_input_tokens": 31946,
+                    "cache_creation_input_tokens": 6788,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6788
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "912fcf5c-c977-4a9a-85f4-d54bfbd24827",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87"
+              }
+            }
+          ],
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy train_caclr.py and verify gradient fix",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87"
+              }
+            }
+          ],
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T22:13:33.460Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pkbk4FJRJAahZh34iXtYi3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"requires_grad: True\\\\ngrad_fn: <SubBackward0 object at 0x7ff63c1743d0>\\\\nprobe weight grad norm: 0.641441\\\\nALL GRADIENT CHECKS PASSED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "912fcf5c-c977-4a9a-85f4-d54bfbd24827",
+            "isSidechain": false,
+            "promptId": "0e069c8d-a493-42f8-8971-e3d54ca6492c",
+            "type": "user",
+            "uuid": "2c5fb274-f9dd-46b9-a36a-c8ced425d1f1",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"requires_grad: True\\\\ngrad_fn: <SubBackward0 object at 0x7ff63c1743d0>\\\\nprobe weight grad norm: 0.641441\\\\nALL GRADIENT CHECKS PASSED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.33}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"requires_grad: True\\ngrad_fn: <SubBackward0 object at 0x7ff63c1743d0>\\nprobe weight grad norm: 0.641441\\nALL GRADIENT CHECKS PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.33}}"
+              }
+            },
+            "sourceToolAssistantUUID": "912fcf5c-c977-4a9a-85f4-d54bfbd24827",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T22:13:37.460Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n| 检查项 | 结果 |\n|--------|------|\n| 文件部署 `code/train_caclr.py` | OK |\n| 文件部署 `train_caclr.py` (根目录) | OK |\n| `requires_grad` | `True` |\n| `grad_fn` | `<SubBackward0 object at 0x7ff63c1743d0>` |\n| `probe weight grad norm` | `0.641441` |\n| **全部检查** | **ALL GRADIENT CHECKS PASSED** |\n\nMMD loss 梯度正常回传到 probe 权重，修复有效。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c5fb274-f9dd-46b9-a36a-c8ced425d1f1",
+            "isSidechain": false,
+            "requestId": "req_011CbEbBZzeXs9ZtBbjETQdh",
+            "type": "assistant",
+            "uuid": "fbbabd13-f7a0-4946-8cd9-b3e21da74758",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/xling_calib_direction",
+            "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011ZUP1mPrVgGPoYxujn8gTk",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 643,
+                "cache_read_input_tokens": 38734,
+                "output_tokens": 176,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 643,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 176,
+                    "cache_read_input_tokens": 38734,
+                    "cache_creation_input_tokens": 643,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 643
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "fbbabd13-f7a0-4946-8cd9-b3e21da74758",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Deploy train_caclr.py and verify gradient fix",
+                "sessionId": "0e0ccea9-1905-40b4-aac5-b341df699f87"
+              }
+            }
+          ],
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-xling-calib-direction-westd-13176-ssh-root-ssh-execute-submit-copy-17.md"
+}

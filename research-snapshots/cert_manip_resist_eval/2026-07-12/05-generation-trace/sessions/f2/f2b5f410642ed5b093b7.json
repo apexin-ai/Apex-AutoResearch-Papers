@@ -1,0 +1,484 @@
+{
+  "schema_version": "1.0",
+  "id": "f2b5f410642ed5b093b7",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Fetch https://arxiv.org/html/2601.09089v1 and extract: 1) All benchmark results - exact accuracy numbers for each model ",
+  "task_key": "agent-a024d5d4d480abe2b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a024d5d4d480abe2b.jsonl",
+    "occurrence": 1,
+    "bytes": 21993,
+    "sha256": "2470c7ebc6db7ed310fbdb81549b62e658c45f6e44df7d7dea66911182739863"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 2,
+      "tool_call": 2,
+      "tool_result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T12:26:50.261Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fetch https://arxiv.org/html/2601.09089v1 and extract: 1) All benchmark results - exact accuracy numbers for each model tested on SubTokenTest. 2) How many tasks and domains does SubTokenTest cover? 3) What is the accuracy range for current LLMs? 4) Any discussion of training methods to improve sub-token understanding? 5) Key findings about reasoning models vs non-reasoning models on sub-token tasks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "f5feb0d2-4d04-47ba-8946-60ea46dd76ee",
+            "agentId": "a024d5d4d480abe2b",
+            "type": "user",
+            "uuid": "862e6496-858b-4277-93b8-a60a83458e73",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T12:26:50.264Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "862e6496-858b-4277-93b8-a60a83458e73",
+                "isSidechain": true,
+                "agentId": "a024d5d4d480abe2b",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "23fb35ab-1d00-4cd0-b69c-41ff1a47ac75",
+                "timestamp": "2026-05-19T12:26:50.264Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea-gen-pipeline",
+                "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T12:26:50.265Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "23fb35ab-1d00-4cd0-b69c-41ff1a47ac75",
+                "isSidechain": true,
+                "agentId": "a024d5d4d480abe2b",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "1ca4f327-5c4d-4340-b19c-8537958f1272",
+                "timestamp": "2026-05-19T12:26:50.265Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea-gen-pipeline",
+                "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T12:26:53.115Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll fetch the paper and extract the requested information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ca4f327-5c4d-4340-b19c-8537958f1272",
+            "isSidechain": true,
+            "agentId": "a024d5d4d480abe2b",
+            "requestId": "req_011CbBvdg7BMq5bz1ttsP3H8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "15e2f9fd-7f75-43ce-8502-b79443cd522e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D2SdtiRjAPek75G4Lk54L9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9206,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9206,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T12:26:53.636Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QZm7VCyWTvaoHKJ4npwwTJ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15e2f9fd-7f75-43ce-8502-b79443cd522e",
+            "isSidechain": true,
+            "agentId": "a024d5d4d480abe2b",
+            "requestId": "req_011CbBvdg7BMq5bz1ttsP3H8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c56ae115-0dc9-484d-8c62-c1d7778491a9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D2SdtiRjAPek75G4Lk54L9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9206,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 89,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9206
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 89,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 9206,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9206,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T12:26:53.640Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QZm7VCyWTvaoHKJ4npwwTJ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c56ae115-0dc9-484d-8c62-c1d7778491a9",
+            "isSidechain": true,
+            "promptId": "f5feb0d2-4d04-47ba-8946-60ea46dd76ee",
+            "agentId": "a024d5d4d480abe2b",
+            "type": "user",
+            "uuid": "f38b8093-fc65-4588-a65a-1a2bcba515e1",
+            "sourceToolAssistantUUID": "c56ae115-0dc9-484d-8c62-c1d7778491a9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T12:27:05.559Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LGyjum1rVeJ5BYVPXHDt1W",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2601.09089v1",
+                "prompt": "Extract ALL of the following information exhaustively from this paper:\n\n1) ALL benchmark results - every exact accuracy number for each model tested on SubTokenTest. Include model names and their scores on each task/category. Present as complete tables if possible.\n\n2) How many tasks and domains does SubTokenTest cover? List them all.\n\n3) What is the accuracy range for current LLMs on SubTokenTest?\n\n4) Any discussion of training methods, fine-tuning approaches, or techniques to improve sub-token understanding?\n\n5) Key findings about reasoning models vs non-reasoning models on sub-token tasks - any comparisons, performance gaps, or analysis.\n\nBe as thorough and exact as possible. Include every number, every model name, every task name mentioned."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f38b8093-fc65-4588-a65a-1a2bcba515e1",
+            "isSidechain": true,
+            "agentId": "a024d5d4d480abe2b",
+            "requestId": "req_011CbBvdvnUUvpJWvWuXSZ92",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cd47221d-25f6-4a3a-b822-e01a0cdf553b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RcJUiKD1AhvbqW4P9Z4pYC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 611,
+                "cache_read_input_tokens": 9206,
+                "output_tokens": 247,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 611
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 247,
+                    "cache_read_input_tokens": 9206,
+                    "cache_creation_input_tokens": 611,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 611,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T12:27:22.579Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LGyjum1rVeJ5BYVPXHDt1W",
+              "type": "tool_result",
+              "content": "# SubTokenTest: Comprehensive Benchmark Analysis\n\n## 1. Complete Benchmark Results\n\n**Table 2 presents full evaluation results across 9 LLMs:**\n\n| Task Category | Metric | DS-V3 | DS-R1 | GPT-4 | GPT-5 | o4-mini (low) | o4-mini (high) | Qwen-7B | DS-Qwen-7B | Qwen-32B | DS-Qwen-32B |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n| **Keystroke Encoding** | EM | 86% | 95% | 90% | 99% | 95% | 96% | 2% | 0% | 13% | 42% |\n| **Keystroke Decoding** | EM | 0% | 94% | 0% | 100% | 95% | 98% | 0% | 0% | 0% | 0% |\n| **Cipher & Decipher** | EM | 30% | 43% | 25% | 40% | 14% | 38% | 0% | 0% | 0% | 0% |\n| **Cipher & Decipher** | Similarity | 0.56 | 0.96 | 0.50 | 0.96 | 0.84 | 0.88 | 0.07 | 0.08 | 0.09 | 0.12 |\n| **Bio-sequence** | EM | 77% | 85% | 32% | 97% | 86% | 98% | 0% | 0% | 0% | 2% |\n| **Bio-sequence** | Similarity | 0.86 | 0.94 | 0.74 | 0.99 | 0.76 | 0.99 | 0.13 | 0.17 | 0.29 | 0.37 |\n| **OCR-noise** | EM | 70% | 77% | 79% | 91% | 20% | 47% | 0% | 0% | 12% | 1% |\n| **OCR-noise** | Similarity | 0.92 | 0.93 | 0.95 | 0.99 | 0.94 | 0.97 | 0.57 | 0.17 | 0.94 | 0.88 |\n| **Safety-mask** | EM | 54% | 96% | 59% | 98% | 86% | 88% | 0% | 0% | 8% | 2% |\n| **Safety-mask** | F1 | 0.93 | 1.00 | 0.92 | 1.00 | 0.98 | 0.98 | 0.12 | 0.13 | 0.76 | 0.51 |\n| **Table** | Content Score | 0.69 | 0.78 | 0.95 | 0.66 | 0.34 | 0.69 | 0.52 | 0.21 | 0.55 | 0.44 |\n| **Table** | Alignment Rate | 41% | 23.9% | 21% | 36% | 34% | 59% | 0% | 57.1% | 6% | 1.2% |\n| **Tree Structure** | EM | 78% | 95% | 43% | 96% | 83% | 95% | 14% | 11% | 25% | 32% |\n| **Tree Path** | EM | 93% | 99% | 27% | 97% | 72% | 90% | 0% | 2% | 31% | 31% |\n| **Map-Nav (Sokoban)** | EM | 79% | 99% | 48% | 98% | 74% | 89% | 29% | 11% | 37% | 69% |\n| **Map-Nav (FrozenLake)** | EM | 93% | 99% | 59% | 99% | 79% | 87% | 33% | 18% | 47% | 80% |\n| **Gomoku Linear** | EM | 53% | 93% | 36% | 97% | 77% | 97% | 32% | 30% | 43% | 41% |\n| **Gomoku Diagonal** | EM | 30% | 81% | 34% | 94% | 42% | 97% | 30% | 16% | 35% | 27% |\n| **RSA-diff** | F1 | 0.07 | 0.97 | 0.04 | 0.98 | 0.58 | 0.95 | 0.01 | 0.00 | 0.01 | 0.00 |\n\n## 2. Benchmark Structure\n\n**SubTokenTest covers 10 tasks across 4 domains:**\n\n- **Sequence Transformation (3 tasks):** Keystroke-level text editing (encoding/decoding), Cipher & Decipher, Biological sequence manipulation\n- **Text Canonicalization (2 tasks):** OCR-noise canonicalization, Safety-style masking\n- **Structured Data (2 tasks):** Aligned tables, Tree understanding (structure/path queries)\n- **2D Spatial Pattern Recognition (3 tasks):** Map navigation (Sokoban/FrozenLake), Gomoku state reading (linear/diagonal), RSA difference identification\n\n## 3. Accuracy Range for Current LLMs\n\nThe performance spectrum is dramatic:\n\n- **Large reasoning models (GPT-5, DS-R1):** 81-100% on most tasks; 0-1% on others\n- **Large standard models (GPT-4, DS-V3):** 25-95% depending on task\n- **Small models (7B-32B):** \"0% to 97% depending on model and task\"\n\nThe paper notes \"a significant performance gap based on model scale: large-scale models consistently outperform smaller models by a wide margin.\"\n\n## 4. Training/Fine-tuning Methods\n\n**The paper explicitly does NOT propose solutions.** The authors state: \"we do not propose solutions for the challenges identified\" and their \"goal is to evaluate the current state of LLMs' ability to handle sub-token information.\"\n\nHowever, the paper reviews existing mitigation strategies including stochastic tokenization methods (BPE-Dropout, StochasTok) and divide-and-conquer prompting techniques, noting these approaches show promise but remain limited.\n\n## 5. Reasoning vs. Non-Reasoning Models\n\n**Critical findings:**\n\n- Reasoning models \"consistently outperform their non-reasoning counterparts\"\n- DeepSeek-R1 vs DeepSeek-V3: R1 shows substantial gains but \"this performance gain comes at a significant computational cost\" with \"tens or even hundreds of times more tokens\"\n- \"Sensitivity to reasoning budget\": Reducing o4-mini from \"high\" to \"low\" causes \"sharp accuracy drop\"\n- **Counterintuitive finding:** On smaller models (7B-32B), \"reasoning models do not always outperform their non-reasoning counterparts\"; DeepSeek-R1-Distill-Qwen-7B \"consistently lags behind its non-reasoning base model\"\n- Test-time scaling reveals \"inverted U-shaped\" performance curve: peak at ~2048 tokens, then degradation from \"overthinking\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd47221d-25f6-4a3a-b822-e01a0cdf553b",
+            "isSidechain": true,
+            "promptId": "f5feb0d2-4d04-47ba-8946-60ea46dd76ee",
+            "agentId": "a024d5d4d480abe2b",
+            "type": "user",
+            "uuid": "4ca84965-a523-471d-b9b1-4bed1f3553a9",
+            "sourceToolAssistantUUID": "cd47221d-25f6-4a3a-b822-e01a0cdf553b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T12:27:55.181Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the comprehensive extraction from the paper at `https://arxiv.org/html/2601.09089v1`:\n\n---\n\n## 1. Benchmark Results (All Exact Accuracy Numbers)\n\nThe paper evaluates 10 models (DS-V3 = DeepSeek-V3, DS-R1 = DeepSeek-R1, GPT-4, GPT-5, o4-mini at low/high reasoning effort, Qwen-7B, DS-Qwen-7B = DeepSeek-R1-Distill-Qwen-7B, Qwen-32B, DS-Qwen-32B = DeepSeek-R1-Distill-Qwen-32B):\n\n| Task | Metric | DS-V3 | DS-R1 | GPT-4 | GPT-5 | o4-mini (low) | o4-mini (high) | Qwen-7B | DS-Qwen-7B | Qwen-32B | DS-Qwen-32B |\n|---|---|---|---|---|---|---|---|---|---|---|---|\n| Keystroke Encoding | EM | 86% | 95% | 90% | 99% | 95% | 96% | 2% | 0% | 13% | 42% |\n| Keystroke Decoding | EM | 0% | 94% | 0% | 100% | 95% | 98% | 0% | 0% | 0% | 0% |\n| Cipher & Decipher | EM | 30% | 43% | 25% | 40% | 14% | 38% | 0% | 0% | 0% | 0% |\n| Cipher & Decipher | Similarity | 0.56 | 0.96 | 0.50 | 0.96 | 0.84 | 0.88 | 0.07 | 0.08 | 0.09 | 0.12 |\n| Bio-sequence | EM | 77% | 85% | 32% | 97% | 86% | 98% | 0% | 0% | 0% | 2% |\n| Bio-sequence | Similarity | 0.86 | 0.94 | 0.74 | 0.99 | 0.76 | 0.99 | 0.13 | 0.17 | 0.29 | 0.37 |\n| OCR-noise | EM | 70% | 77% | 79% | 91% | 20% | 47% | 0% | 0% | 12% | 1% |\n| OCR-noise | Similarity | 0.92 | 0.93 | 0.95 | 0.99 | 0.94 | 0.97 | 0.57 | 0.17 | 0.94 | 0.88 |\n| Safety-mask | EM | 54% | 96% | 59% | 98% | 86% | 88% | 0% | 0% | 8% | 2% |\n| Safety-mask | F1 | 0.93 | 1.00 | 0.92 | 1.00 | 0.98 | 0.98 | 0.12 | 0.13 | 0.76 | 0.51 |\n| Table | Content Score | 0.69 | 0.78 | 0.95 | 0.66 | 0.34 | 0.69 | 0.52 | 0.21 | 0.55 | 0.44 |\n| Table | Alignment Rate | 41% | 23.9% | 21% | 36% | 34% | 59% | 0% | 57.1% | 6% | 1.2% |\n| Tree Structure | EM | 78% | 95% | 43% | 96% | 83% | 95% | 14% | 11% | 25% | 32% |\n| Tree Path | EM | 93% | 99% | 27% | 97% | 72% | 90% | 0% | 2% | 31% | 31% |\n| Map-Nav (Sokoban) | EM | 79% | 99% | 48% | 98% | 74% | 89% | 29% | 11% | 37% | 69% |\n| Map-Nav (FrozenLake) | EM | 93% | 99% | 59% | 99% | 79% | 87% | 33% | 18% | 47% | 80% |\n| Gomoku Linear | EM | 53% | 93% | 36% | 97% | 77% | 97% | 32% | 30% | 43% | 41% |\n| Gomoku Diagonal | EM | 30% | 81% | 34% | 94% | 42% | 97% | 30% | 16% | 35% | 27% |\n| RSA-diff | F1 | 0.07 | 0.97 | 0.04 | 0.98 | 0.58 | 0.95 | 0.01 | 0.00 | 0.01 | 0.00 |\n\n---\n\n## 2. Tasks and Domains\n\nSubTokenTest covers **10 tasks** across **4 domains**:\n\n- **Sequence Transformation (3 tasks):** Keystroke-level text editing (encoding/decoding), Cipher & Decipher, Biological sequence manipulation\n- **Text Canonicalization (2 tasks):** OCR-noise canonicalization, Safety-style masking\n- **Structured Data (2 tasks):** Aligned tables, Tree understanding (structure and path queries)\n- **2D Spatial Pattern Recognition (3 tasks):** Map navigation (Sokoban / FrozenLake), Gomoku state reading (linear / diagonal), RSA difference identification\n\n---\n\n## 3. Accuracy Range for Current LLMs\n\nThe range is extremely wide, spanning from **0% to 100%** depending on model and task:\n\n- **Best performers** (GPT-5, DeepSeek-R1): 81--100% on most tasks, with GPT-5 hitting 100% exact match on Keystroke Decoding\n- **Large non-reasoning models** (GPT-4, DeepSeek-V3): 0--95% depending on the task, with notable failures (e.g., GPT-4 and DS-V3 both score 0% on Keystroke Decoding)\n- **Small models** (7B and 32B scale): Mostly 0--2% on many tasks, with occasional outliers (e.g., DS-Qwen-32B reaches 80% on FrozenLake)\n- There is a significant performance gap based on model scale, with large models consistently outperforming smaller ones by wide margins\n\n---\n\n## 4. Training Methods to Improve Sub-Token Understanding\n\nThe paper **explicitly does not propose solutions**. The authors state their goal is to evaluate the current state, not to fix it. However, they review existing mitigation strategies from prior work:\n\n- **Stochastic tokenization methods:** BPE-Dropout and StochasTok, which expose models to varied sub-word segmentations during training\n- **Divide-and-conquer prompting techniques:** Breaking sub-token tasks into smaller steps at inference time\n\nThe authors note these approaches show promise but remain limited in their effectiveness.\n\n---\n\n## 5. Reasoning Models vs. Non-Reasoning Models -- Key Findings\n\nThis is one of the paper's most nuanced contributions:\n\n1. **At large scale, reasoning models consistently outperform non-reasoning counterparts.** DeepSeek-R1 substantially outperforms DeepSeek-V3 across nearly all tasks (e.g., Keystroke Decoding: 94% vs. 0%; RSA-diff F1: 0.97 vs. 0.07).\n\n2. **The gain comes at enormous computational cost.** Reasoning models consume tens to hundreds of times more tokens than non-reasoning models to achieve their results.\n\n3. **Reasoning budget sensitivity.** Reducing o4-mini's reasoning effort from \"high\" to \"low\" causes sharp accuracy drops on several tasks (e.g., OCR-noise EM drops from 47% to 20%; Gomoku Diagonal from 97% to 42%).\n\n4. **At small scale, reasoning can actually hurt.** This is a counterintuitive finding: DeepSeek-R1-Distill-Qwen-7B consistently lags behind its non-reasoning base model (Qwen-7B) on multiple tasks. Distilled reasoning does not reliably transfer to sub-token tasks at small scale.\n\n5. **Inverted U-shaped performance with test-time scaling.** Performance peaks at around 2048 reasoning tokens, then degrades due to \"overthinking\" -- the model starts second-guessing correct intermediate steps with additional computation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ca84965-a523-471d-b9b1-4bed1f3553a9",
+            "isSidechain": true,
+            "agentId": "a024d5d4d480abe2b",
+            "requestId": "req_011CbBvg4Gjb8Awqc2PNNiPh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f01fe30a-56d8-415f-82aa-6e776d6f5097",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "1274bca5-2b4e-4d40-af1e-6458f6406c2c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F9UFNW5Qwh4q2d2C8SG5X3",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2130,
+                "cache_read_input_tokens": 9817,
+                "output_tokens": 2233,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2130
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2233,
+                    "cache_read_input_tokens": 9817,
+                    "cache_creation_input_tokens": 2130,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2130,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-fetch-https-arxiv-org-html-2601-09089v1-and-extract-1-all-benchmark-results-ex.md"
+}

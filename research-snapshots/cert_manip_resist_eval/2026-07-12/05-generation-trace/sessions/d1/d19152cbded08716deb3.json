@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d19152cbded08716deb3",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are a rigorous ML research idea generator. Your job is to identify novel, well-grounded research directions by doing",
+  "task_key": "14ba9916-31af-4829-9006-d24dfc26d16e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/14ba9916-31af-4829-9006-d24dfc26d16e.jsonl",
+    "occurrence": 1,
+    "bytes": 583836,
+    "sha256": "8ed34a46d1688e77beaa86e430fb169e8f133bbe9bfbc0ab5ad11d155ce5fae5"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 24,
+      "tool_call": 67,
+      "tool_result": 67
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d19152cbded08716deb3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 202,
+      "chunks": [
+        {
+          "path": "d19152cbded08716deb3-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "d19152cbded08716deb3-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-a-rigorous-ml-research-idea-generator-your-job-is-to-identify-novel-we-copy-9.md"
+}

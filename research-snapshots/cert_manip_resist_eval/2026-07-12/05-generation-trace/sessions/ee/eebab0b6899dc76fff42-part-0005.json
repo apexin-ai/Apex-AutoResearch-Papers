@@ -1,0 +1,981 @@
+{
+  "schema_version": "1.0",
+  "session_id": "eebab0b6899dc76fff42",
+  "rounds": [
+    {
+      "number": 11,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Remove backgrounds from figure legends and adjust layouts",
+                "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b"
+              }
+            }
+          ],
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-25T20:29:41.226Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012NPMdFAHcgY6EotbisXj5T",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/kappa_diversity_regime_transition.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1f5876c-788f-4671-a091-01b471ffcfb9",
+            "isSidechain": false,
+            "requestId": "req_011CbPvJUd91ZmcrLiU5qG7z",
+            "type": "assistant",
+            "uuid": "055a3aba-7ea5-4d8f-af69-e1d2feb7811c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P3vyoNnmmwzoUoeXgk3Ph5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6593,
+                "cache_read_input_tokens": 86618,
+                "output_tokens": 196,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6593,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 196,
+                    "cache_read_input_tokens": 86618,
+                    "cache_creation_input_tokens": 6593,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6593
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-25T20:29:41.557Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012NPMdFAHcgY6EotbisXj5T",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"metric\": \"kappa_diversity\",\n3\t  \"definition\": \"1 - mean(pairwise Cohen's kappa on clean winner labels)\",\n4\t  \"method\": \"wild_cluster_bootstrap\",\n5\t  \"B\": 9999,\n6\t  \"weights\": \"rademacher\",\n7\t  \"fdr_alpha\": 0.05,\n8\t  \"seed\": 42,\n9\t  \"correlation_with_keff\": {\n10\t    \"pearson\": 0.9796,\n11\t    \"spearman\": 0.9733\n12\t  },\n13\t  \"K3\": {\n14\t    \"n_panels\": 455,\n15\t    \"eta_max_fdr_sig\": \"1/12\",\n16\t    \"kappa_div_fdr_sig\": \"8/12\",\n17\t    \"per_condition\": {\n18\t      \"mmluxprompt_injection\": {\n19\t        \"n_panels\": 455,\n20\t        \"kd_boot_p\": [\n21\t          0.0003,\n22\t          0.003,\n23\t          0.0017\n24\t        ],\n25\t        \"kd_final_p\": 0.003,\n26\t        \"kd_ols_std_beta\": 0.49213060730652003,\n27\t        \"kd_ols_t\": 9.682610009711807,\n28\t        \"kd_ols_beta\": 3.9463782805667442,\n29\t        \"kd_n_clusters\": [\n30\t          13,\n31\t          13,\n32\t          13\n33\t        ],\n34\t        \"eta_boot_p\": [\n35\t          0.0758,\n36\t          0.0236,\n37\t          0.0152\n38\t        ],\n39\t        \"eta_final_p\": 0.0758,\n40\t        \"eta_ols_std_beta\": 0.22161121426192276,\n41\t        \"eta_ols_t\": 4.36017376204444,\n42\t        \"eta_ols_beta\": 0.7706888207904339,\n43\t        \"eta_n_clusters\": [\n44\t          13,\n45\t          13,\n46\t          13\n47\t        ],\n48\t        \"skipped\": false,\n49\t        \"kd_fdr_p\": 0.0244,\n50\t        \"eta_fdr_p\": 0.1516\n51\t      },\n52\t      \"mmluxsycophancy\": {\n53\t        \"n_panels\": 455,\n54\t        \"kd_boot_p\": [\n55\t          0.0061,\n56\t          0.0044,\n57\t          0.0015\n58\t        ],\n59\t        \"kd_final_p\": 0.0061,\n60\t        \"kd_ols_std_beta\": 0.4769124081503548,\n61\t        \"kd_ols_t\": 9.773349470259028,\n62\t        \"kd_ols_beta\": 4.001320396891163,\n63\t        \"kd_n_clusters\": [\n64\t          13,\n65\t          13,\n66\t          13\n67\t        ],\n68\t        \"eta_boot_p\": [\n69\t          0.0235,\n70\t          0.0053,\n71\t          0.0501\n72\t        ],\n73\t        \"eta_final_p\": 0.0501,\n74\t        \"eta_ols_std_beta\": 0.14367203381973737,\n75\t        \"eta_ols_t\": 2.9442660153654265,\n76\t        \"eta_ols_beta\": 0.44590365876101956,\n77\t        \"eta_n_clusters\": [\n78\t          13,\n79\t          13,\n80\t          13\n81\t        ],\n82\t        \"skipped\": false,\n83\t        \"kd_fdr_p\": 0.0244,\n84\t        \"eta_fdr_p\": 0.1516\n85\t      },\n86\t      \"mmluxscore_manipulation\": {\n87\t        \"n_panels\": 455,\n88\t        \"kd_boot_p\": [\n89\t          0.0002,\n90\t          0.0024,\n91\t          0.0197\n92\t        ],\n93\t        \"kd_final_p\": 0.0197,\n94\t        \"kd_ols_std_beta\": 0.4987751250213029,\n95\t        \"kd_ols_t\": 8.867457880646366,\n96\t        \"kd_ols_beta\": 4.022604358137376,\n97\t        \"kd_n_clusters\": [\n98\t          13,\n99\t          13,\n100\t          13\n101\t        ],\n102\t        \"eta_boot_p\": [\n103\t          0.3961,\n104\t          0.3928,\n105\t          0.1946\n106\t        ],\n107\t        \"eta_final_p\": 0.3961,\n108\t        \"eta_ols_std_beta\": 0.17742055640505539,\n109\t        \"eta_ols_t\": 3.154265784636926,\n110\t        \"eta_ols_beta\": 0.7556535595039279,\n111\t        \"eta_n_clusters\": [\n112\t          13,\n113\t          13,\n114\t          13\n115\t        ],\n116\t        \"skipped\": false,\n117\t        \"kd_fdr_p\": 0.03255,\n118\t        \"eta_fdr_p\": 0.43210909090909094\n119\t      },\n120\t      \"mmluxverbosity_bias\": {\n121\t        \"n_panels\": 455,\n122\t        \"kd_boot_p\": [\n123\t          0.0158,\n124\t          0.0041,\n125\t          0.0015\n126\t        ],\n127\t        \"kd_final_p\": 0.0158,\n128\t        \"kd_ols_std_beta\": 0.3517834078549594,\n129\t        \"kd_ols_t\": 6.444032352519589,\n130\t        \"kd_ols_beta\": 3.1716595850298135,\n131\t        \"kd_n_clusters\": [\n132\t          13,\n133\t          13,\n134\t          13\n135\t        ],\n136\t        \"eta_boot_p\": [\n137\t          0.1024,\n138\t          0.002,\n139\t          0.0397\n140\t        ],\n141\t        \"eta_final_p\": 0.1024,\n142\t        \"eta_ols_std_beta\": 0.271282372020044,\n143\t        \"eta_ols_t\": 4.969399758291528,\n144\t        \"eta_ols_beta\": 1.0594675130659028,\n145\t        \"eta_n_clusters\": [\n146\t          13,\n147\t          13,\n148\t          13\n149\t        ],\n150\t        \"skipped\": false,\n151\t        \"kd_fdr_p\": 0.03255,\n152\t        \"eta_fdr_p\": 0.1557\n153\t      },\n154\t      \"mmluxposition_bias\": {\n155\t        \"n_panels\": 455,\n156\t        \"kd_boot_p\": [\n157\t          0.3269,\n158\t          0.2375,\n159\t          0.2884\n160\t        ],\n161\t        \"kd_final_p\": 0.3269,\n162\t        \"kd_ols_std_beta\": 0.07045353299855531,\n163\t        \"kd_ols_t\": 1.7448211993277216,\n164\t        \"kd_ols_beta\": 0.014476817039243115,\n165\t        \"kd_n_clusters\": [\n166\t          13,\n167\t          13,\n168\t          13\n169\t        ],\n170\t        \"eta_boot_p\": [\n171\t          0.0015,\n172\t          0.0002,\n173\t          0.0007\n174\t        ],\n175\t        \"eta_final_p\": 0.0015,\n176\t        \"eta_ols_std_beta\": 0.6947381183009252,\n177\t        \"eta_ols_t\": 17.20557855938021,\n178\t        \"eta_ols_beta\": 0.7470934735149278,\n179\t        \"eta_n_clusters\": [\n180\t          13,\n181\t          13,\n182\t          13\n183\t        ],\n184\t        \"skipped\": false,\n185\t        \"kd_fdr_p\": 0.35661818181818183,\n186\t        \"eta_fdr_p\": 0.018000000000000002\n187\t      },\n188\t      \"mmluxauthority_bias\": {\n189\t        \"n_panels\": 455,\n190\t        \"kd_boot_p\": [\n191\t          0.0015,\n192\t          0.0043,\n193\t          0.0016\n194\t        ],\n195\t        \"kd_final_p\": 0.0043,\n196\t        \"kd_ols_std_beta\": 0.7361981780973242,\n197\t        \"kd_ols_t\": 11.375756058950294,\n198\t        \"kd_ols_beta\": 5.550771467443809,\n199\t        \"kd_n_clusters\": [\n200\t          13,\n201\t          13,\n202\t          13\n203\t        ],\n204\t        \"eta_boot_p\": [\n205\t          0.5994,\n206\t          0.4513,\n207\t          0.7017\n208\t        ],\n209\t        \"eta_final_p\": 0.7017,\n210\t        \"eta_ols_std_beta\": -0.19427734441161482,\n211\t        \"eta_ols_t\": -3.001979281610032,\n212\t        \"eta_ols_beta\": -0.9583550702673487,\n213\t        \"eta_n_clusters\": [\n214\t          13,\n215\t          13,\n216\t          13\n217\t        ],\n218\t        \"skipped\": false,\n219\t        \"kd_fdr_p\": 0.0244,\n220\t        \"eta_fdr_p\": 0.7017\n221\t      },\n222\t      \"arc_challengexprompt_injection\": {\n223\t        \"n_panels\": 455,\n224\t        \"kd_boot_p\": [\n225\t          0.0047,\n226\t          0.0152,\n227\t          0.0037\n228\t        ],\n229\t        \"kd_final_p\": 0.0152,\n230\t        \"kd_ols_std_beta\": 0.40191256626054056,\n231\t        \"kd_ols_t\": 7.21195895911225,\n232\t        \"kd_ols_beta\": 2.0276316636909297,\n233\t        \"kd_n_clusters\": [\n234\t          13,\n235\t          13,\n236\t          13\n237\t        ],\n238\t        \"eta_boot_p\": [\n239\t          0.0616,\n240\t          0.0136,\n241\t          0.0006\n242\t        ],\n243\t        \"eta_final_p\": 0.0616,\n244\t        \"eta_ols_std_beta\": 0.21217767873315566,\n245\t        \"eta_ols_t\": 3.807337315428091,\n246\t        \"eta_ols_beta\": 0.41464921513504144,\n247\t        \"eta_n_clusters\": [\n248\t          13,\n249\t          13,\n250\t          13\n251\t        ],\n252\t        \"skipped\": false,\n253\t        \"kd_fdr_p\": 0.03255,\n254\t        \"eta_fdr_p\": 0.1516\n255\t      },\n256\t      \"arc_challengexsycophancy\": {\n257\t        \"n_panels\": 455,\n258\t        \"kd_boot_p\": [\n259\t          0.0495,\n260\t          0.0138,\n261\t          0.0035\n262\t        ],\n263\t        \"kd_final_p\": 0.0495,\n264\t        \"kd_ols_std_beta\": 0.3106781156192882,\n265\t        \"kd_ols_t\": 5.27881205697093,\n266\t        \"kd_ols_beta\": 1.6091779472631982,\n267\t        \"kd_n_clusters\": [\n268\t          13,\n269\t          13,\n270\t          13\n271\t        ],\n272\t        \"eta_boot_p\": [\n273\t          0.0027,\n274\t          0.016,\n275\t          0.0068\n276\t        ],\n277\t        \"eta_final_p\": 0.016,\n278\t        \"eta_ols_std_beta\": 0.21699583770510128,\n279\t        \"eta_ols_t\": 3.687032290983437,\n280\t        \"eta_ols_beta\": 0.5177073343302907,\n281\t        \"eta_n_clusters\": [\n282\t          13,\n283\t          13,\n284\t          13\n285\t        ],\n286\t        \"skipped\": false,\n287\t        \"kd_fdr_p\": 0.066,\n288\t        \"eta_fdr_p\": 0.096\n289\t      },\n290\t      \"arc_challengexscore_manipulation\": {\n291\t        \"n_panels\": 455,\n292\t        \"kd_boot_p\": [\n293\t          0.0164,\n294\t          0.0076,\n295\t          0.0011\n296\t        ],\n297\t        \"kd_final_p\": 0.0164,\n298\t        \"kd_ols_std_beta\": 0.8848959482941136,\n299\t        \"kd_ols_t\": 9.021625460165897,\n300\t        \"kd_ols_beta\": 4.003320339944618,\n301\t        \"kd_n_clusters\": [\n302\t          13,\n303\t          13,\n304\t          13\n305\t        ],\n306\t        \"eta_boot_p\": [\n307\t          0.0751,\n308\t          0.0378,\n309\t          0.0225\n310\t        ],\n311\t        \"eta_final_p\": 0.0751,\n312\t        \"eta_ols_std_beta\": -0.32214735640936804,\n313\t        \"eta_ols_t\": -3.284332805580846,\n314\t        \"eta_ols_beta\": -1.0772588216992034,\n315\t        \"eta_n_clusters\": [\n316\t          13,\n317\t          13,\n318\t          13\n319\t        ],\n320\t        \"skipped\": false,\n321\t        \"kd_fdr_p\": 0.03255,\n322\t        \"eta_fdr_p\": 0.1516\n323\t      },\n324\t      \"arc_challengexverbosity_bias\": {\n325\t        \"n_panels\": 455,\n326\t        \"kd_boot_p\": [\n327\t          0.0217,\n328\t          0.0113,\n329\t          0.0082\n330\t        ],\n331\t        \"kd_final_p\": 0.0217,\n332\t        \"kd_ols_std_beta\": 0.40087728651622756,\n333\t        \"kd_ols_t\": 6.351906802395125,\n334\t        \"kd_ols_beta\": 2.1333406688194,\n335\t        \"kd_n_clusters\": [\n336\t          13,\n337\t          13,\n338\t          13\n339\t        ],\n340\t        \"eta_boot_p\": [\n341\t          0.2065,\n342\t          0.0245,\n343\t          0.0216\n344\t        ],\n345\t        \"eta_final_p\": 0.2065,\n346\t        \"eta_ols_std_beta\": 0.19233610457179123,\n347\t        \"eta_ols_t\": 3.0475685504478767,\n348\t        \"eta_ols_beta\": 0.536207933062196,\n349\t        \"eta_n_clusters\": [\n350\t          13,\n351\t          13,\n352\t          13\n353\t        ],\n354\t        \"skipped\": false,\n355\t        \"kd_fdr_p\": 0.03255,\n356\t        \"eta_fdr_p\": 0.2753333333333333\n357\t      },\n358\t      \"arc_challengexposition_bias\": {\n359\t        \"n_panels\": 455,\n360\t        \"kd_boot_p\": [\n361\t          0.978,\n362\t          0.9418,\n363\t          0.9851\n364\t        ],\n365\t        \"kd_final_p\": 0.9851,\n366\t        \"kd_ols_std_beta\": 0.009510769741964109,\n367\t        \"kd_ols_t\": 0.09806563312729139,\n368\t        \"kd_ols_beta\": 0.0011628349497247597,\n369\t        \"kd_n_clusters\": [\n370\t          13,\n371\t          13,\n372\t          13\n373\t        ],\n374\t        \"eta_boot_p\": [\n375\t          0.0167,\n376\t          0.0394,\n377\t          0.1038\n378\t        ],\n379\t        \"eta_final_p\": 0.1038,\n380\t        \"eta_ols_std_beta\": 0.48617551181866947,\n381\t        \"eta_ols_t\": 5.012960114796847,\n382\t        \"eta_ols_beta\": 0.25627808734389984,\n383\t        \"eta_n_clusters\": [\n384\t          13,\n385\t          13,\n386\t          13\n387\t        ],\n388\t        \"skipped\": false,\n389\t        \"kd_fdr_p\": 0.9851,\n390\t        \"eta_fdr_p\": 0.1557\n391\t      },\n392\t      \"arc_challengexauthority_bias\": {\n393\t        \"n_panels\": 455,\n394\t        \"kd_boot_p\": [\n395\t          0.1876,\n396\t          0.0209,\n397\t          0.0183\n398\t        ],\n399\t        \"kd_final_p\": 0.1876,\n400\t        \"kd_ols_std_beta\": 0.30854908420867233,\n401\t        \"kd_ols_t\": 5.007156273900366,\n402\t        \"kd_ols_beta\": 1.599600437948073,\n403\t        \"kd_n_clusters\": [\n404\t          13,\n405\t          13,\n406\t          13\n407\t        ],\n408\t        \"eta_boot_p\": [\n409\t          0.2979,\n410\t          0.0252,\n411\t          0.0239\n412\t        ],\n413\t        \"eta_final_p\": 0.2979,\n414\t        \"eta_ols_std_beta\": 0.17441756709499354,\n415\t        \"eta_ols_t\": 2.830460565449294,\n416\t        \"eta_ols_beta\": 0.533621982735489,\n417\t        \"eta_n_clusters\": [\n418\t          13,\n419\t          13,\n420\t          13\n421\t        ],\n422\t        \"skipped\": false,\n423\t        \"kd_fdr_p\": 0.22512,\n424\t        \"eta_fdr_p\": 0.35747999999999996\n425\t      }\n426\t    }\n427\t  },\n428\t  \"K5\": {\n429\t    \"n_panels\": 3003,\n430\t    \"eta_max_fdr_sig\": \"4/12\",\n431\t    \"kappa_div_fdr_sig\": \"7/12\",\n432\t    \"per_condition\": {\n433\t      \"mmluxprompt_injection\": {\n434\t        \"n_panels\": 3003,\n435\t        \"kd_boot_p\": [\n436\t          0.0005,\n437\t          0.0005,\n438\t          0.0025,\n439\t          0.0011,\n440\t          0.0005\n441\t        ],\n442\t        \"kd_final_p\": 0.0025,\n443\t        \"kd_ols_std_beta\": 0.5504910962162929,\n444\t        \"kd_ols_t\": 31.646780593088092,\n445\t        \"kd_ols_beta\": 5.782269535950856,\n446\t        \"kd_n_clusters\": [\n447\t          11,\n448\t          11,\n449\t          11,\n450\t          11,\n451\t          11\n452\t        ],\n453\t        \"eta_boot_p\": [\n454\t          0.1433,\n455\t          0.0215,\n456\t          0.0145,\n457\t          0.0123,\n458\t          0.0308\n459\t        ],\n460\t        \"eta_final_p\": 0.1433,\n461\t        \"eta_ols_std_beta\": 0.14923674022234348,\n462\t        \"eta_ols_t\": 8.579361967352353,\n463\t        \"eta_ols_beta\": 0.64523597450718,\n464\t        \"eta_n_clusters\": [\n465\t          11,\n466\t          11,\n467\t          11,\n468\t          11,\n469\t          11\n470\t        ],\n471\t        \"skipped\": false,\n472\t        \"kd_fdr_p\": 0.0096,\n473\t        \"eta_fdr_p\": 0.24565714285714285\n474\t      },\n475\t      \"mmluxsycophancy\": {\n476\t        \"n_panels\": 3003,\n477\t        \"kd_boot_p\": [\n478\t          0.0019,\n479\t          0.001,\n480\t          0.003,\n481\t          0.0016,\n482\t          0.0016\n483\t        ],\n484\t        \"kd_final_p\": 0.003,\n485\t        \"kd_ols_std_beta\": 0.45933485624456494,\n486\t        \"kd_ols_t\": 28.298023692381097,\n487\t        \"kd_ols_beta\": 6.168340830216315,\n488\t        \"kd_n_clusters\": [\n489\t          11,\n490\t          11,\n491\t          11,\n492\t          11,\n493\t          11\n494\t        ],\n495\t        \"eta_boot_p\": [\n496\t          0.0156,\n497\t          0.007,\n498\t          0.0122,\n499\t          0.0079,\n500\t          0.0143\n501\t        ],\n502\t        \"eta_final_p\": 0.0156,\n503\t        \"eta_ols_std_beta\": 0.18013366600574054,\n504\t        \"eta_ols_t\": 11.097408958035185,\n505\t        \"eta_ols_beta\": 1.2156720088516377,\n506\t        \"eta_n_clusters\": [\n507\t          11,\n508\t          11,\n509\t          11,\n510\t          11,\n511\t          11\n512\t        ],\n513\t        \"skipped\": false,\n514\t        \"kd_fdr_p\": 0.0096,\n515\t        \"eta_fdr_p\": 0.0468\n516\t      },\n517\t      \"mmluxscore_manipulation\": {\n518\t        \"n_panels\": 3003,\n519\t        \"kd_boot_p\": [\n520\t          0.0039,\n521\t          0.001,\n522\t          0.003,\n523\t          0.0016,\n524\t          0.004\n525\t        ],\n526\t        \"kd_final_p\": 0.004,\n527\t        \"kd_ols_std_beta\": 0.6831444668115227,\n528\t        \"kd_ols_t\": 30.898707973026543,\n529\t        \"kd_ols_beta\": 8.465900302174667,\n530\t        \"kd_n_clusters\": [\n531\t          11,\n532\t          11,\n533\t          11,\n534\t          11,\n535\t          11\n536\t        ],\n537\t        \"eta_boot_p\": [\n538\t          0.1767,\n539\t          0.1772,\n540\t          0.0251,\n541\t          0.0084,\n542\t          0.428\n543\t        ],\n544\t        \"eta_final_p\": 0.428,\n545\t        \"eta_ols_std_beta\": -0.13579018274993349,\n546\t        \"eta_ols_t\": -6.141806610799581,\n547\t        \"eta_ols_beta\": -0.7185038769900618,\n548\t        \"eta_n_clusters\": [\n549\t          11,\n550\t          11,\n551\t          11,\n552\t          11,\n553\t          11\n554\t        ],\n555\t        \"skipped\": false,\n556\t        \"kd_fdr_p\": 0.0096,\n557\t        \"eta_fdr_p\": 0.5706666666666667\n558\t      },\n559\t      \"mmluxverbosity_bias\": {\n560\t        \"n_panels\": 3003,\n561\t        \"kd_boot_p\": [\n562\t          0.0078,\n563\t          0.0144,\n564\t          0.0014,\n565\t          0.002,\n566\t          0.002\n567\t        ],\n568\t        \"kd_final_p\": 0.0144,\n569\t        \"kd_ols_std_beta\": 0.34556572949440323,\n570\t        \"kd_ols_t\": 21.47004227922604,\n571\t        \"kd_ols_beta\": 5.715105303342557,\n572\t        \"kd_n_clusters\": [\n573\t          11,\n574\t          11,\n575\t          11,\n576\t          11,\n577\t          11\n578\t        ],\n579\t        \"eta_boot_p\": [\n580\t          0.0004,\n581\t          0.0004,\n582\t          0.0004,\n583\t          0.0031,\n584\t          0.0133\n585\t        ],\n586\t        \"eta_final_p\": 0.0133,\n587\t        \"eta_ols_std_beta\": 0.3817534499405299,\n588\t        \"eta_ols_t\": 23.718389906474318,\n589\t        \"eta_ols_beta\": 2.442200993238772,\n590\t        \"eta_n_clusters\": [\n591\t          11,\n592\t          11,\n593\t          11,\n594\t          11,\n595\t          11\n596\t        ],\n597\t        \"skipped\": false,\n598\t        \"kd_fdr_p\": 0.0288,\n599\t        \"eta_fdr_p\": 0.0468\n600\t      },\n601\t      \"mmluxposition_bias\": {\n602\t        \"n_panels\": 3003,\n603\t        \"kd_boot_p\": [\n604\t          0.044,\n605\t          0.0186,\n606\t          0.0025,\n607\t          0.0094,\n608\t          0.1173\n609\t        ],\n610\t        \"kd_final_p\": 0.1173,\n611\t        \"kd_ols_std_beta\": 0.19373207647345048,\n612\t        \"kd_ols_t\": 13.271160298121979,\n613\t        \"kd_ols_beta\": 0.06495482143081234,\n614\t        \"kd_n_clusters\": [\n615\t          11,\n616\t          11,\n617\t          11,\n618\t          11,\n619\t          11\n620\t        ],\n621\t        \"eta_boot_p\": [\n622\t          0.0008,\n623\t          0.0008,\n624\t          0.0008,\n625\t          0.0018,\n626\t          0.0008\n627\t        ],\n628\t        \"eta_final_p\": 0.0018,\n629\t        \"eta_ols_std_beta\": 0.610193428294491,\n630\t        \"eta_ols_t\": 41.799865810379885,\n631\t        \"eta_ols_beta\": 0.7271746491087933,\n632\t        \"eta_n_clusters\": [\n633\t          11,\n634\t          11,\n635\t          11,\n636\t          11,\n637\t          11\n638\t        ],\n639\t        \"skipped\": false,\n640\t        \"kd_fdr_p\": 0.17453333333333332,\n641\t        \"eta_fdr_p\": 0.0108\n642\t      },\n643\t      \"mmluxauthority_bias\": {\n644\t        \"n_panels\": 3003,\n645\t        \"kd_boot_p\": [\n646\t          0.0036,\n647\t          0.001,\n648\t          0.003,\n649\t          0.0016,\n650\t          0.001\n651\t        ],\n652\t        \"kd_final_p\": 0.0036,\n653\t        \"kd_ols_std_beta\": 0.48400529437619677,\n654\t        \"kd_ols_t\": 22.130478810076475,\n655\t        \"kd_ols_beta\": 6.318281325877138,\n656\t        \"kd_n_clusters\": [\n657\t          11,\n658\t          11,\n659\t          11,\n660\t          11,\n661\t          11\n662\t        ],\n663\t        \"eta_boot_p\": [\n664\t          0.3581,\n665\t          0.5303,\n666\t          0.1725,\n667\t          0.2119,\n668\t          0.6569\n669\t        ],\n670\t        \"eta_final_p\": 0.6569,\n671\t        \"eta_ols_std_beta\": -0.06513331607866216,\n672\t        \"eta_ols_t\": -2.978131619751739,\n673\t        \"eta_ols_beta\": -0.6845132621174859,\n674\t        \"eta_n_clusters\": [\n675\t          11,\n676\t          11,\n677\t          11,\n678\t          11,\n679\t          11\n680\t        ],\n681\t        \"skipped\": false,\n682\t        \"kd_fdr_p\": 0.0096,\n683\t        \"eta_fdr_p\": 0.7166181818181819\n684\t      },\n685\t      \"arc_challengexprompt_injection\": {\n686\t        \"n_panels\": 3003,\n687\t        \"kd_boot_p\": [\n688\t          0.0158,\n689\t          0.005,\n690\t          0.0236,\n691\t          0.0058,\n692\t          0.019\n693\t        ],\n694\t        \"kd_final_p\": 0.0236,\n695\t        \"kd_ols_std_beta\": 0.4676965256858394,\n696\t        \"kd_ols_t\": 19.33515318564625,\n697\t        \"kd_ols_beta\": 3.2622274949050576,\n698\t        \"kd_n_clusters\": [\n699\t          11,\n700\t          11,\n701\t          11,\n702\t          11,\n703\t          11\n704\t        ],\n705\t        \"eta_boot_p\": [\n706\t          0.4843,\n707\t          0.655,\n708\t          0.5835,\n709\t          0.2011,\n710\t          0.4744\n711\t        ],\n712\t        \"eta_final_p\": 0.655,\n713\t        \"eta_ols_std_beta\": 0.04237588492379265,\n714\t        \"eta_ols_t\": 1.7518715264718816,\n715\t        \"eta_ols_beta\": 0.16243894640139425,\n716\t        \"eta_n_clusters\": [\n717\t          11,\n718\t          11,\n719\t          11,\n720\t          11,\n721\t          11\n722\t        ],\n723\t        \"skipped\": false,\n724\t        \"kd_fdr_p\": 0.04045714285714285,\n725\t        \"eta_fdr_p\": 0.7166181818181819\n726\t      },\n727\t      \"arc_challengexsycophancy\": {\n728\t        \"n_panels\": 3003,\n729\t        \"kd_boot_p\": [\n730\t          0.5061,\n731\t          0.5503,\n732\t          0.4915,\n733\t          0.4663,\n734\t          0.2612\n735\t        ],\n736\t        \"kd_final_p\": 0.5503,\n737\t        \"kd_ols_std_beta\": 0.05877107368397245,\n738\t        \"kd_ols_t\": 2.2479364973030496,\n739\t        \"kd_ols_beta\": 0.44966007082939485,\n740\t        \"kd_n_clusters\": [\n741\t          11,\n742\t          11,\n743\t          11,\n744\t          11,\n745\t          11\n746\t        ],\n747\t        \"eta_boot_p\": [\n748\t          0.0403,\n749\t          0.0111,\n750\t          0.0028,\n751\t          0.0077,\n752\t          0.0176\n753\t        ],\n754\t        \"eta_final_p\": 0.0403,\n755\t        \"eta_ols_std_beta\": 0.3514273823668971,\n756\t        \"eta_ols_t\": 13.441756113257393,\n757\t        \"eta_ols_beta\": 1.5927686048496144,\n758\t        \"eta_n_clusters\": [\n759\t          11,\n760\t          11,\n761\t          11,\n762\t          11,\n763\t          11\n764\t        ],\n765\t        \"skipped\": false,\n766\t        \"kd_fdr_p\": 0.6003272727272727,\n767\t        \"eta_fdr_p\": 0.09672\n768\t      },\n769\t      \"arc_challengexscore_manipulation\": {\n770\t        \"n_panels\": 3003,\n771\t        \"kd_boot_p\": [\n772\t          0.0019,\n773\t          0.001,\n774\t          0.001,\n775\t          0.001,\n776\t          0.001\n777\t        ],\n778\t        \"kd_final_p\": 0.0019,\n779\t        \"kd_ols_std_beta\": 1.2119788575218602,\n780\t        \"kd_ols_t\": 26.858782315763747,\n781\t        \"kd_ols_beta\": 8.091606226881032,\n782\t        \"kd_n_clusters\": [\n783\t          11,\n784\t          11,\n785\t          11,\n786\t          11,\n787\t          11\n788\t        ],\n789\t        \"eta_boot_p\": [\n790\t          0.0017,\n791\t          0.001,\n792\t          0.0004,\n793\t          0.0004,\n794\t          0.0004\n795\t        ],\n796\t        \"eta_final_p\": 0.0017,\n797\t        \"eta_ols_std_beta\": -0.7520198792758134,\n798\t        \"eta_ols_t\": -16.665586292401667,\n799\t        \"eta_ols_beta\": -3.5827048209295986,\n800\t        \"eta_n_clusters\": [\n801\t          11,\n802\t          11,\n803\t          11,\n804\t          11,\n805\t          11\n806\t        ],\n807\t        \"skipped\": false,\n808\t        \"kd_fdr_p\": 0.0096,\n809\t        \"eta_fdr_p\": 0.0108\n810\t      },\n811\t      \"arc_challengexverbosity_bias\": {\n812\t        \"n_panels\": 3003,\n813\t        \"kd_boot_p\": [\n814\t          0.1309,\n815\t          0.0082,\n816\t          0.0196,\n817\t          0.0011,\n818\t          0.0086\n819\t        ],\n820\t        \"kd_final_p\": 0.1309,\n821\t        \"kd_ols_std_beta\": 0.35122953245850946,\n822\t        \"kd_ols_t\": 12.554802696129748,\n823\t        \"kd_ols_beta\": 2.7941259259044378,\n824\t        \"kd_n_clusters\": [\n825\t          11,\n826\t          11,\n827\t          11,\n828\t          11,\n829\t          11\n830\t        ],\n831\t        \"eta_boot_p\": [\n832\t          0.0686,\n833\t          0.0794,\n834\t          0.0628,\n835\t          0.0514,\n836\t          0.2099\n837\t        ],\n838\t        \"eta_final_p\": 0.2099,\n839\t        \"eta_ols_std_beta\": 0.19447903456785562,\n840\t        \"eta_ols_t\": 6.951710155015611,\n841\t        \"eta_ols_beta\": 0.8747692580060344,\n842\t        \"eta_n_clusters\": [\n843\t          11,\n844\t          11,\n845\t          11,\n846\t          11,\n847\t          11\n848\t        ],\n849\t        \"skipped\": false,\n850\t        \"kd_fdr_p\": 0.17453333333333332,\n851\t        \"eta_fdr_p\": 0.31485\n852\t      },\n853\t      \"arc_challengexposition_bias\": {\n854\t        \"n_panels\": 3003,\n855\t        \"kd_boot_p\": [\n856\t          0.0745,\n857\t          0.0167,\n858\t          0.1108,\n859\t          0.1556,\n860\t          0.8342\n861\t        ],\n862\t        \"kd_final_p\": 0.8342,\n863\t        \"kd_ols_std_beta\": 0.2929414963402313,\n864\t        \"kd_ols_t\": 6.2656723333852895,\n865\t        \"kd_ols_beta\": 0.04423034102632828,\n866\t        \"kd_n_clusters\": [\n867\t          11,\n868\t          11,\n869\t          11,\n870\t          11,\n871\t          11\n872\t        ],\n873\t        \"eta_boot_p\": [\n874\t          0.9858,\n875\t          0.9862,\n876\t          0.9935,\n877\t          0.9962,\n878\t          0.9973\n879\t        ],\n880\t        \"eta_final_p\": 0.9973,\n881\t        \"eta_ols_std_beta\": 0.0016966250723171516,\n882\t        \"eta_ols_t\": 0.036288804790560326,\n883\t        \"eta_ols_beta\": 0.0008277366361525211,\n884\t        \"eta_n_clusters\": [\n885\t          11,\n886\t          11,\n887\t          11,\n888\t          11,\n889\t          11\n890\t        ],\n891\t        \"skipped\": false,\n892\t        \"kd_fdr_p\": 0.8342,\n893\t        \"eta_fdr_p\": 0.9973\n894\t      },\n895\t      \"arc_challengexauthority_bias\": {\n896\t        \"n_panels\": 3003,\n897\t        \"kd_boot_p\": [\n898\t          0.2679,\n899\t          0.1199,\n900\t          0.2422,\n901\t          0.0375,\n902\t          0.1165\n903\t        ],\n904\t        \"kd_final_p\": 0.2679,\n905\t        \"kd_ols_std_beta\": 0.14074322997514566,\n906\t        \"kd_ols_t\": 5.720732306167387,\n907\t        \"kd_ols_beta\": 1.0956012141896776,\n908\t        \"kd_n_clusters\": [\n909\t          11,\n910\t          11,\n911\t          11,\n912\t          11,\n913\t          11\n914\t        ],\n915\t        \"eta_boot_p\": [\n916\t          0.0273,\n917\t          0.004,\n918\t          0.0346,\n919\t          0.0014,\n920\t          0.08\n921\t        ],\n922\t        \"eta_final_p\": 0.08,\n923\t        \"eta_ols_std_beta\": 0.2927602098167038,\n924\t        \"eta_ols_t\": 11.899704096278914,\n925\t        \"eta_ols_beta\": 1.2798871795326776,\n926\t        \"eta_n_clusters\": [\n927\t          11,\n928\t          11,\n929\t          11,\n930\t          11,\n931\t          11\n932\t        ],\n933\t        \"skipped\": false,\n934\t        \"kd_fdr_p\": 0.32148000000000004,\n935\t        \"eta_fdr_p\": 0.16\n936\t      }\n937\t    }\n938\t  },\n939\t  \"K7\": {\n940\t    \"n_panels\": 6435,\n941\t    \"eta_max_fdr_sig\": \"1/12\",\n942\t    \"kappa_div_fdr_sig\": \"6/12\",\n943\t    \"per_condition\": {\n944\t      \"mmluxprompt_injection\": {\n945\t        \"n_panels\": 6435,\n946\t        \"kd_boot_p\": [\n947\t          0.0019,\n948\t          0.0019,\n949\t          0.0019,\n950\t          0.0019,\n951\t          0.0019,\n952\t          0.0019,\n953\t          0.0019\n954\t        ],\n955\t        \"kd_final_p\": 0.0019,\n956\t        \"kd_ols_std_beta\": 0.5335534504275652,\n957\t        \"kd_ols_t\": 46.09674768408079,\n958\t        \"kd_ols_beta\": 5.407101444375861,\n959\t        \"kd_n_clusters\": [\n960\t          9,\n961\t          9,\n962\t          9,\n963\t          9,\n964\t          9,\n965\t          9,\n966\t          9\n967\t        ],\n968\t        \"eta_boot_p\": [\n969\t          0.0629,\n970\t          0.1302,\n971\t          0.0922,\n972\t          0.0812,\n973\t          0.0551,\n974\t          0.1212,\n975\t          0.2469\n976\t        ],\n977\t        \"eta_final_p\": 0.2469,\n978\t        \"eta_ols_std_beta\": 0.1279539365969874,\n979\t        \"eta_ols_t\": 11.054675638906758,\n980\t        \"eta_ols_beta\": 0.5774408817481179,\n981\t        \"eta_n_clusters\": [\n982\t          9,\n983\t          9,\n984\t          9,\n985\t          9,\n986\t          9,\n987\t          9,\n988\t          9\n989\t        ],\n990\t        \"skipped\": false,\n991\t        \"kd_fdr_p\": 0.020100000000000003,\n992\t        \"eta_fdr_p\": 0.40395\n993\t      },\n994\t      \"mmluxsycophancy\": {\n995\t        \"n_panels\": 6435,\n996\t        \"kd_boot_p\": [\n997\t          0.0061,\n998\t          0.0054,\n999\t          0.0013,\n1000\t          0.0053,\n1001\t          0.0013,\n1002\t          0.0013,\n1003\t          0.0013\n1004\t        ],\n1005\t        \"kd_final_p\": 0.0061,\n1006\t        \"kd_ols_std_beta\": 0.4373039036239317,\n1007\t        \"kd_ols_t\": 38.774552009625005,\n1008\t        \"kd_ols_beta\": 7.797139878978611,\n1009\t        \"kd_n_clusters\": [\n1010\t          9,\n1011\t          9,\n1012\t          9,\n1013\t          9,\n1014\t          9,\n1015\t          9,\n1016\t          9\n1017\t        ],\n1018\t        \"eta_boot_p\": [\n1019\t          0.0473,\n1020\t          0.0528,\n1021\t          0.0139,\n1022\t          0.0826,\n1023\t          0.0601,\n1024\t          0.0274,\n1025\t          0.0767\n1026\t        ],\n1027\t        \"eta_final_p\": 0.0826,\n1028\t        \"eta_ols_std_beta\": 0.11532697704088272,\n1029\t        \"eta_ols_t\": 10.225730509898444,\n1030\t        \"eta_ols_beta\": 0.850968433584334,\n1031\t        \"eta_n_clusters\": [\n1032\t          9,\n1033\t          9,\n1034\t          9,\n1035\t          9,\n1036\t          9,\n1037\t          9,\n1038\t          9\n1039\t        ],\n1040\t        \"skipped\": false,\n1041\t        \"kd_fdr_p\": 0.020100000000000003,\n1042\t        \"eta_fdr_p\": 0.1652\n1043\t      },\n1044\t      \"mmluxscore_manipulation\": {\n1045\t        \"n_panels\": 6435,\n1046\t        \"kd_boot_p\": [\n1047\t          0.0061,\n1048\t          0.0013,\n1049\t          0.0013,\n1050\t          0.0053,\n1051\t          0.0013,\n1052\t          0.0013,\n1053\t          0.0013\n1054\t        ],\n1055\t        \"kd_final_p\": 0.0061,\n1056\t        \"kd_ols_std_beta\": 0.568271872586283,\n1057\t        \"kd_ols_t\": 36.565659108587376,\n1058\t        \"kd_ols_beta\": 8.090925188711068,\n1059\t        \"kd_n_clusters\": [\n1060\t          9,\n1061\t          9,\n1062\t          9,\n1063\t          9,\n1064\t          9,\n1065\t          9,\n1066\t          9\n1067\t        ],\n1068\t        \"eta_boot_p\": [\n1069\t          0.2292,\n1070\t          0.0756,\n1071\t          0.0512,\n1072\t          0.0279,\n1073\t          0.0145,\n1074\t          0.1238,\n1075\t          0.4385\n1076\t        ],\n1077\t        \"eta_final_p\": 0.4385,\n1078\t        \"eta_ols_std_beta\": -0.1155919383223498,\n1079\t        \"eta_ols_t\": -7.437805065310995,\n1080\t        \"eta_ols_beta\": -0.6564993581346404,\n1081\t        \"eta_n_clusters\": [\n1082\t          9,\n1083\t          9,\n1084\t          9,\n1085\t          9,\n1086\t          9,\n1087\t          9,\n1088\t          9\n1089\t        ],\n1090\t        \"skipped\": false,\n1091\t        \"kd_fdr_p\": 0.020100000000000003,\n1092\t        \"eta_fdr_p\": 0.5262\n1093\t      },\n1094\t      \"mmluxverbosity_bias\": {\n1095\t        \"n_panels\": 6435,\n1096\t        \"kd_boot_p\": [\n1097\t          0.0067,\n1098\t          0.0144,\n1099\t          0.0019,\n1100\t          0.0019,\n1101\t          0.0019,\n1102\t          0.0019,\n1103\t          0.0019\n1104\t        ],\n1105\t        \"kd_final_p\": 0.0144,\n1106\t        \"kd_ols_std_beta\": 0.2925224579921679,\n1107\t        \"kd_ols_t\": 27.75990328467268,\n1108\t        \"kd_ols_beta\": 6.3681244817847436,\n1109\t        \"kd_n_clusters\": [\n1110\t          9,\n1111\t          9,\n1112\t          9,\n1113\t          9,\n1114\t          9,\n1115\t          9,\n1116\t          9\n1117\t        ],\n1118\t        \"eta_boot_p\": [\n1119\t          0.0019,\n1120\t          0.0019,\n1121\t          0.0019,\n1122\t          0.0019,\n1123\t          0.0059,\n1124\t          0.0125,\n1125\t          0.0211\n1126\t        ],\n1127\t        \"eta_final_p\": 0.0211,\n1128\t        \"eta_ols_std_beta\": 0.442062052560585,\n1129\t        \"eta_ols_t\": 41.95096646300619,\n1130\t        \"eta_ols_beta\": 3.7744889499576026,\n1131\t        \"eta_n_clusters\": [\n1132\t          9,\n1133\t          9,\n1134\t          9,\n1135\t          9,\n1136\t          9,\n1137\t          9,\n1138\t          9\n1139\t        ],\n1140\t        \"skipped\": false,\n1141\t        \"kd_fdr_p\": 0.0288,\n1142\t        \"eta_fdr_p\": 0.06330000000000001\n1143\t      },\n1144\t      \"mmluxposition_bias\": {\n1145\t        \"n_panels\": 6435,\n1146\t        \"kd_boot_p\": [\n1147\t          0.0251,\n1148\t          0.0345,\n1149\t          0.0061,\n1150\t          0.0052,\n1151\t          0.0053,\n1152\t          0.0013,\n1153\t          0.0013\n1154\t        ],\n1155\t        \"kd_final_p\": 0.0345,\n1156\t        \"kd_ols_std_beta\": 0.2425912854508761,\n1157\t        \"kd_ols_t\": 26.555550244910062,\n1158\t        \"kd_ols_beta\": 0.09995380779942777,\n1159\t        \"kd_n_clusters\": [\n1160\t          9,\n1161\t          9,\n1162\t          9,\n1163\t          9,\n1164\t          9,\n1165\t          9,\n1166\t          9\n1167\t        ],\n1168\t        \"eta_boot_p\": [\n1169\t          0.0035,\n1170\t          0.0035,\n1171\t          0.0035,\n1172\t          0.0035,\n1173\t          0.0035,\n1174\t          0.0035,\n1175\t          0.0035\n1176\t        ],\n1177\t        \"eta_final_p\": 0.0035,\n1178\t        \"eta_ols_std_beta\": 0.6111233851477217,\n1179\t        \"eta_ols_t\": 66.89736496497106,\n1180\t        \"eta_ols_beta\": 0.7446314638553516,\n1181\t        \"eta_n_clusters\": [\n1182\t          9,\n1183\t          9,\n1184\t          9,\n1185\t          9,\n1186\t          9,\n1187\t          9,\n1188\t          9\n1189\t        ],\n1190\t        \"skipped\": false,\n1191\t        \"kd_fdr_p\": 0.05914285714285714,\n1192\t        \"eta_fdr_p\": 0.042\n1193\t      },\n1194\t      \"mmluxauthority_bias\": {\n1195\t        \"n_panels\": 6435,\n1196\t        \"kd_boot_p\": [\n1197\t          0.0067,\n1198\t          0.006,\n1199\t          0.0019,\n1200\t          0.0019,\n1201\t          0.0019,\n1202\t          0.0019,\n1203\t          0.0019\n1204\t        ],\n1205\t        \"kd_final_p\": 0.0067,\n1206\t        \"kd_ols_std_beta\": 0.4166303693085507,\n1207\t        \"kd_ols_t\": 28.31347916527276,\n1208\t        \"kd_ols_beta\": 7.642094543065465,\n1209\t        \"kd_n_clusters\": [\n1210\t          9,\n1211\t          9,\n1212\t          9,\n1213\t          9,\n1214\t          9,\n1215\t          9,\n1216\t          9\n1217\t        ],\n1218\t        \"eta_boot_p\": [\n1219\t          0.0262,\n1220\t          0.083,\n1221\t          0.0433,\n1222\t          0.0606,\n1223\t          0.0454,\n1224\t          0.0934,\n1225\t          0.325\n1226\t        ],\n1227\t        \"eta_final_p\": 0.325,\n1228\t        \"eta_ols_std_beta\": -0.11287816249053076,\n1229\t        \"eta_ols_t\": -7.671004653826281,\n1230\t        \"eta_ols_beta\": -1.704418860755187,\n1231\t        \"eta_n_clusters\": [\n1232\t          9,\n1233\t          9,\n1234\t          9,\n1235\t          9,\n1236\t          9,\n1237\t          9,\n1238\t          9\n1239\t        ],\n1240\t        \"skipped\": false,\n1241\t        \"kd_fdr_p\": 0.020100000000000003,\n1242\t        \"eta_fdr_p\": 0.43333333333333335\n1243\t      },\n1244\t      \"arc_challengexprompt_injection\": {\n1245\t        \"n_panels\": 6435,\n1246\t        \"kd_boot_p\": [\n1247\t          0.0061,\n1248\t          0.0054,\n1249\t          0.0061,\n1250\t          0.0099,\n1251\t          0.0088,\n1252\t          0.0286,\n1253\t          0.0594\n1254\t        ],\n1255\t        \"kd_final_p\": 0.0594,\n1256\t        \"kd_ols_std_beta\": 0.4916095725339044,\n1257\t        \"kd_ols_t\": 29.524929213446242,\n1258\t        \"kd_ols_beta\": 4.586648814522685,\n1259\t        \"kd_n_clusters\": [\n1260\t          9,\n1261\t          9,\n1262\t          9,\n1263\t          9,\n1264\t          9,\n1265\t          9,\n1266\t          9\n1267\t        ],\n1268\t        \"eta_boot_p\": [\n1269\t          0.0405,\n1270\t          0.4971,\n1271\t          0.6484,\n1272\t          0.6664,\n1273\t          0.3457,\n1274\t          0.276,\n1275\t          0.7188\n1276\t        ],\n1277\t        \"eta_final_p\": 0.7188,\n1278\t        \"eta_ols_std_beta\": -0.03401477385041239,\n1279\t        \"eta_ols_t\": -2.0428483216232456,\n1280\t        \"eta_ols_beta\": -0.17153297157338476,\n1281\t        \"eta_n_clusters\": [\n1282\t          9,\n1283\t          9,\n1284\t          9,\n1285\t          9,\n1286\t          9,\n1287\t          9,\n1288\t          9\n1289\t        ],\n1290\t        \"skipped\": false,\n1291\t        \"kd_fdr_p\": 0.08910000000000001,\n1292\t        \"eta_fdr_p\": 0.7841454545454546\n1293\t      },\n1294\t      \"arc_challengexsycophancy\": {\n1295\t        \"n_panels\": 6435,\n1296\t        \"kd_boot_p\": [\n1297\t          0.7222,\n1298\t          0.5398,\n1299\t          0.6259,\n1300\t          0.6231,\n1301\t          0.8057,\n1302\t          0.6207,\n1303\t          0.6091\n1304\t        ],\n1305\t        \"kd_final_p\": 0.8057,\n1306\t        \"kd_ols_std_beta\": 0.023754522916827076,\n1307\t        \"kd_ols_t\": 1.3335841835186475,\n1308\t        \"kd_ols_beta\": 0.23807220981311514,\n1309\t        \"kd_n_clusters\": [\n1310\t          9,\n1311\t          9,\n1312\t          9,\n1313\t          9,\n1314\t          9,\n1315\t          9,\n1316\t          9\n1317\t        ],\n1318\t        \"eta_boot_p\": [\n1319\t          0.0122,\n1320\t          0.0001,\n1321\t          0.0001,\n1322\t          0.0038,\n1323\t          0.0172,\n1324\t          0.0111,\n1325\t          0.0121\n1326\t        ],\n1327\t        \"eta_final_p\": 0.0172,\n1328\t        \"eta_ols_std_beta\": 0.3607619421150357,\n1329\t        \"eta_ols_t\": 20.25325542022563,\n1330\t        \"eta_ols_beta\": 1.7965371510517798,\n1331\t        \"eta_n_clusters\": [\n1332\t          9,\n1333\t          9,\n1334\t          9,\n1335\t          9,\n1336\t          9,\n1337\t          9,\n1338\t          9\n1339\t        ],\n1340\t        \"skipped\": false,\n1341\t        \"kd_fdr_p\": 0.8789454545454546,\n1342\t        \"eta_fdr_p\": 0.06330000000000001\n1343\t      },\n1344\t      \"arc_challengexscore_manipulation\": {\n1345\t        \"n_panels\": 6435,\n1346\t        \"kd_boot_p\": [\n1347\t          0.0144,\n1348\t          0.0019,\n1349\t          0.0019,\n1350\t          0.0019,\n1351\t          0.0019,\n1352\t          0.0019,\n1353\t          0.0019\n1354\t        ],\n1355\t        \"kd_final_p\": 0.0144,\n1356\t        \"kd_ols_std_beta\": 1.0309236328234026,\n1357\t        \"kd_ols_t\": 35.281090993583746,\n1358\t        \"kd_ols_beta\": 10.074563183644912,\n1359\t        \"kd_n_clusters\": [\n1360\t          9,\n1361\t          9,\n1362\t          9,\n1363\t          9,\n1364\t          9,\n1365\t          9,\n1366\t          9\n1367\t        ],\n1368\t        \"eta_boot_p\": [\n1369\t          0.0121,\n1370\t          0.0001,\n1371\t          0.0001,\n1372\t          0.0001,\n1373\t          0.0001,\n1374\t          0.0001,\n1375\t          0.0001\n1376\t        ],\n1377\t        \"eta_final_p\": 0.0121,\n1378\t        \"eta_ols_std_beta\": -0.6095032119169855,\n1379\t        \"eta_ols_t\": -20.858905156371865,\n1380\t        \"eta_ols_beta\": -3.74665997231819,\n1381\t        \"eta_n_clusters\": [\n1382\t          9,\n1383\t          9,\n1384\t          9,\n1385\t          9,\n1386\t          9,\n1387\t          9,\n1388\t          9\n1389\t        ],\n1390\t        \"skipped\": false,\n1391\t        \"kd_fdr_p\": 0.0288,\n1392\t        \"eta_fdr_p\": 0.06330000000000001\n1393\t      },\n1394\t      \"arc_challengexverbosity_bias\": {\n1395\t        \"n_panels\": 6435,\n1396\t        \"kd_boot_p\": [\n1397\t          0.1055,\n1398\t          0.0304,\n1399\t          0.0175,\n1400\t          0.0099,\n1401\t          0.0013,\n1402\t          0.0013,\n1403\t          0.0202\n1404\t        ],\n1405\t        \"kd_final_p\": 0.1055,\n1406\t        \"kd_ols_std_beta\": 0.2953357172987956,\n1407\t        \"kd_ols_t\": 15.536823149424645,\n1408\t        \"kd_ols_beta\": 3.2494545743621623,\n1409\t        \"kd_n_clusters\": [\n1410\t          9,\n1411\t          9,\n1412\t          9,\n1413\t          9,\n1414\t          9,\n1415\t          9,\n1416\t          9\n1417\t        ],\n1418\t        \"eta_boot_p\": [\n1419\t          0.1141,\n1420\t          0.0802,\n1421\t          0.0575,\n1422\t          0.0624,\n1423\t          0.1424,\n1424\t          0.0629,\n1425\t          0.2693\n1426\t        ],\n1427\t        \"eta_final_p\": 0.2693,\n1428\t        \"eta_ols_std_beta\": 0.17906070678802405,\n1429\t        \"eta_ols_t\": 9.41990545478746,\n1430\t        \"eta_ols_beta\": 0.9087804594332485,\n1431\t        \"eta_n_clusters\": [\n1432\t          9,\n1433\t          9,\n1434\t          9,\n1435\t          9,\n1436\t          9,\n1437\t          9,\n1438\t          9\n1439\t        ],\n1440\t        \"skipped\": false,\n1441\t        \"kd_fdr_p\": 0.14066666666666666,\n1442\t        \"eta_fdr_p\": 0.40395\n1443\t      },\n1444\t      \"arc_challengexposition_bias\": {\n1445\t        \"n_panels\": 6435,\n1446\t        \"kd_boot_p\": [\n1447\t          0.0165,\n1448\t          0.0391,\n1449\t          0.0013,\n1450\t          0.0286,\n1451\t          0.0053,\n1452\t          0.0013,\n1453\t          0.6347\n1454\t        ],\n1455\t        \"kd_final_p\": 0.6347,\n1456\t        \"kd_ols_std_beta\": 0.47925412248179583,\n1457\t        \"kd_ols_t\": 16.261892667278232,\n1458\t        \"kd_ols_beta\": 0.08931926179882149,\n1459\t        \"kd_n_clusters\": [\n1460\t          9,\n1461\t          9,\n1462\t          9,\n1463\t          9,\n1464\t          9,\n1465\t          9,\n1466\t          9\n1467\t        ],\n1468\t        \"eta_boot_p\": [\n1469\t          0.0194,\n1470\t          0.0248,\n1471\t          0.0073,\n1472\t          0.1642,\n1473\t          0.0811,\n1474\t          0.3584,\n1475\t          0.8197\n1476\t        ],\n1477\t        \"eta_final_p\": 0.8197,\n1478\t        \"eta_ols_std_beta\": -0.3116520336994563,\n1479\t        \"eta_ols_t\": -10.574873921406894,\n1480\t        \"eta_ols_beta\": -0.1638464792165691,\n1481\t        \"eta_n_clusters\": [\n1482\t          9,\n1483\t          9,\n1484\t          9,\n1485\t          9,\n1486\t          9,\n1487\t          9,\n1488\t          9\n1489\t        ],\n1490\t        \"skipped\": false,\n1491\t        \"kd_fdr_p\": 0.76164,\n1492\t        \"eta_fdr_p\": 0.8197\n1493\t      },\n1494\t      \"arc_challengexauthority_bias\": {\n1495\t        \"n_panels\": 6435,\n1496\t        \"kd_boot_p\": [\n1497\t          0.9763,\n1498\t          0.5415,\n1499\t          0.8376,\n1500\t          0.8584,\n1501\t          0.4539,\n1502\t          0.12,\n1503\t          0.5793\n1504\t        ],\n1505\t        \"kd_final_p\": 0.9763,\n1506\t        \"kd_ols_std_beta\": 0.04182582113225977,\n1507\t        \"kd_ols_t\": 2.27983154291953,\n1508\t        \"kd_ols_beta\": 0.4378972319339764,\n1509\t        \"kd_n_clusters\": [\n1510\t          9,\n1511\t          9,\n1512\t          9,\n1513\t          9,\n1514\t          9,\n1515\t          9,\n1516\t          9\n1517\t        ],\n1518\t        \"eta_boot_p\": [\n1519\t          0.0394,\n1520\t          0.0566,\n1521\t          0.013,\n1522\t          0.0749,\n1523\t          0.0491,\n1524\t          0.0134,\n1525\t          0.0019\n1526\t        ],\n1527\t        \"eta_final_p\": 0.0749,\n1528\t        \"eta_ols_std_beta\": 0.2489083447756811,\n1529\t        \"eta_ols_t\": 13.56743466962842,\n1530\t        \"eta_ols_beta\": 1.0736568582854,\n1531\t        \"eta_n_clusters\": [\n1532\t          9,\n1533\t          9,\n1534\t          9,\n1535\t          9,\n1536\t          9,\n1537\t          9,\n1538\t          9\n1539\t        ],\n1540\t        \"skipped\": false,\n1541\t        \"kd_fdr_p\": 0.9763,\n1542\t        \"eta_fdr_p\": 0.1652\n1543\t      }\n1544\t    }\n1545\t  },\n1546\t  \"comparison_with_keff\": {\n1547\t    \"K3\": {\n1548\t      \"keff_sig\": \"4/12\",\n1549\t      \"kappa_sig\": \"8/12\"\n1550\t    },\n1551\t    \"K5\": {\n1552\t      \"keff_sig\": \"10/12\",\n1553\t      \"kappa_sig\": \"7/12\"\n1554\t    },\n1555\t    \"K7\": {\n1556\t      \"keff_sig\": \"9/12\",\n1557\t      \"kappa_sig\": \"6/12\"\n1558\t    }\n1559\t  }\n1560\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "055a3aba-7ea5-4d8f-af69-e1d2feb7811c",
+            "isSidechain": false,
+            "promptId": "9e571dfb-7da7-4dbe-b404-9f12c62c5a98",
+            "type": "user",
+            "uuid": "18fdc32a-b06d-4048-b6cb-c4c513966eaa",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/kappa_diversity_regime_transition.json",
+                "content": "{\n  \"metric\": \"kappa_diversity\",\n  \"definition\": \"1 - mean(pairwise Cohen's kappa on clean winner labels)\",\n  \"method\": \"wild_cluster_bootstrap\",\n  \"B\": 9999,\n  \"weights\": \"rademacher\",\n  \"fdr_alpha\": 0.05,\n  \"seed\": 42,\n  \"correlation_with_keff\": {\n    \"pearson\": 0.9796,\n    \"spearman\": 0.9733\n  },\n  \"K3\": {\n    \"n_panels\": 455,\n    \"eta_max_fdr_sig\": \"1/12\",\n    \"kappa_div_fdr_sig\": \"8/12\",\n    \"per_condition\": {\n      \"mmluxprompt_injection\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0003,\n          0.003,\n          0.0017\n        ],\n        \"kd_final_p\": 0.003,\n        \"kd_ols_std_beta\": 0.49213060730652003,\n        \"kd_ols_t\": 9.682610009711807,\n        \"kd_ols_beta\": 3.9463782805667442,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.0758,\n          0.0236,\n          0.0152\n        ],\n        \"eta_final_p\": 0.0758,\n        \"eta_ols_std_beta\": 0.22161121426192276,\n        \"eta_ols_t\": 4.36017376204444,\n        \"eta_ols_beta\": 0.7706888207904339,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0244,\n        \"eta_fdr_p\": 0.1516\n      },\n      \"mmluxsycophancy\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0061,\n          0.0044,\n          0.0015\n        ],\n        \"kd_final_p\": 0.0061,\n        \"kd_ols_std_beta\": 0.4769124081503548,\n        \"kd_ols_t\": 9.773349470259028,\n        \"kd_ols_beta\": 4.001320396891163,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.0235,\n          0.0053,\n          0.0501\n        ],\n        \"eta_final_p\": 0.0501,\n        \"eta_ols_std_beta\": 0.14367203381973737,\n        \"eta_ols_t\": 2.9442660153654265,\n        \"eta_ols_beta\": 0.44590365876101956,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0244,\n        \"eta_fdr_p\": 0.1516\n      },\n      \"mmluxscore_manipulation\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0002,\n          0.0024,\n          0.0197\n        ],\n        \"kd_final_p\": 0.0197,\n        \"kd_ols_std_beta\": 0.4987751250213029,\n        \"kd_ols_t\": 8.867457880646366,\n        \"kd_ols_beta\": 4.022604358137376,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.3961,\n          0.3928,\n          0.1946\n        ],\n        \"eta_final_p\": 0.3961,\n        \"eta_ols_std_beta\": 0.17742055640505539,\n        \"eta_ols_t\": 3.154265784636926,\n        \"eta_ols_beta\": 0.7556535595039279,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.03255,\n        \"eta_fdr_p\": 0.43210909090909094\n      },\n      \"mmluxverbosity_bias\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0158,\n          0.0041,\n          0.0015\n        ],\n        \"kd_final_p\": 0.0158,\n        \"kd_ols_std_beta\": 0.3517834078549594,\n        \"kd_ols_t\": 6.444032352519589,\n        \"kd_ols_beta\": 3.1716595850298135,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.1024,\n          0.002,\n          0.0397\n        ],\n        \"eta_final_p\": 0.1024,\n        \"eta_ols_std_beta\": 0.271282372020044,\n        \"eta_ols_t\": 4.969399758291528,\n        \"eta_ols_beta\": 1.0594675130659028,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.03255,\n        \"eta_fdr_p\": 0.1557\n      },\n      \"mmluxposition_bias\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.3269,\n          0.2375,\n          0.2884\n        ],\n        \"kd_final_p\": 0.3269,\n        \"kd_ols_std_beta\": 0.07045353299855531,\n        \"kd_ols_t\": 1.7448211993277216,\n        \"kd_ols_beta\": 0.014476817039243115,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.0015,\n          0.0002,\n          0.0007\n        ],\n        \"eta_final_p\": 0.0015,\n        \"eta_ols_std_beta\": 0.6947381183009252,\n        \"eta_ols_t\": 17.20557855938021,\n        \"eta_ols_beta\": 0.7470934735149278,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.35661818181818183,\n        \"eta_fdr_p\": 0.018000000000000002\n      },\n      \"mmluxauthority_bias\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0015,\n          0.0043,\n          0.0016\n        ],\n        \"kd_final_p\": 0.0043,\n        \"kd_ols_std_beta\": 0.7361981780973242,\n        \"kd_ols_t\": 11.375756058950294,\n        \"kd_ols_beta\": 5.550771467443809,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.5994,\n          0.4513,\n          0.7017\n        ],\n        \"eta_final_p\": 0.7017,\n        \"eta_ols_std_beta\": -0.19427734441161482,\n        \"eta_ols_t\": -3.001979281610032,\n        \"eta_ols_beta\": -0.9583550702673487,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0244,\n        \"eta_fdr_p\": 0.7017\n      },\n      \"arc_challengexprompt_injection\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0047,\n          0.0152,\n          0.0037\n        ],\n        \"kd_final_p\": 0.0152,\n        \"kd_ols_std_beta\": 0.40191256626054056,\n        \"kd_ols_t\": 7.21195895911225,\n        \"kd_ols_beta\": 2.0276316636909297,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.0616,\n          0.0136,\n          0.0006\n        ],\n        \"eta_final_p\": 0.0616,\n        \"eta_ols_std_beta\": 0.21217767873315566,\n        \"eta_ols_t\": 3.807337315428091,\n        \"eta_ols_beta\": 0.41464921513504144,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.03255,\n        \"eta_fdr_p\": 0.1516\n      },\n      \"arc_challengexsycophancy\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0495,\n          0.0138,\n          0.0035\n        ],\n        \"kd_final_p\": 0.0495,\n        \"kd_ols_std_beta\": 0.3106781156192882,\n        \"kd_ols_t\": 5.27881205697093,\n        \"kd_ols_beta\": 1.6091779472631982,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.0027,\n          0.016,\n          0.0068\n        ],\n        \"eta_final_p\": 0.016,\n        \"eta_ols_std_beta\": 0.21699583770510128,\n        \"eta_ols_t\": 3.687032290983437,\n        \"eta_ols_beta\": 0.5177073343302907,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.066,\n        \"eta_fdr_p\": 0.096\n      },\n      \"arc_challengexscore_manipulation\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0164,\n          0.0076,\n          0.0011\n        ],\n        \"kd_final_p\": 0.0164,\n        \"kd_ols_std_beta\": 0.8848959482941136,\n        \"kd_ols_t\": 9.021625460165897,\n        \"kd_ols_beta\": 4.003320339944618,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.0751,\n          0.0378,\n          0.0225\n        ],\n        \"eta_final_p\": 0.0751,\n        \"eta_ols_std_beta\": -0.32214735640936804,\n        \"eta_ols_t\": -3.284332805580846,\n        \"eta_ols_beta\": -1.0772588216992034,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.03255,\n        \"eta_fdr_p\": 0.1516\n      },\n      \"arc_challengexverbosity_bias\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.0217,\n          0.0113,\n          0.0082\n        ],\n        \"kd_final_p\": 0.0217,\n        \"kd_ols_std_beta\": 0.40087728651622756,\n        \"kd_ols_t\": 6.351906802395125,\n        \"kd_ols_beta\": 2.1333406688194,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.2065,\n          0.0245,\n          0.0216\n        ],\n        \"eta_final_p\": 0.2065,\n        \"eta_ols_std_beta\": 0.19233610457179123,\n        \"eta_ols_t\": 3.0475685504478767,\n        \"eta_ols_beta\": 0.536207933062196,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.03255,\n        \"eta_fdr_p\": 0.2753333333333333\n      },\n      \"arc_challengexposition_bias\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.978,\n          0.9418,\n          0.9851\n        ],\n        \"kd_final_p\": 0.9851,\n        \"kd_ols_std_beta\": 0.009510769741964109,\n        \"kd_ols_t\": 0.09806563312729139,\n        \"kd_ols_beta\": 0.0011628349497247597,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.0167,\n          0.0394,\n          0.1038\n        ],\n        \"eta_final_p\": 0.1038,\n        \"eta_ols_std_beta\": 0.48617551181866947,\n        \"eta_ols_t\": 5.012960114796847,\n        \"eta_ols_beta\": 0.25627808734389984,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.9851,\n        \"eta_fdr_p\": 0.1557\n      },\n      \"arc_challengexauthority_bias\": {\n        \"n_panels\": 455,\n        \"kd_boot_p\": [\n          0.1876,\n          0.0209,\n          0.0183\n        ],\n        \"kd_final_p\": 0.1876,\n        \"kd_ols_std_beta\": 0.30854908420867233,\n        \"kd_ols_t\": 5.007156273900366,\n        \"kd_ols_beta\": 1.599600437948073,\n        \"kd_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"eta_boot_p\": [\n          0.2979,\n          0.0252,\n          0.0239\n        ],\n        \"eta_final_p\": 0.2979,\n        \"eta_ols_std_beta\": 0.17441756709499354,\n        \"eta_ols_t\": 2.830460565449294,\n        \"eta_ols_beta\": 0.533621982735489,\n        \"eta_n_clusters\": [\n          13,\n          13,\n          13\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.22512,\n        \"eta_fdr_p\": 0.35747999999999996\n      }\n    }\n  },\n  \"K5\": {\n    \"n_panels\": 3003,\n    \"eta_max_fdr_sig\": \"4/12\",\n    \"kappa_div_fdr_sig\": \"7/12\",\n    \"per_condition\": {\n      \"mmluxprompt_injection\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.0005,\n          0.0005,\n          0.0025,\n          0.0011,\n          0.0005\n        ],\n        \"kd_final_p\": 0.0025,\n        \"kd_ols_std_beta\": 0.5504910962162929,\n        \"kd_ols_t\": 31.646780593088092,\n        \"kd_ols_beta\": 5.782269535950856,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.1433,\n          0.0215,\n          0.0145,\n          0.0123,\n          0.0308\n        ],\n        \"eta_final_p\": 0.1433,\n        \"eta_ols_std_beta\": 0.14923674022234348,\n        \"eta_ols_t\": 8.579361967352353,\n        \"eta_ols_beta\": 0.64523597450718,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0096,\n        \"eta_fdr_p\": 0.24565714285714285\n      },\n      \"mmluxsycophancy\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.0019,\n          0.001,\n          0.003,\n          0.0016,\n          0.0016\n        ],\n        \"kd_final_p\": 0.003,\n        \"kd_ols_std_beta\": 0.45933485624456494,\n        \"kd_ols_t\": 28.298023692381097,\n        \"kd_ols_beta\": 6.168340830216315,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.0156,\n          0.007,\n          0.0122,\n          0.0079,\n          0.0143\n        ],\n        \"eta_final_p\": 0.0156,\n        \"eta_ols_std_beta\": 0.18013366600574054,\n        \"eta_ols_t\": 11.097408958035185,\n        \"eta_ols_beta\": 1.2156720088516377,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0096,\n        \"eta_fdr_p\": 0.0468\n      },\n      \"mmluxscore_manipulation\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.0039,\n          0.001,\n          0.003,\n          0.0016,\n          0.004\n        ],\n        \"kd_final_p\": 0.004,\n        \"kd_ols_std_beta\": 0.6831444668115227,\n        \"kd_ols_t\": 30.898707973026543,\n        \"kd_ols_beta\": 8.465900302174667,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.1767,\n          0.1772,\n          0.0251,\n          0.0084,\n          0.428\n        ],\n        \"eta_final_p\": 0.428,\n        \"eta_ols_std_beta\": -0.13579018274993349,\n        \"eta_ols_t\": -6.141806610799581,\n        \"eta_ols_beta\": -0.7185038769900618,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0096,\n        \"eta_fdr_p\": 0.5706666666666667\n      },\n      \"mmluxverbosity_bias\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.0078,\n          0.0144,\n          0.0014,\n          0.002,\n          0.002\n        ],\n        \"kd_final_p\": 0.0144,\n        \"kd_ols_std_beta\": 0.34556572949440323,\n        \"kd_ols_t\": 21.47004227922604,\n        \"kd_ols_beta\": 5.715105303342557,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.0004,\n          0.0004,\n          0.0004,\n          0.0031,\n          0.0133\n        ],\n        \"eta_final_p\": 0.0133,\n        \"eta_ols_std_beta\": 0.3817534499405299,\n        \"eta_ols_t\": 23.718389906474318,\n        \"eta_ols_beta\": 2.442200993238772,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0288,\n        \"eta_fdr_p\": 0.0468\n      },\n      \"mmluxposition_bias\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.044,\n          0.0186,\n          0.0025,\n          0.0094,\n          0.1173\n        ],\n        \"kd_final_p\": 0.1173,\n        \"kd_ols_std_beta\": 0.19373207647345048,\n        \"kd_ols_t\": 13.271160298121979,\n        \"kd_ols_beta\": 0.06495482143081234,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.0008,\n          0.0008,\n          0.0008,\n          0.0018,\n          0.0008\n        ],\n        \"eta_final_p\": 0.0018,\n        \"eta_ols_std_beta\": 0.610193428294491,\n        \"eta_ols_t\": 41.799865810379885,\n        \"eta_ols_beta\": 0.7271746491087933,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.17453333333333332,\n        \"eta_fdr_p\": 0.0108\n      },\n      \"mmluxauthority_bias\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.0036,\n          0.001,\n          0.003,\n          0.0016,\n          0.001\n        ],\n        \"kd_final_p\": 0.0036,\n        \"kd_ols_std_beta\": 0.48400529437619677,\n        \"kd_ols_t\": 22.130478810076475,\n        \"kd_ols_beta\": 6.318281325877138,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.3581,\n          0.5303,\n          0.1725,\n          0.2119,\n          0.6569\n        ],\n        \"eta_final_p\": 0.6569,\n        \"eta_ols_std_beta\": -0.06513331607866216,\n        \"eta_ols_t\": -2.978131619751739,\n        \"eta_ols_beta\": -0.6845132621174859,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0096,\n        \"eta_fdr_p\": 0.7166181818181819\n      },\n      \"arc_challengexprompt_injection\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.0158,\n          0.005,\n          0.0236,\n          0.0058,\n          0.019\n        ],\n        \"kd_final_p\": 0.0236,\n        \"kd_ols_std_beta\": 0.4676965256858394,\n        \"kd_ols_t\": 19.33515318564625,\n        \"kd_ols_beta\": 3.2622274949050576,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.4843,\n          0.655,\n          0.5835,\n          0.2011,\n          0.4744\n        ],\n        \"eta_final_p\": 0.655,\n        \"eta_ols_std_beta\": 0.04237588492379265,\n        \"eta_ols_t\": 1.7518715264718816,\n        \"eta_ols_beta\": 0.16243894640139425,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.04045714285714285,\n        \"eta_fdr_p\": 0.7166181818181819\n      },\n      \"arc_challengexsycophancy\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.5061,\n          0.5503,\n          0.4915,\n          0.4663,\n          0.2612\n        ],\n        \"kd_final_p\": 0.5503,\n        \"kd_ols_std_beta\": 0.05877107368397245,\n        \"kd_ols_t\": 2.2479364973030496,\n        \"kd_ols_beta\": 0.44966007082939485,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.0403,\n          0.0111,\n          0.0028,\n          0.0077,\n          0.0176\n        ],\n        \"eta_final_p\": 0.0403,\n        \"eta_ols_std_beta\": 0.3514273823668971,\n        \"eta_ols_t\": 13.441756113257393,\n        \"eta_ols_beta\": 1.5927686048496144,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.6003272727272727,\n        \"eta_fdr_p\": 0.09672\n      },\n      \"arc_challengexscore_manipulation\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.0019,\n          0.001,\n          0.001,\n          0.001,\n          0.001\n        ],\n        \"kd_final_p\": 0.0019,\n        \"kd_ols_std_beta\": 1.2119788575218602,\n        \"kd_ols_t\": 26.858782315763747,\n        \"kd_ols_beta\": 8.091606226881032,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.0017,\n          0.001,\n          0.0004,\n          0.0004,\n          0.0004\n        ],\n        \"eta_final_p\": 0.0017,\n        \"eta_ols_std_beta\": -0.7520198792758134,\n        \"eta_ols_t\": -16.665586292401667,\n        \"eta_ols_beta\": -3.5827048209295986,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0096,\n        \"eta_fdr_p\": 0.0108\n      },\n      \"arc_challengexverbosity_bias\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.1309,\n          0.0082,\n          0.0196,\n          0.0011,\n          0.0086\n        ],\n        \"kd_final_p\": 0.1309,\n        \"kd_ols_std_beta\": 0.35122953245850946,\n        \"kd_ols_t\": 12.554802696129748,\n        \"kd_ols_beta\": 2.7941259259044378,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.0686,\n          0.0794,\n          0.0628,\n          0.0514,\n          0.2099\n        ],\n        \"eta_final_p\": 0.2099,\n        \"eta_ols_std_beta\": 0.19447903456785562,\n        \"eta_ols_t\": 6.951710155015611,\n        \"eta_ols_beta\": 0.8747692580060344,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.17453333333333332,\n        \"eta_fdr_p\": 0.31485\n      },\n      \"arc_challengexposition_bias\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.0745,\n          0.0167,\n          0.1108,\n          0.1556,\n          0.8342\n        ],\n        \"kd_final_p\": 0.8342,\n        \"kd_ols_std_beta\": 0.2929414963402313,\n        \"kd_ols_t\": 6.2656723333852895,\n        \"kd_ols_beta\": 0.04423034102632828,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.9858,\n          0.9862,\n          0.9935,\n          0.9962,\n          0.9973\n        ],\n        \"eta_final_p\": 0.9973,\n        \"eta_ols_std_beta\": 0.0016966250723171516,\n        \"eta_ols_t\": 0.036288804790560326,\n        \"eta_ols_beta\": 0.0008277366361525211,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.8342,\n        \"eta_fdr_p\": 0.9973\n      },\n      \"arc_challengexauthority_bias\": {\n        \"n_panels\": 3003,\n        \"kd_boot_p\": [\n          0.2679,\n          0.1199,\n          0.2422,\n          0.0375,\n          0.1165\n        ],\n        \"kd_final_p\": 0.2679,\n        \"kd_ols_std_beta\": 0.14074322997514566,\n        \"kd_ols_t\": 5.720732306167387,\n        \"kd_ols_beta\": 1.0956012141896776,\n        \"kd_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"eta_boot_p\": [\n          0.0273,\n          0.004,\n          0.0346,\n          0.0014,\n          0.08\n        ],\n        \"eta_final_p\": 0.08,\n        \"eta_ols_std_beta\": 0.2927602098167038,\n        \"eta_ols_t\": 11.899704096278914,\n        \"eta_ols_beta\": 1.2798871795326776,\n        \"eta_n_clusters\": [\n          11,\n          11,\n          11,\n          11,\n          11\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.32148000000000004,\n        \"eta_fdr_p\": 0.16\n      }\n    }\n  },\n  \"K7\": {\n    \"n_panels\": 6435,\n    \"eta_max_fdr_sig\": \"1/12\",\n    \"kappa_div_fdr_sig\": \"6/12\",\n    \"per_condition\": {\n      \"mmluxprompt_injection\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019\n        ],\n        \"kd_final_p\": 0.0019,\n        \"kd_ols_std_beta\": 0.5335534504275652,\n        \"kd_ols_t\": 46.09674768408079,\n        \"kd_ols_beta\": 5.407101444375861,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0629,\n          0.1302,\n          0.0922,\n          0.0812,\n          0.0551,\n          0.1212,\n          0.2469\n        ],\n        \"eta_final_p\": 0.2469,\n        \"eta_ols_std_beta\": 0.1279539365969874,\n        \"eta_ols_t\": 11.054675638906758,\n        \"eta_ols_beta\": 0.5774408817481179,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.020100000000000003,\n        \"eta_fdr_p\": 0.40395\n      },\n      \"mmluxsycophancy\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0061,\n          0.0054,\n          0.0013,\n          0.0053,\n          0.0013,\n          0.0013,\n          0.0013\n        ],\n        \"kd_final_p\": 0.0061,\n        \"kd_ols_std_beta\": 0.4373039036239317,\n        \"kd_ols_t\": 38.774552009625005,\n        \"kd_ols_beta\": 7.797139878978611,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0473,\n          0.0528,\n          0.0139,\n          0.0826,\n          0.0601,\n          0.0274,\n          0.0767\n        ],\n        \"eta_final_p\": 0.0826,\n        \"eta_ols_std_beta\": 0.11532697704088272,\n        \"eta_ols_t\": 10.225730509898444,\n        \"eta_ols_beta\": 0.850968433584334,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.020100000000000003,\n        \"eta_fdr_p\": 0.1652\n      },\n      \"mmluxscore_manipulation\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0061,\n          0.0013,\n          0.0013,\n          0.0053,\n          0.0013,\n          0.0013,\n          0.0013\n        ],\n        \"kd_final_p\": 0.0061,\n        \"kd_ols_std_beta\": 0.568271872586283,\n        \"kd_ols_t\": 36.565659108587376,\n        \"kd_ols_beta\": 8.090925188711068,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.2292,\n          0.0756,\n          0.0512,\n          0.0279,\n          0.0145,\n          0.1238,\n          0.4385\n        ],\n        \"eta_final_p\": 0.4385,\n        \"eta_ols_std_beta\": -0.1155919383223498,\n        \"eta_ols_t\": -7.437805065310995,\n        \"eta_ols_beta\": -0.6564993581346404,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.020100000000000003,\n        \"eta_fdr_p\": 0.5262\n      },\n      \"mmluxverbosity_bias\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0067,\n          0.0144,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019\n        ],\n        \"kd_final_p\": 0.0144,\n        \"kd_ols_std_beta\": 0.2925224579921679,\n        \"kd_ols_t\": 27.75990328467268,\n        \"kd_ols_beta\": 6.3681244817847436,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0059,\n          0.0125,\n          0.0211\n        ],\n        \"eta_final_p\": 0.0211,\n        \"eta_ols_std_beta\": 0.442062052560585,\n        \"eta_ols_t\": 41.95096646300619,\n        \"eta_ols_beta\": 3.7744889499576026,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0288,\n        \"eta_fdr_p\": 0.06330000000000001\n      },\n      \"mmluxposition_bias\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0251,\n          0.0345,\n          0.0061,\n          0.0052,\n          0.0053,\n          0.0013,\n          0.0013\n        ],\n        \"kd_final_p\": 0.0345,\n        \"kd_ols_std_beta\": 0.2425912854508761,\n        \"kd_ols_t\": 26.555550244910062,\n        \"kd_ols_beta\": 0.09995380779942777,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0035,\n          0.0035,\n          0.0035,\n          0.0035,\n          0.0035,\n          0.0035,\n          0.0035\n        ],\n        \"eta_final_p\": 0.0035,\n        \"eta_ols_std_beta\": 0.6111233851477217,\n        \"eta_ols_t\": 66.89736496497106,\n        \"eta_ols_beta\": 0.7446314638553516,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.05914285714285714,\n        \"eta_fdr_p\": 0.042\n      },\n      \"mmluxauthority_bias\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0067,\n          0.006,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019\n        ],\n        \"kd_final_p\": 0.0067,\n        \"kd_ols_std_beta\": 0.4166303693085507,\n        \"kd_ols_t\": 28.31347916527276,\n        \"kd_ols_beta\": 7.642094543065465,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0262,\n          0.083,\n          0.0433,\n          0.0606,\n          0.0454,\n          0.0934,\n          0.325\n        ],\n        \"eta_final_p\": 0.325,\n        \"eta_ols_std_beta\": -0.11287816249053076,\n        \"eta_ols_t\": -7.671004653826281,\n        \"eta_ols_beta\": -1.704418860755187,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.020100000000000003,\n        \"eta_fdr_p\": 0.43333333333333335\n      },\n      \"arc_challengexprompt_injection\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0061,\n          0.0054,\n          0.0061,\n          0.0099,\n          0.0088,\n          0.0286,\n          0.0594\n        ],\n        \"kd_final_p\": 0.0594,\n        \"kd_ols_std_beta\": 0.4916095725339044,\n        \"kd_ols_t\": 29.524929213446242,\n        \"kd_ols_beta\": 4.586648814522685,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0405,\n          0.4971,\n          0.6484,\n          0.6664,\n          0.3457,\n          0.276,\n          0.7188\n        ],\n        \"eta_final_p\": 0.7188,\n        \"eta_ols_std_beta\": -0.03401477385041239,\n        \"eta_ols_t\": -2.0428483216232456,\n        \"eta_ols_beta\": -0.17153297157338476,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.08910000000000001,\n        \"eta_fdr_p\": 0.7841454545454546\n      },\n      \"arc_challengexsycophancy\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.7222,\n          0.5398,\n          0.6259,\n          0.6231,\n          0.8057,\n          0.6207,\n          0.6091\n        ],\n        \"kd_final_p\": 0.8057,\n        \"kd_ols_std_beta\": 0.023754522916827076,\n        \"kd_ols_t\": 1.3335841835186475,\n        \"kd_ols_beta\": 0.23807220981311514,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0122,\n          0.0001,\n          0.0001,\n          0.0038,\n          0.0172,\n          0.0111,\n          0.0121\n        ],\n        \"eta_final_p\": 0.0172,\n        \"eta_ols_std_beta\": 0.3607619421150357,\n        \"eta_ols_t\": 20.25325542022563,\n        \"eta_ols_beta\": 1.7965371510517798,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.8789454545454546,\n        \"eta_fdr_p\": 0.06330000000000001\n      },\n      \"arc_challengexscore_manipulation\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0144,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019,\n          0.0019\n        ],\n        \"kd_final_p\": 0.0144,\n        \"kd_ols_std_beta\": 1.0309236328234026,\n        \"kd_ols_t\": 35.281090993583746,\n        \"kd_ols_beta\": 10.074563183644912,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0121,\n          0.0001,\n          0.0001,\n          0.0001,\n          0.0001,\n          0.0001,\n          0.0001\n        ],\n        \"eta_final_p\": 0.0121,\n        \"eta_ols_std_beta\": -0.6095032119169855,\n        \"eta_ols_t\": -20.858905156371865,\n        \"eta_ols_beta\": -3.74665997231819,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.0288,\n        \"eta_fdr_p\": 0.06330000000000001\n      },\n      \"arc_challengexverbosity_bias\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.1055,\n          0.0304,\n          0.0175,\n          0.0099,\n          0.0013,\n          0.0013,\n          0.0202\n        ],\n        \"kd_final_p\": 0.1055,\n        \"kd_ols_std_beta\": 0.2953357172987956,\n        \"kd_ols_t\": 15.536823149424645,\n        \"kd_ols_beta\": 3.2494545743621623,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.1141,\n          0.0802,\n          0.0575,\n          0.0624,\n          0.1424,\n          0.0629,\n          0.2693\n        ],\n        \"eta_final_p\": 0.2693,\n        \"eta_ols_std_beta\": 0.17906070678802405,\n        \"eta_ols_t\": 9.41990545478746,\n        \"eta_ols_beta\": 0.9087804594332485,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.14066666666666666,\n        \"eta_fdr_p\": 0.40395\n      },\n      \"arc_challengexposition_bias\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.0165,\n          0.0391,\n          0.0013,\n          0.0286,\n          0.0053,\n          0.0013,\n          0.6347\n        ],\n        \"kd_final_p\": 0.6347,\n        \"kd_ols_std_beta\": 0.47925412248179583,\n        \"kd_ols_t\": 16.261892667278232,\n        \"kd_ols_beta\": 0.08931926179882149,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0194,\n          0.0248,\n          0.0073,\n          0.1642,\n          0.0811,\n          0.3584,\n          0.8197\n        ],\n        \"eta_final_p\": 0.8197,\n        \"eta_ols_std_beta\": -0.3116520336994563,\n        \"eta_ols_t\": -10.574873921406894,\n        \"eta_ols_beta\": -0.1638464792165691,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.76164,\n        \"eta_fdr_p\": 0.8197\n      },\n      \"arc_challengexauthority_bias\": {\n        \"n_panels\": 6435,\n        \"kd_boot_p\": [\n          0.9763,\n          0.5415,\n          0.8376,\n          0.8584,\n          0.4539,\n          0.12,\n          0.5793\n        ],\n        \"kd_final_p\": 0.9763,\n        \"kd_ols_std_beta\": 0.04182582113225977,\n        \"kd_ols_t\": 2.27983154291953,\n        \"kd_ols_beta\": 0.4378972319339764,\n        \"kd_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"eta_boot_p\": [\n          0.0394,\n          0.0566,\n          0.013,\n          0.0749,\n          0.0491,\n          0.0134,\n          0.0019\n        ],\n        \"eta_final_p\": 0.0749,\n        \"eta_ols_std_beta\": 0.2489083447756811,\n        \"eta_ols_t\": 13.56743466962842,\n        \"eta_ols_beta\": 1.0736568582854,\n        \"eta_n_clusters\": [\n          9,\n          9,\n          9,\n          9,\n          9,\n          9,\n          9\n        ],\n        \"skipped\": false,\n        \"kd_fdr_p\": 0.9763,\n        \"eta_fdr_p\": 0.1652\n      }\n    }\n  },\n  \"comparison_with_keff\": {\n    \"K3\": {\n      \"keff_sig\": \"4/12\",\n      \"kappa_sig\": \"8/12\"\n    },\n    \"K5\": {\n      \"keff_sig\": \"10/12\",\n      \"kappa_sig\": \"7/12\"\n    },\n    \"K7\": {\n      \"keff_sig\": \"9/12\",\n      \"kappa_sig\": \"6/12\"\n    }\n  }\n}",
+                "numLines": 1560,
+                "startLine": 1,
+                "totalLines": 1560
+              }
+            },
+            "sourceToolAssistantUUID": "055a3aba-7ea5-4d8f-af69-e1d2feb7811c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich"
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-25T20:29:41.886Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012hQabQ9EdrwMje2SJC6WaJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/regime_transition_corrected.json",
+                "limit": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18fdc32a-b06d-4048-b6cb-c4c513966eaa",
+            "isSidechain": false,
+            "requestId": "req_011CbPvJUd91ZmcrLiU5qG7z",
+            "type": "assistant",
+            "uuid": "33080cb0-24ae-4822-bd57-e107abc36cc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P3vyoNnmmwzoUoeXgk3Ph5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6593,
+                "cache_read_input_tokens": 86618,
+                "output_tokens": 196,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6593,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 196,
+                    "cache_read_input_tokens": 86618,
+                    "cache_creation_input_tokens": 6593,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6593
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-25T20:29:41.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012hQabQ9EdrwMje2SJC6WaJ",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"method\": \"Wild cluster bootstrap, B=9999, Rademacher, max-p, BH FDR 0.05\",\n3\t  \"error_handling\": \"exclude invalid scores (_is_valid_score: no winner or error flag)\",\n4\t  \"n_filtered_samples\": 1365,\n5\t  \"results\": {\n6\t    \"K3\": {\n7\t      \"n_panels\": 455,\n8\t      \"old\": {\"eta_sig\": 5, \"keff_sig\": 1},\n9\t      \"new\": {\"eta_sig\": 3, \"keff_sig\": 4},\n10\t      \"changed\": true\n11\t    },\n12\t    \"K5\": {\n13\t      \"n_panels\": 3003,\n14\t      \"old\": {\"eta_sig\": 0, \"keff_sig\": 7},\n15\t      \"new\": {\"eta_sig\": 0, \"keff_sig\": 10},\n16\t      \"changed\": true\n17\t    },\n18\t    \"K7\": {\n19\t      \"n_panels\": 6435,\n20\t      \"old\": {\"eta_sig\": 0, \"keff_sig\": 5},\n21\t      \"new\": {\"eta_sig\": 0, \"keff_sig\": 9},\n22\t      \"changed\": true\n23\t    }\n24\t  },\n25\t  \"per_condition_max_p\": {\n26\t    \"K3\": {\n27\t      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0274, \"keff_fdr_p\": 0.0658, \"eta_max_p\": 0.0997, \"eta_fdr_p\": 0.1709},\n28\t      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0048, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0002, \"eta_fdr_p\": 0.0024},\n29\t      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0583, \"keff_fdr_p\": 0.0875, \"eta_max_p\": 0.6392, \"eta_fdr_p\": 0.6973},\n30\t      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0075, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0011, \"eta_fdr_p\": 0.0066},\n31\t      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0774, \"keff_fdr_p\": 0.1032, \"eta_max_p\": 0.1490, \"eta_fdr_p\": 0.2235},\n32\t      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0080, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0295, \"eta_fdr_p\": 0.0590},\n33\t      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0444, \"keff_fdr_p\": 0.0760, \"eta_max_p\": 0.0410, \"eta_fdr_p\": 0.0703},\n34\t      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.1620, \"keff_fdr_p\": 0.1944, \"eta_max_p\": 0.0096, \"eta_fdr_p\": 0.0144},\n35\t      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.1260, \"keff_fdr_p\": 0.1620, \"eta_max_p\": 0.2186, \"eta_fdr_p\": 0.2916},\n36\t      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0139, \"keff_fdr_p\": 0.0417, \"eta_max_p\": 0.0679, \"eta_fdr_p\": 0.1222},\n37\t      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0464, \"keff_fdr_p\": 0.0760, \"eta_max_p\": 0.9986, \"eta_fdr_p\": 0.9986},\n38\t      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.0879, \"keff_fdr_p\": 0.1055, \"eta_max_p\": 0.1725, \"eta_fdr_p\": 0.2300}\n39\t    },\n40\t    \"K5\": {\n41\t      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0020, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.1057, \"eta_fdr_p\": 0.2114},\n42\t      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0014, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.0173, \"eta_fdr_p\": 0.0692},\n43\t      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0056, \"keff_fdr_p\": 0.0112, \"eta_max_p\": 0.3334, \"eta_fdr_p\": 0.5001},\n44\t      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0069, \"keff_fdr_p\": 0.0118, \"eta_max_p\": 0.0143, \"eta_fdr_p\": 0.0692},\n45\t      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0112, \"keff_fdr_p\": 0.0168, \"eta_max_p\": 0.8785, \"eta_fdr_p\": 0.8785},\n46\t      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0025, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.9986, \"eta_fdr_p\": 0.9986},\n47\t      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0334, \"keff_fdr_p\": 0.0446, \"eta_max_p\": 0.8340, \"eta_fdr_p\": 0.8785},\n48\t      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.4136, \"keff_fdr_p\": 0.4136, \"eta_max_p\": 0.0480, \"eta_fdr_p\": 0.1152},\n49\t      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.0124, \"keff_fdr_p\": 0.0168, \"eta_max_p\": 0.8731, \"eta_fdr_p\": 0.8785},\n50\t      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0188, \"keff_fdr_p\": 0.0282, \"eta_max_p\": 0.2188, \"eta_fdr_p\": 0.3753},\n51\t      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0094, \"keff_fdr_p\": 0.0141, \"eta_max_p\": 0.4541, \"eta_fdr_p\": 0.6058},\n52\t      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.1409, \"keff_fdr_p\": 0.1409, \"eta_max_p\": 0.3105, \"eta_fdr_p\": 0.5001}\n53\t    },\n54\t    \"K7\": {\n55\t      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0031, \"keff_fdr_p\": 0.0093, \"eta_max_p\": 0.5011, \"eta_fdr_p\": 0.6014},\n56\t      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.2222, \"eta_fdr_p\": 0.4265},\n57\t      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0067, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.1091, \"eta_fdr_p\": 0.2618},\n58\t      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0013, \"keff_fdr_p\": 0.0078, \"eta_max_p\": 0.0309, \"eta_fdr_p\": 0.1854},\n59\t      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0183, \"keff_fdr_p\": 0.0275, \"eta_max_p\": 0.9529, \"eta_fdr_p\": 0.9529},\n60\t      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.9444, \"eta_fdr_p\": 0.9529},"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33080cb0-24ae-4822-bd57-e107abc36cc9",
+            "isSidechain": false,
+            "promptId": "9e571dfb-7da7-4dbe-b404-9f12c62c5a98",
+            "type": "user",
+            "uuid": "41d52dfa-0efc-45dd-acc6-98ddf6942fdf",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/regime_transition_corrected.json",
+                "content": "{\n  \"method\": \"Wild cluster bootstrap, B=9999, Rademacher, max-p, BH FDR 0.05\",\n  \"error_handling\": \"exclude invalid scores (_is_valid_score: no winner or error flag)\",\n  \"n_filtered_samples\": 1365,\n  \"results\": {\n    \"K3\": {\n      \"n_panels\": 455,\n      \"old\": {\"eta_sig\": 5, \"keff_sig\": 1},\n      \"new\": {\"eta_sig\": 3, \"keff_sig\": 4},\n      \"changed\": true\n    },\n    \"K5\": {\n      \"n_panels\": 3003,\n      \"old\": {\"eta_sig\": 0, \"keff_sig\": 7},\n      \"new\": {\"eta_sig\": 0, \"keff_sig\": 10},\n      \"changed\": true\n    },\n    \"K7\": {\n      \"n_panels\": 6435,\n      \"old\": {\"eta_sig\": 0, \"keff_sig\": 5},\n      \"new\": {\"eta_sig\": 0, \"keff_sig\": 9},\n      \"changed\": true\n    }\n  },\n  \"per_condition_max_p\": {\n    \"K3\": {\n      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0274, \"keff_fdr_p\": 0.0658, \"eta_max_p\": 0.0997, \"eta_fdr_p\": 0.1709},\n      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0048, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0002, \"eta_fdr_p\": 0.0024},\n      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0583, \"keff_fdr_p\": 0.0875, \"eta_max_p\": 0.6392, \"eta_fdr_p\": 0.6973},\n      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0075, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0011, \"eta_fdr_p\": 0.0066},\n      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0774, \"keff_fdr_p\": 0.1032, \"eta_max_p\": 0.1490, \"eta_fdr_p\": 0.2235},\n      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0080, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0295, \"eta_fdr_p\": 0.0590},\n      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0444, \"keff_fdr_p\": 0.0760, \"eta_max_p\": 0.0410, \"eta_fdr_p\": 0.0703},\n      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.1620, \"keff_fdr_p\": 0.1944, \"eta_max_p\": 0.0096, \"eta_fdr_p\": 0.0144},\n      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.1260, \"keff_fdr_p\": 0.1620, \"eta_max_p\": 0.2186, \"eta_fdr_p\": 0.2916},\n      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0139, \"keff_fdr_p\": 0.0417, \"eta_max_p\": 0.0679, \"eta_fdr_p\": 0.1222},\n      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0464, \"keff_fdr_p\": 0.0760, \"eta_max_p\": 0.9986, \"eta_fdr_p\": 0.9986},\n      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.0879, \"keff_fdr_p\": 0.1055, \"eta_max_p\": 0.1725, \"eta_fdr_p\": 0.2300}\n    },\n    \"K5\": {\n      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0020, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.1057, \"eta_fdr_p\": 0.2114},\n      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0014, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.0173, \"eta_fdr_p\": 0.0692},\n      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0056, \"keff_fdr_p\": 0.0112, \"eta_max_p\": 0.3334, \"eta_fdr_p\": 0.5001},\n      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0069, \"keff_fdr_p\": 0.0118, \"eta_max_p\": 0.0143, \"eta_fdr_p\": 0.0692},\n      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0112, \"keff_fdr_p\": 0.0168, \"eta_max_p\": 0.8785, \"eta_fdr_p\": 0.8785},\n      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0025, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.9986, \"eta_fdr_p\": 0.9986},\n      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0334, \"keff_fdr_p\": 0.0446, \"eta_max_p\": 0.8340, \"eta_fdr_p\": 0.8785},\n      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.4136, \"keff_fdr_p\": 0.4136, \"eta_max_p\": 0.0480, \"eta_fdr_p\": 0.1152},\n      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.0124, \"keff_fdr_p\": 0.0168, \"eta_max_p\": 0.8731, \"eta_fdr_p\": 0.8785},\n      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0188, \"keff_fdr_p\": 0.0282, \"eta_max_p\": 0.2188, \"eta_fdr_p\": 0.3753},\n      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0094, \"keff_fdr_p\": 0.0141, \"eta_max_p\": 0.4541, \"eta_fdr_p\": 0.6058},\n      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.1409, \"keff_fdr_p\": 0.1409, \"eta_max_p\": 0.3105, \"eta_fdr_p\": 0.5001}\n    },\n    \"K7\": {\n      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0031, \"keff_fdr_p\": 0.0093, \"eta_max_p\": 0.5011, \"eta_fdr_p\": 0.6014},\n      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.2222, \"eta_fdr_p\": 0.4265},\n      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0067, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.1091, \"eta_fdr_p\": 0.2618},\n      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0013, \"keff_fdr_p\": 0.0078, \"eta_max_p\": 0.0309, \"eta_fdr_p\": 0.1854},\n      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0183, \"keff_fdr_p\": 0.0275, \"eta_max_p\": 0.9529, \"eta_fdr_p\": 0.9529},\n      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.9444, \"eta_fdr_p\": 0.9529},",
+                "numLines": 60,
+                "startLine": 1,
+                "totalLines": 70
+              }
+            },
+            "sourceToolAssistantUUID": "33080cb0-24ae-4822-bd57-e107abc36cc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich"
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-25T20:29:41.955Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "41d52dfa-0efc-45dd-acc6-98ddf6942fdf",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "aac81a68-7521-4e42-bb11-cae1b70065de",
+                "timestamp": "2026-05-25T20:29:41.955Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+                "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "frolicking-wiggling-eich"
+              }
+            }
+          ],
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[飞书用户 曹晓玉 (ou_824b44868720b97fb51403f9b842a039)]: 确保全文数据真实性和可追溯性",
+                "leafUuid": "aac81a68-7521-4e42-bb11-cae1b70065de",
+                "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b"
+              }
+            }
+          ],
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Remove backgrounds from figure legends and adjust layouts",
+                "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b"
+              }
+            }
+          ],
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-25T20:30:30.473Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me verify the κ-diversity trajectory claims in the paper:\n\nPaper says (analysis.tex line 14): \"K_eff significance increases (4 → 7 → 8/12) while κ-diversity decreases (8 → 7 → 6/12)\"\n\nFrom the kappa_diversity_regime_transition.json:\n- K3: kappa_div_fdr_sig = 8/12 ✓\n\n\n- K5: kappa_div_fdr_sig = 7/12 ✓\n- K7: kappa_div_fdr_sig = 6/12 ✓\n\nThe κ-diversity trajectory checks out. But when I look at the K_eff values in the comparison_with_keff section, K3 matches at 4/12, but K5 shows 10/12 in the data while the paper claims 7/12 — that's a discrepancy I need to investigate.\n\nActually, I'm realizing the corrected data file has updated K_eff counts that differ from what's in the appendix tables. The comparison_with_keff section is pulling from the corrected regime_transition_corrected.json, which has K5 at 10/12 and K7 at 9/12 for K_eff significance, not the older values. So the κ-diversity metrics were computed alongside these corrected K_eff numbers, which means I need to check whether the paper's appendix reflects the original or corrected values. I'm tracking which data file corresponds to each K value and whether error corrections were applied, then cross-checking against what's currently in the paper appendix—the K=3 and K=5 K_eff values match their source files, but the η values are inconsistent. The K=7 η_max count of 1/12 in the paper also doesn't match any source—both corrected and uncorrected data show 0/12. Looking at the full K_eff trajectory, the paper reports 4→7→8/12, but only the first two values are traceable to data; the 8/12 for K=7 appears fabricated. With corrected data, this trajectory would actually be much stronger at 4→10→9/12, while uncorrected data would show 4→7→5/12. The uncorrected data shows 4→7→5, which contradicts the \"increases\" narrative entirely—it goes up then down. The paper's reported 4→7→8 trajectory creates a false impression of monotonic growth that neither dataset actually supports. This is a critical discrepancy because if K_eff truly decreases at K=7 in the uncorrected version, it undermines the claimed opposite trend with kappa, which itself decreases across the same range. I need to verify the API-only pool analysis next to see if that claim about removing the AWQ confound holds up. The corrected K=3 value should be around 0.180, not 0.266, which confirms this is part of the M022 discrepancy I've already identified. Now I'm ready to compile the full audit status and double-check the FDR counts in the regime transition data.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aac81a68-7521-4e42-bb11-cae1b70065de",
+            "isSidechain": false,
+            "requestId": "req_011CbPvJoBLt6nXXcyzMqn5s",
+            "type": "assistant",
+            "uuid": "de966807-865d-4092-91fc-d2365694d19a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PaS4BvhAseUMTtrfEzTdS7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 20786,
+                "cache_read_input_tokens": 93211,
+                "output_tokens": 2269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 20786,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2269,
+                    "cache_read_input_tokens": 93211,
+                    "cache_creation_input_tokens": 20786,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 20786
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-25T20:30:30.485Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the remaining regime transition data and check the K=7 bootstrap file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de966807-865d-4092-91fc-d2365694d19a",
+            "isSidechain": false,
+            "requestId": "req_011CbPvJoBLt6nXXcyzMqn5s",
+            "type": "assistant",
+            "uuid": "604519da-842d-4a61-a020-41741db8f867",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PaS4BvhAseUMTtrfEzTdS7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 20786,
+                "cache_read_input_tokens": 93211,
+                "output_tokens": 2269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 20786,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2269,
+                    "cache_read_input_tokens": 93211,
+                    "cache_creation_input_tokens": 20786,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 20786
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-25T20:30:32.139Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0185f5G4bEqpnQich24SeKhE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/regime_transition_corrected.json",
+                "offset": 54
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "604519da-842d-4a61-a020-41741db8f867",
+            "isSidechain": false,
+            "requestId": "req_011CbPvJoBLt6nXXcyzMqn5s",
+            "type": "assistant",
+            "uuid": "f43c6de1-a4be-4415-b8ed-13a39c421895",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PaS4BvhAseUMTtrfEzTdS7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 20786,
+                "cache_read_input_tokens": 93211,
+                "output_tokens": 2269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 20786,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2269,
+                    "cache_read_input_tokens": 93211,
+                    "cache_creation_input_tokens": 20786,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 20786
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-25T20:30:32.978Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X3twncoz1UT83hyK5b6jAa",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"method\": \"wild_cluster_bootstrap_k7\",\n3\t  \"K\": 7,\n4\t  \"B\": 9999,\n5\t  \"weights\": \"rademacher\",\n6\t  \"n_positions\": 7,\n7\t  \"seed\": 42,\n8\t  \"n_total_panels\": 6435,\n9\t  \"keff_formula\": \"mi_based_keff (average pairwise MI)\",\n10\t  \"regression\": \"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\",\n11\t  \"per_condition\": {\n12\t    \"mmluxprompt_injection\": {\n13\t      \"n_panels\": 6435,\n14\t      \"keff_boot_p\": [\n15\t        0.0019,\n16\t        0.0019,\n17\t        0.0019,\n18\t        0.0019,\n19\t        0.0019,\n20\t        0.0019,\n21\t        0.0019\n22\t      ],\n23\t      \"keff_final_p\": 0.0019,\n24\t      \"keff_ols_std_beta\": 0.5738479726516944,\n25\t      \"keff_ols_t\": 60.61160284414757,\n26\t      \"keff_ols_beta\": 3.587146370962487,\n27\t      \"keff_n_clusters\": [\n28\t        9,\n29\t        9,\n30\t        9,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "133be224-db54-4003-adce-1a4b6259f996",
+            "isSidechain": false,
+            "promptId": "9e571dfb-7da7-4dbe-b404-9f12c62c5a98",
+            "type": "user",
+            "uuid": "d9bfdae0-3276-4de3-90f6-6f1dfe9c2270",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/_project/data/k7_wild_bootstrap_results.json",
+                "content": "{\n  \"method\": \"wild_cluster_bootstrap_k7\",\n  \"K\": 7,\n  \"B\": 9999,\n  \"weights\": \"rademacher\",\n  \"n_positions\": 7,\n  \"seed\": 42,\n  \"n_total_panels\": 6435,\n  \"keff_formula\": \"mi_based_keff (average pairwise MI)\",\n  \"regression\": \"log(ASR+1e-6) ~ log(K_eff) + log(eta_max+1e-6)\",\n  \"per_condition\": {\n    \"mmluxprompt_injection\": {\n      \"n_panels\": 6435,\n      \"keff_boot_p\": [\n        0.0019,\n        0.0019,\n        0.0019,\n        0.0019,\n        0.0019,\n        0.0019,\n        0.0019\n      ],\n      \"keff_final_p\": 0.0019,\n      \"keff_ols_std_beta\": 0.5738479726516944,\n      \"keff_ols_t\": 60.61160284414757,\n      \"keff_ols_beta\": 3.587146370962487,\n      \"keff_n_clusters\": [\n        9,\n        9,\n        9,",
+                "numLines": 30,
+                "startLine": 1,
+                "totalLines": 720
+              }
+            },
+            "sourceToolAssistantUUID": "133be224-db54-4003-adce-1a4b6259f996",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich"
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-25T20:30:32.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0185f5G4bEqpnQich24SeKhE",
+              "type": "tool_result",
+              "content": "54\t    \"K7\": {\n55\t      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0031, \"keff_fdr_p\": 0.0093, \"eta_max_p\": 0.5011, \"eta_fdr_p\": 0.6014},\n56\t      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.2222, \"eta_fdr_p\": 0.4265},\n57\t      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0067, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.1091, \"eta_fdr_p\": 0.2618},\n58\t      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0013, \"keff_fdr_p\": 0.0078, \"eta_max_p\": 0.0309, \"eta_fdr_p\": 0.1854},\n59\t      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0183, \"keff_fdr_p\": 0.0275, \"eta_max_p\": 0.9529, \"eta_fdr_p\": 0.9529},\n60\t      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.9444, \"eta_fdr_p\": 0.9529},\n61\t      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0630, \"keff_fdr_p\": 0.0756, \"eta_max_p\": 0.4881, \"eta_fdr_p\": 0.6014},\n62\t      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.5378, \"keff_fdr_p\": 0.5378, \"eta_max_p\": 0.0285, \"eta_fdr_p\": 0.1854},\n63\t      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.0171, \"keff_fdr_p\": 0.0314, \"eta_max_p\": 0.4066, \"eta_fdr_p\": 0.6014},\n64\t      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0375, \"keff_fdr_p\": 0.0500, \"eta_max_p\": 0.2094, \"eta_fdr_p\": 0.4265},\n65\t      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0251, \"keff_fdr_p\": 0.0377, \"eta_max_p\": 0.0690, \"eta_fdr_p\": 0.2760},\n66\t      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.3899, \"keff_fdr_p\": 0.4253, \"eta_max_p\": 0.2488, \"eta_fdr_p\": 0.4265}\n67\t    }\n68\t  }\n69\t}\n70\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f43c6de1-a4be-4415-b8ed-13a39c421895",
+            "isSidechain": false,
+            "promptId": "9e571dfb-7da7-4dbe-b404-9f12c62c5a98",
+            "type": "user",
+            "uuid": "4058cf00-0ad2-464b-90cb-dd0625129300",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/regime_transition_corrected.json",
+                "content": "    \"K7\": {\n      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0031, \"keff_fdr_p\": 0.0093, \"eta_max_p\": 0.5011, \"eta_fdr_p\": 0.6014},\n      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.2222, \"eta_fdr_p\": 0.4265},\n      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0067, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.1091, \"eta_fdr_p\": 0.2618},\n      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0013, \"keff_fdr_p\": 0.0078, \"eta_max_p\": 0.0309, \"eta_fdr_p\": 0.1854},\n      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0183, \"keff_fdr_p\": 0.0275, \"eta_max_p\": 0.9529, \"eta_fdr_p\": 0.9529},\n      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.9444, \"eta_fdr_p\": 0.9529},\n      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0630, \"keff_fdr_p\": 0.0756, \"eta_max_p\": 0.4881, \"eta_fdr_p\": 0.6014},\n      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.5378, \"keff_fdr_p\": 0.5378, \"eta_max_p\": 0.0285, \"eta_fdr_p\": 0.1854},\n      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.0171, \"keff_fdr_p\": 0.0314, \"eta_max_p\": 0.4066, \"eta_fdr_p\": 0.6014},\n      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0375, \"keff_fdr_p\": 0.0500, \"eta_max_p\": 0.2094, \"eta_fdr_p\": 0.4265},\n      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0251, \"keff_fdr_p\": 0.0377, \"eta_max_p\": 0.0690, \"eta_fdr_p\": 0.2760},\n      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.3899, \"keff_fdr_p\": 0.4253, \"eta_max_p\": 0.2488, \"eta_fdr_p\": 0.4265}\n    }\n  }\n}\n",
+                "numLines": 17,
+                "startLine": 54,
+                "totalLines": 70
+              }
+            },
+            "sourceToolAssistantUUID": "f43c6de1-a4be-4415-b8ed-13a39c421895",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich"
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-25T20:30:32.972Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X3twncoz1UT83hyK5b6jAa",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/artifacts/_project/data/k7_wild_bootstrap_results.json",
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4058cf00-0ad2-464b-90cb-dd0625129300",
+            "isSidechain": false,
+            "requestId": "req_011CbPvJoBLt6nXXcyzMqn5s",
+            "type": "assistant",
+            "uuid": "133be224-db54-4003-adce-1a4b6259f996",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PaS4BvhAseUMTtrfEzTdS7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 20786,
+                "cache_read_input_tokens": 93211,
+                "output_tokens": 2269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 20786,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2269,
+                    "cache_read_input_tokens": 93211,
+                    "cache_creation_input_tokens": 20786,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 20786
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-25T20:31:09.126Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me verify the K=7 data. From the k7_wild_bootstrap_results.json, the keff_formula is \"mi_based_keff (average pairwise MI)\" — this is the original K_eff formula, NOT V2. I need to check what the counts are.\n\nFrom the summary earlier: the k7 data file's summary field says `\"keff_fdr_sig\": \"5/12\"`, `\"eta_fdr_sig\": \"0/12\"`.\n\nNow let me verify the corrected data's K=7 FDR counts:\nFrom regime_transition_corrected.json K=7:\n\n\nLooking at the keff_fdr_p values, I'm seeing six significant results below 0.05 across the MMLU tasks (prompt injection, sycophancy, score manipulation, verbosity bias, position bias, and authority bias), while the ARC prompt injection result at 0.0756 falls just outside the threshold.\n\nContinuing through the ARC results, sycophancy and authority bias don't reach significance, but score manipulation, verbosity bias, and position bias all do—though the verbosity bias is right at the boundary at exactly 0.05. That gives me 9 out of 12 tests meeting the significance criterion, depending on whether I'm using strict inequality or allowing equality at the threshold.\n\nNow I'm cross-referencing the FDR-corrected p-values, and those all stay above 0.05 across the board, so none of them register as significant by that stricter standard. Looking at the regime transition data, the K=7 configuration shows 9 significant effects, which aligns with what I'm seeing. I'm also compiling a comparison table across different data sources to see how the K_eff significance counts vary—the paper's appendix tables show 4 significant results at K=3, climbing to 7 at K=5 and 8 at K=7.\n\nThe old bootstrap data gives different counts, particularly at K=7 where I'm only seeing 5 significant results instead of the paper's 8. The corrected data with the updated formula and error filtering pushes K=5 up to 10 significant results and K=7 to 9. So the paper's K=7 count of 8 doesn't cleanly match any single data source, which suggests the appendix might be mixing different calculation methods or filtering approaches.\n\nLooking at the η_max bootstrap FDR results, the paper reports 2/12 for K=5 and 1/12 for K=7, but both my old and corrected data sources consistently show 0/12 for both of these cases. This is a clear discrepancy. So far I've identified three specific numbers in the paper that don't align with any of my data sources: the K=5 η_max count, the K=7 K_eff count, and the K=7 η_max count.\n\nBeyond these direct mismatches, there are several other issues queued up for correction—the K=3 appendix table β_std values that predate the bug fix, the fractional logit comparison text that references specific FDR counts which depend on which numbers turn out to be correct, and the β_std trajectory that relies on uncorrected data. I should also verify the introduction's claim about K_eff significance increasing from 4 to 7 to 8/12, since my corrected data would suggest it should be 4 to 10 to 9/12 instead. Let me check what progress the Agent has made on these items and then prepare a status update.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d9bfdae0-3276-4de3-90f6-6f1dfe9c2270",
+            "isSidechain": false,
+            "requestId": "req_011CbPvNZgr4tFbLhe6s6GXG",
+            "type": "assistant",
+            "uuid": "307e6edc-2a56-47f1-8f73-81b91e33d7d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VxxKaJsa2d8PqEck695bNb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3578,
+                "cache_read_input_tokens": 113997,
+                "output_tokens": 1696,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3578,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1696,
+                    "cache_read_input_tokens": 113997,
+                    "cache_creation_input_tokens": 3578,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3578
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-25T20:31:09.280Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a complete picture of the audit findings. Let me check Agent progress and compile the comprehensive status."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "307e6edc-2a56-47f1-8f73-81b91e33d7d3",
+            "isSidechain": false,
+            "requestId": "req_011CbPvNZgr4tFbLhe6s6GXG",
+            "type": "assistant",
+            "uuid": "d6dc1073-4061-43d1-8896-e437a04d4935",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VxxKaJsa2d8PqEck695bNb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3578,
+                "cache_read_input_tokens": 113997,
+                "output_tokens": 1696,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3578,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1696,
+                    "cache_read_input_tokens": 113997,
+                    "cache_creation_input_tokens": 3578,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3578
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-25T20:31:09.779Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013M3FWFm5wwjExfh8DjqU9D",
+              "name": "mcp__agent-ml-research__get_agent_queue_status",
+              "input": {
+                "project": "cert_manip_resist_eval"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6dc1073-4061-43d1-8896-e437a04d4935",
+            "isSidechain": false,
+            "requestId": "req_011CbPvNZgr4tFbLhe6s6GXG",
+            "type": "assistant",
+            "uuid": "c05d8465-12a0-42a5-a019-74e4f8b85b52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VxxKaJsa2d8PqEck695bNb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3578,
+                "cache_read_input_tokens": 113997,
+                "output_tokens": 1696,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3578,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1696,
+                    "cache_read_input_tokens": 113997,
+                    "cache_creation_input_tokens": 3578,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3578
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-25T20:31:09.824Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013M3FWFm5wwjExfh8DjqU9D",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":5,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 紧急修正任务 — 数据审计发现严重不一致，需要全面修正论文数据。按优先级顺序执行：\\\\n\\\\n## 任务 1：Figure 文件拆分（Reviewer Critical）\\\\n\\\\n`fig_keff_eta_scatter.p\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 🚨 紧急：Position Bias ASR 计算 bug 验证 — 优先级最高，其他任务暂停\\\\n\\\\nReviewer 发现 fig4 restyle worker 修复了 position bias ASR 的反转\\\",\\\"queued_at\\\":1779740398.0981846},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_fig4-per-model-asr-restyle-v2_20260525T200401 已完成（status=done）。用 `get_worker_status('wor\\\",\\\"queued_at\\\":1779739918.3244808},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_fig2-scatter-k5-restore_20260525T200712 已完成（status=done）。用 `get_worker_status('worker_op\\\",\\\"queued_at\\\":1779739918.3290672},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 补充上条指令 — 还有一个关键数字需要修正：\\\\n\\\\n## 任务 2.5：β_std trajectory 修正\\\\n\\\\n论文 abstract/results/conclusion 反复引用的 η_max pooled β\\\",\\\"queued_at\\\":1779739949.976828},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 补充审计任务（优先级低于之前的任务 1-4，完成后再做）：\\\\n\\\\n## 任务 5：Stochastic Dominance Tier Breakdown 验证\\\\n\\\\nProposition 1 引用的 within/cr\\\",\\\"queued_at\\\":1779740339.3794787}],\\\"idle_seconds\\\":1420}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c05d8465-12a0-42a5-a019-74e4f8b85b52",
+            "isSidechain": false,
+            "promptId": "9e571dfb-7da7-4dbe-b404-9f12c62c5a98",
+            "type": "user",
+            "uuid": "c2623acd-6498-4acc-b17f-01e502fd1d7b",
+            "toolUseResult": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":true,\\\"depth\\\":5,\\\"current\\\":{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 紧急修正任务 — 数据审计发现严重不一致，需要全面修正论文数据。按优先级顺序执行：\\\\n\\\\n## 任务 1：Figure 文件拆分（Reviewer Critical）\\\\n\\\\n`fig_keff_eta_scatter.p\\\"},\\\"pending\\\":[{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 🚨 紧急：Position Bias ASR 计算 bug 验证 — 优先级最高，其他任务暂停\\\\n\\\\nReviewer 发现 fig4 restyle worker 修复了 position bias ASR 的反转\\\",\\\"queued_at\\\":1779740398.0981846},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_fig4-per-model-asr-restyle-v2_20260525T200401 已完成（status=done）。用 `get_worker_status('wor\\\",\\\"queued_at\\\":1779739918.3244808},{\\\"source\\\":\\\"worker:done\\\",\\\"preview\\\":\\\"[WORKER DONE] Worker worker_ops_fig2-scatter-k5-restore_20260525T200712 已完成（status=done）。用 `get_worker_status('worker_op\\\",\\\"queued_at\\\":1779739918.3290672},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 补充上条指令 — 还有一个关键数字需要修正：\\\\n\\\\n## 任务 2.5：β_std trajectory 修正\\\\n\\\\n论文 abstract/results/conclusion 反复引用的 η_max pooled β\\\",\\\"queued_at\\\":1779739949.976828},{\\\"source\\\":\\\"director\\\",\\\"preview\\\":\\\"[Director 指令] 补充审计任务（优先级低于之前的任务 1-4，完成后再做）：\\\\n\\\\n## 任务 5：Stochastic Dominance Tier Breakdown 验证\\\\n\\\\nProposition 1 引用的 within/cr\\\",\\\"queued_at\\\":1779740339.3794787}],\\\"idle_seconds\\\":1420}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"found\":true,\"processing\":true,\"depth\":5,\"current\":{\"source\":\"director\",\"preview\":\"[Director 指令] 紧急修正任务 — 数据审计发现严重不一致，需要全面修正论文数据。按优先级顺序执行：\\n\\n## 任务 1：Figure 文件拆分（Reviewer Critical）\\n\\n`fig_keff_eta_scatter.p\"},\"pending\":[{\"source\":\"director\",\"preview\":\"[Director 指令] 🚨 紧急：Position Bias ASR 计算 bug 验证 — 优先级最高，其他任务暂停\\n\\nReviewer 发现 fig4 restyle worker 修复了 position bias ASR 的反转\",\"queued_at\":1779740398.0981846},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_ops_fig4-per-model-asr-restyle-v2_20260525T200401 已完成（status=done）。用 `get_worker_status('wor\",\"queued_at\":1779739918.3244808},{\"source\":\"worker:done\",\"preview\":\"[WORKER DONE] Worker worker_ops_fig2-scatter-k5-restore_20260525T200712 已完成（status=done）。用 `get_worker_status('worker_op\",\"queued_at\":1779739918.3290672},{\"source\":\"director\",\"preview\":\"[Director 指令] 补充上条指令 — 还有一个关键数字需要修正：\\n\\n## 任务 2.5：β_std trajectory 修正\\n\\n论文 abstract/results/conclusion 反复引用的 η_max pooled β\",\"queued_at\":1779739949.976828},{\"source\":\"director\",\"preview\":\"[Director 指令] 补充审计任务（优先级低于之前的任务 1-4，完成后再做）：\\n\\n## 任务 5：Stochastic Dominance Tier Breakdown 验证\\n\\nProposition 1 引用的 within/cr\",\"queued_at\":1779740339.3794787}],\"idle_seconds\":1420}"
+              }
+            },
+            "sourceToolAssistantUUID": "c05d8465-12a0-42a5-a019-74e4f8b85b52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/director_a20165af",
+            "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "frolicking-wiggling-eich"
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[飞书用户 曹晓玉 (ou_824b44868720b97fb51403f9b842a039)]: 确保全文数据真实性和可追溯性",
+                "leafUuid": "c2623acd-6498-4acc-b17f-01e502fd1d7b",
+                "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b"
+              }
+            }
+          ],
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Remove backgrounds from figure legends and adjust layouts",
+                "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b"
+              }
+            }
+          ],
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[飞书用户 曹晓玉 (ou_824b44868720b97fb51403f9b842a039)]: 确保全文数据真实性和可追溯性",
+                "leafUuid": "c2623acd-6498-4acc-b17f-01e502fd1d7b",
+                "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b"
+              }
+            }
+          ],
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Remove backgrounds from figure legends and adjust layouts",
+                "sessionId": "98888ed4-561c-4430-a99c-be9eb3e6ab9b"
+              }
+            }
+          ],
+          "id": "event-000742"
+        }
+      ]
+    }
+  ]
+}

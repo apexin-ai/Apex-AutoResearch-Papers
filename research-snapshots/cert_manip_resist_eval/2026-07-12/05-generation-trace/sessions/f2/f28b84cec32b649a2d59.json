@@ -1,0 +1,793 @@
+{
+  "schema_version": "1.0",
+  "id": "f28b84cec32b649a2d59",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the following files in /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/d",
+  "task_key": "agent-a96ddfe1de61be872",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a96ddfe1de61be872.jsonl",
+    "occurrence": 1,
+    "bytes": 106520,
+    "sha256": "fd221fc3b66ead7f4d99ae98ae950a7a116cffb13ba00d7759cdc9e388506cf9"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T19:10:09.653Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the following files in /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/ and report their FULL contents verbatim (do not summarize):\n\n1. table1_corrected.json\n2. regime_transition_corrected.json\n3. table2_corrected.json\n4. random_fault_contrast_corrected.json\n5. gam_bootstrap_ci_k3.json\n6. gam_bootstrap_ci_k5.json\n7. gam_magnitude_gradient.json\n\nReport each file's complete content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "5d350b43-6ddb-4209-a24d-c2cba6eecf15",
+            "agentId": "a96ddfe1de61be872",
+            "type": "user",
+            "uuid": "10c8d428-d7e2-44e0-912f-6b10035305fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T19:10:12.483Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read all the specified JSON files from that directory for you."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10c8d428-d7e2-44e0-912f-6b10035305fb",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dBKYY55Tr9gG24FEL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b541e613-34a1-4069-a426-5af2693cc2c9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011hsAtZMjPMCEmkC9WWH4uo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27759,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T19:10:13.380Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RrfpcrCxpTzhpYk7oQ3Ddp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/table1_corrected.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b541e613-34a1-4069-a426-5af2693cc2c9",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dBKYY55Tr9gG24FEL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "10121e88-5764-4917-b7bb-4dc00e3507fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011hsAtZMjPMCEmkC9WWH4uo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27759,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T19:10:13.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RrfpcrCxpTzhpYk7oQ3Ddp",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"method\": \"OLS log-log, error samples excluded\",\n3\t  \"fix_description\": \".get('winner', 'tie') treated API errors (1221/63000 = 1.94%, mostly gemini-3.5-flash:742, gemini-3.1-pro-preview:335) as ties. Corrected to skip samples with invalid scores.\",\n4\t  \"K\": 3,\n5\t  \"n_panels\": 455,\n6\t  \"conditions\": {\n7\t    \"mmlu_prompt_injection\": {\n8\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.6159, \"keff_beta_std\": 0.2524, \"R2\": 0.6626},\n9\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1821, \"keff_beta_std\": 0.5103, \"R2\": 0.4359},\n10\t      \"changed\": false,\n11\t      \"note\": \"Sig/dom unchanged but betas flip relative magnitude: eta drops 0.62→0.18, K rises 0.25→0.51\"\n12\t    },\n13\t    \"mmlu_sycophancy\": {\n14\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.4864, \"keff_beta_std\": 0.1656, \"R2\": 0.3342},\n15\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1910, \"keff_beta_std\": 0.4795, \"R2\": 0.3557},\n16\t      \"changed\": false,\n17\t      \"note\": \"Sig/dom unchanged but betas flip relative magnitude: eta drops 0.49→0.19, K rises 0.17→0.48\"\n18\t    },\n19\t    \"mmlu_score_manipulation\": {\n20\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.5977, \"keff_beta_std\": 0.0328, \"R2\": 0.3904},\n21\t      \"new\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": 0.0817, \"keff_beta_std\": 0.5757, \"R2\": 0.4186},\n22\t      \"changed\": true,\n23\t      \"note\": \"Dominance FLIPPED from eta to K. eta collapses 0.60→0.08 (loses sig), K rises 0.03→0.58 (gains sig)\"\n24\t    },\n25\t    \"mmlu_verbosity_bias\": {\n26\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.5929, \"keff_beta_std\": 0.0903, \"R2\": 0.4072},\n27\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2894, \"keff_beta_std\": 0.3797, \"R2\": 0.3517},\n28\t      \"changed\": false,\n29\t      \"note\": \"Sig/dom unchanged but K effect strengthens 0.09→0.38\"\n30\t    },\n31\t    \"mmlu_position_bias\": {\n32\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.4181, \"keff_beta_std\": 0.1040, \"R2\": 0.2431},\n33\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2356, \"keff_beta_std\": 0.3829, \"R2\": 0.3227},\n34\t      \"changed\": true,\n35\t      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.10→0.38\"\n36\t    },\n37\t    \"mmlu_authority_bias\": {\n38\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.3767, \"keff_beta_std\": 0.0104, \"R2\": 0.1469},\n39\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1022, \"keff_beta_std\": 0.4972, \"R2\": 0.3145},\n40\t      \"changed\": true,\n41\t      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.01→0.50. R2 doubles\"\n42\t    },\n43\t    \"arc_prompt_injection\": {\n44\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2439, \"keff_beta_std\": 0.3297, \"R2\": 0.3032},\n45\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2809, \"keff_beta_std\": 0.3378, \"R2\": 0.3178},\n46\t      \"changed\": false,\n47\t      \"note\": \"Minor changes. ARC has fewer errors so less impact\"\n48\t    },\n49\t    \"arc_sycophancy\": {\n50\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"-*\", \"dom\": \"Co\", \"eta_beta_std\": 0.4924, \"keff_beta_std\": -0.1917, \"R2\": 0.1322},\n51\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2844, \"keff_beta_std\": 0.2572, \"R2\": 0.2449},\n52\t      \"changed\": true,\n53\t      \"note\": \"K sign FLIPPED from -0.19 to +0.26. Dom stays Co but K direction reverses\"\n54\t    },\n55\t    \"arc_score_manipulation\": {\n56\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2242, \"keff_beta_std\": 0.2522, \"R2\": 0.2186},\n57\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1911, \"keff_beta_std\": 0.3707, \"R2\": 0.2959},\n58\t      \"changed\": false,\n59\t      \"note\": \"Both stay sig. K strengthens. R2 increases\"\n60\t    },\n61\t    \"arc_verbosity_bias\": {\n62\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.3432, \"keff_beta_std\": 0.1455, \"R2\": 0.2217},\n63\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2155, \"keff_beta_std\": 0.3870, \"R2\": 0.3127},\n64\t      \"changed\": true,\n65\t      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.15→0.39\"\n66\t    },\n67\t    \"arc_position_bias\": {\n68\t      \"old\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": -0.0112, \"keff_beta_std\": 0.5842, \"R2\": 0.3293},\n69\t      \"new\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": -0.0758, \"keff_beta_std\": 0.6507, \"R2\": 0.3382},\n70\t      \"changed\": false,\n71\t      \"note\": \"Already K-dominant, minor changes\"\n72\t    },\n73\t    \"arc_authority_bias\": {\n74\t      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2613, \"keff_beta_std\": 0.1946, \"R2\": 0.1806},\n75\t      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1738, \"keff_beta_std\": 0.3288, \"R2\": 0.2145},\n76\t      \"changed\": false,\n77\t      \"note\": \"Both stay sig. K strengthens 0.19→0.33\"\n78\t    }\n79\t  },\n80\t  \"summary\": {\n81\t    \"eta_sig_count_old\": \"11/12\",\n82\t    \"eta_sig_count_new\": \"10/12\",\n83\t    \"keff_sig_count_old\": \"8/12\",\n84\t    \"keff_sig_count_new\": \"12/12\",\n85\t    \"n_conditions_changed\": 5,\n86\t    \"changed_conditions\": [\n87\t      \"mmlu_score_manipulation (eta→K)\",\n88\t      \"mmlu_position_bias (eta→Co)\",\n89\t      \"mmlu_authority_bias (eta→Co)\",\n90\t      \"arc_sycophancy (K sign flip: -→+)\",\n91\t      \"arc_verbosity_bias (eta→Co)\"\n92\t    ],\n93\t    \"old_dominance_dist\": {\"Co\": 7, \"eta\": 4, \"K\": 1, \"--\": 0},\n94\t    \"new_dominance_dist\": {\"Co\": 10, \"K\": 2, \"eta\": 0, \"--\": 0},\n95\t    \"interpretation\": \"Error-as-tie bug inflated eta_max effect (errors correlated with high-eta models like Gemini) and suppressed K_eff effect. After correction: K_eff is universally significant (12/12), always positive. Diversity is protective across ALL conditions. Dominance shifts strongly toward Co-dominance (10/12) with no pure eta-dominant conditions remaining.\"\n96\t  },\n97\t  \"results_tex_discrepancy\": {\n98\t    \"note\": \"The task-provided results.tex Table 1 shows 9/12 eta sig and 7/12 K sig, which differs from the JSON output (11/12 eta, 8/12 K). Conditions differing: mmlu_score_manipulation (tex=both n.s., json=eta sig) and arc_score_manipulation (tex=eta n.s., json=eta sig). The JSON values are used as 'old' baseline since they are the verifiable buggy script output.\"\n99\t  }\n100\t}\n101\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10121e88-5764-4917-b7bb-4dc00e3507fe",
+            "isSidechain": true,
+            "promptId": "5d350b43-6ddb-4209-a24d-c2cba6eecf15",
+            "agentId": "a96ddfe1de61be872",
+            "type": "user",
+            "uuid": "4426cf54-f28d-41af-977a-84f4a434cb2b",
+            "sourceToolAssistantUUID": "10121e88-5764-4917-b7bb-4dc00e3507fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T19:10:13.987Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019GWXPZ5ixFu3i5wC4Kz2Hp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/regime_transition_corrected.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4426cf54-f28d-41af-977a-84f4a434cb2b",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dBKYY55Tr9gG24FEL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cdcac275-5442-478b-8d5d-06255bf956eb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011hsAtZMjPMCEmkC9WWH4uo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27759,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T19:10:13.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019GWXPZ5ixFu3i5wC4Kz2Hp",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"method\": \"Wild cluster bootstrap, B=9999, Rademacher, max-p, BH FDR 0.05\",\n3\t  \"error_handling\": \"exclude invalid scores (_is_valid_score: no winner or error flag)\",\n4\t  \"n_filtered_samples\": 1365,\n5\t  \"results\": {\n6\t    \"K3\": {\n7\t      \"n_panels\": 455,\n8\t      \"old\": {\"eta_sig\": 5, \"keff_sig\": 1},\n9\t      \"new\": {\"eta_sig\": 3, \"keff_sig\": 4},\n10\t      \"changed\": true\n11\t    },\n12\t    \"K5\": {\n13\t      \"n_panels\": 3003,\n14\t      \"old\": {\"eta_sig\": 0, \"keff_sig\": 7},\n15\t      \"new\": {\"eta_sig\": 0, \"keff_sig\": 10},\n16\t      \"changed\": true\n17\t    },\n18\t    \"K7\": {\n19\t      \"n_panels\": 6435,\n20\t      \"old\": {\"eta_sig\": 0, \"keff_sig\": 5},\n21\t      \"new\": {\"eta_sig\": 0, \"keff_sig\": 9},\n22\t      \"changed\": true\n23\t    }\n24\t  },\n25\t  \"per_condition_max_p\": {\n26\t    \"K3\": {\n27\t      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0274, \"keff_fdr_p\": 0.0658, \"eta_max_p\": 0.0997, \"eta_fdr_p\": 0.1709},\n28\t      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0048, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0002, \"eta_fdr_p\": 0.0024},\n29\t      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0583, \"keff_fdr_p\": 0.0875, \"eta_max_p\": 0.6392, \"eta_fdr_p\": 0.6973},\n30\t      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0075, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0011, \"eta_fdr_p\": 0.0066},\n31\t      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0774, \"keff_fdr_p\": 0.1032, \"eta_max_p\": 0.1490, \"eta_fdr_p\": 0.2235},\n32\t      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0080, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0295, \"eta_fdr_p\": 0.0590},\n33\t      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0444, \"keff_fdr_p\": 0.0760, \"eta_max_p\": 0.0410, \"eta_fdr_p\": 0.0703},\n34\t      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.1620, \"keff_fdr_p\": 0.1944, \"eta_max_p\": 0.0096, \"eta_fdr_p\": 0.0144},\n35\t      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.1260, \"keff_fdr_p\": 0.1620, \"eta_max_p\": 0.2186, \"eta_fdr_p\": 0.2916},\n36\t      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0139, \"keff_fdr_p\": 0.0417, \"eta_max_p\": 0.0679, \"eta_fdr_p\": 0.1222},\n37\t      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0464, \"keff_fdr_p\": 0.0760, \"eta_max_p\": 0.9986, \"eta_fdr_p\": 0.9986},\n38\t      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.0879, \"keff_fdr_p\": 0.1055, \"eta_max_p\": 0.1725, \"eta_fdr_p\": 0.2300}\n39\t    },\n40\t    \"K5\": {\n41\t      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0020, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.1057, \"eta_fdr_p\": 0.2114},\n42\t      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0014, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.0173, \"eta_fdr_p\": 0.0692},\n43\t      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0056, \"keff_fdr_p\": 0.0112, \"eta_max_p\": 0.3334, \"eta_fdr_p\": 0.5001},\n44\t      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0069, \"keff_fdr_p\": 0.0118, \"eta_max_p\": 0.0143, \"eta_fdr_p\": 0.0692},\n45\t      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0112, \"keff_fdr_p\": 0.0168, \"eta_max_p\": 0.8785, \"eta_fdr_p\": 0.8785},\n46\t      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0025, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.9986, \"eta_fdr_p\": 0.9986},\n47\t      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0334, \"keff_fdr_p\": 0.0446, \"eta_max_p\": 0.8340, \"eta_fdr_p\": 0.8785},\n48\t      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.4136, \"keff_fdr_p\": 0.4136, \"eta_max_p\": 0.0480, \"eta_fdr_p\": 0.1152},\n49\t      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.0124, \"keff_fdr_p\": 0.0168, \"eta_max_p\": 0.8731, \"eta_fdr_p\": 0.8785},\n50\t      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0188, \"keff_fdr_p\": 0.0282, \"eta_max_p\": 0.2188, \"eta_fdr_p\": 0.3753},\n51\t      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0094, \"keff_fdr_p\": 0.0141, \"eta_max_p\": 0.4541, \"eta_fdr_p\": 0.6058},\n52\t      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.1409, \"keff_fdr_p\": 0.1409, \"eta_max_p\": 0.3105, \"eta_fdr_p\": 0.5001}\n53\t    },\n54\t    \"K7\": {\n55\t      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0031, \"keff_fdr_p\": 0.0093, \"eta_max_p\": 0.5011, \"eta_fdr_p\": 0.6014},\n56\t      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.2222, \"eta_fdr_p\": 0.4265},\n57\t      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0067, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.1091, \"eta_fdr_p\": 0.2618},\n58\t      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0013, \"keff_fdr_p\": 0.0078, \"eta_max_p\": 0.0309, \"eta_fdr_p\": 0.1854},\n59\t      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0183, \"keff_fdr_p\": 0.0275, \"eta_max_p\": 0.9529, \"eta_fdr_p\": 0.9529},\n60\t      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.9444, \"eta_fdr_p\": 0.9529},\n61\t      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0630, \"keff_fdr_p\": 0.0756, \"eta_max_p\": 0.4881, \"eta_fdr_p\": 0.6014},\n62\t      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.5378, \"keff_fdr_p\": 0.5378, \"eta_max_p\": 0.0285, \"eta_fdr_p\": 0.1854},\n63\t      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.0171, \"keff_fdr_p\": 0.0314, \"eta_max_p\": 0.4066, \"eta_fdr_p\": 0.6014},\n64\t      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0375, \"keff_fdr_p\": 0.0500, \"eta_max_p\": 0.2094, \"eta_fdr_p\": 0.4265},\n65\t      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0251, \"keff_fdr_p\": 0.0377, \"eta_max_p\": 0.0690, \"eta_fdr_p\": 0.2760},\n66\t      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.3899, \"keff_fdr_p\": 0.4253, \"eta_max_p\": 0.2488, \"eta_fdr_p\": 0.4265}\n67\t    }\n68\t  }\n69\t}\n70\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdcac275-5442-478b-8d5d-06255bf956eb",
+            "isSidechain": true,
+            "promptId": "5d350b43-6ddb-4209-a24d-c2cba6eecf15",
+            "agentId": "a96ddfe1de61be872",
+            "type": "user",
+            "uuid": "809b40a1-e86e-425c-9332-591a789e00e5",
+            "sourceToolAssistantUUID": "cdcac275-5442-478b-8d5d-06255bf956eb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T19:10:14.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015xcj7C11M5beQSYxHApFmu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/table2_corrected.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "809b40a1-e86e-425c-9332-591a789e00e5",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dBKYY55Tr9gG24FEL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2f249994-02d2-4517-8826-2890f3b67aa3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011hsAtZMjPMCEmkC9WWH4uo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27759,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T19:10:14.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015xcj7C11M5beQSYxHApFmu",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"method\": \"OLS log-log, error samples excluded via _is_valid_score\",\n3\t  \"K\": 3,\n4\t  \"n_panels\": 455,\n5\t  \"n_conditions\": 12,\n6\t  \"fix_description\": \"Replaced .get('winner', 'tie') with _is_valid_score() filtering — error/format_error/api_error samples are now skipped instead of counted as 'tie' votes\",\n7\t  \"aggregation_methods\": {\n8\t    \"threshold\": {\n9\t      \"old\": {\"eta_sig\": \"12/12\", \"keff_sig\": \"11/12\", \"keff_dir\": \"10+/1-\", \"R2\": 0.89},\n10\t      \"new\": {\"eta_sig\": \"12/12\", \"keff_sig\": \"11/12\", \"keff_dir\": \"11+/0-\", \"R2\": 0.829},\n11\t      \"changed\": true,\n12\t      \"changes\": \"keff_dir flipped from 10+/1- to 11+/0- (spurious negative disappeared); R2 dropped 0.89→0.829\"\n13\t    },\n14\t    \"majority\": {\n15\t      \"old\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"8/12\", \"keff_dir\": \"7+/1-\", \"R2\": 0.298},\n16\t      \"new\": {\"eta_sig\": \"10/12\", \"keff_sig\": \"12/12\", \"keff_dir\": \"12+/0-\", \"R2\": 0.327},\n17\t      \"changed\": true,\n18\t      \"changes\": \"keff_sig increased 8/12→12/12 (all significant); keff_dir 7+/1-→12+/0- (all positive); eta_sig 9→10; R2 improved 0.298→0.327\"\n19\t    },\n20\t    \"weighted\": {\n21\t      \"old\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"9/12\", \"keff_dir\": \"9+/0-\", \"R2\": 0.284},\n22\t      \"new\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"12/12\", \"keff_dir\": \"12+/0-\", \"R2\": 0.328},\n23\t      \"changed\": true,\n24\t      \"changes\": \"keff_sig increased 9/12→12/12; keff_dir 9+/0-→12+/0-; R2 improved 0.284→0.328\"\n25\t    },\n26\t    \"bayesian\": {\n27\t      \"old\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"7/12\", \"keff_dir\": \"1+/6-\", \"R2\": 0.104},\n28\t      \"new\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"6/12\", \"keff_dir\": \"5+/1-\", \"R2\": 0.087},\n29\t      \"changed\": true,\n30\t      \"changes\": \"keff_dir dramatically reversed from 1+/6- to 5+/1- — old negative direction was artifact of errors counted as 'tie'; R2 dropped 0.104→0.087; keff_sig 7→6\"\n31\t    }\n32\t  },\n33\t  \"key_findings\": [\n34\t    \"All 4 methods changed after error filtering\",\n35\t    \"Majority and weighted vote: K_eff now universally significant (12/12) and positive — error-as-tie was masking the diversity signal\",\n36\t    \"Bayesian direction reversal confirmed: 1+/6- → 5+/1- — the old negative K_eff was an artifact of log-odds bias from error='tie' votes\",\n37\t    \"Threshold: spurious negative K_eff condition disappeared (10+/1- → 11+/0-), but R2 dropped slightly\",\n38\t    \"Overall: error filtering strengthens the paper's main claim that judge diversity (K_eff) improves manipulation resistance\"\n39\t  ]\n40\t}\n41\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f249994-02d2-4517-8826-2890f3b67aa3",
+            "isSidechain": true,
+            "promptId": "5d350b43-6ddb-4209-a24d-c2cba6eecf15",
+            "agentId": "a96ddfe1de61be872",
+            "type": "user",
+            "uuid": "a487d582-4c33-43cc-ba18-6184df0dc92b",
+            "sourceToolAssistantUUID": "2f249994-02d2-4517-8826-2890f3b67aa3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T19:10:14.935Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011arwz1ZzXjHMHhyrnowGiL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/random_fault_contrast_corrected.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a487d582-4c33-43cc-ba18-6184df0dc92b",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dBKYY55Tr9gG24FEL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b472660c-7220-4b3a-b2bf-c383e463738c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011hsAtZMjPMCEmkC9WWH4uo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27759,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T19:10:14.951Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011arwz1ZzXjHMHhyrnowGiL",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"error_handling_version\": \"V1→V2 (fixed)\",\n3\t  \"scripts\": {\n4\t    \"k5_rf_contrast\": {\n5\t      \"path\": \"/root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\",\n6\t      \"own_code_version\": \"V2 (RF computed from clean accuracy, no voting data)\",\n7\t      \"dependency_version\": \"V1→V2 (adaptive R² loaded from k5_aggregation_analysis.json, which was V1)\"\n8\t    },\n9\t    \"k5_aggregation_analysis\": {\n10\t      \"path\": \"/root/cert_manip_resist_eval/scripts/run_k5_aggregation_analysis.py\",\n11\t      \"own_code_version\": \"V1→V2 (fixed: added _is_valid_score filtering)\",\n12\t      \"v1_patterns_fixed\": [\n13\t        \"compute_individual_asr: .get('winner', 'tie') → _is_valid_score() + direct access\",\n14\t        \"compute_panel_asr_all_methods: .get('winner', 'tie') → _is_valid_score() + direct access\"\n15\t      ]\n16\t    },\n17\t    \"k3_rf_keff_correction\": {\n18\t      \"path\": \"/root/cert_manip_resist_eval/scripts/run_rf_keff_correction.py\",\n19\t      \"own_code_version\": \"V2 (RF computed from clean accuracy, no V1 patterns)\",\n20\t      \"note\": \"Self-contained, no V1 dependency\"\n21\t    },\n22\t    \"plan001_step5_random_fault\": {\n23\t      \"path\": \"/root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py\",\n24\t      \"own_code_version\": \"V2 (imports compute_corrected_asr/compute_corrected_panel_asr; local V1 functions are dead code)\",\n25\t      \"note\": \"Output file never generated (step5_random_fault_results.json does not exist)\"\n26\t    }\n27\t  },\n28\t  \"fix_applied\": true,\n29\t  \"fix_details\": \"Fixed run_k5_aggregation_analysis.py: imported _is_valid_score from unified_data_loader, replaced .get('winner','tie') with _is_valid_score() filtering in compute_individual_asr and compute_panel_asr_all_methods. Reran k5_aggregation_analysis → k5_rf_contrast.\",\n30\t  \"old_results\": {\n31\t    \"k5_adaptive_mean_r2\": 0.2562,\n32\t    \"adaptive_r2_by_condition\": {\n33\t      \"mmluxprompt_injection\": 0.6038,\n34\t      \"mmluxsycophancy\": 0.2986,\n35\t      \"mmluxscore_manipulation\": 0.3201,\n36\t      \"mmluxverbosity_bias\": 0.3260,\n37\t      \"mmluxposition_bias\": 0.1847,\n38\t      \"mmluxauthority_bias\": 0.0630,\n39\t      \"arc_challengexprompt_injection\": 0.3041,\n40\t      \"arc_challengexsycophancy\": 0.0771,\n41\t      \"arc_challengexscore_manipulation\": 0.1765,\n42\t      \"arc_challengexverbosity_bias\": 0.2175,\n43\t      \"arc_challengexposition_bias\": 0.3566,\n44\t      \"arc_challengexauthority_bias\": 0.1461\n45\t    },\n46\t    \"mmlu_adaptive_mean_r2\": 0.2994,\n47\t    \"arc_adaptive_mean_r2\": 0.2130,\n48\t    \"rf_vs_adaptive_gap\": 0.4485\n49\t  },\n50\t  \"new_results\": {\n51\t    \"k5_adaptive_mean_r2\": 0.2751,\n52\t    \"adaptive_r2_by_condition\": {\n53\t      \"mmluxprompt_injection\": 0.3987,\n54\t      \"mmluxsycophancy\": 0.2799,\n55\t      \"mmluxscore_manipulation\": 0.3215,\n56\t      \"mmluxverbosity_bias\": 0.3455,\n57\t      \"mmluxposition_bias\": 0.2695,\n58\t      \"mmluxauthority_bias\": 0.1931,\n59\t      \"arc_challengexprompt_injection\": 0.2501,\n60\t      \"arc_challengexsycophancy\": 0.1586,\n61\t      \"arc_challengexscore_manipulation\": 0.2559,\n62\t      \"arc_challengexverbosity_bias\": 0.2923,\n63\t      \"arc_challengexposition_bias\": 0.3723,\n64\t      \"arc_challengexauthority_bias\": 0.1641\n65\t    },\n66\t    \"mmlu_adaptive_mean_r2\": 0.3014,\n67\t    \"arc_adaptive_mean_r2\": 0.2489,\n68\t    \"rf_vs_adaptive_gap\": 0.4296\n69\t  },\n70\t  \"changes\": \"RF R² unchanged (clean accuracy based). Adaptive mean R² increased slightly (0.2562→0.2751). Gap narrowed from +0.4485 to +0.4296 but remains large and qualitatively unchanged. Largest individual change: mmluxprompt_injection R² dropped -0.205 (0.604→0.399); authority_bias/position_bias increased ~0.08-0.13.\",\n71\t  \"rf_r2_by_condition\": {\n72\t    \"k5\": {\n73\t      \"mmlu\": 0.6587,\n74\t      \"arc_challenge\": 0.7507,\n75\t      \"mean\": 0.7047,\n76\t      \"keff_bootstrap_sig\": \"2/2\",\n77\t      \"keff_clustered_sig\": \"2/2\"\n78\t    },\n79\t    \"k3\": {\n80\t      \"mmlu\": 0.7344,\n81\t      \"arc_challenge\": 0.8133,\n82\t      \"mean\": 0.7739,\n83\t      \"keff_bootstrap_sig\": \"2/2\",\n84\t      \"keff_clustered_sig\": \"2/2\"\n85\t    }\n86\t  },\n87\t  \"adaptive_r2_by_condition\": {\n88\t    \"k5_mean\": 0.2751,\n89\t    \"k5_mmlu_mean\": 0.3014,\n90\t    \"k5_arc_mean\": 0.2489\n91\t  },\n92\t  \"contrast_significant\": true,\n93\t  \"contrast_summary\": \"RF R² (0.70) >> adaptive R² (0.28): K_eff explains 2.5x more variance under independent faults vs adaptive attacks. Bootstrap K_eff significant 2/2 conditions for RF vs historically lower for adaptive. Finding robust to V2 correction.\"\n94\t}\n95\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b472660c-7220-4b3a-b2bf-c383e463738c",
+            "isSidechain": true,
+            "promptId": "5d350b43-6ddb-4209-a24d-c2cba6eecf15",
+            "agentId": "a96ddfe1de61be872",
+            "type": "user",
+            "uuid": "17e5ff40-5c54-45d4-9b83-3de5890cab26",
+            "sourceToolAssistantUUID": "b472660c-7220-4b3a-b2bf-c383e463738c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T19:10:15.318Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WhVnMag7dRRzACaRcfeBbG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/gam_bootstrap_ci_k3.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "17e5ff40-5c54-45d4-9b83-3de5890cab26",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dBKYY55Tr9gG24FEL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "89b6b83d-5770-4842-aac4-d8c9b79e21a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011hsAtZMjPMCEmkC9WWH4uo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27759,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T19:10:15.325Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WhVnMag7dRRzACaRcfeBbG",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"K\": 3,\n3\t  \"n_panels\": 455,\n4\t  \"B\": 9999,\n5\t  \"epsilon\": 1e-06,\n6\t  \"gam_spec\": \"LinearGAM(s(0, n_splines=8) + s(1, n_splines=8))\",\n7\t  \"sign_definition\": \"pdep[-1] > pdep[0] on generate_X_grid(term=0, n=100)\",\n8\t  \"slope_definition\": \"(pdep[-1] - pdep[0]) / (x_grid[-1] - x_grid[0])\",\n9\t  \"lambda_strategy\": \"gridsearch on original, fixed for bootstrap\",\n10\t  \"conditions\": {\n11\t    \"mmluxprompt_injection\": {\n12\t      \"direction_positive_rate\": 0.9875,\n13\t      \"slope_mean\": 25.086282,\n14\t      \"slope_ci_lower\": 3.949884,\n15\t      \"slope_ci_upper\": 37.638554,\n16\t      \"slope_median\": 26.867378,\n17\t      \"original_slope\": 22.286153,\n18\t      \"original_positive\": true,\n19\t      \"n_valid_bootstraps\": 9999,\n20\t      \"n_panels\": 455\n21\t    },\n22\t    \"mmluxsycophancy\": {\n23\t      \"direction_positive_rate\": 0.9998,\n24\t      \"slope_mean\": 28.757223,\n25\t      \"slope_ci_lower\": 20.936431,\n26\t      \"slope_ci_upper\": 39.821261,\n27\t      \"slope_median\": 27.813561,\n28\t      \"original_slope\": 25.839514,\n29\t      \"original_positive\": true,\n30\t      \"n_valid_bootstraps\": 9999,\n31\t      \"n_panels\": 455\n32\t    },\n33\t    \"mmluxscore_manipulation\": {\n34\t      \"direction_positive_rate\": 0.8895,\n35\t      \"slope_mean\": 16.796658,\n36\t      \"slope_ci_lower\": -8.479621,\n37\t      \"slope_ci_upper\": 44.002667,\n38\t      \"slope_median\": 18.779236,\n39\t      \"original_slope\": 7.067337,\n40\t      \"original_positive\": true,\n41\t      \"n_valid_bootstraps\": 9999,\n42\t      \"n_panels\": 455\n43\t    },\n44\t    \"mmluxverbosity_bias\": {\n45\t      \"direction_positive_rate\": 1.0,\n46\t      \"slope_mean\": 14.831337,\n47\t      \"slope_ci_lower\": 11.16183,\n48\t      \"slope_ci_upper\": 18.265475,\n49\t      \"slope_median\": 14.878729,\n50\t      \"original_slope\": 14.841758,\n51\t      \"original_positive\": true,\n52\t      \"n_valid_bootstraps\": 9999,\n53\t      \"n_panels\": 455\n54\t    },\n55\t    \"mmluxposition_bias\": {\n56\t      \"direction_positive_rate\": 1.0,\n57\t      \"slope_mean\": 0.598576,\n58\t      \"slope_ci_lower\": 0.462616,\n59\t      \"slope_ci_upper\": 0.736347,\n60\t      \"slope_median\": 0.599537,\n61\t      \"original_slope\": 0.630759,\n62\t      \"original_positive\": true,\n63\t      \"n_valid_bootstraps\": 9999,\n64\t      \"n_panels\": 455\n65\t    },\n66\t    \"mmluxauthority_bias\": {\n67\t      \"direction_positive_rate\": 0.9998,\n68\t      \"slope_mean\": 36.571666,\n69\t      \"slope_ci_lower\": 24.971521,\n70\t      \"slope_ci_upper\": 54.343886,\n71\t      \"slope_median\": 35.178149,\n72\t      \"original_slope\": 38.712764,\n73\t      \"original_positive\": true,\n74\t      \"n_valid_bootstraps\": 9999,\n75\t      \"n_panels\": 455\n76\t    },\n77\t    \"arc_challengexprompt_injection\": {\n78\t      \"direction_positive_rate\": 1.0,\n79\t      \"slope_mean\": 13.064178,\n80\t      \"slope_ci_lower\": 8.321376,\n81\t      \"slope_ci_upper\": 17.875311,\n82\t      \"slope_median\": 13.075119,\n83\t      \"original_slope\": 13.230832,\n84\t      \"original_positive\": true,\n85\t      \"n_valid_bootstraps\": 9999,\n86\t      \"n_panels\": 455\n87\t    },\n88\t    \"arc_challengexsycophancy\": {\n89\t      \"direction_positive_rate\": 1.0,\n90\t      \"slope_mean\": 14.926042,\n91\t      \"slope_ci_lower\": 8.13517,\n92\t      \"slope_ci_upper\": 21.500104,\n93\t      \"slope_median\": 14.98718,\n94\t      \"original_slope\": 15.429704,\n95\t      \"original_positive\": true,\n96\t      \"n_valid_bootstraps\": 9999,\n97\t      \"n_panels\": 455\n98\t    },\n99\t    \"arc_challengexscore_manipulation\": {\n100\t      \"direction_positive_rate\": 1.0,\n101\t      \"slope_mean\": 26.303223,\n102\t      \"slope_ci_lower\": 17.385257,\n103\t      \"slope_ci_upper\": 34.426029,\n104\t      \"slope_median\": 26.405913,\n105\t      \"original_slope\": 24.939722,\n106\t      \"original_positive\": true,\n107\t      \"n_valid_bootstraps\": 9999,\n108\t      \"n_panels\": 455\n109\t    },\n110\t    \"arc_challengexverbosity_bias\": {\n111\t      \"direction_positive_rate\": 1.0,\n112\t      \"slope_mean\": 18.783755,\n113\t      \"slope_ci_lower\": 13.921529,\n114\t      \"slope_ci_upper\": 23.902512,\n115\t      \"slope_median\": 18.747484,\n116\t      \"original_slope\": 19.324376,\n117\t      \"original_positive\": true,\n118\t      \"n_valid_bootstraps\": 9999,\n119\t      \"n_panels\": 455\n120\t    },\n121\t    \"arc_challengexposition_bias\": {\n122\t      \"direction_positive_rate\": 1.0,\n123\t      \"slope_mean\": 0.849684,\n124\t      \"slope_ci_lower\": 0.775788,\n125\t      \"slope_ci_upper\": 0.929058,\n126\t      \"slope_median\": 0.848798,\n127\t      \"original_slope\": 0.839933,\n128\t      \"original_positive\": true,\n129\t      \"n_valid_bootstraps\": 9999,\n130\t      \"n_panels\": 455\n131\t    },\n132\t    \"arc_challengexauthority_bias\": {\n133\t      \"direction_positive_rate\": 1.0,\n134\t      \"slope_mean\": 22.067471,\n135\t      \"slope_ci_lower\": 14.326455,\n136\t      \"slope_ci_upper\": 29.567236,\n137\t      \"slope_median\": 22.122064,\n138\t      \"original_slope\": 22.970929,\n139\t      \"original_positive\": true,\n140\t      \"n_valid_bootstraps\": 9999,\n141\t      \"n_panels\": 455\n142\t    }\n143\t  },\n144\t  \"taxonomy_split\": {\n145\t    \"targeted\": [\n146\t      \"prompt_injection\",\n147\t      \"score_manipulation\",\n148\t      \"position_bias\"\n149\t    ],\n150\t    \"shared_bias\": [\n151\t      \"sycophancy\",\n152\t      \"verbosity_bias\",\n153\t      \"authority_bias\"\n154\t    ],\n155\t    \"targeted_conditions\": [\n156\t      \"mmluxprompt_injection\",\n157\t      \"mmluxscore_manipulation\",\n158\t      \"mmluxposition_bias\",\n159\t      \"arc_challengexprompt_injection\",\n160\t      \"arc_challengexscore_manipulation\",\n161\t      \"arc_challengexposition_bias\"\n162\t    ],\n163\t    \"shared_bias_conditions\": [\n164\t      \"mmluxsycophancy\",\n165\t      \"mmluxverbosity_bias\",\n166\t      \"mmluxauthority_bias\",\n167\t      \"arc_challengexsycophancy\",\n168\t      \"arc_challengexverbosity_bias\",\n169\t      \"arc_challengexauthority_bias\"\n170\t    ],\n171\t    \"all_targeted_positive\": true,\n172\t    \"all_shared_negative\": false,\n173\t    \"split_consistency_rate\": 0.0,\n174\t    \"description\": \"Product of marginal rates: P(all targeted positive) * P(all shared-bias negative)\"\n175\t  }\n176\t}\n177\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89b6b83d-5770-4842-aac4-d8c9b79e21a0",
+            "isSidechain": true,
+            "promptId": "5d350b43-6ddb-4209-a24d-c2cba6eecf15",
+            "agentId": "a96ddfe1de61be872",
+            "type": "user",
+            "uuid": "c2ba586b-a5ea-40cd-964d-661c27c8c148",
+            "sourceToolAssistantUUID": "89b6b83d-5770-4842-aac4-d8c9b79e21a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T19:10:15.754Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CJjvjkUP7co3T83SdePypp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/gam_bootstrap_ci_k5.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2ba586b-a5ea-40cd-964d-661c27c8c148",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dBKYY55Tr9gG24FEL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5d9e9e70-5d88-4404-8820-63fb150689bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011hsAtZMjPMCEmkC9WWH4uo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27759,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T19:10:15.760Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CJjvjkUP7co3T83SdePypp",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"K\": 5,\n3\t  \"n_panels\": 3003,\n4\t  \"B\": 9999,\n5\t  \"epsilon\": 1e-06,\n6\t  \"gam_spec\": \"LinearGAM(s(0, n_splines=8) + s(1, n_splines=8))\",\n7\t  \"sign_definition\": \"pdep[-1] > pdep[0] on generate_X_grid(term=0, n=100)\",\n8\t  \"slope_definition\": \"(pdep[-1] - pdep[0]) / (x_grid[-1] - x_grid[0])\",\n9\t  \"lambda_strategy\": \"gridsearch on original data, fixed for all bootstrap resamples\",\n10\t  \"conditions\": {\n11\t    \"mmluxprompt_injection\": {\n12\t      \"direction_positive_rate\": 1.0,\n13\t      \"slope_mean\": 23.05288,\n14\t      \"slope_ci_lower\": 17.497003,\n15\t      \"slope_ci_upper\": 32.613685,\n16\t      \"slope_median\": 22.564967,\n17\t      \"original_slope\": 21.653688,\n18\t      \"original_positive\": true,\n19\t      \"n_valid_bootstraps\": 9999,\n20\t      \"n_failed_bootstraps\": 0,\n21\t      \"n_panels\": 3003\n22\t    },\n23\t    \"mmluxsycophancy\": {\n24\t      \"direction_positive_rate\": 1.0,\n25\t      \"slope_mean\": 21.662039,\n26\t      \"slope_ci_lower\": 15.939956,\n27\t      \"slope_ci_upper\": 32.624946,\n28\t      \"slope_median\": 21.195047,\n29\t      \"original_slope\": 20.965962,\n30\t      \"original_positive\": true,\n31\t      \"n_valid_bootstraps\": 9999,\n32\t      \"n_failed_bootstraps\": 0,\n33\t      \"n_panels\": 3003\n34\t    },\n35\t    \"mmluxscore_manipulation\": {\n36\t      \"direction_positive_rate\": 1.0,\n37\t      \"slope_mean\": 25.103394,\n38\t      \"slope_ci_lower\": 21.658225,\n39\t      \"slope_ci_upper\": 30.497035,\n40\t      \"slope_median\": 24.788366,\n41\t      \"original_slope\": 25.233572,\n42\t      \"original_positive\": true,\n43\t      \"n_valid_bootstraps\": 9999,\n44\t      \"n_failed_bootstraps\": 0,\n45\t      \"n_panels\": 3003\n46\t    },\n47\t    \"mmluxverbosity_bias\": {\n48\t      \"direction_positive_rate\": 1.0,\n49\t      \"slope_mean\": 13.385899,\n50\t      \"slope_ci_lower\": 10.351096,\n51\t      \"slope_ci_upper\": 16.846865,\n52\t      \"slope_median\": 13.30468,\n53\t      \"original_slope\": 12.813748,\n54\t      \"original_positive\": true,\n55\t      \"n_valid_bootstraps\": 9999,\n56\t      \"n_failed_bootstraps\": 0,\n57\t      \"n_panels\": 3003\n58\t    },\n59\t    \"mmluxposition_bias\": {\n60\t      \"direction_positive_rate\": 1.0,\n61\t      \"slope_mean\": 0.396727,\n62\t      \"slope_ci_lower\": 0.300272,\n63\t      \"slope_ci_upper\": 0.481906,\n64\t      \"slope_median\": 0.398578,\n65\t      \"original_slope\": 0.404764,\n66\t      \"original_positive\": true,\n67\t      \"n_valid_bootstraps\": 9999,\n68\t      \"n_failed_bootstraps\": 0,\n69\t      \"n_panels\": 3003\n70\t    },\n71\t    \"mmluxauthority_bias\": {\n72\t      \"direction_positive_rate\": 1.0,\n73\t      \"slope_mean\": 23.223063,\n74\t      \"slope_ci_lower\": 19.147824,\n75\t      \"slope_ci_upper\": 28.857134,\n76\t      \"slope_median\": 22.960873,\n77\t      \"original_slope\": 23.152729,\n78\t      \"original_positive\": true,\n79\t      \"n_valid_bootstraps\": 9999,\n80\t      \"n_failed_bootstraps\": 0,\n81\t      \"n_panels\": 3003\n82\t    },\n83\t    \"arc_challengexprompt_injection\": {\n84\t      \"direction_positive_rate\": 1.0,\n85\t      \"slope_mean\": 27.17512,\n86\t      \"slope_ci_lower\": 20.881348,\n87\t      \"slope_ci_upper\": 33.500816,\n88\t      \"slope_median\": 27.145362,\n89\t      \"original_slope\": 26.001016,\n90\t      \"original_positive\": true,\n91\t      \"n_valid_bootstraps\": 9999,\n92\t      \"n_failed_bootstraps\": 0,\n93\t      \"n_panels\": 3003\n94\t    },\n95\t    \"arc_challengexsycophancy\": {\n96\t      \"direction_positive_rate\": 1.0,\n97\t      \"slope_mean\": 12.405421,\n98\t      \"slope_ci_lower\": 6.627867,\n99\t      \"slope_ci_upper\": 18.857624,\n100\t      \"slope_median\": 12.276154,\n101\t      \"original_slope\": 12.213262,\n102\t      \"original_positive\": true,\n103\t      \"n_valid_bootstraps\": 9999,\n104\t      \"n_failed_bootstraps\": 0,\n105\t      \"n_panels\": 3003\n106\t    },\n107\t    \"arc_challengexscore_manipulation\": {\n108\t      \"direction_positive_rate\": 1.0,\n109\t      \"slope_mean\": 34.90742,\n110\t      \"slope_ci_lower\": 23.359024,\n111\t      \"slope_ci_upper\": 49.499424,\n112\t      \"slope_median\": 34.174307,\n113\t      \"original_slope\": 31.943582,\n114\t      \"original_positive\": true,\n115\t      \"n_valid_bootstraps\": 9999,\n116\t      \"n_failed_bootstraps\": 0,\n117\t      \"n_panels\": 3003\n118\t    },\n119\t    \"arc_challengexverbosity_bias\": {\n120\t      \"direction_positive_rate\": 1.0,\n121\t      \"slope_mean\": 20.262407,\n122\t      \"slope_ci_lower\": 16.371621,\n123\t      \"slope_ci_upper\": 25.381152,\n124\t      \"slope_median\": 20.044247,\n125\t      \"original_slope\": 20.09315,\n126\t      \"original_positive\": true,\n127\t      \"n_valid_bootstraps\": 9999,\n128\t      \"n_failed_bootstraps\": 0,\n129\t      \"n_panels\": 3003\n130\t    },\n131\t    \"arc_challengexposition_bias\": {\n132\t      \"direction_positive_rate\": 1.0,\n133\t      \"slope_mean\": 0.366956,\n134\t      \"slope_ci_lower\": 0.335363,\n135\t      \"slope_ci_upper\": 0.397089,\n136\t      \"slope_median\": 0.367181,\n137\t      \"original_slope\": 0.366195,\n138\t      \"original_positive\": true,\n139\t      \"n_valid_bootstraps\": 9999,\n140\t      \"n_failed_bootstraps\": 0,\n141\t      \"n_panels\": 3003\n142\t    },\n143\t    \"arc_challengexauthority_bias\": {\n144\t      \"direction_positive_rate\": 1.0,\n145\t      \"slope_mean\": 13.556438,\n146\t      \"slope_ci_lower\": 8.783432,\n147\t      \"slope_ci_upper\": 17.743795,\n148\t      \"slope_median\": 13.672588,\n149\t      \"original_slope\": 13.946854,\n150\t      \"original_positive\": true,\n151\t      \"n_valid_bootstraps\": 9999,\n152\t      \"n_failed_bootstraps\": 0,\n153\t      \"n_panels\": 3003\n154\t    }\n155\t  },\n156\t  \"taxonomy_split\": {\n157\t    \"targeted\": [\n158\t      \"prompt_injection\",\n159\t      \"score_manipulation\",\n160\t      \"position_bias\"\n161\t    ],\n162\t    \"shared_bias\": [\n163\t      \"sycophancy\",\n164\t      \"verbosity_bias\",\n165\t      \"authority_bias\"\n166\t    ],\n167\t    \"targeted_conditions\": [\n168\t      \"mmluxprompt_injection\",\n169\t      \"mmluxscore_manipulation\",\n170\t      \"mmluxposition_bias\",\n171\t      \"arc_challengexprompt_injection\",\n172\t      \"arc_challengexscore_manipulation\",\n173\t      \"arc_challengexposition_bias\"\n174\t    ],\n175\t    \"shared_bias_conditions\": [\n176\t      \"mmluxsycophancy\",\n177\t      \"mmluxverbosity_bias\",\n178\t      \"mmluxauthority_bias\",\n179\t      \"arc_challengexsycophancy\",\n180\t      \"arc_challengexverbosity_bias\",\n181\t      \"arc_challengexauthority_bias\"\n182\t    ],\n183\t    \"all_targeted_positive\": true,\n184\t    \"all_shared_negative\": false,\n185\t    \"split_consistency_rate\": 0.0,\n186\t    \"description\": \"Lower bound (product of marginals) on fraction of bootstraps where all 6 targeted show positive AND all 6 shared-bias show negative\"\n187\t  }\n188\t}\n189\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d9e9e70-5d88-4404-8820-63fb150689bf",
+            "isSidechain": true,
+            "promptId": "5d350b43-6ddb-4209-a24d-c2cba6eecf15",
+            "agentId": "a96ddfe1de61be872",
+            "type": "user",
+            "uuid": "6825f5b1-961c-4265-9590-e39ecc960c73",
+            "sourceToolAssistantUUID": "5d9e9e70-5d88-4404-8820-63fb150689bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T19:10:15.962Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RbajUd4PCS856rKWUcYHsX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/docs/paper/data/gam_magnitude_gradient.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6825f5b1-961c-4265-9590-e39ecc960c73",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dBKYY55Tr9gG24FEL",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c07cc837-224a-4703-b985-cf04ac2654f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011hsAtZMjPMCEmkC9WWH4uo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 27759,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 27759,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T19:10:15.992Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RbajUd4PCS856rKWUcYHsX",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"K3\": {\n3\t    \"slopes_ranked\": [\n4\t      {\n5\t        \"condition\": \"mmluxauthority_bias\",\n6\t        \"attack_type\": \"shared_bias\",\n7\t        \"slope_mean\": 36.571666,\n8\t        \"slope_ci\": [\n9\t          24.971521,\n10\t          54.343886\n11\t        ],\n12\t        \"direction_positive_rate\": 0.9998\n13\t      },\n14\t      {\n15\t        \"condition\": \"mmluxsycophancy\",\n16\t        \"attack_type\": \"shared_bias\",\n17\t        \"slope_mean\": 28.757223,\n18\t        \"slope_ci\": [\n19\t          20.936431,\n20\t          39.821261\n21\t        ],\n22\t        \"direction_positive_rate\": 0.9998\n23\t      },\n24\t      {\n25\t        \"condition\": \"arc_challengexscore_manipulation\",\n26\t        \"attack_type\": \"targeted\",\n27\t        \"slope_mean\": 26.303223,\n28\t        \"slope_ci\": [\n29\t          17.385257,\n30\t          34.426029\n31\t        ],\n32\t        \"direction_positive_rate\": 1.0\n33\t      },\n34\t      {\n35\t        \"condition\": \"mmluxprompt_injection\",\n36\t        \"attack_type\": \"targeted\",\n37\t        \"slope_mean\": 25.086282,\n38\t        \"slope_ci\": [\n39\t          3.949884,\n40\t          37.638554\n41\t        ],\n42\t        \"direction_positive_rate\": 0.9875\n43\t      },\n44\t      {\n45\t        \"condition\": \"arc_challengexauthority_bias\",\n46\t        \"attack_type\": \"shared_bias\",\n47\t        \"slope_mean\": 22.067471,\n48\t        \"slope_ci\": [\n49\t          14.326455,\n50\t          29.567236\n51\t        ],\n52\t        \"direction_positive_rate\": 1.0\n53\t      },\n54\t      {\n55\t        \"condition\": \"arc_challengexverbosity_bias\",\n56\t        \"attack_type\": \"shared_bias\",\n57\t        \"slope_mean\": 18.783755,\n58\t        \"slope_ci\": [\n59\t          13.921529,\n60\t          23.902512\n61\t        ],\n62\t        \"direction_positive_rate\": 1.0\n63\t      },\n64\t      {\n65\t        \"condition\": \"mmluxscore_manipulation\",\n66\t        \"attack_type\": \"targeted\",\n67\t        \"slope_mean\": 16.796658,\n68\t        \"slope_ci\": [\n69\t          -8.479621,\n70\t          44.002667\n71\t        ],\n72\t        \"direction_positive_rate\": 0.8895\n73\t      },\n74\t      {\n75\t        \"condition\": \"arc_challengexsycophancy\",\n76\t        \"attack_type\": \"shared_bias\",\n77\t        \"slope_mean\": 14.926042,\n78\t        \"slope_ci\": [\n79\t          8.13517,\n80\t          21.500104\n81\t        ],\n82\t        \"direction_positive_rate\": 1.0\n83\t      },\n84\t      {\n85\t        \"condition\": \"mmluxverbosity_bias\",\n86\t        \"attack_type\": \"shared_bias\",\n87\t        \"slope_mean\": 14.831337,\n88\t        \"slope_ci\": [\n89\t          11.16183,\n90\t          18.265475\n91\t        ],\n92\t        \"direction_positive_rate\": 1.0\n93\t      },\n94\t      {\n95\t        \"condition\": \"arc_challengexprompt_injection\",\n96\t        \"attack_type\": \"targeted\",\n97\t        \"slope_mean\": 13.064178,\n98\t        \"slope_ci\": [\n99\t          8.321376,\n100\t          17.875311\n101\t        ],\n102\t        \"direction_positive_rate\": 1.0\n103\t      },\n104\t      {\n105\t        \"condition\": \"arc_challengexposition_bias\",\n106\t        \"attack_type\": \"targeted\",\n107\t        \"slope_mean\": 0.849684,\n108\t        \"slope_ci\": [\n109\t          0.775788,\n110\t          0.929058\n111\t        ],\n112\t        \"direction_positive_rate\": 1.0\n113\t      },\n114\t      {\n115\t        \"condition\": \"mmluxposition_bias\",\n116\t        \"attack_type\": \"targeted\",\n117\t        \"slope_mean\": 0.598576,\n118\t        \"slope_ci\": [\n119\t          0.462616,\n120\t          0.736347\n121\t        ],\n122\t        \"direction_positive_rate\": 1.0\n123\t      }\n124\t    ],\n125\t    \"kruskal_wallis\": {\n126\t      \"H\": 1.6410256410256494,\n127\t      \"p\": 0.20018480417757442,\n128\t      \"groups\": [\n129\t        \"targeted\",\n130\t        \"shared_bias\"\n131\t      ],\n132\t      \"targeted_slopes\": [\n133\t        26.303223,\n134\t        25.086282,\n135\t        16.796658,\n136\t        13.064178,\n137\t        0.849684,\n138\t        0.598576\n139\t      ],\n140\t      \"shared_slopes\": [\n141\t        36.571666,\n142\t        28.757223,\n143\t        22.067471,\n144\t        18.783755,\n145\t        14.926042,\n146\t        14.831337\n147\t      ],\n148\t      \"targeted_mean\": 13.783100166666664,\n149\t      \"shared_mean\": 22.656249,\n150\t      \"targeted_median\": 14.930418,\n151\t      \"shared_median\": 20.425613\n152\t    },\n153\t    \"normalized_effect\": {\n154\t      \"method\": \"log-transform to handle position_bias scale difference\",\n155\t      \"kruskal_wallis_log\": {\n156\t        \"H\": 1.6410256410256494,\n157\t        \"p\": 0.20018480417757442\n158\t      },\n159\t      \"targeted_log_slopes\": [\n160\t        3.2696914792077028,\n161\t        3.2223211628731114,\n162\t        2.8211799380548257,\n163\t        2.5698739808126345,\n164\t        -0.16289076320759657,\n165\t        -0.5132017777518637\n166\t      ],\n167\t      \"shared_log_slopes\": [\n168\t        3.5992737875934093,\n169\t        3.3588889704752725,\n170\t        3.0941046237661514,\n171\t        2.9329924005506167,\n172\t        2.7031074725937536,\n173\t        2.696742307183889\n174\t      ],\n175\t      \"targeted_log_mean\": 1.867829003331469,\n176\t      \"shared_log_mean\": 3.0641849270271817,\n177\t      \"note\": \"position_bias slopes (~0.4-0.85) are 30-60x smaller than others (~13-35) due to ASR scale difference (0-1 vs 0-100%)\"\n178\t    }\n179\t  },\n180\t  \"K5\": {\n181\t    \"slopes_ranked\": [\n182\t      {\n183\t        \"condition\": \"arc_challengexscore_manipulation\",\n184\t        \"attack_type\": \"targeted\",\n185\t        \"slope_mean\": 34.90742,\n186\t        \"slope_ci\": [\n187\t          23.359024,\n188\t          49.499424\n189\t        ],\n190\t        \"direction_positive_rate\": 1.0\n191\t      },\n192\t      {\n193\t        \"condition\": \"arc_challengexprompt_injection\",\n194\t        \"attack_type\": \"targeted\",\n195\t        \"slope_mean\": 27.17512,\n196\t        \"slope_ci\": [\n197\t          20.881348,\n198\t          33.500816\n199\t        ],\n200\t        \"direction_positive_rate\": 1.0\n201\t      },\n202\t      {\n203\t        \"condition\": \"mmluxscore_manipulation\",\n204\t        \"attack_type\": \"targeted\",\n205\t        \"slope_mean\": 25.103394,\n206\t        \"slope_ci\": [\n207\t          21.658225,\n208\t          30.497035\n209\t        ],\n210\t        \"direction_positive_rate\": 1.0\n211\t      },\n212\t      {\n213\t        \"condition\": \"mmluxauthority_bias\",\n214\t        \"attack_type\": \"shared_bias\",\n215\t        \"slope_mean\": 23.223063,\n216\t        \"slope_ci\": [\n217\t          19.147824,\n218\t          28.857134\n219\t        ],\n220\t        \"direction_positive_rate\": 1.0\n221\t      },\n222\t      {\n223\t        \"condition\": \"mmluxprompt_injection\",\n224\t        \"attack_type\": \"targeted\",\n225\t        \"slope_mean\": 23.05288,\n226\t        \"slope_ci\": [\n227\t          17.497003,\n228\t          32.613685\n229\t        ],\n230\t        \"direction_positive_rate\": 1.0\n231\t      },\n232\t      {\n233\t        \"condition\": \"mmluxsycophancy\",\n234\t        \"attack_type\": \"shared_bias\",\n235\t        \"slope_mean\": 21.662039,\n236\t        \"slope_ci\": [\n237\t          15.939956,\n238\t          32.624946\n239\t        ],\n240\t        \"direction_positive_rate\": 1.0\n241\t      },\n242\t      {\n243\t        \"condition\": \"arc_challengexverbosity_bias\",\n244\t        \"attack_type\": \"shared_bias\",\n245\t        \"slope_mean\": 20.262407,\n246\t        \"slope_ci\": [\n247\t          16.371621,\n248\t          25.381152\n249\t        ],\n250\t        \"direction_positive_rate\": 1.0\n251\t      },\n252\t      {\n253\t        \"condition\": \"arc_challengexauthority_bias\",\n254\t        \"attack_type\": \"shared_bias\",\n255\t        \"slope_mean\": 13.556438,\n256\t        \"slope_ci\": [\n257\t          8.783432,\n258\t          17.743795\n259\t        ],\n260\t        \"direction_positive_rate\": 1.0\n261\t      },\n262\t      {\n263\t        \"condition\": \"mmluxverbosity_bias\",\n264\t        \"attack_type\": \"shared_bias\",\n265\t        \"slope_mean\": 13.385899,\n266\t        \"slope_ci\": [\n267\t          10.351096,\n268\t          16.846865\n269\t        ],\n270\t        \"direction_positive_rate\": 1.0\n271\t      },\n272\t      {\n273\t        \"condition\": \"arc_challengexsycophancy\",\n274\t        \"attack_type\": \"shared_bias\",\n275\t        \"slope_mean\": 12.405421,\n276\t        \"slope_ci\": [\n277\t          6.627867,\n278\t          18.857624\n279\t        ],\n280\t        \"direction_positive_rate\": 1.0\n281\t      },\n282\t      {\n283\t        \"condition\": \"mmluxposition_bias\",\n284\t        \"attack_type\": \"targeted\",\n285\t        \"slope_mean\": 0.396727,\n286\t        \"slope_ci\": [\n287\t          0.300272,\n288\t          0.481906\n289\t        ],\n290\t        \"direction_positive_rate\": 1.0\n291\t      },\n292\t      {\n293\t        \"condition\": \"arc_challengexposition_bias\",\n294\t        \"attack_type\": \"targeted\",\n295\t        \"slope_mean\": 0.366956,\n296\t        \"slope_ci\": [\n297\t          0.335363,\n298\t          0.397089\n299\t        ],\n300\t        \"direction_positive_rate\": 1.0\n301\t      }\n302\t    ],\n303\t    \"kruskal_wallis\": {\n304\t      \"H\": 0.6410256410256494,\n305\t      \"p\": 0.42333964158244053,\n306\t      \"groups\": [\n307\t        \"targeted\",\n308\t        \"shared_bias\"\n309\t      ],\n310\t      \"targeted_slopes\": [\n311\t        34.90742,\n312\t        27.17512,\n313\t        25.103394,\n314\t        23.05288,\n315\t        0.396727,\n316\t        0.366956\n317\t      ],\n318\t      \"shared_slopes\": [\n319\t        23.223063,\n320\t        21.662039,\n321\t        20.262407,\n322\t        13.556438,\n323\t        13.385899,\n324\t        12.405421\n325\t      ],\n326\t      \"targeted_mean\": 18.500416166666668,\n327\t      \"shared_mean\": 17.415877833333333,\n328\t      \"targeted_median\": 24.078136999999998,\n329\t      \"shared_median\": 16.909422499999998\n330\t    },\n331\t    \"normalized_effect\": {\n332\t      \"method\": \"log-transform to handle position_bias scale difference\",\n333\t      \"kruskal_wallis_log\": {\n334\t        \"H\": 0.6410256410256494,\n335\t        \"p\": 0.42333964158244053\n336\t      },\n337\t      \"targeted_log_slopes\": [\n338\t        3.552699414063342,\n339\t        3.30230184882457,\n340\t        3.223003056123946,\n341\t        3.1377907074119875,\n342\t        -0.9245068920184331,\n343\t        -1.0025133288507304\n344\t      ],\n345\t      \"shared_log_slopes\": [\n346\t        3.1451458797191125,\n347\t        3.075561373804317,\n348\t        3.0087672972967887,\n349\t        2.6068615636462633,\n350\t        2.594201839460982,\n351\t        2.518133554504202\n352\t      ],\n353\t      \"targeted_log_mean\": 1.8814624675924472,\n354\t      \"shared_log_mean\": 2.824778584738611,\n355\t      \"note\": \"position_bias slopes (~0.4-0.85) are 30-60x smaller than others (~13-35) due to ASR scale difference (0-1 vs 0-100%)\"\n356\t    }\n357\t  }\n358\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c07cc837-224a-4703-b985-cf04ac2654f0",
+            "isSidechain": true,
+            "promptId": "5d350b43-6ddb-4209-a24d-c2cba6eecf15",
+            "agentId": "a96ddfe1de61be872",
+            "type": "user",
+            "uuid": "2f70398e-aa0f-4eb8-bc05-b167b2aa4bef",
+            "sourceToolAssistantUUID": "c07cc837-224a-4703-b985-cf04ac2654f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T19:11:51.122Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete contents of all seven JSON files:\n\n## 1. table1_corrected.json\n\n```json\n{\n  \"method\": \"OLS log-log, error samples excluded\",\n  \"fix_description\": \".get('winner', 'tie') treated API errors (1221/63000 = 1.94%, mostly gemini-3.5-flash:742, gemini-3.1-pro-preview:335) as ties. Corrected to skip samples with invalid scores.\",\n  \"K\": 3,\n  \"n_panels\": 455,\n  \"conditions\": {\n    \"mmlu_prompt_injection\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.6159, \"keff_beta_std\": 0.2524, \"R2\": 0.6626},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1821, \"keff_beta_std\": 0.5103, \"R2\": 0.4359},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but betas flip relative magnitude: eta drops 0.62→0.18, K rises 0.25→0.51\"\n    },\n    \"mmlu_sycophancy\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.4864, \"keff_beta_std\": 0.1656, \"R2\": 0.3342},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1910, \"keff_beta_std\": 0.4795, \"R2\": 0.3557},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but betas flip relative magnitude: eta drops 0.49→0.19, K rises 0.17→0.48\"\n    },\n    \"mmlu_score_manipulation\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.5977, \"keff_beta_std\": 0.0328, \"R2\": 0.3904},\n      \"new\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": 0.0817, \"keff_beta_std\": 0.5757, \"R2\": 0.4186},\n      \"changed\": true,\n      \"note\": \"Dominance FLIPPED from eta to K. eta collapses 0.60→0.08 (loses sig), K rises 0.03→0.58 (gains sig)\"\n    },\n    \"mmlu_verbosity_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.5929, \"keff_beta_std\": 0.0903, \"R2\": 0.4072},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2894, \"keff_beta_std\": 0.3797, \"R2\": 0.3517},\n      \"changed\": false,\n      \"note\": \"Sig/dom unchanged but K effect strengthens 0.09→0.38\"\n    },\n    \"mmlu_position_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.4181, \"keff_beta_std\": 0.1040, \"R2\": 0.2431},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2356, \"keff_beta_std\": 0.3829, \"R2\": 0.3227},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.10→0.38\"\n    },\n    \"mmlu_authority_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.3767, \"keff_beta_std\": 0.0104, \"R2\": 0.1469},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1022, \"keff_beta_std\": 0.4972, \"R2\": 0.3145},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.01→0.50. R2 doubles\"\n    },\n    \"arc_prompt_injection\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2439, \"keff_beta_std\": 0.3297, \"R2\": 0.3032},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2809, \"keff_beta_std\": 0.3378, \"R2\": 0.3178},\n      \"changed\": false,\n      \"note\": \"Minor changes. ARC has fewer errors so less impact\"\n    },\n    \"arc_sycophancy\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"-*\", \"dom\": \"Co\", \"eta_beta_std\": 0.4924, \"keff_beta_std\": -0.1917, \"R2\": 0.1322},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2844, \"keff_beta_std\": 0.2572, \"R2\": 0.2449},\n      \"changed\": true,\n      \"note\": \"K sign FLIPPED from -0.19 to +0.26. Dom stays Co but K direction reverses\"\n    },\n    \"arc_score_manipulation\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2242, \"keff_beta_std\": 0.2522, \"R2\": 0.2186},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1911, \"keff_beta_std\": 0.3707, \"R2\": 0.2959},\n      \"changed\": false,\n      \"note\": \"Both stay sig. K strengthens. R2 increases\"\n    },\n    \"arc_verbosity_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"n.s.\", \"dom\": \"eta\", \"eta_beta_std\": 0.3432, \"keff_beta_std\": 0.1455, \"R2\": 0.2217},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2155, \"keff_beta_std\": 0.3870, \"R2\": 0.3127},\n      \"changed\": true,\n      \"note\": \"K gains significance. Dominance changes eta→Co. K rises 0.15→0.39\"\n    },\n    \"arc_position_bias\": {\n      \"old\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": -0.0112, \"keff_beta_std\": 0.5842, \"R2\": 0.3293},\n      \"new\": {\"eta_sig\": \"n.s.\", \"keff_sig\": \"+*\", \"dom\": \"K\", \"eta_beta_std\": -0.0758, \"keff_beta_std\": 0.6507, \"R2\": 0.3382},\n      \"changed\": false,\n      \"note\": \"Already K-dominant, minor changes\"\n    },\n    \"arc_authority_bias\": {\n      \"old\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.2613, \"keff_beta_std\": 0.1946, \"R2\": 0.1806},\n      \"new\": {\"eta_sig\": \"+*\", \"keff_sig\": \"+*\", \"dom\": \"Co\", \"eta_beta_std\": 0.1738, \"keff_beta_std\": 0.3288, \"R2\": 0.2145},\n      \"changed\": false,\n      \"note\": \"Both stay sig. K strengthens 0.19→0.33\"\n    }\n  },\n  \"summary\": {\n    \"eta_sig_count_old\": \"11/12\",\n    \"eta_sig_count_new\": \"10/12\",\n    \"keff_sig_count_old\": \"8/12\",\n    \"keff_sig_count_new\": \"12/12\",\n    \"n_conditions_changed\": 5,\n    \"changed_conditions\": [\n      \"mmlu_score_manipulation (eta→K)\",\n      \"mmlu_position_bias (eta→Co)\",\n      \"mmlu_authority_bias (eta→Co)\",\n      \"arc_sycophancy (K sign flip: -→+)\",\n      \"arc_verbosity_bias (eta→Co)\"\n    ],\n    \"old_dominance_dist\": {\"Co\": 7, \"eta\": 4, \"K\": 1, \"--\": 0},\n    \"new_dominance_dist\": {\"Co\": 10, \"K\": 2, \"eta\": 0, \"--\": 0},\n    \"interpretation\": \"Error-as-tie bug inflated eta_max effect (errors correlated with high-eta models like Gemini) and suppressed K_eff effect. After correction: K_eff is universally significant (12/12), always positive. Diversity is protective across ALL conditions. Dominance shifts strongly toward Co-dominance (10/12) with no pure eta-dominant conditions remaining.\"\n  },\n  \"results_tex_discrepancy\": {\n    \"note\": \"The task-provided results.tex Table 1 shows 9/12 eta sig and 7/12 K sig, which differs from the JSON output (11/12 eta, 8/12 K). Conditions differing: mmlu_score_manipulation (tex=both n.s., json=eta sig) and arc_score_manipulation (tex=eta n.s., json=eta sig). The JSON values are used as 'old' baseline since they are the verifiable buggy script output.\"\n  }\n}\n```\n\n## 2. regime_transition_corrected.json\n\n```json\n{\n  \"method\": \"Wild cluster bootstrap, B=9999, Rademacher, max-p, BH FDR 0.05\",\n  \"error_handling\": \"exclude invalid scores (_is_valid_score: no winner or error flag)\",\n  \"n_filtered_samples\": 1365,\n  \"results\": {\n    \"K3\": {\n      \"n_panels\": 455,\n      \"old\": {\"eta_sig\": 5, \"keff_sig\": 1},\n      \"new\": {\"eta_sig\": 3, \"keff_sig\": 4},\n      \"changed\": true\n    },\n    \"K5\": {\n      \"n_panels\": 3003,\n      \"old\": {\"eta_sig\": 0, \"keff_sig\": 7},\n      \"new\": {\"eta_sig\": 0, \"keff_sig\": 10},\n      \"changed\": true\n    },\n    \"K7\": {\n      \"n_panels\": 6435,\n      \"old\": {\"eta_sig\": 0, \"keff_sig\": 5},\n      \"new\": {\"eta_sig\": 0, \"keff_sig\": 9},\n      \"changed\": true\n    }\n  },\n  \"per_condition_max_p\": {\n    \"K3\": {\n      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0274, \"keff_fdr_p\": 0.0658, \"eta_max_p\": 0.0997, \"eta_fdr_p\": 0.1709},\n      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0048, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0002, \"eta_fdr_p\": 0.0024},\n      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0583, \"keff_fdr_p\": 0.0875, \"eta_max_p\": 0.6392, \"eta_fdr_p\": 0.6973},\n      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0075, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0011, \"eta_fdr_p\": 0.0066},\n      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0774, \"keff_fdr_p\": 0.1032, \"eta_max_p\": 0.1490, \"eta_fdr_p\": 0.2235},\n      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0080, \"keff_fdr_p\": 0.0320, \"eta_max_p\": 0.0295, \"eta_fdr_p\": 0.0590},\n      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0444, \"keff_fdr_p\": 0.0760, \"eta_max_p\": 0.0410, \"eta_fdr_p\": 0.0703},\n      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.1620, \"keff_fdr_p\": 0.1944, \"eta_max_p\": 0.0096, \"eta_fdr_p\": 0.0144},\n      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.1260, \"keff_fdr_p\": 0.1620, \"eta_max_p\": 0.2186, \"eta_fdr_p\": 0.2916},\n      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0139, \"keff_fdr_p\": 0.0417, \"eta_max_p\": 0.0679, \"eta_fdr_p\": 0.1222},\n      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0464, \"keff_fdr_p\": 0.0760, \"eta_max_p\": 0.9986, \"eta_fdr_p\": 0.9986},\n      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.0879, \"keff_fdr_p\": 0.1055, \"eta_max_p\": 0.1725, \"eta_fdr_p\": 0.2300}\n    },\n    \"K5\": {\n      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0020, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.1057, \"eta_fdr_p\": 0.2114},\n      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0014, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.0173, \"eta_fdr_p\": 0.0692},\n      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0056, \"keff_fdr_p\": 0.0112, \"eta_max_p\": 0.3334, \"eta_fdr_p\": 0.5001},\n      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0069, \"keff_fdr_p\": 0.0118, \"eta_max_p\": 0.0143, \"eta_fdr_p\": 0.0692},\n      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0112, \"keff_fdr_p\": 0.0168, \"eta_max_p\": 0.8785, \"eta_fdr_p\": 0.8785},\n      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0025, \"keff_fdr_p\": 0.0060, \"eta_max_p\": 0.9986, \"eta_fdr_p\": 0.9986},\n      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0334, \"keff_fdr_p\": 0.0446, \"eta_max_p\": 0.8340, \"eta_fdr_p\": 0.8785},\n      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.4136, \"keff_fdr_p\": 0.4136, \"eta_max_p\": 0.0480, \"eta_fdr_p\": 0.1152},\n      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.0124, \"keff_fdr_p\": 0.0168, \"eta_max_p\": 0.8731, \"eta_fdr_p\": 0.8785},\n      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0188, \"keff_fdr_p\": 0.0282, \"eta_max_p\": 0.2188, \"eta_fdr_p\": 0.3753},\n      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0094, \"keff_fdr_p\": 0.0141, \"eta_max_p\": 0.4541, \"eta_fdr_p\": 0.6058},\n      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.1409, \"keff_fdr_p\": 0.1409, \"eta_max_p\": 0.3105, \"eta_fdr_p\": 0.5001}\n    },\n    \"K7\": {\n      \"mmluxprompt_injection\":         {\"keff_max_p\": 0.0031, \"keff_fdr_p\": 0.0093, \"eta_max_p\": 0.5011, \"eta_fdr_p\": 0.6014},\n      \"mmluxsycophancy\":               {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.2222, \"eta_fdr_p\": 0.4265},\n      \"mmluxscore_manipulation\":       {\"keff_max_p\": 0.0067, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.1091, \"eta_fdr_p\": 0.2618},\n      \"mmluxverbosity_bias\":           {\"keff_max_p\": 0.0013, \"keff_fdr_p\": 0.0078, \"eta_max_p\": 0.0309, \"eta_fdr_p\": 0.1854},\n      \"mmluxposition_bias\":            {\"keff_max_p\": 0.0183, \"keff_fdr_p\": 0.0275, \"eta_max_p\": 0.9529, \"eta_fdr_p\": 0.9529},\n      \"mmluxauthority_bias\":           {\"keff_max_p\": 0.0079, \"keff_fdr_p\": 0.0158, \"eta_max_p\": 0.9444, \"eta_fdr_p\": 0.9529},\n      \"arc_challengexprompt_injection\": {\"keff_max_p\": 0.0630, \"keff_fdr_p\": 0.0756, \"eta_max_p\": 0.4881, \"eta_fdr_p\": 0.6014},\n      \"arc_challengexsycophancy\":       {\"keff_max_p\": 0.5378, \"keff_fdr_p\": 0.5378, \"eta_max_p\": 0.0285, \"eta_fdr_p\": 0.1854},\n      \"arc_challengexscore_manipulation\":{\"keff_max_p\": 0.0171, \"keff_fdr_p\": 0.0314, \"eta_max_p\": 0.4066, \"eta_fdr_p\": 0.6014},\n      \"arc_challengexverbosity_bias\":   {\"keff_max_p\": 0.0375, \"keff_fdr_p\": 0.0500, \"eta_max_p\": 0.2094, \"eta_fdr_p\": 0.4265},\n      \"arc_challengexposition_bias\":    {\"keff_max_p\": 0.0251, \"keff_fdr_p\": 0.0377, \"eta_max_p\": 0.0690, \"eta_fdr_p\": 0.2760},\n      \"arc_challengexauthority_bias\":   {\"keff_max_p\": 0.3899, \"keff_fdr_p\": 0.4253, \"eta_max_p\": 0.2488, \"eta_fdr_p\": 0.4265}\n    }\n  }\n}\n```\n\n## 3. table2_corrected.json\n\n```json\n{\n  \"method\": \"OLS log-log, error samples excluded via _is_valid_score\",\n  \"K\": 3,\n  \"n_panels\": 455,\n  \"n_conditions\": 12,\n  \"fix_description\": \"Replaced .get('winner', 'tie') with _is_valid_score() filtering — error/format_error/api_error samples are now skipped instead of counted as 'tie' votes\",\n  \"aggregation_methods\": {\n    \"threshold\": {\n      \"old\": {\"eta_sig\": \"12/12\", \"keff_sig\": \"11/12\", \"keff_dir\": \"10+/1-\", \"R2\": 0.89},\n      \"new\": {\"eta_sig\": \"12/12\", \"keff_sig\": \"11/12\", \"keff_dir\": \"11+/0-\", \"R2\": 0.829},\n      \"changed\": true,\n      \"changes\": \"keff_dir flipped from 10+/1- to 11+/0- (spurious negative disappeared); R2 dropped 0.89→0.829\"\n    },\n    \"majority\": {\n      \"old\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"8/12\", \"keff_dir\": \"7+/1-\", \"R2\": 0.298},\n      \"new\": {\"eta_sig\": \"10/12\", \"keff_sig\": \"12/12\", \"keff_dir\": \"12+/0-\", \"R2\": 0.327},\n      \"changed\": true,\n      \"changes\": \"keff_sig increased 8/12→12/12 (all significant); keff_dir 7+/1-→12+/0- (all positive); eta_sig 9→10; R2 improved 0.298→0.327\"\n    },\n    \"weighted\": {\n      \"old\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"9/12\", \"keff_dir\": \"9+/0-\", \"R2\": 0.284},\n      \"new\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"12/12\", \"keff_dir\": \"12+/0-\", \"R2\": 0.328},\n      \"changed\": true,\n      \"changes\": \"keff_sig increased 9/12→12/12; keff_dir 9+/0-→12+/0-; R2 improved 0.284→0.328\"\n    },\n    \"bayesian\": {\n      \"old\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"7/12\", \"keff_dir\": \"1+/6-\", \"R2\": 0.104},\n      \"new\": {\"eta_sig\": \"9/12\", \"keff_sig\": \"6/12\", \"keff_dir\": \"5+/1-\", \"R2\": 0.087},\n      \"changed\": true,\n      \"changes\": \"keff_dir dramatically reversed from 1+/6- to 5+/1- — old negative direction was artifact of errors counted as 'tie'; R2 dropped 0.104→0.087; keff_sig 7→6\"\n    }\n  },\n  \"key_findings\": [\n    \"All 4 methods changed after error filtering\",\n    \"Majority and weighted vote: K_eff now universally significant (12/12) and positive — error-as-tie was masking the diversity signal\",\n    \"Bayesian direction reversal confirmed: 1+/6- → 5+/1- — the old negative K_eff was an artifact of log-odds bias from error='tie' votes\",\n    \"Threshold: spurious negative K_eff condition disappeared (10+/1- → 11+/0-), but R2 dropped slightly\",\n    \"Overall: error filtering strengthens the paper's main claim that judge diversity (K_eff) improves manipulation resistance\"\n  ]\n}\n```\n\n## 4. random_fault_contrast_corrected.json\n\n```json\n{\n  \"error_handling_version\": \"V1→V2 (fixed)\",\n  \"scripts\": {\n    \"k5_rf_contrast\": {\n      \"path\": \"/root/cert_manip_resist_eval/scripts/run_k5_rf_contrast.py\",\n      \"own_code_version\": \"V2 (RF computed from clean accuracy, no voting data)\",\n      \"dependency_version\": \"V1→V2 (adaptive R² loaded from k5_aggregation_analysis.json, which was V1)\"\n    },\n    \"k5_aggregation_analysis\": {\n      \"path\": \"/root/cert_manip_resist_eval/scripts/run_k5_aggregation_analysis.py\",\n      \"own_code_version\": \"V1→V2 (fixed: added _is_valid_score filtering)\",\n      \"v1_patterns_fixed\": [\n        \"compute_individual_asr: .get('winner', 'tie') → _is_valid_score() + direct access\",\n        \"compute_panel_asr_all_methods: .get('winner', 'tie') → _is_valid_score() + direct access\"\n      ]\n    },\n    \"k3_rf_keff_correction\": {\n      \"path\": \"/root/cert_manip_resist_eval/scripts/run_rf_keff_correction.py\",\n      \"own_code_version\": \"V2 (RF computed from clean accuracy, no V1 patterns)\",\n      \"note\": \"Self-contained, no V1 dependency\"\n    },\n    \"plan001_step5_random_fault\": {\n      \"path\": \"/root/cert_manip_resist_eval/scripts/run_plan001_step5_random_fault.py\",\n      \"own_code_version\": \"V2 (imports compute_corrected_asr/compute_corrected_panel_asr; local V1 functions are dead code)\",\n      \"note\": \"Output file never generated (step5_random_fault_results.json does not exist)\"\n    }\n  },\n  \"fix_applied\": true,\n  \"fix_details\": \"Fixed run_k5_aggregation_analysis.py: imported _is_valid_score from unified_data_loader, replaced .get('winner','tie') with _is_valid_score() filtering in compute_individual_asr and compute_panel_asr_all_methods. Reran k5_aggregation_analysis → k5_rf_contrast.\",\n  \"old_results\": {\n    \"k5_adaptive_mean_r2\": 0.2562,\n    \"adaptive_r2_by_condition\": {\n      \"mmluxprompt_injection\": 0.6038,\n      \"mmluxsycophancy\": 0.2986,\n      \"mmluxscore_manipulation\": 0.3201,\n      \"mmluxverbosity_bias\": 0.3260,\n      \"mmluxposition_bias\": 0.1847,\n      \"mmluxauthority_bias\": 0.0630,\n      \"arc_challengexprompt_injection\": 0.3041,\n      \"arc_challengexsycophancy\": 0.0771,\n      \"arc_challengexscore_manipulation\": 0.1765,\n      \"arc_challengexverbosity_bias\": 0.2175,\n      \"arc_challengexposition_bias\": 0.3566,\n      \"arc_challengexauthority_bias\": 0.1461\n    },\n    \"mmlu_adaptive_mean_r2\": 0.2994,\n    \"arc_adaptive_mean_r2\": 0.2130,\n    \"rf_vs_adaptive_gap\": 0.4485\n  },\n  \"new_results\": {\n    \"k5_adaptive_mean_r2\": 0.2751,\n    \"adaptive_r2_by_condition\": {\n      \"mmluxprompt_injection\": 0.3987,\n      \"mmluxsycophancy\": 0.2799,\n      \"mmluxscore_manipulation\": 0.3215,\n      \"mmluxverbosity_bias\": 0.3455,\n      \"mmluxposition_bias\": 0.2695,\n      \"mmluxauthority_bias\": 0.1931,\n      \"arc_challengexprompt_injection\": 0.2501,\n      \"arc_challengexsycophancy\": 0.1586,\n      \"arc_challengexscore_manipulation\": 0.2559,\n      \"arc_challengexverbosity_bias\": 0.2923,\n      \"arc_challengexposition_bias\": 0.3723,\n      \"arc_challengexauthority_bias\": 0.1641\n    },\n    \"mmlu_adaptive_mean_r2\": 0.3014,\n    \"arc_adaptive_mean_r2\": 0.2489,\n    \"rf_vs_adaptive_gap\": 0.4296\n  },\n  \"changes\": \"RF R² unchanged (clean accuracy based). Adaptive mean R² increased slightly (0.2562→0.2751). Gap narrowed from +0.4485 to +0.4296 but remains large and qualitatively unchanged. Largest individual change: mmluxprompt_injection R² dropped -0.205 (0.604→0.399); authority_bias/position_bias increased ~0.08-0.13.\",\n  \"rf_r2_by_condition\": {\n    \"k5\": {\n      \"mmlu\": 0.6587,\n      \"arc_challenge\": 0.7507,\n      \"mean\": 0.7047,\n      \"keff_bootstrap_sig\": \"2/2\",\n      \"keff_clustered_sig\": \"2/2\"\n    },\n    \"k3\": {\n      \"mmlu\": 0.7344,\n      \"arc_challenge\": 0.8133,\n      \"mean\": 0.7739,\n      \"keff_bootstrap_sig\": \"2/2\",\n      \"keff_clustered_sig\": \"2/2\"\n    }\n  },\n  \"adaptive_r2_by_condition\": {\n    \"k5_mean\": 0.2751,\n    \"k5_mmlu_mean\": 0.3014,\n    \"k5_arc_mean\": 0.2489\n  },\n  \"contrast_significant\": true,\n  \"contrast_summary\": \"RF R² (0.70) >> adaptive R² (0.28): K_eff explains 2.5x more variance under independent faults vs adaptive attacks. Bootstrap K_eff significant 2/2 conditions for RF vs historically lower for adaptive. Finding robust to V2 correction.\"\n}\n```\n\n## 5. gam_bootstrap_ci_k3.json\n\n```json\n{\n  \"K\": 3,\n  \"n_panels\": 455,\n  \"B\": 9999,\n  \"epsilon\": 1e-06,\n  \"gam_spec\": \"LinearGAM(s(0, n_splines=8) + s(1, n_splines=8))\",\n  \"sign_definition\": \"pdep[-1] > pdep[0] on generate_X_grid(term=0, n=100)\",\n  \"slope_definition\": \"(pdep[-1] - pdep[0]) / (x_grid[-1] - x_grid[0])\",\n  \"lambda_strategy\": \"gridsearch on original, fixed for bootstrap\",\n  \"conditions\": {\n    \"mmluxprompt_injection\": {\n      \"direction_positive_rate\": 0.9875,\n      \"slope_mean\": 25.086282,\n      \"slope_ci_lower\": 3.949884,\n      \"slope_ci_upper\": 37.638554,\n      \"slope_median\": 26.867378,\n      \"original_slope\": 22.286153,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"mmluxsycophancy\": {\n      \"direction_positive_rate\": 0.9998,\n      \"slope_mean\": 28.757223,\n      \"slope_ci_lower\": 20.936431,\n      \"slope_ci_upper\": 39.821261,\n      \"slope_median\": 27.813561,\n      \"original_slope\": 25.839514,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"mmluxscore_manipulation\": {\n      \"direction_positive_rate\": 0.8895,\n      \"slope_mean\": 16.796658,\n      \"slope_ci_lower\": -8.479621,\n      \"slope_ci_upper\": 44.002667,\n      \"slope_median\": 18.779236,\n      \"original_slope\": 7.067337,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"mmluxverbosity_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 14.831337,\n      \"slope_ci_lower\": 11.16183,\n      \"slope_ci_upper\": 18.265475,\n      \"slope_median\": 14.878729,\n      \"original_slope\": 14.841758,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"mmluxposition_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 0.598576,\n      \"slope_ci_lower\": 0.462616,\n      \"slope_ci_upper\": 0.736347,\n      \"slope_median\": 0.599537,\n      \"original_slope\": 0.630759,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"mmluxauthority_bias\": {\n      \"direction_positive_rate\": 0.9998,\n      \"slope_mean\": 36.571666,\n      \"slope_ci_lower\": 24.971521,\n      \"slope_ci_upper\": 54.343886,\n      \"slope_median\": 35.178149,\n      \"original_slope\": 38.712764,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"arc_challengexprompt_injection\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 13.064178,\n      \"slope_ci_lower\": 8.321376,\n      \"slope_ci_upper\": 17.875311,\n      \"slope_median\": 13.075119,\n      \"original_slope\": 13.230832,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"arc_challengexsycophancy\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 14.926042,\n      \"slope_ci_lower\": 8.13517,\n      \"slope_ci_upper\": 21.500104,\n      \"slope_median\": 14.98718,\n      \"original_slope\": 15.429704,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"arc_challengexscore_manipulation\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 26.303223,\n      \"slope_ci_lower\": 17.385257,\n      \"slope_ci_upper\": 34.426029,\n      \"slope_median\": 26.405913,\n      \"original_slope\": 24.939722,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"arc_challengexverbosity_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 18.783755,\n      \"slope_ci_lower\": 13.921529,\n      \"slope_ci_upper\": 23.902512,\n      \"slope_median\": 18.747484,\n      \"original_slope\": 19.324376,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"arc_challengexposition_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 0.849684,\n      \"slope_ci_lower\": 0.775788,\n      \"slope_ci_upper\": 0.929058,\n      \"slope_median\": 0.848798,\n      \"original_slope\": 0.839933,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    },\n    \"arc_challengexauthority_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 22.067471,\n      \"slope_ci_lower\": 14.326455,\n      \"slope_ci_upper\": 29.567236,\n      \"slope_median\": 22.122064,\n      \"original_slope\": 22.970929,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_panels\": 455\n    }\n  },\n  \"taxonomy_split\": {\n    \"targeted\": [\n      \"prompt_injection\",\n      \"score_manipulation\",\n      \"position_bias\"\n    ],\n    \"shared_bias\": [\n      \"sycophancy\",\n      \"verbosity_bias\",\n      \"authority_bias\"\n    ],\n    \"targeted_conditions\": [\n      \"mmluxprompt_injection\",\n      \"mmluxscore_manipulation\",\n      \"mmluxposition_bias\",\n      \"arc_challengexprompt_injection\",\n      \"arc_challengexscore_manipulation\",\n      \"arc_challengexposition_bias\"\n    ],\n    \"shared_bias_conditions\": [\n      \"mmluxsycophancy\",\n      \"mmluxverbosity_bias\",\n      \"mmluxauthority_bias\",\n      \"arc_challengexsycophancy\",\n      \"arc_challengexverbosity_bias\",\n      \"arc_challengexauthority_bias\"\n    ],\n    \"all_targeted_positive\": true,\n    \"all_shared_negative\": false,\n    \"split_consistency_rate\": 0.0,\n    \"description\": \"Product of marginal rates: P(all targeted positive) * P(all shared-bias negative)\"\n  }\n}\n```\n\n## 6. gam_bootstrap_ci_k5.json\n\n```json\n{\n  \"K\": 5,\n  \"n_panels\": 3003,\n  \"B\": 9999,\n  \"epsilon\": 1e-06,\n  \"gam_spec\": \"LinearGAM(s(0, n_splines=8) + s(1, n_splines=8))\",\n  \"sign_definition\": \"pdep[-1] > pdep[0] on generate_X_grid(term=0, n=100)\",\n  \"slope_definition\": \"(pdep[-1] - pdep[0]) / (x_grid[-1] - x_grid[0])\",\n  \"lambda_strategy\": \"gridsearch on original data, fixed for all bootstrap resamples\",\n  \"conditions\": {\n    \"mmluxprompt_injection\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 23.05288,\n      \"slope_ci_lower\": 17.497003,\n      \"slope_ci_upper\": 32.613685,\n      \"slope_median\": 22.564967,\n      \"original_slope\": 21.653688,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"mmluxsycophancy\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 21.662039,\n      \"slope_ci_lower\": 15.939956,\n      \"slope_ci_upper\": 32.624946,\n      \"slope_median\": 21.195047,\n      \"original_slope\": 20.965962,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"mmluxscore_manipulation\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 25.103394,\n      \"slope_ci_lower\": 21.658225,\n      \"slope_ci_upper\": 30.497035,\n      \"slope_median\": 24.788366,\n      \"original_slope\": 25.233572,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"mmluxverbosity_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 13.385899,\n      \"slope_ci_lower\": 10.351096,\n      \"slope_ci_upper\": 16.846865,\n      \"slope_median\": 13.30468,\n      \"original_slope\": 12.813748,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"mmluxposition_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 0.396727,\n      \"slope_ci_lower\": 0.300272,\n      \"slope_ci_upper\": 0.481906,\n      \"slope_median\": 0.398578,\n      \"original_slope\": 0.404764,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"mmluxauthority_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 23.223063,\n      \"slope_ci_lower\": 19.147824,\n      \"slope_ci_upper\": 28.857134,\n      \"slope_median\": 22.960873,\n      \"original_slope\": 23.152729,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"arc_challengexprompt_injection\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 27.17512,\n      \"slope_ci_lower\": 20.881348,\n      \"slope_ci_upper\": 33.500816,\n      \"slope_median\": 27.145362,\n      \"original_slope\": 26.001016,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"arc_challengexsycophancy\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 12.405421,\n      \"slope_ci_lower\": 6.627867,\n      \"slope_ci_upper\": 18.857624,\n      \"slope_median\": 12.276154,\n      \"original_slope\": 12.213262,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"arc_challengexscore_manipulation\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 34.90742,\n      \"slope_ci_lower\": 23.359024,\n      \"slope_ci_upper\": 49.499424,\n      \"slope_median\": 34.174307,\n      \"original_slope\": 31.943582,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"arc_challengexverbosity_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 20.262407,\n      \"slope_ci_lower\": 16.371621,\n      \"slope_ci_upper\": 25.381152,\n      \"slope_median\": 20.044247,\n      \"original_slope\": 20.09315,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"arc_challengexposition_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 0.366956,\n      \"slope_ci_lower\": 0.335363,\n      \"slope_ci_upper\": 0.397089,\n      \"slope_median\": 0.367181,\n      \"original_slope\": 0.366195,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    },\n    \"arc_challengexauthority_bias\": {\n      \"direction_positive_rate\": 1.0,\n      \"slope_mean\": 13.556438,\n      \"slope_ci_lower\": 8.783432,\n      \"slope_ci_upper\": 17.743795,\n      \"slope_median\": 13.672588,\n      \"original_slope\": 13.946854,\n      \"original_positive\": true,\n      \"n_valid_bootstraps\": 9999,\n      \"n_failed_bootstraps\": 0,\n      \"n_panels\": 3003\n    }\n  },\n  \"taxonomy_split\": {\n    \"targeted\": [\n      \"prompt_injection\",\n      \"score_manipulation\",\n      \"position_bias\"\n    ],\n    \"shared_bias\": [\n      \"sycophancy\",\n      \"verbosity_bias\",\n      \"authority_bias\"\n    ],\n    \"targeted_conditions\": [\n      \"mmluxprompt_injection\",\n      \"mmluxscore_manipulation\",\n      \"mmluxposition_bias\",\n      \"arc_challengexprompt_injection\",\n      \"arc_challengexscore_manipulation\",\n      \"arc_challengexposition_bias\"\n    ],\n    \"shared_bias_conditions\": [\n      \"mmluxsycophancy\",\n      \"mmluxverbosity_bias\",\n      \"mmluxauthority_bias\",\n      \"arc_challengexsycophancy\",\n      \"arc_challengexverbosity_bias\",\n      \"arc_challengexauthority_bias\"\n    ],\n    \"all_targeted_positive\": true,\n    \"all_shared_negative\": false,\n    \"split_consistency_rate\": 0.0,\n    \"description\": \"Lower bound (product of marginals) on fraction of bootstraps where all 6 targeted show positive AND all 6 shared-bias show negative\"\n  }\n}\n```\n\n## 7. gam_magnitude_gradient.json\n\n```json\n{\n  \"K3\": {\n    \"slopes_ranked\": [\n      {\n        \"condition\": \"mmluxauthority_bias\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 36.571666,\n        \"slope_ci\": [\n          24.971521,\n          54.343886\n        ],\n        \"direction_positive_rate\": 0.9998\n      },\n      {\n        \"condition\": \"mmluxsycophancy\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 28.757223,\n        \"slope_ci\": [\n          20.936431,\n          39.821261\n        ],\n        \"direction_positive_rate\": 0.9998\n      },\n      {\n        \"condition\": \"arc_challengexscore_manipulation\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 26.303223,\n        \"slope_ci\": [\n          17.385257,\n          34.426029\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxprompt_injection\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 25.086282,\n        \"slope_ci\": [\n          3.949884,\n          37.638554\n        ],\n        \"direction_positive_rate\": 0.9875\n      },\n      {\n        \"condition\": \"arc_challengexauthority_bias\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 22.067471,\n        \"slope_ci\": [\n          14.326455,\n          29.567236\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"arc_challengexverbosity_bias\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 18.783755,\n        \"slope_ci\": [\n          13.921529,\n          23.902512\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxscore_manipulation\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 16.796658,\n        \"slope_ci\": [\n          -8.479621,\n          44.002667\n        ],\n        \"direction_positive_rate\": 0.8895\n      },\n      {\n        \"condition\": \"arc_challengexsycophancy\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 14.926042,\n        \"slope_ci\": [\n          8.13517,\n          21.500104\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxverbosity_bias\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 14.831337,\n        \"slope_ci\": [\n          11.16183,\n          18.265475\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"arc_challengexprompt_injection\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 13.064178,\n        \"slope_ci\": [\n          8.321376,\n          17.875311\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"arc_challengexposition_bias\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 0.849684,\n        \"slope_ci\": [\n          0.775788,\n          0.929058\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxposition_bias\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 0.598576,\n        \"slope_ci\": [\n          0.462616,\n          0.736347\n        ],\n        \"direction_positive_rate\": 1.0\n      }\n    ],\n    \"kruskal_wallis\": {\n      \"H\": 1.6410256410256494,\n      \"p\": 0.20018480417757442,\n      \"groups\": [\n        \"targeted\",\n        \"shared_bias\"\n      ],\n      \"targeted_slopes\": [\n        26.303223,\n        25.086282,\n        16.796658,\n        13.064178,\n        0.849684,\n        0.598576\n      ],\n      \"shared_slopes\": [\n        36.571666,\n        28.757223,\n        22.067471,\n        18.783755,\n        14.926042,\n        14.831337\n      ],\n      \"targeted_mean\": 13.783100166666664,\n      \"shared_mean\": 22.656249,\n      \"targeted_median\": 14.930418,\n      \"shared_median\": 20.425613\n    },\n    \"normalized_effect\": {\n      \"method\": \"log-transform to handle position_bias scale difference\",\n      \"kruskal_wallis_log\": {\n        \"H\": 1.6410256410256494,\n        \"p\": 0.20018480417757442\n      },\n      \"targeted_log_slopes\": [\n        3.2696914792077028,\n        3.2223211628731114,\n        2.8211799380548257,\n        2.5698739808126345,\n        -0.16289076320759657,\n        -0.5132017777518637\n      ],\n      \"shared_log_slopes\": [\n        3.5992737875934093,\n        3.3588889704752725,\n        3.0941046237661514,\n        2.9329924005506167,\n        2.7031074725937536,\n        2.696742307183889\n      ],\n      \"targeted_log_mean\": 1.867829003331469,\n      \"shared_log_mean\": 3.0641849270271817,\n      \"note\": \"position_bias slopes (~0.4-0.85) are 30-60x smaller than others (~13-35) due to ASR scale difference (0-1 vs 0-100%)\"\n    }\n  },\n  \"K5\": {\n    \"slopes_ranked\": [\n      {\n        \"condition\": \"arc_challengexscore_manipulation\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 34.90742,\n        \"slope_ci\": [\n          23.359024,\n          49.499424\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"arc_challengexprompt_injection\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 27.17512,\n        \"slope_ci\": [\n          20.881348,\n          33.500816\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxscore_manipulation\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 25.103394,\n        \"slope_ci\": [\n          21.658225,\n          30.497035\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxauthority_bias\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 23.223063,\n        \"slope_ci\": [\n          19.147824,\n          28.857134\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxprompt_injection\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 23.05288,\n        \"slope_ci\": [\n          17.497003,\n          32.613685\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxsycophancy\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 21.662039,\n        \"slope_ci\": [\n          15.939956,\n          32.624946\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"arc_challengexverbosity_bias\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 20.262407,\n        \"slope_ci\": [\n          16.371621,\n          25.381152\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"arc_challengexauthority_bias\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 13.556438,\n        \"slope_ci\": [\n          8.783432,\n          17.743795\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxverbosity_bias\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 13.385899,\n        \"slope_ci\": [\n          10.351096,\n          16.846865\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"arc_challengexsycophancy\",\n        \"attack_type\": \"shared_bias\",\n        \"slope_mean\": 12.405421,\n        \"slope_ci\": [\n          6.627867,\n          18.857624\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"mmluxposition_bias\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 0.396727,\n        \"slope_ci\": [\n          0.300272,\n          0.481906\n        ],\n        \"direction_positive_rate\": 1.0\n      },\n      {\n        \"condition\": \"arc_challengexposition_bias\",\n        \"attack_type\": \"targeted\",\n        \"slope_mean\": 0.366956,\n        \"slope_ci\": [\n          0.335363,\n          0.397089\n        ],\n        \"direction_positive_rate\": 1.0\n      }\n    ],\n    \"kruskal_wallis\": {\n      \"H\": 0.6410256410256494,\n      \"p\": 0.42333964158244053,\n      \"groups\": [\n        \"targeted\",\n        \"shared_bias\"\n      ],\n      \"targeted_slopes\": [\n        34.90742,\n        27.17512,\n        25.103394,\n        23.05288,\n        0.396727,\n        0.366956\n      ],\n      \"shared_slopes\": [\n        23.223063,\n        21.662039,\n        20.262407,\n        13.556438,\n        13.385899,\n        12.405421\n      ],\n      \"targeted_mean\": 18.500416166666668,\n      \"shared_mean\": 17.415877833333333,\n      \"targeted_median\": 24.078136999999998,\n      \"shared_median\": 16.909422499999998\n    },\n    \"normalized_effect\": {\n      \"method\": \"log-transform to handle position_bias scale difference\",\n      \"kruskal_wallis_log\": {\n        \"H\": 0.6410256410256494,\n        \"p\": 0.42333964158244053\n      },\n      \"targeted_log_slopes\": [\n        3.552699414063342,\n        3.30230184882457,\n        3.223003056123946,\n        3.1377907074119875,\n        -0.9245068920184331,\n        -1.0025133288507304\n      ],\n      \"shared_log_slopes\": [\n        3.1451458797191125,\n        3.075561373804317,\n        3.0087672972967887,\n        2.6068615636462633,\n        2.594201839460982,\n        2.518133554504202\n      ],\n      \"targeted_log_mean\": 1.8814624675924472,\n      \"shared_log_mean\": 2.824778584738611,\n      \"note\": \"position_bias slopes (~0.4-0.85) are 30-60x smaller than others (~13-35) due to ASR scale difference (0-1 vs 0-100%)\"\n    }\n  }\n}\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f70398e-aa0f-4eb8-bc05-b167b2aa4bef",
+            "isSidechain": true,
+            "agentId": "a96ddfe1de61be872",
+            "requestId": "req_011CbL2dfArCjfQpSSqE5Es3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d1badaf0-5c93-4c39-9ff1-36f85c7ae5c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/.claude/sessions/paper_agent_e719fc52",
+            "sessionId": "f87a3d89-ab84-40eb-8d24-770e5a9cf296",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "vectorized-splashing-wolf",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KCAASB9ADrhrXoQBCg9BUQ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 19170,
+                "cache_read_input_tokens": 27759,
+                "output_tokens": 15650,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19170
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 15650,
+                    "cache_read_input_tokens": 27759,
+                    "cache_creation_input_tokens": 19170,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 19170,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-following-files-in-home-ubuntu-agent-ml-research-idea-gen-0519-2-proj.md"
+}

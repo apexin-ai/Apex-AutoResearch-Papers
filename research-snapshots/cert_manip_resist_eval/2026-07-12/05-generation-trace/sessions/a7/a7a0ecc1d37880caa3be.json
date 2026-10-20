@@ -1,0 +1,1852 @@
+{
+  "schema_version": "1.0",
+  "id": "a7a0ecc1d37880caa3be",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for and read PathFinder-PRM (arXiv 2505.19706, May 2025) — \"Error Typing for Smarter Rewards: Improving Process R",
+  "task_key": "agent-a91780e1d5a06a47f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a91780e1d5a06a47f.jsonl",
+    "occurrence": 1,
+    "bytes": 154390,
+    "sha256": "405569c1d1ff730103fb5732efe4a1af4f1f6c88ded9b3a2151f3ac098145321"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 8,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T22:23:42.202Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for and read PathFinder-PRM (arXiv 2505.19706, May 2025) — \"Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision\". \n\nI need to understand:\n1. Exactly how do they define and use their {math, consistency} error types?\n2. What is their training mechanism — how are typed labels converted into training signals? Dual heads? Auxiliary loss? Embedding-based?\n3. What were their actual gains broken down: +2.2 on PRMBench and +1.5 on prm@8 — were these over strong baselines?\n4. Did they report inter-annotator agreement for their error types?\n5. What were their ablation results — how much did each error type contribute?\n6. Any limitations they discussed about extending to more categories?\n\nThis is important because a reviewer says our multimodal extension is incremental over PathFinder-PRM. I need to understand exactly what they did to differentiate convincingly.\n\nUse WebSearch and WebFetch. Report detailed technical findings."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "10ddd384-a59a-4341-a96f-6020a59de2cb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T22:23:42.206Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "10ddd384-a59a-4341-a96f-6020a59de2cb",
+                "isSidechain": true,
+                "agentId": "a91780e1d5a06a47f",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "2a864cc7-d1e2-46fc-b4fb-718e5ddacef7",
+                "timestamp": "2026-05-27T22:23:42.206Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T22:23:42.207Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2a864cc7-d1e2-46fc-b4fb-718e5ddacef7",
+                "isSidechain": true,
+                "agentId": "a91780e1d5a06a47f",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "0e327d18-c7bd-4b89-a4b7-e685cacedb09",
+                "timestamp": "2026-05-27T22:23:42.207Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T22:23:44.408Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for this paper and gather detailed technical information. Let me start by loading the necessary tools."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e327d18-c7bd-4b89-a4b7-e685cacedb09",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrcrNtEfF6PiDFHFrVn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aae4e730-85b9-4f8a-854a-d533ac0d1ff4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018gzFrBga1A5HaXVSxncosE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1560,
+                "cache_read_input_tokens": 7411,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1560,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T22:23:44.820Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0142iM8vLbNvJzRjHMCbA4Sh",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aae4e730-85b9-4f8a-854a-d533ac0d1ff4",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrcrNtEfF6PiDFHFrVn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dc160b59-1127-44e8-923c-a35caf0d29e0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018gzFrBga1A5HaXVSxncosE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1560,
+                "cache_read_input_tokens": 7411,
+                "output_tokens": 102,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1560
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 102,
+                    "cache_read_input_tokens": 7411,
+                    "cache_creation_input_tokens": 1560,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1560,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T22:23:44.822Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0142iM8vLbNvJzRjHMCbA4Sh",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc160b59-1127-44e8-923c-a35caf0d29e0",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "8fb94999-e659-4aaf-aec2-8fdb3f46ccfe",
+            "sourceToolAssistantUUID": "dc160b59-1127-44e8-923c-a35caf0d29e0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-27T22:23:47.121Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me search for the paper and fetch it from arXiv simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8fb94999-e659-4aaf-aec2-8fdb3f46ccfe",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrd3oio3kZ1JEK1XJHC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eb0c6ee3-4af5-4407-a562-561d22ea2ace",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QHkUMKhN5jXeoSSHjpw9by",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 8971,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1124,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-27T22:23:48.111Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lzo6rJrHWhwZfG5jM6gfdU",
+              "name": "WebSearch",
+              "input": {
+                "query": "PathFinder-PRM arXiv 2505.19706 \"Error Typing for Smarter Rewards\" process reward model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb0c6ee3-4af5-4407-a562-561d22ea2ace",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrd3oio3kZ1JEK1XJHC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bbba4327-b8cd-4845-97cd-15ad3b055341",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QHkUMKhN5jXeoSSHjpw9by",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 8971,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1124,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-27T22:23:48.583Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0194uiQe59sWsba83aQ9mD8S",
+              "name": "WebSearch",
+              "input": {
+                "query": "PathFinder-PRM error-aware hierarchical supervision process reward model math consistency error types 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bbba4327-b8cd-4845-97cd-15ad3b055341",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrd3oio3kZ1JEK1XJHC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9190ab00-7cfe-4dd0-9f08-9cf78d5f13ee",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QHkUMKhN5jXeoSSHjpw9by",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 8971,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1124,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-27T22:23:49.798Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AhQZvoMfsFJNGLr3EhEJpv",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2505.19706",
+                "prompt": "Extract the full abstract, author list, and any detailed information about the paper's methodology, error types, training mechanism, results, ablations, and limitations. Get every technical detail available on this page."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9190ab00-7cfe-4dd0-9f08-9cf78d5f13ee",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrd3oio3kZ1JEK1XJHC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4767d510-76b1-4182-9361-3e58aef9c425",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QHkUMKhN5jXeoSSHjpw9by",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 8971,
+                "output_tokens": 260,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1124
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 260,
+                    "cache_read_input_tokens": 8971,
+                    "cache_creation_input_tokens": 1124,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1124,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-27T22:23:55.955Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0194uiQe59sWsba83aQ9mD8S",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PathFinder-PRM error-aware hierarchical supervision process reward model math consistency error types 2025\"\n\nLinks: [{\"title\":\"[2505.19706] Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision\",\"url\":\"https://arxiv.org/abs/2505.19706\"},{\"title\":\"Process-Supervised Reward Model\",\"url\":\"https://www.emergentmind.com/topics/process-supervised-reward-model-prm\"},{\"title\":\"GitHub - declare-lab/PathFinder-PRM: This repository contains the official implementation of Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision.\",\"url\":\"https://github.com/declare-lab/PathFinder-PRM\"},{\"title\":\"Improving Process Reward Models with Error-Aware ...\",\"url\":\"https://arxiv.org/pdf/2505.19706\"},{\"title\":\"Process-supervised Reward Models (PRMs)\",\"url\":\"https://www.emergentmind.com/topics/process-supervised-reward-models-prm\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.08049v3\"},{\"title\":\"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub\",\"url\":\"https://github.com/RyanLiu112/Awesome-Process-Reward-Models\"},{\"title\":\"Process Reward Models: Step-Level Feedback for LLMs\",\"url\":\"https://www.emergentmind.com/topics/process-reward-models-prm\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process\",\"url\":\"https://arxiv.org/pdf/2510.08049\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=Process+Reward+Models+%28PRMs%29\"}]\n\nBased on the search results, here's comprehensive information about PathFinder-PRM:\n\n## Overview\n\nPathFinder-PRM is a novel hierarchical, error-aware discriminative Process Reward Model (PRM) that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness.\n\n## Error Types\n\nThe model uses three-dimensional step-level error labels: Math, Consistency, and Optimality. The model first classifies step-level errors into Math and Consistency categories, followed by estimating step Optimality.\n\n## Training and Data\n\nTo train PathFinder-PRM, a 400K-sample dataset was constructed by enriching the human-annotated PRM800K corpus and RLHFlow Mistral traces with three-dimensional step-level labels.\n\n## Performance Results\n\nOn PRMBench, PathFinder-PRM achieves a state-of-the-art PRMScore of 67.7, outperforming the prior best (65.5) while using 3 times less data. When applied to reward guided greedy search, the model yields prm@8 48.3, a +1.5 point gain over the strongest baseline.\n\n## Key Benefits\n\nThe results highlight the value of decoupling feedback prediction into discrete reasoning components. The hierarchical model explicitly decomposes errors into math and consistency dimensions before reward assignment, increasing interpretability and data efficiency.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9190ab00-7cfe-4dd0-9f08-9cf78d5f13ee",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "c4d2f5f3-b6da-435f-a5e9-d961d48acd89",
+            "sourceToolAssistantUUID": "9190ab00-7cfe-4dd0-9f08-9cf78d5f13ee",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-27T22:23:57.941Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AhQZvoMfsFJNGLr3EhEJpv",
+              "type": "tool_result",
+              "content": "# PathFinder-PRM Paper Analysis\n\n## Full Abstract\n\"Large Language Models (LLMs) are prone to hallucination, especially during multi-hop and reasoning-intensive tasks such as mathematical problem solving. While Outcome Reward Models verify only final answers, Process Reward Models (PRMs) score each intermediate step to steer generation toward coherent solutions. We introduce PathFinder-PRM, a novel hierarchical, error-aware discriminative PRM that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness. To train PathFinder-PRM, we construct a 400K-sample dataset by enriching the human-annotated PRM800K corpus and RLHFlow Mistral traces with three-dimensional step-level labels. On PRMBench, PathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7, outperforming the prior best (65.5) while using 3 times less data. When applied to reward guided greedy search, our model yields prm@8 48.3, a +1.5 point gain over the strongest baseline. These results demonstrate that decoupled error detection and reward estimation not only boost fine-grained error detection but also substantially improve end-to-end, reward-guided mathematical reasoning with greater data efficiency.\"\n\n## Author List\n- Tej Deep Pala\n- Panshul Sharma\n- Amir Zadeh\n- Chuan Li\n- Soujanya Poria\n\n## Key Technical Details\n\n**Core Innovation:** The model employs a hierarchical approach that \"first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness.\"\n\n**Error Types:** Two-dimensional error classification system:\n- Mathematical errors\n- Consistency errors\n\n**Training Data:** 400K-sample dataset created by enriching two existing corpora with step-level annotations\n\n**Results:**\n- PRMScore: 67.7 (vs. prior 65.5)\n- Data efficiency: 3× less data required\n- End-to-end performance: prm@8 score of 48.3 (+1.5 improvement)\n\n**Submission Date:** May 26, 2025\n\n**License:** CC-BY-SA 4.0"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4767d510-76b1-4182-9361-3e58aef9c425",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "45eec1bb-3eed-46f1-a16d-1abd95e6271f",
+            "sourceToolAssistantUUID": "4767d510-76b1-4182-9361-3e58aef9c425",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-27T22:23:59.270Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Lzo6rJrHWhwZfG5jM6gfdU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PathFinder-PRM arXiv 2505.19706 \"Error Typing for Smarter Rewards\" process reward model\"\n\nLinks: [{\"title\":\"[2505.19706] Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision\",\"url\":\"https://arxiv.org/abs/2505.19706\"},{\"title\":\"declare-lab/PathFinder-PRM-7B · Hugging Face\",\"url\":\"https://huggingface.co/declare-lab/PathFinder-PRM-7B\"},{\"title\":\"arXiv:2505.19706v1 [cs.CL] 26 May 2025\",\"url\":\"https://arxiv.org/pdf/2505.19706\"},{\"title\":\"GitHub - declare-lab/PathFinder-PRM: This repository contains the official implementation of Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision.\",\"url\":\"https://github.com/declare-lab/PathFinder-PRM\"},{\"title\":\"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub\",\"url\":\"https://github.com/RyanLiu112/Awesome-Process-Reward-Models\"},{\"title\":\"Self-supervised Process Reward Model (SPRM)\",\"url\":\"https://www.emergentmind.com/topics/self-supervised-process-reward-model-sprm-125c6af6-1a1e-478a-bd22-9e34fc4f589d\"},{\"title\":\"Process-Supervised Reward Model\",\"url\":\"https://www.emergentmind.com/topics/process-supervised-reward-model-prm\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process\",\"url\":\"https://arxiv.org/pdf/2510.08049\"}]\n\nBased on the search results, here's what I found about PathFinder-PRM (arXiv 2505.19706):\n\n## Overview\n\nPathFinder-PRM is a novel hierarchical, error-aware discriminative PRM that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness.\n\n## Problem It Addresses\n\nLarge Language Models (LLMs) are prone to hallucination, especially during multi-hop and reasoning-intensive tasks such as mathematical problem solving. While Outcome Reward Models verify only final answers, Process Reward Models (PRMs) score each intermediate step to steer generation toward coherent solutions.\n\n## Key Innovation\n\nInstead of treating evaluation as a single correct-or-wrong decision, PathFinder-PRM-7B breaks down its error judgment into 2 parts: whether the reasoning is mathematically correct, and logically consistent. It predicts these aspects separately and then combines them to decide if the current reasoning steps leads to a correct final solution.\n\n## Training Data and Performance\n\nThe authors constructed a 400K-sample dataset by enriching the human-annotated PRM800K corpus and RLHFlow Mistral traces with three-dimensional step-level labels. On PRMBench, PathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7, outperforming the prior best (65.5) while using 3 times less data. When applied to reward guided greedy search, the model yields prm@8 48.3, a +1.5 point gain over the strongest baseline.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bbba4327-b8cd-4845-97cd-15ad3b055341",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "f4478a89-ee8a-4870-934d-70389d4ccbf2",
+            "sourceToolAssistantUUID": "bbba4327-b8cd-4845-97cd-15ad3b055341",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-27T22:24:02.584Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have the overview. Now let me fetch the full paper PDF and the GitHub repository for detailed technical information about the training mechanism, ablations, and error type definitions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4478a89-ee8a-4870-934d-70389d4ccbf2",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTre7RHbuU4YnW3ePpH7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "caf572a9-3e80-41c1-a836-3d360163e72c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PkV375smys8KiYm4SnT1Zf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1406,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 10095,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1134,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-27T22:24:08.701Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Li4nxxpzzE56ibyjruR8p6",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2505.19706",
+                "prompt": "Extract ALL technical details from this paper. I need:\n\n1. EXACT definitions of math errors and consistency errors - how are they formally defined? What constitutes each type? Any taxonomy or subcategories?\n\n2. TRAINING MECHANISM - How are the typed error labels converted into training signals? Do they use dual classification heads? Auxiliary losses? What is the loss function? How does the hierarchical architecture work exactly? What is the model architecture - is it embedding-based, head-based?\n\n3. FULL RESULTS TABLES - All numbers from PRMBench and prm@8 evaluations. What were the baselines? What were the exact baseline scores?\n\n4. INTER-ANNOTATOR AGREEMENT - Did they measure agreement for their error type annotations? Any kappa scores or agreement rates?\n\n5. ABLATION RESULTS - How much did each error type (math vs consistency) contribute individually? What ablations did they run?\n\n6. LIMITATIONS - What do they say about extending to more error categories? Any discussed limitations?\n\n7. Dataset construction details - how were the 400K samples labeled?\n\nExtract every detail, equation, table, and number you can find."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "caf572a9-3e80-41c1-a836-3d360163e72c",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTre7RHbuU4YnW3ePpH7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d1db9f2c-9be5-4bb8-a657-fa097bd26389",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PkV375smys8KiYm4SnT1Zf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1406,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 10095,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1134,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-27T22:24:10.296Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FToyvAaaSeZPPrJ7cV8Z2d",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/declare-lab/PathFinder-PRM",
+                "prompt": "Extract all technical details about the PathFinder-PRM implementation. What is the model architecture? How are the error type heads implemented? What loss functions are used? What training configuration? How is the hierarchical prediction done? Any details about the dual heads or multi-task training setup."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1db9f2c-9be5-4bb8-a657-fa097bd26389",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTre7RHbuU4YnW3ePpH7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "65747ece-5a63-4774-b38b-3006680fc4e6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PkV375smys8KiYm4SnT1Zf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1406,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 10095,
+                "output_tokens": 498,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1134
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1406,
+                    "output_tokens": 498,
+                    "cache_read_input_tokens": 10095,
+                    "cache_creation_input_tokens": 1134,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1134,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-27T22:24:16.052Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Li4nxxpzzE56ibyjruR8p6",
+              "type": "tool_result",
+              "content": "# Technical Details Extraction - Error Typing for Process Reward Models\n\n## 1. ERROR TYPE DEFINITIONS\n\nThe paper defines two primary error categories:\n\n**Math Errors**: Computational or logical mistakes in mathematical reasoning steps where the solution approach is sound but execution fails.\n\n**Consistency Errors**: Violations of logical coherence where the reasoning contradicts previously established facts or assumptions within the solution.\n\nThe document references these as components of hierarchical supervision but the extracted PDF content doesn't contain the complete formal taxonomy with subcategories.\n\n## 2. TRAINING MECHANISM\n\nThe paper employs a hierarchical architecture with:\n\n- **Dual-head structure**: Separate classification heads for error typing and overall step quality\n- **Loss function approach**: Combines auxiliary loss for error type classification with primary reward modeling loss\n- **Architecture details**: Uses embedding-based representations with hierarchical supervision signals\n\nSpecific loss function equations and exact architectural specifications are not clearly rendered in the accessible portions of the PDF.\n\n## 3. RESULTS TABLES\n\nThe document references evaluation on **PRMBench** and **prm@8** benchmarks. Key performance metrics are mentioned but specific numerical tables with baseline comparisons are embedded in compressed PDF streams that don't extract cleanly. The paper reports results across 14 pages of content with multiple benchmark evaluations.\n\n## 4. INTER-ANNOTATOR AGREEMENT\n\nThe extracted content does not contain explicit inter-annotator agreement metrics (kappa scores or agreement percentages) for the error type annotations in the accessible sections.\n\n## 5. ABLATION RESULTS\n\nThe paper structure indicates ablation studies examining individual contributions of math vs. consistency error signals, but specific ablation numbers aren't clearly extracted from the PDF content.\n\n## 6. LIMITATIONS\n\nThe document acknowledges extending to additional error categories beyond the two main types, though comprehensive limitation discussion requires accessing the full appendices (A-E referenced in the document).\n\n## 7. DATASET CONSTRUCTION\n\nReference to \"400K samples\" or labeling procedures isn't explicitly visible in the extracted content. The paper has substantial appendix material covering data annotation protocols.\n\n**Note**: This PDF extraction is incomplete due to compression. For complete technical specifications, direct PDF viewing is necessary.\n\n[Binary content (application/pdf, 1MB) also saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/b0104aa9-f62f-48d7-93dc-722aa4bbc136/tool-results/webfetch-1779920648718-genlgp.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1db9f2c-9be5-4bb8-a657-fa097bd26389",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "9df52439-42f1-4539-997f-f51a2908a549",
+            "sourceToolAssistantUUID": "d1db9f2c-9be5-4bb8-a657-fa097bd26389",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-27T22:24:16.926Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FToyvAaaSeZPPrJ7cV8Z2d",
+              "type": "tool_result",
+              "content": "# PathFinder-PRM Technical Details\n\nBased on the provided GitHub repository content, I cannot extract the specific technical implementation details you requested.\n\n## What's Available\n\nThe repository page contains:\n- **High-level overview**: \"PathFinder-PRM, a novel hierarchical, error‑aware discriminative PRM that first classifies math and consistency errors at each step\"\n- **Dataset information**: 400K samples with three-dimensional step-level labels (Math, Consistency, Optimality)\n- **Performance metrics**: PRMScore of 67.7 on PRMBench\n- **Project structure**: References to Dataset Generation, PRM Training, and PRM Evaluation modules\n\n## What's Missing\n\nThe page itself does not provide:\n- Model architecture specifics\n- Implementation details for error type heads\n- Loss function definitions\n- Training hyperparameters\n- Hierarchical prediction mechanism details\n- Multi-task training configuration\n\n## Where to Find Details\n\nThe repository README directs readers to separate documentation files:\n- `src/data_generation/README.md`\n- `src/training/README.md`\n- `src/evaluation/README.md`\n\nAdditionally, the full technical specification would likely be in the associated paper (arXiv:2505.19706), which isn't included in the provided content.\n\nTo obtain the architectural and implementation details, you would need to access either the individual module documentation or the research paper directly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65747ece-5a63-4774-b38b-3006680fc4e6",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "1beacbb5-3000-461a-8df5-3ea8e705ea76",
+            "sourceToolAssistantUUID": "65747ece-5a63-4774-b38b-3006680fc4e6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-27T22:24:19.828Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The PDF extraction was incomplete. Let me try fetching the HTML version of the paper and also look at the specific source code for implementation details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1beacbb5-3000-461a-8df5-3ea8e705ea76",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrfQrZ1FDupVo8CtmuH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "276862fc-d11e-4b8e-a9ea-73ae6280bf47",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UsKVv9mXGAaGyuddXnVPoN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2842,
+                "cache_read_input_tokens": 11229,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2842,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-27T22:24:25.062Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SyJzemDhT6dFn75MDeYd31",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2505.19706",
+                "prompt": "Extract ALL technical details from this paper. I need EVERYTHING:\n\n1. EXACT definitions of math errors vs consistency errors - formal definitions, subcategories, examples\n2. The COMPLETE training mechanism - loss functions (exact equations), architecture (dual heads vs single head), how error type predictions feed into reward estimation, hierarchical structure\n3. ALL results tables with ALL baseline numbers - PRMBench scores, prm@8 scores, every baseline model and its score\n4. Inter-annotator agreement metrics if any\n5. ALL ablation results - contribution of each error type, each component\n6. Limitations section - what do they say about extending to more categories\n7. Dataset construction - how were labels generated, what LLM was used for annotation, annotation pipeline details\n8. The three-dimensional labels: math, consistency, and optimality - how is optimality defined?\n9. Any equations for the loss function or training objective\n\nGet every number, every table, every equation."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "276862fc-d11e-4b8e-a9ea-73ae6280bf47",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrfQrZ1FDupVo8CtmuH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "425a3001-4d90-4e95-b6f4-65c0714910a6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UsKVv9mXGAaGyuddXnVPoN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2842,
+                "cache_read_input_tokens": 11229,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2842,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-27T22:24:25.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SyJzemDhT6dFn75MDeYd31",
+              "type": "tool_result",
+              "content": "The server returned HTTP 404 Not Found.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "425a3001-4d90-4e95-b6f4-65c0714910a6",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "000face7-161a-4465-a224-a8d99da557a4",
+            "sourceToolAssistantUUID": "425a3001-4d90-4e95-b6f4-65c0714910a6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-27T22:24:26.310Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MBswfVkLgg7KXP1hwP2RWS",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/declare-lab/PathFinder-PRM/blob/main/src/training/README.md",
+                "prompt": "Extract all training details: model architecture, loss functions, how error types are used in training, multi-task learning setup, hyperparameters, how the hierarchical prediction works."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "000face7-161a-4465-a224-a8d99da557a4",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrfQrZ1FDupVo8CtmuH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fa1491d0-17b7-4286-bf34-9253cbbf9eea",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UsKVv9mXGAaGyuddXnVPoN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2842,
+                "cache_read_input_tokens": 11229,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2842,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-27T22:24:30.606Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MBswfVkLgg7KXP1hwP2RWS",
+              "type": "tool_result",
+              "content": "# PathFinder-PRM Training Details\n\nBased on the provided README, here's what can be extracted:\n\n## Available Information\n\n**Model Architecture:**\nThe system uses \"Qwen/Qwen2.5-7B-Instruct as the base model\" with customizations including special tokens `<+>`, `<->`, and `<extra>` integrated into the embedding layer.\n\n**Dataset:**\nTraining uses \"PathFinder-600K,\" accessible via Hugging Face at `declare-lab/PathFinder-600K`.\n\n**Infrastructure:**\nThe training employs \"DeepSpeed for memory optimization\" with a Zero-2 configuration available in `training_configs/deepspeed_zero2.yaml`.\n\n## Information Not Provided\n\nThe README does not contain specific details about:\n- Loss functions\n- How error types are utilized during training\n- Multi-task learning architecture\n- Specific hyperparameter values\n- Hierarchical prediction mechanics\n\n## Recommendation\n\nFor comprehensive technical details on loss functions, error-aware supervision, and hierarchical prediction structures, you would need to consult the actual training scripts (`train_prm.sh`, `prepare_model.py`) or the referenced research paper (arXiv:2505.19706), which appears to document the full methodology behind error typing for process reward models."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa1491d0-17b7-4286-bf34-9253cbbf9eea",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "7c0cfffe-d3fa-4458-af6c-4c8dad50f1bb",
+            "sourceToolAssistantUUID": "fa1491d0-17b7-4286-bf34-9253cbbf9eea",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-27T22:24:33.212Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The HTML version doesn't exist. Let me try alternative approaches to get the full paper details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c0cfffe-d3fa-4458-af6c-4c8dad50f1bb",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrgRK7Ypcnb2zS1P3z3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "438db124-76e1-4602-9f37-f6f05ec5bf8a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AdcUP4b4RxA2FxHqPQHgif",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 842,
+                "cache_read_input_tokens": 14071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 842,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-27T22:24:34.858Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XqcgECHxX9vCwFpUt9uCTr",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/papers/2505.19706",
+                "prompt": "Extract ALL technical details about PathFinder-PRM. I need: error type definitions (math vs consistency), training mechanism (loss functions, architecture, dual heads), all results tables with baseline comparisons, ablation results, inter-annotator agreement, limitations, dataset construction details. Get every number and technical detail."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "438db124-76e1-4602-9f37-f6f05ec5bf8a",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrgRK7Ypcnb2zS1P3z3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "03983810-4846-4176-85f2-bc6661c14456",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AdcUP4b4RxA2FxHqPQHgif",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 842,
+                "cache_read_input_tokens": 14071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 842,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-27T22:24:35.599Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XqcgECHxX9vCwFpUt9uCTr",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (56.1KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/b0104aa9-f62f-48d7-93dc-722aa4bbc136/tool-results/toolu_01XqcgECHxX9vCwFpUt9uCTr.txt\n\nPreview (first 2KB):\n# Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision\n\nTej Deep Pala<sup>1</sup>, Panshul Sharma<sup>1</sup>  \nAmir Zadeh<sup>2</sup>, Chuan Li<sup>2</sup>, Soujanya Poria<sup>1</sup>\n\n<sup>1</sup>Singapore University of Technology and Design\n\n<sup>2</sup>Lambda Labs\n\n## Abstract\n\nLarge Language Models (LLMs) are prone to hallucination, especially during multi-hop and reasoning-intensive tasks such as mathematical problem solving. While Outcome Reward Models verify only final answers, Process Reward Models (PRMs) score each intermediate step to steer generation toward coherent solutions. We introduce PathFinder-PRM, a novel hierarchical, error-aware discriminative PRM that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness. To train PathFinder-PRM, we construct a 400K-sample dataset by enriching the human-annotated PRM800K corpus and RLHFlow Mistral traces with three-dimensional step-level labels. On PRMBench, PathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7, outperforming the prior best (65.5) while using 3× less data. When applied to reward guided greedy search, our model yields prm@8 48.3, a +1.5 point gain over the strongest baseline. These results demonstrate that decoupled error detection and reward estimation not only boost fine-grained error detection but also substantially improve end-to-end, reward-guided mathematical reasoning with greater data efficiency<sup>1</sup>.\n\n## 1 Introduction\n\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03983810-4846-4176-85f2-bc6661c14456",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "5fe2a7cc-bf37-456e-b496-06b709a5b0dd",
+            "sourceToolAssistantUUID": "03983810-4846-4176-85f2-bc6661c14456",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-27T22:24:35.631Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B78csjUwekhrfjaiGiRuok",
+              "name": "WebSearch",
+              "input": {
+                "query": "PathFinder-PRM hierarchical dual head loss function math error consistency error optimality label training architecture ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fe2a7cc-bf37-456e-b496-06b709a5b0dd",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrgRK7Ypcnb2zS1P3z3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6d78d087-5c0b-40fd-93f7-39a93095dabd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AdcUP4b4RxA2FxHqPQHgif",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 842,
+                "cache_read_input_tokens": 14071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 842,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-27T22:24:36.430Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0118nwv9HMNmdDQ86WjHBmZq",
+              "name": "WebSearch",
+              "input": {
+                "query": "PathFinder-PRM PRMBench 67.7 baseline comparison ReasonEval Math-Shepherd Qwen ablation error type contribution"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d78d087-5c0b-40fd-93f7-39a93095dabd",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrgRK7Ypcnb2zS1P3z3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d0346d27-091d-4a5b-9194-358cd32c76b2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AdcUP4b4RxA2FxHqPQHgif",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 842,
+                "cache_read_input_tokens": 14071,
+                "output_tokens": 292,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 842
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 292,
+                    "cache_read_input_tokens": 14071,
+                    "cache_creation_input_tokens": 842,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 842,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-27T22:24:43.397Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0118nwv9HMNmdDQ86WjHBmZq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PathFinder-PRM PRMBench 67.7 baseline comparison ReasonEval Math-Shepherd Qwen ablation error type contribution\"\n\nLinks: [{\"title\":\"PRMBench: Benchmark for Process-level Math Reasoning\",\"url\":\"https://www.emergentmind.com/topics/prmbench\"},{\"title\":\"Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision\",\"url\":\"https://arxiv.org/pdf/2505.19706\"},{\"title\":\"R-PRM: Reasoning-Driven Process Reward Modeling\",\"url\":\"https://arxiv.org/html/2503.21295v1\"},{\"title\":\"[Literature Review] R-PRM: Reasoning-Driven Process Reward Modeling\",\"url\":\"https://www.themoonlight.io/en/review/r-prm-reasoning-driven-process-reward-modeling\"},{\"title\":\"Know What You Don’t Know: Uncertainty Calibration of Process Reward Models\",\"url\":\"https://arxiv.org/html/2506.09338\"},{\"title\":\"declare-lab/PathFinder-PRM-7B · Hugging Face\",\"url\":\"https://huggingface.co/declare-lab/PathFinder-PRM-7B\"},{\"title\":\"GitHub - LightChen233/Awesome-Long-Chain-of-Thought-Reasoning: Latest Advances on Long Chain-of-Thought Reasoning · GitHub\",\"url\":\"https://github.com/LightChen233/Awesome-Long-Chain-of-Thought-Reasoning\"},{\"title\":\"PRMBENCH: A Fine-grained and Challenging Benchmark ...\",\"url\":\"https://aclanthology.org/2025.acl-long.1230.pdf\"},{\"title\":\"[Literature Review] Socratic-PRMBench: Benchmarking Process Reward Models with Systematic Reasoning Patterns\",\"url\":\"https://www.themoonlight.io/en/review/socratic-prmbench-benchmarking-process-reward-models-with-systematic-reasoning-patterns\"}]\n\nBased on the search results, I found relevant information about PathFinder-PRM, PRMBench, and the baseline comparisons you're asking about:\n\n## PathFinder-PRM Performance\n\nPathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7 on PRMBench, outperforming the prior best (65.5) while using 3× less data. PathFinder-PRM's explicit decoupling of error-type detection from reward estimation leads to a PRMScore of 67.7 with three times less data than previous bests.\n\n## Baseline Comparisons\n\nTop open-source PRMs (e.g., ReasonEval-34B, Qwen2.5-Math-PRM-7B) score 60–65. This provides context for the baseline performance that PathFinder-PRM improves upon.\n\n## Error Type Contributions\n\nPathFinder-PRM classifies each step to detect the presence of math or consistency errors, and combines these fine-grained error labels to produce a final reward score. Error Type Challenges include simplicity detection which lags with sub-50 scores widely observed, while soundness and sensitivity are better, but domain, confidence, and \"trap\" errors remain difficult.\n\nThe key innovation is that decoupled error detection and reward estimation not only boost fine-grained error detection but also substantially improve end-to-end, reward-guided mathematical reasoning with greater data efficiency.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0346d27-091d-4a5b-9194-358cd32c76b2",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "7c22d3bb-5afe-49cd-a158-2bb5e834c47c",
+            "sourceToolAssistantUUID": "d0346d27-091d-4a5b-9194-358cd32c76b2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-27T22:25:01.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B78csjUwekhrfjaiGiRuok",
+              "type": "tool_result",
+              "content": "Web search results for query: \"PathFinder-PRM hierarchical dual head loss function math error consistency error optimality label training architecture ablation\"\n\nLinks: [{\"title\":\"Hierarchical Dual-Head Model for Suicide Risk Assessment via MentalRoBERTa\",\"url\":\"https://arxiv.org/pdf/2510.20085\"},{\"title\":\"PRM-D* Method for Mobile Robot Path Planning\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10098883/\"},{\"title\":\"PRM path smoothening by circular arc fillet method for mobile robot   navigation\",\"url\":\"https://arxiv.org/pdf/2112.03604\"},{\"title\":\"LightDPH: Lightweight Dual-Projection-Head Hierarchical Contrastive Learning for Skin Lesion Classification | Journal of Healthcare Informatics Research | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s41666-024-00174-5\"},{\"title\":\"Pathfinder: A parallel quasi-Newton algorithm for reaching regions of high probability mass | Statistical Modeling, Causal Inference, and Social Science\",\"url\":\"https://statmodeling.stat.columbia.edu/2021/08/10/pathfinder-a-parallel-quasi-newton-algorithm-for-reaching-regions-of-high-probability-mass/\"}]\n\nThe initial search returned results related to different topics (suicide risk assessment, robot path planning, and Pathfinder MCMC). Let me search more specifically for the PathFinder-PRM model you mentioned.\n\nLinks: [{\"title\":\"GitHub - declare-lab/PathFinder-PRM: This repository contains the official implementation of Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision.\",\"url\":\"https://github.com/declare-lab/PathFinder-PRM\"},{\"title\":\"Improving Process Reward Models with Error-Aware ...\",\"url\":\"https://arxiv.org/pdf/2505.19706\"},{\"title\":\"Process-supervised Reward Models (PRMs)\",\"url\":\"https://www.emergentmind.com/topics/process-supervised-reward-models-prm\"},{\"title\":\"Process Reward Models: Step-Level Feedback for LLMs\",\"url\":\"https://www.emergentmind.com/topics/process-reward-models-prm\"},{\"title\":\"Pathfinder: open source software for analyzing spatial navigation search strategies\",\"url\":\"https://www.biorxiv.org/content/10.1101/715961.full.pdf\"},{\"title\":\"Error Estimation of Pathfinder Version 5.3 Level-3C SST ...\",\"url\":\"https://www.mdpi.com/2072-4292/12/4/590\"},{\"title\":\"PRM path smoothening by circular arc fillet method for mobile robot   navigation\",\"url\":\"https://arxiv.org/pdf/2112.03604\"},{\"title\":\"Accelerating Neuron Reconstruction with PATHFINDER\",\"url\":\"https://www.biorxiv.org/content/10.1101/2025.05.16.654254.full.pdf\"}]\n\nGreat! I found relevant information about PathFinder-PRM. Let me search for more specific details about the architecture and ablation studies.\n\nLinks: [{\"title\":\"Running an Ablation Study — pykeen 1.11.2-dev documentation\",\"url\":\"https://pykeen.readthedocs.io/en/latest/tutorial/running_ablation.html\"},{\"title\":\"Training strategy over architecture: A systematic ablation study for Spartina detection from aerial imagery with small geospatial datasets\",\"url\":\"https://archimer.ifremer.fr/doc/01014/112588/\"},{\"title\":\"Evaluation of a Minimally Invasive Image-Guided Surgery System for Hepatic Ablation Procedures\",\"url\":\"https://clinicaltrials.gov/study/NCT01238666\"},{\"title\":\"FreePRM: Training Process Reward Models Without Ground Truth Process Labels\",\"url\":\"https://arxiv.org/pdf/2506.03570\"},{\"title\":\"Efficient PRM Training Data Synthesis via Formal Verification\",\"url\":\"https://arxiv.org/pdf/2505.15960\"},{\"title\":\"Ablation Studies: The Operating System for Trustworthy AI Decisions | by Adnan Masood, PhD. | Medium\",\"url\":\"https://medium.com/@adnanmasood/ablation-studies-the-operating-system-for-trustworthy-ai-decisions-b99300d3bd32\"},{\"title\":\"Feasibility of a Minimally Invasive Image-Guided Surgery System for Hepatic Procedures\",\"url\":\"https://clinicaltrials.gov/study/NCT01286428\"}]\n\nLet me search more specifically for the PathFinder-PRM paper with the exact details you're asking about.\n\nLinks: [{\"title\":\"HAL Id: hal-05448955 https://hal.science/hal-05448955v1\",\"url\":\"https://hal.science/hal-05448955v1/document\"},{\"title\":\"GitHub - declare-lab/PathFinder-PRM: This repository contains the official implementation of Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision.\",\"url\":\"https://github.com/declare-lab/PathFinder-PRM\"},{\"title\":\"Pathfinder Paper | PDF | Linear Programming | Function (Mathematics)\",\"url\":\"https://www.scribd.com/document/705283253/Pathfinder-paper\"},{\"title\":\"Pathfinder: open source software for analyzing spatial navigation search strategies\",\"url\":\"https://www.biorxiv.org/content/10.1101/715961.full.pdf\"},{\"title\":\"declare-lab/PathFinder-PRM-7B · Hugging Face\",\"url\":\"https://huggingface.co/declare-lab/PathFinder-PRM-7B\"},{\"title\":\"PRM path smoothening by circular arc fillet method for mobile robot   navigation\",\"url\":\"https://arxiv.org/pdf/2112.03604\"},{\"title\":\"Accelerating Neuron Reconstruction with PATHFINDER\",\"url\":\"https://www.biorxiv.org/content/10.1101/2025.05.16.654254.full.pdf\"}]\n\nPerfect! I found detailed information about PathFinder-PRM. Let me search for more specific details about the loss function and ablation studies from the paper.\n\nLinks: [{\"title\":\"[2505.19706] Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision\",\"url\":\"https://arxiv.org/abs/2505.19706\"},{\"title\":\"arXiv:2505.19706v1 [cs.CL] 26 May 2025\",\"url\":\"https://arxiv.org/pdf/2505.19706\"},{\"title\":\"PathFinder: Advancing Path Loss Prediction for Single-to-Multi-Transmitter Scenario\",\"url\":\"https://arxiv.org/pdf/2512.14150\"},{\"title\":\"FunReason: Enhancing Large Language Models’ Function Calling via Self-Refinement Multiscale Loss and Automated Data Refinement\",\"url\":\"https://arxiv.org/html/2505.20192v1\"},{\"title\":\"System and method for loss function metalearning for faster, more accurate training, and smaller datasets\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12026624\"}]\n\nBased on my web searches, I found comprehensive information about PathFinder-PRM. Here's what I discovered:\n\n## PathFinder-PRM Overview\n\nPathFinder-PRM is a novel hierarchical, error-aware discriminative PRM that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness.\n\n## Architecture and Design\n\nA single language modeling head is used without any task-specific heads. During the first forward pass, the input is constructed as: [PRM Input], Math: <mask>, Consistency: <mask>, where the two special <mask> tokens represent the target positions for Math and Consistency labels.\n\nThe motivation behind this design is to minimize error cascading between dependent predictions. Specifically, the aim is to predict Math and Consistency labels independently in the first forward pass to prevent the Consistency prediction from being influenced by the previously generated Math label.\n\n## Training Labels\n\nThe correctness label of each step is mapped to a three-dimensional vector. Each component of the vector is either zero or one. The first component is the accuracy of the mathematical reasoning, the second is consistency, and the third is correctness, which includes the lack of redundancy.\n\n## Training Data and Performance\n\nA 400K-sample dataset was constructed by enriching the human-annotated PRM800K corpus and RLHFlow Mistral traces with three-dimensional step-level labels.\n\nOn PRMBench, PathFinder-PRM achieves a state-of-the-art PRMScore of 67.7, outperforming the prior best (65.5) while using 3 times less data. When applied to reward guided greedy search, the model yields prm@8 48.3, a +1.5 point gain over the strongest baseline.\n\nWhile I found information about the model's architecture and training approach, the search results don't contain specific details about the complete loss function mathematical formulation or detailed ablation study tables from the paper. For those specific technical details, you may want to refer directly to the full paper on arXiv (2505.19706).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d78d087-5c0b-40fd-93f7-39a93095dabd",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "96823ed0-7821-4cf4-aedd-2b21f186a724",
+            "sourceToolAssistantUUID": "6d78d087-5c0b-40fd-93f7-39a93095dabd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-27T22:25:03.974Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I got a large output from HuggingFace. Let me read that file and also fetch more details from additional sources."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96823ed0-7821-4cf4-aedd-2b21f186a724",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrig5BLsxrqcSgHLHpq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8966cc96-3b24-47a4-a3b0-4a54659416e5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013zmKjnC4VUXZ2moL87s535",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 877,
+                "cache_creation_input_tokens": 3134,
+                "cache_read_input_tokens": 14913,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3134,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-27T22:25:04.744Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V3CKr6uRUoaKfsqbKon3y4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/b0104aa9-f62f-48d7-93dc-722aa4bbc136/tool-results/toolu_01XqcgECHxX9vCwFpUt9uCTr.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8966cc96-3b24-47a4-a3b0-4a54659416e5",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrig5BLsxrqcSgHLHpq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "02ab4ca8-6cbb-428d-86b2-c377726b4b5e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013zmKjnC4VUXZ2moL87s535",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 877,
+                "cache_creation_input_tokens": 3134,
+                "cache_read_input_tokens": 14913,
+                "output_tokens": 157,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3134
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 877,
+                    "output_tokens": 157,
+                    "cache_read_input_tokens": 14913,
+                    "cache_creation_input_tokens": 3134,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3134,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-27T22:25:05.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V3CKr6uRUoaKfsqbKon3y4",
+              "type": "tool_result",
+              "content": "1\t# Error Typing for Smarter Rewards: Improving Process Reward Models with Error-Aware Hierarchical Supervision\n2\t\n3\tTej Deep Pala<sup>1</sup>, Panshul Sharma<sup>1</sup>  \n4\tAmir Zadeh<sup>2</sup>, Chuan Li<sup>2</sup>, Soujanya Poria<sup>1</sup>\n5\t\n6\t<sup>1</sup>Singapore University of Technology and Design\n7\t\n8\t<sup>2</sup>Lambda Labs\n9\t\n10\t## Abstract\n11\t\n12\tLarge Language Models (LLMs) are prone to hallucination, especially during multi-hop and reasoning-intensive tasks such as mathematical problem solving. While Outcome Reward Models verify only final answers, Process Reward Models (PRMs) score each intermediate step to steer generation toward coherent solutions. We introduce PathFinder-PRM, a novel hierarchical, error-aware discriminative PRM that first classifies math and consistency errors at each step, then combines these fine-grained signals to estimate step correctness. To train PathFinder-PRM, we construct a 400K-sample dataset by enriching the human-annotated PRM800K corpus and RLHFlow Mistral traces with three-dimensional step-level labels. On PRMBench, PathFinder-PRM achieves a new state-of-the-art PRMScore of 67.7, outperforming the prior best (65.5) while using 3× less data. When applied to reward guided greedy search, our model yields prm@8 48.3, a +1.5 point gain over the strongest baseline. These results demonstrate that decoupled error detection and reward estimation not only boost fine-grained error detection but also substantially improve end-to-end, reward-guided mathematical reasoning with greater data efficiency<sup>1</sup>.\n13\t\n14\t## 1 Introduction\n15\t\n16\tLarge language models (LLMs) have achieved remarkable success on many natural language tasks, including open-ended generation and complex reasoning (Brown et al., 2020; Wei et al., 2022). However, they remain prone to *hallucinations* and subtle logical errors when generating multi-step solutions, particularly in domains such as mathematical problem solving (Wang et al., 2023; Zheng et al., 2024). Traditional outcome-only verifiers (Outcome Reward Models) can check a final answer but fail\n17\t\n18\tto catch intermediate missteps that lead reasoning astray (Wang et al., 2024b).\n19\t\n20\tTo address this gap, *Process Reward Models* (PRMs) have been proposed, which assign individual rewards to each reasoning step. (Uesato et al., 2022; Liu et al., 2025). As such, PRMs can filter out erroneous chains of thought and guide generation toward more reliable reasoning trajectories (Lightman et al., 2023; Zhang et al., 2025).\n21\t\n22\tRecent interest in explicitly reasoning-centric LLMs such as DeepSeek-R1 and OpenAI’s GPT-o series models underscores the field’s growing emphasis on human-like thinking and the ability to flexibly scale test-time compute (Guo et al., 2025; OpenAI, 2025). These models demonstrate extended deliberation and use structured reasoning traces to solve complex problems. In such settings, effective *process supervision* is crucial: rather than merely verifying a final answer, it must guide and correct the reasoning process at every step, ensuring logical coherence and factual accuracy throughout. PRMs are thus an essential component in aligning reasoning LLMs with reliable multi-step reasoning.\n23\t\n24\tDespite recent advances, current PRMs still struggle with fine-grained error types. For example, the PRMBench benchmark reveals that many state-of-the-art PRMs fall short of detecting subtler faults such as non-redundancy violations, domain inconsistencies, or deceptive logical steps (Song et al., 2025). Moreover, existing methods typically combine *error detection* (is this step wrong?) with *path optimality* (how helpful is this step in reaching the solution?) in a single prediction, leaving each signal underutilized (Zhang et al., 2025; Xia et al., 2025).\n25\t\n26\tIn this work, we argue that error detection and value estimation are complementary but distinct objectives. By decoupling them into two sequential subtasks, first explicitly identifying specific error categories and using those error signals to\n27\t\n28\t<sup>1</sup>Code: <https://github.com/declare-lab/PathFinder-PRM><table border=\"1\">\n29\t<thead>\n30\t<tr>\n31\t<th>Question:</th>\n32\t<th>Existing PRMs</th>\n33\t<th>PathFinder-PRM</th>\n34\t</tr>\n35\t</thead>\n36\t<tbody>\n37\t<tr>\n38\t<td>\n39\t<b>Question:</b> Weng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?<br/>\n40\t<b>Solution Steps:</b><br/>\n41\t          Weng earns <math>12/60 = 0.2</math> dollars per minute.<br/>\n42\t<span style=\"color: green;\">Correct Step</span><br/>\n43\t<br/>\n44\t          Let's first calculate how much Weng earns per minute,<br/>\n45\t<span style=\"color: red;\">Redundant Step</span><br/>\n46\t<br/>\n47\t          Weng earns <math>12/60 = 0.4</math> dollars per minute.<br/>\n48\t<span style=\"color: red;\">Calculation Error</span><br/>\n49\t<br/>\n50\t          Weng earns <math>12/50 = 0.24</math> dollars per minute.<br/>\n51\t<span style=\"color: red;\">Inconsistent with Question</span>\n52\t</td>\n53\t<td>\n54\t<br/>\n55\t          0.85<br/>\n56\t<br/>\n57\t          0.63<br/>\n58\t<br/>\n59\t          0.46<br/>\n60\t<br/>\n61\t          0.35\n62\t        </td>\n63\t<td>\n64\t<br/>\n65\t<b>PathFinder-PRM</b><br/>\n66\t<br/>\n67\t          Math <span style=\"color: green;\">✔</span> →<br/>\n68\t          Consistency <span style=\"color: green;\">✔</span> → 0.95<br/>\n69\t<br/>\n70\t          Math <span style=\"color: green;\">✔</span> →<br/>\n71\t          Consistency <span style=\"color: green;\">✔</span> → 0.37<br/>\n72\t<br/>\n73\t          Math <span style=\"color: red;\">✘</span> →<br/>\n74\t          Consistency <span style=\"color: green;\">✔</span> → 0<br/>\n75\t<br/>\n76\t          Math <span style=\"color: green;\">✔</span> →<br/>\n77\t          Consistency <span style=\"color: red;\">✘</span> → 0\n78\t        </td>\n79\t</tr>\n80\t</tbody>\n81\t</table>\n82\t\n83\tFigure 1: Comparing the Methodology of Existing PRMs against PathFinder-PRM.\n84\t\n85\tcompute a step-level reward, we can obtain richer supervision and stronger guidance for downstream generation (depicted in Figure 1). To this end, we introduce PathFinder-PRM, an error-aware hierarchical PRM that (1) classifies each step to detect the presence of math or consistency errors, and (2) combines these fine-grained error labels to produce a final reward score.\n86\t\n87\tWe construct a new training corpus by augmenting the human-annotated *PRM800K* (Lightman et al., 2023) and automated RLHFlow Mistral data (Xiong et al., 2024) with our three-dimensional labels, yielding around 400K richly annotated reasoning trajectories.\n88\t\n89\tOur experiments on ProcessBench (Zheng et al., 2024), PRMBench (Song et al., 2025), and a suite of end-to-end math benchmarks show that PathFinder-PRM not only establishes the new state of the art among PRMs trained on PRM800K-only data but also continues to scale gracefully when incorporating additional automated annotations.\n90\t\n91\t### Contributions\n92\t\n93\t- • We propose PathFinder-PRM, the first hierarchical PRM that explicitly types errors into *math* and *consistency* categories before estimating step optimality.\n94\t- • We curate a multi-source dataset of 400K mathematical reasoning trajectories with three-dimensional step-level labels, combining PRM800K and RLHFlow data under our unified schema.\n95\t\n96\t- • We demonstrate that error-aware hierarchical supervision yields substantial gains on ProcessBench and PRMBench, and leads to more accurate and robust end-to-end math problem solving under reward-guided search.\n97\t\n98\t## 2 Related Works\n99\t\n100\t**Process Reward Models:** Process reward models (PRMs) evaluate the quality of intermediate steps in reasoning processes. PRMs are a core component of test-time scaling, enabling small policy models to outperform much larger models on reasoning tasks by reinforcing productive reasoning pathways (Liu et al., 2025). Most recent work on PRMs has varied along two primary axes: (1) the choice of the base model architecture and (2) the methods used to synthesize step-level supervision labels (Wang et al., 2024b; Zhang et al., 2025; Khalifa et al., 2025). Discriminative PRMs are designed to classify the correctness of individual process steps within reasoning trajectories (Uesato et al., 2022). Corresponding training data synthesis approaches include gold human step-level annotations (Lightman et al., 2023), Monte Carlo estimation (Wang et al., 2024b; Luo et al., 2024), and consensus filtering methods (Zhang et al., 2025). Generative PRMs scale verifier compute, utilizing the language modeling head of the PRMs to generate a chain of thought (CoT) before producing step-level correctness classifications. Associated training data is typically obtained by filtering LLM-as-a-judge reasoning traces against human step-level labels (Khalifa et al., 2025; She et al., 2025)or relative progress estimation (Zhao et al., 2025).\n101\t\n102\t**Limitations of Current PRMs:** Current PRMs face significant challenges in detecting nuanced error types. Although frontier models excel at identifying obvious mistakes (Zheng et al., 2024), their performance deteriorates markedly when confronted with more subtle error types. The recently introduced PRMBench benchmark demonstrates this limitation, revealing substantial performance drops across fine-grained error categories such as redundancy, circular logic, step inconsistency and domain inconsistency (Song et al., 2025).\n103\t\n104\t### 3 Methodology\n105\t\n106\t#### 3.1 Task: Math Process Reward Modeling\n107\t\n108\tThe primary task of a Process Reward Model in mathematical problem solving is to evaluate the correctness of each intermediate reasoning step generated by an LLM. Unlike ORMs, which assess only the final answer, PRMs evaluate at the step level, enabling fine-grained supervision and improved interpretability.\n109\t\n110\tFormally, given a multi-step solution  $\\mathcal{S} = \\{s_1, s_2, \\dots, s_T\\}$  produced by a language model for a math problem  $Q$ , the PRM assigns a scalar reward  $r_t \\in \\mathbb{R}$  to each step  $s_t$ , reflecting its mathematical and logical correctness. These rewards serve two main purposes:\n111\t\n112\t1. 1. **Error Detection:** By evaluating each step individually, PRMs can identify inaccurate or hallucinated reasoning in the solution process, even when the final answer may coincidentally be correct.\n113\t2. 2. **Guidance Toward Correct Solutions:** The step-level feedback provided by PRMs can be used to steer generation policies, in reinforcement learning or reward-guided generation, towards valid and logically coherent trajectories, thereby improving the overall quality of generated solutions.\n114\t\n115\tProcess Reward Models enhance the robustness of mathematical reasoning systems by aligning training and inference with process-based correctness, rather than relying only on outcome validation.\n116\t\n117\t#### 3.2 PathFinder-PRM\n118\t\n119\tExisting Process Reward Models tackle both error detection and optimal path guidance jointly. Given a mathematical problem  $Q$  and a sequence\n120\t\n121\tof solution steps generated by a policy model,  $\\mathcal{S} = \\{s_1, s_2, \\dots, s_T\\}$ , these models assign each step a reward score conditioned on the question and all previous steps:\n122\t\n123\t$$R_t = \\text{PRM}(Q, \\mathcal{S}_{<t}, s_t).$$\n124\t\n125\twhere  $\\mathcal{S}_{<t} = \\{s_1, s_2, \\dots, s_{t-1}\\}$ . The resulting score implicitly reflects both the presence of errors in  $s_t$  and its contribution towards a correct solution.\n126\t\n127\tIn contrast, our approach takes a hierarchical perspective by decomposing the reward assignment into two sequential subtasks: (a) detecting errors in each reasoning step, and (b) using the error information to inform step optimality. Specifically, we first categorize errors into two types:\n128\t\n129\t1. 1. **Math Errors:** mistakes in arithmetic or algebraic manipulation, incorrect formula application, or invalid implications.\n130\t2. 2. **Consistency Errors:** logical inconsistencies with the question, prior steps, or established constraints.\n131\t\n132\tAs seen in Figure 1, PathFinder-PRM performs two forward passes per step. In the first pass, it predicts the correctness probabilities for the two error types,  $M_t$  and  $C_t$ . In the second pass, it estimates the step’s reward  $R_t$ , explicitly conditioned on the detected error labels:\n133\t\n134\t$$M_t, C_t = \\text{PathFinder-PRM}(Q, \\mathcal{S}_{<t}, s_t),$$\n135\t\n136\t$$R_t = \\text{PathFinder-PRM}(Q, \\mathcal{S}_{<t}, s_t, M_t, C_t).$$\n137\t\n138\tBy structuring reward modeling hierarchically, PathFinder-PRM leverages fine-grained error signals to improve reward estimation, while maintaining a clear separation between error detection and correct path guidance. We provide further details regarding the inference design in Appendix C\n139\t\n140\tTo investigate this, we propose the following hypothesis:\n141\t\n142\t**Hypothesis:** A hierarchical supervision strategy—first detecting error types, then using them to compute rewards—is more effective than existing methods that compute rewards directly without identifying the presence of errors explicitly.\n143\t\n144\t#### 3.3 Creating the PathFinder-PRM Dataset\n145\t\n146\tThe PathFinder-PRM dataset includes step-level fine-grained labels across three categories: (1) *mathematical reasoning accuracy*, (2) *consistency* with prior steps and mathematical domain, and (3) *step correctness*. Here, the third category*step correctness* identifies whether a step is both error-free and optimally contributes to solving the problem. For each process step, we assign a three-dimensional categorical score vector  $\\mathbf{c}_t = (c_t^{\\text{math}}, c_t^{\\text{consistency}}, c_t^{\\text{correctness}})$ , where each component  $c_t^{(i)} \\in \\{0, 1\\}$  represents a binary label for the respective category. We construct this dataset by leveraging two existing datasets: the PRM800k (Lightman et al., 2023) and Mistral-PRM-Data by RLHFlow (Xiong et al., 2024). These datasets contain step-level correctness annotations generated through human evaluation and Monte Carlo estimation, respectively.\n147\t\n148\t**PRM800K Integration:** The original PRM800k dataset contains over 800,000 gold step-level correctness labels  $l_t \\in \\{-1, 0, 1\\}$  for each reasoning step  $s_t$ . We transform each correctness label into our categorical score vector as follows:\n149\t\n150\t- • Steps with  $l_t = 1$  (correct and optimal) are mapped to  $\\mathbf{c}_t = (1, 1, 1)$ .\n151\t- • Steps with  $l_t = 0$  (correct but suboptimal) are mapped to  $\\mathbf{c}_t = (1, 1, 0)$ .\n152\t\n153\tThis mapping reflects our interpretation that human labels  $l_t \\in \\{0, 1\\}$  indicate error-free reasoning, with  $l_t = 0$  specifically denoting non-optimal process steps. For erroneous steps ( $l_t = -1$ ), the original correctness labels provide insufficient information to determine scores across our three evaluation categories. Therefore, we employ DeepSeek-R1-Distill-Qwen-32 B to generate binary labels for each category for these steps (DeepSeek-AI, 2025). To maintain dataset quality, we subsequently filter out samples with categorical score vectors that are inconsistent with  $-1$  human annotated labels (i.e.,  $\\mathbf{c}_t = (1, 1, 1)$ ).\n154\t\n155\t**Mistral-PRM-Data Integration:** Since this dataset lacks gold standard step-level correctness labels, we utilize DeepSeek-R1-Distill-Qwen-32B to assign binary categorical labels to a small, randomly selected subset of process steps. To ensure data quality, we implement a consistency filtering mechanism. This removes score assignments that are logically incompatible with the existing Monte Carlo (MC) estimation labels. Specifically:\n156\t\n157\t- • For steps with MC estimation '+' labels (indicating positive assessment), we retain only samples with assignments of  $\\mathbf{c}_t = (1, 1, 1)$ .\n158\t- • For steps with MC estimation '-' labels (indicating negative assessment), we retain sam-\n159\t\n160\tples with categorizations where at least one component equals 0, i.e.,  $\\mathbf{c}_t \\neq (1, 1, 1)$ .\n161\t\n162\tIn totality, the PathFinder-PRM dataset contains about 400K reasoning trajectory samples with step-level categorical score vectors  $\\mathbf{c}_t$ . Of these 400K trajectories, approximately 345K are sourced from PRM800k and the other 55K reasoning paths are sourced from Mistral-PRM-Data. We train two variants of the model, PathFinder-PRM-7B and PathFinder-PRM-7B-PRM800k trained on the full dataset and just the PRM800K subset respectively.\n163\t\n164\t### 3.4 Training Recipe for PathFinder-PRM\n165\t\n166\tPrevious studies demonstrate that a model’s mathematical reasoning ability correlates with its performance as a process reward model (Xia et al., 2025). Consequently, we initialize PathFinder-PRM from Qwen2.5-Math-7B-Instruct, which achieves state-of-the-art results on multiple math benchmarks (Yang et al., 2024). Unlike recent PRMs that swap the language modeling head for a scalar value head (Zhang et al., 2025; Xia et al., 2025; Tan et al., 2025), we preserve the original LM architecture and extend the tokenizer with two special tokens,  $\\langle + \\rangle$  and  $\\langle - \\rangle$ , to represent positive and negative step labels.\n167\t\n168\t**Training Objective** Each training example is structured in two parts, mirroring the inference passes:\n169\t\n170\t#### 1. Error Detection Target:\n171\t\n172\tPrompt + Math:  $\\langle + \\rangle / \\langle - \\rangle$ , Consistency:  $\\langle + \\rangle / \\langle - \\rangle$\n173\t\n174\t#### 2. Reward Estimation Target: Append the predicted error labels and the token\n175\t\n176\tPrompt + Math: [Math label], Consistency: [Consistency Label] + Correctness:  $\\langle + \\rangle / \\langle - \\rangle$\n177\t\n178\tFor each sample, we compute the cross-entropy loss only on these label tokens.\n179\t\n180\t## 4 Experimental Setup\n181\t\n182\t### 4.1 Evaluation Benchmarks\n183\t\n184\tFor math steps error detection, we use ProcessBench and PRMBench. **ProcessBench** is a benchmark designed to evaluate language models’ ability to identify errors in mathematical reasoning processes. It comprises 3,400 test cases, primarily<table border=\"1\">\n185\t<thead>\n186\t<tr>\n187\t<th rowspan=\"2\">Model</th>\n188\t<th colspan=\"3\">Simplicity</th>\n189\t<th colspan=\"5\">Soundness</th>\n190\t<th colspan=\"4\">Sensitivity</th>\n191\t<th rowspan=\"2\">Overall</th>\n192\t</tr>\n193\t<tr>\n194\t<th>NR.</th>\n195\t<th>NCL.</th>\n196\t<th>Avg.</th>\n197\t<th>ES.</th>\n198\t<th>SC.</th>\n199\t<th>DC.</th>\n200\t<th>CI.</th>\n201\t<th>Avg.</th>\n202\t<th>PS.</th>\n203\t<th>DR.</th>\n204\t<th>MS.</th>\n205\t<th>Avg.</th>\n206\t</tr>\n207\t</thead>\n208\t<tbody>\n209\t<tr>\n210\t<td colspan=\"14\"><b>LLM-as-judge, Open-source Language Models</b></td>\n211\t</tr>\n212\t<tr>\n213\t<td>Qwen-2.5-Math-72B*</td>\n214\t<td>55.3</td>\n215\t<td>54.9</td>\n216\t<td>55.1</td>\n217\t<td>55.5</td>\n218\t<td>71.6</td>\n219\t<td>58.1</td>\n220\t<td>59.1</td>\n221\t<td>61.1</td>\n222\t<td>47.4</td>\n223\t<td>53.8</td>\n224\t<td><b>100.0</b></td>\n225\t<td>67.1</td>\n226\t<td>57.4</td>\n227\t</tr>\n228\t<tr>\n229\t<td>QwQ-Preview-32B*</td>\n230\t<td><b>57.2</b></td>\n231\t<td><b>55.6</b></td>\n232\t<td><b>56.4</b></td>\n233\t<td><b>67.4</b></td>\n234\t<td><b>72.3</b></td>\n235\t<td><b>66.2</b></td>\n236\t<td><b>66.9</b></td>\n237\t<td><b>68.2</b></td>\n238\t<td><b>57.8</b></td>\n239\t<td><b>62.7</b></td>\n240\t<td><b>100.0</b></td>\n241\t<td><b>73.5</b></td>\n242\t<td><b>63.6</b></td>\n243\t</tr>\n244\t<tr>\n245\t<td colspan=\"14\"><b>LLM-as-judge, Proprietary Language Models</b></td>\n246\t</tr>\n247\t<tr>\n248\t<td>GPT-4o*</td>\n249\t<td>57.0</td>\n250\t<td>62.4</td>\n251\t<td>59.7</td>\n252\t<td>72.0</td>\n253\t<td>69.7</td>\n254\t<td>70.7</td>\n255\t<td>71.1</td>\n256\t<td>70.9</td>\n257\t<td><b>62.5</b></td>\n258\t<td><b>65.7</b></td>\n259\t<td>99.2</td>\n260\t<td><b>75.8</b></td>\n261\t<td>66.8</td>\n262\t</tr>\n263\t<tr>\n264\t<td>Gemini-2.0-flash-exp*</td>\n265\t<td>67.2</td>\n266\t<td>58.1</td>\n267\t<td>62.7</td>\n268\t<td>70.4</td>\n269\t<td>65.7</td>\n270\t<td>66.0</td>\n271\t<td>67.3</td>\n272\t<td>67.3</td>\n273\t<td>61.8</td>\n274\t<td>66.2</td>\n275\t<td>98.2</td>\n276\t<td>75.4</td>\n277\t<td>66.0</td>\n278\t</tr>\n279\t<tr>\n280\t<td>Gemini-2.0-thinking-exp-1219*</td>\n281\t<td><b>68.5</b></td>\n282\t<td><b>63.8</b></td>\n283\t<td><b>66.2</b></td>\n284\t<td><b>72.9</b></td>\n285\t<td><b>71.3</b></td>\n286\t<td><b>71.0</b></td>\n287\t<td><b>71.8</b></td>\n288\t<td><b>71.8</b></td>\n289\t<td>60.3</td>\n290\t<td><b>65.7</b></td>\n291\t<td><b>99.8</b></td>\n292\t<td>75.3</td>\n293\t<td><b>68.8</b></td>\n294\t</tr>\n295\t<tr>\n296\t<td colspan=\"14\"><b>Discriminative Process Reward Models</b></td>\n297\t</tr>\n298\t<tr>\n299\t<td>Math-Shepherd-7B*</td>\n300\t<td>44.0</td>\n301\t<td>50.3</td>\n302\t<td>47.1</td>\n303\t<td>49.4</td>\n304\t<td>44.5</td>\n305\t<td>41.3</td>\n306\t<td>47.7</td>\n307\t<td>45.7</td>\n308\t<td>47.2</td>\n309\t<td>48.6</td>\n310\t<td>86.1</td>\n311\t<td>60.7</td>\n312\t<td>47.0</td>\n313\t</tr>\n314\t<tr>\n315\t<td>Math-PSA-7B<sup>†</sup></td>\n316\t<td>47.6</td>\n317\t<td>55.1</td>\n318\t<td>51.3</td>\n319\t<td>56.5</td>\n320\t<td>49.4</td>\n321\t<td>47.1</td>\n322\t<td>54.2</td>\n323\t<td>51.8</td>\n324\t<td>51.7</td>\n325\t<td>54.1</td>\n326\t<td>88.9</td>\n327\t<td>64.9</td>\n328\t<td>52.3</td>\n329\t</tr>\n330\t<tr>\n331\t<td>RLHFlow-Mistral-8B*</td>\n332\t<td>46.1</td>\n333\t<td>47.3</td>\n334\t<td>46.7</td>\n335\t<td>56.6</td>\n336\t<td>55.1</td>\n337\t<td>54.4</td>\n338\t<td>63.8</td>\n339\t<td>57.5</td>\n340\t<td>51.5</td>\n341\t<td>56.2</td>\n342\t<td>97.9</td>\n343\t<td>68.5</td>\n344\t<td>54.4</td>\n345\t</tr>\n346\t<tr>\n347\t<td>RLHFlow-DeepSeek-8B*</td>\n348\t<td>46.4</td>\n349\t<td>48.9</td>\n350\t<td>47.6</td>\n351\t<td>55.7</td>\n352\t<td>55.0</td>\n353\t<td>53.2</td>\n354\t<td>66.2</td>\n355\t<td>57.5</td>\n356\t<td>49.0</td>\n357\t<td>55.4</td>\n358\t<td><b>99.8</b></td>\n359\t<td>68.1</td>\n360\t<td>54.2</td>\n361\t</tr>\n362\t<tr>\n363\t<td>Lemma-PRM800k-7B*</td>\n364\t<td>49.3</td>\n365\t<td>53.4</td>\n366\t<td>51.4</td>\n367\t<td>56.4</td>\n368\t<td>47.1</td>\n369\t<td>46.7</td>\n370\t<td>53.3</td>\n371\t<td>50.9</td>\n372\t<td>51.0</td>\n373\t<td>53.5</td>\n374\t<td>93.6</td>\n375\t<td>66.0</td>\n376\t<td>52.0</td>\n377\t</tr>\n378\t<tr>\n379\t<td>Skywork-PRM-7B*</td>\n380\t<td>35.7</td>\n381\t<td>41.2</td>\n382\t<td>38.4</td>\n383\t<td>36.7</td>\n384\t<td>29.1</td>\n385\t<td>30.6</td>\n386\t<td>34.4</td>\n387\t<td>32.7</td>\n388\t<td>36.8</td>\n389\t<td>37.4</td>\n390\t<td>88.8</td>\n391\t<td>54.3</td>\n392\t<td>36.2</td>\n393\t</tr>\n394\t<tr>\n395\t<td>ReasonEval-7B*</td>\n396\t<td><b>61.0</b></td>\n397\t<td>50.1</td>\n398\t<td>55.5</td>\n399\t<td>62.1</td>\n400\t<td>65.9</td>\n401\t<td>61.5</td>\n402\t<td>66.0</td>\n403\t<td>63.9</td>\n404\t<td>55.6</td>\n405\t<td>58.0</td>\n406\t<td>99.5</td>\n407\t<td>71.0</td>\n408\t<td>60.0</td>\n409\t</tr>\n410\t<tr>\n411\t<td>Qwen2.5-Math-7B-PRM800K<sup>†</sup></td>\n412\t<td>48.6</td>\n413\t<td>47.8</td>\n414\t<td>48.2</td>\n415\t<td>62.1</td>\n416\t<td>59.4</td>\n417\t<td>58.7</td>\n418\t<td>68.5</td>\n419\t<td>62.2</td>\n420\t<td>52.9</td>\n421\t<td>64.0</td>\n422\t<td><b>99.8</b></td>\n423\t<td>72.2</td>\n424\t<td>58.3</td>\n425\t</tr>\n426\t<tr>\n427\t<td>Qwen2.5-Math-PRM-7B*</td>\n428\t<td>49.0</td>\n429\t<td>55.1</td>\n430\t<td>52.1</td>\n431\t<td>71.8</td>\n432\t<td>67.3</td>\n433\t<td>66.3</td>\n434\t<td><b>78.5</b></td>\n435\t<td>71.0</td>\n436\t<td>57.6</td>\n437\t<td>69.1</td>\n438\t<td>99.7</td>\n439\t<td>75.5</td>\n440\t<td>65.5</td>\n441\t</tr>\n442\t<tr>\n443\t<td>⊗ Pathfinder-PRM-7B-PRM800K<br/>w/o Separate Subtask Prediction</td>\n444\t<td>51.5</td>\n445\t<td>61.3</td>\n446\t<td>56.4</td>\n447\t<td>69.7</td>\n448\t<td>67.6</td>\n449\t<td>65.9</td>\n450\t<td>71.9</td>\n451\t<td>68.8</td>\n452\t<td>58.7</td>\n453\t<td>66.6</td>\n454\t<td>99.4</td>\n455\t<td>74.9</td>\n456\t<td>65.0</td>\n457\t</tr>\n458\t<tr>\n459\t<td></td>\n460\t<td>58.9</td>\n461\t<td><b>66.7</b></td>\n462\t<td><b>62.8</b></td>\n463\t<td>68.6</td>\n464\t<td>62.4</td>\n465\t<td>62.4</td>\n466\t<td>66.7</td>\n467\t<td>65.0</td>\n468\t<td>60.2</td>\n469\t<td>64.9</td>\n470\t<td>97.8</td>\n471\t<td>74.3</td>\n472\t<td>64.4</td>\n473\t</tr>\n474\t<tr>\n475\t<td>⊗ Pathfinder-PRM-7B<br/>w/o Separate Error Categories</td>\n476\t<td>52.1</td>\n477\t<td>65.8</td>\n478\t<td>58.9</td>\n479\t<td>73.1</td>\n480\t<td>68.7</td>\n481\t<td>66.3</td>\n482\t<td>75.0</td>\n483\t<td>70.8</td>\n484\t<td><b>61.7</b></td>\n485\t<td><b>69.8</b></td>\n486\t<td>99.2</td>\n487\t<td><b>76.9</b></td>\n488\t<td><b>67.7</b></td>\n489\t</tr>\n490\t<tr>\n491\t<td></td>\n492\t<td>51.7</td>\n493\t<td>62.0</td>\n494\t<td>56.9</td>\n495\t<td><b>73.2</b></td>\n496\t<td><b>70.0</b></td>\n497\t<td><b>66.9</b></td>\n498\t<td>75.8</td>\n499\t<td><b>71.5</b></td>\n500\t<td>60.3</td>\n501\t<td>69.2</td>\n502\t<td>99.6</td>\n503\t<td>76.4</td>\n504\t<td>67.3</td>\n505\t</tr>\n506\t<tr>\n507\t<td></td>\n508\t<td>57.9</td>\n509\t<td>66.4</td>\n510\t<td>62.1</td>\n511\t<td>69.1</td>\n512\t<td>62.6</td>\n513\t<td>62.2</td>\n514\t<td>68.7</td>\n515\t<td>65.7</td>\n516\t<td>61.0</td>\n517\t<td>65.4</td>\n518\t<td>98.2</td>\n519\t<td>74.9</td>\n520\t<td>64.9</td>\n521\t</tr>\n522\t</tbody>\n523\t</table>\n524\t\n525\tTable 1: Performance on **PRMBench**. Results marked with \\* and † come from Song et al. and She et al. respectively. Bold text denotes the best results within each category. ⊗ represents the models we trained.\n526\t\n527\tsourced from different math reasoning benchmarks. Each case includes a step-by-step solution annotated by human experts to indicate the earliest step containing an error or to confirm the correctness of all steps. Models are tasked with pinpointing the first erroneous step in a solution or affirming the solution’s correctness. **PRMBench** is a fine-grained benchmark aimed at evaluating Process-Level Reward Models (PRMs) on their capability to detect nuanced errors in reasoning steps. It consists of 6,216 problems with a total of 83,456 step-level labels, assessing models across multiple dimensions: Simplicity (non-redundancy, non-circular logic), Soundness (empirical soundness, step consistency, domain consistency, confidence invariance), and Sensitivity (prerequisite sensitivity, deception resistance, multi-solution consistency). The benchmark uses both synthetic and human-verified data, with rigorous quality control measures, including manual verification of a subset of data. A composite metric, PRMScore, is introduced, combining positive and negative F1 scores for a balanced evaluation.\n528\t\n529\tTo evaluate the effectiveness of Pathfinder-PRM in guiding step-by-step mathematical problem-solving, we employ it to assign\n530\t\n531\tscores to individual reasoning steps generated by large language models (LLMs), selecting only those with the highest overall rewards to build upon. This evaluation is conducted across several widely recognized math reasoning benchmarks, including AIME24, AMC23, MATH, Olympiad Bench, College MATH, and Minerva MATH<sup>2</sup>.\n532\t\n533\t## 4.2 Baselines\n534\t\n535\tOur evaluation utilizes a diverse set of discriminative process reward models from recent literature as baselines: *Math-Shepherd* (Wang et al., 2024b), *Math-PSA* (Wang et al., 2024a), *RLHFlow-Mistral* and *RLHFlow-DeepSeek* (Xiong et al., 2024), *Skywork-PRM-7b* (o1 Team, 2024), *ReasonEval-7B* (Xia et al., 2025), *Lemma-PRM800k-7B* (Sun et al., 2024), *Qwen2.5-Math-PRM-7B* and *Qwen2.5-Math-7B-PRM800K* (Zhang et al., 2025). We selected these baselines to cover a diverse range of training regimes, including models trained on human annotations, automated annotations, and hybrid approaches, as well as varying scales of training data.\n536\t\n537\t<sup>2</sup>Following (She et al., 2025), we use their subset of 200 test samples for Olympiad Bench and College MATH.**Performance Comparison Across Benchmarks of Models Trained on Similar-sized Dataset**\n538\t\n539\tFigure 2: Performance comparison of language models across three benchmarks. The PathFinder-PRM-7B model (gray) shows the highest performance across all benchmarks.\n540\t\n541\t## 5 Results\n542\t\n543\t### 5.1 Main Results\n544\t\n545\t**PathFinder-PRM-7B is the SOTA for PRMBench:** Table 1 shows the PRM-Bench results of the selected baselines, PathFinder-PRM-variants as well as LLM-as-judge performance of strong open-source and proprietary LLMs. In the discriminative PRM category, PathFinder-PRM-7B achieves the highest overall PRM score (67.7), outperforming Qwen2.5-Math-PRM-7B (65.5) and ReasonEval-7B (60.0). The variant PathFinder-PRM-7B-PRM800K, trained on a fraction of our dataset, achieves a competitive score of 65.0. Notably, PathFinder-PRM-7B outperforms nearly all LLM-as-Judge models, including GPT-4o, QwQ-Preview-32B and Gemini-2.0-flash-exp. PRMBench is a benchmark designed to test a model’s ability to detect subtle and complex errors. Our results affirm that our hierarchical PRM approach enables the model to detect these nuanced errors, leading to stronger process-level understanding and supervision.\n546\t\n547\t**PathFinder-PRM Excels on ProcessBench:** Table 2 presents F1 results on ProcessBench. When trained exclusively on PRM800K, PathFinder-PRM-7B-PRM800K attains an average F1 of 65.2, beating the previous best (Qwen2.5-Math-7B-PRM800K, 58.5) by 6.7 points and outperforming all other PRM800K-only baselines across every category: GSM8K (+5.9), MATH (+8.7), Olympiad Bench (+8.0) and\n548\t\n549\tOmniMath (+12.3).\n550\t\n551\tLeveraging a larger, mixed human + auto-annotated dataset further boosts performance. PathFinder-PRM-7B achieves an average F1 of 69.5, setting new state-of-the-art among mixed-data models and closing the gap to the top automated-annotation model (Qwen2.5-Math-PRM-7B\\*, 73.5) to just 4 points. Notably, PathFinder-PRM-7B also leads in every individual benchmark—GSM8K (77.9), MATH (75.3), Olympiad Bench (65.0), and OmniMath (59.7), demonstrating the scalability and robustness of our hierarchical reward modeling approach.\n552\t\n553\t**Improved Reward-Guided Search with Better PRMs:** Finally, we assess the utility of our PRM in guiding solution search. Using Qwen2.5-Instruct-7B as a generator and ranking sampled steps in completions using our PRM, Table 3 shows that PathFinder-PRM-7B yields the highest average prm@8 score (48.25), outperforming Qwen2.5-Math-PRM-7B (46.8). The advantage holds across tasks, including challenging subsets such as AIME24 and College MATH, indicating better inductive bias and alignment with ground-truth solution quality.\n554\t\n555\t**PathFinder-PRM is Competitive to Qwen2.5-Math-PRM-7B Despite Using  $\\tilde{3}\\times$  Less Data:** Although Qwen2.5-Math-PRM-7B was trained on roughly 1.5M automated annotations, our PathFinder-PRM-7B, trained on only  $\\sim 400K$  samples, matches or exceeds its performance in key benchmarks<table border=\"1\">\n556\t<thead>\n557\t<tr>\n558\t<th>Model</th>\n559\t<th># Samples</th>\n560\t<th>GSM8K</th>\n561\t<th>MATH</th>\n562\t<th>Olympiad Bench</th>\n563\t<th>OmniMath</th>\n564\t<th>Avg. F1</th>\n565\t</tr>\n566\t</thead>\n567\t<tbody>\n568\t<tr>\n569\t<td colspan=\"7\"><b>Trained on Automated Annotation Data</b></td>\n570\t</tr>\n571\t<tr>\n572\t<td>Math-Shepherd-7B*</td>\n573\t<td>445K</td>\n574\t<td>47.9</td>\n575\t<td>29.5</td>\n576\t<td>24.8</td>\n577\t<td>23.8</td>\n578\t<td>31.5</td>\n579\t</tr>\n580\t<tr>\n581\t<td>RLHFlow-Mistral-8B*</td>\n582\t<td>273K</td>\n583\t<td>50.4</td>\n584\t<td>33.4</td>\n585\t<td>13.8</td>\n586\t<td>15.8</td>\n587\t<td>28.4</td>\n588\t</tr>\n589\t<tr>\n590\t<td>RLHFlow-DeepSeek-8B*</td>\n591\t<td>253K</td>\n592\t<td>38.8</td>\n593\t<td>33.8</td>\n594\t<td>16.9</td>\n595\t<td>16.9</td>\n596\t<td>26.6</td>\n597\t</tr>\n598\t<tr>\n599\t<td>Qwen2.5-Math-PRM-7B*</td>\n600\t<td>~1.5M</td>\n601\t<td><b>82.4</b></td>\n602\t<td><b>77.6</b></td>\n603\t<td><b>67.5</b></td>\n604\t<td><b>66.3</b></td>\n605\t<td><b>73.5</b></td>\n606\t</tr>\n607\t<tr>\n608\t<td colspan=\"7\"><b>Trained on Human Annotated Data (PRM800K)</b></td>\n609\t</tr>\n610\t<tr>\n611\t<td>Llemma-PRM800K-7B</td>\n612\t<td>~350K</td>\n613\t<td>48.4</td>\n614\t<td>43.1</td>\n615\t<td>28.5</td>\n616\t<td>33.4</td>\n617\t<td>38.4</td>\n618\t</tr>\n619\t<tr>\n620\t<td>ReasonEval-7B<sup>†</sup></td>\n621\t<td>~350K</td>\n622\t<td>41.0</td>\n623\t<td>48.9</td>\n624\t<td>36.7</td>\n625\t<td>37.4</td>\n626\t<td>41.0</td>\n627\t</tr>\n628\t<tr>\n629\t<td>Qwen2.5-Math-7B-PRM800K*</td>\n630\t<td>264K</td>\n631\t<td>68.2</td>\n632\t<td>62.6</td>\n633\t<td>50.7</td>\n634\t<td>44.3</td>\n635\t<td>58.5</td>\n636\t</tr>\n637\t<tr>\n638\t<td>PathFinder-PRM-7B-PRM800K</td>\n639\t<td>~350K</td>\n640\t<td><u>74.1</u></td>\n641\t<td><u>71.3</u></td>\n642\t<td>58.7</td>\n643\t<td>56.6</td>\n644\t<td><u>65.2</u></td>\n645\t</tr>\n646\t<tr>\n647\t<td>w/o Separate Subtask Prediction</td>\n648\t<td></td>\n649\t<td>71.4</td>\n650\t<td>71.1</td>\n651\t<td><u>59.2</u></td>\n652\t<td><u>58.0</u></td>\n653\t<td>64.9</td>\n654\t</tr>\n655\t<tr>\n656\t<td colspan=\"7\"><b>Trained on a Mix of Human and Automated Annotation Data</b></td>\n657\t</tr>\n658\t<tr>\n659\t<td>Math-PSA-7B<sup>†</sup></td>\n660\t<td>~860K</td>\n661\t<td>62.4</td>\n662\t<td>41.9</td>\n663\t<td>31.5</td>\n664\t<td>25.2</td>\n665\t<td>40.3</td>\n666\t</tr>\n667\t<tr>\n668\t<td>Skywork-PRM-7B*</td>\n669\t<td>unk</td>\n670\t<td>70.8</td>\n671\t<td>53.6</td>\n672\t<td>22.9</td>\n673\t<td>21.0</td>\n674\t<td>42.1</td>\n675\t</tr>\n676\t<tr>\n677\t<td>⊗ PathFinder-PRM-7B</td>\n678\t<td>~400K</td>\n679\t<td><u>77.9</u></td>\n680\t<td><u>75.3</u></td>\n681\t<td><u>65.0</u></td>\n682\t<td><u>59.7</u></td>\n683\t<td><u>69.5</u></td>\n684\t</tr>\n685\t<tr>\n686\t<td>w/o Separate Error Categories</td>\n687\t<td></td>\n688\t<td>76.1</td>\n689\t<td>73.8</td>\n690\t<td>61.4</td>\n691\t<td>56.6</td>\n692\t<td>67.0</td>\n693\t</tr>\n694\t<tr>\n695\t<td>w/o Separate Subtask Prediction</td>\n696\t<td></td>\n697\t<td>73.9</td>\n698\t<td>72.6</td>\n699\t<td>63.9</td>\n700\t<td>59.9</td>\n701\t<td>67.6</td>\n702\t</tr>\n703\t</tbody>\n704\t</table>\n705\t\n706\tTable 2: Performance (F1) on ProcessBench. Results marked with \\* come from Zhang et al.. The best performance across all categories is in **bold** and the best performance within a category is underlined. # Samples denotes the number of training samples used by each model.\n707\t\n708\t<table border=\"1\">\n709\t<thead>\n710\t<tr>\n711\t<th>Setting</th>\n712\t<th>AIME24</th>\n713\t<th>AMC23</th>\n714\t<th>MATH</th>\n715\t<th>Olympiad Bench</th>\n716\t<th>College MATH</th>\n717\t<th>Minerva MATH</th>\n718\t<th>Avg.</th>\n719\t</tr>\n720\t</thead>\n721\t<tbody>\n722\t<tr>\n723\t<td>pass@1*</td>\n724\t<td>11.2</td>\n725\t<td>47.8</td>\n726\t<td>73.0</td>\n727\t<td>38.0</td>\n728\t<td>38.6</td>\n729\t<td>37.2</td>\n730\t<td>41.0</td>\n731\t</tr>\n732\t<tr>\n733\t<td>major@8*</td>\n734\t<td>20.0</td>\n735\t<td>57.5</td>\n736\t<td>79.6</td>\n737\t<td>47.0</td>\n738\t<td>41.5</td>\n739\t<td>42.7</td>\n740\t<td>48.0</td>\n741\t</tr>\n742\t<tr>\n743\t<td>pass@8*</td>\n744\t<td>33.3</td>\n745\t<td>82.5</td>\n746\t<td>88.8</td>\n747\t<td>58.5</td>\n748\t<td>47.5</td>\n749\t<td>57.7</td>\n750\t<td>61.4</td>\n751\t</tr>\n752\t<tr>\n753\t<td colspan=\"8\"><b>Reward Guided Search (prm@8)</b></td>\n754\t</tr>\n755\t<tr>\n756\t<td>Math-Shepherd-7B*</td>\n757\t<td>13.3</td>\n758\t<td>52.5</td>\n759\t<td>74.6</td>\n760\t<td>38.5</td>\n761\t<td>36.5</td>\n762\t<td>41.2</td>\n763\t<td>42.8</td>\n764\t</tr>\n765\t<tr>\n766\t<td>Math-PSA-7B*</td>\n767\t<td>6.7</td>\n768\t<td>57.5</td>\n769\t<td>79.8</td>\n770\t<td>42.5</td>\n771\t<td>41.0</td>\n772\t<td>39.3</td>\n773\t<td>44.5</td>\n774\t</tr>\n775\t<tr>\n776\t<td>RLHFlow-PRM-Mistral-8B*</td>\n777\t<td>10.0</td>\n778\t<td>57.5</td>\n779\t<td>73.4</td>\n780\t<td>37.5</td>\n781\t<td>38.0</td>\n782\t<td>41.2</td>\n783\t<td>42.9</td>\n784\t</tr>\n785\t<tr>\n786\t<td>RLHFlow-PRM-DeepSeek-8B*</td>\n787\t<td>13.3</td>\n788\t<td>52.5</td>\n789\t<td>74.8</td>\n790\t<td>39.5</td>\n791\t<td>37.0</td>\n792\t<td>40.8</td>\n793\t<td>43.0</td>\n794\t</tr>\n795\t<tr>\n796\t<td>Lemma-PRM800k-7B*</td>\n797\t<td>13.3</td>\n798\t<td>57.5</td>\n799\t<td>73.8</td>\n800\t<td>40.0</td>\n801\t<td>36.5</td>\n802\t<td>38.2</td>\n803\t<td>43.2</td>\n804\t</tr>\n805\t<tr>\n806\t<td>Skywork-PRM-7B*</td>\n807\t<td>10.0</td>\n808\t<td>57.5</td>\n809\t<td>77.8</td>\n810\t<td>41.5</td>\n811\t<td>39.0</td>\n812\t<td>43.4</td>\n813\t<td>44.9</td>\n814\t</tr>\n815\t<tr>\n816\t<td>ReasonEval-7B*</td>\n817\t<td>3.3</td>\n818\t<td>55.0</td>\n819\t<td>73.0</td>\n820\t<td>37.5</td>\n821\t<td>35.5</td>\n822\t<td>37.9</td>\n823\t<td>40.4</td>\n824\t</tr>\n825\t<tr>\n826\t<td>Qwen2.5-Math-7B-PRM800K*</td>\n827\t<td><b>23.3</b></td>\n828\t<td>45.0</td>\n829\t<td>78.2</td>\n830\t<td>42.0</td>\n831\t<td>35.5</td>\n832\t<td>38.6</td>\n833\t<td>43.8</td>\n834\t</tr>\n835\t<tr>\n836\t<td>Qwen2.5-Math-PRM-7B*</td>\n837\t<td>16.7</td>\n838\t<td>60.0</td>\n839\t<td><b>81.0</b></td>\n840\t<td>43.5</td>\n841\t<td>39.0</td>\n842\t<td>40.4</td>\n843\t<td>46.8</td>\n844\t</tr>\n845\t<tr>\n846\t<td>⊗ PathFinder-PRM-7B-PRM800K</td>\n847\t<td>20.0</td>\n848\t<td>55.0</td>\n849\t<td>79.0</td>\n850\t<td>36.0</td>\n851\t<td>55.0</td>\n852\t<td>36.4</td>\n853\t<td>46.9</td>\n854\t</tr>\n855\t<tr>\n856\t<td>w/o Separate Subtask Prediction</td>\n857\t<td>6.6</td>\n858\t<td>55.0</td>\n859\t<td>82.2</td>\n860\t<td>36.0</td>\n861\t<td>53.5</td>\n862\t<td>36.0</td>\n863\t<td>45.0</td>\n864\t</tr>\n865\t<tr>\n866\t<td>⊗ PathFinder-PRM-7B</td>\n867\t<td>20</td>\n868\t<td>62.5</td>\n869\t<td>78.8</td>\n870\t<td>36.5</td>\n871\t<td>55.0</td>\n872\t<td>36.7</td>\n873\t<td><b>48.3</b></td>\n874\t</tr>\n875\t<tr>\n876\t<td>w/o Separate Error Categories</td>\n877\t<td>13.3</td>\n878\t<td>52.5</td>\n879\t<td>80.4</td>\n880\t<td>35.5</td>\n881\t<td>53.5</td>\n882\t<td>37.5</td>\n883\t<td>45.4</td>\n884\t</tr>\n885\t<tr>\n886\t<td>w/o Separate Subtask Prediction</td>\n887\t<td>10.0</td>\n888\t<td>55.0</td>\n889\t<td>81.6</td>\n890\t<td>37.0</td>\n891\t<td>53.5</td>\n892\t<td>36.0</td>\n893\t<td>45.5</td>\n894\t</tr>\n895\t</tbody>\n896\t</table>\n897\t\n898\tTable 3: The performance of PRM guided greedy search with Qwen2.5-7B-Instruct as the policy model. Results marked with \\* come from She et al.\n899\t\n900\tand reward-guided search. On ProcessBench, PathFinder-PRM-7B performs competitively to Qwen2.5-Math-PRM-7B in average F1 69.5 vs 73.5 despite using less than one-third of the data. More importantly, PathFinder-PRM-7B surpasses Qwen2.5-Math-PRM-7B on PRMBench overall (67.7 vs 65.5), and drives higher pass@8 in reward-guided greedy search (48.3 vs. 46.8). This demonstrates that our hierarchical, error-aware training yields more data-efficient and robust PRMs, achieving superior process supervision with far fewer samples.\n901\t\n902\tAs shown in Figure 2, when comparing against PRMs trained on similarly sized datasets, PathFinder-PRM consistently achieves superior performance across all benchmarks. Figure 3 presents the performance of various PRMs on PRMBench. The results demonstrate that PathFinder-PRM not only surpasses other PRMs trained on comparably sized datasets but also outperforms Math-PSA and Qwen-2.5-Math-PRM, despite those models being trained on 2–3 times more data.Figure 3: PRMBench Overall PRMscore against the data scales of different baselines and PathFinder-PRM variants.\n903\t\n904\t## 5.2 Ablations\n905\t\n906\tIn our approach, we made two main claims: (1) decoupling the subtasks of Error Detection and Correct Path Guidance, and (2) categorizing errors into two prominent error categories in math will boost PRM performance. To verify these claims, we performed ablation experiments by modifying parts of our method:\n907\t\n908\t1. 1. **PathFinder-PRM w/o Separate Subtask Prediction:** Following existing PRM approaches, we trained the model to jointly learn to tackle both error detection and correct path guidance using only the step correctness labels.\n909\t2. 2. **PathFinder-PRM w/o Separate Error Categories:** In this approach, we still do a hierarchical prediction but we modify step 1. Instead of detecting the presence of 2 error categories, we combined the categories and predicted the presence of an error in the step.\n910\t\n911\t**PathFinder-PRM Benefits from Separating Error Categories:** On ProcessBench, explicitly distinguishing math and consistency errors yields a clear overall boost: PathFinder-PRM-7B scores 69.5 Avg. F1, versus 67.0 for the PathFinder-PRM-7B w/o Separate Error Categories. We also observe a similar drop in performance on PRMBench, the PathFinder-PRM w/o Separate Error Categories shows a small drop in performance (0.4 points) compared to PathFinder-PRM-7B\n912\t\n913\tCrucially, reward-guided search highlights the practical impact of error typing: when ranking eight candidate solutions, PathFinder-PRM-7B achieves 48.3 prm@8, compared to just 45.4\n914\t\n915\tfor PathFinder-PRM w/o Separate Error Categories (+2.9 points). This jump in real-world problem-solving performance highlights that fine-grained error signals not only improve diagnostic metrics but can also translate directly into selecting higher-quality solution paths.\n916\t\n917\t**PathFinder-PRM Benefits from Error-Aware Hierarchical Supervision:** Across ProcessBench, PRMBench, and reward-guided search, PathFinder-PRM consistently outperforms the PathFinder-PRM w/o separate subtask prediction, demonstrating the importance of hierarchical modeling of the subtasks. On ProcessBench, PathFinder-PRM-7B improves from 67.6 to 69.5 F1 (+1.9), and on PRMBench, from 64.9 to 67.7 (+2.8). In reward-guided search, the improvement is similarly clear: 48.3 prm@8 versus 45.5. These results highlight the value of decoupling feedback prediction into discrete reasoning components.\n918\t\n919\t**Scalable Performance with Additional Training Data:** Training on an additional 50K samples from a broader, automatically annotated dataset greatly boosted the performance of PathFinder-PRM and helped it reach state-of-the-art performance. PathFinder-PRM-7B outperforms PathFinder-PRM-7B-PRM800K across ProcessBench, PRMBench, and reward-guided greedy search, demonstrating the benefits of scaling beyond PRM800K dataset. On ProcessBench, PathFinder-PRM-7B achieves 69.5 Avg.F1 versus 65.2, while on PRMBench it improves from 65.0 to 67.7 F1. In reward-guided search, PathFinder-PRM-7B raises pass@8 from 46.9 to 48.3. These gains highlight that error-aware hierarchical modeling scales well with increased data diversity and quantity, enabling stronger generalization and robustness.\n920\t\n921\tA key distinction is that the 50K additional data was collected using Mistral-7B as a generator, while PRM800K was produced using a fine-tuned GPT-4 model. Exposure to reasoning traces from a smaller and weaker model may have helped PathFinder-PRM better learn to recognize and correct common failure patterns, contributing to improved robustness and generalization across benchmarks. We leave a deeper investigation of this hypothesis to future work.## Conclusion\n922\t\n923\tIn this work, we introduced PathFinder-PRM, a hierarchical discriminative process reward model that decouples error detection from step optimality guidance, classifying math and consistency errors before computing step rewards. Our evaluation and ablation trials demonstrate that error-aware hierarchical supervision yields notable improvements on PRM benchmarks, with PathFinder-PRM-7B achieving state-of-the-art performance among discriminative PRMs on PRMBench and strong results on ProcessBench despite using less than three times the data used to train the current best performing model. A similar performance boost is observed in reward-guided search evaluation, affirming our hypothesis about the efficacy of hierarchical error-aware reward generation. Our approach is, therefore, a promising direction for more robust and interpretable process reward models, with potential for further gains when scaled to larger architectures.\n924\t\n925\t## Limitations\n926\t\n927\tDue to computational constraints, our experiments were limited to 7B models. While this scale provides a strong foundation for evaluating our proposed methodology, we hypothesise that larger models could further enhance modeling accuracy and better leverage process supervision signals due to their improved mathematical reasoning capabilities.\n928\t\n929\t## References\n930\t\n931\tTom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, Sandhini Agarwal, Ariel Herbert-Voss, Gretchen Krueger, Tom Henighan, Rewon Child, Aditya Ramesh, Daniel Ziegler, Jeffrey Wu, Clemens Winter, and 12 others. 2020. [Language models are few-shot learners](#). In *Advances in Neural Information Processing Systems*, volume 33, pages 1877–1901. Curran Associates, Inc.\n932\t\n933\tDeepSeek-AI. 2025. [Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning](#). *Preprint*, arXiv:2501.12948.\n934\t\n935\tDaya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Ruoyu Zhang, Runxin Xu, Qihao Zhu, Shirong Ma, Peiyi Wang, Xiao Bi, and 1 others. 2025. Deepseek-r1: Incentivizing reasoning capability in llms via reinforcement learning. *arXiv preprint arXiv:2501.12948*.\n936\t\n937\tMuhammad Khalifa, Rishabh Agarwal, Lajanugen Logeswaran, Jaekyeom Kim, Hao Peng, Moontae Lee, Honglak Lee, and Lu Wang. 2025. [Process reward models that think](#). *arXiv preprint arXiv:2504.16828*.\n938\t\n939\tHunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2023. Let’s verify step by step. *arXiv preprint arXiv:2305.20050*.\n940\t\n941\tRunze Liu, Junqi Gao, Jian Zhao, Kaiyan Zhang, Xiu Li, Biqing Qi, Wanli Ouyang, and Bowen Zhou. 2025. Can 1b llm surpass 405b llm? rethinking compute-optimal test-time scaling. *arXiv preprint arXiv:2502.06703*.\n942\t\n943\tLiangchen Luo, Yinxiao Liu, Rosanne Liu, Samrat Phatale, Meiqi Guo, Harsh Lara, Yunxuan Li, Lei Shu, Yun Zhu, Lei Meng, Jiao Sun, and Abhinav Rastogi. 2024. [Improve mathematical reasoning in language models by automated process supervision](#). *Preprint*, arXiv:2406.06592.\n944\t\n945\tSkywork o1 Team. 2024. Skywork-o1 open series. <https://huggingface.co/Skywork>. Accessed: 2025-05-18.\n946\t\n947\tOpenAI. 2025. [Introducing openai o3 and o4-mini](#). Accessed: 2025-05-19.\n948\t\n949\tShuaijie She, Junxiao Liu, Yifeng Liu, Jiajun Chen, Xin Huang, and Shujian Huang. 2025. R-prm: Reasoning-driven process reward modeling. *arXiv preprint arXiv:2503.21295*.\n950\t\n951\tMingyang Song, Zhaochen Su, Xiaoye Qu, Jiawei Zhou, and Yu Cheng. 2025. Prmbench: A fine-grained and challenging benchmark for process-level reward models. *arXiv preprint arXiv:2501.03124*.\n952\t\n953\tZhiqing Sun, Longhui Yu, Yikang Shen, Weiyang Liu, Yiming Yang, Sean Welleck, and Chuang Gan. 2024. Easy-to-hard generalization: Scalable alignment beyond human supervision. *arXiv preprint arXiv:2403.09472*.\n954\t\n955\tXiaoyu Tan, Tianchu Yao, Chao Qu, Bin Li, Minghao Yang, Dakuan Lu, Haozhe Wang, Xihe Qiu, Wei Chu, Yinghui Xu, and 1 others. 2025. Aurora: Automated training framework of universal process reward models via ensemble prompting and reverse verification. *arXiv preprint arXiv:2502.11520*.\n956\t\n957\tJonathan Uesato, Nate Kushman, Ramana Kumar, Francis Song, Noah Siegel, Lisa Wang, Antonia Creswell, Geoffrey Irving, and Irina Higgins. 2022. [Solving math word problems with process- and outcome-based feedback](#). *Preprint*, arXiv:2211.14275.\n958\t\n959\tJun Wang, Meng Fang, Ziyu Wan, Muning Wen, Jiachen Zhu, Anjie Liu, Ziqin Gong, Yan Song, Lei Chen, Lionel M Ni, and 1 others. 2024a. Openrr: An open source framework for advanced reasoning with large language models. *arXiv preprint arXiv:2410.09671*.Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai Dai, Yifei Li, Deli Chen, Yu Wu, and Zhifang Sui. 2024b. [Math-shepherd: Verify and reinforce llms step-by-step without human annotations](#). In *Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)*, page 9426–9439. Association for Computational Linguistics.\n960\t\n961\tXuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed Chi, Sharan Narang, Aakanksha Chowdhery, and Denny Zhou. 2023. [Self-consistency improves chain of thought reasoning in language models](#). *Preprint*, arXiv:2203.11171.\n962\t\n963\tJason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, brian ichter, Fei Xia, Ed Chi, Quoc V Le, and Denny Zhou. 2022. [Chain-of-thought prompting elicits reasoning in large language models](#). In *Advances in Neural Information Processing Systems*, volume 35, pages 24824–24837. Curran Associates, Inc.\n964\t\n965\tThomas Wolf, Lysandre Debut, Victor Sanh, Julien Chaumond, Clement Delangue, Anthony Moi, Pieric Cistac, Tim Rault, Rémi Louf, Morgan Funtowicz, Joe Davison, Sam Shleifer, Patrick von Platen, Clara Ma, Yacine Jernite, Julien Plu, Canwen Xu, Teven Le Scao, Sylvain Gugger, and 3 others. 2020. [Transformers: State-of-the-art natural language processing](#). In *Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations*, pages 38–45, Online. Association for Computational Linguistics.\n966\t\n967\tShijie Xia, Xuefeng Li, Yixin Liu, Tongshuang Wu, and Pengfei Liu. 2025. Evaluating mathematical reasoning beyond accuracy. In *Proceedings of the AAAI Conference on Artificial Intelligence*, volume 39, pages 27723–27730.\n968\t\n969\tWei Xiong, Hanning Zhang, Nan Jiang, and Tong Zhang. 2024. An implementation of generative prm. <https://github.com/RLHFlow/RLHF-Reward-Modeling>.\n970\t\n971\tAn Yang, Beichen Zhang, Binyuan Hui, Bofei Gao, Bowen Yu, Chengpeng Li, Dayiheng Liu, Jianhong Tu, Jingren Zhou, Junyang Lin, Keming Lu, Mingfeng Xue, Runji Lin, Tianyu Liu, Xingzhang Ren, and Zhenru Zhang. 2024. Qwen2.5-math technical report: Toward mathematical expert model via self-improvement. *arXiv preprint arXiv:2409.12122*.\n972\t\n973\tZhenru Zhang, Chujie Zheng, Yangzhen Wu, Beichen Zhang, Runji Lin, Bowen Yu, Dayiheng Liu, Jingren Zhou, and Junyang Lin. 2025. The lessons of developing process reward models in mathematical reasoning. *arXiv preprint arXiv:2501.07301*.\n974\t\n975\tJian Zhao, Runze Liu, Kaiyan Zhang, Zhimu Zhou, Junqi Gao, Dong Li, Jiafei Lyu, Zhouyi Qian, Biqing Qi, Xiu Li, and Bowen Zhou. 2025. Genprm: Scaling test-time compute of process reward models via generative reasoning. *arXiv preprint arXiv:2504.00891*.\n976\t\n977\tChujie Zheng, Zhenru Zhang, Beichen Zhang, Runji Lin, Keming Lu, Bowen Yu, Dayiheng Liu, Jingren Zhou, and Junyang Lin. 2024. [Processbench: Identifying process errors in mathematical reasoning](#). *Preprint*, arXiv:2412.06559.## A Extended Results\n978\t\n979\t### A.1 ProcessBench\n980\t\n981\tTable 4 contains the extended evaluation on ProcessBench with LLM-as-Judge Baselines using both Proprietary and Open-Source Language Models.\n982\t\n983\t<table border=\"1\">\n984\t<thead>\n985\t<tr>\n986\t<th>Model</th>\n987\t<th># Samples</th>\n988\t<th>GSM8K</th>\n989\t<th>MATH</th>\n990\t<th>Olympiad Bench</th>\n991\t<th>OmniMath</th>\n992\t<th>Avg. F1</th>\n993\t</tr>\n994\t</thead>\n995\t<tbody>\n996\t<tr>\n997\t<td colspan=\"7\"><i>LLM-as-judge, Proprietary language models</i></td>\n998\t</tr>\n999\t<tr>\n1000\t<td>GPT-4o*</td>\n1001\t<td>unk</td>\n1002\t<td>79.2</td>\n1003\t<td>63.6</td>\n1004\t<td>51.4</td>\n1005\t<td>53.5</td>\n1006\t<td>61.9</td>\n1007\t</tr>\n1008\t<tr>\n1009\t<td>o1-mini*</td>\n1010\t<td>unk</td>\n1011\t<td><b>93.2</b></td>\n1012\t<td>88.9</td>\n1013\t<td>87.2</td>\n1014\t<td>82.4</td>\n1015\t<td>87.9</td>\n1016\t</tr>\n1017\t<tr>\n1018\t<td colspan=\"7\"><i>LLM-as-judge, Open-source language models</i></td>\n1019\t</tr>\n1020\t<tr>\n1021\t<td>Llama-3.3-70B-Instruct*</td>\n1022\t<td>unk</td>\n1023\t<td>82.9</td>\n1024\t<td>59.4</td>\n1025\t<td>46.7</td>\n1026\t<td>43.0</td>\n1027\t<td>58.0</td>\n1028\t</tr>\n1029\t<tr>\n1030\t<td>Qwen2.5-Math-72B-Instruct*</td>\n1031\t<td>unk</td>\n1032\t<td>65.8</td>\n1033\t<td>52.1</td>\n1034\t<td>32.5</td>\n1035\t<td>31.7</td>\n1036\t<td>45.5</td>\n1037\t</tr>\n1038\t<tr>\n1039\t<td>Qwen2.5-72B-Instruct*</td>\n1040\t<td>unk</td>\n1041\t<td>76.2</td>\n1042\t<td>61.8</td>\n1043\t<td>54.6</td>\n1044\t<td>52.2</td>\n1045\t<td>61.2</td>\n1046\t</tr>\n1047\t<tr>\n1048\t<td colspan=\"7\"><i>Discriminative Process Reward Models</i></td>\n1049\t</tr>\n1050\t<tr>\n1051\t<td colspan=\"7\"><b>Trained on Automated Annotation Data</b></td>\n1052\t</tr>\n1053\t<tr>\n1054\t<td>Math-Shepherd-7B*</td>\n1055\t<td>445K</td>\n1056\t<td>47.9</td>\n1057\t<td>29.5</td>\n1058\t<td>24.8</td>\n1059\t<td>23.8</td>\n1060\t<td>31.5</td>\n1061\t</tr>\n1062\t<tr>\n1063\t<td>RLHFlow-Mistral-8B*</td>\n1064\t<td>273K</td>\n1065\t<td>50.4</td>\n1066\t<td>33.4</td>\n1067\t<td>13.8</td>\n1068\t<td>15.8</td>\n1069\t<td>28.4</td>\n1070\t</tr>\n1071\t<tr>\n1072\t<td>RLHFlow-DeepSeek-8B*</td>\n1073\t<td>253K</td>\n1074\t<td>38.8</td>\n1075\t<td>33.8</td>\n1076\t<td>16.9</td>\n1077\t<td>16.9</td>\n1078\t<td>26.6</td>\n1079\t</tr>\n1080\t<tr>\n1081\t<td>Qwen2.5-Math-PRM-7B*</td>\n1082\t<td>~1.5M</td>\n1083\t<td><b>82.4</b></td>\n1084\t<td><b>77.6</b></td>\n1085\t<td><b>67.5</b></td>\n1086\t<td><b>66.3</b></td>\n1087\t<td><b>73.5</b></td>\n1088\t</tr>\n1089\t<tr>\n1090\t<td colspan=\"7\"><b>Trained on Human Annotated Data (PRM800K)</b></td>\n1091\t</tr>\n1092\t<tr>\n1093\t<td>Llemma-PRM800K-7B</td>\n1094\t<td>~350K</td>\n1095\t<td>48.4</td>\n1096\t<td>43.1</td>\n1097\t<td>28.5</td>\n1098\t<td>33.4</td>\n1099\t<td>38.4</td>\n1100\t</tr>\n1101\t<tr>\n1102\t<td>ReasonEval-7B<sup>†</sup></td>\n1103\t<td>~350K</td>\n1104\t<td>41.0</td>\n1105\t<td>48.9</td>\n1106\t<td>36.7</td>\n1107\t<td>37.4</td>\n1108\t<td>41.0</td>\n1109\t</tr>\n1110\t<tr>\n1111\t<td>Qwen2.5-Math-7B-PRM800K*</td>\n1112\t<td>264K</td>\n1113\t<td>68.2</td>\n1114\t<td>62.6</td>\n1115\t<td>50.7</td>\n1116\t<td>44.3</td>\n1117\t<td>58.5</td>\n1118\t</tr>\n1119\t<tr>\n1120\t<td>PathFinder-PRM-7B-PRM800K</td>\n1121\t<td>~350K</td>\n1122\t<td><u>74.1</u></td>\n1123\t<td><u>71.3</u></td>\n1124\t<td>58.7</td>\n1125\t<td>56.6</td>\n1126\t<td><u>65.2</u></td>\n1127\t</tr>\n1128\t<tr>\n1129\t<td>w/o Separate Subtask Prediction</td>\n1130\t<td></td>\n1131\t<td>71.4</td>\n1132\t<td>71.1</td>\n1133\t<td><u>59.2</u></td>\n1134\t<td><u>58.0</u></td>\n1135\t<td>64.9</td>\n1136\t</tr>\n1137\t<tr>\n1138\t<td colspan=\"7\"><b>Trained on a Mix of Human and Automated Annotation Data</b></td>\n1139\t</tr>\n1140\t<tr>\n1141\t<td>Math-PSA-7B<sup>†</sup></td>\n1142\t<td>~860K</td>\n1143\t<td>62.4</td>\n1144\t<td>41.9</td>\n1145\t<td>31.5</td>\n1146\t<td>25.2</td>\n1147\t<td>40.3</td>\n1148\t</tr>\n1149\t<tr>\n1150\t<td>Skywork-PRM-7B*</td>\n1151\t<td>unk</td>\n1152\t<td>70.8</td>\n1153\t<td>53.6</td>\n1154\t<td>22.9</td>\n1155\t<td>21.0</td>\n1156\t<td>42.1</td>\n1157\t</tr>\n1158\t<tr>\n1159\t<td>⊗ PathFinder-PRM-7B</td>\n1160\t<td>~400K</td>\n1161\t<td><u>77.9</u></td>\n1162\t<td><u>75.3</u></td>\n1163\t<td><u>65.0</u></td>\n1164\t<td><u>59.7</u></td>\n1165\t<td><u>69.5</u></td>\n1166\t</tr>\n1167\t<tr>\n1168\t<td>w/o Separate Error Categories</td>\n1169\t<td></td>\n1170\t<td>76.1</td>\n1171\t<td>73.8</td>\n1172\t<td>61.4</td>\n1173\t<td>56.6</td>\n1174\t<td>67.0</td>\n1175\t</tr>\n1176\t<tr>\n1177\t<td>w/o Separate Subtask Prediction</td>\n1178\t<td></td>\n1179\t<td>73.9</td>\n1180\t<td>72.6</td>\n1181\t<td>63.9</td>\n1182\t<td>59.9</td>\n1183\t<td>67.6</td>\n1184\t</tr>\n1185\t</tbody>\n1186\t</table>\n1187\t\n1188\tTable 4: Performance (F1) on ProcessBench. Results marked with \\* come from Zhang et al.. The best performance across all categories is in **bold** and the best performance within a category is underlined.\n1189\t\n1190\t## B Scaling Effects of Additional RLHFlow Mistral Data\n1191\t\n1192\tTo further probe the effects of training data scaling, we increased the amount of RLHFlow Mistral data from 50K to 200K samples and retrained PathFinder-PRM. As shown in Table 5, this increase from 400K to 550K total training samples did not result in improved performance. In fact, we observe a slight drop across all benchmarks: ProcessBench performance decreased from 69.5 to 68.75 Avg.F1, PRMBench from 67.7 to 67.4, and reward-guided search accuracy dropped from 48.3 to 47.5.\n1193\t\n1194\tThese findings suggest that the benefits of augmenting training with weaker model-generated traces (e.g., from Mistral-7B) may saturate quickly. Simply increasing the volume of such data does not necessarily lead to improved generalization, and may even slightly degrade performance. This underscores the importance of data quality and the nuanced role of diversity over quantity in training PRMs. We leave further study into effective feedback curation and dataset composition to future work.\n1195\t\n1196\t<table border=\"1\">\n1197\t<thead>\n1198\t<tr>\n1199\t<th>Model</th>\n1200\t<th># Total samples</th>\n1201\t<th># Mistral samples</th>\n1202\t<th>ProcessBench</th>\n1203\t<th>PRMBench</th>\n1204\t<th>Reward Guided Search (PRM@8)</th>\n1205\t</tr>\n1206\t</thead>\n1207\t<tbody>\n1208\t<tr>\n1209\t<td>PathFinder-PRM-7B-PRM800K</td>\n1210\t<td>350K</td>\n1211\t<td>0</td>\n1212\t<td>65.2</td>\n1213\t<td>65.0</td>\n1214\t<td>46.9</td>\n1215\t</tr>\n1216\t<tr>\n1217\t<td>PathFinder-PRM-7B</td>\n1218\t<td>400K</td>\n1219\t<td>50K</td>\n1220\t<td>69.5</td>\n1221\t<td>67.7</td>\n1222\t<td>48.3</td>\n1223\t</tr>\n1224\t<tr>\n1225\t<td>PathFinder-PRM-7B</td>\n1226\t<td>550K</td>\n1227\t<td>200K</td>\n1228\t<td>68.75</td>\n1229\t<td>67.4</td>\n1230\t<td>47.5</td>\n1231\t</tr>\n1232\t</tbody>\n1233\t</table>\n1234\t\n1235\tTable 5: Effect of scaling RLHFlow Mistral data on PathFinder-PRM performance.## C Design Choice: Two Forward Passes over Autoregressive Multi-Token Prediction\n1236\t\n1237\tIn PathFinder-PRM, we adopt a two-forward-pass approach to predict intermediate error labels—Math Error and Consistency Error—followed by a final reward score for correctness. This contrasts with autoregressive decoding, which would generate all three labels sequentially. The motivation behind this design is to minimize error cascading between dependent predictions. Specifically, we aim to predict Math and Consistency labels independently in the first forward pass to prevent the Consistency prediction from being influenced by the previously generated Math label. This is a potential issue in the autoregressive setup since each token depends on the ones before it.\n1238\t\n1239\tIn our setup, a single language modeling head is used without any task-specific heads. During the first forward pass, we construct the input as: [PRM Input], Math: <mask>, Consistency: <mask>, where the two special <mask> tokens represent the target positions for Math and Consistency labels. The model is trained to produce the correct label tokens at these masked positions, allowing us to decode both predictions simultaneously without one influencing the other.\n1240\t\n1241\tIn the second forward pass, we supply the previously predicted Math and Consistency tokens in place, and append a third <mask> token to infer the final correctness label: [PRM Input], Math: predicted\\_label, Consistency: predicted\\_label, Correctness: <mask>. The probability corresponding to the positive reward token at the final mask position is then used as the model’s output reward score.\n1242\t\n1243\tThis inference method avoids sequential decoding and uses only masked forward passes, enabling clearer modular supervision and avoiding implicit dependency leakage between intermediate labels. During training, a similar masked format is used. This clean separation helps PathFinder-PRM to better capture independent error signals and contributes to its robustness.\n1244\t\n1245\t---\n1246\t\n1247\t**Algorithm 1** PathFinder-PRM Inference via Two Forward Passes\n1248\t\n1249\t---\n1250\t\n1251\t**Require:** Prompt  $P$ , PathFinder-PRM\n1252\t\n1253\t```\n1254\t1: // First Forward Pass: Predict Math and Consistency Labels\n1255\t2:  $Input_1 \\leftarrow concatenate(P, \"Math: <mask>\", \"Consistency: <mask>\")$ \n1256\t3:  $Logits_1 \\leftarrow PathFinder-PRM.forward(Input_1)$ \n1257\t4:  $pred_{math} \\leftarrow argmax(Logits_1 \\text{ at Math mask position})$ \n1258\t5:  $pred_{consistency} \\leftarrow argmax(Logits_1 \\text{ at Consistency mask position})$ \n1259\t\n1260\t6: // Second Forward Pass: Predict Correctness/Reward Label\n1261\t7:  $Input_2 \\leftarrow concatenate(P, \"Math: \", pred_{math},$ \n1262\t   \"Consistency: \", pred_{consistency},\n1263\t   \"Correctness: <mask>\")\n1264\t\n1265\t8:  $Logits_2 \\leftarrow PathFinder-PRM.forward(Input_2)$ \n1266\t9:  $reward_{prob} \\leftarrow softmax(Logits_2 \\text{ at Correctness mask position})$ \n1267\t10:  $pred_{reward} \\leftarrow reward_{prob} \\text{ of } \\langle + \\rangle \\text{ token}$ \n1268\t11: return  $pred_{math}, pred_{consistency}, pred_{reward}$ \n1269\t```\n1270\t\n1271\t---## D Data Annotation Prompt\n1272\t\n1273\tThe prompt below was utilized with DeepSeek-R1-Distill-Qwen-32B to synthesize the 3-dimensional categorical score vectors assigned to each sample in the dataset used to train PathFinder-PRM\n1274\t\n1275\t### Prompt for dataset labelling\n1276\t\n1277\tYou are an analytical math instructor grading a student's work. Think step-by-step through your analysis. Below is the math question, the previous steps by the student, and the current step to evaluate.\n1278\t\n1279\t{context}\n1280\t\n1281\tYour task is to rigorously examine the current step and determine if it contains ANY mathematical errors. Assign binary scores (0 = wrong, 1 = correct) based on three criteria:\n1282\t\n1283\tA) Mathematical logic — Is the current step, **on its own**, mathematically valid? Check for: • Calculation errors • Incorrect formula application • Invalid operations or simplifications • Algebra mistakes or sign errors • Incorrect assertions\n1284\t\n1285\tB) Consistency — Is the current step logically consistent with: • Established ground truth • Previous steps • Any constraints or conditions established earlier • The mathematical domain applicable to this problem\n1286\t\n1287\tC) Simplicity and optimality — is this step an efficient next step toward the solution? Check for: • Redundant statements: factually correct statements that do not help progress toward the solution. • Circular logic: does this step come to a conclusion already previously established? • Non-clarity: Are the assertions made in this step ambiguous in a way that obscures their purpose? • Optimality: is the **idea** of this step the near optimal approach one would take to solve the problem?\n1288\t\n1289\tDouble check all listed criterion here explicitly in your reasoning. In your analysis, be sensitive to subtle issues like missing pre-requisites/assumptions, correct-looking statements with slight errors and high confidence statements containing errors.\n1290\t\n1291\t### IMPORTANT POINTS:\n1292\t\n1293\t- If you find ANY error, even a minor one, you **MUST** assign a score of 0 to the appropriate criteria. Be skeptical and verify all claims thoroughly.\n1294\t\n1295\t- For incorrect steps, wherever possible, attempt to categorize the issue as violating **one of the three criterion** (i.e., assign score 0 to **only one category**). Assign multiple 0 scores only for serious errors.\n1296\t\n1297\tYou must format your answer as below:\n1298\t\n1299\tReasoning:\n1300\t\n1301\t{{Provide detailed analysis, showing all verification steps and explicitly identifying any errors found}}\n1302\t\n1303\tFinal answers:\n1304\t\n1305\tScore A:\n1306\t\n1307\t{{0 or 1 only}}\n1308\t\n1309\tScore B:\n1310\t\n1311\t{{0 or 1 only}}\n1312\t\n1313\tScore C:\n1314\t\n1315\t{{0 or 1 only}}### E Training HyperParameters\n1316\t\n1317\tTable 6 contains the hyperparameters used to train PathFinder-PRM. We used the Transformers library Trainer implementation to train our model in a seq-to-seq manner (Wolf et al., 2020).\n1318\t\n1319\t<table border=\"1\"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Model</td><td>QwenQwen2.5-Math-7B-Instruct</td></tr><tr><td>Torch Data type</td><td>bfloat16</td></tr><tr><td>Attention Implementation</td><td>flash attention 2</td></tr><tr><td>Per-device Train Batch Size</td><td>2</td></tr><tr><td>Gradient Accumulation Steps</td><td>32</td></tr><tr><td>Learning Rate</td><td>1.0e-05</td></tr><tr><td>Number of Training Epochs</td><td>4</td></tr><tr><td>LR Scheduler Type</td><td>cosine</td></tr><tr><td>Max Gradient Norm</td><td>1.0</td></tr><tr><td>Warmup Ratio</td><td>0.1</td></tr><tr><td>Seed</td><td>42</td></tr><tr><td>BF16</td><td>true</td></tr><tr><td>Optimizer</td><td>adam</td></tr><tr><td>Gradient Checkpointing</td><td>True</td></tr></tbody></table>\n1320\t\n1321\tTable 6: Training Configuration for Qwen2.5-Math-7B-Instruct.\n1322\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02ab4ca8-6cbb-428d-86b2-c377726b4b5e",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "2cfeca03-f38d-4e17-bcfb-96f050fa512a",
+            "sourceToolAssistantUUID": "02ab4ca8-6cbb-428d-86b2-c377726b4b5e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-27T22:25:09.191Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have the complete paper content. Let me also check for any information about inter-annotator agreement."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2cfeca03-f38d-4e17-bcfb-96f050fa512a",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTriyShmNkF2bZb4Z4kt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b82770d2-107e-4331-98ea-b937b81e9bd1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqqFwUenQdH9a2haTssC8x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 25646,
+                "cache_read_input_tokens": 18047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25646,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-27T22:25:10.134Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Spbm7uJ9Em2Go1Kd1uYuJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"PathFinder-PRM\" inter-annotator agreement kappa annotation quality human evaluation error type reliability"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b82770d2-107e-4331-98ea-b937b81e9bd1",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTriyShmNkF2bZb4Z4kt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "12dc3410-7522-487c-847b-112855cc1e30",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqqFwUenQdH9a2haTssC8x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 25646,
+                "cache_read_input_tokens": 18047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25646,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-27T22:25:11.491Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WkS1WvHxxNm4gds4pzwur3",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/declare-lab/PathFinder-PRM-7B",
+                "prompt": "Extract all technical details about the model: architecture, how error types are handled, any mention of annotation quality, inter-annotator agreement, model card details, limitations, and any other technical information."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12dc3410-7522-487c-847b-112855cc1e30",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTriyShmNkF2bZb4Z4kt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "11983891-3b8e-416a-bb45-3f3c622760a9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EqqFwUenQdH9a2haTssC8x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 25646,
+                "cache_read_input_tokens": 18047,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25646,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-27T22:25:17.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013Spbm7uJ9Em2Go1Kd1uYuJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"PathFinder-PRM\" inter-annotator agreement kappa annotation quality human evaluation error type reliability\"\n\nLinks: [{\"title\":\"Inter-Annotator Agreement: Building Datasets | Keymakr\",\"url\":\"https://keymakr.com/blog/measuring-inter-annotator-agreement-building-trustworthy-datasets/\"},{\"title\":\"+ CS140 February 28, 2017 Inter annotator agreement\",\"url\":\"https://www.cs.brandeis.edu/~cs140b/CS140b_slides/CS140_Lect_7_InterAnnotatorAgreement.pdf\"},{\"title\":\"Inter-annotator Agreement | OpenTrain Glossary\",\"url\":\"https://www.opentrain.ai/glossary/inter-annotator-agreement/\"},{\"title\":\"Assessing Inter-Annotator Agreement for Medical Image Segmentation - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC10062409/\"},{\"title\":\"Inter-Annotator Agreement: a key metric in Labeling\",\"url\":\"https://www.innovatiana.com/en/post/inter-annotator-agreement\"},{\"title\":\"DiPietro-Hazari Kappa: A Novel Metric for Assessing Labeling Quality via   Annotation\",\"url\":\"https://arxiv.org/pdf/2209.08243\"},{\"title\":\"Inter-Annotator Agreement: An Introduction to Cohen’s Kappa Statistic | by Surge AI | Medium\",\"url\":\"https://surge-ai.medium.com/inter-annotator-agreement-an-introduction-to-cohens-kappa-statistic-dcc15ffa5ac4\"}]\n\nBased on my search results, I found information about inter-annotator agreement, kappa coefficients, and annotation quality evaluation. However, the search did not return specific results about \"PathFinder-PRM\" as a dataset or project.\n\nHere's what I found regarding the general concepts in your query:\n\n**Inter-Annotator Agreement and Kappa:**\n\nInter-annotator agreement is a statistical measure used to assess the degree to which different annotators give consistent labels or ratings to the same items within a dataset. Common statistical measures used to assess inter-annotator agreement include Cohen's Kappa, Fleiss' Kappa, and the Intraclass Correlation Coefficient, each suitable for different types of data and annotation scenarios.\n\n**Annotation Quality and Reliability:**\n\nHigh inter-annotator agreement indicates reliable, high-quality data, as it suggests that the labeling is clear and unambiguous, and that different human annotators interpret the data similarly. Low agreement may indicate issues with the data, the complexity of the task, or the clarity of the annotation guidelines.\n\n**Error Analysis:**\n\nBy regularly checking the Inter Annotator Agreement, it is possible to identify trends and recurring problems in the evaluations and optimize the annotation process by implementing corrective measures over time to improve the reliability of dataset evaluations.\n\nIf you're looking for specific information about the PathFinder-PRM dataset or project, could you provide additional context about what this refers to? That might help me conduct a more targeted search.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12dc3410-7522-487c-847b-112855cc1e30",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "b41eb80d-94e3-4280-a3a1-9736e0f95ae1",
+            "sourceToolAssistantUUID": "12dc3410-7522-487c-847b-112855cc1e30",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-27T22:25:25.102Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WkS1WvHxxNm4gds4pzwur3",
+              "type": "tool_result",
+              "content": "# PathFinder-PRM-7B: Technical Details\n\n## Model Architecture & Design\n\n**Core Architecture:**\n- **Type:** Hierarchical Discriminative Process Reward Model (PRM)\n- **Base Model:** Qwen/Qwen2.5-Math-7B-Instruct (7B parameters)\n- **Tensor Type:** BF16\n- **Model Size:** 8B params\n\n**Hierarchical Error Classification:**\nThe model breaks down error judgment into **two separate components**:\n1. **Mathematical Correctness** - whether reasoning is mathematically valid\n2. **Logical Consistency** - whether steps follow logically\n3. **Final Decision** - combines both to determine if reasoning leads to correct solution\n\nThis is done through a **two-stage inference approach**:\n- **Stage 1:** Evaluates math reasoning and consistency using mask tokens\n- **Stage 2:** Predicts overall correctness based on Stage 1 results\n\n## Training Data & Annotation\n\n**Dataset Composition:**\n- **PRM800K** - High-quality human annotated data\n- **PathFinder-600K dataset** - Additional automatically annotated samples (~400K total samples used)\n- Combined approach enables robustness to common failure patterns\n\n**Note:** The page does not explicitly mention inter-annotator agreement metrics or specific annotation quality measurements.\n\n## Technical Implementation Details\n\n### Special Tokens\n```python\npos_token_id = tokenizer.encode(\"<+>\")[0]      # Positive prediction\nneg_token_id = tokenizer.encode(\"<->\")[0]      # Negative prediction\nmask_token_id = tokenizer.encode(\"<extra>\")[0] # Mask for predictions\n```\n\n### Two-Forward-Pass Inference\n\n**Stage 1 - Math & Consistency Evaluation:**\n```python\n# Detects <extra> mask tokens and predicts <+> or <->\nmasked_logits = outputs.logits[shifted_mask][:, allowed_token_ids]\npredicted_indices = masked_logits.argmax(dim=-1)\n\nif '<->' in decoded_tokens:\n    return -1  # Error found\n```\n\n**Stage 2 - Overall Correctness Scoring:**\n```python\n# Replaces mask tokens with predictions\n# Adds \"Correctness: <extra>\" to input\n# Returns probability score via softmax\nprobs_pos_neg = F.softmax(restricted_logits, dim=-1)\nreturn probs_pos_neg[0][0].cpu().item()  # Returns score [0-1]\n```\n\n## Evaluation Benchmarks\n\n**Benchmarks Tested:**\n- ProcessBench (GSM8K, MATH, Olympiad, OmniMath)\n- PRMBench (Simplicity, Soundness, Sensitivity metrics)\n- Reward-Guided Greedy Search with:\n  - MATH500\n  - AIME24\n  - AMC23\n  - Minerva Math\n  - Olympiad Bench\n  - College Math\n\n## Performance Results\n\n### PRMBench Overall Scores\n| Model | Score |\n|-------|-------|\n| PathFinder-PRM-7B | **67.7** |\n| Qwen2.5-Math-PRM-7B | 65.5 |\n| ReasonEval-7B | 60.0 |\n\n**Strengths:**\n- Best \"Simplicity\" (58.9) - efficient error detection\n- Best \"Sensitivity\" (76.9) - catches subtle errors\n- Competitive \"Soundness\" (70.8)\n\n### ProcessBench Results (Avg. F1)\n| Model | Score |\n|-------|-------|\n| Qwen2.5-Math-PRM-7B | 73.5 (1.5M samples) |\n| **PathFinder-PRM-7B** | **69.5** (~400K samples) |\n\n### Reward-Guided Greedy Search (PRM@8)\n| Metric | PathFinder-PRM-7B | Benchmark |\n|--------|-------------------|-----------|\n| Average | **48.3** | Best open-source |\n| AIME24 | **20.0** | Best |\n| College Math | **55.0** | Best |\n\n## Limitations & Trade-offs\n\n**Explicitly Stated:**\n- Performs ~4 points lower than Qwen2.5-Math-PRM-7B on ProcessBench (which uses 3x more training data)\n- Lower performance on Olympiad (36.5) and Minerva (36.7) in Reward-Guided Search compared to other benchmarks\n\n**Implicit Limitations (not stated):**\n- Model card does not explicitly detail failure modes or known limitations\n- No inter-annotator agreement statistics provided\n- No discussion of edge cases or failure patterns\n\n## License & Resources\n\n- **License:** MIT\n- **Repository:** https://github.com/declare-lab/PathFinder-PRM\n- **Paper:** https://arxiv.org/abs/2505.19706 (2505.19706)\n- **Organization:** Deep Cognition and Language Research (DeCLaRe) Lab"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11983891-3b8e-416a-bb45-3f3c622760a9",
+            "isSidechain": true,
+            "promptId": "11c0ed01-00cd-4aa6-94b3-6d386d5b1cba",
+            "agentId": "a91780e1d5a06a47f",
+            "type": "user",
+            "uuid": "6944c175-45fd-426e-a472-4268700254a9",
+            "sourceToolAssistantUUID": "11983891-3b8e-416a-bb45-3f3c622760a9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-27T22:26:34.795Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive information. Let me compile the detailed technical findings.\n\n---\n\nHere is my detailed technical analysis of PathFinder-PRM (arXiv 2505.19706):\n\n---\n\n## 1. Error Type Definitions\n\nPathFinder-PRM defines exactly **two** error categories, plus a third \"correctness/optimality\" label:\n\n**Math Errors:** Mistakes in arithmetic or algebraic manipulation, incorrect formula application, or invalid implications. This covers computational errors -- the step's *execution* is wrong even if the approach is sound.\n\n**Consistency Errors:** Logical inconsistencies with the question, prior steps, or established constraints. This covers *coherence* violations -- the step contradicts something previously established or the problem statement itself.\n\n**Correctness (Step Optimality):** The third dimension in their label vector captures whether a step is both error-free AND optimally contributes to solving the problem. This accounts for redundant statements, circular logic, ambiguity, and sub-optimal approaches.\n\nEach step gets a three-dimensional binary vector: `c_t = (c_t^math, c_t^consistency, c_t^correctness)` where each component is in {0, 1}.\n\nImportant nuance from their annotation prompt (Appendix D): The LLM annotator (DeepSeek-R1-Distill-Qwen-32B) is instructed that \"for incorrect steps, wherever possible, attempt to categorize the issue as violating **one of the three criterion** (i.e., assign score 0 to **only one category**). Assign multiple 0 scores only for serious errors.\" This means they deliberately push toward single-category attribution.\n\n---\n\n## 2. Training Mechanism -- This is Critical for Your Rebuttal\n\n**No dual heads. No auxiliary loss. No separate classification heads.** This is a key architectural point.\n\nThey use **a single language modeling head** (the standard LM head of Qwen2.5-Math-7B-Instruct) and extend the tokenizer with three special tokens: `<+>` (positive), `<->` (negative), `<extra>` (mask).\n\n**Two-forward-pass design at inference (and mirrored during training):**\n\n- **Pass 1:** Input is constructed as `[PRM Input], Math: <mask>, Consistency: <mask>`. The model predicts `<+>` or `<->` at both mask positions *simultaneously* in a single forward pass. The key design choice: Math and Consistency are predicted *independently* (not autoregressively) to prevent error cascading -- they explicitly state they want to avoid the Consistency prediction being influenced by the Math label.\n\n- **Pass 2:** The predicted Math and Consistency labels are filled in, and a third mask is appended: `[PRM Input], Math: <predicted_label>, Consistency: <predicted_label>, Correctness: <mask>`. The softmax probability of the `<+>` token at the Correctness mask position becomes the final reward score.\n\n**Training objective:** Standard cross-entropy loss computed *only on the label tokens* (the masked positions). Each training example has two parts mirroring the two inference passes:\n1. Error Detection Target: `Prompt + Math: <+>/<->, Consistency: <+>/<->`\n2. Reward Estimation Target: `Prompt + Math: [label], Consistency: [label] + Correctness: <+>/<->`\n\n**Training hyperparameters:** Qwen2.5-Math-7B-Instruct base, bfloat16, flash attention 2, batch size 2 per device, gradient accumulation 32, LR 1e-5, 4 epochs, cosine schedule, warmup ratio 0.1, DeepSpeed Zero-2.\n\n**This is architecturally elegant but simple** -- there are no separate heads, no multi-task loss weighting, no embedding-based classifiers. It is all done through the language modeling objective with masked token prediction.\n\n---\n\n## 3. Results Breakdown -- Were Gains Over Strong Baselines?\n\n### PRMBench (Overall PRMScore):\n| Model | Score |\n|---|---|\n| **PathFinder-PRM-7B** | **67.7** |\n| Qwen2.5-Math-PRM-7B (trained on ~1.5M samples) | 65.5 |\n| ReasonEval-7B | 60.0 |\n| Qwen2.5-Math-7B-PRM800K | 58.3 |\n| RLHFlow-Mistral-8B | 54.4 |\n| Math-Shepherd-7B | 47.0 |\n\nThe +2.2 gain over Qwen2.5-Math-PRM-7B is indeed over the **strongest discriminative PRM baseline**, which itself was trained on ~1.5M samples (3x more data). PathFinder-PRM also beat all LLM-as-judge models except Gemini-2.0-thinking-exp (68.8). So GPT-4o (66.8) and QwQ-Preview-32B (63.6) were beaten.\n\n### prm@8 (Reward-Guided Greedy Search, avg across 6 benchmarks):\n| Model | Avg |\n|---|---|\n| **PathFinder-PRM-7B** | **48.3** |\n| PathFinder-PRM-7B-PRM800K | 46.9 |\n| Qwen2.5-Math-PRM-7B | 46.8 |\n| Skywork-PRM-7B | 44.9 |\n| Math-PSA-7B | 44.5 |\n\nThe +1.5 gain (48.3 vs 46.8) is over Qwen2.5-Math-PRM-7B, which was the strongest baseline. This is a legitimate strong baseline -- it uses 3x more training data.\n\n### ProcessBench (Avg F1):\n| Model | Avg F1 |\n|---|---|\n| Qwen2.5-Math-PRM-7B (~1.5M samples) | 73.5 |\n| **PathFinder-PRM-7B (~400K samples)** | **69.5** |\n| PathFinder-PRM-7B-PRM800K | 65.2 |\n| Qwen2.5-Math-7B-PRM800K | 58.5 |\n\nOn ProcessBench, they are actually 4 points *behind* Qwen2.5-Math-PRM-7B, but with 3x less data. Within the PRM800K-only category, their gain over the best baseline (Qwen2.5-Math-7B-PRM800K) is massive: +6.7 F1.\n\n---\n\n## 4. Inter-Annotator Agreement\n\n**They did NOT report inter-annotator agreement.** There is no kappa score, no human agreement measurement anywhere in the paper or appendices. The error type labels for erroneous steps were generated entirely by DeepSeek-R1-Distill-Qwen-32B (an LLM), not human annotators. Their quality control was limited to **consistency filtering** -- removing labels that are logically incompatible with existing human/MC labels (e.g., filtering out cases where DeepSeek labels a step as (1,1,1) when the human label was -1).\n\n**This is a significant gap you can exploit in your rebuttal.** Their error taxonomy is validated only indirectly through downstream task performance, not through any human agreement study on the error types themselves.\n\n---\n\n## 5. Ablation Results -- Detailed Breakdown\n\nTwo ablations were run:\n\n### Ablation A: \"w/o Separate Error Categories\" (merge Math + Consistency into a single error detection step, but keep hierarchical structure)\n- ProcessBench: 67.0 vs 69.5 full model (-2.5 F1)\n- PRMBench: 67.3 vs 67.7 full model (-0.4 PRMScore, very small)\n- prm@8: 45.4 vs 48.3 full model (**-2.9 points** -- the biggest ablation effect)\n\n### Ablation B: \"w/o Separate Subtask Prediction\" (remove hierarchy entirely, predict correctness directly as traditional PRMs do)\n- ProcessBench: 67.6 vs 69.5 full model (-1.9 F1)\n- PRMBench: 64.9 vs 67.7 full model (-2.8 PRMScore)\n- prm@8: 45.5 vs 48.3 full model (-2.8 points)\n\n**Key takeaway for your rebuttal:** The separation into two error categories (Math vs Consistency) has a *modest* effect on diagnostic benchmarks (only -0.4 on PRMBench) but a larger effect on downstream reward-guided search (-2.9 on prm@8). The hierarchical structure itself (Ablation B) matters more for PRMBench (-2.8). So the *category decomposition* specifically is less validated on the fine-grained detection benchmark and more validated on the end-to-end task.\n\n### Data Scaling Ablation (Appendix B):\nIncreasing RLHFlow Mistral data from 50K to 200K (total 550K) actually *hurt* performance slightly:\n- ProcessBench: 69.5 -> 68.75\n- PRMBench: 67.7 -> 67.4\n- prm@8: 48.3 -> 47.5\n\nThis shows diminishing/negative returns from more weak-model data.\n\n---\n\n## 6. Limitations and Extension to More Categories\n\nThe paper's stated limitations are narrow:\n- **Only 7B models tested** due to compute constraints.\n- **No discussion of extending to more error categories.** This is a notable omission. They chose exactly two categories (Math, Consistency) without justifying why two is optimal or exploring finer-grained taxonomies.\n\n**Implicit limitations you can highlight:**\n1. **No inter-annotator agreement** -- the error taxonomy is not validated by humans.\n2. **Text-only, math-only** -- no multimodal reasoning, no non-mathematical domains.\n3. **LLM-generated labels** -- the three-dimensional labels for erroneous steps come entirely from DeepSeek-R1-Distill-Qwen-32B, creating a dependency on that model's judgment quality.\n4. **Two-forward-pass cost** -- doubles inference compute per step.\n5. **No analysis of error type confusion** -- they never report how often Math errors are mislabeled as Consistency errors or vice versa.\n6. **Fixed binary taxonomy** -- their annotation prompt explicitly discourages multi-category errors (\"assign score 0 to only one category\"), which may oversimplify real error patterns.\n7. **The modest ablation gain from category separation on PRMBench** (only -0.4) suggests the error typing itself may not be the primary driver of gains -- the hierarchical structure may matter more.\n\n---\n\n## Differentiation Points for Your Rebuttal\n\nBased on this analysis, here are concrete angles to argue your multimodal extension is NOT incremental:\n\n1. **Their error taxonomy is minimal and unvalidated** -- two categories with no human agreement study. A multimodal extension inherently requires new error categories (visual grounding errors, cross-modal consistency errors, spatial reasoning errors) that PathFinder-PRM's framework does not address.\n\n2. **Their architecture is text-only by design** -- the two-forward-pass masked prediction scheme over `<+>/<->` tokens is tightly coupled to text-based reasoning chains. Extending to multimodal inputs requires fundamentally different design choices for how error signals are extracted from visual content.\n\n3. **They never discuss extensibility** -- the paper contains no analysis of whether their approach generalizes to more categories, different domains, or different modalities. The data scaling ablation even shows fragility.\n\n4. **The error type decomposition itself is a modest contributor** -- their own ablation shows only -0.4 on PRMBench from removing category separation. The hierarchical structure (error detection before reward) is the bigger contributor. If your work proposes novel hierarchical structures for multimodal settings, that is a distinct contribution.\n\n5. **Their annotation pipeline is math-specific** -- the prompt template, the label definitions, and the filtering logic are all designed around mathematical text reasoning. Multimodal error types require entirely different annotation frameworks.\n\nSources:\n- [PathFinder-PRM Paper (arXiv:2505.19706)](https://arxiv.org/abs/2505.19706)\n- [PathFinder-PRM PDF](https://arxiv.org/pdf/2505.19706)\n- [PathFinder-PRM GitHub Repository](https://github.com/declare-lab/PathFinder-PRM)\n- [PathFinder-PRM-7B Model Card on HuggingFace](https://huggingface.co/declare-lab/PathFinder-PRM-7B)\n- [HuggingFace Papers Page for 2505.19706](https://huggingface.co/papers/2505.19706)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6944c175-45fd-426e-a472-4268700254a9",
+            "isSidechain": true,
+            "agentId": "a91780e1d5a06a47f",
+            "requestId": "req_011CbTrkSK1P51nrqzthEDyR",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6c4c0154-2868-45ea-ac8d-4315618a21d1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "b0104aa9-f62f-48d7-93dc-722aa4bbc136",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fiv1UGPdSBKDupt1o569wr",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2218,
+                "cache_read_input_tokens": 43693,
+                "output_tokens": 3140,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2218
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3140,
+                    "cache_read_input_tokens": 43693,
+                    "cache_creation_input_tokens": 2218,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2218,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-and-read-pathfinder-prm-arxiv-2505-19706-may-2025-error-typing-for.md"
+}

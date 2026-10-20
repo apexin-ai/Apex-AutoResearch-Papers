@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "f42400af09ab8145012e",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: cert_manip_resist_eval ## 运行环境 - 服务器名: seetacloud-rtx6000 - SSH 连接命令: ssh seetacloud-rtx6000 # 必",
+  "task_key": "1b769340-5234-4057-99ed-0cc0a86d3a29",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/1b769340-5234-4057-99ed-0cc0a86d3a29.jsonl",
+    "occurrence": 1,
+    "bytes": 1628932,
+    "sha256": "e07f6d61c3c9a57b6bb88c432745e429f9991b9391d03a27ce35a61fdcc5e0aa"
+  },
+  "statistics": {
+    "messages": 744,
+    "user_turns": 2,
+    "tool_calls": 233,
+    "roles": {
+      "record": 129,
+      "user": 2,
+      "assistant": 146,
+      "tool_call": 233,
+      "tool_result": 233,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "f42400af09ab8145012e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 695,
+      "chunks": [
+        {
+          "path": "f42400af09ab8145012e-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "f42400af09ab8145012e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f42400af09ab8145012e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f42400af09ab8145012e-part-0004.json",
+          "message_count": 157
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "f42400af09ab8145012e-part-0004.json",
+          "message_count": 23
+        },
+        {
+          "path": "f42400af09ab8145012e-part-0005.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-cert-manip-resist-eval-seetacloud-rtx6000-ssh-ssh-seetacloud-r-copy-276.md"
+}

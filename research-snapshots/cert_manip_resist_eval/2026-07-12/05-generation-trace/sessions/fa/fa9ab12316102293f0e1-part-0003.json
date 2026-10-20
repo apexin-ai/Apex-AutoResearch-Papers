@@ -1,0 +1,1313 @@
+{
+  "schema_version": "1.0",
+  "session_id": "fa9ab12316102293f0e1",
+  "rounds": [
+    {
+      "number": 7,
+      "messages": [
+        {
+          "source_line": 293,
+          "timestamp": "2026-05-20T05:43:05.266Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0182QH8NPozEsnsbCnfuQisp",
+              "type": "tool_result",
+              "content": "222\t{\"parentUuid\":\"5eb58a62-f184-4ed6-8c5d-2f4c75412b2a\",\"isSidechain\":false,\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01Cyc1Nrv4LVo2zi51TLC3JA\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"text\",\"text\":\"Both references confirmed. Now let me make my convergence decision and produce the final output.\\n\\n**Convergence check:**\\n- Round 3: refinement-level changes (Fisher correction, ecological validation fix, ICC analysis, CAT differentiation)\\n- Round 4: refinement-level changes (editorial reframing, missing citations, ablation additions, negative controls, cost refinement)\\n- **Two consecutive rounds of refinement without structural changes → convergence criterion triggered**\\n- Probability trend: 36% → 39% → 41% → ~42% (diminishing returns confirmed)\\n\\n【阶段】: 迭代第 4 轮\\n\\n【交叉验证调研】:\\n1. **BHI (arXiv:2602.11674)** — 搜索确认存在：\\\"Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of LLMs\\\"，Feb 2026，从 Capability Discrimination / Anti-Saturation / Impact 三轴诊断 benchmark 健康度。106 benchmarks, 91 models。确为高度相关的 concurrent work。发掘 agent 发掘点 3 成立。\\n2. **\\\"Measuring what Matters\\\" (arXiv:2511.04703)** — 搜索确认存在：NeurIPS 2025 D&B track，445 benchmarks，29 expert reviewers 的 construct validity 系统审查。确为高相关性工作。发掘 agent 发掘点 3 成立。\\n\\n【发掘 agent 有效建议采纳】:\\n1. **发掘点 1（impossibility→duality framing）**: ✅ 采纳。将核心 claim 从 \\\"DIF is RL-robust\\\" 升级为 \\\"contamination benefit and DIF detectability are fundamentally coupled — no RL procedure can eliminate one without eliminating the other\\\"。这是纯 editorial 升级，不改变技术内容但显著提升 novelty perception。\\n2. **发掘点 2（task-familiarity diagnostic 提升）**: 部分采纳。保持 corollary 定位但增加独立 research question framing（\\\"Can we decompose model improvement into familiarity, contamination, and capability components?\\\"）。不升级为 co-equal contribution，因 uniformity 假设需实验验证。\\n3. **发掘点 3（BHI + Measuring what Matters 引用）**: ✅ 已验证，采纳。两篇都是高相关 concurrent work，遗漏会被审稿人注意到。\\n4. **发掘点 4（三重属性唯一性论证）**: ✅ 采纳。简洁论证 why black-box matters (closed-source models)、why group-level matters (leaderboard scale)、why RL-robust matters (Wang et al.)，从 \\\"happens to have\\\" 变为 \\\"fills an identified gap\\\"。\\n5. **发掘点 5（multi-objective RL 边界条件）**: ✅ 采纳。增加简短讨论，逻辑与 accuracy redistribution 类似（benign degradation）。\\n\\n【补救 agent 有效建议采纳】:\\n1. **缺陷 1（ICC/effective sample size feasibility）**: ✅ 采纳。cross-family paired design + 增加 families 至 6-8 + simulation-based power analysis + MDES 报告。\\n2. **缺陷 2（black-box-only ensemble ablation）**: ✅ 采纳。增加 access-level ablation（full / black-box-only / DIF-only），这是支撑 core claim 的关键实验。\\n3. **缺陷 3（human evaluation）**: ✅ 采纳。30-50 items × 2-3 experts per cycle，成本可控。引用 AERA/APA/NCME Standards (2014)。\\n4. **缺陷 4（ATLAS baseline）**: ✅ 采纳（简化版）。在 Experiment 4 增加 Fisher-information-guided item selection 作为 CAT baseline，验证 \\\"CAT cannot handle corrupted item bank\\\" claim。\\n5. **缺陷 5（ecological validity negative control）**: ✅ 采纳。LiveBench fresh items + MMLU-CF parallel control。\\n6. **缺陷 6（equating gate trade-off）**: ✅ 采纳。增加 gate threshold sweep + Pareto frontier + Kolen & Brennan (2014) 标准对齐。\\n7. **缺陷 7（cost breakdown）**: ✅ 采纳。细化为 5 个 cost components + realistic timeline 8-10 weeks。\\n\\n【本轮 proposal 主要变更】:\\n**Idea 层面：**\\n- Core claim 从 \\\"DIF is RL-robust\\\" 升级为 impossibility/duality theorem framing\\n- 三重属性唯一性从观察升级为设计目标论证\\n- Task-familiarity diagnostic 增加 research question framing\\n- 新增 BHI (arXiv:2602.11674) 和 \\\"Measuring what Matters\\\" (arXiv:2511.04703) 差异化\\n- 增加 multi-objective RL 边界条件讨论\\n\\n**实验层面：**\\n- Experiment 1: cross-family paired design, 6-8 families, simulation power analysis\\n- Experiment 2: 增加 access-level ablation (full/black-box-only/DIF-only)\\n- Experiment 3: 增加 30-50 item human evaluation per cycle\\n- Experiment 4: 增加 ATLAS-style CAT baseline\\n- Experiment 1 ecological: MMLU-CF parallel control + LiveBench negative control\\n- Experiment 3: equating gate threshold sweep + Pareto frontier\\n- Cost: 细化 breakdown, timeline 修正为 8-10 weeks\\n\\n【idea 质量评估】: Novelty=强减偏强（duality theorem framing + unique three-property design space filling + formalized impossibility; 减分因子组件非原创） Significance=强减（temporal validity + AI governance + item-level diagnostic; BHI/MwM 嵌入更大学术对话） → idea 天花板约 50%\\n\\n【实验完备性评估】: Technical Soundness=中强偏强（black-box-only ablation 直接支撑 core claim; human eval 补上 content validity; negative controls 消除 confound; 剩余风险仅为 MIMIC-DIF 在 LLM 场景下首次应用） → 地板充分补强\\n\\n【当前概率估计】: [35% - 48%] 中位 42%\\n\\n【决策】: 收敛\\n\\n【决策理由】: 连续 2 轮（Round 3 + Round 4）均为 refinement-level 建议，无结构性变更。概率趋势 36%→39%→41%→42%，增幅递减（3pp→2pp→1pp），明确收敛。两轮 worker 均未发现新的 structural concerns，所有建议均为 \\\"可补救\\\" 的实验完善或 editorial 优化。Proposal 的 core idea、experimental framework、和 narrative structure 已稳定。继续迭代预期回报 <1pp，不值得额外一轮。\\n\\n---\\n\\n## 角色 C：最终输出\\n\\n【优化方案】\\n\\n以下为对比**原始 proposal**（Round 0）的全部修改建议，按 proposal 章节组织：\\n\\n**一、Problem Statement / Framing**\\n\\n1. [标题+核心定位] — 将论文标题和核心 framing 从\\\"closing the detection-generation-equating loop\\\"（工程/系统贡献定位）重构为 **\\\"Benchmark Temporal Validity\\\"**——形式化定义并解决 benchmark 在 adversarial contamination 下的跨时间测量等价性问题 — 命中 **Significance**（从 systems paper 升级为 problem-defining paper）\\n\\n2. [Problem Statement 第 1 段] — 增加三个具体 downstream consequence：AI governance regulatory thresholds 失效、safety-critical deployment 决策建立在虚假分数上、AI safety capability tracking 被 contamination 扭曲 — 命中 **Significance**（让审稿人理解\\\"如果不解决这个问题会怎样\\\"）\\n\\n3. [Problem Statement 相关工作讨论] — 将三个 silo（detection / generation / psychometric）的 framing 系统化，增加 BHI (arXiv:2602.11674) 和 \\\"Measuring what Matters\\\" (arXiv:2511.04703, NeurIPS 2025) 的差异化讨论——BHI 诊断 benchmark 退化但不治疗，MwM 记录 construct validity 危机但不解决，本框架提供 remediation — 命中 **Related Work**（消除 concurrent work 遗漏风险）\\n\\n4. [Why not just create new benchmarks] — 增加显式论证：LiveBench 无跨版本 equating → capability tracking 不可能 → normative data 无法积累 → safety-critical 应用需要 certified equivalence — 命中 **Significance**（正面回应 trivial alternative 威胁）\\n\\n5. [Why not use CAT] — 新增整段讨论 ATLAS (arXiv:2511.04689) 作为 evaluation-time 方案 vs. 本框架作为 benchmark-maintenance-time 方案，论证互补性 — 命中 **Related Work**（堵住 reviewer challenge）\\n\\n**二、Core Contributions**\\n\\n6. [Contribution 重组] — 将四个平行 contributions 重组为 **单一 theoretical spine + enabling infrastructure**：impossibility/duality result 为核心 intellectual contribution，ensemble / generation / equating / graceful degradation 为围绕此核心构建的工程实现。Narrative spine: \\\"contamination benefit and DIF detectability are fundamentally coupled — no RL procedure can break DIF without also breaking contamination itself\\\" — 命中 **Novelty**（从\\\"interesting property\\\"升级为\\\"fundamental impossibility/duality theorem\\\"）\\n\\n7. [Impossibility Result 形式化] — 将直觉论证升级为 formal proposition：定义 Δ_i，证明 DIF power 为 Δ_i 单调函数，处理三个边界条件（ceiling effects → benign; accuracy redistribution → contradicts RL objective; multi-objective RL → benchmark accuracy 通常 dominant + benign degradation） — 命中 **Novelty**（可证伪的理论声明 vs. hand-waving）\\n\\n8. [TTRA Corollary 提升] — 从附带讨论提升为显著 corollary：\\\"DIF provides the first item-level diagnostic for distinguishing task-familiarity artifacts from genuine contamination\\\"，增加 research question framing — 命中 **Novelty + Significance**（从\\\"detection\\\"升级为\\\"understanding/interpretability\\\"）\\n\\n9. [Taxonomy 新增] — 新增四维检测方法 taxonomy 表格（signal level × access × granularity × RL-robustness），并论证 DIF 的三重属性唯一性为 design space gap filling 而非巧合 — 命中 **Related Work + Novelty**\\n\\n10. [Graceful Degradation 理论化] — Zone 阈值从 hard-coded (10%/20%) 改为 TIF-derived benchmark-specific derivation，引用 Lord (1980) — 命中 **Novelty**（从 heuristic 升级为 theoretically grounded）\\n\\n**三、实验设计**\\n\\n11. [Experiment 1 DIF 方法选择] — 将 MH 切换为 **MIMIC model** 作为 primary DIF 分析方法（小样本优势, Finch 2005），MH 降为 robustness check — 命中 **Technical Soundness**（避免 N<200 的 MH power 不足）\\n\\n12. [Experiment 1 cohort 设计] — 从 K=25/group × 2 families 扩展为 N≥100/group × 6-8 families，cross-family paired design；增加 ICC pre-experiment、design-effect-corrected power analysis、MDES 报告、variant diversification（data ordering, injection ratio variation）— 命中 **Technical Soundness**（解决模型独立性和统计 power 问题）\\n\\n13. [Experiment 1 ecological validity] — 改为 pure temporal cohort splitting（消除循环论证）+ MMLU-CF parallel control + LiveBench fresh items negative control + grouping strategy ablation + semi-synthetic experiment — 命中 **Technical Soundness**（消除 confound，增强说服力）\\n\\n14. [Experiment 2 baselines] — 增加 Self-Critique head-to-head + watermarking baseline + **access-level ablation**（full / black-box-only / DIF-only） — 命中 **Technical Soundness**（black-box-only 性能是支撑 core claim 的关键）\\n\\n15. [Experiment 2 variant 定义] — 明确定义 paraphrased variant 和 structural variant，参照 DVD，报告 BLEU/embedding similarity — 命中 **Technical Soundness**（可复现性）\\n\\n16. [Experiment 2 ensemble 统计] — Fisher's method 替换为 Cauchy combination test（任意依赖结构鲁棒），增加 pairwise signal correlation matrix；learned weighting 重新定位为 signal importance analysis + bootstrap stability — 命中 **Technical Soundness**（消除 Type I error inflation）\\n\\n17. [Experiment 2 compute fairness] — 增加 per-signal cost reporting + Pareto frontier + budget-constrained ensemble analysis — 命中 **Technical Soundness**（回应 compute-normalized comparison 质疑）\\n\\n18. [Experiment 3 equating baselines] — 增加 Stocking-Lord、equipercentile、mean/sigma linking — 命中 **Technical Soundness**（补上 standard equating baselines）\\n\\n19. [Experiment 3 human evaluation] — 新增 30-50 items × 2-3 experts per cycle 的 construct/face validity 评估，报告 inter-rater agreement — 命中 **Technical Soundness**（content validity 是 item generation 的 mandatory verification）\\n\\n20. [Experiment 3 gate trade-off] — 增加 equating gate threshold systematic sweep + pass rate vs. equating quality Pareto frontier — 命中 **Technical Soundness**\\n\\n21. [Experiment 4 baselines] — 增加 ATLAS-style CAT baseline（验证 \\\"CAT cannot handle corrupted item bank\\\" claim）— 命中 **Technical Soundness**（实证验证 conceptual claim）\\n\\n22. [Experiment 5 anchor attrition] — 增加 anchor set reduction curve (100%→10%) + minimum anchor set threshold — 命中 **Technical Soundness**（验证 graceful degradation 边界）\\n\\n23. [所有实验指标] — 全部按 item type（factual / procedural / multi-step reasoning）分层报告 — 命中 **Technical Soundness**\\n\\n24. [FDR 框架] — 明确 BH correction at α=0.05 + FDR calibration curves at {0.01, 0.05, 0.10, 0.20} — 命中 **Technical Soundness**\\n\\n25. [Cost estimate] — 细化为 GRPO training / inference / detection / generation / human evaluation 五项 + realistic timeline 8-10 weeks — 命中 **Feasibility**\\n\\n**四、Limitations**\\n\\n26. [Limitations 扩展] — 新增：MIMIC in LLM context 无先例、task-familiarity uniformity 假设、cross-architecture generalization 范围、simulated vs. real contamination gap 的 explicit discussion — 命中 **Technical Soundness**（honest reporting）\\n\\n【主要风险】:\\n1. **MIMIC-DIF 在 LLM-as-examinee 场景下的首次应用缺乏先例**。审稿人可能质疑：将 models 视为 examinees 是否满足 MIMIC 的统计假设（如 within-group independence、正态 latent trait）。ICC pre-experiment 和 simulation-based validation 可部分缓解，但这是一个 genuinely novel application，审稿人有理由要求更强的 validation。\\n2. **Generation pipeline 在 complex reasoning items 上的 equating gate pass rate 可能很低**，导致 self-healing pipeline 对 reasoning-heavy benchmarks（恰恰是最需要 remediation 的）实用性有限。Per-item-type reporting 会暴露这一问题，但 honest reporting 优于 hiding it。\\n\\n【实施评估】:\\n- **计算资源**: 约 1200-1500 GPU-hours total（800h GRPO training for 200+ variants across 6-8 families on A100; 200h inference for benchmark evaluation; 200h for DVD generation sampling and detection signals）。需要 8×A100 集群，约 2-3 周 training + 1 周 inference。Closed-source API costs ~$3000-5000 for 20-30 API models × 5K items × multi-round。\\n- **数据需求**: LiveBench（公开）、MMLU（公开）、GSM8K/GSM1K（公开）、MMLU-CF（公开）。Growing Pains 开源 response data 可 bootstrap calibration panel。所有数据集公开可得。\\n- **人工介入**: 每个 regeneration cycle 30-50 items × 2-3 domain experts 评估 construct/face validity（约 5-8 人时/cycle，3 cycles = 15-24 人时）。Pilot 中可由论文作者兼任 expert rater。\\n- **训练需求**: 200+ GRPO fine-tuned variants（7-9B scale，~4 GPU-hours each）。不需要从头预训练。Student simulation 使用现有 SMART/arXiv:2601.09953 方法，不需额外训练。\\n- **新 Benchmark**: 不需要构建全新 benchmark。使用现有 LiveBench math subset（~200 items）作为 pilot scope。生成的替换 items 构成 regenerated form 但不构成独立 benchmark。\\n- **预估周期**: **8-10 周** realistic timeline：\\n  - Week 1-2: ICC pre-experiment + GRPO training（可并行）\\n  - Week 3: Benchmark inference + detection signal computation\\n  - Week 4-5: Detection ensemble evaluation + ablation\\n  - Week 5-7: Generation + equating + pilot feasibility（3 cycles, sequential）\\n  - Week 7-8: Graceful degradation simulation + anchor attrition\\n  - Week 8-10: Analysis, human evaluation, writing\\n  - Critical path bottleneck: 3 regeneration cycles (sequential, ~1 week each)\"}],\"stop_reason\":\"end_turn\",\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":811,\"cache_creation_input_tokens\":2526,\"cache_read_input_tokens\":157373,\"output_tokens\":6073,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":2526,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[{\"input_tokens\":811,\"output_tokens\":6073,\"cache_read_input_tokens\":157373,\"cache_creation_input_tokens\":2526,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":2526},\"type\":\"message\"}],\"speed\":\"standard\"},\"diagnostics\":null},\"requestId\":\"req_011CbDH9fKy4q9hrG4VvR2aq\",\"type\":\"assistant\",\"uuid\":\"67818ae9-0ac7-45d0-8c87-f5fc5b263b93\",\"timestamp\":\"2026-05-20T05:39:00.191Z\",\"userType\":\"external\",\"entrypoint\":\"sdk-py\",\"cwd\":\"/home/ubuntu/idea_review\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\",\"version\":\"2.1.142\",\"gitBranch\":\"HEAD\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6298186e-1137-4831-b08e-145515e05747",
+            "isSidechain": false,
+            "promptId": "a2eb614a-f4e7-44d1-8dfc-1b893d11b8a9",
+            "type": "user",
+            "uuid": "eaed06d8-ed33-4a5e-832b-1fc26ee23b6b",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f.jsonl",
+                "content": "{\"parentUuid\":\"5eb58a62-f184-4ed6-8c5d-2f4c75412b2a\",\"isSidechain\":false,\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01Cyc1Nrv4LVo2zi51TLC3JA\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"text\",\"text\":\"Both references confirmed. Now let me make my convergence decision and produce the final output.\\n\\n**Convergence check:**\\n- Round 3: refinement-level changes (Fisher correction, ecological validation fix, ICC analysis, CAT differentiation)\\n- Round 4: refinement-level changes (editorial reframing, missing citations, ablation additions, negative controls, cost refinement)\\n- **Two consecutive rounds of refinement without structural changes → convergence criterion triggered**\\n- Probability trend: 36% → 39% → 41% → ~42% (diminishing returns confirmed)\\n\\n【阶段】: 迭代第 4 轮\\n\\n【交叉验证调研】:\\n1. **BHI (arXiv:2602.11674)** — 搜索确认存在：\\\"Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of LLMs\\\"，Feb 2026，从 Capability Discrimination / Anti-Saturation / Impact 三轴诊断 benchmark 健康度。106 benchmarks, 91 models。确为高度相关的 concurrent work。发掘 agent 发掘点 3 成立。\\n2. **\\\"Measuring what Matters\\\" (arXiv:2511.04703)** — 搜索确认存在：NeurIPS 2025 D&B track，445 benchmarks，29 expert reviewers 的 construct validity 系统审查。确为高相关性工作。发掘 agent 发掘点 3 成立。\\n\\n【发掘 agent 有效建议采纳】:\\n1. **发掘点 1（impossibility→duality framing）**: ✅ 采纳。将核心 claim 从 \\\"DIF is RL-robust\\\" 升级为 \\\"contamination benefit and DIF detectability are fundamentally coupled — no RL procedure can eliminate one without eliminating the other\\\"。这是纯 editorial 升级，不改变技术内容但显著提升 novelty perception。\\n2. **发掘点 2（task-familiarity diagnostic 提升）**: 部分采纳。保持 corollary 定位但增加独立 research question framing（\\\"Can we decompose model improvement into familiarity, contamination, and capability components?\\\"）。不升级为 co-equal contribution，因 uniformity 假设需实验验证。\\n3. **发掘点 3（BHI + Measuring what Matters 引用）**: ✅ 已验证，采纳。两篇都是高相关 concurrent work，遗漏会被审稿人注意到。\\n4. **发掘点 4（三重属性唯一性论证）**: ✅ 采纳。简洁论证 why black-box matters (closed-source models)、why group-level matters (leaderboard scale)、why RL-robust matters (Wang et al.)，从 \\\"happens to have\\\" 变为 \\\"fills an identified gap\\\"。\\n5. **发掘点 5（multi-objective RL 边界条件）**: ✅ 采纳。增加简短讨论，逻辑与 accuracy redistribution 类似（benign degradation）。\\n\\n【补救 agent 有效建议采纳】:\\n1. **缺陷 1（ICC/effective sample size feasibility）**: ✅ 采纳。cross-family paired design + 增加 families 至 6-8 + simulation-based power analysis + MDES 报告。\\n2. **缺陷 2（black-box-only ensemble ablation）**: ✅ 采纳。增加 access-level ablation（full / black-box-only / DIF-only），这是支撑 core claim 的关键实验。\\n3. **缺陷 3（human evaluation）**: ✅ 采纳。30-50 items × 2-3 experts per cycle，成本可控。引用 AERA/APA/NCME Standards (2014)。\\n4. **缺陷 4（ATLAS baseline）**: ✅ 采纳（简化版）。在 Experiment 4 增加 Fisher-information-guided item selection 作为 CAT baseline，验证 \\\"CAT cannot handle corrupted item bank\\\" claim。\\n5. **缺陷 5（ecological validity negative control）**: ✅ 采纳。LiveBench fresh items + MMLU-CF parallel control。\\n6. **缺陷 6（equating gate trade-off）**: ✅ 采纳。增加 gate threshold sweep + Pareto frontier + Kolen & Brennan (2014) 标准对齐。\\n7. **缺陷 7（cost breakdown）**: ✅ 采纳。细化为 5 个 cost components + realistic timeline 8-10 weeks。\\n\\n【本轮 proposal 主要变更】:\\n**Idea 层面：**\\n- Core claim 从 \\\"DIF is RL-robust\\\" 升级为 impossibility/duality theorem framing\\n- 三重属性唯一性从观察升级为设计目标论证\\n- Task-familiarity diagnostic 增加 research question framing\\n- 新增 BHI (arXiv:2602.11674) 和 \\\"Measuring what Matters\\\" (arXiv:2511.04703) 差异化\\n- 增加 multi-objective RL 边界条件讨论\\n\\n**实验层面：**\\n- Experiment 1: cross-family paired design, 6-8 families, simulation power analysis\\n- Experiment 2: 增加 access-level ablation (full/black-box-only/DIF-only)\\n- Experiment 3: 增加 30-50 item human evaluation per cycle\\n- Experiment 4: 增加 ATLAS-style CAT baseline\\n- Experiment 1 ecological: MMLU-CF parallel control + LiveBench negative control\\n- Experiment 3: equating gate threshold sweep + Pareto frontier\\n- Cost: 细化 breakdown, timeline 修正为 8-10 weeks\\n\\n【idea 质量评估】: Novelty=强减偏强（duality theorem framing + unique three-property design space filling + formalized impossibility; 减分因子组件非原创） Significance=强减（temporal validity + AI governance + item-level diagnostic; BHI/MwM 嵌入更大学术对话） → idea 天花板约 50%\\n\\n【实验完备性评估】: Technical Soundness=中强偏强（black-box-only ablation 直接支撑 core claim; human eval 补上 content validity; negative controls 消除 confound; 剩余风险仅为 MIMIC-DIF 在 LLM 场景下首次应用） → 地板充分补强\\n\\n【当前概率估计】: [35% - 48%] 中位 42%\\n\\n【决策】: 收敛\\n\\n【决策理由】: 连续 2 轮（Round 3 + Round 4）均为 refinement-level 建议，无结构性变更。概率趋势 36%→39%→41%→42%，增幅递减（3pp→2pp→1pp），明确收敛。两轮 worker 均未发现新的 structural concerns，所有建议均为 \\\"可补救\\\" 的实验完善或 editorial 优化。Proposal 的 core idea、experimental framework、和 narrative structure 已稳定。继续迭代预期回报 <1pp，不值得额外一轮。\\n\\n---\\n\\n## 角色 C：最终输出\\n\\n【优化方案】\\n\\n以下为对比**原始 proposal**（Round 0）的全部修改建议，按 proposal 章节组织：\\n\\n**一、Problem Statement / Framing**\\n\\n1. [标题+核心定位] — 将论文标题和核心 framing 从\\\"closing the detection-generation-equating loop\\\"（工程/系统贡献定位）重构为 **\\\"Benchmark Temporal Validity\\\"**——形式化定义并解决 benchmark 在 adversarial contamination 下的跨时间测量等价性问题 — 命中 **Significance**（从 systems paper 升级为 problem-defining paper）\\n\\n2. [Problem Statement 第 1 段] — 增加三个具体 downstream consequence：AI governance regulatory thresholds 失效、safety-critical deployment 决策建立在虚假分数上、AI safety capability tracking 被 contamination 扭曲 — 命中 **Significance**（让审稿人理解\\\"如果不解决这个问题会怎样\\\"）\\n\\n3. [Problem Statement 相关工作讨论] — 将三个 silo（detection / generation / psychometric）的 framing 系统化，增加 BHI (arXiv:2602.11674) 和 \\\"Measuring what Matters\\\" (arXiv:2511.04703, NeurIPS 2025) 的差异化讨论——BHI 诊断 benchmark 退化但不治疗，MwM 记录 construct validity 危机但不解决，本框架提供 remediation — 命中 **Related Work**（消除 concurrent work 遗漏风险）\\n\\n4. [Why not just create new benchmarks] — 增加显式论证：LiveBench 无跨版本 equating → capability tracking 不可能 → normative data 无法积累 → safety-critical 应用需要 certified equivalence — 命中 **Significance**（正面回应 trivial alternative 威胁）\\n\\n5. [Why not use CAT] — 新增整段讨论 ATLAS (arXiv:2511.04689) 作为 evaluation-time 方案 vs. 本框架作为 benchmark-maintenance-time 方案，论证互补性 — 命中 **Related Work**（堵住 reviewer challenge）\\n\\n**二、Core Contributions**\\n\\n6. [Contribution 重组] — 将四个平行 contributions 重组为 **单一 theoretical spine + enabling infrastructure**：impossibility/duality result 为核心 intellectual contribution，ensemble / generation / equating / graceful degradation 为围绕此核心构建的工程实现。Narrative spine: \\\"contamination benefit and DIF detectability are fundamentally coupled — no RL procedure can break DIF without also breaking contamination itself\\\" — 命中 **Novelty**（从\\\"interesting property\\\"升级为\\\"fundamental impossibility/duality theorem\\\"）\\n\\n7. [Impossibility Result 形式化] — 将直觉论证升级为 formal proposition：定义 Δ_i，证明 DIF power 为 Δ_i 单调函数，处理三个边界条件（ceiling effects → benign; accuracy redistribution → contradicts RL objective; multi-objective RL → benchmark accuracy 通常 dominant + benign degradation） — 命中 **Novelty**（可证伪的理论声明 vs. hand-waving）\\n\\n8. [TTRA Corollary 提升] — 从附带讨论提升为显著 corollary：\\\"DIF provides the first item-level diagnostic for distinguishing task-familiarity artifacts from genuine contamination\\\"，增加 research question framing — 命中 **Novelty + Significance**（从\\\"detection\\\"升级为\\\"understanding/interpretability\\\"）\\n\\n9. [Taxonomy 新增] — 新增四维检测方法 taxonomy 表格（signal level × access × granularity × RL-robustness），并论证 DIF 的三重属性唯一性为 design space gap filling 而非巧合 — 命中 **Related Work + Novelty**\\n\\n10. [Graceful Degradation 理论化] — Zone 阈值从 hard-coded (10%/20%) 改为 TIF-derived benchmark-specific derivation，引用 Lord (1980) — 命中 **Novelty**（从 heuristic 升级为 theoretically grounded）\\n\\n**三、实验设计**\\n\\n11. [Experiment 1 DIF 方法选择] — 将 MH 切换为 **MIMIC model** 作为 primary DIF 分析方法（小样本优势, Finch 2005），MH 降为 robustness check — 命中 **Technical Soundness**（避免 N<200 的 MH power 不足）\\n\\n12. [Experiment 1 cohort 设计] — 从 K=25/group × 2 families 扩展为 N≥100/group × 6-8 families，cross-family paired design；增加 ICC pre-experiment、design-effect-corrected power analysis、MDES 报告、variant diversification（data ordering, injection ratio variation）— 命中 **Technical Soundness**（解决模型独立性和统计 power 问题）\\n\\n13. [Experiment 1 ecological validity] — 改为 pure temporal cohort splitting（消除循环论证）+ MMLU-CF parallel control + LiveBench fresh items negative control + grouping strategy ablation + semi-synthetic experiment — 命中 **Technical Soundness**（消除 confound，增强说服力）\\n\\n14. [Experiment 2 baselines] — 增加 Self-Critique head-to-head + watermarking baseline + **access-level ablation**（full / black-box-only / DIF-only） — 命中 **Technical Soundness**（black-box-only 性能是支撑 core claim 的关键）\\n\\n15. [Experiment 2 variant 定义] — 明确定义 paraphrased variant 和 structural variant，参照 DVD，报告 BLEU/embedding similarity — 命中 **Technical Soundness**（可复现性）\\n\\n16. [Experiment 2 ensemble 统计] — Fisher's method 替换为 Cauchy combination test（任意依赖结构鲁棒），增加 pairwise signal correlation matrix；learned weighting 重新定位为 signal importance analysis + bootstrap stability — 命中 **Technical Soundness**（消除 Type I error inflation）\\n\\n17. [Experiment 2 compute fairness] — 增加 per-signal cost reporting + Pareto frontier + budget-constrained ensemble analysis — 命中 **Technical Soundness**（回应 compute-normalized comparison 质疑）\\n\\n18. [Experiment 3 equating baselines] — 增加 Stocking-Lord、equipercentile、mean/sigma linking — 命中 **Technical Soundness**（补上 standard equating baselines）\\n\\n19. [Experiment 3 human evaluation] — 新增 30-50 items × 2-3 experts per cycle 的 construct/face validity 评估，报告 inter-rater agreement — 命中 **Technical Soundness**（content validity 是 item generation 的 mandatory verification）\\n\\n20. [Experiment 3 gate trade-off] — 增加 equating gate threshold systematic sweep + pass rate vs. equating quality Pareto frontier — 命中 **Technical Soundness**\\n\\n21. [Experiment 4 baselines] — 增加 ATLAS-style CAT baseline（验证 \\\"CAT cannot handle corrupted item bank\\\" claim）— 命中 **Technical Soundness**（实证验证 conceptual claim）\\n\\n22. [Experiment 5 anchor attrition] — 增加 anchor set reduction curve (100%→10%) + minimum anchor set threshold — 命中 **Technical Soundness**（验证 graceful degradation 边界）\\n\\n23. [所有实验指标] — 全部按 item type（factual / procedural / multi-step reasoning）分层报告 — 命中 **Technical Soundness**\\n\\n24. [FDR 框架] — 明确 BH correction at α=0.05 + FDR calibration curves at {0.01, 0.05, 0.10, 0.20} — 命中 **Technical Soundness**\\n\\n25. [Cost estimate] — 细化为 GRPO training / inference / detection / generation / human evaluation 五项 + realistic timeline 8-10 weeks — 命中 **Feasibility**\\n\\n**四、Limitations**\\n\\n26. [Limitations 扩展] — 新增：MIMIC in LLM context 无先例、task-familiarity uniformity 假设、cross-architecture generalization 范围、simulated vs. real contamination gap 的 explicit discussion — 命中 **Technical Soundness**（honest reporting）\\n\\n【主要风险】:\\n1. **MIMIC-DIF 在 LLM-as-examinee 场景下的首次应用缺乏先例**。审稿人可能质疑：将 models 视为 examinees 是否满足 MIMIC 的统计假设（如 within-group independence、正态 latent trait）。ICC pre-experiment 和 simulation-based validation 可部分缓解，但这是一个 genuinely novel application，审稿人有理由要求更强的 validation。\\n2. **Generation pipeline 在 complex reasoning items 上的 equating gate pass rate 可能很低**，导致 self-healing pipeline 对 reasoning-heavy benchmarks（恰恰是最需要 remediation 的）实用性有限。Per-item-type reporting 会暴露这一问题，但 honest reporting 优于 hiding it。\\n\\n【实施评估】:\\n- **计算资源**: 约 1200-1500 GPU-hours total（800h GRPO training for 200+ variants across 6-8 families on A100; 200h inference for benchmark evaluation; 200h for DVD generation sampling and detection signals）。需要 8×A100 集群，约 2-3 周 training + 1 周 inference。Closed-source API costs ~$3000-5000 for 20-30 API models × 5K items × multi-round。\\n- **数据需求**: LiveBench（公开）、MMLU（公开）、GSM8K/GSM1K（公开）、MMLU-CF（公开）。Growing Pains 开源 response data 可 bootstrap calibration panel。所有数据集公开可得。\\n- **人工介入**: 每个 regeneration cycle 30-50 items × 2-3 domain experts 评估 construct/face validity（约 5-8 人时/cycle，3 cycles = 15-24 人时）。Pilot 中可由论文作者兼任 expert rater。\\n- **训练需求**: 200+ GRPO fine-tuned variants（7-9B scale，~4 GPU-hours each）。不需要从头预训练。Student simulation 使用现有 SMART/arXiv:2601.09953 方法，不需额外训练。\\n- **新 Benchmark**: 不需要构建全新 benchmark。使用现有 LiveBench math subset（~200 items）作为 pilot scope。生成的替换 items 构成 regenerated form 但不构成独立 benchmark。\\n- **预估周期**: **8-10 周** realistic timeline：\\n  - Week 1-2: ICC pre-experiment + GRPO training（可并行）\\n  - Week 3: Benchmark inference + detection signal computation\\n  - Week 4-5: Detection ensemble evaluation + ablation\\n  - Week 5-7: Generation + equating + pilot feasibility（3 cycles, sequential）\\n  - Week 7-8: Graceful degradation simulation + anchor attrition\\n  - Week 8-10: Analysis, human evaluation, writing\\n  - Critical path bottleneck: 3 regeneration cycles (sequential, ~1 week each)\"}],\"stop_reason\":\"end_turn\",\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":811,\"cache_creation_input_tokens\":2526,\"cache_read_input_tokens\":157373,\"output_tokens\":6073,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":2526,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[{\"input_tokens\":811,\"output_tokens\":6073,\"cache_read_input_tokens\":157373,\"cache_creation_input_tokens\":2526,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":2526},\"type\":\"message\"}],\"speed\":\"standard\"},\"diagnostics\":null},\"requestId\":\"req_011CbDH9fKy4q9hrG4VvR2aq\",\"type\":\"assistant\",\"uuid\":\"67818ae9-0ac7-45d0-8c87-f5fc5b263b93\",\"timestamp\":\"2026-05-20T05:39:00.191Z\",\"userType\":\"external\",\"entrypoint\":\"sdk-py\",\"cwd\":\"/home/ubuntu/idea_review\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\",\"version\":\"2.1.142\",\"gitBranch\":\"HEAD\"}",
+                "numLines": 1,
+                "startLine": 222,
+                "totalLines": 291
+              }
+            },
+            "sourceToolAssistantUUID": "6298186e-1137-4831-b08e-145515e05747",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake"
+          },
+          "id": "event-000293"
+        },
+        {
+          "source_line": 294,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。",
+                "leafUuid": "eaed06d8-ed33-4a5e-832b-1fc26ee23b6b",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000294"
+        },
+        {
+          "source_line": 295,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Benchmark contamination detection and remediation pipeline",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000295"
+        },
+        {
+          "source_line": 296,
+          "timestamp": "2026-05-20T05:43:09.141Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found the full 角色 C output that I previously produced. Now let me also check what the user asked after this - they asked for the final output again with \"CRITICAL: Respond with TEXT ONLY. Do NOT call any tools.\"\n\nLet me read the subsequent messages to confirm the exact request.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eaed06d8-ed33-4a5e-832b-1fc26ee23b6b",
+            "isSidechain": false,
+            "requestId": "req_011CbDHeryG7ba2Bqn5cMqkR",
+            "type": "assistant",
+            "uuid": "2097f9d5-ebf4-42fc-bb4f-7a54f137fe57",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H9pDd774DqQjPUXr37UvhK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6286,
+                "cache_read_input_tokens": 51878,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6286,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 51878,
+                    "cache_creation_input_tokens": 6286,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6286
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000296"
+        },
+        {
+          "source_line": 297,
+          "timestamp": "2026-05-20T05:43:10.698Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SpdpJHskQRKbZwUWff5jbF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f.jsonl",
+                "limit": 4,
+                "offset": 223
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2097f9d5-ebf4-42fc-bb4f-7a54f137fe57",
+            "isSidechain": false,
+            "requestId": "req_011CbDHeryG7ba2Bqn5cMqkR",
+            "type": "assistant",
+            "uuid": "9dae01f0-8815-452b-923c-33e6a21941c2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H9pDd774DqQjPUXr37UvhK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6286,
+                "cache_read_input_tokens": 51878,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6286,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 51878,
+                    "cache_creation_input_tokens": 6286,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6286
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000297"
+        },
+        {
+          "source_line": 298,
+          "timestamp": "2026-05-20T05:43:10.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SpdpJHskQRKbZwUWff5jbF",
+              "type": "tool_result",
+              "content": "223\t{\"type\":\"last-prompt\",\"lastPrompt\":\"【任务】: 以「角色 B：迭代中」整合第 4 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have a comprehensive picture of the landscape. Let me synthesize my findings into the assessment.  --…\",\"leafUuid\":\"67818ae9-0ac7-45d0-8c87-f5fc5b263b93\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n224\t{\"type\":\"ai-title\",\"aiTitle\":\"Benchmark contamination detection and remediation pipeline\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n225\t{\"type\":\"last-prompt\",\"lastPrompt\":\"【任务】: 以「角色 B：迭代中」整合第 4 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have a comprehensive picture of the landscape. Let me synthesize my findings into the assessment.  --…\",\"leafUuid\":\"67818ae9-0ac7-45d0-8c87-f5fc5b263b93\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n226\t{\"type\":\"ai-title\",\"aiTitle\":\"Benchmark contamination detection and remediation pipeline\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9dae01f0-8815-452b-923c-33e6a21941c2",
+            "isSidechain": false,
+            "promptId": "a2eb614a-f4e7-44d1-8dfc-1b893d11b8a9",
+            "type": "user",
+            "uuid": "a2d63dae-2f42-41f1-8715-f98e561c5613",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f.jsonl",
+                "content": "{\"type\":\"last-prompt\",\"lastPrompt\":\"【任务】: 以「角色 B：迭代中」整合第 4 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have a comprehensive picture of the landscape. Let me synthesize my findings into the assessment.  --…\",\"leafUuid\":\"67818ae9-0ac7-45d0-8c87-f5fc5b263b93\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n{\"type\":\"ai-title\",\"aiTitle\":\"Benchmark contamination detection and remediation pipeline\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n{\"type\":\"last-prompt\",\"lastPrompt\":\"【任务】: 以「角色 B：迭代中」整合第 4 轮 worker 输出，按指定格式输出决策、概率估计、以及（若继续）下一轮 proposal 纯净版。  【发掘 agent 本轮输出】: Now I have a comprehensive picture of the landscape. Let me synthesize my findings into the assessment.  --…\",\"leafUuid\":\"67818ae9-0ac7-45d0-8c87-f5fc5b263b93\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n{\"type\":\"ai-title\",\"aiTitle\":\"Benchmark contamination detection and remediation pipeline\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}",
+                "numLines": 4,
+                "startLine": 223,
+                "totalLines": 296
+              }
+            },
+            "sourceToolAssistantUUID": "9dae01f0-8815-452b-923c-33e6a21941c2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake"
+          },
+          "id": "event-000298"
+        },
+        {
+          "source_line": 299,
+          "timestamp": "2026-05-20T05:43:17.020Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DnRtPHM9WrqsHGWHXbbU2N",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f.jsonl",
+                "limit": 5,
+                "offset": 227
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2d63dae-2f42-41f1-8715-f98e561c5613",
+            "isSidechain": false,
+            "requestId": "req_011CbDHfGQARdHnvpvedF9Sg",
+            "type": "assistant",
+            "uuid": "901c693d-6df3-44be-830c-44ac8d10cbad",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UrffnKuCCvUp4uYDX3e4ke",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 686,
+                "cache_read_input_tokens": 58164,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 686,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 58164,
+                    "cache_creation_input_tokens": 686,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 686
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000299"
+        },
+        {
+          "source_line": 300,
+          "timestamp": "2026-05-20T05:43:17.029Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DnRtPHM9WrqsHGWHXbbU2N",
+              "type": "tool_result",
+              "content": "227\t{\"type\":\"ai-title\",\"aiTitle\":\"Benchmark contamination detection and remediation pipeline\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n228\t{\"type\":\"queue-operation\",\"operation\":\"enqueue\",\"timestamp\":\"2026-05-20T05:39:01.520Z\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\",\"content\":\"【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。\"}\n229\t{\"type\":\"queue-operation\",\"operation\":\"dequeue\",\"timestamp\":\"2026-05-20T05:39:01.520Z\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n230\t{\"parentUuid\":\"67818ae9-0ac7-45d0-8c87-f5fc5b263b93\",\"isSidechain\":false,\"promptId\":\"a2eb614a-f4e7-44d1-8dfc-1b893d11b8a9\",\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":\"【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。\"},\"uuid\":\"f10c52af-1353-4eff-9aea-1c9f4f50959f\",\"timestamp\":\"2026-05-20T05:39:01.556Z\",\"permissionMode\":\"default\",\"userType\":\"external\",\"entrypoint\":\"sdk-py\",\"cwd\":\"/home/ubuntu/idea_review\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\",\"version\":\"2.1.142\",\"gitBranch\":\"HEAD\"}\n231\t{\"type\":\"last-prompt\",\"lastPrompt\":\"【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。\",\"leafUuid\":\"f10c52af-1353-4eff-9aea-1c9f4f50959f\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "901c693d-6df3-44be-830c-44ac8d10cbad",
+            "isSidechain": false,
+            "promptId": "a2eb614a-f4e7-44d1-8dfc-1b893d11b8a9",
+            "type": "user",
+            "uuid": "33d00518-b401-4edb-8e05-0248fa646531",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f.jsonl",
+                "content": "{\"type\":\"ai-title\",\"aiTitle\":\"Benchmark contamination detection and remediation pipeline\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n{\"type\":\"queue-operation\",\"operation\":\"enqueue\",\"timestamp\":\"2026-05-20T05:39:01.520Z\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\",\"content\":\"【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。\"}\n{\"type\":\"queue-operation\",\"operation\":\"dequeue\",\"timestamp\":\"2026-05-20T05:39:01.520Z\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}\n{\"parentUuid\":\"67818ae9-0ac7-45d0-8c87-f5fc5b263b93\",\"isSidechain\":false,\"promptId\":\"a2eb614a-f4e7-44d1-8dfc-1b893d11b8a9\",\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":\"【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。\"},\"uuid\":\"f10c52af-1353-4eff-9aea-1c9f4f50959f\",\"timestamp\":\"2026-05-20T05:39:01.556Z\",\"permissionMode\":\"default\",\"userType\":\"external\",\"entrypoint\":\"sdk-py\",\"cwd\":\"/home/ubuntu/idea_review\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\",\"version\":\"2.1.142\",\"gitBranch\":\"HEAD\"}\n{\"type\":\"last-prompt\",\"lastPrompt\":\"【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。\",\"leafUuid\":\"f10c52af-1353-4eff-9aea-1c9f4f50959f\",\"sessionId\":\"28ef82a8-37b5-4d04-b210-2dca47bae01f\"}",
+                "numLines": 5,
+                "startLine": 227,
+                "totalLines": 299
+              }
+            },
+            "sourceToolAssistantUUID": "901c693d-6df3-44be-830c-44ac8d10cbad",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake"
+          },
+          "id": "event-000300"
+        },
+        {
+          "source_line": 301,
+          "timestamp": "2026-05-20T05:45:04.084Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T05:45:04.084Z",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+                "content": "<task-notification>\n<task-id>ac1e46ad99fb96592</task-id>\n<tool-use-id>toolu_01UATpSNrFcrhoDyevqvhkCx</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f/tasks/ac1e46ad99fb96592.output</output-file>\n<status>completed</status>\n<summary>Agent \"Extract original proposal\" completed</summary>\n<result>I found the complete original proposal. Here is the full text of the original proposal, verbatim, from `/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md` (the batch7 version is identical):\n\n---\n\n**Title:** Contamination-Triggered Benchmark Regeneration with Bifactor IRT Equating\n\n**Description:**\nWe propose a self-healing benchmark framework that closes the full loop from multi-signal contamination detection through construct-constrained generation to bifactor IRT-equated replacement, with formal graceful-degradation guarantees. The system makes four integrated contributions: (1) A multi-signal contamination sentinel with explicit RL-robustness guarantees, now supported by an analytical demonstration. The ensemble combines five signals: ConStat-style perturbation testing, a novel Differential Item Functioning (DIF) analysis across model release cohorts, IRT aberrance detection, DVD-style generation-variance testing (adapted from Liang et al., arXiv 2601.04895), and membership-inference probes -- with formal FDR control. [The description continues with full DIF analytical demonstration, power analysis, construct-constrained generation pipeline, bifactor IRT equating gate, graceful degradation framework, evaluation strategy, and differentiation from related work.]\n\nThe full proposal spans 113 lines and includes sections: Description, Core Problem, Opportunity, Landscape, Approach (Stages 1-3 + Graceful Degradation + Evaluation Strategy), Resource Estimate, Inspired By, Target Venues, and Key References. The complete verbatim text is the content of the file at `/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md`, which I have read in full above (lines 1-113).</result>\n<usage><total_tokens>137620</total_tokens><tool_uses>35</tool_uses><duration_ms>208897</duration_ms></usage>\n</task-notification>"
+              }
+            }
+          ],
+          "id": "event-000301"
+        },
+        {
+          "source_line": 302,
+          "timestamp": "2026-05-20T05:43:50.801Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the user's message at line 230: they asked for the 角色 C final output, and based on the summary, the context was then compacted. The previous response at line 222 was my Round 4 output which already included the 角色 C content. But the user is asking for it again as a standalone output.\n\nWait - looking at lines 228-231, the user sent a new message (line 230) asking for the 角色 C output. But then the context was compacted (line 233). So the user's latest request is for the 角色 C output.\n\n\nLooking at the compaction summary at line 234, I see it references a message about delivering the final output in 角色 C format with modification suggestions and risk analysis, and it mentions \"CRITICAL: Respond with TEXT ONLY. Do NOT call any tools.\" But the actual message at line 230 doesn't contain that critical instruction - the summary seems to have added or modified the original request.\n\nLet me trace through what actually happened: I already delivered the 角色 C output in my Round 4 response at line 222, then the user requested it again at line 230, and the context was compacted. The summary indicates this output was already provided.\n\nLooking back at line 222, I see I included both the iterative update and the complete 角色 C final output with all 26 modifications, risks, and implementation assessments. The user is now asking for just the 角色 C output in its standalone format, so I should extract and present that section cleanly without the meta-information that preceded it. 现在我需要补充实施评估的具体内容——包括计算资源需求、数据集、人工介入程度、模型训练规模、是否需要新的基准测试，以及从启动到投稿的整体时间周期估算。",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33d00518-b401-4edb-8e05-0248fa646531",
+            "isSidechain": false,
+            "requestId": "req_011CbDHfjV5ht3b5vAEREsuY",
+            "type": "assistant",
+            "uuid": "67e0420a-e1ba-41b2-9084-d664d486c4dc",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRd4A2HW3BmEFyVkAJz66V",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 58850,
+                "output_tokens": 4283,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 835,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4283,
+                    "cache_read_input_tokens": 58850,
+                    "cache_creation_input_tokens": 835,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 835
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000302"
+        },
+        {
+          "source_line": 303,
+          "timestamp": "2026-05-20T05:45:08.959Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have the full 角色 C output from the transcript. Let me produce the final deliverable.\n\n【优化方案】\n\n以下为对比**原始 proposal**（Round 0）的全部修改建议，按 proposal 章节组织：\n\n**一、Problem Statement / Framing**\n\n1. [标题+核心定位] — 将论文标题和核心 framing 从\"closing the detection-generation-equating loop\"（工程/系统贡献定位）重构为 **\"Benchmark Temporal Validity\"**——形式化定义并解决 benchmark 在 adversarial contamination 下的跨时间测量等价性问题 — 命中 **Significance**（从 systems paper 升级为 problem-defining paper）\n\n2. [Problem Statement 第 1 段] — 增加三个具体 downstream consequence：AI governance regulatory thresholds 失效、safety-critical deployment 决策建立在虚假分数上、AI safety capability tracking 被 contamination 扭曲 — 命中 **Significance**（让审稿人理解\"如果不解决这个问题会怎样\"）\n\n3. [Problem Statement 相关工作讨论] — 将三个 silo（detection / generation / psychometric）的 framing 系统化，增加 BHI (arXiv:2602.11674) 和 \"Measuring what Matters\" (arXiv:2511.04703, NeurIPS 2025) 的差异化讨论——BHI 诊断 benchmark 退化但不治疗，MwM 记录 construct validity 危机但不解决，本框架提供 remediation — 命中 **Related Work**（消除 concurrent work 遗漏风险）\n\n4. [Why not just create new benchmarks] — 增加显式论证：LiveBench 无跨版本 equating → capability tracking 不可能 → normative data 无法积累 → safety-critical 应用需要 certified equivalence — 命中 **Significance**（正面回应 trivial alternative 威胁）\n\n5. [Why not use CAT] — 新增整段讨论 ATLAS (arXiv:2511.04689) 作为 evaluation-time 方案 vs. 本框架作为 benchmark-maintenance-time 方案，论证互补性 — 命中 **Related Work**（堵住 reviewer challenge）\n\n**二、Core Contributions**\n\n6. [Contribution 重组] — 将四个平行 contributions 重组为 **单一 theoretical spine + enabling infrastructure**：impossibility/duality result 为核心 intellectual contribution，ensemble / generation / equating / graceful degradation 为围绕此核心构建的工程实现。Narrative spine: \"contamination benefit and DIF detectability are fundamentally coupled — no RL procedure can break DIF without also breaking contamination itself\" — 命中 **Novelty**（从\"interesting property\"升级为\"fundamental impossibility/duality theorem\"）\n\n7. [Impossibility Result 形式化] — 将直觉论证升级为 formal proposition：定义 Δ_i，证明 DIF power 为 Δ_i 单调函数，处理三个边界条件（ceiling effects → benign; accuracy redistribution → contradicts RL objective; multi-objective RL → benchmark accuracy 通常 dominant + benign degradation） — 命中 **Novelty**（可证伪的理论声明 vs. hand-waving）\n\n8. [TTRA Corollary 提升] — 从附带讨论提升为显著 corollary：\"DIF provides the first item-level diagnostic for distinguishing task-familiarity artifacts from genuine contamination\"，增加 research question framing — 命中 **Novelty + Significance**（从\"detection\"升级为\"understanding/interpretability\"）\n\n9. [Taxonomy 新增] — 新增四维检测方法 taxonomy 表格（signal level × access × granularity × RL-robustness），并论证 DIF 的三重属性唯一性为 design space gap filling 而非巧合 — 命中 **Related Work + Novelty**\n\n10. [Graceful Degradation 理论化] — Zone 阈值从 hard-coded (10%/20%) 改为 TIF-derived benchmark-specific derivation，引用 Lord (1980) — 命中 **Novelty**（从 heuristic 升级为 theoretically grounded）\n\n**三、实验设计**\n\n11. [Experiment 1 DIF 方法选择] — 将 MH 切换为 **MIMIC model** 作为 primary DIF 分析方法（小样本优势, Finch 2005），MH 降为 robustness check — 命中 **Technical Soundness**（避免 N<200 的 MH power 不足）\n\n12. [Experiment 1 cohort 设计] — 从 K=25/group × 2 families 扩展为 N≥100/group × 6-8 families，cross-family paired design；增加 ICC pre-experiment、design-effect-corrected power analysis、MDES 报告、variant diversification（data ordering, injection ratio variation）— 命中 **Technical Soundness**（解决模型独立性和统计 power 问题）\n\n13. [Experiment 1 ecological validity] — 改为 pure temporal cohort splitting（消除循环论证）+ MMLU-CF parallel control + LiveBench fresh items negative control + grouping strategy ablation + semi-synthetic experiment — 命中 **Technical Soundness**（消除 confound，增强说服力）\n\n14. [Experiment 2 baselines] — 增加 Self-Critique head-to-head + watermarking baseline + **access-level ablation**（full / black-box-only / DIF-only） — 命中 **Technical Soundness**（black-box-only 性能是支撑 core claim 的关键）\n\n15. [Experiment 2 variant 定义] — 明确定义 paraphrased variant 和 structural variant，参照 DVD，报告 BLEU/embedding similarity — 命中 **Technical Soundness**（可复现性）\n\n16. [Experiment 2 ensemble 统计] — Fisher's method 替换为 Cauchy combination test（任意依赖结构鲁棒），增加 pairwise signal correlation matrix；learned weighting 重新定位为 signal importance analysis + bootstrap stability — 命中 **Technical Soundness**（消除 Type I error inflation）\n\n17. [Experiment 2 compute fairness] — 增加 per-signal cost reporting + Pareto frontier + budget-constrained ensemble analysis — 命中 **Technical Soundness**（回应 compute-normalized comparison 质疑）\n\n18. [Experiment 3 equating baselines] — 增加 Stocking-Lord、equipercentile、mean/sigma linking — 命中 **Technical Soundness**（补上 standard equating baselines）\n\n19. [Experiment 3 human evaluation] — 新增 30-50 items × 2-3 experts per cycle 的 construct/face validity 评估，报告 inter-rater agreement — 命中 **Technical Soundness**（content validity 是 item generation 的 mandatory verification）\n\n20. [Experiment 3 gate trade-off] — 增加 equating gate threshold systematic sweep + pass rate vs. equating quality Pareto frontier — 命中 **Technical Soundness**\n\n21. [Experiment 4 baselines] — 增加 ATLAS-style CAT baseline（验证 \"CAT cannot handle corrupted item bank\" claim）— 命中 **Technical Soundness**（实证验证 conceptual claim）\n\n22. [Experiment 5 anchor attrition] — 增加 anchor set reduction curve (100%→10%) + minimum anchor set threshold — 命中 **Technical Soundness**（验证 graceful degradation 边界）\n\n23. [所有实验指标] — 全部按 item type（factual / procedural / multi-step reasoning）分层报告 — 命中 **Technical Soundness**\n\n24. [FDR 框架] — 明确 BH correction at α=0.05 + FDR calibration curves at {0.01, 0.05, 0.10, 0.20} — 命中 **Technical Soundness**\n\n25. [Cost estimate] — 细化为 GRPO training / inference / detection / generation / human evaluation 五项 + realistic timeline 8-10 weeks — 命中 **Feasibility**\n\n**四、Limitations**\n\n26. [Limitations 扩展] — 新增：MIMIC in LLM context 无先例、task-familiarity uniformity 假设、cross-architecture generalization 范围、simulated vs. real contamination gap 的 explicit discussion — 命中 **Technical Soundness**（honest reporting）\n\n【主要风险】:\n\n1. **MIMIC-DIF 在 LLM-as-examinee 场景下的首次应用缺乏先例**。审稿人可能质疑：将 models 视为 examinees 是否满足 MIMIC 的统计假设（如 within-group independence、正态 latent trait）。ICC pre-experiment 和 simulation-based validation 可部分缓解，但这是一个 genuinely novel application，审稿人有理由要求更强的 validation。\n\n2. **Generation pipeline 在 complex reasoning items 上的 equating gate pass rate 可能很低**，导致 self-healing pipeline 对 reasoning-heavy benchmarks（恰恰是最需要 remediation 的）实用性有限。Per-item-type reporting 会暴露这一问题，但 honest reporting 优于 hiding it。\n\n【实施评估】:\n- **计算资源**: 约 1200-1500 GPU-hours total（800h GRPO training for 200+ variants across 6-8 families on A100; 200h inference for benchmark evaluation; 200h for DVD generation sampling and detection signals）。需要 8×A100 集群，约 2-3 周 training + 1 周 inference。Closed-source API costs ~$3000-5000 for 20-30 API models × 5K items × multi-round。\n- **数据需求**: LiveBench（公开）、MMLU（公开）、GSM8K/GSM1K（公开）、MMLU-CF（公开）。Growing Pains 开源 response data 可 bootstrap calibration panel。所有数据集公开可得。\n- **人工介入**: 每个 regeneration cycle 30-50 items × 2-3 domain experts 评估 construct/face validity（约 5-8 人时/cycle，3 cycles = 15-24 人时）。Pilot 中可由论文作者兼任 expert rater。\n- **训练需求**: 200+ GRPO fine-tuned variants（7-9B scale，~4 GPU-hours each）。不需要从头预训练。Student simulation 使用现有 SMART/arXiv:2601.09953 方法，不需额外训练。\n- **新 Benchmark**: 不需要构建全新 benchmark。使用现有 LiveBench math subset（~200 items）作为 pilot scope。生成的替换 items 构成 regenerated form 但不构成独立 benchmark。\n- **预估周期**: **8-10 周** realistic timeline：\n  - Week 1-2: ICC pre-experiment + GRPO training（可并行）\n  - Week 3: Benchmark inference + detection signal computation\n  - Week 4-5: Detection ensemble evaluation + ablation\n  - Week 5-7: Generation + equating + pilot feasibility（3 cycles, sequential）\n  - Week 7-8: Graceful degradation simulation + anchor attrition\n  - Week 8-10: Analysis, human evaluation, writing\n  - Critical path bottleneck: 3 regeneration cycles (sequential, ~1 week each)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67e0420a-e1ba-41b2-9084-d664d486c4dc",
+            "isSidechain": false,
+            "requestId": "req_011CbDHfjV5ht3b5vAEREsuY",
+            "type": "assistant",
+            "uuid": "b607dd2f-182c-436d-b8f5-8bc9b48d10fb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FRd4A2HW3BmEFyVkAJz66V",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 58850,
+                "output_tokens": 4283,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 835,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4283,
+                    "cache_read_input_tokens": 58850,
+                    "cache_creation_input_tokens": 835,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 835
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000303"
+        },
+        {
+          "source_line": 304,
+          "timestamp": "2026-05-20T05:45:09.021Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T05:45:09.021Z",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000304"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "messages": [
+        {
+          "source_line": 305,
+          "timestamp": "2026-05-20T05:45:09.028Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<task-notification>\n<task-id>ac1e46ad99fb96592</task-id>\n<tool-use-id>toolu_01UATpSNrFcrhoDyevqvhkCx</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f/tasks/ac1e46ad99fb96592.output</output-file>\n<status>completed</status>\n<summary>Agent \"Extract original proposal\" completed</summary>\n<result>I found the complete original proposal. Here is the full text of the original proposal, verbatim, from `/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md` (the batch7 version is identical):\n\n---\n\n**Title:** Contamination-Triggered Benchmark Regeneration with Bifactor IRT Equating\n\n**Description:**\nWe propose a self-healing benchmark framework that closes the full loop from multi-signal contamination detection through construct-constrained generation to bifactor IRT-equated replacement, with formal graceful-degradation guarantees. The system makes four integrated contributions: (1) A multi-signal contamination sentinel with explicit RL-robustness guarantees, now supported by an analytical demonstration. The ensemble combines five signals: ConStat-style perturbation testing, a novel Differential Item Functioning (DIF) analysis across model release cohorts, IRT aberrance detection, DVD-style generation-variance testing (adapted from Liang et al., arXiv 2601.04895), and membership-inference probes -- with formal FDR control. [The description continues with full DIF analytical demonstration, power analysis, construct-constrained generation pipeline, bifactor IRT equating gate, graceful degradation framework, evaluation strategy, and differentiation from related work.]\n\nThe full proposal spans 113 lines and includes sections: Description, Core Problem, Opportunity, Landscape, Approach (Stages 1-3 + Graceful Degradation + Evaluation Strategy), Resource Estimate, Inspired By, Target Venues, and Key References. The complete verbatim text is the content of the file at `/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md`, which I have read in full above (lines 1-113).</result>\n<usage><total_tokens>137620</total_tokens><tool_uses>35</tool_uses><duration_ms>208897</duration_ms></usage>\n</task-notification>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b607dd2f-182c-436d-b8f5-8bc9b48d10fb",
+            "isSidechain": false,
+            "promptId": "cfa57cfe-b33b-40b4-8540-10d78c51e1f7",
+            "type": "user",
+            "uuid": "b0e7427b-0957-46b1-b7d0-b4d7ea06fcba",
+            "permissionMode": "default",
+            "origin": {
+              "kind": "task-notification"
+            },
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake"
+          },
+          "id": "event-000305"
+        },
+        {
+          "source_line": 306,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。",
+                "leafUuid": "b0e7427b-0957-46b1-b7d0-b4d7ea06fcba",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000306"
+        },
+        {
+          "source_line": 307,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Benchmark contamination detection and remediation pipeline",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000307"
+        },
+        {
+          "source_line": 308,
+          "timestamp": "2026-05-20T05:45:14.916Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Meg2FAFv7B2x3dMHMTFPLY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0e7427b-0957-46b1-b7d0-b4d7ea06fcba",
+            "isSidechain": false,
+            "requestId": "req_011CbDHoz4A1kUg81GzuKS4k",
+            "type": "assistant",
+            "uuid": "06488ecd-b8c8-4482-8235-4d6d60e4130f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BsTpZRwxWZp97BmzbqCLJs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4939,
+                "cache_read_input_tokens": 59685,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4939,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 59685,
+                    "cache_creation_input_tokens": 4939,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4939
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000308"
+        },
+        {
+          "source_line": 309,
+          "timestamp": "2026-05-20T05:45:14.921Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Meg2FAFv7B2x3dMHMTFPLY",
+              "type": "tool_result",
+              "content": "1\t# Contamination-Triggered Benchmark Regeneration with Bifactor IRT Equating\n2\t\n3\t## Description\n4\tWe propose a self-healing benchmark framework that closes the full loop from multi-signal contamination detection through construct-constrained generation to bifactor IRT-equated replacement, with formal graceful-degradation guarantees. The system makes four integrated contributions: (1) A multi-signal contamination sentinel with explicit RL-robustness guarantees, now supported by an analytical demonstration. The ensemble combines five signals: ConStat-style perturbation testing, a novel Differential Item Functioning (DIF) analysis across model release cohorts, IRT aberrance detection, DVD-style generation-variance testing (adapted from Liang et al., arXiv 2601.04895), and membership-inference probes — with formal FDR control. The DIF-based cohort analysis is both novel and analytically RL-robust: we demonstrate via a concrete scenario (200 items, N=80/cohort, 20 contaminated items with P(correct) boosted from 0.50 to 0.80) that logistic regression DIF detects contamination as large uniform DIF (ETS Category C, |Δ_MH|≈3.3) because it examines between-group item-level performance conditional on ability, not within-model output distributions that RL smoothing affects. Quantitative power analysis grounded in PMC5978487 simulations establishes that at N=80/group with contamination-typical effect sizes (δ≈0.8-1.4 logits, consistent with GSM1K's 10-13% accuracy drops), DIF power reaches 60-85%, further enhanced by cumulative Bayesian priors (Sinharay et al., 2006), Item-Focused Trees (Tutz & Berger, 2016), and the 2-of-5 ensemble voting threshold. We acknowledge DIF is underpowered for small effects (14.4% at δ=0.4, N=50/group) — its value is detecting the large effects that threaten benchmark validity, complemented by other signals for subtler contamination. We further address the interaction with task familiarity artifacts (Wang & Heckel, arXiv 2603.12875): task familiarity produces uniform improvements (no DIF signal) while contamination produces item-specific advantages (DIF signal), making DIF a principled discriminator between the two. DVD is labeled as promising but untested against RL-trained models; our RL-contamination experimental condition will resolve this empirical gap. (2) A construct-constrained generation pipeline that abandons direct IRT-parameter conditioning (shown to achieve only rho=0.10-0.45 by arXiv 2602.06631) in favor of construct/taxonomy-based generation, student-simulation pre-screening (r=0.75-0.82), optional pre-filtering via signed isotonic R² scalability coefficients (Hardy et al., arXiv 2603.24999) for fast nonparametric quality control, multi-agent iterative refinement, and empirical calibration on a panel of 200-300 diverse LLMs via Bayesian fixed-parameter calibration (OH2PL, König et al., 2020, achieving unbiased estimates at N≥50). (3) A bifactor IRT equating gate using Projective IRT (PIRT) to handle the multi-construct nature of benchmarks like MMLU — fitting a general ability factor plus domain-specific factors, then projecting to unidimensional equivalents for standard equating (Kim, 2022). Only items whose projected parameters fall within 95% CIs of originals and preserve test information, construct coverage, and model rankings (rho >= 0.95) are accepted. (4) A formal graceful-degradation framework defining validity boundaries grounded in the test equating literature: minimum 20% anchor set for standard equating (Kolen & Brennan, 2004), degraded-but-valid operation via robust LAV equating at 15-20%, halt-and-review below 15%, minimum marginal reliability ≥ 0.80 for benchmark release, and transparent partial-release protocols when full regeneration fails for >15% of items. This uniquely differentiates from Growing Pains (cross-time evaluation without contamination detection or regeneration), from CCV (solution-diversity detection for coding tasks without remediation or psychometric equating), from watermarking approaches (Sander et al., arXiv 2502.17259; proactive prevention requiring pre-release embedding, complementary to our post-hoc detection and remediation), from Wang et al./Self-Critique (identifying the RL-fragility problem without providing a robust detection alternative), from DVD (detecting variant contamination without remediation and untested on RL models), from RIDE/BeTaL (altering difficulty rather than preserving it), and from ConStat (detecting but not remediating contamination). We validate on LiveBench subsets and MMLU-CF under simulated contamination at 10-50% rates — including an RL-contamination condition using GRPO fine-tuning following Wang et al.'s protocol to empirically test DIF robustness and DVD behavior under RL — with naturally-contaminated MMLU/GSM8K as positive controls, and include a pilot feasibility study reporting the first empirical convergence statistics for IRT-equated benchmark item generation.\n5\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06488ecd-b8c8-4482-8235-4d6d60e4130f",
+            "isSidechain": false,
+            "promptId": "cfa57cfe-b33b-40b4-8540-10d78c51e1f7",
+            "type": "user",
+            "uuid": "458e48a5-6cf9-44c5-aefd-736d2c3166d8",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md",
+                "content": "# Contamination-Triggered Benchmark Regeneration with Bifactor IRT Equating\n\n## Description\nWe propose a self-healing benchmark framework that closes the full loop from multi-signal contamination detection through construct-constrained generation to bifactor IRT-equated replacement, with formal graceful-degradation guarantees. The system makes four integrated contributions: (1) A multi-signal contamination sentinel with explicit RL-robustness guarantees, now supported by an analytical demonstration. The ensemble combines five signals: ConStat-style perturbation testing, a novel Differential Item Functioning (DIF) analysis across model release cohorts, IRT aberrance detection, DVD-style generation-variance testing (adapted from Liang et al., arXiv 2601.04895), and membership-inference probes — with formal FDR control. The DIF-based cohort analysis is both novel and analytically RL-robust: we demonstrate via a concrete scenario (200 items, N=80/cohort, 20 contaminated items with P(correct) boosted from 0.50 to 0.80) that logistic regression DIF detects contamination as large uniform DIF (ETS Category C, |Δ_MH|≈3.3) because it examines between-group item-level performance conditional on ability, not within-model output distributions that RL smoothing affects. Quantitative power analysis grounded in PMC5978487 simulations establishes that at N=80/group with contamination-typical effect sizes (δ≈0.8-1.4 logits, consistent with GSM1K's 10-13% accuracy drops), DIF power reaches 60-85%, further enhanced by cumulative Bayesian priors (Sinharay et al., 2006), Item-Focused Trees (Tutz & Berger, 2016), and the 2-of-5 ensemble voting threshold. We acknowledge DIF is underpowered for small effects (14.4% at δ=0.4, N=50/group) — its value is detecting the large effects that threaten benchmark validity, complemented by other signals for subtler contamination. We further address the interaction with task familiarity artifacts (Wang & Heckel, arXiv 2603.12875): task familiarity produces uniform improvements (no DIF signal) while contamination produces item-specific advantages (DIF signal), making DIF a principled discriminator between the two. DVD is labeled as promising but untested against RL-trained models; our RL-contamination experimental condition will resolve this empirical gap. (2) A construct-constrained generation pipeline that abandons direct IRT-parameter conditioning (shown to achieve only rho=0.10-0.45 by arXiv 2602.06631) in favor of construct/taxonomy-based generation, student-simulation pre-screening (r=0.75-0.82), optional pre-filtering via signed isotonic R² scalability coefficients (Hardy et al., arXiv 2603.24999) for fast nonparametric quality control, multi-agent iterative refinement, and empirical calibration on a panel of 200-300 diverse LLMs via Bayesian fixed-parameter calibration (OH2PL, König et al., 2020, achieving unbiased estimates at N≥50). (3) A bifactor IRT equating gate using Projective IRT (PIRT) to handle the multi-construct nature of benchmarks like MMLU — fitting a general ability factor plus domain-specific factors, then projecting to unidimensional equivalents for standard equating (Kim, 2022). Only items whose projected parameters fall within 95% CIs of originals and preserve test information, construct coverage, and model rankings (rho >= 0.95) are accepted. (4) A formal graceful-degradation framework defining validity boundaries grounded in the test equating literature: minimum 20% anchor set for standard equating (Kolen & Brennan, 2004), degraded-but-valid operation via robust LAV equating at 15-20%, halt-and-review below 15%, minimum marginal reliability ≥ 0.80 for benchmark release, and transparent partial-release protocols when full regeneration fails for >15% of items. This uniquely differentiates from Growing Pains (cross-time evaluation without contamination detection or regeneration), from CCV (solution-diversity detection for coding tasks without remediation or psychometric equating), from watermarking approaches (Sander et al., arXiv 2502.17259; proactive prevention requiring pre-release embedding, complementary to our post-hoc detection and remediation), from Wang et al./Self-Critique (identifying the RL-fragility problem without providing a robust detection alternative), from DVD (detecting variant contamination without remediation and untested on RL models), from RIDE/BeTaL (altering difficulty rather than preserving it), and from ConStat (detecting but not remediating contamination). We validate on LiveBench subsets and MMLU-CF under simulated contamination at 10-50% rates — including an RL-contamination condition using GRPO fine-tuning following Wang et al.'s protocol to empirically test DIF robustness and DVD behavior under RL — with naturally-contaminated MMLU/GSM8K as positive controls, and include a pilot feasibility study reporting the first empirical convergence statistics for IRT-equated benchmark item generation.\n",
+                "numLines": 5,
+                "startLine": 1,
+                "totalLines": 5
+              }
+            },
+            "sourceToolAssistantUUID": "06488ecd-b8c8-4482-8235-4d6d60e4130f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake"
+          },
+          "id": "event-000309"
+        },
+        {
+          "source_line": 310,
+          "timestamp": "2026-05-20T05:45:22.241Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JUsW19Byy3W6W7KFvNNgyT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md",
+                "offset": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "458e48a5-6cf9-44c5-aefd-736d2c3166d8",
+            "isSidechain": false,
+            "requestId": "req_011CbDHpRjzPii6gScHpDUZd",
+            "type": "assistant",
+            "uuid": "64026f1a-707a-4d0f-ae03-91c37050e390",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XgADMn9QQg5UvceddUrEUH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1377,
+                "cache_read_input_tokens": 64624,
+                "output_tokens": 119,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1377,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 119,
+                    "cache_read_input_tokens": 64624,
+                    "cache_creation_input_tokens": 1377,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1377
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000310"
+        },
+        {
+          "source_line": 311,
+          "timestamp": "2026-05-20T05:45:22.253Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JUsW19Byy3W6W7KFvNNgyT",
+              "type": "tool_result",
+              "content": "<system-reminder>Warning: the file exists but is shorter than the provided offset (5). The file has 5 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "64026f1a-707a-4d0f-ae03-91c37050e390",
+            "isSidechain": false,
+            "promptId": "cfa57cfe-b33b-40b4-8540-10d78c51e1f7",
+            "type": "user",
+            "uuid": "56025036-14a6-45f3-afdd-9b5aeee02580",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md",
+                "content": "",
+                "numLines": 1,
+                "startLine": 5,
+                "totalLines": 5
+              }
+            },
+            "sourceToolAssistantUUID": "64026f1a-707a-4d0f-ae03-91c37050e390",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake"
+          },
+          "id": "event-000311"
+        },
+        {
+          "source_line": 312,
+          "timestamp": "2026-05-20T05:45:35.418Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "OK, so the original proposal is a single paragraph in a markdown file with 5 lines (Title + Description). Now I have the original and I already produced the 角色 C output. The user asked for this output, and I already delivered it in my previous response in this conversation. The user hasn't sent any new message since my output - the task notification above is just from the background agent completing.\n\nActually wait, looking at the conversation flow:\n1. Context was compacted\n2. I started reading the transcript to reconstruct my previous output\n3. I found it and output the 角色 C content\n\n\n4. Now the background agent is completing its work.\n\nMy previous response already contained the full 【优化方案】, so there's nothing new to address unless the user sends another message.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56025036-14a6-45f3-afdd-9b5aeee02580",
+            "isSidechain": false,
+            "requestId": "req_011CbDHpz4vbAyUMDTQmvCzN",
+            "type": "assistant",
+            "uuid": "ba94c6fb-853b-48d1-873b-07ecd80c27f4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011iNUPbkGCoLuXzySYRLJp4",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 161,
+                "cache_read_input_tokens": 66001,
+                "output_tokens": 690,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 161,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 690,
+                    "cache_read_input_tokens": 66001,
+                    "cache_creation_input_tokens": 161,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 161
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000312"
+        },
+        {
+          "source_line": 313,
+          "timestamp": "2026-05-20T05:45:44.472Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The background agent has confirmed the original proposal location. I've already verified my output against the original file at `/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md` — the 26 modifications in my 【优化方案】 above are all correctly mapped against the original single-paragraph proposal.\n\nThe full 角色 C deliverable has been provided above. Summary of the review process:\n\n- **4 rounds of iterative refinement** (发掘 agent × 4 + 补救 agent × 4)\n- **Probability trajectory**: 36% → 39% → 41% → 42%\n- **Convergence trigger**: Two consecutive rounds of refinement-level (non-structural) changes + diminishing returns\n- **Final estimate**: [35% - 48%] 中位 42%\n- **Decision**: 通过（中位 ≥ 36% 交付门槛）\n- **26 concrete modifications** organized by section (Framing ×5, Core Contributions ×5, Experiments ×15, Limitations ×1)\n- **2 main risks** identified (MIMIC-DIF novel application risk; reasoning item generation ceiling)\n- **Implementation**: ~1200-1500 GPU-hours, $3000-5000 API costs, 8-10 weeks, no new benchmark needed, all datasets publicly available"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba94c6fb-853b-48d1-873b-07ecd80c27f4",
+            "isSidechain": false,
+            "requestId": "req_011CbDHpz4vbAyUMDTQmvCzN",
+            "type": "assistant",
+            "uuid": "38f61af9-48f7-420e-b681-51cea8cfd872",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011iNUPbkGCoLuXzySYRLJp4",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 161,
+                "cache_read_input_tokens": 66001,
+                "output_tokens": 690,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 161,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 690,
+                    "cache_read_input_tokens": 66001,
+                    "cache_creation_input_tokens": 161,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 161
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000313"
+        },
+        {
+          "source_line": 314,
+          "timestamp": "2026-05-20T05:46:18.567Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T05:46:18.567Z",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+                "content": "<task-notification>\n<task-id>a19dff1ffd8d75362</task-id>\n<tool-use-id>toolu_013U1fm9TFvhFAEYFucwoXVW</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f/tasks/a19dff1ffd8d75362.output</output-file>\n<status>completed</status>\n<summary>Agent \"Extract final proposal version\" completed</summary>\n<result>I found the final \"纯净版 proposal\" (clean version proposal). It is in line 204 of the JSONL file, output at the end of Round 3 (which was the last round to produce a full proposal -- Round 4 converged and only output the optimization plan). The proposal text is delimited by `---` markers.\n\nHere is the final proposal verbatim:\n\n---\n## Title\n\nBenchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination\n\n## Problem Statement\n\nLLM evaluation implicitly assumes that benchmark scores are comparable across time — when we say Model B outperforms Model A on MMLU, we presume both scores measure the same construct at the same difficulty. This assumption breaks under contamination: as benchmark items leak into training data (whether through SFT or RL post-training), scores become inflated for exposed models, destroying cross-temporal comparability.\n\nThis is not merely a measurement nuisance — it is a validity crisis with concrete downstream consequences:\n- **AI governance and regulation**: Frameworks such as the EU AI Act establish capability thresholds based on benchmark performance (e.g., \"frontier model\" definitions). If benchmark scores are not cross-temporally comparable, these regulatory thresholds become meaningless.\n- **Safety certification**: Deployment decisions for safety-critical applications (medical QA, legal reasoning) rely on \"model X achieves score Z on benchmark Y.\" If Z is contamination-inflated, deployment decisions are built on false premises.\n- **Capability tracking for AI safety**: Monitoring whether models approach dangerous capability thresholds requires reliable cross-temporal measurement. Contamination-induced score inflation can mask genuine capability trajectories or create false alarms.\n\nWe formalize this as the **benchmark temporal validity** problem: given a benchmark B deployed at time t₀, how do we maintain the property that scores at t₁ &gt; t₀ remain on the same measurement scale, even when adversarial contamination has compromised a subset of items?\n\nExisting approaches address fragments of this problem across three silos:\n\n**Contamination detection**: ConStat (NeurIPS 2024; arXiv:2405.16281) provides FDR-controlled performance-gap detection; Min-K% Prob (Shi et al., ICLR 2024) and Min-K%++ (ICLR 2025) offer token-probability-based membership inference; DVD (arXiv:2601.04895) uses generation variance for variant contamination; Wang et al. (arXiv:2510.02386, ICLR 2026) systematically demonstrate RL concealment of contamination signals; Self-Critique/RL-MIA (Tao et al., arXiv:2510.09259, ICLR 2026) detects RL-phase contamination via policy collapse; watermarking-based detection (arXiv:2502.17259) enables provable contamination scoring; open-source contamination auditing (EMNLP 2024) and leakage simulation studies (arXiv:2505.24263) further map the detection landscape; shortcut neuron analysis (ACL 2025) provides white-box detection via causal neuron patching. **Dynamic benchmark creation**: LiveBench (arXiv:2406.19314, ICLR 2025), YourBench (arXiv:2504.01833), BenchBench (arXiv:2603.20807), and reasoning-driven synthesis approaches (arXiv:2509.00072) generate fresh evaluation items, but without psychometric equating, cross-version scores are incomparable. **Psychometric methodology for LLMs**: Growing Pains (arXiv:2604.12843) uses multidimensional IRT with fixed-parameter calibration and 100 anchor items for cross-time evaluation with ρ≥0.9 on 400+ models; PSN-IRT (arXiv:2505.15055, AAAI 2026) reveals widespread benchmark quality shortcomings across 41,871 items; contamination quantification in psychometric evaluations (arXiv:2510.07175) demonstrates strong contamination in popular inventories; the trajectory of IRT-based LLM evaluation continues to accelerate from ICLR 2024 through AAAI 2027. No published work integrates all three silos.\n\n**Why not just create new benchmarks?** The \"perpetual replacement\" paradigm (exemplified by LiveBench's monthly updates) solves contamination but introduces cross-version incomparability. LiveBench v1 and LiveBench v6 scores are not comparable without equating. This means: (a) capability tracking becomes impossible; (b) normative data never accumulates; (c) safety-critical applications require certified equivalent measurement; (d) inference-time decontamination (arXiv:2601.19334) mitigates symptoms but does not restore measurement validity.\n\n**Why not use Computerized Adaptive Testing (CAT)?** ATLAS (arXiv:2511.04689) reduces contamination exposure through Fisher information-guided dynamic item selection — each model sees different items, diffusing contamination effects. However, CAT is an evaluation-time solution that assumes a clean item bank; if the bank itself is contaminated, adaptive selection merely draws from a corrupted pool. CAT also does not provide cross-temporal comparability guarantees — different models at different times receive different items without formal equating. Our framework operates at benchmark-maintenance time, ensuring item bank validity, and is complementary to CAT: we maintain the clean item bank that CAT requires.\n\n## Contamination Detection Method Taxonomy\n\n| Method | Signal Level | Access | Granularity | RL-Robust? |\n|--------|-------------|--------|-------------|------------|\n| Min-K%/Min-K%++ (ICLR 2024/2025) | Memorization trace | Black-box (logprob) | Individual-model | No (Wang et al.) |\n| ConStat (NeurIPS 2024) | Performance gap | Black-box | Group-level | No (Wang et al.) |\n| DVD (arXiv:2601.04895) | Distributional variance | Black-box | Individual-model | Untested |\n| Self-Critique/RL-MIA (ICLR 2026) | Policy collapse | White-box | Individual-model | Yes |\n| Shortcut Neuron (ACL 2025) | Causal neuron analysis | White-box | Individual-model | Yes |\n| Watermarking (arXiv:2502.17259) | Embedded signal | Black-box | Benchmark-level | Yes (proactive) |\n| **DIF (Ours)** | **Differential functioning** | **Black-box** | **Group-level** | **Yes (proven)** |\n\nDIF is the only method that is simultaneously black-box, group-level, and analytically RL-robust.\n\n## Core Contributions\n\nThe theoretical spine of this paper is a single result: **DIF provides the first analytically RL-robust, black-box contamination detection signal — and this enables a self-healing benchmark pipeline that was previously impossible.** The remaining components (ensemble, generation, equating, graceful degradation) are enabling infrastructure built around this core insight.\n\n**Core Contribution: DIF-Based RL-Robust Contamination Detection via Formal Impossibility Result.**\n\n**Proposition.** Define the contamination benefit for item i as Δ_i = P(correct | contaminated model) − P(correct | clean model), conditional on equal latent ability θ. Then: (i) DIF detection power for item i is a monotonic increasing function of |Δ_i|; (ii) any RL post-training procedure that preserves Δ_i &gt; 0 necessarily preserves the DIF signal with magnitude proportional to Δ_i; (iii) the only way RL training can eliminate the DIF signal is by driving Δ_i → 0, which contradicts the RL reward objective.\n\n**Boundary conditions**: (a) *Ceiling effects*: When clean models already achieve near-perfect accuracy on an item, Δ_i → 0 regardless of contamination. DIF power diminishes, but this case is benign — contamination with no behavioral benefit does not threaten benchmark validity. (b) *Accuracy redistribution*: In principle, RL training with benchmark-aggregate reward could redistribute accuracy from contaminated items to clean items (via improved general reasoning), reducing item-level Δ_i while maintaining aggregate benefit. However, this requires RL to actively decrease accuracy on items the model already knows — which reduces reward on those items and is disfavored by the optimization objective. Moreover, if redistribution does occur, the aggregate contamination benefit diminishes proportionally, representing benign degradation where both the contamination threat and DIF signal attenuate together.\n\nDIF operates at the behavioral outcome level (accuracy advantage), not the distributional level (NLL gaps, confidence calibration). RL can smooth distributions (Wang et al., arXiv:2510.02386) but cannot reverse accuracy advantages without reducing reward. Prior work on DIF with LLMs (arXiv:2502.07017) uses LLMs to detect DIF in educational testing — we invert this direction.\n\n**Corollary (Task-Familiarity vs. Contamination Diagnostic).** DIF provides the first item-level diagnostic for distinguishing task-familiarity artifacts from genuine contamination. TTRA (Wang &amp; Heckel, arXiv:2603.12875) demonstrates that test-time RL alignment closes fine-tuning performance gaps by ~27pp, revealing widespread task-familiarity artifacts. But TTRA cannot identify which items' improvement stems from familiarity vs. contamination. DIF discriminates: task-familiarity effects produce approximately uniform improvement across items of similar difficulty, while contamination produces item-specific anomalous DIF. This item-level interpretability transforms DIF from a detection tool into a diagnostic instrument for understanding what benchmark scores actually measure. Note: the uniformity assumption for task-familiarity effects requires empirical validation across item types and is tested in our experiments.\n\n**Enabling Infrastructure:**\n\n**A. Graceful Degradation Framework with TIF-Derived Validity Boundaries.** Zone thresholds are derived from test information function (TIF) analysis (Lord, 1980) rather than set ad hoc:\n- For each benchmark, compute the TIF degradation curve: the relationship between proportion of items removed and TIF loss at ability range [-2, 2].\n- **Green zone**: TIF loss ≤ 5%, equating gate precision maintained. Replace flagged items, report marginal reliability and TIF change.\n- **Yellow zone**: TIF loss 5–15%, equating precision partially degraded. Replace + re-anchor, report validity degradation, flag for human review.\n- **Red zone**: TIF loss &gt; 15%, equating no longer reliable. Deprecate benchmark version, trigger full-form regeneration.\nZone thresholds are benchmark-specific (a 500-item benchmark tolerates higher removal than a 50-item benchmark). Each zone has operationalized entry/exit criteria.\n\n**B. Multi-Signal Contamination Sentinel.** A 5-signal ensemble:\n1. DIF analysis via MIMIC model across model release cohorts (core novel signal; MIMIC selected over Mantel-Haenszel for superior performance at moderate sample sizes, Finch 2005; MH retained as robustness check, Penfield 2018)\n2. DVD variance-of-generation analysis (arXiv:2601.04895)\n3. ConStat performance-gap analysis (NeurIPS 2024)\n4. MIA-based distributional signals (Min-K%++; building on Min-K% Prob, Shi et al., ICLR 2024)\n5. IRT anomaly detection (person-fit statistics, l_z)\n\nEnsemble p-value aggregation via **Cauchy combination test** (Liu &amp; Xie, 2020), which provides analytic p-values under arbitrary dependency structures — replacing Fisher's method, which assumes independence and inflates Type I error under the positive correlations expected among co-triggered signals (Brown, 1975). Empirical Brown's Method used as robustness check. Item-level FDR control via Benjamini-Hochberg at target α=0.05. Learned signal weighting (via regularized model with bootstrap stability analysis) used for **signal importance analysis** — identifying which signals dominate under each contamination regime — rather than as a performance claim. Primary ensemble performance reported with non-learned aggregation (Cauchy combination) to avoid overfitting concerns with only 4-6 model-family CV folds.\n\n**C. Construct-Constrained Generation and Bifactor Equating Pipeline.** When items are flagged:\n- **Generation**: LLM-based generation conditioned on target IRT parameters and construct specification. Student simulation (arXiv:2601.09953; SMART, arXiv:2507.05129, EMNLP 2025) for pre-screening; however, human-AI difficulty alignment (arXiv:2512.18880) reveals systematic misalignment — pipeline uses empirical calibration on model panel rather than solely LLM-estimated difficulty. ICC reconstruction via fine-tuned LLMs (arXiv:2601.02580) offers complementary parameter estimation. Hardy signed isotonic R² pre-filtering (arXiv:2603.24999) rejects poor items before calibration. ReQUESTA-style multi-agent refinement (arXiv:2602.03704) for distractor quality.\n- **Equating**: Bifactor Projective IRT (PIRT) true-score equating (Paek &amp; Cai, 2020; Lee &amp; Lee, 2022) under common-item nonequivalent groups design. PIRT projects specific factors onto the general dimension. Item parameter estimation via OH2PL (König et al., 2020, 2022; unbiased at N≥50). Projective IRT validated by Reise et al. (Multivariate Behavioral Research, 2025). Equating gate: |Δb| &lt; 0.3 logits, |Δa| &lt; 0.2, TIF deviation &lt; 5%.\n\n## Relationship to Growing Pains (arXiv:2604.12843)\n\nGrowing Pains provides IRT-based temporal comparability infrastructure: fixed-parameter calibration with 100 anchor items per dataset enables cross-time LLM evaluation with ρ≥0.9 on 400+ models. Our work is explicitly complementary:\n- Growing Pains' anchor items are public and therefore high-priority contamination targets. Our sentinel monitors anchor integrity.\n- If anchor items are compromised, our regeneration pipeline produces equated replacements.\n- Growing Pains' open-source response data can bootstrap our calibration panel.\n\nThis extends to the broader ecosystem. PSN-IRT (arXiv:2505.15055, AAAI 2026) identifies low-quality benchmark items; our sentinel determines whether degradation stems from contamination or inherent item weakness. Psychometric contamination quantification (arXiv:2510.07175) demonstrates contamination patterns; our framework provides remediation. Integration opportunities extend to emerging work at ACL 2027 and ICLR 2027 on psychometric robustness, as well as benchmark hardening approaches (arXiv:2602.06631).\n\n## Experimental Design\n\n### Experiment 1: DIF RL-Robustness Validation\n\n**Controlled cohort design** using 4+ base model families: Qwen2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3, Gemma-2-9B (matching Wang et al.'s contamination protocol for Qwen/Llama, extending to Mistral/Gemma):\n- **Clean-RL cohort**: N≥100 model variants across families, trained with GRPO on clean data (varying random seeds, learning rates, warmup schedules, batch sizes, data orderings, and contamination injection ratios {0%} to maximize within-family diversity)\n- **Contaminated-RL cohort**: N≥100 variants, trained with GRPO with benchmark items injected at varied ratios {10%, 30%, 50%, 100%} (replicating Wang et al.'s exact hyperparameters, ~156 GRPO steps)\n- **Primary DIF analysis**: MIMIC model (validated at N=50-100/group; Finch 2005 confirms superiority over MH at small focal groups; note: 3PL false positive inflation observed for &lt;20-item tests, not applicable to our 200+ item benchmarks). MH analysis as robustness check (Penfield, 2018).\n- **ICC pre-experiment**: Train 5 variants per family × 2 families (10 total), measure within-family intraclass correlation (ICC) to calibrate total sample size needed.\n- **Design-effect-corrected power analysis**: Report minimum detectable Δ_i as a function of ICC ∈ {0, 0.1, 0.3, 0.5}. N_eff = N / [1 + (m-1)×ICC]. If empirical ICC &gt; 0.3, expand to additional model families.\n- **Cluster-robust variance estimation**: Same-family variants treated as clusters.\n- **Dose-response curve**: DIF detection at GRPO steps {50, 100, 156, 200, 300} across all families.\n- **False positive control**: DIF on LiveBench clean subset, verifying Type I error at nominal α=0.05 after BH correction.\n- **Ecological validity**: DIF on MMLU/GSM8K using **pure temporal cohort splitting** (pre-2024 vs. post-2024 model releases) as primary grouping variable — no dependence on other contamination detectors, avoiding circularity. GSM1K (arXiv:2405.00332) accuracy differentials as proxy for GSM8K; MMLU-CF (ACL 2025) as partial proxy for MMLU. **Grouping strategy ablation**: temporal grouping vs. random grouping control, quantifying temporal grouping's added value.\n- **Semi-synthetic experiment**: From controlled experiment, randomly hide 50% of contamination labels. Test DIF recall/precision with only noisy temporal labels, reporting degradation curve.\n\n### Experiment 2: Detection Ensemble Evaluation\n\n**Baselines**: Self-Critique/RL-MIA (Tao et al., arXiv:2510.09259, ICLR 2026), DVD standalone (arXiv:2601.04895), ConStat standalone (NeurIPS 2024), Min-K%++ (ICLR 2025) and Min-K% Prob (Shi et al., ICLR 2024), CDD, watermarking-based detection (arXiv:2502.17259), shortcut neuron analysis (ACL 2025), CCV (arXiv:2603.21454, coding tasks only).\n\n**Contamination conditions** (explicitly defined):\n- **Verbatim**: Exact benchmark items in fine-tuning data\n- **Paraphrased variant**: Same semantics, different surface form (LLM-generated; BLEU and embedding cosine similarity distributions reported vs. originals)\n- **Structural variant**: Changed numerical values/entities/context, preserved reasoning structure (template-based substitution following DVD, arXiv:2601.04895)\n- **RL-concealed**: GRPO post-training on contaminated SFT checkpoint\n- Cross: {verbatim, paraphrased, structural, RL-concealed} × {Qwen, Llama, Mistral, Gemma}\n\n**Metrics**: AUROC, AUPRC, TPR@FPR=0.05, FDR calibration curves at {0.01, 0.05, 0.10, 0.20} (BH correction), per-signal sensitivity/specificity. All metrics stratified by item type (factual / procedural reasoning / multi-step reasoning). **Pairwise signal correlation matrix** reported for contaminated and clean items separately.\n\n**Ensemble FDR validation**: On null data (LiveBench clean subset), verify actual vs. nominal FDR for Cauchy combination test, quantifying any residual Type I error.\n\n**Detection ablation**: 5× leave-one-out; signal-type grouping; ensemble comparison: Cauchy combination (primary) vs. majority vote vs. mean rank vs. learned weighting (regularized, bootstrap stability reported).\n\n**Compute-normalized analysis**: Per-signal computation cost (wall-clock + API cost per item per model) reported. **Pareto frontier** of (compute cost, AUROC) plotted. **Budget-constrained ensemble**: best 2-signal combination under limited compute budget identified.\n\n**Signal importance analysis**: Learned weights (elastic net with BIC-selected λ, bootstrap CIs across CV folds) reveal which signals dominate under each contamination regime. Leakage simulation cross-reference (arXiv:2505.24263).\n\n### Experiment 3: Generation and Equating Pipeline Evaluation\n\n**Generation ablation** (all metrics stratified by item type: factual / procedural / multi-step reasoning):\n- Full pipeline vs. no student simulation vs. no Hardy pre-filter vs. no multi-agent refinement\n- Construct-conditioned vs. random vs. exemplar-only generation\n- Student simulation comparison: standard (arXiv:2601.09953) vs. SMART DPO-aligned (arXiv:2507.05129) vs. ICC reconstruction (arXiv:2601.02580), evaluating difficulty alignment (informed by arXiv:2512.18880)\n\n**Equating method comparison** (expanded):\n- Bifactor PIRT (proposed) vs. Stocking-Lord characteristic curve equating (Kim, 2022) vs. equipercentile equating (kernel smoothing) vs. mean/sigma linking vs. unidimensional 2PL vs. difficulty-matched selection without formal equating\n- Compare: ranking preservation (Spearman ρ on held-out models), TIF preservation, marginal reliability, equating error (RMSE)\n\n**Threshold sensitivity**: TIF-derived zone thresholds computed for LiveBench math, MMLU subset, and ARC-Challenge, demonstrating benchmark-specific derivation.\n\n### Experiment 4: End-to-End Pilot Feasibility Study\n\n**Scope**: LiveBench math subset (~200 items) × core calibration panel (80-100 diverse models)\n**Protocol**: Full pipeline for 3 regeneration cycles.\n**Pre-registered hypotheses**: H1: ≥50% pass rate within 3 cycles; H2: ρ≥0.90 on held-out models; H3: reliability ≥0.80.\n**Baselines**: Random selection, difficulty-matched (no equating), BeTaL-style (arXiv:2510.25039, ICLR 2026) without equating, full proposed pipeline.\n**Reporting**: Per-cycle trajectory, cost breakdown. Stratified by item type.\n\n### Experiment 5: Graceful Degradation Validation\n\nSimulate contamination at {5%, 10%, 15%, 20%, 25%, 30%, 40%, 50%} on LiveBench. Measure: detection recall/precision, ranking ρ after remediation, TIF degradation vs. predicted, zone classification accuracy, time-to-remediation. Comparison with MMLU-CF-style manual remediation (ACL 2025).\n\n**Anchor attrition analysis**: Simulate anchor set reduction from 100% to 10% (step 10%). Report equating error (RMSE) and ranking preservation (ρ) degradation curve. Establish **minimum anchor set size** below which equating error exceeds |Δb| &gt; 0.5 logits, triggering automatic Red zone. Cross-reference with Growing Pains' 100-anchor-item baseline (arXiv:2604.12843). Reference Kolen &amp; Brennan (2014) minimum common-item recommendations.\n\n## Calibration Infrastructure\n\n**Tiered calibration panel**:\n- Core panel (80-100 models): Family × size matrix (≥15 families × 3-5 sizes). OH2PL estimation (König et al., 2020, 2022; unbiased at N≥50).\n- Extended panel (100-200 additional models): Ranking validation only.\n- Selection criteria: Inter-model correlation reported; &gt;0.95 pairwise correlation collapsed.\n- Bootstrap from Growing Pains' open-source data.\n\n**Cost estimate**: Core panel: ~$1500-3000/round. GRPO training: ~200 variants × ~4 GPU-hours = ~800 GPU-hours (2 weeks on 8×A100). Pilot: 200 items × 80-100 models × 3 cycles, feasible within 4-5 weeks.\n\n## Limitations\n\n- **Simulated vs. real contamination**: Fine-tuning injection may produce sharper signals than pretraining contamination. Partially addressed via ecological validation with temporal cohort splitting on MMLU/GSM8K + GSM1K proxy (arXiv:2405.00332) and leakage simulation cross-reference (arXiv:2505.24263). Continual-pretraining simulation is future work.\n- **MIMIC in LLM context**: MIMIC-based DIF treats models as \"examinees,\" a novel application without direct precedent. We validate via simulation and report model fit indices. Finch (2005) notes elevated false positives for very short tests under 3PL — not applicable to our 200+ item benchmarks, but noted as a general caveat.\n- **Cohort availability**: DIF requires N≥50/group (MIMIC). Limited for newly released families. Minimum sizes reported.\n- **Generation quality ceiling**: Complex reasoning items may have lower equating gate pass rates. Per-item-type reporting bounds pipeline applicability.\n- **Cross-architecture generalization**: 4 model families tested. MoE architectures and &gt;70B models are future work.\n- **Task-familiarity uniformity assumption**: The corollary's discrimination between task-familiarity and contamination assumes approximately uniform familiarity effects within difficulty strata. This is empirically tested but may not hold universally.\n---\n\nThis was found at JSONL line 204 of the file `/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f.jsonl`. It is the Round 3 output, which is the final full \"纯净版 proposal\" -- Round 4 converged and produced only the optimization plan (26 modifications + risks + implementation assessment) rather than a new proposal version.</result>\n<usage><total_tokens>93886</total_tokens><tool_uses>19</tool_uses><duration_ms>280649</duration_ms></usage>\n</task-notification>"
+              }
+            }
+          ],
+          "id": "event-000314"
+        },
+        {
+          "source_line": 315,
+          "timestamp": "2026-05-20T05:46:18.568Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T05:46:18.568Z",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000315"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "messages": [
+        {
+          "source_line": 316,
+          "timestamp": "2026-05-20T05:46:18.577Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<task-notification>\n<task-id>a19dff1ffd8d75362</task-id>\n<tool-use-id>toolu_013U1fm9TFvhFAEYFucwoXVW</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f/tasks/a19dff1ffd8d75362.output</output-file>\n<status>completed</status>\n<summary>Agent \"Extract final proposal version\" completed</summary>\n<result>I found the final \"纯净版 proposal\" (clean version proposal). It is in line 204 of the JSONL file, output at the end of Round 3 (which was the last round to produce a full proposal -- Round 4 converged and only output the optimization plan). The proposal text is delimited by `---` markers.\n\nHere is the final proposal verbatim:\n\n---\n## Title\n\nBenchmark Temporal Validity: A Self-Healing Framework for Maintaining Psychometric Equivalence Under Adversarial Contamination\n\n## Problem Statement\n\nLLM evaluation implicitly assumes that benchmark scores are comparable across time — when we say Model B outperforms Model A on MMLU, we presume both scores measure the same construct at the same difficulty. This assumption breaks under contamination: as benchmark items leak into training data (whether through SFT or RL post-training), scores become inflated for exposed models, destroying cross-temporal comparability.\n\nThis is not merely a measurement nuisance — it is a validity crisis with concrete downstream consequences:\n- **AI governance and regulation**: Frameworks such as the EU AI Act establish capability thresholds based on benchmark performance (e.g., \"frontier model\" definitions). If benchmark scores are not cross-temporally comparable, these regulatory thresholds become meaningless.\n- **Safety certification**: Deployment decisions for safety-critical applications (medical QA, legal reasoning) rely on \"model X achieves score Z on benchmark Y.\" If Z is contamination-inflated, deployment decisions are built on false premises.\n- **Capability tracking for AI safety**: Monitoring whether models approach dangerous capability thresholds requires reliable cross-temporal measurement. Contamination-induced score inflation can mask genuine capability trajectories or create false alarms.\n\nWe formalize this as the **benchmark temporal validity** problem: given a benchmark B deployed at time t₀, how do we maintain the property that scores at t₁ &gt; t₀ remain on the same measurement scale, even when adversarial contamination has compromised a subset of items?\n\nExisting approaches address fragments of this problem across three silos:\n\n**Contamination detection**: ConStat (NeurIPS 2024; arXiv:2405.16281) provides FDR-controlled performance-gap detection; Min-K% Prob (Shi et al., ICLR 2024) and Min-K%++ (ICLR 2025) offer token-probability-based membership inference; DVD (arXiv:2601.04895) uses generation variance for variant contamination; Wang et al. (arXiv:2510.02386, ICLR 2026) systematically demonstrate RL concealment of contamination signals; Self-Critique/RL-MIA (Tao et al., arXiv:2510.09259, ICLR 2026) detects RL-phase contamination via policy collapse; watermarking-based detection (arXiv:2502.17259) enables provable contamination scoring; open-source contamination auditing (EMNLP 2024) and leakage simulation studies (arXiv:2505.24263) further map the detection landscape; shortcut neuron analysis (ACL 2025) provides white-box detection via causal neuron patching. **Dynamic benchmark creation**: LiveBench (arXiv:2406.19314, ICLR 2025), YourBench (arXiv:2504.01833), BenchBench (arXiv:2603.20807), and reasoning-driven synthesis approaches (arXiv:2509.00072) generate fresh evaluation items, but without psychometric equating, cross-version scores are incomparable. **Psychometric methodology for LLMs**: Growing Pains (arXiv:2604.12843) uses multidimensional IRT with fixed-parameter calibration and 100 anchor items for cross-time evaluation with ρ≥0.9 on 400+ models; PSN-IRT (arXiv:2505.15055, AAAI 2026) reveals widespread benchmark quality shortcomings across 41,871 items; contamination quantification in psychometric evaluations (arXiv:2510.07175) demonstrates strong contamination in popular inventories; the trajectory of IRT-based LLM evaluation continues to accelerate from ICLR 2024 through AAAI 2027. No published work integrates all three silos.\n\n**Why not just create new benchmarks?** The \"perpetual replacement\" paradigm (exemplified by LiveBench's monthly updates) solves contamination but introduces cross-version incomparability. LiveBench v1 and LiveBench v6 scores are not comparable without equating. This means: (a) capability tracking becomes impossible; (b) normative data never accumulates; (c) safety-critical applications require certified equivalent measurement; (d) inference-time decontamination (arXiv:2601.19334) mitigates symptoms but does not restore measurement validity.\n\n**Why not use Computerized Adaptive Testing (CAT)?** ATLAS (arXiv:2511.04689) reduces contamination exposure through Fisher information-guided dynamic item selection — each model sees different items, diffusing contamination effects. However, CAT is an evaluation-time solution that assumes a clean item bank; if the bank itself is contaminated, adaptive selection merely draws from a corrupted pool. CAT also does not provide cross-temporal comparability guarantees — different models at different times receive different items without formal equating. Our framework operates at benchmark-maintenance time, ensuring item bank validity, and is complementary to CAT: we maintain the clean item bank that CAT requires.\n\n## Contamination Detection Method Taxonomy\n\n| Method | Signal Level | Access | Granularity | RL-Robust? |\n|--------|-------------|--------|-------------|------------|\n| Min-K%/Min-K%++ (ICLR 2024/2025) | Memorization trace | Black-box (logprob) | Individual-model | No (Wang et al.) |\n| ConStat (NeurIPS 2024) | Performance gap | Black-box | Group-level | No (Wang et al.) |\n| DVD (arXiv:2601.04895) | Distributional variance | Black-box | Individual-model | Untested |\n| Self-Critique/RL-MIA (ICLR 2026) | Policy collapse | White-box | Individual-model | Yes |\n| Shortcut Neuron (ACL 2025) | Causal neuron analysis | White-box | Individual-model | Yes |\n| Watermarking (arXiv:2502.17259) | Embedded signal | Black-box | Benchmark-level | Yes (proactive) |\n| **DIF (Ours)** | **Differential functioning** | **Black-box** | **Group-level** | **Yes (proven)** |\n\nDIF is the only method that is simultaneously black-box, group-level, and analytically RL-robust.\n\n## Core Contributions\n\nThe theoretical spine of this paper is a single result: **DIF provides the first analytically RL-robust, black-box contamination detection signal — and this enables a self-healing benchmark pipeline that was previously impossible.** The remaining components (ensemble, generation, equating, graceful degradation) are enabling infrastructure built around this core insight.\n\n**Core Contribution: DIF-Based RL-Robust Contamination Detection via Formal Impossibility Result.**\n\n**Proposition.** Define the contamination benefit for item i as Δ_i = P(correct | contaminated model) − P(correct | clean model), conditional on equal latent ability θ. Then: (i) DIF detection power for item i is a monotonic increasing function of |Δ_i|; (ii) any RL post-training procedure that preserves Δ_i &gt; 0 necessarily preserves the DIF signal with magnitude proportional to Δ_i; (iii) the only way RL training can eliminate the DIF signal is by driving Δ_i → 0, which contradicts the RL reward objective.\n\n**Boundary conditions**: (a) *Ceiling effects*: When clean models already achieve near-perfect accuracy on an item, Δ_i → 0 regardless of contamination. DIF power diminishes, but this case is benign — contamination with no behavioral benefit does not threaten benchmark validity. (b) *Accuracy redistribution*: In principle, RL training with benchmark-aggregate reward could redistribute accuracy from contaminated items to clean items (via improved general reasoning), reducing item-level Δ_i while maintaining aggregate benefit. However, this requires RL to actively decrease accuracy on items the model already knows — which reduces reward on those items and is disfavored by the optimization objective. Moreover, if redistribution does occur, the aggregate contamination benefit diminishes proportionally, representing benign degradation where both the contamination threat and DIF signal attenuate together.\n\nDIF operates at the behavioral outcome level (accuracy advantage), not the distributional level (NLL gaps, confidence calibration). RL can smooth distributions (Wang et al., arXiv:2510.02386) but cannot reverse accuracy advantages without reducing reward. Prior work on DIF with LLMs (arXiv:2502.07017) uses LLMs to detect DIF in educational testing — we invert this direction.\n\n**Corollary (Task-Familiarity vs. Contamination Diagnostic).** DIF provides the first item-level diagnostic for distinguishing task-familiarity artifacts from genuine contamination. TTRA (Wang &amp; Heckel, arXiv:2603.12875) demonstrates that test-time RL alignment closes fine-tuning performance gaps by ~27pp, revealing widespread task-familiarity artifacts. But TTRA cannot identify which items' improvement stems from familiarity vs. contamination. DIF discriminates: task-familiarity effects produce approximately uniform improvement across items of similar difficulty, while contamination produces item-specific anomalous DIF. This item-level interpretability transforms DIF from a detection tool into a diagnostic instrument for understanding what benchmark scores actually measure. Note: the uniformity assumption for task-familiarity effects requires empirical validation across item types and is tested in our experiments.\n\n**Enabling Infrastructure:**\n\n**A. Graceful Degradation Framework with TIF-Derived Validity Boundaries.** Zone thresholds are derived from test information function (TIF) analysis (Lord, 1980) rather than set ad hoc:\n- For each benchmark, compute the TIF degradation curve: the relationship between proportion of items removed and TIF loss at ability range [-2, 2].\n- **Green zone**: TIF loss ≤ 5%, equating gate precision maintained. Replace flagged items, report marginal reliability and TIF change.\n- **Yellow zone**: TIF loss 5–15%, equating precision partially degraded. Replace + re-anchor, report validity degradation, flag for human review.\n- **Red zone**: TIF loss &gt; 15%, equating no longer reliable. Deprecate benchmark version, trigger full-form regeneration.\nZone thresholds are benchmark-specific (a 500-item benchmark tolerates higher removal than a 50-item benchmark). Each zone has operationalized entry/exit criteria.\n\n**B. Multi-Signal Contamination Sentinel.** A 5-signal ensemble:\n1. DIF analysis via MIMIC model across model release cohorts (core novel signal; MIMIC selected over Mantel-Haenszel for superior performance at moderate sample sizes, Finch 2005; MH retained as robustness check, Penfield 2018)\n2. DVD variance-of-generation analysis (arXiv:2601.04895)\n3. ConStat performance-gap analysis (NeurIPS 2024)\n4. MIA-based distributional signals (Min-K%++; building on Min-K% Prob, Shi et al., ICLR 2024)\n5. IRT anomaly detection (person-fit statistics, l_z)\n\nEnsemble p-value aggregation via **Cauchy combination test** (Liu &amp; Xie, 2020), which provides analytic p-values under arbitrary dependency structures — replacing Fisher's method, which assumes independence and inflates Type I error under the positive correlations expected among co-triggered signals (Brown, 1975). Empirical Brown's Method used as robustness check. Item-level FDR control via Benjamini-Hochberg at target α=0.05. Learned signal weighting (via regularized model with bootstrap stability analysis) used for **signal importance analysis** — identifying which signals dominate under each contamination regime — rather than as a performance claim. Primary ensemble performance reported with non-learned aggregation (Cauchy combination) to avoid overfitting concerns with only 4-6 model-family CV folds.\n\n**C. Construct-Constrained Generation and Bifactor Equating Pipeline.** When items are flagged:\n- **Generation**: LLM-based generation conditioned on target IRT parameters and construct specification. Student simulation (arXiv:2601.09953; SMART, arXiv:2507.05129, EMNLP 2025) for pre-screening; however, human-AI difficulty alignment (arXiv:2512.18880) reveals systematic misalignment — pipeline uses empirical calibration on model panel rather than solely LLM-estimated difficulty. ICC reconstruction via fine-tuned LLMs (arXiv:2601.02580) offers complementary parameter estimation. Hardy signed isotonic R² pre-filtering (arXiv:2603.24999) rejects poor items before calibration. ReQUESTA-style multi-agent refinement (arXiv:2602.03704) for distractor quality.\n- **Equating**: Bifactor Projective IRT (PIRT) true-score equating (Paek &amp; Cai, 2020; Lee &amp; Lee, 2022) under common-item nonequivalent groups design. PIRT projects specific factors onto the general dimension. Item parameter estimation via OH2PL (König et al., 2020, 2022; unbiased at N≥50). Projective IRT validated by Reise et al. (Multivariate Behavioral Research, 2025). Equating gate: |Δb| &lt; 0.3 logits, |Δa| &lt; 0.2, TIF deviation &lt; 5%.\n\n## Relationship to Growing Pains (arXiv:2604.12843)\n\nGrowing Pains provides IRT-based temporal comparability infrastructure: fixed-parameter calibration with 100 anchor items per dataset enables cross-time LLM evaluation with ρ≥0.9 on 400+ models. Our work is explicitly complementary:\n- Growing Pains' anchor items are public and therefore high-priority contamination targets. Our sentinel monitors anchor integrity.\n- If anchor items are compromised, our regeneration pipeline produces equated replacements.\n- Growing Pains' open-source response data can bootstrap our calibration panel.\n\nThis extends to the broader ecosystem. PSN-IRT (arXiv:2505.15055, AAAI 2026) identifies low-quality benchmark items; our sentinel determines whether degradation stems from contamination or inherent item weakness. Psychometric contamination quantification (arXiv:2510.07175) demonstrates contamination patterns; our framework provides remediation. Integration opportunities extend to emerging work at ACL 2027 and ICLR 2027 on psychometric robustness, as well as benchmark hardening approaches (arXiv:2602.06631).\n\n## Experimental Design\n\n### Experiment 1: DIF RL-Robustness Validation\n\n**Controlled cohort design** using 4+ base model families: Qwen2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3, Gemma-2-9B (matching Wang et al.'s contamination protocol for Qwen/Llama, extending to Mistral/Gemma):\n- **Clean-RL cohort**: N≥100 model variants across families, trained with GRPO on clean data (varying random seeds, learning rates, warmup schedules, batch sizes, data orderings, and contamination injection ratios {0%} to maximize within-family diversity)\n- **Contaminated-RL cohort**: N≥100 variants, trained with GRPO with benchmark items injected at varied ratios {10%, 30%, 50%, 100%} (replicating Wang et al.'s exact hyperparameters, ~156 GRPO steps)\n- **Primary DIF analysis**: MIMIC model (validated at N=50-100/group; Finch 2005 confirms superiority over MH at small focal groups; note: 3PL false positive inflation observed for &lt;20-item tests, not applicable to our 200+ item benchmarks). MH analysis as robustness check (Penfield, 2018).\n- **ICC pre-experiment**: Train 5 variants per family × 2 families (10 total), measure within-family intraclass correlation (ICC) to calibrate total sample size needed.\n- **Design-effect-corrected power analysis**: Report minimum detectable Δ_i as a function of ICC ∈ {0, 0.1, 0.3, 0.5}. N_eff = N / [1 + (m-1)×ICC]. If empirical ICC &gt; 0.3, expand to additional model families.\n- **Cluster-robust variance estimation**: Same-family variants treated as clusters.\n- **Dose-response curve**: DIF detection at GRPO steps {50, 100, 156, 200, 300} across all families.\n- **False positive control**: DIF on LiveBench clean subset, verifying Type I error at nominal α=0.05 after BH correction.\n- **Ecological validity**: DIF on MMLU/GSM8K using **pure temporal cohort splitting** (pre-2024 vs. post-2024 model releases) as primary grouping variable — no dependence on other contamination detectors, avoiding circularity. GSM1K (arXiv:2405.00332) accuracy differentials as proxy for GSM8K; MMLU-CF (ACL 2025) as partial proxy for MMLU. **Grouping strategy ablation**: temporal grouping vs. random grouping control, quantifying temporal grouping's added value.\n- **Semi-synthetic experiment**: From controlled experiment, randomly hide 50% of contamination labels. Test DIF recall/precision with only noisy temporal labels, reporting degradation curve.\n\n### Experiment 2: Detection Ensemble Evaluation\n\n**Baselines**: Self-Critique/RL-MIA (Tao et al., arXiv:2510.09259, ICLR 2026), DVD standalone (arXiv:2601.04895), ConStat standalone (NeurIPS 2024), Min-K%++ (ICLR 2025) and Min-K% Prob (Shi et al., ICLR 2024), CDD, watermarking-based detection (arXiv:2502.17259), shortcut neuron analysis (ACL 2025), CCV (arXiv:2603.21454, coding tasks only).\n\n**Contamination conditions** (explicitly defined):\n- **Verbatim**: Exact benchmark items in fine-tuning data\n- **Paraphrased variant**: Same semantics, different surface form (LLM-generated; BLEU and embedding cosine similarity distributions reported vs. originals)\n- **Structural variant**: Changed numerical values/entities/context, preserved reasoning structure (template-based substitution following DVD, arXiv:2601.04895)\n- **RL-concealed**: GRPO post-training on contaminated SFT checkpoint\n- Cross: {verbatim, paraphrased, structural, RL-concealed} × {Qwen, Llama, Mistral, Gemma}\n\n**Metrics**: AUROC, AUPRC, TPR@FPR=0.05, FDR calibration curves at {0.01, 0.05, 0.10, 0.20} (BH correction), per-signal sensitivity/specificity. All metrics stratified by item type (factual / procedural reasoning / multi-step reasoning). **Pairwise signal correlation matrix** reported for contaminated and clean items separately.\n\n**Ensemble FDR validation**: On null data (LiveBench clean subset), verify actual vs. nominal FDR for Cauchy combination test, quantifying any residual Type I error.\n\n**Detection ablation**: 5× leave-one-out; signal-type grouping; ensemble comparison: Cauchy combination (primary) vs. majority vote vs. mean rank vs. learned weighting (regularized, bootstrap stability reported).\n\n**Compute-normalized analysis**: Per-signal computation cost (wall-clock + API cost per item per model) reported. **Pareto frontier** of (compute cost, AUROC) plotted. **Budget-constrained ensemble**: best 2-signal combination under limited compute budget identified.\n\n**Signal importance analysis**: Learned weights (elastic net with BIC-selected λ, bootstrap CIs across CV folds) reveal which signals dominate under each contamination regime. Leakage simulation cross-reference (arXiv:2505.24263).\n\n### Experiment 3: Generation and Equating Pipeline Evaluation\n\n**Generation ablation** (all metrics stratified by item type: factual / procedural / multi-step reasoning):\n- Full pipeline vs. no student simulation vs. no Hardy pre-filter vs. no multi-agent refinement\n- Construct-conditioned vs. random vs. exemplar-only generation\n- Student simulation comparison: standard (arXiv:2601.09953) vs. SMART DPO-aligned (arXiv:2507.05129) vs. ICC reconstruction (arXiv:2601.02580), evaluating difficulty alignment (informed by arXiv:2512.18880)\n\n**Equating method comparison** (expanded):\n- Bifactor PIRT (proposed) vs. Stocking-Lord characteristic curve equating (Kim, 2022) vs. equipercentile equating (kernel smoothing) vs. mean/sigma linking vs. unidimensional 2PL vs. difficulty-matched selection without formal equating\n- Compare: ranking preservation (Spearman ρ on held-out models), TIF preservation, marginal reliability, equating error (RMSE)\n\n**Threshold sensitivity**: TIF-derived zone thresholds computed for LiveBench math, MMLU subset, and ARC-Challenge, demonstrating benchmark-specific derivation.\n\n### Experiment 4: End-to-End Pilot Feasibility Study\n\n**Scope**: LiveBench math subset (~200 items) × core calibration panel (80-100 diverse models)\n**Protocol**: Full pipeline for 3 regeneration cycles.\n**Pre-registered hypotheses**: H1: ≥50% pass rate within 3 cycles; H2: ρ≥0.90 on held-out models; H3: reliability ≥0.80.\n**Baselines**: Random selection, difficulty-matched (no equating), BeTaL-style (arXiv:2510.25039, ICLR 2026) without equating, full proposed pipeline.\n**Reporting**: Per-cycle trajectory, cost breakdown. Stratified by item type.\n\n### Experiment 5: Graceful Degradation Validation\n\nSimulate contamination at {5%, 10%, 15%, 20%, 25%, 30%, 40%, 50%} on LiveBench. Measure: detection recall/precision, ranking ρ after remediation, TIF degradation vs. predicted, zone classification accuracy, time-to-remediation. Comparison with MMLU-CF-style manual remediation (ACL 2025).\n\n**Anchor attrition analysis**: Simulate anchor set reduction from 100% to 10% (step 10%). Report equating error (RMSE) and ranking preservation (ρ) degradation curve. Establish **minimum anchor set size** below which equating error exceeds |Δb| &gt; 0.5 logits, triggering automatic Red zone. Cross-reference with Growing Pains' 100-anchor-item baseline (arXiv:2604.12843). Reference Kolen &amp; Brennan (2014) minimum common-item recommendations.\n\n## Calibration Infrastructure\n\n**Tiered calibration panel**:\n- Core panel (80-100 models): Family × size matrix (≥15 families × 3-5 sizes). OH2PL estimation (König et al., 2020, 2022; unbiased at N≥50).\n- Extended panel (100-200 additional models): Ranking validation only.\n- Selection criteria: Inter-model correlation reported; &gt;0.95 pairwise correlation collapsed.\n- Bootstrap from Growing Pains' open-source data.\n\n**Cost estimate**: Core panel: ~$1500-3000/round. GRPO training: ~200 variants × ~4 GPU-hours = ~800 GPU-hours (2 weeks on 8×A100). Pilot: 200 items × 80-100 models × 3 cycles, feasible within 4-5 weeks.\n\n## Limitations\n\n- **Simulated vs. real contamination**: Fine-tuning injection may produce sharper signals than pretraining contamination. Partially addressed via ecological validation with temporal cohort splitting on MMLU/GSM8K + GSM1K proxy (arXiv:2405.00332) and leakage simulation cross-reference (arXiv:2505.24263). Continual-pretraining simulation is future work.\n- **MIMIC in LLM context**: MIMIC-based DIF treats models as \"examinees,\" a novel application without direct precedent. We validate via simulation and report model fit indices. Finch (2005) notes elevated false positives for very short tests under 3PL — not applicable to our 200+ item benchmarks, but noted as a general caveat.\n- **Cohort availability**: DIF requires N≥50/group (MIMIC). Limited for newly released families. Minimum sizes reported.\n- **Generation quality ceiling**: Complex reasoning items may have lower equating gate pass rates. Per-item-type reporting bounds pipeline applicability.\n- **Cross-architecture generalization**: 4 model families tested. MoE architectures and &gt;70B models are future work.\n- **Task-familiarity uniformity assumption**: The corollary's discrimination between task-familiarity and contamination assumes approximately uniform familiarity effects within difficulty strata. This is empirically tested but may not hold universally.\n---\n\nThis was found at JSONL line 204 of the file `/home/ubuntu/.claude-account-1/projects/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f.jsonl`. It is the Round 3 output, which is the final full \"纯净版 proposal\" -- Round 4 converged and produced only the optimization plan (26 modifications + risks + implementation assessment) rather than a new proposal version.</result>\n<usage><total_tokens>93886</total_tokens><tool_uses>19</tool_uses><duration_ms>280649</duration_ms></usage>\n</task-notification>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38f61af9-48f7-420e-b681-51cea8cfd872",
+            "isSidechain": false,
+            "promptId": "0623a748-2010-4a39-b8cb-8d469c14eec7",
+            "type": "user",
+            "uuid": "0374bb55-9500-469c-ad26-b54c07b482b8",
+            "permissionMode": "default",
+            "origin": {
+              "kind": "task-notification"
+            },
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake"
+          },
+          "id": "event-000316"
+        },
+        {
+          "source_line": 317,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。",
+                "leafUuid": "0374bb55-9500-469c-ad26-b54c07b482b8",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000317"
+        },
+        {
+          "source_line": 318,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Benchmark contamination detection and remediation pipeline",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000318"
+        },
+        {
+          "source_line": 319,
+          "timestamp": "2026-05-20T05:46:27.448Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good — the second background agent has returned with the final Round 3 proposal (the last full \"纯净版\" version). My 角色 C deliverable was already output in full above. All data sources are now confirmed:\n\n- **Original proposal**: `/home/ubuntu/idea_review/dispatch/ideas_batch6_20260520_025525/account-1/llm_evaluation_crisis_contamination_triggered_benchmark_regeneration_with_bifactor.md` (single-paragraph, ~800 words)\n- **Final optimized proposal**: Round 3 纯净版 (~4000 words, structured with 7 major sections)\n- **26 modification recommendations**: Delivered above in 【优化方案】\n\nThe deliverable is complete. No further action needed unless you have new instructions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0374bb55-9500-469c-ad26-b54c07b482b8",
+            "isSidechain": false,
+            "requestId": "req_011CbDHu7SYgB1yXoWe2isqc",
+            "type": "assistant",
+            "uuid": "a4375f0d-5dbf-4b26-aef7-923f8754b26f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017t19k6pEi7qVPbKvrugFCv",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7289,
+                "cache_read_input_tokens": 66162,
+                "output_tokens": 188,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7289,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 188,
+                    "cache_read_input_tokens": 66162,
+                    "cache_creation_input_tokens": 7289,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7289
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000319"
+        },
+        {
+          "source_line": 320,
+          "timestamp": "2026-05-20T05:46:37.757Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T05:46:37.757Z",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+                "content": "<task-notification>\n<task-id>a67589c295ef97b92</task-id>\n<tool-use-id>toolu_01A9nq6cCadgFfV5nqk3w6ze</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f/tasks/a67589c295ef97b92.output</output-file>\n<status>completed</status>\n<summary>Agent \"Extract final 角色C output\" completed</summary>\n<result>I found the complete 角色 C final output at line 303. Here is the full verbatim text of the 角色 C output:\n\n---\n\n【优化方案】\n\n以下为对比**原始 proposal**（Round 0）的全部修改建议，按 proposal 章节组织：\n\n**一、Problem Statement / Framing**\n\n1. [标题+核心定位] — 将论文标题和核心 framing 从\"closing the detection-generation-equating loop\"（工程/系统贡献定位）重构为 **\"Benchmark Temporal Validity\"**——形式化定义并解决 benchmark 在 adversarial contamination 下的跨时间测量等价性问题 — 命中 **Significance**（从 systems paper 升级为 problem-defining paper）\n\n2. [Problem Statement 第 1 段] — 增加三个具体 downstream consequence：AI governance regulatory thresholds 失效、safety-critical deployment 决策建立在虚假分数上、AI safety capability tracking 被 contamination 扭曲 — 命中 **Significance**（让审稿人理解\"如果不解决这个问题会怎样\"）\n\n3. [Problem Statement 相关工作讨论] — 将三个 silo（detection / generation / psychometric）的 framing 系统化，增加 BHI (arXiv:2602.11674) 和 \"Measuring what Matters\" (arXiv:2511.04703, NeurIPS 2025) 的差异化讨论——BHI 诊断 benchmark 退化但不治疗，MwM 记录 construct validity 危机但不解决，本框架提供 remediation — 命中 **Related Work**（消除 concurrent work 遗漏风险）\n\n4. [Why not just create new benchmarks] — 增加显式论证：LiveBench 无跨版本 equating → capability tracking 不可能 → normative data 无法积累 → safety-critical 应用需要 certified equivalence — 命中 **Significance**（正面回应 trivial alternative 威胁）\n\n5. [Why not use CAT] — 新增整段讨论 ATLAS (arXiv:2511.04689) 作为 evaluation-time 方案 vs. 本框架作为 benchmark-maintenance-time 方案，论证互补性 — 命中 **Related Work**（堵住 reviewer challenge）\n\n**二、Core Contributions**\n\n6. [Contribution 重组] — 将四个平行 contributions 重组为 **单一 theoretical spine + enabling infrastructure**：impossibility/duality result 为核心 intellectual contribution，ensemble / generation / equating / graceful degradation 为围绕此核心构建的工程实现。Narrative spine: \"contamination benefit and DIF detectability are fundamentally coupled — no RL procedure can break DIF without also breaking contamination itself\" — 命中 **Novelty**（从\"interesting property\"升级为\"fundamental impossibility/duality theorem\"）\n\n7. [Impossibility Result 形式化] — 将直觉论证升级为 formal proposition：定义 Δ_i，证明 DIF power 为 Δ_i 单调函数，处理三个边界条件（ceiling effects → benign; accuracy redistribution → contradicts RL objective; multi-objective RL → benchmark accuracy 通常 dominant + benign degradation） — 命中 **Novelty**（可证伪的理论声明 vs. hand-waving）\n\n8. [TTRA Corollary 提升] — 从附带讨论提升为显著 corollary：\"DIF provides the first item-level diagnostic for distinguishing task-familiarity artifacts from genuine contamination\"，增加 research question framing — 命中 **Novelty + Significance**（从\"detection\"升级为\"understanding/interpretability\"）\n\n9. [Taxonomy 新增] — 新增四维检测方法 taxonomy 表格（signal level × access × granularity × RL-robustness），并论证 DIF 的三重属性唯一性为 design space gap filling 而非巧合 — 命中 **Related Work + Novelty**\n\n10. [Graceful Degradation 理论化] — Zone 阈值从 hard-coded (10%/20%) 改为 TIF-derived benchmark-specific derivation，引用 Lord (1980) — 命中 **Novelty**（从 heuristic 升级为 theoretically grounded）\n\n**三、实验设计**\n\n11. [Experiment 1 DIF 方法选择] — 将 MH 切换为 **MIMIC model** 作为 primary DIF 分析方法（小样本优势, Finch 2005），MH 降为 robustness check — 命中 **Technical Soundness**（避免 N&lt;200 的 MH power 不足）\n\n12. [Experiment 1 cohort 设计] — 从 K=25/group × 2 families 扩展为 N≥100/group × 6-8 families，cross-family paired design；增加 ICC pre-experiment、design-effect-corrected power analysis、MDES 报告、variant diversification（data ordering, injection ratio variation）— 命中 **Technical Soundness**（解决模型独立性和统计 power 问题）\n\n13. [Experiment 1 ecological validity] — 改为 pure temporal cohort splitting（消除循环论证）+ MMLU-CF parallel control + LiveBench fresh items negative control + grouping strategy ablation + semi-synthetic experiment — 命中 **Technical Soundness**（消除 confound，增强说服力）\n\n14. [Experiment 2 baselines] — 增加 Self-Critique head-to-head + watermarking baseline + **access-level ablation**（full / black-box-only / DIF-only） — 命中 **Technical Soundness**（black-box-only 性能是支撑 core claim 的关键）\n\n15. [Experiment 2 variant 定义] — 明确定义 paraphrased variant 和 structural variant，参照 DVD，报告 BLEU/embedding similarity — 命中 **Technical Soundness**（可复现性）\n\n16. [Experiment 2 ensemble 统计] — Fisher's method 替换为 Cauchy combination test（任意依赖结构鲁棒），增加 pairwise signal correlation matrix；learned weighting 重新定位为 signal importance analysis + bootstrap stability — 命中 **Technical Soundness**（消除 Type I error inflation）\n\n17. [Experiment 2 compute fairness] — 增加 per-signal cost reporting + Pareto frontier + budget-constrained ensemble analysis — 命中 **Technical Soundness**（回应 compute-normalized comparison 质疑）\n\n18. [Experiment 3 equating baselines] — 增加 Stocking-Lord、equipercentile、mean/sigma linking — 命中 **Technical Soundness**（补上 standard equating baselines）\n\n19. [Experiment 3 human evaluation] — 新增 30-50 items × 2-3 experts per cycle 的 construct/face validity 评估，报告 inter-rater agreement — 命中 **Technical Soundness**（content validity 是 item generation 的 mandatory verification）\n\n20. [Experiment 3 gate trade-off] — 增加 equating gate threshold systematic sweep + pass rate vs. equating quality Pareto frontier — 命中 **Technical Soundness**\n\n21. [Experiment 4 baselines] — 增加 ATLAS-style CAT baseline（验证 \"CAT cannot handle corrupted item bank\" claim）— 命中 **Technical Soundness**（实证验证 conceptual claim）\n\n22. [Experiment 5 anchor attrition] — 增加 anchor set reduction curve (100%→10%) + minimum anchor set threshold — 命中 **Technical Soundness**（验证 graceful degradation 边界）\n\n23. [所有实验指标] — 全部按 item type（factual / procedural / multi-step reasoning）分层报告 — 命中 **Technical Soundness**\n\n24. [FDR 框架] — 明确 BH correction at α=0.05 + FDR calibration curves at {0.01, 0.05, 0.10, 0.20} — 命中 **Technical Soundness**\n\n25. [Cost estimate] — 细化为 GRPO training / inference / detection / generation / human evaluation 五项 + realistic timeline 8-10 weeks — 命中 **Feasibility**\n\n**四、Limitations**\n\n26. [Limitations 扩展] — 新增：MIMIC in LLM context 无先例、task-familiarity uniformity 假设、cross-architecture generalization 范围、simulated vs. real contamination gap 的 explicit discussion — 命中 **Technical Soundness**（honest reporting）\n\n【主要风险】:\n\n1. **MIMIC-DIF 在 LLM-as-examinee 场景下的首次应用缺乏先例**。审稿人可能质疑：将 models 视为 examinees 是否满足 MIMIC 的统计假设（如 within-group independence、正态 latent trait）。ICC pre-experiment 和 simulation-based validation 可部分缓解，但这是一个 genuinely novel application，审稿人有理由要求更强的 validation。\n\n2. **Generation pipeline 在 complex reasoning items 上的 equating gate pass rate 可能很低**，导致 self-healing pipeline 对 reasoning-heavy benchmarks（恰恰是最需要 remediation 的）实用性有限。Per-item-type reporting 会暴露这一问题，但 honest reporting 优于 hiding it。\n\n【实施评估】:\n- **计算资源**: 约 1200-1500 GPU-hours total（800h GRPO training for 200+ variants across 6-8 families on A100; 200h inference for benchmark evaluation; 200h for DVD generation sampling and detection signals）。需要 8×A100 集群，约 2-3 周 training + 1 周 inference。Closed-source API costs ~$3000-5000 for 20-30 API models × 5K items × multi-round。\n- **数据需求**: LiveBench（公开）、MMLU（公开）、GSM8K/GSM1K（公开）、MMLU-CF（公开）。Growing Pains 开源 response data 可 bootstrap calibration panel。所有数据集公开可得。\n- **人工介入**: 每个 regeneration cycle 30-50 items × 2-3 domain experts 评估 construct/face validity（约 5-8 人时/cycle，3 cycles = 15-24 人时）。Pilot 中可由论文作者兼任 expert rater。\n- **训练需求**: 200+ GRPO fine-tuned variants（7-9B scale，~4 GPU-hours each）。不需要从头预训练。Student simulation 使用现有 SMART/arXiv:2601.09953 方法，不需额外训练。\n- **新 Benchmark**: 不需要构建全新 benchmark。使用现有 LiveBench math subset（~200 items）作为 pilot scope。生成的替换 items 构成 regenerated form 但不构成独立 benchmark。\n- **预估周期**: **8-10 周** realistic timeline：\n  - Week 1-2: ICC pre-experiment + GRPO training（可并行）\n  - Week 3: Benchmark inference + detection signal computation\n  - Week 4-5: Detection ensemble evaluation + ablation\n  - Week 5-7: Generation + equating + pilot feasibility（3 cycles, sequential）\n  - Week 7-8: Graceful degradation simulation + anchor attrition\n  - Week 8-10: Analysis, human evaluation, writing\n  - Critical path bottleneck: 3 regeneration cycles (sequential, ~1 week each)</result>\n<usage><total_tokens>89075</total_tokens><tool_uses>37</tool_uses><duration_ms>297482</duration_ms></usage>\n</task-notification>"
+              }
+            }
+          ],
+          "id": "event-000320"
+        },
+        {
+          "source_line": 321,
+          "timestamp": "2026-05-20T05:46:37.833Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T05:46:37.833Z",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000321"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "messages": [
+        {
+          "source_line": 322,
+          "timestamp": "2026-05-20T05:46:37.839Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<task-notification>\n<task-id>a67589c295ef97b92</task-id>\n<tool-use-id>toolu_01A9nq6cCadgFfV5nqk3w6ze</tool-use-id>\n<output-file>/tmp/claude-1000/-home-ubuntu-idea-review/28ef82a8-37b5-4d04-b210-2dca47bae01f/tasks/a67589c295ef97b92.output</output-file>\n<status>completed</status>\n<summary>Agent \"Extract final 角色C output\" completed</summary>\n<result>I found the complete 角色 C final output at line 303. Here is the full verbatim text of the 角色 C output:\n\n---\n\n【优化方案】\n\n以下为对比**原始 proposal**（Round 0）的全部修改建议，按 proposal 章节组织：\n\n**一、Problem Statement / Framing**\n\n1. [标题+核心定位] — 将论文标题和核心 framing 从\"closing the detection-generation-equating loop\"（工程/系统贡献定位）重构为 **\"Benchmark Temporal Validity\"**——形式化定义并解决 benchmark 在 adversarial contamination 下的跨时间测量等价性问题 — 命中 **Significance**（从 systems paper 升级为 problem-defining paper）\n\n2. [Problem Statement 第 1 段] — 增加三个具体 downstream consequence：AI governance regulatory thresholds 失效、safety-critical deployment 决策建立在虚假分数上、AI safety capability tracking 被 contamination 扭曲 — 命中 **Significance**（让审稿人理解\"如果不解决这个问题会怎样\"）\n\n3. [Problem Statement 相关工作讨论] — 将三个 silo（detection / generation / psychometric）的 framing 系统化，增加 BHI (arXiv:2602.11674) 和 \"Measuring what Matters\" (arXiv:2511.04703, NeurIPS 2025) 的差异化讨论——BHI 诊断 benchmark 退化但不治疗，MwM 记录 construct validity 危机但不解决，本框架提供 remediation — 命中 **Related Work**（消除 concurrent work 遗漏风险）\n\n4. [Why not just create new benchmarks] — 增加显式论证：LiveBench 无跨版本 equating → capability tracking 不可能 → normative data 无法积累 → safety-critical 应用需要 certified equivalence — 命中 **Significance**（正面回应 trivial alternative 威胁）\n\n5. [Why not use CAT] — 新增整段讨论 ATLAS (arXiv:2511.04689) 作为 evaluation-time 方案 vs. 本框架作为 benchmark-maintenance-time 方案，论证互补性 — 命中 **Related Work**（堵住 reviewer challenge）\n\n**二、Core Contributions**\n\n6. [Contribution 重组] — 将四个平行 contributions 重组为 **单一 theoretical spine + enabling infrastructure**：impossibility/duality result 为核心 intellectual contribution，ensemble / generation / equating / graceful degradation 为围绕此核心构建的工程实现。Narrative spine: \"contamination benefit and DIF detectability are fundamentally coupled — no RL procedure can break DIF without also breaking contamination itself\" — 命中 **Novelty**（从\"interesting property\"升级为\"fundamental impossibility/duality theorem\"）\n\n7. [Impossibility Result 形式化] — 将直觉论证升级为 formal proposition：定义 Δ_i，证明 DIF power 为 Δ_i 单调函数，处理三个边界条件（ceiling effects → benign; accuracy redistribution → contradicts RL objective; multi-objective RL → benchmark accuracy 通常 dominant + benign degradation） — 命中 **Novelty**（可证伪的理论声明 vs. hand-waving）\n\n8. [TTRA Corollary 提升] — 从附带讨论提升为显著 corollary：\"DIF provides the first item-level diagnostic for distinguishing task-familiarity artifacts from genuine contamination\"，增加 research question framing — 命中 **Novelty + Significance**（从\"detection\"升级为\"understanding/interpretability\"）\n\n9. [Taxonomy 新增] — 新增四维检测方法 taxonomy 表格（signal level × access × granularity × RL-robustness），并论证 DIF 的三重属性唯一性为 design space gap filling 而非巧合 — 命中 **Related Work + Novelty**\n\n10. [Graceful Degradation 理论化] — Zone 阈值从 hard-coded (10%/20%) 改为 TIF-derived benchmark-specific derivation，引用 Lord (1980) — 命中 **Novelty**（从 heuristic 升级为 theoretically grounded）\n\n**三、实验设计**\n\n11. [Experiment 1 DIF 方法选择] — 将 MH 切换为 **MIMIC model** 作为 primary DIF 分析方法（小样本优势, Finch 2005），MH 降为 robustness check — 命中 **Technical Soundness**（避免 N&lt;200 的 MH power 不足）\n\n12. [Experiment 1 cohort 设计] — 从 K=25/group × 2 families 扩展为 N≥100/group × 6-8 families，cross-family paired design；增加 ICC pre-experiment、design-effect-corrected power analysis、MDES 报告、variant diversification（data ordering, injection ratio variation）— 命中 **Technical Soundness**（解决模型独立性和统计 power 问题）\n\n13. [Experiment 1 ecological validity] — 改为 pure temporal cohort splitting（消除循环论证）+ MMLU-CF parallel control + LiveBench fresh items negative control + grouping strategy ablation + semi-synthetic experiment — 命中 **Technical Soundness**（消除 confound，增强说服力）\n\n14. [Experiment 2 baselines] — 增加 Self-Critique head-to-head + watermarking baseline + **access-level ablation**（full / black-box-only / DIF-only） — 命中 **Technical Soundness**（black-box-only 性能是支撑 core claim 的关键）\n\n15. [Experiment 2 variant 定义] — 明确定义 paraphrased variant 和 structural variant，参照 DVD，报告 BLEU/embedding similarity — 命中 **Technical Soundness**（可复现性）\n\n16. [Experiment 2 ensemble 统计] — Fisher's method 替换为 Cauchy combination test（任意依赖结构鲁棒），增加 pairwise signal correlation matrix；learned weighting 重新定位为 signal importance analysis + bootstrap stability — 命中 **Technical Soundness**（消除 Type I error inflation）\n\n17. [Experiment 2 compute fairness] — 增加 per-signal cost reporting + Pareto frontier + budget-constrained ensemble analysis — 命中 **Technical Soundness**（回应 compute-normalized comparison 质疑）\n\n18. [Experiment 3 equating baselines] — 增加 Stocking-Lord、equipercentile、mean/sigma linking — 命中 **Technical Soundness**（补上 standard equating baselines）\n\n19. [Experiment 3 human evaluation] — 新增 30-50 items × 2-3 experts per cycle 的 construct/face validity 评估，报告 inter-rater agreement — 命中 **Technical Soundness**（content validity 是 item generation 的 mandatory verification）\n\n20. [Experiment 3 gate trade-off] — 增加 equating gate threshold systematic sweep + pass rate vs. equating quality Pareto frontier — 命中 **Technical Soundness**\n\n21. [Experiment 4 baselines] — 增加 ATLAS-style CAT baseline（验证 \"CAT cannot handle corrupted item bank\" claim）— 命中 **Technical Soundness**（实证验证 conceptual claim）\n\n22. [Experiment 5 anchor attrition] — 增加 anchor set reduction curve (100%→10%) + minimum anchor set threshold — 命中 **Technical Soundness**（验证 graceful degradation 边界）\n\n23. [所有实验指标] — 全部按 item type（factual / procedural / multi-step reasoning）分层报告 — 命中 **Technical Soundness**\n\n24. [FDR 框架] — 明确 BH correction at α=0.05 + FDR calibration curves at {0.01, 0.05, 0.10, 0.20} — 命中 **Technical Soundness**\n\n25. [Cost estimate] — 细化为 GRPO training / inference / detection / generation / human evaluation 五项 + realistic timeline 8-10 weeks — 命中 **Feasibility**\n\n**四、Limitations**\n\n26. [Limitations 扩展] — 新增：MIMIC in LLM context 无先例、task-familiarity uniformity 假设、cross-architecture generalization 范围、simulated vs. real contamination gap 的 explicit discussion — 命中 **Technical Soundness**（honest reporting）\n\n【主要风险】:\n\n1. **MIMIC-DIF 在 LLM-as-examinee 场景下的首次应用缺乏先例**。审稿人可能质疑：将 models 视为 examinees 是否满足 MIMIC 的统计假设（如 within-group independence、正态 latent trait）。ICC pre-experiment 和 simulation-based validation 可部分缓解，但这是一个 genuinely novel application，审稿人有理由要求更强的 validation。\n\n2. **Generation pipeline 在 complex reasoning items 上的 equating gate pass rate 可能很低**，导致 self-healing pipeline 对 reasoning-heavy benchmarks（恰恰是最需要 remediation 的）实用性有限。Per-item-type reporting 会暴露这一问题，但 honest reporting 优于 hiding it。\n\n【实施评估】:\n- **计算资源**: 约 1200-1500 GPU-hours total（800h GRPO training for 200+ variants across 6-8 families on A100; 200h inference for benchmark evaluation; 200h for DVD generation sampling and detection signals）。需要 8×A100 集群，约 2-3 周 training + 1 周 inference。Closed-source API costs ~$3000-5000 for 20-30 API models × 5K items × multi-round。\n- **数据需求**: LiveBench（公开）、MMLU（公开）、GSM8K/GSM1K（公开）、MMLU-CF（公开）。Growing Pains 开源 response data 可 bootstrap calibration panel。所有数据集公开可得。\n- **人工介入**: 每个 regeneration cycle 30-50 items × 2-3 domain experts 评估 construct/face validity（约 5-8 人时/cycle，3 cycles = 15-24 人时）。Pilot 中可由论文作者兼任 expert rater。\n- **训练需求**: 200+ GRPO fine-tuned variants（7-9B scale，~4 GPU-hours each）。不需要从头预训练。Student simulation 使用现有 SMART/arXiv:2601.09953 方法，不需额外训练。\n- **新 Benchmark**: 不需要构建全新 benchmark。使用现有 LiveBench math subset（~200 items）作为 pilot scope。生成的替换 items 构成 regenerated form 但不构成独立 benchmark。\n- **预估周期**: **8-10 周** realistic timeline：\n  - Week 1-2: ICC pre-experiment + GRPO training（可并行）\n  - Week 3: Benchmark inference + detection signal computation\n  - Week 4-5: Detection ensemble evaluation + ablation\n  - Week 5-7: Generation + equating + pilot feasibility（3 cycles, sequential）\n  - Week 7-8: Graceful degradation simulation + anchor attrition\n  - Week 8-10: Analysis, human evaluation, writing\n  - Critical path bottleneck: 3 regeneration cycles (sequential, ~1 week each)</result>\n<usage><total_tokens>89075</total_tokens><tool_uses>37</tool_uses><duration_ms>297482</duration_ms></usage>\n</task-notification>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4375f0d-5dbf-4b26-aef7-923f8754b26f",
+            "isSidechain": false,
+            "promptId": "0e7f7885-7e04-4736-86b5-8bb735c03e10",
+            "type": "user",
+            "uuid": "e8797c5e-76ce-476e-a1f9-0c507642c626",
+            "permissionMode": "default",
+            "origin": {
+              "kind": "task-notification"
+            },
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake"
+          },
+          "id": "event-000322"
+        },
+        {
+          "source_line": 323,
+          "timestamp": "2026-05-20T05:46:42.046Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three background agents have completed and confirmed the deliverable. The 角色 C final output (【优化方案】 with 26 modifications, 【主要风险】, and 【实施评估】) was already delivered above and matches the verified transcript content exactly. \n\nThe review process is complete. No further action needed."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8797c5e-76ce-476e-a1f9-0c507642c626",
+            "isSidechain": false,
+            "requestId": "req_011CbDHvXnniahD73LATzKuT",
+            "type": "assistant",
+            "uuid": "605e66a2-9e4b-4197-a586-6d6a16e02c45",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "slug": "jolly-dancing-cake",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MYrHtCsDvvhwV7CFaqM9Qk",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3526,
+                "cache_read_input_tokens": 73451,
+                "output_tokens": 79,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3526,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 79,
+                    "cache_read_input_tokens": 73451,
+                    "cache_creation_input_tokens": 3526,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3526
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000323"
+        },
+        {
+          "source_line": 324,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 流程已收敛且中位概率达交付门槛，请按「角色 C：最终输出」的通过格式，输出优化方案文本（对比原始 proposal 的修改建议列表 + 主要风险）。",
+                "leafUuid": "605e66a2-9e4b-4197-a586-6d6a16e02c45",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000324"
+        },
+        {
+          "source_line": 325,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Benchmark contamination detection and remediation pipeline",
+                "sessionId": "28ef82a8-37b5-4d04-b210-2dca47bae01f"
+              }
+            }
+          ],
+          "id": "event-000325"
+        }
+      ]
+    }
+  ]
+}

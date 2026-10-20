@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9a9551c9d6eee93b59cb",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Complete the research direction below with implementation details. **Today's date: 2026-05-27 (UTC).** Only recommend ve",
+  "task_key": "faf687fc-3981-4116-8e52-3ad2a12092d9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/faf687fc-3981-4116-8e52-3ad2a12092d9.jsonl",
+    "occurrence": 1,
+    "bytes": 534197,
+    "sha256": "a5ebd6738da3f22810a2b730bc89ab4c346ee2051d49ffa35e7f25abc3c08cf5"
+  },
+  "statistics": {
+    "messages": 187,
+    "user_turns": 1,
+    "tool_calls": 66,
+    "roles": {
+      "record": 43,
+      "user": 1,
+      "assistant": 11,
+      "tool_call": 66,
+      "tool_result": 66
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9a9551c9d6eee93b59cb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 185,
+      "chunks": [
+        {
+          "path": "9a9551c9d6eee93b59cb-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "9a9551c9d6eee93b59cb-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-complete-the-research-direction-below-with-implementation-details-today-s-date.md"
+}

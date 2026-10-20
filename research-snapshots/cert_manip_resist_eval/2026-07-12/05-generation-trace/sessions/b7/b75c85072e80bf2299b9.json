@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "b75c85072e80bf2299b9",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器环境：seetacloud-rtx6000, conda base (/root/miniconda3/bin/python), 项目路径 /root/cert_manip_resist_eval/。必",
+  "task_key": "7a1dccb0-f056-4bd8-a0d7-31bcace01bd7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/7a1dccb0-f056-4bd8-a0d7-31bcace01bd7.jsonl",
+    "occurrence": 1,
+    "bytes": 802514,
+    "sha256": "26a23c4245e55f04e8dbda3bace44504869e4d0b0631f9aac50976665cb14db0"
+  },
+  "statistics": {
+    "messages": 415,
+    "user_turns": 1,
+    "tool_calls": 145,
+    "roles": {
+      "record": 70,
+      "user": 1,
+      "assistant": 54,
+      "tool_call": 145,
+      "tool_result": 145
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b75c85072e80bf2299b9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 413,
+      "chunks": [
+        {
+          "path": "b75c85072e80bf2299b9-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "b75c85072e80bf2299b9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b75c85072e80bf2299b9-part-0003.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-seetacloud-rtx6000-conda-base-root-miniconda3-bin-python-root-ce.md"
+}

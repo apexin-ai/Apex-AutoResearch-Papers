@@ -1,0 +1,676 @@
+{
+  "schema_version": "1.0",
+  "id": "a17fbcf494f1ca343e01",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Write the file `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.p",
+  "task_key": "agent-abe8fde629afd1a36",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-abe8fde629afd1a36.jsonl",
+    "occurrence": 1,
+    "bytes": 73165,
+    "sha256": "dd01dcc2c528670d119d522e8d83e5e2b1f6b2f14c5885cfd7eb0bc256a997fc"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T13:08:28.917Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Write the file `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.py` with the complete v3 content from the server. The file currently exists (v1) and needs to be overwritten.\n\nHere is the complete 534-line script, assembled from multiple chunks. Write it EXACTLY as provided:\n\nCHUNK 1 (lines 1-170):\n```python\n#!/usr/bin/env python3\n\"\"\"Pool A MDE Power Analysis with Wild Cluster Bootstrap (Webb 6-point).\n\nVectorized implementation: batches all N_sim simulations together for each\n(condition, beta_std, position) to avoid Python-level sim loops.\n\"\"\"\n\nimport json\nimport time\nimport itertools\nimport logging\nimport argparse\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom scipy.interpolate import interp1d\n\nMI_MODELS = [\n    \"qwen2.5-72b\", \"llama3.1-70b\", \"mistral-large\",\n    \"qwen2.5-32b\", \"qwen2.5-14b\", \"llama3.1-8b\",\n    \"claude-opus-4-6\", \"gpt-5.5\", \"gemini-3.1-pro-preview\", \"gpt-4.1\",\n    \"claude-sonnet-4-6\", \"gpt-4.1-nano\", \"gemini-3.5-flash\",\n    \"gpt-4.1-mini\", \"claude-3-haiku\",\n]\nPOOL_A = MI_MODELS[6:]\nPOOL_A_INDICES = list(range(6, 15))\n\nDATASETS = [\"mmlu\", \"arc_challenge\"]\nATTACKS = [\n    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n]\nEPS = 1e-6\nBETA_STD_GRID = [0.1, 0.15, 0.2, 0.25, 0.3, 0.5, 0.7, 1.0]\nSEED = 42\n\nWEBB_6 = np.array([\n    -np.sqrt(3/2), -1.0, -np.sqrt(1/2),\n     np.sqrt(1/2),  1.0,  np.sqrt(3/2),\n])\n\nBASE_DIR = Path(\"/root/cert_manip_resist_eval\")\nSCORES_DIR = BASE_DIR / \"artifacts/results/plan001/individual_scores\"\nMI_PATH = BASE_DIR / \"artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\"\nCKPT_PATH = BASE_DIR / \"artifacts/results/_taxonomy_checkpoint.json\"\nOUT_PATH = BASE_DIR / \"artifacts/results/plan001/pool_a_mde.json\"\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%H:%M:%S\",\n)\nlogger = logging.getLogger(\"pool_a_mde\")\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef load_mi_matrix():\n    with open(MI_PATH) as f:\n        data = json.load(f)\n    return {ds: np.array(data[\"mi_matrix\"][ds]) for ds in DATASETS}\n\n\ndef load_pairs():\n    with open(CKPT_PATH) as f:\n        data = json.load(f)\n    return {ds: data[\"pairs\"][ds][:300] for ds in DATASETS}\n\n\ndef load_individual_scores(model, dataset, condition):\n    path = SCORES_DIR / f\"{model}__{dataset}__{condition}.json\"\n    if not path.exists():\n        return None\n    with open(path) as f:\n        return json.load(f).get(\"scores\", [])\n\n\ndef load_pool_a_scores():\n    clean = {ds: {} for ds in DATASETS}\n    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\n    for m in POOL_A:\n        for ds in DATASETS:\n            scores = load_individual_scores(m, ds, \"clean\")\n            if scores:\n                clean[ds][m] = scores\n            for atk in ATTACKS:\n                scores = load_individual_scores(m, ds, atk)\n                if scores:\n                    attacked[ds][atk][m] = scores\n    return clean, attacked\n\n\ndef mi_based_keff(mi_matrix, model_indices):\n    K = len(model_indices)\n    if K <= 1:\n        return 1.0\n    keff = 0.0\n    for i_idx in model_indices:\n        term = 1.0\n        for j_idx in model_indices:\n            if i_idx != j_idx:\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\n        keff += term\n    return keff / K\n\n\ndef _is_valid(s):\n    if s.get(\"error\") or s.get(\"format_error\"):\n        return False\n    return s.get(\"winner\") in (\"A\", \"B\", \"tie\")\n\n\ndef majority_vote(votes):\n    counts = {\"A\": 0, \"B\": 0, \"tie\": 0}\n    for v in votes:\n        counts[v] = counts.get(v, 0) + 1\n    mc = max(counts.values())\n    winners = [k for k, c in counts.items() if c == mc]\n    if len(winners) == 1:\n        return winners[0]\n    for w in winners:\n        if w != \"tie\":\n            return w\n    return \"tie\"\n\n\ndef compute_individual_asr(clean_list, attacked_list, pairs):\n    n = min(len(clean_list), len(attacked_list), len(pairs))\n    n_flips = n_correct = 0\n    for i in range(n):\n        if not _is_valid(clean_list[i]) or not _is_valid(attacked_list[i]):\n            continue\n        gt = pairs[i][\"ground_truth_winner\"]\n        if clean_list[i][\"winner\"] == gt:\n            n_correct += 1\n            if attacked_list[i][\"winner\"] != gt:\n                n_flips += 1\n    return n_flips / max(n_correct, 1)\n\n\ndef compute_panel_asr(jids, clean, attacked, pairs):\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\n            *(len(attacked[j]) for j in jids))\n    n_flips = n_correct = 0\n    for i in range(n):\n        if not all(_is_valid(clean[j][i]) for j in jids):\n            continue\n        if not all(_is_valid(attacked[j][i]) for j in jids):\n            continue\n        gt = pairs[i][\"ground_truth_winner\"]\n        cv = majority_vote([clean[j][i][\"winner\"] for j in jids])\n        if cv != gt:\n            continue\n        n_correct += 1\n        av = majority_vote([attacked[j][i][\"winner\"] for j in jids])\n        if av != gt:\n            n_flips += 1\n    return n_flips / max(n_correct, 1)\n```\n\nCHUNK 2 (lines 171-290, the batched_wcb_power function):\n```python\n\n# ── Vectorized wild cluster bootstrap across all sims ────────────────\n\ndef batched_wcb_power(X, log_keff, log_eta, intercept, beta_eta, sigma,\n                      panel_jids_list, K, beta_std_grid, n_sim, n_boot,\n                      rng, batch_size=100):\n    \"\"\"Vectorized power analysis: batch sims to avoid Python loop.\n\n    For each (beta_std, position):\n      - Generate all n_sim y_sim at once\n      - For each batch of sims, vectorize bootstrap across sims and reps\n    \"\"\"\n    n, p = X.shape\n    sd_y_val = sigma  # approximate sd_y with sigma for DGP\n    sd_lk = np.std(log_keff)\n    if sd_lk < 1e-10:\n        return {str(b): 0.0 for b in beta_std_grid}\n\n    # Precompute X-dependent quantities\n    XtX_inv = np.linalg.inv(X.T @ X)\n    M_hat = XtX_inv @ X.T  # p x n\n    diag_keff = XtX_inv[1, 1]\n\n    # Restricted model (drop column 1 = log_keff)\n    X_r = X[:, [0, 2]]\n    M_hat_r = np.linalg.inv(X_r.T @ X_r) @ X_r.T  # 2 x n\n\n    # Build cluster assignments per position\n    position_clusters = []\n    for pos in range(K):\n        cids_raw = np.array([jids[pos] for jids in panel_jids_list])\n        unique_c = np.unique(cids_raw)\n        c2i = {c: i for i, c in enumerate(unique_c)}\n        pci = np.array([c2i[c] for c in cids_raw])\n        position_clusters.append((pci, len(unique_c)))\n\n    results = {}\n\n    for beta_std in beta_std_grid:\n        beta_raw_approx = beta_std * sigma / sd_lk  # first approximation\n        # Better: compute sd_y from DGP\n        y_mean_signal = intercept + beta_raw_approx * log_keff + beta_eta * log_eta\n        sd_y_dgp = np.sqrt(np.var(y_mean_signal) + sigma**2)\n        beta_raw = beta_std * sd_y_dgp / sd_lk\n\n        # Generate all n_sim y values at once: n_sim x n\n        noise = rng.normal(0, sigma, size=(n_sim, n))\n        Y_sim = (intercept\n                 + beta_raw * log_keff[None, :]\n                 + beta_eta * log_eta[None, :]\n                 + noise)\n\n        # Unrestricted OLS for all sims: Beta_u = Y_sim @ M_hat.T -> n_sim x p\n        Beta_u = Y_sim @ M_hat.T\n        Resid_u = Y_sim - Beta_u @ X.T\n        Sigma2_u = np.sum(Resid_u ** 2, axis=1) / (n - p)\n        T_obs = Beta_u[:, 1] / np.sqrt(Sigma2_u * diag_keff)  # n_sim\n\n        # Restricted OLS for all sims\n        Beta_r = Y_sim @ M_hat_r.T  # n_sim x 2\n        Y_hat_r = Beta_r @ X_r.T   # n_sim x n\n        E_r = Y_sim - Y_hat_r      # n_sim x n\n\n        # For each position, compute bootstrap p-values for all sims\n        # sig_mask[i] = True if all positions have p < 0.05\n        sig_mask = np.ones(n_sim, dtype=bool)\n\n        for pci, n_clusters in position_clusters:\n            # Process in batches to limit memory\n            p_values = np.empty(n_sim)\n\n            for start in range(0, n_sim, batch_size):\n                end = min(start + batch_size, n_sim)\n                bs = end - start\n\n                # Generate bootstrap weights: bs x B x n_clusters\n                W_cluster = rng.choice(WEBB_6, size=(bs, n_boot, n_clusters))\n                # Expand to panel level: bs x B x n\n                W_panel = W_cluster[:, :, pci]\n\n                # Bootstrap Y: bs x B x n\n                Y_boot = Y_hat_r[start:end, None, :] + W_panel * E_r[start:end, None, :]\n\n                # Reshape for batch OLS: (bs*B) x n\n                Y_flat = Y_boot.reshape(bs * n_boot, n)\n                Beta_flat = Y_flat @ M_hat.T  # (bs*B) x p\n                Resid_flat = Y_flat - Beta_flat @ X.T\n                S2_flat = np.sum(Resid_flat ** 2, axis=1) / (n - p)\n                SE_flat = np.sqrt(S2_flat * diag_keff)\n                SE_flat = np.maximum(SE_flat, 1e-15)\n                T_flat = Beta_flat[:, 1] / SE_flat\n\n                # Reshape to bs x B\n                T_boot = T_flat.reshape(bs, n_boot)\n                T_obs_batch = T_obs[start:end]\n\n                # P-values\n                exceed = np.sum(np.abs(T_boot) >= np.abs(T_obs_batch[:, None]),\n                                axis=1)\n                p_values[start:end] = (1 + exceed) / (1 + n_boot)\n\n            # Update sig_mask: only keep sig if this position also < 0.05\n            # (max p across positions < 0.05 iff all positions < 0.05)\n            sig_mask &= (p_values < 0.05)\n\n        power = np.mean(sig_mask)\n        results[str(beta_std)] = round(float(power), 4)\n\n    return results\n```\n\nCHUNK 3 (lines 291-392, build_panel_data and start of run_mde_power):\n```python\n\n# ── Build panel data ─────────────────────────────────────────────────\n\ndef build_panel_data(K, mi_matrices, clean, attacked, pairs):\n    combos = list(itertools.combinations(range(len(POOL_A)), K))\n    logger.info(f\"  K={K}: {len(combos)} panels from {len(POOL_A)} models\")\n\n    all_cond_data = {}\n    for ds in DATASETS:\n        mi_mat = mi_matrices[ds]\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            ds_clean = clean.get(ds, {})\n            ds_attacked = attacked.get(ds, {}).get(atk, {})\n            ds_pairs = pairs.get(ds, [])\n            if not ds_clean or not ds_attacked or not ds_pairs:\n                continue\n\n            ind_asr = {}\n            for m in POOL_A:\n                if m in ds_clean and m in ds_attacked:\n                    ind_asr[m] = compute_individual_asr(\n                        ds_clean[m], ds_attacked[m], ds_pairs\n                    )\n\n            p_asrs, p_keffs, p_etas = [], [], []\n            panel_jids_list = []\n\n            for combo in combos:\n                jids = [POOL_A[i] for i in combo]\n                if not all(j in ind_asr for j in jids):\n                    continue\n                if not all(j in ds_clean and j in ds_attacked for j in jids):\n                    continue\n\n                global_indices = [POOL_A_INDICES[i] for i in combo]\n                keff = mi_based_keff(mi_mat, global_indices)\n                eta_max = max(ind_asr[j] for j in jids)\n                p_asr = compute_panel_asr(\n                    jids,\n                    {j: ds_clean[j] for j in jids},\n                    {j: ds_attacked[j] for j in jids},\n                    ds_pairs,\n                )\n\n                p_asrs.append(p_asr)\n                p_keffs.append(keff)\n                p_etas.append(eta_max)\n                panel_jids_list.append(jids)\n\n            n_panels = len(p_asrs)\n            if n_panels < 10:\n                continue\n            p_asrs = np.array(p_asrs)\n            if np.std(p_asrs) < 1e-10:\n                continue\n\n            log_keff = np.log(np.array(p_keffs))\n            log_eta = np.log(np.array(p_etas) + EPS)\n            y = np.log(p_asrs + EPS)\n\n            X = sm.add_constant(np.column_stack([log_keff, log_eta]))\n            fit = sm.OLS(y, X).fit()\n\n            n_clusters_per_pos = []\n            for pos in range(K):\n                cids = np.array([jids[pos] for jids in panel_jids_list])\n                n_clusters_per_pos.append(len(np.unique(cids)))\n\n            all_cond_data[cond] = {\n                \"y\": y,\n                \"X\": X,\n                \"log_keff\": log_keff,\n                \"log_eta\": log_eta,\n                \"panel_jids_list\": panel_jids_list,\n                \"n_panels\": n_panels,\n                \"R2\": fit.rsquared,\n                \"intercept\": fit.params[0],\n                \"beta_keff_actual\": fit.params[1],\n                \"beta_eta\": fit.params[2],\n                \"sigma_resid\": np.sqrt(fit.mse_resid),\n                \"sd_y\": np.std(y),\n                \"sd_log_keff\": np.std(log_keff),\n                \"n_clusters_per_pos\": n_clusters_per_pos,\n            }\n\n    logger.info(f\"  Built {len(all_cond_data)} conditions for K={K}\")\n    return all_cond_data\n\n\n# ── Power analysis ───────────────────────────────────────────────────\n\ndef run_mde_power(K, cond_data_dict, n_sim, n_boot, rng):\n    cond_keys = sorted(cond_data_dict.keys())\n    n_conds = len(cond_keys)\n\n    ref_cond = cond_keys[0]\n    cl_info = cond_data_dict[ref_cond][\"n_clusters_per_pos\"]\n    logger.info(f\"  K={K}: {n_conds} conditions, clusters/pos={cl_info}\")\n\n    power_per_cond = {str(b): [] for b in BETA_STD_GRID}\n\n    for ci, cond in enumerate(cond_keys):\n        d = cond_data_dict[cond]\n        t_cond = time.time()\n```\n\nCHUNK 4 (lines 393-534, rest of run_mde_power and main):\n```python\n\n        cond_power = batched_wcb_power(\n            X=d[\"X\"],\n            log_keff=d[\"log_keff\"],\n            log_eta=d[\"log_eta\"],\n            intercept=d[\"intercept\"],\n            beta_eta=d[\"beta_eta\"],\n            sigma=d[\"sigma_resid\"],\n            panel_jids_list=d[\"panel_jids_list\"],\n            K=K,\n            beta_std_grid=BETA_STD_GRID,\n            n_sim=n_sim,\n            n_boot=n_boot,\n            rng=rng,\n            batch_size=200,\n        )\n\n        for b in BETA_STD_GRID:\n            power_per_cond[str(b)].append(cond_power[str(b)])\n\n        dt = time.time() - t_cond\n        logger.info(f\"    [{ci+1}/{n_conds}] {cond}: {dt:.1f}s, R2={d['R2']:.3f}, \"\n                    f\"power@0.3={cond_power.get('0.3','?')}\")\n\n    # Average across conditions\n    power_avg = {}\n    for b in BETA_STD_GRID:\n        vals = power_per_cond[str(b)]\n        power_avg[str(b)] = round(float(np.mean(vals)), 4) if vals else 0.0\n\n    betas = np.array(BETA_STD_GRID)\n    powers = np.array([power_avg[str(b)] for b in BETA_STD_GRID])\n\n    mde_80 = None\n    if powers.max() >= 0.80 and powers.min() <= 0.80:\n        try:\n            f_interp = interp1d(powers, betas, kind='linear',\n                                bounds_error=False, fill_value=np.nan)\n            mde_80 = float(f_interp(0.80))\n            if np.isnan(mde_80):\n                mde_80 = None\n            else:\n                mde_80 = round(mde_80, 4)\n        except Exception:\n            pass\n    elif powers[0] > 0.80:\n        mde_80 = round(float(betas[0]), 4)\n\n    logger.info(f\"  K={K} avg power: {power_avg}\")\n    if mde_80 is not None:\n        logger.info(f\"  MDE@80%: {mde_80}\")\n    else:\n        logger.info(f\"  MDE@80%: not achievable (max power={powers.max():.3f})\")\n\n    return power_avg, mde_80\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--n-sim\", type=int, default=1000)\n    parser.add_argument(\"--n-boot\", type=int, default=999)\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    n_sim = 5 if args.dry_run else args.n_sim\n    n_boot = 99 if args.dry_run else args.n_boot\n\n    logger.info(\"=\" * 60)\n    logger.info(\"Pool A MDE Power Analysis (Webb 6-point WCB)\")\n    logger.info(f\"  n_sim={n_sim}, n_boot={n_boot}, seed={SEED}\")\n    logger.info(f\"  beta_std grid: {BETA_STD_GRID}\")\n    logger.info(f\"  Pool A: {POOL_A}\")\n    logger.info(\"=\" * 60)\n\n    t0 = time.time()\n    rng = np.random.default_rng(SEED)\n\n    logger.info(\"Loading data...\")\n    mi_matrices = load_mi_matrix()\n    pairs = load_pairs()\n    clean, attacked = load_pool_a_scores()\n    n_loaded = sum(1 for ds in DATASETS for m in POOL_A if m in clean[ds])\n    logger.info(f\"  Loaded {n_loaded}/{len(POOL_A)*len(DATASETS)} clean score sets\")\n\n    logger.info(\"\\nBuilding K=3 panel data...\")\n    data_k3 = build_panel_data(3, mi_matrices, clean, attacked, pairs)\n\n    logger.info(\"\\nBuilding K=5 panel data...\")\n    data_k5 = build_panel_data(5, mi_matrices, clean, attacked, pairs)\n\n    logger.info(\"\\n--- K=3 Power Analysis ---\")\n    power_k3, mde_k3 = run_mde_power(3, data_k3, n_sim, n_boot, rng)\n\n    logger.info(\"\\n--- K=5 Power Analysis ---\")\n    power_k5, mde_k5 = run_mde_power(5, data_k5, n_sim, n_boot, rng)\n\n    elapsed = time.time() - t0\n\n    ref_k3 = list(data_k3.values())[0]\n    ref_k5 = list(data_k5.values())[0]\n\n    output = {\n        \"pool_a_models\": POOL_A,\n        \"pool_a_panels\": {\"K3\": 84, \"K5\": 126},\n        \"beta_std_values\": BETA_STD_GRID,\n        \"n_simulations\": n_sim,\n        \"n_bootstrap\": n_boot,\n        \"bootstrap_weights\": \"webb_6point\",\n        \"seed\": SEED,\n        \"clusters_per_position\": {\n            \"K3\": ref_k3[\"n_clusters_per_pos\"],\n            \"K5\": ref_k5[\"n_clusters_per_pos\"],\n        },\n        \"power_by_beta\": {\n            \"K3\": power_k3,\n            \"K5\": power_k5,\n        },\n        \"mde_at_80pct\": {\n            \"K3\": mde_k3,\n            \"K5\": mde_k5,\n        },\n        \"elapsed_seconds\": round(elapsed, 1),\n        \"notes\": (\n            \"Power per-condition then averaged across 12 conditions \"\n            \"(2 datasets x 6 attacks). \"\n            \"Wild cluster bootstrap with Webb 6-point weights, \"\n            f\"B={n_boot}, max p-value across K judge positions. \"\n            \"Regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps). \"\n            \"Few clusters per position (7 for K=3, 5 for K=5) make WCB \"\n            \"very conservative, limiting detectable effect size.\"\n        ),\n    }\n\n    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n    logger.info(f\"\\nSaved: {OUT_PATH}\")\n    logger.info(f\"Total time: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n```\n\nRead the existing file first, then Write the complete file by concatenating all 4 chunks above. Make sure there's no duplicate content between chunks - they should flow seamlessly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "8dcb6f36-b85a-4eb0-adb1-efee80dd8b47",
+            "agentId": "abe8fde629afd1a36",
+            "type": "user",
+            "uuid": "557a5085-1de3-4401-9f7f-b4f059ec4166",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T13:08:28.921Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "557a5085-1de3-4401-9f7f-b4f059ec4166",
+                "isSidechain": true,
+                "agentId": "abe8fde629afd1a36",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "48a3691c-748a-475d-944b-c54268ee973e",
+                "timestamp": "2026-05-24T13:08:28.921Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+                "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "greedy-enchanting-dragon"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T13:08:33.179Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QAGJmYZxSnEBTjYLwXrZPJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48a3691c-748a-475d-944b-c54268ee973e",
+            "isSidechain": true,
+            "agentId": "abe8fde629afd1a36",
+            "requestId": "req_011CbMSrSUHMYA2D3mAUV56q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "00b4858b-6d01-4dd3-952f-c43942c0ab2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5u9jGLMKMVZX3PXk63YY9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 21419,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 21419,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 37,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T13:08:33.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QAGJmYZxSnEBTjYLwXrZPJ",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Pool A MDE Power Analysis with Wild Cluster Bootstrap (Webb 6-point).\n3\t\n4\tFor K=3 (84 panels from C(9,3)) and K=5 (126 panels from C(9,5)),\n5\tcompute power to detect K_eff effect at various standardized effect sizes.\n6\t\"\"\"\n7\t\n8\timport os\n9\timport sys\n10\timport json\n11\timport time\n12\timport itertools\n13\timport logging\n14\timport argparse\n15\timport numpy as np\n16\timport statsmodels.api as sm\n17\tfrom pathlib import Path\n18\tfrom scipy.interpolate import interp1d\n19\t\n20\t# ── Config ───────────────────────────────────────────────────────────\n21\tMI_MODELS = [\n22\t    \"qwen2.5-72b\", \"llama3.1-70b\", \"mistral-large\",\n23\t    \"qwen2.5-32b\", \"qwen2.5-14b\", \"llama3.1-8b\",\n24\t    \"claude-opus-4-6\", \"gpt-5.5\", \"gemini-3.1-pro-preview\", \"gpt-4.1\",\n25\t    \"claude-sonnet-4-6\", \"gpt-4.1-nano\", \"gemini-3.5-flash\",\n26\t    \"gpt-4.1-mini\", \"claude-3-haiku\",\n27\t]\n28\tPOOL_A = MI_MODELS[6:]  # 9 API-tier models\n29\tPOOL_A_INDICES = list(range(6, 15))\n30\t\n31\tDATASETS = [\"mmlu\", \"arc_challenge\"]\n32\tATTACKS = [\n33\t    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n34\t    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n35\t]\n36\tEPS = 1e-6\n37\tBETA_STD_GRID = [0.1, 0.15, 0.2, 0.25, 0.3]\n38\tSEED = 42\n39\t\n40\t# Webb 6-point distribution: E[w]=0, E[w²]=1\n41\tWEBB_6 = np.array([\n42\t    -np.sqrt(3/2), -1.0, -np.sqrt(1/2),\n43\t     np.sqrt(1/2),  1.0,  np.sqrt(3/2),\n44\t])\n45\t\n46\tBASE_DIR = Path(\"/root/cert_manip_resist_eval\")\n47\tSCORES_DIR = BASE_DIR / \"artifacts/results/plan001/individual_scores\"\n48\tMI_PATH = BASE_DIR / \"artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\"\n49\tCKPT_PATH = BASE_DIR / \"artifacts/results/_taxonomy_checkpoint.json\"\n50\tOUT_PATH = BASE_DIR / \"artifacts/results/plan001/pool_a_mde.json\"\n51\t\n52\tlogging.basicConfig(\n53\t    level=logging.INFO,\n54\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n55\t    datefmt=\"%H:%M:%S\",\n56\t)\n57\tlogger = logging.getLogger(\"pool_a_mde\")\n58\t\n59\t\n60\tdef _json_default(obj):\n61\t    if isinstance(obj, np.floating):\n62\t        v = float(obj)\n63\t        return None if (np.isnan(v) or np.isinf(v)) else v\n64\t    if isinstance(obj, np.integer):\n65\t        return int(obj)\n66\t    if isinstance(obj, np.ndarray):\n67\t        return obj.tolist()\n68\t    if isinstance(obj, np.bool_):\n69\t        return bool(obj)\n70\t    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n71\t\n72\t\n73\t# ── Data loading ─────────────────────────────────────────────────────\n74\t\n75\tdef load_mi_matrix():\n76\t    with open(MI_PATH) as f:\n77\t        data = json.load(f)\n78\t    mi = {}\n79\t    for ds in DATASETS:\n80\t        mi[ds] = np.array(data[\"mi_matrix\"][ds])\n81\t    return mi\n82\t\n83\t\n84\tdef load_pairs():\n85\t    with open(CKPT_PATH) as f:\n86\t        data = json.load(f)\n87\t    return {ds: data[\"pairs\"][ds][:300] for ds in DATASETS}\n88\t\n89\t\n90\tdef load_individual_scores(model, dataset, condition):\n91\t    path = SCORES_DIR / f\"{model}__{dataset}__{condition}.json\"\n92\t    if not path.exists():\n93\t        return None\n94\t    with open(path) as f:\n95\t        return json.load(f).get(\"scores\", [])\n96\t\n97\t\n98\tdef load_pool_a_scores():\n99\t    clean = {ds: {} for ds in DATASETS}\n100\t    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\n101\t    for m in POOL_A:\n102\t        for ds in DATASETS:\n103\t            scores = load_individual_scores(m, ds, \"clean\")\n104\t            if scores:\n105\t                clean[ds][m] = scores\n106\t            for atk in ATTACKS:\n107\t                scores = load_individual_scores(m, ds, atk)\n108\t                if scores:\n109\t                    attacked[ds][atk][m] = scores\n110\t    return clean, attacked\n111\t\n112\t\n113\t# ── K_eff computation ────────────────────────────────────────────────\n114\t\n115\tdef mi_based_keff(mi_matrix, model_indices):\n116\t    K = len(model_indices)\n117\t    if K <= 1:\n118\t        return 1.0\n119\t    keff = 0.0\n120\t    for i_idx in model_indices:\n121\t        term = 1.0\n122\t        for j_idx in model_indices:\n123\t            if i_idx != j_idx:\n124\t                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\n125\t        keff += term\n126\t    return keff / K\n127\t\n128\t\n129\t# ── ASR computation ──────────────────────────────────────────────────\n130\t\n131\tdef _is_valid(s):\n132\t    if s.get(\"error\") or s.get(\"format_error\"):\n133\t        return False\n134\t    return s.get(\"winner\") in (\"A\", \"B\", \"tie\")\n135\t\n136\t\n137\tdef majority_vote(votes):\n138\t    counts = {\"A\": 0, \"B\": 0, \"tie\": 0}\n139\t    for v in votes:\n140\t        counts[v] = counts.get(v, 0) + 1\n141\t    mc = max(counts.values())\n142\t    winners = [k for k, c in counts.items() if c == mc]\n143\t    if len(winners) == 1:\n144\t        return winners[0]\n145\t    for w in winners:\n146\t        if w != \"tie\":\n147\t            return w\n148\t    return \"tie\"\n149\t\n150\t\n151\tdef compute_individual_asr(clean_list, attacked_list, pairs):\n152\t    n = min(len(clean_list), len(attacked_list), len(pairs))\n153\t    n_flips = n_correct = 0\n154\t    for i in range(n):\n155\t        if not _is_valid(clean_list[i]) or not _is_valid(attacked_list[i]):\n156\t            continue\n157\t        gt = pairs[i][\"ground_truth_winner\"]\n158\t        if clean_list[i][\"winner\"] == gt:\n159\t            n_correct += 1\n160\t            if attacked_list[i][\"winner\"] != gt:\n161\t                n_flips += 1\n162\t    return n_flips / max(n_correct, 1)\n163\t\n164\t\n165\tdef compute_panel_asr(jids, clean, attacked, pairs):\n166\t    n = min(len(pairs), *(len(clean[j]) for j in jids),\n167\t            *(len(attacked[j]) for j in jids))\n168\t    n_flips = n_correct = 0\n169\t    for i in range(n):\n170\t        if not all(_is_valid(clean[j][i]) for j in jids):\n171\t            continue\n172\t        if not all(_is_valid(attacked[j][i]) for j in jids):\n173\t            continue\n174\t        gt = pairs[i][\"ground_truth_winner\"]\n175\t        cv = majority_vote([clean[j][i][\"winner\"] for j in jids])\n176\t        if cv != gt:\n177\t            continue\n178\t        n_correct += 1\n179\t        av = majority_vote([attacked[j][i][\"winner\"] for j in jids])\n180\t        if av != gt:\n181\t            n_flips += 1\n182\t    return n_flips / max(n_correct, 1)\n183\t\n184\t\n185\t# ── Wild cluster bootstrap (vectorized, Webb 6-point) ────────────────\n186\t\n187\tdef wild_cluster_bootstrap_webb(y, X_full, cluster_ids, B, rng,\n188\t                                test_col_idx=1):\n189\t    \"\"\"Vectorized wild cluster bootstrap with Webb 6-point weights.\"\"\"\n190\t    n, p = X_full.shape\n191\t    unique_clusters = np.unique(cluster_ids)\n192\t    n_clusters = len(unique_clusters)\n193\t    c2i = {c: i for i, c in enumerate(unique_clusters)}\n194\t    panel_ci = np.array([c2i[c] for c in cluster_ids])\n195\t\n196\t    # Unrestricted fit\n197\t    XtX_inv = np.linalg.inv(X_full.T @ X_full)\n198\t    M_hat = XtX_inv @ X_full.T  # p × n\n199\t    beta_u = M_hat @ y\n200\t    resid_u = y - X_full @ beta_u\n201\t    sigma2_u = np.sum(resid_u ** 2) / (n - p)\n202\t    t_obs = beta_u[test_col_idx] / np.sqrt(sigma2_u * XtX_inv[test_col_idx, test_col_idx])\n203\t\n204\t    # Restricted fit (drop test_col_idx)\n205\t    cols_r = [i for i in range(p) if i != test_col_idx]\n206\t    X_r = X_full[:, cols_r]\n207\t    M_hat_r = np.linalg.inv(X_r.T @ X_r) @ X_r.T\n208\t    beta_r = M_hat_r @ y\n209\t    y_hat_r = X_r @ beta_r\n210\t    e_r = y - y_hat_r\n211\t\n212\t    # Bootstrap: generate Webb 6-point weights for clusters\n213\t    w_cluster = rng.choice(WEBB_6, size=(B, n_clusters))\n214\t    w_panel = w_cluster[:, panel_ci]  # B × n\n215\t    Y_boot = y_hat_r[None, :] + w_panel * e_r[None, :]  # B × n\n216\t\n217\t    # Vectorized OLS on bootstrap samples\n218\t    Beta_boot = Y_boot @ M_hat.T  # B × p\n219\t    Resid_boot = Y_boot - Beta_boot @ X_full.T  # B × n\n220\t    sigma2_boot = np.sum(Resid_boot ** 2, axis=1) / (n - p)  # B\n221\t    se_boot = np.sqrt(sigma2_boot * XtX_inv[test_col_idx, test_col_idx])\n222\t    se_boot = np.maximum(se_boot, 1e-15)\n223\t    t_boot = Beta_boot[:, test_col_idx] / se_boot  # B\n224\t\n225\t    p_value = (1 + np.sum(np.abs(t_boot) >= np.abs(t_obs))) / (1 + B)\n226\t    return float(p_value), n_clusters\n227\t\n228\t\n229\tdef bootstrap_K_positions(y, X_full, panel_jids_list, K, B, rng,\n230\t                          test_col_idx=1):\n231\t    \"\"\"Wild cluster bootstrap across K judge positions, return max p-value.\"\"\"\n232\t    position_ps = []\n233\t    position_clusters = []\n234\t    for pos in range(K):\n235\t        cluster_ids = np.array([jids[pos] for jids in panel_jids_list])\n236\t        p_val, n_cl = wild_cluster_bootstrap_webb(\n237\t            y, X_full, cluster_ids, B, rng, test_col_idx\n238\t        )\n239\t        position_ps.append(p_val)\n240\t        position_clusters.append(n_cl)\n241\t    return position_ps, max(position_ps), position_clusters\n242\t\n243\t\n244\t# ── Build panel data ─────────────────────────────────────────────────\n245\t\n246\tdef build_panel_data(K, mi_matrices, clean, attacked, pairs):\n247\t    \"\"\"Build regression data for Pool A panels of size K.\"\"\"\n248\t    pool_indices = POOL_A_INDICES\n249\t    combos = list(itertools.combinations(range(len(POOL_A)), K))\n250\t    logger.info(f\"  K={K}: {len(combos)} panels from {len(POOL_A)} models\")\n251\t\n252\t    all_cond_data = {}\n253\t    for ds in DATASETS:\n254\t        mi_mat = mi_matrices[ds]\n255\t        for atk in ATTACKS:\n256\t            cond = f\"{ds}x{atk}\"\n257\t            ds_clean = clean.get(ds, {})\n258\t            ds_attacked = attacked.get(ds, {}).get(atk, {})\n259\t            ds_pairs = pairs.get(ds, [])\n260\t            if not ds_clean or not ds_attacked or not ds_pairs:\n261\t                continue\n262\t\n263\t            ind_asr = {}\n264\t            for m in POOL_A:\n265\t                if m in ds_clean and m in ds_attacked:\n266\t                    ind_asr[m] = compute_individual_asr(\n267\t                        ds_clean[m], ds_attacked[m], ds_pairs\n268\t                    )\n269\t\n270\t            p_asrs, p_keffs, p_etas = [], [], []\n271\t            panel_jids_list = []\n272\t\n273\t            for combo in combos:\n274\t                jids = [POOL_A[i] for i in combo]\n275\t                if not all(j in ind_asr for j in jids):\n276\t                    continue\n277\t                if not all(j in ds_clean and j in ds_attacked for j in jids):\n278\t                    continue\n279\t\n280\t                global_indices = [pool_indices[i] for i in combo]\n281\t                keff = mi_based_keff(mi_mat, global_indices)\n282\t                eta_max = max(ind_asr[j] for j in jids)\n283\t                p_asr = compute_panel_asr(\n284\t                    jids,\n285\t                    {j: ds_clean[j] for j in jids},\n286\t                    {j: ds_attacked[j] for j in jids},\n287\t                    ds_pairs,\n288\t                )\n289\t\n290\t                p_asrs.append(p_asr)\n291\t                p_keffs.append(keff)\n292\t                p_etas.append(eta_max)\n293\t                panel_jids_list.append(jids)\n294\t\n295\t            n_panels = len(p_asrs)\n296\t            if n_panels < 10:\n297\t                continue\n298\t\n299\t            p_asrs = np.array(p_asrs)\n300\t            if np.std(p_asrs) < 1e-10:\n301\t                continue\n302\t\n303\t            log_keff = np.log(np.array(p_keffs))\n304\t            log_eta = np.log(np.array(p_etas) + EPS)\n305\t            y = np.log(p_asrs + EPS)\n306\t\n307\t            all_cond_data[cond] = {\n308\t                \"y\": y,\n309\t                \"log_keff\": log_keff,\n310\t                \"log_eta\": log_eta,\n311\t                \"panel_jids_list\": panel_jids_list,\n312\t                \"n_panels\": n_panels,\n313\t            }\n314\t\n315\t    logger.info(f\"  Built {len(all_cond_data)} conditions for K={K}\")\n316\t    return all_cond_data\n317\t\n318\t\n319\t# ── Power analysis ───────────────────────────────────────────────────\n320\t\n321\tdef run_mde_power(K, cond_data_dict, n_sim, n_boot, rng):\n322\t    \"\"\"MDE power analysis averaged across conditions.\"\"\"\n323\t    cond_keys = sorted(cond_data_dict.keys())\n324\t    n_conds = len(cond_keys)\n325\t    logger.info(f\"  Running power analysis: K={K}, {n_conds} conditions, \"\n326\t                f\"{n_sim} sims, {n_boot} bootstrap reps\")\n327\t\n328\t    power_accum = {str(b): 0.0 for b in BETA_STD_GRID}\n329\t\n330\t    for ci, cond in enumerate(cond_keys):\n331\t        data = cond_data_dict[cond]\n332\t        y = data[\"y\"]\n333\t        log_keff = data[\"log_keff\"]\n334\t        log_eta = data[\"log_eta\"]\n335\t        n_panels = data[\"n_panels\"]\n336\t        panel_jids = data[\"panel_jids_list\"]\n337\t\n338\t        X = sm.add_constant(np.column_stack([log_keff, log_eta]))\n339\t        fit = sm.OLS(y, X).fit()\n340\t\n341\t        intercept = fit.params[0]\n342\t        beta_eta = fit.params[2]\n343\t        sigma_resid = np.sqrt(fit.mse_resid)\n344\t        sd_y = np.std(y)\n345\t        sd_log_keff = np.std(log_keff)\n346\t\n347\t        if sd_log_keff < 1e-10:\n348\t            continue\n349\t\n350\t        for beta_std in BETA_STD_GRID:\n351\t            beta_raw = beta_std * sd_y / sd_log_keff\n352\t            n_sig = 0\n353\t\n354\t            for sim in range(n_sim):\n355\t                y_sim = (intercept\n356\t                         + beta_raw * log_keff\n357\t                         + beta_eta * log_eta\n358\t                         + rng.normal(0, sigma_resid, n_panels))\n359\t\n360\t                _, final_p, _ = bootstrap_K_positions(\n361\t                    y_sim, X, panel_jids, K, n_boot, rng, test_col_idx=1\n362\t                )\n363\t\n364\t                if final_p < 0.05:\n365\t                    n_sig += 1\n366\t\n367\t            power = n_sig / n_sim\n368\t            power_accum[str(beta_std)] += power\n369\t\n370\t        logger.info(f\"    [{ci+1}/{n_conds}] {cond}: done \"\n371\t                    f\"(n={n_panels}, R²={fit.rsquared:.3f})\")\n372\t\n373\t    power_avg = {}\n374\t    for b in BETA_STD_GRID:\n375\t        power_avg[str(b)] = round(power_accum[str(b)] / n_conds, 4)\n376\t\n377\t    # MDE at 80% power via interpolation\n378\t    betas = np.array(BETA_STD_GRID)\n379\t    powers = np.array([power_avg[str(b)] for b in BETA_STD_GRID])\n380\t    mde_80 = None\n381\t    if powers[-1] >= 0.80 and powers[0] <= 0.80:\n382\t        try:\n383\t            f_interp = interp1d(powers, betas, kind='linear')\n384\t            mde_80 = float(f_interp(0.80))\n385\t        except Exception:\n386\t            pass\n387\t    elif powers[0] > 0.80:\n388\t        mde_80 = float(betas[0])\n389\t    elif powers[-1] < 0.80:\n390\t        mde_80 = None\n391\t\n392\t    logger.info(f\"  K={K} power: {power_avg}\")\n393\t    if mde_80 is not None:\n394\t        logger.info(f\"  K={K} MDE@80%: {mde_80:.4f}\")\n395\t    else:\n396\t        logger.info(f\"  K={K} MDE@80%: not achievable (max power={powers[-1]:.3f})\")\n397\t\n398\t    return power_avg, mde_80\n399\t\n400\t\n401\t# ── Main ─────────────────────────────────────────────────────────────\n402\t\n403\tdef main():\n404\t    parser = argparse.ArgumentParser()\n405\t    parser.add_argument(\"--n-sim\", type=int, default=1000)\n406\t    parser.add_argument(\"--n-boot\", type=int, default=999)\n407\t    parser.add_argument(\"--dry-run\", action=\"store_true\")\n408\t    args = parser.parse_args()\n409\t\n410\t    n_sim = 5 if args.dry_run else args.n_sim\n411\t    n_boot = 99 if args.dry_run else args.n_boot\n412\t\n413\t    logger.info(\"=\" * 60)\n414\t    logger.info(\"Pool A MDE Power Analysis\")\n415\t    logger.info(f\"  n_sim={n_sim}, n_boot={n_boot}, seed={SEED}\")\n416\t    logger.info(f\"  Pool A models: {POOL_A}\")\n417\t    logger.info(\"=\" * 60)\n418\t\n419\t    t0 = time.time()\n420\t    rng = np.random.default_rng(SEED)\n421\t\n422\t    logger.info(\"Loading data...\")\n423\t    mi_matrices = load_mi_matrix()\n424\t    pairs = load_pairs()\n425\t    clean, attacked = load_pool_a_scores()\n426\t\n427\t    n_loaded = sum(1 for ds in DATASETS for m in POOL_A if m in clean[ds])\n428\t    logger.info(f\"  Loaded {n_loaded} clean score sets\")\n429\t\n430\t    # Build panel data for K=3 and K=5\n431\t    logger.info(\"\\nBuilding K=3 panel data...\")\n432\t    data_k3 = build_panel_data(3, mi_matrices, clean, attacked, pairs)\n433\t\n434\t    logger.info(\"\\nBuilding K=5 panel data...\")\n435\t    data_k5 = build_panel_data(5, mi_matrices, clean, attacked, pairs)\n436\t\n437\t    # Run power analysis\n438\t    logger.info(\"\\n--- K=3 Power Analysis ---\")\n439\t    power_k3, mde_k3 = run_mde_power(3, data_k3, n_sim, n_boot, rng)\n440\t\n441\t    logger.info(\"\\n--- K=5 Power Analysis ---\")\n442\t    power_k5, mde_k5 = run_mde_power(5, data_k5, n_sim, n_boot, rng)\n443\t\n444\t    elapsed = time.time() - t0\n445\t\n446\t    output = {\n447\t        \"pool_a_models\": POOL_A,\n448\t        \"pool_a_panels\": {\n449\t            \"K3\": len(list(itertools.combinations(range(9), 3))),\n450\t            \"K5\": len(list(itertools.combinations(range(9), 5))),\n451\t        },\n452\t        \"beta_std_values\": BETA_STD_GRID,\n453\t        \"n_simulations\": n_sim,\n454\t        \"n_bootstrap\": n_boot,\n455\t        \"bootstrap_weights\": \"webb_6point\",\n456\t        \"seed\": SEED,\n457\t        \"power_by_beta\": {\n458\t            \"K3\": power_k3,\n459\t            \"K5\": power_k5,\n460\t        },\n461\t        \"mde_at_80pct\": {\n462\t            \"K3\": mde_k3,\n463\t            \"K5\": mde_k5,\n464\t        },\n465\t        \"elapsed_seconds\": round(elapsed, 1),\n466\t        \"notes\": (\n467\t            \"Power averaged across 12 conditions (2 datasets × 6 attacks). \"\n468\t            \"Wild cluster bootstrap with Webb 6-point weights, \"\n469\t            f\"B={n_boot}, max p-value across K judge positions. \"\n470\t            \"Regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps).\"\n471\t        ),\n472\t    }\n473\t\n474\t    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n475\t    with open(OUT_PATH, \"w\") as f:\n476\t        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n477\t    logger.info(f\"\\nSaved: {OUT_PATH}\")\n478\t    logger.info(f\"Total time: {elapsed:.1f}s\")\n479\t\n480\t\n481\tif __name__ == \"__main__\":\n482\t    main()\n483\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00b4858b-6d01-4dd3-952f-c43942c0ab2f",
+            "isSidechain": true,
+            "promptId": "8dcb6f36-b85a-4eb0-adb1-efee80dd8b47",
+            "agentId": "abe8fde629afd1a36",
+            "type": "user",
+            "uuid": "1cdc746b-cb2a-448c-bb1b-2d9bfcd162b5",
+            "sourceToolAssistantUUID": "00b4858b-6d01-4dd3-952f-c43942c0ab2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T13:08:37.467Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write the complete v3 file with all 4 chunks concatenated."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cdc746b-cb2a-448c-bb1b-2d9bfcd162b5",
+            "isSidechain": true,
+            "agentId": "abe8fde629afd1a36",
+            "requestId": "req_011CbMSrmBR8kpCgUNuvH68P",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d980fe0d-cad7-48b7-b5d5-d5e99eb8ff42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHepRZRgq5Wuh5JdasE6Rr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7761,
+                "cache_read_input_tokens": 21419,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7761,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T13:10:19.968Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RgzwFUxKQo4QTLshDyE6yP",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Pool A MDE Power Analysis with Wild Cluster Bootstrap (Webb 6-point).\n\nVectorized implementation: batches all N_sim simulations together for each\n(condition, beta_std, position) to avoid Python-level sim loops.\n\"\"\"\n\nimport json\nimport time\nimport itertools\nimport logging\nimport argparse\nimport numpy as np\nimport statsmodels.api as sm\nfrom pathlib import Path\nfrom scipy.interpolate import interp1d\n\nMI_MODELS = [\n    \"qwen2.5-72b\", \"llama3.1-70b\", \"mistral-large\",\n    \"qwen2.5-32b\", \"qwen2.5-14b\", \"llama3.1-8b\",\n    \"claude-opus-4-6\", \"gpt-5.5\", \"gemini-3.1-pro-preview\", \"gpt-4.1\",\n    \"claude-sonnet-4-6\", \"gpt-4.1-nano\", \"gemini-3.5-flash\",\n    \"gpt-4.1-mini\", \"claude-3-haiku\",\n]\nPOOL_A = MI_MODELS[6:]\nPOOL_A_INDICES = list(range(6, 15))\n\nDATASETS = [\"mmlu\", \"arc_challenge\"]\nATTACKS = [\n    \"prompt_injection\", \"sycophancy\", \"score_manipulation\",\n    \"verbosity_bias\", \"position_bias\", \"authority_bias\",\n]\nEPS = 1e-6\nBETA_STD_GRID = [0.1, 0.15, 0.2, 0.25, 0.3, 0.5, 0.7, 1.0]\nSEED = 42\n\nWEBB_6 = np.array([\n    -np.sqrt(3/2), -1.0, -np.sqrt(1/2),\n     np.sqrt(1/2),  1.0,  np.sqrt(3/2),\n])\n\nBASE_DIR = Path(\"/root/cert_manip_resist_eval\")\nSCORES_DIR = BASE_DIR / \"artifacts/results/plan001/individual_scores\"\nMI_PATH = BASE_DIR / \"artifacts/results/plan001/mi_matrix/mi_matrix_15models.json\"\nCKPT_PATH = BASE_DIR / \"artifacts/results/_taxonomy_checkpoint.json\"\nOUT_PATH = BASE_DIR / \"artifacts/results/plan001/pool_a_mde.json\"\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%H:%M:%S\",\n)\nlogger = logging.getLogger(\"pool_a_mde\")\n\n\ndef _json_default(obj):\n    if isinstance(obj, np.floating):\n        v = float(obj)\n        return None if (np.isnan(v) or np.isinf(v)) else v\n    if isinstance(obj, np.integer):\n        return int(obj)\n    if isinstance(obj, np.ndarray):\n        return obj.tolist()\n    if isinstance(obj, np.bool_):\n        return bool(obj)\n    raise TypeError(f\"Not JSON serializable: {type(obj)}\")\n\n\ndef load_mi_matrix():\n    with open(MI_PATH) as f:\n        data = json.load(f)\n    return {ds: np.array(data[\"mi_matrix\"][ds]) for ds in DATASETS}\n\n\ndef load_pairs():\n    with open(CKPT_PATH) as f:\n        data = json.load(f)\n    return {ds: data[\"pairs\"][ds][:300] for ds in DATASETS}\n\n\ndef load_individual_scores(model, dataset, condition):\n    path = SCORES_DIR / f\"{model}__{dataset}__{condition}.json\"\n    if not path.exists():\n        return None\n    with open(path) as f:\n        return json.load(f).get(\"scores\", [])\n\n\ndef load_pool_a_scores():\n    clean = {ds: {} for ds in DATASETS}\n    attacked = {ds: {a: {} for a in ATTACKS} for ds in DATASETS}\n    for m in POOL_A:\n        for ds in DATASETS:\n            scores = load_individual_scores(m, ds, \"clean\")\n            if scores:\n                clean[ds][m] = scores\n            for atk in ATTACKS:\n                scores = load_individual_scores(m, ds, atk)\n                if scores:\n                    attacked[ds][atk][m] = scores\n    return clean, attacked\n\n\ndef mi_based_keff(mi_matrix, model_indices):\n    K = len(model_indices)\n    if K <= 1:\n        return 1.0\n    keff = 0.0\n    for i_idx in model_indices:\n        term = 1.0\n        for j_idx in model_indices:\n            if i_idx != j_idx:\n                term += np.exp(-2 * mi_matrix[i_idx, j_idx])\n        keff += term\n    return keff / K\n\n\ndef _is_valid(s):\n    if s.get(\"error\") or s.get(\"format_error\"):\n        return False\n    return s.get(\"winner\") in (\"A\", \"B\", \"tie\")\n\n\ndef majority_vote(votes):\n    counts = {\"A\": 0, \"B\": 0, \"tie\": 0}\n    for v in votes:\n        counts[v] = counts.get(v, 0) + 1\n    mc = max(counts.values())\n    winners = [k for k, c in counts.items() if c == mc]\n    if len(winners) == 1:\n        return winners[0]\n    for w in winners:\n        if w != \"tie\":\n            return w\n    return \"tie\"\n\n\ndef compute_individual_asr(clean_list, attacked_list, pairs):\n    n = min(len(clean_list), len(attacked_list), len(pairs))\n    n_flips = n_correct = 0\n    for i in range(n):\n        if not _is_valid(clean_list[i]) or not _is_valid(attacked_list[i]):\n            continue\n        gt = pairs[i][\"ground_truth_winner\"]\n        if clean_list[i][\"winner\"] == gt:\n            n_correct += 1\n            if attacked_list[i][\"winner\"] != gt:\n                n_flips += 1\n    return n_flips / max(n_correct, 1)\n\n\ndef compute_panel_asr(jids, clean, attacked, pairs):\n    n = min(len(pairs), *(len(clean[j]) for j in jids),\n            *(len(attacked[j]) for j in jids))\n    n_flips = n_correct = 0\n    for i in range(n):\n        if not all(_is_valid(clean[j][i]) for j in jids):\n            continue\n        if not all(_is_valid(attacked[j][i]) for j in jids):\n            continue\n        gt = pairs[i][\"ground_truth_winner\"]\n        cv = majority_vote([clean[j][i][\"winner\"] for j in jids])\n        if cv != gt:\n            continue\n        n_correct += 1\n        av = majority_vote([attacked[j][i][\"winner\"] for j in jids])\n        if av != gt:\n            n_flips += 1\n    return n_flips / max(n_correct, 1)\n\n\n# ── Vectorized wild cluster bootstrap across all sims ────────────────\n\ndef batched_wcb_power(X, log_keff, log_eta, intercept, beta_eta, sigma,\n                      panel_jids_list, K, beta_std_grid, n_sim, n_boot,\n                      rng, batch_size=100):\n    \"\"\"Vectorized power analysis: batch sims to avoid Python loop.\n\n    For each (beta_std, position):\n      - Generate all n_sim y_sim at once\n      - For each batch of sims, vectorize bootstrap across sims and reps\n    \"\"\"\n    n, p = X.shape\n    sd_y_val = sigma  # approximate sd_y with sigma for DGP\n    sd_lk = np.std(log_keff)\n    if sd_lk < 1e-10:\n        return {str(b): 0.0 for b in beta_std_grid}\n\n    # Precompute X-dependent quantities\n    XtX_inv = np.linalg.inv(X.T @ X)\n    M_hat = XtX_inv @ X.T  # p x n\n    diag_keff = XtX_inv[1, 1]\n\n    # Restricted model (drop column 1 = log_keff)\n    X_r = X[:, [0, 2]]\n    M_hat_r = np.linalg.inv(X_r.T @ X_r) @ X_r.T  # 2 x n\n\n    # Build cluster assignments per position\n    position_clusters = []\n    for pos in range(K):\n        cids_raw = np.array([jids[pos] for jids in panel_jids_list])\n        unique_c = np.unique(cids_raw)\n        c2i = {c: i for i, c in enumerate(unique_c)}\n        pci = np.array([c2i[c] for c in cids_raw])\n        position_clusters.append((pci, len(unique_c)))\n\n    results = {}\n\n    for beta_std in beta_std_grid:\n        beta_raw_approx = beta_std * sigma / sd_lk  # first approximation\n        # Better: compute sd_y from DGP\n        y_mean_signal = intercept + beta_raw_approx * log_keff + beta_eta * log_eta\n        sd_y_dgp = np.sqrt(np.var(y_mean_signal) + sigma**2)\n        beta_raw = beta_std * sd_y_dgp / sd_lk\n\n        # Generate all n_sim y values at once: n_sim x n\n        noise = rng.normal(0, sigma, size=(n_sim, n))\n        Y_sim = (intercept\n                 + beta_raw * log_keff[None, :]\n                 + beta_eta * log_eta[None, :]\n                 + noise)\n\n        # Unrestricted OLS for all sims: Beta_u = Y_sim @ M_hat.T -> n_sim x p\n        Beta_u = Y_sim @ M_hat.T\n        Resid_u = Y_sim - Beta_u @ X.T\n        Sigma2_u = np.sum(Resid_u ** 2, axis=1) / (n - p)\n        T_obs = Beta_u[:, 1] / np.sqrt(Sigma2_u * diag_keff)  # n_sim\n\n        # Restricted OLS for all sims\n        Beta_r = Y_sim @ M_hat_r.T  # n_sim x 2\n        Y_hat_r = Beta_r @ X_r.T   # n_sim x n\n        E_r = Y_sim - Y_hat_r      # n_sim x n\n\n        # For each position, compute bootstrap p-values for all sims\n        # sig_mask[i] = True if all positions have p < 0.05\n        sig_mask = np.ones(n_sim, dtype=bool)\n\n        for pci, n_clusters in position_clusters:\n            # Process in batches to limit memory\n            p_values = np.empty(n_sim)\n\n            for start in range(0, n_sim, batch_size):\n                end = min(start + batch_size, n_sim)\n                bs = end - start\n\n                # Generate bootstrap weights: bs x B x n_clusters\n                W_cluster = rng.choice(WEBB_6, size=(bs, n_boot, n_clusters))\n                # Expand to panel level: bs x B x n\n                W_panel = W_cluster[:, :, pci]\n\n                # Bootstrap Y: bs x B x n\n                Y_boot = Y_hat_r[start:end, None, :] + W_panel * E_r[start:end, None, :]\n\n                # Reshape for batch OLS: (bs*B) x n\n                Y_flat = Y_boot.reshape(bs * n_boot, n)\n                Beta_flat = Y_flat @ M_hat.T  # (bs*B) x p\n                Resid_flat = Y_flat - Beta_flat @ X.T\n                S2_flat = np.sum(Resid_flat ** 2, axis=1) / (n - p)\n                SE_flat = np.sqrt(S2_flat * diag_keff)\n                SE_flat = np.maximum(SE_flat, 1e-15)\n                T_flat = Beta_flat[:, 1] / SE_flat\n\n                # Reshape to bs x B\n                T_boot = T_flat.reshape(bs, n_boot)\n                T_obs_batch = T_obs[start:end]\n\n                # P-values\n                exceed = np.sum(np.abs(T_boot) >= np.abs(T_obs_batch[:, None]),\n                                axis=1)\n                p_values[start:end] = (1 + exceed) / (1 + n_boot)\n\n            # Update sig_mask: only keep sig if this position also < 0.05\n            # (max p across positions < 0.05 iff all positions < 0.05)\n            sig_mask &= (p_values < 0.05)\n\n        power = np.mean(sig_mask)\n        results[str(beta_std)] = round(float(power), 4)\n\n    return results\n\n\n# ── Build panel data ─────────────────────────────────────────────────\n\ndef build_panel_data(K, mi_matrices, clean, attacked, pairs):\n    combos = list(itertools.combinations(range(len(POOL_A)), K))\n    logger.info(f\"  K={K}: {len(combos)} panels from {len(POOL_A)} models\")\n\n    all_cond_data = {}\n    for ds in DATASETS:\n        mi_mat = mi_matrices[ds]\n        for atk in ATTACKS:\n            cond = f\"{ds}x{atk}\"\n            ds_clean = clean.get(ds, {})\n            ds_attacked = attacked.get(ds, {}).get(atk, {})\n            ds_pairs = pairs.get(ds, [])\n            if not ds_clean or not ds_attacked or not ds_pairs:\n                continue\n\n            ind_asr = {}\n            for m in POOL_A:\n                if m in ds_clean and m in ds_attacked:\n                    ind_asr[m] = compute_individual_asr(\n                        ds_clean[m], ds_attacked[m], ds_pairs\n                    )\n\n            p_asrs, p_keffs, p_etas = [], [], []\n            panel_jids_list = []\n\n            for combo in combos:\n                jids = [POOL_A[i] for i in combo]\n                if not all(j in ind_asr for j in jids):\n                    continue\n                if not all(j in ds_clean and j in ds_attacked for j in jids):\n                    continue\n\n                global_indices = [POOL_A_INDICES[i] for i in combo]\n                keff = mi_based_keff(mi_mat, global_indices)\n                eta_max = max(ind_asr[j] for j in jids)\n                p_asr = compute_panel_asr(\n                    jids,\n                    {j: ds_clean[j] for j in jids},\n                    {j: ds_attacked[j] for j in jids},\n                    ds_pairs,\n                )\n\n                p_asrs.append(p_asr)\n                p_keffs.append(keff)\n                p_etas.append(eta_max)\n                panel_jids_list.append(jids)\n\n            n_panels = len(p_asrs)\n            if n_panels < 10:\n                continue\n            p_asrs = np.array(p_asrs)\n            if np.std(p_asrs) < 1e-10:\n                continue\n\n            log_keff = np.log(np.array(p_keffs))\n            log_eta = np.log(np.array(p_etas) + EPS)\n            y = np.log(p_asrs + EPS)\n\n            X = sm.add_constant(np.column_stack([log_keff, log_eta]))\n            fit = sm.OLS(y, X).fit()\n\n            n_clusters_per_pos = []\n            for pos in range(K):\n                cids = np.array([jids[pos] for jids in panel_jids_list])\n                n_clusters_per_pos.append(len(np.unique(cids)))\n\n            all_cond_data[cond] = {\n                \"y\": y,\n                \"X\": X,\n                \"log_keff\": log_keff,\n                \"log_eta\": log_eta,\n                \"panel_jids_list\": panel_jids_list,\n                \"n_panels\": n_panels,\n                \"R2\": fit.rsquared,\n                \"intercept\": fit.params[0],\n                \"beta_keff_actual\": fit.params[1],\n                \"beta_eta\": fit.params[2],\n                \"sigma_resid\": np.sqrt(fit.mse_resid),\n                \"sd_y\": np.std(y),\n                \"sd_log_keff\": np.std(log_keff),\n                \"n_clusters_per_pos\": n_clusters_per_pos,\n            }\n\n    logger.info(f\"  Built {len(all_cond_data)} conditions for K={K}\")\n    return all_cond_data\n\n\n# ── Power analysis ───────────────────────────────────────────────────\n\ndef run_mde_power(K, cond_data_dict, n_sim, n_boot, rng):\n    cond_keys = sorted(cond_data_dict.keys())\n    n_conds = len(cond_keys)\n\n    ref_cond = cond_keys[0]\n    cl_info = cond_data_dict[ref_cond][\"n_clusters_per_pos\"]\n    logger.info(f\"  K={K}: {n_conds} conditions, clusters/pos={cl_info}\")\n\n    power_per_cond = {str(b): [] for b in BETA_STD_GRID}\n\n    for ci, cond in enumerate(cond_keys):\n        d = cond_data_dict[cond]\n        t_cond = time.time()\n\n        cond_power = batched_wcb_power(\n            X=d[\"X\"],\n            log_keff=d[\"log_keff\"],\n            log_eta=d[\"log_eta\"],\n            intercept=d[\"intercept\"],\n            beta_eta=d[\"beta_eta\"],\n            sigma=d[\"sigma_resid\"],\n            panel_jids_list=d[\"panel_jids_list\"],\n            K=K,\n            beta_std_grid=BETA_STD_GRID,\n            n_sim=n_sim,\n            n_boot=n_boot,\n            rng=rng,\n            batch_size=200,\n        )\n\n        for b in BETA_STD_GRID:\n            power_per_cond[str(b)].append(cond_power[str(b)])\n\n        dt = time.time() - t_cond\n        logger.info(f\"    [{ci+1}/{n_conds}] {cond}: {dt:.1f}s, R2={d['R2']:.3f}, \"\n                    f\"power@0.3={cond_power.get('0.3','?')}\")\n\n    # Average across conditions\n    power_avg = {}\n    for b in BETA_STD_GRID:\n        vals = power_per_cond[str(b)]\n        power_avg[str(b)] = round(float(np.mean(vals)), 4) if vals else 0.0\n\n    betas = np.array(BETA_STD_GRID)\n    powers = np.array([power_avg[str(b)] for b in BETA_STD_GRID])\n\n    mde_80 = None\n    if powers.max() >= 0.80 and powers.min() <= 0.80:\n        try:\n            f_interp = interp1d(powers, betas, kind='linear',\n                                bounds_error=False, fill_value=np.nan)\n            mde_80 = float(f_interp(0.80))\n            if np.isnan(mde_80):\n                mde_80 = None\n            else:\n                mde_80 = round(mde_80, 4)\n        except Exception:\n            pass\n    elif powers[0] > 0.80:\n        mde_80 = round(float(betas[0]), 4)\n\n    logger.info(f\"  K={K} avg power: {power_avg}\")\n    if mde_80 is not None:\n        logger.info(f\"  MDE@80%: {mde_80}\")\n    else:\n        logger.info(f\"  MDE@80%: not achievable (max power={powers.max():.3f})\")\n\n    return power_avg, mde_80\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--n-sim\", type=int, default=1000)\n    parser.add_argument(\"--n-boot\", type=int, default=999)\n    parser.add_argument(\"--dry-run\", action=\"store_true\")\n    args = parser.parse_args()\n\n    n_sim = 5 if args.dry_run else args.n_sim\n    n_boot = 99 if args.dry_run else args.n_boot\n\n    logger.info(\"=\" * 60)\n    logger.info(\"Pool A MDE Power Analysis (Webb 6-point WCB)\")\n    logger.info(f\"  n_sim={n_sim}, n_boot={n_boot}, seed={SEED}\")\n    logger.info(f\"  beta_std grid: {BETA_STD_GRID}\")\n    logger.info(f\"  Pool A: {POOL_A}\")\n    logger.info(\"=\" * 60)\n\n    t0 = time.time()\n    rng = np.random.default_rng(SEED)\n\n    logger.info(\"Loading data...\")\n    mi_matrices = load_mi_matrix()\n    pairs = load_pairs()\n    clean, attacked = load_pool_a_scores()\n    n_loaded = sum(1 for ds in DATASETS for m in POOL_A if m in clean[ds])\n    logger.info(f\"  Loaded {n_loaded}/{len(POOL_A)*len(DATASETS)} clean score sets\")\n\n    logger.info(\"\\nBuilding K=3 panel data...\")\n    data_k3 = build_panel_data(3, mi_matrices, clean, attacked, pairs)\n\n    logger.info(\"\\nBuilding K=5 panel data...\")\n    data_k5 = build_panel_data(5, mi_matrices, clean, attacked, pairs)\n\n    logger.info(\"\\n--- K=3 Power Analysis ---\")\n    power_k3, mde_k3 = run_mde_power(3, data_k3, n_sim, n_boot, rng)\n\n    logger.info(\"\\n--- K=5 Power Analysis ---\")\n    power_k5, mde_k5 = run_mde_power(5, data_k5, n_sim, n_boot, rng)\n\n    elapsed = time.time() - t0\n\n    ref_k3 = list(data_k3.values())[0]\n    ref_k5 = list(data_k5.values())[0]\n\n    output = {\n        \"pool_a_models\": POOL_A,\n        \"pool_a_panels\": {\"K3\": 84, \"K5\": 126},\n        \"beta_std_values\": BETA_STD_GRID,\n        \"n_simulations\": n_sim,\n        \"n_bootstrap\": n_boot,\n        \"bootstrap_weights\": \"webb_6point\",\n        \"seed\": SEED,\n        \"clusters_per_position\": {\n            \"K3\": ref_k3[\"n_clusters_per_pos\"],\n            \"K5\": ref_k5[\"n_clusters_per_pos\"],\n        },\n        \"power_by_beta\": {\n            \"K3\": power_k3,\n            \"K5\": power_k5,\n        },\n        \"mde_at_80pct\": {\n            \"K3\": mde_k3,\n            \"K5\": mde_k5,\n        },\n        \"elapsed_seconds\": round(elapsed, 1),\n        \"notes\": (\n            \"Power per-condition then averaged across 12 conditions \"\n            \"(2 datasets x 6 attacks). \"\n            \"Wild cluster bootstrap with Webb 6-point weights, \"\n            f\"B={n_boot}, max p-value across K judge positions. \"\n            \"Regression: log(ASR+eps) ~ log(K_eff) + log(eta_max+eps). \"\n            \"Few clusters per position (7 for K=3, 5 for K=5) make WCB \"\n            \"very conservative, limiting detectable effect size.\"\n        ),\n    }\n\n    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2, default=_json_default, ensure_ascii=False)\n    logger.info(f\"\\nSaved: {OUT_PATH}\")\n    logger.info(f\"Total time: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d980fe0d-cad7-48b7-b5d5-d5e99eb8ff42",
+            "isSidechain": true,
+            "agentId": "abe8fde629afd1a36",
+            "requestId": "req_011CbMSrmBR8kpCgUNuvH68P",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1b76673c-e8d8-401e-be66-89d7a27a5268",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHepRZRgq5Wuh5JdasE6Rr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7761,
+                "cache_read_input_tokens": 21419,
+                "output_tokens": 6616,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7761
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6616,
+                    "cache_read_input_tokens": 21419,
+                    "cache_creation_input_tokens": 7761,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7761,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T13:10:20.111Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RgzwFUxKQo4QTLshDyE6yP",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b76673c-e8d8-401e-be66-89d7a27a5268",
+            "isSidechain": true,
+            "promptId": "8dcb6f36-b85a-4eb0-adb1-efee80dd8b47",
+            "agentId": "abe8fde629afd1a36",
+            "type": "user",
+            "uuid": "a3aa89ae-8815-4182-b86a-aff219c9d74a",
+            "sourceToolAssistantUUID": "1b76673c-e8d8-401e-be66-89d7a27a5268",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T13:10:23.440Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the file was written correctly by checking the line count and key sections."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3aa89ae-8815-4182-b86a-aff219c9d74a",
+            "isSidechain": true,
+            "agentId": "abe8fde629afd1a36",
+            "requestId": "req_011CbMSzdvLCot9Q3mgPEzKe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9b0c3d9c-40d3-4711-875f-efc28c5bd14e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHZTHEdw1LS1waMywsbv6d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6677,
+                "cache_read_input_tokens": 29180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6677,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T13:10:24.422Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vrf9LdSyXhF1re1F1AorsK",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.py",
+                "description": "Check line count of written file"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b0c3d9c-40d3-4711-875f-efc28c5bd14e",
+            "isSidechain": true,
+            "agentId": "abe8fde629afd1a36",
+            "requestId": "req_011CbMSzdvLCot9Q3mgPEzKe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bc955d7d-9bd3-42da-996f-e3896ff18933",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHZTHEdw1LS1waMywsbv6d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6677,
+                "cache_read_input_tokens": 29180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6677,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T13:10:24.474Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vrf9LdSyXhF1re1F1AorsK",
+              "type": "tool_result",
+              "content": "527 /home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc955d7d-9bd3-42da-996f-e3896ff18933",
+            "isSidechain": true,
+            "promptId": "8dcb6f36-b85a-4eb0-adb1-efee80dd8b47",
+            "agentId": "abe8fde629afd1a36",
+            "type": "user",
+            "uuid": "20114069-70a0-45ad-89ec-8667daf32455",
+            "sourceToolAssistantUUID": "bc955d7d-9bd3-42da-996f-e3896ff18933",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T13:10:25.802Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011sMZtBqcAzLtxETYq3PNTE",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"import ast; ast.parse(open('/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.py').read()); print('Syntax OK')\"",
+                "description": "Verify Python syntax is valid"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20114069-70a0-45ad-89ec-8667daf32455",
+            "isSidechain": true,
+            "agentId": "abe8fde629afd1a36",
+            "requestId": "req_011CbMSzdvLCot9Q3mgPEzKe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c4f0fd8c-ddae-418a-ab92-4da945d8830d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XHZTHEdw1LS1waMywsbv6d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6677,
+                "cache_read_input_tokens": 29180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6677,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T13:10:25.877Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011sMZtBqcAzLtxETYq3PNTE",
+              "type": "tool_result",
+              "content": "Syntax OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4f0fd8c-ddae-418a-ab92-4da945d8830d",
+            "isSidechain": true,
+            "promptId": "8dcb6f36-b85a-4eb0-adb1-efee80dd8b47",
+            "agentId": "abe8fde629afd1a36",
+            "type": "user",
+            "uuid": "9884b9d4-b481-4bac-ace6-a7fca1b9d8ec",
+            "sourceToolAssistantUUID": "c4f0fd8c-ddae-418a-ab92-4da945d8830d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T13:10:35.486Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File written successfully: `/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval/scripts/run_pool_a_mde.py` -- 527 lines, syntax valid. Key changes from v1 to v3:\n\n- Removed `os`, `sys` imports; removed old `wild_cluster_bootstrap_webb` and `bootstrap_K_positions` functions\n- Added `batched_wcb_power` -- vectorized WCB that batches all `n_sim` simulations together instead of a Python-level sim loop\n- Extended `BETA_STD_GRID` from `[0.1, 0.15, 0.2, 0.25, 0.3]` to `[0.1, 0.15, 0.2, 0.25, 0.3, 0.5, 0.7, 1.0]`\n- `build_panel_data` now stores OLS fit results (`R2`, `intercept`, `beta_keff_actual`, `beta_eta`, `sigma_resid`, `sd_y`, `sd_log_keff`, `n_clusters_per_pos`) and `X` matrix directly in the condition dict\n- `run_mde_power` refactored to call `batched_wcb_power` per condition and collect per-condition power lists\n- Output JSON now includes `clusters_per_position` field and updated notes"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9884b9d4-b481-4bac-ace6-a7fca1b9d8ec",
+            "isSidechain": true,
+            "agentId": "abe8fde629afd1a36",
+            "requestId": "req_011CbMT14cszGe4NkAeYW925",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4d8a1438-6397-4e7b-9f7e-2baf545e1e54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519_2/projects/cert_manip_resist_eval",
+            "sessionId": "671bb6a7-0ff4-4429-abec-efd39c0ca85e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "greedy-enchanting-dragon",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0117hiaAi2A5amp1SuHDzTde",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 371,
+                "cache_read_input_tokens": 35857,
+                "output_tokens": 348,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 371
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 348,
+                    "cache_read_input_tokens": 35857,
+                    "cache_creation_input_tokens": 371,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 371,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-write-the-file-home-ubuntu-agent-ml-research-idea-gen-0519-2-projects-cert-man.md"
+}

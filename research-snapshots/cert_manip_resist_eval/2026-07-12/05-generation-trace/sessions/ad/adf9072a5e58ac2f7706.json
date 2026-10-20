@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "adf9072a5e58ac2f7706",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 已知正确结果（registry） - K3: WCB full=3/12, filtered=4/12, β_std full=0.349, filtered=0.480 - K5: WCB full=",
+  "task_key": "da5c6c97-1761-4c04-92b0-f20b7a83673c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/da5c6c97-1761-4c04-92b0-f20b7a83673c.jsonl",
+    "occurrence": 1,
+    "bytes": 822948,
+    "sha256": "39ffa63fd9f1d4e6d41d2a80a6ac99c29863c208cdb34edbf09fcd9001ba79be"
+  },
+  "statistics": {
+    "messages": 434,
+    "user_turns": 1,
+    "tool_calls": 155,
+    "roles": {
+      "record": 69,
+      "user": 1,
+      "assistant": 54,
+      "tool_call": 155,
+      "tool_result": 155
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "adf9072a5e58ac2f7706-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 432,
+      "chunks": [
+        {
+          "path": "adf9072a5e58ac2f7706-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "adf9072a5e58ac2f7706-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "adf9072a5e58ac2f7706-part-0003.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-registry-k3-wcb-full-3-12-filtered-4-12-std-full-0-349-filtered.md"
+}

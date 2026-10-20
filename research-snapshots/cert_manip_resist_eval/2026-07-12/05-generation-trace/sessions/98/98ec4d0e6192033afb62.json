@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "id": "98ec4d0e6192033afb62",
+  "project": "cert_manip_resist_eval--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: cert_manip_resist_eval ## 运行环境 - 服务器名: seetacloud-rtx6000 - SSH 连接命令: ssh seetacloud-rtx6000 # 必",
+  "task_key": "a9798f74-1088-4e16-8b2a-556a31969a90",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/a9798f74-1088-4e16-8b2a-556a31969a90.jsonl",
+    "occurrence": 1,
+    "bytes": 4604721,
+    "sha256": "4be07210accd970bc534e673c45e5a162e5230ea606d6960e3e6e32c94dc14a0"
+  },
+  "statistics": {
+    "messages": 2866,
+    "user_turns": 4,
+    "tool_calls": 975,
+    "roles": {
+      "record": 383,
+      "user": 4,
+      "assistant": 526,
+      "tool_call": 975,
+      "tool_result": 975,
+      "system": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "98ec4d0e6192033afb62-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 893,
+      "chunks": [
+        {
+          "path": "98ec4d0e6192033afb62-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0005.json",
+          "message_count": 175
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 1049,
+      "chunks": [
+        {
+          "path": "98ec4d0e6192033afb62-part-0005.json",
+          "message_count": 5
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0011.json",
+          "message_count": 144
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 842,
+      "chunks": [
+        {
+          "path": "98ec4d0e6192033afb62-part-0011.json",
+          "message_count": 36
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "98ec4d0e6192033afb62-part-0016.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "98ec4d0e6192033afb62-part-0016.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-cert-manip-resist-eval-seetacloud-rtx6000-ssh-ssh-seetacloud-r-copy-142.md"
+}
