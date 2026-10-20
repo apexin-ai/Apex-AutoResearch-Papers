@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **119 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **120 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -113,6 +113,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [structfuse-context](../paper-assets/structfuse-context/05-generation-trace/README.md) | 183 | 510 | 496 | 43 | 90,756 | [Read](../paper-assets/structfuse-context/05-generation-trace/readable/README.md) |
 | [svs_formal_verification](../paper-assets/svs_formal_verification/05-generation-trace/README.md) | 32 | 91 | 81 | 1 | 21,001 | [Read](../paper-assets/svs_formal_verification/05-generation-trace/readable/README.md) |
 | [symb_invariant_consensus](../paper-assets/symb_invariant_consensus/05-generation-trace/README.md) | 465 | 1,078 | 1,025 | 55 | 260,972 | [Read](../paper-assets/symb_invariant_consensus/05-generation-trace/readable/README.md) |
+| [symb_invariant_consensus--export-20260712](../research-snapshots/symb_invariant_consensus/2026-07-12/05-generation-trace/README.md) | 2,012 | 0 | 0 | 0 | 532,991 | [Read](../research-snapshots/symb_invariant_consensus/2026-07-12/05-generation-trace/readable/README.md) |
 | [tax_error_inject_agent](../paper-assets/tax_error_inject_agent/05-generation-trace/README.md) | 260 | 440 | 427 | 41 | 68,008 | [Read](../paper-assets/tax_error_inject_agent/05-generation-trace/readable/README.md) |
 | [tbab_multi_turn](../paper-assets/tbab_multi_turn/05-generation-trace/README.md) | 24 | 48 | 44 | 0 | 10,572 | [Read](../paper-assets/tbab_multi_turn/05-generation-trace/readable/README.md) |
 | [temp-adv-distill-vla](../paper-assets/temp-adv-distill-vla/05-generation-trace/README.md) | 8 | 25 | 19 | 0 | 9,052 | [Read](../paper-assets/temp-adv-distill-vla/05-generation-trace/readable/README.md) |
@@ -128,6 +129,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**139,071 source records · 14,043,672 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**141,083 source records · 14,576,663 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

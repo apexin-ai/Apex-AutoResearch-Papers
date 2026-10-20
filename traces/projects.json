@@ -1499,6 +1499,19 @@
       }
     },
     {
+      "project": "symb_invariant_consensus--export-20260712",
+      "title": "Beyond Self-Consistency: Self-Extracted Constraints Reduce to Majority Voting under Zero-Shot Extraction (July export snapshot)",
+      "catalog": "../research-snapshots/symb_invariant_consensus/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2012,
+        "messages": 532991,
+        "user_turns": 24744,
+        "tool_calls": 139007,
+        "unparsed_lines": 0,
+        "conversation": 2012
+      }
+    },
+    {
       "project": "tax_error_inject_agent",
       "title": "When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning",
       "catalog": "../paper-assets/tax_error_inject_agent/05-generation-trace/catalog.json",

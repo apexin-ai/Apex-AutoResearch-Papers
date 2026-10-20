@@ -331,6 +331,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 341
+        },
+        "symb_invariant_consensus": {
+          "status": "uploaded",
+          "project": "symb_invariant_consensus",
+          "collection": "symb_invariant_consensus--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "eb92aae1c16d317cc9fc7c735fa03094891b335507f0c3eb38d94b26c554a7ff",
+          "indexed_members": 2017,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 2012
         }
       },
       "status": "in_progress",
