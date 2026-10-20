@@ -1,0 +1,13 @@
+{
+  "model_name": "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B",
+  "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl",
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "epochs": 1,
+  "batch_size": 1,
+  "grad_accum": 16,
+  "lr": 0.0002,
+  "max_seq_length": 2048,
+  "seed": 42,
+  "num_samples": 50826
+}
