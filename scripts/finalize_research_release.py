@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Finish the reading guides using metadata and Git trees, without asset downloads."""
-import csv, datetime, gzip, io, json, os, re, shutil, subprocess, urllib.request
+import csv, datetime, gzip, hashlib, io, json, os, re, shutil, subprocess, urllib.request
 from pathlib import Path
 from urllib.parse import quote
 import build_trace_browser as browser
@@ -129,6 +129,12 @@ def main():
     (repo / 'SOURCE_SNAPSHOTS.md').write_text('\n'.join(lines) + '\n')
     with (repo / 'CONTENTS.md').open('a') as out: out.write('\n[Original workspace snapshots](SOURCE_SNAPSHOTS.md) retain fixed links to every archive release.\n')
     mirror_checked = 0
+    cache_excluded = 0
+    cache_excluded_bytes = 0
+    supplement_checked = 0
+    supplement = json.loads((repo / 'release-source-mirror-supplements.json').read_text())['objects']
+    supplement_by_key = {row['s3_key']: row for row in supplement}
+    assert len(supplement_by_key) == len(supplement)
     mirrors = {}
     with gzip.open(repo / 'release-source-mirrors.csv.gz', 'rt') as handle:
         for row in csv.DictReader(handle): mirrors.setdefault(row['archive_key'], []).append(row)
@@ -150,18 +156,33 @@ def main():
                 excluded_files.add((p, relative, int(row['source_bytes'])))
         for row in objects:
             identifier = (row['project'], row['relative_path'], int(row['source_bytes']))
-            if identifier in source_files or identifier in excluded_files: mirror_checked += 1
+            if '.hf_cache' in Path(row['relative_path']).parts:
+                cache_excluded += 1
+                cache_excluded_bytes += int(row['source_bytes'])
+            elif identifier in source_files or identifier in excluded_files: mirror_checked += 1
+            elif row['s3_key'] in supplement_by_key:
+                extra = supplement_by_key[row['s3_key']]
+                assert extra['archive_key'] == key and extra['project'] == row['project']
+                assert extra['relative_path'] == row['relative_path'] and extra['source_bytes'] == int(row['source_bytes'])
+                assert extra['etag'] == row['etag'] and len(extra['sha256']) == 64
+                assert extra['release_path'] in tracked
+                body = subprocess.run(['git', 'show', 'HEAD:' + extra['release_path']], cwd=repo, stdout=subprocess.PIPE, check=True).stdout
+                assert hashlib.sha256(body).hexdigest() == extra['sha256']
+                supplement_checked += 1
             else: mirror_mismatches.append(row)
+    assert cache_excluded == expected['decompressed_mirror_audit']['excluded_cache_candidate_objects']
+    assert cache_excluded_bytes == expected['decompressed_mirror_audit']['excluded_cache_candidate_bytes']
+    assert supplement_checked == len(supplement)
     if mirror_mismatches:
         # Listing metadata is not treated as proof that distinct file bytes are
         # equal. Fail here if a mirror contains an unindexed path or byte size.
         (repo / 'unmatched-mirror-objects.json').write_text(json.dumps(mirror_mismatches, indent=2))
         print(json.dumps({'unmatched_mirror_objects':len(mirror_mismatches),'first_paths':[r['s3_key'] for r in mirror_mismatches[:20]]}), flush=True)
         raise RuntimeError('Decompressed S3 mirrors contain unindexed objects; release those before finalization.')
-    expected['decompressed_mirror_audit'].update(status='Candidate objects matched to original archive source or exclusion records by project, path, and byte size', matched_objects=mirror_checked)
+    expected['decompressed_mirror_audit'].update(status='Candidate objects matched to original archive source or exclusion records by project, path, and byte size; separate mirror supplement checked by S3 metadata', matched_objects=mirror_checked, supplemental_objects=supplement_checked)
     (repo / 'release-sources.json').write_text(json.dumps(expected, indent=2) + '\n')
     papers = sum(bool(json.loads(p.read_text()).get('paper_pdf')) for p in manifests)
-    summary = {'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'workspace_archives': len(state), 'primary_project_records': len(manifests), 'primary_projects_with_manuscript_pdf': papers, 'additional_project_records_without_pdf': len(manifests)-papers, 'dated_project_snapshots': len(snapshots), 'supplementary_collections': len(list((repo/'supplementary').glob('*/manifest.json'))), 'document_pdf_records': len(documents['pdfs']), 'trace_collections': len(index), 'trace_source_records': sum(e['statistics'].get('files', 0) for e in index), 'recorded_events': sum(e['statistics'].get('messages', 0) for e in index), 'indexed_asset_rows_verified': rows_checked, 'mirror_objects_matched_by_original_path_and_size': mirror_checked, 'offline_preview_rounds': len(examples), 'source_archives_verified': True}
+    summary = {'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'workspace_archives': len(state), 'primary_project_records': len(manifests), 'primary_projects_with_manuscript_pdf': papers, 'additional_project_records_without_pdf': len(manifests)-papers, 'dated_project_snapshots': len(snapshots), 'supplementary_collections': len(list((repo/'supplementary').glob('*/manifest.json'))), 'document_pdf_records': len(documents['pdfs']), 'trace_collections': len(index), 'trace_source_records': sum(e['statistics'].get('files', 0) for e in index), 'recorded_events': sum(e['statistics'].get('messages', 0) for e in index), 'indexed_asset_rows_verified': rows_checked, 'mirror_objects_matched_by_original_path_and_size': mirror_checked, 'mirror_supplemental_objects': supplement_checked, 'mirror_cache_objects_excluded': cache_excluded, 'mirror_cache_bytes_excluded': cache_excluded_bytes, 'offline_preview_rounds': len(examples), 'source_archives_verified': True}
     (repo / 'release-summary.json').write_text(json.dumps(summary, indent=2) + '\n')
     (repo / 'RELEASE_NOTES.md').write_text(f'''# Research asset release
 
