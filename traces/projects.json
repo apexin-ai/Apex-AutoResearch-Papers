@@ -283,6 +283,19 @@
       }
     },
     {
+      "project": "cost-verify-agent-rl--export-20260712",
+      "title": "Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)",
+      "catalog": "../research-snapshots/cost-verify-agent-rl/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1236,
+        "messages": 137849,
+        "user_turns": 4940,
+        "tool_calls": 37956,
+        "unparsed_lines": 0,
+        "conversation": 1236
+      }
+    },
+    {
       "project": "cross_representation_disagreement_diagno",
       "title": "Cross-Representation Disagreement as a Diagnostic Signal for LLM Reasoning Errors",
       "catalog": "../paper-assets/cross_representation_disagreement_diagno/05-generation-trace/catalog.json",

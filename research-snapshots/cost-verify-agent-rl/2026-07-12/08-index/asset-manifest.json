@@ -1,0 +1,104 @@
+{
+  "project": "cost-verify-agent-rl--export-20260712",
+  "code_count": 5,
+  "data_count": 0,
+  "env_count": 0,
+  "tex_count": 0,
+  "bib_count": 0,
+  "review_count": 0,
+  "validation_count": 0,
+  "contribution_count": 0,
+  "chat_count": 1236,
+  "worker_count": 0,
+  "trace_count": 1236,
+  "trace_bytes": 381485497,
+  "maintenance_count": 0,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": null,
+  "paper_sha256": "",
+  "title": "Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction (July export snapshot)",
+  "pages": 0,
+  "status_marker": "",
+  "version_count": 0,
+  "version_paths": [],
+  "archive_rel": "uploads/projects-export-20260712.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "uploads/projects-export-20260712.tar.gz",
+    "bytes": 13559962075,
+    "etag": "\"3dcc2f4881a84062865a76eb74e07c31-1617\"",
+    "modified": "2026-07-12T04:33:47+00:00",
+    "member_prefix": "cost-verify-agent-rl/",
+    "sha256": null,
+    "derivation": "Single-project archive derived while streaming the source export"
+  },
+  "academic_record": {
+    "date": "2026-07-12",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Partial",
+      "evidence": "0 source files; 0 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "0 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "1236 conversations; 0 worker logs/results; 1236 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "5 code/configuration files; 0 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Not found",
+      "evidence": "0 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Not found",
+      "evidence": "0 internal review records; 0 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Not found",
+      "evidence": "0 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ],
+  "derived_archive_sha256": "1ad67a559e5757dade013faf99040c9f8b32cc899de1d6d586b38b06f8ce4663",
+  "snapshot_date": "2026-07-12",
+  "original_project": "cost-verify-agent-rl"
+}

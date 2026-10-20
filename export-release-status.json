@@ -100,6 +100,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 791
+        },
+        "cost-verify-agent-rl": {
+          "status": "uploaded",
+          "project": "cost-verify-agent-rl",
+          "collection": "cost-verify-agent-rl--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "1ad67a559e5757dade013faf99040c9f8b32cc899de1d6d586b38b06f8ce4663",
+          "indexed_members": 1241,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1236
         }
       },
       "status": "in_progress",
