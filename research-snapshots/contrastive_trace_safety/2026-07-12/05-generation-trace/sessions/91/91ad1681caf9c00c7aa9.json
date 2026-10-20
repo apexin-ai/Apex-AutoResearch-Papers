@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "91ad1681caf9c00c7aa9",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## AutoDL 特殊约束 - 根分区只有 ~30GB，大文件全放 /root/autodl-tmp/ - pip install 前必须 source /etc/network_turbo - HF 下载",
+  "task_key": "4aa4aba0-be24-448d-9ba1-ea33f9c54641",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/4aa4aba0-be24-448d-9ba1-ea33f9c54641.jsonl",
+    "occurrence": 1,
+    "bytes": 635657,
+    "sha256": "c266e149f363bb6f43a5f046f3deb02efde9b95bd76e3c1aa67d888b92dcbd1b"
+  },
+  "statistics": {
+    "messages": 433,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "record": 72,
+      "user": 1,
+      "assistant": 144,
+      "tool_call": 108,
+      "tool_result": 108
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "91ad1681caf9c00c7aa9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 431,
+      "chunks": [
+        {
+          "path": "91ad1681caf9c00c7aa9-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "91ad1681caf9c00c7aa9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "91ad1681caf9c00c7aa9-part-0003.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-autodl-30gb-root-autodl-tmp-pip-install-source-etc-network-turbo.md"
+}

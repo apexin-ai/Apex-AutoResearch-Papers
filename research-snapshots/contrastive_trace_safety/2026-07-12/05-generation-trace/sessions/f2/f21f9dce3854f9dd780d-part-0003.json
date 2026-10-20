@@ -1,0 +1,607 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f21f9dce3854f9dd780d",
+  "rounds": [
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-18T15:30:44.290Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DSSw4dv2wHjiokL2kbcaDi",
+              "name": "mcp__agent-ml-research__review_reviewer_post_to_director",
+              "input": {
+                "text": "## Reviewer 2 — Round 1 审稿意见\n\n**论文**: Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models\n**Venue**: EMNLP 2026 (ARR May 2026 cycle)\n**审查侧重**: 新颖性/贡献定位 + 写作完整性 + 格式合规\n\n---\n\n## 总体评分\n\n**Overall Assessment**: 3.0 — Findings\n**一句话总结**: 方法论警示扎实但贡献天花板有限；layer selection sensitivity 发现有价值，但缺乏可复用工具、单数据集、encoder-conditional advantage 自我预判失效，整体更适合 Findings 而非 Main Conference。\n\n## 官方维度打分（ACL ARR Review Form, Feb 2025+）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 统计方法严谨（HB correction, bootstrap, permutation tests, control tasks），但单数据集、32B 样本量极小（n=19-20）、CP 标注 IAA 未验证 |\n| Excitement | 2.5/5 | Layer selection bias 发现对 probing 社区有用但范围窄；无可复用方法/工具；HS advantage 有已知\"保质期\" |\n| Reproducibility | 4/5 | 超参数详细报告，代码/数据承诺发布，计算量低（<4 GPU-hours），但 HarmThoughts CP 标注的再现性未经独立验证 |\n| Confidence | 4/5 | 仔细阅读全文含附录，熟悉 probing methodology 和安全检测文献 |\n\n---\n\n## Strengths\n\n**[S1] Layer selection sensitivity 发现有真实方法论价值。** 论文清楚展示了 balanced accuracy × crossing rate 这一看似合理的 composite metric 如何在 32B 模型上系统性地选择浅层，从而逆转 HS vs. text 的结论（Table 2: QwQ-32B 从 L2/3% 到 L60/94%，p 从 NS 变为 <0.005）。这对 probing 文献中普遍存在的单指标选层实践是有效的警示。五指标 ablation（Section 3.3, 4.2）和 representation compression 机制解释（Appendix C, Table 7: 浅层 cosine distance 1.4-2.7× 小于深层）构成完整因果链。\n\n**[S2] 统计严谨性在同类 empirical study 中属上乘。** Holm-Bonferroni step-down（12 tests, Table 8）、exact sign-flip permutation tests（2^19 和 2^20 全枚举, Appendix D）、PCA capacity matching（79-92% variance retained）、control task selectivity（12.5-19.7pp, Appendix H）、position residualization（Appendix S）、multi-seed stability（5 seeds, Table 23）、threshold sensitivity（Appendix L）形成多层次验证。这种统计纪律在 probing 论文中罕见。\n\n**[S3] 对自身方法局限性的透明度值得肯定。** 论文明确标注 FPR 39-52%、oracle gap 85.5%（Section I）、32B 的 dagger 标记、R1-32B position-mediated advantage（residualized gap +1.9pp, p=0.914）、R1-8B FPR seed-fragility（3/5 HB）。Bug disclosure（Appendix M002）在学术论文中极为少见，体现科学诚信。\n\n**[S4] Negative results 系统且信息量大。** Table 5 的七种替代方法全面失败，且每种失败都有机制解释：BOCPD/CUSUM 因 gradual transition（非 abrupt）失败，Mahalanobis 因信号在 minor PCs 失败，RepE 因 model-specific 方向不一致失败，cross-model transfer 在 17 种配置下全部失败。这些结果定义了方法边界，对后续研究有指导意义。\n\n**[S5] 写作质量整体干净。** 无 em-dash/en-dash 滥用，无 AI 典型写作痕迹（-ing trailing phrases、连续 Furthermore/Moreover），专有名词首次出现有定义（CP, HS probe 等），Related Work 做了 positioning 而非 survey 式罗列。\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**[W1] [critical] 贡献天花板：方法论警示 vs. 可复用工具**\n- 具体位置：Introduction contribution list (lines 91-126), Discussion (Section 5)\n- 问题：核心贡献是\"layer selection metric 会逆转结论\"这一方法论发现，加上 encoder-conditional HS advantage 的 empirical characterization，以及 negative results。与 Hewitt & Manning 2019 的类比是不对称的：该文提出了 control tasks 这一可被后续研究直接复用的工具；本文仅提出 reporting practice 建议（\"report results under multiple layer selection criteria\"）。论文不提供新的选层算法、新的探测方法或新的检测工具。\n- 为什么影响接收：EMNLP Main Conference 通常期待可复用的方法贡献或改变社区实践的发现。一个 cautionary tale（无论多扎实）更自然地适合 Findings。Contribution 2（encoder-conditional advantage）和 Contribution 3（negative results）虽有价值但属于 characterization，不构成独立的 Main Conference 级贡献。\n- 建议修改方向：(a) 提出一个具体的、可被后续研究采用的 layer selection protocol/algorithm（不仅是\"排除 crossing rate\"）；(b) 提供代码化的 best-practice pipeline 作为工具贡献；或 (c) 在 non-safety probing task 上复现 layer selection bias 以证明 generalizability，将 contribution 从 domain-specific 提升为 methodology-general。\n\n**[W2] [critical] Encoder-conditional advantage 自我否定**\n- 具体位置：Discussion \"Encoder-conditional advantage\" paragraph (lines 622-634), Conclusion (lines 656-657)\n- 问题：论文自己预测\"LLM-based text encoders (e.g., E5-Mistral-7B, 4096d) would likely further narrow the gap, bounding the practical lifetime of any HS advantage claim\"（Discussion, line 631-634）。已有数据支持这一预测：从 384d 到 1024d，HB-significant 模型从 4/4 降到 1/4（Table 3, Fig 2）。这意味着 Contribution 2 (encoder-conditional directional advantage) 的核心发现有一个论文自己承认的\"保质期\"。\n- 为什么影响接收：如果 HS advantage 的存在取决于 text baseline 的弱/强，那么这个 advantage 不是 hidden states 的固有属性，而是 text encoder 不够好的副产品。这从根本上削弱了\"HS probes 有独特价值\"这一 claim 的 lasting significance。审稿人会问：这个发现在 E5-Mistral-7B 发布后还有意义吗？\n- 建议修改方向：(a) 实际测试 E5-Mistral-7B 而非仅做预测——如果 gap 确实消失，则论文变为\"HS advantage is an artifact of weak text baselines\"，这本身是一个更强的 negative result；(b) 如果无法测试，至少 reframe contribution 2 为\"HS advantage 是 text encoder quality 的函数，而非 modality 的固有属性\"，并讨论这对 safety monitoring pipeline 设计的实际意义。\n\n**[W3] [critical] 单数据集局限性与 claim 范围不匹配**\n- 具体位置：Method Section 3.1 (Table 1), Limitations \"Scope and data representativeness\" (lines 724-740)\n- 问题：所有实验结果基于 HarmThoughts 单一数据集（632 traces, 4 models），但论文的 claim 范围远超此数据集：\"Layer selection is a critical, underexamined researcher degree of freedom in the probing literature\"（Abstract, line 29-30）。这一泛化性 claim 需要至少 2-3 个不同 probing task 的支持。Layer selection bias 是否在 sentiment probing、syntactic probing、truthfulness probing 等任务中也成立？论文承认 generalization 未测试但仍做了泛化性断言。\n- 为什么影响接收：empirical study 的可信度与其 claim 的泛化性之间需要匹配。以单一 safety task 的结果推断整个 probing 文献的方法论缺陷，逻辑跳跃过大。\n- 建议修改方向：(a) 在 1-2 个非 safety probing task 上复现 crossing rate bias 现象（这应该只需几小时 compute）；(b) 或者将 claim 限制在 \"safety probing for reasoning models\" 范围内，不泛化到整个 probing literature。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**[W4] [major] \"all four models†\" 表述在多个关键位置 misleading**\n- 具体位置：出现 15 次（Abstract, Introduction, Experiments, Discussion, Conclusion 各处）\n- 问题：dagger (†) 标记在 Section 3.5 (line 361-363) 定义了一次，表示 sample-limited test sets (n≤20)。但跳读特定 section 的读者很容易忽略。更重要的是，\"all four models\" 在不同 metric/context 下含义不同：\n  - R1-32B：仅在 W=1 显著，25% coverage，advantage 是 position-mediated（residualized gap NS, p=0.914）\n  - QwQ-32B：HS lead time 为负（-1.2 to +1.9 步），position baseline BA 更高（0.832 vs 0.796）\n  - R1-8B：FPR seed-fragile（3/5 HB）\n  统一用 \"all four\" 给读者一种四个模型表现一致的错误印象。\n- 建议：在关键 claim 处改用更精确的表述，如 \"both 7-8B models robustly, both 32B models with model-specific caveats (Section 4.4)\"；或在 Abstract 中将 caveats 前置。\n\n**[W5] [major] CP 标注 IAA 未独立验证，ground truth 可信度存疑**\n- 具体位置：Limitations \"CP annotation uncertainty\" (lines 712-723)\n- 问题：整个 evaluation framework 依赖 HarmThoughts 的 step-level CP annotations，但论文既未独立验证 IAA，也未报告原始数据集的 IAA 数值。论文承认\"if CP annotation error is ≥2 steps, the reported lead times (+4.5 to +13 steps) may partially fall within annotation noise\"，且 QwQ-32B 的 lead time (-1.2 to +1.9 steps) 完全在 noise 范围内。如果 CP 标注存在系统偏差，所有 step-level metrics（balanced accuracy, precision, FPR）都会受影响。\n- 建议：至少报告：(a) HarmThoughts 原始论文的 IAA 数据（如果有）；(b) 对 10-20 条 traces 做 independent re-annotation 以估计 annotation noise magnitude。\n\n**[W6] [major] Abstract 信息密度问题**\n- 具体位置：Abstract (lines 1-3, rendered PDF page 1)\n- 问题：~220 words 中包含 PCA capacity matching 细节（\"PCA capacity matching preserves this advantage\"）、具体 pp 数字（\"+15.4 to +32.5pp\"）、1024d encoder 结果（\"only 1/4 models survives correction\"）。这些 Results 级细节使 Abstract 读起来像实验报告摘要而非 compelling story。按\"审稿人 30 秒判断价值\"标准：问题重要性 ✓，方法论核心（layer selection reverses conclusions）✓，但被过多数字淹没。\n- 建议：Abstract 保留 2-3 个关键数字（layer selection reversal + HS advantage magnitude + FPR limitation），PCA/1024d encoder 细节移至 Introduction。\n\n**[W7] [major] Discussion 与 Conclusion 内容重叠**\n- 具体位置：Discussion Section 5 (lines 590-648) vs. Conclusion Section 6 (lines 650-664)\n- 问题：Conclusion 几乎逐点重复 Discussion 内容——layer selection bias → encoder-conditional → position-mediated → FPR/oracle gap → next steps。在页数宝贵的 8 页正文中，Conclusion 可压缩为 3-4 句 takeaway message，把节省的空间用于正文中缺少的内容（如 Fig 3 移入正文、更详细的 32B analysis）。\n- 建议：Conclusion 精简为：(1) 核心发现一句话，(2) 主要 implication 一句话，(3) limitation caveat 一句话，(4) future work 一句话。\n\n**[W8] [major] 正文仅 2 个 Figure，对 long paper 偏少**\n- 具体位置：Figure 1 (layer heatmap, page 5), Figure 2 (forest plot, page 7)\n- 问题：8 页正文仅 2 张图。Fig 3（temporal window effect on R1-8B, 目前在 Appendix E）展示了 HS probe 从 W=1 到 W=25 的 precision 从 69.3% 到 82.2% 的趋势，这比 Section 4.5 的纯文字描述更有信息量。对于一篇 empirical characterization paper，图表是传递 evidence 的核心手段。\n- 建议：将 Fig 3 移入正文 Section 4.5。如果空间允许，考虑为 32B divergence（Table 4 目前只有 2 行表格）增加可视化。\n\n**[W9] [major] FPR 39-52% 与文中 deployment-adjacent 表述的张力**\n- 具体位置：Section 4.5 (line 528-529: \"temporal windowing (W=3-15) combined with principled layer selection yields the most consistent gains\"), Discussion \"Per-model evidence and design implications\" (lines 635-648)\n- 问题：论文反复声明 current probes \"characterize the commitment phenomenon rather than constitute production detectors\"（Abstract, Introduction, Caveats, Conclusion），但 Discussion 中 \"design implications\"、\"starting configuration\" 等措辞暗示了部署场景。一篇 characterization paper 应避免给出 deployment guidance，否则 FPR 39-52% 会被审稿人视为 critical weakness 而非 honest limitation。\n- 建议：统一 framing：要么 purely characterization（删除所有 deployment-adjacent 建议），要么 acknowledging practical implications but with explicit FPR caveat attached to every recommendation。\n\n---\n\n## 小问题（不影响接收）\n\n- **[m1]** Table 3 视觉拥挤：384d 和 1024d 行间距过窄，部分 cell 使用 \"--\" 但 caption 未解释其含义（推测为 \"not applicable\" 或 \"same W\"）。\n- **[m2]** Figure 1 的 heatmap subplot 较小（4 个 subplot 挤在 single column width），打印后 legend 字体可能低于 7pt。建议改为 2-column figure 或减少至 2 个最关键的 subplot（一个 7-8B 一个 32B）。\n- **[m3]** References 中 Korbak et al. 2025 渲染为 \"and 22 others\"（PDF page 11, line 885），标准 ACL natbib 应为 \"et al.\" 截断。检查 bst 文件设置。\n- **[m4]** Appendix 交叉引用使用字母编号（Section B, C, D...）但正文中有 \"section T\"、\"section S\" 等引用，字母跨度大，读者定位困难。建议在 appendix 开头加一个 table of contents。\n- **[m5]** Table 1 caption 中 \"OT-7B (Guha et al., 2025) is trained with STILL (Min et al., 2024) on Qwen2.5-7B\" 中 OpenThinker 引用的是 OpenThoughts 数据集论文，而非 OpenThinker 模型本身——确认是否为同一引用。\n- **[m6]** 模板版本：目录中同时存在 `acl.sty` 和 `acl2023.sty`。EMNLP 2026/ARR May 2026 cycle 应使用最新官方模板——建议核实是否为当前 cycle 的正确版本。\n\n---\n\n## Missing References\n\n未发现严重遗漏。以下为可选补充：\n- **Li et al. 2024, \"Inference-Time Intervention\"**: 与 hidden-state safety intervention 直接相关，可在 Related Work \"Hidden-State Safety Detection\" 段落补充。\n- **Marks et al. 2024, \"Sparse Feature Circuits\" / SAE-based probing**: 作为 linear probing 的替代方案，可在 Discussion future work 中提及。\n\n---\n\n## 主要优势\n\n1. Layer selection sensitivity 发现对 probing 方法论有真实贡献\n2. 统计分析的严谨程度（HB, permutation, multi-seed, control tasks）在同类论文中属上乘\n3. 对自身局限性的透明度和 bug disclosure 体现科学诚信\n4. Negative results 有信息量且有机制解释\n5. 写作质量整体干净，无 AI 痕迹\n\n## Overall Assessment 理由\n\n**3.0 (Findings)**。论文在方法论严谨性上表现出色，layer selection sensitivity 发现对 probing 社区有实际价值。但三个核心问题限制了 Main Conference 级别的接收：(1) 贡献天花板——方法论警示而非可复用工具/方法；(2) encoder-conditional advantage 有论文自己承认的\"保质期\"；(3) 单数据集 + 泛化性 claim 之间的 mismatch。32B 模型的极小样本量（n=19-20, MDE 8.6-9.5pp）进一步限制了 empirical evidence 的说服力。这些问题在 Findings track 中是可接受的：论文提供了有价值的 characterization 和 methodological insight，但不足以支撑 Main Conference 的 novelty/impact 期望。\n\n置信度 4/5：仔细阅读了全文（含 24 页 PDF 的所有附录），熟悉 probing methodology、representation analysis 和 LLM safety 文献。",
+                "reviewer_id": "2",
+                "project": "contrastive_trace_safety"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8460264-c194-461e-980c-e7731fb0eab8",
+            "isSidechain": false,
+            "requestId": "req_011CbAGgPqYaQW8GpfBgpg4R",
+            "type": "assistant",
+            "uuid": "fba722b6-dcec-491c-b620-ff2acb012303",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UF5DN2Gz9kchnS25j22fix",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4146,
+                "cache_read_input_tokens": 107861,
+                "output_tokens": 5535,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4146,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 5535,
+                    "cache_read_input_tokens": 107861,
+                    "cache_creation_input_tokens": 4146,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4146
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2  **你的侧重：新颖性/贡献定位 + 写作完整性 + 格式合规**  ### 论文信息 - 标题：Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models - 路径：`projects/contrastive_…",
+                "leafUuid": "fba722b6-dcec-491c-b620-ff2acb012303",
+                "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845"
+              }
+            }
+          ],
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review Round 1 for Safety Probes Layer Selection Paper",
+                "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845"
+              }
+            }
+          ],
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-18T15:30:48.116Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DSSw4dv2wHjiokL2kbcaDi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_4a087be8d8cfffc128323993d357d229:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fba722b6-dcec-491c-b620-ff2acb012303",
+            "isSidechain": false,
+            "promptId": "7d22e2a5-260b-42bf-9560-035e144a6b5f",
+            "type": "user",
+            "uuid": "6b6c34e6-609d-4eec-b6c1-367f1d259502",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_4a087be8d8cfffc128323993d357d229:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_4a087be8d8cfffc128323993d357d229:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "fba722b6-dcec-491c-b620-ff2acb012303",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review Round 1 for Safety Probes Layer Selection Paper",
+                "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845"
+              }
+            }
+          ],
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-18T15:31:30.594Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-18T15:31:30.594Z",
+                "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+                "content": "[Round 1 审稿请求]:\n## 交叉分享 — 请逐条回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿原文。请逐条回应每个 Weakness/Question：\n- **[AGREE]**：同意并说明理由（cite 具体 Section/Table/Figure 支撑）\n- **[REBUT]**：反驳并提供证据\n\n---\n\n### Reviewer 1 评分\nOverall 3.0 (Findings), Soundness 3.0, Excitement 3.0, Confidence 4/5\n\n### Must-Fix\n\n**[N1] [critical] 层选择与评估指标的同族循环论证风险**\nCorrected 层选择使用 threshold-dependent metrics（precision, inverse FPR），HS-vs-text 评估也以 precision/FPR 为核心。Appendix N 的 BA-layer 对比使用 70/30 split（主表用 60/20/20），引入 split confound。要求在 60/20/20 下报告 BA-selected 层的完整对比。\n\n**[N2] [critical] \"All four models†\" claim 与 32B 证据不匹配**\nR1-32B 仅 W=1 显著/25% coverage/position-mediated；QwQ-32B position baseline > HS BA/negative lead time。建议分两层叙事：7-8B 强证据 + 32B model-dependent preliminary evidence。\n\n**[N3] [critical] 累积超参数搜索空间在极小验证集上的 overfitting 风险未量化**\nLayer(64)×W(7)×K(5)×threshold 在 32B 验证集 n=4-9 上选择。Joint grid search 仅 QwQ-32B 有，R1-32B 缺失。建议 nested CV 或 split-half validation。\n\n### Should-Fix\n\n**[W1] [major] PCA capacity control claim 过强** — \"rules out pure capacity explanation\" 逻辑不完整，PCA 最大方差 ≠ text encoder 语义方向。建议降级为 \"partial evidence\" 或补充 random projection。\n\n**[W2] [major] Bootstrap n=19-20 coverage 风险** — sign-flip permutation 假设与 bootstrap 不同，R1-8B FPR rank-12 test margin 仅 0.006。建议报告 BCa CI。\n\n**[W3] [major] R1-8B FPR seed fragility** — 3/5 HB，HS FPR std=0.040 vs Text std=0.007。建议逐 metric×seed 报告。\n\n**[W4] [major] GRU 70/30 vs LR 60/20/20 split 混用** — test set 不完全重叠，GRU vs LR 直接对比受 confound。\n\n**[W5] [moderate] Control task selectivity 与 position contribution 重叠** — 12.5-19.7pp vs position 9-20pp，建议在 residualized HS 上重做 control task。\n\n**[W6] [moderate] 五指标 \"complementary\" 高估独立性** — confusion matrix 实质 2 DoF。\n\n### Questions\n[Q1] Appendix N 为何用 70/30 而非 60/20/20？\n[Q2] R1-32B 为何未做 joint (layer, W) grid search？\n[Q3] 其他 3 模型的 oracle gap？\n[Q4] Control task 是否在 residualized HS 上？\n[Q5] 为何不直接以 4-test model-level HB 为 primary？\n[Q6] QwQ-32B position baseline > HS BA 下 \"HS advantage\" 的实际意义？\n\n---\n\n请对以上每一条给出 [AGREE] 或 [REBUT] 回应，并附理由。"
+              }
+            }
+          ],
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-18T15:31:30.594Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-18T15:31:30.594Z",
+                "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845"
+              }
+            }
+          ],
+          "id": "event-000126"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-18T15:31:30.584Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b6c34e6-609d-4eec-b6c1-367f1d259502",
+            "isSidechain": false,
+            "promptId": "bc170f87-9fb6-4fd5-970c-523d5be2ab7d",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "8f5c81b9-c750-4e6a-b1cb-31124e5b9d06",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-18T15:31:30.584Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f5c81b9-c750-4e6a-b1cb-31124e5b9d06",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "4db1f595-f4c5-4dfe-87eb-1163d46d4ddb",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "1a430613-463e-4ede-8a21-3e9946d7a392",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000128"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-18T15:31:30.710Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享 — 请逐条回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿原文。请逐条回应每个 Weakness/Question：\n- **[AGREE]**：同意并说明理由（cite 具体 Section/Table/Figure 支撑）\n- **[REBUT]**：反驳并提供证据\n\n---\n\n### Reviewer 1 评分\nOverall 3.0 (Findings), Soundness 3.0, Excitement 3.0, Confidence 4/5\n\n### Must-Fix\n\n**[N1] [critical] 层选择与评估指标的同族循环论证风险**\nCorrected 层选择使用 threshold-dependent metrics（precision, inverse FPR），HS-vs-text 评估也以 precision/FPR 为核心。Appendix N 的 BA-layer 对比使用 70/30 split（主表用 60/20/20），引入 split confound。要求在 60/20/20 下报告 BA-selected 层的完整对比。\n\n**[N2] [critical] \"All four models†\" claim 与 32B 证据不匹配**\nR1-32B 仅 W=1 显著/25% coverage/position-mediated；QwQ-32B position baseline > HS BA/negative lead time。建议分两层叙事：7-8B 强证据 + 32B model-dependent preliminary evidence。\n\n**[N3] [critical] 累积超参数搜索空间在极小验证集上的 overfitting 风险未量化**\nLayer(64)×W(7)×K(5)×threshold 在 32B 验证集 n=4-9 上选择。Joint grid search 仅 QwQ-32B 有，R1-32B 缺失。建议 nested CV 或 split-half validation。\n\n### Should-Fix\n\n**[W1] [major] PCA capacity control claim 过强** — \"rules out pure capacity explanation\" 逻辑不完整，PCA 最大方差 ≠ text encoder 语义方向。建议降级为 \"partial evidence\" 或补充 random projection。\n\n**[W2] [major] Bootstrap n=19-20 coverage 风险** — sign-flip permutation 假设与 bootstrap 不同，R1-8B FPR rank-12 test margin 仅 0.006。建议报告 BCa CI。\n\n**[W3] [major] R1-8B FPR seed fragility** — 3/5 HB，HS FPR std=0.040 vs Text std=0.007。建议逐 metric×seed 报告。\n\n**[W4] [major] GRU 70/30 vs LR 60/20/20 split 混用** — test set 不完全重叠，GRU vs LR 直接对比受 confound。\n\n**[W5] [moderate] Control task selectivity 与 position contribution 重叠** — 12.5-19.7pp vs position 9-20pp，建议在 residualized HS 上重做 control task。\n\n**[W6] [moderate] 五指标 \"complementary\" 高估独立性** — confusion matrix 实质 2 DoF。\n\n### Questions\n[Q1] Appendix N 为何用 70/30 而非 60/20/20？\n[Q2] R1-32B 为何未做 joint (layer, W) grid search？\n[Q3] 其他 3 模型的 oracle gap？\n[Q4] Control task 是否在 residualized HS 上？\n[Q5] 为何不直接以 4-test model-level HB 为 primary？\n[Q6] QwQ-32B position baseline > HS BA 下 \"HS advantage\" 的实际意义？\n\n---\n\n请对以上每一条给出 [AGREE] 或 [REBUT] 回应，并附理由。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4db1f595-f4c5-4dfe-87eb-1163d46d4ddb",
+            "isSidechain": false,
+            "promptId": "bc170f87-9fb6-4fd5-970c-523d5be2ab7d",
+            "type": "user",
+            "uuid": "b03e70e2-7970-468a-8616-ded8e3d2b9bb",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-18T15:32:14.825Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The Director is asking me to cross-review Reviewer 1's findings. I need to go through each weakness and question, and respond with [AGREE] or [REBUT] based on my own reading of the paper. Let me carefully consider each point.\n\nLet me re-examine the paper evidence for each issue:\n\n**[N1] Layer selection circularity** - R1 argues that using threshold-dependent metrics (precision, inverse FPR) for layer selection and then evaluating HS-vs-text on precision/FPR creates circularity. Also, Appendix N (BA-layer comparison) uses 70/30 split while main text uses 60/20/20.\n\n\nThe concern is legitimate—selecting layers that maximize precision and then comparing on precision introduces bias. The paper tries to address this by showing that BA-selected layers (which are threshold-free) also demonstrate the HS advantage in Appendix N, but R1 correctly points out that this appendix uses a different data split than the main results, which undermines the comparison.\n\nFor the \"all four models\" claim, I should agree with R1's point here too.\n\nOn cumulative hyperparameter overfitting, the paper acknowledges this in its Limitations section and notes the extensive grid search (2,240 configurations tested on just 4-9 validation traces). The joint grid search was only applied to QwQ-32B, not R1-32B, which is where the concern is most pressing. I should agree that this is a real gap.\n\nNow looking at the PCA capacity control claim—\n\nR1 argues the paper overstates this, saying PCA preserves maximum variance directions that may not align with semantic dimensions. But the paper actually includes a qualification right there in Section 4.3, acknowledging that PCA \"need not align with the semantic dimensions captured by a trained text encoder\" and that the control provides evidence against a pure capacity explanation but not all encoder-quality effects. So the substance of R1's concern is already addressed in the paper, though the stronger framing in the Introduction could be clearer about these limitations.\n\nOn the bootstrap coverage issue, R1 has a valid point—the paper does acknowledge below-nominal coverage at small n, and while the sign-flip permutation test offers independent validation, it tests a different null hypothesis. The R1-8B FPR result is particularly concerning with only a 0.006 margin between the test statistic and threshold. That said, the paper is transparent about the seed fragility in Table 23, showing 3 out of 5 HB seeds with std=0.040 compared to text std=0.007, so the authors aren't hiding the instability.\n\nFor the GRU split discrepancy, R1 is partially right—the paper does justify using 70/30 to maximize training data for the sequential model and provides 60/20/20 results in Table 14 for comparison, so fair comparison is actually available. The control task selectivity concern is trickier: selectivity ranges from 12.5-19.7 percentage points while position overlap accounts for 9-20 percentage points, and R1 is questioning whether these ranges overlap enough to isolate the actual effect.\n\nOn the five metrics issue, R1 makes a valid point about independence—the paper acknowledges that balanced accuracy, precision, and FPR all derive from the same confusion matrix (effectively 4 degrees of freedom), and while the layer selection metrics differ in their threshold properties, they're still built from the same binary classification outputs. The paper already concedes this correlation, so I should agree with R1's concern while noting the acknowledgment is already there.\n\nFor the remaining questions: the 70/30 versus 60/20/20 split in Appendix N lacks explanation and needs clarification. The R1-32B joint grid search gap is acknowledged by the paper as a fundamental bottleneck with n=20, so that's a reasonable limitation to note. The oracle gap calculations are only reported for R1-8B, leaving the other three models unaddressed. The control task on residualized hidden states wasn't performed. On the multiple comparisons correction, the paper reports both 12-test and 4-test versions and shows they reach the same conclusion, which seems like a reasonable presentation choice even if not ideal.\n\nFor QwQ-32B's position relative to HS BA, the paper clarifies that HS's advantage comes from precision and false positive rate rather than balanced accuracy itself—this distinction deserves clearer framing in how the advantage is characterized.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b03e70e2-7970-468a-8616-ded8e3d2b9bb",
+            "isSidechain": false,
+            "requestId": "req_011CbAGuYqPa66B6RUZr16Tv",
+            "type": "assistant",
+            "uuid": "2445b678-6c05-45b3-ba84-99d33099938b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187EHemopypwF6sMxosaEpf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 94763,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 5769,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 94763,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 5769,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 94763,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 94763
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "messages_changed",
+                  "cache_missed_input_tokens": 57565
+                }
+              }
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-18T15:32:14.831Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我将逐条回应 Reviewer 1 的审稿意见，基于我对论文的独立阅读。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2445b678-6c05-45b3-ba84-99d33099938b",
+            "isSidechain": false,
+            "requestId": "req_011CbAGuYqPa66B6RUZr16Tv",
+            "type": "assistant",
+            "uuid": "0d81320f-32ef-40a2-b451-8a3e8ef64eee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187EHemopypwF6sMxosaEpf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 94763,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 5769,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 94763,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 5769,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 94763,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 94763
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "messages_changed",
+                  "cache_missed_input_tokens": 57565
+                }
+              }
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-18T15:33:36.771Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013UHdbDLxowDvHbXxyV4xvF",
+              "name": "mcp__agent-ml-research__review_reviewer_post_to_director",
+              "input": {
+                "text": "## Reviewer 2 — 交叉回应 Reviewer 1 审稿意见\n\n---\n\n### Must-Fix\n\n**[AGREE] R1-N1: 层选择与评估指标的同族循环论证风险**\n\nR1 指出 corrected layer selection 使用 threshold-dependent metrics（precision, inverse FPR），而 HS-vs-text 评估也以 precision/FPR 为核心，存在循环论证风险。我同意这一担忧。\n\n论文的主要防线是 Appendix N（BA-layer comparison, Table in Section U）：在 threshold-free 的 BA-selected layers 上，all 16 model-metric comparisons 仍 pass HB。这本身是有力的反驳。但 R1 正确指出了一个 confound：Appendix N 使用 70/30 split，而主表（Table 3）使用 60/20/20 split。Table caption 自己承认了这一点：\"70/30 split, consistent with the 5-seed robustness protocol; main results in Tables 3-4 use 60/20/20\"。不同 split 下 test set 不完全重叠，引入了额外变量。\n\n补充发现：即使接受 BA-layer 结果，也存在一个更微妙的循环性。BA-selected layers 在 QwQ-32B 选择 L30（47% depth），在 R1-32B 选择 L47（73% depth），而 corrected layers 分别在 L60（94%）和 L63（98%）。两组 layers 差异很大，在哪一组上 HS advantage 更\"真实\"并不自明。论文声称两组都 significant，但如果结论对 layer selection method 如此敏感（这正是论文的核心主题），那么 HS advantage 的 robustness 本身就需要更严格的验证。\n\n**要求在 60/20/20 下重做 BA-layer comparison** 是合理的，技术上也不困难。\n\n---\n\n**[AGREE] R1-N2: \"All four models†\" claim 与 32B 证据不匹配**\n\n完全同意。这与我的 [W4] 高度重叠。\n\n补充 R1 的证据：\n- R1-32B 在 384d comparison 中 HB pass，但 residualized HS-text gap 仅 +1.9pp（p=0.914, Section S/Appendix），post-hoc MDE 为 9.5pp（Appendix V），即：non-significance 既可能是 true null 也可能是 underpowered，论文无法区分。\n- QwQ-32B 的 position baseline BA（0.832）高于 HS BA（0.796）（Section 4.4, Table 4）。HS 的\"advantage\"仅体现在 precision 和 FPR 上（且 precision margin +4.5pp, p=0.133, FPR margin +2.5pp, p=0.279, 均 NS at n=19）。\n- 合理的叙事应该是：**7-8B：HS advantage 有强 evidence（OT-7B 5/5 HB cleanest, R1-8B precision strong but FPR fragile）；32B：evidence model-dependent 且 preliminary**。用 \"all four models†\" 统一表述掩盖了这种异质性。\n\n---\n\n**[AGREE] R1-N3: 累积超参数搜索空间在极小验证集上的 overfitting 风险未量化**\n\n同意。论文在 Limitations（lines 694-711）自己承认了 64×7×5=2,240 configurations 的搜索空间在 n=4-9 per-class validation traces（32B scale）上选择。论文的缓解措施包括：(1) C-insensitivity <2pp，(2) K 是 design pre-selection，(3) threshold sensitivity analysis（Appendix L）。但这些只覆盖了部分超参数。\n\nR1 提到的关键缺失：R1-32B 缺少 joint (layer, W) grid search。论文解释 \"n=20 is the fundamental bottleneck\"（Limitations line 670），但这正是问题所在——如果 n 太小以至于无法做基本的 validation，那么在这个 n 上得出的 significant results 本身的可信度就值得怀疑。QwQ-32B 有 joint grid search（Table 6, W∈{1,3,5}），R1-32B 没有，而 R1-32B 恰恰是最 problematic 的模型。\n\nNested CV 或 split-half validation 建议合理，但考虑到 n=20，split-half 只剩 10 条，可能不切实际。**至少应报告 R1-32B 在 joint (layer, W) grid 上的结果，即使只是 W∈{1,3,5}**，与 QwQ-32B 保持对称。\n\n---\n\n### Should-Fix\n\n**[AGREE] R1-W1: PCA capacity control claim 过强**\n\n同意实质，但论文已有部分 qualification。Section 4.3（lines 65-66）写道：\"PCA retains directions of maximum variance in hidden-state space, which need not align with the semantic dimensions captured by a trained text encoder; the control provides evidence against a pure capacity explanation but not all encoder-quality effects.\" 这个 qualification 已经比较诚实。\n\n但 Introduction 的 Contribution 2（line 100-101）措辞更强：\"providing evidence against a pure capacity explanation\"，容易被读者 over-interpret。R1 建议降级为 \"partial evidence\" 或补充 random projection baseline，我认为 random projection 是一个 cheap 且 informative 的 control：如果 random 384d projection 也能保持 HS advantage，那就不是 PCA 的 variance-preserving 性质在起作用。\n\n---\n\n**[AGREE] R1-W2: Bootstrap n=19-20 coverage 风险**\n\n同意。论文自己承认 \"Bootstrap CIs at n=19-20 may exhibit below-nominal coverage\"（Limitations, line 709）。Sign-flip permutation test（Appendix D）提供了独立验证，且全部 reject null，这是有力的补充。但 R1 正确指出两种 test 的假设不同（permutation tests 假设 exchangeability under null，bootstrap 假设 sampling distribution approximation），所以它们不是完全冗余的 check。\n\nR1-8B FPR rank-12 test 的 margin（p=0.044 vs threshold 0.050，gap 仅 0.006）是一个真实的脆弱点。如果用 BCa（bias-corrected accelerated）CI 替换 percentile CI，rank-12 test 可能 flip。这不影响核心结论（layer selection sensitivity），但影响 \"all 12 tests pass\" 这一 clean narrative。\n\n---\n\n**[AGREE] R1-W3: R1-8B FPR seed fragility**\n\n同意，但论文已详细披露。Table 23（Appendix T, app:r18b_fpr_seeds）逐 seed 报告了 R1-8B FPR：direction consistent 5/5，但 2/5 reach p<0.05 uncorrected，1/5 after Bonferroni。HS FPR std=0.040 vs Text std=0.007。论文将此归因于 test-set split sensitivity。\n\n这里的问题不是透明度（论文已经很透明），而是**叙事影响**：main text 的 \"all four models\" framing 将这种 fragility 降级为脚注级 caveat，而非正文核心叙述的一部分。这与 N2 问题连锁。\n\n---\n\n**[REBUT] R1-W4: GRU 70/30 vs LR 60/20/20 split 混用**\n\n部分反驳。论文确实在 Appendix G（Table 14, app:gru_multi_seeds）提供了 GRU 在 60/20/20 split 下的完整结果（3 seeds），且 Table 14 caption 明确说：\"Main text results use a 70/30 train/test split with different test traces, accounting for the difference in lead values.\" 在 60/20/20 下，GRU-single mean BA=0.799±0.035 vs LR-single mean BA=0.803±0.037，GRU 并未显著优于 LR。\n\n因此 fair comparison 在 Table 14 中已经存在。R1 的 concern 对 primary GRU 结果（70/30）成立，但论文提供了 matched-split comparison 作为补充。建议论文将 Table 14 的 matched-split comparison 在正文中更显著地引用，而非仅在 Appendix 中出现。\n\n---\n\n**[AGREE] R1-W5: Control task selectivity 与 position contribution 重叠**\n\n同意。Appendix H 报告 control task selectivity 12.5-19.7pp，Section 4.3 报告 position accounts for 9-20pp of BA。两者的重叠是一个未解决的问题：control task 的 selectivity 中有多少可归因于 position signal（而非 safety-specific content）？\n\n论文未在 position-residualized hidden states 上重做 control task。如果 residualized HS 的 selectivity 仍显著高于 chance，那才是 genuine safety-specific signal 的确证。如果 selectivity 大幅下降，则说明 control task 结果部分被 position 信号 inflate。\n\n这是一个 informative 且计算量很小的实验，建议补充。\n\n---\n\n**[AGREE] R1-W6: 五指标 \"complementary\" 高估独立性**\n\n同意，但影响有限。R1 正确指出 confusion matrix 只有 2 个自由度（TP, FP 确定后 TN, FN 自动确定），所以 BA/Precision/FPR/Crossing Rate/Additive Composite 五个 layer selection metrics 的独立性远低于表面上的\"五个互补视角\"。\n\n论文在 Section 3.3 已部分承认：\"Because the three metrics (balanced accuracy, precision, FPR) share the same confusion matrix, the effective number of independent comparisons is four (one per model).\" 但\"five-metric ablation\"的措辞暗示了五个独立信号，这确实 overstate 了。\n\n实际影响有限：核心发现（crossing rate biases toward shallow layers）不依赖五个 metrics 的独立性，只需要 crossing rate vs non-crossing-rate metrics 的对比。\n\n---\n\n### Questions\n\n**[AGREE] Q1: Appendix N 为何用 70/30 而非 60/20/20？**\n论文未解释原因。这是 N1 的一部分。在 60/20/20 下复现 BA-layer comparison 是合理要求。\n\n**[AGREE] Q2: R1-32B 为何未做 joint (layer, W) grid search？**\n论文在 Limitations 中解释 n=20 是 bottleneck。但如 N3 所述，至少应做 W∈{1,3,5} 的 grid search 与 QwQ-32B 保持对称。\n\n**[AGREE] Q3: 其他 3 模型的 oracle gap？**\nSection I（Appendix）仅报告 R1-8B 的 oracle gap（85.5%）。其他 3 个模型的 oracle gap 缺失。如果 oracle gap 在模型间差异很大，这会影响对 \"passive probing captures only a fraction of available signal\" 这一结论的泛化性。这是一个 cheap 的补充实验。\n\n**[AGREE] Q4: Control task 是否在 residualized HS 上？**\n同 W5。未做。应补充。\n\n**[REBUT] Q5: 为何不直接以 4-test model-level HB 为 primary？**\n论文实际上已报告两种 correction（12-test 和 4-test），且明确说 \"both yield the same result\"（Appendix D, line 80-81）。在两种 correction 给出相同结论时，报告更保守的 12-test version 作为 primary 是统计学上更 defensible 的选择——如果在更严格标准下都能 pass，那 4-test 自然也 pass。R1 的建议（以 4-test 为 primary）是合理的 presentation choice，但不影响结论。\n\n**[AGREE] Q6: QwQ-32B position baseline > HS BA 下 \"HS advantage\" 的实际意义？**\nSection 4.4（Table 4）显示 QwQ-32B position baseline BA=0.832 > HS BA=0.796。HS \"advantage\" 仅在 precision（+4.5pp, p=0.133, NS）和 FPR（+2.5pp, p=0.279, NS）上存在，且均不显著。在 384d text comparison 中 HS 确实 HB-significant，但这是因为 text baseline 比 position baseline 更弱。\n\n这意味着对 QwQ-32B，一个 trivial 的 position heuristic（t/T）比 HS probe 的分类准确率更高。\"HS advantage\" 在这种情况下指的是 precision/FPR 的定向优势而非全面优势。论文应在 main text 中更明确地说明这一点，而非让读者从散落在不同 section 的数字中自己拼凑。\n\n---\n\n### 总结\n\n**R1 的 11 条 Weakness/Question 中，我同意 9 条（AGREE），部分反驳 2 条（W4, Q5）。**\n\nR1 与我的审稿重叠最多的是 N2（\"all four models\" misleading, 对应我的 W4）和 N3（overfitting risk at small n）。R1 独立发现了我未重点展开的 circularity concern（N1），这是一个重要的补充——BA-layer comparison 使用不同 split 确实削弱了论文对 circularity 的防线。\n\n两位 reviewer 独立给出 Overall 3.0 (Findings)，核心理由一致：贡献天花板（characterization, not method）、单数据集、32B evidence weak。这增强了评分的可信度。",
+                "reviewer_id": "2",
+                "project": "contrastive_trace_safety"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d81320f-32ef-40a2-b451-8a3e8ef64eee",
+            "isSidechain": false,
+            "requestId": "req_011CbAGuYqPa66B6RUZr16Tv",
+            "type": "assistant",
+            "uuid": "a90d4986-365f-4817-8e1e-e253019df1d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187EHemopypwF6sMxosaEpf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 94763,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 5769,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 94763,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 5769,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 94763,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 94763
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "messages_changed",
+                  "cache_missed_input_tokens": 57565
+                }
+              }
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 1 审稿请求]: ## 交叉分享 — 请逐条回应 Reviewer 1 的审稿意见  以下是 Reviewer 1 的完整审稿原文。请逐条回应每个 Weakness/Question： - **[AGREE]**：同意并说明理由（cite 具体 Section/Table/Figure 支撑） - **[REBUT]**：反驳并提供证据  ---  ### Reviewer 1 评分…",
+                "leafUuid": "a90d4986-365f-4817-8e1e-e253019df1d3",
+                "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845"
+              }
+            }
+          ],
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review Round 1 for Safety Probes Layer Selection Paper",
+                "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845"
+              }
+            }
+          ],
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-18T15:33:40.749Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013UHdbDLxowDvHbXxyV4xvF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_4a087be8d8cfffc128323993d357d229:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a90d4986-365f-4817-8e1e-e253019df1d3",
+            "isSidechain": false,
+            "promptId": "bc170f87-9fb6-4fd5-970c-523d5be2ab7d",
+            "type": "user",
+            "uuid": "824e3ded-9f3f-437d-b886-b9c2f40245de",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_4a087be8d8cfffc128323993d357d229:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_4a087be8d8cfffc128323993d357d229:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "a90d4986-365f-4817-8e1e-e253019df1d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/review_reviewer_2_f461d57a",
+            "sessionId": "b2082ddb-8013-44c5-bce4-50bdb195f845",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000135"
+        }
+      ]
+    }
+  ]
+}

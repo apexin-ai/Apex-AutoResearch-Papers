@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d9496cfe835f6bc95e29",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contrastive_trace_safety ## 运行环境 - 服务器名: westd-15904 - SSH 账户: root（调用 ssh_execute / submit_trai",
+  "task_key": "5e52a391-590c-49b4-b2a9-c2818da3ae3f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/5e52a391-590c-49b4-b2a9-c2818da3ae3f.jsonl",
+    "occurrence": 1,
+    "bytes": 705843,
+    "sha256": "e6d5c06f91896055bf0eaa9bbb23a96fbf2e92621ad450eadc475ef58cdd3abc"
+  },
+  "statistics": {
+    "messages": 344,
+    "user_turns": 1,
+    "tool_calls": 120,
+    "roles": {
+      "record": 60,
+      "user": 1,
+      "assistant": 43,
+      "tool_call": 120,
+      "tool_result": 120
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d9496cfe835f6bc95e29-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 342,
+      "chunks": [
+        {
+          "path": "d9496cfe835f6bc95e29-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "d9496cfe835f6bc95e29-part-0002.json",
+          "message_count": 164
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contrastive-trace-safety-westd-15904-ssh-root-ssh-execute-subm-copy-59.md"
+}

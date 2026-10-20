@@ -1,0 +1,1552 @@
+{
+  "schema_version": "1.0",
+  "id": "ba9050b4352aaf547958",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: structfuse-context ## 运行环境 - 服务器名: bjb1-42106 - SSH 账户: root（调用 ssh_execute / submit_training_jo",
+  "task_key": "02ec574e-cd01-4164-a467-f75be32546c2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/02ec574e-cd01-4164-a467-f75be32546c2.jsonl",
+    "occurrence": 1,
+    "bytes": 109403,
+    "sha256": "3e659f25317ee71484cb1fd1c35759490b57382e1e881b602ba8ac710c6fd095"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "record": 14,
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T23:11:09.383Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T23:11:09.383Z",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+                "content": "<project_context>\n# 项目: structfuse-context\n\n## 运行环境\n- 服务器名: bjb1-42106\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.bjb1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/structfuse\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：method_v1.md fallback rate 修正 + experiments §4.2 验证\n\n### 修复 1（必做）：method_v1.md fallback rate\n文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md`\n\nLine 63 附近写 \"approximately 34% of training instances\" fallback，但逻辑反了：\n- 34.3% 是**有** structural data 的比例（CodeQL 成功提取到 dataflow 信息）\n- ~66% 的 instances **没有** structural data，这些才会 fallback 到 embedding-distance strategy\n- 修正为 \"approximately 66% of training instances lack structural connectivity data and fall back to embedding-distance negatives\"\n\n### 修复 2（验证）：experiments_v1.md §4.2 projection head\n文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md`\n\n检查 §4.2 是否仍写 \"linear projection head mapping the last hidden state\"。如果是：\n- 改为与 method_v1.md §3.3 一致的描述：\"two-layer MLP projection head (Linear→GELU→Linear)\" + \"mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization\"\n- 先读 method_v1.md 确认确切措辞，然后在 experiments §4.2 同步\n\n如果已被其他 Worker 修正，则跳过。\n\n### 产出\n修改后用 register_artifact 更新两个文件。报告每处修改。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T23:11:09.387Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T23:11:09.387Z",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T23:11:09.421Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: structfuse-context\n\n## 运行环境\n- 服务器名: bjb1-42106\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.bjb1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/structfuse\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：method_v1.md fallback rate 修正 + experiments §4.2 验证\n\n### 修复 1（必做）：method_v1.md fallback rate\n文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md`\n\nLine 63 附近写 \"approximately 34% of training instances\" fallback，但逻辑反了：\n- 34.3% 是**有** structural data 的比例（CodeQL 成功提取到 dataflow 信息）\n- ~66% 的 instances **没有** structural data，这些才会 fallback 到 embedding-distance strategy\n- 修正为 \"approximately 66% of training instances lack structural connectivity data and fall back to embedding-distance negatives\"\n\n### 修复 2（验证）：experiments_v1.md §4.2 projection head\n文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md`\n\n检查 §4.2 是否仍写 \"linear projection head mapping the last hidden state\"。如果是：\n- 改为与 method_v1.md §3.3 一致的描述：\"two-layer MLP projection head (Linear→GELU→Linear)\" + \"mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization\"\n- 先读 method_v1.md 确认确切措辞，然后在 experiments §4.2 同步\n\n如果已被其他 Worker 修正，则跳过。\n\n### 产出\n修改后用 register_artifact 更新两个文件。报告每处修改。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "dc65ff91-4709-4979-bbc5-c8ef22055c27",
+            "type": "user",
+            "uuid": "8605c516-64c0-42cb-a4ee-87307696a0a7",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T23:11:09.421Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8605c516-64c0-42cb-a4ee-87307696a0a7",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "b3d57049-ed13-4c74-bc79-b0a4d712b12b",
+                "timestamp": "2026-05-14T23:11:09.421Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T23:11:09.421Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "b3d57049-ed13-4c74-bc79-b0a4d712b12b",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "agent_listing_delta",
+                  "addedTypes": [
+                    "claude",
+                    "Explore",
+                    "general-purpose",
+                    "Plan",
+                    "statusline-setup"
+                  ],
+                  "addedLines": [
+                    "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+                    "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+                    "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+                  ],
+                  "removedTypes": [],
+                  "isInitial": true,
+                  "showConcurrencyNote": true
+                },
+                "type": "attachment",
+                "uuid": "2a3b4f80-2c7b-4cd4-ae30-6e2be6288ae2",
+                "timestamp": "2026-05-14T23:11:09.421Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T23:11:09.421Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2a3b4f80-2c7b-4cd4-ae30-6e2be6288ae2",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "7d0067a4-ee70-413d-9b75-9ef35d5d24a6",
+                "timestamp": "2026-05-14T23:11:09.421Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T23:11:09.421Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7d0067a4-ee70-413d-9b75-9ef35d5d24a6",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "469535c5-3c0c-4e3b-96fe-e523863a41ef",
+                "timestamp": "2026-05-14T23:11:09.421Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix fallback rate and projection head descriptions",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2"
+              }
+            }
+          ],
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T23:11:19.927Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the two files to assess what needs fixing."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "469535c5-3c0c-4e3b-96fe-e523863a41ef",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jiq6LZ3sFs9LUkXFi2",
+            "type": "assistant",
+            "uuid": "5b724e16-2289-400d-b13d-e2875375840d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0149sHXtAw7dADuBb9zzMcK6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11621,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11621,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 11621,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11621
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T23:11:20.414Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0176QjA3BcB3rUbvGYovzLeL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b724e16-2289-400d-b13d-e2875375840d",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jiq6LZ3sFs9LUkXFi2",
+            "type": "assistant",
+            "uuid": "afa4398c-aa5c-4b41-b23e-d034ef731276",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0149sHXtAw7dADuBb9zzMcK6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11621,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11621,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 11621,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11621
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T23:11:20.432Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0176QjA3BcB3rUbvGYovzLeL",
+              "type": "tool_result",
+              "content": "1\t# §3 Method\n2\t\n3\t## §3.1 Problem Formulation\n4\t\n5\tWe address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\\mathcal{F} = \\{f_1, f_2, \\ldots, f_N\\}$. The gold set $\\mathcal{F}^+_q \\subset \\mathcal{F}$ denotes the files modified in the ground-truth patch.\n6\t\n7\tWe formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files. Concretely, we optimize $\\theta$ such that for all $f^+ \\in \\mathcal{F}^+_q$ and $f^- \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q$:\n8\t\n9\t$$\\text{sim}(E_\\theta(q), E_\\theta(f^+)) \\gg \\text{sim}(E_\\theta(q), E_\\theta(f^-))$$\n10\t\n11\twhere $\\text{sim}(\\cdot, \\cdot)$ denotes cosine similarity.\n12\t\n13\tThe quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. Random negatives are often too easy, providing weak gradient signal \\cite{chen2020simclr}. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.\n14\t\n15\t## §3.2 StructFuse Pipeline\n16\t\n17\tOur pipeline consists of three stages: (1) structural graph extraction via static analysis, (2) training data construction with strategy-specific negative mining, and (3) contrastive fine-tuning of a pretrained code encoder.\n18\t\n19\t**CodeQL Extraction.** We use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. Specifically, we define taint-tracking queries that trace data flow from designated sources to sinks, crossing function call boundaries. This yields a set of data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file.\n20\t\n21\tWe set a scope bound on the analysis depth to ensure tractability: queries that exceed a predefined step limit are terminated. In practice, this achieves 0\\% timeout rate across 123 out of 131 repositories in our dataset.\n22\t\n23\t**Structural Connectivity Graph.** From the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. This graph captures inter-procedural structural relationships between files—two files are connected if data flows between them across function call boundaries.\n24\t\n25\tA key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \\cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.\n26\t\n27\t**Structural Coverage.** At full scale, 78\\% of files connected in $G$ are non-gold files (i.e., structurally related but not in the patch), providing a rich pool for structure-grounded negative mining. The remaining files either lack data-flow connections or belong to isolated modules.\n28\t\n29\t## §3.3 Training Objective\n30\t\n31\t**Contrastive Loss.** We train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$, the loss is:\n32\t\n33\t$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$\n34\t\n35\twhere $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query. Our framework supports distance-weighted positive scores via per-sample weights $w_i = \\exp(-\\alpha \\cdot d_i)$, where $d_i$ is the data-flow path distance from query to positive and $\\alpha = 1.0$. In practice, the training data assigns a uniform distance of $d = 1$ to all positives, yielding a constant weight $w = e^{-1}$ across all samples. Since this scales all per-sample losses equally, the optimization is equivalent to standard unweighted InfoNCE.\n36\t\n37\t**Encoder Architecture.** We fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—which differ in pretraining objectives (Fill-in-the-Middle vs. multi-task including Fill-in-the-Middle) and exhibit distinct representation geometries (§5). We apply mean pooling over non-padding positions of the last hidden layer to obtain fixed-dimensional representations, followed by L2 normalization. Each encoder is augmented with a two-layer MLP projection head (Linear→GELU→Linear) that maps the pooled hidden state to a 256-dimensional embedding space.\n38\t\n39\t**Parameter-Efficient Fine-Tuning.** We apply LoRA \\cite{hu2022lora} to the query and value projection matrices ($W_q$, $W_v$) of each attention layer with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated. We use AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10\\% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2048 tokens. We train for 2 epochs with early stopping (patience=2). An initial exploratory seed ($s_{42}$) uses 3 epochs to provide a complete overfitting curve; subsequent seeds use 2 epochs based on observed overfitting after epoch 1 (see §4). Evaluation is performed every 500 steps.\n40\t\n41\t**Dual Checkpoint Selection.** We observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement.\n42\t\n43\t## §3.4 Negative Mining Strategies\n44\t\n45\tWe compare three negative mining strategies that span a spectrum from uninformed to structure-grounded selection.\n46\t\n47\t**Random Mining.** For each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$. This serves as the baseline: negatives are unbiased but typically easy, as randomly chosen files are unlikely to share topical or structural similarity with the query.\n48\t\n49\t**Embedding-Distance Mining.** We compute embeddings for all files and queries using the frozen pretrained encoder $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we retrieve the $K$ non-gold files with highest cosine similarity to $q$ in the pretrained embedding space:\n50\t\n51\t$$f^-_{\\text{embed}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n52\t\n53\tThis selects files that the pretrained encoder already considers similar to the query—hard negatives that force the fine-tuned encoder to learn finer distinctions. Critically, this mining is **static**: embeddings are computed once from $E_{\\theta_0}$ and not refreshed during training, avoiding the computational overhead and instability of online re-mining \\cite{xiong2021ance}.\n54\t\n55\t**Dataflow-Aware Mining.** This strategy leverages the structural connectivity graph $G$ from §3.2 to select negatives that are textually similar but structurally disconnected from the query context. Formally, for query $q$ with associated gold files $\\mathcal{F}^+_q$, we define the reachability set $\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$, where $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:\n56\t\n57\t$$f^-_{\\text{df}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q :\\ f \\notin \\mathcal{R}_G(q)}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n58\t\n59\tThat is, we select the most similar non-gold files that are also **structurally unreachable** from the gold files in the data-flow graph. The intuition is that these files represent a category of particularly informative negatives: they appear relevant based on surface-level textual features (variable names, API patterns, shared imports) yet lack the inter-procedural data-flow connections that characterize true functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.\n60\t\n61\t**Difficulty Gradient.** The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are harder (high pretrained similarity, no structural constraint). Dataflow-aware negatives add a structural filter on top of embedding distance, selecting a subset that is simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives (§5).\n62\t\n63\tFor repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 34\\% of training instances, which we analyze separately in stratified evaluation (§5).\n64\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afa4398c-aa5c-4b41-b23e-d034ef731276",
+            "isSidechain": false,
+            "promptId": "dc65ff91-4709-4979-bbc5-c8ef22055c27",
+            "type": "user",
+            "uuid": "b57dbdd1-1979-47f3-bf73-9635f4bbcb3f",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md",
+                "content": "# §3 Method\n\n## §3.1 Problem Formulation\n\nWe address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\\mathcal{F} = \\{f_1, f_2, \\ldots, f_N\\}$. The gold set $\\mathcal{F}^+_q \\subset \\mathcal{F}$ denotes the files modified in the ground-truth patch.\n\nWe formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files. Concretely, we optimize $\\theta$ such that for all $f^+ \\in \\mathcal{F}^+_q$ and $f^- \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q$:\n\n$$\\text{sim}(E_\\theta(q), E_\\theta(f^+)) \\gg \\text{sim}(E_\\theta(q), E_\\theta(f^-))$$\n\nwhere $\\text{sim}(\\cdot, \\cdot)$ denotes cosine similarity.\n\nThe quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. Random negatives are often too easy, providing weak gradient signal \\cite{chen2020simclr}. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.\n\n## §3.2 StructFuse Pipeline\n\nOur pipeline consists of three stages: (1) structural graph extraction via static analysis, (2) training data construction with strategy-specific negative mining, and (3) contrastive fine-tuning of a pretrained code encoder.\n\n**CodeQL Extraction.** We use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. Specifically, we define taint-tracking queries that trace data flow from designated sources to sinks, crossing function call boundaries. This yields a set of data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file.\n\nWe set a scope bound on the analysis depth to ensure tractability: queries that exceed a predefined step limit are terminated. In practice, this achieves 0\\% timeout rate across 123 out of 131 repositories in our dataset.\n\n**Structural Connectivity Graph.** From the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. This graph captures inter-procedural structural relationships between files—two files are connected if data flows between them across function call boundaries.\n\nA key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \\cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.\n\n**Structural Coverage.** At full scale, 78\\% of files connected in $G$ are non-gold files (i.e., structurally related but not in the patch), providing a rich pool for structure-grounded negative mining. The remaining files either lack data-flow connections or belong to isolated modules.\n\n## §3.3 Training Objective\n\n**Contrastive Loss.** We train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$, the loss is:\n\n$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$\n\nwhere $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query. Our framework supports distance-weighted positive scores via per-sample weights $w_i = \\exp(-\\alpha \\cdot d_i)$, where $d_i$ is the data-flow path distance from query to positive and $\\alpha = 1.0$. In practice, the training data assigns a uniform distance of $d = 1$ to all positives, yielding a constant weight $w = e^{-1}$ across all samples. Since this scales all per-sample losses equally, the optimization is equivalent to standard unweighted InfoNCE.\n\n**Encoder Architecture.** We fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—which differ in pretraining objectives (Fill-in-the-Middle vs. multi-task including Fill-in-the-Middle) and exhibit distinct representation geometries (§5). We apply mean pooling over non-padding positions of the last hidden layer to obtain fixed-dimensional representations, followed by L2 normalization. Each encoder is augmented with a two-layer MLP projection head (Linear→GELU→Linear) that maps the pooled hidden state to a 256-dimensional embedding space.\n\n**Parameter-Efficient Fine-Tuning.** We apply LoRA \\cite{hu2022lora} to the query and value projection matrices ($W_q$, $W_v$) of each attention layer with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated. We use AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10\\% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2048 tokens. We train for 2 epochs with early stopping (patience=2). An initial exploratory seed ($s_{42}$) uses 3 epochs to provide a complete overfitting curve; subsequent seeds use 2 epochs based on observed overfitting after epoch 1 (see §4). Evaluation is performed every 500 steps.\n\n**Dual Checkpoint Selection.** We observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement.\n\n## §3.4 Negative Mining Strategies\n\nWe compare three negative mining strategies that span a spectrum from uninformed to structure-grounded selection.\n\n**Random Mining.** For each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$. This serves as the baseline: negatives are unbiased but typically easy, as randomly chosen files are unlikely to share topical or structural similarity with the query.\n\n**Embedding-Distance Mining.** We compute embeddings for all files and queries using the frozen pretrained encoder $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we retrieve the $K$ non-gold files with highest cosine similarity to $q$ in the pretrained embedding space:\n\n$$f^-_{\\text{embed}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThis selects files that the pretrained encoder already considers similar to the query—hard negatives that force the fine-tuned encoder to learn finer distinctions. Critically, this mining is **static**: embeddings are computed once from $E_{\\theta_0}$ and not refreshed during training, avoiding the computational overhead and instability of online re-mining \\cite{xiong2021ance}.\n\n**Dataflow-Aware Mining.** This strategy leverages the structural connectivity graph $G$ from §3.2 to select negatives that are textually similar but structurally disconnected from the query context. Formally, for query $q$ with associated gold files $\\mathcal{F}^+_q$, we define the reachability set $\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$, where $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:\n\n$$f^-_{\\text{df}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q :\\ f \\notin \\mathcal{R}_G(q)}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThat is, we select the most similar non-gold files that are also **structurally unreachable** from the gold files in the data-flow graph. The intuition is that these files represent a category of particularly informative negatives: they appear relevant based on surface-level textual features (variable names, API patterns, shared imports) yet lack the inter-procedural data-flow connections that characterize true functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.\n\n**Difficulty Gradient.** The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are harder (high pretrained similarity, no structural constraint). Dataflow-aware negatives add a structural filter on top of embedding distance, selecting a subset that is simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives (§5).\n\nFor repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 34\\% of training instances, which we analyze separately in stratified evaluation (§5).\n",
+                "numLines": 64,
+                "startLine": 1,
+                "totalLines": 64
+              }
+            },
+            "sourceToolAssistantUUID": "afa4398c-aa5c-4b41-b23e-d034ef731276",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T23:11:20.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JK8jswb5KY1iyMwHcqQkrf",
+              "type": "tool_result",
+              "content": "1\t# §4 Experiments\n2\t\n3\t## §4.1 Experimental Setup\n4\t\n5\t**Dataset.** We construct our training corpus from SWE-smith \\cite{yang2025swesmith}, a large-scale dataset of real-world GitHub bug-fix commits. Starting from 5,029 task instances spanning 131 unique (repository, commit) pairs, each task corresponds to a single bug-fix commit; we expand each task by treating every gold file as a separate training instance, yielding 44,173 training instances total (since many tasks involve multiple gold files). We run the StructFuse extraction pipeline (§3.2) to obtain inter-procedural data-flow graphs via CodeQL. After filtering for clone/checkout failures and extraction errors, we retain 15,133 instances with structural data across 123 repositories, yielding a structural coverage rate of 34.3%. The remaining 65.7% of instances lack structural connectivity data due to transient filesystem failures during batch extraction; a re-extraction pass (in progress) is expected to recover the majority of these instances, and we discuss data efficiency implications in §6.\n6\t\n7\tFor each random seed, we perform a per-repository stratified split to produce approximately 11,300 training and 3,000 validation instances. Each instance consists of an issue description (query), one or more gold files (positives), and strategy-specific negatives (§3.4). The per-seed split ensures that no repository appears exclusively in one partition, preserving the distribution of repository sizes and structural properties.\n8\t\n9\t**Evaluation Protocol.** We evaluate retrieval performance using Recall@$k$ ($k \\in \\{1, 5, 10\\}$) and Mean Reciprocal Rank (MRR), computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per query). During training, $K = 7$ negatives are used per query. We report results as mean $\\pm$ standard deviation across three random seeds (42, 43, 44). For all comparisons, we use the checkpoint selected by best validation Recall@1 ($\\theta^*_{\\text{R@1}}$), as discussed in §3.3.\n10\t\n11\t**Baselines.** We compare three negative mining strategies—random, embedding-distance, and dataflow-aware (§3.4)—against a BM25 retrieval baseline. The BM25 baseline uses Okapi BM25 \\cite{robertson2009bm25} to rank candidate files by lexical overlap with the query, providing a non-neural reference point. We additionally evaluate BM25-mined negatives as a fourth contrastive training strategy to ground our comparison against the gradient-based premise of CoCoHaNeRe \\cite{fan2025cocohanere}.\n12\t\n13\t## §4.2 Implementation Details\n14\t\n15\t**Encoders.** We select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries: **Qwen2.5-Coder-3B** \\cite{hui2024qwen25coder} and **StarCoder2-3B** \\cite{li2023starcoder}. Qwen2.5-Coder-3B is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus, while StarCoder2-3B uses a multi-task objective including FIM on The Stack v2. As we show in §4.4, these models exhibit markedly different pretrained representation geometries: Qwen operates in a near-saturated similarity regime (mean positive cosine similarity 0.986), while StarCoder maintains healthy separation (mean positive cosine similarity 0.798). This divergence enables us to study how representation geometry mediates the effectiveness of different negative mining strategies.\n16\t\n17\t**Fine-Tuning Configuration.** Both encoders are fine-tuned with LoRA \\cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of every attention layer, with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. We use a linear projection head mapping the last hidden state to a 256-dimensional embedding. Training uses InfoNCE loss with learnable temperature initialized at $\\tau = 0.07$, AdamW optimizer with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing schedule with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.\n18\t\n19\tFor the initial seed (s42), we train for 3 epochs to obtain a full overfitting curve; subsequent seeds (s43, s44) train for 2 epochs with early stopping (patience 2 evaluations) based on validation loss. Evaluation is performed every 500 steps. We maintain dual checkpoints: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1).\n20\t\n21\t**Negative Mining.** Embedding-distance negatives are mined using FAISS \\cite{johnson2021faiss} over frozen pretrained embeddings. BM25 negatives are mined by indexing all repository files with Okapi BM25 and selecting the top-$K$ highest-scoring non-gold files per query. Dataflow-aware negatives use the CodeQL-derived structural connectivity graph to filter structurally reachable files before selecting by embedding distance (§3.4). All mining is **static**—performed once before training and not refreshed.\n22\t\n23\t**Hardware.** All experiments are conducted on a single node with 2$\\times$ NVIDIA RTX PRO 6000 (96 GB VRAM each). Qwen and StarCoder training chains run on separate GPUs in parallel. Each run (single strategy, single seed, single encoder) requires approximately 5–7 hours; the full experiment matrix (3 strategies $\\times$ 3 seeds $\\times$ 2 encoders = 18 runs) completes in approximately 120 GPU-hours.\n24\t\n25\t## §4.3 Results\n26\t\n27\t### Main Results\n28\t\n29\tTable 1 presents the main retrieval results across three negative mining strategies and two encoders. Each cell reports mean $\\pm$ standard deviation over three seeds.\n30\t\n31\t**Table 1: Retrieval performance by negative mining strategy and encoder.** Pool size = 50. Best per-encoder results in **bold**.\n32\t\n33\t| Strategy | Qwen2.5-Coder-3B | | | StarCoder2-3B | | |\n34\t|---|---|---|---|---|---|---|\n35\t| | R@1 | R@5 | MRR | R@1 | R@5 | MRR |\n36\t| BM25 (no training) | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} |\n37\t| Random | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n38\t| BM25-mined | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n39\t| Embedding-distance | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n40\t| Dataflow-aware | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n41\t\n42\t**Key observations.** (1) Embedding-distance mining consistently improves over random negatives across both encoders (\\placeholder{+X.X}pp and \\placeholder{+X.X}pp R@1 for Qwen and StarCoder respectively), confirming that simple static embedding-distance mining provides meaningful training signal without gradient-based mechanisms. (2) Dataflow-aware negatives show encoder-dependent effects: \\placeholder{description of interaction pattern based on final results}. (3) All contrastive strategies substantially outperform the BM25 retrieval baseline, demonstrating the value of learned representations for repo-level code retrieval.\n43\t\n44\t### Pilot Validation\n45\t\n46\tPrior to the full multi-seed experiment, we conducted single-seed pilot runs on a 24-repository subset (~3,300 instances) to validate the pipeline and obtain early signal on strategy differentiation. Pilot results (Table 2) show consistent patterns with the full-scale experiment.\n47\t\n48\t**Table 2: Pilot results (single seed, 24-repo subset, R@1 checkpoint).** Pool size = 50.\n49\t\n50\t| Strategy | Qwen R@1 | StarCoder R@1 |\n51\t|---|---|---|\n52\t| Random | 0.5357 | 0.4922 |\n53\t| Embedding-distance | 0.5557 (+2.0pp) | 0.5078 (+1.6pp) |\n54\t| Dataflow-aware | 0.5436 (+0.8pp) | 0.4869 (−0.5pp) |\n55\t\n56\tThe pilot established two findings subsequently confirmed at full scale: (i) embedding-distance mining yields consistent improvement across both encoders, and (ii) the dataflow-aware strategy's effectiveness is encoder-dependent—beneficial for Qwen but neutral-to-negative for StarCoder.\n57\t\n58\t### Ablations\n59\t\n60\t**Pool Size Sensitivity.** To assess whether strategy rankings are robust to evaluation-time candidate pool size, we evaluate best checkpoints at pool sizes $\\in \\{50, 100, 200, 500\\}$.\n61\t\n62\t**Table 3: R@1 by pool size.**\n63\t\n64\t| Pool Size | Qwen Emb. | Qwen Rand. | Qwen $\\Delta$ | SC Emb. | SC Rand. | SC $\\Delta$ |\n65\t|---|---|---|---|---|---|---|\n66\t| 50 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n67\t| 100 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n68\t| 200 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n69\t| 500 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n70\t\n71\t**Dynamic Mining Control.** To isolate the effect of static vs. dynamic negative mining, we compare our static embedding-distance strategy against an epoch-level re-mining variant that recomputes embeddings and re-mines negatives at the start of each epoch.\n72\t\n73\t| Strategy | Qwen R@1 (s42) |\n74\t|---|---|\n75\t| Static embedding-distance | \\placeholder{X.XX} |\n76\t| Dynamic (epoch re-mining) | \\placeholder{X.XX} |\n77\t\n78\t### Downstream Evaluation\n79\t\n80\t**SWE-bench Lite.** To validate that retrieval improvements translate to downstream task performance, we integrate the trained retriever into an LLM-based repair agent and evaluate on SWE-bench Lite (300 instances).\n81\t\n82\t| Retriever | Resolve Rate |\n83\t|---|---|\n84\t| BM25 | \\placeholder{X.X%} |\n85\t| Random-trained | \\placeholder{X.X%} |\n86\t| Embedding-trained (Qwen) | \\placeholder{X.X%} |\n87\t\n88\t## §4.4 Analysis\n89\t\n90\t### Representation Geometry and Negative Difficulty\n91\t\n92\tA central question is *why* embedding-distance mining helps while dataflow-aware mining shows encoder-dependent effects. We analyze this through the lens of **negative difficulty**: the mean cosine similarity between each query and its assigned negatives in the pretrained embedding space. Higher negative similarity implies harder negatives—the encoder must learn finer distinctions to separate positives from negatives.\n93\t\n94\t**Table 4: Negative difficulty analysis (pretrained encoders, 2048-token context).** Margin = pos\\_sim − neg\\_sim.\n95\t\n96\t| Strategy | Qwen2.5-Coder-3B | | | StarCoder2-3B | | |\n97\t|---|---|---|---|---|---|---|\n98\t| | pos\\_sim | neg\\_sim | margin | pos\\_sim | neg\\_sim | margin |\n99\t| Random | 0.986 | 0.911 | 0.074 | 0.799 | 0.605 | 0.194 |\n100\t| Embedding-distance | 0.986 | 0.969 | 0.017 | 0.808 | 0.741 | 0.067 |\n101\t| Dataflow-aware | 0.986 | 0.956 | 0.029 | 0.801 | 0.682 | 0.119 |\n102\t\n103\tSeveral patterns emerge from Table 4:\n104\t\n105\t**Saturation asymmetry.** Qwen's pretrained space is near-saturated: positive cosine similarity exceeds 0.98 regardless of strategy, leaving a maximum margin of only 0.074. StarCoder maintains 2.6–4.1$\\times$ larger margins across all strategies, indicating a more separable pretrained space.\n106\t\n107\t**Difficulty gradient.** Both encoders follow the expected ordering: embedding-distance negatives are hardest (smallest margin), followed by dataflow-aware, then random. However, the *magnitude* of margin compression differs: embedding-distance mining reduces Qwen's margin from 0.074 to 0.017 (77% reduction), while StarCoder's margin drops from 0.194 to 0.067 (65% reduction). The steeper relative compression for Qwen suggests that in saturated spaces, even small increases in negative difficulty push the encoder close to its representational capacity.\n108\t\n109\t**Mechanistic hypothesis.** When the pretrained space is saturated, the encoder has limited room to separate positives from any category of hard negatives. Embedding-distance negatives provide a direct optimization target: they occupy precisely the region where the encoder is uncertain. Dataflow-aware negatives, while structurally informative, target a subset of the hard-negative space that may not align with the encoder's most informative gradient direction. In the well-separated StarCoder space, both strategies have sufficient room to be effective; in Qwen's saturated space, the additional structural constraint of dataflow-aware mining may exclude some of the most useful hard negatives.\n110\t\n111\t### Stratified Analysis\n112\t\n113\tWe stratify results by structural data availability to assess whether the dataflow-aware strategy's effectiveness depends on the richness of the underlying CodeQL graph.\n114\t\n115\t**Table 5: R@1 stratified by structural data availability.**\n116\t\n117\t| Stratum | Instances | Qwen (Emb.) | Qwen (DF) | $\\Delta$ | SC (Emb.) | SC (DF) | $\\Delta$ |\n118\t|---|---|---|---|---|---|---|---|\n119\t| Rich dataflow ($\\geq$5 edges) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n120\t| Sparse dataflow (1–4 edges) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n121\t| No structural data (fallback) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n122\t\n123\tConfound analysis reveals that rich-dataflow instances are heavily concentrated in large repositories (99.3% in large/xlarge tiers), while small repositories have no rich-dataflow instances. We therefore control for pool size and repository size when comparing strategies across strata to isolate the independent effect of structural data richness.\n124\t\n125\t### CodeQL Scalability\n126\t\n127\tWe report extraction-time statistics to support the practicality of the pipeline at scale (Claim 3).\n128\t\n129\t**Table 6: CodeQL extraction scalability by repository tier.**\n130\t\n131\t| Tier | Repos | Instances | Timeout Rate | Structural Coverage | Z% (median) |\n132\t|---|---|---|---|---|---|\n133\t| Small (<50 files) | 1 | 500 | 0% | 81.0% | 0.0% |\n134\t| Medium (50–200) | 17 | 4,096 | 0% | 47.2% | 50.0% |\n135\t| Large (200–500) | 40 | 13,628 | 0% | 34.3% | 85.7% |\n136\t| XLarge (500+) | 29 | 25,949 | 0% | 31.4% | 96.0% |\n137\t| **Total** | **123** | **44,173** | **0%** | **34.3%** | — |\n138\t\n139\tThe pipeline achieves 0% timeout rate across all repository tiers. Structural coverage (proportion of instances with CodeQL data-flow output) decreases with repository size, reflecting the combinatorial complexity of inter-procedural analysis in large codebases. Conversely, the connected-not-gold rate (Z%)—the proportion of structurally connected files that are non-gold—increases with repository size, reaching a median of 96% for repositories with 500+ files. This indicates that larger repositories provide richer pools for structure-grounded negative mining. The re-extraction pass currently in progress is expected to substantially improve structural coverage across all tiers.\n140\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc74c945-a9f0-4b08-bda3-9eb673854842",
+            "isSidechain": false,
+            "promptId": "dc65ff91-4709-4979-bbc5-c8ef22055c27",
+            "type": "user",
+            "uuid": "cc18c515-db99-477f-bedb-a555e12bc4b0",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md",
+                "content": "# §4 Experiments\n\n## §4.1 Experimental Setup\n\n**Dataset.** We construct our training corpus from SWE-smith \\cite{yang2025swesmith}, a large-scale dataset of real-world GitHub bug-fix commits. Starting from 5,029 task instances spanning 131 unique (repository, commit) pairs, each task corresponds to a single bug-fix commit; we expand each task by treating every gold file as a separate training instance, yielding 44,173 training instances total (since many tasks involve multiple gold files). We run the StructFuse extraction pipeline (§3.2) to obtain inter-procedural data-flow graphs via CodeQL. After filtering for clone/checkout failures and extraction errors, we retain 15,133 instances with structural data across 123 repositories, yielding a structural coverage rate of 34.3%. The remaining 65.7% of instances lack structural connectivity data due to transient filesystem failures during batch extraction; a re-extraction pass (in progress) is expected to recover the majority of these instances, and we discuss data efficiency implications in §6.\n\nFor each random seed, we perform a per-repository stratified split to produce approximately 11,300 training and 3,000 validation instances. Each instance consists of an issue description (query), one or more gold files (positives), and strategy-specific negatives (§3.4). The per-seed split ensures that no repository appears exclusively in one partition, preserving the distribution of repository sizes and structural properties.\n\n**Evaluation Protocol.** We evaluate retrieval performance using Recall@$k$ ($k \\in \\{1, 5, 10\\}$) and Mean Reciprocal Rank (MRR), computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per query). During training, $K = 7$ negatives are used per query. We report results as mean $\\pm$ standard deviation across three random seeds (42, 43, 44). For all comparisons, we use the checkpoint selected by best validation Recall@1 ($\\theta^*_{\\text{R@1}}$), as discussed in §3.3.\n\n**Baselines.** We compare three negative mining strategies—random, embedding-distance, and dataflow-aware (§3.4)—against a BM25 retrieval baseline. The BM25 baseline uses Okapi BM25 \\cite{robertson2009bm25} to rank candidate files by lexical overlap with the query, providing a non-neural reference point. We additionally evaluate BM25-mined negatives as a fourth contrastive training strategy to ground our comparison against the gradient-based premise of CoCoHaNeRe \\cite{fan2025cocohanere}.\n\n## §4.2 Implementation Details\n\n**Encoders.** We select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries: **Qwen2.5-Coder-3B** \\cite{hui2024qwen25coder} and **StarCoder2-3B** \\cite{li2023starcoder}. Qwen2.5-Coder-3B is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus, while StarCoder2-3B uses a multi-task objective including FIM on The Stack v2. As we show in §4.4, these models exhibit markedly different pretrained representation geometries: Qwen operates in a near-saturated similarity regime (mean positive cosine similarity 0.986), while StarCoder maintains healthy separation (mean positive cosine similarity 0.798). This divergence enables us to study how representation geometry mediates the effectiveness of different negative mining strategies.\n\n**Fine-Tuning Configuration.** Both encoders are fine-tuned with LoRA \\cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of every attention layer, with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. We use a linear projection head mapping the last hidden state to a 256-dimensional embedding. Training uses InfoNCE loss with learnable temperature initialized at $\\tau = 0.07$, AdamW optimizer with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing schedule with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.\n\nFor the initial seed (s42), we train for 3 epochs to obtain a full overfitting curve; subsequent seeds (s43, s44) train for 2 epochs with early stopping (patience 2 evaluations) based on validation loss. Evaluation is performed every 500 steps. We maintain dual checkpoints: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1).\n\n**Negative Mining.** Embedding-distance negatives are mined using FAISS \\cite{johnson2021faiss} over frozen pretrained embeddings. BM25 negatives are mined by indexing all repository files with Okapi BM25 and selecting the top-$K$ highest-scoring non-gold files per query. Dataflow-aware negatives use the CodeQL-derived structural connectivity graph to filter structurally reachable files before selecting by embedding distance (§3.4). All mining is **static**—performed once before training and not refreshed.\n\n**Hardware.** All experiments are conducted on a single node with 2$\\times$ NVIDIA RTX PRO 6000 (96 GB VRAM each). Qwen and StarCoder training chains run on separate GPUs in parallel. Each run (single strategy, single seed, single encoder) requires approximately 5–7 hours; the full experiment matrix (3 strategies $\\times$ 3 seeds $\\times$ 2 encoders = 18 runs) completes in approximately 120 GPU-hours.\n\n## §4.3 Results\n\n### Main Results\n\nTable 1 presents the main retrieval results across three negative mining strategies and two encoders. Each cell reports mean $\\pm$ standard deviation over three seeds.\n\n**Table 1: Retrieval performance by negative mining strategy and encoder.** Pool size = 50. Best per-encoder results in **bold**.\n\n| Strategy | Qwen2.5-Coder-3B | | | StarCoder2-3B | | |\n|---|---|---|---|---|---|---|\n| | R@1 | R@5 | MRR | R@1 | R@5 | MRR |\n| BM25 (no training) | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{X.XX} |\n| Random | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n| BM25-mined | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n| Embedding-distance | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n| Dataflow-aware | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} | \\placeholder{X.XX±X.XX} |\n\n**Key observations.** (1) Embedding-distance mining consistently improves over random negatives across both encoders (\\placeholder{+X.X}pp and \\placeholder{+X.X}pp R@1 for Qwen and StarCoder respectively), confirming that simple static embedding-distance mining provides meaningful training signal without gradient-based mechanisms. (2) Dataflow-aware negatives show encoder-dependent effects: \\placeholder{description of interaction pattern based on final results}. (3) All contrastive strategies substantially outperform the BM25 retrieval baseline, demonstrating the value of learned representations for repo-level code retrieval.\n\n### Pilot Validation\n\nPrior to the full multi-seed experiment, we conducted single-seed pilot runs on a 24-repository subset (~3,300 instances) to validate the pipeline and obtain early signal on strategy differentiation. Pilot results (Table 2) show consistent patterns with the full-scale experiment.\n\n**Table 2: Pilot results (single seed, 24-repo subset, R@1 checkpoint).** Pool size = 50.\n\n| Strategy | Qwen R@1 | StarCoder R@1 |\n|---|---|---|\n| Random | 0.5357 | 0.4922 |\n| Embedding-distance | 0.5557 (+2.0pp) | 0.5078 (+1.6pp) |\n| Dataflow-aware | 0.5436 (+0.8pp) | 0.4869 (−0.5pp) |\n\nThe pilot established two findings subsequently confirmed at full scale: (i) embedding-distance mining yields consistent improvement across both encoders, and (ii) the dataflow-aware strategy's effectiveness is encoder-dependent—beneficial for Qwen but neutral-to-negative for StarCoder.\n\n### Ablations\n\n**Pool Size Sensitivity.** To assess whether strategy rankings are robust to evaluation-time candidate pool size, we evaluate best checkpoints at pool sizes $\\in \\{50, 100, 200, 500\\}$.\n\n**Table 3: R@1 by pool size.**\n\n| Pool Size | Qwen Emb. | Qwen Rand. | Qwen $\\Delta$ | SC Emb. | SC Rand. | SC $\\Delta$ |\n|---|---|---|---|---|---|---|\n| 50 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n| 100 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n| 200 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n| 500 | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{+X.X} |\n\n**Dynamic Mining Control.** To isolate the effect of static vs. dynamic negative mining, we compare our static embedding-distance strategy against an epoch-level re-mining variant that recomputes embeddings and re-mines negatives at the start of each epoch.\n\n| Strategy | Qwen R@1 (s42) |\n|---|---|\n| Static embedding-distance | \\placeholder{X.XX} |\n| Dynamic (epoch re-mining) | \\placeholder{X.XX} |\n\n### Downstream Evaluation\n\n**SWE-bench Lite.** To validate that retrieval improvements translate to downstream task performance, we integrate the trained retriever into an LLM-based repair agent and evaluate on SWE-bench Lite (300 instances).\n\n| Retriever | Resolve Rate |\n|---|---|\n| BM25 | \\placeholder{X.X%} |\n| Random-trained | \\placeholder{X.X%} |\n| Embedding-trained (Qwen) | \\placeholder{X.X%} |\n\n## §4.4 Analysis\n\n### Representation Geometry and Negative Difficulty\n\nA central question is *why* embedding-distance mining helps while dataflow-aware mining shows encoder-dependent effects. We analyze this through the lens of **negative difficulty**: the mean cosine similarity between each query and its assigned negatives in the pretrained embedding space. Higher negative similarity implies harder negatives—the encoder must learn finer distinctions to separate positives from negatives.\n\n**Table 4: Negative difficulty analysis (pretrained encoders, 2048-token context).** Margin = pos\\_sim − neg\\_sim.\n\n| Strategy | Qwen2.5-Coder-3B | | | StarCoder2-3B | | |\n|---|---|---|---|---|---|---|\n| | pos\\_sim | neg\\_sim | margin | pos\\_sim | neg\\_sim | margin |\n| Random | 0.986 | 0.911 | 0.074 | 0.799 | 0.605 | 0.194 |\n| Embedding-distance | 0.986 | 0.969 | 0.017 | 0.808 | 0.741 | 0.067 |\n| Dataflow-aware | 0.986 | 0.956 | 0.029 | 0.801 | 0.682 | 0.119 |\n\nSeveral patterns emerge from Table 4:\n\n**Saturation asymmetry.** Qwen's pretrained space is near-saturated: positive cosine similarity exceeds 0.98 regardless of strategy, leaving a maximum margin of only 0.074. StarCoder maintains 2.6–4.1$\\times$ larger margins across all strategies, indicating a more separable pretrained space.\n\n**Difficulty gradient.** Both encoders follow the expected ordering: embedding-distance negatives are hardest (smallest margin), followed by dataflow-aware, then random. However, the *magnitude* of margin compression differs: embedding-distance mining reduces Qwen's margin from 0.074 to 0.017 (77% reduction), while StarCoder's margin drops from 0.194 to 0.067 (65% reduction). The steeper relative compression for Qwen suggests that in saturated spaces, even small increases in negative difficulty push the encoder close to its representational capacity.\n\n**Mechanistic hypothesis.** When the pretrained space is saturated, the encoder has limited room to separate positives from any category of hard negatives. Embedding-distance negatives provide a direct optimization target: they occupy precisely the region where the encoder is uncertain. Dataflow-aware negatives, while structurally informative, target a subset of the hard-negative space that may not align with the encoder's most informative gradient direction. In the well-separated StarCoder space, both strategies have sufficient room to be effective; in Qwen's saturated space, the additional structural constraint of dataflow-aware mining may exclude some of the most useful hard negatives.\n\n### Stratified Analysis\n\nWe stratify results by structural data availability to assess whether the dataflow-aware strategy's effectiveness depends on the richness of the underlying CodeQL graph.\n\n**Table 5: R@1 stratified by structural data availability.**\n\n| Stratum | Instances | Qwen (Emb.) | Qwen (DF) | $\\Delta$ | SC (Emb.) | SC (DF) | $\\Delta$ |\n|---|---|---|---|---|---|---|---|\n| Rich dataflow ($\\geq$5 edges) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n| Sparse dataflow (1–4 edges) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n| No structural data (fallback) | \\placeholder{N} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} | \\placeholder{X.XX} | \\placeholder{X.XX} | \\placeholder{±X.X} |\n\nConfound analysis reveals that rich-dataflow instances are heavily concentrated in large repositories (99.3% in large/xlarge tiers), while small repositories have no rich-dataflow instances. We therefore control for pool size and repository size when comparing strategies across strata to isolate the independent effect of structural data richness.\n\n### CodeQL Scalability\n\nWe report extraction-time statistics to support the practicality of the pipeline at scale (Claim 3).\n\n**Table 6: CodeQL extraction scalability by repository tier.**\n\n| Tier | Repos | Instances | Timeout Rate | Structural Coverage | Z% (median) |\n|---|---|---|---|---|---|\n| Small (<50 files) | 1 | 500 | 0% | 81.0% | 0.0% |\n| Medium (50–200) | 17 | 4,096 | 0% | 47.2% | 50.0% |\n| Large (200–500) | 40 | 13,628 | 0% | 34.3% | 85.7% |\n| XLarge (500+) | 29 | 25,949 | 0% | 31.4% | 96.0% |\n| **Total** | **123** | **44,173** | **0%** | **34.3%** | — |\n\nThe pipeline achieves 0% timeout rate across all repository tiers. Structural coverage (proportion of instances with CodeQL data-flow output) decreases with repository size, reflecting the combinatorial complexity of inter-procedural analysis in large codebases. Conversely, the connected-not-gold rate (Z%)—the proportion of structurally connected files that are non-gold—increases with repository size, reaching a median of 96% for repositories with 500+ files. This indicates that larger repositories provide richer pools for structure-grounded negative mining. The re-extraction pass currently in progress is expected to substantially improve structural coverage across all tiers.\n",
+                "numLines": 140,
+                "startLine": 1,
+                "totalLines": 140
+              }
+            },
+            "sourceToolAssistantUUID": "cc74c945-a9f0-4b08-bda3-9eb673854842",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T23:11:20.696Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JK8jswb5KY1iyMwHcqQkrf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b57dbdd1-1979-47f3-bf73-9635f4bbcb3f",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jiq6LZ3sFs9LUkXFi2",
+            "type": "assistant",
+            "uuid": "cc74c945-a9f0-4b08-bda3-9eb673854842",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0149sHXtAw7dADuBb9zzMcK6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11621,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11621,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 11621,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11621
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "cc18c515-db99-477f-bedb-a555e12bc4b0",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix fallback rate and projection head descriptions",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T23:11:38.101Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both files. Let me identify the needed changes:\n\n**Fix 1: method_v1.md line 63**\nCurrent: \"This fallback applies to approximately 34% of training instances\"\nThe task says 34.3% is the proportion that HAS structural data, and ~66% lack it. Looking at experiments_v1.md line 5, it confirms: \"yielding a structural coverage rate of 34.3%. The remaining 65.7% of instances lack structural connectivity data\"\n\nSo the method_v1.md line 63 is indeed wrong — it should say ~66% fall back, not 34%.\n\n\n**Fix 2: experiments_v1.md §4.2 line 17**\nThe experiments section describes a simple linear projection head, but method_v1.md actually specifies mean pooling over the last hidden layer followed by L2 normalization, then a two-layer MLP with GELU activation mapping to 256 dimensions. The experiments description is oversimplified and needs to match the actual architecture.\n\nNow I'm updating both sections to align on the projection head details.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc18c515-db99-477f-bedb-a555e12bc4b0",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jjfc7M43ZNAsABB4qT",
+            "type": "assistant",
+            "uuid": "f5d6c8c6-b00d-498f-b447-c1efdeb4554b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ADquQgpbF2sg4QFY7bTqqT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7889,
+                "cache_read_input_tokens": 23068,
+                "output_tokens": 839,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7889,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 839,
+                    "cache_read_input_tokens": 23068,
+                    "cache_creation_input_tokens": 7889,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7889
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T23:11:39.613Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both issues confirmed. Making the fixes now.\n\n**Fix 1** — method_v1.md line 63: \"34%\" → \"66%\" (34.3% is the structural coverage rate, so ~66% lack structural data and fall back).\n\n**Fix 2** — experiments_v1.md §4.2 line 17: \"linear projection head mapping the last hidden state\" → matches method_v1.md §3.3's \"two-layer MLP projection head (Linear→GELU→Linear)\" with mean pooling + L2 normalization."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5d6c8c6-b00d-498f-b447-c1efdeb4554b",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jjfc7M43ZNAsABB4qT",
+            "type": "assistant",
+            "uuid": "8e69130e-49a6-43e2-a08c-28bd3efc58e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ADquQgpbF2sg4QFY7bTqqT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7889,
+                "cache_read_input_tokens": 23068,
+                "output_tokens": 839,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7889,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 839,
+                    "cache_read_input_tokens": 23068,
+                    "cache_creation_input_tokens": 7889,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7889
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T23:11:43.487Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0197cUrcMj44kvfpjYQPgZiB",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md",
+                "old_string": "This fallback applies to approximately 34\\% of training instances, which we analyze separately in stratified evaluation (§5).",
+                "new_string": "This fallback applies to approximately 66\\% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates. We analyze the fallback stratum separately in stratified evaluation (§5)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e69130e-49a6-43e2-a08c-28bd3efc58e9",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jjfc7M43ZNAsABB4qT",
+            "type": "assistant",
+            "uuid": "0c9d5e6e-6701-4e10-b7c1-e9ad6af997d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ADquQgpbF2sg4QFY7bTqqT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7889,
+                "cache_read_input_tokens": 23068,
+                "output_tokens": 839,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7889,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 839,
+                    "cache_read_input_tokens": 23068,
+                    "cache_creation_input_tokens": 7889,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7889
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T23:11:43.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0197cUrcMj44kvfpjYQPgZiB",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c9d5e6e-6701-4e10-b7c1-e9ad6af997d6",
+            "isSidechain": false,
+            "promptId": "dc65ff91-4709-4979-bbc5-c8ef22055c27",
+            "type": "user",
+            "uuid": "5a6a25df-54e4-43fb-bd63-5417f6ba583f",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md",
+              "oldString": "This fallback applies to approximately 34\\% of training instances, which we analyze separately in stratified evaluation (§5).",
+              "newString": "This fallback applies to approximately 66\\% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates. We analyze the fallback stratum separately in stratified evaluation (§5).",
+              "originalFile": "# §3 Method\n\n## §3.1 Problem Formulation\n\nWe address the task of **repo-level code retrieval for bug fixing**: given a natural-language bug report or issue description $q$, retrieve the top-$k$ most relevant source files from a repository's file set $\\mathcal{F} = \\{f_1, f_2, \\ldots, f_N\\}$. The gold set $\\mathcal{F}^+_q \\subset \\mathcal{F}$ denotes the files modified in the ground-truth patch.\n\nWe formulate this as a contrastive learning problem. Let $E_\\theta$ be a pretrained encoder parameterized by $\\theta$. We learn an embedding space where the similarity between a query $q$ and its gold files exceeds the similarity to non-gold files. Concretely, we optimize $\\theta$ such that for all $f^+ \\in \\mathcal{F}^+_q$ and $f^- \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q$:\n\n$$\\text{sim}(E_\\theta(q), E_\\theta(f^+)) \\gg \\text{sim}(E_\\theta(q), E_\\theta(f^-))$$\n\nwhere $\\text{sim}(\\cdot, \\cdot)$ denotes cosine similarity.\n\nThe quality of the learned embedding space depends critically on the selection of negative files $f^-$ during training. Random negatives are often too easy, providing weak gradient signal \\cite{chen2020simclr}. We systematically compare three negative mining strategies—random, embedding-distance, and dataflow-aware—and analyze how their effectiveness interacts with the encoder's pretrained representation geometry.\n\n## §3.2 StructFuse Pipeline\n\nOur pipeline consists of three stages: (1) structural graph extraction via static analysis, (2) training data construction with strategy-specific negative mining, and (3) contrastive fine-tuning of a pretrained code encoder.\n\n**CodeQL Extraction.** We use CodeQL \\cite{codeql2019} to perform scope-bounded inter-procedural data-flow analysis on each repository. Specifically, we define taint-tracking queries that trace data flow from designated sources to sinks, crossing function call boundaries. This yields a set of data-flow paths $\\mathcal{P} = \\{(v_{\\text{src}}, v_1, \\ldots, v_{\\text{sink}})\\}$, where each node $v_i$ is annotated with its enclosing file.\n\nWe set a scope bound on the analysis depth to ensure tractability: queries that exceed a predefined step limit are terminated. In practice, this achieves 0\\% timeout rate across 123 out of 131 repositories in our dataset.\n\n**Structural Connectivity Graph.** From the extracted data-flow paths, we construct a file-level structural connectivity graph $G = (V, E)$, where $V = \\mathcal{F}$ and an edge $(f_i, f_j) \\in E$ exists if and only if at least one data-flow path in $\\mathcal{P}$ traverses both $f_i$ and $f_j$. This graph captures inter-procedural structural relationships between files—two files are connected if data flows between them across function call boundaries.\n\nA key design property is that $G$ is **externally fixed**: it is computed once from the repository's static structure and does not update during encoder training. This makes the structural signal immune to representation drift \\cite{xiong2021ance}, a known issue in dynamic negative mining where the mining distribution shifts as the encoder updates.\n\n**Structural Coverage.** At full scale, 78\\% of files connected in $G$ are non-gold files (i.e., structurally related but not in the patch), providing a rich pool for structure-grounded negative mining. The remaining files either lack data-flow connections or belong to isolated modules.\n\n## §3.3 Training Objective\n\n**Contrastive Loss.** We train with InfoNCE loss \\cite{karpukhin2020dpr}. For a query $q$ with positive file $f^+$ and a set of $K$ negatives $\\{f^-_1, \\ldots, f^-_K\\}$, the loss is:\n\n$$\\mathcal{L} = -\\log \\frac{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau)}{\\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^+)) / \\tau) + \\sum_{k=1}^{K} \\exp(\\text{sim}(E_\\theta(q), E_\\theta(f^-_k)) / \\tau)}$$\n\nwhere $\\tau$ is a learnable temperature parameter initialized to 0.07 and $K = 7$ negatives per query. Our framework supports distance-weighted positive scores via per-sample weights $w_i = \\exp(-\\alpha \\cdot d_i)$, where $d_i$ is the data-flow path distance from query to positive and $\\alpha = 1.0$. In practice, the training data assigns a uniform distance of $d = 1$ to all positives, yielding a constant weight $w = e^{-1}$ across all samples. Since this scales all per-sample losses equally, the optimization is equivalent to standard unweighted InfoNCE.\n\n**Encoder Architecture.** We fine-tune two decoder-only pretrained code models—Qwen2.5-Coder-3B \\cite{hui2024qwen25coder} and StarCoder2-3B \\cite{li2023starcoder}—which differ in pretraining objectives (Fill-in-the-Middle vs. multi-task including Fill-in-the-Middle) and exhibit distinct representation geometries (§5). We apply mean pooling over non-padding positions of the last hidden layer to obtain fixed-dimensional representations, followed by L2 normalization. Each encoder is augmented with a two-layer MLP projection head (Linear→GELU→Linear) that maps the pooled hidden state to a 256-dimensional embedding space.\n\n**Parameter-Efficient Fine-Tuning.** We apply LoRA \\cite{hu2022lora} to the query and value projection matrices ($W_q$, $W_v$) of each attention layer with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. The base model weights remain frozen; only the LoRA adapters and projection head are updated. We use AdamW with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing with 10\\% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2048 tokens. We train for 2 epochs with early stopping (patience=2). An initial exploratory seed ($s_{42}$) uses 3 epochs to provide a complete overfitting curve; subsequent seeds use 2 epochs based on observed overfitting after epoch 1 (see §4). Evaluation is performed every 500 steps.\n\n**Dual Checkpoint Selection.** We observe that validation loss and retrieval metrics (Recall@1) do not always select the same checkpoint, particularly for StarCoder2-3B. We therefore maintain two checkpoints throughout training: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Final evaluation uses $\\theta^*_{\\text{R@1}}$, and we report both to enable analysis of the loss–metric disagreement.\n\n## §3.4 Negative Mining Strategies\n\nWe compare three negative mining strategies that span a spectrum from uninformed to structure-grounded selection.\n\n**Random Mining.** For each query $q$, we sample $K$ negatives uniformly at random from $\\mathcal{F} \\setminus \\mathcal{F}^+_q$. This serves as the baseline: negatives are unbiased but typically easy, as randomly chosen files are unlikely to share topical or structural similarity with the query.\n\n**Embedding-Distance Mining.** We compute embeddings for all files and queries using the frozen pretrained encoder $E_{\\theta_0}$ (before fine-tuning) and build a FAISS index \\cite{johnson2021faiss} over file embeddings. For each query $q$, we retrieve the $K$ non-gold files with highest cosine similarity to $q$ in the pretrained embedding space:\n\n$$f^-_{\\text{embed}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThis selects files that the pretrained encoder already considers similar to the query—hard negatives that force the fine-tuned encoder to learn finer distinctions. Critically, this mining is **static**: embeddings are computed once from $E_{\\theta_0}$ and not refreshed during training, avoiding the computational overhead and instability of online re-mining \\cite{xiong2021ance}.\n\n**Dataflow-Aware Mining.** This strategy leverages the structural connectivity graph $G$ from §3.2 to select negatives that are textually similar but structurally disconnected from the query context. Formally, for query $q$ with associated gold files $\\mathcal{F}^+_q$, we define the reachability set $\\mathcal{R}_G(q) = \\{f \\in \\mathcal{F} : \\exists f^+ \\in \\mathcal{F}^+_q,\\ (f^+, f) \\in E^*\\}$, where $E^*$ denotes the transitive closure of $G$. The dataflow-aware negatives are:\n\n$$f^-_{\\text{df}} = \\underset{f \\in \\mathcal{F} \\setminus \\mathcal{F}^+_q :\\ f \\notin \\mathcal{R}_G(q)}{\\text{argtop-}K}\\ \\text{sim}(E_{\\theta_0}(q), E_{\\theta_0}(f))$$\n\nThat is, we select the most similar non-gold files that are also **structurally unreachable** from the gold files in the data-flow graph. The intuition is that these files represent a category of particularly informative negatives: they appear relevant based on surface-level textual features (variable names, API patterns, shared imports) yet lack the inter-procedural data-flow connections that characterize true functional relatedness. By training the encoder to distinguish these cases, we aim to push the embedding space toward capturing structural semantics beyond lexical overlap.\n\n**Difficulty Gradient.** The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are harder (high pretrained similarity, no structural constraint). Dataflow-aware negatives add a structural filter on top of embedding distance, selecting a subset that is simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives (§5).\n\nFor repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 34\\% of training instances, which we analyze separately in stratified evaluation (§5).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 60,
+                  "oldLines": 4,
+                  "newStart": 60,
+                  "newLines": 4,
+                  "lines": [
+                    " ",
+                    " **Difficulty Gradient.** The three strategies impose an expected difficulty ordering. Random negatives are easiest (low similarity, no structural constraint). Embedding-distance negatives are harder (high pretrained similarity, no structural constraint). Dataflow-aware negatives add a structural filter on top of embedding distance, selecting a subset that is simultaneously similar in text and disconnected in structure. We quantify this ordering empirically via the *negative difficulty* metric: the mean cosine similarity between each query and its assigned negatives (§5).",
+                    " ",
+                    "-For repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 34\\% of training instances, which we analyze separately in stratified evaluation (§5).",
+                    "+For repositories where the structural graph $G$ has insufficient coverage (fewer than $K$ structurally disconnected candidates above a similarity threshold), the dataflow-aware strategy falls back to embedding-distance mining. This fallback applies to approximately 66\\% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates. We analyze the fallback stratum separately in stratified evaluation (§5)."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "0c9d5e6e-6701-4e10-b7c1-e9ad6af997d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T23:11:44.961Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FLqXRYzpAWK55CtzT5LdZ6",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md",
+                "old_string": "We use a linear projection head mapping the last hidden state to a 256-dimensional embedding.",
+                "new_string": "We apply mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled representation to a 256-dimensional embedding space."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a6a25df-54e4-43fb-bd63-5417f6ba583f",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jjfc7M43ZNAsABB4qT",
+            "type": "assistant",
+            "uuid": "82ebec25-7041-430d-9b9e-6e74b1d85186",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ADquQgpbF2sg4QFY7bTqqT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7889,
+                "cache_read_input_tokens": 23068,
+                "output_tokens": 839,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7889,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 839,
+                    "cache_read_input_tokens": 23068,
+                    "cache_creation_input_tokens": 7889,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7889
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T23:11:44.966Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01FLqXRYzpAWK55CtzT5LdZ6"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "82ebec25-7041-430d-9b9e-6e74b1d85186",
+            "isSidechain": false,
+            "promptId": "dc65ff91-4709-4979-bbc5-c8ef22055c27",
+            "type": "user",
+            "uuid": "9f515854-323e-4d07-a279-79df56e826c5",
+            "toolUseResult": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.",
+            "sourceToolAssistantUUID": "82ebec25-7041-430d-9b9e-6e74b1d85186",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T23:11:50.973Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WhAqAL8FNTtQzjbb8Pib36",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md",
+                "offset": 14,
+                "limit": 6
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f515854-323e-4d07-a279-79df56e826c5",
+            "isSidechain": false,
+            "requestId": "req_011Cb3JmT3ceUy2ft7pbbZY3",
+            "type": "assistant",
+            "uuid": "3167182e-0b45-49af-94dd-f2b24e81c37b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019FLqACZP39F8CDB9uKeVGb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1018,
+                "cache_read_input_tokens": 30957,
+                "output_tokens": 127,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1018,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 127,
+                    "cache_read_input_tokens": 30957,
+                    "cache_creation_input_tokens": 1018,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1018
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T23:11:50.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WhAqAL8FNTtQzjbb8Pib36",
+              "type": "tool_result",
+              "content": "14\t\n15\t**Encoders.** We select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries: **Qwen2.5-Coder-3B** \\cite{hui2024qwen25coder} and **StarCoder2-3B** \\cite{li2023starcoder}. Qwen2.5-Coder-3B is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus, while StarCoder2-3B uses a multi-task objective including FIM on The Stack v2. As we show in §4.4, these models exhibit markedly different pretrained representation geometries: Qwen operates in a near-saturated similarity regime (mean positive cosine similarity 0.986), while StarCoder maintains healthy separation (mean positive cosine similarity 0.798). This divergence enables us to study how representation geometry mediates the effectiveness of different negative mining strategies.\n16\t\n17\t**Fine-Tuning Configuration.** Both encoders are fine-tuned with LoRA \\cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of every attention layer, with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. We apply mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled representation to a 256-dimensional embedding. Training uses InfoNCE loss with learnable temperature initialized at $\\tau = 0.07$, AdamW optimizer with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing schedule with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.\n18\t\n19\tFor the initial seed (s42), we train for 3 epochs to obtain a full overfitting curve; subsequent seeds (s43, s44) train for 2 epochs with early stopping (patience 2 evaluations) based on validation loss. Evaluation is performed every 500 steps. We maintain dual checkpoints: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3167182e-0b45-49af-94dd-f2b24e81c37b",
+            "isSidechain": false,
+            "promptId": "dc65ff91-4709-4979-bbc5-c8ef22055c27",
+            "type": "user",
+            "uuid": "e56a4991-f8ac-415c-96f2-3072657ef5b9",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/experiments_v1.md",
+                "content": "\n**Encoders.** We select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries: **Qwen2.5-Coder-3B** \\cite{hui2024qwen25coder} and **StarCoder2-3B** \\cite{li2023starcoder}. Qwen2.5-Coder-3B is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus, while StarCoder2-3B uses a multi-task objective including FIM on The Stack v2. As we show in §4.4, these models exhibit markedly different pretrained representation geometries: Qwen operates in a near-saturated similarity regime (mean positive cosine similarity 0.986), while StarCoder maintains healthy separation (mean positive cosine similarity 0.798). This divergence enables us to study how representation geometry mediates the effectiveness of different negative mining strategies.\n\n**Fine-Tuning Configuration.** Both encoders are fine-tuned with LoRA \\cite{hu2022lora} applied to the query and value projection matrices ($W_q$, $W_v$) of every attention layer, with rank $r = 16$, scaling factor $\\alpha = 32$, and dropout 0.05. We apply mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled representation to a 256-dimensional embedding. Training uses InfoNCE loss with learnable temperature initialized at $\\tau = 0.07$, AdamW optimizer with learning rate $2 \\times 10^{-5}$, weight decay 0.01, cosine annealing schedule with 10% linear warmup, and gradient clipping at max norm 1.0. Input sequences are truncated to 2,048 tokens. Batch size is 8 with gradient checkpointing enabled.\n\nFor the initial seed (s42), we train for 3 epochs to obtain a full overfitting curve; subsequent seeds (s43, s44) train for 2 epochs with early stopping (patience 2 evaluations) based on validation loss. Evaluation is performed every 500 steps. We maintain dual checkpoints: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1).",
+                "numLines": 6,
+                "startLine": 14,
+                "totalLines": 140
+              }
+            },
+            "sourceToolAssistantUUID": "3167182e-0b45-49af-94dd-f2b24e81c37b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T23:11:54.667Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "§4.2 already has the corrected description — another Worker already fixed it. No action needed there.\n\nNow registering the updated method_v1.md."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e56a4991-f8ac-415c-96f2-3072657ef5b9",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jmtx6gqkhzRCDg4NAW",
+            "type": "assistant",
+            "uuid": "2228bbae-bbe0-4d20-8398-b62a2c1b4d4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YZiTTqcM7Hj9TJqHHiLfXu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 31975,
+                "output_tokens": 122,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 723,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 122,
+                    "cache_read_input_tokens": 31975,
+                    "cache_creation_input_tokens": 723,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 723
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T23:11:55.222Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XBAvFYSoMonjbLFBKwYNHx",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2228bbae-bbe0-4d20-8398-b62a2c1b4d4f",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Jmtx6gqkhzRCDg4NAW",
+            "type": "assistant",
+            "uuid": "408a9b2a-3ab6-44ec-bceb-22182e156c54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YZiTTqcM7Hj9TJqHHiLfXu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 723,
+                "cache_read_input_tokens": 31975,
+                "output_tokens": 122,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 723,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 122,
+                    "cache_read_input_tokens": 31975,
+                    "cache_creation_input_tokens": 723,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 723
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T23:11:55.230Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01XBAvFYSoMonjbLFBKwYNHx",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "408a9b2a-3ab6-44ec-bceb-22182e156c54",
+            "isSidechain": false,
+            "promptId": "dc65ff91-4709-4979-bbc5-c8ef22055c27",
+            "type": "user",
+            "uuid": "c202c7c3-d0eb-43cb-9761-614b3256e835",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "408a9b2a-3ab6-44ec-bceb-22182e156c54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c202c7c3-d0eb-43cb-9761-614b3256e835",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix fallback rate and projection head descriptions",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2"
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T23:12:01.784Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ay4LCrwpjW3Uxzuchp6jDD",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "method_v1",
+                "type": "paper",
+                "description": "§3 Method draft — fixed fallback rate from 34% to 66% (line 63): 34.3% is structural coverage, ~66% lack structural data and fall back to embedding-distance negatives.",
+                "project": "structfuse-context",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/method_v1.md",
+                "tags": [
+                  "paper-draft",
+                  "method",
+                  "bugfix"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c202c7c3-d0eb-43cb-9761-614b3256e835",
+            "isSidechain": false,
+            "requestId": "req_011Cb3JnDAE2ZJXJStYWJx19",
+            "type": "assistant",
+            "uuid": "d3916b30-a06b-46eb-be59-e95c34f91dfb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0168B4FNo5YznkxpXv87y2tH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 749,
+                "cache_read_input_tokens": 32698,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 749,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 32698,
+                    "cache_creation_input_tokens": 749,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 749
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T23:12:01.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ay4LCrwpjW3Uxzuchp6jDD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_ce3556\\\", \\\"name\\\": \\\"method_v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"§3 Method draft — fixed fallback rate from 34% to 66% (line 63): 34.3% is structural coverage, ~66% lack structural data and fall back to embedding-distance negatives.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/_project/paper/method_v1_ce3556.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T23:12:01.790814+00:00\\\", \\\"tags\\\": [\\\"paper-draft\\\", \\\"method\\\", \\\"bugfix\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3916b30-a06b-46eb-be59-e95c34f91dfb",
+            "isSidechain": false,
+            "promptId": "dc65ff91-4709-4979-bbc5-c8ef22055c27",
+            "type": "user",
+            "uuid": "e210465a-0e10-4fb7-a4b8-6f3d84d4d3f7",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_ce3556\\\", \\\"name\\\": \\\"method_v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"§3 Method draft — fixed fallback rate from 34% to 66% (line 63): 34.3% is structural coverage, ~66% lack structural data and fall back to embedding-distance negatives.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/_project/paper/method_v1_ce3556.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T23:12:01.790814+00:00\\\", \\\"tags\\\": [\\\"paper-draft\\\", \\\"method\\\", \\\"bugfix\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_ce3556\", \"name\": \"method_v1\", \"type\": \"paper\", \"description\": \"§3 Method draft — fixed fallback rate from 34% to 66% (line 63): 34.3% is structural coverage, ~66% lack structural data and fall back to embedding-distance negatives.\", \"path\": \"projects/structfuse-context/artifacts/_project/paper/method_v1_ce3556.md\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T23:12:01.790814+00:00\", \"tags\": [\"paper-draft\", \"method\", \"bugfix\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d3916b30-a06b-46eb-be59-e95c34f91dfb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T23:12:01.895Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e210465a-0e10-4fb7-a4b8-6f3d84d4d3f7",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "d04f3faf-724b-4018-883e-1336cbbb1305",
+                "timestamp": "2026-05-14T23:12:01.895Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T23:12:10.243Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改报告：\n\n**Fix 1（method_v1.md line 63）— 已修正**\n- 原文：`approximately 34% of training instances`\n- 改为：`approximately 66% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates`\n- 原因：34.3% 是 structural coverage rate（有 CodeQL 数据的比例），~66% 才是缺乏结构数据需要 fallback 的比例。与 experiments_v1.md §4.1 的 \"65.7%\" 一致。\n\n**Fix 2（experiments_v1.md §4.2）— 已被其他 Worker 修正，跳过**\n- 当前文本已是 \"mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear)\"，与 method_v1.md §3.3 一致。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d04f3faf-724b-4018-883e-1336cbbb1305",
+            "isSidechain": false,
+            "requestId": "req_011Cb3JnhQqsn1GkoKJasiWS",
+            "type": "assistant",
+            "uuid": "2e978715-172d-46f2-ab33-84dc566cae52",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0162AtgYGGCfNFET95dCavT9",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 646,
+                "cache_read_input_tokens": 33447,
+                "output_tokens": 252,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 646,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 252,
+                    "cache_read_input_tokens": 33447,
+                    "cache_creation_input_tokens": 646,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 646
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2e978715-172d-46f2-ab33-84dc566cae52",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2"
+              }
+            }
+          ],
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix fallback rate and projection head descriptions",
+                "sessionId": "02ec574e-cd01-4164-a467-f75be32546c2"
+              }
+            }
+          ],
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-structfuse-context-bjb1-42106-ssh-root-ssh-execute-submit-trai-copy-49.md"
+}

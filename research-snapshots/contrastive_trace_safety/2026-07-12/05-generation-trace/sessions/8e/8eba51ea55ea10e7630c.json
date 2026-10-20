@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "8eba51ea55ea10e7630c",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## 项目配置（config.py） - LAYERS = range(12, 25) # 13 layers - HIDDEN_DIM = 4096 - WINDOW_SIZE = 5 - DEFAULT_",
+  "task_key": "ced70c98-b10c-4ef5-9477-d0787b561b20",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/ced70c98-b10c-4ef5-9477-d0787b561b20.jsonl",
+    "occurrence": 1,
+    "bytes": 564596,
+    "sha256": "07033c4f66b936a42f0757e5dead42e1ceeb342805e0f914b755fa1ee5bf102a"
+  },
+  "statistics": {
+    "messages": 258,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "record": 47,
+      "user": 1,
+      "assistant": 34,
+      "tool_call": 88,
+      "tool_result": 88
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "8eba51ea55ea10e7630c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "8eba51ea55ea10e7630c-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "8eba51ea55ea10e7630c-part-0002.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-config-py-layers-range-12-25-13-layers-hidden-dim-4096-window-si.md"
+}

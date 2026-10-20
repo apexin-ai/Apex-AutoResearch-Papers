@@ -1,0 +1,2153 @@
+{
+  "schema_version": "1.0",
+  "id": "f1acd834005aa82e5d32",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the repository at /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety, find the impleme",
+  "task_key": "agent-a9322324f9805485d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a9322324f9805485d.jsonl",
+    "occurrence": 1,
+    "bytes": 117972,
+    "sha256": "4ab7faf01c41a720ff331e60b35283d687f729861d894daa24ae8561e2cda2f0"
+  },
+  "statistics": {
+    "messages": 42,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "user": 1,
+      "assistant": 13,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T15:13:17.275Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the repository at /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety, find the implementation of \"crossing rate\" metric. Search for functions or code that compute crossing rate - it's related to cross-layer prediction disagreement in safety probes. Look in Python files. I need to see the exact formula/computation used. Search breadth: medium."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "ac1d8d07-72cc-4846-bde9-b88ff7e67ae6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T15:13:18.743Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find the crossing rate metric implementation. Let me start by exploring the repository structure and searching for relevant code."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac1d8d07-72cc-4846-bde9-b88ff7e67ae6",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE38mzQWKgZx5vwN9s9p",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "35cde673-0ed5-4369-8779-8a4c5d16e708",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016wyCGpRnHAQ2FUmPGStiC1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25356,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25356,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T15:13:18.901Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FTNzW3tSH3hvWvXNi1TWrJ",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety -type f -name \"*.py\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35cde673-0ed5-4369-8779-8a4c5d16e708",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE38mzQWKgZx5vwN9s9p",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "baef33a0-13cd-46af-a814-213875e79cf3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016wyCGpRnHAQ2FUmPGStiC1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25356,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 120,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25356
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 120,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 25356,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 25356,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T15:13:19.083Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FTNzW3tSH3hvWvXNi1TWrJ",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/random_cp_control_qwq32b.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/annotate_cp_llm_gpt4omini.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/advbench_phase4_layer_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/advbench_preliminary_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/sf3_quadratic_residual.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/run_threshold_sensitivity.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/annotate_cp_llm_qwen3.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/heuristic_cp.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/advbench_preliminary_sweep_no_pca.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/advbench_hs_exploratory.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/run_7b8b_residualization.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/run_a7_random_projection.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/annotate_cp_llm.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/utils.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/impl.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/_staggered.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/__init__.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/aiohappyeyeballs/types.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/_multiprocess/__init__.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "baef33a0-13cd-46af-a814-213875e79cf3",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "dab7634c-c726-49f0-accd-2e7266098166",
+            "sourceToolAssistantUUID": "baef33a0-13cd-46af-a814-213875e79cf3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T15:13:20.292Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for \"crossing rate\" in Python files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dab7634c-c726-49f0-accd-2e7266098166",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE38ufGr5HzTW6ecPZSN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "977876b3-48aa-4d45-94f7-3b8b2e4e448c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WSacm57xx8kcWmZLz561oR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1912,
+                "cache_read_input_tokens": 25356,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1912,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T15:13:20.713Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UTGy9xGXF5nM6oYCqx4BTq",
+              "name": "Grep",
+              "input": {
+                "pattern": "crossing.rate|crossing_rate",
+                "type": "py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "977876b3-48aa-4d45-94f7-3b8b2e4e448c",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE38ufGr5HzTW6ecPZSN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "84f3608b-1089-4ef5-85ef-665f840f2812",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WSacm57xx8kcWmZLz561oR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1912,
+                "cache_read_input_tokens": 25356,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1912,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T15:13:20.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UTGy9xGXF5nM6oYCqx4BTq",
+              "type": "tool_result",
+              "content": "Found 13 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/advbench_phase4_layer_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/submission_package/code/src/eval/evaluate.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/submission_package/code/src/experiments/bootstrap_ci.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/submission_package/code/src/experiments/trajguard_mahalanobis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/advbench_preliminary_sweep_no_pca.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/advbench_preliminary_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/random_cp_control_qwq32b.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/advbench_preliminary_sweep_no_pca.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/advbench_preliminary_sweep.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/random_cp_control_qwq32b.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84f3608b-1089-4ef5-85ef-665f840f2812",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "b2e73fdc-451a-4228-8a37-5c369819b83a",
+            "sourceToolAssistantUUID": "84f3608b-1089-4ef5-85ef-665f840f2812",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T15:13:24.149Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! Let me look at the main evaluation file and the trajectory guard file which likely contain the implementation:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2e73fdc-451a-4228-8a37-5c369819b83a",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE393BxPhtbH3XzHVwVX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ebb4631e-af4d-412a-8a7f-c7c0edff3e6a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016xoo6PZg8FwBBujTW1Ye9A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 762,
+                "cache_read_input_tokens": 27268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 762,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T15:13:24.587Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019mwEZr1zrSjwEzrcE5pTKt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ebb4631e-af4d-412a-8a7f-c7c0edff3e6a",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE393BxPhtbH3XzHVwVX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4847dbbf-0f82-46aa-85f8-6e8e9ff43917",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016xoo6PZg8FwBBujTW1Ye9A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 762,
+                "cache_read_input_tokens": 27268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 762,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T15:13:24.603Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019mwEZr1zrSjwEzrcE5pTKt",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Evaluation metrics for commitment point detection.\n2\t\n3\tMetrics:\n4\t- Step-level accuracy\n5\t- Earliest reliable detection point\n6\t- Detection lead time (how early before commitment point)\n7\t\"\"\"\n8\t\n9\tfrom typing import List, Dict, Optional, Tuple\n10\timport numpy as np\n11\t\n12\tfrom ..config import DETECTION_THRESHOLD, DETECTION_WINDOW\n13\t\n14\t\n15\tdef step_accuracy(predictions: np.ndarray, labels: np.ndarray) -> float:\n16\t    \"\"\"Overall step-level accuracy.\"\"\"\n17\t    return float((predictions == labels).mean())\n18\t\n19\t\n20\tdef earliest_reliable_detection(\n21\t    probs: np.ndarray,\n22\t    labels: np.ndarray,\n23\t    threshold: float = DETECTION_THRESHOLD,\n24\t    window: int = DETECTION_WINDOW,\n25\t) -> Optional[int]:\n26\t    \"\"\"Find first position where model reliably detects post-commitment.\n27\t\n28\t    Scans from trace start, finds first position where consecutive `window` steps\n29\t    all have predicted prob > threshold AND predictions are correct.\n30\t\n31\t    Returns step index or None if never reliably detected.\n32\t    \"\"\"\n33\t    n = len(probs)\n34\t    if n < window:\n35\t        return None\n36\t\n37\t    for i in range(n - window + 1):\n38\t        segment_probs = probs[i:i + window]\n39\t        segment_labels = labels[i:i + window]\n40\t\n41\t        # All probs above threshold\n42\t        if not np.all(segment_probs > threshold):\n43\t            continue\n44\t\n45\t        # All predictions correct (prob > 0.5 means predict class 1)\n46\t        segment_preds = (segment_probs > 0.5).astype(int)\n47\t        if not np.all(segment_preds == segment_labels):\n48\t            continue\n49\t\n50\t        return i\n51\t\n52\t    return None\n53\t\n54\t\n55\tdef first_crossing_point(\n56\t    probs_class1: np.ndarray,\n57\t    threshold: float = 0.5,\n58\t    consecutive_k: int = DETECTION_WINDOW,\n59\t) -> Optional[int]:\n60\t    \"\"\"First position where prob(post-commitment) > threshold for K consecutive steps.\n61\t\n62\t    Unlike earliest_reliable_detection, this does NOT check against ground-truth labels,\n63\t    so crossings before the commitment point measure anticipation ability.\n64\t    \"\"\"\n65\t    n = len(probs_class1)\n66\t    if n < consecutive_k:\n67\t        return None\n68\t    for i in range(n - consecutive_k + 1):\n69\t        if all(p > threshold for p in probs_class1[i:i + consecutive_k]):\n70\t            return i\n71\t    return None\n72\t\n73\t\n74\tdef detection_lead_time(earliest_detection: Optional[int], commitment_point: int) -> Optional[int]:\n75\t    \"\"\"Compute how many steps before commitment the detection occurs.\n76\t\n77\t    lead_time = commitment_point - earliest_detection\n78\t    Positive = detected before commitment (good)\n79\t    Negative = detected after commitment (late)\n80\t    None = never detected\n81\t    \"\"\"\n82\t    if earliest_detection is None:\n83\t        return None\n84\t    return commitment_point - earliest_detection\n85\t\n86\t\n87\tdef evaluate_trace(\n88\t    probs: np.ndarray,\n89\t    labels: np.ndarray,\n90\t    commitment_point: int,\n91\t    threshold: float = DETECTION_THRESHOLD,\n92\t    window: int = DETECTION_WINDOW,\n93\t) -> Dict:\n94\t    \"\"\"Evaluate a single trace.\"\"\"\n95\t    preds = (probs > 0.5).astype(int)\n96\t    acc = step_accuracy(preds, labels)\n97\t    erd = earliest_reliable_detection(probs, labels, threshold, window)\n98\t    lead = detection_lead_time(erd, commitment_point)\n99\t    fcp = first_crossing_point(probs, threshold=0.5, consecutive_k=window)\n100\t    fcp_lead = detection_lead_time(fcp, commitment_point)\n101\t\n102\t    return {\n103\t        \"step_accuracy\": acc,\n104\t        \"earliest_reliable_detection\": erd,\n105\t        \"detection_lead_time\": lead,\n106\t        \"first_crossing_point\": fcp,\n107\t        \"first_crossing_lead_time\": fcp_lead,\n108\t        \"commitment_point\": commitment_point,\n109\t        \"num_steps\": len(labels),\n110\t    }\n111\t\n112\t\n113\tdef evaluate_all(\n114\t    predictions_static: List[Dict],\n115\t    predictions_temporal: List[Dict],\n116\t    threshold: float = DETECTION_THRESHOLD,\n117\t    window: int = DETECTION_WINDOW,\n118\t) -> Dict:\n119\t    \"\"\"Evaluate and compare static vs temporal probes across all test traces.\"\"\"\n120\t\n121\t    def _eval_predictions(predictions, name):\n122\t        results = []\n123\t        for pred in predictions:\n124\t            if pred[\"commitment_point\"] is None:\n125\t                continue\n126\t            res = evaluate_trace(\n127\t                pred[\"probs\"], pred[\"labels\"],\n128\t                pred[\"commitment_point\"], threshold, window\n129\t            )\n130\t            res[\"trace_id\"] = pred[\"trace_id\"]\n131\t            results.append(res)\n132\t\n133\t        if not results:\n134\t            return {\"name\": name, \"n_traces\": 0}\n135\t\n136\t        accs = [r[\"step_accuracy\"] for r in results]\n137\t        leads = [r[\"detection_lead_time\"] for r in results if r[\"detection_lead_time\"] is not None]\n138\t        erds = [r[\"earliest_reliable_detection\"] for r in results if r[\"earliest_reliable_detection\"] is not None]\n139\t        fcp_leads = [r[\"first_crossing_lead_time\"] for r in results if r[\"first_crossing_lead_time\"] is not None]\n140\t        fcps = [r[\"first_crossing_point\"] for r in results if r[\"first_crossing_point\"] is not None]\n141\t\n142\t        summary = {\n143\t            \"name\": name,\n144\t            \"n_traces\": len(results),\n145\t            \"step_accuracy_mean\": float(np.mean(accs)),\n146\t            \"step_accuracy_std\": float(np.std(accs)),\n147\t            \"detection_rate\": len(erds) / len(results),\n148\t            \"lead_time_mean\": float(np.mean(leads)) if leads else None,\n149\t            \"lead_time_median\": float(np.median(leads)) if leads else None,\n150\t            \"lead_time_std\": float(np.std(leads)) if leads else None,\n151\t            \"erd_mean\": float(np.mean(erds)) if erds else None,\n152\t            \"crossing_rate\": len(fcps) / len(results),\n153\t            \"crossing_lead_time_mean\": float(np.mean(fcp_leads)) if fcp_leads else None,\n154\t            \"crossing_lead_time_median\": float(np.median(fcp_leads)) if fcp_leads else None,\n155\t            \"per_trace\": results,\n156\t        }\n157\t        return summary\n158\t\n159\t    static_summary = _eval_predictions(predictions_static, \"static_probe\")\n160\t    temporal_summary = _eval_predictions(predictions_temporal, \"temporal_probe\")\n161\t\n162\t    # Print comparison\n163\t    print(\"\\n\" + \"=\"*60)\n164\t    print(\"EVALUATION RESULTS\")\n165\t    print(\"=\"*60)\n166\t\n167\t    for s in [static_summary, temporal_summary]:\n168\t        if s[\"n_traces\"] == 0:\n169\t            print(f\"\\n{s['name']}: No traces evaluated\")\n170\t            continue\n171\t        print(f\"\\n{s['name']} ({s['n_traces']} traces):\")\n172\t        print(f\"  Step accuracy:      {s['step_accuracy_mean']:.4f} ± {s['step_accuracy_std']:.4f}\")\n173\t        print(f\"  Detection rate:     {s['detection_rate']:.2%}\")\n174\t        if s[\"lead_time_mean\"] is not None:\n175\t            print(f\"  Lead time (mean):   {s['lead_time_mean']:.1f} steps\")\n176\t            print(f\"  Lead time (median): {s['lead_time_median']:.1f} steps\")\n177\t        if s[\"erd_mean\"] is not None:\n178\t            print(f\"  Earliest detection: {s['erd_mean']:.1f} (mean step)\")\n179\t        print(f\"  Crossing rate:      {s['crossing_rate']:.2%}\")\n180\t        if s[\"crossing_lead_time_mean\"] is not None:\n181\t            print(f\"  Crossing lead (mean):   {s['crossing_lead_time_mean']:.1f} steps\")\n182\t            print(f\"  Crossing lead (median): {s['crossing_lead_time_median']:.1f} steps\")\n183\t\n184\t    print(\"\\n\" + \"=\"*60)\n185\t\n186\t    return {\n187\t        \"static\": static_summary,\n188\t        \"temporal\": temporal_summary,\n189\t    }\n190\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4847dbbf-0f82-46aa-85f8-6e8e9ff43917",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "a51874c5-aa49-499c-85f3-cdc0df0cb16f",
+            "sourceToolAssistantUUID": "4847dbbf-0f82-46aa-85f8-6e8e9ff43917",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T15:13:24.667Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DUAQXW6At2LnsiRqDUBnUk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a51874c5-aa49-499c-85f3-cdc0df0cb16f",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE393BxPhtbH3XzHVwVX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "03e2c877-d61a-4865-8f61-b9dff90d6aab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016xoo6PZg8FwBBujTW1Ye9A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 762,
+                "cache_read_input_tokens": 27268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 762,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T15:13:24.674Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DUAQXW6At2LnsiRqDUBnUk",
+              "type": "tool_result",
+              "content": "1\t\"\"\"TrajGuard-style Mahalanobis distance baseline for commitment detection.\n2\t\n3\tInput: Pre-extracted hidden states (.pt files)\n4\tOutput: Per-trace Mahalanobis distances + crossing detection metrics\n5\t\n6\tApproach:\n7\t- Build reference distribution from safe traces (final_judgment=0.5)\n8\t- For each jailbreak trace step, compute MD from reference\n9\t- Detect commitment: MD > threshold for K consecutive steps\n10\t\"\"\"\n11\t\n12\timport sys\n13\timport json\n14\timport time\n15\tfrom pathlib import Path\n16\tfrom typing import List, Dict, Optional, Tuple\n17\t\n18\timport numpy as np\n19\timport torch\n20\tfrom sklearn.decomposition import PCA\n21\tfrom sklearn.covariance import LedoitWolf\n22\t\n23\tsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\n24\t\n25\tfrom src.config import (\n26\t    HIDDEN_STATES_DIR, LAYERS, HIDDEN_DIM, DETECTION_WINDOW, SEED\n27\t)\n28\tfrom src.data_loader import prepare_dataset, split_data\n29\t\n30\tLAYER_14_IDX = 2  # LAYERS=[12..24], index 2 = layer 14\n31\tPCA_DIMS = [32, 64, 128, 256]\n32\tTHRESHOLD_PERCENTILES = [90, 95, 99]\n33\tOUTPUT_DIR = Path(\"/root/autodl-tmp/contrastive_trace_safety/artifacts/exp_005_trajguard\")\n34\t\n35\t\n36\tdef load_trace_hidden_states(trace_id: str, layer_idx: int = LAYER_14_IDX) -> Optional[np.ndarray]:\n37\t    pt_path = HIDDEN_STATES_DIR / f\"{trace_id}.pt\"\n38\t    if not pt_path.exists():\n39\t        return None\n40\t    data = torch.load(pt_path, map_location=\"cpu\", weights_only=False)\n41\t    hs = data[\"hidden_states\"][:, layer_idx, :]  # [num_sentences, 4096]\n42\t    return hs.float().numpy()\n43\t\n44\t\n45\tdef collect_safe_hidden_states(safe_traces: List[Dict]) -> np.ndarray:\n46\t    all_steps = []\n47\t    for trace in safe_traces:\n48\t        hs = load_trace_hidden_states(trace[\"trace_id\"])\n49\t        if hs is not None:\n50\t            all_steps.append(hs)\n51\t    return np.concatenate(all_steps, axis=0)  # [N_safe_steps, 4096]\n52\t\n53\t\n54\tdef first_crossing_point_md(\n55\t    md_sequence: np.ndarray,\n56\t    threshold: float,\n57\t    consecutive_k: int = DETECTION_WINDOW,\n58\t) -> Optional[int]:\n59\t    n = len(md_sequence)\n60\t    if n < consecutive_k:\n61\t        return None\n62\t    for i in range(n - consecutive_k + 1):\n63\t        if all(md_sequence[i:i + consecutive_k] > threshold):\n64\t            return i\n65\t    return None\n66\t\n67\t\n68\tdef compute_mahalanobis_pca(\n69\t    X_ref: np.ndarray, X_query: np.ndarray, n_components: int\n70\t) -> Tuple[np.ndarray, object]:\n71\t    pca = PCA(n_components=n_components, random_state=SEED)\n72\t    X_ref_pca = pca.fit_transform(X_ref)\n73\t\n74\t    mean = X_ref_pca.mean(axis=0)\n75\t    cov = np.cov(X_ref_pca, rowvar=False)\n76\t    cov_inv = np.linalg.inv(cov + 1e-6 * np.eye(n_components))\n77\t\n78\t    X_query_pca = pca.transform(X_query)\n79\t    diff = X_query_pca - mean\n80\t    md = np.sqrt(np.sum(diff @ cov_inv * diff, axis=1))\n81\t    return md, pca\n82\t\n83\t\n84\tdef compute_mahalanobis_ledoitwolf(\n85\t    X_ref: np.ndarray, X_query: np.ndarray\n86\t) -> np.ndarray:\n87\t    lw = LedoitWolf()\n88\t    lw.fit(X_ref)\n89\t    mean = lw.location_\n90\t    precision = lw.precision_  # inverse covariance\n91\t\n92\t    diff = X_query - mean\n93\t    md = np.sqrt(np.sum(diff @ precision * diff, axis=1))\n94\t    return md\n95\t\n96\t\n97\tdef evaluate_config(\n98\t    jailbreak_traces: List[Dict],\n99\t    safe_val_md: np.ndarray,\n100\t    compute_md_fn,\n101\t    config_name: str,\n102\t) -> List[Dict]:\n103\t    results = []\n104\t    for pctl in THRESHOLD_PERCENTILES:\n105\t        threshold = float(np.percentile(safe_val_md, pctl))\n106\t\n107\t        per_trace = []\n108\t        detected_count = 0\n109\t        lead_times = []\n110\t\n111\t        for trace in jailbreak_traces:\n112\t            hs = load_trace_hidden_states(trace[\"trace_id\"])\n113\t            if hs is None:\n114\t                continue\n115\t            md_seq = compute_md_fn(hs)\n116\t            fcp = first_crossing_point_md(md_seq, threshold)\n117\t            cp = trace[\"commitment_point\"]\n118\t\n119\t            lead = None\n120\t            if fcp is not None:\n121\t                detected_count += 1\n122\t                lead = cp - fcp\n123\t                lead_times.append(lead)\n124\t\n125\t            per_trace.append({\n126\t                \"trace_id\": trace[\"trace_id\"],\n127\t                \"commitment_point\": cp,\n128\t                \"first_crossing\": fcp,\n129\t                \"lead_time\": lead,\n130\t                \"num_steps\": len(md_seq),\n131\t                \"md_mean\": float(md_seq.mean()),\n132\t                \"md_max\": float(md_seq.max()),\n133\t            })\n134\t\n135\t        n_traces = len(per_trace)\n136\t        crossing_rate = detected_count / n_traces if n_traces > 0 else 0.0\n137\t\n138\t        results.append({\n139\t            \"config\": config_name,\n140\t            \"threshold_percentile\": pctl,\n141\t            \"threshold_value\": threshold,\n142\t            \"crossing_rate\": crossing_rate,\n143\t            \"lead_time_mean\": float(np.mean(lead_times)) if lead_times else None,\n144\t            \"lead_time_median\": float(np.median(lead_times)) if lead_times else None,\n145\t            \"n_traces\": n_traces,\n146\t            \"n_detected\": detected_count,\n147\t            \"per_trace\": per_trace,\n148\t        })\n149\t    return results\n150\t\n151\t\n152\tdef main():\n153\t    t0 = time.time()\n154\t    print(\"Loading dataset...\")\n155\t    dataset = prepare_dataset()\n156\t    safe_traces = dataset[\"safe\"]\n157\t    jailbreak_traces = dataset[\"jailbreak_with_commitment\"]\n158\t\n159\t    safe_train, safe_val, safe_test = split_data(safe_traces)\n160\t    jb_train, jb_val, jb_test = split_data(jailbreak_traces)\n161\t\n162\t    print(f\"Safe: {len(safe_traces)} (train={len(safe_train)}, val={len(safe_val)}, test={len(safe_test)})\")\n163\t    print(f\"Jailbreak: {len(jailbreak_traces)} (train={len(jb_train)}, val={len(jb_val)}, test={len(jb_test)})\")\n164\t\n165\t    # Build reference from safe train traces\n166\t    print(\"Collecting safe train hidden states (layer 14)...\")\n167\t    X_safe_train = collect_safe_hidden_states(safe_train)\n168\t    print(f\"  Safe train steps: {X_safe_train.shape[0]} x {X_safe_train.shape[1]}\")\n169\t\n170\t    # Collect safe val hidden states for threshold calibration\n171\t    print(\"Collecting safe val hidden states...\")\n172\t    X_safe_val = collect_safe_hidden_states(safe_val)\n173\t    print(f\"  Safe val steps: {X_safe_val.shape[0]}\")\n174\t\n175\t    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)\n176\t    all_configs = []\n177\t\n178\t    # PCA-based methods\n179\t    for n_comp in PCA_DIMS:\n180\t        print(f\"\\n--- PCA dims={n_comp} ---\")\n181\t        pca = PCA(n_components=n_comp, random_state=SEED)\n182\t        X_train_pca = pca.fit_transform(X_safe_train)\n183\t\n184\t        mean_pca = X_train_pca.mean(axis=0)\n185\t        cov_pca = np.cov(X_train_pca, rowvar=False)\n186\t        cov_inv = np.linalg.inv(cov_pca + 1e-6 * np.eye(n_comp))\n187\t\n188\t        def _md_pca(hs, _pca=pca, _mean=mean_pca, _cov_inv=cov_inv):\n189\t            X_pca = _pca.transform(hs)\n190\t            diff = X_pca - _mean\n191\t            return np.sqrt(np.sum(diff @ _cov_inv * diff, axis=1))\n192\t\n193\t        # Compute safe val MD for threshold\n194\t        safe_val_md = _md_pca(X_safe_val)\n195\t        print(f\"  Safe val MD: mean={safe_val_md.mean():.2f}, p90={np.percentile(safe_val_md, 90):.2f}, p95={np.percentile(safe_val_md, 95):.2f}, p99={np.percentile(safe_val_md, 99):.2f}\")\n196\t\n197\t        configs = evaluate_config(jb_test, safe_val_md, _md_pca, f\"pca_{n_comp}\")\n198\t        for c in configs:\n199\t            print(f\"  pctl={c['threshold_percentile']}: crossing_rate={c['crossing_rate']:.3f}, lead_mean={c['lead_time_mean']}\")\n200\t        all_configs.extend(configs)\n201\t\n202\t    # LedoitWolf shrinkage\n203\t    print(\"\\n--- LedoitWolf (full 4096-d) ---\")\n204\t    lw = LedoitWolf()\n205\t    lw.fit(X_safe_train)\n206\t    lw_mean = lw.location_\n207\t    lw_precision = lw.precision_\n208\t\n209\t    def _md_lw(hs, _mean=lw_mean, _prec=lw_precision):\n210\t        diff = hs - _mean\n211\t        return np.sqrt(np.sum(diff @ _prec * diff, axis=1))\n212\t\n213\t    safe_val_md_lw = _md_lw(X_safe_val)\n214\t    print(f\"  Safe val MD: mean={safe_val_md_lw.mean():.2f}, p90={np.percentile(safe_val_md_lw, 90):.2f}, p95={np.percentile(safe_val_md_lw, 95):.2f}, p99={np.percentile(safe_val_md_lw, 99):.2f}\")\n215\t\n216\t    configs_lw = evaluate_config(jb_test, safe_val_md_lw, _md_lw, \"ledoitwolf_4096\")\n217\t    for c in configs_lw:\n218\t        print(f\"  pctl={c['threshold_percentile']}: crossing_rate={c['crossing_rate']:.3f}, lead_mean={c['lead_time_mean']}\")\n219\t    all_configs.extend(configs_lw)\n220\t\n221\t    # Save results\n222\t    result = {\n223\t        \"method\": \"trajguard_mahalanobis\",\n224\t        \"layer\": 14,\n225\t        \"layer_idx\": LAYER_14_IDX,\n226\t        \"detection_window\": DETECTION_WINDOW,\n227\t        \"n_safe_train_steps\": int(X_safe_train.shape[0]),\n228\t        \"n_jb_test_traces\": len(jb_test),\n229\t        \"configs\": all_configs,\n230\t    }\n231\t\n232\t    output_path = OUTPUT_DIR / \"results.json\"\n233\t    with open(output_path, \"w\") as f:\n234\t        json.dump(result, f, indent=2)\n235\t    print(f\"\\nResults saved to {output_path}\")\n236\t\n237\t    # Summary table\n238\t    print(\"\\n\" + \"=\" * 80)\n239\t    print(\"SUMMARY: TrajGuard Mahalanobis Distance Baseline\")\n240\t    print(\"=\" * 80)\n241\t    print(f\"{'Config':<20} {'Pctl':<6} {'Threshold':<10} {'CrossRate':<12} {'LeadMean':<12} {'LeadMed':<10}\")\n242\t    print(\"-\" * 80)\n243\t    for c in all_configs:\n244\t        lead_m = f\"{c['lead_time_mean']:.1f}\" if c['lead_time_mean'] is not None else \"N/A\"\n245\t        lead_med = f\"{c['lead_time_median']:.1f}\" if c['lead_time_median'] is not None else \"N/A\"\n246\t        print(f\"{c['config']:<20} {c['threshold_percentile']:<6} {c['threshold_value']:<10.2f} {c['crossing_rate']:<12.3f} {lead_m:<12} {lead_med:<10}\")\n247\t\n248\t    # Comparison with existing methods\n249\t    print(\"\\n\" + \"=\" * 80)\n250\t    print(\"COMPARISON WITH EXISTING METHODS\")\n251\t    print(\"=\" * 80)\n252\t    print(f\"{'Method':<35} {'CrossRate':<12} {'LeadMean':<12}\")\n253\t    print(\"-\" * 60)\n254\t    print(f\"{'Static LR L14':<35} {'46.5%':<12} {'-2.0':<12}\")\n255\t    print(f\"{'Temporal LR W=15':<35} {'76.7%':<12} {'-1.1':<12}\")\n256\t    print(f\"{'GRU multi-7L h=256':<35} {'76.7%':<12} {'+4.7':<12}\")\n257\t    print(\"-\" * 60)\n258\t\n259\t    # Find best TrajGuard config\n260\t    best = max(all_configs, key=lambda c: (c['crossing_rate'], c['lead_time_mean'] or -999))\n261\t    lead_str = f\"{best['lead_time_mean']:.1f}\" if best['lead_time_mean'] is not None else \"N/A\"\n262\t    print(f\"{'TrajGuard best (' + best['config'] + ' p' + str(best['threshold_percentile']) + ')':<35} {best['crossing_rate']:.1%}{'':<5} {lead_str:<12}\")\n263\t\n264\t    elapsed = time.time() - t0\n265\t    print(f\"\\nTotal time: {elapsed:.1f}s\")\n266\t\n267\t\n268\tif __name__ == \"__main__\":\n269\t    main()\n270\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03e2c877-d61a-4865-8f61-b9dff90d6aab",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "13fa3a9d-4860-460c-b117-5ea66242a8f7",
+            "sourceToolAssistantUUID": "03e2c877-d61a-4865-8f61-b9dff90d6aab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T15:13:26.171Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me search for more context about cross-layer prediction disagreement to see if there are other implementations:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13fa3a9d-4860-460c-b117-5ea66242a8f7",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39KidWk9TBFDChrphj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c5020f14-6be0-4a3c-b56b-f81da9a65c65",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PkN4QFVozp7mYHS5kmjwLo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 6850,
+                "cache_read_input_tokens": 28030,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6850,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T15:13:27.178Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QnxNknijFKzRyryQvGDhfD",
+              "name": "Grep",
+              "input": {
+                "pattern": "cross.layer|cross_layer|disagreement|layer.*pred",
+                "type": "py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety",
+                "head_limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5020f14-6be0-4a3c-b56b-f81da9a65c65",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39KidWk9TBFDChrphj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "589d5e89-b1e4-487f-9fad-5dcda892d76f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PkN4QFVozp7mYHS5kmjwLo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 6850,
+                "cache_read_input_tokens": 28030,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6850
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 28030,
+                    "cache_creation_input_tokens": 6850,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6850,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T15:13:27.216Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QnxNknijFKzRyryQvGDhfD",
+              "type": "tool_result",
+              "content": "Found 4 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/n6_multi_metric_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/submission_package/code/scripts/random_cp_control_qwq32b.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/n6_multi_metric_ensemble.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/scripts/random_cp_control_qwq32b.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "589d5e89-b1e4-487f-9fad-5dcda892d76f",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "ef0e3040-d09b-40c7-b684-fbcd7b9c4ae5",
+            "sourceToolAssistantUUID": "589d5e89-b1e4-487f-9fad-5dcda892d76f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T15:13:28.461Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also search for safety probe related code and see if there are other metrics implementations:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef0e3040-d09b-40c7-b684-fbcd7b9c4ae5",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39WeCkDMfhFYfXr7pr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b6262c2d-70fd-4f44-9b13-bdad8a9827ff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01B5fYkMgaoJrZqc8aeS1dK1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 34880,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 384,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T15:13:29.051Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A5XkfQ8esAq4fj7xoHb1AN",
+              "name": "Grep",
+              "input": {
+                "pattern": "first_crossing|fcp|crossing",
+                "type": "py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6262c2d-70fd-4f44-9b13-bdad8a9827ff",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39WeCkDMfhFYfXr7pr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b7e2c31b-9c05-4f45-b04e-3b04e77d7678",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01B5fYkMgaoJrZqc8aeS1dK1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 384,
+                "cache_read_input_tokens": 34880,
+                "output_tokens": 165,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 384
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 165,
+                    "cache_read_input_tokens": 34880,
+                    "cache_creation_input_tokens": 384,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 384,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T15:13:29.066Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A5XkfQ8esAq4fj7xoHb1AN",
+              "type": "tool_result",
+              "content": "Found 5 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/exp_r3_ccs_probe.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/fpr_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7e2c31b-9c05-4f45-b04e-3b04e77d7678",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "9ad6474b-5f6c-4af7-be51-6af7391ff40d",
+            "sourceToolAssistantUUID": "b7e2c31b-9c05-4f45-b04e-3b04e77d7678",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T15:13:30.887Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the CCS probe file and the bootstrap CI file for additional implementations:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ad6474b-5f6c-4af7-be51-6af7391ff40d",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39eMoc6vDDR2nM4FSA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e4643c22-d2d2-438e-aeec-4e26caf4e740",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KfRziik85KpGzPHhdtVGpq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 393,
+                "cache_read_input_tokens": 35264,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 393,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T15:13:31.333Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FSo6ELPfTb7Hd9UwmbrGcv",
+              "name": "Grep",
+              "input": {
+                "pattern": "crossing_rate|crossing.*rate",
+                "type": "py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4643c22-d2d2-438e-aeec-4e26caf4e740",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39eMoc6vDDR2nM4FSA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cac9b2af-50df-4bb3-92c2-6486125c3582",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KfRziik85KpGzPHhdtVGpq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 393,
+                "cache_read_input_tokens": 35264,
+                "output_tokens": 176,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 393
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 176,
+                    "cache_read_input_tokens": 35264,
+                    "cache_creation_input_tokens": 393,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 393,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T15:13:31.354Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FSo6ELPfTb7Hd9UwmbrGcv",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-149-            \"lead_time_median\": float(np.median(leads)) if leads else None,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-150-            \"lead_time_std\": float(np.std(leads)) if leads else None,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-151-            \"erd_mean\": float(np.mean(erds)) if erds else None,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py:152:            \"crossing_rate\": len(fcps) / len(results),\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-153-            \"crossing_lead_time_mean\": float(np.mean(fcp_leads)) if fcp_leads else None,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-154-            \"crossing_lead_time_median\": float(np.median(fcp_leads)) if fcp_leads else None,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-155-            \"per_trace\": results,\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-176-            print(f\"  Lead time (median): {s['lead_time_median']:.1f} steps\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-177-        if s[\"erd_mean\"] is not None:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-178-            print(f\"  Earliest detection: {s['erd_mean']:.1f} (mean step)\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py:179:        print(f\"  Crossing rate:      {s['crossing_rate']:.2%}\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-180-        if s[\"crossing_lead_time_mean\"] is not None:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-181-            print(f\"  Crossing lead (mean):   {s['crossing_lead_time_mean']:.1f} steps\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py-182-            print(f\"  Crossing lead (median): {s['crossing_lead_time_median']:.1f} steps\")\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-327-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-328-    return {\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-329-        \"step_accuracy\": ci(boot_accs),\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py:330:        \"crossing_rate\": ci(boot_crossings),\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-331-        \"lead_time_mean\": ci(boot_leads),\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-332-    }\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-333-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-452-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-453-    for method_a, method_b, pair_name in pairs:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-454-        results[\"paired_tests\"][pair_name] = {\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py:455:            \"crossing_rate\": paired_bootstrap_test(\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-456-                per_trace[method_a], per_trace[method_b], \"crossing_detected\", n_bootstrap),\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-457-            \"lead_time\": paired_bootstrap_test(\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-458-                per_trace[method_a], per_trace[method_b], \"lead_time\", n_bootstrap),\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-471-    print(\"-\" * 70)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-472-    for method_name, cis in results[\"methods\"].items():\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-473-        acc = cis[\"step_accuracy\"]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py:474:        cr = cis[\"crossing_rate\"]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-475-        lt = cis[\"lead_time_mean\"]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-476-        acc_str = f\"{acc['mean']:.3f} [{acc['ci_lower']:.3f}, {acc['ci_upper']:.3f}]\" if acc[\"mean\"] else \"N/A\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-477-        cr_str = f\"{cr['mean']:.3f} [{cr['ci_lower']:.3f}, {cr['ci_upper']:.3f}]\" if cr[\"mean\"] else \"N/A\"\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-482-    print(\"Paired Bootstrap Tests (A vs B, p-value = P(delta_A-B <= 0))\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-483-    print(\"-\" * 70)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-484-    for pair_name, tests in results[\"paired_tests\"].items():\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py:485:        cr_test = tests[\"crossing_rate\"]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-486-        lt_test = tests[\"lead_time\"]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-487-        print(f\"\\n  {pair_name}:\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py:488:        print(f\"    crossing_rate: delta={cr_test['delta_mean']:+.3f} \"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-489-              f\"[{cr_test['ci_lower']:+.3f}, {cr_test['ci_upper']:+.3f}], p={cr_test['p_value']:.3f}\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-490-        if lt_test[\"delta_mean\"] is not None:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py-491-            print(f\"    lead_time:     delta={lt_test['delta_mean']:+.1f} \"\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-133-            })\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-134-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-135-        n_traces = len(per_trace)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py:136:        crossing_rate = detected_count / n_traces if n_traces > 0 else 0.0\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-137-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-138-        results.append({\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-139-            \"config\": config_name,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-140-            \"threshold_percentile\": pctl,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-141-            \"threshold_value\": threshold,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py:142:            \"crossing_rate\": crossing_rate,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-143-            \"lead_time_mean\": float(np.mean(lead_times)) if lead_times else None,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-144-            \"lead_time_median\": float(np.median(lead_times)) if lead_times else None,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-145-            \"n_traces\": n_traces,\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-196-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-197-        configs = evaluate_config(jb_test, safe_val_md, _md_pca, f\"pca_{n_comp}\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-198-        for c in configs:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py:199:            print(f\"  pctl={c['threshold_percentile']}: crossing_rate={c['crossing_rate']:.3f}, lead_mean={c['lead_time_mean']}\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-200-        all_configs.extend(configs)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-201-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-202-    # LedoitWolf shrinkage\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-215-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-216-    configs_lw = evaluate_config(jb_test, safe_val_md_lw, _md_lw, \"ledoitwolf_4096\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-217-    for c in configs_lw:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py:218:        print(f\"  pctl={c['threshold_percentile']}: crossing_rate={c['crossing_rate']:.3f}, lead_mean={c['lead_time_mean']}\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-219-    all_configs.extend(configs_lw)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-220-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-221-    # Save results\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-243-    for c in all_configs:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-244-        lead_m = f\"{c['lead_time_mean']:.1f}\" if c['lead_time_mean'] is not None else \"N/A\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-245-        lead_med = f\"{c['lead_time_median']:.1f}\" if c['lead_time_median'] is not None else \"N/A\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py:246:        print(f\"{c['config']:<20} {c['threshold_percentile']:<6} {c['threshold_value']:<10.2f} {c['crossing_rate']:<12.3f} {lead_m:<12} {lead_med:<10}\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-247-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-248-    # Comparison with existing methods\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-249-    print(\"\\n\" + \"=\" * 80)\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-257-    print(\"-\" * 60)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-258-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-259-    # Find best TrajGuard config\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py:260:    best = max(all_configs, key=lambda c: (c['crossing_rate'], c['lead_time_mean'] or -999))\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-261-    lead_str = f\"{best['lead_time_mean']:.1f}\" if best['lead_time_mean'] is not None else \"N/A\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py:262:    print(f\"{'TrajGuard best (' + best['config'] + ' p' + str(best['threshold_percentile']) + ')':<35} {best['crossing_rate']:.1%}{'':<5} {lead_str:<12}\")\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-263-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-264-    elapsed = time.time() - t0\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py-265-    print(f\"\\nTotal time: {elapsed:.1f}s\")"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cac9b2af-50df-4bb3-92c2-6486125c3582",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "c140f5f8-7893-486e-b227-ead3afdd78c6",
+            "sourceToolAssistantUUID": "cac9b2af-50df-4bb3-92c2-6486125c3582",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T15:13:32.953Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check the bootstrap_ci file to see the full context of how crossing detection is being tracked:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c140f5f8-7893-486e-b227-ead3afdd78c6",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39pFcpZtCcRDS2adks",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "505e10b9-ed4c-4717-8b84-fa7c63e5daa7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KJYEcwi7dzGYmYmVrV5x8q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 5723,
+                "cache_read_input_tokens": 35657,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5723,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T15:13:33.254Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M6okuuMqbXE1wofM686znj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py",
+                "offset": 1,
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "505e10b9-ed4c-4717-8b84-fa7c63e5daa7",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39pFcpZtCcRDS2adks",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b7f7bb9a-00b5-4cc2-bdf1-262e29e4c78d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KJYEcwi7dzGYmYmVrV5x8q",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 5723,
+                "cache_read_input_tokens": 35657,
+                "output_tokens": 148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5723
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 148,
+                    "cache_read_input_tokens": 35657,
+                    "cache_creation_input_tokens": 5723,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5723,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T15:13:33.264Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M6okuuMqbXE1wofM686znj",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Bootstrap confidence intervals and paired significance tests (exp-006).\n2\t\n3\tInput: Pre-extracted hidden states + trained probe predictions on test set\n4\tOutput: 95% CIs for all methods, paired bootstrap p-values\n5\t\"\"\"\n6\t\n7\timport json\n8\timport sys\n9\tfrom pathlib import Path\n10\tfrom typing import List, Dict, Optional, Tuple\n11\t\n12\timport numpy as np\n13\timport torch\n14\timport torch.nn as nn\n15\tfrom torch.utils.data import DataLoader, TensorDataset\n16\tfrom sklearn.linear_model import LogisticRegression, SGDClassifier\n17\t\n18\tsys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))\n19\tfrom src.config import (\n20\t    LAYERS, HIDDEN_DIM, HIDDEN_STATES_DIR, SEED, ARTIFACTS_DIR\n21\t)\n22\tfrom src.data_loader import prepare_dataset, split_data\n23\t\n24\t\n25\tLAYER_14_IDX = 2  # LAYERS=[12,13,...,24], layer 14 is index 2\n26\tMULTI_LAYER_INDICES = [0, 2, 4, 6, 8, 10, 12]  # layers [12,14,16,18,20,22,24]\n27\tWINDOW_SIZE = 15\n28\tTHRESHOLD = 0.5\n29\tCONSECUTIVE_K = 5\n30\tN_BOOTSTRAP = 1000\n31\tOUTPUT_DIR = ARTIFACTS_DIR / \"exp_006_bootstrap\"\n32\t\n33\t\n34\t# ============================================================\n35\t# GRU Model\n36\t# ============================================================\n37\t\n38\tclass GRUProbe(nn.Module):\n39\t    def __init__(self, input_dim=HIDDEN_DIM, hidden_dim=256, dropout=0.3):\n40\t        super().__init__()\n41\t        self.gru = nn.GRU(input_dim, hidden_dim, num_layers=1, batch_first=True, dropout=0)\n42\t        self.dropout = nn.Dropout(dropout)\n43\t        self.fc = nn.Linear(hidden_dim, 1)\n44\t\n45\t    def forward(self, x):\n46\t        # x: [batch, T, input_dim]\n47\t        out, _ = self.gru(x)  # [batch, T, hidden_dim]\n48\t        out = self.dropout(out)\n49\t        logits = self.fc(out).squeeze(-1)  # [batch, T]\n50\t        return logits\n51\t\n52\t\n53\t# ============================================================\n54\t# Data helpers\n55\t# ============================================================\n56\t\n57\tdef load_trace_hidden_states(trace_id: str, layer_idx: int) -> Optional[torch.Tensor]:\n58\t    pt_path = HIDDEN_STATES_DIR / f\"{trace_id}.pt\"\n59\t    if not pt_path.exists():\n60\t        return None\n61\t    data = torch.load(pt_path, map_location=\"cpu\", weights_only=False)\n62\t    return data[\"hidden_states\"][:, layer_idx, :]  # [T, 4096]\n63\t\n64\t\n65\tdef load_trace_multi_layer(trace_id: str) -> Optional[torch.Tensor]:\n66\t    pt_path = HIDDEN_STATES_DIR / f\"{trace_id}.pt\"\n67\t    if not pt_path.exists():\n68\t        return None\n69\t    data = torch.load(pt_path, map_location=\"cpu\", weights_only=False)\n70\t    hs = data[\"hidden_states\"][:, MULTI_LAYER_INDICES, :]  # [T, 7, 4096]\n71\t    return hs.mean(dim=1)  # [T, 4096]\n72\t\n73\t\n74\t# ============================================================\n75\t# Method 1: Static LR\n76\t# ============================================================\n77\t\n78\tdef train_static_lr(train_traces: List[Dict]) -> LogisticRegression:\n79\t    X_list, y_list = [], []\n80\t    for t in train_traces:\n81\t        hs = load_trace_hidden_states(t[\"trace_id\"], LAYER_14_IDX)\n82\t        if hs is None:\n83\t            continue\n84\t        n = min(hs.shape[0], len(t[\"step_labels\"]))\n85\t        X_list.append(hs[:n].numpy())\n86\t        y_list.append(np.array(t[\"step_labels\"][:n]))\n87\t    X = np.concatenate(X_list)\n88\t    y = np.concatenate(y_list)\n89\t    clf = LogisticRegression(max_iter=1000, random_state=SEED, C=1.0, class_weight=\"balanced\")\n90\t    clf.fit(X, y)\n91\t    print(f\"  Static LR train acc: {clf.score(X, y):.4f} ({len(X)} samples)\")\n92\t    return clf\n93\t\n94\t\n95\tdef predict_static_lr(clf: LogisticRegression, traces: List[Dict]) -> List[Dict]:\n96\t    results = []\n97\t    for t in traces:\n98\t        hs = load_trace_hidden_states(t[\"trace_id\"], LAYER_14_IDX)\n99\t        if hs is None:\n100\t            continue"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7f7bb9a-00b5-4cc2-bdf1-262e29e4c78d",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "122b4ed6-54b4-46ae-b76d-7df5b3bac25e",
+            "sourceToolAssistantUUID": "b7f7bb9a-00b5-4cc2-bdf1-262e29e4c78d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T15:13:34.488Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me continue reading the bootstrap_ci file to see the crossing detection logic:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "122b4ed6-54b4-46ae-b76d-7df5b3bac25e",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39xVTxKQ3V7ezW4g6T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d127183a-8ea4-4909-8656-9e7d03d4b8b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NVoCxLv5QekeQXwAySjGJS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1536,
+                "cache_read_input_tokens": 41380,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1536,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T15:13:35.420Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0174GsbSy8zCWcLYVUYH4zgX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/bootstrap_ci.py",
+                "offset": 200,
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d127183a-8ea4-4909-8656-9e7d03d4b8b4",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE39xVTxKQ3V7ezW4g6T",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9e2b4e0a-bd20-4a09-a446-b49b91504a3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NVoCxLv5QekeQXwAySjGJS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1536,
+                "cache_read_input_tokens": 41380,
+                "output_tokens": 142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1536
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 142,
+                    "cache_read_input_tokens": 41380,
+                    "cache_creation_input_tokens": 1536,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1536,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T15:13:35.434Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0174GsbSy8zCWcLYVUYH4zgX",
+              "type": "tool_result",
+              "content": "200\t        for seq, lab in zip(train_seqs, train_labels):\n201\t            logits = model(seq.unsqueeze(0))  # [1, T]\n202\t            loss = criterion(logits[0], lab)\n203\t            optimizer.zero_grad()\n204\t            loss.backward()\n205\t            optimizer.step()\n206\t            epoch_loss += loss.item()\n207\t\n208\t        model.eval()\n209\t        val_loss = 0\n210\t        with torch.no_grad():\n211\t            for seq, lab in zip(val_seqs, val_labels):\n212\t                logits = model(seq.unsqueeze(0))\n213\t                val_loss += criterion(logits[0], lab).item()\n214\t\n215\t        val_loss /= max(len(val_seqs), 1)\n216\t\n217\t        if val_loss < best_val_loss:\n218\t            best_val_loss = val_loss\n219\t            patience_counter = 0\n220\t            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n221\t        else:\n222\t            patience_counter += 1\n223\t            if patience_counter >= 5:\n224\t                break\n225\t\n226\t    if best_state:\n227\t        model.load_state_dict(best_state)\n228\t    model = model.cpu()\n229\t    name = \"GRU multi-7L\" if multi_layer else \"GRU single L14\"\n230\t    print(f\"  {name} trained {epoch+1} epochs, best val_loss={best_val_loss:.4f}\")\n231\t    return model\n232\t\n233\t\n234\tdef predict_gru(model: GRUProbe, traces: List[Dict],\n235\t                multi_layer: bool = False) -> List[Dict]:\n236\t    load_fn = load_trace_multi_layer if multi_layer else (\n237\t        lambda tid: load_trace_hidden_states(tid, LAYER_14_IDX)\n238\t    )\n239\t    model.eval()\n240\t    results = []\n241\t    for t in traces:\n242\t        hs = load_fn(t[\"trace_id\"])\n243\t        if hs is None:\n244\t            continue\n245\t        n = min(hs.shape[0], len(t[\"step_labels\"]))\n246\t        with torch.no_grad():\n247\t            logits = model(hs[:n].float().unsqueeze(0))  # [1, T]\n248\t            probs = torch.sigmoid(logits[0]).numpy()\n249\t        results.append({\n250\t            \"trace_id\": t[\"trace_id\"],\n251\t            \"probs\": probs,\n252\t            \"labels\": np.array(t[\"step_labels\"][:n]),\n253\t            \"commitment_point\": t[\"commitment_point\"],\n254\t        })\n255\t    return results\n256\t\n257\t\n258\t# ============================================================\n259\t# Evaluation per trace\n260\t# ============================================================\n261\t\n262\tdef first_crossing_point(probs: np.ndarray, threshold: float = THRESHOLD,\n263\t                         consecutive_k: int = CONSECUTIVE_K) -> Optional[int]:\n264\t    n = len(probs)\n265\t    if n < consecutive_k:\n266\t        return None\n267\t    for i in range(n - consecutive_k + 1):\n268\t        if all(probs[i:i + consecutive_k] > threshold):\n269\t            return i\n270\t    return None\n271\t\n272\t\n273\tdef compute_trace_metrics(pred: Dict) -> Dict:\n274\t    probs = pred[\"probs\"]\n275\t    labels = pred[\"labels\"]\n276\t    cp = pred[\"commitment_point\"]\n277\t\n278\t    preds_binary = (probs > 0.5).astype(int)\n279\t    step_acc = float((preds_binary == labels).mean())\n280\t\n281\t    fcp = first_crossing_point(probs)\n282\t    crossing_detected = 1 if fcp is not None else 0\n283\t    lead_time = (cp - fcp) if fcp is not None else None\n284\t\n285\t    return {\n286\t        \"step_accuracy\": step_acc,\n287\t        \"crossing_detected\": crossing_detected,\n288\t        \"lead_time\": lead_time,\n289\t    }\n290\t\n291\t\n292\t# ============================================================\n293\t# Bootstrap\n294\t# ============================================================\n295\t\n296\tdef bootstrap_ci(per_trace_metrics: List[Dict], n_bootstrap: int = N_BOOTSTRAP,\n297\t                 seed: int = SEED) -> Dict:\n298\t    rng = np.random.default_rng(seed)\n299\t    n = len(per_trace_metrics)\n300\t\n301\t    accs = np.array([m[\"step_accuracy\"] for m in per_trace_metrics])\n302\t    crossings = np.array([m[\"crossing_detected\"] for m in per_trace_metrics])\n303\t    lead_times = np.array([m[\"lead_time\"] if m[\"lead_time\"] is not None else np.nan\n304\t                           for m in per_trace_metrics])\n305\t\n306\t    boot_accs = np.zeros(n_bootstrap)\n307\t    boot_crossings = np.zeros(n_bootstrap)\n308\t    boot_leads = np.zeros(n_bootstrap)\n309\t\n310\t    for b in range(n_bootstrap):\n311\t        idx = rng.choice(n, size=n, replace=True)\n312\t        boot_accs[b] = accs[idx].mean()\n313\t        boot_crossings[b] = crossings[idx].mean()\n314\t        sampled_leads = lead_times[idx]\n315\t        valid = sampled_leads[~np.isnan(sampled_leads)]\n316\t        boot_leads[b] = valid.mean() if len(valid) > 0 else np.nan\n317\t\n318\t    def ci(arr):\n319\t        arr_valid = arr[~np.isnan(arr)]\n320\t        if len(arr_valid) == 0:\n321\t            return {\"mean\": None, \"ci_lower\": None, \"ci_upper\": None}\n322\t        return {\n323\t            \"mean\": float(np.mean(arr_valid)),\n324\t            \"ci_lower\": float(np.percentile(arr_valid, 2.5)),\n325\t            \"ci_upper\": float(np.percentile(arr_valid, 97.5)),\n326\t        }\n327\t\n328\t    return {\n329\t        \"step_accuracy\": ci(boot_accs),\n330\t        \"crossing_rate\": ci(boot_crossings),\n331\t        \"lead_time_mean\": ci(boot_leads),\n332\t    }\n333\t\n334\t\n335\tdef paired_bootstrap_test(metrics_a: List[Dict], metrics_b: List[Dict],\n336\t                          metric_key: str, n_bootstrap: int = N_BOOTSTRAP,\n337\t                          seed: int = SEED) -> Dict:\n338\t    \"\"\"Test H0: metric_A <= metric_B. p_value = P(delta <= 0).\"\"\"\n339\t    rng = np.random.default_rng(seed + 7)\n340\t    n = len(metrics_a)\n341\t    assert len(metrics_b) == n\n342\t\n343\t    if metric_key == \"crossing_detected\":\n344\t        vals_a = np.array([m[\"crossing_detected\"] for m in metrics_a], dtype=float)\n345\t        vals_b = np.array([m[\"crossing_detected\"] for m in metrics_b], dtype=float)\n346\t    elif metric_key == \"lead_time\":\n347\t        vals_a = np.array([m[\"lead_time\"] if m[\"lead_time\"] is not None else np.nan\n348\t                           for m in metrics_a])\n349\t        vals_b = np.array([m[\"lead_time\"] if m[\"lead_time\"] is not None else np.nan"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e2b4e0a-bd20-4a09-a446-b49b91504a3c",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "4bb48541-ff8d-47fa-9d35-3ef3b14376b3",
+            "sourceToolAssistantUUID": "9e2b4e0a-bd20-4a09-a446-b49b91504a3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T15:13:36.637Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me search for any papers or documentation that explain this metric:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4bb48541-ff8d-47fa-9d35-3ef3b14376b3",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3A7iLzdeqpSovQZT4M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "98d08014-2729-44ea-a4a3-8cded0ed041e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BFbUGEL6WH9xXc3ueCLKvE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2174,
+                "cache_read_input_tokens": 42916,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2174,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T15:13:37.934Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016EajBXDRvLvCsjrAQpxemV",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety -type f \\( -name \"*.md\" -o -name \"*.txt\" \\) | grep -E \"(README|paper|ARCHITECTURE|DESIGN)\" | head -10"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98d08014-2729-44ea-a4a3-8cded0ed041e",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3A7iLzdeqpSovQZT4M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "99843cd2-76f3-4bb2-ba56-5966b426f096",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BFbUGEL6WH9xXc3ueCLKvE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2174,
+                "cache_read_input_tokens": 42916,
+                "output_tokens": 138,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2174
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 138,
+                    "cache_read_input_tokens": 42916,
+                    "cache_creation_input_tokens": 2174,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2174,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T15:13:38.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016EajBXDRvLvCsjrAQpxemV",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/_drafts/author_response_template.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/numpy/_core/tests/data/umath-validation-set-README.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.venv/lib/python3.14/site-packages/pyarrow/tests/data/orc/README.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4/AGENTS.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_audit_review_visual_992d6588/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_audit_review_visual_992d6588/AGENTS.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T212347/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T212347/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/artifacts/dream_reports/dream_20260516T212347/best/paper_framing.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99843cd2-76f3-4bb2-ba56-5966b426f096",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "51ae7fa4-ba3d-4d6d-805b-88d8a471632d",
+            "sourceToolAssistantUUID": "99843cd2-76f3-4bb2-ba56-5966b426f096",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T15:13:40.153Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check if there's a paper or documentation about the methodology:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51ae7fa4-ba3d-4d6d-805b-88d8a471632d",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3AJuHujcZfFzNVBK7G",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "659d3de3-f94b-4e90-bdae-402fb4adb1b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V43Yjhd1bEvE6rbhAUVMpb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 679,
+                "cache_read_input_tokens": 45090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 679,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T15:13:40.753Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MJLk5mA2et2NQgCPXD2tvn",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs -type f -name \"*.tex\" 2>/dev/null | head -5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "659d3de3-f94b-4e90-bdae-402fb4adb1b2",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3AJuHujcZfFzNVBK7G",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fd8b29de-8430-4aef-a4b6-b140f3aa33b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V43Yjhd1bEvE6rbhAUVMpb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 679,
+                "cache_read_input_tokens": 45090,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 679,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T15:13:40.822Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MJLk5mA2et2NQgCPXD2tvn",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/_drafts/advbench_contingency_templates.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/limitations.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd8b29de-8430-4aef-a4b6-b140f3aa33b1",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "afd604be-29f5-4343-be5b-69ad7a66c85c",
+            "sourceToolAssistantUUID": "fd8b29de-8430-4aef-a4b6-b140f3aa33b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T15:13:43.509Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0133iCfMzUDDy4PUVZKaWVFU",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections -type f -name \"*.tex\" | xargs grep -l \"crossing\" 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afd604be-29f5-4343-be5b-69ad7a66c85c",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3AXudtpkKPe6eEdtNZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c9247264-34c3-4439-a8c4-d2bbe4b64377",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Qm95dhJ8TxBHRbuAw3kXDi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 336,
+                "cache_read_input_tokens": 45769,
+                "output_tokens": 111,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 336
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 111,
+                    "cache_read_input_tokens": 45769,
+                    "cache_creation_input_tokens": 336,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 336,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T15:13:43.570Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0133iCfMzUDDy4PUVZKaWVFU",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/related_work.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9247264-34c3-4439-a8c4-d2bbe4b64377",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "2148b5f4-b4c5-4b22-b391-84bce6a1e355",
+            "sourceToolAssistantUUID": "c9247264-34c3-4439-a8c4-d2bbe4b64377",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T15:13:44.518Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the method.tex file to see the formal definition:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2148b5f4-b4c5-4b22-b391-84bce6a1e355",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3AiT8tPpCt31Wyg2SX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "de5a7f37-c10a-47b7-a7b3-45151ab50aff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SBJKf88uZDssR8yue87AVq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 404,
+                "cache_read_input_tokens": 46105,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 404,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T15:13:44.865Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0195cANohGtdDjvYWw1CD9yA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de5a7f37-c10a-47b7-a7b3-45151ab50aff",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3AiT8tPpCt31Wyg2SX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "96f7d505-9179-4bd7-9e04-e36f123674ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SBJKf88uZDssR8yue87AVq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 404,
+                "cache_read_input_tokens": 46105,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 404
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 46105,
+                    "cache_creation_input_tokens": 404,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 404,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T15:13:44.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0195cANohGtdDjvYWw1CD9yA",
+              "type": "tool_result",
+              "content": "1\t\\section{Problem Setup and Methods}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Safety Commitment Point}\n5\t\\label{sec:commitment-point}\n6\t\n7\tWhen a reasoning model is jailbroken, its chain-of-thought (CoT) transitions from safety-aware deliberation to committed harmful generation. We define the \\textbf{Safety Commitment Point} (CP) as the first reasoning step after which safety reasoning permanently ceases; traces with oscillating safety deliberation are resolved by taking the final irreversible transition. This binary formulation is a deliberate simplification; we discuss its limits in \\cref{sec:limitations}. Steps before CP are \\emph{pre-commitment} ($y_t = 0$); steps at or after CP are \\emph{post-commitment} ($y_t = 1$). The classification task produces a score $s_t \\in [0, 1]$ estimating whether the model has passed its CP by step $t$.\n8\t\n9\tWe study four reasoning models spanning two architectures and two scales (\\cref{tab:models}).\n10\t\n11\t\\begin{table}[t]\n12\t\\centering\n13\t\\resizebox{\\columnwidth}{!}{%\n14\t\\begin{tabular}{lccccc}\n15\t\\toprule\n16\t\\textbf{Model} & \\textbf{Arch.} & \\textbf{Params} & \\textbf{Layers} & \\textbf{Hidden} & \\textbf{$n$ (total\\,/\\,test)} \\\\\n17\t\\midrule\n18\tR1-8B & Llama & 8B & 32 & 4096 & 209\\,/\\,43 \\\\\n19\tOT-7B & Qwen & 7B & 28 & 3584 & 228\\,/\\,47 \\\\\n20\tR1-32B & Qwen & 32B & 64 & 5120 & 100\\,/\\,20 \\\\\n21\tQwQ-32B & Qwen & 32B & 64 & 5120 & 95\\,/\\,19 \\\\\n22\t\\bottomrule\n23\t\\end{tabular}}\n24\t\\caption{Models studied. R1-8B and R1-32B are distilled from DeepSeek-R1~\\citep{deepseekr1}; QwQ-32B~\\citep{qwq} is a native reasoning model; OT-7B~\\citep{openthinker} is trained with STILL~\\citep{still} on Qwen2.5-7B. Data: HarmThoughts~\\citep{harmthoughts} with step-level CP annotations. Split: 60/20/20.}\n25\t\\label{tab:models}\n26\t\\end{table}\n27\t\n28\t\\subsection{Probe Architecture}\n29\t\\label{sec:probe-architecture}\n30\t\n31\t\\paragraph{Hidden-state (HS) probes.} At each step $t$, we extract the last-token hidden state $\\mathbf{h}_t^{(\\ell)} \\in \\mathbb{R}^d$ from layer $\\ell$ and train an L2-regularized logistic regression classifier (balanced class weights, $C{=}1.0$, LBFGS, max\\_iter${}=2000$) on binary CP labels. Sweeping $C \\in [0.01, 100]$ yields $<$2pp BA variation (\\cref{sec:experiments}), confirming robustness to this default. Layer selection is analyzed in \\cref{sec:layer-sensitivity}.\n32\t\n33\t\\paragraph{Text probes.} Each step's text is encoded with all-MiniLM-L6-v2~\\citep{wang2020minilm} ($\\mathbb{R}^{384}$), a distilled sentence encoder from the Sentence-BERT family~\\citep{reimers2019sentence}. The same logistic regression is applied as a surface-level modality baseline.\n34\t\n35\t\\paragraph{Temporal windowing.} For window size $W$, we concatenate features from steps $[t{-}W{+}1, \\ldots, t]$. We evaluate $W \\in \\{1, 3, 5, 10, 15, 20, 25\\}$ and select per-model on validation. GRU sequence models are also evaluated under two protocols: a 70/30 train/test split (primary) and the same 60/20/20 split used for LR experiments (for fair comparison; \\cref{tab:gru_multi_seeds,app:gru_details}).\n36\t\n37\t\\subsection{Layer Selection Sensitivity}\n38\t\\label{sec:layer-sensitivity}\n39\t\n40\tLayer selection is a researcher degree of freedom that can reverse modality comparison conclusions. We evaluate five metrics: balanced accuracy (BA), precision, and inverse FPR are standard probing metrics~\\citep{belinkov2022probing}; crossing rate formalizes cross-layer prediction disagreement~\\citep{kaya2019shallow,zhou2020bert}, and additive composite. A multiplicative composite (BA $\\times$ crossing rate) serves as the \\emph{crossing-rate composite} (CR-composite) baseline, so named because it incorporates crossing rate in the selection criterion. Metrics evaluating probe performance at a fixed decision threshold (precision, inverse FPR, additive composite) form the \\emph{threshold-based} selection. This classification is an empirical observation from metric disagreement, not an a priori design choice. Crossing rate inflates at shallow layers where representations are compressed (inter-step cosine distances 1.4--2.7$\\times$ smaller; \\cref{app:cosine_volatility}), an independently verifiable geometric property. Precision, inverse FPR, and additive composite all derive from the same $2\\times2$ confusion matrix and empirically converge to the same layer, consistent with their shared structure but not mathematically guaranteed; BA is threshold-free and provides independent confirmation. The ablation diagnoses which \\emph{aspect} drives layer selection bias. The effective number of independent tests is four (one per model), reflected in our HB correction. Results in \\cref{sec:layer-results}; full per-layer sweeps in \\cref{app:layer_sweep}.\n41\t\n42\t\\subsection{Baseline Methods}\n43\t\\label{sec:baselines}\n44\t\n45\tWe evaluate seven alternatives to contextualize probe performance (\\cref{tab:negative}): BOCPD~\\citep{adams2007bayesian} and CUSUM~\\citep{page1954cusum} for change-point detection; Mahalanobis distance following TrajGuard~\\citep{trajguard}; RepE mean-difference directions~\\citep{zou2023representation}; two-layer MLP probes; CCS-adapted~\\citep{burns2023discovering}; and cross-model transfer via PCA. A position-only baseline ($t/T$) controls for temporal artifacts. Detailed configurations in \\cref{app:bocpd_config,app:transfer_details}.\n46\t\n47\t\\subsection{Evaluation Protocol}\n48\t\\label{sec:evaluation}\n49\t\n50\tWe report balanced accuracy, precision, pre-CP FPR, coverage, and lead time. We exclude F1 (conflates precision and recall), AUROC (threshold-free, cannot diagnose layer selection bias), and MCC (redundant with BA under balanced priors). Positive classification requires $K{=}5$ consecutive threshold crossings, selected on the R1-8B validation set and held fixed across all models as the value balancing coverage ($\\geq$70\\%) and safe-trace false positive rate ($\\leq$50\\%); \\cref{tab:k_ablation} confirms that the HS vs.\\ text conclusion direction is consistent at $K{=}3$, $5$, and $7$, with coverage and FPR trading off monotonically. Modality comparisons use BCa bootstrap (10{,}000 resamples, resampling traces as clusters: each trace is an independent unit and all its steps are included or excluded together, preserving within-trace dependence)~\\citep{efron1993bootstrap,diciccio1996bootstrap} with Holm-Bonferroni step-down (3 metrics $\\times$ 4 models $= 12$ tests, $\\alpha{=}0.05$); the 4-test framework yields identical conclusions (\\cref{app:holm_bonferroni}). For 32B models ($n \\leq 20$), the exact permutation test is the primary inference method; BCa confidence intervals are reported for comparability but may have reduced coverage at these sample sizes (BCa assumes approximate pivotality; heavy-tailed score distributions could produce anti-conservative intervals). Within each model, the three metrics are positively correlated, so the correction is stricter than under independence. Control task selectivity~\\citep{hewitt2019control} validates genuine structure (\\cref{app:control}). $\\dagger$ marks sample-limited test sets ($n \\leq 20$): R1-32B ($n{=}20$) and QwQ-32B ($n{=}19$).\n51\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96f7d505-9179-4bd7-9e04-e36f123674ec",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "9bf09bf9-b995-4a6f-a8c1-7fc8fcd00fe6",
+            "sourceToolAssistantUUID": "96f7d505-9179-4bd7-9e04-e36f123674ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T15:13:46.203Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me check the experiments section to get more detail on the crossing rate metric:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bf09bf9-b995-4a6f-a8c1-7fc8fcd00fe6",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3Ap4ywpDYSR1wtmkAE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "989d4d5f-1e61-4b27-a215-34c766e0c04a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DKow3LXkwdJSaZ8SyVK8tH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2373,
+                "cache_read_input_tokens": 46509,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2373,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T15:13:47.105Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CJEK2tyvitfxn4ZoQDZati",
+              "name": "Bash",
+              "input": {
+                "command": "grep -A 20 -B 5 \"crossing rate\" /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/docs/paper/sections/experiments.tex | head -60"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "989d4d5f-1e61-4b27-a215-34c766e0c04a",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3Ap4ywpDYSR1wtmkAE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6d81f480-ee33-4f66-aa6d-804328c29304",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DKow3LXkwdJSaZ8SyVK8tH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2373,
+                "cache_read_input_tokens": 46509,
+                "output_tokens": 130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2373
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 130,
+                    "cache_read_input_tokens": 46509,
+                    "cache_creation_input_tokens": 2373,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2373,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T15:13:47.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CJEK2tyvitfxn4ZoQDZati",
+              "type": "tool_result",
+              "content": "We study R1-8B (Llama-8B, R1-distilled, $n{=}43$ test traces), OT-7B (OpenThinker-7B, trained on the OpenThoughts dataset~\\citep{openthinker}; Qwen-7B backbone, STILL-trained, $n{=}47$), QwQ-32B (Qwen-32B, native reasoning, $n{=}19$--$20$), and R1-32B (Qwen-32B, R1-distilled, $n{=}20$). All traces come from HarmThoughts with step-level CP annotations (60/20/20 split). HS probes extract last-token hidden states from a selected layer; text probes encode each step with all-MiniLM-L6-v2 (384d). Both use L2-regularized logistic regression with temporal windowing $W \\in \\{1, 3, 5, 10, 15, 20, 25\\}$ selected on validation. Classification requires $K{=}5$ consecutive threshold crossings. Statistical testing follows \\cref{sec:evaluation}.\\looseness=-1\n\n\\subsection{Layer Selection Results}\\label{sec:layer-results}\n\n\\cref{tab:layer_selection} shows that the crossing-rate composite metric (balanced accuracy $\\times$ crossing rate) systematically selects shallow layers across all four models: L0 for R1-8B (full L0--L24 sweep; \\cref{tab:r18b_full_layer}) and OT-7B, L2 (3\\%) for QwQ-32B, and L10 (16\\%) for R1-32B. The three threshold-based metrics (precision, inverse FPR, additive composite) share a common confusion matrix and empirically converge to the same deep layer---L63 (98\\%) for both 32B models---consistent with their shared structure, though not mathematically guaranteed. Pure balanced accuracy, a threshold-free metric, selects layers that vary across data splits and models (7--98\\% depth under 60/20/20; \\cref{tab:ba_layer_comparison}), itself demonstrating that layer selection is a consequential methodological choice. The total exploration space spans 5 metrics $\\times$ 7 window sizes $\\times$ 28--64 layers (model-dependent); HB correction covers the final 12 model-metric tests, not this full search (\\cref{app:hyperparameter_robustness}). The mechanism is that shallow layers produce highly compressed representations with small inter-step margins: step-to-step cosine distances are 1.4--2.7$\\times$ smaller than at deep layers across all models (\\cref{app:cosine_volatility}). A linear probe in this compressed space operates near the noise floor, generating frequent threshold crossings that inflate crossing rate independently of discriminative power (\\cref{sec:layer-sensitivity}).\\looseness=-1\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Model} & \\textbf{CR-comp.}$^a$ & \\textbf{Thresh.}$^b$ & $p$ \\textbf{(thresh.)} \\\\\n\\midrule\nR1-8B & L0 (0\\%) & L14 (44\\%) & ${<}0.001$ \\\\\nOT-7B & L0 (0\\%) & L16 (57\\%) & ${<}0.001$ \\\\\nQwQ-32B & L2 (3\\%) & L63 (98\\%) & ${<}0.005$ \\\\\nR1-32B & L10 (16\\%) & L63 (98\\%) & ${<}0.001$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Layer selection sensitivity. $^a$\\,Crossing-rate composite (bal\\_acc $\\times$ crossing\\_rate). $^b$\\,Consensus of threshold-based metrics (precision, inverse FPR, additive composite). Rightmost: HS vs.\\ text precision $p$-value at threshold-based layer (e.g., QwQ-32B CR-composite layer: bal\\_acc $p{=}0.35$, precision $p{=}0.83$, both non-significant).}\n\\label{tab:layer_selection}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_layer_heatmap.pdf}\n\\caption{Per-layer metric heatmap (2$\\times$2). Each column: one of five metrics (min-max normalized). Blue dashed: CR-composite layer (bal\\_acc $\\times$ crossing\\_rate); orange dash-dot: threshold-based layer (consensus of threshold-based metrics). For R1-8B (full L0--L24 sweep), crossing rate drives CR-composite selection to L0 while threshold-based metrics retain L14. At 32B, CR-composite selections cluster near input layers while threshold-based metrics peak at deep layers.}\n\\label{fig:layer_heatmap}\n\\end{figure}\n\nThe downstream impact is severe: at CR-composite layers, only the two 7--8B models show significant HS advantage; both 32B models fail. At threshold-based layers, the HS advantage is graded: cross-validated at 7--8B (OT-7B, R1-8B; nested CV), significant but suggestive of position-competitiveness at QwQ-32B$^\\dagger$, and exploratory at R1-32B$^\\dagger$ (residualized gap below MDE). The $\\dagger$ marks sample-limited test sets ($n \\leq 20$) where effect sizes are descriptive rather than confirmatory. Had we reported only CR-composite-layer results, we would have concluded a scale-dependent HS advantage that is entirely a methodological artifact. A random-label control on QwQ-32B confirms that the crossing-rate shallow-layer bias is a geometric property of the representations (100\\% of random-label repeats select shallow layers), while threshold-based deep-layer selection requires real safety labels (\\cref{app:random_cp}). AUROC, excluded from our primary metrics because it is threshold-free (\\cref{sec:evaluation}), confirms HS discriminability at BA-selected layers ($\\Delta$AUROC +12.1 to +15.1pp; \\cref{tab:ba_layer_results}) but cannot diagnose the threshold-dependent layer selection bias.\\looseness=-1\n\n\\subsection{HS vs.\\ Text Comparison}\\label{sec:hs-text}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llclrrlrc}\n\\toprule\n\\textbf{Model} & \\textbf{Layer} & \\textbf{Enc.} & $W$ & $\\Delta$\\textbf{BA} & $\\Delta$\\textbf{Prec} & \\textbf{95\\% CI} & $\\Delta$\\textbf{FPR} & \\textbf{HB} \\\\\n\\midrule\nR1-8B & L14 & 384d & 3 & +17.5 & +20.1 & [+12.4, +28.3] & $-$7.9 & \\checkmark \\\\\n & & 1024d & & \\multicolumn{1}{c}{--} & +5.8 & [$-$7.4, +19.5] & \\multicolumn{1}{c}{--} & \\\\[2pt]\nOT-7B & L16 & 384d & 3 & +10.7 & +21.9 & [+14.4, +29.6] & $-$17.1 & \\checkmark \\\\\n & & 1024d & & \\multicolumn{1}{c}{--} & +18.1 & [+8.4, +29.0] & \\multicolumn{1}{c}{--} & \\checkmark \\\\[2pt]\nQwQ & L63 & 384d & 5 & +13.0 & +19.2 & [+9.3, +33.5] & $-$15.0 & \\checkmark \\\\",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d81f480-ee33-4f66-aa6d-804328c29304",
+            "isSidechain": true,
+            "promptId": "69d2a71d-5e37-4d25-b3bf-f3c1e8f22e7a",
+            "agentId": "a9322324f9805485d",
+            "type": "user",
+            "uuid": "658a1a75-037f-43c4-88d9-2f89dd5fd282",
+            "sourceToolAssistantUUID": "6d81f480-ee33-4f66-aa6d-804328c29304",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T15:13:56.743Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have a comprehensive understanding. Let me create a summary of my findings:\n\n## Summary\n\nI found the **crossing rate metric** implementation in the contrastive_trace_safety repository. Here are the exact formulas and computations used:\n\n### Core Implementation\n\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/eval/evaluate.py`\n\n**Crossing Rate Formula (Line 152):**\n```python\n\"crossing_rate\": len(fcps) / len(results)\n```\n\nWhere `fcps` is the list of traces where a first crossing point was detected.\n\n### First Crossing Point Detection\n\n**Function: `first_crossing_point()` (Lines 55-71):**\n```python\ndef first_crossing_point(\n    probs_class1: np.ndarray,\n    threshold: float = 0.5,\n    consecutive_k: int = DETECTION_WINDOW,\n) -> Optional[int]:\n    \"\"\"First position where prob(post-commitment) > threshold for K consecutive steps.\n    \n    Unlike earliest_reliable_detection, this does NOT check against ground-truth labels,\n    so crossings before the commitment point measure anticipation ability.\n    \"\"\"\n    n = len(probs_class1)\n    if n < consecutive_k:\n        return None\n    for i in range(n - consecutive_k + 1):\n        if all(p > threshold for p in probs_class1[i:i + consecutive_k]):\n            return i\n    return None\n```\n\n### Computation Details\n\n1. **Crossing Rate = (Number of traces with detected crossings) / (Total traces)**\n   - Returns a scalar between 0 and 1 (or 0-100% when displayed)\n\n2. **Detection Criterion:** A crossing is detected at step `i` when:\n   - All K consecutive steps from position `i` to `i+K-1` have prediction probability > threshold\n   - Default: `threshold=0.5`, `K=5` (from `DETECTION_WINDOW`)\n\n3. **Key Property:** The crossing point detection does NOT validate against ground-truth labels—it measures whether the probe reaches a high confidence threshold, allowing it to detect \"anticipation\" even before the actual commitment point occurs.\n\n### Related Implementation\n\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/src/experiments/trajguard_mahalanobis.py` (Lines 54-65)\n\nSimilar logic applied to Mahalanobis distance scores:\n```python\ndef first_crossing_point_md(\n    md_sequence: np.ndarray,\n    threshold: float,\n    consecutive_k: int = DETECTION_WINDOW,\n) -> Optional[int]:\n    n = len(md_sequence)\n    if n < consecutive_k:\n        return None\n    for i in range(n - consecutive_k + 1):\n        if all(md_sequence[i:i + consecutive_k] > threshold):\n            return i\n    return None\n```\n\nAnd line 136:\n```python\ncrossing_rate = detected_count / n_traces if n_traces > 0 else 0.0\n```\n\n### Context from Paper\n\nFrom the paper methodology (method.tex, line 40), crossing rate is defined as formalizing **\"cross-layer prediction disagreement\"** and is distinguished from threshold-based metrics because it inflates at shallow layers where representations are compressed (causing frequent threshold crossings independently of discriminative power)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "658a1a75-037f-43c4-88d9-2f89dd5fd282",
+            "isSidechain": true,
+            "agentId": "a9322324f9805485d",
+            "requestId": "req_011CbE3AynNhQBL64u1swEVi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2b3acb2e-f5f9-4fa2-8ca7-d86aa8c610aa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/contrastive_trace_safety/.claude/sessions/paper_agent_bacd83c4",
+            "sessionId": "6023e96c-29ed-4521-bf4e-798895ee2063",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "polished-swimming-salamander",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XCB45stctj2AseQKsSmDW4",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2178,
+                "cache_read_input_tokens": 48882,
+                "output_tokens": 837,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2178
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 837,
+                    "cache_read_input_tokens": 48882,
+                    "cache_creation_input_tokens": 2178,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2178,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        }
+      ],
+      "message_count": 42
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-repository-at-home-ubuntu-agent-ml-research-idea-gen-0509-5-projects-co.md"
+}

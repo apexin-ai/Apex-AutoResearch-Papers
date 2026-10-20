@@ -1,0 +1,748 @@
+{
+  "schema_version": "1.0",
+  "id": "e25f46ec6102a051ddf9",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer 2 (R2) for a top ML venue paper review. Your focus is **Novelty and Related Work**. Review the paper th",
+  "task_key": "agent-ab7109463d20a2104",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ab7109463d20a2104.jsonl",
+    "occurrence": 1,
+    "bytes": 104411,
+    "sha256": "e4767ed946452768f3fc293ad947eaee9ee19157365f7aad306e9f48204e545c"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T16:10:01.401Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer 2 (R2) for a top ML venue paper review. Your focus is **Novelty and Related Work**. Review the paper thoroughly and produce a structured review.\n\n## Paper Summary\n\n**Title**: \"Evaluation Methodology Dominates Mining Strategy: A Systematic Study of Confounds in Contrastive Code Retrieval\"\n\nThe paper compares 4 negative mining strategies (random, embedding-distance, BM25, dataflow-aware) across 3 encoder architectures (Qwen2.5-Coder-3B, StarCoder2-3B, UniXcoder-base 125M) for contrastive code retrieval trained on SWE-smith (14,100 instances, 131 repos). The central claim is that evaluation methodology choices (pool size, checkpoint criterion, temperature, seed, data size) account for 10-16pp variation in R@1, while the best mining strategy contributes at most 0.4pp — a 40× ratio.\n\n## Paper Structure\n\n### Abstract\nHard negative mining is widely assumed to be key for code retrieval. This paper conducts controlled study of 4 strategies × 3 encoders. Central finding: evaluation methodology accounts for 10-16pp variation, mining strategy ≤0.4pp (40× ratio). Embedding mining marginal on Qwen only (+0.40pp, CI includes zero). Proposes standardized evaluation recommendations.\n\n### Introduction\n- Repository-level code retrieval is foundational for automated SE\n- Contrastive learning with hard negative mining is dominant paradigm\n- Prior work: CoCoHaNeRe (gradient-based), LocAgent (graph-guided), ARISE (structure-aware)\n- Field has contradictory findings → hypothesis: caused by unstandardized evaluation methodology\n- Three contributions: (1) methodology dominates 40×, (2) mining effect is encoder-specific, (3) geometry analysis explains encoder-specificity\n\n### Related Work (Section 2)\nThree paragraphs:\n1. **Hard negative mining for code**: CoCoHaNeRe [2025] (gradient-based > static embedding), ANCE [Xiong et al., 2021] (async index refresh). Paper claims to differ by controlling for methodology confounds.\n2. **Structure-aware code retrieval**: LocAgent [2024], RANGER [2024], CodexGraph [2024] (structural graphs at inference). ARISE [2024] (intra-procedural data-flow at runtime). Paper uses inter-procedural at training time via CodeQL.\n3. **Evaluation methodology in IR**: Zobel [1998] (pool depth, metric sensitivity). Paper extends to code retrieval.\n\n### Method (Section 3)\n- Task: SWE-smith, 14,100 instances, 131 repos\n- Training: LoRA, InfoNCE, K=7, τ=0.1\n- 4 strategies: Random, Embedding-distance (static), BM25, Dataflow-aware (CodeQL 2-hop, 34% coverage)\n- 3 encoders with distinct geometry\n- Evaluation: R@1 with explicit pool size\n\n### Experiments (Sections 4.1-4.13)\nExtensive experiments: main 9-run results for 3 encoders, BM25 baseline, methodology confound decomposition, pool size sensitivity, checkpoint criterion effect, temperature ablation, data scaling, dynamic mining, RepoBench-R cross-file eval, stratified analysis, statistical summary with bootstrap CIs, hop depth and fusion ablations.\n\n### Discussion (Section 5)\n- 5.1: Why methodology dominates (pool size creates \"criterion mismatch\")\n- 5.2: Geometry explains encoder-specificity (Qwen saturated → harder negatives help; StarCoder healthy margin → random already informative)\n- 5.3: Implications + 4 recommendations for the field\n- 5.4: Three limitations (3 seeds underpowered, only 3B/125M scale, dataflow 34% coverage)\n\n### Conclusion\nMethodology choices dominate mining effects 40×. Recommends standardized evaluation protocols.\n\n### References\n8 references total: CoCoHaNeRe [2025], LocAgent [2024], RANGER [2024], CodexGraph [2024], ARISE [2024], Xiong et al. [2021], Zobel [1998], SWE-smith [2025].\n\n## Your Review Task\n\nEvaluate:\n1. **Novelty**: Is the central contribution (methodology > mining) novel and significant? Is this an obvious finding dressed up, or a genuine insight?\n2. **Related work completeness**: Are key prior works covered? What's missing?\n3. **Positioning**: Does the paper fairly represent prior work? Is the \"contradictory findings\" framing accurate?\n4. **Contribution significance**: Would this change how the community does research? Are the recommendations actionable?\n5. **Framing and narrative**: Is pivoting from \"mining helps\" to \"methodology dominates\" intellectually honest given the data?\n6. **Scope and generalizability**: How well do findings generalize beyond this specific setup?\n\nConsider these aspects:\n- The related work section is quite thin (3 short paragraphs, 8 references). For a methodology paper, this is notably sparse.\n- The paper references \"contradictory findings\" in the literature but doesn't actually cite specific contradictions\n- The \"40× ratio\" framing compares apples to oranges (methodology range vs strategy delta)\n- The geometry hypothesis (saturation explains encoder-specificity) is interesting but not rigorously tested\n- The recommendations in 5.3 are sensible but somewhat obvious (report at realistic pool sizes, use multiple seeds, etc.)\n- Is quantifying well-known confounds a sufficient contribution for a top venue?\n- The paper only tests on code retrieval — how well does this generalize to NL retrieval?\n\n## Output Format\n\n```\n## R2 Review: Novelty & Related Work\n\n### Summary\n[2-3 sentences]\n\n### Strengths\n[Numbered list, 4-6 items]\n\n### Weaknesses\n[Numbered list, 4-6 items]\n\n### Questions for Authors\n[Numbered list, 3-5 items]\n\n### Minor Issues\n[Numbered list]\n\n### Overall Assessment\nScore: [1-6 scale: 1=Strong Reject, 2=Reject, 3=Weak Reject, 4=Weak Accept, 5=Accept, 6=Strong Accept]\nConfidence: [1-5: 1=low, 5=expert]\n[2-3 sentence justification]\n```\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "c3dda3bd-dec5-4061-acb9-820fe469aaa2",
+            "agentId": "ab7109463d20a2104",
+            "type": "user",
+            "uuid": "e7468b5b-337e-48e7-8ca5-3b352f116037",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T16:10:01.403Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e7468b5b-337e-48e7-8ca5-3b352f116037",
+                "isSidechain": true,
+                "agentId": "ab7109463d20a2104",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "da0e5ff7-0be3-4505-896b-ed4a175f213f",
+                "timestamp": "2026-05-16T16:10:01.403Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T16:10:04.806Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eb7cM7SWG9bJ2JnpVdKC6n",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da0e5ff7-0be3-4505-896b-ed4a175f213f",
+            "isSidechain": true,
+            "agentId": "ab7109463d20a2104",
+            "requestId": "req_011Cb6YE3gxd4ru6JdN9UT2B",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "36847159-532f-404b-a217-33d2c11a1e96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjJgks6cyVrKxcNEb3VANy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 7364,
+                "cache_read_input_tokens": 8249,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7364,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T16:10:04.809Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Eb7cM7SWG9bJ2JnpVdKC6n",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36847159-532f-404b-a217-33d2c11a1e96",
+            "isSidechain": true,
+            "promptId": "c3dda3bd-dec5-4061-acb9-820fe469aaa2",
+            "agentId": "ab7109463d20a2104",
+            "type": "user",
+            "uuid": "4ff60a80-13ca-4d47-b9c5-6aa002d2eee0",
+            "sourceToolAssistantUUID": "36847159-532f-404b-a217-33d2c11a1e96",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T16:10:08.372Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XsB8QMzsGuYHuAkmmvmjFc",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "report.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ff60a80-13ca-4d47-b9c5-6aa002d2eee0",
+            "isSidechain": true,
+            "agentId": "ab7109463d20a2104",
+            "requestId": "req_011Cb6YEJtWfqGi4jVpYaBvd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2f885854-7347-4312-bf03-3af2240090ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NMAgARQbyfFwvhJ5frTBB4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1269,
+                "cache_read_input_tokens": 15613,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1269,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T16:10:08.387Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XsB8QMzsGuYHuAkmmvmjFc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-16\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| unixcoder-3strat-s43 | UniXcoder-base s43: 3 strategies (random/embedding/dataflow) × seed 43, patience=2。与 s42 (patience=3) 构成 2-seed 统计，验证 null result 稳定性。Director D064 批准。 | — | — | — |\\\\n| m2_full_starcoder_resumed | M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。 | — | — | — |\\\\n| m2_full_qwen_continued | M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan_018_bm25: BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。（排队等待 GPU）\\\\n- plan_015_dynamic: Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。（排队等待 GPU）\\\\n- plan_005_stratified: Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。（准备中）\\\\n- unixcoder-3strat-s44: UniXcoder-base s44: 3 strategies (random/embedding/dataflow) × seed 44, patience=2。与 s42/s43 构成 3-seed 统计，确认 encoder-only/small-scale null result。Director D064 批准。（准备中）\\\\n- qwen_random_s42_retrain: Qwen random_s42 重训（统一 regime: 2 epoch + early_stopping_patience=2）。原 s42 用 3 epoch + patience=0 导致 pool=50 R@1 异常低（0.2730 vs s43=0.3138/s44=0.3181），不可纳入 cross-seed 统计。重训后可补完 3-seed comparison。Director 批准方案 B。（准备中）\\\\n\\\\n## 近期结论\\\\n- **unixcoder-3strat-s42** (negative): UniXcoder-base (125M, encoder-only RoBERTa) 第三 encoder: 3 strategies (random/embedding/dataflow) × seed 42。验证 embedding distance mining 优势是否跨架构泛化（encoder-only vs decoder-only）。batch_size=16, max_seq_length=1024, LoRA, gradient-checkpointing。\\\\n- **unixcoder_3strat_s42** (failed): UniXcoder-base 第三 encoder: 3 strategies (random/embedding/dataflow) × seed 42。验证 embedding distance mining 优势是否跨架构泛化（RoBERTa vs decoder-only）。\\\\n- **m1_reextract_v2** (success): M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。 ← 基于 m1_extraction\\\\n\\\\n## 趋势\\\\n成功 12 / 负向 3 / 失败 5 / 共 34\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-42106: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- p2b-smoke-test: 已被终止 — unknown\\\\n- p2b-smoke2: 已被终止 — unknown\\\\n- p2b-smoke3: 已被终止 — unknown\\\\n- p2b-smoke4: 已被终止 — unknown\\\\n- p2b-smoke5: 已被终止 — unknown\\\\n- p2b-smoke6: 已被终止 — unknown\\\\n- p2b-smoke7: 已被终止 — unknown\\\\n- p2b-smoke8: 已被终止 — unknown\\\\n- p2b-all-9runs: 已被终止 — unknown\\\\n- mvp_p2b_contrastive_training: 已被终止 — unknown\\\\n- mvp_p2b_contrastive_v2: 已被终止 — unknown\\\\n- p2b_eval_all: 已被终止 — unknown\\\\n- m2_early_pilot: 已被终止 — unknown\\\\n- m2_early_pilot_v2: 训练失败 — unknown\\\\n- m2_early_pilot_v3: 已被终止 — unknown\\\\n- m2_full_starcoder: 训练失败 — unknown\\\\n- m1_reextract: 训练失败 — unknown\\\\n- plan_003_swebench_eval: 训练失败 — unknown\\\\n- unixcoder_3strat_s42: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 3264, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f885854-7347-4312-bf03-3af2240090ac",
+            "isSidechain": true,
+            "promptId": "c3dda3bd-dec5-4061-acb9-820fe469aaa2",
+            "agentId": "ab7109463d20a2104",
+            "type": "user",
+            "uuid": "0dcaa3d7-b3ec-4567-b506-fbb6b48d7ba2",
+            "sourceToolAssistantUUID": "2f885854-7347-4312-bf03-3af2240090ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T16:10:08.927Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LQXnRqw7aTeqfFbYmW5WuE",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "literature_map.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0dcaa3d7-b3ec-4567-b506-fbb6b48d7ba2",
+            "isSidechain": true,
+            "agentId": "ab7109463d20a2104",
+            "requestId": "req_011Cb6YEJtWfqGi4jVpYaBvd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dcebd19a-6cfc-4c1f-85b5-a22535e68a9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NMAgARQbyfFwvhJ5frTBB4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1269,
+                "cache_read_input_tokens": 15613,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1269,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T16:10:08.947Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LQXnRqw7aTeqfFbYmW5WuE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/literature_map.yaml\\\", \\\"content\\\": \\\"# StructFuse — Related Work Literature Map\\\\n# 最后更新: 2026-05-14\\\\n# 说明: 只收录已验证存在的论文。每篇均经 WebSearch 确认标题/venue/year。\\\\n# 总计: 60 entries (含 2 个软件工具引用)\\\\n\\\\ncategories:\\\\n\\\\n  # ==========================================================================\\\\n  # Category 1: Code Retrieval for Bug Fixing / SWE-bench Ecosystem\\\\n  # ==========================================================================\\\\n  code_retrieval_bug_fixing:\\\\n    description: \\\\\\\"SWE-bench 及相关 repo-level 自动修复系统中的代码检索方法\\\\\\\"\\\\n    papers:\\\\n\\\\n      - title: \\\\\\\"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\\\\\\\"\\\\n        authors: \\\\\\\"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan\\\\\\\"\\\\n        venue: ICLR\\\\n        year: 2024\\\\n        relation: baseline\\\\n        summary: \\\\\\\"从 GitHub issues 构建 repo-level bug fixing benchmark，成为自动修复领域标准评估集。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\\\\\\\"\\\\n        authors: \\\\\\\"John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press\\\\\\\"\\\\n        venue: NeurIPS\\\\n        year: 2024\\\\n        relation: competitor\\\\n        summary: \\\\\\\"基于 LLM agent 的交互式 bug fixing 系统，定义了 ACI 接口范式。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"AutoCodeRover: Autonomous Program Improvement\\\\\\\"\\\\n        authors: \\\\\\\"Yuntong Zhang, Haifeng Ruan, Zhiyu Fan, Abhik Roychoudhury\\\\\\\"\\\\n        venue: ISSTA\\\\n        year: 2024\\\\n        relation: competitor\\\\n        summary: \\\\\\\"结合代码搜索与 spectrum-based fault localization，利用程序分析缩小修复范围。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Agentless: Demystifying LLM-based Software Engineering Agents\\\\\\\"\\\\n        authors: \\\\\\\"Chunqiu Steven Xia, Yinlin Deng, Soren Dunn, Lingming Zhang\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2024\\\\n        relation: competitor\\\\n        summary: \\\\\\\"无 agent 架构的 two-phase localize-then-repair 方法，在 SWE-bench 上取得强 baseline。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"SWE-smith: Scaling Data for Software Engineering Agents\\\\\\\"\\\\n        authors: \\\\\\\"John Yang, Kilian Lieret, Carlos E. Jimenez, Alexander Wettig, Kabir Khandpur, Yanzhe Zhang, Binyuan Hui, Ofir Press, Ludwig Schmidt, Diyi Yang\\\\\\\"\\\\n        venue: \\\\\\\"NeurIPS (Datasets & Benchmarks, Spotlight)\\\\\\\"\\\\n        year: 2025\\\\n        relation: building-block\\\\n        summary: \\\\\\\"自动从 GitHub 生成大规模 SWE-bench 风格训练数据，StructFuse 用其 repos 做 data-flow 提取。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems\\\\\\\"\\\\n        authors: \\\\\\\"Tianyang Liu, Canwen Xu, Julian McAuley\\\\\\\"\\\\n        venue: ICLR\\\\n        year: 2024\\\\n        relation: baseline\\\\n        summary: \\\\\\\"Repo-level 代码补全/检索 benchmark，含 RepoBench-R 检索子任务。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"SweRank: Software Issue Localization with Code Ranking\\\\\\\"\\\\n        authors: \\\\\\\"Revanth Gangi Reddy, Tarun Suresh, JaeHyeok Doo, Ye Liu, Xuan Phi Nguyen, Yingbo Zhou, Semih Yavuz, Caiming Xiong, Heng Ji, Shafiq Joty\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2025\\\\n        relation: competitor\\\\n        summary: \\\\\\\"Retrieve-and-rerank 框架用于 software issue localization，在 SWE-Bench-Lite 和 LocBench 上 SOTA，text-based retrieval baseline。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"SWE-Fixer: Training Open-Source LLMs for Effective and Efficient GitHub Issue Resolution\\\\\\\"\\\\n        authors: \\\\\\\"Chengxing Xie, Bowen Li, Chang Gao, He Du, Wai Lam, Difan Zou, Kai Chen\\\\\\\"\\\\n        venue: \\\\\\\"ACL (Findings)\\\\\\\"\\\\n        year: 2025\\\\n        relation: competitor\\\\n        summary: \\\\\\\"BM25 + LLM retriever 的 coarse-to-fine file retrieval pipeline，在 SWE-Bench Verified 上 30.2%。\\\\\\\"\\\\n\\\\n  # ==========================================================================\\\\n  # Category 2: Hard Negative Mining in Contrastive Learning\\\\n  # ==========================================================================\\\\n  hard_negative_mining:\\\\n    description: \\\\\\\"对比学习中 hard negative 挖掘策略，以及密集检索中的负样本选择\\\\\\\"\\\\n    papers:\\\\n\\\\n      - title: \\\\\\\"Dense Passage Retrieval for Open-Domain Question Answering\\\\\\\"\\\\n        authors: \\\\\\\"Vladimir Karpukhin, Barlas Oguz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov, Danqi Chen, Wen-tau Yih\\\\\\\"\\\\n        venue: EMNLP\\\\n        year: 2020\\\\n        relation: background\\\\n        summary: \\\\\\\"DPR 开创了 in-batch negatives + BM25 hard negatives 的双塔检索范式。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval\\\\\\\"\\\\n        authors: \\\\\\\"Lee Xiong, Chenyan Xiong, Ye Li, Kwok-Fung Tang, Jialin Liu, Paul Bennett, Junaid Ahmed, Arnold Overwijk\\\\\\\"\\\\n        venue: ICLR\\\\n        year: 2021\\\\n        relation: background\\\\n        summary: \\\\\\\"ANCE 用 ANN index 动态挖掘 embedding-distance hard negatives，StructFuse 的 baseline negative 策略之一。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"A Simple Framework for Contrastive Learning of Visual Representations\\\\\\\"\\\\n        authors: \\\\\\\"Ting Chen, Simon Kornblith, Mohammad Norouzi, Geoffrey Hinton\\\\\\\"\\\\n        venue: ICML\\\\n        year: 2020\\\\n        relation: background\\\\n        summary: \\\\\\\"SimCLR 视觉对比学习奠基工作，证明 hard negatives 和大 batch size 对对比学习的重要性。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks\\\\\\\"\\\\n        authors: \\\\\\\"Nils Reimers, Iryna Gurevych\\\\\\\"\\\\n        venue: EMNLP\\\\n        year: 2019\\\\n        relation: background\\\\n        summary: \\\\\\\"Siamese/triplet 网络训练句子嵌入，StructFuse 的对比训练框架与其类似。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Curriculum Learning for Dense Retrieval Distillation\\\\\\\"\\\\n        authors: \\\\\\\"Hansi Zeng, Hamed Zamani, Vishwa Vinay\\\\\\\"\\\\n        venue: \\\\\\\"SIGIR (Best Short Paper)\\\\\\\"\\\\n        year: 2022\\\\n        relation: background\\\\n        summary: \\\\\\\"CL-DRD: 课程学习式知识蒸馏用于密集检索，从粗粒度到细粒度逐步增加训练难度。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Effective Hard Negative Mining for Contrastive Learning-Based Code Search\\\\\\\"\\\\n        authors: \\\\\\\"Fan Y., Li C., Ge J., Huang L., Luo B.\\\\\\\"\\\\n        venue: \\\\\\\"ACM TOSEM\\\\\\\"\\\\n        year: 2025\\\\n        relation: contrast-target\\\\n        summary: \\\\\\\"CoCoHaNeRe: 提出可微分 hard negative 机制用于代码搜索对比学习。其对 hard negative 机制的处理与 StructFuse 的发现形成关键对照——StructFuse 证明 true embedding-distance mining 即可持续提升性能。\\\\\\\"\\\\n        note: \\\\\\\"关键引用：StructFuse Claim 1 的 correction target。CoCoHaNeRe 论点是非可微 embedding negatives 学习'slow and ineffective'，StructFuse 证明用 true embedding distance mining 仍然有效。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Representation Learning with Contrastive Predictive Coding\\\\\\\"\\\\n        authors: \\\\\\\"Aaron van den Oord, Yazhe Li, Oriol Vinyals\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2018\\\\n        relation: background\\\\n        summary: \\\\\\\"InfoNCE 损失函数：对比预测编码的无监督表示学习。StructFuse 训练目标的理论根基。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Contrastive Learning with Hard Negative Samples\\\\\\\"\\\\n        authors: \\\\\\\"Joshua David Robinson, Ching-Yao Chuang, Suvrit Sra, Stefanie Jegelka\\\\\\\"\\\\n        venue: ICLR\\\\n        year: 2021\\\\n        relation: method-component\\\\n        summary: \\\\\\\"HCL: 可控 hard negative 采样，证明更难的 negatives 加速和改善学习，但暗示过度 hard 会导致问题。StructFuse difficulty analysis 的理论起点。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Debiased Contrastive Learning\\\\\\\"\\\\n        authors: \\\\\\\"Ching-Yao Chuang, Joshua Robinson, Yen-Chen Lin, Antonio Torralba, Stefanie Jegelka\\\\\\\"\\\\n        venue: NeurIPS\\\\n        year: 2020\\\\n        relation: method-component\\\\n        summary: \\\\\\\"DCL: 去偏对比目标，修正 false negatives（同类样本被当作 negatives）问题。False negative 是 hard negative 过拟合的重要来源。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Hard Negative Mixing for Contrastive Learning\\\\\\\"\\\\n        authors: \\\\\\\"Yannis Kalantidis, Mert Bulent Sariyildiz, Noe Pion, Philippe Weinzaepfel, Diane Larlus\\\\\\\"\\\\n        venue: NeurIPS\\\\n        year: 2020\\\\n        relation: method-component\\\\n        summary: \\\\\\\"MoCHi: feature-level hard negative 混合合成，开销极小。与 StructFuse 的 structure-based negative mining 形成对比。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Understanding Hard Negatives in Noise Contrastive Estimation\\\\\\\"\\\\n        authors: \\\\\\\"Wenzheng Zhang, Karl Stratos\\\\\\\"\\\\n        venue: NAACL\\\\n        year: 2021\\\\n        relation: background\\\\n        summary: \\\\\\\"理论分析：用模型分布作为 negative 分布可减少梯度偏差。为 hard negative 作用提供理论解释。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"ProGCL: Rethinking Hard Negative Mining in Graph Contrastive Learning\\\\\\\"\\\\n        authors: \\\\\\\"Jun Xia, Lirong Wu, Ge Wang, Jintao Chen, Stan Z. Li\\\\\\\"\\\\n        venue: ICML\\\\n        year: 2022\\\\n        relation: method-component\\\\n        summary: \\\\\\\"揭示图对比学习中 hard negative = false negative 的陷阱，提出基于概率的 hardness 区分 true/false negatives。与 StructFuse difficulty-overfitting 发现呼应。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Difficulty-Based Sampling for Debiased Contrastive Representation Learning\\\\\\\"\\\\n        authors: \\\\\\\"Taeuk Jang, Xiaoqian Wang\\\\\\\"\\\\n        venue: CVPR\\\\n        year: 2023\\\\n        relation: method-component\\\\n        summary: \\\\\\\"WCL: 用 difficulty 分层采样 + bias-amplifying encoder 找信息性 hard negatives 同时避免 false negatives。与 StructFuse difficulty stratification 思路最接近。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion\\\\\\\"\\\\n        authors: \\\\\\\"Xingwei He, Yeyun Gong, A-Long Jin, Hang Zhang, Anlei Dong, Jian Jiao, Siu Ming Yiu, Nan Duan\\\\\\\"\\\\n        venue: EMNLP\\\\n        year: 2023\\\\n        relation: background\\\\n        summary: \\\\\\\"课程采样策略 + pseudo-query 文档扩展，解决双塔检索训练-推理差异。StructFuse 的 structure-grounded negatives 提供正交的课程形式。\\\\\\\"\\\\n\\\\n  # ==========================================================================\\\\n  # Category 3: Contrastive Learning for Code\\\\n  # ==========================================================================\\\\n  contrastive_code_learning:\\\\n    description: \\\\\\\"代码领域的对比学习方法，训练时利用代码特性构建正负样本\\\\\\\"\\\\n    papers:\\\\n\\\\n      - title: \\\\\\\"Contrastive Code Representation Learning\\\\\\\"\\\\n        authors: \\\\\\\"Paras Jain, Ajay Jain, Tianjun Zhang, Pieter Abbeel, Joseph Gonzalez, Ion Stoica\\\\\\\"\\\\n        venue: EMNLP\\\\n        year: 2021\\\\n        relation: background\\\\n        summary: \\\\\\\"ContraCode: 自监督对比预训练，通过编译器变换生成功能等价的程序变体，学习代码功能而非表面形式。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"CodeRetriever: A Large Scale Contrastive Pre-Training Method for Code Search\\\\\\\"\\\\n        authors: \\\\\\\"Xiaonan Li, Yeyun Gong, Yelong Shen, Xipeng Qiu, Hang Zhang, Bolun Yao, Weizhen Qi, Daxin Jiang, Weizhu Chen, Nan Duan\\\\\\\"\\\\n        venue: EMNLP\\\\n        year: 2022\\\\n        relation: background\\\\n        summary: \\\\\\\"结合 unimodal (code-code) 和 bimodal (code-text) 对比学习预训练代码表示，在 11 个代码搜索 benchmark 上 SOTA。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Towards Learning (Dis)-Similarity of Source Code from Program Contrasts\\\\\\\"\\\\n        authors: \\\\\\\"Yangruibo Ding, Luca Buratti, Saurabh Pujar, Alessandro Morari, Baishakhi Ray, Saikat Chakraborty\\\\\\\"\\\\n        venue: \\\\\\\"ACL (Long Papers)\\\\\\\"\\\\n        year: 2022\\\\n        relation: background\\\\n        summary: \\\\\\\"利用程序结构和功能属性构建对比样本对，学习代码相似性/差异性表示。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"CoCoSoDa: Effective Contrastive Learning for Code Search\\\\\\\"\\\\n        authors: \\\\\\\"Ensheng Shi, Yanlin Wang, Wenchao Gu, Lun Du, Hongyu Zhang, Shi Han, Dongmei Zhang, Hongbin Sun\\\\\\\"\\\\n        venue: ICSE\\\\n        year: 2023\\\\n        relation: direct-competitor\\\\n        summary: \\\\\\\"对比代码搜索 + soft data augmentation + momentum-based negative enrichment。在 negative 数量维度与 StructFuse 互补（momentum queue vs. difficulty-aware selection）。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation\\\\\\\"\\\\n        authors: \\\\\\\"Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, Xin Jiang\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2021\\\\n        relation: background\\\\n        summary: \\\\\\\"语法引导的多模态对比预训练，对齐 code/NL/AST 三模态。通过 identifier prediction 和 AST edge prediction 显式编码句法结构。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning\\\\\\\"\\\\n        authors: \\\\\\\"Shangqing Liu, Bozhi Wu, Xiaofei Xie, Guozhu Meng, Yang Liu\\\\\\\"\\\\n        venue: ICSE\\\\n        year: 2023\\\\n        relation: background\\\\n        summary: \\\\\\\"鲁棒性导向的对比预训练，设计 9 种对抗增强算子（identifier renaming, dead code insertion, operand swapping 等），提升模型对对抗攻击的鲁棒性。\\\\\\\"\\\\n\\\\n  # ==========================================================================\\\\n  # Category 4: Program Analysis for ML\\\\n  # ==========================================================================\\\\n  program_analysis_for_ml:\\\\n    description: \\\\\\\"静态分析辅助 ML，结构信息在代码表示学习中的应用\\\\\\\"\\\\n    papers:\\\\n\\\\n      - title: \\\\\\\"CodeQL: Semantic Code Analysis Engine\\\\\\\"\\\\n        authors: \\\\\\\"GitHub / Semmle\\\\\\\"\\\\n        venue: \\\\\\\"Tool (open-source)\\\\\\\"\\\\n        year: 2019\\\\n        relation: building-block\\\\n        summary: \\\\\\\"基于 Datalog 的代码查询引擎，支持 inter-procedural data-flow 分析。StructFuse 用它提取 scope-bounded data-flow graph。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"code2vec: Learning Distributed Representations of Code\\\\\\\"\\\\n        authors: \\\\\\\"Uri Alon, Meital Zilberstein, Omer Levy, Eran Yahav\\\\\\\"\\\\n        venue: POPL\\\\n        year: 2019\\\\n        relation: background\\\\n        summary: \\\\\\\"用 AST path 学习代码向量表示，首次大规模证明结构信息对代码表示学习的价值。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"code2seq: Generating Sequences from Structured Representations of Code\\\\\\\"\\\\n        authors: \\\\\\\"Uri Alon, Shaked Brody, Omer Levy, Eran Yahav\\\\\\\"\\\\n        venue: ICLR\\\\n        year: 2019\\\\n        relation: background\\\\n        summary: \\\\\\\"code2vec 的序列生成扩展，用 AST path attention 生成方法名摘要。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Detecting Code Clones with Graph Neural Network and Flow-Augmented Abstract Syntax Tree\\\\\\\"\\\\n        authors: \\\\\\\"Wenhan Wang, Ge Li, Bo Ma, Xin Xia, Zhi Jin\\\\\\\"\\\\n        venue: SANER\\\\n        year: 2020\\\\n        relation: background\\\\n        summary: \\\\\\\"FA-AST: 用 data-flow 增强 AST 进行代码克隆检测，与 StructFuse 用 data-flow 做 hard negative 挖掘思路相关。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"GraphCodeBERT: Pre-training Code Representations with Data Flow\\\\\\\"\\\\n        authors: \\\\\\\"Daya Guo, Shuo Ren, Shuai Lu, Zhangyin Feng, Duyu Tang, Shujie Liu, Long Zhou, Nan Duan, Alexey Svyatkovskiy, Shengyu Fu, Michele Tufano, Shao Kun Deng, Colin Clement, Dawn Drain, Neel Sundaresan, Jian Yin, Daxin Jiang, Ming Zhou\\\\\\\"\\\\n        venue: ICLR\\\\n        year: 2021\\\\n        relation: background\\\\n        summary: \\\\\\\"在预训练中引入 data-flow edge，证明 data-flow 信息提升代码理解任务。StructFuse 的 insight 与此相关但用途不同（hard negative mining vs pre-training）。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair\\\\\\\"\\\\n        authors: \\\\\\\"Shahd Seddik, Fatemeh Fard\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2026\\\\n        relation: contrast\\\\n        summary: \\\\\\\"用 multi-granularity program graph（含 intra-procedural def-use edges）辅助 LLM agent 做 fault localization。仅 intra-procedural + runtime tool calls，与 StructFuse 的 inter-procedural static mining 互补。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimization\\\\\\\"\\\\n        authors: \\\\\\\"Chris Cummins, Zacharias V. Fisches, Tal Ben-Nun, Torsten Hoefler, Michael FP O'Boyle, Hugh Leather\\\\\\\"\\\\n        venue: ICML\\\\n        year: 2021\\\\n        relation: background\\\\n        summary: \\\\\\\"语言无关的全程序图表示（control-flow + data-flow + call relations），证明整程序结构表示可学习且有效。StructFuse 使用 inter-procedural data-flow 的概念根基。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion\\\\\\\"\\\\n        authors: \\\\\\\"Yangruibo Ding, Zijian Wang, Wasi Uddin Ahmad, Hantian Ding, Ming Tan, Nihal Jain, Murali Krishna Ramanathan, Ramesh Nallapati, Parminder Bhatia, Dan Roth, Bing Xiang\\\\\\\"\\\\n        venue: NeurIPS\\\\n        year: 2023\\\\n        relation: background\\\\n        summary: \\\\\\\"多语言 cross-file 代码补全 benchmark，用静态分析确定需 cross-file 依赖的补全目标。验证了跨文件上下文对代码任务的关键性。\\\\\\\"\\\\n\\\\n  # ==========================================================================\\\\n  # Category 5: Code Embeddings / Code Search\\\\n  # ==========================================================================\\\\n  code_embeddings_search:\\\\n    description: \\\\\\\"代码嵌入模型和代码搜索方法\\\\\\\"\\\\n    papers:\\\\n\\\\n      - title: \\\\\\\"CodeSearchNet Challenge: Evaluating the State of Semantic Code Search\\\\\\\"\\\\n        authors: \\\\\\\"Hamel Husain, Ho-Hsiang Wu, Tiferet Gazit, Miltiadis Allamanis, Marc Brockschmidt\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2019\\\\n        relation: background\\\\n        summary: \\\\\\\"代码语义搜索 benchmark 和数据集，推动了代码嵌入模型的发展。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"CodeBERT: A Pre-Trained Model for Programming and Natural Languages\\\\\\\"\\\\n        authors: \\\\\\\"Zhangyin Feng, Daya Guo, Duyu Tang, Nan Duan, Xiaocheng Feng, Ming Gong, Lixin Zou, Bing Qin, Ting Liu, Daxin Jiang, Ming Zhou\\\\\\\"\\\\n        venue: \\\\\\\"EMNLP (Findings)\\\\\\\"\\\\n        year: 2020\\\\n        relation: background\\\\n        summary: \\\\\\\"首个编程语言-自然语言双模态预训练模型，代码嵌入的早期里程碑。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"UniXcoder: Unified Cross-Modal Pre-training for Code Representation\\\\\\\"\\\\n        authors: \\\\\\\"Daya Guo, Shuai Lu, Nan Duan, Yanlin Wang, Ming Zhou, Jian Yin\\\\\\\"\\\\n        venue: ACL\\\\n        year: 2022\\\\n        relation: background\\\\n        summary: \\\\\\\"统一跨模态代码预训练，在代码搜索等任务上取得 SOTA。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"StarCoder: May the Source Be with You!\\\\\\\"\\\\n        authors: \\\\\\\"Raymond Li, Loubna Ben Allal, et al. (BigCode)\\\\\\\"\\\\n        venue: TMLR\\\\n        year: 2023\\\\n        relation: building-block\\\\n        summary: \\\\\\\"大规模开源代码 LLM，StructFuse 用 StarCoder2-3B 作为对比学习检索器的 backbone 之一。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Code Llama: Open Foundation Models for Code\\\\\\\"\\\\n        authors: \\\\\\\"Baptiste Roziere, Jonas Gehring, Fabian Gloeckle, et al. (Meta AI)\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2023\\\\n        relation: background\\\\n        summary: \\\\\\\"Meta 的代码大模型系列，基于 Llama 2 微调。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Qwen2.5-Coder Technical Report\\\\\\\"\\\\n        authors: \\\\\\\"Binyuan Hui, Jian Yang, Zeyu Cui, et al. (Qwen Team, Alibaba)\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2024\\\\n        relation: building-block\\\\n        summary: \\\\\\\"Qwen 代码模型系列，StructFuse 用 Qwen2.5-Coder-3B 作为对比学习检索器的 backbone。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"DeepSeek-Coder: When the Large Language Model Meets Programming -- The Rise of Code Intelligence\\\\\\\"\\\\n        authors: \\\\\\\"Daya Guo, Qihao Zhu, Dejian Yang, Zhenda Xie, Kai Dong, Wentao Zhang, Guanting Chen, Xiao Bi, Yu Wu, Y.K. Li, Fuli Luo, Yingfei Xiong, Wenfeng Liang\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2024\\\\n        relation: background\\\\n        summary: \\\\\\\"开源代码 LLM 系列 (1.3B-33B)，project-level 代码训练 + 16K context + fill-in-the-blank 预训练。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"RepoFusion: Training Code Models to Understand Your Repository\\\\\\\"\\\\n        authors: \\\\\\\"Disha Shrivastava, Denis Kocetkov, Harm de Vries, Dzmitry Bahdanau, Torsten Scholak\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2023\\\\n        relation: background\\\\n        summary: \\\\\\\"训练代码模型融合多个 cross-file repo context 进行代码补全，小模型 + repo context 可匹配大模型性能。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"BM25\\\\\\\"\\\\n        authors: \\\\\\\"Stephen Robertson, Hugo Zaragoza\\\\\\\"\\\\n        venue: \\\\\\\"Foundations and Trends in Information Retrieval\\\\\\\"\\\\n        year: 2009\\\\n        relation: baseline\\\\n        summary: \\\\\\\"经典稀疏检索方法，StructFuse 的 baseline 之一。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"CoSQA: 20,000+ Web Queries for Code Search and Question Answering\\\\\\\"\\\\n        authors: \\\\\\\"Junjie Huang, Duyu Tang, Linjun Shou, Ming Gong, Ke Xu, Daxin Jiang, Ming Zhou, Nan Duan\\\\\\\"\\\\n        venue: ACL\\\\n        year: 2021\\\\n        relation: background\\\\n        summary: \\\\\\\"20,000+ 真实 web 查询与 Python 代码配对的大规模数据集，弥合合成 benchmark 与真实开发者需求的差距。\\\\\\\"\\\\n\\\\n  # ==========================================================================\\\\n  # Category 6: Graph-Guided Code Navigation (Inference-Time)\\\\n  # ==========================================================================\\\\n  graph_guided_inference:\\\\n    description: \\\\\\\"推理时利用代码结构图辅助导航/检索的方法（与 StructFuse 的训练时结构信号互补）\\\\\\\"\\\\n    papers:\\\\n\\\\n      - title: \\\\\\\"LocAgent: Graph-Guided LLM Agents for Code Localization\\\\\\\"\\\\n        authors: \\\\\\\"Zhaoling Chen, Robert Tang, Gangda Deng, Fang Wu, Jialong Wu, Zhiwei Jiang, Viktor Prasanna, Arman Cohan, Xingyao Wang\\\\\\\"\\\\n        venue: ACL\\\\n        year: 2025\\\\n        relation: contrast\\\\n        summary: \\\\\\\"将代码库解析为有向异构图，LLM agent 通过 multi-hop 推理在图上导航做代码定位。推理时用结构图，StructFuse 训练时用。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases\\\\\\\"\\\\n        authors: \\\\\\\"Xiangyan Liu, Bo Lan, Zhiyuan Hu, Yang Liu, Zhicheng Zhang, Fei Wang, Michael Qizhe Shieh, Wenmeng Zhou\\\\\\\"\\\\n        venue: NAACL\\\\n        year: 2025\\\\n        relation: contrast\\\\n        summary: \\\\\\\"将代码库索引到图数据库，LLM agent 通过 graph query 接口检索结构化上下文。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"RANGER: Repository-Level Agent for Graph-Enhanced Retrieval\\\\\\\"\\\\n        authors: \\\\\\\"Pratik Shah, Rajat Ghosh, Aryan Singhal, Debojyoti Dutta\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2025\\\\n        relation: contrast\\\\n        summary: \\\\\\\"构建 repo 知识图（含 variable-level 节点），dual-stage retrieval: Cypher lookup + MCTS-guided graph exploration。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"RepoGraph: Enhancing AI Software Engineering with Repository-level Code Graph\\\\\\\"\\\\n        authors: \\\\\\\"Siru Ouyang, Wenhao Yu, Kaixin Ma, Zilin Xiao, Zhihan Zhang, Mengzhao Jia, Jiawei Han, Hongming Zhang, Dong Yu\\\\\\\"\\\\n        venue: ICLR\\\\n        year: 2025\\\\n        relation: contrast\\\\n        summary: \\\\\\\"以代码行为节点构建 repo-level 代码图，作为 SE agent 的 plug-in 导航模块。推理时逐行图导航，与 StructFuse 训练时批量提取结构信号互补。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph\\\\\\\"\\\\n        authors: \\\\\\\"Wei Liu, Ailun Yu, Daoguang Zan, Bo Shen, Wei Zhang, Haiyan Zhao, Zhi Jin, Qianxiang Wang\\\\\\\"\\\\n        venue: ASE\\\\n        year: 2024\\\\n        relation: contrast\\\\n        summary: \\\\\\\"构建 code context graph（含 control-flow 和 data-dependence edges）进行 coarse-to-fine 检索辅助代码补全。使用 intra-procedural data-flow，与 StructFuse 的 inter-procedural scope 形成对比。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion\\\\\\\"\\\\n        authors: \\\\\\\"Xingliang Wang, Baoyi Wang, Chen Zhi, Junxiao Han, Xinkui Zhao, Jianwei Yin, Shuiguang Deng\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2025\\\\n        relation: contrast\\\\n        summary: \\\\\\\"构建 repo/module/function 三层多语义代码图（AST + CFG + DFG + call graph + class hierarchy），用 GNN-based hybrid retriever 做层次化检索增强代码补全。推理时图方法，与 StructFuse 训练时结构信号互补。\\\\\\\"\\\\n\\\\n  # ==========================================================================\\\\n  # Category 7: Representation Geometry / Similarity Saturation\\\\n  # ==========================================================================\\\\n  representation_geometry:\\\\n    description: \\\\\\\"预训练模型表示空间几何分析及各向异性修正方法\\\\\\\"\\\\n    papers:\\\\n\\\\n      - title: \\\\\\\"Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere\\\\\\\"\\\\n        authors: \\\\\\\"Tongzhou Wang, Phillip Isola\\\\\\\"\\\\n        venue: ICML\\\\n        year: 2020\\\\n        relation: method-component\\\\n        summary: \\\\\\\"定义 alignment/uniformity 两个对比学习关键属性，证明对比损失渐近优化两者。StructFuse 分析 embedding space 质量的理论工具。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Representation Degeneration Problem in Training Natural Language Generation Models\\\\\\\"\\\\n        authors: \\\\\\\"Jun Gao, Di He, Xu Tan, Tao Qin, Liwei Wang, Tie-Yan Liu\\\\\\\"\\\\n        venue: ICLR\\\\n        year: 2019\\\\n        relation: background\\\\n        summary: \\\\\\\"揭示预训练 LM embedding 退化为窄锥的现象，StructFuse 观察到的 similarity saturation 可追溯到此。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings\\\\\\\"\\\\n        authors: \\\\\\\"Kawin Ethayarajh\\\\\\\"\\\\n        venue: EMNLP\\\\n        year: 2019\\\\n        relation: background\\\\n        summary: \\\\\\\"实证发现 BERT/ELMo/GPT-2 表示占据窄锥（各向异性），StructFuse 使用的 code encoder 继承此问题。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"On the Sentence Embeddings from Pre-trained Language Models\\\\\\\"\\\\n        authors: \\\\\\\"Bohan Li, Hao Zhou, Junxian He, Mingxuan Wang, Yiming Yang, Lei Li\\\\\\\"\\\\n        venue: EMNLP\\\\n        year: 2020\\\\n        relation: method-component\\\\n        summary: \\\\\\\"BERT-flow: 用 normalizing flows 将各向异性句子嵌入变换为各向同性高斯分布。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"SimCSE: Simple Contrastive Learning of Sentence Embeddings\\\\\\\"\\\\n        authors: \\\\\\\"Tianyu Gao, Xingcheng Yao, Danqi Chen\\\\\\\"\\\\n        venue: EMNLP\\\\n        year: 2021\\\\n        relation: method-component\\\\n        summary: \\\\\\\"用 dropout 作为最小增强的对比学习，直接证明 contrastive learning 改善 anisotropy。StructFuse 可引用其 uniformity 分析框架。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Whitening Sentence Representations for Better Semantics and Faster Retrieval\\\\\\\"\\\\n        authors: \\\\\\\"Jianlin Su, Jiarun Cao, Weijie Liu, Yangyiwen Ou\\\\\\\"\\\\n        venue: arXiv\\\\n        year: 2021\\\\n        relation: method-component\\\\n        summary: \\\\\\\"白化操作增强句子表示各向同性并降维，与 StructFuse embedding post-processing 讨论相关。\\\\\\\"\\\\n\\\\n  # ==========================================================================\\\\n  # Category 8: Infrastructure / Tools\\\\n  # ==========================================================================\\\\n  infrastructure:\\\\n    description: \\\\\\\"StructFuse 依赖的核心基础设施和工具\\\\\\\"\\\\n    papers:\\\\n\\\\n      - title: \\\\\\\"Billion-Scale Similarity Search with GPUs\\\\\\\"\\\\n        authors: \\\\\\\"Jeff Johnson, Matthijs Douze, Herve Jegou\\\\\\\"\\\\n        venue: \\\\\\\"IEEE Transactions on Big Data\\\\\\\"\\\\n        year: 2021\\\\n        relation: building-block\\\\n        summary: \\\\\\\"FAISS: GPU 加速的大规模向量相似度搜索库，StructFuse 用于 ANN-based hard negative mining。\\\\\\\"\\\\n\\\\n      - title: \\\\\\\"Tree-sitter: An Incremental Parsing System for Programming Tools\\\\\\\"\\\\n        authors: \\\\\\\"Max Brunsfeld et al.\\\\\\\"\\\\n        venue: \\\\\\\"Software (Zenodo DOI: 10.5281/zenodo.13375512)\\\\\\\"\\\\n        year: 2018\\\\n        relation: building-block\\\\n        summary: \\\\\\\"增量解析库，高效构建和更新 concrete syntax trees。与 CodeQL 互补用于代码结构提取。\\\\\\\"\\\\n        note: \\\\\\\"软件工具，无正式论文。引用 Zenodo DOI 或 GitHub repo。\\\\\\\"\\\\n\\\", \\\"total_chars\\\": 23891, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dcebd19a-6cfc-4c1f-85b5-a22535e68a9a",
+            "isSidechain": true,
+            "promptId": "c3dda3bd-dec5-4061-acb9-820fe469aaa2",
+            "agentId": "ab7109463d20a2104",
+            "type": "user",
+            "uuid": "ad1f3018-b94b-4ab2-a277-966645b6afb7",
+            "sourceToolAssistantUUID": "dcebd19a-6cfc-4c1f-85b5-a22535e68a9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T16:10:13.638Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01APvRCk5NRJ33x5LsXCPyHE",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad1f3018-b94b-4ab2-a277-966645b6afb7",
+            "isSidechain": true,
+            "agentId": "ab7109463d20a2104",
+            "requestId": "req_011Cb6YEc8qRqvHW5XH8KdiG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "adadac4c-9cf7-4c6c-b368-35b766d62ef2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013UBbbxP9QyAb2NwaDZGYDa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12421,
+                "cache_read_input_tokens": 16882,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12421,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T16:10:13.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01APvRCk5NRJ33x5LsXCPyHE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — StructFuse\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3)\\\\n\\\\n1. **Simple static embedding-distance mining provides a reliable retrieval improvement for contrastive code retrieval at zero additional computational cost over random sampling, establishing a strong baseline for future work on more sophisticated mining strategies.** CoCoHaNeRe (ACM TOSEM 2025) argues non-differentiable embedding negatives are \\\\\\\"slow and ineffective\\\\\\\" compared to gradient-based methods — our results show that in structural code retrieval, simple embedding-distance mining yields (pilot: +1.6–2.0pp; M2 seed 43: +0.52pp best_by_R@1, +0.82pp mean fixed-checkpoint; final range pending s42/s44 completion) R@1 over random baselines across two decoder-only encoders with distinct pretraining corpora and representation geometries (Qwen2.5-Coder-3B, StarCoder2-3B), without requiring gradient-based mechanisms.\\\\n\\\\n2. **[Exploratory observation] Structure-grounded (dataflow) negatives interact with encoder representation geometry, but do not consistently outperform embedding mining.** Pilot data shows dataflow < embedding on both encoders (Qwen: -1.2pp, StarCoder: -1.0pp R@1 vs embedding). The interaction pattern — Qwen (saturated, pos_sim > 0.98) shows smaller gap than StarCoder (healthy, pos_sim ~ 0.80) — suggests representation geometry mediates strategy effectiveness. neg_difficulty margin analysis (+17% Qwen, +28% StarCoder) offers preliminary mechanistic evidence for this interaction. Pending: multi-seed confirmation + plan_005 stratified analysis + plan_015 dynamic mining control. This is reported as an observation with mechanistic hypothesis, not an established finding.\\\\n\\\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL provides a practical pipeline for computing structural connectivity at scale.** 0% timeout, 78% connected-not-gold rate (Z%), 123/131 repos with output at full scale. [Dream [M][W] flag: this is supporting methodology, not a primary research contribution. Drop speculative generalization claims (molecular networks, etc.) — no evidence. Frame as practical tool that enables the study, not a standalone contribution.]\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers rely on text similarity alone, but lexical similarity ≠ structural relevance. Hard negative mining is the standard approach to improve contrastive retrievers, yet the field lacks systematic understanding of what negative selection strategies work for code and why.\\\\n\\\\n- **Existing approaches & gaps**:\\\\n  - Text-based retrieval (SweRank, SWE-Fixer): blind to structural dependencies\\\\n  - Graph-guided at inference (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no training signal\\\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\\\n  - CoCoHaNeRe (ACM TOSEM 2025): argues gradient-based hard negative methods outperform non-differentiable embedding negatives — but does not test simple static embedding-distance mining in structural code retrieval settings\\\\n  - Gap: no systematic study comparing negative mining strategies with proper controls, and no mechanistic explanation for when/why each strategy works\\\\n\\\\n- **Our contribution**: A systematic analysis of hard negative mining strategies for contrastive code retrieval. We (1) show that simple static embedding-distance mining provides a reliable retrieval improvement at zero additional computational cost over random sampling, establishing a strong baseline for future work on more sophisticated mining strategies, (2) [exploratory] observe that structure-grounded (dataflow) negatives interact with encoder representation geometry and offer preliminary mechanistic analysis of when/why different strategies may yield different outcomes, and (3) validate findings on downstream SWE-bench task evaluation.\\\\n\\\\n- **Headline result template**: \\\\\\\"Simple static embedding-distance mining improves code retrieval in pilot and initial M2 seed (pilot: +1.6–2.0pp; M2 seed 43: +0.52pp best_by_R@1, +0.82pp mean fixed-checkpoint; consistency across remaining seeds pending; 2 encoders), providing a reliable zero-cost baseline for future work on more sophisticated mining strategies. Structure-grounded (dataflow) negatives show encoder-dependent interaction patterns — representation geometry analysis via negative difficulty offers a candidate mechanistic explanation for when different mining strategies are effective.\\\\\\\"\\\\n\\\\n## Core Insight\\\\n\\\\nOur pilot data suggests that the effectiveness of hard negative mining strategies may depend on the encoder's representation geometry — a hypothesis derived from two encoders and requiring broader validation. The three strategies explore different dimensions of difficulty: (1) random — no signal baseline; (2) embedding-distance — semantic similarity via pretrained encoder cosine similarity; (3) dataflow-aware — structural filtering (CodeQL-connected files) + lexical similarity (BM25 top-K ranking). When the pretrained space is saturated (high pos_sim → low margin between positive and negative), the encoder needs harder negatives from an orthogonal signal dimension (structure + lexical). When the space has healthy separation, embedding-distance mining alone captures sufficient difficulty gradient. This encoder-strategy interaction, if confirmed, could help explain contradictory findings in prior work.\\\\n\\\\n## Dual-Pillar Motivation\\\\n\\\\n1. **Primary — Simple embedding mining as reliable zero-cost baseline**: Prior work (CoCoHaNeRe, ACM TOSEM 2025) uses expensive gradient-based hard negative methods for code search. Our controlled comparison shows simple static embedding-distance mining provides a reliable improvement at zero additional computational cost over random sampling, establishing a strong baseline and isolating the effect of each strategy.\\\\n2. **Secondary — Mechanistic explanation via representation geometry**: neg_difficulty analysis (margin distribution × strategy × encoder) offers preliminary explanatory depth beyond empirical comparison, offering a candidate heuristic (pos_sim threshold) that, if validated on more encoders, could help practitioners select strategies without exhaustive experiments.\\\\n\\\\n## Formal Definition\\\\n\\\\nGiven retrieval domain D, structural graph G, query q:\\\\n**structure-grounded hard negative** = argmax_{x ∈ D : ¬reachable_G(x,q) ∧ x ∉ gold(q)} BM25(q, x)\\\\n\\\\nThe structural graph is externally fixed and does not update with the encoder (drift-immune). Negatives are selected from structurally unreachable files (i.e., x ∉ R_G(q), not connected via CodeQL data-flow to the query), ranked by BM25 (lexical similarity).\\\\n\\\\n## Title Options\\\\n\\\\n- Primary: \\\\\\\"What Makes Hard Negatives Work for Code Retrieval? A Systematic Study of Mining Strategies and Representation Geometry\\\\\\\"\\\\n- Alternative: \\\\\\\"Static Embedding Negatives as a Zero-Cost Baseline for Contrastive Code Retrieval\\\\\\\" [contingent: activate only if M2 dataflow conditional benefit confirmed across encoders]\\\\n- Backup: \\\\\\\"Simple Embedding Mining Suffices: A Zero-Cost Baseline for Hard Negative Mining in Code Retrieval\\\\\\\"\\\\n\\\\n## Venue Fit\\\\n\\\\n1. **EMNLP Main fit**: Empirical analysis + mechanistic insight papers are a strong EMNLP archetype (cf. \\\\\\\"Do Language Models...\\\\\\\" papers). Contribution is understanding, not just a new method.\\\\n2. **NLP audience**: Frame as contrastive learning methodology with code as instantiation. Representation geometry analysis generalizes beyond code.\\\\n3. **Against \\\\\\\"incremental\\\\\\\" criticism**: Paper demonstrates a reliable zero-cost baseline + offers preliminary mechanistic analysis of strategy × encoder interaction + validates on downstream task. Three contributions, not one marginal improvement.\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Response | Evidence |\\\\n|---------|----------|----------|\\\\n| Only 2 encoders — can you generalize? | n=2 is minimum for interaction claim; we frame as observation with mechanism, not universal law; two decoder-only encoders with distinct pretraining (Fill vs FIM) and representation geometry (pos_sim 0.99 vs 0.80) provide meaningful variation | plan_013 (done), m2_full runs |\\\\n| BM25 vs true embedding negatives? | Run BM25 negatives to empirically compare with embedding-distance mining, grounding the comparison against CoCoHaNeRe's gradient-based premise | plan_018 |\\\\n| Pool size sensitivity? | Evaluate at pool {50, 100, 200, 500} to confirm strategy rankings hold at realistic sizes | plan_019 |\\\\n| Stratified by structural data availability? | Report per-stratum R@1 for 34% with structural data vs 66% fallback | plan_005 (extended) |\\\\n| Temperature regime specificity | Ablate τ ∈ {0.05, 0.1, 0.2} | plan_014 |\\\\n| No downstream task evaluation | SWE-bench Lite end-to-end with LLM agent | plan_003 |\\\\n| Static vs dynamic mining confound | Clarify mining is static; add dynamic baseline | plan_015 |\\\\n| CodeQL scalability at larger scale | 0% timeout, 78% Z%, 123 repos; m1_reextract_v2 adds more | plan_006 (done) |\\\\n| Why not compare inference-time graph methods? | Complementary: they navigate at inference, we mine at training. Discuss relationship. | plan_017 |\\\\n| Single benchmark | Add RepoBench-R cross-file retrieval | plan_004 |\\\\n| Statistical significance | Bootstrap 95% CI for all comparisons; full M2 = 9 seeds × 3 strategies × 2 encoders | plan_016, m2_full |\\\\n| \\\\\\\"Complementary signal\\\\\\\" overstatement | Temper: \\\\\\\"conditionally beneficial\\\\\\\" not \\\\\\\"always complementary\\\\\\\" | Writing discipline |\\\\n| Missing related work | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\\\n\\\\n## Evidence Status\\\\n\\\\n### Confirmed findings (basis for claims):\\\\n- D017: True embedding mining helps (pilot: +2.0pp Qwen, +1.6pp StarCoder; M2 seed 43: +0.52pp best_by_R@1, +0.82pp mean fixed-checkpoint; final range pending s42/s44 completion) — establishes reliable zero-cost baseline\\\\n- D021/neg_difficulty: Qwen pos_sim=0.9855 (saturated), StarCoder pos_sim=0.7985 (healthy); margin differential is consistent with hypothesized strategy interaction\\\\n- m2_embed_verify (pilot): 3-strategy comparison is consistent with pilot ranking (embedding > random, dataflow conditional)\\\\n- plan_013 (StarCoder pilot): Consistent with cross-encoder pattern — embedding helps both, dataflow appears to help Qwen only\\\\n- plan_006: CodeQL scalability confirmed at 123-repo scale\\\\n\\\\n### Evidence presentation strategy:\\\\n- Primary table: best_by_R@1 (standard practice — select best checkpoint per run by validation R@1)\\\\n- Supplementary: fixed-checkpoint comparison as robustness check (not a replacement for best_by_R@1)\\\\n- Both metrics show directionally consistent results; no goalpost-moving between metrics\\\\n\\\\n### In progress:\\\\n- m2_full_qwen: random s42 DONE (R@1=0.5527), s43 DONE (R@1=0.5554), s44 DONE (R@1=0.6009, early stopped step 500), embedding_distance_s43 DONE (R@1=0.5606, early stopped step 1500). 4/9 runs complete, ~35h remaining.\\\\n- m2_full_starcoder: random s42 DONE (R@1=0.4604, from parent), s43 RUNNING (eval@500 R@1=0.4708). 1/9+ runs complete, ~65-70h remaining.\\\\n- m1_reextract_v2: 90.5% complete (25,582/28,276), 0 ERROR, ETA ~19:00 CST May 15\\\\n\\\\n### Planned (priority order):\\\\n- plan_018: BM25 negative baseline (Dream #1 consensus gap — grounds comparison against CoCoHaNeRe's premise)\\\\n- plan_003: SWE-bench Lite eval (biggest lever for paper strength)\\\\n- plan_019: Pool size sensitivity (Dream consensus — external validity)\\\\n- plan_014: Temperature ablation (Dream reviewer concern)\\\\n- plan_004: RepoBench-R second benchmark (with multi-seed CIs)\\\\n- plan_015: Dynamic mining baseline\\\\n- plan_005: Stratified analysis (extended: structural-available vs fallback stratum)\\\\n- plan_007/008/009: Additional ablations\\\\n\\\\n## Limitations\\\\n\\\\nEffect size is smaller than pilot estimates, likely because full-scale training data provides stronger random baselines, reducing the marginal value of targeted negative selection.\\\\n\\\\n## Contingency (if full M2 results weaken claims)\\\\n\\\\n### All 18 runs confirm pilot pattern: Best case\\\\n- Full statistical power, paper as framed above\\\\n- Target: EMNLP Main\\\\n\\\\n### Dataflow benefit disappears even for Qwen at full scale: Pivot to 2-claim paper\\\\n- Drop Claim 2 to analysis observation\\\\n- Paper becomes: \\\\\\\"Simple embedding mining provides reliable zero-cost improvement + CodeQL extraction is practical + representation geometry analysis may help explain prior contradictions\\\\\\\"\\\\n- Still publishable: reliable zero-cost baseline demonstration + mechanistic analysis is sufficient for EMNLP Main\\\\n\\\\n### BM25 negatives ≈ random (not harmful): Narrative pivot needed [D030 contingency]\\\\n- If plan_018 shows BM25 negatives perform ≈ random (not << random), the narrative positioning needs adjustment\\\\n- Pivot: \\\\\\\"systematic comparison reveals embedding-distance mining is the only strategy that consistently helps, establishing it as a reliable zero-cost baseline even when BM25 provides no signal\\\\\\\"\\\\n- Paper remains valid as systematic analysis — the core finding (simple embedding mining provides reliable improvement) stands regardless of BM25 outcome\\\\n- Claim 1 core preserved: \\\\\\\"Simple static embedding-distance mining provides a reliable retrieval improvement at zero additional computational cost over random sampling\\\\\\\"\\\\n- Impact: BM25 result determines narrative nuance, not core contribution\\\\n\\\\n### Embedding mining also loses advantage at full scale: Major reassessment needed\\\\n- Recheck data pipeline for bugs (full-scale data may have distribution differences)\\\\n- If confirmed: negative result paper — \\\\\\\"Why Hard Negative Mining Doesn't Scale for Code Retrieval\\\\\\\"\\\\n- Discuss with user before committing direction\\\\n\\\\n## Deprecated Claims (with reason)\\\\n\\\\n- ~~\\\\\\\"Embedding-distance hard negatives actively harm code retrieval\\\\\\\"~~ — FALSIFIED by D017. Original evidence (-27pp R@1) was from BM25-proxy negatives incorrectly labeled as embedding_distance in MVP. True embedding mining shows consistent improvement. Preserved here to prevent regression.\\\\n\\\\n<!-- Claim 2 wording fix: 2026-05-15 -->\\\\n<!-- D041 dataflow-aware BM25 fix: 2026-05-15 -->\\\\n<!-- D041 formal definition fix: reachable_G → ¬reachable_G, 2026-05-15 -->\\\\n<!-- Claim 2 exploratory wording unification: 2026-05-15 -->\\\\n<!-- D049 Claim 1 framing update: numbers, narrative softening, evidence strategy, limitations: 2026-05-15 -->\\\\n<!-- Status data refresh: s44 DONE, 4/9 runs, m1 90.5%, headline caveat: 2026-05-15 -->\\\\n\\\", \\\"total_chars\\\": 14424, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "adadac4c-9cf7-4c6c-b368-35b766d62ef2",
+            "isSidechain": true,
+            "promptId": "c3dda3bd-dec5-4061-acb9-820fe469aaa2",
+            "agentId": "ab7109463d20a2104",
+            "type": "user",
+            "uuid": "37e3675b-9bc6-4c21-9ff9-f2ecd0d89dff",
+            "sourceToolAssistantUUID": "adadac4c-9cf7-4c6c-b368-35b766d62ef2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T16:10:13.857Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QaSv3gfDv5rWUwyfSjdXK3",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "ideas.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37e3675b-9bc6-4c21-9ff9-f2ecd0d89dff",
+            "isSidechain": true,
+            "agentId": "ab7109463d20a2104",
+            "requestId": "req_011Cb6YEc8qRqvHW5XH8KdiG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7ddce2fe-93f0-43f8-bf48-cb1f7ee68997",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013UBbbxP9QyAb2NwaDZGYDa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12421,
+                "cache_read_input_tokens": 16882,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12421,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T16:10:13.867Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QaSv3gfDv5rWUwyfSjdXK3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'structfuse-context'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ddce2fe-93f0-43f8-bf48-cb1f7ee68997",
+            "isSidechain": true,
+            "promptId": "c3dda3bd-dec5-4061-acb9-820fe469aaa2",
+            "agentId": "ab7109463d20a2104",
+            "type": "user",
+            "uuid": "bde7447c-cb9a-4e61-af35-745cbb7f6c32",
+            "sourceToolAssistantUUID": "7ddce2fe-93f0-43f8-bf48-cb1f7ee68997",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T16:10:18.069Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PJuTZE4xf1BrYfPVTCfz18",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bde7447c-cb9a-4e61-af35-745cbb7f6c32",
+            "isSidechain": true,
+            "agentId": "ab7109463d20a2104",
+            "requestId": "req_011Cb6YEy6uZbFYN5ZJiVh4e",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5de76f49-4a07-411a-8d54-305cea1b96a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E4d5TC848jQeA9LzwgrL8K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4349,
+                "cache_read_input_tokens": 29303,
+                "output_tokens": 106,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4349
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 106,
+                    "cache_read_input_tokens": 29303,
+                    "cache_creation_input_tokens": 4349,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4349,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T16:10:18.079Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PJuTZE4xf1BrYfPVTCfz18",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/memory.md\\\", \\\"content\\\": \\\"# Inference-Time Graph Methods 文献对比\\\\n\\\\n## 对比表\\\\n\\\\n| Method | Paper | Venue | Graph Type | Usage Stage | Inter-proc Data-Flow | Task | Scalability | Key Diff from StructFuse |\\\\n|--------|-------|-------|-----------|-------------|---------------------|------|-------------|--------------------------|\\\\n| **CodexGraph** | Bridging LLMs and Code Repositories via Code Graph Databases | NAACL 2025 (arXiv:2408.03910) | Code graph DB (MODULE/CLASS/FUNCTION nodes; CONTAINS/INHERITS/USES edges) | Inference-time | No. Static analysis for symbol relations only | General repo-level coding (completion, issue resolution) | CrossCodeEval, SWE-bench, EvoCodeBench | Agent queries graph DB at inference; task-agnostic schema but no data-flow semantics |\\\\n| **LocAgent** | Graph-Guided LLM Agents for Code Localization | ACL 2025 (arXiv:2503.09089) | Directed heterogeneous graph (code entities + dependency edges) | Inference-time | No. Dependency edges, not data-flow | Fault localization | 92.7% file-level accuracy; SWE-bench +12% Pass@10 | Agent multi-hop graph reasoning at inference; needs fine-tuned 32B model |\\\\n| **RANGER** | RANGER — Repository-Level Agent for Graph-Enhanced Retrieval | arXiv:2509.25257 (Sep 2025) | Knowledge graph + MCTS traversal | Inference-time | No | Code search, QA, cross-file retrieval, completion | CodeSearchNet, RepoQA, RepoBench, CrossCodeEval | MCTS-guided graph exploration; dual-stage (Cypher + MCTS); higher inference cost due to cross-encoder scoring |\\\\n| **RepoGraph** | Enhancing AI SE with Repository-level Code Graph | ICLR 2025 (arXiv:2410.14684) | Repo-level code graph (class hierarchy, call graph, file structure) | Inference-time | No. Structural relations only | Software engineering / issue resolution | SWE-bench (+32.8% relative); CrossCodeEval | Plug-in module for existing agents; repo-wide navigation; no semantic analysis |\\\\n| **GraphCoder** | Enhancing Repo-Level Code Completion via Code Context Graph | ASE 2024 (arXiv:2406.07003) | Code Context Graph (CFG + CDG + DDG) | Inference-time | Partial. Data dependence graph but **intra-procedural** only | Code completion | Repository-level benchmarks | Coarse-to-fine retrieval with CCG; closest to StructFuse in using data/control flow, but intra-proc and at inference-time |\\\\n| **CodeRAG** | Supportive Code Retrieval on Bigraph for Real-World Code Generation | arXiv:2504.10046 (Apr 2025) | Bigraph (requirement graph + DS-code graph) | Inference-time | No. Dependency + semantic edges | Repo-level code generation | DevEval (+40.90 Pass@1 w/ GPT-4o) | Dual-graph (requirements + code); agentic reasoning; high inference overhead |\\\\n| **ARISE** | ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair | arXiv:2605.03117 (May 2026), Seddik & Fard | Multi-granularity program graph (statement nodes + def-use edges) | Inference-time | Partial. **Intra-procedural** def-use edges + data-flow slicing tool | Fault localization + repair | SWE-bench Lite (300 issues); +17.0 Function Recall@1 | Closest to StructFuse in data-flow usage; but intra-proc only, agent queries at inference |\\\\n| **CodeGRAG** | Bridging NL and PL via Graphical RAG | arXiv:2405.02355 (2024) | Composed syntax graph (AST + DFG + CFG) | Both (GNN training + graph prompt at inference) | Partial. DFG extraction but function-level | Code generation (cross-lingual) | Multiple PLs | Only method with training-time component (GNN soft prompts); but graph also used at inference |\\\\n| **StructFuse** (Ours) | Structure-Grounded Hard Negatives via CodeQL Data-Flow | — | Inter-procedural data-flow graph (CodeQL taint tracking) | **Training-time only** | **Yes. Full inter-procedural** (source→sink across call boundaries) | Code retrieval (contrastive training) | Large-scale repos with CodeQL | Zero inference overhead; graph used offline for negative mining; inter-proc data-flow |\\\\n\\\\n## Discussion 要点\\\\n\\\\n### StructFuse vs Inference-Time Graph Methods: 互补性与差异性\\\\n\\\\n1. **Cost-accuracy tradeoff**: Inference-time methods (CodexGraph, RANGER, RepoGraph) achieve high precision by constructing and querying graphs per request, but incur significant latency (graph construction + traversal + LLM calls). StructFuse amortizes all graph computation to training time—once the encoder is trained with structure-grounded negatives, inference is a single embedding lookup with zero graph overhead. This makes StructFuse suitable for latency-sensitive production retrieval where inference-time graph methods are impractical.\\\\n\\\\n2. **Data-flow depth**: Most inference-time methods use structural graphs (call graphs, class hierarchies, file dependencies). Only GraphCoder and ARISE incorporate data/control flow, but limited to **intra-procedural** scope. StructFuse uniquely leverages **inter-procedural** data-flow via CodeQL's taint tracking, capturing cross-function semantic relationships (e.g., a sanitizer function that transforms data between source and sink across call boundaries). This deeper semantic signal generates harder, more informative negatives.\\\\n\\\\n3. **Complementarity**: StructFuse and inference-time methods are orthogonal and composable. A StructFuse-trained encoder can serve as the embedding backbone for systems like RANGER or CodexGraph, providing better initial retrieval that reduces the graph agent's search space. Conversely, inference-time graph methods can provide reranking on top of StructFuse retrieval for tasks requiring maximum precision.\\\\n\\\\n4. **Scalability model**: Inference-time methods scale linearly with query volume (each query triggers graph operations). StructFuse's cost is front-loaded: CodeQL analysis runs once per repository update, and the resulting negatives improve the encoder permanently. For high-QPS code search services, this one-time investment yields compounding returns.\\\\n\\\\n5. **Task generality vs specialization**: Inference-time graph agents (CodexGraph, RepoGraph) are task-agnostic but require powerful LLMs as backends. StructFuse produces a specialized retrieval encoder that excels at the code search task without LLM inference, making it deployable as a lightweight, efficient first-stage retriever in multi-stage pipelines.\\\\n\\\\n## Related Work 段落草稿 (~200 words)\\\\n\\\\n**Graph-Based Methods for Code Understanding.**\\\\nRecent work has explored leveraging code graphs to enhance LLM-based software engineering. Inference-time approaches construct and query graphs during each interaction: CodexGraph (Liu et al., NAACL 2025) builds a code graph database that LLM agents query via structured interfaces; RepoGraph (Ouyang et al., ICLR 2025) provides repository-level navigation as a plug-in module for SE agents; LocAgent (ACL 2025) and RANGER (Shah et al., 2025) employ graph-guided multi-hop reasoning and MCTS-based traversal for code localization and retrieval, respectively. GraphCoder (ASE 2024) incorporates intra-procedural control-flow and data-dependence graphs for code completion retrieval, while ARISE (Seddik & Fard, 2026) extends this with statement-level def-use edges for fault localization. CodeGRAG (2024) bridges training and inference by using GNN-encoded graph prompts.\\\\n\\\\nThese methods achieve strong results but impose substantial inference-time costs—graph construction, traversal, and often multiple LLM calls per query. Moreover, their data-flow analysis remains intra-procedural. StructFuse takes a fundamentally different approach: we leverage CodeQL's inter-procedural taint tracking to generate structure-grounded hard negatives at **training time**, producing an encoder that captures cross-function data-flow semantics without any graph overhead at inference. This positions StructFuse as complementary to inference-time graph methods—it can serve as an efficient first-stage retriever whose embeddings already encode deep structural relationships that other methods must compute on-the-fly.\\\\n\\\\n---\\\\n\\\\n## 参考文献（全部已验证 2026-05-14）\\\\n\\\\n- CodexGraph: arXiv:2408.03910, Liu et al., NAACL 2025\\\\n- LocAgent: arXiv:2503.09089, Chen et al., ACL 2025\\\\n- RANGER: arXiv:2509.25257, Shah et al., 2025 ✅ verified\\\\n- RepoGraph: arXiv:2410.14684, Ouyang et al., ICLR 2025\\\\n- GraphCoder: arXiv:2406.07003, Liu et al., ASE 2024\\\\n- CodeRAG: arXiv:2504.10046, 2025\\\\n- ARISE: arXiv:2605.03117, Seddik & Fard, 2026 ✅ verified (full title: \\\\\\\"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair\\\\\\\")\\\\n- CodeGRAG: arXiv:2405.02355, 2024\\\\n\\\\n---\\\\n\\\\n## D062 Checkpoint Criterion 效应（pool=50 独立验证, 2026-05-16）\\\\n\\\\n**重大发现**：D062 query split eval 的早期数据（random strategy, selection set 504q, pool=50）显示 checkpoint 选择标准对 R@1 的影响远超预期。\\\\n\\\\n| Seed | best_by_val_loss R@1 | best_by_recall_at_1 R@1 | Δ |\\\\n|------|---------------------|------------------------|---|\\\\n| s42 | 0.2302 | 0.2302 | 0pp (same ckpt, MD5 identical) |\\\\n| s43 | 0.3413 | **0.5040** | **+16.3pp** |\\\\n| s44 | 0.3532 | (pending) | — |\\\\n\\\\n**关键洞察**：\\\\n1. s43 的 criterion 差异 (+16.3pp) **远大于**任何 strategy 差异（之前最大观测 ~5pp）。Checkpoint 选择标准是 confound 的主要来源，不是 mining strategy。\\\\n2. 这直接验证了 D062 query split 方法论的必要性——必须用独立 selection set 选 checkpoint，否则 criterion 偏差会淹没 strategy 效应。\\\\n3. 之前 (2026-05-15) 基于 in-training eval (pool=8) 的 criterion 分析显示 mean delta 仅 +0.65pp，严重低估了真实效应。pool=50 独立 eval 揭示的 +16.3pp 说明 pool=8 噪声完全掩盖了 criterion 效应。\\\\n4. **论文影响**：D062 结果可能成为方法论贡献的一部分（checkpoint selection methodology），而不仅是消除 confound 的工具。\\\\n\\\\n**待补充**：embedding_distance 和 dataflow_aware 的 criterion 效应数据（D062 eval 6/14 完成中）。\\\\n\\\\n---\\\\n\\\\n## Checkpoint Criterion 与 K 分析 (2026-05-15)\\\\n\\\\n**Checkpoint 选择 criterion 分歧率**：4 个完成的 full M2 runs 中，2/4 (50%) val_loss 与 R@1 选中不同 checkpoint。\\\\n\\\\n**分歧 pattern**：\\\\n- Qwen s43: val_loss→step 500, R@1→step 1500, R@1 差 +1.97pp\\\\n- StarCoder s42: val_loss→step 1000, R@1→step 2500, R@1 差 +0.64pp\\\\n- Mean delta: +0.65pp (R@1 criterion 优于 val_loss criterion)\\\\n- StarCoder 步差更大（1500 步 vs 1000 步），与其 pretrained margin 更大的特性一致\\\\n\\\\n**论文写作决策**：主表报 best_by_R@1（target metric aligned），ablation 表展示两种 criterion 对比（D036 已决策 R@1 为 primary）。\\\\n\\\\n**K=7 无 ablation**：所有正式实验固定 K=7。合理性来源：(1) batch_size=8 对齐（1 positive + 7 negatives = 8）(2) DPR 等文献惯例 (3) K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query。K 敏感性列为 limitation/future work。\\\\n\\\\n---\\\\n\\\\n## In-Training Eval 噪声发现 (2026-05-16)\\\\n\\\\n**发现**：in-training eval R@1 有 **±0.5pp 噪声地板**，来源于 val set negative 随机采样。\\\\n\\\\n**根因**（代码审计确认）：\\\\n- `val_ds.__getitem__` 中 `random.shuffle(fallback)` 动态采样 negatives（train.py:109-110）\\\\n- `val_ds._negatives` 从未被填充（`refresh_negatives` 仅对 train_ds 调用）\\\\n- 全局 `random` 状态在训练中持续变化，每次 eval pass 的 negative 组合不同\\\\n- dataloader `shuffle=False`，问题不在 batch 顺序，在 negative 采样\\\\n\\\\n**证据**：embed_s43 同一模型权重（step 1500）两次 eval：R@1=0.5606 (periodic) vs 0.5655 (final) = 0.49pp 差异。val_loss 同理：0.4926 vs 0.4876。\\\\n\\\\n**影响**：\\\\n1. Claim 1 的 strategy delta（2-seed mean ≈ 0, 单 seed -0.67 ~ +0.52pp）与噪声**同量级**\\\\n2. in-training eval 不能可靠区分 strategies\\\\n3. **pool=50 post-hoc eval（negatives 预定义、确定性）是唯一可靠对比基础**\\\\n4. 论文不应基于 in-training eval 数值做 strategy ranking claim\\\\n\\\\n**修复建议**：eval 时固定 seed 或预写死 val negatives。当前已跑实验不需重跑（pool=50 re-eval 会修复）。\\\\n\\\\n---\\\\n\\\\n## UniXcoder Null Result (2026-05-16)\\\\n\\\\n**发现**：UniXcoder-base (125M, encoder-only RoBERTa) 3 strategies × seed 42，strategy differentiation 完全消失。\\\\n\\\\n| Strategy | R@1 (pool=8) | val_loss |\\\\n|----------|-------------|----------|\\\\n| random | 0.5534 | 0.4513 |\\\\n| embedding | 0.5497 | 0.4466 |\\\\n| dataflow | 0.5510 | 0.4628 |\\\\n\\\\nR@1 span 仅 0.37pp，三策略在噪声范围内无差异。\\\\n\\\\n**解释假设**：\\\\n1. **Model capacity**: 125M 参数可能不足以利用 hard negative 的细粒度结构信息。大模型 (3B Qwen/StarCoder) 有更多参数来编码 structural 差异。\\\\n2. **Representation space**: UniXcoder 的 pretrained representation 可能已经更 uniform（RoBERTa-based encoder vs decoder-only），hard negative 的 \\\\\\\"hardness\\\\\\\" 在其表征空间中差异更小。\\\\n3. **Training dynamics**: batch_size=16 + max_seq_length=1024（vs Qwen/StarCoder 的 batch=8 + seq=2048），可能改变了 InfoNCE loss 的梯度结构。\\\\n\\\\n**论文定位**：3 encoder × 3 seed 实验中，null only on encoder-only/small-scale → \\\\\\\"strategy differentiation is model-capacity dependent\\\\\\\"，支撑 Track A (stratified heterogeneity)。s43/s44 已启动，用于 3-seed 统计确认。\\\\n\\\\n**Regime 差异**：s42 patience=3, s43/s44 patience=2。Paper 中需标注。\\\\n\\\\n---\\\\n\\\\n## BM25 Negative Mining 策略洞察 (2026-05-14, updated)\\\\n\\\\n**两层重叠率数据（注意区分）**：\\\\n- **k=50 全候选重叠**（mining worker 报告）：BM25 vs embedding 87.1%, vs random 76.2%, vs dataflow 71.8%\\\\n- **top-7 Jaccard**（训练实际用的 num_negatives=7，分层分析）：差异远大于全候选\\\\n\\\\n**分层 top-7 Jaccard 重叠率**（seed 42, 2920 matched queries / 12290 total）：\\\\n| 层级 | BM25 vs Embedding | BM25 vs Random | BM25 vs Dataflow |\\\\n|------|-------------------|----------------|------------------|\\\\n| Small (<50 files, 39 repos) | 0.668 | 0.411 | 0.667 |\\\\n| Medium (50-200, 29 repos) | 0.380 | 0.067 | 0.363 |\\\\n| Large (200+, 15 repos) | 0.297 | 0.007 | 0.405 |\\\\n\\\\n**核心修正**：之前基于 87% 预测\\\\\\\"Phase 2 中 BM25 R@1 很可能接近 embedding\\\\\\\"——这个预测可能不成立。在中大 repo（训练数据主体）上 top-7 Jaccard 仅 30-38%，BM25 和 embedding 选出的训练 negatives 大部分不同。Phase 2 训练结果将真正区分两种策略。\\\\n\\\\n**意外发现**：BM25 vs dataflow 在大 repo 上重叠率（0.405）高于 vs embedding（0.297）。词汇相似性信号与数据流依赖有部分对齐，而纯 embedding 距离选择了不同维度的 hard negatives。\\\\n\\\\n---\\\\n\\\\n## hard_negative_mining.py vs build_m1_training_data.py 实现差异 [2026-05-15]\\\\n\\\\n**发现者**：Reviewer\\\\n**影响**：当前 M2 不受影响（用 pre-mined 数据），plan_015（dynamic negative mining）实施前必须对齐\\\\n\\\\n**差异**：\\\\n\\\\n### hard_negative_mining.py `DataFlowAwareMiner`（training/hard_negative_mining.py）\\\\n三步法：\\\\n1. **Embedding top-K**：调用 `EmbeddingDistanceMiner.mine()` 获取 top-50 cosine similarity 最高的 candidates（从所有 non-positive candidates 中）\\\\n2. **Dataflow filter**：过滤掉 `_is_reachable(query, fid)` 为 True 的文件——仅检查 `dataflow_graph[src]` 中的直接条目（1-hop 可达性）\\\\n3. **BM25 re-rank**：如果 `bm25_index` 可用，对剩余 disconnected candidates 按 BM25 分数降序重排\\\\n4. **Fallback**：如果 disconnected 不足 `num_negatives`，用 random padding 补足\\\\n\\\\n### build_m1_training_data.py `build_candidate_pools()`（scripts/build_m1_training_data.py）\\\\n两步法：\\\\n1. **Dataflow filter**：从 `non_pos_files` 中排除 `full_connected_set`（= `positive_files ∪ cg_connected`，即 dataflow 直连 + call graph 邻居——比 `DataFlowAwareMiner` 排除范围更广）\\\\n2. **BM25 sort**：对 disconnected 文件按 BM25 分数降序排序，取 top-K（pool_size=50）\\\\n3. **无 embedding 步骤**：dataflow pool 完全不使用 embedding 信号\\\\n\\\\n额外注意：当 `--model-path` 未提供时，`emb_scores = bm25`（line 317-318），此时 embedding pool 也退化为 BM25 排序，仅在是否排除 `full_connected` 上与 dataflow pool 不同。\\\\n\\\\n### 差异总结\\\\n\\\\n| 维度 | hard_negative_mining.py | build_m1_training_data.py |\\\\n|------|------------------------|--------------------------|\\\\n| Candidate 初筛 | Embedding cosine top-50 | 全部 non-positive（无初筛） |\\\\n| Dataflow 排除范围 | `dataflow_graph[src]` 直接条目 | `positive_files ∪ cg_connected`（更广） |\\\\n| 排序信号 | Embedding 为主 → BM25 re-rank | 纯 BM25 排序 |\\\\n| Embedding 角色 | 主选择器（决定候选池） | 不参与 dataflow pool |\\\\n| BM25 角色 | 可选的 re-ranker | 唯一排序信号 |\\\\n\\\\n### 对齐建议\\\\nplan_015 实施 dynamic negative mining 时需统一为一种逻辑。建议：\\\\n1. **排除范围统一**：采用 `build_m1_training_data.py` 的 `full_connected`（dataflow + call graph），因为 call graph 邻居也不应作为 hard negatives\\\\n2. **选择信号**：dynamic mining 应使用当前 epoch 的 encoder embedding（不是 pretrained），这是 dynamic mining 的核心价值——所以 `DataFlowAwareMiner` 的 embedding→filter→BM25 三步法更合理，但需将排除范围从 1-hop dataflow 扩展到 full_connected\\\\n3. **具体改动**：修改 `DataFlowAwareMiner._is_reachable()` 使其也排除 call graph 连接，或在 `mine()` 中接受 `full_connected_set` 参数\\\\n\\\\n---\\\\n\\\\n## SWE-bench eval 脚本路径 [2026-05-15, Reviewer 纠正]\\\\n\\\\neval_swebench 脚本已存在（之前 Worker 搜索了错误目录 /root/structfuse）：\\\\n- `/root/structfuse-context/evaluation/eval_swebench.py`（含 .bak 和 .pyc）\\\\n- `/root/structfuse-context/scripts/eval_swebench_e2e.py`\\\\n\\\\nAgent 通过 OpenAI-compatible API 调用（非本地推理），配置项：STRUCTFUSE_LLM_BACKEND=api, STRUCTFUSE_LLM_API_BASE, STRUCTFUSE_LLM_API_KEY, STRUCTFUSE_LLM_MODEL。Retriever 和 agent 分离，单卡 VRAM 无压力。plan_003 基于现有脚本执行，不需要从头创建。\\\\n\\\\n---\\\\n\\\\n## Qwen 链日志缓冲问题 [2026-05-15, Reviewer 发现]\\\\n\\\\nQwen 链脚本用 `python`（有 stdout 缓冲），导致日志延迟输出，监控出现盲区。StarCoder 链用了 `python -u` 没此问题。**后续 Qwen subrun 启动时须加 `PYTHONUNBUFFERED=1` 环境变量或 `python -u`**，保证日志实时输出。当前 run 不需要重启。\\\\n\\\\n---\\\\n\\\\n## 运维经验 (2026-05-14)\\\\n\\\\n**Registry 状态机 workaround**：当长链训练（多 run 串行）中途因 cron timeout 或子进程退出导致 registry 状态误标（DONE/failed 或 ANALYZING），而实际训练仍在跑时，不可回退状态。解决方案：创建 `{exp_id}_resumed` / `{exp_id}_continued` 新 entry，步进 PREPARING→QUEUED→ALLOCATED→RUNNING，注册 cron 监控实际 PID。原 entry 保留历史 metrics。\\\\n\\\\n**Bash 预读陷阱**：运行中的 bash 脚本已将循环体/数组预读到内存，磁盘上修改脚本文件不影响执行。需要在链外设置独立 tmux watcher 监控链 PID 退出后手动触发后续任务。\\\\n\\\\n**BM25 Phase 2 触发机制**：两个 tmux watcher（`bm25_starcoder_watcher`, `bm25_qwen_watcher`）每 5 分钟检查链 PID 存活，退出后自动启动 BM25 脚本。watcher 启动的训练不经过 submit_training_job，需在链完成回调中补注册 cron。\\\\n\\\\n---\\\\n\\\\n## 关键决策记录\\\\n\\\\n**m1_reextract_v2 数据使用决策 (2026-05-14, Director Session 8)**：即使 reextract 将数据从 ~16K 增至 ~44K，不重跑 M2。原因：ARR May 25 DDL 不允许再加 4-5 天重训。处理方式：(1) post-M2 完成后若有 GPU 空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比当前 M2 baseline；(2) 论文中作为 scalability/data efficiency 讨论点；(3) 全量重训留 camera-ready。\\\\n\\\\n---\\\\n\\\\n## Related Work Gap 分析 [2026-05-15]\\\\n\\\\n当前 literature_map.yaml 39 篇，已超 25+ 目标，但覆盖不均。最薄弱：contrastive learning for code（仅 3 篇）、通用 hard negative mining 方法论。推荐添加 7 篇（全部 WebSearch 验证）：\\\\n- **必须加**：RocketQA (NAACL 2021)、ContraBERT (ICSE 2023)、ProGraML (ICML 2021)、CrossCodeEval (NeurIPS 2023)\\\\n- **强烈建议**：SynCoBERT (arXiv 2021)、CAPSTONE (EMNLP 2023)\\\\n- **可选**：CoSQA (ACL 2021)\\\\n\\\\n---\\\\n\\\\n## Qwen random_s42 训练 Regime 异常 [2026-05-16]\\\\n\\\\n**根因确认**：s42 使用 3 epoch / patience=0（D026 设计，提供 overfitting curve），而 s43/s44 使用 2 epoch / patience=2（D050 统一 regime）。这导致：\\\\n- warmup 424 步 vs 283 步，step 500 时 s42 val_loss 已比 s43/s44 差 (0.4869 vs 0.4476/0.4252)\\\\n- s42 两个 checkpoint (best_by_val_loss + best_by_recall_at_1) MD5 完全相同（均 step 1000），pool=50 R@1 两种选法结果一致是预期行为\\\\n- pool=50 R@1: s42=0.2730 vs s43=0.3138 / s44=0.3181，差距 4pp+ 主要由 regime 差异解释\\\\n\\\\n**决策影响**：当前 random_s42 不应纳入 cross-seed 统计。需用统一 2-epoch/patience=2 regime 重训才能获得可比结果。Supplement chain (embed_s42/dataflow_s42/bm25_s42) 已用 D050 统一 regime，不受影响。\\\\n\\\", \\\"total_chars\\\": 17513, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5de76f49-4a07-411a-8d54-305cea1b96a1",
+            "isSidechain": true,
+            "promptId": "c3dda3bd-dec5-4061-acb9-820fe469aaa2",
+            "agentId": "ab7109463d20a2104",
+            "type": "user",
+            "uuid": "dc1fb609-33e0-4f88-b674-1f27c8fbf15d",
+            "sourceToolAssistantUUID": "5de76f49-4a07-411a-8d54-305cea1b96a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T16:11:18.113Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a thorough understanding of the project's internal state, the paper framing, the literature map, and the experimental findings. Let me produce the review.\n\n## R2 Review: Novelty & Related Work\n\n### Summary\nThe paper systematically compares 4 negative mining strategies across 3 encoders for contrastive code retrieval, finding that evaluation methodology choices (pool size, checkpoint criterion, temperature, seed) account for 10-16pp R@1 variation versus at most 0.4pp from mining strategy — a claimed 40x ratio. The paper pivots from a mining strategy study to a methodology critique, recommending standardized evaluation protocols.\n\n### Strengths\n\n1. **Timely and needed question.** The code retrieval community lacks standardized evaluation protocols, and quantifying confounds — particularly checkpoint criterion effect (+16.3pp in one case) and pool size sensitivity — has genuine practical value for researchers designing future experiments.\n\n2. **Multi-encoder design provides useful signal.** Testing on Qwen2.5-Coder-3B (saturated geometry), StarCoder2-3B (healthy margin), and UniXcoder-base (125M encoder-only) reveals that strategy differentiation is architecture- and capacity-dependent, which adds nuance beyond a single-encoder study.\n\n3. **The checkpoint criterion finding is genuinely surprising.** The fact that best-by-val-loss vs. best-by-R@1 can diverge by 16.3pp on a single seed is a concrete, actionable insight that would save practitioners from subtle confounds.\n\n4. **Honest scope of claims.** The paper acknowledges limitations (3 seeds, limited model scale, 34% dataflow coverage) rather than overclaiming. The \"exploratory observation\" framing for the geometry hypothesis shows appropriate epistemic calibration.\n\n5. **Practical recommendations.** Reporting at realistic pool sizes, separating selection and test sets for checkpoint criterion, and controlling temperature are directly implementable by future work.\n\n### Weaknesses\n\n1. **The \"40x ratio\" framing is fundamentally misleading.** It compares the _range_ of methodology-induced variation (varying pool size from 8 to 500, changing checkpoint criteria, sweeping temperature — i.e., comparing wildly different experimental setups) against the _delta between strategies under controlled conditions_. This is an apples-to-oranges comparison. If you varied the learning rate by 10x or swapped the loss function, you would also get 10-16pp variation — that would not be a meaningful finding. The correct question is: holding methodology constant, does mining strategy matter? The paper's own answer is \"barely\" — but that could simply mean the strategies tested are insufficiently different, not that methodology generically \"dominates.\"\n\n2. **Related work is unacceptably thin for a methodology paper.** Only 8 references, 3 short paragraphs. For a paper whose central claim is that the field has \"contradictory findings\" caused by methodology confounds, the authors fail to (a) cite the specific contradictory findings, (b) survey the extensive IR evaluation methodology literature beyond Zobel 1998 (e.g., Voorhees 2000 on variation in relevance judgments, Lin 2019 on reproducibility in neural IR, Thakur et al. 2021 BEIR on cross-domain evaluation), and (c) adequately cover the hard negative mining literature (DPR, RocketQA, ANCE dynamic refresh, curriculum learning approaches, debiased contrastive learning). The literature map in the project files shows 60 relevant entries were identified — the paper uses 8. This is a glaring gap.\n\n3. **The \"contradictory findings\" premise is asserted, not demonstrated.** The introduction claims the field produces contradictory results about hard negatives, but the paper does not cite specific contradictions. CoCoHaNeRe claims gradient-based > embedding; ANCE claims dynamic embedding works well. Where is the actual contradiction? Without grounding this claim in specific cited disagreements, the paper's raison d'etre is undermined.\n\n4. **Novelty is limited — quantifying known confounds is not a new contribution.** That pool size, temperature, seed, and checkpoint selection affect IR metrics is well-established in the IR literature (Zobel 1998, Buckley & Voorhees 2004, Sakai 2006). The contribution reduces to: \"we measured these known confounds in the specific setting of code retrieval and found they are larger than the differences between 4 mining strategies.\" This is a valid empirical finding but arguably an expected one for anyone familiar with IR evaluation methodology.\n\n5. **The geometry hypothesis lacks rigorous testing.** The paper observes that Qwen (saturated) shows marginal benefit from embedding mining (+0.4pp) while StarCoder (healthy margin) and UniXcoder show none. But with only 3 encoders and 3 seeds per encoder, this \"explanation\" is post-hoc pattern matching, not a tested mechanism. No intervention (e.g., artificially inducing saturation in StarCoder, or whitening Qwen's representations) is performed to validate causality. The hypothesis that \"saturation → harder negatives help\" is presented as an explanation but is effectively unfalsifiable given the data.\n\n6. **Generalizability is severely limited.** All experiments use a single task (SWE-smith code retrieval), a single loss (InfoNCE), a single K (7), a single training scale (14,100 instances), and code-domain data. The paper offers no evidence that the \"methodology dominates\" finding transfers to NL retrieval, passage retrieval, or even different code retrieval benchmarks with different characteristics. The inclusion of RepoBench-R is welcome but insufficient for claims about the field's evaluation practices broadly.\n\n### Questions for Authors\n\n1. Can you cite 2-3 specific papers that report contradictory findings about hard negative mining for code retrieval? Your \"contradictory findings\" framing is central to motivation but entirely ungrounded in the current manuscript.\n\n2. The 40x ratio compares methodology range (varying multiple experimental axes simultaneously) against strategy delta (one controlled variable). Would you agree that this comparison is methodologically inappropriate, and if so, would you reframe the contribution?\n\n3. Have you considered that the near-zero strategy delta might simply reflect that your 4 strategies produce insufficiently different training signals, rather than that methodology generically dominates? The BM25-vs-embedding top-7 Jaccard overlap of only 30-38% in large repos suggests strategies DO select different negatives — so why might the encoder not learn from this difference?\n\n4. How do you respond to the concern that your findings are tautological: \"If you change the evaluation setup enough, evaluation changes more than a subtle training signal\"?\n\n5. Your in-training eval has a documented ±0.5pp noise floor from random negative sampling in validation. Given that your core strategy deltas are of similar magnitude (0.4pp), how confident are you that the pool=50 post-hoc evaluation fully resolves this confound?\n\n### Minor Issues\n\n1. The title references \"mining strategy\" but the paper's actual finding is that mining strategy barely matters — this creates an expectation mismatch.\n2. Section 2 paragraph 3 cites only Zobel 1998 for evaluation methodology — a 28-year-old paper. The IR community has extensive modern work on this topic.\n3. The \"40x\" number appears in the abstract, but readers cannot verify it without understanding that it compares range vs. delta — this should be explained immediately.\n4. Bootstrap CIs that \"include zero\" for the main claimed positive result (+0.4pp) effectively mean the paper cannot reject the null hypothesis that embedding mining helps, undermining the only positive mining result.\n5. 8 references total is extremely low for any venue paper, let alone a methodology/survey-style contribution.\n\n### Overall Assessment\nScore: 3 (Weak Reject)\nConfidence: 4\n\nThe paper identifies a real issue (evaluation confounds in code retrieval) and provides useful quantitative evidence on checkpoint criterion effects. However, the novelty is limited — the finding that evaluation methodology affects results more than subtle training variations is well-known in IR. The \"40x\" framing is misleading, the related work is far too thin for a methodology paper, the \"contradictory findings\" premise is unsubstantiated, and the geometry hypothesis is speculative. The paper would benefit from (a) a properly grounded literature review that actually cites the contradictions it claims to resolve, (b) honest reframing of the 40x comparison, (c) testing on at least one non-code domain to support generalizability, and (d) a rigorous test of the geometry hypothesis rather than post-hoc observation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc1fb609-33e0-4f88-b674-1f27c8fbf15d",
+            "isSidechain": true,
+            "agentId": "ab7109463d20a2104",
+            "requestId": "req_011Cb6YFHDLCk2tLD6cS2qVf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "051be036-2195-4896-bc6d-508d60f34b0e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "70f2e657-b2f7-49f6-b49a-3e4df9432c39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RRo1mHxq69xJmiPE7devzw",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7944,
+                "cache_read_input_tokens": 33652,
+                "output_tokens": 2000,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7944
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2000,
+                    "cache_read_input_tokens": 33652,
+                    "cache_creation_input_tokens": 7944,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7944,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-2-r2-for-a-top-ml-venue-paper-review-your-focus-is-novelty-an.md"
+}

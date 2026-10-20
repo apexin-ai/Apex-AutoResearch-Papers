@@ -1,0 +1,1486 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ca09f27f98a988011ee0",
+  "rounds": [
+    {
+      "number": 61,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-14T07:55:37.230Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T07:55:37.230Z",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+                "content": "[飞书用户 游承松 (ou_b0d7564c8e9a84caf6f67d16883772f5)]: 有进行dream写作吗？"
+              }
+            }
+          ],
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-14T07:55:37.230Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T07:55:37.230Z",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633"
+              }
+            }
+          ],
+          "id": "event-000362"
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "messages": [
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-14T07:55:37.221Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08861ace-0a4c-4cd6-971f-458c63a0f4ba",
+            "isSidechain": false,
+            "promptId": "ce3e72c6-9c71-40bb-a00d-3a0b58e00d97",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "60dbb67e-b44c-44e1-b06e-bf9f0b9d1c2e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-14T07:55:37.221Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60dbb67e-b44c-44e1-b06e-bf9f0b9d1c2e",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "bd247c67-36cf-4eb9-bb03-9838b43f8554",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "97ad8ab9-bbca-4166-842b-f02d964a47d1",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "messages": [
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-14T07:55:37.362Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 游承松 (ou_b0d7564c8e9a84caf6f67d16883772f5)]: 有进行dream写作吗？"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd247c67-36cf-4eb9-bb03-9838b43f8554",
+            "isSidechain": false,
+            "promptId": "ce3e72c6-9c71-40bb-a00d-3a0b58e00d97",
+            "type": "user",
+            "uuid": "5aed46e7-d296-42b7-9d8b-0a6a12b3c9bb",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-14T07:55:40.574Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016RqJxNth9kQpCVdJEqB4kA",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__get_dream_status,mcp__agent-ml-research__read_project_file",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5aed46e7-d296-42b7-9d8b-0a6a12b3c9bb",
+            "isSidechain": false,
+            "requestId": "req_011Cb26uZ1cmfzPBFFgjYZQm",
+            "type": "assistant",
+            "uuid": "184e5f4a-d4ba-4dd6-86de-71c3cbc31d4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019rJCwnH2jTiZf1df8Mfscv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 68,
+                "cache_read_input_tokens": 102055,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 68,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 102055,
+                    "cache_creation_input_tokens": 68,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 68
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-14T07:55:40.583Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_016RqJxNth9kQpCVdJEqB4kA",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__get_dream_status"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "184e5f4a-d4ba-4dd6-86de-71c3cbc31d4c",
+            "isSidechain": false,
+            "promptId": "ce3e72c6-9c71-40bb-a00d-3a0b58e00d97",
+            "type": "user",
+            "uuid": "0495bf97-9b0f-4026-8ee6-16e8953e3148",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__get_dream_status",
+                "mcp__agent-ml-research__read_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__get_dream_status,mcp__agent-ml-research__read_project_file",
+              "total_deferred_tools": 92
+            },
+            "sourceToolAssistantUUID": "184e5f4a-d4ba-4dd6-86de-71c3cbc31d4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-14T07:55:51.622Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user is asking about whether we've done a Dream simulation for the paper writing. Let me check the current state. \n\nLooking at the CLAUDE.md instructions, Dream simulate is meant to be used post-MVP when framing + plan are written. We did a major framing rewrite (D024), so it would make sense to run a new Dream simulation based on the updated framing. \n\nLet me check if there's been a recent dream run, and also check the current paper_framing.md status to see if we should trigger one now.\n\nActually, from the conversation history, I know we had a dream run before (referenced in experiment_plan.yaml with \"dream_source\" fields), but that was based on the OLD framing. \n\nSince the framing got substantially updated in D024, I should run a fresh Dream simulation to validate how the new narrative holds up.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0495bf97-9b0f-4026-8ee6-16e8953e3148",
+            "isSidechain": false,
+            "requestId": "req_011Cb26uwwzjiESNrroVded9",
+            "type": "assistant",
+            "uuid": "7286c2df-bc3f-4302-85aa-cfb2b7a45463",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YAwBFWbGAf6qtc9Bwo4Ue",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 647,
+                "cache_read_input_tokens": 102123,
+                "output_tokens": 317,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 647,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 317,
+                    "cache_read_input_tokens": 102123,
+                    "cache_creation_input_tokens": 647,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 647
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": "2026-05-14T07:55:51.671Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gim1pnzgU2xtGSBQRXjT9A",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__get_dream_trend,mcp__agent-ml-research__dream_simulate",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7286c2df-bc3f-4302-85aa-cfb2b7a45463",
+            "isSidechain": false,
+            "requestId": "req_011Cb26uwwzjiESNrroVded9",
+            "type": "assistant",
+            "uuid": "bb5ffbf9-a66e-4753-9124-80abfaa620ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YAwBFWbGAf6qtc9Bwo4Ue",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 647,
+                "cache_read_input_tokens": 102123,
+                "output_tokens": 317,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 647,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 317,
+                    "cache_read_input_tokens": 102123,
+                    "cache_creation_input_tokens": 647,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 647
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-14T07:55:51.675Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Gim1pnzgU2xtGSBQRXjT9A",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__get_dream_trend"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__dream_simulate"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb5ffbf9-a66e-4753-9124-80abfaa620ca",
+            "isSidechain": false,
+            "promptId": "ce3e72c6-9c71-40bb-a00d-3a0b58e00d97",
+            "type": "user",
+            "uuid": "04e496e0-9e6c-4734-aa0d-75f4bacf112f",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__get_dream_trend",
+                "mcp__agent-ml-research__dream_simulate"
+              ],
+              "query": "select:mcp__agent-ml-research__get_dream_trend,mcp__agent-ml-research__dream_simulate",
+              "total_deferred_tools": 92
+            },
+            "sourceToolAssistantUUID": "bb5ffbf9-a66e-4753-9124-80abfaa620ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-14T07:55:54.858Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M2umrCKD8mwvVMdvDZ4RYx",
+              "name": "mcp__agent-ml-research__get_dream_trend",
+              "input": {
+                "project": "structfuse-context"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04e496e0-9e6c-4734-aa0d-75f4bacf112f",
+            "isSidechain": false,
+            "requestId": "req_011Cb26vcENEZ6KhRsiJBwNz",
+            "type": "assistant",
+            "uuid": "96fb274d-4a40-400e-a8fa-353e8e81c618",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0137Ynh1H7NCgeZ42qGGroy2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1149,
+                "cache_read_input_tokens": 102770,
+                "output_tokens": 69,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1149,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 69,
+                    "cache_read_input_tokens": 102770,
+                    "cache_creation_input_tokens": 1149,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1149
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-14T07:55:55.074Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M2umrCKD8mwvVMdvDZ4RYx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"trend\\\": [{\\\"dream_id\\\": \\\"dream_20260512T204322\\\", \\\"created_at\\\": \\\"2026-05-12T21:26:25+00:00\\\", \\\"venue\\\": \\\"\\\", \\\"focus\\\": \\\"Key risk: dataflow negatives showed connected⊆gold at MVP scale (8 repos) but Z=40.8% at 50-repo scale. Full-scale training may reveal the effect is weaker than hypothesized. Also: embedding-distance negatives actively harm (-3.7pp R@1), which is a strong negative result supporting the dual-pillar motivation. Reviewers should stress-test whether the connected≠gold signal at scale (40.8%) is sufficient to produce meaningful training differentiation, and whether the improvement magnitude will be large enough for EMNLP acceptance.\\\", \\\"review_mode\\\": \\\"full\\\", \\\"what_if\\\": [], \\\"tiers\\\": {\\\"best\\\": {\\\"n_experiments\\\": 12, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/best/paper.pdf\\\", \\\"error\\\": \\\"\\\", \\\"predictions\\\": {\\\"M1 全量 CodeQL 提取\\\": {\\\"repos_attempted\\\": 5000, \\\"repos_success\\\": 4720, \\\"repos_skipped_no_python\\\": 180, \\\"repos_timeout\\\": 100, \\\"codeql_timeout_pct\\\": 5.2, \\\"total_instances\\\": \\\"~24000\\\", \\\"instances_with_extra_connected\\\": \\\"~10100\\\", \\\"Z_pct\\\": 42.1, \\\"avg_connected_minus_gold\\\": 5.8, \\\"median_extraction_time_s\\\": 38.2, \\\"p95_extraction_time_s\\\": 210, \\\"by_repo_size\\\": {\\\"small_lt50\\\": {\\\"Z_pct\\\": 39.5, \\\"avg_extra\\\": 2.8}, \\\"medium_50_200\\\": {\\\"Z_pct\\\": 54.2, \\\"avg_extra\\\": 10.5}, \\\"large_gt200\\\": {\\\"Z_pct\\\": 18.3, \\\"avg_extra\\\": 9.2}}}, \\\"M2 全量 3-strategy 对比训练\\\": {\\\"training_instances\\\": \\\"~12000\\\", \\\"epochs\\\": 3, \\\"batch_size\\\": 32, \\\"dataflow_s42\\\": {\\\"val_loss\\\": 0.0215, \\\"recall@5\\\": 0.862}, \\\"dataflow_s123\\\": {\\\"val_loss\\\": 0.0248, \\\"recall@5\\\": 0.849}, \\\"dataflow_s456\\\": {\\\"val_loss\\\": 0.0198, \\\"recall@5\\\": 0.871}, \\\"dataflow_mean\\\": {\\\"val_loss\\\": 0.022, \\\"recall@5\\\": 0.861}, \\\"random_s42\\\": {\\\"val_loss\\\": 0.0312, \\\"recall@5\\\": 0.792}, \\\"random_s123\\\": {\\\"val_loss\\\": 0.0358, \\\"recall@5\\\": 0.778}, \\\"random_s456\\\": {\\\"val_loss\\\": 0.0289, \\\"recall@5\\\": 0.801}, \\\"random_mean\\\": {\\\"val_loss\\\": 0.032, \\\"recall@5\\\": 0.79}, \\\"emb_dist_s42\\\": {\\\"val_loss\\\": 0.0485, \\\"recall@5\\\": 0.738}, \\\"emb_dist_s123\\\": {\\\"val_loss\\\": 0.0512, \\\"recall@5\\\": 0.721}, \\\"emb_dist_s456\\\": {\\\"val_loss\\\": 0.0468, \\\"recall@5\\\": 0.745}, \\\"emb_dist_mean\\\": {\\\"val_loss\\\": 0.0488, \\\"recall@5\\\": 0.735}, \\\"delta_dataflow_vs_random_R5\\\": 0.071, \\\"delta_emb_vs_random_R5\\\": -0.055, \\\"val_loss_gap_dataflow_vs_random\\\": 0.01, \\\"paired_t_test_dataflow_vs_random_p\\\": 0.008, \\\"paired_t_test_emb_vs_random_p\\\": 0.012}, \\\"M3a SWE-bench Lite End-to-End Evaluation\\\": {\\\"n_instances\\\": 300, \\\"agent_model\\\": \\\"Qwen3.6-27B\\\", \\\"baseline_swerank_resolve_rate\\\": 0.312, \\\"dataflow_retriever_resolve_rate\\\": 0.338, \\\"random_retriever_resolve_rate\\\": 0.318, \\\"emb_dist_retriever_resolve_rate\\\": 0.305, \\\"delta_dataflow_vs_random_pp\\\": 2.0, \\\"delta_dataflow_vs_swerank_pp\\\": 2.6, \\\"delta_emb_vs_random_pp\\\": -1.3, \\\"swebench_lite_resolve_delta_pp\\\": 2.0, \\\"instances_where_retrieval_changed_outcome\\\": 18, \\\"instances_where_dataflow_uniquely_solved\\\": 9, \\\"instances_where_emb_dist_uniquely_failed\\\": 5}, \\\"M3b RepoBench-R Cross-File Retrieval\\\": {\\\"n_eval_instances\\\": \\\"~5000\\\", \\\"dataflow_R5\\\": 0.724, \\\"random_R5\\\": 0.688, \\\"emb_dist_R5\\\": 0.671, \\\"swerank_baseline_R5\\\": 0.695, \\\"delta_dataflow_vs_random_pp\\\": 3.6, \\\"delta_dataflow_vs_swerank_pp\\\": 2.9, \\\"repobench_R_improvement_pp\\\": 3.6, \\\"MRR_dataflow\\\": 0.618, \\\"MRR_random\\\": 0.582, \\\"MRR_emb_dist\\\": 0.561}, \\\"Embedding vs Random 深度分析\\\": {\\\"strata\\\": {\\\"small_repos_lt50\\\": {\\\"emb_vs_random_delta_R5\\\": -0.032, \\\"n_instances\\\": \\\"~4800\\\"}, \\\"medium_repos_50_200\\\": {\\\"emb_vs_random_delta_R5\\\": -0.071, \\\"n_instances\\\": \\\"~1800\\\"}, \\\"large_repos_gt200\\\": {\\\"emb_vs_random_delta_R5\\\": -0.089, \\\"n_instances\\\": \\\"~400\\\"}}, \\\"by_query_difficulty\\\": {\\\"easy_bm25_gt08\\\": {\\\"emb_vs_random_delta_R5\\\": -0.018}, \\\"hard_bm25_lt04\\\": {\\\"emb_vs_random_delta_R5\\\": -0.092}}, \\\"correlation_emb_harm_vs_repo_complexity\\\": 0.61, \\\"gradient_redundancy_metric\\\": 0.74}, \\\"M1 Scalability Statistics\\\": {\\\"total_repos\\\": 5000, \\\"timeout_rate_pct\\\": 5.2, \\\"mean_extraction_time_s\\\": 41.8, \\\"median_extraction_time_s\\\": 28.5, \\\"p95_extraction_time_s\\\": 198, \\\"p99_extraction_time_s\\\": 285, \\\"coverage_has_cg\\\": 0.96, \\\"coverage_has_df\\\": 0.91, \\\"Z_pct_overall\\\": 42.1, \\\"Z_by_language\\\": {\\\"python\\\": 43.8, \\\"javascript\\\": 38.2, \\\"typescript\\\": 41.5}, \\\"extraction_cost_total_cpu_hours\\\": 82}, \\\"Ablation: Hop Count (1 vs 2 vs 3)\\\": {\\\"hop_1\\\": {\\\"Z_pct\\\": 28.5, \\\"timeout_pct\\\": 1.2, \\\"R5_dataflow\\\": 0.831, \\\"connected_set_size_mean\\\": 3.2}, \\\"hop_2\\\": {\\\"Z_pct\\\": 42.1, \\\"timeout_pct\\\": 5.2, \\\"R5_dataflow\\\": 0.861, \\\"connected_set_size_mean\\\": 8.7}, \\\"hop_3\\\": {\\\"Z_pct\\\": 51.8, \\\"timeout_pct\\\": 18.5, \\\"R5_dataflow\\\": 0.852, \\\"connected_set_size_mean\\\": 24.1}}, \\\"Ablation: Training Data Size Scaling\\\": {\\\"size_1K\\\": {\\\"dataflow_R5\\\": 0.821, \\\"random_R5\\\": 0.768, \\\"delta_pp\\\": 5.3}, \\\"size_3K\\\": {\\\"dataflow_R5\\\": 0.848, \\\"random_R5\\\": 0.782, \\\"delta_pp\\\": 6.6}, \\\"size_5K\\\": {\\\"dataflow_R5\\\": 0.861, \\\"random_R5\\\": 0.79, \\\"delta_pp\\\": 7.1}, \\\"log_linear_fit_r2\\\": 0.97}, \\\"Ablation: Fusion Head\\\": {\\\"embedding_only\\\": {\\\"R5\\\": 0.79, \\\"note\\\": \\\"Equivalent to random-trained baseline\\\"}, \\\"structural_only\\\": {\\\"R5\\\": 0.712, \\\"note\\\": \\\"Data-flow features alone, no embedding\\\"}, \\\"combined\\\": {\\\"R5\\\": 0.861, \\\"note\\\": \\\"Full model\\\"}, \\\"delta_combined_vs_embedding_pp\\\": 7.1, \\\"delta_combined_vs_structural_pp\\\": 14.9}, \\\"Ablation: Distance-Weighted vs Binary\\\": {\\\"binary\\\": {\\\"R5\\\": 0.861}, \\\"weighted_linear\\\": {\\\"R5\\\": 0.858}, \\\"weighted_inverse\\\": {\\\"R5\\\": 0.864}, \\\"delta_weighted_vs_binary_pp\\\": 0.3, \\\"p_value\\\": 0.42}, \\\"Failure Analysis\\\": {\\\"failures_analyzed\\\": 50, \\\"categories\\\": {\\\"dataflow_helps_directly\\\": 14, \\\"dataflow_helps_partially\\\": 8, \\\"structural_irrelevant\\\": 18, \\\"gold_unreachable_by_any\\\": 10}, \\\"dataflow_help_rate\\\": 0.44, \\\"common_failure_patterns\\\": [{\\\"pattern\\\": \\\"Gold file is utility/helper imported transitively\\\", \\\"count\\\": 11, \\\"dataflow_helps\\\": true}, {\\\"pattern\\\": \\\"Gold file is test file with no structural connection\\\", \\\"count\\\": 9, \\\"dataflow_helps\\\": false}, {\\\"pattern\\\": \\\"Bug is in configuration/data file not in call graph\\\", \\\"count\\\": 8, \\\"dataflow_helps\\\": false}, {\\\"pattern\\\": \\\"Gold file shares API contract but no direct dataflow\\\", \\\"count\\\": 7, \\\"dataflow_helps\\\": true}, {\\\"pattern\\\": \\\"Multiple valid fix locations, gold is one of several\\\", \\\"count\\\": 6, \\\"dataflow_helps\\\": \\\"partial\\\"}]}, \\\"Qualitative Examples\\\": {\\\"examples_selected\\\": 8, \\\"categories\\\": {\\\"transitively_connected_utility\\\": 3, \\\"shared_data_pipeline\\\": 2, \\\"cross_module_error_handler\\\": 2, \\\"api_contract_dependency\\\": 1}, \\\"format\\\": \\\"Each example includes: bug description, gold file, baseline retrieval rank, dataflow retrieval rank, structural path (call chain), and explanation of why lexical similarity fails\\\"}}}, \\\"median\\\": {\\\"n_experiments\\\": 12, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/median/paper.pdf\\\", \\\"error\\\": \\\"\\\", \\\"predictions\\\": {\\\"M1 全量 CodeQL 提取 (5K SWE-smith)\\\": {\\\"total_repos_attempted\\\": 5000, \\\"repos_successfully_extracted\\\": 4300, \\\"repos_failed_or_skipped\\\": 700, \\\"total_instances\\\": 12800, \\\"instances_with_extra_connected\\\": 3200, \\\"Z_pct_5K\\\": 25.0, \\\"avg_connected_minus_gold\\\": 4.2, \\\"codeql_timeout_rate_pct\\\": 7.8, \\\"codeql_mean_time_s\\\": 38.5, \\\"codeql_p95_time_s\\\": 210.0, \\\"gold_in_connected_ratio\\\": 0.72, \\\"repos_with_zero_connected\\\": 2100}, \\\"M2 全量 3-strategy 对比训练\\\": {\\\"random_s42_recall5\\\": 0.812, \\\"random_s123_recall5\\\": 0.798, \\\"random_s456_recall5\\\": 0.821, \\\"random_mean_recall5\\\": 0.81, \\\"random_std_recall5\\\": 0.012, \\\"dataflow_s42_recall5\\\": 0.818, \\\"dataflow_s123_recall5\\\": 0.807, \\\"dataflow_s456_recall5\\\": 0.826, \\\"dataflow_mean_recall5\\\": 0.817, \\\"dataflow_std_recall5\\\": 0.01, \\\"emb_dist_s42_recall5\\\": 0.762, \\\"emb_dist_s123_recall5\\\": 0.748, \\\"emb_dist_s456_recall5\\\": 0.771, \\\"emb_dist_mean_recall5\\\": 0.76, \\\"emb_dist_std_recall5\\\": 0.012, \\\"delta_dataflow_vs_random_R5\\\": 0.007, \\\"delta_emb_vs_random_R5\\\": -0.05, \\\"random_mean_recall1\\\": 0.542, \\\"dataflow_mean_recall1\\\": 0.553, \\\"emb_dist_mean_recall1\\\": 0.489, \\\"delta_dataflow_vs_random_R1\\\": 0.011, \\\"delta_emb_vs_random_R1\\\": -0.053, \\\"training_loss_final_random\\\": 0.028, \\\"training_loss_final_dataflow\\\": 0.035, \\\"training_loss_final_emb_dist\\\": 0.092, \\\"training_time_hours_per_run\\\": 3.2}, \\\"M3a SWE-bench Lite End-to-End Evaluation\\\": {\\\"random_resolve_rate_pct\\\": 28.3, \\\"dataflow_resolve_rate_pct\\\": 28.7, \\\"emb_dist_resolve_rate_pct\\\": 27.8, \\\"resolve_delta_dataflow_vs_random_pp\\\": 0.4, \\\"resolve_delta_emb_vs_random_pp\\\": -0.5, \\\"random_retrieval_recall5_e2e\\\": 0.805, \\\"dataflow_retrieval_recall5_e2e\\\": 0.811, \\\"emb_dist_retrieval_recall5_e2e\\\": 0.758, \\\"avg_tokens_per_instance\\\": 12400, \\\"timeout_instances\\\": 8, \\\"total_eval_gpu_hours\\\": 38}, \\\"M3b RepoBench-R Cross-File Retrieval Evaluation\\\": {\\\"random_recall5\\\": 0.618, \\\"dataflow_recall5\\\": 0.625, \\\"emb_dist_recall5\\\": 0.592, \\\"random_mrr\\\": 0.483, \\\"dataflow_mrr\\\": 0.49, \\\"emb_dist_mrr\\\": 0.461, \\\"delta_dataflow_vs_random_R5_pp\\\": 0.7, \\\"delta_emb_vs_random_R5_pp\\\": -2.6, \\\"repobench_R_improvement_pp\\\": 0.7, \\\"baseline_unixcoder_recall5\\\": 0.601, \\\"baseline_swerank_recall5\\\": 0.645}, \\\"Embedding vs Random 深度分层分析\\\": {\\\"harm_by_repo_size\\\": {\\\"small_lt50_delta_R5_pp\\\": -2.1, \\\"medium_50_200_delta_R5_pp\\\": -6.8, \\\"large_gt200_delta_R5_pp\\\": -5.3}, \\\"harm_by_candidate_pool_diversity\\\": {\\\"low_diversity_delta_R5_pp\\\": -7.2, \\\"high_diversity_delta_R5_pp\\\": -2.8}, \\\"harm_by_embedding_similarity_of_negatives\\\": {\\\"top10pct_most_similar_delta_R5_pp\\\": -9.1, \\\"bottom50pct_delta_R5_pp\\\": -1.5}, \\\"correlation_neg_similarity_vs_harm\\\": 0.71}, \\\"M1 Scalability Statistics\\\": {\\\"overall_timeout_pct\\\": 7.8, \\\"overall_extraction_success_pct\\\": 86.0, \\\"mean_extraction_time_s\\\": 38.5, \\\"median_extraction_time_s\\\": 22.1, \\\"p95_extraction_time_s\\\": 210.0, \\\"p99_extraction_time_s\\\": 285.0, \\\"by_repo_size\\\": {\\\"small_lt50\\\": {\\\"timeout_pct\\\": 1.2, \\\"mean_time_s\\\": 12.3, \\\"Z_pct\\\": 15.3, \\\"coverage\\\": 0.92}, \\\"medium_50_200\\\": {\\\"timeout_pct\\\": 6.5, \\\"mean_time_s\\\": 45.8, \\\"Z_pct\\\": 38.9, \\\"coverage\\\": 0.85}, \\\"large_gt200\\\": {\\\"timeout_pct\\\": 18.7, \\\"mean_time_s\\\": 98.2, \\\"Z_pct\\\": 29.1, \\\"coverage\\\": 0.71}}, \\\"codeql_db_creation_failure_pct\\\": 6.2, \\\"beniget_fallback_usage_pct\\\": 14.0}, \\\"Ablation: 1-hop vs 2-hop vs 3-hop Call-Graph Bounding\\\": {\\\"hop_1\\\": {\\\"Z_pct\\\": 12.1, \\\"avg_connected_files\\\": 2.3, \\\"timeout_pct\\\": 2.1, \\\"recall5_after_training\\\": 0.808}, \\\"hop_2\\\": {\\\"Z_pct\\\": 25.0, \\\"avg_connected_files\\\": 4.2, \\\"timeout_pct\\\": 7.8, \\\"recall5_after_training\\\": 0.817}, \\\"hop_3\\\": {\\\"Z_pct\\\": 41.5, \\\"avg_connected_files\\\": 12.8, \\\"timeout_pct\\\": 22.3, \\\"recall5_after_training\\\": 0.811}}, \\\"Ablation: Training Data Size Scaling (1K vs 3K vs 5K)\\\": {\\\"scale_1K\\\": {\\\"recall5\\\": 0.785, \\\"recall1\\\": 0.51, \\\"training_time_h\\\": 0.7}, \\\"scale_3K\\\": {\\\"recall5\\\": 0.808, \\\"recall1\\\": 0.541, \\\"training_time_h\\\": 2.0}, \\\"scale_5K\\\": {\\\"recall5\\\": 0.817, \\\"recall1\\\": 0.553, \\\"training_time_h\\\": 3.2}, \\\"scaling_slope_R5_per_1K\\\": 0.008, \\\"log_linear_fit_r2\\\": 0.96}, \\\"Ablation: Fusion Head (Embedding-only vs Structural-features-only vs Combined)\\\": {\\\"embedding_only_recall5\\\": 0.817, \\\"structural_only_recall5\\\": 0.628, \\\"combined_recall5\\\": 0.822, \\\"combined_vs_embedding_delta_pp\\\": 0.5, \\\"structural_features_auc\\\": 0.71}, \\\"Ablation: Dataflow-Distance Weighted vs Binary Connected/Disconnected\\\": {\\\"binary_recall5\\\": 0.815, \\\"weighted_alpha1_recall5\\\": 0.817, \\\"weighted_alpha05_recall5\\\": 0.814, \\\"weighted_alpha2_recall5\\\": 0.812, \\\"delta_weighted_vs_binary_pp\\\": 0.2}, \\\"Failure Analysis: 50 SweRank/BM25 Failures\\\": {\\\"total_analyzed\\\": 50, \\\"category_counts\\\": {\\\"dataflow_would_help\\\": 11, \\\"dataflow_irrelevant_lexical_gap\\\": 18, \\\"dataflow_irrelevant_logic_only\\\": 9, \\\"gold_not_in_repo_scope\\\": 5, \\\"multi_file_edit_needed\\\": 7}, \\\"dataflow_help_rate_pct\\\": 22.0, \\\"ceiling_if_perfect_structural_signal_pct\\\": 32.0}, \\\"Qualitative Examples: Structural Negatives 改变检索结果的 Case Study\\\": {\\\"total_cases_found\\\": 7, \\\"cases_dataflow_improved_ranking\\\": 4, \\\"cases_dataflow_no_change\\\": 2, \\\"cases_dataflow_hurt\\\": 1, \\\"best_case_rank_improvement\\\": \\\"gold file: rank 8→2\\\", \\\"worst_case_rank_regression\\\": \\\"gold file: rank 3→5\\\"}}}, \\\"worst\\\": {\\\"n_experiments\\\": 12, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/worst/paper.pdf\\\", \\\"error\\\": \\\"\\\", \\\"predictions\\\": {\\\"M1 全量 CodeQL 提取\\\": {\\\"repos_attempted\\\": 5000, \\\"repos_successful\\\": 3850, \\\"repos_skipped_no_python\\\": 420, \\\"repos_failed_codeql_error\\\": 310, \\\"repos_timeout\\\": 420, \\\"total_instances\\\": 18200, \\\"instances_with_extra_connected\\\": 2550, \\\"Z_pct_overall\\\": 14.0, \\\"Z_pct_small_lt50\\\": 9.2, \\\"Z_pct_medium_50_200\\\": 24.8, \\\"Z_pct_large_gt200\\\": 5.1, \\\"gold_in_connected_ratio\\\": 0.72, \\\"avg_connected_minus_gold_small\\\": 1.1, \\\"avg_connected_minus_gold_medium\\\": 5.3, \\\"avg_connected_minus_gold_large\\\": 2.8, \\\"cg_mean_s\\\": 48.7, \\\"cg_median_s\\\": 22.1, \\\"cg_p95_s\\\": 210.5, \\\"df_mean_s\\\": 71.3, \\\"df_median_s\\\": 35.8, \\\"df_p95_s\\\": 340.2}, \\\"M2 全量 3-strategy 对比训练\\\": {\\\"training_instances\\\": 15400, \\\"random_s42\\\": {\\\"val_loss\\\": 0.082, \\\"retrieval_R1\\\": 0.412, \\\"retrieval_R5\\\": 0.783, \\\"retrieval_R10\\\": 0.871}, \\\"random_s123\\\": {\\\"val_loss\\\": 0.079, \\\"retrieval_R1\\\": 0.425, \\\"retrieval_R5\\\": 0.791, \\\"retrieval_R10\\\": 0.878}, \\\"random_s456\\\": {\\\"val_loss\\\": 0.085, \\\"retrieval_R1\\\": 0.408, \\\"retrieval_R5\\\": 0.776, \\\"retrieval_R10\\\": 0.865}, \\\"random_mean\\\": {\\\"retrieval_R1\\\": 0.415, \\\"retrieval_R5\\\": 0.783, \\\"retrieval_R10\\\": 0.871}, \\\"emb_dist_s42\\\": {\\\"val_loss\\\": 0.121, \\\"retrieval_R1\\\": 0.378, \\\"retrieval_R5\\\": 0.748, \\\"retrieval_R10\\\": 0.842}, \\\"emb_dist_s123\\\": {\\\"val_loss\\\": 0.118, \\\"retrieval_R1\\\": 0.385, \\\"retrieval_R5\\\": 0.755, \\\"retrieval_R10\\\": 0.849}, \\\"emb_dist_s456\\\": {\\\"val_loss\\\": 0.125, \\\"retrieval_R1\\\": 0.371, \\\"retrieval_R5\\\": 0.741, \\\"retrieval_R10\\\": 0.836}, \\\"emb_dist_mean\\\": {\\\"retrieval_R1\\\": 0.378, \\\"retrieval_R5\\\": 0.748, \\\"retrieval_R10\\\": 0.842}, \\\"dataflow_s42\\\": {\\\"val_loss\\\": 0.115, \\\"retrieval_R1\\\": 0.382, \\\"retrieval_R5\\\": 0.752, \\\"retrieval_R10\\\": 0.845}, \\\"dataflow_s123\\\": {\\\"val_loss\\\": 0.112, \\\"retrieval_R1\\\": 0.39, \\\"retrieval_R5\\\": 0.758, \\\"retrieval_R10\\\": 0.851}, \\\"dataflow_s456\\\": {\\\"val_loss\\\": 0.119, \\\"retrieval_R1\\\": 0.375, \\\"retrieval_R5\\\": 0.745, \\\"retrieval_R10\\\": 0.838}, \\\"dataflow_mean\\\": {\\\"retrieval_R1\\\": 0.382, \\\"retrieval_R5\\\": 0.752, \\\"retrieval_R10\\\": 0.845}, \\\"delta_dataflow_vs_random_R5\\\": -0.031, \\\"delta_emb_vs_random_R5\\\": -0.035, \\\"delta_dataflow_vs_emb_R5\\\": 0.004, \\\"eval_pool_size\\\": 200, \\\"eval_n_samples\\\": 2400}, \\\"M3a SWE-bench Lite end-to-end evaluation\\\": {\\\"n_instances\\\": 300, \\\"random_best\\\": {\\\"resolve_rate\\\": 0.243, \\\"recall_R5_file\\\": 0.68, \\\"avg_patches_generated\\\": 2.1}, \\\"emb_dist_best\\\": {\\\"resolve_rate\\\": 0.233, \\\"recall_R5_file\\\": 0.66, \\\"avg_patches_generated\\\": 2.0}, \\\"dataflow_best\\\": {\\\"resolve_rate\\\": 0.237, \\\"recall_R5_file\\\": 0.67, \\\"avg_patches_generated\\\": 2.0}, \\\"baseline_swerank\\\": {\\\"resolve_rate\\\": 0.247, \\\"recall_R5_file\\\": 0.71}, \\\"delta_dataflow_vs_random_resolve_pp\\\": -0.6, \\\"delta_dataflow_vs_swerank_resolve_pp\\\": -1.0, \\\"delta_emb_vs_random_resolve_pp\\\": -1.0, \\\"confidence_interval_95_resolve\\\": 0.025}, \\\"M3b RepoBench-R cross-file retrieval evaluation\\\": {\\\"n_samples\\\": 1200, \\\"random_best\\\": {\\\"MRR\\\": 0.534, \\\"recall_R5\\\": 0.712, \\\"recall_R10\\\": 0.801}, \\\"emb_dist_best\\\": {\\\"MRR\\\": 0.498, \\\"recall_R5\\\": 0.683, \\\"recall_R10\\\": 0.775}, \\\"dataflow_best\\\": {\\\"MRR\\\": 0.507, \\\"recall_R5\\\": 0.691, \\\"recall_R10\\\": 0.782}, \\\"delta_dataflow_vs_random_R5_pp\\\": -2.1, \\\"delta_emb_vs_random_R5_pp\\\": -2.9, \\\"repobench_R_improvement_pp\\\": -2.1}, \\\"Embedding vs random 深度分析\\\": {\\\"stratified_by_repo_size\\\": {\\\"small_lt50_files\\\": {\\\"n_instances\\\": 920, \\\"emb_delta_R5\\\": -0.018, \\\"random_R5\\\": 0.812}, \\\"medium_50_200\\\": {\\\"n_instances\\\": 580, \\\"emb_delta_R5\\\": -0.042, \\\"random_R5\\\": 0.761}, \\\"large_gt200\\\": {\\\"n_instances\\\": 340, \\\"emb_delta_R5\\\": -0.051, \\\"random_R5\\\": 0.698}}, \\\"stratified_by_code_similarity\\\": {\\\"high_similarity_repos\\\": {\\\"emb_delta_R5\\\": -0.067, \\\"note\\\": \\\"repos with mean pairwise cosine > 0.7\\\"}, \\\"low_similarity_repos\\\": {\\\"emb_delta_R5\\\": -0.008, \\\"note\\\": \\\"repos with mean pairwise cosine < 0.4\\\"}}, \\\"embedding_harm_partially_replicates\\\": true, \\\"harm_magnitude_shrinks_at_scale\\\": true, \\\"mvp_delta_R1_pool50\\\": -0.037, \\\"fullscale_delta_R5_pool200\\\": -0.035}, \\\"M1 scalability statistics\\\": {\\\"overall_timeout_pct\\\": 14.2, \\\"timeout_by_size\\\": {\\\"small_lt50\\\": 5.8, \\\"medium_50_200\\\": 8.2, \\\"large_gt200\\\": 42.1}, \\\"extraction_time_mean_s\\\": 61.4, \\\"extraction_time_median_s\\\": 28.7, \\\"extraction_time_p95_s\\\": 285.3, \\\"extraction_time_p99_s\\\": 520.1, \\\"coverage_pct\\\": 77.0, \\\"codeql_db_creation_failure_pct\\\": 8.7, \\\"memory_oom_pct\\\": 3.1, \\\"connected_but_not_gold_by_size\\\": {\\\"small\\\": 0.092, \\\"medium\\\": 0.248, \\\"large\\\": 0.051}}, \\\"Ablation: 1-hop vs 2-hop vs 3-hop call-graph bounding\\\": {\\\"hop_1\\\": {\\\"Z_pct\\\": 6.3, \\\"timeout_pct\\\": 4.8, \\\"gold_in_connected_ratio\\\": 0.51, \\\"mean_connected_set_size\\\": 3.2}, \\\"hop_2\\\": {\\\"Z_pct\\\": 14.0, \\\"timeout_pct\\\": 14.2, \\\"gold_in_connected_ratio\\\": 0.72, \\\"mean_connected_set_size\\\": 18.7}, \\\"hop_3\\\": {\\\"Z_pct\\\": 22.5, \\\"timeout_pct\\\": 38.6, \\\"gold_in_connected_ratio\\\": 0.84, \\\"mean_connected_set_size\\\": 67.3}, \\\"retrieval_R5_hop1\\\": 0.771, \\\"retrieval_R5_hop2\\\": 0.752, \\\"retrieval_R5_hop3\\\": 0.738}, \\\"Ablation: training data size scaling\\\": {\\\"scale_1K\\\": {\\\"dataflow_R5\\\": 0.721, \\\"random_R5\\\": 0.742, \\\"delta\\\": -0.021}, \\\"scale_3K\\\": {\\\"dataflow_R5\\\": 0.743, \\\"random_R5\\\": 0.768, \\\"delta\\\": -0.025}, \\\"scale_5K\\\": {\\\"dataflow_R5\\\": 0.752, \\\"random_R5\\\": 0.783, \\\"delta\\\": -0.031}, \\\"scaling_trend\\\": \\\"gap widens with more data\\\"}, \\\"Ablation: fusion head variants\\\": {\\\"embedding_only\\\": {\\\"R5\\\": 0.779, \\\"R10\\\": 0.868}, \\\"structural_only\\\": {\\\"R5\\\": 0.612, \\\"R10\\\": 0.734}, \\\"combined\\\": {\\\"R5\\\": 0.752, \\\"R10\\\": 0.845}, \\\"combined_vs_embedding_delta_R5\\\": -0.027}, \\\"Ablation: dataflow-distance weighted negatives\\\": {\\\"binary\\\": {\\\"R5\\\": 0.752}, \\\"distance_weighted\\\": {\\\"R5\\\": 0.747}, \\\"delta\\\": -0.005, \\\"distance_distribution_analysis\\\": {\\\"pct_distance_1\\\": 62.3, \\\"pct_distance_2\\\": 37.7, \\\"pct_distance_gt2\\\": 0.0}}, \\\"Failure analysis\\\": {\\\"total_analyzed\\\": 50, \\\"category_breakdown\\\": {\\\"multi_file_cross_module\\\": 12, \\\"single_file_edit\\\": 18, \\\"test_file_related\\\": 8, \\\"config_or_setup\\\": 7, \\\"documentation_adjacent\\\": 5}, \\\"dataflow_would_help\\\": 4, \\\"dataflow_would_help_pct\\\": 8.0, \\\"dataflow_neutral\\\": 28, \\\"dataflow_would_hurt\\\": 18, \\\"dataflow_hurt_reasons\\\": {\\\"connected_set_too_large\\\": 9, \\\"gold_not_in_connected\\\": 6, \\\"false_connected_due_to_dynamic_dispatch\\\": 3}}, \\\"Qualitative examples\\\": {\\\"total_examples_found\\\": 7, \\\"positive_change\\\": 2, \\\"negative_change\\\": 4, \\\"ambiguous\\\": 1, \\\"example_themes\\\": {\\\"positive_1\\\": \\\"Cross-module utility function correctly retrieved via 2-hop data-flow\\\", \\\"positive_2\\\": \\\"Disconnected near-duplicate correctly rejected as negative\\\", \\\"negative_1\\\": \\\"Config file missed because not in call-graph\\\", \\\"negative_2\\\": \\\"Test helper connected but irrelevant, displacing correct file\\\", \\\"negative_3\\\": \\\"Dynamic dispatch false-positive connection\\\", \\\"negative_4\\\": \\\"Overly large connected set (47 files) diluting signal\\\"}}}}}, \\\"status\\\": \\\"done\\\"}], \\\"deltas\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96fb274d-4a40-400e-a8fa-353e8e81c618",
+            "isSidechain": false,
+            "promptId": "ce3e72c6-9c71-40bb-a00d-3a0b58e00d97",
+            "type": "user",
+            "uuid": "410562f3-3e3d-4c95-ba8d-915222be9866",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"trend\\\": [{\\\"dream_id\\\": \\\"dream_20260512T204322\\\", \\\"created_at\\\": \\\"2026-05-12T21:26:25+00:00\\\", \\\"venue\\\": \\\"\\\", \\\"focus\\\": \\\"Key risk: dataflow negatives showed connected⊆gold at MVP scale (8 repos) but Z=40.8% at 50-repo scale. Full-scale training may reveal the effect is weaker than hypothesized. Also: embedding-distance negatives actively harm (-3.7pp R@1), which is a strong negative result supporting the dual-pillar motivation. Reviewers should stress-test whether the connected≠gold signal at scale (40.8%) is sufficient to produce meaningful training differentiation, and whether the improvement magnitude will be large enough for EMNLP acceptance.\\\", \\\"review_mode\\\": \\\"full\\\", \\\"what_if\\\": [], \\\"tiers\\\": {\\\"best\\\": {\\\"n_experiments\\\": 12, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/best/paper.pdf\\\", \\\"error\\\": \\\"\\\", \\\"predictions\\\": {\\\"M1 全量 CodeQL 提取\\\": {\\\"repos_attempted\\\": 5000, \\\"repos_success\\\": 4720, \\\"repos_skipped_no_python\\\": 180, \\\"repos_timeout\\\": 100, \\\"codeql_timeout_pct\\\": 5.2, \\\"total_instances\\\": \\\"~24000\\\", \\\"instances_with_extra_connected\\\": \\\"~10100\\\", \\\"Z_pct\\\": 42.1, \\\"avg_connected_minus_gold\\\": 5.8, \\\"median_extraction_time_s\\\": 38.2, \\\"p95_extraction_time_s\\\": 210, \\\"by_repo_size\\\": {\\\"small_lt50\\\": {\\\"Z_pct\\\": 39.5, \\\"avg_extra\\\": 2.8}, \\\"medium_50_200\\\": {\\\"Z_pct\\\": 54.2, \\\"avg_extra\\\": 10.5}, \\\"large_gt200\\\": {\\\"Z_pct\\\": 18.3, \\\"avg_extra\\\": 9.2}}}, \\\"M2 全量 3-strategy 对比训练\\\": {\\\"training_instances\\\": \\\"~12000\\\", \\\"epochs\\\": 3, \\\"batch_size\\\": 32, \\\"dataflow_s42\\\": {\\\"val_loss\\\": 0.0215, \\\"recall@5\\\": 0.862}, \\\"dataflow_s123\\\": {\\\"val_loss\\\": 0.0248, \\\"recall@5\\\": 0.849}, \\\"dataflow_s456\\\": {\\\"val_loss\\\": 0.0198, \\\"recall@5\\\": 0.871}, \\\"dataflow_mean\\\": {\\\"val_loss\\\": 0.022, \\\"recall@5\\\": 0.861}, \\\"random_s42\\\": {\\\"val_loss\\\": 0.0312, \\\"recall@5\\\": 0.792}, \\\"random_s123\\\": {\\\"val_loss\\\": 0.0358, \\\"recall@5\\\": 0.778}, \\\"random_s456\\\": {\\\"val_loss\\\": 0.0289, \\\"recall@5\\\": 0.801}, \\\"random_mean\\\": {\\\"val_loss\\\": 0.032, \\\"recall@5\\\": 0.79}, \\\"emb_dist_s42\\\": {\\\"val_loss\\\": 0.0485, \\\"recall@5\\\": 0.738}, \\\"emb_dist_s123\\\": {\\\"val_loss\\\": 0.0512, \\\"recall@5\\\": 0.721}, \\\"emb_dist_s456\\\": {\\\"val_loss\\\": 0.0468, \\\"recall@5\\\": 0.745}, \\\"emb_dist_mean\\\": {\\\"val_loss\\\": 0.0488, \\\"recall@5\\\": 0.735}, \\\"delta_dataflow_vs_random_R5\\\": 0.071, \\\"delta_emb_vs_random_R5\\\": -0.055, \\\"val_loss_gap_dataflow_vs_random\\\": 0.01, \\\"paired_t_test_dataflow_vs_random_p\\\": 0.008, \\\"paired_t_test_emb_vs_random_p\\\": 0.012}, \\\"M3a SWE-bench Lite End-to-End Evaluation\\\": {\\\"n_instances\\\": 300, \\\"agent_model\\\": \\\"Qwen3.6-27B\\\", \\\"baseline_swerank_resolve_rate\\\": 0.312, \\\"dataflow_retriever_resolve_rate\\\": 0.338, \\\"random_retriever_resolve_rate\\\": 0.318, \\\"emb_dist_retriever_resolve_rate\\\": 0.305, \\\"delta_dataflow_vs_random_pp\\\": 2.0, \\\"delta_dataflow_vs_swerank_pp\\\": 2.6, \\\"delta_emb_vs_random_pp\\\": -1.3, \\\"swebench_lite_resolve_delta_pp\\\": 2.0, \\\"instances_where_retrieval_changed_outcome\\\": 18, \\\"instances_where_dataflow_uniquely_solved\\\": 9, \\\"instances_where_emb_dist_uniquely_failed\\\": 5}, \\\"M3b RepoBench-R Cross-File Retrieval\\\": {\\\"n_eval_instances\\\": \\\"~5000\\\", \\\"dataflow_R5\\\": 0.724, \\\"random_R5\\\": 0.688, \\\"emb_dist_R5\\\": 0.671, \\\"swerank_baseline_R5\\\": 0.695, \\\"delta_dataflow_vs_random_pp\\\": 3.6, \\\"delta_dataflow_vs_swerank_pp\\\": 2.9, \\\"repobench_R_improvement_pp\\\": 3.6, \\\"MRR_dataflow\\\": 0.618, \\\"MRR_random\\\": 0.582, \\\"MRR_emb_dist\\\": 0.561}, \\\"Embedding vs Random 深度分析\\\": {\\\"strata\\\": {\\\"small_repos_lt50\\\": {\\\"emb_vs_random_delta_R5\\\": -0.032, \\\"n_instances\\\": \\\"~4800\\\"}, \\\"medium_repos_50_200\\\": {\\\"emb_vs_random_delta_R5\\\": -0.071, \\\"n_instances\\\": \\\"~1800\\\"}, \\\"large_repos_gt200\\\": {\\\"emb_vs_random_delta_R5\\\": -0.089, \\\"n_instances\\\": \\\"~400\\\"}}, \\\"by_query_difficulty\\\": {\\\"easy_bm25_gt08\\\": {\\\"emb_vs_random_delta_R5\\\": -0.018}, \\\"hard_bm25_lt04\\\": {\\\"emb_vs_random_delta_R5\\\": -0.092}}, \\\"correlation_emb_harm_vs_repo_complexity\\\": 0.61, \\\"gradient_redundancy_metric\\\": 0.74}, \\\"M1 Scalability Statistics\\\": {\\\"total_repos\\\": 5000, \\\"timeout_rate_pct\\\": 5.2, \\\"mean_extraction_time_s\\\": 41.8, \\\"median_extraction_time_s\\\": 28.5, \\\"p95_extraction_time_s\\\": 198, \\\"p99_extraction_time_s\\\": 285, \\\"coverage_has_cg\\\": 0.96, \\\"coverage_has_df\\\": 0.91, \\\"Z_pct_overall\\\": 42.1, \\\"Z_by_language\\\": {\\\"python\\\": 43.8, \\\"javascript\\\": 38.2, \\\"typescript\\\": 41.5}, \\\"extraction_cost_total_cpu_hours\\\": 82}, \\\"Ablation: Hop Count (1 vs 2 vs 3)\\\": {\\\"hop_1\\\": {\\\"Z_pct\\\": 28.5, \\\"timeout_pct\\\": 1.2, \\\"R5_dataflow\\\": 0.831, \\\"connected_set_size_mean\\\": 3.2}, \\\"hop_2\\\": {\\\"Z_pct\\\": 42.1, \\\"timeout_pct\\\": 5.2, \\\"R5_dataflow\\\": 0.861, \\\"connected_set_size_mean\\\": 8.7}, \\\"hop_3\\\": {\\\"Z_pct\\\": 51.8, \\\"timeout_pct\\\": 18.5, \\\"R5_dataflow\\\": 0.852, \\\"connected_set_size_mean\\\": 24.1}}, \\\"Ablation: Training Data Size Scaling\\\": {\\\"size_1K\\\": {\\\"dataflow_R5\\\": 0.821, \\\"random_R5\\\": 0.768, \\\"delta_pp\\\": 5.3}, \\\"size_3K\\\": {\\\"dataflow_R5\\\": 0.848, \\\"random_R5\\\": 0.782, \\\"delta_pp\\\": 6.6}, \\\"size_5K\\\": {\\\"dataflow_R5\\\": 0.861, \\\"random_R5\\\": 0.79, \\\"delta_pp\\\": 7.1}, \\\"log_linear_fit_r2\\\": 0.97}, \\\"Ablation: Fusion Head\\\": {\\\"embedding_only\\\": {\\\"R5\\\": 0.79, \\\"note\\\": \\\"Equivalent to random-trained baseline\\\"}, \\\"structural_only\\\": {\\\"R5\\\": 0.712, \\\"note\\\": \\\"Data-flow features alone, no embedding\\\"}, \\\"combined\\\": {\\\"R5\\\": 0.861, \\\"note\\\": \\\"Full model\\\"}, \\\"delta_combined_vs_embedding_pp\\\": 7.1, \\\"delta_combined_vs_structural_pp\\\": 14.9}, \\\"Ablation: Distance-Weighted vs Binary\\\": {\\\"binary\\\": {\\\"R5\\\": 0.861}, \\\"weighted_linear\\\": {\\\"R5\\\": 0.858}, \\\"weighted_inverse\\\": {\\\"R5\\\": 0.864}, \\\"delta_weighted_vs_binary_pp\\\": 0.3, \\\"p_value\\\": 0.42}, \\\"Failure Analysis\\\": {\\\"failures_analyzed\\\": 50, \\\"categories\\\": {\\\"dataflow_helps_directly\\\": 14, \\\"dataflow_helps_partially\\\": 8, \\\"structural_irrelevant\\\": 18, \\\"gold_unreachable_by_any\\\": 10}, \\\"dataflow_help_rate\\\": 0.44, \\\"common_failure_patterns\\\": [{\\\"pattern\\\": \\\"Gold file is utility/helper imported transitively\\\", \\\"count\\\": 11, \\\"dataflow_helps\\\": true}, {\\\"pattern\\\": \\\"Gold file is test file with no structural connection\\\", \\\"count\\\": 9, \\\"dataflow_helps\\\": false}, {\\\"pattern\\\": \\\"Bug is in configuration/data file not in call graph\\\", \\\"count\\\": 8, \\\"dataflow_helps\\\": false}, {\\\"pattern\\\": \\\"Gold file shares API contract but no direct dataflow\\\", \\\"count\\\": 7, \\\"dataflow_helps\\\": true}, {\\\"pattern\\\": \\\"Multiple valid fix locations, gold is one of several\\\", \\\"count\\\": 6, \\\"dataflow_helps\\\": \\\"partial\\\"}]}, \\\"Qualitative Examples\\\": {\\\"examples_selected\\\": 8, \\\"categories\\\": {\\\"transitively_connected_utility\\\": 3, \\\"shared_data_pipeline\\\": 2, \\\"cross_module_error_handler\\\": 2, \\\"api_contract_dependency\\\": 1}, \\\"format\\\": \\\"Each example includes: bug description, gold file, baseline retrieval rank, dataflow retrieval rank, structural path (call chain), and explanation of why lexical similarity fails\\\"}}}, \\\"median\\\": {\\\"n_experiments\\\": 12, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/median/paper.pdf\\\", \\\"error\\\": \\\"\\\", \\\"predictions\\\": {\\\"M1 全量 CodeQL 提取 (5K SWE-smith)\\\": {\\\"total_repos_attempted\\\": 5000, \\\"repos_successfully_extracted\\\": 4300, \\\"repos_failed_or_skipped\\\": 700, \\\"total_instances\\\": 12800, \\\"instances_with_extra_connected\\\": 3200, \\\"Z_pct_5K\\\": 25.0, \\\"avg_connected_minus_gold\\\": 4.2, \\\"codeql_timeout_rate_pct\\\": 7.8, \\\"codeql_mean_time_s\\\": 38.5, \\\"codeql_p95_time_s\\\": 210.0, \\\"gold_in_connected_ratio\\\": 0.72, \\\"repos_with_zero_connected\\\": 2100}, \\\"M2 全量 3-strategy 对比训练\\\": {\\\"random_s42_recall5\\\": 0.812, \\\"random_s123_recall5\\\": 0.798, \\\"random_s456_recall5\\\": 0.821, \\\"random_mean_recall5\\\": 0.81, \\\"random_std_recall5\\\": 0.012, \\\"dataflow_s42_recall5\\\": 0.818, \\\"dataflow_s123_recall5\\\": 0.807, \\\"dataflow_s456_recall5\\\": 0.826, \\\"dataflow_mean_recall5\\\": 0.817, \\\"dataflow_std_recall5\\\": 0.01, \\\"emb_dist_s42_recall5\\\": 0.762, \\\"emb_dist_s123_recall5\\\": 0.748, \\\"emb_dist_s456_recall5\\\": 0.771, \\\"emb_dist_mean_recall5\\\": 0.76, \\\"emb_dist_std_recall5\\\": 0.012, \\\"delta_dataflow_vs_random_R5\\\": 0.007, \\\"delta_emb_vs_random_R5\\\": -0.05, \\\"random_mean_recall1\\\": 0.542, \\\"dataflow_mean_recall1\\\": 0.553, \\\"emb_dist_mean_recall1\\\": 0.489, \\\"delta_dataflow_vs_random_R1\\\": 0.011, \\\"delta_emb_vs_random_R1\\\": -0.053, \\\"training_loss_final_random\\\": 0.028, \\\"training_loss_final_dataflow\\\": 0.035, \\\"training_loss_final_emb_dist\\\": 0.092, \\\"training_time_hours_per_run\\\": 3.2}, \\\"M3a SWE-bench Lite End-to-End Evaluation\\\": {\\\"random_resolve_rate_pct\\\": 28.3, \\\"dataflow_resolve_rate_pct\\\": 28.7, \\\"emb_dist_resolve_rate_pct\\\": 27.8, \\\"resolve_delta_dataflow_vs_random_pp\\\": 0.4, \\\"resolve_delta_emb_vs_random_pp\\\": -0.5, \\\"random_retrieval_recall5_e2e\\\": 0.805, \\\"dataflow_retrieval_recall5_e2e\\\": 0.811, \\\"emb_dist_retrieval_recall5_e2e\\\": 0.758, \\\"avg_tokens_per_instance\\\": 12400, \\\"timeout_instances\\\": 8, \\\"total_eval_gpu_hours\\\": 38}, \\\"M3b RepoBench-R Cross-File Retrieval Evaluation\\\": {\\\"random_recall5\\\": 0.618, \\\"dataflow_recall5\\\": 0.625, \\\"emb_dist_recall5\\\": 0.592, \\\"random_mrr\\\": 0.483, \\\"dataflow_mrr\\\": 0.49, \\\"emb_dist_mrr\\\": 0.461, \\\"delta_dataflow_vs_random_R5_pp\\\": 0.7, \\\"delta_emb_vs_random_R5_pp\\\": -2.6, \\\"repobench_R_improvement_pp\\\": 0.7, \\\"baseline_unixcoder_recall5\\\": 0.601, \\\"baseline_swerank_recall5\\\": 0.645}, \\\"Embedding vs Random 深度分层分析\\\": {\\\"harm_by_repo_size\\\": {\\\"small_lt50_delta_R5_pp\\\": -2.1, \\\"medium_50_200_delta_R5_pp\\\": -6.8, \\\"large_gt200_delta_R5_pp\\\": -5.3}, \\\"harm_by_candidate_pool_diversity\\\": {\\\"low_diversity_delta_R5_pp\\\": -7.2, \\\"high_diversity_delta_R5_pp\\\": -2.8}, \\\"harm_by_embedding_similarity_of_negatives\\\": {\\\"top10pct_most_similar_delta_R5_pp\\\": -9.1, \\\"bottom50pct_delta_R5_pp\\\": -1.5}, \\\"correlation_neg_similarity_vs_harm\\\": 0.71}, \\\"M1 Scalability Statistics\\\": {\\\"overall_timeout_pct\\\": 7.8, \\\"overall_extraction_success_pct\\\": 86.0, \\\"mean_extraction_time_s\\\": 38.5, \\\"median_extraction_time_s\\\": 22.1, \\\"p95_extraction_time_s\\\": 210.0, \\\"p99_extraction_time_s\\\": 285.0, \\\"by_repo_size\\\": {\\\"small_lt50\\\": {\\\"timeout_pct\\\": 1.2, \\\"mean_time_s\\\": 12.3, \\\"Z_pct\\\": 15.3, \\\"coverage\\\": 0.92}, \\\"medium_50_200\\\": {\\\"timeout_pct\\\": 6.5, \\\"mean_time_s\\\": 45.8, \\\"Z_pct\\\": 38.9, \\\"coverage\\\": 0.85}, \\\"large_gt200\\\": {\\\"timeout_pct\\\": 18.7, \\\"mean_time_s\\\": 98.2, \\\"Z_pct\\\": 29.1, \\\"coverage\\\": 0.71}}, \\\"codeql_db_creation_failure_pct\\\": 6.2, \\\"beniget_fallback_usage_pct\\\": 14.0}, \\\"Ablation: 1-hop vs 2-hop vs 3-hop Call-Graph Bounding\\\": {\\\"hop_1\\\": {\\\"Z_pct\\\": 12.1, \\\"avg_connected_files\\\": 2.3, \\\"timeout_pct\\\": 2.1, \\\"recall5_after_training\\\": 0.808}, \\\"hop_2\\\": {\\\"Z_pct\\\": 25.0, \\\"avg_connected_files\\\": 4.2, \\\"timeout_pct\\\": 7.8, \\\"recall5_after_training\\\": 0.817}, \\\"hop_3\\\": {\\\"Z_pct\\\": 41.5, \\\"avg_connected_files\\\": 12.8, \\\"timeout_pct\\\": 22.3, \\\"recall5_after_training\\\": 0.811}}, \\\"Ablation: Training Data Size Scaling (1K vs 3K vs 5K)\\\": {\\\"scale_1K\\\": {\\\"recall5\\\": 0.785, \\\"recall1\\\": 0.51, \\\"training_time_h\\\": 0.7}, \\\"scale_3K\\\": {\\\"recall5\\\": 0.808, \\\"recall1\\\": 0.541, \\\"training_time_h\\\": 2.0}, \\\"scale_5K\\\": {\\\"recall5\\\": 0.817, \\\"recall1\\\": 0.553, \\\"training_time_h\\\": 3.2}, \\\"scaling_slope_R5_per_1K\\\": 0.008, \\\"log_linear_fit_r2\\\": 0.96}, \\\"Ablation: Fusion Head (Embedding-only vs Structural-features-only vs Combined)\\\": {\\\"embedding_only_recall5\\\": 0.817, \\\"structural_only_recall5\\\": 0.628, \\\"combined_recall5\\\": 0.822, \\\"combined_vs_embedding_delta_pp\\\": 0.5, \\\"structural_features_auc\\\": 0.71}, \\\"Ablation: Dataflow-Distance Weighted vs Binary Connected/Disconnected\\\": {\\\"binary_recall5\\\": 0.815, \\\"weighted_alpha1_recall5\\\": 0.817, \\\"weighted_alpha05_recall5\\\": 0.814, \\\"weighted_alpha2_recall5\\\": 0.812, \\\"delta_weighted_vs_binary_pp\\\": 0.2}, \\\"Failure Analysis: 50 SweRank/BM25 Failures\\\": {\\\"total_analyzed\\\": 50, \\\"category_counts\\\": {\\\"dataflow_would_help\\\": 11, \\\"dataflow_irrelevant_lexical_gap\\\": 18, \\\"dataflow_irrelevant_logic_only\\\": 9, \\\"gold_not_in_repo_scope\\\": 5, \\\"multi_file_edit_needed\\\": 7}, \\\"dataflow_help_rate_pct\\\": 22.0, \\\"ceiling_if_perfect_structural_signal_pct\\\": 32.0}, \\\"Qualitative Examples: Structural Negatives 改变检索结果的 Case Study\\\": {\\\"total_cases_found\\\": 7, \\\"cases_dataflow_improved_ranking\\\": 4, \\\"cases_dataflow_no_change\\\": 2, \\\"cases_dataflow_hurt\\\": 1, \\\"best_case_rank_improvement\\\": \\\"gold file: rank 8→2\\\", \\\"worst_case_rank_regression\\\": \\\"gold file: rank 3→5\\\"}}}, \\\"worst\\\": {\\\"n_experiments\\\": 12, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/worst/paper.pdf\\\", \\\"error\\\": \\\"\\\", \\\"predictions\\\": {\\\"M1 全量 CodeQL 提取\\\": {\\\"repos_attempted\\\": 5000, \\\"repos_successful\\\": 3850, \\\"repos_skipped_no_python\\\": 420, \\\"repos_failed_codeql_error\\\": 310, \\\"repos_timeout\\\": 420, \\\"total_instances\\\": 18200, \\\"instances_with_extra_connected\\\": 2550, \\\"Z_pct_overall\\\": 14.0, \\\"Z_pct_small_lt50\\\": 9.2, \\\"Z_pct_medium_50_200\\\": 24.8, \\\"Z_pct_large_gt200\\\": 5.1, \\\"gold_in_connected_ratio\\\": 0.72, \\\"avg_connected_minus_gold_small\\\": 1.1, \\\"avg_connected_minus_gold_medium\\\": 5.3, \\\"avg_connected_minus_gold_large\\\": 2.8, \\\"cg_mean_s\\\": 48.7, \\\"cg_median_s\\\": 22.1, \\\"cg_p95_s\\\": 210.5, \\\"df_mean_s\\\": 71.3, \\\"df_median_s\\\": 35.8, \\\"df_p95_s\\\": 340.2}, \\\"M2 全量 3-strategy 对比训练\\\": {\\\"training_instances\\\": 15400, \\\"random_s42\\\": {\\\"val_loss\\\": 0.082, \\\"retrieval_R1\\\": 0.412, \\\"retrieval_R5\\\": 0.783, \\\"retrieval_R10\\\": 0.871}, \\\"random_s123\\\": {\\\"val_loss\\\": 0.079, \\\"retrieval_R1\\\": 0.425, \\\"retrieval_R5\\\": 0.791, \\\"retrieval_R10\\\": 0.878}, \\\"random_s456\\\": {\\\"val_loss\\\": 0.085, \\\"retrieval_R1\\\": 0.408, \\\"retrieval_R5\\\": 0.776, \\\"retrieval_R10\\\": 0.865}, \\\"random_mean\\\": {\\\"retrieval_R1\\\": 0.415, \\\"retrieval_R5\\\": 0.783, \\\"retrieval_R10\\\": 0.871}, \\\"emb_dist_s42\\\": {\\\"val_loss\\\": 0.121, \\\"retrieval_R1\\\": 0.378, \\\"retrieval_R5\\\": 0.748, \\\"retrieval_R10\\\": 0.842}, \\\"emb_dist_s123\\\": {\\\"val_loss\\\": 0.118, \\\"retrieval_R1\\\": 0.385, \\\"retrieval_R5\\\": 0.755, \\\"retrieval_R10\\\": 0.849}, \\\"emb_dist_s456\\\": {\\\"val_loss\\\": 0.125, \\\"retrieval_R1\\\": 0.371, \\\"retrieval_R5\\\": 0.741, \\\"retrieval_R10\\\": 0.836}, \\\"emb_dist_mean\\\": {\\\"retrieval_R1\\\": 0.378, \\\"retrieval_R5\\\": 0.748, \\\"retrieval_R10\\\": 0.842}, \\\"dataflow_s42\\\": {\\\"val_loss\\\": 0.115, \\\"retrieval_R1\\\": 0.382, \\\"retrieval_R5\\\": 0.752, \\\"retrieval_R10\\\": 0.845}, \\\"dataflow_s123\\\": {\\\"val_loss\\\": 0.112, \\\"retrieval_R1\\\": 0.39, \\\"retrieval_R5\\\": 0.758, \\\"retrieval_R10\\\": 0.851}, \\\"dataflow_s456\\\": {\\\"val_loss\\\": 0.119, \\\"retrieval_R1\\\": 0.375, \\\"retrieval_R5\\\": 0.745, \\\"retrieval_R10\\\": 0.838}, \\\"dataflow_mean\\\": {\\\"retrieval_R1\\\": 0.382, \\\"retrieval_R5\\\": 0.752, \\\"retrieval_R10\\\": 0.845}, \\\"delta_dataflow_vs_random_R5\\\": -0.031, \\\"delta_emb_vs_random_R5\\\": -0.035, \\\"delta_dataflow_vs_emb_R5\\\": 0.004, \\\"eval_pool_size\\\": 200, \\\"eval_n_samples\\\": 2400}, \\\"M3a SWE-bench Lite end-to-end evaluation\\\": {\\\"n_instances\\\": 300, \\\"random_best\\\": {\\\"resolve_rate\\\": 0.243, \\\"recall_R5_file\\\": 0.68, \\\"avg_patches_generated\\\": 2.1}, \\\"emb_dist_best\\\": {\\\"resolve_rate\\\": 0.233, \\\"recall_R5_file\\\": 0.66, \\\"avg_patches_generated\\\": 2.0}, \\\"dataflow_best\\\": {\\\"resolve_rate\\\": 0.237, \\\"recall_R5_file\\\": 0.67, \\\"avg_patches_generated\\\": 2.0}, \\\"baseline_swerank\\\": {\\\"resolve_rate\\\": 0.247, \\\"recall_R5_file\\\": 0.71}, \\\"delta_dataflow_vs_random_resolve_pp\\\": -0.6, \\\"delta_dataflow_vs_swerank_resolve_pp\\\": -1.0, \\\"delta_emb_vs_random_resolve_pp\\\": -1.0, \\\"confidence_interval_95_resolve\\\": 0.025}, \\\"M3b RepoBench-R cross-file retrieval evaluation\\\": {\\\"n_samples\\\": 1200, \\\"random_best\\\": {\\\"MRR\\\": 0.534, \\\"recall_R5\\\": 0.712, \\\"recall_R10\\\": 0.801}, \\\"emb_dist_best\\\": {\\\"MRR\\\": 0.498, \\\"recall_R5\\\": 0.683, \\\"recall_R10\\\": 0.775}, \\\"dataflow_best\\\": {\\\"MRR\\\": 0.507, \\\"recall_R5\\\": 0.691, \\\"recall_R10\\\": 0.782}, \\\"delta_dataflow_vs_random_R5_pp\\\": -2.1, \\\"delta_emb_vs_random_R5_pp\\\": -2.9, \\\"repobench_R_improvement_pp\\\": -2.1}, \\\"Embedding vs random 深度分析\\\": {\\\"stratified_by_repo_size\\\": {\\\"small_lt50_files\\\": {\\\"n_instances\\\": 920, \\\"emb_delta_R5\\\": -0.018, \\\"random_R5\\\": 0.812}, \\\"medium_50_200\\\": {\\\"n_instances\\\": 580, \\\"emb_delta_R5\\\": -0.042, \\\"random_R5\\\": 0.761}, \\\"large_gt200\\\": {\\\"n_instances\\\": 340, \\\"emb_delta_R5\\\": -0.051, \\\"random_R5\\\": 0.698}}, \\\"stratified_by_code_similarity\\\": {\\\"high_similarity_repos\\\": {\\\"emb_delta_R5\\\": -0.067, \\\"note\\\": \\\"repos with mean pairwise cosine > 0.7\\\"}, \\\"low_similarity_repos\\\": {\\\"emb_delta_R5\\\": -0.008, \\\"note\\\": \\\"repos with mean pairwise cosine < 0.4\\\"}}, \\\"embedding_harm_partially_replicates\\\": true, \\\"harm_magnitude_shrinks_at_scale\\\": true, \\\"mvp_delta_R1_pool50\\\": -0.037, \\\"fullscale_delta_R5_pool200\\\": -0.035}, \\\"M1 scalability statistics\\\": {\\\"overall_timeout_pct\\\": 14.2, \\\"timeout_by_size\\\": {\\\"small_lt50\\\": 5.8, \\\"medium_50_200\\\": 8.2, \\\"large_gt200\\\": 42.1}, \\\"extraction_time_mean_s\\\": 61.4, \\\"extraction_time_median_s\\\": 28.7, \\\"extraction_time_p95_s\\\": 285.3, \\\"extraction_time_p99_s\\\": 520.1, \\\"coverage_pct\\\": 77.0, \\\"codeql_db_creation_failure_pct\\\": 8.7, \\\"memory_oom_pct\\\": 3.1, \\\"connected_but_not_gold_by_size\\\": {\\\"small\\\": 0.092, \\\"medium\\\": 0.248, \\\"large\\\": 0.051}}, \\\"Ablation: 1-hop vs 2-hop vs 3-hop call-graph bounding\\\": {\\\"hop_1\\\": {\\\"Z_pct\\\": 6.3, \\\"timeout_pct\\\": 4.8, \\\"gold_in_connected_ratio\\\": 0.51, \\\"mean_connected_set_size\\\": 3.2}, \\\"hop_2\\\": {\\\"Z_pct\\\": 14.0, \\\"timeout_pct\\\": 14.2, \\\"gold_in_connected_ratio\\\": 0.72, \\\"mean_connected_set_size\\\": 18.7}, \\\"hop_3\\\": {\\\"Z_pct\\\": 22.5, \\\"timeout_pct\\\": 38.6, \\\"gold_in_connected_ratio\\\": 0.84, \\\"mean_connected_set_size\\\": 67.3}, \\\"retrieval_R5_hop1\\\": 0.771, \\\"retrieval_R5_hop2\\\": 0.752, \\\"retrieval_R5_hop3\\\": 0.738}, \\\"Ablation: training data size scaling\\\": {\\\"scale_1K\\\": {\\\"dataflow_R5\\\": 0.721, \\\"random_R5\\\": 0.742, \\\"delta\\\": -0.021}, \\\"scale_3K\\\": {\\\"dataflow_R5\\\": 0.743, \\\"random_R5\\\": 0.768, \\\"delta\\\": -0.025}, \\\"scale_5K\\\": {\\\"dataflow_R5\\\": 0.752, \\\"random_R5\\\": 0.783, \\\"delta\\\": -0.031}, \\\"scaling_trend\\\": \\\"gap widens with more data\\\"}, \\\"Ablation: fusion head variants\\\": {\\\"embedding_only\\\": {\\\"R5\\\": 0.779, \\\"R10\\\": 0.868}, \\\"structural_only\\\": {\\\"R5\\\": 0.612, \\\"R10\\\": 0.734}, \\\"combined\\\": {\\\"R5\\\": 0.752, \\\"R10\\\": 0.845}, \\\"combined_vs_embedding_delta_R5\\\": -0.027}, \\\"Ablation: dataflow-distance weighted negatives\\\": {\\\"binary\\\": {\\\"R5\\\": 0.752}, \\\"distance_weighted\\\": {\\\"R5\\\": 0.747}, \\\"delta\\\": -0.005, \\\"distance_distribution_analysis\\\": {\\\"pct_distance_1\\\": 62.3, \\\"pct_distance_2\\\": 37.7, \\\"pct_distance_gt2\\\": 0.0}}, \\\"Failure analysis\\\": {\\\"total_analyzed\\\": 50, \\\"category_breakdown\\\": {\\\"multi_file_cross_module\\\": 12, \\\"single_file_edit\\\": 18, \\\"test_file_related\\\": 8, \\\"config_or_setup\\\": 7, \\\"documentation_adjacent\\\": 5}, \\\"dataflow_would_help\\\": 4, \\\"dataflow_would_help_pct\\\": 8.0, \\\"dataflow_neutral\\\": 28, \\\"dataflow_would_hurt\\\": 18, \\\"dataflow_hurt_reasons\\\": {\\\"connected_set_too_large\\\": 9, \\\"gold_not_in_connected\\\": 6, \\\"false_connected_due_to_dynamic_dispatch\\\": 3}}, \\\"Qualitative examples\\\": {\\\"total_examples_found\\\": 7, \\\"positive_change\\\": 2, \\\"negative_change\\\": 4, \\\"ambiguous\\\": 1, \\\"example_themes\\\": {\\\"positive_1\\\": \\\"Cross-module utility function correctly retrieved via 2-hop data-flow\\\", \\\"positive_2\\\": \\\"Disconnected near-duplicate correctly rejected as negative\\\", \\\"negative_1\\\": \\\"Config file missed because not in call-graph\\\", \\\"negative_2\\\": \\\"Test helper connected but irrelevant, displacing correct file\\\", \\\"negative_3\\\": \\\"Dynamic dispatch false-positive connection\\\", \\\"negative_4\\\": \\\"Overly large connected set (47 files) diluting signal\\\"}}}}}, \\\"status\\\": \\\"done\\\"}], \\\"deltas\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"trend\": [{\"dream_id\": \"dream_20260512T204322\", \"created_at\": \"2026-05-12T21:26:25+00:00\", \"venue\": \"\", \"focus\": \"Key risk: dataflow negatives showed connected⊆gold at MVP scale (8 repos) but Z=40.8% at 50-repo scale. Full-scale training may reveal the effect is weaker than hypothesized. Also: embedding-distance negatives actively harm (-3.7pp R@1), which is a strong negative result supporting the dual-pillar motivation. Reviewers should stress-test whether the connected≠gold signal at scale (40.8%) is sufficient to produce meaningful training differentiation, and whether the improvement magnitude will be large enough for EMNLP acceptance.\", \"review_mode\": \"full\", \"what_if\": [], \"tiers\": {\"best\": {\"n_experiments\": 12, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/best/paper.pdf\", \"error\": \"\", \"predictions\": {\"M1 全量 CodeQL 提取\": {\"repos_attempted\": 5000, \"repos_success\": 4720, \"repos_skipped_no_python\": 180, \"repos_timeout\": 100, \"codeql_timeout_pct\": 5.2, \"total_instances\": \"~24000\", \"instances_with_extra_connected\": \"~10100\", \"Z_pct\": 42.1, \"avg_connected_minus_gold\": 5.8, \"median_extraction_time_s\": 38.2, \"p95_extraction_time_s\": 210, \"by_repo_size\": {\"small_lt50\": {\"Z_pct\": 39.5, \"avg_extra\": 2.8}, \"medium_50_200\": {\"Z_pct\": 54.2, \"avg_extra\": 10.5}, \"large_gt200\": {\"Z_pct\": 18.3, \"avg_extra\": 9.2}}}, \"M2 全量 3-strategy 对比训练\": {\"training_instances\": \"~12000\", \"epochs\": 3, \"batch_size\": 32, \"dataflow_s42\": {\"val_loss\": 0.0215, \"recall@5\": 0.862}, \"dataflow_s123\": {\"val_loss\": 0.0248, \"recall@5\": 0.849}, \"dataflow_s456\": {\"val_loss\": 0.0198, \"recall@5\": 0.871}, \"dataflow_mean\": {\"val_loss\": 0.022, \"recall@5\": 0.861}, \"random_s42\": {\"val_loss\": 0.0312, \"recall@5\": 0.792}, \"random_s123\": {\"val_loss\": 0.0358, \"recall@5\": 0.778}, \"random_s456\": {\"val_loss\": 0.0289, \"recall@5\": 0.801}, \"random_mean\": {\"val_loss\": 0.032, \"recall@5\": 0.79}, \"emb_dist_s42\": {\"val_loss\": 0.0485, \"recall@5\": 0.738}, \"emb_dist_s123\": {\"val_loss\": 0.0512, \"recall@5\": 0.721}, \"emb_dist_s456\": {\"val_loss\": 0.0468, \"recall@5\": 0.745}, \"emb_dist_mean\": {\"val_loss\": 0.0488, \"recall@5\": 0.735}, \"delta_dataflow_vs_random_R5\": 0.071, \"delta_emb_vs_random_R5\": -0.055, \"val_loss_gap_dataflow_vs_random\": 0.01, \"paired_t_test_dataflow_vs_random_p\": 0.008, \"paired_t_test_emb_vs_random_p\": 0.012}, \"M3a SWE-bench Lite End-to-End Evaluation\": {\"n_instances\": 300, \"agent_model\": \"Qwen3.6-27B\", \"baseline_swerank_resolve_rate\": 0.312, \"dataflow_retriever_resolve_rate\": 0.338, \"random_retriever_resolve_rate\": 0.318, \"emb_dist_retriever_resolve_rate\": 0.305, \"delta_dataflow_vs_random_pp\": 2.0, \"delta_dataflow_vs_swerank_pp\": 2.6, \"delta_emb_vs_random_pp\": -1.3, \"swebench_lite_resolve_delta_pp\": 2.0, \"instances_where_retrieval_changed_outcome\": 18, \"instances_where_dataflow_uniquely_solved\": 9, \"instances_where_emb_dist_uniquely_failed\": 5}, \"M3b RepoBench-R Cross-File Retrieval\": {\"n_eval_instances\": \"~5000\", \"dataflow_R5\": 0.724, \"random_R5\": 0.688, \"emb_dist_R5\": 0.671, \"swerank_baseline_R5\": 0.695, \"delta_dataflow_vs_random_pp\": 3.6, \"delta_dataflow_vs_swerank_pp\": 2.9, \"repobench_R_improvement_pp\": 3.6, \"MRR_dataflow\": 0.618, \"MRR_random\": 0.582, \"MRR_emb_dist\": 0.561}, \"Embedding vs Random 深度分析\": {\"strata\": {\"small_repos_lt50\": {\"emb_vs_random_delta_R5\": -0.032, \"n_instances\": \"~4800\"}, \"medium_repos_50_200\": {\"emb_vs_random_delta_R5\": -0.071, \"n_instances\": \"~1800\"}, \"large_repos_gt200\": {\"emb_vs_random_delta_R5\": -0.089, \"n_instances\": \"~400\"}}, \"by_query_difficulty\": {\"easy_bm25_gt08\": {\"emb_vs_random_delta_R5\": -0.018}, \"hard_bm25_lt04\": {\"emb_vs_random_delta_R5\": -0.092}}, \"correlation_emb_harm_vs_repo_complexity\": 0.61, \"gradient_redundancy_metric\": 0.74}, \"M1 Scalability Statistics\": {\"total_repos\": 5000, \"timeout_rate_pct\": 5.2, \"mean_extraction_time_s\": 41.8, \"median_extraction_time_s\": 28.5, \"p95_extraction_time_s\": 198, \"p99_extraction_time_s\": 285, \"coverage_has_cg\": 0.96, \"coverage_has_df\": 0.91, \"Z_pct_overall\": 42.1, \"Z_by_language\": {\"python\": 43.8, \"javascript\": 38.2, \"typescript\": 41.5}, \"extraction_cost_total_cpu_hours\": 82}, \"Ablation: Hop Count (1 vs 2 vs 3)\": {\"hop_1\": {\"Z_pct\": 28.5, \"timeout_pct\": 1.2, \"R5_dataflow\": 0.831, \"connected_set_size_mean\": 3.2}, \"hop_2\": {\"Z_pct\": 42.1, \"timeout_pct\": 5.2, \"R5_dataflow\": 0.861, \"connected_set_size_mean\": 8.7}, \"hop_3\": {\"Z_pct\": 51.8, \"timeout_pct\": 18.5, \"R5_dataflow\": 0.852, \"connected_set_size_mean\": 24.1}}, \"Ablation: Training Data Size Scaling\": {\"size_1K\": {\"dataflow_R5\": 0.821, \"random_R5\": 0.768, \"delta_pp\": 5.3}, \"size_3K\": {\"dataflow_R5\": 0.848, \"random_R5\": 0.782, \"delta_pp\": 6.6}, \"size_5K\": {\"dataflow_R5\": 0.861, \"random_R5\": 0.79, \"delta_pp\": 7.1}, \"log_linear_fit_r2\": 0.97}, \"Ablation: Fusion Head\": {\"embedding_only\": {\"R5\": 0.79, \"note\": \"Equivalent to random-trained baseline\"}, \"structural_only\": {\"R5\": 0.712, \"note\": \"Data-flow features alone, no embedding\"}, \"combined\": {\"R5\": 0.861, \"note\": \"Full model\"}, \"delta_combined_vs_embedding_pp\": 7.1, \"delta_combined_vs_structural_pp\": 14.9}, \"Ablation: Distance-Weighted vs Binary\": {\"binary\": {\"R5\": 0.861}, \"weighted_linear\": {\"R5\": 0.858}, \"weighted_inverse\": {\"R5\": 0.864}, \"delta_weighted_vs_binary_pp\": 0.3, \"p_value\": 0.42}, \"Failure Analysis\": {\"failures_analyzed\": 50, \"categories\": {\"dataflow_helps_directly\": 14, \"dataflow_helps_partially\": 8, \"structural_irrelevant\": 18, \"gold_unreachable_by_any\": 10}, \"dataflow_help_rate\": 0.44, \"common_failure_patterns\": [{\"pattern\": \"Gold file is utility/helper imported transitively\", \"count\": 11, \"dataflow_helps\": true}, {\"pattern\": \"Gold file is test file with no structural connection\", \"count\": 9, \"dataflow_helps\": false}, {\"pattern\": \"Bug is in configuration/data file not in call graph\", \"count\": 8, \"dataflow_helps\": false}, {\"pattern\": \"Gold file shares API contract but no direct dataflow\", \"count\": 7, \"dataflow_helps\": true}, {\"pattern\": \"Multiple valid fix locations, gold is one of several\", \"count\": 6, \"dataflow_helps\": \"partial\"}]}, \"Qualitative Examples\": {\"examples_selected\": 8, \"categories\": {\"transitively_connected_utility\": 3, \"shared_data_pipeline\": 2, \"cross_module_error_handler\": 2, \"api_contract_dependency\": 1}, \"format\": \"Each example includes: bug description, gold file, baseline retrieval rank, dataflow retrieval rank, structural path (call chain), and explanation of why lexical similarity fails\"}}}, \"median\": {\"n_experiments\": 12, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/median/paper.pdf\", \"error\": \"\", \"predictions\": {\"M1 全量 CodeQL 提取 (5K SWE-smith)\": {\"total_repos_attempted\": 5000, \"repos_successfully_extracted\": 4300, \"repos_failed_or_skipped\": 700, \"total_instances\": 12800, \"instances_with_extra_connected\": 3200, \"Z_pct_5K\": 25.0, \"avg_connected_minus_gold\": 4.2, \"codeql_timeout_rate_pct\": 7.8, \"codeql_mean_time_s\": 38.5, \"codeql_p95_time_s\": 210.0, \"gold_in_connected_ratio\": 0.72, \"repos_with_zero_connected\": 2100}, \"M2 全量 3-strategy 对比训练\": {\"random_s42_recall5\": 0.812, \"random_s123_recall5\": 0.798, \"random_s456_recall5\": 0.821, \"random_mean_recall5\": 0.81, \"random_std_recall5\": 0.012, \"dataflow_s42_recall5\": 0.818, \"dataflow_s123_recall5\": 0.807, \"dataflow_s456_recall5\": 0.826, \"dataflow_mean_recall5\": 0.817, \"dataflow_std_recall5\": 0.01, \"emb_dist_s42_recall5\": 0.762, \"emb_dist_s123_recall5\": 0.748, \"emb_dist_s456_recall5\": 0.771, \"emb_dist_mean_recall5\": 0.76, \"emb_dist_std_recall5\": 0.012, \"delta_dataflow_vs_random_R5\": 0.007, \"delta_emb_vs_random_R5\": -0.05, \"random_mean_recall1\": 0.542, \"dataflow_mean_recall1\": 0.553, \"emb_dist_mean_recall1\": 0.489, \"delta_dataflow_vs_random_R1\": 0.011, \"delta_emb_vs_random_R1\": -0.053, \"training_loss_final_random\": 0.028, \"training_loss_final_dataflow\": 0.035, \"training_loss_final_emb_dist\": 0.092, \"training_time_hours_per_run\": 3.2}, \"M3a SWE-bench Lite End-to-End Evaluation\": {\"random_resolve_rate_pct\": 28.3, \"dataflow_resolve_rate_pct\": 28.7, \"emb_dist_resolve_rate_pct\": 27.8, \"resolve_delta_dataflow_vs_random_pp\": 0.4, \"resolve_delta_emb_vs_random_pp\": -0.5, \"random_retrieval_recall5_e2e\": 0.805, \"dataflow_retrieval_recall5_e2e\": 0.811, \"emb_dist_retrieval_recall5_e2e\": 0.758, \"avg_tokens_per_instance\": 12400, \"timeout_instances\": 8, \"total_eval_gpu_hours\": 38}, \"M3b RepoBench-R Cross-File Retrieval Evaluation\": {\"random_recall5\": 0.618, \"dataflow_recall5\": 0.625, \"emb_dist_recall5\": 0.592, \"random_mrr\": 0.483, \"dataflow_mrr\": 0.49, \"emb_dist_mrr\": 0.461, \"delta_dataflow_vs_random_R5_pp\": 0.7, \"delta_emb_vs_random_R5_pp\": -2.6, \"repobench_R_improvement_pp\": 0.7, \"baseline_unixcoder_recall5\": 0.601, \"baseline_swerank_recall5\": 0.645}, \"Embedding vs Random 深度分层分析\": {\"harm_by_repo_size\": {\"small_lt50_delta_R5_pp\": -2.1, \"medium_50_200_delta_R5_pp\": -6.8, \"large_gt200_delta_R5_pp\": -5.3}, \"harm_by_candidate_pool_diversity\": {\"low_diversity_delta_R5_pp\": -7.2, \"high_diversity_delta_R5_pp\": -2.8}, \"harm_by_embedding_similarity_of_negatives\": {\"top10pct_most_similar_delta_R5_pp\": -9.1, \"bottom50pct_delta_R5_pp\": -1.5}, \"correlation_neg_similarity_vs_harm\": 0.71}, \"M1 Scalability Statistics\": {\"overall_timeout_pct\": 7.8, \"overall_extraction_success_pct\": 86.0, \"mean_extraction_time_s\": 38.5, \"median_extraction_time_s\": 22.1, \"p95_extraction_time_s\": 210.0, \"p99_extraction_time_s\": 285.0, \"by_repo_size\": {\"small_lt50\": {\"timeout_pct\": 1.2, \"mean_time_s\": 12.3, \"Z_pct\": 15.3, \"coverage\": 0.92}, \"medium_50_200\": {\"timeout_pct\": 6.5, \"mean_time_s\": 45.8, \"Z_pct\": 38.9, \"coverage\": 0.85}, \"large_gt200\": {\"timeout_pct\": 18.7, \"mean_time_s\": 98.2, \"Z_pct\": 29.1, \"coverage\": 0.71}}, \"codeql_db_creation_failure_pct\": 6.2, \"beniget_fallback_usage_pct\": 14.0}, \"Ablation: 1-hop vs 2-hop vs 3-hop Call-Graph Bounding\": {\"hop_1\": {\"Z_pct\": 12.1, \"avg_connected_files\": 2.3, \"timeout_pct\": 2.1, \"recall5_after_training\": 0.808}, \"hop_2\": {\"Z_pct\": 25.0, \"avg_connected_files\": 4.2, \"timeout_pct\": 7.8, \"recall5_after_training\": 0.817}, \"hop_3\": {\"Z_pct\": 41.5, \"avg_connected_files\": 12.8, \"timeout_pct\": 22.3, \"recall5_after_training\": 0.811}}, \"Ablation: Training Data Size Scaling (1K vs 3K vs 5K)\": {\"scale_1K\": {\"recall5\": 0.785, \"recall1\": 0.51, \"training_time_h\": 0.7}, \"scale_3K\": {\"recall5\": 0.808, \"recall1\": 0.541, \"training_time_h\": 2.0}, \"scale_5K\": {\"recall5\": 0.817, \"recall1\": 0.553, \"training_time_h\": 3.2}, \"scaling_slope_R5_per_1K\": 0.008, \"log_linear_fit_r2\": 0.96}, \"Ablation: Fusion Head (Embedding-only vs Structural-features-only vs Combined)\": {\"embedding_only_recall5\": 0.817, \"structural_only_recall5\": 0.628, \"combined_recall5\": 0.822, \"combined_vs_embedding_delta_pp\": 0.5, \"structural_features_auc\": 0.71}, \"Ablation: Dataflow-Distance Weighted vs Binary Connected/Disconnected\": {\"binary_recall5\": 0.815, \"weighted_alpha1_recall5\": 0.817, \"weighted_alpha05_recall5\": 0.814, \"weighted_alpha2_recall5\": 0.812, \"delta_weighted_vs_binary_pp\": 0.2}, \"Failure Analysis: 50 SweRank/BM25 Failures\": {\"total_analyzed\": 50, \"category_counts\": {\"dataflow_would_help\": 11, \"dataflow_irrelevant_lexical_gap\": 18, \"dataflow_irrelevant_logic_only\": 9, \"gold_not_in_repo_scope\": 5, \"multi_file_edit_needed\": 7}, \"dataflow_help_rate_pct\": 22.0, \"ceiling_if_perfect_structural_signal_pct\": 32.0}, \"Qualitative Examples: Structural Negatives 改变检索结果的 Case Study\": {\"total_cases_found\": 7, \"cases_dataflow_improved_ranking\": 4, \"cases_dataflow_no_change\": 2, \"cases_dataflow_hurt\": 1, \"best_case_rank_improvement\": \"gold file: rank 8→2\", \"worst_case_rank_regression\": \"gold file: rank 3→5\"}}}, \"worst\": {\"n_experiments\": 12, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/dream_reports/dream_20260512T204322/worst/paper.pdf\", \"error\": \"\", \"predictions\": {\"M1 全量 CodeQL 提取\": {\"repos_attempted\": 5000, \"repos_successful\": 3850, \"repos_skipped_no_python\": 420, \"repos_failed_codeql_error\": 310, \"repos_timeout\": 420, \"total_instances\": 18200, \"instances_with_extra_connected\": 2550, \"Z_pct_overall\": 14.0, \"Z_pct_small_lt50\": 9.2, \"Z_pct_medium_50_200\": 24.8, \"Z_pct_large_gt200\": 5.1, \"gold_in_connected_ratio\": 0.72, \"avg_connected_minus_gold_small\": 1.1, \"avg_connected_minus_gold_medium\": 5.3, \"avg_connected_minus_gold_large\": 2.8, \"cg_mean_s\": 48.7, \"cg_median_s\": 22.1, \"cg_p95_s\": 210.5, \"df_mean_s\": 71.3, \"df_median_s\": 35.8, \"df_p95_s\": 340.2}, \"M2 全量 3-strategy 对比训练\": {\"training_instances\": 15400, \"random_s42\": {\"val_loss\": 0.082, \"retrieval_R1\": 0.412, \"retrieval_R5\": 0.783, \"retrieval_R10\": 0.871}, \"random_s123\": {\"val_loss\": 0.079, \"retrieval_R1\": 0.425, \"retrieval_R5\": 0.791, \"retrieval_R10\": 0.878}, \"random_s456\": {\"val_loss\": 0.085, \"retrieval_R1\": 0.408, \"retrieval_R5\": 0.776, \"retrieval_R10\": 0.865}, \"random_mean\": {\"retrieval_R1\": 0.415, \"retrieval_R5\": 0.783, \"retrieval_R10\": 0.871}, \"emb_dist_s42\": {\"val_loss\": 0.121, \"retrieval_R1\": 0.378, \"retrieval_R5\": 0.748, \"retrieval_R10\": 0.842}, \"emb_dist_s123\": {\"val_loss\": 0.118, \"retrieval_R1\": 0.385, \"retrieval_R5\": 0.755, \"retrieval_R10\": 0.849}, \"emb_dist_s456\": {\"val_loss\": 0.125, \"retrieval_R1\": 0.371, \"retrieval_R5\": 0.741, \"retrieval_R10\": 0.836}, \"emb_dist_mean\": {\"retrieval_R1\": 0.378, \"retrieval_R5\": 0.748, \"retrieval_R10\": 0.842}, \"dataflow_s42\": {\"val_loss\": 0.115, \"retrieval_R1\": 0.382, \"retrieval_R5\": 0.752, \"retrieval_R10\": 0.845}, \"dataflow_s123\": {\"val_loss\": 0.112, \"retrieval_R1\": 0.39, \"retrieval_R5\": 0.758, \"retrieval_R10\": 0.851}, \"dataflow_s456\": {\"val_loss\": 0.119, \"retrieval_R1\": 0.375, \"retrieval_R5\": 0.745, \"retrieval_R10\": 0.838}, \"dataflow_mean\": {\"retrieval_R1\": 0.382, \"retrieval_R5\": 0.752, \"retrieval_R10\": 0.845}, \"delta_dataflow_vs_random_R5\": -0.031, \"delta_emb_vs_random_R5\": -0.035, \"delta_dataflow_vs_emb_R5\": 0.004, \"eval_pool_size\": 200, \"eval_n_samples\": 2400}, \"M3a SWE-bench Lite end-to-end evaluation\": {\"n_instances\": 300, \"random_best\": {\"resolve_rate\": 0.243, \"recall_R5_file\": 0.68, \"avg_patches_generated\": 2.1}, \"emb_dist_best\": {\"resolve_rate\": 0.233, \"recall_R5_file\": 0.66, \"avg_patches_generated\": 2.0}, \"dataflow_best\": {\"resolve_rate\": 0.237, \"recall_R5_file\": 0.67, \"avg_patches_generated\": 2.0}, \"baseline_swerank\": {\"resolve_rate\": 0.247, \"recall_R5_file\": 0.71}, \"delta_dataflow_vs_random_resolve_pp\": -0.6, \"delta_dataflow_vs_swerank_resolve_pp\": -1.0, \"delta_emb_vs_random_resolve_pp\": -1.0, \"confidence_interval_95_resolve\": 0.025}, \"M3b RepoBench-R cross-file retrieval evaluation\": {\"n_samples\": 1200, \"random_best\": {\"MRR\": 0.534, \"recall_R5\": 0.712, \"recall_R10\": 0.801}, \"emb_dist_best\": {\"MRR\": 0.498, \"recall_R5\": 0.683, \"recall_R10\": 0.775}, \"dataflow_best\": {\"MRR\": 0.507, \"recall_R5\": 0.691, \"recall_R10\": 0.782}, \"delta_dataflow_vs_random_R5_pp\": -2.1, \"delta_emb_vs_random_R5_pp\": -2.9, \"repobench_R_improvement_pp\": -2.1}, \"Embedding vs random 深度分析\": {\"stratified_by_repo_size\": {\"small_lt50_files\": {\"n_instances\": 920, \"emb_delta_R5\": -0.018, \"random_R5\": 0.812}, \"medium_50_200\": {\"n_instances\": 580, \"emb_delta_R5\": -0.042, \"random_R5\": 0.761}, \"large_gt200\": {\"n_instances\": 340, \"emb_delta_R5\": -0.051, \"random_R5\": 0.698}}, \"stratified_by_code_similarity\": {\"high_similarity_repos\": {\"emb_delta_R5\": -0.067, \"note\": \"repos with mean pairwise cosine > 0.7\"}, \"low_similarity_repos\": {\"emb_delta_R5\": -0.008, \"note\": \"repos with mean pairwise cosine < 0.4\"}}, \"embedding_harm_partially_replicates\": true, \"harm_magnitude_shrinks_at_scale\": true, \"mvp_delta_R1_pool50\": -0.037, \"fullscale_delta_R5_pool200\": -0.035}, \"M1 scalability statistics\": {\"overall_timeout_pct\": 14.2, \"timeout_by_size\": {\"small_lt50\": 5.8, \"medium_50_200\": 8.2, \"large_gt200\": 42.1}, \"extraction_time_mean_s\": 61.4, \"extraction_time_median_s\": 28.7, \"extraction_time_p95_s\": 285.3, \"extraction_time_p99_s\": 520.1, \"coverage_pct\": 77.0, \"codeql_db_creation_failure_pct\": 8.7, \"memory_oom_pct\": 3.1, \"connected_but_not_gold_by_size\": {\"small\": 0.092, \"medium\": 0.248, \"large\": 0.051}}, \"Ablation: 1-hop vs 2-hop vs 3-hop call-graph bounding\": {\"hop_1\": {\"Z_pct\": 6.3, \"timeout_pct\": 4.8, \"gold_in_connected_ratio\": 0.51, \"mean_connected_set_size\": 3.2}, \"hop_2\": {\"Z_pct\": 14.0, \"timeout_pct\": 14.2, \"gold_in_connected_ratio\": 0.72, \"mean_connected_set_size\": 18.7}, \"hop_3\": {\"Z_pct\": 22.5, \"timeout_pct\": 38.6, \"gold_in_connected_ratio\": 0.84, \"mean_connected_set_size\": 67.3}, \"retrieval_R5_hop1\": 0.771, \"retrieval_R5_hop2\": 0.752, \"retrieval_R5_hop3\": 0.738}, \"Ablation: training data size scaling\": {\"scale_1K\": {\"dataflow_R5\": 0.721, \"random_R5\": 0.742, \"delta\": -0.021}, \"scale_3K\": {\"dataflow_R5\": 0.743, \"random_R5\": 0.768, \"delta\": -0.025}, \"scale_5K\": {\"dataflow_R5\": 0.752, \"random_R5\": 0.783, \"delta\": -0.031}, \"scaling_trend\": \"gap widens with more data\"}, \"Ablation: fusion head variants\": {\"embedding_only\": {\"R5\": 0.779, \"R10\": 0.868}, \"structural_only\": {\"R5\": 0.612, \"R10\": 0.734}, \"combined\": {\"R5\": 0.752, \"R10\": 0.845}, \"combined_vs_embedding_delta_R5\": -0.027}, \"Ablation: dataflow-distance weighted negatives\": {\"binary\": {\"R5\": 0.752}, \"distance_weighted\": {\"R5\": 0.747}, \"delta\": -0.005, \"distance_distribution_analysis\": {\"pct_distance_1\": 62.3, \"pct_distance_2\": 37.7, \"pct_distance_gt2\": 0.0}}, \"Failure analysis\": {\"total_analyzed\": 50, \"category_breakdown\": {\"multi_file_cross_module\": 12, \"single_file_edit\": 18, \"test_file_related\": 8, \"config_or_setup\": 7, \"documentation_adjacent\": 5}, \"dataflow_would_help\": 4, \"dataflow_would_help_pct\": 8.0, \"dataflow_neutral\": 28, \"dataflow_would_hurt\": 18, \"dataflow_hurt_reasons\": {\"connected_set_too_large\": 9, \"gold_not_in_connected\": 6, \"false_connected_due_to_dynamic_dispatch\": 3}}, \"Qualitative examples\": {\"total_examples_found\": 7, \"positive_change\": 2, \"negative_change\": 4, \"ambiguous\": 1, \"example_themes\": {\"positive_1\": \"Cross-module utility function correctly retrieved via 2-hop data-flow\", \"positive_2\": \"Disconnected near-duplicate correctly rejected as negative\", \"negative_1\": \"Config file missed because not in call-graph\", \"negative_2\": \"Test helper connected but irrelevant, displacing correct file\", \"negative_3\": \"Dynamic dispatch false-positive connection\", \"negative_4\": \"Overly large connected set (47 files) diluting signal\"}}}}}, \"status\": \"done\"}], \"deltas\": []}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "96fb274d-4a40-400e-a8fa-353e8e81c618",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[飞书用户 游承松 (ou_b0d7564c8e9a84caf6f67d16883772f5)]: 有进行dream写作吗？",
+                "leafUuid": "410562f3-3e3d-4c95-ba8d-915222be9866",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633"
+              }
+            }
+          ],
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Monitor model training and code extraction progress",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633"
+              }
+            }
+          ],
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-14T07:56:03.708Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user is asking about whether we've done \"dream writing\" (Dream simulation for writing/paper assessment). \n\nLooking at the data, there's one Dream run from May 12 (`dream_20260512T204322`) with review_mode=\"full\", and it's status=\"done\". However, that Dream was based on the OLD framing (before D024 rewrite). The old framing had the falsified Claim 2 about \"embedding harms\" and the old narrative.\n\nSince D024 completely rewrote the paper framing (new narrative: \"systematic analysis + mechanistic insight\"), we should run a new Dream simulation based on the updated framing to validate the new story.\n\n\nI should let the user know about this situation and suggest we run a fresh Dream simulation with the new framing to properly test how the updated narrative holds up.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "410562f3-3e3d-4c95-ba8d-915222be9866",
+            "isSidechain": false,
+            "requestId": "req_011Cb26vriFnqrFq9dDbVk24",
+            "type": "assistant",
+            "uuid": "1dd7e978-027c-45d9-a8a4-dd6d19db65f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WShYDgZ1GYtpEmghJERZBU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8739,
+                "cache_read_input_tokens": 103919,
+                "output_tokens": 433,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8739,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 433,
+                    "cache_read_input_tokens": 103919,
+                    "cache_creation_input_tokens": 8739,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8739
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": "2026-05-14T07:56:07.739Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JGWrQf7dAzd8ygTV69Tidp",
+              "name": "mcp__agent-ml-research__director_reply_to_user",
+              "input": {
+                "text": "上次 Dream 是 5 月 12 日跑的（`dream_20260512T204322`，full review mode，已完成），但那是基于**旧 framing**（包含已证伪的 \"embedding harms\" Claim 2）。\n\n5 月 14 日 D024 做了重大 framing 重写——新叙事线完全不同（\"系统性分析 + 机制解释\"），旧 Dream 的审稿反馈已不适用于当前 paper。\n\n建议现在基于新 framing 跑一次 full Dream，验证新叙事线在模拟审稿中的强度。要跑吗？"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1dd7e978-027c-45d9-a8a4-dd6d19db65f7",
+            "isSidechain": false,
+            "requestId": "req_011Cb26vriFnqrFq9dDbVk24",
+            "type": "assistant",
+            "uuid": "483393cf-8d38-4c88-a4f8-8030054a52a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WShYDgZ1GYtpEmghJERZBU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8739,
+                "cache_read_input_tokens": 103919,
+                "output_tokens": 433,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8739,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 433,
+                    "cache_read_input_tokens": 103919,
+                    "cache_creation_input_tokens": 8739,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8739
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": "2026-05-14T07:56:10.777Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JGWrQf7dAzd8ygTV69Tidp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "483393cf-8d38-4c88-a4f8-8030054a52a5",
+            "isSidechain": false,
+            "promptId": "ce3e72c6-9c71-40bb-a00d-3a0b58e00d97",
+            "type": "user",
+            "uuid": "6ba6c026-9a5b-4099-9716-ead86fea5c22",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true}"
+              }
+            },
+            "sourceToolAssistantUUID": "483393cf-8d38-4c88-a4f8-8030054a52a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Monitor model training and code extraction progress",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633"
+              }
+            }
+          ],
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": "2026-05-14T07:57:14.673Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T07:57:14.673Z",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+                "content": "[飞书用户 游承松 (ou_b0d7564c8e9a84caf6f67d16883772f5)]: 你觉得有没有必要， 有必要的话跑一下"
+              }
+            }
+          ],
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-14T07:57:14.674Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T07:57:14.674Z",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633"
+              }
+            }
+          ],
+          "id": "event-000380"
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "messages": [
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-14T07:57:14.663Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ba6c026-9a5b-4099-9716-ead86fea5c22",
+            "isSidechain": false,
+            "promptId": "06358eb1-4b4d-4c1c-80ed-f6cd58b87593",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "cb6e67d5-0650-4bab-a363-fe124b4ede77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-14T07:57:14.664Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb6e67d5-0650-4bab-a363-fe124b4ede77",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "8fb11ec4-8325-45ee-a5cc-02b98da2216d",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "77b0a4ef-c18e-441e-9ffc-acc5f5e76bdf",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000382"
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "messages": [
+        {
+          "source_line": 383,
+          "timestamp": "2026-05-14T07:57:14.810Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[飞书用户 游承松 (ou_b0d7564c8e9a84caf6f67d16883772f5)]: 你觉得有没有必要， 有必要的话跑一下"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8fb11ec4-8325-45ee-a5cc-02b98da2216d",
+            "isSidechain": false,
+            "promptId": "06358eb1-4b4d-4c1c-80ed-f6cd58b87593",
+            "type": "user",
+            "uuid": "f5072481-f893-4d06-a7bd-3402d20853d9",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-14T07:57:24.209Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user is asking me to assess whether a new Dream simulation is necessary and to run it if I think so.\n\nYes, it's clearly necessary:\n1. D024 completely rewrote the paper framing - the old Dream was based on a falsified Claim 2\n2. The new narrative (\"systematic analysis + mechanistic insight\") is fundamentally different from the old one (\"our method beats all\")\n3. We now have real data (Qwen R@1=55.3%, StarCoder R@1=45.4%, overfitting pattern, neg_difficulty analysis) that the old Dream didn't account for\n\n\n4. This matches the CLAUDE.md guidance for major direction shifts from method papers to analysis work - I need to run Dream with full review mode and set the focus to match where we are now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5072481-f893-4d06-a7bd-3402d20853d9",
+            "isSidechain": false,
+            "requestId": "req_011Cb272jgkgmGxv29Srno8U",
+            "type": "assistant",
+            "uuid": "ca4b986d-069e-4fcf-91a1-fa3e4be5d2ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SDaGTtGxtUFrMYLuRsUva4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 79,
+                "cache_read_input_tokens": 113113,
+                "output_tokens": 615,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 79,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 615,
+                    "cache_read_input_tokens": 113113,
+                    "cache_creation_input_tokens": 79,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 79
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": "2026-05-14T07:57:24.464Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "有必要。旧 Dream 基于已证伪的 framing，新叙事线（方法论 → 系统性分析）是完全不同的 paper type，需要重新验证审稿强度。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca4b986d-069e-4fcf-91a1-fa3e4be5d2ed",
+            "isSidechain": false,
+            "requestId": "req_011Cb272jgkgmGxv29Srno8U",
+            "type": "assistant",
+            "uuid": "ed73b776-d8c4-453b-ac9b-e3888578a324",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SDaGTtGxtUFrMYLuRsUva4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 79,
+                "cache_read_input_tokens": 113113,
+                "output_tokens": 615,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 79,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 615,
+                    "cache_read_input_tokens": 113113,
+                    "cache_creation_input_tokens": 79,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 79
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": "2026-05-14T07:57:31.787Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013qZxJvfsG5iRDeS2yrD73j",
+              "name": "mcp__agent-ml-research__dream_simulate",
+              "input": {
+                "project": "structfuse-context",
+                "review_mode": "full",
+                "focus": "D024 重写后的新 framing：论文从 \"method paper (dataflow > all)\" 转为 \"systematic analysis + mechanistic insight\"。三条新 claim：(1) 真正的 embedding mining 普遍有效，纠正 CoCoHaNeRe BM25-proxy 误解；(2) dataflow mining 有条件额外有效，机制是表征空间饱和度；(3) CodeQL 可扩展。已有实证：Qwen R@1=55.3%, StarCoder R@1=45.4%, neg_difficulty margin +17%/+28%, 两编码器 step 1000 过拟合。Reviewers 应重点评估：新叙事线说服力、\"conditional benefit\" 是否被视为 weak claim、n=2 编码器统计限制、缺 SWE-bench 下游验证的影响。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed73b776-d8c4-453b-ac9b-e3888578a324",
+            "isSidechain": false,
+            "requestId": "req_011Cb272jgkgmGxv29Srno8U",
+            "type": "assistant",
+            "uuid": "e97e5a10-357e-49bd-963d-57c78af669e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SDaGTtGxtUFrMYLuRsUva4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 79,
+                "cache_read_input_tokens": 113113,
+                "output_tokens": 615,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 79,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 615,
+                    "cache_read_input_tokens": 113113,
+                    "cache_creation_input_tokens": 79,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 79
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": "2026-05-14T07:57:35.172Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013qZxJvfsG5iRDeS2yrD73j",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"dream_id\\\": \\\"dream_20260514T075732\\\", \\\"status\\\": \\\"pending\\\", \\\"error\\\": \\\"\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e97e5a10-357e-49bd-963d-57c78af669e6",
+            "isSidechain": false,
+            "promptId": "06358eb1-4b4d-4c1c-80ed-f6cd58b87593",
+            "type": "user",
+            "uuid": "db7dead7-b99d-4b22-82e9-833968c45037",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"dream_id\\\": \\\"dream_20260514T075732\\\", \\\"status\\\": \\\"pending\\\", \\\"error\\\": \\\"\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"dream_id\": \"dream_20260514T075732\", \"status\": \"pending\", \"error\": \"\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "e97e5a10-357e-49bd-963d-57c78af669e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": "2026-05-14T07:57:41.462Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NEwY1xU6z5dRYYLTdnrgwQ",
+              "name": "mcp__agent-ml-research__director_reply_to_user",
+              "input": {
+                "text": "已启动新 Dream（`dream_20260514T075732`，full review mode）。\n\n基于 D024 新 framing，重点让模拟审稿人压测：\n- 新\"系统性分析\"叙事线的说服力\n- \"conditional benefit\" 是否会被视为 weak claim\n- n=2 编码器的统计限制\n- 缺 SWE-bench 下游验证的影响\n\n预计 15-25 分钟完成，结果出来后我会分析并汇报。"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db7dead7-b99d-4b22-82e9-833968c45037",
+            "isSidechain": false,
+            "requestId": "req_011Cb274Em1bvsJA1YCvi8Kp",
+            "type": "assistant",
+            "uuid": "557210e6-68a0-448c-b588-a7566c7f2c59",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NSjXwFd7Nd5SPhYJyr57Qs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 688,
+                "cache_read_input_tokens": 113192,
+                "output_tokens": 209,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 688,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 209,
+                    "cache_read_input_tokens": 113192,
+                    "cache_creation_input_tokens": 688,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 688
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": "2026-05-14T07:57:42.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NEwY1xU6z5dRYYLTdnrgwQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "557210e6-68a0-448c-b588-a7566c7f2c59",
+            "isSidechain": false,
+            "promptId": "06358eb1-4b4d-4c1c-80ed-f6cd58b87593",
+            "type": "user",
+            "uuid": "f9df3c89-99ce-464d-8335-b78071f77c03",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true}"
+              }
+            },
+            "sourceToolAssistantUUID": "557210e6-68a0-448c-b588-a7566c7f2c59",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Monitor model training and code extraction progress",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633"
+              }
+            }
+          ],
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": "2026-05-14T07:57:51.721Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T07:57:51.721Z",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+                "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+              }
+            }
+          ],
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": "2026-05-14T07:57:51.722Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T07:57:51.722Z",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633"
+              }
+            }
+          ],
+          "id": "event-000392"
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "messages": [
+        {
+          "source_line": 393,
+          "timestamp": "2026-05-14T07:57:51.712Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9df3c89-99ce-464d-8335-b78071f77c03",
+            "isSidechain": false,
+            "promptId": "974c612c-c05e-4f90-98dc-665063f27dfa",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "3f8615ed-46ae-4316-85f6-6d48f405c3b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": "2026-05-14T07:57:51.712Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f8615ed-46ae-4316-85f6-6d48f405c3b0",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "ffe014f8-d271-4b9f-851b-1aa01e4b2615",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "66030a26-0bd3-4498-801b-b077bdb61fde",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000394"
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 395,
+          "timestamp": "2026-05-14T07:57:51.869Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ffe014f8-d271-4b9f-851b-1aa01e4b2615",
+            "isSidechain": false,
+            "promptId": "974c612c-c05e-4f90-98dc-665063f27dfa",
+            "type": "user",
+            "uuid": "da99d2bb-e78e-4b78-ac28-bc3b5bd8e3ea",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+            "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000395"
+        },
+        {
+          "source_line": 396,
+          "timestamp": "2026-05-14T07:57:51.869Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "da99d2bb-e78e-4b78-ac28-bc3b5bd8e3ea",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "ae27b0ff-5132-41b5-a12f-90a0dd39a639",
+                "timestamp": "2026-05-14T07:57:51.869Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/director_3a5c0d9a",
+                "sessionId": "ee825aa4-c2c5-4a4d-b385-15bbd93fd633",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000396"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,591 @@
+{
+  "schema_version": "1.0",
+  "id": "be2710342b1ec6e3e7b6",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for and read the paper \"Doctor-RAG\" (arXiv:2604.00865, April 2026). I need to understand: 1. What exactly it does",
+  "task_key": "agent-a76f8d0ba910a4e77",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a76f8d0ba910a4e77.jsonl",
+    "occurrence": 1,
+    "bytes": 21669,
+    "sha256": "e65eae6ebe2a19d93255e331a1d44794602668ff6ed05dd611eb45cd0ebaf257"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T19:33:30.060Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for and read the paper \"Doctor-RAG\" (arXiv:2604.00865, April 2026). I need to understand:\n1. What exactly it does - specifically \"trajectory-level failure diagnosis and localization in agentic RAG systems\"\n2. Its mechanism of \"tool-conditioned local repair\" that \"intervenes only at the diagnosed failure point while maximally reusing validated reasoning prefixes\"\n3. How it relates to the concept of causal failure localization + targeted repair from the failure point\n\nUse WebSearch to find it, then WebFetch to read the abstract and method. Report back with a concise summary (under 300 words) of: what domain it targets, what its core mechanism is, and how it differs from a reward model for code repair."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1adfa71a-4c33-4aab-b1f8-16ce7b0df53a",
+            "agentId": "a76f8d0ba910a4e77",
+            "type": "user",
+            "uuid": "849a2e69-54eb-4a4b-836a-fc24e9e95840",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T19:33:30.064Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "849a2e69-54eb-4a4b-836a-fc24e9e95840",
+                "isSidechain": true,
+                "agentId": "a76f8d0ba910a4e77",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "da9fd099-d9fc-45df-b165-f0b2465e2aea",
+                "timestamp": "2026-05-10T19:33:30.064Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T19:33:32.891Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01THqNMzkTGPwUkxyfzS5TGf",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da9fd099-d9fc-45df-b165-f0b2465e2aea",
+            "isSidechain": true,
+            "agentId": "a76f8d0ba910a4e77",
+            "requestId": "req_011CauStWCiXXQrR2jvEXexq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5b9db1e3-2ffd-44bb-8571-7dae9b39062f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JgudfQLYYuZZnQkRn9DPVd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8939,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8939
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 8939,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8939,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T19:33:32.896Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01THqNMzkTGPwUkxyfzS5TGf",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b9db1e3-2ffd-44bb-8571-7dae9b39062f",
+            "isSidechain": true,
+            "promptId": "1adfa71a-4c33-4aab-b1f8-16ce7b0df53a",
+            "agentId": "a76f8d0ba910a4e77",
+            "type": "user",
+            "uuid": "b07392a4-fa94-46d2-ae09-91c7edbf03cd",
+            "sourceToolAssistantUUID": "5b9db1e3-2ffd-44bb-8571-7dae9b39062f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T19:33:36.217Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017cJnE3DDpn6X2W1Dx3isjV",
+              "name": "WebSearch",
+              "input": {
+                "query": "Doctor-RAG arXiv 2604.00865 trajectory-level failure diagnosis agentic RAG 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b07392a4-fa94-46d2-ae09-91c7edbf03cd",
+            "isSidechain": true,
+            "agentId": "a76f8d0ba910a4e77",
+            "requestId": "req_011CauStie5Wjt2PvFwn1hsS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dd2d0dd7-6de0-4842-a037-829db27b8a3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rxp5eG29QCk3J4R8A4FZWs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8939,
+                "output_tokens": 79,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1888
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 79,
+                    "cache_read_input_tokens": 8939,
+                    "cache_creation_input_tokens": 1888,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1888,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T19:33:43.948Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017cJnE3DDpn6X2W1Dx3isjV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Doctor-RAG arXiv 2604.00865 trajectory-level failure diagnosis agentic RAG 2026\"\n\nLinks: [{\"title\":\"[2604.00865] Doctor-RAG: Failure-Aware Repair for Agentic Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/abs/2604.00865\"},{\"title\":\"Doctor-RAG: Failure-Aware Repair for Agentic Retrieval-Augmented Generation\",\"url\":\"https://arxiv.org/html/2604.00865\"},{\"title\":\"Benchmarks for Trajectory Safety Evaluation and Diagnosis in OpenClaw and Codex: ATBench-Claw and ATBench-Codex\",\"url\":\"https://arxiv.org/html/2604.14858\"},{\"title\":\"End-to-End Agentic RAG System Training for Traceable Diagnostic Reasoning\",\"url\":\"https://arxiv.org/pdf/2508.15746\"},{\"title\":\"[2604.14858] Benchmarks for Trajectory Safety Evaluation and Diagnosis in OpenClaw and Codex: ATBench-Claw and ATBench-Codex\",\"url\":\"https://arxiv.org/abs/2604.14858\"},{\"title\":\"GUIDE: Interpretable GUI Agent Evaluation via Hierarchical Diagnosis\",\"url\":\"https://arxiv.org/html/2604.04399v1\"},{\"title\":\"[2604.02022] ATBench: A Diverse and Realistic Agent Trajectory Benchmark for Safety Evaluation and Diagnosis\",\"url\":\"https://arxiv.org/abs/2604.02022\"},{\"title\":\"Work Zones challenge VLM Trajectory Planning: Toward Mitigation and Robust Autonomous Driving\",\"url\":\"https://arxiv.org/html/2510.02803\"},{\"title\":\"\\\"Where is My Troubleshooting Procedure?\\\": Studying the\",\"url\":\"https://arxiv.org/pdf/2601.08706\"},{\"title\":\"The Long-Horizon Task Mirage? Diagnosing Where and Why Agentic Systems Break\",\"url\":\"https://arxiv.org/html/2604.11978v1\"}]\n\nBased on the search results, I found the paper you're looking for. Here's the information about Doctor-RAG (arXiv 2604.00865):\n\n## Doctor-RAG: Failure-Aware Repair for Agentic RAG\n\nAgentic Retrieval-Augmented Generation (Agentic RAG) has become a widely adopted paradigm for multi-hop question answering and complex knowledge reasoning, where retrieval and reasoning are interleaved at inference time. As reasoning trajectories grow longer, failures become increasingly common.\n\nDoctor-RAG (DR-RAG) is a unified diagnose-and-repair framework that corrects failures in Agentic RAG through explicit error localization and prefix reuse, enabling minimal-cost intervention.\n\n### Two-Stage Approach\n\nThe framework decomposes failure handling into two stages:\n\n1. Trajectory-level failure diagnosis and localization, which attributes errors to a coverage-gated taxonomy and identifies the earliest failure point in the reasoning trajectory\n\n2. Tool-conditioned local repair, which intervenes only at the diagnosed failure point while maximally reusing validated reasoning prefixes and retrieved evidence.\n\n### Key Benefits\n\nBy explicitly separating error attribution from correction, DR-RAG enables precise error localization, thereby avoiding expensive full-pipeline reruns and enabling targeted, efficient repair. Experimental results demonstrate that DR-RAG substantially improves answer accuracy while significantly reducing reasoning token consumption compared to rerun-based repair strategies.\n\nThe paper was published on April 1, 2026, and is authored by researchers from Harbin Institute of Technology, Macquarie University, UNSW, and CSIRO's Data61.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd2d0dd7-6de0-4842-a037-829db27b8a3d",
+            "isSidechain": true,
+            "promptId": "1adfa71a-4c33-4aab-b1f8-16ce7b0df53a",
+            "agentId": "a76f8d0ba910a4e77",
+            "type": "user",
+            "uuid": "92bfc77a-1b4e-49d3-baa0-1385cb407f25",
+            "sourceToolAssistantUUID": "dd2d0dd7-6de0-4842-a037-829db27b8a3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T19:33:48.477Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DGQDc29dStCkY6QTvZVg58",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2604.00865",
+                "prompt": "Extract the full abstract and any details about the method, specifically: (1) how trajectory-level failure diagnosis works, (2) how tool-conditioned local repair works, (3) how it reuses validated reasoning prefixes, (4) how it differs from reward models or full reruns. Include any mention of causal localization or failure taxonomy."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92bfc77a-1b4e-49d3-baa0-1385cb407f25",
+            "isSidechain": true,
+            "agentId": "a76f8d0ba910a4e77",
+            "requestId": "req_011CauSuXcKvkbhiJ9d3FdbZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9a3d7544-7055-4615-a1e5-d7fb087b04c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X3BRPW6XYX2bSRsjZDC8GY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 999,
+                "cache_read_input_tokens": 10827,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 999
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 10827,
+                    "cache_creation_input_tokens": 999,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 999,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T19:33:53.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DGQDc29dStCkY6QTvZVg58",
+              "type": "tool_result",
+              "content": "# Doctor-RAG: Failure-Aware Repair Framework\n\n## Full Abstract\n\n\"Agentic Retrieval-Augmented Generation (Agentic RAG) has become a widely adopted paradigm for multi-hop question answering and complex knowledge reasoning, where retrieval and reasoning are interleaved at inference time. As reasoning trajectories grow longer, failures become increasingly common.\"\n\nThe paper proposes Doctor-RAG (DR-RAG), which addresses failures through explicit error localization and prefix reuse rather than pipeline reruns.\n\n## Method Components\n\n**Trajectory-Level Failure Diagnosis:**\nThe framework attributes errors to a \"coverage-gated taxonomy\" and identifies the earliest failure point in reasoning trajectories, separating error attribution from correction.\n\n**Tool-Conditioned Local Repair:**\nThe system \"intervenes only at the diagnosed failure point while maximally reusing validated reasoning prefixes and retrieved evidence,\" enabling targeted intervention without full-pipeline restart.\n\n**Prefix Reuse Strategy:**\nRather than rerunning entire retrieval-reasoning sequences, the approach preserves validated reasoning steps and evidence from successful prior steps, reducing computational overhead.\n\n## Key Distinction from Alternatives\n\nUnlike rerun-based repair strategies that restart complete pipelines, DR-RAG achieves \"precise error localization, thereby avoiding expensive full-pipeline reruns.\" The experimental results demonstrate improved accuracy while \"significantly reducing reasoning token consumption.\"\n\nThe paper does not detail comparisons to reward models in the provided abstract."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a3d7544-7055-4615-a1e5-d7fb087b04c1",
+            "isSidechain": true,
+            "promptId": "1adfa71a-4c33-4aab-b1f8-16ce7b0df53a",
+            "agentId": "a76f8d0ba910a4e77",
+            "type": "user",
+            "uuid": "0e1eb1c8-a8fe-43e7-b525-8e9a8d7d0910",
+            "sourceToolAssistantUUID": "9a3d7544-7055-4615-a1e5-d7fb087b04c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T19:34:00.535Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NYxGtTCSNpUr81EKgzYBGU",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2604.00865",
+                "prompt": "Extract detailed method description of Doctor-RAG. Specifically I need: (1) How the failure diagnosis stage works - what is the coverage-gated taxonomy? How does it causally localize the failure point? (2) How tool-conditioned local repair works - what does 'tool-conditioned' mean here? How does it decide which tool to invoke for repair? (3) How does prefix reuse work mechanically - does it truncate the trajectory at the failure point and regenerate from there? (4) Any comparison to reward models, outcome-based verification, or code repair approaches. (5) What domains/benchmarks does it evaluate on?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e1eb1c8-a8fe-43e7-b525-8e9a8d7d0910",
+            "isSidechain": true,
+            "agentId": "a76f8d0ba910a4e77",
+            "requestId": "req_011CauSvGJc5AVcKiCPdayzf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "05338ba8-53ac-4bdc-b03b-1aea562546f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WTPdYdQnW93J4TQSqUD1wE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 487,
+                "cache_read_input_tokens": 11826,
+                "output_tokens": 222,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 487
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 222,
+                    "cache_read_input_tokens": 11826,
+                    "cache_creation_input_tokens": 487,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 487,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T19:34:11.587Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NYxGtTCSNpUr81EKgzYBGU",
+              "type": "tool_result",
+              "content": "# Doctor-RAG: Detailed Method Description\n\n## (1) Failure Diagnosis Stage\n\n**Coverage-Gated Taxonomy:**\nThe diagnosis module uses evidence sufficiency as a gating signal. It first assesses whether retrieved documents answer the question via `Cov(y) ∈ {0,1}`. This determines admissible error types:\n\n- **Full Coverage (Cov=1)**: Format errors or reasoning logic errors\n- **Partial Coverage (Cov<1)**: Format errors, retriever failures, or search errors\n\nThis \"constrains the set of plausible failure causes\" deterministically, preventing misattribution to retrieval when evidence is actually sufficient.\n\n**Causal Localization:**\nThe diagnosis module identifies the earliest failure point `k†` via: \"the minimum {k | ρ(k) is classified as erroneous}\". This pinpoints the specific action where the trajectory deviates from valid behavior. Critically, the system \"does not use the ground-truth answer as auxiliary supervision and relies solely on the generated trajectory.\"\n\n## (2) Tool-Conditioned Local Repair\n\n**\"Tool-Conditioned\" Meaning:**\nEach error type maps to a specialized repair operator: `f = S(c)`, where `S` maps error category `c` to repair function `f`. This is \"diagnosis-driven\" rather than generic.\n\n**Repair Tool Selection:**\n\n- **Format errors**: Answer rewriting with original documents\n- **Reasoning errors (full coverage)**: Re-reason from truncated prefix using aggregated documents\n- **Retriever failures**: Query rewriting + increased top-k retrieval\n- **Search errors (partial coverage)**: Generate solution plan and re-execute reasoning+retrieval\n\n## (3) Prefix Reuse Mechanics\n\nThe system truncates trajectories at the localized failure index k†:\n\n```\ny_prefix = {ρ(1), …, ρ(k†-1)}\n```\n\nAll retrieved documents are aggregated as `D(y) = ⋃ρ∈D(y)ρ`. The model then \"re-perform[s] reasoning from the retained prefix, grounded on the aggregated document set.\" This \"preserves conditionally valid trajectory prefixes\" while discarding unreliable suffix steps.\n\n## (4) Comparison to Related Approaches\n\n**vs. Reward/Outcome Models:**\nThe paper doesn't directly compare to reward-based verification. Instead, it contrasts with:\n- **RAG-Critic**: Diagnoses without localization, relies on \"replanning–rerun strategy, discarding the original trajectory\"\n- **RAGChecker**: Stops at diagnosis without addressing repair\n\nNo comparison to code repair literature is provided.\n\n## (5) Evaluation Domains/Benchmarks\n\nExperiments span three multi-hop QA datasets:\n- **HotpotQA**: Wikipedia-based reasoning\n- **2WikiMultihopQA**: Explicit multi-hop paths\n- **MuSiQue**: 2–4 hop constructed questions\n\nEvaluation uses standard metrics (EM, F1, ROUGE-L) plus repair-specific metrics (repair rate, token cost). Testing includes three backbone models: Qwen3-8B, LLaMA-3.1-8B-Instruct, and Qwen3-4B.\n\nHuman annotation validates automated diagnosis accuracy, achieving 60–62% consistency across coverage conditions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05338ba8-53ac-4bdc-b03b-1aea562546f0",
+            "isSidechain": true,
+            "promptId": "1adfa71a-4c33-4aab-b1f8-16ce7b0df53a",
+            "agentId": "a76f8d0ba910a4e77",
+            "type": "user",
+            "uuid": "05da45cc-1604-4fec-8c02-71d8514b0b92",
+            "sourceToolAssistantUUID": "05338ba8-53ac-4bdc-b03b-1aea562546f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T19:34:26.533Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is a concise summary of Doctor-RAG (arXiv:2604.00865):\n\n---\n\n**Domain:** Multi-hop question answering via Agentic RAG (systems that interleave retrieval and reasoning across multiple steps). Evaluated on HotpotQA, 2WikiMultihopQA, and MuSiQue.\n\n**Core Mechanism:** A two-stage diagnose-then-repair framework:\n\n1. **Failure Diagnosis** uses a coverage-gated taxonomy. It first checks evidence sufficiency (Cov=1 or Cov<1) to constrain which error types are even possible (e.g., if retrieved docs fully cover the answer, retriever failure is ruled out). It then causally localizes the earliest step k-dagger where the trajectory goes wrong -- without requiring ground-truth answers.\n\n2. **Tool-Conditioned Local Repair** maps each diagnosed error category to a specialized repair operator (format rewriting, re-reasoning, query rewriting + expanded retrieval, or full plan regeneration). The trajectory is truncated at the failure point; all validated reasoning steps before k-dagger are preserved as a prefix, and all previously retrieved documents are aggregated. The model regenerates only from the failure point forward, grounded on this accumulated evidence.\n\n**Difference from a reward model for code repair:** A reward/outcome model scores entire outputs and triggers full reruns or resampling. Doctor-RAG instead performs causal localization -- it identifies the specific step where reasoning broke -- and applies targeted, minimal-cost intervention from that point. It never discards validated prefix work. This is analogous to debugging a program by finding the exact faulty line and patching only that, rather than re-executing the entire program. The paper contrasts itself explicitly with \"replanning-rerun\" strategies (like RAG-Critic) that discard the original trajectory entirely, showing significant token savings while matching or exceeding accuracy.\n\n---\n\nSources:\n- [Doctor-RAG: Failure-Aware Repair for Agentic Retrieval-Augmented Generation (abstract)](https://arxiv.org/abs/2604.00865)\n- [Doctor-RAG: Full HTML paper](https://arxiv.org/html/2604.00865)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05da45cc-1604-4fec-8c02-71d8514b0b92",
+            "isSidechain": true,
+            "agentId": "a76f8d0ba910a4e77",
+            "requestId": "req_011CauSwZq62rWd7mF6KAZBh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2810a60e-7a6d-4753-9447-55a5a4ccf4e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "774515b7-7168-4b25-a655-4f0c29358d39",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qmh3jjJpMfnvgtqJvHGsVQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1013,
+                "cache_read_input_tokens": 12313,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1013,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-and-read-the-paper-doctor-rag-arxiv-2604-00865-april-2026-i-need-to.md"
+}

@@ -1,0 +1,1357 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b2d3dd9d91dd20f48cba",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-15T05:08:10.677Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NxP1fkXpANBjyNcxVnzGg5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Generating dry-run mock data...\\\\n  Mock index written: /root/structfuse/results/stratified/mock_stratification_index.json\\\\nLoading index from /root/structfuse/results/stratified/mock_stratification_index.json\\\\n  1500 instances in index\\\\n  Loaded dryrun_random_s42: 500 queries\\\\n  Loaded dryrun_random_s43: 500 queries\\\\n  Loaded dryrun_random_s44: 500 queries\\\\n  Loaded dryrun_embedding_distance_s42: 500 queries\\\\n  Loaded dryrun_embedding_distance_s43: 500 queries\\\\n  Loaded dryrun_embedding_distance_s44: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s42: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s43: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s44: 500 queries\\\\n\\\\nTotal: 4500 records from 9 runs\\\\n\\\\nRunning stratified analysis...\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/structfuse-context/scripts/analyze_stratified.py\\\\\\\", line 475, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/structfuse-context/scripts/analyze_stratified.py\\\\\\\", line 432, in main\\\\n    results = run_analysis(all_records, index, strategies, args.baseline)\\\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/structfuse-context/scripts/analyze_stratified.py\\\\\\\", line 204, in run_analysis\\\\n    d = m.get(delta_key, 0) or 0\\\\n        ^^^^^\\\\nAttributeError: 'float' object has no attribute 'get'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed3b6a05-fe25-4c94-88f5-eb4aa4cd130a",
+            "isSidechain": false,
+            "promptId": "61574118-4728-4486-8989-8a9b16b1b622",
+            "type": "user",
+            "uuid": "d2abedad-9017-4c08-b553-348675575b04",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Generating dry-run mock data...\\\\n  Mock index written: /root/structfuse/results/stratified/mock_stratification_index.json\\\\nLoading index from /root/structfuse/results/stratified/mock_stratification_index.json\\\\n  1500 instances in index\\\\n  Loaded dryrun_random_s42: 500 queries\\\\n  Loaded dryrun_random_s43: 500 queries\\\\n  Loaded dryrun_random_s44: 500 queries\\\\n  Loaded dryrun_embedding_distance_s42: 500 queries\\\\n  Loaded dryrun_embedding_distance_s43: 500 queries\\\\n  Loaded dryrun_embedding_distance_s44: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s42: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s43: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s44: 500 queries\\\\n\\\\nTotal: 4500 records from 9 runs\\\\n\\\\nRunning stratified analysis...\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/structfuse-context/scripts/analyze_stratified.py\\\\\\\", line 475, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/structfuse-context/scripts/analyze_stratified.py\\\\\\\", line 432, in main\\\\n    results = run_analysis(all_records, index, strategies, args.baseline)\\\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/structfuse-context/scripts/analyze_stratified.py\\\\\\\", line 204, in run_analysis\\\\n    d = m.get(delta_key, 0) or 0\\\\n        ^^^^^\\\\nAttributeError: 'float' object has no attribute 'get'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"Generating dry-run mock data...\\n  Mock index written: /root/structfuse/results/stratified/mock_stratification_index.json\\nLoading index from /root/structfuse/results/stratified/mock_stratification_index.json\\n  1500 instances in index\\n  Loaded dryrun_random_s42: 500 queries\\n  Loaded dryrun_random_s43: 500 queries\\n  Loaded dryrun_random_s44: 500 queries\\n  Loaded dryrun_embedding_distance_s42: 500 queries\\n  Loaded dryrun_embedding_distance_s43: 500 queries\\n  Loaded dryrun_embedding_distance_s44: 500 queries\\n  Loaded dryrun_dataflow_aware_s42: 500 queries\\n  Loaded dryrun_dataflow_aware_s43: 500 queries\\n  Loaded dryrun_dataflow_aware_s44: 500 queries\\n\\nTotal: 4500 records from 9 runs\\n\\nRunning stratified analysis...\\nTraceback (most recent call last):\\n  File \\\"/root/structfuse-context/scripts/analyze_stratified.py\\\", line 475, in <module>\\n    main()\\n  File \\\"/root/structfuse-context/scripts/analyze_stratified.py\\\", line 432, in main\\n    results = run_analysis(all_records, index, strategies, args.baseline)\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/structfuse-context/scripts/analyze_stratified.py\\\", line 204, in run_analysis\\n    d = m.get(delta_key, 0) or 0\\n        ^^^^^\\nAttributeError: 'float' object has no attribute 'get'\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.02}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ed3b6a05-fe25-4c94-88f5-eb4aa4cd130a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-15T05:08:10.683Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d2abedad-9017-4c08-b553-348675575b04",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "c66b60cd-de07-42b6-adf1-bf99037f0c5d",
+                "timestamp": "2026-05-15T05:08:10.683Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-15T05:08:19.362Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Bug in the weighted aggregate delta computation. The issue is that `dim_results` has both bin-level dicts (with \"count\") and the weighted aggregate float values. When iterating to compute weighted delta, it encounters a float from a previously stored weighted delta. I need to fix the ordering or filter out non-bin entries.\n\nLet me fix the code. The issue is at line 204:\n```python\nfor bname, m in dim_results.items():\n    d = m.get(delta_key, 0) or 0\n```\n\nThis iterates over all items in dim_results, including the previously computed weighted deltas which are floats. \n\nI'll modify the loop to skip entries that aren't dictionaries, so it only processes the actual bin-level data.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c66b60cd-de07-42b6-adf1-bf99037f0c5d",
+            "isSidechain": false,
+            "requestId": "req_011Cb3mwtN3jY3cKaV6mRAuY",
+            "type": "assistant",
+            "uuid": "26fe3c5d-bb0d-4f60-8a7c-b2a2bbdf6e8c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bn6B2h3vb8FoW1S19Qwtg9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 887,
+                "cache_read_input_tokens": 94891,
+                "output_tokens": 781,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 887,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 781,
+                    "cache_read_input_tokens": 94891,
+                    "cache_creation_input_tokens": 887,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 887
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-15T05:08:19.363Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Bug: weighted aggregate 遍历了非 bin 项。修复。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26fe3c5d-bb0d-4f60-8a7c-b2a2bbdf6e8c",
+            "isSidechain": false,
+            "requestId": "req_011Cb3mwtN3jY3cKaV6mRAuY",
+            "type": "assistant",
+            "uuid": "cbab69d8-ee0b-4f48-a6db-444fd89e458b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bn6B2h3vb8FoW1S19Qwtg9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 887,
+                "cache_read_input_tokens": 94891,
+                "output_tokens": 781,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 887,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 781,
+                    "cache_read_input_tokens": 94891,
+                    "cache_creation_input_tokens": 887,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 887
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-15T05:08:25.348Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V9MybYK6mfX7kzfpcaUk3R",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat > /tmp/fix_analyze.py << 'PYEOF'\nimport re\n\nwith open(\"/root/structfuse/scripts/analyze_stratified.py\") as f:\n    content = f.read()\n\nold = '''        # Weighted aggregate delta\n        total_n = sum(m[\"count\"] for m in dim_results.values())\n        for s in strategies:\n            if s == baseline:\n                continue\n            delta_key = f\"delta_{s}_vs_{baseline}\"\n            weighted_sum = 0\n            for bname, m in dim_results.items():\n                d = m.get(delta_key, 0) or 0\n                w = m[\"count\"] / max(total_n, 1)\n                weighted_sum += d * w\n            dim_results[f\"weighted_{delta_key}\"] = round(weighted_sum, 6)'''\n\nnew = '''        # Weighted aggregate delta\n        bin_items = [(b, m) for b, m in dim_results.items()\n                     if isinstance(m, dict) and \"count\" in m]\n        total_n = sum(m[\"count\"] for _, m in bin_items)\n        for s in strategies:\n            if s == baseline:\n                continue\n            delta_key = f\"delta_{s}_vs_{baseline}\"\n            weighted_sum = 0\n            for bname, m in bin_items:\n                d = m.get(delta_key, 0) or 0\n                w = m[\"count\"] / max(total_n, 1)\n                weighted_sum += d * w\n            dim_results[f\"weighted_{delta_key}\"] = round(weighted_sum, 6)'''\n\ncontent = content.replace(old, new)\nwith open(\"/root/structfuse/scripts/analyze_stratified.py\", \"w\") as f:\n    f.write(content)\nprint(\"Fixed\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/fix_analyze.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cbab69d8-ee0b-4f48-a6db-444fd89e458b",
+            "isSidechain": false,
+            "requestId": "req_011Cb3mwtN3jY3cKaV6mRAuY",
+            "type": "assistant",
+            "uuid": "0777de1f-3436-4804-b6da-de972735f05c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bn6B2h3vb8FoW1S19Qwtg9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 887,
+                "cache_read_input_tokens": 94891,
+                "output_tokens": 781,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 887,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 781,
+                    "cache_read_input_tokens": 94891,
+                    "cache_creation_input_tokens": 887,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 887
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-15T05:08:25.815Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V9MybYK6mfX7kzfpcaUk3R",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0777de1f-3436-4804-b6da-de972735f05c",
+            "isSidechain": false,
+            "promptId": "61574118-4728-4486-8989-8a9b16b1b622",
+            "type": "user",
+            "uuid": "ee916ace-a1fc-45f8-904b-70e2a885943f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Fixed\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "0777de1f-3436-4804-b6da-de972735f05c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-15T05:08:34.073Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LkGPN7p7oex6inRsh5bkCN",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && python scripts/analyze_stratified.py --dry-run --output-dir /root/structfuse/results/stratified 2>&1",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee916ace-a1fc-45f8-904b-70e2a885943f",
+            "isSidechain": false,
+            "requestId": "req_011Cb3mxztEeFuuXFRBnYdhM",
+            "type": "assistant",
+            "uuid": "3d88657b-e73a-4112-8ff5-3e67c43b23bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FvoumG4simfJzuWtRHzYx9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 856,
+                "cache_read_input_tokens": 95778,
+                "output_tokens": 180,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 856,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 180,
+                    "cache_read_input_tokens": 95778,
+                    "cache_creation_input_tokens": 856,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 856
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-15T05:08:37.419Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LkGPN7p7oex6inRsh5bkCN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Generating dry-run mock data...\\\\nLoading index from /root/structfuse/results/stratified/mock_stratification_index.json\\\\n  1500 instances in index\\\\n  Loaded dryrun_random_s42: 500 queries\\\\n  Loaded dryrun_random_s43: 500 queries\\\\n  Loaded dryrun_random_s44: 500 queries\\\\n  Loaded dryrun_embedding_distance_s42: 500 queries\\\\n  Loaded dryrun_embedding_distance_s43: 500 queries\\\\n  Loaded dryrun_embedding_distance_s44: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s42: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s43: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s44: 500 queries\\\\n\\\\nTotal: 4500 records from 9 runs\\\\n\\\\nRunning stratified analysis...\\\\n\\\\n============================================================\\\\nDimension: repo_size\\\\n============================================================\\\\n  large (200+) (n=906)\\\\n  random: 0.3826 [0.3312, 0.4373]\\\\n  embedding_distance: 0.4463 [0.3909, 0.5016]\\\\n  dataflow_aware: 0.5556 [0.4999, 0.6111]\\\\n  delta_embedding_distance_vs_random: +0.0636\\\\n  delta_dataflow_aware_vs_random: +0.1729\\\\n  medium (50-200) (n=468)\\\\n  random: 0.3841 [0.3113, 0.4636]\\\\n  embedding_distance: 0.4306 [0.3472, 0.5139]\\\\n  dataflow_aware: 0.5145 [0.4393, 0.5896]\\\\n  delta_embedding_distance_vs_random: +0.0464\\\\n  delta_dataflow_aware_vs_random: +0.1303\\\\n  small (<50) (n=3126)\\\\n  random: 0.4499 [0.4200, 0.4807]\\\\n  embedding_distance: 0.4461 [0.4156, 0.4766]\\\\n  dataflow_aware: 0.4629 [0.4321, 0.4928]\\\\n  delta_embedding_distance_vs_random: -0.0038\\\\n  delta_dataflow_aware_vs_random: +0.0130\\\\n  weighted_delta_dataflow_aware_vs_random: 0.057429\\\\n  weighted_delta_embedding_distance_vs_random: 0.015024\\\\n\\\\n============================================================\\\\nDimension: pool_size\\\\n============================================================\\\\n  Q4 (highest) (n=4500)\\\\n  random: 0.4293 [0.4047, 0.4540]\\\\n  embedding_distance: 0.4447 [0.4200, 0.4707]\\\\n  dataflow_aware: 0.4867 [0.4620, 0.5100]\\\\n  delta_embedding_distance_vs_random: +0.0153\\\\n  delta_dataflow_aware_vs_random: +0.0573\\\\n  weighted_delta_dataflow_aware_vs_random: 0.057334\\\\n  weighted_delta_embedding_distance_vs_random: 0.015334\\\\n\\\\n============================================================\\\\nDimension: query_pos_similarity\\\\n============================================================\\\\n  Q1 (lowest) (n=1125)\\\\n  random: 0.4622 [0.4108, 0.5108]\\\\n  embedding_distance: 0.4409 [0.3897, 0.4919]\\\\n  dataflow_aware: 0.4778 [0.4308, 0.5274]\\\\n  delta_embedding_distance_vs_random: -0.0213\\\\n  delta_dataflow_aware_vs_random: +0.0156\\\\n  Q2 (n=1125)\\\\n  random: 0.4247 [0.3763, 0.4758]\\\\n  embedding_distance: 0.4868 [0.4338, 0.5370]\\\\n  dataflow_aware: 0.4747 [0.4240, 0.5227]\\\\n  delta_embedding_distance_vs_random: +0.0620\\\\n  delta_dataflow_aware_vs_random: +0.0499\\\\n  Q3 (n=1125)\\\\n  random: 0.4048 [0.3571, 0.4577]\\\\n  embedding_distance: 0.4492 [0.3983, 0.5000]\\\\n  dataflow_aware: 0.4835 [0.4326, 0.5318]\\\\n  delta_embedding_distance_vs_random: +0.0444\\\\n  delta_dataflow_aware_vs_random: +0.0787\\\\n  Q4 (highest) (n=1125)\\\\n  random: 0.4263 [0.3763, 0.4737]\\\\n  embedding_distance: 0.4040 [0.3586, 0.4496]\\\\n  dataflow_aware: 0.5129 [0.4585, 0.5645]\\\\n  delta_embedding_distance_vs_random: -0.0223\\\\n  delta_dataflow_aware_vs_random: +0.0866\\\\n  weighted_delta_dataflow_aware_vs_random: 0.057715\\\\n  weighted_delta_embedding_distance_vs_random: 0.015713\\\\n\\\\n============================================================\\\\nDimension: structural_availability\\\\n============================================================\\\\n  no_structural (n=3966)\\\\n  random: 0.4418 [0.4160, 0.4690]\\\\n  embedding_distance: 0.4397 [0.4133, 0.4661]\\\\n  dataflow_aware: 0.4780 [0.4499, 0.5053]\\\\n  delta_embedding_distance_vs_random: -0.0021\\\\n  delta_dataflow_aware_vs_random: +0.0362\\\\n  weighted_delta_dataflow_aware_vs_random: 0.057143\\\\n  weighted_delta_embedding_distance_vs_random: 0.015448\\\\n  with_structural (n=534)\\\\n  random: 0.3371 [0.2697, 0.4101]\\\\n  embedding_distance: 0.4828 [0.4080, 0.5575]\\\\n  dataflow_aware: 0.5495 [0.4725, 0.6264]\\\\n  delta_embedding_distance_vs_random: +0.1457\\\\n  delta_dataflow_aware_vs_random: +0.2124\\\\n\\\\n============================================================\\\\nDimension: neg_difficulty\\\\n============================================================\\\\n  Q1 (lowest) (n=1125)\\\\n  random: 0.3770 [0.3272, 0.4267]\\\\n  embedding_distance: 0.4528 [0.4028, 0.5083]\\\\n  dataflow_aware: 0.4752 [0.4282, 0.5248]\\\\n  delta_embedding_distance_vs_random: +0.0758\\\\n  delta_dataflow_aware_vs_random: +0.0982\\\\n  Q2 (n=1125)\\\\n  random: 0.4814 [0.4298, 0.5330]\\\\n  embedding_distance: 0.4408 [0.3912, 0.4904]\\\\n  dataflow_aware: 0.4818 [0.4358, 0.5303]\\\\n  delta_embedding_distance_vs_random: -0.0406\\\\n  delta_dataflow_aware_vs_random: +0.0005\\\\n  Q3 (n=1125)\\\\n  random: 0.4438 [0.3918, 0.4959]\\\\n  embedding_distance: 0.4121 [0.3643, 0.4573]\\\\n  dataflow_aware: 0.5000 [0.4503, 0.5497]\\\\n  delta_embedding_distance_vs_random: -0.0318\\\\n  delta_dataflow_aware_vs_random: +0.0562\\\\n  Q4 (highest) (n=1125)\\\\n  random: 0.4208 [0.3737, 0.4678]\\\\n  embedding_distance: 0.4749 [0.4248, 0.5251]\\\\n  dataflow_aware: 0.4912 [0.4386, 0.5410]\\\\n  delta_embedding_distance_vs_random: +0.0541\\\\n  delta_dataflow_aware_vs_random: +0.0704\\\\n  weighted_delta_dataflow_aware_vs_random: 0.056324\\\\n  weighted_delta_embedding_distance_vs_random: 0.014394\\\\n\\\\nJSON saved: /root/structfuse/results/stratified/stratified_results_dryrun.json\\\\nCSV saved: /root/structfuse/results/stratified/stratified_results_dryrun.csv\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_repo_size.pdf\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_pool_size.pdf\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_query_pos_similarity.pdf\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_structural_availability.pdf\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_neg_difficulty.pdf\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d88657b-e73a-4112-8ff5-3e67c43b23bb",
+            "isSidechain": false,
+            "promptId": "61574118-4728-4486-8989-8a9b16b1b622",
+            "type": "user",
+            "uuid": "f651c8ec-2926-47f1-87f2-897d4bef9b77",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Generating dry-run mock data...\\\\nLoading index from /root/structfuse/results/stratified/mock_stratification_index.json\\\\n  1500 instances in index\\\\n  Loaded dryrun_random_s42: 500 queries\\\\n  Loaded dryrun_random_s43: 500 queries\\\\n  Loaded dryrun_random_s44: 500 queries\\\\n  Loaded dryrun_embedding_distance_s42: 500 queries\\\\n  Loaded dryrun_embedding_distance_s43: 500 queries\\\\n  Loaded dryrun_embedding_distance_s44: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s42: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s43: 500 queries\\\\n  Loaded dryrun_dataflow_aware_s44: 500 queries\\\\n\\\\nTotal: 4500 records from 9 runs\\\\n\\\\nRunning stratified analysis...\\\\n\\\\n============================================================\\\\nDimension: repo_size\\\\n============================================================\\\\n  large (200+) (n=906)\\\\n  random: 0.3826 [0.3312, 0.4373]\\\\n  embedding_distance: 0.4463 [0.3909, 0.5016]\\\\n  dataflow_aware: 0.5556 [0.4999, 0.6111]\\\\n  delta_embedding_distance_vs_random: +0.0636\\\\n  delta_dataflow_aware_vs_random: +0.1729\\\\n  medium (50-200) (n=468)\\\\n  random: 0.3841 [0.3113, 0.4636]\\\\n  embedding_distance: 0.4306 [0.3472, 0.5139]\\\\n  dataflow_aware: 0.5145 [0.4393, 0.5896]\\\\n  delta_embedding_distance_vs_random: +0.0464\\\\n  delta_dataflow_aware_vs_random: +0.1303\\\\n  small (<50) (n=3126)\\\\n  random: 0.4499 [0.4200, 0.4807]\\\\n  embedding_distance: 0.4461 [0.4156, 0.4766]\\\\n  dataflow_aware: 0.4629 [0.4321, 0.4928]\\\\n  delta_embedding_distance_vs_random: -0.0038\\\\n  delta_dataflow_aware_vs_random: +0.0130\\\\n  weighted_delta_dataflow_aware_vs_random: 0.057429\\\\n  weighted_delta_embedding_distance_vs_random: 0.015024\\\\n\\\\n============================================================\\\\nDimension: pool_size\\\\n============================================================\\\\n  Q4 (highest) (n=4500)\\\\n  random: 0.4293 [0.4047, 0.4540]\\\\n  embedding_distance: 0.4447 [0.4200, 0.4707]\\\\n  dataflow_aware: 0.4867 [0.4620, 0.5100]\\\\n  delta_embedding_distance_vs_random: +0.0153\\\\n  delta_dataflow_aware_vs_random: +0.0573\\\\n  weighted_delta_dataflow_aware_vs_random: 0.057334\\\\n  weighted_delta_embedding_distance_vs_random: 0.015334\\\\n\\\\n============================================================\\\\nDimension: query_pos_similarity\\\\n============================================================\\\\n  Q1 (lowest) (n=1125)\\\\n  random: 0.4622 [0.4108, 0.5108]\\\\n  embedding_distance: 0.4409 [0.3897, 0.4919]\\\\n  dataflow_aware: 0.4778 [0.4308, 0.5274]\\\\n  delta_embedding_distance_vs_random: -0.0213\\\\n  delta_dataflow_aware_vs_random: +0.0156\\\\n  Q2 (n=1125)\\\\n  random: 0.4247 [0.3763, 0.4758]\\\\n  embedding_distance: 0.4868 [0.4338, 0.5370]\\\\n  dataflow_aware: 0.4747 [0.4240, 0.5227]\\\\n  delta_embedding_distance_vs_random: +0.0620\\\\n  delta_dataflow_aware_vs_random: +0.0499\\\\n  Q3 (n=1125)\\\\n  random: 0.4048 [0.3571, 0.4577]\\\\n  embedding_distance: 0.4492 [0.3983, 0.5000]\\\\n  dataflow_aware: 0.4835 [0.4326, 0.5318]\\\\n  delta_embedding_distance_vs_random: +0.0444\\\\n  delta_dataflow_aware_vs_random: +0.0787\\\\n  Q4 (highest) (n=1125)\\\\n  random: 0.4263 [0.3763, 0.4737]\\\\n  embedding_distance: 0.4040 [0.3586, 0.4496]\\\\n  dataflow_aware: 0.5129 [0.4585, 0.5645]\\\\n  delta_embedding_distance_vs_random: -0.0223\\\\n  delta_dataflow_aware_vs_random: +0.0866\\\\n  weighted_delta_dataflow_aware_vs_random: 0.057715\\\\n  weighted_delta_embedding_distance_vs_random: 0.015713\\\\n\\\\n============================================================\\\\nDimension: structural_availability\\\\n============================================================\\\\n  no_structural (n=3966)\\\\n  random: 0.4418 [0.4160, 0.4690]\\\\n  embedding_distance: 0.4397 [0.4133, 0.4661]\\\\n  dataflow_aware: 0.4780 [0.4499, 0.5053]\\\\n  delta_embedding_distance_vs_random: -0.0021\\\\n  delta_dataflow_aware_vs_random: +0.0362\\\\n  weighted_delta_dataflow_aware_vs_random: 0.057143\\\\n  weighted_delta_embedding_distance_vs_random: 0.015448\\\\n  with_structural (n=534)\\\\n  random: 0.3371 [0.2697, 0.4101]\\\\n  embedding_distance: 0.4828 [0.4080, 0.5575]\\\\n  dataflow_aware: 0.5495 [0.4725, 0.6264]\\\\n  delta_embedding_distance_vs_random: +0.1457\\\\n  delta_dataflow_aware_vs_random: +0.2124\\\\n\\\\n============================================================\\\\nDimension: neg_difficulty\\\\n============================================================\\\\n  Q1 (lowest) (n=1125)\\\\n  random: 0.3770 [0.3272, 0.4267]\\\\n  embedding_distance: 0.4528 [0.4028, 0.5083]\\\\n  dataflow_aware: 0.4752 [0.4282, 0.5248]\\\\n  delta_embedding_distance_vs_random: +0.0758\\\\n  delta_dataflow_aware_vs_random: +0.0982\\\\n  Q2 (n=1125)\\\\n  random: 0.4814 [0.4298, 0.5330]\\\\n  embedding_distance: 0.4408 [0.3912, 0.4904]\\\\n  dataflow_aware: 0.4818 [0.4358, 0.5303]\\\\n  delta_embedding_distance_vs_random: -0.0406\\\\n  delta_dataflow_aware_vs_random: +0.0005\\\\n  Q3 (n=1125)\\\\n  random: 0.4438 [0.3918, 0.4959]\\\\n  embedding_distance: 0.4121 [0.3643, 0.4573]\\\\n  dataflow_aware: 0.5000 [0.4503, 0.5497]\\\\n  delta_embedding_distance_vs_random: -0.0318\\\\n  delta_dataflow_aware_vs_random: +0.0562\\\\n  Q4 (highest) (n=1125)\\\\n  random: 0.4208 [0.3737, 0.4678]\\\\n  embedding_distance: 0.4749 [0.4248, 0.5251]\\\\n  dataflow_aware: 0.4912 [0.4386, 0.5410]\\\\n  delta_embedding_distance_vs_random: +0.0541\\\\n  delta_dataflow_aware_vs_random: +0.0704\\\\n  weighted_delta_dataflow_aware_vs_random: 0.056324\\\\n  weighted_delta_embedding_distance_vs_random: 0.014394\\\\n\\\\nJSON saved: /root/structfuse/results/stratified/stratified_results_dryrun.json\\\\nCSV saved: /root/structfuse/results/stratified/stratified_results_dryrun.csv\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_repo_size.pdf\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_pool_size.pdf\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_query_pos_similarity.pdf\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_structural_availability.pdf\\\\n  Plot saved: /root/structfuse/results/stratified/stratified_neg_difficulty.pdf\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.33}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Generating dry-run mock data...\\nLoading index from /root/structfuse/results/stratified/mock_stratification_index.json\\n  1500 instances in index\\n  Loaded dryrun_random_s42: 500 queries\\n  Loaded dryrun_random_s43: 500 queries\\n  Loaded dryrun_random_s44: 500 queries\\n  Loaded dryrun_embedding_distance_s42: 500 queries\\n  Loaded dryrun_embedding_distance_s43: 500 queries\\n  Loaded dryrun_embedding_distance_s44: 500 queries\\n  Loaded dryrun_dataflow_aware_s42: 500 queries\\n  Loaded dryrun_dataflow_aware_s43: 500 queries\\n  Loaded dryrun_dataflow_aware_s44: 500 queries\\n\\nTotal: 4500 records from 9 runs\\n\\nRunning stratified analysis...\\n\\n============================================================\\nDimension: repo_size\\n============================================================\\n  large (200+) (n=906)\\n  random: 0.3826 [0.3312, 0.4373]\\n  embedding_distance: 0.4463 [0.3909, 0.5016]\\n  dataflow_aware: 0.5556 [0.4999, 0.6111]\\n  delta_embedding_distance_vs_random: +0.0636\\n  delta_dataflow_aware_vs_random: +0.1729\\n  medium (50-200) (n=468)\\n  random: 0.3841 [0.3113, 0.4636]\\n  embedding_distance: 0.4306 [0.3472, 0.5139]\\n  dataflow_aware: 0.5145 [0.4393, 0.5896]\\n  delta_embedding_distance_vs_random: +0.0464\\n  delta_dataflow_aware_vs_random: +0.1303\\n  small (<50) (n=3126)\\n  random: 0.4499 [0.4200, 0.4807]\\n  embedding_distance: 0.4461 [0.4156, 0.4766]\\n  dataflow_aware: 0.4629 [0.4321, 0.4928]\\n  delta_embedding_distance_vs_random: -0.0038\\n  delta_dataflow_aware_vs_random: +0.0130\\n  weighted_delta_dataflow_aware_vs_random: 0.057429\\n  weighted_delta_embedding_distance_vs_random: 0.015024\\n\\n============================================================\\nDimension: pool_size\\n============================================================\\n  Q4 (highest) (n=4500)\\n  random: 0.4293 [0.4047, 0.4540]\\n  embedding_distance: 0.4447 [0.4200, 0.4707]\\n  dataflow_aware: 0.4867 [0.4620, 0.5100]\\n  delta_embedding_distance_vs_random: +0.0153\\n  delta_dataflow_aware_vs_random: +0.0573\\n  weighted_delta_dataflow_aware_vs_random: 0.057334\\n  weighted_delta_embedding_distance_vs_random: 0.015334\\n\\n============================================================\\nDimension: query_pos_similarity\\n============================================================\\n  Q1 (lowest) (n=1125)\\n  random: 0.4622 [0.4108, 0.5108]\\n  embedding_distance: 0.4409 [0.3897, 0.4919]\\n  dataflow_aware: 0.4778 [0.4308, 0.5274]\\n  delta_embedding_distance_vs_random: -0.0213\\n  delta_dataflow_aware_vs_random: +0.0156\\n  Q2 (n=1125)\\n  random: 0.4247 [0.3763, 0.4758]\\n  embedding_distance: 0.4868 [0.4338, 0.5370]\\n  dataflow_aware: 0.4747 [0.4240, 0.5227]\\n  delta_embedding_distance_vs_random: +0.0620\\n  delta_dataflow_aware_vs_random: +0.0499\\n  Q3 (n=1125)\\n  random: 0.4048 [0.3571, 0.4577]\\n  embedding_distance: 0.4492 [0.3983, 0.5000]\\n  dataflow_aware: 0.4835 [0.4326, 0.5318]\\n  delta_embedding_distance_vs_random: +0.0444\\n  delta_dataflow_aware_vs_random: +0.0787\\n  Q4 (highest) (n=1125)\\n  random: 0.4263 [0.3763, 0.4737]\\n  embedding_distance: 0.4040 [0.3586, 0.4496]\\n  dataflow_aware: 0.5129 [0.4585, 0.5645]\\n  delta_embedding_distance_vs_random: -0.0223\\n  delta_dataflow_aware_vs_random: +0.0866\\n  weighted_delta_dataflow_aware_vs_random: 0.057715\\n  weighted_delta_embedding_distance_vs_random: 0.015713\\n\\n============================================================\\nDimension: structural_availability\\n============================================================\\n  no_structural (n=3966)\\n  random: 0.4418 [0.4160, 0.4690]\\n  embedding_distance: 0.4397 [0.4133, 0.4661]\\n  dataflow_aware: 0.4780 [0.4499, 0.5053]\\n  delta_embedding_distance_vs_random: -0.0021\\n  delta_dataflow_aware_vs_random: +0.0362\\n  weighted_delta_dataflow_aware_vs_random: 0.057143\\n  weighted_delta_embedding_distance_vs_random: 0.015448\\n  with_structural (n=534)\\n  random: 0.3371 [0.2697, 0.4101]\\n  embedding_distance: 0.4828 [0.4080, 0.5575]\\n  dataflow_aware: 0.5495 [0.4725, 0.6264]\\n  delta_embedding_distance_vs_random: +0.1457\\n  delta_dataflow_aware_vs_random: +0.2124\\n\\n============================================================\\nDimension: neg_difficulty\\n============================================================\\n  Q1 (lowest) (n=1125)\\n  random: 0.3770 [0.3272, 0.4267]\\n  embedding_distance: 0.4528 [0.4028, 0.5083]\\n  dataflow_aware: 0.4752 [0.4282, 0.5248]\\n  delta_embedding_distance_vs_random: +0.0758\\n  delta_dataflow_aware_vs_random: +0.0982\\n  Q2 (n=1125)\\n  random: 0.4814 [0.4298, 0.5330]\\n  embedding_distance: 0.4408 [0.3912, 0.4904]\\n  dataflow_aware: 0.4818 [0.4358, 0.5303]\\n  delta_embedding_distance_vs_random: -0.0406\\n  delta_dataflow_aware_vs_random: +0.0005\\n  Q3 (n=1125)\\n  random: 0.4438 [0.3918, 0.4959]\\n  embedding_distance: 0.4121 [0.3643, 0.4573]\\n  dataflow_aware: 0.5000 [0.4503, 0.5497]\\n  delta_embedding_distance_vs_random: -0.0318\\n  delta_dataflow_aware_vs_random: +0.0562\\n  Q4 (highest) (n=1125)\\n  random: 0.4208 [0.3737, 0.4678]\\n  embedding_distance: 0.4749 [0.4248, 0.5251]\\n  dataflow_aware: 0.4912 [0.4386, 0.5410]\\n  delta_embedding_distance_vs_random: +0.0541\\n  delta_dataflow_aware_vs_random: +0.0704\\n  weighted_delta_dataflow_aware_vs_random: 0.056324\\n  weighted_delta_embedding_distance_vs_random: 0.014394\\n\\nJSON saved: /root/structfuse/results/stratified/stratified_results_dryrun.json\\nCSV saved: /root/structfuse/results/stratified/stratified_results_dryrun.csv\\n  Plot saved: /root/structfuse/results/stratified/stratified_repo_size.pdf\\n  Plot saved: /root/structfuse/results/stratified/stratified_pool_size.pdf\\n  Plot saved: /root/structfuse/results/stratified/stratified_query_pos_similarity.pdf\\n  Plot saved: /root/structfuse/results/stratified/stratified_structural_availability.pdf\\n  Plot saved: /root/structfuse/results/stratified/stratified_neg_difficulty.pdf\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.33}}"
+              }
+            },
+            "sourceToolAssistantUUID": "3d88657b-e73a-4112-8ff5-3e67c43b23bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "f651c8ec-2926-47f1-87f2-897d4bef9b77",
+                "sessionId": "9f76dda2-9649-4911-969b-addae006b14c"
+              }
+            }
+          ],
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare stratified analysis code and data pipeline",
+                "sessionId": "9f76dda2-9649-4911-969b-addae006b14c"
+              }
+            }
+          ],
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-15T05:08:42.346Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。5 个维度的分层分析全部输出正确：JSON + CSV + 5 个 PDF 图表。\n\n现在验证 evaluate_stratified.py 的 dry-run 模式。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f651c8ec-2926-47f1-87f2-897d4bef9b77",
+            "isSidechain": false,
+            "requestId": "req_011Cb3myrUFHtiEt7NbnXy4m",
+            "type": "assistant",
+            "uuid": "83ef9a88-8f02-4cd9-a2f1-0b4dd17b6e09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013BSm1Zh3fmKC4Szckfpsfm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2739,
+                "cache_read_input_tokens": 96634,
+                "output_tokens": 295,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2739,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 295,
+                    "cache_read_input_tokens": 96634,
+                    "cache_creation_input_tokens": 2739,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2739
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-15T05:08:45.933Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ZWay4HCBTUMrk9TeyWQjc",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && python scripts/evaluate_stratified.py --dry-run --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl --output-dir /root/structfuse/results/stratified/per_query --tag dryrun_test --pool-sizes 50,100 2>&1",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "83ef9a88-8f02-4cd9-a2f1-0b4dd17b6e09",
+            "isSidechain": false,
+            "requestId": "req_011Cb3myrUFHtiEt7NbnXy4m",
+            "type": "assistant",
+            "uuid": "2559100d-bf99-41f7-b04b-ffc1eb3d0507",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013BSm1Zh3fmKC4Szckfpsfm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2739,
+                "cache_read_input_tokens": 96634,
+                "output_tokens": 295,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2739,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 295,
+                    "cache_read_input_tokens": 96634,
+                    "cache_creation_input_tokens": 2739,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2739
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-15T05:08:48.368Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ZWay4HCBTUMrk9TeyWQjc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading val data from /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\\\n  2980 samples loaded\\\\n\\\\n==================================================\\\\nEvaluating pool_size=50 tag=dryrun_test [DRY-RUN]\\\\n==================================================\\\\n\\\\nAggregate: R@1=0.0272 R@5=0.1342 R@10=0.2795 (n=2980)\\\\nSaved: /root/structfuse/results/stratified/per_query/per_query_dryrun_test_p50.jsonl\\\\n\\\\n==================================================\\\\nEvaluating pool_size=100 tag=dryrun_test [DRY-RUN]\\\\n==================================================\\\\n\\\\nAggregate: R@1=0.0279 R@5=0.1349 R@10=0.2708 (n=2980)\\\\nSaved: /root/structfuse/results/stratified/per_query/per_query_dryrun_test_p100.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2559100d-bf99-41f7-b04b-ffc1eb3d0507",
+            "isSidechain": false,
+            "promptId": "61574118-4728-4486-8989-8a9b16b1b622",
+            "type": "user",
+            "uuid": "8ce3b159-d896-47ce-8b1e-ff19921eb8c6",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading val data from /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\\\n  2980 samples loaded\\\\n\\\\n==================================================\\\\nEvaluating pool_size=50 tag=dryrun_test [DRY-RUN]\\\\n==================================================\\\\n\\\\nAggregate: R@1=0.0272 R@5=0.1342 R@10=0.2795 (n=2980)\\\\nSaved: /root/structfuse/results/stratified/per_query/per_query_dryrun_test_p50.jsonl\\\\n\\\\n==================================================\\\\nEvaluating pool_size=100 tag=dryrun_test [DRY-RUN]\\\\n==================================================\\\\n\\\\nAggregate: R@1=0.0279 R@5=0.1349 R@10=0.2708 (n=2980)\\\\nSaved: /root/structfuse/results/stratified/per_query/per_query_dryrun_test_p100.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.43}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading val data from /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\n  2980 samples loaded\\n\\n==================================================\\nEvaluating pool_size=50 tag=dryrun_test [DRY-RUN]\\n==================================================\\n\\nAggregate: R@1=0.0272 R@5=0.1342 R@10=0.2795 (n=2980)\\nSaved: /root/structfuse/results/stratified/per_query/per_query_dryrun_test_p50.jsonl\\n\\n==================================================\\nEvaluating pool_size=100 tag=dryrun_test [DRY-RUN]\\n==================================================\\n\\nAggregate: R@1=0.0279 R@5=0.1349 R@10=0.2708 (n=2980)\\nSaved: /root/structfuse/results/stratified/per_query/per_query_dryrun_test_p100.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.43}}"
+              }
+            },
+            "sourceToolAssistantUUID": "2559100d-bf99-41f7-b04b-ffc1eb3d0507",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-15T05:08:51.689Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本全部验证通过。现在确认输出文件完整性。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ce3b159-d896-47ce-8b1e-ff19921eb8c6",
+            "isSidechain": false,
+            "requestId": "req_011Cb3mzfHpoEqZ5wmFEyj6b",
+            "type": "assistant",
+            "uuid": "75a4ee7d-5d43-49ea-8b5e-f6f488a8a009",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CByFLoUChyHQn3m3rJ48pa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 640,
+                "cache_read_input_tokens": 99373,
+                "output_tokens": 246,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 640,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 246,
+                    "cache_read_input_tokens": 99373,
+                    "cache_creation_input_tokens": 640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 640
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-15T05:08:52.682Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DpVs8EcxQrhUvtgAG5GwXC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -la /root/structfuse/results/stratified/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75a4ee7d-5d43-49ea-8b5e-f6f488a8a009",
+            "isSidechain": false,
+            "requestId": "req_011Cb3mzfHpoEqZ5wmFEyj6b",
+            "type": "assistant",
+            "uuid": "92fb11a8-71f5-4c8b-be46-7d77137a6639",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CByFLoUChyHQn3m3rJ48pa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 640,
+                "cache_read_input_tokens": 99373,
+                "output_tokens": 246,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 640,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 246,
+                    "cache_read_input_tokens": 99373,
+                    "cache_creation_input_tokens": 640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 640
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-15T05:08:53.042Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DpVs8EcxQrhUvtgAG5GwXC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 360\\\\ndrwxr-xr-x 3 root root   4096 May 15 13:08 .\\\\ndrwxr-xr-x 3 root root   4096 May 15 13:08 ..\\\\n-rw-r--r-- 1 root root 243557 May 15 13:08 mock_stratification_index.json\\\\ndrwxr-xr-x 2 root root   4096 May 15 13:08 per_query\\\\n-rw-r--r-- 1 root root  17692 May 15 13:08 stratified_neg_difficulty.pdf\\\\n-rw-r--r-- 1 root root  16103 May 15 13:08 stratified_pool_size.pdf\\\\n-rw-r--r-- 1 root root  18322 May 15 13:08 stratified_query_pos_similarity.pdf\\\\n-rw-r--r-- 1 root root  17082 May 15 13:08 stratified_repo_size.pdf\\\\n-rw-r--r-- 1 root root   2859 May 15 13:08 stratified_results_dryrun.csv\\\\n-rw-r--r-- 1 root root  10300 May 15 13:08 stratified_results_dryrun.json\\\\n-rw-r--r-- 1 root root  15284 May 15 13:08 stratified_structural_availability.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92fb11a8-71f5-4c8b-be46-7d77137a6639",
+            "isSidechain": false,
+            "promptId": "61574118-4728-4486-8989-8a9b16b1b622",
+            "type": "user",
+            "uuid": "f18710b3-1093-4398-983a-114c0d5a9ac5",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 360\\\\ndrwxr-xr-x 3 root root   4096 May 15 13:08 .\\\\ndrwxr-xr-x 3 root root   4096 May 15 13:08 ..\\\\n-rw-r--r-- 1 root root 243557 May 15 13:08 mock_stratification_index.json\\\\ndrwxr-xr-x 2 root root   4096 May 15 13:08 per_query\\\\n-rw-r--r-- 1 root root  17692 May 15 13:08 stratified_neg_difficulty.pdf\\\\n-rw-r--r-- 1 root root  16103 May 15 13:08 stratified_pool_size.pdf\\\\n-rw-r--r-- 1 root root  18322 May 15 13:08 stratified_query_pos_similarity.pdf\\\\n-rw-r--r-- 1 root root  17082 May 15 13:08 stratified_repo_size.pdf\\\\n-rw-r--r-- 1 root root   2859 May 15 13:08 stratified_results_dryrun.csv\\\\n-rw-r--r-- 1 root root  10300 May 15 13:08 stratified_results_dryrun.json\\\\n-rw-r--r-- 1 root root  15284 May 15 13:08 stratified_structural_availability.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 360\\ndrwxr-xr-x 3 root root   4096 May 15 13:08 .\\ndrwxr-xr-x 3 root root   4096 May 15 13:08 ..\\n-rw-r--r-- 1 root root 243557 May 15 13:08 mock_stratification_index.json\\ndrwxr-xr-x 2 root root   4096 May 15 13:08 per_query\\n-rw-r--r-- 1 root root  17692 May 15 13:08 stratified_neg_difficulty.pdf\\n-rw-r--r-- 1 root root  16103 May 15 13:08 stratified_pool_size.pdf\\n-rw-r--r-- 1 root root  18322 May 15 13:08 stratified_query_pos_similarity.pdf\\n-rw-r--r-- 1 root root  17082 May 15 13:08 stratified_repo_size.pdf\\n-rw-r--r-- 1 root root   2859 May 15 13:08 stratified_results_dryrun.csv\\n-rw-r--r-- 1 root root  10300 May 15 13:08 stratified_results_dryrun.json\\n-rw-r--r-- 1 root root  15284 May 15 13:08 stratified_structural_availability.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            },
+            "sourceToolAssistantUUID": "92fb11a8-71f5-4c8b-be46-7d77137a6639",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-15T05:08:53.278Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LJKLAhwoLFW13fhKnL9WQq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "stat /root/autodl-tmp/structfuse/stratification_index.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f18710b3-1093-4398-983a-114c0d5a9ac5",
+            "isSidechain": false,
+            "requestId": "req_011Cb3mzfHpoEqZ5wmFEyj6b",
+            "type": "assistant",
+            "uuid": "92261918-dead-4347-bf13-876929660544",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CByFLoUChyHQn3m3rJ48pa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 640,
+                "cache_read_input_tokens": 99373,
+                "output_tokens": 246,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 640,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 246,
+                    "cache_read_input_tokens": 99373,
+                    "cache_creation_input_tokens": 640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 640
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-15T05:08:53.632Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LJKLAhwoLFW13fhKnL9WQq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/structfuse/stratification_index.json\\\\n  Size: 19817653  \\\\tBlocks: 38712      IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 13044059001  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-15 13:08:03.013940385 +0800\\\\nModify: 2026-05-15 13:08:03.373944073 +0800\\\\nChange: 2026-05-15 13:08:03.373944073 +0800\\\\n Birth: 2026-05-15 13:08:03.013940385 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92261918-dead-4347-bf13-876929660544",
+            "isSidechain": false,
+            "promptId": "61574118-4728-4486-8989-8a9b16b1b622",
+            "type": "user",
+            "uuid": "370c0e14-9ba9-4e33-aa21-5ce36c452714",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/autodl-tmp/structfuse/stratification_index.json\\\\n  Size: 19817653  \\\\tBlocks: 38712      IO Block: 4096   regular file\\\\nDevice: 900h/2304d\\\\tInode: 13044059001  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-15 13:08:03.013940385 +0800\\\\nModify: 2026-05-15 13:08:03.373944073 +0800\\\\nChange: 2026-05-15 13:08:03.373944073 +0800\\\\n Birth: 2026-05-15 13:08:03.013940385 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  File: /root/autodl-tmp/structfuse/stratification_index.json\\n  Size: 19817653  \\tBlocks: 38712      IO Block: 4096   regular file\\nDevice: 900h/2304d\\tInode: 13044059001  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-15 13:08:03.013940385 +0800\\nModify: 2026-05-15 13:08:03.373944073 +0800\\nChange: 2026-05-15 13:08:03.373944073 +0800\\n Birth: 2026-05-15 13:08:03.013940385 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            },
+            "sourceToolAssistantUUID": "92261918-dead-4347-bf13-876929660544",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-15T05:09:01.517Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。现在写分层定义文档并注册 artifacts。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "370c0e14-9ba9-4e33-aa21-5ce36c452714",
+            "isSidechain": false,
+            "requestId": "req_011Cb3n159GwF7rhYku5VqYX",
+            "type": "assistant",
+            "uuid": "d61d4178-44b2-4fa7-afad-9f8aad06b0a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019aDv3bmCJVwgoYKmpmtnYr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1053,
+                "cache_read_input_tokens": 100013,
+                "output_tokens": 1469,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1053,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1469,
+                    "cache_read_input_tokens": 100013,
+                    "cache_creation_input_tokens": 1053,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1053
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-15T05:09:36.797Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NUot9j1zPJS9kLfaRuvJAP",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/plan005_stratification_spec.md",
+                "content": "# Plan 005: Stratified Analysis Specification\n\n## Pipeline\n\nThree-stage pipeline, stages 1 & 3 are CPU-only:\n\n1. **`prepare_stratification_index.py`** (CPU, DONE) — parses all.jsonl → `stratification_index.json`\n2. **`evaluate_stratified.py`** (GPU, awaiting M2 checkpoints) — per-query eval with pool_size control\n3. **`analyze_stratified.py`** (CPU) — stratification + bootstrap CI + plots\n\n## 5 Stratification Dimensions\n\n| # | Dimension | Bins | Source | Method |\n|---|-----------|------|--------|--------|\n| 1 | Repo size (file count) | small (<50), medium (50-200), large (200+) | `stratification_index.json` → `repo_file_count` | Fixed thresholds (matches BM25 overlap analysis) |\n| 2 | Eval pool size | Quartiles | Per-query eval output → `pool_size` | Data-driven quartiles |\n| 3 | Query-positive similarity | Quartiles | Per-query eval output → `query_pos_sim` | Data-driven quartiles |\n| 4 | Structural data availability | Binary: with_structural / no_structural | `stratification_index.json` → `has_structural` | Binary (34.3% with / 65.7% without) |\n| 5 | Negative difficulty | Quartiles of mean neg cosine sim | Per-query eval output → `mean_neg_sim` | Data-driven quartiles |\n\n## Pool Size Control (D038)\n\n`evaluate_stratified.py` accepts `--pool-sizes 50,100,200,500` to test strategy ranking stability across pool sizes. Each pool size produces a separate per-query JSONL. Analysis is run independently per pool size.\n\nPadding strategy: when a query has fewer candidates than target pool_size, pad with global distractors from other queries in the same val set (same as `eval_p2b_pooled.py`).\n\n## Data Sources\n\n- **M1 metadata**: `/root/autodl-tmp/structfuse/stratification_index.json` (19MB, 44,173 instances, 123 repos)\n- **Val data**: `/root/autodl-tmp/structfuse/full_m2_training_data/val_{strategy}_s{seed}.jsonl` (2,980 queries each)\n- **Checkpoints**: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{encoder}/{strategy}_s{seed}/`\n\n## Per-query Output Schema\n\n```json\n{\n  \"query_id\": \"instance_id::file_path\",\n  \"instance_id\": \"repo.commit.mutation__hash\",\n  \"gold_rank\": 0,\n  \"pool_size\": 50,\n  \"query_pos_sim\": 0.712345,\n  \"mean_neg_sim\": 0.351234,\n  \"max_neg_sim\": 0.581234,\n  \"hit_at_1\": true,\n  \"hit_at_5\": true,\n  \"hit_at_10\": true\n}\n```\n\n## Analysis Outputs\n\n- `stratified_results.json` — full results with bootstrap 95% CIs per stratum\n- `stratified_results.csv` — flat table for easy import\n- `stratified_{dimension}.pdf` — bar charts: R@1 per strategy (left), delta vs random (right)\n- Weighted aggregate delta per dimension (accounts for stratum sizes)\n\n## Execution Plan\n\nWhen M2 checkpoints are ready:\n\n```bash\n# Stage 2: per-query eval (GPU, ~30min per run × 18 runs)\nfor encoder in qwen starcoder; do\n  for strategy in random embedding_distance dataflow_aware; do\n    for seed in 42 43 44; do\n      python evaluate_stratified.py \\\n        --ckpt-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_${encoder}/${strategy}_s${seed} \\\n        --model-name /root/autodl-tmp/structfuse/models/${model_path} \\\n        --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_${strategy}_s${seed}.jsonl \\\n        --pool-sizes 50 \\\n        --output-dir /root/structfuse/results/stratified/per_query \\\n        --tag ${encoder}_${strategy}_s${seed}\n    done\n  done\ndone\n\n# Stage 3: analysis (CPU, <1min)\npython analyze_stratified.py \\\n  --results-dir /root/structfuse/results/stratified/per_query \\\n  --index-file /root/autodl-tmp/structfuse/stratification_index.json \\\n  --strategies random,embedding_distance,dataflow_aware \\\n  --encoder qwen --seeds 42,43,44 --pool-size 50 \\\n  --output-dir /root/structfuse/results/stratified\n```\n\n## Verification\n\n- [x] `prepare_stratification_index.py` — completed, 44,173 instances indexed\n- [x] `evaluate_stratified.py --dry-run` — passed (2,980 queries, multi-pool-size)\n- [x] `analyze_stratified.py --dry-run` — passed (5 dimensions, JSON+CSV+5 PDFs)\n- [ ] Real eval — awaiting M2 checkpoints\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d61d4178-44b2-4fa7-afad-9f8aad06b0a2",
+            "isSidechain": false,
+            "requestId": "req_011Cb3n159GwF7rhYku5VqYX",
+            "type": "assistant",
+            "uuid": "fb3ccfb2-ffd9-451a-b2d7-6ff87d220893",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019aDv3bmCJVwgoYKmpmtnYr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1053,
+                "cache_read_input_tokens": 100013,
+                "output_tokens": 1469,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1053,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1469,
+                    "cache_read_input_tokens": 100013,
+                    "cache_creation_input_tokens": 1053,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1053
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-15T05:09:36.817Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NUot9j1zPJS9kLfaRuvJAP",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/plan005_stratification_spec.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb3ccfb2-ffd9-451a-b2d7-6ff87d220893",
+            "isSidechain": false,
+            "promptId": "61574118-4728-4486-8989-8a9b16b1b622",
+            "type": "user",
+            "uuid": "779e67bb-35a7-41a3-9ad7-181f459342ec",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/plan005_stratification_spec.md",
+              "content": "# Plan 005: Stratified Analysis Specification\n\n## Pipeline\n\nThree-stage pipeline, stages 1 & 3 are CPU-only:\n\n1. **`prepare_stratification_index.py`** (CPU, DONE) — parses all.jsonl → `stratification_index.json`\n2. **`evaluate_stratified.py`** (GPU, awaiting M2 checkpoints) — per-query eval with pool_size control\n3. **`analyze_stratified.py`** (CPU) — stratification + bootstrap CI + plots\n\n## 5 Stratification Dimensions\n\n| # | Dimension | Bins | Source | Method |\n|---|-----------|------|--------|--------|\n| 1 | Repo size (file count) | small (<50), medium (50-200), large (200+) | `stratification_index.json` → `repo_file_count` | Fixed thresholds (matches BM25 overlap analysis) |\n| 2 | Eval pool size | Quartiles | Per-query eval output → `pool_size` | Data-driven quartiles |\n| 3 | Query-positive similarity | Quartiles | Per-query eval output → `query_pos_sim` | Data-driven quartiles |\n| 4 | Structural data availability | Binary: with_structural / no_structural | `stratification_index.json` → `has_structural` | Binary (34.3% with / 65.7% without) |\n| 5 | Negative difficulty | Quartiles of mean neg cosine sim | Per-query eval output → `mean_neg_sim` | Data-driven quartiles |\n\n## Pool Size Control (D038)\n\n`evaluate_stratified.py` accepts `--pool-sizes 50,100,200,500` to test strategy ranking stability across pool sizes. Each pool size produces a separate per-query JSONL. Analysis is run independently per pool size.\n\nPadding strategy: when a query has fewer candidates than target pool_size, pad with global distractors from other queries in the same val set (same as `eval_p2b_pooled.py`).\n\n## Data Sources\n\n- **M1 metadata**: `/root/autodl-tmp/structfuse/stratification_index.json` (19MB, 44,173 instances, 123 repos)\n- **Val data**: `/root/autodl-tmp/structfuse/full_m2_training_data/val_{strategy}_s{seed}.jsonl` (2,980 queries each)\n- **Checkpoints**: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{encoder}/{strategy}_s{seed}/`\n\n## Per-query Output Schema\n\n```json\n{\n  \"query_id\": \"instance_id::file_path\",\n  \"instance_id\": \"repo.commit.mutation__hash\",\n  \"gold_rank\": 0,\n  \"pool_size\": 50,\n  \"query_pos_sim\": 0.712345,\n  \"mean_neg_sim\": 0.351234,\n  \"max_neg_sim\": 0.581234,\n  \"hit_at_1\": true,\n  \"hit_at_5\": true,\n  \"hit_at_10\": true\n}\n```\n\n## Analysis Outputs\n\n- `stratified_results.json` — full results with bootstrap 95% CIs per stratum\n- `stratified_results.csv` — flat table for easy import\n- `stratified_{dimension}.pdf` — bar charts: R@1 per strategy (left), delta vs random (right)\n- Weighted aggregate delta per dimension (accounts for stratum sizes)\n\n## Execution Plan\n\nWhen M2 checkpoints are ready:\n\n```bash\n# Stage 2: per-query eval (GPU, ~30min per run × 18 runs)\nfor encoder in qwen starcoder; do\n  for strategy in random embedding_distance dataflow_aware; do\n    for seed in 42 43 44; do\n      python evaluate_stratified.py \\\n        --ckpt-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_${encoder}/${strategy}_s${seed} \\\n        --model-name /root/autodl-tmp/structfuse/models/${model_path} \\\n        --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_${strategy}_s${seed}.jsonl \\\n        --pool-sizes 50 \\\n        --output-dir /root/structfuse/results/stratified/per_query \\\n        --tag ${encoder}_${strategy}_s${seed}\n    done\n  done\ndone\n\n# Stage 3: analysis (CPU, <1min)\npython analyze_stratified.py \\\n  --results-dir /root/structfuse/results/stratified/per_query \\\n  --index-file /root/autodl-tmp/structfuse/stratification_index.json \\\n  --strategies random,embedding_distance,dataflow_aware \\\n  --encoder qwen --seeds 42,43,44 --pool-size 50 \\\n  --output-dir /root/structfuse/results/stratified\n```\n\n## Verification\n\n- [x] `prepare_stratification_index.py` — completed, 44,173 instances indexed\n- [x] `evaluate_stratified.py --dry-run` — passed (2,980 queries, multi-pool-size)\n- [x] `analyze_stratified.py --dry-run` — passed (5 dimensions, JSON+CSV+5 PDFs)\n- [ ] Real eval — awaiting M2 checkpoints\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "fb3ccfb2-ffd9-451a-b2d7-6ff87d220893",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-15T05:09:36.934Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "779e67bb-35a7-41a3-9ad7-181f459342ec",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "ac06c2c1-bcf9-4b4f-8d30-9e78291687a1",
+                "timestamp": "2026-05-15T05:09:36.934Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-15T05:09:44.754Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KEYPEotgbWwAnDBUaQGWBk",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "plan005_stratification_spec",
+                "type": "report",
+                "description": "Plan 005 分层分析规格文档：5 维分层定义、3 阶段管道、数据源、执行计划",
+                "project": "structfuse-context",
+                "exp_id": "plan_005",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/plan005_stratification_spec.md",
+                "tags": [
+                  "stratified_analysis",
+                  "plan_005",
+                  "pipeline"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac06c2c1-bcf9-4b4f-8d30-9e78291687a1",
+            "isSidechain": false,
+            "requestId": "req_011Cb3n4EyT8mAK4Ky9a9Qpc",
+            "type": "assistant",
+            "uuid": "8e6d8cf2-4b09-491e-8118-d1799b7d0d68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DGocQaUUN7dWTMZzjGm73r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1628,
+                "cache_read_input_tokens": 101066,
+                "output_tokens": 267,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1628,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 267,
+                    "cache_read_input_tokens": 101066,
+                    "cache_creation_input_tokens": 1628,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1628
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-15T05:09:44.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KEYPEotgbWwAnDBUaQGWBk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_d1d8e6\\\", \\\"name\\\": \\\"plan005_stratification_spec\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Plan 005 分层分析规格文档：5 维分层定义、3 阶段管道、数据源、执行计划\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/plan_005/report/plan005_stratification_spec.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": \\\"plan_005\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T05:09:44.760930+00:00\\\", \\\"tags\\\": [\\\"stratified_analysis\\\", \\\"plan_005\\\", \\\"pipeline\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e6d8cf2-4b09-491e-8118-d1799b7d0d68",
+            "isSidechain": false,
+            "promptId": "61574118-4728-4486-8989-8a9b16b1b622",
+            "type": "user",
+            "uuid": "03ea7c47-8016-4cc4-be44-6ef5aead10a4",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_d1d8e6\\\", \\\"name\\\": \\\"plan005_stratification_spec\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Plan 005 分层分析规格文档：5 维分层定义、3 阶段管道、数据源、执行计划\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/plan_005/report/plan005_stratification_spec.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": \\\"plan_005\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T05:09:44.760930+00:00\\\", \\\"tags\\\": [\\\"stratified_analysis\\\", \\\"plan_005\\\", \\\"pipeline\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_d1d8e6\", \"name\": \"plan005_stratification_spec\", \"type\": \"report\", \"description\": \"Plan 005 分层分析规格文档：5 维分层定义、3 阶段管道、数据源、执行计划\", \"path\": \"projects/structfuse-context/artifacts/plan_005/report/plan005_stratification_spec.md\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": \"plan_005\", \"skill\": \"\", \"created_at\": \"2026-05-15T05:09:44.760930+00:00\", \"tags\": [\"stratified_analysis\", \"plan_005\", \"pipeline\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8e6d8cf2-4b09-491e-8118-d1799b7d0d68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "03ea7c47-8016-4cc4-be44-6ef5aead10a4",
+                "sessionId": "9f76dda2-9649-4911-969b-addae006b14c"
+              }
+            }
+          ],
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare stratified analysis code and data pipeline",
+                "sessionId": "9f76dda2-9649-4911-969b-addae006b14c"
+              }
+            }
+          ],
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-15T05:09:54.025Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已完成**：\n- **`prepare_stratification_index.py`** — 已运行，从 44,173 条 all.jsonl 构建了 19MB 元数据索引（34.3% 有结构数据，条件 Z%=78.0%）\n- **`evaluate_stratified.py`** — GPU 评估脚本，支持多 pool_size（D038），dry-run 验证通过\n- **`analyze_stratified.py`** — 5 维分层分析 + bootstrap CI + PDF 图表，dry-run 验证通过（输出 JSON + CSV + 5 个 PDF）\n- **`stratification_index.json`** — 已保存到 `/root/autodl-tmp/structfuse/stratification_index.json`\n- **规格文档** — 已注册 artifact\n\n**待 M2 checkpoint**：运行 `evaluate_stratified.py` 对 18 个 run（2 encoder × 3 strategy × 3 seed）生成 per-query 结果，然后 `analyze_stratified.py` 一键出全部分析。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03ea7c47-8016-4cc4-be44-6ef5aead10a4",
+            "isSidechain": false,
+            "requestId": "req_011Cb3n4prepUr7eC5ehvLfm",
+            "type": "assistant",
+            "uuid": "f59e5c2f-6ee7-4468-9bd0-31ec800d40ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+            "sessionId": "9f76dda2-9649-4911-969b-addae006b14c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WeZzgJmPphDnqnoU85YBVE",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 556,
+                "cache_read_input_tokens": 102694,
+                "output_tokens": 305,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 556,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 305,
+                    "cache_read_input_tokens": 102694,
+                    "cache_creation_input_tokens": 556,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 556
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "f59e5c2f-6ee7-4468-9bd0-31ec800d40ac",
+                "sessionId": "9f76dda2-9649-4911-969b-addae006b14c"
+              }
+            }
+          ],
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Prepare stratified analysis code and data pipeline",
+                "sessionId": "9f76dda2-9649-4911-969b-addae006b14c"
+              }
+            }
+          ],
+          "id": "event-000172"
+        }
+      ]
+    }
+  ]
+}

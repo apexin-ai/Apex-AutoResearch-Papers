@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "c3d4c68eed6a86cf590d",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_prep_swebench_eval_readiness_20260514T080045]: Worker worker_prep_swebench_eval_readiness_202",
+  "task_key": "d1b3cd2e-a0ec-43a8-a985-fd739aeb0a68",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/d1b3cd2e-a0ec-43a8-a985-fd739aeb0a68.jsonl",
+    "occurrence": 1,
+    "bytes": 673562,
+    "sha256": "19c5fb593bee95394ecd694263aeeece83a313384c251aabdb666ab5b425bdf5"
+  },
+  "statistics": {
+    "messages": 183,
+    "user_turns": 3,
+    "tool_calls": 56,
+    "roles": {
+      "record": 40,
+      "user": 3,
+      "assistant": 28,
+      "tool_call": 56,
+      "tool_result": 56
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c3d4c68eed6a86cf590d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "c3d4c68eed6a86cf590d-part-0001.json",
+          "message_count": 139
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c3d4c68eed6a86cf590d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "c3d4c68eed6a86cf590d-part-0001.json",
+          "message_count": 1
+        },
+        {
+          "path": "c3d4c68eed6a86cf590d-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-prep-swebench-eval-readiness-20260514t080045-worker-worker.md"
+}

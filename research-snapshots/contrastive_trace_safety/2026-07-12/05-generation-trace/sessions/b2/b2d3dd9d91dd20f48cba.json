@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b2d3dd9d91dd20f48cba",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: structfuse-context ## 运行环境 - 服务器名: bjb1-42106 - SSH 账户: root（调用 ssh_execute / submit_training_jo",
+  "task_key": "9f76dda2-9649-4911-969b-addae006b14c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/9f76dda2-9649-4911-969b-addae006b14c.jsonl",
+    "occurrence": 1,
+    "bytes": 651668,
+    "sha256": "8210449368e0a38aa667da3af7bb0ade9b4f7994800e822299bc70c4a38d5b75"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "record": 38,
+      "user": 1,
+      "assistant": 33,
+      "tool_call": 50,
+      "tool_result": 50
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b2d3dd9d91dd20f48cba-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 170,
+      "chunks": [
+        {
+          "path": "b2d3dd9d91dd20f48cba-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "b2d3dd9d91dd20f48cba-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-structfuse-context-bjb1-42106-ssh-root-ssh-execute-submit-trai-copy-204.md"
+}

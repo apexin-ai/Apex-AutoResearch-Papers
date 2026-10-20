@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0",
+  "id": "a519c329e4aab8e1cfe3",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: structfuse-context ## 运行环境 - 服务器名: bjb1-42106 - SSH 账户: root（调用 ssh_execute / submit_training_jo",
+  "task_key": "f1543701-d369-41e7-8927-81e3523a25bb",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/f1543701-d369-41e7-8927-81e3523a25bb.jsonl",
+    "occurrence": 1,
+    "bytes": 3697479,
+    "sha256": "8ca9381fa2a852feeff76a4da8f3bb109710a803d3d42f1dba8aaa834b41706b"
+  },
+  "statistics": {
+    "messages": 2734,
+    "user_turns": 5,
+    "tool_calls": 1094,
+    "roles": {
+      "record": 360,
+      "user": 5,
+      "assistant": 179,
+      "tool_call": 1094,
+      "tool_result": 1094,
+      "system": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 590,
+      "chunks": [
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0004.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 141,
+      "chunks": [
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0004.json",
+          "message_count": 128
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0005.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 349,
+      "chunks": [
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0005.json",
+          "message_count": 167
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0007.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 1635,
+      "chunks": [
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0007.json",
+          "message_count": 178
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0016.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "a519c329e4aab8e1cfe3-part-0016.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-structfuse-context-bjb1-42106-ssh-root-ssh-execute-submit-trai-copy-198.md"
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "a9bb0b9e8e50c6bda1d5",
+  "project": "contrastive_trace_safety--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: faith-evidence-ie ## 运行环境 - 服务器名: bjb1-42106 - SSH 连接命令: ssh connect.bjb1.seetacloud.com # 必须用此命",
+  "task_key": "148f063b-01e2-4562-bb1c-1b9c7ca438a4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/148f063b-01e2-4562-bb1c-1b9c7ca438a4.jsonl",
+    "occurrence": 1,
+    "bytes": 1390166,
+    "sha256": "cca88a11acd63f8244ed2f95f70ee895020cffe130dc9d193e1ae60eba1aed6d"
+  },
+  "statistics": {
+    "messages": 771,
+    "user_turns": 1,
+    "tool_calls": 305,
+    "roles": {
+      "record": 119,
+      "user": 1,
+      "assistant": 41,
+      "tool_call": 305,
+      "tool_result": 305
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a9bb0b9e8e50c6bda1d5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 769,
+      "chunks": [
+        {
+          "path": "a9bb0b9e8e50c6bda1d5-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a9bb0b9e8e50c6bda1d5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9bb0b9e8e50c6bda1d5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9bb0b9e8e50c6bda1d5-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9bb0b9e8e50c6bda1d5-part-0005.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-faith-evidence-ie-bjb1-42106-ssh-ssh-connect-bjb1-seetacloud-c-copy-9.md"
+}
