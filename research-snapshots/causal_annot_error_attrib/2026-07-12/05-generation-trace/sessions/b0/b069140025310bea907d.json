@@ -1,0 +1,1483 @@
+{
+  "schema_version": "1.0",
+  "id": "b069140025310bea907d",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web to verify the AAAI 2027 conference deadlines. The proposal claims: - Abstract deadline: July 21, 2026 - P",
+  "task_key": "agent-ac9639fdd12716ee4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ac9639fdd12716ee4.jsonl",
+    "occurrence": 1,
+    "bytes": 52049,
+    "sha256": "61005936a67d0c23054d5eb07c629f51d1416d4005429f163e9b8315a0108c93"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 5,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T13:02:00.543Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web to verify the AAAI 2027 conference deadlines. The proposal claims:\n- Abstract deadline: July 21, 2026\n- Paper deadline: July 28, 2026\n\nSearch for:\n1. \"AAAI 2027 deadline\" \n2. \"AAAI 2027 call for papers\"\n3. \"AAAI conference 2027 submission\"\n\nAlso check if AAAI has an \"AI Alignment\" track or \"Robustness Evaluation\" track. Report what you find, including any discrepancies with the claimed dates. Today's date is 2026-05-28."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "a5ca9d4b-533b-4311-b982-eff4530f12cb",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T13:02:00.548Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a5ca9d4b-533b-4311-b982-eff4530f12cb",
+                "isSidechain": true,
+                "agentId": "ac9639fdd12716ee4",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "27e6bda0-36bf-4655-b0d2-7a8c0bd02fe3",
+                "timestamp": "2026-05-28T13:02:00.548Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu",
+                "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T13:02:00.549Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "27e6bda0-36bf-4655-b0d2-7a8c0bd02fe3",
+                "isSidechain": true,
+                "agentId": "ac9639fdd12716ee4",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "0eacdcde-f9f2-4def-8f0c-ee56acbcc44d",
+                "timestamp": "2026-05-28T13:02:00.549Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu",
+                "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T13:02:03.594Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search the web for AAAI 2027 conference deadline information. Let me first load the WebSearch tool."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0eacdcde-f9f2-4def-8f0c-ee56acbcc44d",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1bUWGDLzoKLX42iBaA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "54645904-78af-467e-ab65-624ac9efbb77",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013LmMyjm3eBG8H7hrKJM6QT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8902,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T13:02:03.826Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DaSUj38Zjc7sZFeDXFddQt",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54645904-78af-467e-ab65-624ac9efbb77",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1bUWGDLzoKLX42iBaA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "46c47255-714c-4815-a857-4ce5d77b04f8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013LmMyjm3eBG8H7hrKJM6QT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8902,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8902
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 104,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 8902,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8902,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T13:02:03.846Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01DaSUj38Zjc7sZFeDXFddQt",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46c47255-714c-4815-a857-4ce5d77b04f8",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "06342cbd-6f91-4e5a-96db-0962d8768237",
+            "sourceToolAssistantUUID": "46c47255-714c-4815-a857-4ce5d77b04f8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T13:02:06.929Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all three searches in parallel to gather information about AAAI 2027 deadlines."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06342cbd-6f91-4e5a-96db-0962d8768237",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1biyfGHuhvNUbE72mL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cc0293f8-b071-4a50-888f-0f907cc6a837",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvgbRhw6dpMu61GMvjLtsY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 8902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T13:02:06.932Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EPHP2fdLoEbnzEsHNGoQcu",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 deadline"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc0293f8-b071-4a50-888f-0f907cc6a837",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1biyfGHuhvNUbE72mL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7834c992-9eb6-4018-862c-96bbf9f43992",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvgbRhw6dpMu61GMvjLtsY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 8902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T13:02:07.378Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PKPW2DbSiaq6sbb84Gk2KR",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 call for papers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7834c992-9eb6-4018-862c-96bbf9f43992",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1biyfGHuhvNUbE72mL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6c63a5c5-d27b-4048-beef-14e0d502c38e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvgbRhw6dpMu61GMvjLtsY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 8902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 634,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T13:02:07.506Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NfdCq7b86WqskkTgSnE52t",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI conference 2027 submission"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c63a5c5-d27b-4048-beef-14e0d502c38e",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1biyfGHuhvNUbE72mL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "536b82a7-25d3-4aad-ae53-a2d0b88c052e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PvgbRhw6dpMu61GMvjLtsY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 634,
+                "cache_read_input_tokens": 8902,
+                "output_tokens": 175,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 634
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 175,
+                    "cache_read_input_tokens": 8902,
+                    "cache_creation_input_tokens": 634,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 634,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T13:02:12.173Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EPHP2fdLoEbnzEsHNGoQcu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 deadline\"\n\nLinks: [{\"title\":\"AAAI-27 - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/\"},{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"AAAI Conference on Artificial Intelligence - AAAI\",\"url\":\"https://aaai.org/conference/aaai/\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"AAAI Conference on Artificial Intelligence\",\"url\":\"http://aideadlines.org/conference/?id=aaai27\"},{\"title\":\"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"AAAI 2027 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"AAAI 2027 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=AAAI.org%2F2027%2FConference\"},{\"title\":\"AI & ML Conference Deadlines 2026–2027\",\"url\":\"https://trybibby.com/conference-deadlines\"},{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"}]\n\nBased on the search results, here's the information about AAAI 2027 deadlines:\n\nAAAI-27 will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\nFor the Main Technical Track, the key deadlines are:\n- June 24, 2026: OpenReview submission site opens for paper submission\n- July 21, 2026: Abstracts due at 11:59 PM UTC-12\n- July 28, 2026: Full papers due at 11:59 PM UTC-12\n- July 31, 2026: Supplementary material and code due by 11:59 PM UTC-12\n\nTrack-specific deadlines are listed on their respective Call for Papers, as deadlines are track-specific and may differ from those listed above.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7834c992-9eb6-4018-862c-96bbf9f43992",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "7e9155e4-e85b-45a8-b083-403355847d1f",
+            "sourceToolAssistantUUID": "7834c992-9eb6-4018-862c-96bbf9f43992",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T13:02:13.671Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PKPW2DbSiaq6sbb84Gk2KR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 call for papers\"\n\nLinks: [{\"title\":\"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"AI Deadlines – AI Conference Call For Paper Deadlines\",\"url\":\"http://aideadlines.org/\"},{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"AAAI 2027 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=AAAI.org%2F2027%2FConference\"},{\"title\":\"Ten simple rules for using large language models in science, version 1.0\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10829980/\"},{\"title\":\"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=3\"},{\"title\":\"Assessing the Reproducibility of the Structured Abstracts Generated by ChatGPT and Bard Compared to Human-Written Abstracts in the Field of Spine Surgery: Comparative Analysis\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11237793/\"},{\"title\":\"AAAI-27 - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/\"},{\"title\":\"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"}]\n\nHere are the search results for the AAAI 2027 call for papers:\n\n## Key Information\n\nThe Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\n## Submission Deadlines (Main Technical Track)\n\nThe submission deadlines for AAAI-27 are:\n- June 17, 2026: Open Review submission site opens for author registration\n- June 24, 2026: Open Review submission site opens for paper submission\n- July 21, 2026: Abstracts due at 11:59 PM UTC-12\n- July 28, 2026: Full papers due at 11:59 PM UTC-12\n- July 31, 2026: Supplementary material and code due by 11:59 PM UTC-12\n- September 24, 2026: Notification of Phase 1 rejections\n- October 19-25, 2026: Author feedback window\n- November 30, 2026: Notification of final acceptance or rejection\n- December 14, 2026: Submission of camera-ready files\n\n## Additional Details\n\nThe official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/. Note that deadlines are track-specific and may differ from those listed above, with track-specific deadlines listed on their respective CFP.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c63a5c5-d27b-4048-beef-14e0d502c38e",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "6c856a5b-f5b4-4f31-9f7b-1791b4e26d4f",
+            "sourceToolAssistantUUID": "6c63a5c5-d27b-4048-beef-14e0d502c38e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-28T13:02:14.193Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NfdCq7b86WqskkTgSnE52t",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI conference 2027 submission\"\n\nLinks: [{\"title\":\"AAAI 2027 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=AAAI.org%2F2027%2FConference\"},{\"title\":\"AAAI 2027 Conference Deadline | Live Countdown Tracker\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"AAAI-27 - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/\"},{\"title\":\"Ten simple rules for using large language models in science, version 1.0\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10829980/\"},{\"title\":\"AAAI 2027 LaTeX Template | Author Kit & Overleaf | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/aaai\"},{\"title\":\"AAAI: National Conference on Artificial Intelligence 2027 2026 2025 ...\",\"url\":\"http://www.wikicfp.com/cfp/program?id=3\"},{\"title\":\"Update aaai conference deadlines · huggingface/ai-deadlines at 8e14540\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/8e145403081be22360311ec9ad9565e14b1f2d32\"},{\"title\":\"Future Annual Meeting Dates and Locations | AAAAI Annual Meeting\",\"url\":\"https://annualmeeting.aaaai.org/attendee/future-dates-locations\"},{\"title\":\"AAAI Conference on Artificial Intelligence - AAAI\",\"url\":\"https://aaai.org/conference/aaai/\"}]\n\nBased on the search results, here's the information about AAAI 2027 submissions:\n\n## Conference Details\nThe Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\n## Submission Timeline (Main Technical Track)\nThe submission timeline includes:\n- June 17, 2026: OpenReview submission site opens for author registration\n- June 24, 2026: OpenReview submission site opens for paper submission\n- July 21, 2026: Abstracts due at 11:59 PM UTC-12\n- July 28, 2026: Full papers due at 11:59 PM UTC-12\n- July 31, 2026: Supplementary material and code due by 11:59 PM UTC-12\n- September 24, 2026: Notification of Phase 1 rejections\n- October 19-25, 2026: Author feedback window\n- November 30, 2026: Notification of final acceptance or rejection\n- December 14, 2026: Submission of camera-ready files\n\n## Submission Details\nAAAI papers are limited to 7 pages for the main body, with unlimited additional pages for references. The official AAAI 2027 call for papers is at https://aaai.org/conference/aaai/aaai-27/.\n\nNote that deadlines are track-specific and may differ from those listed above, with track-specific deadlines listed on their respective CFP.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "536b82a7-25d3-4aad-ae53-a2d0b88c052e",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "a5815c4a-c792-495b-a4d3-4dae66cedb47",
+            "sourceToolAssistantUUID": "536b82a7-25d3-4aad-ae53-a2d0b88c052e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T13:02:17.449Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search specifically for AAAI 2027 tracks to check whether \"AI Alignment\" or \"Robustness Evaluation\" tracks exist."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5815c4a-c792-495b-a4d3-4dae66cedb47",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1cUrdaLnSXn4Mp3R3V",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1501dcf2-7b5b-462f-b18f-da27e5826c5b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YGR2ZUXfHsjw1VDZUhjiB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2721,
+                "cache_read_input_tokens": 9536,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2721,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T13:02:17.927Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XDDvyYauuLKnEXNTYHh7vi",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI 2027 tracks \"AI Alignment\" OR \"Robustness Evaluation\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1501dcf2-7b5b-462f-b18f-da27e5826c5b",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1cUrdaLnSXn4Mp3R3V",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "05d59abe-3aff-4eb9-b763-6587739361fd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YGR2ZUXfHsjw1VDZUhjiB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2721,
+                "cache_read_input_tokens": 9536,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2721,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T13:02:18.139Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EDUzkdws4CLSuJuQFamjrj",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI-27 conference tracks list site:aaai.org"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05d59abe-3aff-4eb9-b763-6587739361fd",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1cUrdaLnSXn4Mp3R3V",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7b441cc3-d70e-4a96-ad97-92ba17f86bd8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YGR2ZUXfHsjw1VDZUhjiB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2721,
+                "cache_read_input_tokens": 9536,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2721
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 9536,
+                    "cache_creation_input_tokens": 2721,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2721,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T13:02:22.677Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XDDvyYauuLKnEXNTYHh7vi",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI 2027 tracks \"AI Alignment\" OR \"Robustness Evaluation\"\"\n\nLinks: [{\"title\":\"AAAI-26 Call for the Special Track on AI Alignment\",\"url\":\"https://aaai.org/conference/aaai/aaai-26/aia-call/\"},{\"title\":\"AAAI-25 Call for the Special Track on AI Alignment\",\"url\":\"https://aaai.org/conference/aaai/aaai-25/ai-alignment-call/\"},{\"title\":\"Language Log » Alignment\",\"url\":\"https://languagelog.ldc.upenn.edu/nll/?p=70026\"},{\"title\":\"The Specification Trap: Why Static Value Alignment Alone Cannot Produce Robust Alignment\",\"url\":\"https://arxiv.org/pdf/2512.03048\"},{\"title\":\"Main Technical Track: Call for Papers - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/\"},{\"title\":\"AI Alignment: A Comprehensive Survey\",\"url\":\"https://arxiv.org/pdf/2310.19852\"},{\"title\":\"Pressure Reveals Character: Behavioural Alignment Evaluation at Depth\",\"url\":\"https://arxiv.org/pdf/2602.20813\"}]\n\nBased on the search results, I found information about AAAI-26 (not AAAI-27) tracks related to your query:\n\nAAAI-26 features a special track focused on AI Alignment. The 2026 AI Alignment track seeks research on scalable oversight, mechanistic interpretability, empirical robustness evaluation, red-teaming, human cognitive and psychological factors, and safe-by-design engineering—including formal safety cases.\n\nThe search results do not contain information about AAAI-27 tracks specifically. The most current information available is for AAAI-26 (2026). If you're looking for AAAI-27 (2027) track information, it may not yet be publicly available, as conference details are typically announced closer to the conference date.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05d59abe-3aff-4eb9-b763-6587739361fd",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "a17a8908-a3e5-404f-a4e1-35604e67ac4a",
+            "sourceToolAssistantUUID": "05d59abe-3aff-4eb9-b763-6587739361fd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-28T13:02:27.576Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EDUzkdws4CLSuJuQFamjrj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI-27 conference tracks list site:aaai.org\"\n\nLinks: [{\"title\":\"AAAI-27 - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/\"},{\"title\":\"Vol. 40 No. 27: AAAI-26 Technical Tracks 27 | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/issue/view/709\"},{\"title\":\"The Association for the Advancement of Artificial Intelligence\",\"url\":\"https://aaai.org/\"},{\"title\":\"Proceedings of the Fortieth AAAI Conference on Artificial Intelligence Archives - AAAI\",\"url\":\"https://aaai.org/proceeding/aaai-40-2026/\"},{\"title\":\"Conferences Archive - AAAI\",\"url\":\"https://aaai.org/conference/\"},{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"Main Technical Track: Call for Papers - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/\"}]\n\nBased on the search results, I found information about AAAI-27. The Forty-First AAAI Conference on Artificial Intelligence (AAAI-27) will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\nHowever, the search results don't provide a complete list of the specific conference tracks for AAAI-27. The first search result mentions that deadlines are track-specific and track-specific deadlines are listed on their respective CFP, and I found a page for the Main Technical Track, but the detailed list of all tracks is not fully visible in these search results.\n\nTo get the complete list of AAAI-27 conference tracks, you may want to visit the main AAAI-27 conference page directly at https://aaai.org/conference/aaai/aaai-27/ or check the AAAI-27 Calls page, which should have listings for all available tracks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b441cc3-d70e-4a96-ad97-92ba17f86bd8",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "73cbd05d-6e2a-4625-af27-b61554510f54",
+            "sourceToolAssistantUUID": "7b441cc3-d70e-4a96-ad97-92ba17f86bd8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-28T13:02:30.492Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016cz88dWoqDKUafaRYLtcXt",
+              "name": "WebSearch",
+              "input": {
+                "query": "AAAI-27 special tracks calls for papers 2027 alignment"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73cbd05d-6e2a-4625-af27-b61554510f54",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1dU2o5uYcaTa4EJMgo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8c2624c4-706c-479d-a5ca-4ebd2c93db67",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uv2LkJ5ETBGa13d6AJBuck",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1318,
+                "cache_read_input_tokens": 12257,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1318,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-28T13:02:30.949Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VDUuTcujeoohn6FgzpRtuK",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:aaai.org/conference/aaai/aaai-27/call"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c2624c4-706c-479d-a5ca-4ebd2c93db67",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1dU2o5uYcaTa4EJMgo",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b42c8329-59da-4f21-93b4-52d7fd785174",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uv2LkJ5ETBGa13d6AJBuck",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1318,
+                "cache_read_input_tokens": 12257,
+                "output_tokens": 123,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1318
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 123,
+                    "cache_read_input_tokens": 12257,
+                    "cache_creation_input_tokens": 1318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1318,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-28T13:02:36.361Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VDUuTcujeoohn6FgzpRtuK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:aaai.org/conference/aaai/aaai-27/call\"\n\nLinks: [{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"AAAI-27 Calls (Overview) - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/\"},{\"title\":\"Attitudes and Perceptions of Biomedical Journal Editors-in-Chief Towards the Use of Artificial Intelligence Chatbots in the Scholarly Publishing Process: A Cross-Sectional Survey\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.05.26.25328101.full.pdf\"},{\"title\":\"System and method for tracking emotional state of a caller using artificial intelligence\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/12555594\"},{\"title\":\"Call center system having reduced communication latency\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11223723\"},{\"title\":\"Artificial intelligence based call handling optimization\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11425250\"}]\n\nI found the AAAI-27 Call for Papers overview page. Based on the search results, AAAI-27 is scheduled for February 16 – February 23, 2027 in Montréal, Canada. \n\nThe search returned the main calls page and the main technical track page. Deadlines are track-specific and may differ from the overall conference dates, with track-specific deadlines listed on their respective calls for papers.\n\nTo get more detailed information about specific submission deadlines and requirements, you would want to visit the individual track pages linked from the AAAI-27 Calls overview at https://aaai.org/conference/aaai/aaai-27/call/\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b42c8329-59da-4f21-93b4-52d7fd785174",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "0a02ac37-e745-46fa-a148-85234b0d2ac2",
+            "sourceToolAssistantUUID": "b42c8329-59da-4f21-93b4-52d7fd785174",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-28T13:02:36.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016cz88dWoqDKUafaRYLtcXt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AAAI-27 special tracks calls for papers 2027 alignment\"\n\nLinks: [{\"title\":\"AAAI-27 Main Technical Track - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/\"},{\"title\":\"AAAI-27 - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-27/\"},{\"title\":\"AAAI 2027 Call for Papers — Official Deadlines & Important Dates | PaperPilot\",\"url\":\"https://www.getpaperpilot.com/deadlines/aaai-2027.html\"},{\"title\":\"Main Technical Track: Call for Papers - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/\"},{\"title\":\"Vol. 40 No. 27: AAAI-26 Technical Tracks 27 | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/issue/view/709\"},{\"title\":\"AAAI-26 Journal Track: Call for Papers - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-26/journal-track-call/\"},{\"title\":\"AAAI-25 Main Technical: Call for Papers - AAAI\",\"url\":\"https://aaai.org/conference/aaai/aaai-25/aaai-25-main-technical-call-for-papers/\"},{\"title\":\"AAAI-25 Call for the Special Track on AI Alignment\",\"url\":\"https://aaai.org/conference/aaai/aaai-25/ai-alignment-call/\"}]\n\nBased on the search results, I found information about AAAI special tracks, though the details are for AAAI-26 and AAAI-25 rather than AAAI-27 specifically:\n\nAAAI-27 will be held in Montréal, Canada, from February 16 to February 23, 2027.\n\nRegarding special tracks, based on the pattern from previous conferences: Authors are encouraged to submit papers for the Special Track on AI for Social Impact and the Special Track on AI Alignment.\n\nFor the AI Alignment track specifically, the evaluation criteria include:\n- Whether the paper addresses a problem central to the challenge of developing safe and secure AI systems, aligned with human values\n- Engagement with existing literature in the field of AI Alignment\n- Methodological or analysis novelty\n\nHowever, the search results show that the main technical track deadlines include abstract submission on July 21, 2026, and full papers due July 28, 2026, though track-specific deadlines may differ and are listed on their respective call for papers. For the most current and specific information about AAAI-27 special tracks calls for papers, I recommend visiting the official AAAI-27 website directly.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c2624c4-706c-479d-a5ca-4ebd2c93db67",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "323584b0-8f1f-4b8e-9357-c053e4b8ffc6",
+            "sourceToolAssistantUUID": "8c2624c4-706c-479d-a5ca-4ebd2c93db67",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-28T13:02:39.077Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch the AAAI-27 Calls overview page to see the full list of tracks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "323584b0-8f1f-4b8e-9357-c053e4b8ffc6",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1e8ij1RERa4dpp7KoP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "932d622d-77ff-49e4-8124-6339ef245087",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SchFPp5Fe9HZEFhEReaqvM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 551,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 13575,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1001,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-28T13:02:39.529Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NbFMWPWnS3YQeV5JfFBEyR",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "932d622d-77ff-49e4-8124-6339ef245087",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1e8ij1RERa4dpp7KoP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6e7de6ca-6a3f-4120-a6f8-e30741beea03",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SchFPp5Fe9HZEFhEReaqvM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 551,
+                "cache_creation_input_tokens": 1001,
+                "cache_read_input_tokens": 13575,
+                "output_tokens": 100,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1001
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 551,
+                    "output_tokens": 100,
+                    "cache_read_input_tokens": 13575,
+                    "cache_creation_input_tokens": 1001,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1001,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-28T13:02:39.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01NbFMWPWnS3YQeV5JfFBEyR",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6e7de6ca-6a3f-4120-a6f8-e30741beea03",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "331e68b9-5234-46d2-aa65-0d1b1335736f",
+            "sourceToolAssistantUUID": "6e7de6ca-6a3f-4120-a6f8-e30741beea03",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-28T13:02:43.247Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q4nAeD22u6uVgCoXZX7Gws",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aaai.org/conference/aaai/aaai-27/call/",
+                "prompt": "List ALL the tracks and calls for papers mentioned on this page. I need the complete list of every track name (e.g., Main Technical Track, AI Alignment, etc.) and any deadlines mentioned for each."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "331e68b9-5234-46d2-aa65-0d1b1335736f",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1eMSSvdeZu82r9qJaE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bc6940b6-84fc-4817-be36-ac42d6816af2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019btR7AUHyNtH6Q5gvc6k9U",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1169,
+                "cache_read_input_tokens": 14576,
+                "output_tokens": 135,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1169
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 135,
+                    "cache_read_input_tokens": 14576,
+                    "cache_creation_input_tokens": 1169,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1169,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-28T13:02:46.557Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q4nAeD22u6uVgCoXZX7Gws",
+              "type": "tool_result",
+              "content": "# AAAI-27 Tracks and Calls for Papers\n\nBased on the webpage content provided, only **one track** is explicitly listed:\n\n1. **AAAI-27 Main Technical Track** - No deadline information is provided on this page.\n\nThe page indicates this is an overview/index page for \"AAAI-27 Calls\" with a link to \"Continue Reading\" for the Main Technical Track, suggesting that detailed information about submission deadlines and additional tracks would be found on the linked page rather than on this overview page itself.\n\nNo other specific tracks, themed areas, or submission deadlines are mentioned in the provided content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc6940b6-84fc-4817-be36-ac42d6816af2",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "3f46fdc2-6503-4db0-8455-02e322263ecb",
+            "sourceToolAssistantUUID": "bc6940b6-84fc-4817-be36-ac42d6816af2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-28T13:02:50.379Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AAnarPk57YsjCjzRCk8qUa",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aaai.org/conference/aaai/aaai-27/",
+                "prompt": "List ALL tracks, special tracks, workshops, and calls for papers mentioned on this AAAI-27 main conference page. Is there any mention of an \"AI Alignment\" track, a \"Robustness Evaluation\" track, or any other special tracks? List everything you can find about the conference structure and tracks."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f46fdc2-6503-4db0-8455-02e322263ecb",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1esGZzf4Ks4h3S8LeL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "339d3b24-b29a-45a9-92e1-e99529028c5d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W8BoobHbKBXCJ7MQXufGbU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 287,
+                "cache_read_input_tokens": 15745,
+                "output_tokens": 156,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 287
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 156,
+                    "cache_read_input_tokens": 15745,
+                    "cache_creation_input_tokens": 287,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 287,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-28T13:02:58.425Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AAnarPk57YsjCjzRCk8qUa",
+              "type": "tool_result",
+              "content": "# AAAI-27 Conference Tracks and Structure\n\nBased on the provided webpage content, **no specific tracks are detailed** on this main conference page. The page does not mention an \"AI Alignment\" track, \"Robustness Evaluation\" track, or any other named special tracks.\n\n## What IS mentioned about conference structure:\n\nThe document indicates that AAAI-27 \"will feature technical paper presentations, special tracks, invited speakers, workshops, tutorials, poster sessions, senior member presentations, competitions, and exhibit programs.\"\n\nHowever, **no detailed information is provided** about:\n- Names of specific tracks\n- Workshop topics\n- Special track titles\n- Calls for papers by track\n\n## Key note from the page:\n\n\"Deadlines are track-specific and may differ from those listed above. Track-specific deadlines are listed on their respective CFP\" (Call for Papers).\n\nThis suggests that detailed track information exists elsewhere—likely on individual track pages linked from the main conference site, but those links and details are not included in the content provided."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "339d3b24-b29a-45a9-92e1-e99529028c5d",
+            "isSidechain": true,
+            "promptId": "dc568e59-04a7-423e-afcb-8c8e23de99ac",
+            "agentId": "ac9639fdd12716ee4",
+            "type": "user",
+            "uuid": "36abbc17-6a14-4e89-8391-c3c5c731265f",
+            "sourceToolAssistantUUID": "339d3b24-b29a-45a9-92e1-e99529028c5d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-28T13:03:19.629Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is my complete findings report.\n\n---\n\n## AAAI 2027 Deadline Verification\n\n### Claimed Deadlines vs. Verified Deadlines\n\nThe proposal's claimed deadlines are **confirmed as accurate** for the Main Technical Track:\n\n| Deadline | Claimed | Verified |\n|---|---|---|\n| Abstract deadline | July 21, 2026 | **July 21, 2026** (11:59 PM UTC-12) |\n| Paper deadline | July 28, 2026 | **July 28, 2026** (11:59 PM UTC-12) |\n\nBoth dates match exactly with what is published on the official AAAI-27 website and corroborated by multiple third-party deadline trackers.\n\n### Full Verified Timeline (Main Technical Track)\n\n- **June 17, 2026** -- OpenReview site opens for author registration\n- **June 24, 2026** -- OpenReview site opens for paper submission\n- **July 21, 2026** -- Abstracts due (11:59 PM UTC-12)\n- **July 28, 2026** -- Full papers due (11:59 PM UTC-12)\n- **July 31, 2026** -- Supplementary material and code due (11:59 PM UTC-12)\n- **September 24, 2026** -- Notification of Phase 1 rejections\n- **October 19-25, 2026** -- Author feedback window\n- **November 30, 2026** -- Final acceptance/rejection notification\n- **December 14, 2026** -- Camera-ready files due\n\nThe conference itself is scheduled for **February 16-23, 2027** in **Montreal, Canada**.\n\n### Track Verification: \"AI Alignment\" and \"Robustness Evaluation\"\n\n**AI Alignment Track:** AAAI-25 and AAAI-26 both had a dedicated \"Special Track on AI Alignment.\" The AAAI-27 main conference page states it \"will feature special tracks\" but as of today (May 28, 2026), the only track with a published Call for Papers on the AAAI-27 website is the **Main Technical Track**. The specific special tracks for AAAI-27 have not yet been announced on the official site. Given the pattern from the past two years, it is plausible that an AI Alignment track will return for AAAI-27, but this is **not yet confirmed**.\n\n**Robustness Evaluation Track:** No evidence was found of a standalone \"Robustness Evaluation\" track at any recent AAAI conference (2025, 2026, or 2027). Robustness evaluation has been mentioned as a *topic of interest* within the AI Alignment track (e.g., AAAI-26's AI Alignment call listed \"empirical robustness evaluation\" as a relevant topic), but it has never been a separate track. If the proposal claims AAAI 2027 has a dedicated \"Robustness Evaluation\" track, **that claim cannot be verified and appears to be incorrect** based on available information.\n\n### Key Caveat\n\nThe AAAI-27 website notes that \"deadlines are track-specific and may differ\" from the Main Technical Track deadlines. If the proposal is targeting a special track rather than the main track, the actual deadlines could be different once those tracks are announced.\n\nSources:\n- [AAAI-27 Main Conference Page](https://aaai.org/conference/aaai/aaai-27/)\n- [AAAI-27 Main Technical Track Call for Papers](https://aaai.org/conference/aaai/aaai-27/call/main-technical-track/)\n- [AAAI-27 Calls Overview](https://aaai.org/conference/aaai/aaai-27/call/)\n- [AAAI-26 AI Alignment Special Track Call](https://aaai.org/conference/aaai/aaai-26/aia-call/)\n- [AAAI-25 AI Alignment Special Track Call](https://aaai.org/conference/aaai/aaai-25/ai-alignment-call/)\n- [AAAI 2027 on OpenReview](https://openreview.net/group?id=AAAI.org%2F2027%2FConference)\n- [AI Deadlines Tracker](http://aideadlines.org/conference/?id=aaai27)\n- [PaperPilot AAAI 2027 Deadlines](https://www.getpaperpilot.com/deadlines/aaai-2027.html)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36abbc17-6a14-4e89-8391-c3c5c731265f",
+            "isSidechain": true,
+            "agentId": "ac9639fdd12716ee4",
+            "requestId": "req_011CbV1fkKdkQHBzmwUJ4TrH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2ab1c1b4-1a34-4013-90ad-1378a6e92aaa",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "c23f3e51-9def-46f8-88a4-21c4a46b23f8",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019wTBdzJwStro9Vj325UdGS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 394,
+                "cache_read_input_tokens": 16032,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 394,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-to-verify-the-aaai-2027-conference-deadlines-the-proposal-claim.md"
+}

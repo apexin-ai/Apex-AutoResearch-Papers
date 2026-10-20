@@ -1,0 +1,2483 @@
+{
+  "schema_version": "1.0",
+  "id": "ca10d593bb347fe16cb5",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Research the paper \"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\" by Pa",
+  "task_key": "agent-a44e078c1edd43ffa",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a44e078c1edd43ffa.jsonl",
+    "occurrence": 1,
+    "bytes": 107058,
+    "sha256": "2d6437d9e69f16526134427a7a6747f7c80855834d3ccb2db1f0295cf83e71b8"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 10,
+      "tool_call": 20,
+      "tool_result": 20
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-30T06:22:12.198Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Research the paper \"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\" by Patrick Kahardipraja et al., NeurIPS 2025, at https://arxiv.org/abs/2505.15807\n\nUse WebSearch and WebFetch to:\n1. Read the abstract, introduction, and method sections from the arxiv page\n2. Search for OpenReview reviews if available (search \"Atlas in-context learning attention heads NeurIPS 2025 openreview\")\n3. Look for any related discussions\n\nReport back with:\n- The full abstract\n- Key methodological details: how they separate in-context vs parametric heads, the 94% AUC linear probe, function vector extraction\n- How they use attribution methods\n- What models they study\n- How they demonstrate steering via function vectors\n- Any reviewer comments found\n- Limitations mentioned\n\nBe thorough — I need technical details about their head classification methodology and the function vector approach."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "a77ed561-5f24-499a-8240-816a4d6ba26c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-30T06:22:12.205Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a77ed561-5f24-499a-8240-816a4d6ba26c",
+                "isSidechain": true,
+                "agentId": "a44e078c1edd43ffa",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "a70d794e-a111-4098-b9f4-75e9d296fd82",
+                "timestamp": "2026-05-30T06:22:12.205Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-30T06:22:12.207Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a70d794e-a111-4098-b9f4-75e9d296fd82",
+                "isSidechain": true,
+                "agentId": "a44e078c1edd43ffa",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "cf20ad97-c3df-4e87-969d-547fb755e58b",
+                "timestamp": "2026-05-30T06:22:12.207Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-30T06:22:14.585Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll research this paper thoroughly. Let me start by fetching the arxiv page and searching for reviews simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf20ad97-c3df-4e87-969d-547fb755e58b",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGj2FBiSfaavwxGvVAN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "90c1df93-3434-41ba-9b12-bb32595d2e59",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XsFnR8MAxxLadVSwNCexCo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1571,
+                "cache_read_input_tokens": 7413,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1571,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-30T06:22:15.209Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018VfXm9W69ewEh7XWCxFxfG",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch,WebSearch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90c1df93-3434-41ba-9b12-bb32595d2e59",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGj2FBiSfaavwxGvVAN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c698b547-4750-4e18-9796-d5c9adffcbad",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XsFnR8MAxxLadVSwNCexCo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1571,
+                "cache_read_input_tokens": 7413,
+                "output_tokens": 104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1571
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 104,
+                    "cache_read_input_tokens": 7413,
+                    "cache_creation_input_tokens": 1571,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1571,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-30T06:22:15.212Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_018VfXm9W69ewEh7XWCxFxfG",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c698b547-4750-4e18-9796-d5c9adffcbad",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "678674b6-a49b-4b89-9da0-25c19093f64b",
+            "sourceToolAssistantUUID": "c698b547-4750-4e18-9796-d5c9adffcbad",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-30T06:22:18.023Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me fetch the arxiv page and search for reviews in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "678674b6-a49b-4b89-9da0-25c19093f64b",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGjFzB3DAF7pZ7kStYj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d5cb3361-8509-4c37-b503-4b10d7580c6d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015LxExkqbdj2fbZ7XGmGJYT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1126,
+                "cache_read_input_tokens": 8984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1126,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-30T06:22:19.891Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XPWyUv43NuaSVYmKh42zMh",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2505.15807",
+                "prompt": "Extract the FULL abstract verbatim. Also extract all author names, the submission date, and any other metadata visible on this page. Include the full text of the abstract word for word."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5cb3361-8509-4c37-b503-4b10d7580c6d",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGjFzB3DAF7pZ7kStYj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d24da685-be4e-4e7f-bfb7-687b3bdc390b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015LxExkqbdj2fbZ7XGmGJYT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1126,
+                "cache_read_input_tokens": 8984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1126,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-30T06:22:20.836Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KfQ7z6vXXK9HYn4EayeFa7",
+              "name": "WebSearch",
+              "input": {
+                "query": "Atlas in-context learning attention heads NeurIPS 2025 openreview"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d24da685-be4e-4e7f-bfb7-687b3bdc390b",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGjFzB3DAF7pZ7kStYj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6eb53121-02cb-412c-888c-a7edc0909ef9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015LxExkqbdj2fbZ7XGmGJYT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1126,
+                "cache_read_input_tokens": 8984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1126,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-30T06:22:21.511Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sk2gg7pRmT6hVJKSNzq9qJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Atlas of In-Context Learning\" Kahardipraja attention heads function vectors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6eb53121-02cb-412c-888c-a7edc0909ef9",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGjFzB3DAF7pZ7kStYj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "79a87b95-00b8-4291-a665-936898c6e86c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015LxExkqbdj2fbZ7XGmGJYT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1126,
+                "cache_read_input_tokens": 8984,
+                "output_tokens": 241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1126
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 241,
+                    "cache_read_input_tokens": 8984,
+                    "cache_creation_input_tokens": 1126,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1126,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-30T06:22:25.162Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XPWyUv43NuaSVYmKh42zMh",
+              "type": "tool_result",
+              "content": "# Paper Metadata Extraction\n\n**Title:** The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\n\n**Authors:**\n- Patrick Kahardipraja\n- Reduan Achtibat\n- Thomas Wiegand\n- Wojciech Samek\n- Sebastian Lapuschkin\n\n**Submission Date:** 21 May 2025 (v1); last revised 27 Oct 2025 (v2)\n\n**arXiv Identifier:** 2505.15807\n\n**Subjects:** Computation and Language (cs.CL); Information Retrieval (cs.IR); Machine Learning (cs.LG)\n\n**Status:** Accepted at NeurIPS 2025\n\n---\n\n## Abstract\n\n\"Large language models are able to exploit in-context learning to access external knowledge beyond their training data through retrieval-augmentation. While promising, its inner workings remain unclear. In this work, we shed light on the mechanism of in-context retrieval augmentation for question answering by viewing a prompt as a composition of informational components. We propose an attribution-based method to identify specialized attention heads, revealing in-context heads that comprehend instructions and retrieve relevant contextual information, and parametric heads that store entities' relational knowledge. To better understand their roles, we extract function vectors and modify their attention weights to show how they can influence the answer generation process. Finally, we leverage the gained insights to trace the sources of knowledge used during inference, paving the way towards more safe and transparent language models.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d24da685-be4e-4e7f-bfb7-687b3bdc390b",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "75297670-b60f-4099-bd1e-ec76b95159f9",
+            "sourceToolAssistantUUID": "d24da685-be4e-4e7f-bfb7-687b3bdc390b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-30T06:22:26.664Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KfQ7z6vXXK9HYn4EayeFa7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Atlas in-context learning attention heads NeurIPS 2025 openreview\"\n\nLinks: [{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation | OpenReview\",\"url\":\"https://openreview.net/forum?id=5h9mS87Pyt\"},{\"title\":\"GitHub - pkhdipraja/in-context-atlas: Code for \\\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\\\", NeurIPS 2025 · GitHub\",\"url\":\"https://github.com/pkhdipraja/in-context-atlas\"},{\"title\":\"NeurIPS Poster The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://neurips.cc/virtual/2025/poster/119839\"},{\"title\":\"(PDF) The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://www.researchgate.net/publication/391953765_The_Atlas_of_In-Context_Learning_How_Attention_Heads_Shape_In-Context_Retrieval_Augmentation\"},{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/html/2505.15807v1\"},{\"title\":\"NeurIPS Poster Unifying Attention Heads and Task Vectors via Hidden State Geometry in In-Context Learning\",\"url\":\"https://neurips.cc/virtual/2025/poster/119047\"},{\"title\":\"The Atlas of In-Context Learning: How Attention\",\"url\":\"https://openreview.net/pdf/4680606493cfdf0ac8851fe0e353c1878d147253.pdf\"},{\"title\":\"The Atlas of In-Context Learning: How Attention\",\"url\":\"https://neurips.cc/media/neurips-2025/Slides/119839.pdf\"},{\"title\":\"[2505.15807] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n## The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\n\nThe paper is authored by Patrick Kahardipraja, Reduan Achtibat, Thomas Wiegand, Wojciech Samek, and Sebastian Lapuschkin, and was published at NeurIPS 2025.\n\n**Key Details:**\n\n- **OpenReview Link:** https://openreview.net/forum?id=5h9mS87Pyt\n- **GitHub Repository:** https://github.com/pkhdipraja/in-context-atlas\n- The work was published on September 18, 2025 and is a NeurIPS 2025 poster presentation\n\n**Research Focus:**\n\nThe paper proposes an attribution-based method to identify specialized attention heads, revealing in-context heads that comprehend instructions and retrieve relevant contextual information, and parametric heads that store entities' relational knowledge. The authors extract function vectors and modify their attention weights to show how they can influence the answer generation process, ultimately tracing the sources of knowledge used during inference.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6eb53121-02cb-412c-888c-a7edc0909ef9",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "5e238fde-5b22-4adb-b360-2c664400777c",
+            "sourceToolAssistantUUID": "6eb53121-02cb-412c-888c-a7edc0909ef9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-30T06:22:27.292Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sk2gg7pRmT6hVJKSNzq9qJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Atlas of In-Context Learning\" Kahardipraja attention heads function vectors\"\n\nLinks: [{\"title\":\"[2505.15807] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807\"},{\"title\":\"[2505.15807v1] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807v1\"},{\"title\":\"(PDF) The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://www.researchgate.net/publication/391953765_The_Atlas_of_In-Context_Learning_How_Attention_Heads_Shape_In-Context_Retrieval_Augmentation\"},{\"title\":\"GitHub - pkhdipraja/in-context-atlas: Code for \\\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\\\", NeurIPS 2025 · GitHub\",\"url\":\"https://github.com/pkhdipraja/in-context-atlas\"},{\"title\":\"The Atlas of In-Context Learning: How Attention\",\"url\":\"https://neurips.cc/media/neurips-2025/Slides/119839.pdf\"},{\"title\":\"The Atlas of In-Context Learning: How Attention Heads ...\",\"url\":\"https://www.researchgate.net/publication/391953765_The_Atlas_of_In-Context_Learning_How_Attention_Heads_Shape_In-Context_Retrieval_Augmentation/fulltext/682e96b0026fee1034fa06cc/The-Atlas-of-In-Context-Learning-How-Attention-Heads-Shape-In-Context-Retrieval-Augmentation.pdf?origin=scientificContributions\"},{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/html/2505.15807v2\"},{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation | OpenReview\",\"url\":\"https://openreview.net/forum?id=5h9mS87Pyt\"}]\n\nI found the research paper you're looking for! Here are the search results:\n\n## \"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\"\n\n**Authors:** Patrick Kahardipraja, Reduan Achtibat, Thomas Wiegand, Wojciech Samek, and Sebastian Lapuschkin\n\n**Publication:** The Thirty-ninth Annual Conference on Neural Information Processing Systems (NeurIPS 2025)\n\n**Key Research Focus:**\n\nThe work sheds light on the mechanism of in-context retrieval augmentation for question answering by viewing a prompt as a composition of informational components, proposing an attribution-based method to identify specialized attention heads, revealing in-context heads that comprehend instructions and retrieve relevant contextual information, and parametric heads that store entities' relational knowledge.\n\n**Use of Function Vectors:**\n\nTo better understand their roles, the researchers extract function vectors and modify their attention weights to show how they can influence the answer generation process. More specifically, in-context and parametric heads affect the answer generation process through function vectors that they transport or their attention weights.\n\n**Resources:**\n- The paper is available on arXiv (2505.15807)\n- Code is available on GitHub at: pkhdipraja/in-context-atlas\n- The OpenReview forum page provides additional details\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79a87b95-00b8-4291-a665-936898c6e86c",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "d5994110-a516-4073-ae83-145712b7138b",
+            "sourceToolAssistantUUID": "79a87b95-00b8-4291-a665-936898c6e86c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-30T06:22:30.387Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have the abstract and found the OpenReview page and the HTML version of the paper. Let me now fetch the detailed content from the HTML version of the paper and the OpenReview reviews."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5994110-a516-4073-ae83-145712b7138b",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGk8huNcDoYbpo2xinG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ea4ca852-34d2-43b7-9a9b-6abac86f4edd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DhACdWmL9bwC3b2mpPoTSM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2383,
+                "cache_read_input_tokens": 10110,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2383,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-30T06:22:35.627Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017NPJiYvkrW78qbaZBKJJGB",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2505.15807v2",
+                "prompt": "Extract the full INTRODUCTION and METHOD sections in detail. I need:\n1. The complete introduction with all technical claims and references\n2. The full methodology section including:\n   - How they decompose prompts into informational components\n   - The attribution-based method for identifying attention heads\n   - How they classify in-context vs parametric heads\n   - The 94% AUC linear probe details\n   - Function vector extraction procedure\n   - How they use attribution methods (which specific methods)\n   - What models they study\n   - How they demonstrate steering via function vectors\n   - The knowledge source tracing approach\n3. Any limitations section\n4. Key experimental results and numbers\n\nBe as detailed and thorough as possible. Include specific equations, thresholds, and algorithmic steps if mentioned."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea4ca852-34d2-43b7-9a9b-6abac86f4edd",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGk8huNcDoYbpo2xinG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f3f94c4f-9145-48de-aed8-b3cd2ff16069",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DhACdWmL9bwC3b2mpPoTSM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2383,
+                "cache_read_input_tokens": 10110,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2383,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-30T06:22:37.679Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019Uz8jbaqAg3sxnaxeP5MZU",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=5h9mS87Pyt",
+                "prompt": "Extract ALL reviewer comments, ratings, and responses. Include:\n1. Each reviewer's rating and confidence score\n2. The full text of each review including strengths, weaknesses, questions\n3. Any author responses\n4. The meta-review if available\n5. Any discussion between reviewers\n\nBe comprehensive - include every review comment you can find."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3f94c4f-9145-48de-aed8-b3cd2ff16069",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGk8huNcDoYbpo2xinG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5283e926-b4e4-4c31-b416-66cd0f2db683",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DhACdWmL9bwC3b2mpPoTSM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2383,
+                "cache_read_input_tokens": 10110,
+                "output_tokens": 442,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2383
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 442,
+                    "cache_read_input_tokens": 10110,
+                    "cache_creation_input_tokens": 2383,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2383,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-30T06:22:40.296Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019Uz8jbaqAg3sxnaxeP5MZU",
+              "type": "tool_result",
+              "content": "# Review Comments and Ratings - Not Available\n\nBased on the webpage content provided, **no reviewer comments, ratings, responses, meta-reviews, or discussions are present**.\n\nThe page displays only the paper's title, abstract, author information, and publication metadata from OpenReview for NeurIPS 2025. The actual review section content has not been loaded or included in the provided HTML.\n\nTo access this information, you would need to:\n- Visit the full OpenReview page directly\n- Log into OpenReview to view reviewer comments\n- Wait for the reviews section to load completely on the webpage"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5283e926-b4e4-4c31-b416-66cd0f2db683",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "97c7544b-c83a-473a-8b63-4c9e37a10c8a",
+            "sourceToolAssistantUUID": "5283e926-b4e4-4c31-b416-66cd0f2db683",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-30T06:23:01.296Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017NPJiYvkrW78qbaZBKJJGB",
+              "type": "tool_result",
+              "content": "# The Atlas of In-Context Learning: Detailed Section Summary\n\n## INTRODUCTION\n\nThe paper addresses how large language models exploit in-context learning for retrieval-augmented generation. The authors view \"a prompt as a composition of informational components\" to understand mechanisms of knowledge retrieval beyond training data.\n\n**Core Claims:**\n- Large language models can \"approximate relations between an input and an output sequence\" through prompts functioning as queries in latent space\n- In-context learning enables models to \"adapt to new tasks with few demonstrations at inference time, without additional fine-tuning\"\n- While prior work examined ICL from various angles—including induction heads, function vectors (FVs), and implicit gradient-based optimization—\"the mechanism behind ICL for knowledge retrieval is not yet fully understood\"\n\n**Key Hypothesis:**\nThe authors propose that \"certain attention heads perform various operations on the prompt at different stages of inference and layers,\" identifying two functional groups: *parametric heads* encoding relational knowledge and *in-context heads* processing prompt information.\n\n**Main Contributions:**\n1. An attribution-based method identifying heads by their role in retrieval-augmented QA\n2. Analysis of in-context head specialization into task comprehension versus retrieval operations\n3. Preliminary results on knowledge provenance tracing toward more transparent RAG systems\n\n---\n\n## METHODOLOGY\n\n### Attribution-Based Head Identification\n\n**Theoretical Foundation:**\nThe method employs feature attribution to quantify input contributions to outputs: \"ℛ: ℝᴺ × ℝ → ℝᴺ, (𝐱,y) ↦ ℛ(𝐱|y).\" They adopt **AttnLRP** (Attention-aware Layer-wise Relevance Propagation) as their primary technique.\n\n**Why AttnLRP:**\nThe authors justify this choice because \"attention can be unfaithful\" and \"questions its validity as an explanation.\" AttnLRP addresses these limitations through \"stabilization procedures for non-linear operations, thereby improving the faithfulness of relevance distributions.\"\n\n**Head Contribution Scoring:**\nFor each attention head h, they sum positive relevance scores across the head's output:\n\"ℛʰ(yₜ) = Σᵢ₌₁ˢ Σₖ₌₁ᵈʰ ℛ⁺(zᵢʰ|yₜ)ₖ ∈ ℝ\"\n\nwhere zʰ represents the head's latent output and yₜ is the target prediction.\n\n### Classifying In-Context vs. Parametric Heads\n\n**Contrastive Setting Design:**\nThe method leverages \"counterfactual contexts\" forcing \"retrieval to produce a counterfactual prediction yₒf that disagrees with the parametric answer.\" They also employ \"closed-book settings where contextual information is minimized.\"\n\n**Difference Score Computation:**\n𝒟 = {𝔼ₓₒᵦ[ℛʰ(yₒf)] − 𝔼ₓcᵦ[ℛʰ(yₘₒₗd)] : h = 1,2,...,Nₕ}\n\n**Selection Threshold:**\nThey \"select the top 100 heads (around 10%-15% of total heads) with the highest positive and lowest negative difference scores\" to identify in-context and parametric head sets respectively.\n\n### Task and Retrieval Head Specialization\n\n**Relevance Aggregation at Token Level:**\nFor each head, they compute relevance at source token positions: \"ρⱼʰ = Σᵢ₌₁ˢ ℛ⁺(Aᵢ,ⱼʰ|yₜ)\"\n\n**Functional Decomposition:**\nThey separate token sets into:\n- Task tokens (question positions): ρₜₐₛₖʰ = Σⱼ ∈ Jₜₐₛₖ ρⱼʰ\n- Retrieval tokens (answer positions): ρᵣₑₜʰ = Σⱼ ∈ Jᵣₑₜ ρⱼʰ\n\nHeads are ranked by these scores, with \"hyperparameter K determined separately for each experiment\" to select specialized subsets.\n\n### Function Vector Extraction and Insertion\n\n**FV Definition:**\n\"A FV can be defined as a sum of averaged heads outputs over a task or computed individually.\" The authors \"consider a FV to be an output of a task or parametric head scaled by scalar α.\"\n\n**Zero-Shot Insertion Protocol:**\nFor task heads, they extract FVs from biographical questions, then insert them \"into another biographical entry without a question at the final token position, and also for all subsequent token generations.\"\n\n**Results on Biography Dataset:**\n- Task heads achieved 94.75% recall (Llama 3.1) vs. 18% random baseline\n- Parametric heads: 38.84% vs. 6.68% random\n- Retrieval heads: 93.45% vs. 15.94% random\n\n### Knowledge Source Tracking\n\n**Linear Probe Design:**\n\"Each retrieval head's output at the last token's position 𝐳ˢʰ is decoded via logit lens,\" converting activations to token scores using \"the model's unembedding matrix 𝐖ᵤ ∈ ℝ|V|×d and layer normalization.\"\n\n**Source Localization Formula:**\nk̂ = argmaxⱼ Σₕ ∈ ℋᵣₑₜ wₕ ℒ(𝐳ˢʰ|t) Aˢ,ⱼʰ\n\n**Performance Metrics:**\n- ROC AUC: 95-98% across models for detecting contextual vs. parametric predictions\n- Top-1 localization accuracy: 84-97%\n\n### Models and Datasets\n\n**Models Tested:**\n- Llama-3.1-8B-Instruct\n- Mistral-7B-Instruct-v0.3\n- Gemma-2-9B-it\n\n**Datasets:**\n- NQ-Swap (oracle, counterfactual, and DPR-retrieved contexts)\n- TriviaQA\n- Custom biography dataset (4,255 individuals from Wikidata)\n\n### Ablation Experiments\n\nWhen removing in-context heads: \"performance drops on TQA hold even though the heads are computed on NQ-Swap, showing that the identified in-context and parametric heads are transferrable to other datasets.\"\n\nRemoving top 20 in-context heads caused 13.86%-63.84% performance reduction in open-book settings; 100 heads caused 44.26%-68.66% reduction.\n\n---\n\n## LIMITATIONS\n\nThe authors acknowledge several constraints:\n\n1. **MLP Interactions:** \"How they interact with components in MLP modules (e.g., knowledge neurons) to induce functions remains an open question\"\n\n2. **Task Generalization:** Analyses focus \"mainly centered on QA (with a minor part on MT),\" and direct transfer of task heads to machine translation proved ineffective\n\n3. **Head Complexity:** \"Several heads exhibit inhibitory effects, and...some intermediate heads are not exclusively specialized for either in-context or parametric roles\"\n\n4. **Redundancy:** \"There is a possibility for redundant heads...yet to be uncovered\"\n\n---\n\n## KEY EXPERIMENTAL RESULTS\n\n| Finding | Value |\n|---------|-------|\n| Top heads identified | 100 (10-15% of total) |\n| Task head recall (Llama, zero-shot) | 94.75% |\n| Parametric head recall | 38.84% |\n| Retrieval head recall | 93.45% |\n| Source detection (ROC AUC) | 94-98% |\n| Source localization accuracy | 84-97% |\n| In-context head removal impact | 44-69% performance drop |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3f94c4f-9145-48de-aed8-b3cd2ff16069",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "a6b52c3f-8cb4-4394-9739-494e8ca8bd34",
+            "sourceToolAssistantUUID": "f3f94c4f-9145-48de-aed8-b3cd2ff16069",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-30T06:23:04.068Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me try to access the OpenReview reviews differently, and also fetch more details from the paper about specific methodology aspects."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a6b52c3f-8cb4-4394-9739-494e8ca8bd34",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGneDyfiWSRojeSg5qb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b8b70b30-99b0-4ee0-ad49-a79477674a24",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S9bYbLvYTyWG8AKpAXPDrT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 158,
+                "cache_creation_input_tokens": 2396,
+                "cache_read_input_tokens": 12493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2396,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-30T06:23:07.100Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TQnXUjJQHRDJB8uxmGX9Lt",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=5h9mS87Pyt#",
+                "prompt": "Extract ALL reviewer comments, reviews, ratings, strengths, weaknesses, questions, and author responses. Look for any review content on this page including official reviews, meta-reviews, and discussion. Include reviewer IDs, scores, and the full text of each review."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8b70b30-99b0-4ee0-ad49-a79477674a24",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGneDyfiWSRojeSg5qb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5db4c2e2-f3ad-49f6-865b-d53b62182070",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S9bYbLvYTyWG8AKpAXPDrT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 158,
+                "cache_creation_input_tokens": 2396,
+                "cache_read_input_tokens": 12493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2396,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-30T06:23:07.453Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TVDjT8jLEbCprcmbX3BnJj",
+              "name": "WebSearch",
+              "input": {
+                "query": "openreview \"5h9mS87Pyt\" review rating NeurIPS 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5db4c2e2-f3ad-49f6-865b-d53b62182070",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGneDyfiWSRojeSg5qb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7c07deed-b33d-4746-813c-f7ab293114c2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S9bYbLvYTyWG8AKpAXPDrT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 158,
+                "cache_creation_input_tokens": 2396,
+                "cache_read_input_tokens": 12493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2396,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-30T06:23:08.243Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BLXdZuzu3iw6RdLvcEYryd",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Atlas of In-Context Learning\" Kahardipraja review strengths weaknesses NeurIPS"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c07deed-b33d-4746-813c-f7ab293114c2",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGneDyfiWSRojeSg5qb",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "410e46c9-80ec-4092-8730-a738e00d9c74",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S9bYbLvYTyWG8AKpAXPDrT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 158,
+                "cache_creation_input_tokens": 2396,
+                "cache_read_input_tokens": 12493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2396,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-30T06:23:10.078Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TQnXUjJQHRDJB8uxmGX9Lt",
+              "type": "tool_result",
+              "content": "# Review Content Analysis\n\nBased on the provided web page content, **no reviewer comments, reviews, ratings, strengths, weaknesses, questions, or author responses are present**.\n\nThe page displays only:\n- Paper metadata (title, authors, publication date)\n- Abstract summary\n- Keywords and submission details\n- Standard OpenReview footer navigation\n\nThe actual review section appears to be either:\n1. Located on a different page (possibly accessible via the \"Revisions\" or direct review links)\n2. Not yet loaded in the provided HTML content\n3. Behind an access restriction\n\nTo locate reviews, you would need to visit the full paper page at OpenReview and navigate to the dedicated reviews section, which typically appears below the abstract on the complete submission page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5db4c2e2-f3ad-49f6-865b-d53b62182070",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "eb273f0b-ea99-4c7a-b53f-f7024f87d6db",
+            "sourceToolAssistantUUID": "5db4c2e2-f3ad-49f6-865b-d53b62182070",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-30T06:23:12.406Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TVDjT8jLEbCprcmbX3BnJj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"openreview \"5h9mS87Pyt\" review rating NeurIPS 2025\"\n\nLinks: [{\"title\":\"NeurIPS 2025 | OpenReview\",\"url\":\"https://openreview.net/group?id=NeurIPS.cc%2F2025\"},{\"title\":\"NeurIPS 2025 Position Paper Track | OpenReview\",\"url\":\"https://openreview.net/group?id=NeurIPS.cc%2F2025%2FPosition_Paper_Track\"},{\"title\":\"NeurIPS 2025 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=NeurIPS.cc%2F2025%2FConference\"},{\"title\":\"NeurIPS 2025 Education Program | OpenReview\",\"url\":\"https://openreview.net/group?id=NeurIPS.cc/2025/Education_Program\"},{\"title\":\"NeurIPS 2025 Datasets and Benchmarks Track | OpenReview\",\"url\":\"https://openreview.net/group?id=NeurIPS.cc%2F2025%2FDatasets_and_Benchmarks_Track\"},{\"title\":\"2025 Reviewer Guidelines\",\"url\":\"https://neurips.cc/Conferences/2025/ReviewerGuidelines\"},{\"title\":\"NeurIPS | OpenReview\",\"url\":\"https://openreview.net/group?id=NeurIPS.cc\"},{\"title\":\"OpenReviewer: A Specialized Large Language Model for Generating Critical   Scientific Paper Reviews\",\"url\":\"https://arxiv.org/pdf/2412.11948\"},{\"title\":\"What Drives Paper Acceptance? A Process-Centric Analysis of Modern Peer Review\",\"url\":\"https://arxiv.org/pdf/2509.25701\"}]\n\nThe search results don't contain specific information about the paper with ID \"5h9mS87Pyt\" or its review ratings for NeurIPS 2025. The results show general OpenReview pages for NeurIPS 2025 and related academic review information, but not the specific submission you're asking about.\n\nTo find this specific paper and its review information, you would need to:\n1. Visit the OpenReview website directly at openreview.net\n2. Search for the paper ID \"5h9mS87Pyt\" in the NeurIPS 2025 submissions\n3. Access the paper's detail page, which would show the reviews and ratings if they are publicly available\n\nThe specific review rating for that paper submission is not available in the general search results. You may need to access OpenReview directly to see the detailed review information, depending on the visibility settings of the submission.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c07deed-b33d-4746-813c-f7ab293114c2",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "3105b861-1b0c-47cc-9af5-624bd9f9f3c7",
+            "sourceToolAssistantUUID": "7c07deed-b33d-4746-813c-f7ab293114c2",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-30T06:23:14.014Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BLXdZuzu3iw6RdLvcEYryd",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Atlas of In-Context Learning\" Kahardipraja review strengths weaknesses NeurIPS\"\n\nLinks: [{\"title\":\"GitHub - pkhdipraja/in-context-atlas: Code for \\\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\\\", NeurIPS 2025 · GitHub\",\"url\":\"https://github.com/pkhdipraja/in-context-atlas\"},{\"title\":\"The Atlas of In-Context Learning: How Attention\",\"url\":\"https://neurips.cc/media/neurips-2025/Slides/119839.pdf\"},{\"title\":\"NeurIPS 2025 Thursday 12/4\",\"url\":\"https://neurips.cc/virtual/2025/loc/mexico-city/day/12/4\"},{\"title\":\"(PDF) The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://www.researchgate.net/publication/391953765_The_Atlas_of_In-Context_Learning_How_Attention_Heads_Shape_In-Context_Retrieval_Augmentation\"},{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/html/2505.15807v1\"},{\"title\":\"[2505.15807] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807\"},{\"title\":\"[2505.15807v1] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807v1\"},{\"title\":\"NeurIPS Poster The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://neurips.cc/virtual/2025/poster/119839\"}]\n\nBased on the search results, I found information about the \"Atlas of In-Context Learning\" paper by Kahardipraja and colleagues at NeurIPS 2025, but the results don't contain specific peer review feedback about strengths and weaknesses. Let me provide you with what I found:\n\n## Paper Overview\n\nThe paper is titled \"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\" by Patrick Kahardipraja, Reduan Achtibat, Thomas Wiegand, Wojciech Samek, and Sebastian Lapuschkin, accepted at NeurIPS 2025.\n\n## Main Contributions\n\nThe authors propose an attribution-based method to identify specialized attention heads, revealing in-context heads that comprehend instructions and retrieve relevant contextual information, and parametric heads that store entities' relational knowledge. They extract function vectors and modify their attention weights to show how they can influence the answer generation process.\n\n## Research Focus\n\nLarge language models are able to exploit in-context learning to access external knowledge beyond their training data through retrieval-augmentation, but its inner workings remain unclear. The work sheds light on the mechanism of in-context retrieval augmentation for question answering by viewing a prompt as a composition of informational components.\n\n**Note:** The search results don't contain detailed peer review feedback with specific strengths and weaknesses. To find official reviews, you would need to check the OpenReview page for NeurIPS 2025 (referenced in the paper's citation) or contact the conference directly.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "410e46c9-80ec-4092-8730-a738e00d9c74",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "be9f3f3d-107e-479d-91e9-c6ad4a972eb8",
+            "sourceToolAssistantUUID": "410e46c9-80ec-4092-8730-a738e00d9c74",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-30T06:23:17.330Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me try to access the OpenReview API directly for reviews, and also get the presentation slides and more paper details."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be9f3f3d-107e-479d-91e9-c6ad4a972eb8",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGoaW28ZDtnzyCVCv3i",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "07865865-281b-44fe-9c21-06e18ed402b4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U67EZh4CD1HdSpfG7hEenR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2284,
+                "cache_read_input_tokens": 14889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2284,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-30T06:23:19.835Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KnNfCeFKXtZAJd1HQ9jYqS",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://api.openreview.net/notes?forum=5h9mS87Pyt",
+                "prompt": "Extract all review content from this API response. Look for official reviews with ratings, confidence scores, strengths, weaknesses, questions, and any other review-related fields. Include the full text of each review."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07865865-281b-44fe-9c21-06e18ed402b4",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGoaW28ZDtnzyCVCv3i",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ac3ffc31-f517-4d2b-b3b3-0ec68b90b9f0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U67EZh4CD1HdSpfG7hEenR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2284,
+                "cache_read_input_tokens": 14889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2284,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-30T06:23:22.137Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KnNfCeFKXtZAJd1HQ9jYqS",
+              "type": "tool_result",
+              "content": "# Review Content Extraction\n\nBased on the API response provided, there is **no review content to extract**.\n\nThe response shows:\n- An empty notes array (`\"notes\":[]`)\n- A count of zero (`\"count\":0`)\n- Data retrieved from cache (`\"fromCache\":true`)\n\nThis indicates the API returned no reviews, ratings, confidence scores, strengths, weaknesses, questions, or other review-related fields. The dataset contains no substantive review information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac3ffc31-f517-4d2b-b3b3-0ec68b90b9f0",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "7b7e2496-84b1-4f5b-b399-1887f99303c3",
+            "sourceToolAssistantUUID": "ac3ffc31-f517-4d2b-b3b3-0ec68b90b9f0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-30T06:23:24.799Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012ocn4QndrqCsXTn9zuuiDb",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2505.15807v2",
+                "prompt": "Focus on extracting:\n1. The EXACT details about the 94% AUC linear probe - what is being probed, what features are used, what is the classification task\n2. The EXACT procedure for function vector extraction - step by step\n3. How they demonstrate steering/intervention via function vectors - what experiments do they run\n4. The knowledge source tracing methodology in detail\n5. Any comparison to prior work on induction heads, retrieval heads\n6. Details about the contrastive/counterfactual setup for separating head types\n7. The biography dataset construction\n8. Any discussion of related work on function vectors (Todd et al.)\n9. Specific layer ranges where in-context vs parametric heads concentrate"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b7e2496-84b1-4f5b-b399-1887f99303c3",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGoaW28ZDtnzyCVCv3i",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b8a0b03a-3d8b-47f1-93ef-799afab93b81",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U67EZh4CD1HdSpfG7hEenR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2284,
+                "cache_read_input_tokens": 14889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2284,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-30T06:23:43.147Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012ocn4QndrqCsXTn9zuuiDb",
+              "type": "tool_result",
+              "content": "# Atlas of In-Context Learning: Key Technical Details\n\n## 1. Linear Probe for Source Classification (94% AUC)\n\n**Classification Task & Features:**\nThe probe distinguishes whether generated tokens derive from contextual vs. parametric knowledge. It uses retrieval head outputs at the final token position, converted via logit lens (Equation 10) to score how strongly each head \"writes\" a given token into the residual stream.\n\n**Training Setup:**\n\"Each retrieval head's output at the last token's position...is decoded via logit lens, converting each head's activation into a score for token t∈ℕ using the model's unembedding matrix.\"\n\nThe probe trains via linear regression on NQ-Swap with counterfactual contexts, yielding weights {wh} across retrieval heads. Performance: ≥94% ROC AUC across models.\n\n---\n\n## 2. Function Vector Extraction (Step-by-Step)\n\nThe authors follow Todd et al.'s approach of computing FVs as individual head outputs scaled by scalar α:\n\n1. **Task Heads**: Extract FVs from ℋ_task for four biography dataset questions covering all attributes\n2. **Parametric Heads**: Extract FVs from ℋ_param, restricted to cases where closed-book answers are correct\n3. **Retrieval Heads**: For needle-in-haystack experiments, increase attention weights of ℋ_ret heads on needle tokens\n\nFVs are inserted \"to another biographical entry without a question at the final token position, and also for all subsequent token generations.\"\n\n---\n\n## 3. Steering/Intervention Experiments\n\n**Task Heads Zero-Shot Induction:**\nInsert task FVs into unrelated biographical entries; measure whether responses align with original questions. Result: 94.75% recall (Llama), vs. 18% random baseline—78.75 point improvement.\n\n**Parametric Head Attribution:**\nExtract FVs from one entity's attributes; inject into question prompts for different individuals. Measure if generated responses recover original entity attributes. Result: 38.84% recall vs. 6.68% random.\n\n**Retrieval Head Copying:**\n\"Increase the attention weights of all heads in ℋ_ret on every token of the needle to force the model to copy.\" Achievement: 93.45% recall vs. 15.94% random baseline.\n\n---\n\n## 4. Knowledge Source Tracing Methodology\n\n**Step 1 - Detection:**\nTrain linear probe on NQ-Swap counterfactual contexts to classify whether first answer token is contextual or parametric.\n\n**Step 2 - Localization:**\nAggregate retrieval head attention maps using probe weights and logit-lens scores:\n\nk̂ = argmax_j Σ(h∈ℋ_ret) w_h·ℒ(z_S^h|t)·A_S,j^h\n\nBaseline comparison: AttnLRP backward pass achieves 97-99% localization accuracy; probe achieves 84-96%.\n\n---\n\n## 5. Distinguishing Head Types: Contrastive Setup\n\n**Open-Book vs. Closed-Book Contrast:**\nIn-context heads maximize contribution under open-book (contextual) conditions; parametric heads under closed-book (no context). The difference score 𝒟 captures this:\n\n𝒟 = {𝔼[ℛ^h(y_cf)] - 𝔼[ℛ^h(y_gold)]}\n\nwhere y_cf is counterfactual output and y_gold is gold reference. Top 100 heads with highest/lowest scores identify each category.\n\n---\n\n## 6. Biography Dataset\n\n**Construction:**\n\"Using Wikidata, we collect profiles for random 4,255 notable individuals containing their date of birth, birth place, educational institute attended, and occupation. We concatenate the attributes...in random order to form a biographical entry and ask Llama-3.1-8B-Instruct to paraphrase it.\"\n\nPurpose: Enable controlled experiments isolating function vector behaviors with known ground truth.\n\n---\n\n## 7. Functional Specialization Within In-Context Heads\n\nThe authors identify two sub-categories via relevance aggregation:\n\n**Task Heads (ℋ_task):**\nEncode intensional frames (question semantics). Relevance peaks in middle layers where \"question token positions\" aggregate via ρ_task^h.\n\n**Retrieval Heads (ℋ_ret):**\nExtract answer objects from context. Relevance peaks in deeper layers where \"answer object tokens\" aggregate via ρ_ret^h.\n\nSelection: \"Rank heads by their aggregated relevance and select the top K.\"\n\n---\n\n## 8. Comparison to Prior Work\n\n**vs. Induction Heads:**\nThe paper distinguishes from classical induction head mechanisms (token pattern replication). In-context heads here operate on semantic prompt components, not just sequences.\n\n**vs. Attention Weight Methods:**\n\"Removing 20 in-context heads results in roughly similar reduction of recall as removing 100 AWR heads\"—demonstrating superiority over attention-weight-only baselines (Wu et al.).\n\n**Todd et al. (Function Vectors):**\nThe paper extends Todd et al.'s FV framework by showing task/retrieval/parametric heads can each be compressed to FVs and inserted across different contexts to induce targeted behaviors.\n\n---\n\n## 9. Layer Concentration\n\n**Parametric Heads:**\nConcentrated in early layers; early parametric heads \"enrich the question with relational knowledge.\"\n\n**Task Heads:**\nDominate middle layers where task relevance peaks; aligns with \"transition to context-dependent reasoning.\"\n\n**Retrieval Heads:**\nConcentrate in deeper layers; retrieve answer objects at the point \"where the model extracts the final answer object.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8a0b03a-3d8b-47f1-93ef-799afab93b81",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "5acad8c9-32b3-4725-a8fc-6eb58123a035",
+            "sourceToolAssistantUUID": "b8a0b03a-3d8b-47f1-93ef-799afab93b81",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-30T06:23:46.662Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have extensive technical details. Let me now try to get the reviews from OpenReview using a different API endpoint, and also look at the GitHub repo and any discussions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5acad8c9-32b3-4725-a8fc-6eb58123a035",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGqjFBYFDr8XAEb9DnZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8bbfb7ce-2f1e-4e51-9ae6-3485522aa04d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013X5QsN7LQ4JDUueAvFf5Xj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1904,
+                "cache_read_input_tokens": 17173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1904,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-30T06:23:49.074Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V49mriVD7BvuYY47f6qtf4",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://api.openreview.net/notes?forum=5h9mS87Pyt&details=replies",
+                "prompt": "Extract all review content, ratings, and discussion from this API response. Look for any nested replies or review data."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bbfb7ce-2f1e-4e51-9ae6-3485522aa04d",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGqjFBYFDr8XAEb9DnZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5e70c5ff-0738-4391-9d7f-875bc15ec74a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013X5QsN7LQ4JDUueAvFf5Xj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1904,
+                "cache_read_input_tokens": 17173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1904,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-30T06:23:50.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V49mriVD7BvuYY47f6qtf4",
+              "type": "tool_result",
+              "content": "# API Response Analysis\n\nThe provided API response contains **no review content, ratings, or discussion data**.\n\nThe response shows:\n- An empty notes array\n- A count of zero items\n- A cached result indicator\n\nThere is no nested data, replies, or review information to extract from this endpoint response."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e70c5ff-0738-4391-9d7f-875bc15ec74a",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "e7ff13b7-5f58-41e7-a6dc-951fedb71ca5",
+            "sourceToolAssistantUUID": "5e70c5ff-0738-4391-9d7f-875bc15ec74a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-30T06:23:51.158Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012RaePjGbuErEmhPumkE3Pe",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/pkhdipraja/in-context-atlas",
+                "prompt": "Extract the README content, repository structure, key implementation details, and any usage instructions. What models and datasets are supported? What are the main scripts and their purposes?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e7ff13b7-5f58-41e7-a6dc-951fedb71ca5",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGqjFBYFDr8XAEb9DnZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "26c4031f-634a-4c02-9881-d6d20f29b6a6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013X5QsN7LQ4JDUueAvFf5Xj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1904,
+                "cache_read_input_tokens": 17173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1904,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-30T06:23:51.415Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B2NvAzKSAo1hsNqAe6pUrz",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:openreview.net \"Atlas of In-Context Learning\" review official NeurIPS"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26c4031f-634a-4c02-9881-d6d20f29b6a6",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGqjFBYFDr8XAEb9DnZ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5054f426-43cd-420a-ab74-2671c1438221",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013X5QsN7LQ4JDUueAvFf5Xj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1904,
+                "cache_read_input_tokens": 17173,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1904,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-30T06:23:58.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012RaePjGbuErEmhPumkE3Pe",
+              "type": "tool_result",
+              "content": "# Atlas of In-Context Learning - Repository Overview\n\n## Project Description\nThis repository contains code for research on how attention heads facilitate in-context learning and retrieval augmentation in language models, published at NeurIPS 2025.\n\n## Repository Structure\n\n**Key Directories:**\n- `ablation_infer` - Standard inference implementation with ablation capabilities\n- `analysis_functional` - Task, parametric, and retrieval head experiments\n- `preprocessing` - Head extraction, dataset preprocessing, and relevance computation\n- `model_src` - Model implementations and autoregressive generation\n- `dataset_loader` - Dataset management utilities\n- `configs` - Configuration files (modifiable via `global_path.yml`)\n- `biography` - Wikidata-derived biography dataset (original and paraphrased versions)\n\n## Datasets Supported\n\nThe research uses:\n- **NQ-Swap** (Longpre et al., 2021) - Counterfactual QA dataset\n- **TriviaQA** (Joshi et al., 2017) - MRQA 2019 shared task version\n- Custom biography dataset from Wikidata\n\n## Main Scripts & Purposes\n\n**Inference & Evaluation:**\n- `ablation_infer/main.py` - Standard inference with optional head ablation on NQ-Swap and TriviaQA\n\n**Preprocessing Pipeline:**\n- `preprocessing/score_bem.py` - Filters samples where model predictions are correct\n- `preprocessing/get_relevance.py` - Extracts activation and relevance for attention heads\n- `preprocessing/rank_mean_retrieval_histogram.py` - Scores in-context vs. parametric heads\n- `preprocessing/filter_heads_composition.py` & `preprocessing/save_head_ids.py` - Task/retrieval head identification\n- `preprocessing/extract_softmax_retrieval.py` & `preprocessing/extract_attn_pre_out_retrieval.py` - Probe extraction\n\n## Setup & Requirements\nInstall via `uv sync`. Note: Relevance extraction uses batch size 1; larger batches require left-padding handling."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26c4031f-634a-4c02-9881-d6d20f29b6a6",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "a68fda3e-76a1-4d58-9ada-69794902594c",
+            "sourceToolAssistantUUID": "26c4031f-634a-4c02-9881-d6d20f29b6a6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-30T06:23:58.929Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B2NvAzKSAo1hsNqAe6pUrz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:openreview.net \"Atlas of In-Context Learning\" review official NeurIPS\"\n\nLinks: [{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation | OpenReview\",\"url\":\"https://openreview.net/forum?id=5h9mS87Pyt\"},{\"title\":\"The Atlas of In-Context Learning: How Attention\",\"url\":\"https://openreview.net/pdf/4680606493cfdf0ac8851fe0e353c1878d147253.pdf\"},{\"title\":\"In-context learning enables large language models to achieve human-level performance in spinal instability neoplastic score classification from synthetic CT and MRI reports\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12669255/\"},{\"title\":\"The broader spectrum of in-context learning\",\"url\":\"https://arxiv.org/pdf/2412.03782\"},{\"title\":\"ATLAS: Learning to Optimally Memorize the Context at Test Time\",\"url\":\"https://arxiv.org/pdf/2505.23735\"},{\"title\":\"An Explanation of In-context Learning as Implicit Bayesian Inference\",\"url\":\"https://arxiv.org/pdf/2111.02080\"}]\n\nI found the paper \"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\" on OpenReview. The paper examines how large language models exploit in-context learning for retrieval-augmentation and proposes an attribution-based method to understand the mechanism of in-context retrieval augmentation for question answering.\n\nThe research identifies specialized attention heads, revealing in-context heads that comprehend instructions and retrieve relevant contextual information, and parametric heads that store entities' relational knowledge. The authors extract function vectors and modify attention weights to show how they influence answer generation, and trace the sources of knowledge used during inference to work toward more safe and transparent language models.\n\nThe paper is available at: https://openreview.net/forum?id=5h9mS87Pyt\n\nHowever, I should note that the search results show this paper on OpenReview (dated October 29, 2025), but I didn't find specific official NeurIPS review information in these results. If you need details about the official NeurIPS reviews or acceptance status, I can perform an additional search.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5054f426-43cd-420a-ab74-2671c1438221",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "a12017be-f0d8-4174-add1-facecb3bf1f9",
+            "sourceToolAssistantUUID": "5054f426-43cd-420a-ab74-2671c1438221",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-30T06:24:01.787Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me try one more approach to get the OpenReview reviews, and also search for any blog posts or discussions about this paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a12017be-f0d8-4174-add1-facecb3bf1f9",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGrtUb37VQCBJFtrTZ7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0db596ca-9077-441a-80c3-fcc5ad18539e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N1eZ63j84qK28ta9pHAJwA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1518,
+                "cache_read_input_tokens": 19077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1518,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-30T06:24:03.192Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013hrGPowWj4Uat5wpJaAtFh",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://api.openreview.net/notes/search?forum=5h9mS87Pyt&type=review",
+                "prompt": "Extract any review content from this API response."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0db596ca-9077-441a-80c3-fcc5ad18539e",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGrtUb37VQCBJFtrTZ7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c81c8ed0-8d25-4e34-ae0f-6b69c0787633",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N1eZ63j84qK28ta9pHAJwA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1518,
+                "cache_read_input_tokens": 19077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1518,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-30T06:24:03.360Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013hrGPowWj4Uat5wpJaAtFh",
+              "type": "tool_result",
+              "content": "The server returned HTTP 400 Bad Request.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c81c8ed0-8d25-4e34-ae0f-6b69c0787633",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "b7801d81-d277-45db-a64a-0d19506579e6",
+            "sourceToolAssistantUUID": "c81c8ed0-8d25-4e34-ae0f-6b69c0787633",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-30T06:24:04.132Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016xGdjNgqizjky4sjcavtYK",
+              "name": "WebSearch",
+              "input": {
+                "query": "Kahardipraja \"in-context atlas\" AttnLRP retrieval heads parametric heads blog discussion"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b7801d81-d277-45db-a64a-0d19506579e6",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGrtUb37VQCBJFtrTZ7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "caa50929-288e-4c17-a539-396ac713e836",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N1eZ63j84qK28ta9pHAJwA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1518,
+                "cache_read_input_tokens": 19077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1518,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-30T06:24:05.758Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FmvtbPyE71GYRqPjhcU1nJ",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://neurips.cc/virtual/2025/poster/119839",
+                "prompt": "Extract any information about this poster presentation: abstract, keywords, schedule, session details, and any discussion or comments visible on the page."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "caa50929-288e-4c17-a539-396ac713e836",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGrtUb37VQCBJFtrTZ7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a08073a5-7ff2-423f-9af8-7679009195cf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N1eZ63j84qK28ta9pHAJwA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1518,
+                "cache_read_input_tokens": 19077,
+                "output_tokens": 284,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1518
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 284,
+                    "cache_read_input_tokens": 19077,
+                    "cache_creation_input_tokens": 1518,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1518,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-30T06:24:10.495Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FmvtbPyE71GYRqPjhcU1nJ",
+              "type": "tool_result",
+              "content": "# NeurIPS 2025 Poster Information\n\n**Title:** The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\n\n**Authors:** Patrick Kahardipraja, Reduan Achtibat, Thomas Wiegand, Wojciech Samek, Sebastian Lapuschkin\n\n**Schedule:** Thursday, December 4, 2025 • 11:00 AM – 2:00 PM PST\n\n**Format:** Poster presentation\n\n**Abstract Summary:**\nThe research examines how large language models leverage in-context learning for retrieval-augmented question answering. The team developed an \"attribution-based method to identify specialized attention heads\" that handle instruction comprehension and information retrieval, separate from heads storing relational knowledge. They modified attention weights to demonstrate influence on answer generation and traced knowledge sources during inference to support safer, more transparent language models.\n\n**Available Resources:**\n- Slides (PDF)\n- Poster (PNG)\n- OpenReview forum link for discussion\n\n**Keywords (implied):** in-context learning, attention mechanisms, retrieval augmentation, large language models, interpretability, question answering\n\n**Discussion/Comments:** No visible comment section or discussion threads appear on the provided page content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a08073a5-7ff2-423f-9af8-7679009195cf",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "d2ed514a-9855-4310-9ff7-94c28aeaa648",
+            "sourceToolAssistantUUID": "a08073a5-7ff2-423f-9af8-7679009195cf",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-30T06:24:10.819Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016xGdjNgqizjky4sjcavtYK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Kahardipraja \"in-context atlas\" AttnLRP retrieval heads parametric heads blog discussion\"\n\nLinks: [{\"title\":\"The Atlas of In-Context Learning: How Attention Heads ...\",\"url\":\"https://www.researchgate.net/publication/391953765_The_Atlas_of_In-Context_Learning_How_Attention_Heads_Shape_In-Context_Retrieval_Augmentation/fulltext/682e96b0026fee1034fa06cc/The-Atlas-of-In-Context-Learning-How-Attention-Heads-Shape-In-Context-Retrieval-Augmentation.pdf?origin=scientificContributions\"},{\"title\":\"Performance of the retrieval-head probe across models. | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Performance-of-the-retrieval-head-probe-across-models_tbl1_391953765\"},{\"title\":\"(PDF) The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://www.researchgate.net/publication/391953765_The_Atlas_of_In-Context_Learning_How_Attention_Heads_Shape_In-Context_Retrieval_Augmentation\"},{\"title\":\"GitHub - pkhdipraja/in-context-atlas: Code for \\\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\\\", NeurIPS 2025 · GitHub\",\"url\":\"https://github.com/pkhdipraja/in-context-atlas\"},{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/html/2505.15807v1\"},{\"title\":\"[2505.15807] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807\"},{\"title\":\"[2505.15807v1] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807v1\"},{\"title\":\"The Atlas of In-Context Learning: How Attention\",\"url\":\"https://neurips.cc/media/neurips-2025/Slides/119839.pdf\"}]\n\nBased on the search results, I found information about the research you're asking about:\n\n## \"The Atlas of In-Context Learning\" Research\n\nThe paper \"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\" is by Patrick Kahardipraja and colleagues, and it was accepted for NeurIPS 2025.\n\n### Key Findings\n\nThe research proposes an attribution-based method to identify specialized attention heads, revealing in-context heads that comprehend instructions and retrieve relevant contextual information, and parametric heads that store entities' relational knowledge.\n\n### Methodology\n\nThe researchers leverage AttnLRP to identify both in-context and parametric heads. AttnLRP is used due to its superior performance and efficiency in transformer architectures compared to other attribution methods.\n\n### Resources\n\nThe code for the research is available on GitHub at the repository \"in-context-atlas\", and the insights are leveraged to trace the sources of knowledge used during inference, paving the way towards more safe and transparent language models.\n\nIf you're looking for blog discussions about this work, you may want to check academic blogs or machine learning community platforms that cover NeurIPS 2025 papers, though the search results focused primarily on the academic paper and code repository.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "caa50929-288e-4c17-a539-396ac713e836",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "094638fd-1093-422d-9702-0ebe3827a602",
+            "sourceToolAssistantUUID": "caa50929-288e-4c17-a539-396ac713e836",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-30T06:24:15.878Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me try to access the NeurIPS slides for additional details and search for the ResearchGate page which may have more information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "094638fd-1093-422d-9702-0ebe3827a602",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGsmKFmHN4gierVV5sa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7bdc5aaa-0edf-473e-96ac-cf0f44244e69",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAZYPz1staM4a446PWq2RS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 312,
+                "cache_creation_input_tokens": 1368,
+                "cache_read_input_tokens": 20595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1368,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-30T06:24:16.128Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tfnyey1PchaXw1wt5v1St4",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://www.researchgate.net/publication/391953765_The_Atlas_of_In-Context_Learning_How_Attention_Heads_Shape_In-Context_Retrieval_Augmentation",
+                "prompt": "Extract any additional information about this paper not available on arxiv: citation count, reads, recommendations, any comments or discussions by other researchers, and any supplementary details about the methodology or results."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7bdc5aaa-0edf-473e-96ac-cf0f44244e69",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGsmKFmHN4gierVV5sa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ecd220d2-e791-4e1f-90cd-7ac10b44d5f0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAZYPz1staM4a446PWq2RS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 312,
+                "cache_creation_input_tokens": 1368,
+                "cache_read_input_tokens": 20595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1368,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-30T06:24:16.240Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AHicNcFfoTyX6Z9yYkwnm8",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Atlas of In-Context Learning\" attention heads citation discussion Twitter/X Mastodon"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecd220d2-e791-4e1f-90cd-7ac10b44d5f0",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGsmKFmHN4gierVV5sa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "61330736-2c0e-49d8-a04d-75fb641d5425",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WAZYPz1staM4a446PWq2RS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 312,
+                "cache_creation_input_tokens": 1368,
+                "cache_read_input_tokens": 20595,
+                "output_tokens": 238,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1368
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 312,
+                    "output_tokens": 238,
+                    "cache_read_input_tokens": 20595,
+                    "cache_creation_input_tokens": 1368,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1368,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-30T06:24:16.341Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tfnyey1PchaXw1wt5v1St4",
+              "type": "tool_result",
+              "content": "The server returned HTTP 403 Forbidden.\n\nThe response body was not retrieved. If this URL requires authentication, use an authenticated tool (e.g. `gh` for GitHub, or an MCP-provided fetch tool) instead of WebFetch."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecd220d2-e791-4e1f-90cd-7ac10b44d5f0",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "8ebd60f5-70b7-4872-89b4-498e461343bc",
+            "sourceToolAssistantUUID": "ecd220d2-e791-4e1f-90cd-7ac10b44d5f0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-30T06:24:20.992Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AHicNcFfoTyX6Z9yYkwnm8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Atlas of In-Context Learning\" attention heads citation discussion Twitter/X Mastodon\"\n\nLinks: [{\"title\":\"[Literature Review] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://www.themoonlight.io/en/review/the-atlas-of-in-context-learning-how-attention-heads-shape-in-context-retrieval-augmentation\"},{\"title\":\"(PDF) The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://www.researchgate.net/publication/391953765_The_Atlas_of_In-Context_Learning_How_Attention_Heads_Shape_In-Context_Retrieval_Augmentation\"},{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/html/2505.15807v1\"},{\"title\":\"[2505.15807] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807\"},{\"title\":\"[2505.15807v1] The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://arxiv.org/abs/2505.15807v1\"},{\"title\":\"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation | OpenReview\",\"url\":\"https://openreview.net/forum?id=5h9mS87Pyt\"},{\"title\":\"NeurIPS Poster The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\",\"url\":\"https://neurips.cc/virtual/2025/poster/119839\"}]\n\nI found information about \"The Atlas of In-Context Learning\" paper. Here's what I discovered:\n\n\"The Atlas of In-Context Learning\" proposes an attribution-based method to identify specialized attention heads, revealing in-context heads that comprehend instructions and retrieve relevant contextual information, and parametric heads that store entities' relational knowledge. \n\nThe work sheds light on the mechanism of in-context retrieval augmentation for question answering by viewing a prompt as a composition of informational components, and to better understand their roles, the researchers extract function vectors and modify attention weights to show how they can influence the answer generation process.\n\nThe paper appears to have been published recently (May 2025) and is available on arxiv.org, OpenReview, and was presented at NeurIPS 2025.\n\nHowever, I didn't find specific information about Twitter/X or Mastodon discussions related to this paper in these results. If you're interested in finding social media discussions about this paper, you might want to search directly on those platforms or try a more specific search query focused on social media mentions.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61330736-2c0e-49d8-a04d-75fb641d5425",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "69ad5670-9124-4895-be55-ef685324409d",
+            "sourceToolAssistantUUID": "61330736-2c0e-49d8-a04d-75fb641d5425",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-30T06:24:23.468Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch that literature review page which may contain reviewer-like analysis."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "69ad5670-9124-4895-be55-ef685324409d",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGtWrtHMgyKKhLDGwwm",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dbce40fb-3e93-42b1-af01-1cf1cf400719",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0199s9ows5EfHehyXb4Tdj8h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1370,
+                "cache_read_input_tokens": 21963,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-30T06:24:25.121Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D61oHfqJv6u9V1fYkQRhen",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://www.themoonlight.io/en/review/the-atlas-of-in-context-learning-how-attention-heads-shape-in-context-retrieval-augmentation",
+                "prompt": "Extract the complete review/analysis of this paper. Include all strengths, weaknesses, methodological critiques, and any ratings or assessments provided. Be thorough and include all content."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbce40fb-3e93-42b1-af01-1cf1cf400719",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGtWrtHMgyKKhLDGwwm",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6dbb33c9-44e5-489d-9b99-b00083e97fba",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0199s9ows5EfHehyXb4Tdj8h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1370,
+                "cache_read_input_tokens": 21963,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-30T06:24:29.549Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D61oHfqJv6u9V1fYkQRhen",
+              "type": "tool_result",
+              "content": "# Analysis of \"The Atlas of In-Context Learning\" Paper\n\nBased on the provided content, **no formal review, critique, or assessment is included**. The page contains only a summary of the paper's methodology and findings, not an evaluation.\n\n## What the Content Provides:\n\n**Methodological Overview:**\nThe document describes the paper's core approach using \"Attention-aware Layer-wise Relevance Propagation (AttnLRP)\" to identify specialized attention heads. It explains how researchers categorize heads as either retrieval-based or knowledge-based through comparative analysis across open-book and closed-book settings.\n\n**Key Findings Presented:**\n- Identification of distinct attention head roles (task comprehension vs. retrieval)\n- Verification through ablation studies and patching experiments\n- Application to knowledge provenance tracing in RAG systems\n\n## Notable Absence:\n\nThe summary lacks:\n- Critical evaluation of limitations\n- Comparative analysis with other interpretability approaches\n- Assessment of generalizability beyond tested datasets\n- Discussion of potential weaknesses or unresolved questions\n- Author ratings or peer review commentary\n\n**Conclusion:** This appears to be a descriptive summary rather than a peer review or critical analysis. To obtain actual critiques or assessments of this paper, one would need to consult peer review documents, conference proceedings, or independent analyses from other sources."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dbb33c9-44e5-489d-9b99-b00083e97fba",
+            "isSidechain": true,
+            "promptId": "2ee78392-0cfd-4385-b737-7ca000fb3ec9",
+            "agentId": "a44e078c1edd43ffa",
+            "type": "user",
+            "uuid": "c2df1821-51b0-4ba2-b6b9-0927d45d4b0a",
+            "sourceToolAssistantUUID": "6dbb33c9-44e5-489d-9b99-b00083e97fba",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-30T06:25:37.444Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have extensive information. Let me compile the comprehensive report.\n\n---\n\nHere is my thorough research report on the paper.\n\n---\n\n## \"The Atlas of In-Context Learning: How Attention Heads Shape In-Context Retrieval Augmentation\"\n\n**Authors:** Patrick Kahardipraja, Reduan Achtibat, Thomas Wiegand, Wojciech Samek, Sebastian Lapuschkin  \n**Venue:** NeurIPS 2025 (Poster, presented Thursday December 4, 2025)  \n**arXiv:** [2505.15807](https://arxiv.org/abs/2505.15807) (v1: May 21, 2025; v2: October 27, 2025)  \n**OpenReview:** [5h9mS87Pyt](https://openreview.net/forum?id=5h9mS87Pyt)  \n**Code:** [github.com/pkhdipraja/in-context-atlas](https://github.com/pkhdipraja/in-context-atlas)\n\n---\n\n### Full Abstract\n\n> \"Large language models are able to exploit in-context learning to access external knowledge beyond their training data through retrieval-augmentation. While promising, its inner workings remain unclear. In this work, we shed light on the mechanism of in-context retrieval augmentation for question answering by viewing a prompt as a composition of informational components. We propose an attribution-based method to identify specialized attention heads, revealing in-context heads that comprehend instructions and retrieve relevant contextual information, and parametric heads that store entities' relational knowledge. To better understand their roles, we extract function vectors and modify their attention weights to show how they can influence the answer generation process. Finally, we leverage the gained insights to trace the sources of knowledge used during inference, paving the way towards more safe and transparent language models.\"\n\n---\n\n### Models Studied\n\n- **Llama-3.1-8B-Instruct**\n- **Mistral-7B-Instruct-v0.3**\n- **Gemma-2-9B-it**\n\n### Datasets\n\n- **NQ-Swap** (Longpre et al., 2021) -- oracle contexts, counterfactual contexts, and DPR-retrieved contexts\n- **TriviaQA** (Joshi et al., 2017) -- MRQA 2019 shared task version\n- **Custom biography dataset** -- 4,255 notable individuals from Wikidata with date of birth, birth place, educational institution, and occupation; paraphrased by Llama-3.1-8B-Instruct\n\n---\n\n### Methodology in Detail\n\n#### 1. Attribution-Based Head Identification\n\nThe core technical tool is **AttnLRP (Attention-aware Layer-wise Relevance Propagation)**. The authors chose AttnLRP over raw attention weights because \"attention can be unfaithful\" -- AttnLRP uses stabilization procedures for non-linear operations, improving faithfulness of relevance distributions.\n\nFor each attention head h, they compute a contribution score by summing positive relevance across the head's output dimensions:\n\n**R^h(y_t) = sum_i sum_k R+(z_i^h | y_t)_k**\n\nwhere z^h is the head's latent output and y_t is the target prediction token.\n\n#### 2. Separating In-Context vs. Parametric Heads\n\nThe separation relies on a **contrastive/counterfactual design**:\n\n- **Open-book setting:** The model receives a context passage (including counterfactual contexts where the answer entity has been swapped to force a different answer y_cf)\n- **Closed-book setting:** Contextual information is minimized, so the model must rely on parametric knowledge to produce y_gold\n\nThe **difference score** for each head is:\n\n**D = { E_x_ob[R^h(y_cf)] - E_x_cb[R^h(y_gold)] : h = 1, 2, ..., N_h }**\n\n- Heads with the **highest positive** difference scores are classified as **in-context heads** (they contribute more when context is present)\n- Heads with the **lowest negative** difference scores are classified as **parametric heads** (they contribute more under closed-book conditions)\n\n**Selection threshold:** The top 100 heads (~10-15% of total heads) at each extreme are selected.\n\n#### 3. Further Specialization: Task Heads vs. Retrieval Heads\n\nWithin the in-context head set, they further decompose into sub-categories by aggregating relevance at the token level:\n\n**rho_j^h = sum_i R+(A_{i,j}^h | y_t)**\n\nThen they separate into:\n- **Task heads (H_task):** Relevance aggregated over question/instruction token positions (rho_task^h)\n- **Retrieval heads (H_ret):** Relevance aggregated over answer-containing token positions in the context (rho_ret^h)\n\nHeads are ranked by these scores with hyperparameter K determining the cutoff.\n\n**Layer distribution:**\n- **Parametric heads** concentrate in **early layers** -- they enrich the question representation with relational knowledge\n- **Task heads** dominate **middle layers** -- encoding the intensional frame (question semantics)\n- **Retrieval heads** concentrate in **deeper layers** -- extracting the final answer object from context\n\n#### 4. Function Vector Extraction and Steering\n\nFollowing Todd et al.'s framework, a function vector (FV) is defined as the output of a single task/parametric head scaled by scalar alpha.\n\n**Steering experiments:**\n\n**(a) Task head FVs (zero-shot induction):** Extract FVs from biographical questions, then insert them into an unrelated biographical entry (without any question) at the final token position and for all subsequent generations. Result: **94.75% recall on Llama-3.1** vs. 18% random baseline (a 76.75 percentage point improvement). This shows task heads encode the \"what to ask\" function.\n\n**(b) Parametric head FVs:** Extract FVs from one entity's attributes, inject into question prompts for different individuals. Measures whether the generated response recovers the original entity's attributes. Result: **38.84% recall** vs. 6.68% random baseline.\n\n**(c) Retrieval head attention weight amplification:** Increase the attention weights of all retrieval heads on every token of a \"needle\" passage to force copying. Result: **93.45% recall** vs. 15.94% random baseline.\n\n#### 5. Knowledge Source Tracing (the ~94%+ AUC Linear Probe)\n\nThis is a two-stage system for determining whether a generated answer came from the context or from parametric memory:\n\n**Stage 1 -- Detection (contextual vs. parametric classification):**\n- Each retrieval head's output at the last token position z_S^h is decoded via **logit lens** -- converting each head's activation into a token score using the model's unembedding matrix W_u and layer normalization\n- A **linear probe** (linear regression) is trained on NQ-Swap with counterfactual contexts\n- The probe learns weights {w_h} across retrieval heads\n- **Performance: >= 94% ROC AUC across all three models** (95-98% range reported)\n\n**Stage 2 -- Localization (finding which context token the answer came from):**\n\n**k_hat = argmax_j sum_{h in H_ret} w_h * L(z_S^h | t) * A_{S,j}^h**\n\nThis aggregates retrieval head attention maps weighted by the probe weights and logit-lens scores to point at the source token.\n\n- **Localization accuracy: 84-97% top-1 accuracy** depending on model\n- Baseline comparison: a full AttnLRP backward pass achieves 97-99% but is more expensive; the probe-based approach is much cheaper\n\n#### 6. Ablation Results\n\n- Removing the **top 20 in-context heads** caused **13.86%-63.84%** performance reduction in open-book settings\n- Removing **100 in-context heads** caused **44.26%-68.66%** reduction\n- These effects **transfer across datasets** -- heads identified on NQ-Swap also matter for TriviaQA\n- The attribution-based method identifies more impactful heads than attention-weight-only baselines: \"Removing 20 in-context heads results in roughly similar reduction of recall as removing 100 AWR heads\" (from Wu et al.)\n\n---\n\n### Limitations (as stated by the authors)\n\n1. **MLP interactions:** \"How they interact with components in MLP modules (e.g., knowledge neurons) to induce functions remains an open question\"\n2. **Task generalization:** Analyses are \"mainly centered on QA (with a minor part on MT)\" -- direct transfer of task heads to machine translation proved ineffective\n3. **Head complexity:** \"Several heads exhibit inhibitory effects, and...some intermediate heads are not exclusively specialized for either in-context or parametric roles\"\n4. **Redundancy:** \"There is a possibility for redundant heads...yet to be uncovered\"\n\n---\n\n### Reviewer Comments\n\nI was unable to retrieve the OpenReview reviews. The OpenReview forum page at `https://openreview.net/forum?id=5h9mS87Pyt` exists, but the review content appears to be loaded dynamically via JavaScript and is not accessible through static page fetching or the OpenReview API endpoints I tried (which returned empty results). The NeurIPS 2025 reviews may be behind authentication or the review visibility settings may restrict public access. The paper was accepted as a poster at NeurIPS 2025, confirming it passed peer review.\n\nNo substantial third-party blog posts, Twitter/X threads, or public discussions with critical commentary were found beyond a descriptive summary on themoonlight.io.\n\n---\n\n### Key Takeaways\n\nThe paper's main contribution is a principled, attribution-based taxonomy of attention heads in the context of retrieval-augmented generation. The contrastive setup using counterfactual contexts to separate in-context from parametric heads is methodologically clean. The function vector experiments provide causal evidence for the proposed head roles. The knowledge source tracing probe (94%+ AUC) offers a practical, lightweight method for determining whether a model's answer comes from the provided context or from parametric memory -- directly relevant to RAG trustworthiness and hallucination detection.\n\nSources:\n- [arXiv Paper](https://arxiv.org/abs/2505.15807)\n- [arXiv HTML Version (v2)](https://arxiv.org/html/2505.15807v2)\n- [OpenReview Forum](https://openreview.net/forum?id=5h9mS87Pyt)\n- [GitHub Repository](https://github.com/pkhdipraja/in-context-atlas)\n- [NeurIPS 2025 Poster Page](https://neurips.cc/virtual/2025/poster/119839)\n- [NeurIPS Presentation Slides (PDF)](https://neurips.cc/media/neurips-2025/Slides/119839.pdf)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2df1821-51b0-4ba2-b6b9-0927d45d4b0a",
+            "isSidechain": true,
+            "agentId": "a44e078c1edd43ffa",
+            "requestId": "req_011CbYGu9PL8LXBNGvJBYYCz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f98f5a1c-fafa-487b-8637-a866d84d46e9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "891017d0-54cb-4a4e-99b8-ba81d1c2655c",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0122R9uUBhsL5jAmTeTmW7jc",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 469,
+                "cache_read_input_tokens": 23333,
+                "output_tokens": 2646,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 469
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2646,
+                    "cache_read_input_tokens": 23333,
+                    "cache_creation_input_tokens": 469,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 469,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-research-the-paper-the-atlas-of-in-context-learning-how-attention-heads-shape.md"
+}

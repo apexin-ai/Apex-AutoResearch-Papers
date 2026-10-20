@@ -1,0 +1,1650 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c390c0ca933aa5c567bd",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-20T23:13:48.577Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ce9bd205-5c33-4d51-9903-b3b7bfdd17d1",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "2bb18a2d-f948-4a47-a4db-124acf672b08",
+                "timestamp": "2026-05-20T23:13:48.577Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-20T23:13:52.052Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SXAbCAJkAHQrsvnxk6L6zn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "tail -20 /home/sonny/causal_annot_error_attrib/artifacts/plan006/plan006_humaid_run.log",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bb18a2d-f948-4a47-a4db-124acf672b08",
+            "isSidechain": false,
+            "requestId": "req_011CbEfn4AUHVhfDu3qo8HES",
+            "type": "assistant",
+            "uuid": "5d518cf0-2ccd-40ee-bd50-f71f05f7b9d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019BHhvkqCEGFqAbgKf2R8Pd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 309,
+                "cache_read_input_tokens": 74225,
+                "output_tokens": 138,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 309,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 138,
+                    "cache_read_input_tokens": 74225,
+                    "cache_creation_input_tokens": 309,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 309
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-20T23:13:52.967Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SXAbCAJkAHQrsvnxk6L6zn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    K=10 mediation     tau_true= 0.498223  SE_ref=0.0249\\\\n    K=10 collider      tau_true= 0.899714  SE_ref=0.0164\\\\n    K=10 exposure      tau_true= 1.000872  SE_ref=0.0462\\\\n    K=10 mbias         tau_true= 0.441279  SE_ref=0.0142\\\\n    K=10 iv            tau_true= 1.119139  SE_ref=0.4148\\\\n    K=10 frontdoor     tau_true= 0.499387  SE_ref=0.0158\\\\n  63 bias values (0 sign flips)\\\\n\\\\n[3/6] Computing ASV values...\\\\n  189 ASV values (3.7s)\\\\n    magnitude: min=0.307 median=0.688 max=1.114 (32 non-None)\\\\n    significance: min=1.681 median=1.692 max=1.704 (2 non-None)\\\\n\\\\n[4/6] F1 vs bias analysis...\\\\n    humaid/llama4/zero-shot confounding: F1=0.614 |bias|=0.12069570526147011\\\\n    humaid/llama4/zero-shot mediation: F1=0.614 |bias|=0.07307001250379075\\\\n    humaid/llama4/zero-shot collider: F1=0.614 |bias|=0.04595577469197598\\\\n\\\\n[5/6] Type I/II error rates...\\\\n    50/63...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d518cf0-2ccd-40ee-bd50-f71f05f7b9d7",
+            "isSidechain": false,
+            "promptId": "7e53889d-c005-413b-aba7-7b41312b0543",
+            "type": "user",
+            "uuid": "83cbd7d5-b94e-4a80-898d-0fee27329bfa",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    K=10 mediation     tau_true= 0.498223  SE_ref=0.0249\\\\n    K=10 collider      tau_true= 0.899714  SE_ref=0.0164\\\\n    K=10 exposure      tau_true= 1.000872  SE_ref=0.0462\\\\n    K=10 mbias         tau_true= 0.441279  SE_ref=0.0142\\\\n    K=10 iv            tau_true= 1.119139  SE_ref=0.4148\\\\n    K=10 frontdoor     tau_true= 0.499387  SE_ref=0.0158\\\\n  63 bias values (0 sign flips)\\\\n\\\\n[3/6] Computing ASV values...\\\\n  189 ASV values (3.7s)\\\\n    magnitude: min=0.307 median=0.688 max=1.114 (32 non-None)\\\\n    significance: min=1.681 median=1.692 max=1.704 (2 non-None)\\\\n\\\\n[4/6] F1 vs bias analysis...\\\\n    humaid/llama4/zero-shot confounding: F1=0.614 |bias|=0.12069570526147011\\\\n    humaid/llama4/zero-shot mediation: F1=0.614 |bias|=0.07307001250379075\\\\n    humaid/llama4/zero-shot collider: F1=0.614 |bias|=0.04595577469197598\\\\n\\\\n[5/6] Type I/II error rates...\\\\n    50/63...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    K=10 mediation     tau_true= 0.498223  SE_ref=0.0249\\n    K=10 collider      tau_true= 0.899714  SE_ref=0.0164\\n    K=10 exposure      tau_true= 1.000872  SE_ref=0.0462\\n    K=10 mbias         tau_true= 0.441279  SE_ref=0.0142\\n    K=10 iv            tau_true= 1.119139  SE_ref=0.4148\\n    K=10 frontdoor     tau_true= 0.499387  SE_ref=0.0158\\n  63 bias values (0 sign flips)\\n\\n[3/6] Computing ASV values...\\n  189 ASV values (3.7s)\\n    magnitude: min=0.307 median=0.688 max=1.114 (32 non-None)\\n    significance: min=1.681 median=1.692 max=1.704 (2 non-None)\\n\\n[4/6] F1 vs bias analysis...\\n    humaid/llama4/zero-shot confounding: F1=0.614 |bias|=0.12069570526147011\\n    humaid/llama4/zero-shot mediation: F1=0.614 |bias|=0.07307001250379075\\n    humaid/llama4/zero-shot collider: F1=0.614 |bias|=0.04595577469197598\\n\\n[5/6] Type I/II error rates...\\n    50/63...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+              }
+            },
+            "sourceToolAssistantUUID": "5d518cf0-2ccd-40ee-bd50-f71f05f7b9d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-20T23:13:57.137Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VroFahmYA7vECnuaCpUrFB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "tail -5 /home/sonny/causal_annot_error_attrib/artifacts/plan006/plan006_humaid_run.log",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "83cbd7d5-b94e-4a80-898d-0fee27329bfa",
+            "isSidechain": false,
+            "requestId": "req_011CbEfnNwpqCqWfqiLaYuQ7",
+            "type": "assistant",
+            "uuid": "ef0144bc-3c3b-424b-807c-e248f08a2ca9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018VY59fxh9M7c5yBkboRCMP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 624,
+                "cache_read_input_tokens": 74534,
+                "output_tokens": 138,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 624,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 138,
+                    "cache_read_input_tokens": 74534,
+                    "cache_creation_input_tokens": 624,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 624
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-20T23:13:58.084Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VroFahmYA7vECnuaCpUrFB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nSummary:\\\\n  F1>0.93 with high bias: 0.0%\\\\n  PPI++ recommended: 31/63 (49.2%)\\\\n======================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef0144bc-3c3b-424b-807c-e248f08a2ca9",
+            "isSidechain": false,
+            "promptId": "7e53889d-c005-413b-aba7-7b41312b0543",
+            "type": "user",
+            "uuid": "c1552f64-e582-4c03-a192-b47c13dd2b75",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nSummary:\\\\n  F1>0.93 with high bias: 0.0%\\\\n  PPI++ recommended: 31/63 (49.2%)\\\\n======================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\nSummary:\\n  F1>0.93 with high bias: 0.0%\\n  PPI++ recommended: 31/63 (49.2%)\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ef0144bc-3c3b-424b-807c-e248f08a2ca9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-20T23:14:01.813Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。现在读完整日志和结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1552f64-e582-4c03-a192-b47c13dd2b75",
+            "isSidechain": false,
+            "requestId": "req_011CbEfnkpxWdL2z9wXLYD2b",
+            "type": "assistant",
+            "uuid": "0a53eef6-3eea-49a5-ac0a-f595b95faf51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ntp9uyE1YMwjf9wbY39Vq5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 75158,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 259,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 75158,
+                    "cache_creation_input_tokens": 259,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 259
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-20T23:14:02.761Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BndPEBuaZ8g3P9rrs38B5N",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cat /home/sonny/causal_annot_error_attrib/artifacts/plan006/plan006_humaid_run.log",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a53eef6-3eea-49a5-ac0a-f595b95faf51",
+            "isSidechain": false,
+            "requestId": "req_011CbEfnkpxWdL2z9wXLYD2b",
+            "type": "assistant",
+            "uuid": "4c99ac62-28ad-4b5e-9905-66caf578f458",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ntp9uyE1YMwjf9wbY39Vq5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 75158,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 259,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 75158,
+                    "cache_creation_input_tokens": 259,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 259
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-20T23:14:03.287Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Px9LdM3d7WJJVD4o2zreS5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "home-1x5090",
+                "command": "ls -lh /home/sonny/causal_annot_error_attrib/artifacts/plan006/",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c99ac62-28ad-4b5e-9905-66caf578f458",
+            "isSidechain": false,
+            "requestId": "req_011CbEfnkpxWdL2z9wXLYD2b",
+            "type": "assistant",
+            "uuid": "8eec43fd-e998-4d26-ba45-8fd33e8008d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ntp9uyE1YMwjf9wbY39Vq5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 75158,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 259,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 75158,
+                    "cache_creation_input_tokens": 259,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 259
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-20T23:14:03.827Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BndPEBuaZ8g3P9rrs38B5N",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nplan_006: Empirical ASV Calibration\\\\n  Dataset filter: ['humaid']\\\\n======================================================================\\\\n\\\\n[1/6] Loading confusion matrices...\\\\n  9 matrices loaded\\\\n    humaid/llama4/zero-shot: K=10, diag_mean=0.671\\\\n    humaid/llama4/few-shot-3: K=10, diag_mean=0.676\\\\n    humaid/llama4/few-shot-5: K=10, diag_mean=0.688\\\\n\\\\n[2/6] Precomputing sufficient statistics...\\\\n    K=10 confounding   tau_true= 2.000239  SE_ref=0.0130\\\\n    K=10 mediation     tau_true= 0.498223  SE_ref=0.0249\\\\n    K=10 collider      tau_true= 0.899714  SE_ref=0.0164\\\\n    K=10 exposure      tau_true= 1.000872  SE_ref=0.0462\\\\n    K=10 mbias         tau_true= 0.441279  SE_ref=0.0142\\\\n    K=10 iv            tau_true= 1.119139  SE_ref=0.4148\\\\n    K=10 frontdoor     tau_true= 0.499387  SE_ref=0.0158\\\\n  63 bias values (0 sign flips)\\\\n\\\\n[3/6] Computing ASV values...\\\\n  189 ASV values (3.7s)\\\\n    magnitude: min=0.307 median=0.688 max=1.114 (32 non-None)\\\\n    significance: min=1.681 median=1.692 max=1.704 (2 non-None)\\\\n\\\\n[4/6] F1 vs bias analysis...\\\\n    humaid/llama4/zero-shot confounding: F1=0.614 |bias|=0.12069570526147011\\\\n    humaid/llama4/zero-shot mediation: F1=0.614 |bias|=0.07307001250379075\\\\n    humaid/llama4/zero-shot collider: F1=0.614 |bias|=0.04595577469197598\\\\n\\\\n[5/6] Type I/II error rates...\\\\n    50/63...\\\\n  63 records (163.1s)\\\\n  ASV-unsafe: 31/63\\\\n\\\\n[6/6] Inter-model error correlation...\\\\n  9 (dataset, prompt) pairs\\\\n    civil_comments_zero-shot llama4-qwen3: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_zero-shot llama4-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_zero-shot qwen3-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_few-shot-3 llama4-qwen3: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_few-shot-3 llama4-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_few-shot-3 qwen3-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\\\n\\\\nResults saved to artifacts/plan006/asv_empirical_results.json\\\\n/home/sonny/causal_annot_error_attrib/plan_006_asv_empirical.py:848: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.\\\\n  im = ax.imshow(grid, cmap='RdYlGn', aspect='auto',\\\\n/home/sonny/causal_annot_error_attrib/plan_006_asv_empirical.py:848: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.\\\\n  im = ax.imshow(grid, cmap='RdYlGn', aspect='auto',\\\\nPlots saved to artifacts/plan006/\\\\n\\\\nValidation: JSON has 0 null values (expected for NaN/None ASV entries)\\\\n  biases: 63 records\\\\n  asvs: 189 records\\\\n  f1_vs_bias: 63 records\\\\n  type1_type2: 63 records\\\\n\\\\nTotal time: 171.6s (2.9min)\\\\n\\\\nSummary:\\\\n  F1>0.93 with high bias: 0.0%\\\\n  PPI++ recommended: 31/63 (49.2%)\\\\n======================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c99ac62-28ad-4b5e-9905-66caf578f458",
+            "isSidechain": false,
+            "promptId": "7e53889d-c005-413b-aba7-7b41312b0543",
+            "type": "user",
+            "uuid": "4008851e-b99a-423e-8803-b0d9cb6b81cc",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nplan_006: Empirical ASV Calibration\\\\n  Dataset filter: ['humaid']\\\\n======================================================================\\\\n\\\\n[1/6] Loading confusion matrices...\\\\n  9 matrices loaded\\\\n    humaid/llama4/zero-shot: K=10, diag_mean=0.671\\\\n    humaid/llama4/few-shot-3: K=10, diag_mean=0.676\\\\n    humaid/llama4/few-shot-5: K=10, diag_mean=0.688\\\\n\\\\n[2/6] Precomputing sufficient statistics...\\\\n    K=10 confounding   tau_true= 2.000239  SE_ref=0.0130\\\\n    K=10 mediation     tau_true= 0.498223  SE_ref=0.0249\\\\n    K=10 collider      tau_true= 0.899714  SE_ref=0.0164\\\\n    K=10 exposure      tau_true= 1.000872  SE_ref=0.0462\\\\n    K=10 mbias         tau_true= 0.441279  SE_ref=0.0142\\\\n    K=10 iv            tau_true= 1.119139  SE_ref=0.4148\\\\n    K=10 frontdoor     tau_true= 0.499387  SE_ref=0.0158\\\\n  63 bias values (0 sign flips)\\\\n\\\\n[3/6] Computing ASV values...\\\\n  189 ASV values (3.7s)\\\\n    magnitude: min=0.307 median=0.688 max=1.114 (32 non-None)\\\\n    significance: min=1.681 median=1.692 max=1.704 (2 non-None)\\\\n\\\\n[4/6] F1 vs bias analysis...\\\\n    humaid/llama4/zero-shot confounding: F1=0.614 |bias|=0.12069570526147011\\\\n    humaid/llama4/zero-shot mediation: F1=0.614 |bias|=0.07307001250379075\\\\n    humaid/llama4/zero-shot collider: F1=0.614 |bias|=0.04595577469197598\\\\n\\\\n[5/6] Type I/II error rates...\\\\n    50/63...\\\\n  63 records (163.1s)\\\\n  ASV-unsafe: 31/63\\\\n\\\\n[6/6] Inter-model error correlation...\\\\n  9 (dataset, prompt) pairs\\\\n    civil_comments_zero-shot llama4-qwen3: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_zero-shot llama4-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_zero-shot qwen3-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_few-shot-3 llama4-qwen3: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_few-shot-3 llama4-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\\\n    civil_comments_few-shot-3 qwen3-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\\\n\\\\nResults saved to artifacts/plan006/asv_empirical_results.json\\\\n/home/sonny/causal_annot_error_attrib/plan_006_asv_empirical.py:848: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.\\\\n  im = ax.imshow(grid, cmap='RdYlGn', aspect='auto',\\\\n/home/sonny/causal_annot_error_attrib/plan_006_asv_empirical.py:848: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.\\\\n  im = ax.imshow(grid, cmap='RdYlGn', aspect='auto',\\\\nPlots saved to artifacts/plan006/\\\\n\\\\nValidation: JSON has 0 null values (expected for NaN/None ASV entries)\\\\n  biases: 63 records\\\\n  asvs: 189 records\\\\n  f1_vs_bias: 63 records\\\\n  type1_type2: 63 records\\\\n\\\\nTotal time: 171.6s (2.9min)\\\\n\\\\nSummary:\\\\n  F1>0.93 with high bias: 0.0%\\\\n  PPI++ recommended: 31/63 (49.2%)\\\\n======================================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nplan_006: Empirical ASV Calibration\\n  Dataset filter: ['humaid']\\n======================================================================\\n\\n[1/6] Loading confusion matrices...\\n  9 matrices loaded\\n    humaid/llama4/zero-shot: K=10, diag_mean=0.671\\n    humaid/llama4/few-shot-3: K=10, diag_mean=0.676\\n    humaid/llama4/few-shot-5: K=10, diag_mean=0.688\\n\\n[2/6] Precomputing sufficient statistics...\\n    K=10 confounding   tau_true= 2.000239  SE_ref=0.0130\\n    K=10 mediation     tau_true= 0.498223  SE_ref=0.0249\\n    K=10 collider      tau_true= 0.899714  SE_ref=0.0164\\n    K=10 exposure      tau_true= 1.000872  SE_ref=0.0462\\n    K=10 mbias         tau_true= 0.441279  SE_ref=0.0142\\n    K=10 iv            tau_true= 1.119139  SE_ref=0.4148\\n    K=10 frontdoor     tau_true= 0.499387  SE_ref=0.0158\\n  63 bias values (0 sign flips)\\n\\n[3/6] Computing ASV values...\\n  189 ASV values (3.7s)\\n    magnitude: min=0.307 median=0.688 max=1.114 (32 non-None)\\n    significance: min=1.681 median=1.692 max=1.704 (2 non-None)\\n\\n[4/6] F1 vs bias analysis...\\n    humaid/llama4/zero-shot confounding: F1=0.614 |bias|=0.12069570526147011\\n    humaid/llama4/zero-shot mediation: F1=0.614 |bias|=0.07307001250379075\\n    humaid/llama4/zero-shot collider: F1=0.614 |bias|=0.04595577469197598\\n\\n[5/6] Type I/II error rates...\\n    50/63...\\n  63 records (163.1s)\\n  ASV-unsafe: 31/63\\n\\n[6/6] Inter-model error correlation...\\n  9 (dataset, prompt) pairs\\n    civil_comments_zero-shot llama4-qwen3: agree=1.000 kappa=1.000 err_corr=0.000\\n    civil_comments_zero-shot llama4-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\n    civil_comments_zero-shot qwen3-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\n    civil_comments_few-shot-3 llama4-qwen3: agree=1.000 kappa=1.000 err_corr=0.000\\n    civil_comments_few-shot-3 llama4-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\n    civil_comments_few-shot-3 qwen3-deepseek: agree=1.000 kappa=1.000 err_corr=0.000\\n\\nResults saved to artifacts/plan006/asv_empirical_results.json\\n/home/sonny/causal_annot_error_attrib/plan_006_asv_empirical.py:848: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.\\n  im = ax.imshow(grid, cmap='RdYlGn', aspect='auto',\\n/home/sonny/causal_annot_error_attrib/plan_006_asv_empirical.py:848: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.\\n  im = ax.imshow(grid, cmap='RdYlGn', aspect='auto',\\nPlots saved to artifacts/plan006/\\n\\nValidation: JSON has 0 null values (expected for NaN/None ASV entries)\\n  biases: 63 records\\n  asvs: 189 records\\n  f1_vs_bias: 63 records\\n  type1_type2: 63 records\\n\\nTotal time: 171.6s (2.9min)\\n\\nSummary:\\n  F1>0.93 with high bias: 0.0%\\n  PPI++ recommended: 31/63 (49.2%)\\n======================================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+              }
+            },
+            "sourceToolAssistantUUID": "4c99ac62-28ad-4b5e-9905-66caf578f458",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "4008851e-b99a-423e-8803-b0d9cb6b81cc",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43"
+              }
+            }
+          ],
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Run plan_006 ASV empirical calibration with humaid data",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43"
+              }
+            }
+          ],
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-20T23:14:05.055Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Px9LdM3d7WJJVD4o2zreS5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 368K\\\\n-rw-rw-r-- 1 sonny sonny 119K May 20 16:13 asv_empirical_results.json\\\\n-rw-rw-r-- 1 sonny sonny  72K May 20 16:13 asv_heatmap.png\\\\n-rw-rw-r-- 1 sonny sonny 171K May 20 16:13 f1_vs_bias.png\\\\n-rw-rw-r-- 1 sonny sonny 2.9K May 20 16:13 plan006_humaid_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8eec43fd-e998-4d26-ba45-8fd33e8008d1",
+            "isSidechain": false,
+            "promptId": "7e53889d-c005-413b-aba7-7b41312b0543",
+            "type": "user",
+            "uuid": "b2c590cb-f3c2-46c6-817b-16d9116bc239",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 368K\\\\n-rw-rw-r-- 1 sonny sonny 119K May 20 16:13 asv_empirical_results.json\\\\n-rw-rw-r-- 1 sonny sonny  72K May 20 16:13 asv_heatmap.png\\\\n-rw-rw-r-- 1 sonny sonny 171K May 20 16:13 f1_vs_bias.png\\\\n-rw-rw-r-- 1 sonny sonny 2.9K May 20 16:13 plan006_humaid_run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 368K\\n-rw-rw-r-- 1 sonny sonny 119K May 20 16:13 asv_empirical_results.json\\n-rw-rw-r-- 1 sonny sonny  72K May 20 16:13 asv_heatmap.png\\n-rw-rw-r-- 1 sonny sonny 171K May 20 16:13 f1_vs_bias.png\\n-rw-rw-r-- 1 sonny sonny 2.9K May 20 16:13 plan006_humaid_run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8eec43fd-e998-4d26-ba45-8fd33e8008d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-20T23:14:18.185Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The run completed in 2.9 minutes. Now I need to analyze the results in detail. Let me note some issues:\n\n1. **Inter-model correlation bug**: The output shows `civil_comments_zero-shot` and `civil_comments_few-shot-3` in the inter-model correlation results, which is wrong since we filtered to humaid only. The issue is that `compute_inter_model_correlation` still iterates over all datasets in `DATASETS` dict, not just the filtered ones. The function uses `for dataset in DATASETS:` and when a model's key is missing from `confusion_matrices`, it falls back to `true_labels.copy()` — which means perfect agreement (kappa=1.000) for non-existent data.\n\n\n2. **Key findings from the run**: I loaded 9 matrices from humaid with no sign flips detected. The F1>0.93 threshold with high bias returned 0% since humaid's F1 values hover around 0.614. PPI++ was recommended for about half the cases (49.2%), ASV magnitudes ranged from 0.307 to 1.114, and notably the JSON output has zero null values, which seems odd given that ASV typically produces some nulls. Now I'm examining the JSON results to verify the data.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2c590cb-f3c2-46c6-817b-16d9116bc239",
+            "isSidechain": false,
+            "requestId": "req_011CbEfoGhKD5h4PQbR6GbJr",
+            "type": "assistant",
+            "uuid": "07dbda9a-4c4f-484b-9e65-88fc2187f91b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QXpdjjtbYL1DNUkHcEYTVD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1844,
+                "cache_read_input_tokens": 75417,
+                "output_tokens": 1114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1844,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1114,
+                    "cache_read_input_tokens": 75417,
+                    "cache_creation_input_tokens": 1844,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1844
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-20T23:14:18.196Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行成功，2.9 分钟。注意到 inter-model correlation 部分有 bug —— 仍在遍历所有 datasets 而不是 humaid。但核心 bias/ASV/Type I-II 数据是正确的。\n\n现在分析详细结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07dbda9a-4c4f-484b-9e65-88fc2187f91b",
+            "isSidechain": false,
+            "requestId": "req_011CbEfoGhKD5h4PQbR6GbJr",
+            "type": "assistant",
+            "uuid": "c9ed6036-159c-4ed0-ab5f-bc73de1531cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QXpdjjtbYL1DNUkHcEYTVD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1844,
+                "cache_read_input_tokens": 75417,
+                "output_tokens": 1114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1844,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1114,
+                    "cache_read_input_tokens": 75417,
+                    "cache_creation_input_tokens": 1844,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1844
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-20T23:14:26.361Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GaeQ6KBGb5yRqs7JMKAv5J",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cd /home/sonny/causal_annot_error_attrib && python3 -c \"\nimport json, numpy as np\n\nwith open('artifacts/plan006/asv_empirical_results.json') as f:\n    data = json.load(f)\n\n# A) Confusion matrix structure\nprint('='*70)\nprint('A) CONFUSION MATRIX SUMMARY')\nprint('='*70)\nfor key, C_list in data['confusion_matrices'].items():\n    C = np.array(C_list)\n    diag = np.diag(C)\n    print(f'{key}: mean_diag={diag.mean():.3f}, min_diag={diag.min():.3f}, max_diag={diag.max():.3f}')\n    # worst confusion pairs\n    offdiag = C.copy()\n    np.fill_diagonal(offdiag, 0)\n    worst_idx = np.unravel_index(offdiag.argmax(), offdiag.shape)\n    print(f'  worst offdiag: C[{worst_idx[0]},{worst_idx[1]}]={C[worst_idx[0],worst_idx[1]]:.3f}')\n\n# B) F1 vs |bias| table\nprint()\nprint('='*70)\nprint('B) F1 vs |DOWNSTREAM BIAS|')\nprint('='*70)\nprint(f'{\\\"model\\\":<12} {\\\"prompt\\\":<14} {\\\"topology\\\":<14} {\\\"macro_F1\\\":<10} {\\\"w_F1\\\":<10} {\\\"abs_bias\\\":<12} {\\\"bias_pct\\\":<10} {\\\"sign_flip\\\":<8}')\nfor r in sorted(data['f1_vs_bias'], key=lambda x: (x['model'], x['prompt'], x['topology'])):\n    ab = f\\\"{r['abs_bias']:.4f}\\\" if r['abs_bias'] is not None else 'N/A'\n    bp = f\\\"{r['bias_pct']:.1f}%\\\" if r['bias_pct'] is not None else 'N/A'\n    print(f\\\"{r['model']:<12} {r['prompt']:<14} {r['topology']:<14} {r['macro_f1']:.3f}     {r['weighted_f1']:.3f}     {ab:<12} {bp:<10} {r['sign_flip']}\\\")\n\"",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9ed6036-159c-4ed0-ab5f-bc73de1531cf",
+            "isSidechain": false,
+            "requestId": "req_011CbEfoGhKD5h4PQbR6GbJr",
+            "type": "assistant",
+            "uuid": "b10a0aab-071e-4621-8764-7731da564d13",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QXpdjjtbYL1DNUkHcEYTVD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1844,
+                "cache_read_input_tokens": 75417,
+                "output_tokens": 1114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1844,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1114,
+                    "cache_read_input_tokens": 75417,
+                    "cache_creation_input_tokens": 1844,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1844
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-20T23:14:27.330Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GaeQ6KBGb5yRqs7JMKAv5J",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nA) CONFUSION MATRIX SUMMARY\\\\n======================================================================\\\\nhumaid_llama4_zero-shot: mean_diag=0.671, min_diag=0.426, max_diag=1.000\\\\n  worst offdiag: C[6,0]=0.370\\\\nhumaid_llama4_few-shot-3: mean_diag=0.676, min_diag=0.407, max_diag=1.000\\\\n  worst offdiag: C[6,0]=0.407\\\\nhumaid_llama4_few-shot-5: mean_diag=0.688, min_diag=0.415, max_diag=1.000\\\\n  worst offdiag: C[6,0]=0.396\\\\nhumaid_qwen3_zero-shot: mean_diag=0.715, min_diag=0.340, max_diag=1.000\\\\n  worst offdiag: C[6,5]=0.252\\\\nhumaid_qwen3_few-shot-3: mean_diag=0.706, min_diag=0.393, max_diag=1.000\\\\n  worst offdiag: C[6,5]=0.298\\\\nhumaid_qwen3_few-shot-5: mean_diag=0.000, min_diag=0.000, max_diag=0.000\\\\n  worst offdiag: C[0,0]=0.000\\\\nhumaid_deepseek_zero-shot: mean_diag=0.724, min_diag=0.294, max_diag=1.000\\\\n  worst offdiag: C[8,7]=0.228\\\\nhumaid_deepseek_few-shot-3: mean_diag=0.725, min_diag=0.385, max_diag=1.000\\\\n  worst offdiag: C[6,0]=0.250\\\\nhumaid_deepseek_few-shot-5: mean_diag=0.724, min_diag=0.374, max_diag=1.000\\\\n  worst offdiag: C[8,7]=0.268\\\\n\\\\n======================================================================\\\\nB) F1 vs |DOWNSTREAM BIAS|\\\\n======================================================================\\\\nmodel        prompt         topology       macro_F1   w_F1       abs_bias     bias_pct   sign_flip\\\\ndeepseek     few-shot-3     collider       0.686     0.708     0.0499       0.1%       False\\\\ndeepseek     few-shot-3     confounding    0.686     0.708     0.1234       0.1%       False\\\\ndeepseek     few-shot-3     exposure       0.686     0.708     0.1742       0.2%       False\\\\ndeepseek     few-shot-3     frontdoor      0.686     0.708     0.0704       0.1%       False\\\\ndeepseek     few-shot-3     iv             0.686     0.708     0.4655       0.4%       False\\\\ndeepseek     few-shot-3     mbias          0.686     0.708     0.0269       0.1%       False\\\\ndeepseek     few-shot-3     mediation      0.686     0.708     0.0705       0.1%       False\\\\ndeepseek     few-shot-5     collider       0.685     0.715     0.0419       0.0%       False\\\\ndeepseek     few-shot-5     confounding    0.685     0.715     0.1124       0.1%       False\\\\ndeepseek     few-shot-5     exposure       0.685     0.715     0.1605       0.2%       False\\\\ndeepseek     few-shot-5     frontdoor      0.685     0.715     0.0625       0.1%       False\\\\ndeepseek     few-shot-5     iv             0.685     0.715     0.3430       0.3%       False\\\\ndeepseek     few-shot-5     mbias          0.685     0.715     0.0252       0.1%       False\\\\ndeepseek     few-shot-5     mediation      0.685     0.715     0.0612       0.1%       False\\\\ndeepseek     zero-shot      collider       0.690     0.738     0.0384       0.0%       False\\\\ndeepseek     zero-shot      confounding    0.690     0.738     0.0978       0.0%       False\\\\ndeepseek     zero-shot      exposure       0.690     0.738     0.1078       0.1%       False\\\\ndeepseek     zero-shot      frontdoor      0.690     0.738     0.0537       0.1%       False\\\\ndeepseek     zero-shot      iv             0.690     0.738     0.1527       0.1%       False\\\\ndeepseek     zero-shot      mbias          0.690     0.738     0.0223       0.1%       False\\\\ndeepseek     zero-shot      mediation      0.690     0.738     0.0543       0.1%       False\\\\nllama4       few-shot-3     collider       0.616     0.642     0.0467       0.1%       False\\\\nllama4       few-shot-3     confounding    0.616     0.642     0.1205       0.1%       False\\\\nllama4       few-shot-3     exposure       0.616     0.642     0.1222       0.1%       False\\\\nllama4       few-shot-3     frontdoor      0.616     0.642     0.0716       0.1%       False\\\\nllama4       few-shot-3     iv             0.616     0.642     0.4512       0.4%       False\\\\nllama4       few-shot-3     mbias          0.616     0.642     0.0280       0.1%       False\\\\nllama4       few-shot-3     mediation      0.616     0.642     0.0722       0.1%       False\\\\nllama4       few-shot-5     collider       0.624     0.645     0.0464       0.1%       False\\\\nllama4       few-shot-5     confounding    0.624     0.645     0.1234       0.1%       False\\\\nllama4       few-shot-5     exposure       0.624     0.645     0.1236       0.1%       False\\\\nllama4       few-shot-5     frontdoor      0.624     0.645     0.0734       0.1%       False\\\\nllama4       few-shot-5     iv             0.624     0.645     0.4716       0.4%       False\\\\nllama4       few-shot-5     mbias          0.624     0.645     0.0285       0.1%       False\\\\nllama4       few-shot-5     mediation      0.624     0.645     0.0738       0.1%       False\\\\nllama4       zero-shot      collider       0.614     0.647     0.0460       0.1%       False\\\\nllama4       zero-shot      confounding    0.614     0.647     0.1207       0.1%       False\\\\nllama4       zero-shot      exposure       0.614     0.647     0.1180       0.1%       False\\\\nllama4       zero-shot      frontdoor      0.614     0.647     0.0722       0.1%       False\\\\nllama4       zero-shot      iv             0.614     0.647     0.4492       0.4%       False\\\\nllama4       zero-shot      mbias          0.614     0.647     0.0279       0.1%       False\\\\nllama4       zero-shot      mediation      0.614     0.647     0.0731       0.1%       False\\\\nqwen3        few-shot-3     collider       0.675     0.723     0.0417       0.0%       False\\\\nqwen3        few-shot-3     confounding    0.675     0.723     0.1133       0.1%       False\\\\nqwen3        few-shot-3     exposure       0.675     0.723     0.0899       0.1%       False\\\\nqwen3        few-shot-3     frontdoor      0.675     0.723     0.0668       0.1%       False\\\\nqwen3        few-shot-3     iv             0.675     0.723     0.2416       0.2%       False\\\\nqwen3        few-shot-3     mbias          0.675     0.723     0.0276       0.1%       False\\\\nqwen3        few-shot-3     mediation      0.675     0.723     0.0648       0.1%       False\\\\nqwen3        few-shot-5     collider       0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     confounding    0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     exposure       0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     frontdoor      0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     iv             0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     mbias          0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     mediation      0.000     0.000     N/A          N/A        False\\\\nqwen3        zero-shot      collider       0.678     0.726     0.0370       0.0%       False\\\\nqwen3        zero-shot      confounding    0.678     0.726     0.0983       0.0%       False\\\\nqwen3        zero-shot      exposure       0.678     0.726     0.1004       0.1%       False\\\\nqwen3        zero-shot      frontdoor      0.678     0.726     0.0558       0.1%       False\\\\nqwen3        zero-shot      iv             0.678     0.726     0.1384       0.1%       False\\\\nqwen3        zero-shot      mbias          0.678     0.726     0.0241       0.1%       False\\\\nqwen3        zero-shot      mediation      0.678     0.726     0.0538       0.1%       False\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b10a0aab-071e-4621-8764-7731da564d13",
+            "isSidechain": false,
+            "promptId": "7e53889d-c005-413b-aba7-7b41312b0543",
+            "type": "user",
+            "uuid": "90f6db40-2d8c-4a7f-8290-c4bd91d06505",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nA) CONFUSION MATRIX SUMMARY\\\\n======================================================================\\\\nhumaid_llama4_zero-shot: mean_diag=0.671, min_diag=0.426, max_diag=1.000\\\\n  worst offdiag: C[6,0]=0.370\\\\nhumaid_llama4_few-shot-3: mean_diag=0.676, min_diag=0.407, max_diag=1.000\\\\n  worst offdiag: C[6,0]=0.407\\\\nhumaid_llama4_few-shot-5: mean_diag=0.688, min_diag=0.415, max_diag=1.000\\\\n  worst offdiag: C[6,0]=0.396\\\\nhumaid_qwen3_zero-shot: mean_diag=0.715, min_diag=0.340, max_diag=1.000\\\\n  worst offdiag: C[6,5]=0.252\\\\nhumaid_qwen3_few-shot-3: mean_diag=0.706, min_diag=0.393, max_diag=1.000\\\\n  worst offdiag: C[6,5]=0.298\\\\nhumaid_qwen3_few-shot-5: mean_diag=0.000, min_diag=0.000, max_diag=0.000\\\\n  worst offdiag: C[0,0]=0.000\\\\nhumaid_deepseek_zero-shot: mean_diag=0.724, min_diag=0.294, max_diag=1.000\\\\n  worst offdiag: C[8,7]=0.228\\\\nhumaid_deepseek_few-shot-3: mean_diag=0.725, min_diag=0.385, max_diag=1.000\\\\n  worst offdiag: C[6,0]=0.250\\\\nhumaid_deepseek_few-shot-5: mean_diag=0.724, min_diag=0.374, max_diag=1.000\\\\n  worst offdiag: C[8,7]=0.268\\\\n\\\\n======================================================================\\\\nB) F1 vs |DOWNSTREAM BIAS|\\\\n======================================================================\\\\nmodel        prompt         topology       macro_F1   w_F1       abs_bias     bias_pct   sign_flip\\\\ndeepseek     few-shot-3     collider       0.686     0.708     0.0499       0.1%       False\\\\ndeepseek     few-shot-3     confounding    0.686     0.708     0.1234       0.1%       False\\\\ndeepseek     few-shot-3     exposure       0.686     0.708     0.1742       0.2%       False\\\\ndeepseek     few-shot-3     frontdoor      0.686     0.708     0.0704       0.1%       False\\\\ndeepseek     few-shot-3     iv             0.686     0.708     0.4655       0.4%       False\\\\ndeepseek     few-shot-3     mbias          0.686     0.708     0.0269       0.1%       False\\\\ndeepseek     few-shot-3     mediation      0.686     0.708     0.0705       0.1%       False\\\\ndeepseek     few-shot-5     collider       0.685     0.715     0.0419       0.0%       False\\\\ndeepseek     few-shot-5     confounding    0.685     0.715     0.1124       0.1%       False\\\\ndeepseek     few-shot-5     exposure       0.685     0.715     0.1605       0.2%       False\\\\ndeepseek     few-shot-5     frontdoor      0.685     0.715     0.0625       0.1%       False\\\\ndeepseek     few-shot-5     iv             0.685     0.715     0.3430       0.3%       False\\\\ndeepseek     few-shot-5     mbias          0.685     0.715     0.0252       0.1%       False\\\\ndeepseek     few-shot-5     mediation      0.685     0.715     0.0612       0.1%       False\\\\ndeepseek     zero-shot      collider       0.690     0.738     0.0384       0.0%       False\\\\ndeepseek     zero-shot      confounding    0.690     0.738     0.0978       0.0%       False\\\\ndeepseek     zero-shot      exposure       0.690     0.738     0.1078       0.1%       False\\\\ndeepseek     zero-shot      frontdoor      0.690     0.738     0.0537       0.1%       False\\\\ndeepseek     zero-shot      iv             0.690     0.738     0.1527       0.1%       False\\\\ndeepseek     zero-shot      mbias          0.690     0.738     0.0223       0.1%       False\\\\ndeepseek     zero-shot      mediation      0.690     0.738     0.0543       0.1%       False\\\\nllama4       few-shot-3     collider       0.616     0.642     0.0467       0.1%       False\\\\nllama4       few-shot-3     confounding    0.616     0.642     0.1205       0.1%       False\\\\nllama4       few-shot-3     exposure       0.616     0.642     0.1222       0.1%       False\\\\nllama4       few-shot-3     frontdoor      0.616     0.642     0.0716       0.1%       False\\\\nllama4       few-shot-3     iv             0.616     0.642     0.4512       0.4%       False\\\\nllama4       few-shot-3     mbias          0.616     0.642     0.0280       0.1%       False\\\\nllama4       few-shot-3     mediation      0.616     0.642     0.0722       0.1%       False\\\\nllama4       few-shot-5     collider       0.624     0.645     0.0464       0.1%       False\\\\nllama4       few-shot-5     confounding    0.624     0.645     0.1234       0.1%       False\\\\nllama4       few-shot-5     exposure       0.624     0.645     0.1236       0.1%       False\\\\nllama4       few-shot-5     frontdoor      0.624     0.645     0.0734       0.1%       False\\\\nllama4       few-shot-5     iv             0.624     0.645     0.4716       0.4%       False\\\\nllama4       few-shot-5     mbias          0.624     0.645     0.0285       0.1%       False\\\\nllama4       few-shot-5     mediation      0.624     0.645     0.0738       0.1%       False\\\\nllama4       zero-shot      collider       0.614     0.647     0.0460       0.1%       False\\\\nllama4       zero-shot      confounding    0.614     0.647     0.1207       0.1%       False\\\\nllama4       zero-shot      exposure       0.614     0.647     0.1180       0.1%       False\\\\nllama4       zero-shot      frontdoor      0.614     0.647     0.0722       0.1%       False\\\\nllama4       zero-shot      iv             0.614     0.647     0.4492       0.4%       False\\\\nllama4       zero-shot      mbias          0.614     0.647     0.0279       0.1%       False\\\\nllama4       zero-shot      mediation      0.614     0.647     0.0731       0.1%       False\\\\nqwen3        few-shot-3     collider       0.675     0.723     0.0417       0.0%       False\\\\nqwen3        few-shot-3     confounding    0.675     0.723     0.1133       0.1%       False\\\\nqwen3        few-shot-3     exposure       0.675     0.723     0.0899       0.1%       False\\\\nqwen3        few-shot-3     frontdoor      0.675     0.723     0.0668       0.1%       False\\\\nqwen3        few-shot-3     iv             0.675     0.723     0.2416       0.2%       False\\\\nqwen3        few-shot-3     mbias          0.675     0.723     0.0276       0.1%       False\\\\nqwen3        few-shot-3     mediation      0.675     0.723     0.0648       0.1%       False\\\\nqwen3        few-shot-5     collider       0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     confounding    0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     exposure       0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     frontdoor      0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     iv             0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     mbias          0.000     0.000     N/A          N/A        False\\\\nqwen3        few-shot-5     mediation      0.000     0.000     N/A          N/A        False\\\\nqwen3        zero-shot      collider       0.678     0.726     0.0370       0.0%       False\\\\nqwen3        zero-shot      confounding    0.678     0.726     0.0983       0.0%       False\\\\nqwen3        zero-shot      exposure       0.678     0.726     0.1004       0.1%       False\\\\nqwen3        zero-shot      frontdoor      0.678     0.726     0.0558       0.1%       False\\\\nqwen3        zero-shot      iv             0.678     0.726     0.1384       0.1%       False\\\\nqwen3        zero-shot      mbias          0.678     0.726     0.0241       0.1%       False\\\\nqwen3        zero-shot      mediation      0.678     0.726     0.0538       0.1%       False\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nA) CONFUSION MATRIX SUMMARY\\n======================================================================\\nhumaid_llama4_zero-shot: mean_diag=0.671, min_diag=0.426, max_diag=1.000\\n  worst offdiag: C[6,0]=0.370\\nhumaid_llama4_few-shot-3: mean_diag=0.676, min_diag=0.407, max_diag=1.000\\n  worst offdiag: C[6,0]=0.407\\nhumaid_llama4_few-shot-5: mean_diag=0.688, min_diag=0.415, max_diag=1.000\\n  worst offdiag: C[6,0]=0.396\\nhumaid_qwen3_zero-shot: mean_diag=0.715, min_diag=0.340, max_diag=1.000\\n  worst offdiag: C[6,5]=0.252\\nhumaid_qwen3_few-shot-3: mean_diag=0.706, min_diag=0.393, max_diag=1.000\\n  worst offdiag: C[6,5]=0.298\\nhumaid_qwen3_few-shot-5: mean_diag=0.000, min_diag=0.000, max_diag=0.000\\n  worst offdiag: C[0,0]=0.000\\nhumaid_deepseek_zero-shot: mean_diag=0.724, min_diag=0.294, max_diag=1.000\\n  worst offdiag: C[8,7]=0.228\\nhumaid_deepseek_few-shot-3: mean_diag=0.725, min_diag=0.385, max_diag=1.000\\n  worst offdiag: C[6,0]=0.250\\nhumaid_deepseek_few-shot-5: mean_diag=0.724, min_diag=0.374, max_diag=1.000\\n  worst offdiag: C[8,7]=0.268\\n\\n======================================================================\\nB) F1 vs |DOWNSTREAM BIAS|\\n======================================================================\\nmodel        prompt         topology       macro_F1   w_F1       abs_bias     bias_pct   sign_flip\\ndeepseek     few-shot-3     collider       0.686     0.708     0.0499       0.1%       False\\ndeepseek     few-shot-3     confounding    0.686     0.708     0.1234       0.1%       False\\ndeepseek     few-shot-3     exposure       0.686     0.708     0.1742       0.2%       False\\ndeepseek     few-shot-3     frontdoor      0.686     0.708     0.0704       0.1%       False\\ndeepseek     few-shot-3     iv             0.686     0.708     0.4655       0.4%       False\\ndeepseek     few-shot-3     mbias          0.686     0.708     0.0269       0.1%       False\\ndeepseek     few-shot-3     mediation      0.686     0.708     0.0705       0.1%       False\\ndeepseek     few-shot-5     collider       0.685     0.715     0.0419       0.0%       False\\ndeepseek     few-shot-5     confounding    0.685     0.715     0.1124       0.1%       False\\ndeepseek     few-shot-5     exposure       0.685     0.715     0.1605       0.2%       False\\ndeepseek     few-shot-5     frontdoor      0.685     0.715     0.0625       0.1%       False\\ndeepseek     few-shot-5     iv             0.685     0.715     0.3430       0.3%       False\\ndeepseek     few-shot-5     mbias          0.685     0.715     0.0252       0.1%       False\\ndeepseek     few-shot-5     mediation      0.685     0.715     0.0612       0.1%       False\\ndeepseek     zero-shot      collider       0.690     0.738     0.0384       0.0%       False\\ndeepseek     zero-shot      confounding    0.690     0.738     0.0978       0.0%       False\\ndeepseek     zero-shot      exposure       0.690     0.738     0.1078       0.1%       False\\ndeepseek     zero-shot      frontdoor      0.690     0.738     0.0537       0.1%       False\\ndeepseek     zero-shot      iv             0.690     0.738     0.1527       0.1%       False\\ndeepseek     zero-shot      mbias          0.690     0.738     0.0223       0.1%       False\\ndeepseek     zero-shot      mediation      0.690     0.738     0.0543       0.1%       False\\nllama4       few-shot-3     collider       0.616     0.642     0.0467       0.1%       False\\nllama4       few-shot-3     confounding    0.616     0.642     0.1205       0.1%       False\\nllama4       few-shot-3     exposure       0.616     0.642     0.1222       0.1%       False\\nllama4       few-shot-3     frontdoor      0.616     0.642     0.0716       0.1%       False\\nllama4       few-shot-3     iv             0.616     0.642     0.4512       0.4%       False\\nllama4       few-shot-3     mbias          0.616     0.642     0.0280       0.1%       False\\nllama4       few-shot-3     mediation      0.616     0.642     0.0722       0.1%       False\\nllama4       few-shot-5     collider       0.624     0.645     0.0464       0.1%       False\\nllama4       few-shot-5     confounding    0.624     0.645     0.1234       0.1%       False\\nllama4       few-shot-5     exposure       0.624     0.645     0.1236       0.1%       False\\nllama4       few-shot-5     frontdoor      0.624     0.645     0.0734       0.1%       False\\nllama4       few-shot-5     iv             0.624     0.645     0.4716       0.4%       False\\nllama4       few-shot-5     mbias          0.624     0.645     0.0285       0.1%       False\\nllama4       few-shot-5     mediation      0.624     0.645     0.0738       0.1%       False\\nllama4       zero-shot      collider       0.614     0.647     0.0460       0.1%       False\\nllama4       zero-shot      confounding    0.614     0.647     0.1207       0.1%       False\\nllama4       zero-shot      exposure       0.614     0.647     0.1180       0.1%       False\\nllama4       zero-shot      frontdoor      0.614     0.647     0.0722       0.1%       False\\nllama4       zero-shot      iv             0.614     0.647     0.4492       0.4%       False\\nllama4       zero-shot      mbias          0.614     0.647     0.0279       0.1%       False\\nllama4       zero-shot      mediation      0.614     0.647     0.0731       0.1%       False\\nqwen3        few-shot-3     collider       0.675     0.723     0.0417       0.0%       False\\nqwen3        few-shot-3     confounding    0.675     0.723     0.1133       0.1%       False\\nqwen3        few-shot-3     exposure       0.675     0.723     0.0899       0.1%       False\\nqwen3        few-shot-3     frontdoor      0.675     0.723     0.0668       0.1%       False\\nqwen3        few-shot-3     iv             0.675     0.723     0.2416       0.2%       False\\nqwen3        few-shot-3     mbias          0.675     0.723     0.0276       0.1%       False\\nqwen3        few-shot-3     mediation      0.675     0.723     0.0648       0.1%       False\\nqwen3        few-shot-5     collider       0.000     0.000     N/A          N/A        False\\nqwen3        few-shot-5     confounding    0.000     0.000     N/A          N/A        False\\nqwen3        few-shot-5     exposure       0.000     0.000     N/A          N/A        False\\nqwen3        few-shot-5     frontdoor      0.000     0.000     N/A          N/A        False\\nqwen3        few-shot-5     iv             0.000     0.000     N/A          N/A        False\\nqwen3        few-shot-5     mbias          0.000     0.000     N/A          N/A        False\\nqwen3        few-shot-5     mediation      0.000     0.000     N/A          N/A        False\\nqwen3        zero-shot      collider       0.678     0.726     0.0370       0.0%       False\\nqwen3        zero-shot      confounding    0.678     0.726     0.0983       0.0%       False\\nqwen3        zero-shot      exposure       0.678     0.726     0.1004       0.1%       False\\nqwen3        zero-shot      frontdoor      0.678     0.726     0.0558       0.1%       False\\nqwen3        zero-shot      iv             0.678     0.726     0.1384       0.1%       False\\nqwen3        zero-shot      mbias          0.678     0.726     0.0241       0.1%       False\\nqwen3        zero-shot      mediation      0.678     0.726     0.0538       0.1%       False\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.95}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b10a0aab-071e-4621-8764-7731da564d13",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "90f6db40-2d8c-4a7f-8290-c4bd91d06505",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43"
+              }
+            }
+          ],
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Run plan_006 ASV empirical calibration with humaid data",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43"
+              }
+            }
+          ],
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-20T23:14:38.386Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Key observations:\n\n1. **qwen3_few-shot-5 issue**: The confusion matrix is all zeros (mean_diag=0.000). The npz file exists but seems to contain an empty/zero matrix. This is a bad data point — 7 records are invalid.\n\n2. **Confusion matrix structure**:\n   - llama4: diag_mean 0.671-0.688, worst confusion C[6,0] ≈ 0.37-0.41 (class 6 predicted when true class is 0)\n   - qwen3 performs slightly better with diag_mean 0.706-0.715 (aside from the broken few-shot variant), though it still struggles most with C[6,5] confusion around 0.25-0.30\n   - deepseek edges ahead at 0.724-0.725 diagonal mean\n\n3. **F1 values**: All models cluster in the 0.61-0.69 range with no cases exceeding 0.93, so the Baumann check yields 0%.\n\n4. **Bias patterns**: IV topology shows the strongest bias (0.14-0.47), followed by confounding effects (0.10-0.12).\n\nNow I need to pull the ASV and inter-model correlation metrics.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90f6db40-2d8c-4a7f-8290-c4bd91d06505",
+            "isSidechain": false,
+            "requestId": "req_011CbEfpuuTqzRkeVRtDr4ao",
+            "type": "assistant",
+            "uuid": "2668951b-f08e-40a7-acf9-438555834b30",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PHuWyUAroeBfWPDswRUo6e",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3873,
+                "cache_read_input_tokens": 77261,
+                "output_tokens": 1226,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3873,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1226,
+                    "cache_read_input_tokens": 77261,
+                    "cache_creation_input_tokens": 3873,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3873
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-20T23:14:38.388Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`qwen3_few-shot-5` 的混淆矩阵全零 — 数据有问题。继续读 ASV 和 Type I/II 结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2668951b-f08e-40a7-acf9-438555834b30",
+            "isSidechain": false,
+            "requestId": "req_011CbEfpuuTqzRkeVRtDr4ao",
+            "type": "assistant",
+            "uuid": "fe8923e0-2496-45f6-99c6-3422caf818fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PHuWyUAroeBfWPDswRUo6e",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3873,
+                "cache_read_input_tokens": 77261,
+                "output_tokens": 1226,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3873,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1226,
+                    "cache_read_input_tokens": 77261,
+                    "cache_creation_input_tokens": 3873,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3873
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-20T23:14:47.176Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FqPonETk5dc23VZXbEXhFx",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cd /home/sonny/causal_annot_error_attrib && python3 -c \"\nimport json, numpy as np\n\nwith open('artifacts/plan006/asv_empirical_results.json') as f:\n    data = json.load(f)\n\n# C) ASV values\nprint('='*70)\nprint('C) ASV VALUES')\nprint('='*70)\nfor asv_type in ['magnitude', 'significance', 'sign_flip']:\n    sub = [r for r in data['asvs'] if r['asv_type'] == asv_type]\n    non_none = [r for r in sub if r['asv'] is not None]\n    vals = [r['asv'] for r in non_none]\n    print(f'{asv_type}: {len(non_none)}/{len(sub)} non-None', end='')\n    if vals:\n        print(f'  min={min(vals):.3f} med={np.median(vals):.3f} max={max(vals):.3f}')\n    else:\n        print()\n    # Group by topology\n    for topo in ['confounding','mediation','collider','exposure','mbias','iv','frontdoor']:\n        t_vals = [r['asv'] for r in non_none if r['topology'] == topo]\n        if t_vals:\n            print(f'  {topo:14s}: n={len(t_vals)} range=[{min(t_vals):.3f}, {max(t_vals):.3f}]')\n\n# D) Type I/II\nprint()\nprint('='*70)\nprint('D) TYPE I/II ERROR RATES')\nprint('='*70)\nprint(f'{\\\"model\\\":<12} {\\\"prompt\\\":<14} {\\\"topology\\\":<14} {\\\"T1_bef\\\":<8} {\\\"T1_aft\\\":<8} {\\\"pwr_bef\\\":<8} {\\\"pwr_aft\\\":<8} {\\\"safe\\\":<6}')\nfor r in sorted(data['type1_type2'], key=lambda x: (x['model'], x['prompt'], x['topology'])):\n    print(f\\\"{r['model']:<12} {r['prompt']:<14} {r['topology']:<14} {r['type1_before']:.3f}   {r['type1_after']:.3f}   {r['power_before']:.3f}   {r['power_after']:.3f}   {r['asv_safe']}\\\")\n\n# E) Inter-model correlation (humaid only)\nprint()\nprint('='*70)\nprint('E) INTER-MODEL ERROR CORRELATION')\nprint('='*70)\nfor key, pairs in data['inter_model_correlation'].items():\n    if 'humaid' not in key:\n        continue\n    print(f'{key}:')\n    for pair, vals in pairs.items():\n        print(f'  {pair}: agree={vals[\\\"agreement\\\"]:.3f} kappa={vals[\\\"kappa\\\"]:.3f} err_corr={vals[\\\"error_correlation\\\"]:.3f}')\n\"",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fe8923e0-2496-45f6-99c6-3422caf818fb",
+            "isSidechain": false,
+            "requestId": "req_011CbEfpuuTqzRkeVRtDr4ao",
+            "type": "assistant",
+            "uuid": "de1cf369-c6e3-4d87-acf7-f9e2e2ca7185",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PHuWyUAroeBfWPDswRUo6e",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3873,
+                "cache_read_input_tokens": 77261,
+                "output_tokens": 1226,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3873,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1226,
+                    "cache_read_input_tokens": 77261,
+                    "cache_creation_input_tokens": 3873,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3873
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-20T23:14:48.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FqPonETk5dc23VZXbEXhFx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nC) ASV VALUES\\\\n======================================================================\\\\nmagnitude: 32/63 non-None  min=0.307 med=0.688 max=1.114\\\\n  mediation     : n=8 range=[0.619, 0.901]\\\\n  exposure      : n=8 range=[0.650, 1.114]\\\\n  iv            : n=8 range=[0.307, 0.827]\\\\n  frontdoor     : n=8 range=[0.623, 0.912]\\\\nsignificance: 2/63 non-None  min=1.681 med=1.692 max=1.704\\\\n  exposure      : n=2 range=[1.681, 1.704]\\\\nsign_flip: 0/63 non-None\\\\n\\\\n======================================================================\\\\nD) TYPE I/II ERROR RATES\\\\n======================================================================\\\\nmodel        prompt         topology       T1_bef   T1_aft   pwr_bef  pwr_aft  safe  \\\\ndeepseek     few-shot-3     collider       0.217   0.217   1.000   1.000   True\\\\ndeepseek     few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\\\ndeepseek     few-shot-3     exposure       0.040   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-3     frontdoor      0.050   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-3     iv             0.037   0.000   0.776   0.000   False\\\\ndeepseek     few-shot-3     mbias          0.611   0.611   1.000   1.000   True\\\\ndeepseek     few-shot-3     mediation      0.642   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-5     collider       0.139   0.139   1.000   1.000   True\\\\ndeepseek     few-shot-5     confounding    1.000   1.000   1.000   1.000   True\\\\ndeepseek     few-shot-5     exposure       0.053   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-5     frontdoor      0.050   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-5     iv             0.044   0.000   0.761   0.000   False\\\\ndeepseek     few-shot-5     mbias          0.682   0.682   1.000   1.000   True\\\\ndeepseek     few-shot-5     mediation      0.531   0.000   1.000   0.000   False\\\\ndeepseek     zero-shot      collider       0.143   0.143   1.000   1.000   True\\\\ndeepseek     zero-shot      confounding    1.000   1.000   1.000   1.000   True\\\\ndeepseek     zero-shot      exposure       0.046   0.000   1.000   0.000   False\\\\ndeepseek     zero-shot      frontdoor      0.049   0.000   1.000   0.000   False\\\\ndeepseek     zero-shot      iv             0.037   0.000   0.785   0.000   False\\\\ndeepseek     zero-shot      mbias          0.746   0.746   1.000   1.000   True\\\\ndeepseek     zero-shot      mediation      0.429   0.000   1.000   0.000   False\\\\nllama4       few-shot-3     collider       0.122   0.122   1.000   1.000   True\\\\nllama4       few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\\\nllama4       few-shot-3     exposure       0.050   0.000   1.000   0.000   False\\\\nllama4       few-shot-3     frontdoor      0.041   0.000   1.000   0.000   False\\\\nllama4       few-shot-3     iv             0.038   0.000   0.774   0.000   False\\\\nllama4       few-shot-3     mbias          0.637   0.637   1.000   1.000   True\\\\nllama4       few-shot-3     mediation      0.661   0.000   1.000   0.000   False\\\\nllama4       few-shot-5     collider       0.155   0.155   1.000   1.000   True\\\\nllama4       few-shot-5     confounding    1.000   1.000   1.000   1.000   True\\\\nllama4       few-shot-5     exposure       0.045   0.000   1.000   0.000   False\\\\nllama4       few-shot-5     frontdoor      0.044   0.000   1.000   0.000   False\\\\nllama4       few-shot-5     iv             0.044   0.000   0.767   0.000   False\\\\nllama4       few-shot-5     mbias          0.617   0.617   1.000   1.000   True\\\\nllama4       few-shot-5     mediation      0.716   0.000   1.000   0.000   False\\\\nllama4       zero-shot      collider       0.139   0.139   1.000   1.000   True\\\\nllama4       zero-shot      confounding    1.000   1.000   1.000   1.000   True\\\\nllama4       zero-shot      exposure       0.055   0.000   1.000   0.000   False\\\\nllama4       zero-shot      frontdoor      0.056   0.000   1.000   0.000   False\\\\nllama4       zero-shot      iv             0.035   0.000   0.774   0.000   False\\\\nllama4       zero-shot      mbias          0.629   0.629   1.000   1.000   True\\\\nllama4       zero-shot      mediation      0.670   0.000   1.000   0.000   False\\\\nqwen3        few-shot-3     collider       0.117   0.117   1.000   1.000   True\\\\nqwen3        few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\\\nqwen3        few-shot-3     exposure       0.053   0.053   1.000   1.000   True\\\\nqwen3        few-shot-3     frontdoor      0.049   0.000   1.000   0.000   False\\\\nqwen3        few-shot-3     iv             0.041   0.000   0.754   0.000   False\\\\nqwen3        few-shot-3     mbias          0.621   0.621   1.000   1.000   True\\\\nqwen3        few-shot-3     mediation      0.570   0.000   1.000   0.000   False\\\\nqwen3        few-shot-5     collider       0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     confounding    0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     exposure       0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     frontdoor      0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     iv             0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     mbias          0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     mediation      0.000   0.000   0.000   0.000   True\\\\nqwen3        zero-shot      collider       0.111   0.111   1.000   1.000   True\\\\nqwen3        zero-shot      confounding    1.000   1.000   1.000   1.000   True\\\\nqwen3        zero-shot      exposure       0.061   0.000   1.000   0.000   False\\\\nqwen3        zero-shot      frontdoor      0.059   0.000   1.000   0.000   False\\\\nqwen3        zero-shot      iv             0.050   0.000   0.764   0.000   False\\\\nqwen3        zero-shot      mbias          0.687   0.687   1.000   1.000   True\\\\nqwen3        zero-shot      mediation      0.433   0.000   1.000   0.000   False\\\\n\\\\n======================================================================\\\\nE) INTER-MODEL ERROR CORRELATION\\\\n======================================================================\\\\nhumaid_zero-shot:\\\\n  llama4-qwen3: agree=0.485 kappa=0.417 err_corr=0.121\\\\n  llama4-deepseek: agree=0.485 kappa=0.419 err_corr=0.074\\\\n  qwen3-deepseek: agree=0.559 kappa=0.491 err_corr=0.085\\\\nhumaid_few-shot-3:\\\\n  llama4-qwen3: agree=0.490 kappa=0.420 err_corr=0.157\\\\n  llama4-deepseek: agree=0.465 kappa=0.392 err_corr=0.056\\\\n  qwen3-deepseek: agree=0.507 kappa=0.433 err_corr=0.051\\\\nhumaid_few-shot-5:\\\\n  llama4-qwen3: agree=0.080 kappa=0.000 err_corr=0.057\\\\n  llama4-deepseek: agree=0.495 kappa=0.429 err_corr=0.107\\\\n  qwen3-deepseek: agree=0.040 kappa=0.000 err_corr=-0.002\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de1cf369-c6e3-4d87-acf7-f9e2e2ca7185",
+            "isSidechain": false,
+            "promptId": "7e53889d-c005-413b-aba7-7b41312b0543",
+            "type": "user",
+            "uuid": "5fbee098-eebe-46c0-85a9-05b08eaa3ee0",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nC) ASV VALUES\\\\n======================================================================\\\\nmagnitude: 32/63 non-None  min=0.307 med=0.688 max=1.114\\\\n  mediation     : n=8 range=[0.619, 0.901]\\\\n  exposure      : n=8 range=[0.650, 1.114]\\\\n  iv            : n=8 range=[0.307, 0.827]\\\\n  frontdoor     : n=8 range=[0.623, 0.912]\\\\nsignificance: 2/63 non-None  min=1.681 med=1.692 max=1.704\\\\n  exposure      : n=2 range=[1.681, 1.704]\\\\nsign_flip: 0/63 non-None\\\\n\\\\n======================================================================\\\\nD) TYPE I/II ERROR RATES\\\\n======================================================================\\\\nmodel        prompt         topology       T1_bef   T1_aft   pwr_bef  pwr_aft  safe  \\\\ndeepseek     few-shot-3     collider       0.217   0.217   1.000   1.000   True\\\\ndeepseek     few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\\\ndeepseek     few-shot-3     exposure       0.040   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-3     frontdoor      0.050   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-3     iv             0.037   0.000   0.776   0.000   False\\\\ndeepseek     few-shot-3     mbias          0.611   0.611   1.000   1.000   True\\\\ndeepseek     few-shot-3     mediation      0.642   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-5     collider       0.139   0.139   1.000   1.000   True\\\\ndeepseek     few-shot-5     confounding    1.000   1.000   1.000   1.000   True\\\\ndeepseek     few-shot-5     exposure       0.053   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-5     frontdoor      0.050   0.000   1.000   0.000   False\\\\ndeepseek     few-shot-5     iv             0.044   0.000   0.761   0.000   False\\\\ndeepseek     few-shot-5     mbias          0.682   0.682   1.000   1.000   True\\\\ndeepseek     few-shot-5     mediation      0.531   0.000   1.000   0.000   False\\\\ndeepseek     zero-shot      collider       0.143   0.143   1.000   1.000   True\\\\ndeepseek     zero-shot      confounding    1.000   1.000   1.000   1.000   True\\\\ndeepseek     zero-shot      exposure       0.046   0.000   1.000   0.000   False\\\\ndeepseek     zero-shot      frontdoor      0.049   0.000   1.000   0.000   False\\\\ndeepseek     zero-shot      iv             0.037   0.000   0.785   0.000   False\\\\ndeepseek     zero-shot      mbias          0.746   0.746   1.000   1.000   True\\\\ndeepseek     zero-shot      mediation      0.429   0.000   1.000   0.000   False\\\\nllama4       few-shot-3     collider       0.122   0.122   1.000   1.000   True\\\\nllama4       few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\\\nllama4       few-shot-3     exposure       0.050   0.000   1.000   0.000   False\\\\nllama4       few-shot-3     frontdoor      0.041   0.000   1.000   0.000   False\\\\nllama4       few-shot-3     iv             0.038   0.000   0.774   0.000   False\\\\nllama4       few-shot-3     mbias          0.637   0.637   1.000   1.000   True\\\\nllama4       few-shot-3     mediation      0.661   0.000   1.000   0.000   False\\\\nllama4       few-shot-5     collider       0.155   0.155   1.000   1.000   True\\\\nllama4       few-shot-5     confounding    1.000   1.000   1.000   1.000   True\\\\nllama4       few-shot-5     exposure       0.045   0.000   1.000   0.000   False\\\\nllama4       few-shot-5     frontdoor      0.044   0.000   1.000   0.000   False\\\\nllama4       few-shot-5     iv             0.044   0.000   0.767   0.000   False\\\\nllama4       few-shot-5     mbias          0.617   0.617   1.000   1.000   True\\\\nllama4       few-shot-5     mediation      0.716   0.000   1.000   0.000   False\\\\nllama4       zero-shot      collider       0.139   0.139   1.000   1.000   True\\\\nllama4       zero-shot      confounding    1.000   1.000   1.000   1.000   True\\\\nllama4       zero-shot      exposure       0.055   0.000   1.000   0.000   False\\\\nllama4       zero-shot      frontdoor      0.056   0.000   1.000   0.000   False\\\\nllama4       zero-shot      iv             0.035   0.000   0.774   0.000   False\\\\nllama4       zero-shot      mbias          0.629   0.629   1.000   1.000   True\\\\nllama4       zero-shot      mediation      0.670   0.000   1.000   0.000   False\\\\nqwen3        few-shot-3     collider       0.117   0.117   1.000   1.000   True\\\\nqwen3        few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\\\nqwen3        few-shot-3     exposure       0.053   0.053   1.000   1.000   True\\\\nqwen3        few-shot-3     frontdoor      0.049   0.000   1.000   0.000   False\\\\nqwen3        few-shot-3     iv             0.041   0.000   0.754   0.000   False\\\\nqwen3        few-shot-3     mbias          0.621   0.621   1.000   1.000   True\\\\nqwen3        few-shot-3     mediation      0.570   0.000   1.000   0.000   False\\\\nqwen3        few-shot-5     collider       0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     confounding    0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     exposure       0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     frontdoor      0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     iv             0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     mbias          0.000   0.000   0.000   0.000   True\\\\nqwen3        few-shot-5     mediation      0.000   0.000   0.000   0.000   True\\\\nqwen3        zero-shot      collider       0.111   0.111   1.000   1.000   True\\\\nqwen3        zero-shot      confounding    1.000   1.000   1.000   1.000   True\\\\nqwen3        zero-shot      exposure       0.061   0.000   1.000   0.000   False\\\\nqwen3        zero-shot      frontdoor      0.059   0.000   1.000   0.000   False\\\\nqwen3        zero-shot      iv             0.050   0.000   0.764   0.000   False\\\\nqwen3        zero-shot      mbias          0.687   0.687   1.000   1.000   True\\\\nqwen3        zero-shot      mediation      0.433   0.000   1.000   0.000   False\\\\n\\\\n======================================================================\\\\nE) INTER-MODEL ERROR CORRELATION\\\\n======================================================================\\\\nhumaid_zero-shot:\\\\n  llama4-qwen3: agree=0.485 kappa=0.417 err_corr=0.121\\\\n  llama4-deepseek: agree=0.485 kappa=0.419 err_corr=0.074\\\\n  qwen3-deepseek: agree=0.559 kappa=0.491 err_corr=0.085\\\\nhumaid_few-shot-3:\\\\n  llama4-qwen3: agree=0.490 kappa=0.420 err_corr=0.157\\\\n  llama4-deepseek: agree=0.465 kappa=0.392 err_corr=0.056\\\\n  qwen3-deepseek: agree=0.507 kappa=0.433 err_corr=0.051\\\\nhumaid_few-shot-5:\\\\n  llama4-qwen3: agree=0.080 kappa=0.000 err_corr=0.057\\\\n  llama4-deepseek: agree=0.495 kappa=0.429 err_corr=0.107\\\\n  qwen3-deepseek: agree=0.040 kappa=0.000 err_corr=-0.002\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nC) ASV VALUES\\n======================================================================\\nmagnitude: 32/63 non-None  min=0.307 med=0.688 max=1.114\\n  mediation     : n=8 range=[0.619, 0.901]\\n  exposure      : n=8 range=[0.650, 1.114]\\n  iv            : n=8 range=[0.307, 0.827]\\n  frontdoor     : n=8 range=[0.623, 0.912]\\nsignificance: 2/63 non-None  min=1.681 med=1.692 max=1.704\\n  exposure      : n=2 range=[1.681, 1.704]\\nsign_flip: 0/63 non-None\\n\\n======================================================================\\nD) TYPE I/II ERROR RATES\\n======================================================================\\nmodel        prompt         topology       T1_bef   T1_aft   pwr_bef  pwr_aft  safe  \\ndeepseek     few-shot-3     collider       0.217   0.217   1.000   1.000   True\\ndeepseek     few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\ndeepseek     few-shot-3     exposure       0.040   0.000   1.000   0.000   False\\ndeepseek     few-shot-3     frontdoor      0.050   0.000   1.000   0.000   False\\ndeepseek     few-shot-3     iv             0.037   0.000   0.776   0.000   False\\ndeepseek     few-shot-3     mbias          0.611   0.611   1.000   1.000   True\\ndeepseek     few-shot-3     mediation      0.642   0.000   1.000   0.000   False\\ndeepseek     few-shot-5     collider       0.139   0.139   1.000   1.000   True\\ndeepseek     few-shot-5     confounding    1.000   1.000   1.000   1.000   True\\ndeepseek     few-shot-5     exposure       0.053   0.000   1.000   0.000   False\\ndeepseek     few-shot-5     frontdoor      0.050   0.000   1.000   0.000   False\\ndeepseek     few-shot-5     iv             0.044   0.000   0.761   0.000   False\\ndeepseek     few-shot-5     mbias          0.682   0.682   1.000   1.000   True\\ndeepseek     few-shot-5     mediation      0.531   0.000   1.000   0.000   False\\ndeepseek     zero-shot      collider       0.143   0.143   1.000   1.000   True\\ndeepseek     zero-shot      confounding    1.000   1.000   1.000   1.000   True\\ndeepseek     zero-shot      exposure       0.046   0.000   1.000   0.000   False\\ndeepseek     zero-shot      frontdoor      0.049   0.000   1.000   0.000   False\\ndeepseek     zero-shot      iv             0.037   0.000   0.785   0.000   False\\ndeepseek     zero-shot      mbias          0.746   0.746   1.000   1.000   True\\ndeepseek     zero-shot      mediation      0.429   0.000   1.000   0.000   False\\nllama4       few-shot-3     collider       0.122   0.122   1.000   1.000   True\\nllama4       few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\nllama4       few-shot-3     exposure       0.050   0.000   1.000   0.000   False\\nllama4       few-shot-3     frontdoor      0.041   0.000   1.000   0.000   False\\nllama4       few-shot-3     iv             0.038   0.000   0.774   0.000   False\\nllama4       few-shot-3     mbias          0.637   0.637   1.000   1.000   True\\nllama4       few-shot-3     mediation      0.661   0.000   1.000   0.000   False\\nllama4       few-shot-5     collider       0.155   0.155   1.000   1.000   True\\nllama4       few-shot-5     confounding    1.000   1.000   1.000   1.000   True\\nllama4       few-shot-5     exposure       0.045   0.000   1.000   0.000   False\\nllama4       few-shot-5     frontdoor      0.044   0.000   1.000   0.000   False\\nllama4       few-shot-5     iv             0.044   0.000   0.767   0.000   False\\nllama4       few-shot-5     mbias          0.617   0.617   1.000   1.000   True\\nllama4       few-shot-5     mediation      0.716   0.000   1.000   0.000   False\\nllama4       zero-shot      collider       0.139   0.139   1.000   1.000   True\\nllama4       zero-shot      confounding    1.000   1.000   1.000   1.000   True\\nllama4       zero-shot      exposure       0.055   0.000   1.000   0.000   False\\nllama4       zero-shot      frontdoor      0.056   0.000   1.000   0.000   False\\nllama4       zero-shot      iv             0.035   0.000   0.774   0.000   False\\nllama4       zero-shot      mbias          0.629   0.629   1.000   1.000   True\\nllama4       zero-shot      mediation      0.670   0.000   1.000   0.000   False\\nqwen3        few-shot-3     collider       0.117   0.117   1.000   1.000   True\\nqwen3        few-shot-3     confounding    1.000   1.000   1.000   1.000   True\\nqwen3        few-shot-3     exposure       0.053   0.053   1.000   1.000   True\\nqwen3        few-shot-3     frontdoor      0.049   0.000   1.000   0.000   False\\nqwen3        few-shot-3     iv             0.041   0.000   0.754   0.000   False\\nqwen3        few-shot-3     mbias          0.621   0.621   1.000   1.000   True\\nqwen3        few-shot-3     mediation      0.570   0.000   1.000   0.000   False\\nqwen3        few-shot-5     collider       0.000   0.000   0.000   0.000   True\\nqwen3        few-shot-5     confounding    0.000   0.000   0.000   0.000   True\\nqwen3        few-shot-5     exposure       0.000   0.000   0.000   0.000   True\\nqwen3        few-shot-5     frontdoor      0.000   0.000   0.000   0.000   True\\nqwen3        few-shot-5     iv             0.000   0.000   0.000   0.000   True\\nqwen3        few-shot-5     mbias          0.000   0.000   0.000   0.000   True\\nqwen3        few-shot-5     mediation      0.000   0.000   0.000   0.000   True\\nqwen3        zero-shot      collider       0.111   0.111   1.000   1.000   True\\nqwen3        zero-shot      confounding    1.000   1.000   1.000   1.000   True\\nqwen3        zero-shot      exposure       0.061   0.000   1.000   0.000   False\\nqwen3        zero-shot      frontdoor      0.059   0.000   1.000   0.000   False\\nqwen3        zero-shot      iv             0.050   0.000   0.764   0.000   False\\nqwen3        zero-shot      mbias          0.687   0.687   1.000   1.000   True\\nqwen3        zero-shot      mediation      0.433   0.000   1.000   0.000   False\\n\\n======================================================================\\nE) INTER-MODEL ERROR CORRELATION\\n======================================================================\\nhumaid_zero-shot:\\n  llama4-qwen3: agree=0.485 kappa=0.417 err_corr=0.121\\n  llama4-deepseek: agree=0.485 kappa=0.419 err_corr=0.074\\n  qwen3-deepseek: agree=0.559 kappa=0.491 err_corr=0.085\\nhumaid_few-shot-3:\\n  llama4-qwen3: agree=0.490 kappa=0.420 err_corr=0.157\\n  llama4-deepseek: agree=0.465 kappa=0.392 err_corr=0.056\\n  qwen3-deepseek: agree=0.507 kappa=0.433 err_corr=0.051\\nhumaid_few-shot-5:\\n  llama4-qwen3: agree=0.080 kappa=0.000 err_corr=0.057\\n  llama4-deepseek: agree=0.495 kappa=0.429 err_corr=0.107\\n  qwen3-deepseek: agree=0.040 kappa=0.000 err_corr=-0.002\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+              }
+            },
+            "sourceToolAssistantUUID": "de1cf369-c6e3-4d87-acf7-f9e2e2ca7185",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-20T23:15:17.849Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent results. Let me now verify the qwen3_few-shot-5 issue — its confusion matrix is all zeros, which corrupts results for that combination. Let me check that npz file.\n\nLet me also analyze the results more carefully:\n\n**A) Confusion Matrix Structure:**\n- llama4: mean_diag 0.671-0.688 (worst: C[6,0]≈0.37-0.41 — class 6 \"other_relevant_information\" predicted when true class is 0 \"caution_and_advice\")\n\n\n- qwen3: mean_diag 0.706-0.715 (worst: C[6,5]≈0.25-0.30 — class 6 \"other_relevant\" predicted when true is 5 \"not_humanitarian\")\n- deepseek: mean_diag 0.724-0.725 (best performer)\n- qwen3_few-shot-5: ALL ZEROS — broken data\n\n**B) F1 vs |bias|:**\n- F1 range: 0.614-0.690 (all below 0.93, so Baumann check is trivially 0%)\n- Largest biases: IV topology (0.14-0.47), confounding (0.10-0.12)\n\nI'm noticing the bias_pct values look suspiciously low in the output — showing 0.4% when the raw calculation (bias/tau_true = 0.4655/1.119) should give around 41.6%, so there's likely a display formatting issue I need to investigate. I need to fix the format string to multiply by 100 when displaying the bias percentage. The data itself is correct — it's just how I'm printing it that needs adjustment. Now looking at the ASV values across different bias types: magnitude ASV ranges from 0.307 to 1.114 but only appears in four topologies, while significance and sign-flip ASV are essentially absent. For Type I and II errors, confounding shows perfect Type I inflation across all models. expected, confounding introduces bias)\n- mbias: T1=0.61-0.75 — moderate inflation\n- collider: T1=0.11-0.22 — mild inflation  \n- mediation: T1=0.43-0.72 — moderate inflation\n- exposure, frontdoor, IV: T1 ~0.04-0.06 — near nominal\n- qwen3_few-shot-5: all zeros (broken data)\n- ASV-unsafe: 31/63 (49.2%) — when ASV flags unsafe, power drops to 0 (conservative)\n\n**E) Inter-model Correlation (humaid):**\n- Agreement: 0.465-0.559 (moderate)\n- Kappa: 0.392-0.491 (fair to moderate)\n- Error correlation: 0.051-0.157 (low) — models make somewhat independent errors\n- few-shot-5 values involving qwen3 are invalid (broken CM)\n\nThe pipeline is working end-to-end with real data, though qwen3_few-shot-5 has a zero confusion matrix that needs investigation. The humaid task is genuinely difficult with no F1 scores exceeding 0.93, and I'm seeing that IV topology produces the largest downstream bias at up to 42%, while confounding topologies show the expected 100% Type I error rate. Models are making relatively independent errors, and I should verify what's happening with that qwen3_few-shot-5 npz file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fbee098-eebe-46c0-85a9-05b08eaa3ee0",
+            "isSidechain": false,
+            "requestId": "req_011CbEfrSHrDntxdk3c6geas",
+            "type": "assistant",
+            "uuid": "16ee86ab-4c79-4cf8-8fad-3f27dacf7a93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDii6XKvfrAPFWwdLrh64f",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3878,
+                "cache_read_input_tokens": 81134,
+                "output_tokens": 1654,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3878,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1654,
+                    "cache_read_input_tokens": 81134,
+                    "cache_creation_input_tokens": 3878,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3878
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-20T23:15:17.851Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the qwen3_few-shot-5 broken matrix and get corrected bias percentages."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16ee86ab-4c79-4cf8-8fad-3f27dacf7a93",
+            "isSidechain": false,
+            "requestId": "req_011CbEfrSHrDntxdk3c6geas",
+            "type": "assistant",
+            "uuid": "c6be81f7-fceb-424c-a3c6-0aee3ba129d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDii6XKvfrAPFWwdLrh64f",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3878,
+                "cache_read_input_tokens": 81134,
+                "output_tokens": 1654,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3878,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1654,
+                    "cache_read_input_tokens": 81134,
+                    "cache_creation_input_tokens": 3878,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3878
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-20T23:15:18.668Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019DQtw7NKwNi2v5p4FK8ri5",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cd /home/sonny/causal_annot_error_attrib && python3 -c \"\nimport numpy as np\n# Check the broken qwen3 few-shot-5 npz\nd = np.load('results/humaid/qwen3_few-shot-5_confusion_matrix.npz', allow_pickle=True)\nprint('C shape:', d['C'].shape)\nprint('C sum:', d['C'].sum())\nprint('coverage:', d['stat_coverage'])\nprint('n_total:', d['stat_n_total'])\nprint('n_valid:', d['stat_n_valid'])\nprint('raw_counts sum:', d['raw_counts'].sum())\nprint('raw_counts diag:', np.diag(d['raw_counts']))\n\"",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6be81f7-fceb-424c-a3c6-0aee3ba129d3",
+            "isSidechain": false,
+            "requestId": "req_011CbEfrSHrDntxdk3c6geas",
+            "type": "assistant",
+            "uuid": "55d3620e-4735-4308-b707-a9c27f63fae9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TDii6XKvfrAPFWwdLrh64f",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3878,
+                "cache_read_input_tokens": 81134,
+                "output_tokens": 1654,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3878,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1654,
+                    "cache_read_input_tokens": 81134,
+                    "cache_creation_input_tokens": 3878,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3878
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "55d3620e-4735-4308-b707-a9c27f63fae9",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43"
+              }
+            }
+          ],
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Run plan_006 ASV empirical calibration with humaid data",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43"
+              }
+            }
+          ],
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": "2026-05-20T23:15:19.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019DQtw7NKwNi2v5p4FK8ri5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"C shape: (10, 10)\\\\nC sum: 0.0\\\\ncoverage: 0.0\\\\nn_total: 1500\\\\nn_valid: 0\\\\nraw_counts sum: 0.0\\\\nraw_counts diag: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55d3620e-4735-4308-b707-a9c27f63fae9",
+            "isSidechain": false,
+            "promptId": "7e53889d-c005-413b-aba7-7b41312b0543",
+            "type": "user",
+            "uuid": "cac070a3-509f-46c7-8ca3-9443f7b6e53c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"C shape: (10, 10)\\\\nC sum: 0.0\\\\ncoverage: 0.0\\\\nn_total: 1500\\\\nn_valid: 0\\\\nraw_counts sum: 0.0\\\\nraw_counts diag: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"C shape: (10, 10)\\nC sum: 0.0\\ncoverage: 0.0\\nn_total: 1500\\nn_valid: 0\\nraw_counts sum: 0.0\\nraw_counts diag: [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+              }
+            },
+            "sourceToolAssistantUUID": "55d3620e-4735-4308-b707-a9c27f63fae9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": "2026-05-20T23:15:19.694Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "cac070a3-509f-46c7-8ca3-9443f7b6e53c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "b60bc9be-ba78-442a-9a29-d881151f1131",
+                "timestamp": "2026-05-20T23:15:19.694Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": "2026-05-20T23:15:25.163Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "qwen3_few-shot-5 has coverage=0.0, n_valid=0 — the annotation completely failed (all 1500 samples were skipped/errored). So it's 8/9 valid combinations, not 9/9. The task says \"humaid (K=10) 数据有 8/9 组合可用\" which matches.\n\nNow let me produce the corrected bias percentage display and a clean summary.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b60bc9be-ba78-442a-9a29-d881151f1131",
+            "isSidechain": false,
+            "requestId": "req_011CbEftmmRsKmecg4BLNo3D",
+            "type": "assistant",
+            "uuid": "4e854d88-8284-49b1-ac3b-877800fb2475",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019AoS2VBcVVcWjqsSY61T4C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1922,
+                "cache_read_input_tokens": 85012,
+                "output_tokens": 544,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1922,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 544,
+                    "cache_read_input_tokens": 85012,
+                    "cache_creation_input_tokens": 1922,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1922
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": "2026-05-20T23:15:30.891Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SMN6onGHzZWWeWn4e2QND6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "home-1x5090",
+                "command": "cd /home/sonny/causal_annot_error_attrib && python3 -c \"\nimport json, numpy as np\n\nwith open('artifacts/plan006/asv_empirical_results.json') as f:\n    data = json.load(f)\n\n# Corrected bias percentage table (excluding qwen3_few-shot-5)\nprint('F1 vs |DOWNSTREAM BIAS| — corrected % (exclude qwen3_few-shot-5)')\nprint(f'{\\\"config\\\":<35} {\\\"F1\\\":<8} {\\\"topology\\\":<14} {\\\"abs_bias\\\":<10} {\\\"bias%\\\":<8}')\nfor r in sorted(data['f1_vs_bias'], key=lambda x: (-x['abs_bias'] if x['abs_bias'] else 0)):\n    if r['abs_bias'] is None:\n        continue\n    cfg = f\\\"{r['model']}/{r['prompt']}\\\"\n    pct = r['bias_pct'] * 100 if r['bias_pct'] is not None else 0\n    print(f\\\"{cfg:<35} {r['macro_f1']:.3f}   {r['topology']:<14} {r['abs_bias']:.4f}    {pct:.1f}%\\\")\n    if pct < 3:\n        break\n\"",
+                "account": "sonny"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e854d88-8284-49b1-ac3b-877800fb2475",
+            "isSidechain": false,
+            "requestId": "req_011CbEftmmRsKmecg4BLNo3D",
+            "type": "assistant",
+            "uuid": "98fc3f7c-6c8e-49f0-b67f-e89bc09bb4c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019AoS2VBcVVcWjqsSY61T4C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1922,
+                "cache_read_input_tokens": 85012,
+                "output_tokens": 544,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1922,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 544,
+                    "cache_read_input_tokens": 85012,
+                    "cache_creation_input_tokens": 1922,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1922
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-20T23:15:31.946Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SMN6onGHzZWWeWn4e2QND6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"F1 vs |DOWNSTREAM BIAS| — corrected % (exclude qwen3_few-shot-5)\\\\nconfig                              F1       topology       abs_bias   bias%   \\\\nllama4/few-shot-5                   0.624   iv             0.4716    42.1%\\\\ndeepseek/few-shot-3                 0.686   iv             0.4655    41.6%\\\\nllama4/few-shot-3                   0.616   iv             0.4512    40.3%\\\\nllama4/zero-shot                    0.614   iv             0.4492    40.1%\\\\ndeepseek/few-shot-5                 0.685   iv             0.3430    30.6%\\\\nqwen3/few-shot-3                    0.675   iv             0.2416    21.6%\\\\ndeepseek/few-shot-3                 0.686   exposure       0.1742    17.4%\\\\ndeepseek/few-shot-5                 0.685   exposure       0.1605    16.0%\\\\ndeepseek/zero-shot                  0.690   iv             0.1527    13.6%\\\\nqwen3/zero-shot                     0.678   iv             0.1384    12.4%\\\\nllama4/few-shot-5                   0.624   exposure       0.1236    12.3%\\\\nllama4/few-shot-5                   0.624   confounding    0.1234    6.2%\\\\ndeepseek/few-shot-3                 0.686   confounding    0.1234    6.2%\\\\nllama4/few-shot-3                   0.616   exposure       0.1222    12.2%\\\\nllama4/zero-shot                    0.614   confounding    0.1207    6.0%\\\\nllama4/few-shot-3                   0.616   confounding    0.1205    6.0%\\\\nllama4/zero-shot                    0.614   exposure       0.1180    11.8%\\\\nqwen3/few-shot-3                    0.675   confounding    0.1133    5.7%\\\\ndeepseek/few-shot-5                 0.685   confounding    0.1124    5.6%\\\\ndeepseek/zero-shot                  0.690   exposure       0.1078    10.8%\\\\nqwen3/zero-shot                     0.678   exposure       0.1004    10.0%\\\\nqwen3/zero-shot                     0.678   confounding    0.0983    4.9%\\\\ndeepseek/zero-shot                  0.690   confounding    0.0978    4.9%\\\\nqwen3/few-shot-3                    0.675   exposure       0.0899    9.0%\\\\nllama4/few-shot-5                   0.624   mediation      0.0738    14.8%\\\\nllama4/few-shot-5                   0.624   frontdoor      0.0734    14.7%\\\\nllama4/zero-shot                    0.614   mediation      0.0731    14.7%\\\\nllama4/few-shot-3                   0.616   mediation      0.0722    14.5%\\\\nllama4/zero-shot                    0.614   frontdoor      0.0722    14.4%\\\\nllama4/few-shot-3                   0.616   frontdoor      0.0716    14.3%\\\\ndeepseek/few-shot-3                 0.686   mediation      0.0705    14.1%\\\\ndeepseek/few-shot-3                 0.686   frontdoor      0.0704    14.1%\\\\nqwen3/few-shot-3                    0.675   frontdoor      0.0668    13.4%\\\\nqwen3/few-shot-3                    0.675   mediation      0.0648    13.0%\\\\ndeepseek/few-shot-5                 0.685   frontdoor      0.0625    12.5%\\\\ndeepseek/few-shot-5                 0.685   mediation      0.0612    12.3%\\\\nqwen3/zero-shot                     0.678   frontdoor      0.0558    11.2%\\\\ndeepseek/zero-shot                  0.690   mediation      0.0543    10.9%\\\\nqwen3/zero-shot                     0.678   mediation      0.0538    10.8%\\\\ndeepseek/zero-shot                  0.690   frontdoor      0.0537    10.7%\\\\ndeepseek/few-shot-3                 0.686   collider       0.0499    5.6%\\\\nllama4/few-shot-3                   0.616   collider       0.0467    5.2%\\\\nllama4/few-shot-5                   0.624   collider       0.0464    5.2%\\\\nllama4/zero-shot                    0.614   collider       0.0460    5.1%\\\\ndeepseek/few-shot-5                 0.685   collider       0.0419    4.7%\\\\nqwen3/few-shot-3                    0.675   collider       0.0417    4.6%\\\\ndeepseek/zero-shot                  0.690   collider       0.0384    4.3%\\\\nqwen3/zero-shot                     0.678   collider       0.0370    4.1%\\\\nllama4/few-shot-5                   0.624   mbias          0.0285    6.5%\\\\nllama4/few-shot-3                   0.616   mbias          0.0280    6.3%\\\\nllama4/zero-shot                    0.614   mbias          0.0279    6.3%\\\\nqwen3/few-shot-3                    0.675   mbias          0.0276    6.2%\\\\ndeepseek/few-shot-3                 0.686   mbias          0.0269    6.1%\\\\ndeepseek/few-shot-5                 0.685   mbias          0.0252    5.7%\\\\nqwen3/zero-shot                     0.678   mbias          0.0241    5.5%\\\\ndeepseek/zero-shot                  0.690   mbias          0.0223    5.1%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98fc3f7c-6c8e-49f0-b67f-e89bc09bb4c7",
+            "isSidechain": false,
+            "promptId": "7e53889d-c005-413b-aba7-7b41312b0543",
+            "type": "user",
+            "uuid": "ae51d705-a6ee-4151-b29b-18f75af380ac",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"F1 vs |DOWNSTREAM BIAS| — corrected % (exclude qwen3_few-shot-5)\\\\nconfig                              F1       topology       abs_bias   bias%   \\\\nllama4/few-shot-5                   0.624   iv             0.4716    42.1%\\\\ndeepseek/few-shot-3                 0.686   iv             0.4655    41.6%\\\\nllama4/few-shot-3                   0.616   iv             0.4512    40.3%\\\\nllama4/zero-shot                    0.614   iv             0.4492    40.1%\\\\ndeepseek/few-shot-5                 0.685   iv             0.3430    30.6%\\\\nqwen3/few-shot-3                    0.675   iv             0.2416    21.6%\\\\ndeepseek/few-shot-3                 0.686   exposure       0.1742    17.4%\\\\ndeepseek/few-shot-5                 0.685   exposure       0.1605    16.0%\\\\ndeepseek/zero-shot                  0.690   iv             0.1527    13.6%\\\\nqwen3/zero-shot                     0.678   iv             0.1384    12.4%\\\\nllama4/few-shot-5                   0.624   exposure       0.1236    12.3%\\\\nllama4/few-shot-5                   0.624   confounding    0.1234    6.2%\\\\ndeepseek/few-shot-3                 0.686   confounding    0.1234    6.2%\\\\nllama4/few-shot-3                   0.616   exposure       0.1222    12.2%\\\\nllama4/zero-shot                    0.614   confounding    0.1207    6.0%\\\\nllama4/few-shot-3                   0.616   confounding    0.1205    6.0%\\\\nllama4/zero-shot                    0.614   exposure       0.1180    11.8%\\\\nqwen3/few-shot-3                    0.675   confounding    0.1133    5.7%\\\\ndeepseek/few-shot-5                 0.685   confounding    0.1124    5.6%\\\\ndeepseek/zero-shot                  0.690   exposure       0.1078    10.8%\\\\nqwen3/zero-shot                     0.678   exposure       0.1004    10.0%\\\\nqwen3/zero-shot                     0.678   confounding    0.0983    4.9%\\\\ndeepseek/zero-shot                  0.690   confounding    0.0978    4.9%\\\\nqwen3/few-shot-3                    0.675   exposure       0.0899    9.0%\\\\nllama4/few-shot-5                   0.624   mediation      0.0738    14.8%\\\\nllama4/few-shot-5                   0.624   frontdoor      0.0734    14.7%\\\\nllama4/zero-shot                    0.614   mediation      0.0731    14.7%\\\\nllama4/few-shot-3                   0.616   mediation      0.0722    14.5%\\\\nllama4/zero-shot                    0.614   frontdoor      0.0722    14.4%\\\\nllama4/few-shot-3                   0.616   frontdoor      0.0716    14.3%\\\\ndeepseek/few-shot-3                 0.686   mediation      0.0705    14.1%\\\\ndeepseek/few-shot-3                 0.686   frontdoor      0.0704    14.1%\\\\nqwen3/few-shot-3                    0.675   frontdoor      0.0668    13.4%\\\\nqwen3/few-shot-3                    0.675   mediation      0.0648    13.0%\\\\ndeepseek/few-shot-5                 0.685   frontdoor      0.0625    12.5%\\\\ndeepseek/few-shot-5                 0.685   mediation      0.0612    12.3%\\\\nqwen3/zero-shot                     0.678   frontdoor      0.0558    11.2%\\\\ndeepseek/zero-shot                  0.690   mediation      0.0543    10.9%\\\\nqwen3/zero-shot                     0.678   mediation      0.0538    10.8%\\\\ndeepseek/zero-shot                  0.690   frontdoor      0.0537    10.7%\\\\ndeepseek/few-shot-3                 0.686   collider       0.0499    5.6%\\\\nllama4/few-shot-3                   0.616   collider       0.0467    5.2%\\\\nllama4/few-shot-5                   0.624   collider       0.0464    5.2%\\\\nllama4/zero-shot                    0.614   collider       0.0460    5.1%\\\\ndeepseek/few-shot-5                 0.685   collider       0.0419    4.7%\\\\nqwen3/few-shot-3                    0.675   collider       0.0417    4.6%\\\\ndeepseek/zero-shot                  0.690   collider       0.0384    4.3%\\\\nqwen3/zero-shot                     0.678   collider       0.0370    4.1%\\\\nllama4/few-shot-5                   0.624   mbias          0.0285    6.5%\\\\nllama4/few-shot-3                   0.616   mbias          0.0280    6.3%\\\\nllama4/zero-shot                    0.614   mbias          0.0279    6.3%\\\\nqwen3/few-shot-3                    0.675   mbias          0.0276    6.2%\\\\ndeepseek/few-shot-3                 0.686   mbias          0.0269    6.1%\\\\ndeepseek/few-shot-5                 0.685   mbias          0.0252    5.7%\\\\nqwen3/zero-shot                     0.678   mbias          0.0241    5.5%\\\\ndeepseek/zero-shot                  0.690   mbias          0.0223    5.1%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"F1 vs |DOWNSTREAM BIAS| — corrected % (exclude qwen3_few-shot-5)\\nconfig                              F1       topology       abs_bias   bias%   \\nllama4/few-shot-5                   0.624   iv             0.4716    42.1%\\ndeepseek/few-shot-3                 0.686   iv             0.4655    41.6%\\nllama4/few-shot-3                   0.616   iv             0.4512    40.3%\\nllama4/zero-shot                    0.614   iv             0.4492    40.1%\\ndeepseek/few-shot-5                 0.685   iv             0.3430    30.6%\\nqwen3/few-shot-3                    0.675   iv             0.2416    21.6%\\ndeepseek/few-shot-3                 0.686   exposure       0.1742    17.4%\\ndeepseek/few-shot-5                 0.685   exposure       0.1605    16.0%\\ndeepseek/zero-shot                  0.690   iv             0.1527    13.6%\\nqwen3/zero-shot                     0.678   iv             0.1384    12.4%\\nllama4/few-shot-5                   0.624   exposure       0.1236    12.3%\\nllama4/few-shot-5                   0.624   confounding    0.1234    6.2%\\ndeepseek/few-shot-3                 0.686   confounding    0.1234    6.2%\\nllama4/few-shot-3                   0.616   exposure       0.1222    12.2%\\nllama4/zero-shot                    0.614   confounding    0.1207    6.0%\\nllama4/few-shot-3                   0.616   confounding    0.1205    6.0%\\nllama4/zero-shot                    0.614   exposure       0.1180    11.8%\\nqwen3/few-shot-3                    0.675   confounding    0.1133    5.7%\\ndeepseek/few-shot-5                 0.685   confounding    0.1124    5.6%\\ndeepseek/zero-shot                  0.690   exposure       0.1078    10.8%\\nqwen3/zero-shot                     0.678   exposure       0.1004    10.0%\\nqwen3/zero-shot                     0.678   confounding    0.0983    4.9%\\ndeepseek/zero-shot                  0.690   confounding    0.0978    4.9%\\nqwen3/few-shot-3                    0.675   exposure       0.0899    9.0%\\nllama4/few-shot-5                   0.624   mediation      0.0738    14.8%\\nllama4/few-shot-5                   0.624   frontdoor      0.0734    14.7%\\nllama4/zero-shot                    0.614   mediation      0.0731    14.7%\\nllama4/few-shot-3                   0.616   mediation      0.0722    14.5%\\nllama4/zero-shot                    0.614   frontdoor      0.0722    14.4%\\nllama4/few-shot-3                   0.616   frontdoor      0.0716    14.3%\\ndeepseek/few-shot-3                 0.686   mediation      0.0705    14.1%\\ndeepseek/few-shot-3                 0.686   frontdoor      0.0704    14.1%\\nqwen3/few-shot-3                    0.675   frontdoor      0.0668    13.4%\\nqwen3/few-shot-3                    0.675   mediation      0.0648    13.0%\\ndeepseek/few-shot-5                 0.685   frontdoor      0.0625    12.5%\\ndeepseek/few-shot-5                 0.685   mediation      0.0612    12.3%\\nqwen3/zero-shot                     0.678   frontdoor      0.0558    11.2%\\ndeepseek/zero-shot                  0.690   mediation      0.0543    10.9%\\nqwen3/zero-shot                     0.678   mediation      0.0538    10.8%\\ndeepseek/zero-shot                  0.690   frontdoor      0.0537    10.7%\\ndeepseek/few-shot-3                 0.686   collider       0.0499    5.6%\\nllama4/few-shot-3                   0.616   collider       0.0467    5.2%\\nllama4/few-shot-5                   0.624   collider       0.0464    5.2%\\nllama4/zero-shot                    0.614   collider       0.0460    5.1%\\ndeepseek/few-shot-5                 0.685   collider       0.0419    4.7%\\nqwen3/few-shot-3                    0.675   collider       0.0417    4.6%\\ndeepseek/zero-shot                  0.690   collider       0.0384    4.3%\\nqwen3/zero-shot                     0.678   collider       0.0370    4.1%\\nllama4/few-shot-5                   0.624   mbias          0.0285    6.5%\\nllama4/few-shot-3                   0.616   mbias          0.0280    6.3%\\nllama4/zero-shot                    0.614   mbias          0.0279    6.3%\\nqwen3/few-shot-3                    0.675   mbias          0.0276    6.2%\\ndeepseek/few-shot-3                 0.686   mbias          0.0269    6.1%\\ndeepseek/few-shot-5                 0.685   mbias          0.0252    5.7%\\nqwen3/zero-shot                     0.678   mbias          0.0241    5.5%\\ndeepseek/zero-shot                  0.690   mbias          0.0223    5.1%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+              }
+            },
+            "sourceToolAssistantUUID": "98fc3f7c-6c8e-49f0-b67f-e89bc09bb4c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": "2026-05-20T23:16:04.555Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果已获取。下面是汇总分析。\n\n---\n\n## plan_006 humaid 实证结果汇总\n\n### 1. 运行状态\n- **成功**，2.9 分钟完成\n- 9 个矩阵加载（3 模型 × 3 prompt），其中 **qwen3/few-shot-5 全零**（coverage=0, n_valid=0，标注完全失败），实际有效 **8/9 组合**\n\n### 2. 混淆矩阵摘要\n\n| 模型 | prompt | mean_diag | min_diag | worst confusion |\n|------|--------|-----------|----------|-----------------|\n| llama4 | zero-shot | 0.671 | 0.426 | C[6,0]=0.370 |\n| llama4 | few-shot-3 | 0.676 | 0.407 | C[6,0]=0.407 |\n| llama4 | few-shot-5 | 0.688 | 0.415 | C[6,0]=0.396 |\n| qwen3 | zero-shot | 0.715 | 0.340 | C[6,5]=0.252 |\n| qwen3 | few-shot-3 | 0.706 | 0.393 | C[6,5]=0.298 |\n| qwen3 | few-shot-5 | **0.000** | 0.000 | **全零（失败）** |\n| deepseek | zero-shot | 0.724 | 0.294 | C[8,7]=0.228 |\n| deepseek | few-shot-3 | 0.725 | 0.385 | C[6,0]=0.250 |\n| deepseek | few-shot-5 | 0.724 | 0.374 | C[8,7]=0.268 |\n\n- deepseek 最好（diag 0.724），llama4 最差（diag 0.671）\n- 最常见混淆：class 6 (\"other_relevant_information\") 是所有模型的主要混淆目标\n\n### 3. F1 vs |downstream bias|\n\n- **Macro F1 范围：0.614–0.690**，全部低于 0.93\n- **Baumann check: 0%**（没有 F1>0.93 的情况，因为 humaid K=10 是高难度任务）\n- 最大 bias 按 topology：\n  - **IV: 12.4%–42.1%**（最脆弱）\n  - **exposure: 9.0%–17.4%**\n  - **mediation/frontdoor: 10.7%–14.8%**\n  - **confounding: 4.9%–6.2%**\n  - **mbias: 5.1%–6.5%**\n  - **collider: 4.1%–5.6%**（最稳健）\n- **0 sign flips**\n\n### 4. ASV 值\n\n| ASV type | non-None | range |\n|----------|----------|-------|\n| magnitude | 32/63 | 0.307–1.114 |\n| significance | 2/63 | 1.681–1.704 |\n| sign_flip | 0/63 | — |\n\n- magnitude ASV 只有 4 个 topology 触发：mediation (0.62–0.90), exposure (0.65–1.11), IV (0.31–0.83), frontdoor (0.62–0.91)\n- confounding/collider/mbias 的 bias 始终不超过 10% threshold → 无 magnitude ASV\n\n### 5. Type I/II error\n\n| topology | T1 range (before) | T1 after ASV filter | Power (before) |\n|----------|-------------------|---------------------|----------------|\n| confounding | **1.000** | 1.000 (safe) | 1.000 |\n| mbias | 0.611–0.746 | same (safe) | 1.000 |\n| mediation | 0.429–0.716 | 0 (unsafe) | 1.000 |\n| collider | 0.111–0.217 | same (safe) | 1.000 |\n| exposure | 0.040–0.061 | 0 (unsafe) | 1.000 |\n| frontdoor | 0.041–0.059 | 0 (unsafe) | 1.000 |\n| IV | 0.035–0.050 | 0 (unsafe) | 0.754–0.785 |\n\n- **ASV-unsafe: 31/63 (49.2%)**\n- confounding 的 Type I error = 100%（完全膨胀，符合预期）\n- ASV 过滤过于保守：unsafe 的 topology 直接把 power 降到 0\n\n### 6. Inter-model error correlation (humaid, 排除 qwen3/few-shot-5)\n\n| prompt | pair | agreement | kappa | error_corr |\n|--------|------|-----------|-------|------------|\n| zero-shot | llama4-qwen3 | 0.485 | 0.417 | 0.121 |\n| zero-shot | llama4-deepseek | 0.485 | 0.419 | 0.074 |\n| zero-shot | qwen3-deepseek | 0.559 | 0.491 | 0.085 |\n| few-shot-3 | llama4-qwen3 | 0.490 | 0.420 | 0.157 |\n| few-shot-3 | llama4-deepseek | 0.465 | 0.392 | 0.056 |\n| few-shot-3 | qwen3-deepseek | 0.507 | 0.433 | 0.051 |\n\n- **Agreement 0.465–0.559**, **Kappa 0.392–0.491**（fair to moderate）\n- **Error correlation 0.051–0.157**（低），模型犯错较独立\n\n### 7. 异常/与预期不符\n\n1. **qwen3/few-shot-5 全零** — 该组合标注完全失败，需排除\n2. **confounding T1=100%** — 高但符合理论预期（K=10 放大了混杂效应）\n3. **ASV 过滤过于保守** — unsafe 时 power 直接归零，实际应该有梯度式衰减\n4. **0 sign flips** — K=10 时对角占优仍然足够保持符号正确\n5. **IV bias 达 42%** — 这是 Wald estimator 对测量误差的已知脆弱性\n\n### 8. 输出文件\n\n| 文件 | 大小 |\n|------|------|\n| `artifacts/plan006/asv_empirical_results.json` | 119K |\n| `artifacts/plan006/f1_vs_bias.png` | 171K |\n| `artifacts/plan006/asv_heatmap.png` | 72K |\n| `artifacts/plan006/plan006_humaid_run.log` | 2.9K |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae51d705-a6ee-4151-b29b-18f75af380ac",
+            "isSidechain": false,
+            "requestId": "req_011CbEfug8PBUHsJfxSFtAsA",
+            "type": "assistant",
+            "uuid": "4eb96647-bc6c-4c7e-8ca2-2c4b0ca766e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WpSXg2EWUwMtvaKn4anxjX",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2258,
+                "cache_read_input_tokens": 86934,
+                "output_tokens": 1910,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2258,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1910,
+                    "cache_read_input_tokens": 86934,
+                    "cache_creation_input_tokens": 2258,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2258
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "4eb96647-bc6c-4c7e-8ca2-2c4b0ca766e3",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43"
+              }
+            }
+          ],
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Run plan_006 ASV empirical calibration with humaid data",
+                "sessionId": "56f3b4c4-e9da-42a6-bd93-4ade81d3bb43"
+              }
+            }
+          ],
+          "id": "event-000215"
+        }
+      ]
+    }
+  ]
+}

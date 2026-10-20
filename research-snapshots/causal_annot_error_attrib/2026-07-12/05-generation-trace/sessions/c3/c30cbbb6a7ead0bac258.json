@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "c30cbbb6a7ead0bac258",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: causal_annot_error_attrib ## 运行环境 - 服务器名: home-1x5090 - SSH 账户: sonny（调用 ssh_execute / submit_tr",
+  "task_key": "e7e182a6-7ec2-4014-8a27-2c54221fe0cd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/e7e182a6-7ec2-4014-8a27-2c54221fe0cd.jsonl",
+    "occurrence": 1,
+    "bytes": 690813,
+    "sha256": "1d52ba59ea813315afc2b4b103bd482e82a641f8a5a28a8d4438cd5084a67104"
+  },
+  "statistics": {
+    "messages": 184,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "record": 47,
+      "user": 1,
+      "assistant": 36,
+      "tool_call": 50,
+      "tool_result": 50
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c30cbbb6a7ead0bac258-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 182,
+      "chunks": [
+        {
+          "path": "c30cbbb6a7ead0bac258-part-0001.json",
+          "message_count": 151
+        },
+        {
+          "path": "c30cbbb6a7ead0bac258-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-causal-annot-error-attrib-home-1x5090-ssh-sonny-ssh-execute-su-copy-103.md"
+}

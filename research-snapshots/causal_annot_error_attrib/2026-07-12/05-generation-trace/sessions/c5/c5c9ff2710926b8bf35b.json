@@ -1,0 +1,1323 @@
+{
+  "schema_version": "1.0",
+  "id": "c5c9ff2710926b8bf35b",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for very recent papers (2025-2026) at the intersection of IRT and LLM evaluation, and any new contamination corre",
+  "task_key": "agent-a85ee19f30d5592dd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a85ee19f30d5592dd.jsonl",
+    "occurrence": 1,
+    "bytes": 60044,
+    "sha256": "98d6533cf1820390d587bee9f5e0db10bd010969f482b6c261d73ddb68b3fd91"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 4,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T12:49:56.646Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for very recent papers (2025-2026) at the intersection of IRT and LLM evaluation, and any new contamination correction methods. I need to check whether anyone has published work that overlaps with a \"Gated IRT for LLM contamination-ability decomposition\" approach. Search:\n\n1. \"IRT contamination LLM\" on arXiv (2025-2026)\n2. \"contamination correction benchmark LLM IRT\" \n3. \"item response theory large language model decontamination\"\n4. \"gated IRT cheating detection\" to see if anyone extended Shu et al. 2013 DGM recently\n5. Check if there are any new papers on combining adversarial item variants with psychometric models\n\nAlso specifically search for:\n6. \"LEGO-IRT LLM evaluation\" to find the LEGO-IRT paper (arXiv Oct 2025)\n7. Any papers from April-May 2026 on LLM benchmark contamination that might be concurrent work\n\nUse WebSearch. Report any papers that could be concurrent/competing work, with titles, authors, dates, and how they relate. Under 400 words."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "3affc792-55ba-4569-9b31-b1297e69cc9e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T12:49:56.652Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3affc792-55ba-4569-9b31-b1297e69cc9e",
+                "isSidechain": true,
+                "agentId": "a85ee19f30d5592dd",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "141da17d-b634-45c6-93b0-f308187cd631",
+                "timestamp": "2026-05-28T12:49:56.652Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu",
+                "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T12:49:56.654Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "141da17d-b634-45c6-93b0-f308187cd631",
+                "isSidechain": true,
+                "agentId": "a85ee19f30d5592dd",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "70b7e9a6-8c41-445f-8c94-d04f0037ea05",
+                "timestamp": "2026-05-28T12:49:56.654Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu",
+                "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T12:49:59.741Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for all these topics in parallel using WebSearch."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70b7e9a6-8c41-445f-8c94-d04f0037ea05",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzg7WEopud8E5AMo4PY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a3e0b38d-58f3-4d87-8760-c2138876ee4d",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KRjs5MiYiBuLmUi2V2DrU6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1581,
+                "cache_read_input_tokens": 7407,
+                "output_tokens": 90,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1581
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 90,
+                    "cache_read_input_tokens": 7407,
+                    "cache_creation_input_tokens": 1581,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1581,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T12:49:59.750Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T8aicTQpHPgmBYrc63fKjs",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3e0b38d-58f3-4d87-8760-c2138876ee4d",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzg7WEopud8E5AMo4PY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "027fd5ce-dd90-4d5b-a7c9-9b984422122c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KRjs5MiYiBuLmUi2V2DrU6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1581,
+                "cache_read_input_tokens": 7407,
+                "output_tokens": 90,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1581
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 90,
+                    "cache_read_input_tokens": 7407,
+                    "cache_creation_input_tokens": 1581,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1581,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T12:49:59.755Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01T8aicTQpHPgmBYrc63fKjs",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "027fd5ce-dd90-4d5b-a7c9-9b984422122c",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "3f518274-380c-4df4-8928-9aefe4f1fbbd",
+            "sourceToolAssistantUUID": "027fd5ce-dd90-4d5b-a7c9-9b984422122c",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T12:50:02.116Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow I'll run all seven searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3f518274-380c-4df4-8928-9aefe4f1fbbd",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzgLzMFV4KLHEubrgAT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ecdeabb5-13bf-4aa9-8539-648b2554b201",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MmDoRXDsdH5z7xSdBLi1s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T12:50:03.356Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DoaFDBBvpBpBZhwD1Dkat5",
+              "name": "WebSearch",
+              "input": {
+                "query": "IRT contamination LLM arXiv 2025 2026",
+                "allowed_domains": [
+                  "arxiv.org",
+                  "scholar.google.com",
+                  "semanticscholar.org"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecdeabb5-13bf-4aa9-8539-648b2554b201",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzgLzMFV4KLHEubrgAT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2bf69ba0-51f4-4668-8c1b-b0f1b1dead83",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MmDoRXDsdH5z7xSdBLi1s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T12:50:03.741Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012o9mRQ8CpWwAsL5DiuoJzx",
+              "name": "WebSearch",
+              "input": {
+                "query": "contamination correction benchmark LLM IRT item response theory 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bf69ba0-51f4-4668-8c1b-b0f1b1dead83",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzgLzMFV4KLHEubrgAT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "92d9f0d7-25de-4a61-b928-319d3193f782",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MmDoRXDsdH5z7xSdBLi1s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T12:50:04.195Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DQ2GyhrHbXppY8bLzaEpwo",
+              "name": "WebSearch",
+              "input": {
+                "query": "item response theory large language model decontamination 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92d9f0d7-25de-4a61-b928-319d3193f782",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzgLzMFV4KLHEubrgAT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3465f1a8-de2f-4760-a8f8-9fa59ca21b92",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MmDoRXDsdH5z7xSdBLi1s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T12:50:04.552Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011AMhHDWvQdc2c1LDgMC2Gf",
+              "name": "WebSearch",
+              "input": {
+                "query": "gated IRT cheating detection DGM Shu 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3465f1a8-de2f-4760-a8f8-9fa59ca21b92",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzgLzMFV4KLHEubrgAT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a9a17007-40d1-4d9a-95a3-212805e6e2f9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MmDoRXDsdH5z7xSdBLi1s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T12:50:05.055Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01762JMy5jmqgUdYKnNffgfo",
+              "name": "WebSearch",
+              "input": {
+                "query": "adversarial item variants psychometric models LLM evaluation 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9a17007-40d1-4d9a-95a3-212805e6e2f9",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzgLzMFV4KLHEubrgAT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "56e47552-1ce9-4c17-9615-45f9d71a8bc8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MmDoRXDsdH5z7xSdBLi1s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-28T12:50:05.490Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0113DnYCBh1oG2jUpN17F6Rh",
+              "name": "WebSearch",
+              "input": {
+                "query": "LEGO-IRT LLM evaluation arXiv 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56e47552-1ce9-4c17-9615-45f9d71a8bc8",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzgLzMFV4KLHEubrgAT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8200bb14-62ac-4dc3-9f97-c1f0c660f56a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MmDoRXDsdH5z7xSdBLi1s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T12:50:05.682Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RvF3j4XcgzHPkotnunnomb",
+              "name": "WebSearch",
+              "input": {
+                "query": "LLM benchmark contamination detection new paper April May 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8200bb14-62ac-4dc3-9f97-c1f0c660f56a",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzgLzMFV4KLHEubrgAT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "67168f6c-d073-4286-950c-945e61623244",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016MmDoRXDsdH5z7xSdBLi1s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 620,
+                "cache_read_input_tokens": 8988,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 620,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T12:50:11.662Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DQ2GyhrHbXppY8bLzaEpwo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"item response theory large language model decontamination 2025 2026\"\n\nLinks: [{\"title\":\"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/abs/2505.15055\"},{\"title\":\"Lifting the benchmark iceberg with item-response theory | OpenReview\",\"url\":\"https://openreview.net/forum?id=ZyVQqK7mcP\"},{\"title\":\"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub\",\"url\":\"https://github.com/Joe-Hall-Lee/PSN-IRT\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v2\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/40814\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2505.15055\"},{\"title\":\"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large   Language Model Evaluation\",\"url\":\"https://arxiv.org/pdf/2406.13990\"}]\n\nBased on the search results, I found relevant recent research on item response theory and large language model benchmarking from 2025-2026:\n\n## Key Research Findings\n\nA framework called Pseudo-Siamese Network for Item Response Theory (PSN-IRT) was proposed as an enhanced Item Response Theory framework that can be utilized for accurate and reliable estimations of item characteristics and model abilities. This approach was applied to analyze 11 LLM benchmarks comprising 41,871 items, revealing significant and varied shortcomings in their measurement quality.\n\nResearch has identified a \"benchmark iceberg\" phenomenon where much of the variability in model rankings stems not from true capability differences, but from hidden implementation choices, and minor changes to these implementation details can alter model rankings. To address this, psychometric principles from educational testing and item response theory (IRT) were leveraged to transform benchmarks from opaque leaderboards into transparent measurement instruments.\n\n## Related Decontamination Work\n\nThe search results also revealed LiveBench, described as a challenging, contamination-limited LLM benchmark, which represents contemporary efforts to address data contamination issues in LLM evaluation.\n\nThe research paper on Lost in Benchmarks was published as an AAAI 2026 oral presentation, indicating active ongoing work in this area during 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3465f1a8-de2f-4760-a8f8-9fa59ca21b92",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "69e12231-075f-4b40-8840-2c3fee13990e",
+            "sourceToolAssistantUUID": "3465f1a8-de2f-4760-a8f8-9fa59ca21b92",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T12:50:11.668Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012o9mRQ8CpWwAsL5DiuoJzx",
+              "type": "tool_result",
+              "content": "Web search results for query: \"contamination correction benchmark LLM IRT item response theory 2025 2026\"\n\nLinks: [{\"title\":\"Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory\",\"url\":\"https://arxiv.org/html/2605.00238\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v1\"},{\"title\":\"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/abs/2505.15055\"},{\"title\":\"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide\",\"url\":\"https://llm-stats.com/blog/research/what-is-a-contaminated-llm\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with\",\"url\":\"https://arxiv.org/pdf/2505.15055\"},{\"title\":\"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub\",\"url\":\"https://github.com/Joe-Hall-Lee/PSN-IRT\"},{\"title\":\"Learning Compact Representations of LLM Abilities via Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2510.00844\"},{\"title\":\"When Benchmarks Leak: Inference-Time Decontamination for LLMs\",\"url\":\"https://arxiv.org/pdf/2601.19334\"}]\n\nBased on the search results, here are the key findings related to contamination correction, benchmarking, LLM evaluation, and Item Response Theory (IRT):\n\n## Recent IRT Applications to LLM Evaluation\n\nRecent work has applied IRT to LLM evaluation, including diagnosing the reliability of LLM-as-a-judge systems and modeling latent LLM abilities together with query difficulty and discrimination for routing and performance prediction.\n\n## PSN-IRT Framework for Benchmark Analysis\n\nA paper from 2025-2026 proposes Pseudo-Siamese Network for Item Response Theory (PSN-IRT), an enhanced Item Response Theory framework that incorporates a rich set of item parameters within an IRT-grounded architecture. This framework was used to conduct extensive analysis on 11 LLM benchmarks comprising 41,871 items, revealing significant and varied shortcomings in their measurement quality.\n\n## Contamination-Limited Benchmarks\n\nLiveBench is described as a challenging, contamination-limited LLM benchmark, and other contamination-resistant benchmarks include LiveCodeBench, FrontierMath, MMLU-Pro, and LiveBench.\n\n## Inference-Time Decontamination\n\nInference-time decontamination mitigates contamination effects during model inference rather than by filtering benchmark items, though a common issue is that interventions strong enough to reduce contamination often affect clean accuracy as well.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92d9f0d7-25de-4a61-b928-319d3193f782",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "82095108-d210-4c5b-b6ff-705f05035d1a",
+            "sourceToolAssistantUUID": "92d9f0d7-25de-4a61-b928-319d3193f782",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T12:50:12.041Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DoaFDBBvpBpBZhwD1Dkat5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"IRT contamination LLM arXiv 2025 2026\"\n\nLinks: [{\"title\":\"[2604.05766] The LLM Effect on IR Benchmarks: A Meta-Analysis of Effectiveness, Baselines, and Contamination\",\"url\":\"https://arxiv.org/abs/2604.05766\"},{\"title\":\"[2502.01534] Preference Leakage: A Contamination Problem in LLM-as-a-judge\",\"url\":\"https://arxiv.org/abs/2502.01534\"},{\"title\":\"Time Travel in LLMs: Tracing Data Contamination in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2308.08493\"},{\"title\":\"The LLM Effect on IR Benchmarks: A Meta-Analysis of ...\",\"url\":\"https://arxiv.org/pdf/2604.05766\"},{\"title\":\"Preprint. Accepted at the ICLR 2026 LIT Workshop\",\"url\":\"https://arxiv.org/pdf/2602.09924\"},{\"title\":\"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in   Closed-Source LLMs\",\"url\":\"https://arxiv.org/pdf/2402.03927\"},{\"title\":\"Preference Leakage: A Contamination Problem in LLM-as- ...\",\"url\":\"https://arxiv.org/pdf/2502.01534\"}]\n\nBased on the search results, here are the relevant papers on IRT (Information Retrieval and Text) contamination and LLM contamination from arXiv in 2025-2026:\n\n## Key Papers Found:\n\n1. **\"The LLM Effect on IR Benchmarks: A Meta-Analysis of Effectiveness, Baselines, and Contamination\"** (April 2026)\n   - Analyzes 143 publications reporting results on the TREC Robust04 collection and the TREC Deep Learning 2020 (DL20) passage retrieval benchmark to examine longitudinal trends in retrieval effectiveness and baseline strength. Reveals measurable contamination in both benchmarks, and while excluding contaminated topics reduces effectiveness, confidence intervals remain wide, making it difficult to determine whether the LLM effect reflects genuine methodological advances or memorization from pretraining data.\n\n2. **\"Preference Leakage: A Contamination Problem in LLM-as-a-judge\"** (March 2026)\n   - Exposes preference leakage, a contamination problem in LLM-as-a-judge caused by the relatedness between the synthetic data generators and LLM-based evaluators. Empirically confirms the bias of judges towards their related student models caused by preference leakage across multiple LLM baselines and benchmarks.\n\n3. **\"Time Travel in LLMs: Tracing Data Contamination in Large Language Models\"** (2023)\n   - Achieves an accuracy between 92% and 100% in detecting if an LLM is contaminated with seven datasets, and findings indicate that GPT-4 is contaminated with AG News, WNLI, and XSum datasets.\n\n4. **\"Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source LLMs\"** (2024)\n   - Addresses the issue of indirect data contamination in closed-source LLMs by conducting a systematic literature review of 255 papers and carefully detailing data leakage emerging from them.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bf69ba0-51f4-4668-8c1b-b0f1b1dead83",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "02d1a325-8444-4f83-90c9-855bc8145a41",
+            "sourceToolAssistantUUID": "2bf69ba0-51f4-4668-8c1b-b0f1b1dead83",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-28T12:50:12.110Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011AMhHDWvQdc2c1LDgMC2Gf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"gated IRT cheating detection DGM Shu 2025 2026\"\n\nLinks: [{\"title\":\"Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating due to Item Compromise | Psychometrika | Cambridge Core\",\"url\":\"https://www.cambridge.org/core/journals/psychometrika/article/using-deterministic-gated-item-response-theory-model-to-detect-test-cheating-due-to-item-compromise/34FE98C0FA7367881713D0019619E53E\"},{\"title\":\"(PDF) Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating due to Item Compromise\",\"url\":\"https://www.researchgate.net/publication/257678777_Using_Deterministic_Gated_Item_Response_Theory_Model_to_Detect_Test_Cheating_due_to_Item_Compromise\"},{\"title\":\"Using Deterministic, Gated Item Response Theory Model to detect test cheating due to item compromise - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/25106396/\"},{\"title\":\"Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating due to Item Compromise | Psychometrika | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11336-012-9311-3\"},{\"title\":\"Online Gaming Cheating Detection in 2026 | GearsME\",\"url\":\"https://gearsme.com/en/online-gaming-cheating-detection-in-2026/\"},{\"title\":\"Are Exam Questions Known in Advance? Using Local Dependence to Detect Cheating\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5131967/\"},{\"title\":\"Cheating detection in remote assessment environments\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11138899\"},{\"title\":\"Detecting AI-Assisted Cheating in Online Exams through Behavior Analytics\",\"url\":\"https://arxiv.org/pdf/2510.18881\"}]\n\nBased on the search results, I found information about the Deterministic, Gated Item Response Theory Model (DGM) for cheating detection by Shu:\n\n## Overview\n\nThe Deterministic, Gated Item Response Theory Model (DGM) was proposed to identify cheaters who obtain significant score gain on tests due to item exposure/compromise by conditioning on the item status (exposed or unexposed items).\n\n## How It Works\n\nA \"gated\" function is introduced to decompose the observed examinees' performance into two distributions—the true ability distribution determined by examinees' true ability and the cheating distribution determined by examinees' cheating ability. Test cheaters who have score gain due to item exposure are identified through the comparison of the two distributions.\n\n## Technical Details\n\nHierarchical Markov Chain Monte Carlo is used as the model's estimation framework. The model can be used to identify examinees having pre-knowledge on the exposed items.\n\nThe search results primarily reference the original 2013 publication by Shu in Psychometrika, with a Cambridge Core update dated January 1, 2025. However, the results don't show any major new publications or developments specifically from 2025-2026 beyond recent citings of the original work.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9a17007-40d1-4d9a-95a3-212805e6e2f9",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "da680c2d-550a-4167-89fa-2d093676f298",
+            "sourceToolAssistantUUID": "a9a17007-40d1-4d9a-95a3-212805e6e2f9",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-28T12:50:12.642Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0113DnYCBh1oG2jUpN17F6Rh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LEGO-IRT LLM evaluation arXiv 2025\"\n\nLinks: [{\"title\":\"[2510.04051] Toward a unified framework for data-efficient evaluation of large language models\",\"url\":\"https://arxiv.org/abs/2510.04051\"},{\"title\":\"Toward a unified framework for data-efficient evaluation of large language models\",\"url\":\"https://arxiv.org/html/2510.04051v1\"},{\"title\":\"[2504.03048] LLM Library Learning Fails: A LEGO-Prover Case Study\",\"url\":\"https://arxiv.org/abs/2504.03048\"},{\"title\":\"LEGO-Eval: Towards Fine-grained Evaluation on Synthesizing 3D Embodied Environments with Tool Augmentation\",\"url\":\"https://arxiv.org/html/2511.03001\"},{\"title\":\"Moving LLM evaluation forward: lessons from human judgment research\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12149859/\"},{\"title\":\"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2602.00521\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**LEGO-IRT: Toward a unified framework for data-efficient evaluation of large language models**\n\nLEGO-IRT is a unified and flexible framework for data-efficient LLM evaluation, published on arXiv on October 5, 2025 (arXiv:2510.04051).\n\nKey features of the framework:\n\n- LEGO-IRT's novel design natively supports both binary and continuous evaluation metrics\n- It introduces a factorized architecture to explicitly model and leverage structural knowledge, decomposing model ability estimates into a general component and structure-specific (e.g., per-metric or per-benchmark) components\n\nPerformance:\n\n- Through extensive experiments involving 70 LLMs across 5 benchmarks, LEGO-IRT achieves stable capability estimates using just 3% of the total evaluation items\n- Incorporating structural knowledge reduces estimation error by up to 10% and the latent abilities estimated by the framework may align more closely with human preferences\n\nYou can access the full paper at https://arxiv.org/abs/2510.04051\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8200bb14-62ac-4dc3-9f97-c1f0c660f56a",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "0b79e12b-631b-47b3-bb3a-39d74205dd69",
+            "sourceToolAssistantUUID": "8200bb14-62ac-4dc3-9f97-c1f0c660f56a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-28T12:50:14.522Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01762JMy5jmqgUdYKnNffgfo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"adversarial item variants psychometric models LLM evaluation 2025 2026\"\n\nLinks: [{\"title\":\"Psychometric Benchmarks for AI Evaluation\",\"url\":\"https://www.emergentmind.com/topics/psychometrically-informed-benchmarks\"},{\"title\":\"Evaluating Large Language Models with Psychometrics\",\"url\":\"https://arxiv.org/html/2406.17675v2\"},{\"title\":\"LLM Benchmarks\",\"url\":\"https://www.emergentmind.com/topics/large-language-model-benchmarks\"},{\"title\":\"Do Psychometric Tests Work for Large Language Models? Evaluation of Tests on Sexism, Racism, and Morality\",\"url\":\"https://arxiv.org/pdf/2510.11254\"},{\"title\":\"Quantifying Data Contamination in Psychometric Evaluations of LLMs\",\"url\":\"https://arxiv.org/pdf/2510.07175\"},{\"title\":\"Benchmarking adversarial robustness to bias elicitation in large language models: scalable automated assessment with LLM-as-a-judge | Machine Learning | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10994-025-06862-6\"},{\"title\":\"Large Language Model Evaluation in 2025: Smarter Metrics That ...\",\"url\":\"https://www.techrxiv.org/users/927947/articles/1304989/master/file/data/Large%20Language%20Model%20Evaluation%20in%202025-Smarter%20Metrics%20That%20Separate%20Hype%20from%20Trust/Large%20Language%20Model%20Evaluation%20in%202025-Smarter%20Metrics%20That%20Separate%20Hype%20from%20Trust.pdf\"}]\n\nBased on the search results, I found several relevant sources on adversarial item variants, psychometric models, and LLM evaluation from 2025-2026:\n\n## Key Findings:\n\n**Psychometric Models for LLM Evaluation:**\nBehavioral stability and reliability including adversarial prompt robustness are essential for evaluating the internal stability and reproducibility of benchmark-based inferences. Metrics are evolving toward multi-dimensional, compositional, or item-level psychometric models such as PSN-IRT, which models item discriminability, guessing rates, and difficulty.\n\n**Adversarial Item Variants:**\nPromptBench, AdvGLUE, and BOSS introduce input perturbations (typos, paraphrase, semantic variance) to stress-test model consistency, while REALTOXICITYPROMPTS and HateXplain evaluate content appropriateness under adversarial prompt settings. Additionally, the Human-Centered Survey offers two versions: a regular version and an adversarial version.\n\n**Challenges in Psychometric Testing of LLMs:**\nEarly work highlights challenges such as the prompt sensitivity of LLMs, and it remains unclear whether psychometric tests designed and validated for humans can be applied to assess LLMs in a comparable way. There is a risk of data contamination, as LLMs may have encountered psychometric items or scoring procedures during pretraining, and test results may reflect prior exposure rather than genuine characteristics.\n\n**Item Development and Calibration:**\nPsychometric screening eliminates items with poor discrimination or inappropriate difficulty, and online item selection using calibrated item banks drives Computerized Adaptive Testing (CAT), which concentrates evaluation on maximally informative items for each model.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56e47552-1ce9-4c17-9615-45f9d71a8bc8",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "ff8453e4-6cd3-4944-9e04-fee69ba5ad58",
+            "sourceToolAssistantUUID": "56e47552-1ce9-4c17-9615-45f9d71a8bc8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-28T12:50:19.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RvF3j4XcgzHPkotnunnomb",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LLM benchmark contamination detection new paper April May 2026\"\n\nLinks: [{\"title\":\"Detecting Benchmark Contamination Through Watermarking\",\"url\":\"https://arxiv.org/pdf/2502.17259\"},{\"title\":\"What Is a Contaminated LLM? Detection, Famous Cases, 2026 Guide\",\"url\":\"https://llm-stats.com/blog/research/what-is-a-contaminated-llm\"},{\"title\":\"Generalization or Memorization: Data Contamination and Trustworthy   Evaluation for Large Language Models\",\"url\":\"https://arxiv.org/pdf/2402.15938\"},{\"title\":\"NLP Evaluation in trouble: On the Need to Measure LLM Data Contamination   for each Benchmark\",\"url\":\"https://arxiv.org/pdf/2310.18018\"},{\"title\":\"How Can I Publish My LLM Benchmark Without Giving the True Answers Away?\",\"url\":\"https://arxiv.org/pdf/2505.18102\"},{\"title\":\"Are Large Language Models Truly Smarter Than Humans?\",\"url\":\"https://arxiv.org/pdf/2603.16197\"},{\"title\":\"A Comprehensive Survey of Contamination Detection Methods in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2404.00699\"},{\"title\":\"PaCoST: Paired Confidence Significance Testing for Benchmark   Contamination Detection in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2406.18326\"}]\n\nBased on the search results, here are some recent papers on LLM benchmark contamination detection from April-May 2026:\n\n## Key Recent Papers\n\n1. **Detecting Benchmark Contamination Through Watermarking** (February 2026)\n   This paper proposes embedding non-intrusive watermarks in benchmark datasets before release, enabling reporting of both model performance and a contamination p-value score that represents an upper bound to the probability that the model hasn't been trained on the benchmark questions.\n\n2. **How Can I Publish My LLM Benchmark Without Giving the True Answers Away?** (May 2026)\n   This paper presents a method that detects contamination using only model performance—no benchmark data or model internals needed—making it suitable for black-box and private benchmarks.\n\n3. **Are Large Language Models Truly Smarter Than Humans?** (March 2026)\n   This paper presents a rigorous multi-method contamination audit of six frontier LLMs—GPT-40, GPT-40-mini, DeepSeek-R1, DeepSeek-V3, Llama-3.3-70B, and Qwen3-235B—conducted entirely using public APIs and open benchmarks.\n\nThese papers represent the latest advances in detecting and addressing benchmark contamination in large language models, with various approaches ranging from watermarking techniques to performance-based detection methods.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67168f6c-d073-4286-950c-945e61623244",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "d02f367c-00ad-4aaa-8def-0e7751db993f",
+            "sourceToolAssistantUUID": "67168f6c-d073-4286-950c-945e61623244",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-28T12:50:22.336Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me run a couple of follow-up searches to get more detail on the most relevant papers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d02f367c-00ad-4aaa-8def-0e7751db993f",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzhm4Udhn4BuvD9GMz1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1bb67aee-ff2c-4847-b177-fe3c935f5c71",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UQ2Mgc4pYeiLrnJ99PvbbQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5822,
+                "cache_read_input_tokens": 9608,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5822,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-28T12:50:23.365Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AQWYkbLXovvx626M1E4NpL",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2510.00844 \"compact representations LLM abilities item response theory\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1bb67aee-ff2c-4847-b177-fe3c935f5c71",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzhm4Udhn4BuvD9GMz1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6c286313-c899-4429-9909-0d11049c60a6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UQ2Mgc4pYeiLrnJ99PvbbQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5822,
+                "cache_read_input_tokens": 9608,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5822,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-28T12:50:24.420Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PJXPmNjuLgETuVtVifBdHs",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2601.19334 \"inference-time decontamination reusing leaked benchmarks\" 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c286313-c899-4429-9909-0d11049c60a6",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzhm4Udhn4BuvD9GMz1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9f7b4b08-aee9-4b29-980a-3e6e3da921aa",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UQ2Mgc4pYeiLrnJ99PvbbQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5822,
+                "cache_read_input_tokens": 9608,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5822,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-28T12:50:24.716Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XzJc45DUNPC5MUphcWVXve",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2602.00521 \"diagnosing reliability LLM judge item response theory\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f7b4b08-aee9-4b29-980a-3e6e3da921aa",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzhm4Udhn4BuvD9GMz1",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4967a8da-793e-4da1-adff-44d31016e0dd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UQ2Mgc4pYeiLrnJ99PvbbQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5822,
+                "cache_read_input_tokens": 9608,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5822,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-28T12:50:31.098Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PJXPmNjuLgETuVtVifBdHs",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2601.19334 \"inference-time decontamination reusing leaked benchmarks\" 2026\"\n\nLinks: [{\"title\":\"[2601.19334v1] When Benchmarks Leak: Inference-Time Decontamination for LLMs\",\"url\":\"https://arxiv.org/abs/2601.19334v1\"},{\"title\":\"[2601.19334] When Benchmarks Leak: Inference-Time Decontamination for LLMs\",\"url\":\"https://arxiv.org/abs/2601.19334\"},{\"title\":\"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large   Language Model Evaluation\",\"url\":\"https://arxiv.org/pdf/2406.13990\"},{\"title\":\"[2406.13990] Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation\",\"url\":\"https://arxiv.org/abs/2406.13990\"},{\"title\":\"[Literature Review] Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation\",\"url\":\"https://www.themoonlight.io/en/review/inference-time-decontamination-reusing-leaked-benchmarks-for-large-language-model-evaluation\"},{\"title\":\"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.findings-emnlp.532/\"},{\"title\":\"Inference-Time Decontamination: Reusing Leaked Benchmarks for Large Language Model Evaluation | Request PDF\",\"url\":\"https://www.researchgate.net/publication/386183526_Inference-Time_Decontamination_Reusing_Leaked_Benchmarks_for_Large_Language_Model_Evaluation\"}]\n\nBased on the search results, I found information about arXiv 2601.19334:\n\n## arXiv 2601.19334: \"When Benchmarks Leak: Inference-Time Decontamination for LLMs\"\n\nThe paper was submitted on January 27, 2026, with authors Jianzhe Chai, Yu Zhe, and Jun Sakuma.\n\n**Overview:**\nThe paper addresses the issue that benchmark reliability is threatened by test set contamination, where test samples or their close variants leak into training data and artificially inflate reported performance.\n\n**Problem and Solution:**\nPrior mitigation efforts have attempted to identify and remove contaminated items before evaluation (but this alters the evaluation set), or suppress contaminated behavior at evaluation time (but this often interferes with normal inference and degrades performance on clean inputs). \n\nThe paper proposes DeconIEP, a decontamination framework that operates entirely during evaluation by applying small, bounded perturbations in the input embedding space.\n\nYou can access the full paper on arXiv at https://arxiv.org/abs/2601.19334.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f7b4b08-aee9-4b29-980a-3e6e3da921aa",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "6ca44714-23cf-4b21-bc4f-ba0da9cd7190",
+            "sourceToolAssistantUUID": "9f7b4b08-aee9-4b29-980a-3e6e3da921aa",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-28T12:50:31.306Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AQWYkbLXovvx626M1E4NpL",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2510.00844 \"compact representations LLM abilities item response theory\"\"\n\nLinks: [{\"title\":\"[2510.00844] Learning Compact Representations of LLM Abilities via Item Response Theory\",\"url\":\"https://arxiv.org/abs/2510.00844\"},{\"title\":\"Learning Compact Representations of LLM Abilities via Item Response Theory | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/learning-compact-representations-llm-abilities-via-item\"},{\"title\":\"Learning Compact Representations of LLM Abilities via Item Response Theory | OpenReview\",\"url\":\"https://openreview.net/forum?id=uRDsLCJo2x\"},{\"title\":\"GitHub - JianhaoChen-nju/IrtNet · GitHub\",\"url\":\"https://github.com/JianhaoChen-nju/IrtNet\"},{\"title\":\"(PDF) Learning Compact Representations of LLM Abilities via Item Response Theory\",\"url\":\"https://www.researchgate.net/publication/396094822_Learning_Compact_Representations_of_LLM_Abilities_via_Item_Response_Theory\"},{\"title\":\"Estimating LLM Grading Ability and Response Difficulty in Automatic Short Answer Grading via Item Response Theory\",\"url\":\"https://arxiv.org/html/2605.00238\"},{\"title\":\"Learning Compact Representations of LLM Abilities via Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2510.00844\"},{\"title\":\"LEARNING COMPACT REPRESENTATIONS OF LLM ABILITIES ...\",\"url\":\"https://openreview.net/pdf/16fbdebf6f9746da46e522a527bfcd069cbb8964.pdf\"},{\"title\":\"LEARNING COMPACT REPRESENTATIONS OF LLM ...\",\"url\":\"https://openreview.net/pdf?id=uRDsLCJo2x\"},{\"title\":\"JE-IRT: A Geometric Lens on LLM Abilities through Joint Embedding Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2509.22888\"}]\n\nI found the arXiv paper you're looking for! Here's a summary of the research:\n\n**Paper Title:** Learning Compact Representations of LLM Abilities via Item Response Theory\n\n**Authors:** Jianhao Chen, Chenxu Wang, Gengrui Zhang, Peng Ye, Lei Bai, Wei Hu, Yuzhong Qu, and Shuyue Hu\n\n**Submission Date:** October 1, 2025\n\n**Key Idea:** The work explores how to learn compact representations of LLM abilities that can facilitate downstream tasks, such as model routing and performance prediction on new benchmarks.\n\n**Methodology:** Inspired by item response theory (IRT) in psychometrics, the authors model the probability of a model answering a query correctly as a function of three key factors: the model's multi-skill ability vector, the query's discrimination vector that separates models of differing skills, and the query's difficulty scalar. To learn these parameters jointly, they introduce a Mixture-of-Experts (MoE) network that couples model- and query-level embeddings.\n\n**Framework:** The architecture comprises a dense MoE layer which captures the feature of queries and an IRT layer which trains LLM embeddings based on item response theory.\n\nYou can access the paper directly at https://arxiv.org/abs/2510.00844.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c286313-c899-4429-9909-0d11049c60a6",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "5105e5e8-1397-4b83-b096-6ca7e3bb860a",
+            "sourceToolAssistantUUID": "6c286313-c899-4429-9909-0d11049c60a6",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-28T12:50:35.896Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XzJc45DUNPC5MUphcWVXve",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2602.00521 \"diagnosing reliability LLM judge item response theory\"\"\n\nLinks: [{\"title\":\"[2602.00521] Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://arxiv.org/abs/2602.00521\"},{\"title\":\"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://www.arxiv.org/pdf/2602.00521\"},{\"title\":\"Paper page - Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://huggingface.co/papers/2602.00521\"},{\"title\":\"Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\",\"url\":\"https://arxiv.org/html/2602.00521v1\"},{\"title\":\"Diagnosing the Reliability of LLM-as-a-Judge via Item ...\",\"url\":\"https://www.researchgate.net/publication/400369489_Diagnosing_the_Reliability_of_LLM-as-a-Judge_via_Item_Response_Theory\"},{\"title\":\"Can You Trust LLM Judgments? Reliability of LLM-as-a-Judge\",\"url\":\"https://arxiv.org/html/2412.12509v1\"},{\"title\":\"Can You Trust LLM Judgments? Reliability of LLM-as-a-Judge\",\"url\":\"https://arxiv.org/pdf/2412.12509\"},{\"title\":\"Diagnosing LLM Judge Reliability: Conformal Prediction Sets and Transitivity Violations\",\"url\":\"https://arxiv.org/html/2604.15302\"},{\"title\":\"Noisy but Valid: Robust Statistical Evaluation of LLMs with Imperfect Judges\",\"url\":\"https://arxiv.org/pdf/2601.20913\"}]\n\nI found the paper you're looking for! Here's what I found about arXiv paper 2602.00521:\n\n**Paper Title:** Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\n\n**Authors:** Junhyuk Choi and 3 other authors (Sohhyung Park, Chanhee Cho, Hyeonchu Park, and Bugeun Kim)\n\n**Key Contribution:** The paper introduces a two-phase diagnostic framework for assessing reliability of LLM-as-a-Judge, grounded in Item Response Theory (IRT).\n\n**Framework Details:** The framework adopts Graded Response Model (GRM) of IRT and formalizes reliability along two complementary dimensions: (1) intrinsic consistency, defined as the stability of measurement behavior under prompt variations, and (2) human alignment, capturing correspondence with human evaluation.\n\n**Practical Impact:** The signals from the framework provide practical guidance for verifying reliability of LLM-as-a-Judge and identifying potential causes of unreliability.\n\n**Submission Date:** The paper was submitted on January 31, 2026\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4967a8da-793e-4da1-adff-44d31016e0dd",
+            "isSidechain": true,
+            "promptId": "98a3f0be-c89b-4064-8212-f2f1733d0772",
+            "agentId": "a85ee19f30d5592dd",
+            "type": "user",
+            "uuid": "fd6bbc25-1346-4d20-b5ad-1508a7b0c651",
+            "sourceToolAssistantUUID": "4967a8da-793e-4da1-adff-44d31016e0dd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-28T12:50:58.214Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is my analysis of the landscape:\n\n---\n\n**Most relevant papers to a \"Gated IRT for LLM contamination-ability decomposition\" approach:**\n\n**1. PSN-IRT (AAAI 2026 Oral)** -- \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\" (arXiv 2505.15055, May 2025). Uses a Pseudo-Siamese Network IRT architecture to model item discriminability, guessing, and difficulty across 11 benchmarks / 41,871 items. Focuses on benchmark quality diagnosis, NOT contamination decomposition. Close in IRT+LLM space but orthogonal to your gating mechanism.\n\n**2. LEGO-IRT** (arXiv 2510.04051, Oct 2025) -- \"Toward a unified framework for data-efficient evaluation of LLMs.\" Factorized IRT architecture decomposing ability into general + structure-specific components. Achieves stable estimates with 3% of items. Relevant architecturally (factorized ability) but does not address contamination.\n\n**3. IrtNet** (arXiv 2510.00844, Oct 2025) -- \"Learning Compact Representations of LLM Abilities via IRT.\" MoE network coupling model/query embeddings with a multi-skill ability vector, discrimination vector, and difficulty scalar. Closest to a neural IRT for LLMs but no contamination component.\n\n**4. DeconIEP** (arXiv 2601.19334, Jan 2026) -- \"When Benchmarks Leak: Inference-Time Decontamination for LLMs.\" Applies bounded embedding-space perturbations at inference time. Addresses contamination correction but uses NO psychometric/IRT framework.\n\n**5. IRT for LLM-as-Judge** (arXiv 2602.00521, Jan 2026) -- Uses Graded Response Model IRT to diagnose judge reliability. IRT application but unrelated to contamination.\n\n**6. Shu et al. 2013 DGM** -- No new extensions found. The original Deterministic Gated Model in Psychometrika remains uncited in the LLM context. This is your key differentiator: nobody has adapted the gating mechanism to decompose LLM performance into genuine-ability vs. contamination-driven components.\n\n**7. Recent contamination papers (2026):** Watermarking-based detection (arXiv 2502.17259, Feb 2026), black-box performance-based detection (arXiv 2505.18102, May 2026), and a multi-method contamination audit of frontier LLMs (arXiv 2603.16197, Mar 2026). None use IRT.\n\n**Bottom line:** No one has published work combining a gated IRT model with LLM contamination decomposition. The IRT+LLM papers (PSN-IRT, LEGO-IRT, IrtNet) ignore contamination. The contamination papers ignore IRT. Adapting Shu et al.'s DGM gating mechanism to separate memorization from genuine ability in LLMs appears to be a clear gap. PSN-IRT and LEGO-IRT are the closest neighbors you should cite and differentiate from.\n\nSources:\n- [PSN-IRT / Lost in Benchmarks (AAAI 2026)](https://arxiv.org/abs/2505.15055)\n- [LEGO-IRT](https://arxiv.org/abs/2510.04051)\n- [IrtNet / Compact Representations](https://arxiv.org/abs/2510.00844)\n- [DeconIEP / When Benchmarks Leak](https://arxiv.org/abs/2601.19334)\n- [IRT for LLM-as-Judge](https://arxiv.org/abs/2602.00521)\n- [Shu et al. 2013 DGM](https://link.springer.com/article/10.1007/s11336-012-9311-3)\n- [Benchmark Contamination via Watermarking](https://arxiv.org/abs/2502.17259)\n- [Black-box contamination detection](https://arxiv.org/abs/2505.18102)\n- [Multi-method contamination audit](https://arxiv.org/abs/2603.16197)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd6bbc25-1346-4d20-b5ad-1508a7b0c651",
+            "isSidechain": true,
+            "agentId": "a85ee19f30d5592dd",
+            "requestId": "req_011CbUzj1LjoKFaWutHjKMAE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c3594d6c-c409-4acc-9d24-f16d2a34f7c8",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu",
+            "sessionId": "b71487b8-a467-4168-9aa3-5f9ea29849d3",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015jCSLVQrtb8rdajixLiy1q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2600,
+                "cache_read_input_tokens": 15430,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2600,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-very-recent-papers-2025-2026-at-the-intersection-of-irt-and-llm-eva.md"
+}

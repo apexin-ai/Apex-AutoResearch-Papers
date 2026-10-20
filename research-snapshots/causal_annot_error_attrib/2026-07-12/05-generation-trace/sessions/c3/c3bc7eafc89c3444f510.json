@@ -1,0 +1,997 @@
+{
+  "schema_version": "1.0",
+  "id": "c3bc7eafc89c3444f510",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Use WebSearch to find and verify \"Steering Vector Fields\" (arXiv 2602.01654, Feb 2026). I need: 1. Does it exist? 2. Wha",
+  "task_key": "agent-a56c77bfdcc52d6e6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a56c77bfdcc52d6e6.jsonl",
+    "occurrence": 1,
+    "bytes": 46378,
+    "sha256": "343a9ae87b61675b84829e0e0e6e84850205c1715298ae2c8ea99f5728749ff3"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T08:50:29.166Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Use WebSearch to find and verify \"Steering Vector Fields\" (arXiv 2602.01654, Feb 2026). I need:\n1. Does it exist?\n2. What is its core mechanism — does it learn per-context steering directions from a differentiable scoring function?\n3. Does it operate per-token during decoding?\n4. Does it evaluate on TruthfulQA or hallucination benchmarks?\n5. Does it use geometric features of the activation space?\n\nSearch for \"Steering Vector Fields\" arxiv 2602.01654 and \"differentiable concept scoring steering direction\". Also try \"SVF steering vector fields language model 2026\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "1fc2de24-8361-49f7-a9c3-42fc17c0618b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T08:50:29.170Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1fc2de24-8361-49f7-a9c3-42fc17c0618b",
+                "isSidechain": true,
+                "agentId": "a56c77bfdcc52d6e6",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c8f6ae96-f30f-4fd3-8b63-b4f396bbeefe",
+                "timestamp": "2026-05-16T08:50:29.170Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T08:50:31.552Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SDyQ5TMonbVvjb3WhQPLYh",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8f6ae96-f30f-4fd3-8b63-b4f396bbeefe",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xi2z7HZGvQHHBW7mVj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ea36f58f-894a-4d9e-be8f-d70af74ed14c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017wwb7QB1SSoTHFcC635yWP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 698
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 698,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 698,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T08:50:31.556Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01SDyQ5TMonbVvjb3WhQPLYh",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea36f58f-894a-4d9e-be8f-d70af74ed14c",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "11707d47-5743-465a-8824-b406e37d6ee6",
+            "sourceToolAssistantUUID": "ea36f58f-894a-4d9e-be8f-d70af74ed14c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T08:50:34.449Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UJUxzHejY82ZqZXcybxUJL",
+              "name": "WebSearch",
+              "input": {
+                "query": "Steering Vector Fields arxiv 2602.01654"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11707d47-5743-465a-8824-b406e37d6ee6",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xiDNwWXpfTChReqixB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ed74575a-c009-4e7b-8f86-21327837156f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015J7zZki3pGQMkNY3sg7ao2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T08:50:34.458Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WEz9tLjb4bfoUnMGQCjDVA",
+              "name": "WebSearch",
+              "input": {
+                "query": "differentiable concept scoring steering direction language model 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed74575a-c009-4e7b-8f86-21327837156f",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xiDNwWXpfTChReqixB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cac56dfa-1fe0-4366-836d-2829516ec321",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015J7zZki3pGQMkNY3sg7ao2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T08:50:34.737Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BrBzLk7xkP6jTu2DfWxLr5",
+              "name": "WebSearch",
+              "input": {
+                "query": "SVF steering vector fields language model 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cac56dfa-1fe0-4366-836d-2829516ec321",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xiDNwWXpfTChReqixB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ae38646c-f73c-4267-9e58-30d6715f9de5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015J7zZki3pGQMkNY3sg7ao2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 8921,
+                "output_tokens": 154,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1392
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 154,
+                    "cache_read_input_tokens": 8921,
+                    "cache_creation_input_tokens": 1392,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1392,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T08:50:41.606Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UJUxzHejY82ZqZXcybxUJL",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Steering Vector Fields arxiv 2602.01654\"\n\nLinks: [{\"title\":\"[2602.01654] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/abs/2602.01654\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time ...\",\"url\":\"https://www.arxiv.org/pdf/2602.01654\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.01654\"},{\"title\":\"Investigating Generalization of One-shot LLM Steering Vectors\",\"url\":\"https://arxiv.org/html/2502.18862v1\"},{\"title\":\"[2305.04447] Neural Steerer: Novel Steering Vector Synthesis with a Causal Neural Field over Frequency and Source Positions\",\"url\":\"https://arxiv.org/abs/2305.04447\"},{\"title\":\"On the Non-Identifiability of Steering Vectors in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.06801v4\"},{\"title\":\"ODESteer: A Unified ODE-Based Steering Framework for LLM Alignment\",\"url\":\"https://arxiv.org/html/2602.17560v1\"},{\"title\":\"Steering Rectified Flow Models in the Vector Field for Controlled Image Generation\",\"url\":\"https://arxiv.org/html/2412.00100v1\"},{\"title\":\"Neural Steerer: Novel Steering Vector Synthesis with a Causal Neural Field over Frequency and Direction\",\"url\":\"https://arxiv.org/html/2305.04447v4\"},{\"title\":\"One-shot Optimized Steering Vectors Mediate Safety- ...\",\"url\":\"https://arxiv.org/pdf/2502.18862\"}]\n\nI found the paper you're looking for! Here's information about arxiv paper 2602.01654:\n\n## Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\n\nSteering vectors (SVs) offer a lightweight way to control large language models (LLMs) at inference time by shifting hidden activations, providing a practical middle ground between prompting and fine-tuning.\n\nHowever, SVs can be unreliable in practice—some concepts are unsteerable, and even when steering helps on average it can backfire for a non-trivial fraction of inputs, with reliability degrading in long-form generation and multi-attribute steering.\n\nThe authors propose Steering Vector Fields (SVF), which learns a differentiable concept scoring function whose local gradient defines the steering direction at each activation, making interventions explicitly context-dependent, and this formulation supports coordinated multi-layer interventions in a shared, aligned concept space, enabling efficient long-form and multi-attribute control within a unified framework.\n\nAcross multiple LLMs and steering tasks, SVF delivers stronger and more reliable control, improving the practicality of inference-time steering.\n\nThe paper was submitted on February 2, 2026. You can access the full paper at https://arxiv.org/abs/2602.01654.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed74575a-c009-4e7b-8f86-21327837156f",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "4c5a532e-cc76-41c4-8801-f11acd60d698",
+            "sourceToolAssistantUUID": "ed74575a-c009-4e7b-8f86-21327837156f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T08:50:41.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WEz9tLjb4bfoUnMGQCjDVA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"differentiable concept scoring steering direction language model 2026\"\n\nLinks: [{\"title\":\"[2602.01654] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/abs/2602.01654\"},{\"title\":\"Activation Steering in 2026: A Practitioner's Field Guide | Subhadip Mitra\",\"url\":\"https://subhadipmitra.com/blog/2026/activation-steering-field-guide/\"},{\"title\":\"Why Steering Works: Toward a Unified View of Language Model Parameter Dynamics\",\"url\":\"https://arxiv.org/html/2602.02343v1\"},{\"title\":\"Steering smarter. Why K-Steering is reshaping LLM… | by Thoughtworks | Medium\",\"url\":\"https://thoughtworks.medium.com/steering-smarter-4fbfbdb58803\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.01654\"},{\"title\":\"Steering Interpretable Language Models\",\"url\":\"https://www.guidelabs.ai/post/steerling-steering-8b/\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time ...\",\"url\":\"https://www.arxiv.org/pdf/2602.01654\"},{\"title\":\"Toward universal steering and monitoring of AI models | Science\",\"url\":\"https://www.science.org/doi/10.1126/science.aea6792\"},{\"title\":\"LayerNavigator: Finding Promising Intervention Layers for Efficient Activation Steering in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=wj4lM45xQR\"},{\"title\":\"Language Models Can Explain Visual Features via Steering\",\"url\":\"https://arxiv.org/html/2603.22593v1\"}]\n\nBased on the search results, I found highly relevant information about your query. Here's what the 2026 research shows:\n\n## Steering Vector Fields (SVF)\n\nThe primary development from 2026 is Steering Vector Fields (SVF), which learns a differentiable concept scoring function whose local gradient defines the steering direction at each activation, making interventions explicitly context-dependent.\n\n### The Problem with Static Vectors\n\nA static steering vector applies the same update vector everywhere in representation space, implicitly assuming that the concept-improving direction is constant across contexts. When the locally effective direction varies with the current activation, a single global vector can become misaligned, which yields weak or reversed effects.\n\n### How SVF Works\n\nSVF replaces a static vector with a vector field over activations. It learns a differentiable concept boundary and steers using its local normal direction, so the steering direction is a function of the current hidden state. This formulation supports coordinated multi-layer interventions in a shared, aligned concept space, and enables efficient long-form and multi-attribute control within a unified framework.\n\n### Key Improvements\n\nAcross multiple LLMs and steering tasks, SVF delivers stronger and more reliable control, improving the practicality of inference-time steering.\n\nThe research was published in February 2026 and addresses fundamental limitations in how language models can be controlled through activation steering at inference time.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cac56dfa-1fe0-4366-836d-2829516ec321",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "e50ebaf2-9daa-455e-9fff-c002c3066165",
+            "sourceToolAssistantUUID": "cac56dfa-1fe0-4366-836d-2829516ec321",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T08:50:48.210Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BrBzLk7xkP6jTu2DfWxLr5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SVF steering vector fields language model 2026\"\n\nLinks: [{\"title\":\"[2602.01654] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/abs/2602.01654\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.01654\"},{\"title\":\"[Literature Review] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://www.themoonlight.io/en/review/steering-vector-fields-for-context-aware-inference-time-control-in-large-language-models\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time ...\",\"url\":\"https://www.arxiv.org/pdf/2602.01654\"},{\"title\":\"On the Non-Identifiability of Steering Vectors in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.06801v4\"},{\"title\":\"Activation Steering in 2026: A Practitioner's Field Guide | Subhadip Mitra\",\"url\":\"https://subhadipmitra.com/blog/2026/activation-steering-field-guide/\"},{\"title\":\"From Steering Vectors to Conceptors: Compositional Affine Activation Steering for LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=0Yu0eNdHyV\"},{\"title\":\"PrivSV: Differentially Private Steering Vector for Large Language Models | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/40720\"},{\"title\":\"Language Steering for Multilingual In-Context Learning\",\"url\":\"https://arxiv.org/html/2602.02326v2\"},{\"title\":\"(PDF) Understanding Unreliability of Steering Vectors in Language Models: Geometric Predictors and the Limits of Linear Approximations\",\"url\":\"https://www.researchgate.net/publication/401057888_Understanding_Unreliability_of_Steering_Vectors_in_Language_Models_Geometric_Predictors_and_the_Limits_of_Linear_Approximations\"}]\n\nBased on the search results, here's what I found about SVF (Steering Vector Fields) for language models in 2026:\n\n## Overview\n\nSteering Vector Fields (SVF) learns a differentiable concept scoring function whose local gradient defines the steering direction at each activation, making interventions explicitly context-dependent.\n\n## Problem SVF Addresses\n\nSteering vectors (SVs) offer a lightweight way to control large language models (LLMs) at inference time by shifting hidden activations, yet SVs can be unreliable in practice, with some concepts being unsteerable and steering can backfire for a non-trivial fraction of inputs. A static SV applies the same update vector everywhere in representation space, implicitly assuming the concept-improving direction is constant across contexts. When the locally effective direction varies with the current activation, a single global vector can become misaligned, yielding weak or reversed effects.\n\n## Key Features\n\nSVF supports coordinated multi-layer interventions in a shared, aligned concept space, and enables efficient long-form and multi-attribute control within a unified framework. Across multiple LLMs and steering tasks, SVF delivers stronger and more reliable control, improving the practicality of inference-time steering.\n\n## Publication\n\nThe paper was submitted on February 2, 2026 by Jiaqian Li and 2 other authors.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae38646c-f73c-4267-9e58-30d6715f9de5",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "ec868c0b-e4d9-4032-8607-fec41e73296f",
+            "sourceToolAssistantUUID": "ae38646c-f73c-4267-9e58-30d6715f9de5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T08:50:51.191Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more specific details about the evaluation benchmarks and whether it operates per-token."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec868c0b-e4d9-4032-8607-fec41e73296f",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xjSPof3H9qgu5qQwb5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "571faafc-2b26-4b55-8663-a9b3a4398875",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EgXH9Xyx1St6aLNdiDzEbz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2640,
+                "cache_read_input_tokens": 10313,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2640,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T08:50:52.223Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QEmm66khdAvvurDx1thj7j",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv 2602.01654 steering vector fields TruthfulQA hallucination evaluation benchmarks"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "571faafc-2b26-4b55-8663-a9b3a4398875",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xjSPof3H9qgu5qQwb5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "35695080-d05c-4abb-b83a-989ce5668a7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EgXH9Xyx1St6aLNdiDzEbz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2640,
+                "cache_read_input_tokens": 10313,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2640,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T08:50:52.431Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018rVrFoWDpfhSX3QEiwWMJy",
+              "name": "WebSearch",
+              "input": {
+                "query": "steering vector fields 2602.01654 per-token decoding geometric activation space concept boundary"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35695080-d05c-4abb-b83a-989ce5668a7c",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xjSPof3H9qgu5qQwb5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ddf9ab6b-32cc-4298-9f3d-49fdbed39d42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EgXH9Xyx1St6aLNdiDzEbz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2640,
+                "cache_read_input_tokens": 10313,
+                "output_tokens": 151,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2640
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 151,
+                    "cache_read_input_tokens": 10313,
+                    "cache_creation_input_tokens": 2640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2640,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T08:50:58.946Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018rVrFoWDpfhSX3QEiwWMJy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"steering vector fields 2602.01654 per-token decoding geometric activation space concept boundary\"\n\nLinks: [{\"title\":\"[2602.01654] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/abs/2602.01654\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time ...\",\"url\":\"https://www.arxiv.org/pdf/2602.01654\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.01654\"},{\"title\":\"Steering Pretrained Drafters during Speculative Decoding\",\"url\":\"https://arxiv.org/pdf/2511.09844\"},{\"title\":\"A Systematic Survey on Decoding Methods for Foundation ...\",\"url\":\"https://www.researchgate.net/profile/Haoran-Wang-96/publication/387703971_Make_Every_Token_Count_A_Systematic_Survey_on_Decoding_Methods_for_Foundation_Models/links/67784c8ce74ca64e1f49eb15/Make-Every-Token-Count-A-Systematic-Survey-on-Decoding-Methods-for-Foundation-Models.pdf\"},{\"title\":\"Steering Pretrained Drafters during Speculative Decoding Frédéric Berdoz\",\"url\":\"https://openreview.net/pdf/70107bc10b6dc9b390ebdcc2bed5e68e9c9b76d6.pdf\"},{\"title\":\"Extracting Latent Steering Vectors from Pretrained ...\",\"url\":\"https://aclanthology.org/2022.findings-acl.48.pdf\"},{\"title\":\"[2511.09844] Steering Pretrained Drafters during Speculative Decoding\",\"url\":\"https://arxiv.org/abs/2511.09844\"},{\"title\":\"Activation Steering Decoding: Mitigating Hallucination in ...\",\"url\":\"https://aclanthology.org/2025.acl-long.634.pdf\"},{\"title\":\"INTERVENING ANCHOR TOKEN: DECODING STRAT\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/4537e2172096d966228d68c428392894-Paper-Conference.pdf\"}]\n\nBased on the web search results, I found the paper you're looking for. Here's what the research is about:\n\n## Overview of Steering Vector Fields (arXiv:2602.01654)\n\nSteering vectors (SVs) offer a lightweight way to control large language models (LLMs) at inference time by shifting hidden activations, providing a practical middle ground between prompting and fine-tuning.\n\n## The Problem with Static Steering Vectors\n\nHowever, SVs can be unreliable in practice. Some concepts are unsteerable, and even when steering helps on average it can backfire for a non-trivial fraction of inputs. Reliability also degrades in long-form generation and multi-attribute steering.\n\n## The Geometric Perspective\n\nA static SV applies the same update vector everywhere in representation space, implicitly assuming that the concept-improving direction is constant across contexts. When the locally effective direction varies with the current activation, a single global vector can become misaligned, which yields weak or reversed effects.\n\n## The Proposed Solution\n\nThe paper proposes Steering Vector Fields (SVF), which learns a differentiable concept scoring function whose local gradient defines the steering direction at each point in activation space. This context-aware approach adapts the steering intervention based on the current representation rather than applying a single direction uniformly, addressing the limitations of traditional static steering vectors.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddf9ab6b-32cc-4298-9f3d-49fdbed39d42",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "103fb782-a9d3-4d52-a1fc-327a6fd94170",
+            "sourceToolAssistantUUID": "ddf9ab6b-32cc-4298-9f3d-49fdbed39d42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T08:51:02.246Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QEmm66khdAvvurDx1thj7j",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv 2602.01654 steering vector fields TruthfulQA hallucination evaluation benchmarks\"\n\nLinks: [{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time ...\",\"url\":\"https://www.arxiv.org/pdf/2602.01654\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.01654\"},{\"title\":\"[2602.01654] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/abs/2602.01654\"},{\"title\":\"Steer LLM Latents for Hallucination Detection\",\"url\":\"https://arxiv.org/html/2503.01917v2\"},{\"title\":\"Adaptive Activation Steering: A Tuning-Free LLM Truthfulness Improvement Method for Diverse Hallucinations Categories\",\"url\":\"https://arxiv.org/html/2406.00034v2\"},{\"title\":\"FineSteer: A Unified Framework for Fine-Grained Inference-Time Steering in Large Language Models\",\"url\":\"https://arxiv.org/html/2604.15488\"},{\"title\":\"How to Steer LLM Latents for Hallucination Detection?\",\"url\":\"https://arxiv.org/html/2503.01917v1\"},{\"title\":\"Tethered Reasoning: Decoupling Entropy from Hallucination in Quantized LLMs via Manifold Steering\",\"url\":\"https://arxiv.org/html/2602.17691\"},{\"title\":\"Dynamic Multimodal Activation Steering for Hallucination Mitigation in Large Vision-Language Models\",\"url\":\"https://arxiv.org/html/2602.21704v1\"},{\"title\":\"EasySteer: A Unified Framework for High-Performance and Extensible LLM Steering\",\"url\":\"https://arxiv.org/html/2509.25175v1\"}]\n\nI found results for the arxiv paper 2602.01654. Here's what I found:\n\n## Paper Summary\n\nSteering vectors (SVs) offer a lightweight way to control large language models (LLMs) at inference time by shifting hidden activations, providing a practical middle ground between prompting and fine-tuning. However, SVs can be unreliable in practice. Some concepts are unsteerable, and even when steering helps on average it can backfire for a non-trivial fraction of inputs. Reliability also degrades in long-form generation and multi-attribute steering.\n\nThe paper proposes **Steering Vector Fields (SVF)** to address these limitations. A static SV applies the same update vector everywhere in representation space, implicitly assuming that the concept-improving direction is constant across contexts. When the locally effective direction varies with the current activation, a single global vector can become misaligned, which yields weak or reversed effects.\n\n## Evaluation Benchmarks\n\nThe paper uses two main benchmarks for evaluating truthfulness and hallucination:\n\n1. **Hallucination Dataset**: It contains two types of hallucination cases which are unprompted hallucination and context-triggered hallucination. The full set includes 1,000 examples, each with a prompt and two candidate continuations corresponding to an incorrect (hallucinated) versus correct response.\n\n2. **TruthfulQA**: The paper uses TruthfulQA (Lin et al., 2022) to evaluate truthfulness steering. TruthfulQA contains 817 questions across 38 categories, each paired with both correct and incorrect answers.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35695080-d05c-4abb-b83a-989ce5668a7c",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "a1e12238-948e-4f21-9cfb-990ac8d23b07",
+            "sourceToolAssistantUUID": "35695080-d05c-4abb-b83a-989ce5668a7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T08:51:05.198Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MfnLTiiZ56ABRuqkiYAG4P",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"steering vector fields\" 2602.01654 \"per-token\" OR \"token-level\" OR \"each token\" intervention method"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1e12238-948e-4f21-9cfb-990ac8d23b07",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xkUR7uyjV9qM45reEp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e1b0a353-7405-40f6-8b38-1f7df9a7404f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U8WdDus4mWxGrMiLgEVVx3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 920,
+                "cache_creation_input_tokens": 1040,
+                "cache_read_input_tokens": 12953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1040,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T08:51:05.622Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E3ny3ZRCWgAkaaymmFCcWG",
+              "name": "WebSearch",
+              "input": {
+                "query": "themoonlight.io review steering vector fields context-aware inference-time control"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1b0a353-7405-40f6-8b38-1f7df9a7404f",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xkUR7uyjV9qM45reEp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "39696eb3-b93e-47a5-ad3d-20b40a270c70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U8WdDus4mWxGrMiLgEVVx3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 920,
+                "cache_creation_input_tokens": 1040,
+                "cache_read_input_tokens": 12953,
+                "output_tokens": 131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1040
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 920,
+                    "output_tokens": 131,
+                    "cache_read_input_tokens": 12953,
+                    "cache_creation_input_tokens": 1040,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1040,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T08:51:12.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E3ny3ZRCWgAkaaymmFCcWG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"themoonlight.io review steering vector fields context-aware inference-time control\"\n\nLinks: [{\"title\":\"[Literature Review] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://www.themoonlight.io/en/review/steering-vector-fields-for-context-aware-inference-time-control-in-large-language-models\"},{\"title\":\"[Literature Review] Inference-Time Policy Steering through Human Interactions\",\"url\":\"https://www.themoonlight.io/en/review/inference-time-policy-steering-through-human-interactions\"},{\"title\":\"[Literature Review] Towards Inference-time Category-wise Safety Steering for Large Language Models\",\"url\":\"https://www.themoonlight.io/en/review/towards-inference-time-category-wise-safety-steering-for-large-language-models\"},{\"title\":\"[Literature Review] SteerVLM: Robust Model Control through Lightweight Activation Steering for Vision Language Models\",\"url\":\"https://www.themoonlight.io/en/review/steervlm-robust-model-control-through-lightweight-activation-steering-for-vision-language-models\"},{\"title\":\"[Literature Review] ILRR: Inference-Time Steering Method for Masked Diffusion Language Models\",\"url\":\"https://www.themoonlight.io/en/review/ilrr-inference-time-steering-method-for-masked-diffusion-language-models\"},{\"title\":\"[Literature Review] Understanding Reasoning in Thinking Language Models via Steering Vectors\",\"url\":\"https://www.themoonlight.io/en/review/understanding-reasoning-in-thinking-language-models-via-steering-vectors\"},{\"title\":\"[Literature Review] Steering Rectified Flow Models in the Vector Field for Controlled Image Generation\",\"url\":\"https://www.themoonlight.io/en/review/steering-rectified-flow-models-in-the-vector-field-for-controlled-image-generation\"},{\"title\":\"[Literature Review] Activation Steering for Masked Diffusion Language Models\",\"url\":\"https://www.themoonlight.io/en/review/activation-steering-for-masked-diffusion-language-models\"},{\"title\":\"[Literature Review] A General Framework for Inference-time Scaling and Steering of Diffusion Models\",\"url\":\"https://www.themoonlight.io/en/review/a-general-framework-for-inference-time-scaling-and-steering-of-diffusion-models\"},{\"title\":\"[Literature Review] Understanding (Un)Reliability of Steering Vectors in Language Models\",\"url\":\"https://www.themoonlight.io/en/review/understanding-unreliability-of-steering-vectors-in-language-models\"}]\n\nBased on the search results, I found the specific review you're looking for. Here's what the themoonlight.io review provides:\n\n## Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\n\nSteering Vector Fields (SVF) is a novel geometric paradigm for context-aware inference-time control in Large Language Models (LLMs), designed to address the reliability limitations of existing steering vector (SV) methods.\n\n### Key Components and Findings\n\nAblation studies confirm the importance of SVF's core components: layer-conditioned calibration, learned layer embeddings, and the trainable shared projection matrix. The non-linearity of the MLP boundary model is also critical for capturing complex concept geometries.\n\n### Performance Characteristics\n\nSVF preserves model utility, avoiding concept contamination in unrelated responses (unlike some baselines), and demonstrates strong out-of-distribution generalization, maintaining consistent control even when prompts are inverted or domain shifted. Per-example steerability distributions reveal SVF yields more coherent and unimodal responses, indicating consistent and responsive steering across inputs.\n\n### Advanced Capabilities\n\nSVF refreshes the representation-conditioned steering direction every K steps during long-form generation, allowing interventions to remain aligned with the evolving trajectory. For multi-attribute steering, SVF composes concept boundaries.\n\nSVF offers a unified, practical, and geometrically-motivated framework for inference-time LLM control, significantly enhancing reliability and effectiveness across diverse steering tasks and challenging generation scenarios.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39696eb3-b93e-47a5-ad3d-20b40a270c70",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "054f8fab-4edd-4761-a458-52c1eaba54d9",
+            "sourceToolAssistantUUID": "39696eb3-b93e-47a5-ad3d-20b40a270c70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T08:51:13.026Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MfnLTiiZ56ABRuqkiYAG4P",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"steering vector fields\" 2602.01654 \"per-token\" OR \"token-level\" OR \"each token\" intervention method\"\n\nLinks: [{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time ...\",\"url\":\"https://www.arxiv.org/pdf/2602.01654\"},{\"title\":\"[2602.01654] Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/abs/2602.01654\"},{\"title\":\"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models\",\"url\":\"https://arxiv.org/html/2602.01654\"},{\"title\":\"[2602.10437] Control Reinforcement Learning: Interpretable Token-Level Steering of LLMs via Sparse Autoencoder Features\",\"url\":\"https://arxiv.org/abs/2602.10437\"},{\"title\":\"Activation Steering in 2026: A Practitioner's Field Guide | Subhadip Mitra\",\"url\":\"https://subhadipmitra.com/blog/2026/activation-steering-field-guide/\"},{\"title\":\"Control Reinforcement Learning: Interpretable Token-Level Steering of LLMs via Sparse Autoencoder Features\",\"url\":\"https://arxiv.org/html/2602.10437\"},{\"title\":\"[2502.12446] Multi-Attribute Steering of Language Models via Targeted Intervention\",\"url\":\"https://arxiv.org/abs/2502.12446\"},{\"title\":\"[2605.05892] Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention\",\"url\":\"https://arxiv.org/abs/2605.05892\"},{\"title\":\"Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention\",\"url\":\"https://arxiv.org/html/2605.05892\"},{\"title\":\"Mechanistic Interpretability for Steering Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2509.00328v1\"}]\n\nI found relevant search results for your query. Here's what I discovered:\n\n## Main Result: Steering Vector Fields (arXiv:2602.01654)\n\nSteering Vector Fields (SVF) learns a differentiable concept scoring function whose local gradient defines the steering direction at each activation, making interventions explicitly context-dependent. \n\nSteering vectors (SVs) offer a lightweight way to control large language models (LLMs) at inference time by shifting hidden activations, providing a practical middle ground between prompting and fine-tuning. However, a static SV applies the same update vector everywhere in representation space, implicitly assuming that the concept-improving direction is constant across contexts, and when the locally effective direction varies with the current activation, a single global vector can become misaligned, which yields weak or reversed effects.\n\nThis formulation supports coordinated multi-layer interventions in a shared, aligned concept space, and enables efficient long-form and multi-attribute control within a unified framework.\n\n## Related Token-Level Steering Methods\n\nYour query also returned a related paper on token-level steering: Control Reinforcement Learning (CRL) trains a policy to select SAE features for steering at each token, producing interpretable intervention logs.\n\nAdditionally, another approach is Multi-Attribute Targeted Steering (MAT-Steer), a novel steering framework designed for selective token-level intervention across multiple attributes, which learns steering vectors using an alignment objective that shifts the model's internal representations of undesirable outputs closer to those of desirable ones.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1b0a353-7405-40f6-8b38-1f7df9a7404f",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "a56c77bfdcc52d6e6",
+            "type": "user",
+            "uuid": "cece6bda-438c-4a51-9f80-ca80715981d7",
+            "sourceToolAssistantUUID": "e1b0a353-7405-40f6-8b38-1f7df9a7404f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T08:51:30.844Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive information to answer all five of your questions. Here is my analysis:\n\n---\n\n## Verification of \"Steering Vector Fields\" (arXiv:2602.01654)\n\n### 1. Does it exist?\n\n**Yes.** The paper is confirmed to exist at [arXiv:2602.01654](https://arxiv.org/abs/2602.01654), titled \"Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models.\" It was submitted on February 2, 2026, by Jiaqian Li and co-authors.\n\n---\n\n### 2. Core mechanism -- does it learn per-context steering directions from a differentiable scoring function?\n\n**Yes, confirmed.** SVF learns a **differentiable concept scoring function** whose **local gradient** defines the steering direction at each point in activation space. This makes the intervention explicitly context-dependent -- the steering direction is a function of the current hidden state, rather than a single static vector applied uniformly. The concept boundary is modeled by a nonlinear MLP, and the local normal to that boundary determines the steering direction at any given activation.\n\n---\n\n### 3. Does it operate per-token during decoding?\n\n**Not strictly per-token, but per-K-steps.** During long-form generation, SVF **refreshes the representation-conditioned steering direction every K steps**, allowing interventions to remain aligned with the evolving trajectory of the generation. So it is not a one-shot static intervention, but it also does not necessarily recompute at every single token -- it recomputes periodically. In any case, the steering direction is inherently token-position-aware because it depends on the current activation at that position.\n\n---\n\n### 4. Does it evaluate on TruthfulQA or hallucination benchmarks?\n\n**Yes, both.** The paper evaluates on:\n- **TruthfulQA** (Lin et al., 2022): 817 questions across 38 categories, each paired with correct and incorrect answers, used to evaluate truthfulness steering.\n- **A hallucination dataset**: containing 1,000 examples with two types of hallucination (unprompted hallucination and context-triggered hallucination), each with a prompt and two candidate continuations (hallucinated vs. correct).\n\n---\n\n### 5. Does it use geometric features of the activation space?\n\n**Yes, centrally.** The entire framework is described as a \"geometric paradigm.\" Key geometric elements include:\n- A learned **concept boundary** (nonlinear surface in activation space) whose **local normal direction** serves as the steering vector at any point.\n- A **shared projection matrix** and **layer-conditioned calibration** that place multi-layer activations into a shared, aligned concept space.\n- The method is explicitly motivated by the observation that the concept-improving direction varies geometrically across the activation manifold, and a static (flat) vector is an inadequate approximation of this curved structure.\n\nAblation studies confirm the criticality of the MLP's nonlinearity for capturing complex concept geometries in activation space.\n\n---\n\nSources:\n- [Steering Vector Fields for Context-Aware Inference-Time Control in Large Language Models (arXiv abstract)](https://arxiv.org/abs/2602.01654)\n- [Steering Vector Fields (HTML version)](https://arxiv.org/html/2602.01654)\n- [Literature Review on themoonlight.io](https://www.themoonlight.io/en/review/steering-vector-fields-for-context-aware-inference-time-control-in-large-language-models)\n- [Activation Steering in 2026: A Practitioner's Field Guide](https://subhadipmitra.com/blog/2026/activation-steering-field-guide/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cece6bda-438c-4a51-9f80-ca80715981d7",
+            "isSidechain": true,
+            "agentId": "a56c77bfdcc52d6e6",
+            "requestId": "req_011Cb5xmGTp3RD9rHhtEKfob",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c140d07f-3874-4861-8344-27b75a615d12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MEETqnvzFgHviJmXetqtZy",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1025,
+                "cache_creation_input_tokens": 1918,
+                "cache_read_input_tokens": 13993,
+                "output_tokens": 867,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1918
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1025,
+                    "output_tokens": 867,
+                    "cache_read_input_tokens": 13993,
+                    "cache_creation_input_tokens": 1918,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1918,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-use-websearch-to-find-and-verify-steering-vector-fields-arxiv-2602-01654-feb-2.md"
+}

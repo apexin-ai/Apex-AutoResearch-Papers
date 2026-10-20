@@ -1,0 +1,1050 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f07f5e3c93f0272a76aa",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-14T05:28:09.819Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VktB5z2Q8CoWHkkuHYpGHX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"generalized information bottleneck\" 2025 NeurIPS ICLR accepted venue arXiv 2509.26327\"\n\nLinks: [{\"title\":\"[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning\",\"url\":\"https://arxiv.org/abs/2509.26327\"},{\"title\":\"A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING\",\"url\":\"https://arxiv.org/pdf/2509.26327\"},{\"title\":\"A Generalized Information Bottleneck Theory of Deep Learning - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250926327W/abstract\"},{\"title\":\"(PDF) A Generalized Information Bottleneck Theory of Deep Learning\",\"url\":\"https://www.researchgate.net/publication/396049012_A_Generalized_Information_Bottleneck_Theory_of_Deep_Learning\"},{\"title\":\"Generalized Information Bottleneck\",\"url\":\"https://ecommons.cornell.edu/entities/publication/f148b88c-ae81-483b-b384-1fb5c0729c74\"},{\"title\":\"A Generalized Information Bottleneck Method: A Decision-Theoretic Perspective This work was supported by JSPS KAKENHI Grant Number JP23K16886 and JST CRONOS Grant Number JPMJCS25N5.\",\"url\":\"https://arxiv.org/html/2602.18405\"},{\"title\":\"Information bottleneck method - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Information_bottleneck_method\"},{\"title\":\"Generalized Information Bottleneck for Gaussian Variables | OpenReview\",\"url\":\"https://openreview.net/forum?id=SKa0gggXIe&noteId=LNgCek0Jh8\"},{\"title\":\"On the Information Bottleneck Theory of Deep Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=ry_WPG-A-\"},{\"title\":\"Vudtiwat Ngampruetikorn's articles on arXiv\",\"url\":\"https://arxiv.org/a/ngampruetikorn_v_1.html\"}]\n\nBased on the search results, here's what I found about the paper with arXiv ID 2509.26327:\n\n## Paper Details\n\nThe paper \"A Generalized Information Bottleneck Theory of Deep Learning\" was submitted on September 30, 2025 (v1) and last revised on January 30, 2026 (v3).\n\nThe paper is under review as a conference paper at ICLR 2026.\n\n## Main Contribution\n\nThe paper presents a Generalized Information Bottleneck (GIB) framework that reformulates the original IB principle through the lens of synergy, i.e., the information obtainable only through joint processing of features. \n\nThe theoretical and empirical analysis demonstrates that synergistic functions achieve better generalization, providing a fundamental justification for why deep networks should learn representations that combine inputs synergistically rather than processing them independently.\n\n## Key Technical Aspects\n\nThe framework re-formulates the IB using a computable definition of synergy based on the average interaction information (II) of each feature with those remaining.\n\nThe authors of this paper are Charles Westphal, Stephen Hailes, and Mirco Musolesi.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "280eef1c-3c83-426a-a036-f5a859b27023",
+            "isSidechain": false,
+            "promptId": "a6b20d2f-5d29-4a19-a7a2-d7cfe4ae5dab",
+            "type": "user",
+            "uuid": "0e47a55f-8e74-40d5-aa93-41fd0b01a60a",
+            "toolUseResult": {
+              "query": "\"generalized information bottleneck\" 2025 NeurIPS ICLR accepted venue arXiv 2509.26327",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_011bRxECQufP79xrW6CPajKQ",
+                  "content": [
+                    {
+                      "title": "[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning",
+                      "url": "https://arxiv.org/abs/2509.26327"
+                    },
+                    {
+                      "title": "A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING",
+                      "url": "https://arxiv.org/pdf/2509.26327"
+                    },
+                    {
+                      "title": "A Generalized Information Bottleneck Theory of Deep Learning - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250926327W/abstract"
+                    },
+                    {
+                      "title": "(PDF) A Generalized Information Bottleneck Theory of Deep Learning",
+                      "url": "https://www.researchgate.net/publication/396049012_A_Generalized_Information_Bottleneck_Theory_of_Deep_Learning"
+                    },
+                    {
+                      "title": "Generalized Information Bottleneck",
+                      "url": "https://ecommons.cornell.edu/entities/publication/f148b88c-ae81-483b-b384-1fb5c0729c74"
+                    },
+                    {
+                      "title": "A Generalized Information Bottleneck Method: A Decision-Theoretic Perspective This work was supported by JSPS KAKENHI Grant Number JP23K16886 and JST CRONOS Grant Number JPMJCS25N5.",
+                      "url": "https://arxiv.org/html/2602.18405"
+                    },
+                    {
+                      "title": "Information bottleneck method - Wikipedia",
+                      "url": "https://en.wikipedia.org/wiki/Information_bottleneck_method"
+                    },
+                    {
+                      "title": "Generalized Information Bottleneck for Gaussian Variables | OpenReview",
+                      "url": "https://openreview.net/forum?id=SKa0gggXIe&noteId=LNgCek0Jh8"
+                    },
+                    {
+                      "title": "On the Information Bottleneck Theory of Deep Learning | OpenReview",
+                      "url": "https://openreview.net/forum?id=ry_WPG-A-"
+                    },
+                    {
+                      "title": "Vudtiwat Ngampruetikorn's articles on arXiv",
+                      "url": "https://arxiv.org/a/ngampruetikorn_v_1.html"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about the paper with arXiv ID 2509.26327:\n\n## Paper Details\n\nThe paper \"A Generalized Information Bottleneck Theory of Deep Learning\" was submitted on September 30, 2025 (v1) and last revised on January 30, 2026 (v3).\n\nThe paper is under review as a conference paper at ICLR 2026.\n\n## Main Contribution\n\nThe paper presents a Generalized Information Bottleneck (GIB) framework that reformulates the original IB principle through the lens of synergy, i.e., the information obtainable only through joint processing of features. \n\nThe theoretical and empirical analysis demonstrates that synergistic functions achieve better generalization, providing a fundamental justification for why deep networks should learn representations that combine inputs synergistically rather than processing them independently.\n\n## Key Technical Aspects\n\nThe framework re-formulates the IB using a computable definition of synergy based on the average interaction information (II) of each feature with those remaining.\n\nThe authors of this paper are Charles Westphal, Stephen Hailes, and Mirco Musolesi."
+              ],
+              "durationSeconds": 6.619290182000026
+            },
+            "sourceToolAssistantUUID": "280eef1c-3c83-426a-a036-f5a859b27023",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-14T05:28:12.593Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JeJQmJiaYZQGQi8AnrMUKc",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"generalized information bottleneck\" theory deep learning ICLR 2026 accepted Westphal"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e47a55f-8e74-40d5-aa93-41fd0b01a60a",
+            "isSidechain": false,
+            "requestId": "req_011Cb1ufMryLokS6zZUfK6Qz",
+            "type": "assistant",
+            "uuid": "4132bbb2-970d-40aa-b048-11c600141a5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014tfFf4CaN6MDEWophQ8y2n",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 915,
+                "cache_read_input_tokens": 75135,
+                "output_tokens": 75,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 915,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 75,
+                    "cache_read_input_tokens": 75135,
+                    "cache_creation_input_tokens": 915,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 915
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-14T05:28:18.866Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JeJQmJiaYZQGQi8AnrMUKc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"generalized information bottleneck\" theory deep learning ICLR 2026 accepted Westphal\"\n\nLinks: [{\"title\":\"[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning\",\"url\":\"https://arxiv.org/abs/2509.26327\"},{\"title\":\"A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING\",\"url\":\"https://arxiv.org/pdf/2509.26327\"},{\"title\":\"(PDF) A Generalized Information Bottleneck Theory of Deep Learning\",\"url\":\"https://www.researchgate.net/publication/396049012_A_Generalized_Information_Bottleneck_Theory_of_Deep_Learning\"},{\"title\":\"A Generalized Information Bottleneck Theory of Deep Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=reOA4r0FGL\"},{\"title\":\"[PDF] How Does Information Bottleneck Help Deep Learning? | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/d1776e0a3d8c39a3c264c8fdecbca5b626426065\"},{\"title\":\"On the Information Bottleneck Theory of Deep Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=ry_WPG-A-\"},{\"title\":\"(PDF) On the information bottleneck theory of deep learning\",\"url\":\"https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning\"},{\"title\":\"GitHub - ZIYU-DEEP/Awesome-Information-Bottleneck: This is a curated list for Information Bottleneck Principle, in memory of Professor Naftali Tishby. · GitHub\",\"url\":\"https://github.com/ZIYU-DEEP/Awesome-Information-Bottleneck\"},{\"title\":\"dblp: On the Information Bottleneck Theory of Deep Learning.\",\"url\":\"https://dblp.org/rec/conf/iclr/SaxeBDAKTC18.html\"},{\"title\":\"A Generalized Information Bottleneck Theory of Deep ...\",\"url\":\"https://www.semanticscholar.org/paper/A-Generalized-Information-Bottleneck-Theory-of-Deep-Westphal-Hailes/d4c9d656d0ce27dcab28135a18082dc70632cd14\"}]\n\nBased on my web search results, I found relevant information about this paper:\n\n## Search Results\n\n\"A Generalized Information Bottleneck Theory of Deep Learning\" is a paper by Charles Westphal, Stephen Hailes, and Mirco Musolesi from University College London and University of Bologna, under review as a conference paper at ICLR 2026.\n\n**Key Details:**\n\nThe paper presents a Generalized Information Bottleneck (GIB) framework that reformulates the original IB principle through the lens of synergy (the information obtainable only through joint processing of features), with theoretical and empirical evidence demonstrating that synergistic functions achieve superior generalization compared to their non-synergistic counterparts.\n\nThe authors re-formulate the IB using a computable definition of synergy based on the average interaction information (II) of each feature with those remaining.\n\nThe paper appears on arXiv with submission dates spanning from September 30, 2025 through January 30, 2026, and is also listed on OpenReview as an ICLR 2026 Conference Submission.\n\nNote: Based on the search results, the paper appears to be under review at ICLR 2026, so its final acceptance status may not yet be determined at the time of publication.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4132bbb2-970d-40aa-b048-11c600141a5f",
+            "isSidechain": false,
+            "promptId": "a6b20d2f-5d29-4a19-a7a2-d7cfe4ae5dab",
+            "type": "user",
+            "uuid": "b16b2077-3f3c-4f25-a390-d27e19e96b87",
+            "toolUseResult": {
+              "query": "\"generalized information bottleneck\" theory deep learning ICLR 2026 accepted Westphal",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01MdYJA3Feywvjhen5UagXxc",
+                  "content": [
+                    {
+                      "title": "[2509.26327] A Generalized Information Bottleneck Theory of Deep Learning",
+                      "url": "https://arxiv.org/abs/2509.26327"
+                    },
+                    {
+                      "title": "A GENERALIZED INFORMATION BOTTLENECK THEORY OF DEEP LEARNING",
+                      "url": "https://arxiv.org/pdf/2509.26327"
+                    },
+                    {
+                      "title": "(PDF) A Generalized Information Bottleneck Theory of Deep Learning",
+                      "url": "https://www.researchgate.net/publication/396049012_A_Generalized_Information_Bottleneck_Theory_of_Deep_Learning"
+                    },
+                    {
+                      "title": "A Generalized Information Bottleneck Theory of Deep Learning | OpenReview",
+                      "url": "https://openreview.net/forum?id=reOA4r0FGL"
+                    },
+                    {
+                      "title": "[PDF] How Does Information Bottleneck Help Deep Learning? | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/d1776e0a3d8c39a3c264c8fdecbca5b626426065"
+                    },
+                    {
+                      "title": "On the Information Bottleneck Theory of Deep Learning | OpenReview",
+                      "url": "https://openreview.net/forum?id=ry_WPG-A-"
+                    },
+                    {
+                      "title": "(PDF) On the information bottleneck theory of deep learning",
+                      "url": "https://www.researchgate.net/publication/325022755_On_the_information_bottleneck_theory_of_deep_learning"
+                    },
+                    {
+                      "title": "GitHub - ZIYU-DEEP/Awesome-Information-Bottleneck: This is a curated list for Information Bottleneck Principle, in memory of Professor Naftali Tishby. · GitHub",
+                      "url": "https://github.com/ZIYU-DEEP/Awesome-Information-Bottleneck"
+                    },
+                    {
+                      "title": "dblp: On the Information Bottleneck Theory of Deep Learning.",
+                      "url": "https://dblp.org/rec/conf/iclr/SaxeBDAKTC18.html"
+                    },
+                    {
+                      "title": "A Generalized Information Bottleneck Theory of Deep ...",
+                      "url": "https://www.semanticscholar.org/paper/A-Generalized-Information-Bottleneck-Theory-of-Deep-Westphal-Hailes/d4c9d656d0ce27dcab28135a18082dc70632cd14"
+                    }
+                  ]
+                },
+                "Based on my web search results, I found relevant information about this paper:\n\n## Search Results\n\n\"A Generalized Information Bottleneck Theory of Deep Learning\" is a paper by Charles Westphal, Stephen Hailes, and Mirco Musolesi from University College London and University of Bologna, under review as a conference paper at ICLR 2026.\n\n**Key Details:**\n\nThe paper presents a Generalized Information Bottleneck (GIB) framework that reformulates the original IB principle through the lens of synergy (the information obtainable only through joint processing of features), with theoretical and empirical evidence demonstrating that synergistic functions achieve superior generalization compared to their non-synergistic counterparts.\n\nThe authors re-formulate the IB using a computable definition of synergy based on the average interaction information (II) of each feature with those remaining.\n\nThe paper appears on arXiv with submission dates spanning from September 30, 2025 through January 30, 2026, and is also listed on OpenReview as an ICLR 2026 Conference Submission.\n\nNote: Based on the search results, the paper appears to be under review at ICLR 2026, so its final acceptance status may not yet be determined at the time of publication."
+              ],
+              "durationSeconds": 6.270023228000035
+            },
+            "sourceToolAssistantUUID": "4132bbb2-970d-40aa-b048-11c600141a5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-14T05:28:21.949Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011qw63uSa6JfqVZwaxtUrDq",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://openreview.net/forum?id=reOA4r0FGL",
+                "prompt": "Is this paper accepted or rejected at ICLR 2026? What is the decision status?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b16b2077-3f3c-4f25-a390-d27e19e96b87",
+            "isSidechain": false,
+            "requestId": "req_011Cb1ug2aPJKhEMUDpcq6vr",
+            "type": "assistant",
+            "uuid": "f17b9ba7-0247-4e41-9d8a-c4602e49fbf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G38BUQFJ93XCxwgdCSvgtj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 984,
+                "cache_read_input_tokens": 76050,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 984,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 76050,
+                    "cache_creation_input_tokens": 984,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 984
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-14T05:28:23.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011qw63uSa6JfqVZwaxtUrDq",
+              "type": "tool_result",
+              "content": "# Decision Status\n\nBased on the content provided, this paper has been **rejected** at ICLR 2026. The submission is labeled as \"Desk Rejected Submission,\" indicating it was rejected at the desk review stage before undergoing peer review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f17b9ba7-0247-4e41-9d8a-c4602e49fbf2",
+            "isSidechain": false,
+            "promptId": "a6b20d2f-5d29-4a19-a7a2-d7cfe4ae5dab",
+            "type": "user",
+            "uuid": "46b87d2b-fdb0-4d21-980d-d0a255313f87",
+            "toolUseResult": {
+              "bytes": 68155,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Decision Status\n\nBased on the content provided, this paper has been **rejected** at ICLR 2026. The submission is labeled as \"Desk Rejected Submission,\" indicating it was rejected at the desk review stage before undergoing peer review.",
+              "durationMs": 1816,
+              "url": "https://openreview.net/forum?id=reOA4r0FGL"
+            },
+            "sourceToolAssistantUUID": "f17b9ba7-0247-4e41-9d8a-c4602e49fbf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Attention Ent…",
+                "leafUuid": "46b87d2b-fdb0-4d21-980d-d0a255313f87",
+                "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088"
+              }
+            }
+          ],
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Attention entropy minimization for robust vision-language action models",
+                "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088"
+              }
+            }
+          ],
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-14T05:30:24.459Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The GIB paper was desk rejected at ICLR 2026, so I should note it as an arXiv preprint. Let me now compile all the information I've gathered and create the final JSON output.\n\nLet me summarize what I've learned:\n\n**Venue deadlines after May 14, 2026:**\n- CoRL 2026: Abstract May 26, Paper May 28/29, 2026 ✓ (still open!)\n- AAAI 2027: TBD, expected ~July-August 2026 ✓\n\n\n- ICLR 2027: TBD, expected ~October 2026 ✓\n- ICRA 2027: TBD, expected ~September 2026 ✓\n- CVPR 2027: TBD, expected ~November 2026 ✓\n\nSeveral major conferences have already passed their deadlines: NeurIPS 2026, ICML 2026, ECCV 2026, RSS 2026, and IROS 2026.\n\nNow I'm reviewing the concurrent work in this space. There are several related papers on token pruning and robustness, but they each have different focuses—EntropyPrune targets efficiency on VLMs rather than robustness, CAGE examines adversarial attacks under compression rather than pruning as a defense mechanism, and AgilePruner uses attention entropy but is efficiency-focused. VLA-specific work like VLA-IAP and VLA-Pruner exist but approach the problem through motion alignment or temporal awareness rather than entropy minimization. The most directly relevant concurrent work is the ICML 2026 paper on adversarial robustness of large vision-language models under visual token compression, which appears to be the closest match to what I'm working on.\n\nThe key insight is that no existing work combines entropy-guided pruning with manifold augmentation specifically for VLA robustness, and the closest related work approaches token compression from an attacker's perspective rather than a defender's perspective. For my approach, I'm planning to use OpenVLA as the primary model with OpenVLA-OFT as an improved variant, and SmolVLA for scaling studies, evaluating on LIBERO and LIBERO-Plus benchmarks.\n\nNow I'm working through the computational requirements—fine-tuning OpenVLA will take substantial GPU hours across multiple tasks, while LoRA offers a more efficient alternative. My actual approach involves defining an attention entropy metric across transformer layers, then implementing a token selection mechanism that removes tokens with minimal impact on action prediction while maximizing entropy reduction, with adaptive pruning ratios that vary across different manipulation tasks.\n\nI'm also planning to augment the remaining tokens using manifold interpolation techniques to improve representational coverage, and I want to establish theoretical guarantees by connecting attention entropy to input sensitivity bounds through information-theoretic principles. The evaluation will span LIBERO benchmarks with both model variants under different perturbation conditions, and I'm estimating the resource costs across three implementation strategies—manual experimentation requiring the most time but least compute, human-in-loop balancing both, and fully automated research consuming the most GPU hours but enabling rapid exploration.\n\nFor timeline and budget, the manual approach costs around $600 in GPU and takes 3-6 months, while human-in-loop runs $750-900 total and completes in 6-10 weeks, and the automated route needs $1200-1600 but finishes in 2-4 weeks. I'm targeting CoRL 2026 as the primary venue since it's the top robotics learning conference, with AAAI and ICLR 2027 as backup options, positioning this as a top-tier contribution that combines novel theory with practical robustness improvements for vision-language models.\n\nNow I'm verifying the reference list—I've confirmed six key papers on visual token pruning and vision-language-action models that directly support the approach. I'm filling in the remaining papers on the list, including VLA and several recent robustness-focused works on vision-language models. Now I need to verify the exact name and acronym for that last paper about object-centric grounding in vision-language-action models. I should wrap up the research and move forward with what I have. The core idea is that attention entropy—when attention spreads diffusely across tokens—correlates with adversarial vulnerability, so pruning high-entropy tokens creates more focused attention and improves robustness. I'm thinking through a dual entropy principle: reduce inter-token attention entropy through pruning to sharpen focus, while increasing per-token representational coverage through manifold augmentation for better generalization. The approach would compute attention entropy across VLA layers, then iteratively select token subsets that minimize entropy while maintaining action prediction quality.\n\nThe method naturally adapts across different manipulation phases since attention patterns shift—spreading across the scene during approach but concentrating on the gripper and object during grasping. For the remaining tokens, I'd apply manifold augmentation using tangent-space interpolation to generate diverse training signals. I can derive a theoretical bound showing that action sensitivity to input perturbations is constrained by attention entropy, so lower entropy yields tighter bounds and greater robustness. The whole thing can be trained end-to-end or applied at inference time without retraining.\n\nI'm also checking the CoRL 2026 timeline—the abstract deadline is May 26 and the paper deadline is May 28, giving me roughly two weeks to finalize the submission.\n\nGiven that the research team operates continuously, two weeks is tight but feasible for a well-scoped paper. The user explicitly said not to downgrade the venue due to timeline constraints, so I should target CoRL 2026 as the primary venue with ICLR 2027 as a strong backup. The core contribution is solid: a novel theoretical framework connecting entropy to robustness and pruning, a dual entropy principle combining pruning with augmentation, temporal adaptivity for different manipulation phases, provable sensitivity bounds, and demonstrated improvements on VLA robustness benchmarks. CoRL is a top-tier venue for robot learning with a competitive acceptance rate, making it the right fit.\n\nNow I'm checking the baseline performance numbers to understand what we need to beat. OpenVLA-OFT achieves 97.1% on standard LIBERO but drops below 30% under perturbations, while VLA-IAP reaches 97.8% with a 1.54× speedup. The critical insight is that performance degrades severely under perturbation in LIBERO-Plus, so our method needs to maintain significantly higher robustness in those adversarial conditions. I'm also noting that the CAGE paper from ICML 2026 shows token compression affects adversarial robustness, which is relevant context for the attack side of this problem.\n\nWe're approaching this from the defense perspective. Let me finalize the JSON with specific details: I'll use OpenVLA and OpenVLA-OFT as the primary models with SmolVLA for scaling experiments, benchmark against both LIBERO and LIBERO-Plus to demonstrate robustness improvements, and implement the entropy-minimizing adaptive pruning combined with tangent-space manifold augmentation, grounded in the attention sensitivity norm bound theory. For resource planning, fine-tuning OpenVLA takes roughly 40-120 GPU-hours per task on 8 A100s, and with LIBERO's 4 main suites plus LIBERO-Plus's 7 perturbation dimensions, I need to account for implementation, training with augmentation, and comprehensive evaluation across all conditions.\n\nBreaking down the actual compute: the core experiments involve training OpenVLA-OFT with entropy pruning and augmentation across about 5 key configurations at 80 GPU-hours each, plus another 5 ablation variants isolating pruning, augmentation, and different parameter rates, then evaluation across LIBERO-Plus's perturbation space which is relatively cheap, and finally baseline comparisons.\n\nThe total comes to roughly 950 GPU-hours for a complete paper, but manual research with focused targeting might reduce this to around 600 hours, while automated exploration could push it to 1400 hours. The key difference is GPU utilization—manual research has significant idle time while humans think and debug, whereas the actual GPU-hour cost depends on how efficiently the experiments are batched and run.\n\nNow I'm working through the cost breakdown more carefully. At $1.50 per hour for A100 instances, manual research costs around $600, human-in-the-loop approaches run $750, and fully automated exploration reaches $1,200. Claude API calls add another $100-500 depending on the approach. But I need to clarify what \"GPU hours\" actually means—it's the total compute time billed, not wall-clock time, so idle rates affect the timeline but not necessarily the final cost if instances can be stopped and started.\n\nRevising my estimates: manual approaches use roughly 400 GPU hours with heavy idle time (60-70%) while waiting for human decisions, stretching the timeline to 3-5 months. Human-in-the-loop improves utilization to 50-60% with around 500 GPU hours over 6-10 weeks. Fully autonomous agents push to 800 GPU hours with near-zero idle, completing in 2-3 weeks across 4-8 GPUs by running experiments continuously. These numbers feel realistic for VLA research.\n\nLooking at submission deadlines—it's May 14, 2026, and CoRL 2026 has an abstract deadline of May 26 with papers due May 28.  That's just two weeks away, which is extremely tight even for autonomous research running around the clock. The user explicitly said not to downgrade venues based on timeline constraints since the team operates 24/7, so I should still target CoRL as the primary venue alongside ICLR 2027 in October, which offers a broader ML audience and more breathing room.\n\nLet me verify the venue status for VLA-Pruner—it's on arXiv as of February 2026 with no confirmed publication venue yet. For references, I'll focus on the most directly relevant work: ATP-LLaVA from CVPR 2025 on attention-based token pruning for vision-language models, and AgilePruner from ICLR 2026 on attention entropy approaches. I'm adding a few more recent papers to the reference list—one on adversarial robustness under token compression, another on differential attention sensitivity, and one on augmentation-invariant learning. That brings me to 14 solid references. Now I'm settling on the project name and drafting the description, framing the work around how attention entropy relates to robustness in visual language models rather than just efficiency. ized by the Generalized Information Bottleneck framework but unexploited in VLA practice. AES adaptively removes tokens whose presence maximally increases attention dispersion at each manipulation timestep, naturally selecting different pruning patterns during approach, grasp, and lift phases where LIBERO-Plus reveals stage-specific brittleness. To complement entropy reduction (focus) with representational coverage (generalization), we apply tangent-space manifold interpolation on surviving tokens—a dual entropy principle that tightens provable sensitivity bounds via the attention sensitivity norm. We evaluate on OpenVLA and SmolVLA across LIBERO and LIBERO-Plus benchmarks under seven perturbation dimensions, comparing against VLA-IAP, AgilePruner, and EntropyPrune baselines. This work bridges the gap between token-level efficiency methods and VLA robustness, offering the first pruning-as-defense framework with formal guarantees.\n\nNow I'm compiling the full JSON output for the results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46b87d2b-fdb0-4d21-980d-d0a255313f87",
+            "isSidechain": false,
+            "requestId": "req_011Cb1ugPcvLQBfxmeMXuj4T",
+            "type": "assistant",
+            "uuid": "39a2529a-7157-440e-b159-04031a93ace5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01326ehQKirggNcUBFsSbwh8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 173,
+                "cache_read_input_tokens": 77034,
+                "output_tokens": 5256,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 173,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5256,
+                    "cache_read_input_tokens": 77034,
+                    "cache_creation_input_tokens": 173,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 173
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-14T05:30:24.460Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have enough data to compile the final answer. Let me verify a couple more things on concurrent work differentiation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39a2529a-7157-440e-b159-04031a93ace5",
+            "isSidechain": false,
+            "requestId": "req_011Cb1ugPcvLQBfxmeMXuj4T",
+            "type": "assistant",
+            "uuid": "9a74c455-8dff-46e2-b935-3389286e27ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01326ehQKirggNcUBFsSbwh8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 173,
+                "cache_read_input_tokens": 77034,
+                "output_tokens": 5256,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 173,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5256,
+                    "cache_read_input_tokens": 77034,
+                    "cache_creation_input_tokens": 173,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 173
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-14T05:30:24.811Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014tow9j48z9botjTkUrHoBP",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"token pruning\" \"as defense\" OR \"for robustness\" OR \"improves robustness\" VLA OR VLM 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a74c455-8dff-46e2-b935-3389286e27ae",
+            "isSidechain": false,
+            "requestId": "req_011Cb1ugPcvLQBfxmeMXuj4T",
+            "type": "assistant",
+            "uuid": "603b1128-ac5e-4c72-8367-50d67d8bd6ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01326ehQKirggNcUBFsSbwh8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 173,
+                "cache_read_input_tokens": 77034,
+                "output_tokens": 5256,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 173,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 5256,
+                    "cache_read_input_tokens": 77034,
+                    "cache_creation_input_tokens": 173,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 173
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Attention Ent…",
+                "leafUuid": "603b1128-ac5e-4c72-8367-50d67d8bd6ca",
+                "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088"
+              }
+            }
+          ],
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Attention entropy minimization for robust vision-language action models",
+                "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088"
+              }
+            }
+          ],
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-14T05:30:32.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014tow9j48z9botjTkUrHoBP",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"token pruning\" \"as defense\" OR \"for robustness\" OR \"improves robustness\" VLA OR VLM 2026\"\n\nLinks: [{\"title\":\"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2603.22991v1\"},{\"title\":\"VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm\",\"url\":\"https://arxiv.org/html/2512.02700v3\"},{\"title\":\"GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub\",\"url\":\"https://github.com/ZLKong/Awesome-Collection-Token-Reduction\"},{\"title\":\"LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models\",\"url\":\"https://arxiv.org/html/2604.23950\"},{\"title\":\"ZOO-Prune: Training-Free Token Pruning via Zeroth-Order Gradient Estimation in Vision-Language Models\",\"url\":\"https://arxiv.org/html/2509.24837\"},{\"title\":\"HiPrune: Hierarchical Attention for Efficient Token Pruning in Vision-Language Models\",\"url\":\"https://arxiv.org/html/2508.00553\"},{\"title\":\"[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2603.22991v1\"},{\"title\":\"The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning\",\"url\":\"https://arxiv.org/html/2509.12594v1\"},{\"title\":\"[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference\",\"url\":\"https://arxiv.org/abs/2511.16449\"},{\"title\":\"FlashVLM: Text-Guided Visual Token Selection for Large Multimodal Models\",\"url\":\"https://arxiv.org/html/2512.20561\"}]\n\nI found several relevant papers on token pruning for VLAs and VLMs from 2026. Here are the key findings:\n\n## Recent Token Pruning Research for VLAs and VLMs (2026)\n\n**Token Pruning for Robustness:**\n\nToken pruning enables robustness during early uncertainty and efficiency once interaction is locked in vision-language-action models through a conservative-to-aggressive transition strategy. VLA-IAP (Interaction-Aligned Pruning) maintains robust manipulation capabilities even under extreme visual compression.\n\nVLM-Pruner demonstrates robustness to severe token reduction in spatiotemporal reasoning with an average accuracy of 90.55%. Additionally, HiPrune++ still preserves 98.4% and 94.4% performance with 11.1% and 5.6% of tokens retained, demonstrating robustness on high-resolution models.\n\n**Token Pruning as Defense:**\n\nZOO-Prune unifies sensitivity and diversity into a robust and broadly applicable token pruning framework. Diversity-based pruning methods improve robustness by selecting tokens far apart in feature space.\n\nFlashVLM achieves \"beyond-lossless\" performance at moderate budgets and remains stable even under extreme pruning, with consistent gains across diverse VLM architectures and over 75% token reduction.\n\nThese papers demonstrate that token pruning techniques in 2026 not only improve efficiency but also enhance robustness across various vision-language models and vision-language-action systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "603b1128-ac5e-4c72-8367-50d67d8bd6ca",
+            "isSidechain": false,
+            "promptId": "a6b20d2f-5d29-4a19-a7a2-d7cfe4ae5dab",
+            "type": "user",
+            "uuid": "7073e015-35ab-4184-a1cd-f2140d2cb35a",
+            "toolUseResult": {
+              "query": "\"token pruning\" \"as defense\" OR \"for robustness\" OR \"improves robustness\" VLA OR VLM 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_012Nkbzq6xREWVwcxwgtqubf",
+                  "content": [
+                    {
+                      "title": "VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+                      "url": "https://arxiv.org/html/2603.22991v1"
+                    },
+                    {
+                      "title": "VLM-Pruner: Buffering for Spatial Sparsity in an Efficient VLM Centrifugal Token Pruning Paradigm",
+                      "url": "https://arxiv.org/html/2512.02700v3"
+                    },
+                    {
+                      "title": "GitHub - ZLKong/Awesome-Collection-Token-Reduction: A collection of token reduction (token pruning, merging, clustering, etc.) techniques for ML/AI · GitHub",
+                      "url": "https://github.com/ZLKong/Awesome-Collection-Token-Reduction"
+                    },
+                    {
+                      "title": "LearnPruner: Rethinking Attention-based Token Pruning in Vision Language Models",
+                      "url": "https://arxiv.org/html/2604.23950"
+                    },
+                    {
+                      "title": "ZOO-Prune: Training-Free Token Pruning via Zeroth-Order Gradient Estimation in Vision-Language Models",
+                      "url": "https://arxiv.org/html/2509.24837"
+                    },
+                    {
+                      "title": "HiPrune: Hierarchical Attention for Efficient Token Pruning in Vision-Language Models",
+                      "url": "https://arxiv.org/html/2508.00553"
+                    },
+                    {
+                      "title": "[2603.22991v1] VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models",
+                      "url": "https://arxiv.org/abs/2603.22991v1"
+                    },
+                    {
+                      "title": "The Better You Learn, The Smarter You Prune: Towards Efficient Vision-language-action Models via Differentiable Token Pruning",
+                      "url": "https://arxiv.org/html/2509.12594v1"
+                    },
+                    {
+                      "title": "[2511.16449] VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient Vision-Language-Action Inference",
+                      "url": "https://arxiv.org/abs/2511.16449"
+                    },
+                    {
+                      "title": "FlashVLM: Text-Guided Visual Token Selection for Large Multimodal Models",
+                      "url": "https://arxiv.org/html/2512.20561"
+                    }
+                  ]
+                },
+                "I found several relevant papers on token pruning for VLAs and VLMs from 2026. Here are the key findings:\n\n## Recent Token Pruning Research for VLAs and VLMs (2026)\n\n**Token Pruning for Robustness:**\n\nToken pruning enables robustness during early uncertainty and efficiency once interaction is locked in vision-language-action models through a conservative-to-aggressive transition strategy. VLA-IAP (Interaction-Aligned Pruning) maintains robust manipulation capabilities even under extreme visual compression.\n\nVLM-Pruner demonstrates robustness to severe token reduction in spatiotemporal reasoning with an average accuracy of 90.55%. Additionally, HiPrune++ still preserves 98.4% and 94.4% performance with 11.1% and 5.6% of tokens retained, demonstrating robustness on high-resolution models.\n\n**Token Pruning as Defense:**\n\nZOO-Prune unifies sensitivity and diversity into a robust and broadly applicable token pruning framework. Diversity-based pruning methods improve robustness by selecting tokens far apart in feature space.\n\nFlashVLM achieves \"beyond-lossless\" performance at moderate budgets and remains stable even under extreme pruning, with consistent gains across diverse VLM architectures and over 75% token reduction.\n\nThese papers demonstrate that token pruning techniques in 2026 not only improve efficiency but also enhance robustness across various vision-language models and vision-language-action systems."
+              ],
+              "durationSeconds": 7.808675440999912
+            },
+            "sourceToolAssistantUUID": "603b1128-ac5e-4c72-8367-50d67d8bd6ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-14T05:30:35.512Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0113PzNC58kfUdsG2MgVghK8",
+              "name": "WebSearch",
+              "input": {
+                "query": "SmolVLA arxiv paper venue 2025 2026 HuggingFace"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7073e015-35ab-4184-a1cd-f2140d2cb35a",
+            "isSidechain": false,
+            "requestId": "req_011Cb1uqtTmAHq7TxQmeWMe4",
+            "type": "assistant",
+            "uuid": "0a55ec9a-4551-47e5-89ec-ca6621c344ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XcSNyNdfot9w9wX9vBDwwi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6190,
+                "cache_read_input_tokens": 77207,
+                "output_tokens": 72,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6190,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 72,
+                    "cache_read_input_tokens": 77207,
+                    "cache_creation_input_tokens": 6190,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6190
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-14T05:30:42.645Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0113PzNC58kfUdsG2MgVghK8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SmolVLA arxiv paper venue 2025 2026 HuggingFace\"\n\nLinks: [{\"title\":\"Paper page - SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics\",\"url\":\"https://huggingface.co/papers/2506.01844\"},{\"title\":\"[2506.01844] SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics\",\"url\":\"https://arxiv.org/abs/2506.01844\"},{\"title\":\"GitHub - huggingface/VLAb · GitHub\",\"url\":\"https://github.com/huggingface/VLAb\"},{\"title\":\"Leave No Observation Behind: Real-time Correction for VLA Action Chunks\",\"url\":\"https://arxiv.org/html/2509.23224v1\"},{\"title\":\"lerobot/smolvla_base · Hugging Face\",\"url\":\"https://huggingface.co/lerobot/smolvla_base\"},{\"title\":\"SmolVLA: A vision-language-action model for affordable and efficient robotics\",\"url\":\"https://arxiv.org/html/2506.01844v1\"},{\"title\":\"SmolVLA · Hugging Face\",\"url\":\"https://huggingface.co/docs/lerobot/smolvla\"},{\"title\":\"Hugging Face Releases SmolVLA, a Compact Open-Source Robotics Model -- Pure AI\",\"url\":\"https://pureai.com/articles/2025/06/10/hugging-face-releases-smolvla.aspx\"},{\"title\":\"Hugging Face Releases SmolVLA: A Compact Vision-Language-Action Model for Affordable and Efficient Robotics - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/\"},{\"title\":\"Paper page - SmolVLM: Redefining small and efficient multimodal models\",\"url\":\"https://huggingface.co/papers/2504.05299\"}]\n\nBased on the search results, here's what I found about SmolVLA:\n\n## SmolVLA Paper Overview\n\nSmolVLA is a small, efficient, and community-driven VLA that drastically reduces both training and inference costs, while retaining competitive performance. \n\n**ArXiv Details:**\n- ArXiv ID: 2506.01844, submitted on June 2, 2025\n- Authors: Mustafa Shukor, Dana Aubakirova, Francesco Capuano, Pepijn Kooijmans, Steven Palma, Adil Zouitine, Michel Aractingi, Caroline Pascal, Martino Russi, Andres Marafioti, Simon Alibert, Matthieu Cord, Thomas Wolf, and Remi Cadene\n\n**HuggingFace Presence:**\nSmolVLA and its datasets are available on GitHub and the Hugging Face Hub. The paper is hosted on HuggingFace at https://huggingface.co/papers/2506.01844, and the model checkpoint is available at https://huggingface.co/lerobot/smolvla_base.\n\n**Model Specifications:**\n- At 450 million parameters, SmolVLA aims to offer efficient, reproducible performance for robotic tasks\n- Despite its compact size, SmolVLA achieves performance comparable to VLAs that are 10x larger\n\nThe paper represents work from Hugging Face in 2025 and was published in June 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a55ec9a-4551-47e5-89ec-ca6621c344ef",
+            "isSidechain": false,
+            "promptId": "a6b20d2f-5d29-4a19-a7a2-d7cfe4ae5dab",
+            "type": "user",
+            "uuid": "561acc40-d98e-481b-ab40-17c8aa747a24",
+            "toolUseResult": {
+              "query": "SmolVLA arxiv paper venue 2025 2026 HuggingFace",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_019oMAKNjGuLEA6M2cvNwfuu",
+                  "content": [
+                    {
+                      "title": "Paper page - SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics",
+                      "url": "https://huggingface.co/papers/2506.01844"
+                    },
+                    {
+                      "title": "[2506.01844] SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics",
+                      "url": "https://arxiv.org/abs/2506.01844"
+                    },
+                    {
+                      "title": "GitHub - huggingface/VLAb · GitHub",
+                      "url": "https://github.com/huggingface/VLAb"
+                    },
+                    {
+                      "title": "Leave No Observation Behind: Real-time Correction for VLA Action Chunks",
+                      "url": "https://arxiv.org/html/2509.23224v1"
+                    },
+                    {
+                      "title": "lerobot/smolvla_base · Hugging Face",
+                      "url": "https://huggingface.co/lerobot/smolvla_base"
+                    },
+                    {
+                      "title": "SmolVLA: A vision-language-action model for affordable and efficient robotics",
+                      "url": "https://arxiv.org/html/2506.01844v1"
+                    },
+                    {
+                      "title": "SmolVLA · Hugging Face",
+                      "url": "https://huggingface.co/docs/lerobot/smolvla"
+                    },
+                    {
+                      "title": "Hugging Face Releases SmolVLA, a Compact Open-Source Robotics Model -- Pure AI",
+                      "url": "https://pureai.com/articles/2025/06/10/hugging-face-releases-smolvla.aspx"
+                    },
+                    {
+                      "title": "Hugging Face Releases SmolVLA: A Compact Vision-Language-Action Model for Affordable and Efficient Robotics - MarkTechPost",
+                      "url": "https://www.marktechpost.com/2025/06/03/hugging-face-releases-smolvla-a-compact-vision-language-action-model-for-affordable-and-efficient-robotics/"
+                    },
+                    {
+                      "title": "Paper page - SmolVLM: Redefining small and efficient multimodal models",
+                      "url": "https://huggingface.co/papers/2504.05299"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about SmolVLA:\n\n## SmolVLA Paper Overview\n\nSmolVLA is a small, efficient, and community-driven VLA that drastically reduces both training and inference costs, while retaining competitive performance. \n\n**ArXiv Details:**\n- ArXiv ID: 2506.01844, submitted on June 2, 2025\n- Authors: Mustafa Shukor, Dana Aubakirova, Francesco Capuano, Pepijn Kooijmans, Steven Palma, Adil Zouitine, Michel Aractingi, Caroline Pascal, Martino Russi, Andres Marafioti, Simon Alibert, Matthieu Cord, Thomas Wolf, and Remi Cadene\n\n**HuggingFace Presence:**\nSmolVLA and its datasets are available on GitHub and the Hugging Face Hub. The paper is hosted on HuggingFace at https://huggingface.co/papers/2506.01844, and the model checkpoint is available at https://huggingface.co/lerobot/smolvla_base.\n\n**Model Specifications:**\n- At 450 million parameters, SmolVLA aims to offer efficient, reproducible performance for robotic tasks\n- Despite its compact size, SmolVLA achieves performance comparable to VLAs that are 10x larger\n\nThe paper represents work from Hugging Face in 2025 and was published in June 2025."
+              ],
+              "durationSeconds": 7.130578685000073
+            },
+            "sourceToolAssistantUUID": "0a55ec9a-4551-47e5-89ec-ca6621c344ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-14T05:31:26.507Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. Now I have all the information I need. Let me compile the final JSON output.\n\nKey decisions:\n- Target venues: CoRL 2026 (May 28 deadline, perfect fit for VLA robustness), ICLR 2027 (expected Oct 2026 deadline, broader ML audience)\n- Level: top-tier (novel theoretical framing + practical VLA impact)\n- Model: OpenVLA-OFT (7B, best open-source VLA for LIBERO) and SmolVLA (450M, for scaling studies)\n- Benchmark: LIBERO + LIBERO-Plus\n\n\n- GIB paper was desk-rejected at ICLR 2026, so I'll cite it as an arXiv preprint, and OBEYED-VLA is also on arXiv from December 2025. Now I'm finalizing the JSON with all the citation details and venue information. I'm compiling the final reference list with all the key papers on visual token pruning and vision-language models, verifying their venues and publication dates. I've compiled 14 references total and verified them all. Now I need to construct the complete JSON output, but I'm noticing a tension in the instructions—I should keep existing fields like title and core_problem unchanged, yet also update the landscape field to explicitly mention any concurrent work I found. Let me interpret this as updating the landscape to include those concurrent works while preserving the other original fields.\n\nActually, thinking about this more carefully, the approach section is where I should differentiate from concurrent work anyway, so I'll keep the landscape as-is and use the approach to explain how this work stands apart. Now I'm ready to merge all the fields—keeping the original title, core_problem, opportunity, and landscape intact, then adding the new fields for approach, resource_estimate, target_venues, level, key_references, and description into a single JSON object.\n\nI need to update the landscape to reflect the concurrent work I've identified: EntropyPrune focusing on efficiency through matrix entropy, CAGE examining adversarial robustness under token compression, the ICLR work on differential attention sensitivity, and the recent arXiv paper on attention entropy in reinforcement learning. With those additions noted, I can finalize the structure.\n\nFor the CoRL timeline, the abstract is due May 26 and the full paper by May 28, giving me about 12 days from today to prepare the abstract.\n\nFor ICLR 2027, I'm estimating an October 2026 deadline based on when ICLR 2026 opened, which would give roughly five months of runway. AAAI 2027 should come around August 2026, providing about three months. Now I have the full picture and can write out the final JSON.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "561acc40-d98e-481b-ab40-17c8aa747a24",
+            "isSidechain": false,
+            "requestId": "req_011Cb1urdFzByyvifMGu1BZq",
+            "type": "assistant",
+            "uuid": "9269510b-8736-4c62-bb65-077f82b98bc2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WHgyBzo8UvYoWR4awXnBkE",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 973,
+                "cache_read_input_tokens": 83397,
+                "output_tokens": 4678,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 973,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4678,
+                    "cache_read_input_tokens": 83397,
+                    "cache_creation_input_tokens": 973,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 973
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-14T05:32:33.782Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the data needed. Here is the completed research direction:\n\n{\n  \"title\": \"Attention Entropy Minimization via Adaptive Token Surgery for VLA Robustness\",\n  \"core_problem\": \"High attention entropy across visual tokens in VLAs indicates diffuse, unfocused processing that creates sensitivity to perturbations in any attended region — yet existing attention-based pruning methods use attention weights as static importance scores rather than exploiting the entropy reduction from pruning as a robustness mechanism with provable sensitivity bounds.\",\n  \"opportunity\": \"The connection between attention entropy and adversarial vulnerability is established in theory (GIB 2025 shows complexity/entropy indicates vulnerability) but unexploited in practice for VLAs. By framing token pruning as attention entropy minimization — removing tokens that increase attention dispersion without contributing to action prediction — we get a per-timestep adaptive criterion that naturally selects different tokens at different manipulation phases (approach vs. grasp vs. lift). This temporal adaptivity is critical because LIBERO-Plus shows VLAs are most brittle during specific manipulation stages. The augmentation component exploits a dual entropy principle: reduce inter-token attention entropy (focus) via pruning while increasing per-token representational coverage via manifold interpolation, yielding robustness through both concentration and generalization. This dual-entropy framing is theoretically distinct from IB approaches and enables tighter bounds via the attention sensitivity norm.\",\n  \"landscape\": \"Attention-based token pruning exists abundantly (ATP-LLaVA at CVPR 2025, LearnPruner Apr 2026, AgilePruner at ICLR 2026, FlowCut at NeurIPS 2025) but universally treats attention as a static importance signal for efficiency. EntropyPrune (Feb 2026) uses matrix entropy to guide pruning but targets efficiency, not robustness, and operates on VLMs rather than VLAs. VLA-IAP's dynamic scheduling adapts pruning intensity over time but by heuristic motion-alignment, not by entropy minimization. The entropy-robustness connection is theorized in the GIB framework (arXiv 2025) which proves 'the complexity term serves as a direct indicator of adversarial vulnerability,' and DRIBO's multi-view IB (ICML 2022) implicitly reduces entropy by compressing task-irrelevant information — but neither applies this at the token selection level. On the attack side, CAGE (ICML 2026) shows token compression creates optimization-inference mismatch affecting adversarial robustness, but from the attacker's perspective — no work exploits pruning as a defense. Understanding Sensitivity of Differential Attention (ICLR 2026) establishes that attention design directly controls adversarial sensitivity via gradient norms and Lipschitz constants, supporting our entropy-to-sensitivity bound. On the augmentation side, Manifold Mixup (ICML 2019) and FOMA (ICML 2024) demonstrate that tangent-space interpolation improves generalization with formal vicinal risk minimization guarantees, and the Augmentation-Invariant Learning Strategy (AAAI 2026) provides variational Bayesian inference on feature manifold tangent spaces. The missing piece is combining entropy-guided adaptive pruning with manifold augmentation specifically for VLA robustness — current VLA robustness methods (LIBERO-Plus analysis at CVPR 2026, OBEYED-VLA, representation preservation approaches) do not manipulate tokens in latent space, while token manipulation methods do not target robustness metrics. Concurrent work 'Not All Tokens Learn Alike' (arXiv May 2026) shows attention entropy reveals heterogeneous optimization signals in RL reasoning, validating entropy as a meaningful per-token diagnostic — but applies to LLM reasoning, not VLA action prediction or robustness.\",\n  \"approach\": \"We propose Attention Entropy Surgery (AES), which reframes visual token pruning in VLAs from an efficiency mechanism to a robustness defense. At each transformer layer and manipulation timestep, AES computes the Shannon entropy of the attention distribution over visual tokens and greedily removes tokens whose exclusion maximally decreases this entropy, subject to an action-prediction fidelity constraint enforced via a lightweight action-head gradient signal. This criterion naturally adapts across manipulation phases: during approach, entropy is high and pruning is aggressive on background tokens; during grasp, entropy concentrates and pruning becomes conservative around contact regions. To complement entropy reduction (focus) with representational diversity (generalization), AES applies first-order tangent-space interpolation on surviving token embeddings, generating augmented training views that expand the vicinal risk coverage without introducing out-of-distribution artifacts. We derive a formal bound showing that the Jacobian norm of the action head with respect to input perturbations is upper-bounded by a monotone function of the post-pruning attention entropy, establishing that lower entropy directly implies tighter sensitivity — a result enabled by the attention sensitivity norm framework. We evaluate on OpenVLA-OFT (7B) and SmolVLA (450M) across LIBERO and LIBERO-Plus benchmarks under all seven perturbation dimensions, comparing against VLA-IAP, AgilePruner, and vanilla baselines.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~400h A100 80GB (10 training runs × 8 GPUs × ~5h each for OpenVLA-OFT fine-tuning, plus ~50h evaluation across LIBERO-Plus conditions and ~30h SmolVLA experiments)\",\n      \"gpu_utilization\": \"High idle rate (~60-70%): GPUs wait while researchers write entropy computation modules, debug pruning logic, analyze attention maps, and iterate on the theoretical bound derivation\",\n      \"timeline\": \"3-5 months (theory derivation + implementation + experiments + writing)\",\n      \"team\": \"1-2 researchers (1 lead on method/theory, 1 optional on experiments/baselines)\",\n      \"estimated_gpu_cost\": \"$600 at ~$1.50/hr (A100 80GB cloud rental via Jarvislabs/Hyperstack)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~500h A100 80GB (agent runs ~15 training configurations autonomously, human approves pruning threshold design and augmentation hyperparameters at decision gates)\",\n      \"gpu_utilization\": \"Moderate improvement (~40-50% utilization): agent queues experiments and chains evaluation runs, but blocks at key design decisions (entropy criterion formulation, bound proof strategy, augmentation interpolation scheme)\",\n      \"timeline\": \"6-10 weeks\",\n      \"team\": \"1 researcher, ~30min/day check-in for design approvals and result interpretation\",\n      \"claude_api_cost\": \"$100-200 (~1000-2000 conversation turns at ~$0.10/turn for experiment design, code generation, result analysis)\",\n      \"estimated_gpu_cost\": \"$750 at ~$1.50/hr\",\n      \"risk_note\": \"Theoretical bound derivation may require human mathematician input — the attention-entropy-to-Jacobian connection needs careful proof construction that may not be fully automatable\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~800h A100 80GB (agent explores 3-5x more configurations: multiple entropy metrics, pruning schedules, augmentation strategies, layer selection policies, plus full ablation matrix)\",\n      \"gpu_utilization\": \"Near-zero idle: agent chains experiments 24/7, immediately launching next configuration upon completion, running evaluation in parallel with training\",\n      \"timeline\": \"2-3 weeks with 8 A100 GPUs (limited by sequential training dependencies — each fine-tuning run takes ~5h on 8 GPUs)\",\n      \"team\": \"0 (initial setup only: specify OpenVLA codebase, LIBERO environment, and research objectives)\",\n      \"claude_api_cost\": \"$300-500 (~3000-5000 turns for full autonomous pipeline: implementation, experiment design, hyperparameter search, result analysis, paper drafting)\",\n      \"estimated_gpu_cost\": \"$1,200 at ~$1.50/hr\",\n      \"speed_bottleneck\": \"GPU count: each OpenVLA-OFT fine-tuning requires 8 A100s for ~5h; with only 8 GPUs, experiments must run sequentially. With 32 GPUs, 4 experiments run in parallel and timeline shrinks to ~10 days\",\n      \"risk_note\": \"Formal bound derivation (Theorem 1: entropy → Jacobian norm) requires mathematical reasoning that may produce incorrect proofs needing human verification; the empirical results are fully automatable\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract deadline May 26, paper deadline May 28, 2026 — ideal topical fit for VLA robustness in robot learning)\",\n    \"AAAI 2027 (deadline expected ~August 2026 — broad AI venue supporting theoretical + empirical contributions)\",\n    \"ICLR 2027 (deadline expected ~October 2026 — top-tier ML venue for the entropy-robustness theory and dual-entropy framework)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"ATP-LLaVA: Adaptive Token Pruning for Large Vision Language Models (CVPR 2025)\",\n    \"AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models (ICLR 2026)\",\n    \"EntropyPrune: Matrix Entropy Guided Visual Token Pruning for Multimodal Large Language Models (arXiv 2026)\",\n    \"VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models (arXiv 2026)\",\n    \"FlowCut: Rethinking Redundancy via Information Flow for Efficient Vision-Language Models (NeurIPS 2025)\",\n    \"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models (CVPR 2026)\",\n    \"A Generalized Information Bottleneck Theory of Deep Learning (arXiv 2025)\",\n    \"DRIBO: Robust Deep Reinforcement Learning via Multi-View Information Bottleneck (ICML 2022)\",\n    \"Manifold Mixup: Better Representations by Interpolating Hidden States (ICML 2019)\",\n    \"First-Order Manifold Data Augmentation for Regression Learning (ICML 2024)\",\n    \"OpenVLA: An Open-Source Vision-Language-Action Model (CoRL 2024)\",\n    \"On the Adversarial Robustness of Large Vision-Language Models under Visual Token Compression (ICML 2026)\",\n    \"Understanding Sensitivity of Differential Attention through the Lens of Adversarial Robustness (ICLR 2026)\",\n    \"Augmentation-Invariant Learning Strategy via Data Augmentation for Improving Model Generalization (AAAI 2026)\"\n  ],\n  \"description\": \"We propose Attention Entropy Surgery (AES), reframing visual token pruning in Vision-Language-Action models from an efficiency mechanism into a robustness defense with provable guarantees. Existing token pruning methods (ATP-LLaVA, AgilePruner, EntropyPrune, VLA-IAP) treat attention as a static importance signal for computational savings, while VLA robustness methods (LIBERO-Plus, OBEYED-VLA) do not manipulate tokens in latent space. AES bridges this gap by removing tokens whose presence maximally increases attention entropy — the diffuseness that the GIB framework identifies as an adversarial vulnerability indicator. The pruning criterion adapts per-timestep across manipulation phases, concentrating attention during approach and preserving contact-region tokens during grasp, addressing the stage-specific brittleness documented by LIBERO-Plus. A dual entropy principle complements focus (entropy reduction via pruning) with generalization (tangent-space manifold interpolation on surviving tokens inspired by FOMA and Manifold Mixup), and we derive a formal bound linking post-pruning attention entropy to the action-head Jacobian norm. Evaluated on OpenVLA-OFT and SmolVLA across LIBERO and LIBERO-Plus benchmarks under seven perturbation dimensions, AES targets the unexploited intersection of token-level manipulation and VLA adversarial robustness.\",\n  \"project_name\": \"attn_entropy_vla_robust\",\n  \"source\": \"web_research\"\n}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9269510b-8736-4c62-bb65-077f82b98bc2",
+            "isSidechain": false,
+            "requestId": "req_011Cb1urdFzByyvifMGu1BZq",
+            "type": "assistant",
+            "uuid": "30156d5a-93cf-4058-a5c7-fbe2cc4da690",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WHgyBzo8UvYoWR4awXnBkE",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 973,
+                "cache_read_input_tokens": 83397,
+                "output_tokens": 4678,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 973,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4678,
+                    "cache_read_input_tokens": 83397,
+                    "cache_creation_input_tokens": 973,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 973
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Attention Ent…",
+                "leafUuid": "30156d5a-93cf-4058-a5c7-fbe2cc4da690",
+                "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088"
+              }
+            }
+          ],
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Attention entropy minimization for robust vision-language action models",
+                "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088"
+              }
+            }
+          ],
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "Complete the research direction below with implementation details.  **Today's date: 2026-05-14 (UTC).** Only recommend venues whose submission deadline has NOT yet passed.  {   \"title\": \"Attention Ent…",
+                "leafUuid": "30156d5a-93cf-4058-a5c7-fbe2cc4da690",
+                "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088"
+              }
+            }
+          ],
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Attention entropy minimization for robust vision-language action models",
+                "sessionId": "d3ff0a08-3d9f-4174-95a8-14d9d5fbd088"
+              }
+            }
+          ],
+          "id": "event-000201"
+        }
+      ]
+    }
+  ]
+}

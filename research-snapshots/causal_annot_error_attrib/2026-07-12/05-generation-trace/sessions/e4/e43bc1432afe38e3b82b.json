@@ -1,0 +1,2710 @@
+{
+  "schema_version": "1.0",
+  "id": "e43bc1432afe38e3b82b",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check for existing implementations and datasets related to a research idea about detecting \"stubborn hallucina",
+  "task_key": "agent-a673e285be8a2ca66",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a673e285be8a2ca66.jsonl",
+    "occurrence": 1,
+    "bytes": 147289,
+    "sha256": "871a736877a9eecaddec63948475ed8dfcf15c67db8696f47a0241d4d031413e"
+  },
+  "statistics": {
+    "messages": 60,
+    "user_turns": 1,
+    "tool_calls": 25,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 25,
+      "tool_result": 25
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T06:07:48.953Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check for existing implementations and datasets related to a research idea about detecting \"stubborn hallucinations\" in LLMs using perturbation-based sharpness estimation.\n\n## Part 1: GitHub implementations\nUse WebSearch to search for:\n1. \"github.com residual stream perturbation LLM\"\n2. \"github.com sharpness estimation inference language model\"\n3. \"github.com hallucination detection perturbation\"\n4. \"github.com EPGS hallucination\" \n5. \"github.com logit sensitivity noise perturbation transformer\"\n6. \"github TransformerLens activation patching perturbation\"\n7. \"github baukit nnsight residual stream\"\n\nReport any repositories that provide building blocks for: (a) perturbing residual streams in transformers, (b) measuring logit sensitivity, (c) hallucination detection benchmarks.\n\n## Part 2: Datasets\nUse WebSearch to search for:\n1. \"TruthfulQA dataset huggingface\"\n2. \"HaluEval dataset hallucination benchmark\"\n3. \"FELM factual error language model dataset\"\n4. \"FActScore biography hallucination dataset\"\n5. \"stubborn hallucination dataset benchmark 2025 2026\"\n6. Search \"paperswithcode hallucination detection datasets\" \n\nReport which datasets are publicly available and which might be useful for evaluating stubborn hallucination detection specifically.\n\n## Part 3: Baseline numbers\nSearch for:\n1. \"hallucination detection AUROC benchmark 2025 2026\"\n2. \"EPGS hallucination detection performance metrics\"\n3. \"semantic entropy hallucination detection AUROC\"\n\nReport any concrete numbers (AUROC, F1, etc.) that would serve as baselines to beat."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "892a6969-8210-4f44-a623-c2d7444fcd0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T06:07:48.958Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "892a6969-8210-4f44-a623-c2d7444fcd0f",
+                "isSidechain": true,
+                "agentId": "a673e285be8a2ca66",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "fcb728f2-ba3c-463e-b93b-da68f7f332f6",
+                "timestamp": "2026-05-16T06:07:48.958Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T06:07:51.569Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll conduct a comprehensive search across all three parts. Let me start by loading the WebSearch tool, then run the searches in parallel batches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcb728f2-ba3c-463e-b93b-da68f7f332f6",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kJZwsuepNJ8q5MQGqV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d9756ad8-a477-4013-912e-7462a92ab5cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JvBKvg2wEzaMFeo9DNpzsk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 947,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 947,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T06:07:52.101Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017nygrhUAY6rGDNySN4zXFX",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d9756ad8-a477-4013-912e-7462a92ab5cb",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kJZwsuepNJ8q5MQGqV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c1db3c20-17b8-40c2-8469-1c79db165288",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JvBKvg2wEzaMFeo9DNpzsk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 947,
+                "cache_read_input_tokens": 7304,
+                "output_tokens": 107,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 947
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 107,
+                    "cache_read_input_tokens": 7304,
+                    "cache_creation_input_tokens": 947,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 947,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T06:07:52.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_017nygrhUAY6rGDNySN4zXFX",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1db3c20-17b8-40c2-8469-1c79db165288",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "7253ee3d-4e44-455e-ba5c-f6b9889b83a5",
+            "sourceToolAssistantUUID": "c1db3c20-17b8-40c2-8469-1c79db165288",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T06:07:55.015Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all the searches. I'll batch them by part for efficiency.\n\n**Part 1: GitHub implementations (batch 1)**"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7253ee3d-4e44-455e-ba5c-f6b9889b83a5",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kJos3SSeGXSzacikrx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "28386ebb-4c1a-4ba3-a960-fc3efc711ec9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VSWqMzG8ZNChFfaRiBgrvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1424,
+                "cache_read_input_tokens": 8251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T06:07:55.468Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HHm8fLDrM9ijvJV6fd8nL8",
+              "name": "WebSearch",
+              "input": {
+                "query": "github.com residual stream perturbation LLM"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28386ebb-4c1a-4ba3-a960-fc3efc711ec9",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kJos3SSeGXSzacikrx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e6db7810-c057-4a2d-954b-ffdde6c6c61e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VSWqMzG8ZNChFfaRiBgrvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1424,
+                "cache_read_input_tokens": 8251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T06:07:55.964Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DpQzZK5iPBhAg53Szb5acB",
+              "name": "WebSearch",
+              "input": {
+                "query": "github.com sharpness estimation inference language model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6db7810-c057-4a2d-954b-ffdde6c6c61e",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kJos3SSeGXSzacikrx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "727b36b3-ceb9-4725-b0e9-9256774548e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VSWqMzG8ZNChFfaRiBgrvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1424,
+                "cache_read_input_tokens": 8251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T06:07:55.969Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014XYUR5A7AJne48KaQCakbK",
+              "name": "WebSearch",
+              "input": {
+                "query": "github.com hallucination detection perturbation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "727b36b3-ceb9-4725-b0e9-9256774548e4",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kJos3SSeGXSzacikrx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fb3ad572-2a4d-4f50-bcd4-6306f5dea208",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VSWqMzG8ZNChFfaRiBgrvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1424,
+                "cache_read_input_tokens": 8251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T06:07:56.200Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UVagvFwS1icUCbfrbCzsQc",
+              "name": "WebSearch",
+              "input": {
+                "query": "github.com EPGS hallucination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb3ad572-2a4d-4f50-bcd4-6306f5dea208",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kJos3SSeGXSzacikrx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a9fc8b35-e31e-4466-865b-0d4c4aea2527",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VSWqMzG8ZNChFfaRiBgrvV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1424,
+                "cache_read_input_tokens": 8251,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1424,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T06:08:00.328Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UVagvFwS1icUCbfrbCzsQc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github.com EPGS hallucination\"\n\nLinks: [{\"title\":\"hallucination-detection · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/hallucination-detection\"},{\"title\":\"hallucination · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/hallucination\"},{\"title\":\"GitHub - obalcells/hallucination_probes: Real-Time Detection of Hallucinated Entities in Long-Form Generation · GitHub\",\"url\":\"https://github.com/obalcells/hallucination_probes\"},{\"title\":\"GitHub - LisaAnne/Hallucination · GitHub\",\"url\":\"https://github.com/LisaAnne/Hallucination\"},{\"title\":\"GitHub - migpaniag/EPGS\",\"url\":\"https://github.com/migpaniag/EPGS\"},{\"title\":\"GitHub - vectara/hallucination-leaderboard: Leaderboard Comparing LLM Performance at Producing Hallucinations when Summarizing Short Documents · GitHub\",\"url\":\"https://github.com/vectara/hallucination-leaderboard\"},{\"title\":\"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub\",\"url\":\"https://github.com/EdinburghNLP/awesome-hallucination-detection\"},{\"title\":\"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).\",\"url\":\"https://github.com/showlab/Awesome-MLLM-Hallucination\"},{\"title\":\"GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub\",\"url\":\"https://github.com/NishilBalar/Awesome-LVLM-Hallucination\"},{\"title\":\"GitHub - RUCAIBox/HaluEval: This is the repository of HaluEval, a large-scale hallucination evaluation benchmark for Large Language Models. · GitHub\",\"url\":\"https://github.com/RUCAIBox/HaluEval\"}]\n\nI found a GitHub repository for EPGS. The EPGS repository is available on GitHub at migpaniag/EPGS. However, the search result provided minimal information about what the project contains.\n\nThe search results show that there are many GitHub repositories related to hallucination detection and mitigation in large language models and multimodal AI systems, but the specific EPGS repository appears to be a smaller or less documented project. To get more detailed information about what EPGS specifically does or contains, you would need to visit the repository directly at: **https://github.com/migpaniag/EPGS**\n\nWould you like me to search for more specific information about EPGS, such as what it stands for or what it's designed to do?\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9fc8b35-e31e-4466-865b-0d4c4aea2527",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "7d70ed33-27cc-474f-9275-53453a83ac56",
+            "sourceToolAssistantUUID": "a9fc8b35-e31e-4466-865b-0d4c4aea2527",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T06:08:01.709Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DpQzZK5iPBhAg53Szb5acB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github.com sharpness estimation inference language model\"\n\nLinks: [{\"title\":\"GitHub - WHU-ZQH/FSAM4PLM: [EMNLP22] Improving Sharpness-Aware Minimization with Fisher Mask for Better Generalization on Language Models · GitHub\",\"url\":\"https://github.com/WHU-ZQH/FSAM4PLM\"},{\"title\":\"EFFICIENT SHARPNESS-AWARE MINIMIZATION FOR ...\",\"url\":\"https://liangli-zhen.github.io/assets/pdf/ICLR2022_efficient_sharpness_aware_mini.pdf\"},{\"title\":\"GitHub - chenhongyu2048/LLM-inference-optimization-paper: Summary of some awesome work for optimizing LLM inference · GitHub\",\"url\":\"https://github.com/chenhongyu2048/LLM-inference-optimization-paper\"},{\"title\":\"GitHub - Sheikyon/LLM-X: Python library for precise, hardware-aware inference memory consumption estimation of language models via reverse-engineering the model's tensors.\",\"url\":\"https://github.com/Sheikyon/LLM-X\"},{\"title\":\"GitHub - ws-jiang/awesome-sharpeness-aware-minimization · GitHub\",\"url\":\"https://github.com/ws-jiang/awesome-sharpeness-aware-minimization\"},{\"title\":\"Sharpness-Aware Minimization Improves Language Model ...\",\"url\":\"https://aclanthology.org/2022.acl-long.508.pdf\"},{\"title\":\"GitHub - davda54/sam: SAM: Sharpness-Aware Minimization (PyTorch) · GitHub\",\"url\":\"https://github.com/davda54/sam\"},{\"title\":\"GitHub - Efficient-ML/Awesome-Model-Quantization: A list of papers, docs, codes about model quantization. This repo is aimed to provide the info for model quantization research, we are continuously improving the project. Welcome to PR the works (papers, repositories) that are missed by the repo. · GitHub\",\"url\":\"https://github.com/Efficient-ML/Awesome-Model-Quantization\"},{\"title\":\"sharpness · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/sharpness\"},{\"title\":\"sharpness-aware-minimization · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/sharpness-aware-minimization\"}]\n\nI found several relevant GitHub repositories and resources related to sharpness estimation and inference for language models. Here's what the search revealed:\n\n## Key GitHub Repositories\n\n**FSAM4PLM** - This is the official implementation of the EMNLP 2022 paper \"Improving Sharpness-Aware Minimization with Fisher Mask for Better Generalization on Language Models\". The repository demonstrates how sharpness-aware minimization can be applied to language models.\n\n**SAM (Sharpness-Aware Minimization)** - The SAM class is a PyTorch implementation that computes the regularized \"sharpness-aware\" gradient, which is used by the underlying optimizer.\n\n**Awesome Sharpness-Aware Minimization Collection** - This curates research including \"Sharp-MAML: Sharpness-aware model-agnostic meta learning\" and \"Sharpness-aware minimization improves language model generalization\".\n\n## Additional Resources\n\nThere are summaries of work for optimizing LLM inference, including algorithms to accelerate language model inference through various optimization techniques.\n\nResearch includes work on \"Zero-Shot Sharpness-Aware Quantization for Pre-trained Language Models\", which combines sharpness awareness with quantization for efficient inference.\n\nThe search results show active research in applying sharpness-aware minimization techniques to improve both training and inference efficiency of language models, with several public implementations available on GitHub.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "727b36b3-ceb9-4725-b0e9-9256774548e4",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "63e61199-8a11-4d8f-87a3-10016de5e8dd",
+            "sourceToolAssistantUUID": "727b36b3-ceb9-4725-b0e9-9256774548e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T06:08:01.848Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HHm8fLDrM9ijvJV6fd8nL8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github.com residual stream perturbation LLM\"\n\nLinks: [{\"title\":\"GitHub - Exploration-Lab/LLM-Calibration-Mechanism · GitHub\",\"url\":\"https://github.com/Exploration-Lab/LLM-Calibration-Mechanism\"},{\"title\":\"llm-transparency-tool/llm_transparency_tool/models/transparent_llm.py at main · facebookresearch/llm-transparency-tool\",\"url\":\"https://github.com/facebookresearch/llm-transparency-tool/blob/main/llm_transparency_tool/models/transparent_llm.py\"},{\"title\":\"Defending Large Language Models Against Attacks With Residual Stream Activation Analysis\",\"url\":\"https://arxiv.org/html/2406.03230v5\"},{\"title\":\"Defending Large Language Models Against Attacks With ...\",\"url\":\"https://ceur-ws.org/Vol-3920/paper01.pdf\"},{\"title\":\"GitHub - cooperleong00/Awesome-LLM-Interpretability: A curated list of LLM Interpretability related material - Tutorial, Library, Survey, Paper, Blog, etc.. · GitHub\",\"url\":\"https://github.com/cooperleong00/Awesome-LLM-Interpretability\"},{\"title\":\"GitHub - amelia-kawasaki/llm_activation_classification: Code for \\\"Defending Large Language Models Against Attacks With Residual Stream Activation Analysis\\\" · GitHub\",\"url\":\"https://github.com/amelia-kawasaki/llm_activation_classification\"},{\"title\":\"GitHub - dongguanting/Noise-Slot-Filling-LLM: The Dataset of NLPCC 2023 (Oral Presentation): Revisit Input Perturbation Problems for LLMs: A Unified Robustness Evaluation Framework for Noisy Slot Filling Task\",\"url\":\"https://github.com/dongguanting/Noise-Slot-Filling-LLM\"},{\"title\":\"Explanation in the Era of LLMs NAACL 2024 tutorial\",\"url\":\"https://explanation-llm.github.io/slides/section_4_slides.pdf\"},{\"title\":\"GitHub - intuit-ai-research/SPUQ: SPUQ: Perturbation-Based Uncertainty Quantification for Large Language Models · GitHub\",\"url\":\"https://github.com/intuit-ai-research/SPUQ\"},{\"title\":\"Defending Large Language Models Against Attacks With Residual Stream Activation Analysis Research sponsored by HiddenLayer\",\"url\":\"https://arxiv.org/html/2406.03230v2\"}]\n\nBased on the web search results, here are the relevant GitHub repositories and research related to residual stream perturbation in LLMs:\n\n## Key GitHub Repositories\n\n1. **llm_activation_classification** - A repository that provides scripts for extracting and classifying model activations for custom datasets of prompts related to \"Defending Large Language Models Against Attacks With Residual Stream Activation Analysis\". Available at: https://github.com/amelia-kawasaki/llm_activation_classification\n\n2. **LLM-Transparency-Tool** - An open-source interactive toolkit for analyzing internal workings of Transformer-based language models. Available at: https://github.com/facebookresearch/llm-transparency-tool\n\n3. **SPUQ** - A perturbation-based uncertainty quantification method for large language models that perturbs the input (including the prompt and the temperature) to get multiple outputs. Available at: https://github.com/intuit-ai-research/SPUQ\n\n4. **Awesome-LLM-Interpretability** - A curated list of LLM Interpretability related material that includes various papers and tools related to residual stream analysis. Available at: https://github.com/cooperleong00/Awesome-LLM-Interpretability\n\n## Related Research\n\nRecent research focuses on employing residual activation analysis as a defensive strategy by analyzing the activations in the residual streams that exist between the transformer layers of an LLM.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6db7810-c057-4a2d-954b-ffdde6c6c61e",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "0a3a41ea-f9a4-42ad-8ca4-3494f34741c9",
+            "sourceToolAssistantUUID": "e6db7810-c057-4a2d-954b-ffdde6c6c61e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T06:08:03.061Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014XYUR5A7AJne48KaQCakbK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github.com hallucination detection perturbation\"\n\nLinks: [{\"title\":\"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub\",\"url\":\"https://github.com/EdinburghNLP/awesome-hallucination-detection\"},{\"title\":\"hallucination-detection · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/hallucination-detection\"},{\"title\":\"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).\",\"url\":\"https://github.com/showlab/Awesome-MLLM-Hallucination\"},{\"title\":\"GitHub - intuit/sac3: Official repo for SAC3: Reliable Hallucination Detection in Black-Box Language Models via Semantic-aware Cross-check Consistency · GitHub\",\"url\":\"https://github.com/intuit/sac3\"},{\"title\":\"VL-Uncertainty: Detecting Hallucination in Large Vision-Language Model via Uncertainty Estimation\",\"url\":\"https://vl-uncertainty.github.io/\"},{\"title\":\"Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses\",\"url\":\"https://arxiv.org/html/2407.05474v1\"},{\"title\":\"awesome-hallucination-detection/README.md at main · EdinburghNLP/awesome-hallucination-detection\",\"url\":\"https://github.com/EdinburghNLP/awesome-hallucination-detection/blob/main/README.md\"},{\"title\":\"GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub\",\"url\":\"https://github.com/NishilBalar/Awesome-LVLM-Hallucination\"},{\"title\":\"hallucination-mitigation · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/hallucination-mitigation\"},{\"title\":\"hallucination · GitHub Topics · GitHub\",\"url\":\"https://github.com/topics/hallucination\"}]\n\nBased on the web search results, here are the key findings about hallucination detection using perturbation methods on GitHub:\n\n## Major GitHub Repositories and Resources\n\nThe EdinburghNLP repository hosts an awesome-hallucination-detection list that compiles papers on hallucination detection in LLMs.\n\n## Perturbation-Based Approaches\n\nSeveral notable projects use perturbation techniques for hallucination detection:\n\n1. **HaDes Dataset**: HaDes (HAllucination DEtection dataSet) is a novel token-level reference-free annotated hallucination detection dataset obtained by perturbing a large number of text segments extracted from the English Wikipedia and verified with crowd-sourced annotations.\n\n2. **SAC³ (Semantic-aware Cross-check Consistency)**: SAC³ is a novel sampling-based hallucination detection method that detects both question-level and model-level hallucinations by leveraging semantically equivalent question perturbation and cross-model response consistency checking. The official repository is available at intuit/sac3.\n\n3. **VL-Uncertainty**: VL-Uncertainty elicits intrinsic uncertainty of LVLMs through proposed semantic-equivalent perturbation, applying semantic-equivalent perturbations to both visual and textual prompts.\n\n4. **HaluGen**: An approach that involves prompting a rewriting LLM to perturb the responses of the LLM system itself, rather than those written by humans, designed to create synthetic training data for hallucination detection models.\n\nThese GitHub projects demonstrate various applications of perturbation-based methods for detecting and mitigating hallucinations in both text and vision-language models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb3ad572-2a4d-4f50-bcd4-6306f5dea208",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "48b3918b-033a-4b14-a7ce-40cd2a806364",
+            "sourceToolAssistantUUID": "fb3ad572-2a4d-4f50-bcd4-6306f5dea208",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T06:08:05.812Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, let me continue with the remaining Part 1 searches and start Part 2."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48b3918b-033a-4b14-a7ce-40cd2a806364",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kKcE5cNfdPxQ9pbBX8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "30a6cf51-3582-438f-b6a9-211ce9d0d82b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WF1sByqktUaM4hYubAvPci",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 761,
+                "cache_creation_input_tokens": 3122,
+                "cache_read_input_tokens": 9675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3122,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T06:08:06.849Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NipKpz2VEfAgdUc537wyTZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "github.com logit sensitivity noise perturbation transformer"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30a6cf51-3582-438f-b6a9-211ce9d0d82b",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kKcE5cNfdPxQ9pbBX8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "66ecc32b-8344-4bc9-af99-e9d6127ddd37",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WF1sByqktUaM4hYubAvPci",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 761,
+                "cache_creation_input_tokens": 3122,
+                "cache_read_input_tokens": 9675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3122,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T06:08:07.273Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EwYmk77tbogK2pMfu7ZzJk",
+              "name": "WebSearch",
+              "input": {
+                "query": "github TransformerLens activation patching perturbation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66ecc32b-8344-4bc9-af99-e9d6127ddd37",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kKcE5cNfdPxQ9pbBX8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4b746f32-a199-47d3-9775-7bd208048750",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WF1sByqktUaM4hYubAvPci",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 761,
+                "cache_creation_input_tokens": 3122,
+                "cache_read_input_tokens": 9675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3122,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T06:08:07.744Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0151fG1fuHmTjBSPaJVe33pX",
+              "name": "WebSearch",
+              "input": {
+                "query": "github baukit nnsight residual stream"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b746f32-a199-47d3-9775-7bd208048750",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kKcE5cNfdPxQ9pbBX8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb7bfc43-fea6-471b-9147-dc7989b73cb4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WF1sByqktUaM4hYubAvPci",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 761,
+                "cache_creation_input_tokens": 3122,
+                "cache_read_input_tokens": 9675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3122,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T06:08:08.175Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K7bmeitzrzKnEyczXj175m",
+              "name": "WebSearch",
+              "input": {
+                "query": "TruthfulQA dataset huggingface"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb7bfc43-fea6-471b-9147-dc7989b73cb4",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kKcE5cNfdPxQ9pbBX8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c8792d21-c674-49b8-9802-53c7367f8436",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WF1sByqktUaM4hYubAvPci",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 761,
+                "cache_creation_input_tokens": 3122,
+                "cache_read_input_tokens": 9675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3122,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T06:08:08.543Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JexR2qfmV6ZpxhqxMNGVz8",
+              "name": "WebSearch",
+              "input": {
+                "query": "HaluEval dataset hallucination benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8792d21-c674-49b8-9802-53c7367f8436",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kKcE5cNfdPxQ9pbBX8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bcf485a4-9e9d-46dd-8478-f2cbace0cce5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WF1sByqktUaM4hYubAvPci",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 761,
+                "cache_creation_input_tokens": 3122,
+                "cache_read_input_tokens": 9675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3122,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T06:08:12.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EwYmk77tbogK2pMfu7ZzJk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github TransformerLens activation patching perturbation\"\n\nLinks: [{\"title\":\"transformer_lens.patching - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/generated/code/transformer_lens.patching.html\"},{\"title\":\"GitHub - TransformerLensOrg/TransformerLens: A library for mechanistic interpretability of GPT-style language models · GitHub\",\"url\":\"https://github.com/TransformerLensOrg/TransformerLens\"},{\"title\":\"Tutorials - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/content/tutorials.html\"},{\"title\":\"Activation Patching in TransformerLens Demo\",\"url\":\"https://colab.research.google.com/github/TransformerLensOrg/TransformerLens/blob/main/demos/Activation_Patching_in_TL_Demo.ipynb\"},{\"title\":\"TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/\"},{\"title\":\"Transformer Lens Main Demo Notebook - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/generated/demos/Main_Demo.html\"},{\"title\":\"transformer_lens.HookedTransformer - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/generated/code/transformer_lens.HookedTransformer.html\"},{\"title\":\"GitHub - callummcdougall/path_patching: Implementation of path patching & activation patching (will eventually add to TransformerLens). · GitHub\",\"url\":\"https://github.com/callummcdougall/path_patching\"},{\"title\":\"Activation Patching in TransformerLens Demo - Colab - Google\",\"url\":\"https://colab.research.google.com/github/neelnanda-io/TransformerLens/blob/main/demos/Activation_Patching_in_TL_Demo.ipynb\"},{\"title\":\"Getting Started in Mechanistic Interpretability - TransformerLens Documentation\",\"url\":\"https://transformerlensorg.github.io/TransformerLens/content/getting_started_mech_interp.html\"}]\n\nBased on the search results, here's what I found about TransformerLens activation patching:\n\n## Overview\n\nTransformerLens is a library for mechanistic interpretability of GPT-style language models. Activation patching is a mechanistic interpretability technique that uses causal intervention to identify which activations in a model matter for producing an output.\n\n## How Activation Patching Works\n\nThe key idea is that you give the model the corrupted input, but then intervene on a specific activation and patch in the corresponding activation from the clean run (replace the corrupted activation with the clean activation), and then continue the run. A key detail is that you move a single activation from the clean run to the corrupted run.\n\nIf patching in an activation significantly increases the probability of the correct answer, this allows you to localize which activations matter.\n\n## Key Resources\n\nThe \"Indirect Object Identification\" resource covers standard techniques in mechanistic interpretability such as direct logit attribution, activation patching and path patching. Additionally, there is a demo that accompanies the Exploratory Analysis Demo explaining how to use Activation Patching in TransformerLens.\n\nThe GitHub repository is available at https://github.com/TransformerLensOrg/TransformerLens, which contains the implementation and documentation for this technique.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b746f32-a199-47d3-9775-7bd208048750",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "ffa8475e-eb75-467d-b895-d14dcc29b7f7",
+            "sourceToolAssistantUUID": "4b746f32-a199-47d3-9775-7bd208048750",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T06:08:13.514Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0151fG1fuHmTjBSPaJVe33pX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github baukit nnsight residual stream\"\n\nLinks: [{\"title\":\"GitHub - ndif-team/nnsight: The nnsight package enables interpreting and manipulating the internals of deep learned models. · GitHub\",\"url\":\"https://github.com/ndif-team/nnsight\"},{\"title\":\"Implementing activation steering\",\"url\":\"https://www.lesswrong.com/posts/ndyngghzFY388Dnew/implementing-activation-steering\"},{\"title\":\"GitHub - annahdo/implementing_activation_steering: A collection of different ways to implement accessing and modifying internal model activations for LLMs\",\"url\":\"https://github.com/annahdo/implementing_activation_steering\"},{\"title\":\"NNsight and NDIF: Democratizing Access to Foundation Model Internals\",\"url\":\"https://arxiv.org/html/2407.14561v1\"},{\"title\":\"nnsight/NNsight.md at main · ndif-team/nnsight\",\"url\":\"https://github.com/ndif-team/nnsight/blob/main/NNsight.md\"},{\"title\":\"GitHub - davidbau/baukit · GitHub\",\"url\":\"https://github.com/davidbau/baukit\"},{\"title\":\"NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals\",\"url\":\"https://arxiv.org/html/2407.14561v3\"},{\"title\":\"GitHub - UKGovernmentBEIS/vllm-lens: Extract residual-stream activations and apply steering vectors (including activation oracles) to any vLLM model during inference. · GitHub\",\"url\":\"https://github.com/UKGovernmentBEIS/vllm-lens\"},{\"title\":\"nnsight\",\"url\":\"https://nnsight.net/\"},{\"title\":\"GitHub - ndif-team/nnsight-website: The nnsight website, which explains and documents the open-source nnsight API · GitHub\",\"url\":\"https://github.com/ndif-team/nnsight-website\"}]\n\nBased on the search results, I can provide you with information about these tools and concepts:\n\n## NNsight\n\nNNsight is a Python library that enables interpreting and intervening on the internals of deep learning models. Originally developed in the NDIF team at Northeastern University, nnsight supports local execution on any PyTorch model and remote execution on large models via the NDIF infrastructure.\n\n## Baukit\n\nBaukit is a kit of David's secret tools to help with productive research prototyping with pytorch, providing methods for tracing and editing internal activations in a network.\n\n## Relationship Between the Two\n\nNNsight is the spiritual successor of baukit, from the same group, and they are merging them at some point.\n\n## Residual Stream\n\nActivation steering is often done at the residual stream of one of the hidden layers. The residual stream is a key concept in transformer architectures where it carries information between layers.\n\nBoth tools can be used to access and manipulate the residual stream and other internal activations in language models. The GitHub repositories are available at:\n- **nnsight**: https://github.com/ndif-team/nnsight\n- **baukit**: https://github.com/davidbau/baukit\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb7bfc43-fea6-471b-9147-dc7989b73cb4",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "26dd90e4-d066-41ae-996a-4434ab0146b8",
+            "sourceToolAssistantUUID": "cb7bfc43-fea6-471b-9147-dc7989b73cb4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T06:08:13.813Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NipKpz2VEfAgdUc537wyTZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github.com logit sensitivity noise perturbation transformer\"\n\nLinks: [{\"title\":\"GitHub - limengyang1992/lpl: Logit Perturbation · GitHub\",\"url\":\"https://github.com/limengyang1992/lpl\"},{\"title\":\"GitHub - mt-upc/logit-explanations\",\"url\":\"https://github.com/mt-upc/logit-explanations\"},{\"title\":\"GitHub - lucidrains/x-transformers: A concise but complete full-attention transformer with a set of promising experimental features from various papers · GitHub\",\"url\":\"https://github.com/lucidrains/x-transformers\"},{\"title\":\"mesh/mesh_tensorflow/transformer/attention.py at master · tensorflow/mesh\",\"url\":\"https://github.com/tensorflow/mesh/blob/master/mesh_tensorflow/transformer/attention.py\"},{\"title\":\"GitHub - dl1683/Latent-Space-Reasoning: Teaching LLMs to reason in the Latent Space to precondition responses. · GitHub\",\"url\":\"https://github.com/dl1683/Latent-Space-Reasoning\"},{\"title\":\"GitHub - akhtarvision/cal-detr\",\"url\":\"https://github.com/akhtarvision/cal-detr\"},{\"title\":\"Catformer: Designing Stable Transformers via Sensitivity Analysis\",\"url\":\"https://proceedings.mlr.press/v139/davis21a/davis21a.pdf\"},{\"title\":\"Transformer Explainer: LLM Transformer Model Visually Explained\",\"url\":\"https://poloclub.github.io/transformer-explainer/\"},{\"title\":\"GitHub - nostalgebraist/transformer-utils: Utilities for the HuggingFace transformers library\",\"url\":\"https://github.com/nostalgebraist/transformer-utils\"},{\"title\":\"GitHub - thu-ml/unidiffuser: Code and models for the paper \\\"One Transformer Fits All Distributions in Multi-Modal Diffusion\\\" · GitHub\",\"url\":\"https://github.com/thu-ml/unidiffuser\"}]\n\nBased on the search results, I found several GitHub repositories related to logit, sensitivity, noise, perturbation, and transformers:\n\n## Key Results:\n\n1. **Logit Perturbation (limengyang1992/lpl)**: Official PyTorch implementation for \"Logit Perturbation\"\n\n2. **Logit Explanations (mt-upc/logit-explanations)**: This repository leverages recent advances in explainability of the Transformer and presents a procedure to analyze models for language generation, showing that the method aligns better than gradient-based and perturbation-based baselines\n\n3. **Sensitivity Analysis for Transformers (Catformer)**: The paper introduces the concept of sensitivity, a measure of average-case instability that captures how sensitive a function is to random perturbations of its inputs, and presents a new Transformer architecture inspired by the sensitivity analysis which empirically reduces instability\n\n4. **Latent Space Reasoning**: This repository shows that prepending random embedding-scale prefix tokens improves arithmetic accuracy, and perturbation breaks attention-sink-induced degenerate generation\n\n5. **Cal-DETR (Calibrated Detection Transformer)**: This repository develops an uncertainty-guided logit modulation mechanism and a logit mixing approach that acts as a regularizer to improve calibration performance\n\nThe most directly relevant to your query appears to be the Catformer repository, which specifically addresses sensitivity analysis and noise perturbation in transformer architectures.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66ecc32b-8344-4bc9-af99-e9d6127ddd37",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "bbba4cf5-1ec6-4cad-8810-6c898c6b4b11",
+            "sourceToolAssistantUUID": "66ecc32b-8344-4bc9-af99-e9d6127ddd37",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T06:08:14.961Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K7bmeitzrzKnEyczXj175m",
+              "type": "tool_result",
+              "content": "Web search results for query: \"TruthfulQA dataset huggingface\"\n\nLinks: [{\"title\":\"domenicrosati/TruthfulQA · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/domenicrosati/TruthfulQA\"},{\"title\":\"EleutherAI/truthful_qa_mc · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/EleutherAI/truthful_qa_mc\"},{\"title\":\"HiTZ/truthfulqa-multi · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/HiTZ/truthfulqa-multi\"},{\"title\":\"truthfulqa/truthful_qa · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/truthfulqa/truthful_qa\"},{\"title\":\"GitHub - sylinrl/TruthfulQA: TruthfulQA: Measuring How Models Imitate Human Falsehoods · GitHub\",\"url\":\"https://github.com/sylinrl/TruthfulQA\"},{\"title\":\"EleutherAI/truthful_qa_binary · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/EleutherAI/truthful_qa_binary\"},{\"title\":\"README.md · truthfulqa/truthful_qa at main\",\"url\":\"https://huggingface.co/datasets/truthfulqa/truthful_qa/blob/main/README.md\"},{\"title\":\"README.md · truthful_qa at main\",\"url\":\"https://huggingface.co/datasets/truthful_qa/blob/main/README.md\"},{\"title\":\"omarmohamed/truthfulqa · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/omarmohamed/truthfulqa\"},{\"title\":\"LM-Polygraph/truthfulqa · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/LM-Polygraph/truthfulqa\"}]\n\nHere are the search results for the TruthfulQA dataset on Hugging Face:\n\n## Overview\n\nTruthfulQA is a benchmark comprising 817 questions that span 38 categories, including health, law, finance and politics. The benchmark measures whether a language model is truthful in generating answers to questions, and models must avoid generating false answers learned from imitating human texts.\n\n## Dataset Design\n\nThe questions were crafted so that some humans would answer falsely due to a false belief or misconception. The questions were designed to be \"adversarial\" in the sense of testing for a weakness in the truthfulness of language models.\n\n## Available Versions on Hugging Face\n\nMultiple versions of TruthfulQA are available:\n\n1. **Official version**: Available at `truthfulqa/truthful_qa` with both generation and multiple-choice configurations\n2. **Multiple-Choice versions**: \n   - TruthfulQA-MC comprises 684 questions spanning 38 categories\n   - TruthfulQA-Binary comprises 684 questions spanning 38 categories\n3. **Multilingual version**: The original TruthfulQA dataset was professionally translated to Spanish, Catalan, Galician, and Basque\n\n## License and Citation\n\nThe dataset is licensed under the Apache License, Version 2.0 and was created by Stephanie Lin, Jacob Hilton, and Owain Evans in 2021.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8792d21-c674-49b8-9802-53c7367f8436",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "698482e1-59be-4ab4-b6c7-7d3699115ede",
+            "sourceToolAssistantUUID": "c8792d21-c674-49b8-9802-53c7367f8436",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T06:08:14.989Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JexR2qfmV6ZpxhqxMNGVz8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"HaluEval dataset hallucination benchmark\"\n\nLinks: [{\"title\":\"GitHub - RUCAIBox/HaluEval: This is the repository of HaluEval, a large-scale hallucination evaluation benchmark for Large Language Models. · GitHub\",\"url\":\"https://github.com/RUCAIBox/HaluEval\"},{\"title\":\"[2305.11747] HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models\",\"url\":\"https://arxiv.org/abs/2305.11747\"},{\"title\":\"HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.emnlp-main.397/\"},{\"title\":\"HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=bxsrykzSnq\"},{\"title\":\"HaluEval: Benchmark for LLM Hallucinations\",\"url\":\"https://www.emergentmind.com/topics/halueval\"},{\"title\":\"HaluEval: A Large-Scale Hallucination Evaluation Benchmark\",\"url\":\"https://arxiv.org/pdf/2305.11747\"},{\"title\":\"HaluEval: A Large-Scale Hallucination Evaluation ...\",\"url\":\"https://aclanthology.org/2023.emnlp-main.397.pdf\"},{\"title\":\"(PDF) HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models\",\"url\":\"https://www.researchgate.net/publication/400560897_HaluEval_A_Large-Scale_Hallucination_Evaluation_Benchmark_for_Large_Language_Models\"},{\"title\":\"[2305.11747] HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2305.11747\"},{\"title\":\"[PDF] HaluEval: A Large-Scale Hallucination Evaluation Benchmark for Large Language Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/HaluEval:-A-Large-Scale-Hallucination-Evaluation-Li-Cheng/e0384ba36555232c587d4a80d527895a095a9001\"}]\n\n## HaluEval Dataset: Hallucination Benchmark\n\nHaluEval is a Hallucination Evaluation benchmark for Large Language Models that consists of a large collection of generated and human-annotated hallucinated samples for evaluating the performance of LLMs in recognizing hallucination.\n\n### Dataset Composition\n\nHaluEval includes 5,000 general user queries with ChatGPT responses and 30,000 task-specific examples from three tasks: question answering, knowledge-grounded dialogue, and text summarization. In total, the benchmark contains 35,000 hallucinated/normal samples for LLMs analysis and evaluation.\n\n### Data Generation Methodology\n\nTo generate these samples, a ChatGPT-based two-step framework (sampling-then-filtering) was proposed, and human labelers were hired to annotate the hallucinations in ChatGPT responses.\n\n### Key Findings\n\nThe empirical results suggest that ChatGPT is likely to generate hallucinated content in specific topics by fabricating unverifiable information in about 19.5% of user queries. Existing LLMs face great challenges in recognizing hallucinations in texts, but providing external knowledge or adding reasoning steps can help LLMs recognize hallucinations.\n\n### Impact and Extensions\n\nHaluEval has established itself as the cornerstone of empirical research on LLM hallucination, with its meticulous construction, diverse annotation schema, and public availability catalyzing wide-ranging advances in hallucination detection, localization, and mitigation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bcf485a4-9e9d-46dd-8478-f2cbace0cce5",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "0bb55117-ddcc-4dfa-9e3c-56dbb764b9bb",
+            "sourceToolAssistantUUID": "bcf485a4-9e9d-46dd-8478-f2cbace0cce5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T06:08:18.043Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me continue with the remaining Part 2 and Part 3 searches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0bb55117-ddcc-4dfa-9e3c-56dbb764b9bb",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kLVCwEvinHuzHyVsqf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ce48ab56-932d-4e1b-96bb-3363a9331b3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014o5JEKHevUZJzwz8nEQDUd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5538,
+                "cache_read_input_tokens": 12797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5538,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T06:08:18.581Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SBnw2bM4NsugmeCBB1TfLr",
+              "name": "WebSearch",
+              "input": {
+                "query": "FELM factual error language model dataset"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce48ab56-932d-4e1b-96bb-3363a9331b3d",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kLVCwEvinHuzHyVsqf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "790648ba-170f-48e9-9069-1632072ebcd1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014o5JEKHevUZJzwz8nEQDUd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5538,
+                "cache_read_input_tokens": 12797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5538,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T06:08:18.990Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VQddoA58EJqwi7DfwV7vN9",
+              "name": "WebSearch",
+              "input": {
+                "query": "FActScore biography hallucination dataset"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "790648ba-170f-48e9-9069-1632072ebcd1",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kLVCwEvinHuzHyVsqf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6cebfb6b-a586-4a70-b163-f568c78aad74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014o5JEKHevUZJzwz8nEQDUd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5538,
+                "cache_read_input_tokens": 12797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5538,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T06:08:19.455Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0146sABtvaFtKhxpeFXXPRJW",
+              "name": "WebSearch",
+              "input": {
+                "query": "stubborn hallucination dataset benchmark 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6cebfb6b-a586-4a70-b163-f568c78aad74",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kLVCwEvinHuzHyVsqf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7709e669-99d5-4955-9ccf-d88897b9c97f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014o5JEKHevUZJzwz8nEQDUd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5538,
+                "cache_read_input_tokens": 12797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5538,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T06:08:19.952Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UnqxQVhgEPpox1wr6vZ6jU",
+              "name": "WebSearch",
+              "input": {
+                "query": "paperswithcode hallucination detection datasets"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7709e669-99d5-4955-9ccf-d88897b9c97f",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kLVCwEvinHuzHyVsqf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bb56d72f-9d70-40da-98df-01ad22a48e40",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014o5JEKHevUZJzwz8nEQDUd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5538,
+                "cache_read_input_tokens": 12797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5538,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T06:08:20.291Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RmyXoDh1fCeiJFvvXKYTvm",
+              "name": "WebSearch",
+              "input": {
+                "query": "hallucination detection AUROC benchmark 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb56d72f-9d70-40da-98df-01ad22a48e40",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kLVCwEvinHuzHyVsqf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dc438597-63bb-4c36-8b34-68b656407578",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014o5JEKHevUZJzwz8nEQDUd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5538,
+                "cache_read_input_tokens": 12797,
+                "output_tokens": 259,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5538
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 259,
+                    "cache_read_input_tokens": 12797,
+                    "cache_creation_input_tokens": 5538,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5538,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T06:08:25.521Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VQddoA58EJqwi7DfwV7vN9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FActScore biography hallucination dataset\"\n\nLinks: [{\"title\":\"\\\\dataset: Benchmarking and Understanding Entity-Level Hallucination Detection\",\"url\":\"https://arxiv.org/html/2502.11948\"},{\"title\":\"Can Your Uncertainty Scores Detect Hallucinated Entity?\",\"url\":\"https://arxiv.org/html/2502.11948v1\"},{\"title\":\"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub\",\"url\":\"https://github.com/EdinburghNLP/awesome-hallucination-detection\"},{\"title\":\"HALLUCANA: Fixing LLM Hallucination with A Canary Lookahead Tianyi Li\",\"url\":\"https://assets.amazon.science/97/66/cae6a8ab4ca193bd81454b0aad87/hallucana-fixing-llm-hallucination-with-a-canary-lookahead.pdf\"},{\"title\":\"FactBench: A Dynamic Benchmark for In-the-Wild ...\",\"url\":\"https://aclanthology.org/2025.acl-long.1587.pdf\"},{\"title\":\"Hallucination to Truth: A Review of Fact-Checking and Factuality\",\"url\":\"https://arxiv.org/pdf/2508.03860\"},{\"title\":\"FAITHSCORE: Fine-grained Evaluations of Hallucinations ...\",\"url\":\"https://aclanthology.org/2024.findings-emnlp.290.pdf\"},{\"title\":\"Extrinsic Hallucinations in LLMs | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2024-07-07-hallucination/\"},{\"title\":\"Review Not peer-reviewed version A Survey on Hallucination in Large\",\"url\":\"https://www.preprints.org/manuscript/202504.1236/v1/download\"},{\"title\":\"Learning to Reason for Factuality\",\"url\":\"https://arxiv.org/html/2508.05618v1\"}]\n\nBased on the search results, here's information about FActScore and the biography hallucination dataset:\n\n## FActScore Overview\n\nFActScore is a method that decomposes LLM-generated text into atomic facts—short sentences conveying a single piece of information—for more precise evaluation. The biography dataset contains 183 questions in the form of \"Tell me a bio of [PERSON NAME]\" with names selected from Wikipedia.\n\n## Dataset Structure\n\nFor each sample, FActScore provides a list of atomic facts—short sentences conveying single pieces of information. These facts are labeled as Supported, Not-supported, or Irrelevant, where Irrelevant means the fact is unrelated to the prompt (i.e. a person's name), and Supported and Not-supported indicate whether the fact is supported by the person's Wikipedia page.\n\n## Application and Limitations\n\nResearchers have selected the set of biographies generated by ChatGPT from the FActScore dataset to construct entity-level hallucination detection datasets. The set of ChatGPT-generated biographies contains 183 samples, and after filtering out those that ChatGPT refuses to answer, 157 instances remain.\n\nThe FActScore dataset focuses only on biography generation but omits other common tasks such as QA and data analysis.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6cebfb6b-a586-4a70-b163-f568c78aad74",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "ca70e660-9efe-4fea-9ef3-4b47fbc096b7",
+            "sourceToolAssistantUUID": "6cebfb6b-a586-4a70-b163-f568c78aad74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T06:08:26.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SBnw2bM4NsugmeCBB1TfLr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FELM factual error language model dataset\"\n\nLinks: [{\"title\":\"FELM: Benchmarking Factuality Evaluation of Large Language Models Shiqi Chen1∗\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/file/8b8a7960d343e023a6a0afe37eee6022-Paper-Datasets_and_Benchmarks.pdf\"},{\"title\":\"FELM: Benchmarking Factuality Evaluation of Large Language Models\",\"url\":\"https://arxiv.org/html/2310.00741\"},{\"title\":\"FELM: Benchmarking Factuality Evaluation of Large Language Models\",\"url\":\"https://hkust-nlp.github.io/felm/\"},{\"title\":\"FELM: Benchmarking Factuality Evaluation of Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=jSO7Vgolc6\"},{\"title\":\"FELM | alphaXiv\",\"url\":\"https://www.alphaxiv.org/benchmarks/carnegie-mellon-university/felm\"},{\"title\":\"GitHub - hkust-nlp/felm: Github repository for \\\"FELM: Benchmarking Factuality Evaluation of Large Language Models\\\" (NeurIPS 2023) · GitHub\",\"url\":\"https://github.com/hkust-nlp/felm\"},{\"title\":\"[2310.00741] FELM: Benchmarking Factuality Evaluation of Large Language Models\",\"url\":\"https://arxiv.org/abs/2310.00741\"},{\"title\":\"Factuality of Large Language Models in the Year 2024\",\"url\":\"https://arxiv.org/html/2402.02420v2\"},{\"title\":\"FELM: Benchmarking Factuality Evaluation of Large Language Models\",\"url\":\"https://proceedings.neurips.cc//paper_files/paper/2023/hash/8b8a7960d343e023a6a0afe37eee6022-Abstract-Datasets_and_Benchmarks.html\"},{\"title\":\"FELM | Proceedings of the 37th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3666122.3668049\"}]\n\nBased on the search results, here's information about the FELM dataset:\n\n## Overview\n\nFELM is a meta benchmark to evaluate factuality evaluation for large language models. FELM (Factuality Evaluation of Large Language Models) is a meta-evaluation benchmark designed to assess the factuality evaluation capabilities of LLMs. The benchmark evaluates how well LLMs can identify factual errors in text generated by other LLMs.\n\n## Dataset Composition\n\nThe benchmark comprises 847 questions that span five distinct domains: world knowledge, science/technology, writing/recommendation, reasoning, and math. Prompts corresponding to each domain are gathered from various sources including standard datasets like truthfulQA, online platforms like Github repositories, ChatGPT generation or drafted by authors. Responses are then obtained from ChatGPT for these prompts. For each response, fine-grained annotation is employed at the segment level, which includes reference links, identified error types, and the reasons behind these errors as provided by annotators.\n\n## Annotation Details\n\nAnnotation is based on text segments, which can help pinpoint specific factual errors. The factuality annotations are further supplemented by predefined error types and reference links that either support or contradict the statement.\n\n## Key Findings\n\nExperimental results reveal that even GPT-4 achieves only 48.3 F1 score and 67.1 balanced accuracy, while ChatGPT performs poorly without external knowledge sources, highlighting the challenging nature of factuality evaluation. Retrieval aids factuality evaluation, but current LLMs are far from satisfactory to faithfully detect factual errors.\n\nThe dataset is publicly available on GitHub at https://github.com/hkust-nlp/felm.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "790648ba-170f-48e9-9069-1632072ebcd1",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "b3e802c1-357a-4758-b8ba-dd132a93fbb5",
+            "sourceToolAssistantUUID": "790648ba-170f-48e9-9069-1632072ebcd1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T06:08:26.652Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0146sABtvaFtKhxpeFXXPRJW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"stubborn hallucination dataset benchmark 2025 2026\"\n\nLinks: [{\"title\":\"Which AI Hallucinates Least? May 2026 Benchmark Rates Data | Suprmind\",\"url\":\"https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/\"},{\"title\":\"Hallucination Rates in 2025 — Accuracy, Refusal, and Liability | by Markus Brinsa | Medium\",\"url\":\"https://medium.com/@markus_brinsa/hallucination-rates-in-2025-accuracy-refusal-and-liability-aa0032019ca1\"},{\"title\":\"AI Hallucination Statistics 2026: 50+ Sourced Data Points - Suprmind\",\"url\":\"https://suprmind.ai/hub/insights/ai-hallucination-statistics-research-report-2026/\"},{\"title\":\"LLM Hallucination Statistics 2026: AI Gets Facts Wrong Up to 82% of the Time\",\"url\":\"https://sqmagazine.co.uk/llm-hallucination-statistics/\"},{\"title\":\"AI Hallucination Rates Across Different Models 2026\",\"url\":\"https://www.aboutchromebooks.com/ai-hallucination-rates-across-different-models/\"},{\"title\":\"Introducing the Next Generation of Vectara's Hallucination Leaderboard\",\"url\":\"https://www.vectara.com/blog/introducing-the-next-generation-of-vectaras-hallucination-leaderboard\"},{\"title\":\"DefAn: Definitive Answer Dataset for LLM Hallucination Evaluation\",\"url\":\"https://www.mdpi.com/2078-2489/16/11/937\"},{\"title\":\"FREAK: A Fine-grained Hallucination Evaluation Benchmark for Advanced MLLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=YeagC09j2K\"},{\"title\":\"GitHub - vectara/hallucination-leaderboard: Leaderboard Comparing LLM Performance at Producing Hallucinations when Summarizing Short Documents · GitHub\",\"url\":\"https://github.com/vectara/hallucination-leaderboard\"},{\"title\":\"PHANTOM: A Benchmark for Hallucination Detection in Financial Long-Context QA | OpenReview\",\"url\":\"https://openreview.net/forum?id=5YQAo0S3Hm\"}]\n\nBased on the web search results, here's what I found about hallucination dataset benchmarks from 2025-2026:\n\n## Major Hallucination Benchmarks\n\nKey sources include Vectara HHEM Leaderboard (April 2025 + Feb 2026 + April 20, 2026 snapshots), Artificial Analysis AA-Omniscience (Nov 2025 - April 2026), Google DeepMind FACTS Benchmark (Dec 2025), and HalluHard Benchmark (2025).\n\n### Notable Benchmarks in 2025-2026:\n\n1. **Vectara HHEM Leaderboard**: The updated leaderboard is based on a much larger dataset with over 7,700 articles spanning diverse domains like law, medicine, finance, education and technology.\n\n2. **AA-Omniscience**: Released in November 2025, AA-Omniscience is a knowledge and hallucination benchmark covering 6,000 questions across 42 topics within 6 domains: Business, Humanities & Social Sciences, Health, Law, Software Engineering, and Science/Math. Unlike traditional benchmarks that simply count correct answers, the Omniscience Index penalizes incorrect answers.\n\n3. **DefAn Dataset**: This comprehensive benchmark dataset consists of over 20,000 unique prompts (more than 75,000 prompts in total) across eight domains.\n\n4. **Specialized Benchmarks**: PHANTOM is a novel benchmark dataset for evaluating hallucination detection in long-context financial QA, and FREAK is a comprehensive multimodal benchmark designed for fine-grained hallucination assessment in MLLMs through high-quality photorealistic images featuring fine-grained counter-commonsense edits.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7709e669-99d5-4955-9ccf-d88897b9c97f",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "10d00427-e0f3-4255-823b-f6e77b0a4a05",
+            "sourceToolAssistantUUID": "7709e669-99d5-4955-9ccf-d88897b9c97f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T06:08:27.051Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RmyXoDh1fCeiJFvvXKYTvm",
+              "type": "tool_result",
+              "content": "Web search results for query: \"hallucination detection AUROC benchmark 2025 2026\"\n\nLinks: [{\"title\":\"HalluScan: A Systematic Benchmark for Detecting and Mitigating Hallucinations in Instruction-Following LLMs\",\"url\":\"https://arxiv.org/html/2605.02443\"},{\"title\":\"RETRIEVAL-AUGMENTED HALLUCINATION DETECTION\",\"url\":\"https://openreview.net/pdf?id=96vyGkAO08\"},{\"title\":\"[2605.02443v1] HalluScan: A Systematic Benchmark for Detecting and Mitigating Hallucinations in Instruction-Following LLMs\",\"url\":\"https://arxiv.org/abs/2605.02443v1\"},{\"title\":\"1 Large Language Models Hallucination: A Comprehensive Survey\",\"url\":\"https://web3.arxiv.org/pdf/2510.06265\"},{\"title\":\"Re-evaluating Hallucination Detection in LLMs\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1761.pdf\"},{\"title\":\"The Illusion of Progress: Re-evaluating Hallucination Detection in LLMs\",\"url\":\"https://arxiv.org/pdf/2508.08285\"},{\"title\":\"A Comprehensive Survey of Hallucination in Large Language Models: Causes, Detection, and Mitigation\",\"url\":\"https://arxiv.org/html/2510.06265v1\"},{\"title\":\"Which AI Hallucinates Least? May 2026 Benchmark Rates Data | Suprmind\",\"url\":\"https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/\"},{\"title\":\"A Survey of Multimodal Hallucination Evaluation and Detection\",\"url\":\"https://arxiv.org/html/2507.19024v2\"},{\"title\":\"Benchmarking Hallucination Detection Methods in RAG | by Hui Wen Goh | TDS Archive | Medium\",\"url\":\"https://medium.com/data-science/benchmarking-hallucination-detection-methods-in-rag-6a03c555f063\"}]\n\nBased on the search results, here are some key findings on hallucination detection AUROC benchmarks from 2025-2026:\n\n## HalluScan Benchmark (May 2026)\n\nHalluScan is a comprehensive benchmark framework that systematically evaluates hallucination detection and mitigation across 72 configurations spanning 6 detection methods, 4 open-weight model families, and 3 diverse domains. NLI Verification achieves the highest overall AUROC of 0.88, while RAV achieves the second-highest AUROC of 0.66.\n\nThe benchmark also introduces Adaptive Detection Routing (ADR), an intelligent routing algorithm achieving 2.0× cost reduction with only 0.1% AUROC degradation.\n\n## Re-evaluation of Hallucination Detection (November 2025)\n\nA paper titled \"The Illusion of Progress: Re-evaluating Hallucination Detection in LLMs\" examines AUROC scores for LLAMA and MISTRAL models across three datasets in zero-shot setting, where negative ∆% values reveal ROUGE's overestimation of method effectiveness.\n\n## RAG-Based Hallucination Detection\n\nRecent work also evaluates detection methods specifically for retrieval-augmented generation systems, using AUROC, Accuracy, and F1 score as primary metrics to ensure comprehensive performance assessment.\n\nThese benchmarks reflect the ongoing research efforts to improve and standardize hallucination detection evaluation in LLMs during 2025-2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc438597-63bb-4c36-8b34-68b656407578",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "40a80649-a16c-48af-a15f-856cd983661b",
+            "sourceToolAssistantUUID": "dc438597-63bb-4c36-8b34-68b656407578",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T06:08:27.537Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UnqxQVhgEPpox1wr6vZ6jU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"paperswithcode hallucination detection datasets\"\n\nLinks: [{\"title\":\"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub\",\"url\":\"https://github.com/EdinburghNLP/awesome-hallucination-detection\"},{\"title\":\"PHANTOM: A Benchmark for Hallucination Detection in Financial Long-Context QA\",\"url\":\"https://openreview.net/pdf?id=5YQAo0S3Hm\"},{\"title\":\"The HalluRAG Dataset: Detecting Closed-Domain Hallucinations in RAG Applications Using an LLM’s Internal States\",\"url\":\"https://arxiv.org/html/2412.17056v1\"},{\"title\":\"GitHub - microsoft/HaDes: Token-level Reference-free Hallucination Detection\",\"url\":\"https://github.com/microsoft/HaDes\"},{\"title\":\"The Hallucinations Leaderboard, an Open Effort to Measure Hallucinations in Large Language Models\",\"url\":\"https://huggingface.co/blog/leaderboard-hallucinations\"},{\"title\":\"Papers with Code - Hallucination\",\"url\":\"https://paperswithcode.com/task/hallucination\"},{\"title\":\"LLM-Check: Investigating Detection of Hallucinations in Large Language Models\",\"url\":\"https://par.nsf.gov/servlets/purl/10574407\"},{\"title\":\"LibreEval: The Open-Source Benchmark for RAG Hallucination Detection - Arize AI\",\"url\":\"https://arize.com/llm-hallucination-dataset/\"},{\"title\":\"Medical Hallucination Detection\",\"url\":\"https://medhallu.github.io/\"},{\"title\":\"Reducing hallucinations of large language models via hierarchical semantic piece | Complex & Intelligent Systems | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s40747-025-01833-9\"}]\n\nBased on the search results, here's what I found about hallucination detection datasets available through Papers with Code and related resources:\n\n## Key Hallucination Detection Datasets\n\nSeveral major hallucination detection datasets include HaluEval-QA, HaluEval-Dialog, HaluEval-Summarization, TruthfulQA, HaluBench-DROP, HaluBench-PubMedQA, HaluBench-FinanceBench, and HaluBench-RAGTruth.\n\nAdditional datasets mentioned include:\n\n- NQ-Open (3,610 QA pairs), TriviaQA (3,842 examples), and SQuADv2 (4,150 examples)\n- FaithDial, True-False, and HaluEval QA/Dialogue/Summarisation are specifically designed to target hallucination detection in LLMs\n- The NoMIRACL dataset and the RAGTruth dataset are suitable for training hallucination detection methods\n- The Medical Hallucination detection dataset (MedHallu), which comprises 10,000 medical question-answer pairs derived from the PubMedQA dataset, with annotations to distinguish accurate responses from hallucinated content\n- LibreEval1.0, the largest open-source RAG hallucination dataset\n\n## Benchmarking Resources\n\nThe awesome-hallucination-detection repository provides the first open-source hallucination detector cross-validated at breadth in the literature, and there's also The Hallucination Leaderboard which includes multiple tasks like Closed-book Open-domain QA with NQ Open, TriviaQA, and TruthfulQA.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb56d72f-9d70-40da-98df-01ad22a48e40",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "802a3eac-9807-46fe-a382-b02da5beb8f4",
+            "sourceToolAssistantUUID": "bb56d72f-9d70-40da-98df-01ad22a48e40",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T06:08:31.006Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the remaining Part 3 searches and a couple of follow-up searches to fill in gaps."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "802a3eac-9807-46fe-a382-b02da5beb8f4",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kMQqnFnEyrmGytZP17",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "638475f9-b83e-42fd-a457-a86d34dc800d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013rYsng2A3GZCWWWocKjCjs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 904,
+                "cache_creation_input_tokens": 4009,
+                "cache_read_input_tokens": 18335,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4009,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T06:08:31.482Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GzoHo9jyKX9a1XLHiFW9Y9",
+              "name": "WebSearch",
+              "input": {
+                "query": "EPGS hallucination detection performance metrics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "638475f9-b83e-42fd-a457-a86d34dc800d",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kMQqnFnEyrmGytZP17",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e53410b-54c4-4d89-94fa-1228a492b7b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013rYsng2A3GZCWWWocKjCjs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 904,
+                "cache_creation_input_tokens": 4009,
+                "cache_read_input_tokens": 18335,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4009,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T06:08:32.013Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XL3UAKgW1qU9jhRTGk5Jxr",
+              "name": "WebSearch",
+              "input": {
+                "query": "semantic entropy hallucination detection AUROC"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e53410b-54c4-4d89-94fa-1228a492b7b3",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kMQqnFnEyrmGytZP17",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c31ee185-e466-4231-9e1d-3d948df6f9a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013rYsng2A3GZCWWWocKjCjs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 904,
+                "cache_creation_input_tokens": 4009,
+                "cache_read_input_tokens": 18335,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4009,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T06:08:32.482Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015wQequQaeSDyys3J6b52b1",
+              "name": "WebSearch",
+              "input": {
+                "query": "github migpaniag EPGS perturbation sharpness hallucination"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c31ee185-e466-4231-9e1d-3d948df6f9a1",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kMQqnFnEyrmGytZP17",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb03b278-749a-4aca-afb4-f91612fad710",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013rYsng2A3GZCWWWocKjCjs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 904,
+                "cache_creation_input_tokens": 4009,
+                "cache_read_input_tokens": 18335,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4009,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T06:08:33.239Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AdaFc9Mx9HdiNmQuorBWPb",
+              "name": "WebSearch",
+              "input": {
+                "query": "vllm-lens residual stream steering vectors activation perturbation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb03b278-749a-4aca-afb4-f91612fad710",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kMQqnFnEyrmGytZP17",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3ea7909b-035c-4215-8285-960043686be5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013rYsng2A3GZCWWWocKjCjs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 904,
+                "cache_creation_input_tokens": 4009,
+                "cache_read_input_tokens": 18335,
+                "output_tokens": 227,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4009
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 904,
+                    "output_tokens": 227,
+                    "cache_read_input_tokens": 18335,
+                    "cache_creation_input_tokens": 4009,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4009,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T06:08:37.652Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GzoHo9jyKX9a1XLHiFW9Y9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EPGS hallucination detection performance metrics\"\n\nLinks: [{\"title\":\"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\",\"url\":\"https://arxiv.org/html/2605.00939\"},{\"title\":\"[2504.18114] Evaluating Evaluation Metrics -- The Mirage of Hallucination Detection\",\"url\":\"https://arxiv.org/abs/2504.18114\"},{\"title\":\"Hallucination Detection - OpenAI Guardrails Python\",\"url\":\"https://openai.github.io/openai-guardrails-python/ref/checks/hallucination_detection/\"},{\"title\":\"Evaluating Evaluation Metrics — The Mirage of Hallucination Detection - Apple Machine Learning Research\",\"url\":\"https://machinelearning.apple.com/research/hallucination-detection\"},{\"title\":\"The Mirage of Hallucination Detection\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.1035.pdf\"},{\"title\":\"Hallucination | DeepEval by Confident AI - The LLM Evaluation Framework\",\"url\":\"https://deepeval.com/docs/metrics-hallucination\"},{\"title\":\"Re-evaluating Hallucination Detection in LLMs\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1761.pdf\"},{\"title\":\"Ultimate Guide to Hallucination Detection Metrics\",\"url\":\"https://detecting-ai.com/blog/ultimate-guide-to-hallucination-detection-metrics\"},{\"title\":\"Evaluating Evaluation Metrics – The Mirage of Hallucination Detection\",\"url\":\"https://arxiv.org/html/2504.18114v1\"},{\"title\":\"Hallucination Detection: Metrics and Methods for Reliable LLMs\",\"url\":\"https://www.statsig.com/perspectives/hallucination-detection-metrics-methods-llms\"}]\n\nBased on the search results, I found detailed information about EPGS hallucination detection performance metrics:\n\n## EPGS Performance Metrics\n\nEPGS consistently achieves the highest AUROC scores across all benchmarks and model-dataset configurations. Here are the specific performance highlights:\n\n**Benchmark Performance:**\n- On the challenging Llama-2 SQuAD split, EPGS achieves 0.7373, outperforming Semantic Entropy by over 15% and the strongest white-box baseline (Eigenscore) by nearly 14%.\n\n**Method Overview:**\nEPGS uses embedding perturbations to actively approximate the Hessian spectrum. EPGS serves as a computationally efficient proxy for Hessian-based sharpness, achieving state-of-the-art performance in detecting high-confidence errors where both predictive uncertainty and static representation analyses fail.\n\n**Comparative Advantage:**\nWhen a model has memorized an incorrect fact, it collapses into a low-entropy state that mimics true knowledge, rendering zero-order (probability) and first-order (entropy) metrics ineffective. In contrast, EPGS maintains robust detection performance, achieving the highest AUROC across all benchmarks.\n\nThe research demonstrates that EPGS is particularly effective at detecting \"stubborn hallucinations\"—cases where language models generate factually incorrect information with high confidence and stability.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e53410b-54c4-4d89-94fa-1228a492b7b3",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "0c0b3ecd-539c-4a1c-8524-fdc294859f1e",
+            "sourceToolAssistantUUID": "9e53410b-54c4-4d89-94fa-1228a492b7b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T06:08:38.558Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XL3UAKgW1qU9jhRTGk5Jxr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"semantic entropy hallucination detection AUROC\"\n\nLinks: [{\"title\":\"Detecting hallucinations in large language models using semantic entropy | Nature\",\"url\":\"https://www.nature.com/articles/s41586-024-07421-0\"},{\"title\":\"Detecting hallucinations in large language models using semantic entropy - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/38898292/\"},{\"title\":\"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs\",\"url\":\"https://arxiv.org/html/2406.15927v1\"},{\"title\":\"[2504.03579] Hallucination Detection on a Budget: Efficient Bayesian Estimation of Semantic Entropy\",\"url\":\"https://arxiv.org/abs/2504.03579\"},{\"title\":\"[2603.22812v1] Efficient Hallucination Detection: Adaptive Bayesian Estimation of Semantic Entropy with Guided Semantic Exploration\",\"url\":\"https://arxiv.org/abs/2603.22812v1\"},{\"title\":\"Efficient Hallucination Detection: Adaptive Bayesian Estimation of Semantic Entropy with Guided Semantic Exploration\",\"url\":\"https://arxiv.org/html/2603.22812\"},{\"title\":\"Detecting hallucinations in large language models using semantic entropy - OATML\",\"url\":\"https://oatml.cs.ox.ac.uk/blog/2024/06/19/detecting_hallucinations_2024.html\"},{\"title\":\"Principled Detection of Hallucinations in Large Language Models via Multiple Testing\",\"url\":\"https://arxiv.org/html/2508.18473\"},{\"title\":\"[2603.22812] Efficient Hallucination Detection: Adaptive Bayesian Estimation of Semantic Entropy with Guided Semantic Exploration\",\"url\":\"https://arxiv.org/abs/2603.22812\"},{\"title\":\"Semantic Reformulation Entropy for QA Hallucination Detection\",\"url\":\"https://www.emergentmind.com/papers/2509.17445\"}]\n\nI found comprehensive information about semantic entropy and hallucination detection with AUROC metrics. Here's what the research shows:\n\n## Semantic Entropy for Hallucination Detection\n\nSemantic entropy performs well consistently, with stable performance (between 0.78 and 0.81 AUROC) across different model families (LLaMA, Falcon and Mistral) and scales (from 7B to 70B parameters).\n\n### Core Concept\n\nSemantic entropy uses entropy-based uncertainty estimators to detect hallucinations called confabulations (arbitrary and incorrect generations), addressing the fact that one idea can be expressed in many ways by computing uncertainty at the level of meaning rather than specific sequences of words.\n\n### AUROC as an Evaluation Metric\n\nAUROC (area under the receiver operating characteristic curve) for the binary event that a given answer is incorrect captures both precision and recall and ranges from 0 to 1, with 1 representing a perfect classifier and 0.5 representing an un-informative classifier.\n\n### Recent Advances\n\nMore recent work has improved upon the original semantic entropy approach. A method called Semantic Reformulation Entropy (SRE) achieves AUROC of 0.887, and an Adaptive Bayesian Estimation framework delivers an average AUROC improvement of 12.6% under the same sampling budget.\n\nThe research demonstrates that semantic entropy is a robust, generalizable approach to detecting hallucinations in large language models without requiring domain-specific knowledge or external training data.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c31ee185-e466-4231-9e1d-3d948df6f9a1",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "6466eba8-45c8-495f-b38a-2c8282df8155",
+            "sourceToolAssistantUUID": "c31ee185-e466-4231-9e1d-3d948df6f9a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T06:08:38.895Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015wQequQaeSDyys3J6b52b1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github migpaniag EPGS perturbation sharpness hallucination\"\n\nLinks: [{\"title\":\"GitHub - migpaniag/EPGS\",\"url\":\"https://github.com/migpaniag/EPGS\"},{\"title\":\"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\",\"url\":\"https://arxiv.org/html/2605.00939\"},{\"title\":\"EPGS/channels at main · migpaniag/EPGS\",\"url\":\"https://github.com/migpaniag/EPGS/tree/main/channels\"},{\"title\":\"[2605.00939] From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\",\"url\":\"https://arxiv.org/abs/2605.00939\"},{\"title\":\"GitHub - Mi-Peng/Sparse-Sharpness-Aware-Minimization: [NeurIPS 2022] Make Sharpness-Aware Minimization Stronger: A Sparsified Perturbation Approach -- Official Implementation\",\"url\":\"https://github.com/Mi-Peng/Sparse-Sharpness-Aware-Minimization\"},{\"title\":\"GitHub - hkust-nlp/Activation_Decoding: In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation (ICML 2024)\",\"url\":\"https://github.com/hkust-nlp/Activation_Decoding\"},{\"title\":\"GitHub - showlab/Awesome-MLLM-Hallucination: 📖 A curated list of resources dedicated to hallucination of multimodal large language models (MLLM).\",\"url\":\"https://github.com/showlab/Awesome-MLLM-Hallucination\"},{\"title\":\"Sharpness-Aware Minimization Can Hallucinate Minimizers\",\"url\":\"https://arxiv.org/html/2509.21818v2\"},{\"title\":\"Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://seongheon-96.github.io/assets/pdf/shaking.pdf\"},{\"title\":\"GitHub - NishilBalar/Awesome-LVLM-Hallucination: up-to-date curated list of state-of-the-art Large vision language models hallucinations research work, papers & resources · GitHub\",\"url\":\"https://github.com/NishilBalar/Awesome-LVLM-Hallucination\"}]\n\nBased on the search results, I found information about the EPGS project and research:\n\n## EPGS (Embedding-Perturbed Gradient Sensitivity)\n\nEPGS is a method called Embedding-Perturbed Gradient Sensitivity designed to detect hallucinations in large language models.\n\n### Core Concept\n\nThe research hypothesizes that while robust facts reside in flat minima, stubborn hallucinations sit in sharp minima, supported by brittle memorization. EPGS detects this sharpness by perturbing input embeddings with Gaussian noise and measuring the resulting spike in gradient magnitude, which acts as an efficient proxy for the Hessian spectrum, differentiating stable knowledge from unstable memorization.\n\n### What EPGS Addresses\n\nTraditional hallucination detection fails on \"Stubborn Hallucinations\"—errors where LLMs are confidently wrong. The EPGS framework is a white-box detection method that utilizes gradient sensitivity under embedding perturbation to estimate local curvature, effectively separating robust knowledge from brittle memorization.\n\n### Performance\n\nEPGS significantly outperforms entropy-based and representation-based baselines, providing a robust signal for detecting high-confidence factual errors.\n\nThe GitHub repository for this project is available at github.com/migpaniag/EPGS, and the associated research paper was published recently on arXiv.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb03b278-749a-4aca-afb4-f91612fad710",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "117e10d0-4446-4ab0-9487-cd5cf3a2a40d",
+            "sourceToolAssistantUUID": "cb03b278-749a-4aca-afb4-f91612fad710",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T06:08:46.305Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AdaFc9Mx9HdiNmQuorBWPb",
+              "type": "tool_result",
+              "content": "Web search results for query: \"vllm-lens residual stream steering vectors activation perturbation\"\n\nLinks: [{\"title\":\"GitHub - UKGovernmentBEIS/vllm-lens: Extract residual-stream activations and apply steering vectors (including activation oracles) to any vLLM model during inference. · GitHub\",\"url\":\"https://github.com/UKGovernmentBEIS/vllm-lens\"},{\"title\":\"vLLM-Lens: Fast Interpretability Tooling That Scales to ...\",\"url\":\"https://www.lesswrong.com/posts/3bs27nZQuEcKhXf7q/vllm-lens-fast-interpretability-tooling-that-scales-to\"},{\"title\":\"Steering Awareness: Detecting Activation Steering from Within\",\"url\":\"https://arxiv.org/html/2511.21399v3\"},{\"title\":\"Steering Away from Harm: An Adaptive Approach to Defending Vision Language Model Against Jailbreaks\",\"url\":\"https://arxiv.org/html/2411.16721v1\"},{\"title\":\"Small Vectors, Big Effects: A Mechanistic Study of RL-Induced Reasoning via Steering Vectors\",\"url\":\"https://arxiv.org/html/2509.06608v4\"},{\"title\":\"Steering Awareness: Models Can Be Trained to Detect Activation Steering\",\"url\":\"https://arxiv.org/html/2511.21399v2\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=steering+vector\"},{\"title\":\"Activation Steering in LLMs\",\"url\":\"https://www.emergentmind.com/topics/activation-steering-method\"},{\"title\":\"Steering Vectors: Beamforming to LLM Control\",\"url\":\"https://www.emergentmind.com/topics/steering-vectors\"},{\"title\":\"Contrastive Activation Steering\",\"url\":\"https://www.emergentmind.com/topics/contrastive-activation-steering\"}]\n\nBased on the search results, here's what I found about vllm-lens, residual stream steering vectors, and activation perturbation:\n\n## vLLM-Lens Overview\n\nvLLM-Lens enables extraction of residual-stream activations and application of steering vectors (including activation oracles) to any vLLM model during inference. It is a vLLM plugin for top-down interpretability techniques such as probes, steering, and activation oracles.\n\n## Key Features\n\nvLLM-Lens enables top-down interpretability and offers high performance, supporting tensor parallelism & pipeline parallelism (across GPUs and nodes) out of the box. You can apply all these techniques concurrently (in the same dynamic batch) - removing the need to switch between model instances.\n\n## How It Works\n\nTo utilize the plugin, you can pass extra args such as output_residual_stream or apply_steering_vectors in the sampling parameters. The plugin extracts these, initialises relevant PyTorch hooks if they're not already set up (by adding a worker extension) and sends steering vectors directly to workers.\n\n## Steering Vector Fundamentals\n\nSteering vectors are small additive perturbations to the residual stream that modulate model behavior and are widely viewed as feature amplifiers – strengthening existing computations rather than introducing new mechanisms.\n\nThe search results show that vLLM-Lens is designed as a high-performance tool for applying interpretability techniques to large language models during inference, with particular emphasis on efficient handling of residual stream activations and steering vector application at scale.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ea7909b-035c-4215-8285-960043686be5",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "d5f2ec62-022d-45c4-81ac-daad175e6cee",
+            "sourceToolAssistantUUID": "3ea7909b-035c-4215-8285-960043686be5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T06:08:48.985Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me grab the EPGS paper details and a few more specific baseline numbers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5f2ec62-022d-45c4-81ac-daad175e6cee",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kNo6GErS4ca2hduuko",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eb078ecb-18aa-46ad-95d3-4b5237c00a60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M2Y8v5ZhA11oHkbHFBVzDf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4768,
+                "cache_read_input_tokens": 22344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4768,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T06:08:49.462Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q7XdsD2ce8WPfvSjHZCuWs",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"From Flat Facts to Sharp Hallucinations\" EPGS AUROC TruthfulQA SQuAD results"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb078ecb-18aa-46ad-95d3-4b5237c00a60",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kNo6GErS4ca2hduuko",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d188411a-b3ac-4241-9dac-e84f8b9e22c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M2Y8v5ZhA11oHkbHFBVzDf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4768,
+                "cache_read_input_tokens": 22344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4768,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T06:08:50.534Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CKX2yCGqJJwCFYXoT1jYqm",
+              "name": "WebSearch",
+              "input": {
+                "query": "Activation_Decoding \"in-context sharpness\" hallucination AUROC ICML 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d188411a-b3ac-4241-9dac-e84f8b9e22c7",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kNo6GErS4ca2hduuko",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2d3140cd-4082-48a8-ba64-f9cd812957db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M2Y8v5ZhA11oHkbHFBVzDf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4768,
+                "cache_read_input_tokens": 22344,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4768,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T06:08:50.821Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R9MZr6TpShEJbZFC3rRY89",
+              "name": "WebSearch",
+              "input": {
+                "query": "hallucination probes eigenscore AUROC TruthfulQA baseline 2024 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d3140cd-4082-48a8-ba64-f9cd812957db",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kNo6GErS4ca2hduuko",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b0c77810-2070-45ad-b626-ee8a32dab648",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M2Y8v5ZhA11oHkbHFBVzDf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4768,
+                "cache_read_input_tokens": 22344,
+                "output_tokens": 216,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4768
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 216,
+                    "cache_read_input_tokens": 22344,
+                    "cache_creation_input_tokens": 4768,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4768,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T06:08:56.453Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q7XdsD2ce8WPfvSjHZCuWs",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"From Flat Facts to Sharp Hallucinations\" EPGS AUROC TruthfulQA SQuAD results\"\n\nLinks: [{\"title\":\"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\",\"url\":\"https://arxiv.org/html/2605.00939\"},{\"title\":\"[2605.00939] From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\",\"url\":\"https://arxiv.org/abs/2605.00939\"},{\"title\":\"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub\",\"url\":\"https://github.com/EdinburghNLP/awesome-hallucination-detection\"},{\"title\":\"HaluEval and TruthfulQA Benchmarks\",\"url\":\"https://www.emergentmind.com/topics/halueval-and-truthfulqa\"},{\"title\":\"TruthfulQA: Measuring How Models Mimic Human Falsehoods\",\"url\":\"https://www.researchgate.net/publication/361063493_TruthfulQA_Measuring_How_Models_Mimic_Human_Falsehoods\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=factual+hallucination\"},{\"title\":\"The Geometry of Truth: Layer-wise Semantic Dynamics for Hallucination Detection\",\"url\":\"https://arxiv.org/pdf/2510.04933\"},{\"title\":\"HaloScope: Harnessing Unlabeled LLM Generations for Hallucination Detection\",\"url\":\"https://arxiv.org/pdf/2409.17504\"},{\"title\":\"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://arxiv.org/html/2506.02696v1\"},{\"title\":\"HalluScan: A Systematic Benchmark for Detecting and Mitigating Hallucinations in Instruction-Following LLMs\",\"url\":\"https://arxiv.org/html/2605.02443v1\"}]\n\nBased on the search results, I found detailed information about the \"From Flat Facts to Sharp Hallucinations\" paper and its EPGS (Embedding-Perturbed Gradient Sensitivity) method results.\n\n## Key Results:\n\n**EPGS Performance on SQuAD:**\nOn the challenging Llama-2 SQuAD split, EPGS achieves 0.7373 AUROC, outperforming Semantic Entropy by over 15% and the strongest white-box baseline (Eigenscore) by nearly 14%.\n\n**General Performance:**\nEPGS maintains robust detection performance, achieving the highest AUROC across all benchmarks. The paper evaluates both black-box methods (LNE, PF, SE, DSE) and white-box methods (ER, ES) against the proposed EPGS approach.\n\n**Benchmarks Tested:**\nThe research evaluated hallucination detection across multiple datasets including TriviaQA (a large-scale reading comprehension dataset derived from trivia enthusiasts) and SQuAD (which focuses on reading comprehension based on Wikipedia articles).\n\n**Core Finding:**\nWhile stubborn hallucinations share the high confidence of facts (flat probability distributions), EPGS reveals that they reside in topologically distinct regions of the loss landscape, with input-gradient sensitivity serving as a high-fidelity proxy for Hessian sharpness, successfully recovering the signal that static representation methods and entropy methods miss.\n\nThe paper demonstrates that EPGS significantly outperforms existing uncertainty quantification methods in detecting stubborn hallucinations across multiple benchmark datasets.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d188411a-b3ac-4241-9dac-e84f8b9e22c7",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "f7da2fe0-a0af-45a9-b9f0-582a27ffb08c",
+            "sourceToolAssistantUUID": "d188411a-b3ac-4241-9dac-e84f8b9e22c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T06:08:57.304Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CKX2yCGqJJwCFYXoT1jYqm",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Activation_Decoding \"in-context sharpness\" hallucination AUROC ICML 2024\"\n\nLinks: [{\"title\":\"GitHub - hkust-nlp/Activation_Decoding: In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation (ICML 2024)\",\"url\":\"https://github.com/hkust-nlp/Activation_Decoding\"},{\"title\":\"[Quick Review] In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation\",\"url\":\"https://liner.com/review/incontext-sharpness-as-alerts-inner-representation-perspective-for-hallucination-mitigation\"},{\"title\":\"Activation_Decoding/README.md at main · hkust-nlp/Activation_Decoding\",\"url\":\"https://github.com/hkust-nlp/Activation_Decoding/blob/main/README.md\"},{\"title\":\"Activation_Decoding/transformers/tests/models/blip/test_modeling_tf_blip.py at main · hkust-nlp/Activation_Decoding\",\"url\":\"https://github.com/hkust-nlp/Activation_Decoding/blob/main/transformers/tests/models/blip/test_modeling_tf_blip.py\"},{\"title\":\"Activation_Decoding/transformers/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py at main · hkust-nlp/Activation_Decoding\",\"url\":\"https://github.com/hkust-nlp/Activation_Decoding/blob/main/transformers/src/transformers/models/wav2vec2_with_lm/processing_wav2vec2_with_lm.py\"},{\"title\":\"ICML Poster In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation\",\"url\":\"https://icml.cc/virtual/2024/poster/32930\"},{\"title\":\"In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation | OpenReview\",\"url\":\"https://openreview.net/forum?id=s3e8poX3kb\"},{\"title\":\"GitHub - BillChan226/HALC: [ICML 2024] Official implementation for \\\"HALC: Object Hallucination Reduction via Adaptive Focal-Contrast Decoding\\\" · GitHub\",\"url\":\"https://github.com/BillChan226/HALC\"},{\"title\":\"Mitigating Hallucinations in Large Vision-Language Models with Internal Fact-based Contrastive Decoding\",\"url\":\"https://arxiv.org/html/2502.01056v1\"},{\"title\":\"Track: Poster Session 1\",\"url\":\"https://icml.cc/virtual/2024/session/35591\"}]\n\nBased on the search results, here's information about the Activation_Decoding research:\n\n## Overview\n\nThe paper \"In-Context Sharpness as Alerts: An Inner Representation Perspective for Hallucination Mitigation\" was published at ICML 2024.\n\n## Key Discovery\n\nThe researchers discovered a pattern associated with hallucinations: correct generations tend to have sharper context activations in the hidden states of the in-context tokens, compared to that of the incorrect generations.\n\n## Methodology\n\nThe approach leverages an entropy-based metric to quantify the \"sharpness\" among the in-context hidden states and incorporates it into the decoding process by using the entropy value to adjust the next token prediction distribution to improve the factuality and overall quality of the generated text.\n\n## AUROC Performance\n\nAn entropy-based metric is introduced to quantify this \"in-context sharpness\" among hidden states, effectively differentiating correct from false answers with high AUROC scores.\n\n## Empirical Results\n\nActivation Decoding consistently improves factuality across both truthfulness-related (TruthfulQA) and knowledge-seeking datasets (TriviaQA, HotpotQA, Natural Questions), with F1 score increases of up to 4.8 points for TriviaQA, 4.7 points for HotpotQA, and 3.7 points for Natural Questions compared to greedy decoding.\n\nThe research demonstrates effectiveness in mitigating hallucinations across various large language model sizes, with larger models showing even greater improvements.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d3140cd-4082-48a8-ba64-f9cd812957db",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "03abbdb8-b5e9-4ba5-8173-a9d452e43134",
+            "sourceToolAssistantUUID": "2d3140cd-4082-48a8-ba64-f9cd812957db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T06:08:58.106Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R9MZr6TpShEJbZFC3rRY89",
+              "type": "tool_result",
+              "content": "Web search results for query: \"hallucination probes eigenscore AUROC TruthfulQA baseline 2024 2025\"\n\nLinks: [{\"title\":\"llms' internal states retain the power of hallucination detection\",\"url\":\"https://arxiv.org/pdf/2402.03744\"},{\"title\":\"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub\",\"url\":\"https://github.com/EdinburghNLP/awesome-hallucination-detection\"},{\"title\":\"Hallucination Detection in LLMs Using Spectral Features of ...\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1239.pdf\"},{\"title\":\"A Geometric Taxonomy of Hallucination in LLMs\",\"url\":\"https://arxiv.org/html/2602.13224v3\"},{\"title\":\"1 Large Language Models Hallucination: A Comprehensive Survey\",\"url\":\"https://web3.arxiv.org/pdf/2510.06265\"},{\"title\":\"HaloScope: Harnessing Unlabeled LLM Generations for Hallucination Detection\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/ba92705991cfbbcedc26e27e833ebbae-Paper-Conference.pdf\"},{\"title\":\"The Illusion of Progress: Re-evaluating Hallucination Detection in LLMs\",\"url\":\"https://arxiv.org/html/2508.08285v2\"},{\"title\":\"Token-Level Hallucination Detection\",\"url\":\"https://www.emergentmind.com/topics/token-level-hallucination-detection\"},{\"title\":\"Hallucination Detection in AI Models\",\"url\":\"https://www.emergentmind.com/topics/hallucination-detection-hd\"},{\"title\":\"Self-Consistency and Probe-Based Hallucination Detection\",\"url\":\"https://www.emergentmind.com/topics/self-consistency-probe-based-hallucination-detection\"}]\n\nBased on the search results, I found relevant information about hallucination probes, EigenScore, AUROC, and TruthfulQA. Here's what the research shows:\n\n## EigenScore and Hallucination Detection\n\nEigenScore has a hallucination detection threshold of -1.74, and it is proposed as a strong baseline for detecting hallucination.\n\n## Spectral Features and Laplacian Eigenvalues\n\nMore recent work focuses on spectral features derived from attention maps. For Laplacian eigenvalues, 91% of heads have p-values less than 0.05, suggesting Laplacian eigenvalues may be better predictors of hallucinations compared to traditional attention score features.\n\n## TruthfulQA Baseline Performance\n\nSeveral methods have been evaluated on TruthfulQA:\n\n- On the LLaMA-2-chat-7b model, one method achieves an AUROC of 76.39% on TruthfulQA\n- HaloScope achieves a hallucination detection AUROC of 76.26% on TruthfulQA when the subspace is extracted from the TriviaQA dataset\n- State-of-the-art methods using frequency-domain reasoning (HSAD) surpass previous detectors by more than 10 points on benchmarks such as TruthfulQA, TriviaQA, and SciQ\n\n## Probe-Based Methods\n\nLightweight probes (3M–37M params) trained on intermediate hidden states rather than final-layer outputs can operate in two modes: question-only (runs before or alongside generation with no added latency) and question+answer (waits for the full response, more accurate).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0c77810-2070-45ad-b626-ee8a32dab648",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "c89b7f90-fc67-4ac5-af3a-b5591405d557",
+            "sourceToolAssistantUUID": "b0c77810-2070-45ad-b626-ee8a32dab648",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T06:09:07.278Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one final batch of searches to get more precise baseline numbers and the FActScore GitHub repo."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c89b7f90-fc67-4ac5-af3a-b5591405d557",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kPfYs6anucCKrcf9jp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "12542273-c87c-48d1-9da0-b1207b29db8f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017YtheRZWF1duKPRdR1DC9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3181,
+                "cache_read_input_tokens": 27112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3181,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T06:09:09.469Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UvscrXcBSo7tHrbaMoWHeZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "github sheffieldsheaf FActScore factscore biography generation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12542273-c87c-48d1-9da0-b1207b29db8f",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kPfYs6anucCKrcf9jp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "be2a6a7f-a5ae-4fc7-98ec-85566516bd5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017YtheRZWF1duKPRdR1DC9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3181,
+                "cache_read_input_tokens": 27112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3181,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T06:09:09.740Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011qx2oVJ8aMsrcWNCYHejuV",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"semantic entropy\" AUROC TruthfulQA TriviaQA specific numbers table results"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be2a6a7f-a5ae-4fc7-98ec-85566516bd5e",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kPfYs6anucCKrcf9jp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c9b702bc-73d6-4a0f-9803-b88a8bf7cbc8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017YtheRZWF1duKPRdR1DC9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3181,
+                "cache_read_input_tokens": 27112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3181,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T06:09:10.032Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ABRNNwgLqiaqFk9UL4qWkq",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Shaking to Reveal\" perturbation hallucination detection AUROC 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9b702bc-73d6-4a0f-9803-b88a8bf7cbc8",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kPfYs6anucCKrcf9jp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e621c3ae-10dc-44af-8063-000307e06ba5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017YtheRZWF1duKPRdR1DC9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3181,
+                "cache_read_input_tokens": 27112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3181,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T06:09:15.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UvscrXcBSo7tHrbaMoWHeZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"github sheffieldsheaf FActScore factscore biography generation\"\n\nLinks: [{\"title\":\"GitHub - shmsw25/FActScore: A package to evaluate factuality of long-form generation. Original implementation of our EMNLP 2023 paper \\\"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation\\\" · GitHub\",\"url\":\"https://github.com/shmsw25/FActScore\"},{\"title\":\"GitHub - d223302/Merging-Facts-Crafting-Fallacies: Code for paper \\\"Merging Facts, Crafting Fallacies: Evaluating the Contradictory Nature of Aggregated Factual Claims in Long-Form Generations\\\"\",\"url\":\"https://github.com/d223302/Merging-Facts-Crafting-Fallacies\"},{\"title\":\"GitHub - lflage/OpenFActScore: A package to evaluate factuality of long-form generation using open usage models.\",\"url\":\"https://github.com/lflage/OpenFActScore\"},{\"title\":\"FActScore/factscore/factscorer.py at main · shmsw25/FActScore\",\"url\":\"https://github.com/shmsw25/FActScore/blob/main/factscore/factscorer.py\"},{\"title\":\"GitHub - armingh2000/FactScoreLite: FactScoreLite is an implementation of the FactScore metric, designed for detailed accuracy assessment in text generation. This package builds upon the framework provided by the original FactScore repository, which is no longer maintained and contains outdated functions.\",\"url\":\"https://github.com/armingh2000/FactScoreLite\"},{\"title\":\"FActScore/factscore/openai_lm.py at main · shmsw25/FActScore\",\"url\":\"https://github.com/shmsw25/FActScore/blob/main/factscore/openai_lm.py\"},{\"title\":\"factscore · PyPI\",\"url\":\"https://pypi.org/project/factscore/\"},{\"title\":\"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.emnlp-main.741/\"},{\"title\":\"FActScore/factscore/retrieval.py at main · shmsw25/FActScore\",\"url\":\"https://github.com/shmsw25/FActScore/blob/main/factscore/retrieval.py\"},{\"title\":\"FACTSCORE: Fine-grained Atomic Evaluation of Factual ...\",\"url\":\"https://martiansideofthemoon.github.io/assets/factscore.pdf\"}]\n\nBased on the search results, here's information about the FActScore project:\n\n## FActScore Overview\n\nFActScore is a package to evaluate factuality of long-form generation. It is the official release accompanying the EMNLP 2023 paper, \"FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation.\"\n\n## How It Works\n\nFActScore breaks a generation into a series of atomic facts and computes the percentage of atomic facts supported by a reliable knowledge source. It uses large language models and retrieval to break down generations into atomic facts and then measure the correctness with respect to a knowledge source (like Wikipedia).\n\n## Biography Generation Application\n\nThe metric was evaluated on people biographies generated by several state-of-the-art commercial LMs—InstructGPT, ChatGPT, and the retrieval-augmented PerplexityAI. The evaluation showed varying levels of factual accuracy across different models.\n\n## GitHub Repository\n\nThe main FActScore repository is located at **github.com/shmsw25/FActScore**. FActScore is available as a PIP package as well.\n\nThe project includes various implementation files for atomic fact generation, retrieval, and evaluation of long-form text generation quality based on factual accuracy.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be2a6a7f-a5ae-4fc7-98ec-85566516bd5e",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "6ee2e5a8-1aa5-496f-b107-f920439e7050",
+            "sourceToolAssistantUUID": "be2a6a7f-a5ae-4fc7-98ec-85566516bd5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T06:09:16.428Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011qx2oVJ8aMsrcWNCYHejuV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"semantic entropy\" AUROC TruthfulQA TriviaQA specific numbers table results\"\n\nLinks: [{\"title\":\"Improving Uncertainty Quantification in Large Language ...\",\"url\":\"https://openreview.net/pdf?id=DMH79qfzsU\"},{\"title\":\"semantic uncertainty: linguistic invariances\",\"url\":\"https://openreview.net/pdf?id=VD-AYtP0dve\"},{\"title\":\"Semantic Energy: Detecting LLM Hallucination Beyond Entropy\",\"url\":\"https://arxiv.org/pdf/2508.14496\"},{\"title\":\"Semantic Entropy Probes: Robust and Cheap Hallucination Detection in LLMs\",\"url\":\"https://arxiv.org/pdf/2406.15927\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/b94d8b035e2183e47afef9e2f299ba47-Paper-Conference.pdf\"},{\"title\":\"Detecting hallucinations in large language models using semantic entropy\",\"url\":\"https://ora.ox.ac.uk/objects/uuid:0653d09e-9368-4eb1-98bb-50d9dda7d3e5/files/r0g354g31t\"},{\"title\":\"Entropy Alone is Insufficient for Safe Selective Prediction in LLMs\",\"url\":\"https://arxiv.org/html/2603.21172\"},{\"title\":\"Semantic Uncertainty: Linguistic Invariances for\",\"url\":\"https://sebastianfarquhar.com/assets/papers/kuhnSemantic2023.pdf\"},{\"title\":\"Efficient Bayesian Estimation of Semantic Entropy\",\"url\":\"https://arxiv.org/pdf/2504.03579\"},{\"title\":\"[Literature Review] Semantic Energy: Detecting LLM Hallucination Beyond Entropy\",\"url\":\"https://www.themoonlight.io/en/review/semantic-energy-detecting-llm-hallucination-beyond-entropy\"}]\n\nBased on the search results, I found several references to semantic entropy AUROC results on TruthfulQA and TriviaQA datasets. Here are some specific numbers from the research papers:\n\n## Key Results:\n\n### Semantic Entropy vs. Baselines on TriviaQA:\n\nSemantic entropy has a significantly higher AUROC than entropy in sequence-probability-space with and without length-normalisation, and performs dramatically better than p(True) on TriviaQA.\n\n### Recent Comparisons:\n\nOn TriviaQA, Boltzmann energy yields AUROC gains of more than 5% compared to semantic entropy, indicating semantic entropy's baseline performance against which newer methods are compared.\n\nOn Qwen3-8B, AUROC improved by 4.5% on CSQA and 5.2% on TriviaQA when using Semantic Energy over semantic entropy.\n\n### Performance Across Models:\n\nSemantic Entropy is the strongest individual method on TriviaQA and BioASQ across all four metrics, consistent with prior findings on knowledge-seeking tasks.\n\n### Efficiency Comparison:\n\nSEU (Semantic Embedding Uncertainty) achieves comparable AUROC to state-of-the-art KLE (Kernel Language Entropy) while operating approximately 100× faster.\n\nUnfortunately, the search results don't contain complete numerical tables showing all specific AUROC values for semantic entropy across both TruthfulQA and TriviaQA in a single table format. The papers reference these metrics but the exact numerical values in tabular form weren't included in the available excerpts.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9b702bc-73d6-4a0f-9803-b88a8bf7cbc8",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "4bc85a99-826d-477f-b337-b9a30a059713",
+            "sourceToolAssistantUUID": "c9b702bc-73d6-4a0f-9803-b88a8bf7cbc8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T06:09:16.624Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ABRNNwgLqiaqFk9UL4qWkq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Shaking to Reveal\" perturbation hallucination detection AUROC 2025\"\n\nLinks: [{\"title\":\"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://arxiv.org/html/2506.02696v1\"},{\"title\":\"[2506.02696v1] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://arxiv.org/abs/2506.02696v1\"},{\"title\":\"[2506.02696] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://arxiv.org/abs/2506.02696\"},{\"title\":\"[Literature Review] Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://www.themoonlight.io/en/review/shaking-to-reveal-perturbation-based-detection-of-llm-hallucinations\"},{\"title\":\"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://www.researchgate.net/publication/392371301_Shaking_to_Reveal_Perturbation-Based_Detection_of_LLM_Hallucinations\"},{\"title\":\"Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://arxiv.org/pdf/2506.02696\"},{\"title\":\"Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://seongheon-96.github.io/assets/pdf/shaking.pdf\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2601.20026\"},{\"title\":\"Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://www.alphaxiv.org/overview/2506.02696v1\"},{\"title\":\"Hallucination Detection in AI Models\",\"url\":\"https://www.emergentmind.com/topics/hallucination-detection-hd\"}]\n\nI found the paper \"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\" from 2025. Here are the key findings regarding AUROC performance:\n\n## Overview\nThe paper proposes Sample-Specific Prompting (SSP), a new framework that improves self-assessment by analyzing perturbation sensitivity at intermediate representations.\n\n## AUROC Performance Results\nCompared to state-of-the-art methods, the approach improves hallucination detection accuracy by 4.78% (AUROC) on a challenging TruthfulQA benchmark. SSP achieves the highest average AUROC score, significantly outperforming other methods on both the LLaMA-3-8B-Instruct and Qwen-2.5-7B-Instruct models.\n\n## Methodology\nSSP dynamically generates noise prompts for each input and employs a lightweight encoder to amplify the changes in representations caused by the perturbation. A contrastive distance metric is then used to quantify these differences and separate truthful from hallucinated responses.\n\nExperiments on datasets including TruthfulQA, TriviaQA, CoQA, and TydiQA-GP, using LLaMA-3-8B-Instruct and Qwen-2.5-7B-Instruct, demonstrate that SSP significantly outperforms various baselines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e621c3ae-10dc-44af-8063-000307e06ba5",
+            "isSidechain": true,
+            "promptId": "8761cb13-095f-462b-9661-148caf330ac3",
+            "agentId": "a673e285be8a2ca66",
+            "type": "user",
+            "uuid": "dce01ed6-c1b2-44c9-9b98-db9d58c3fbce",
+            "sourceToolAssistantUUID": "e621c3ae-10dc-44af-8063-000307e06ba5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T06:10:47.757Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive results across all three parts. Here is my full report:\n\n---\n\n## Part 1: GitHub Implementations -- Building Blocks\n\n### (a) Perturbing Residual Streams in Transformers\n\n1. **TransformerLens** ([github.com/TransformerLensOrg/TransformerLens](https://github.com/TransformerLensOrg/TransformerLens)) -- The primary mechanistic interpretability library for GPT-style models. Provides a full hook-based system for intercepting, reading, and patching activations at any layer, including the residual stream. Has a dedicated `patching` module and activation patching demos. This is likely the most mature building block for your perturbation-based approach.\n\n2. **nnsight** ([github.com/ndif-team/nnsight](https://github.com/ndif-team/nnsight)) -- Spiritual successor to baukit (from David Bau's group). Enables intercepting and modifying internals of any PyTorch model, including residual streams. Supports both local execution and remote execution on large models via the NDIF infrastructure.\n\n3. **baukit** ([github.com/davidbau/baukit](https://github.com/davidbau/baukit)) -- David Bau's older toolkit for tracing and editing internal activations in PyTorch networks. Being merged into nnsight, but still functional.\n\n4. **vLLM-Lens** ([github.com/UKGovernmentBEIS/vllm-lens](https://github.com/UKGovernmentBEIS/vllm-lens)) -- A vLLM plugin for extracting residual-stream activations and applying steering vectors during inference. Supports tensor parallelism and pipeline parallelism, making it suitable for large-scale experiments. Directly relevant if you need perturbation at inference time on production-scale models.\n\n5. **path_patching** ([github.com/callummcdougall/path_patching](https://github.com/callummcdougall/path_patching)) -- Implementation of path patching and activation patching, designed to integrate with TransformerLens.\n\n6. **implementing_activation_steering** ([github.com/annahdo/implementing_activation_steering](https://github.com/annahdo/implementing_activation_steering)) -- A collection of different ways to implement accessing and modifying internal model activations for LLMs, including residual stream steering.\n\n### (b) Measuring Logit Sensitivity\n\n1. **EPGS** ([github.com/migpaniag/EPGS](https://github.com/migpaniag/EPGS)) -- **This is the most directly relevant repository.** Implements Embedding-Perturbed Gradient Sensitivity from the paper \"From Flat Facts to Sharp Hallucinations: Detecting Stubborn Errors via Gradient Sensitivity\" (arXiv:2605.00939). It perturbs input embeddings with Gaussian noise and measures gradient magnitude spikes as a proxy for Hessian sharpness. This is essentially the exact method described in your research idea.\n\n2. **Activation_Decoding** ([github.com/hkust-nlp/Activation_Decoding](https://github.com/hkust-nlp/Activation_Decoding)) -- ICML 2024 paper \"In-Context Sharpness as Alerts.\" Uses an entropy-based metric to quantify \"sharpness\" among in-context hidden states, measuring how sharp vs. flat activations are as a signal for hallucination. Closely related conceptually to your sharpness estimation idea.\n\n3. **SPUQ** ([github.com/intuit-ai-research/SPUQ](https://github.com/intuit-ai-research/SPUQ)) -- Perturbation-Based Uncertainty Quantification for LLMs. Perturbs inputs (prompt and temperature) to get multiple outputs and quantify uncertainty.\n\n4. **logit-explanations** ([github.com/mt-upc/logit-explanations](https://github.com/mt-upc/logit-explanations)) -- Leverages explainability of the Transformer to analyze language generation models using logit-based analysis, outperforming gradient-based and perturbation-based baselines.\n\n5. **llm_activation_classification** ([github.com/amelia-kawasaki/llm_activation_classification](https://github.com/amelia-kawasaki/llm_activation_classification)) -- Scripts for extracting and classifying residual stream activations, from \"Defending LLMs Against Attacks With Residual Stream Activation Analysis.\"\n\n6. **SAM (Sharpness-Aware Minimization)** ([github.com/davda54/sam](https://github.com/davda54/sam)) -- PyTorch implementation of sharpness-aware gradient computation. While this is a training-time method, the sharpness computation code could be adapted for inference-time sharpness estimation.\n\n### (c) Hallucination Detection Benchmarks & Tooling\n\n1. **awesome-hallucination-detection** ([github.com/EdinburghNLP/awesome-hallucination-detection](https://github.com/EdinburghNLP/awesome-hallucination-detection)) -- Comprehensive curated list of hallucination detection papers and resources.\n\n2. **HaluEval** ([github.com/RUCAIBox/HaluEval](https://github.com/RUCAIBox/HaluEval)) -- Large-scale hallucination evaluation benchmark with 35,000 samples.\n\n3. **SAC3** ([github.com/intuit/sac3](https://github.com/intuit/sac3)) -- Semantic-aware Cross-check Consistency for hallucination detection using question perturbation.\n\n4. **hallucination_probes** ([github.com/obalcells/hallucination_probes](https://github.com/obalcells/hallucination_probes)) -- Real-time detection of hallucinated entities in long-form generation.\n\n5. **hallucination-leaderboard** ([github.com/vectara/hallucination-leaderboard](https://github.com/vectara/hallucination-leaderboard)) -- Vectara's leaderboard comparing LLM hallucination rates during summarization.\n\n6. **HaDes** ([github.com/microsoft/HaDes](https://github.com/microsoft/HaDes)) -- Token-level Reference-free Hallucination Detection dataset built via perturbation of Wikipedia segments.\n\n7. **FActScore** ([github.com/shmsw25/FActScore](https://github.com/shmsw25/FActScore)) -- Fine-grained atomic evaluation of factual precision in long-form text generation (EMNLP 2023).\n\n### Critical Finding for Part 1\n\n**The EPGS paper and repository appear to be a very close (possibly identical) implementation of your research idea.** The paper \"From Flat Facts to Sharp Hallucinations\" (arXiv:2605.00939, May 2026) explicitly: (1) hypothesizes that robust facts reside in flat minima while stubborn hallucinations sit in sharp minima, (2) perturbs input embeddings with Gaussian noise, (3) measures gradient magnitude as a proxy for Hessian sharpness, and (4) uses this to detect \"stubborn hallucinations.\" You should carefully review this paper and repository to assess overlap with your proposed work.\n\n---\n\n## Part 2: Datasets\n\n### Publicly Available and Confirmed on HuggingFace / GitHub\n\n| Dataset | Availability | Size | Relevance to Stubborn Hallucinations |\n|---------|-------------|------|--------------------------------------|\n| **TruthfulQA** | HuggingFace (`truthfulqa/truthful_qa`), GitHub | 817 questions across 38 categories | **High** -- designed to trigger false beliefs/misconceptions, which are a form of stubborn hallucination. Apache 2.0 license. |\n| **HaluEval** | GitHub (`RUCAIBox/HaluEval`) | 35,000 samples (5K general + 30K task-specific) | **Medium-High** -- covers QA, dialogue, and summarization hallucinations, but not specifically \"stubborn\" (high-confidence) ones. |\n| **FELM** | GitHub (`hkust-nlp/felm`) | 847 questions across 5 domains with segment-level annotations | **High** -- NeurIPS 2023. Fine-grained factuality annotations with error types and reference links. Even GPT-4 achieves only 48.3 F1, showing these are challenging cases. |\n| **FActScore** | GitHub (`shmsw25/FActScore`), PyPI | 183 biography prompts with atomic fact annotations | **Medium** -- focused on biography generation; provides fine-grained atomic-fact-level labels (Supported/Not-supported). |\n| **HaDes** | GitHub (`microsoft/HaDes`) | Large-scale, token-level | **Medium** -- created via perturbation of Wikipedia text, annotated by crowd workers. Token-level labels. |\n| **MedHallu** | Available | 10,000 medical QA pairs | **Medium** -- domain-specific (medical), but useful for testing generalization. |\n| **LibreEval 1.0** | Available (Arize AI) | Claimed \"largest open-source RAG hallucination dataset\" | **Medium** -- RAG-specific. |\n\n### Newer Benchmarks (2025-2026)\n\n| Dataset | Notes |\n|---------|-------|\n| **AA-Omniscience** (Nov 2025) | 6,000 questions across 42 topics, 6 domains. Penalizes incorrect answers (not just counting correct ones). |\n| **DefAn** | 20,000+ unique prompts (75K+ total) across 8 domains. |\n| **PHANTOM** | Financial long-context QA hallucination benchmark. |\n| **HalluScan** (May 2026) | Systematic benchmark across 72 configurations (6 detection methods, 4 model families, 3 domains). |\n| **Vectara HHEM Leaderboard v2** | 7,700+ articles spanning law, medicine, finance, education, technology. |\n\n### Specific Relevance for \"Stubborn Hallucination\" Detection\n\nThe **most useful datasets** for evaluating stubborn hallucination detection specifically would be:\n\n1. **TruthfulQA** -- Designed to test questions where models confidently produce wrong answers due to imitative falsehoods. This is essentially the definition of stubborn hallucinations.\n2. **FELM** -- Segment-level factuality annotations make it possible to isolate high-confidence errors.\n3. **The EPGS paper's evaluation datasets** -- The paper uses TriviaQA and SQuAD splits; replicating their exact evaluation setup would allow direct comparison.\n4. **HaluEval** -- Widely used, enabling comparison with many published baselines.\n\nI did **not** find a dataset specifically labeled as a \"stubborn hallucination\" benchmark, other than what is used in the EPGS paper itself.\n\n---\n\n## Part 3: Baseline Numbers\n\n### EPGS (the most directly comparable method)\n- **Llama-2 on SQuAD**: AUROC **0.7373** -- outperforms Semantic Entropy by >15% and Eigenscore by ~14%\n- EPGS achieves the **highest AUROC across all benchmarks** tested in the paper\n- Baselines tested include: LNE (Length-Normalized Entropy), PF (Probability of First token), SE (Semantic Entropy), DSE, ER (EigenRank), ES (EigenScore)\n\n### Semantic Entropy\n- Stable performance between **0.78 and 0.81 AUROC** across LLaMA, Falcon, and Mistral families (7B to 70B parameters) on knowledge-seeking tasks\n- Semantic Reformulation Entropy (SRE), an improved variant, achieves AUROC of **0.887**\n- Adaptive Bayesian Estimation delivers an average AUROC improvement of **12.6%** under the same sampling budget\n\n### Activation Decoding (In-Context Sharpness, ICML 2024)\n- F1 improvements of up to **+4.8** on TriviaQA, **+4.7** on HotpotQA, **+3.7** on Natural Questions compared to greedy decoding\n- High AUROC scores for differentiating correct from hallucinated answers using the in-context sharpness metric\n\n### HalluScan (May 2026)\n- NLI Verification: highest overall AUROC of **0.88**\n- RAV (Retrieval-Augmented Verification): second-highest AUROC of **0.66**\n- Adaptive Detection Routing: achieves **2x cost reduction** with only **0.1% AUROC degradation**\n\n### Shaking to Reveal (SSP, 2025)\n- Improves hallucination detection by **+4.78% AUROC** on TruthfulQA compared to state-of-the-art\n- Tested on LLaMA-3-8B-Instruct and Qwen-2.5-7B-Instruct\n\n### Probe-Based Methods\n- HaloScope: **76.26% AUROC** on TruthfulQA (subspace extracted from TriviaQA)\n- LLaMA-2-chat-7b probe: **76.39% AUROC** on TruthfulQA\n- HSAD (frequency-domain): surpasses previous detectors by **>10 points** on TruthfulQA, TriviaQA, and SciQ\n\n### Summary Table of Key Baselines to Beat\n\n| Method | Dataset | AUROC | Notes |\n|--------|---------|-------|-------|\n| EPGS | Llama-2 SQuAD | 0.737 | Current SOTA for stubborn hallucinations |\n| Semantic Entropy | Various | 0.78-0.81 | Stable across model families |\n| SRE (improved SE) | Various | 0.887 | Best entropy-based variant |\n| NLI Verification | HalluScan | 0.88 | Requires external NLI model |\n| HaloScope | TruthfulQA | 0.763 | Probe-based |\n| SSP (Shaking to Reveal) | TruthfulQA | ~+4.78% over SOTA | Perturbation-based, closest competitor |\n\n---\n\n## Key Takeaway\n\n**The EPGS paper (arXiv:2605.00939, \"From Flat Facts to Sharp Hallucinations,\" May 2026) appears to implement exactly the research idea you described** -- detecting stubborn hallucinations via perturbation-based sharpness estimation of the loss landscape. The repository is at [github.com/migpaniag/EPGS](https://github.com/migpaniag/EPGS). Before proceeding, you should carefully review this paper to determine whether your approach differs meaningfully (e.g., different perturbation targets such as residual streams vs. embeddings, different sharpness proxies, different evaluation protocols) or whether you need to reframe your contribution relative to this existing work.\n\nSources:\n- [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens)\n- [nnsight](https://github.com/ndif-team/nnsight)\n- [baukit](https://github.com/davidbau/baukit)\n- [vLLM-Lens](https://github.com/UKGovernmentBEIS/vllm-lens)\n- [EPGS Repository](https://github.com/migpaniag/EPGS)\n- [EPGS Paper - arXiv](https://arxiv.org/abs/2605.00939)\n- [Activation_Decoding (In-Context Sharpness)](https://github.com/hkust-nlp/Activation_Decoding)\n- [SPUQ](https://github.com/intuit-ai-research/SPUQ)\n- [SAC3](https://github.com/intuit/sac3)\n- [awesome-hallucination-detection](https://github.com/EdinburghNLP/awesome-hallucination-detection)\n- [HaluEval](https://github.com/RUCAIBox/HaluEval)\n- [HaDes](https://github.com/microsoft/HaDes)\n- [hallucination_probes](https://github.com/obalcells/hallucination_probes)\n- [Vectara Hallucination Leaderboard](https://github.com/vectara/hallucination-leaderboard)\n- [FActScore](https://github.com/shmsw25/FActScore)\n- [TruthfulQA on HuggingFace](https://huggingface.co/datasets/truthfulqa/truthful_qa)\n- [TruthfulQA GitHub](https://github.com/sylinrl/TruthfulQA)\n- [FELM](https://github.com/hkust-nlp/felm)\n- [SAM (Sharpness-Aware Minimization)](https://github.com/davda54/sam)\n- [logit-explanations](https://github.com/mt-upc/logit-explanations)\n- [llm_activation_classification](https://github.com/amelia-kawasaki/llm_activation_classification)\n- [Semantic Entropy - Nature](https://www.nature.com/articles/s41586-024-07421-0)\n- [Semantic Entropy Probes](https://arxiv.org/html/2406.15927v1)\n- [HalluScan](https://arxiv.org/abs/2605.02443v1)\n- [Shaking to Reveal](https://arxiv.org/abs/2506.02696)\n- [Re-evaluating Hallucination Detection](https://aclanthology.org/2025.emnlp-main.1761.pdf)\n- [Suprmind Hallucination Benchmarks](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/)\n- [path_patching](https://github.com/callummcdougall/path_patching)\n- [implementing_activation_steering](https://github.com/annahdo/implementing_activation_steering)\n- [Awesome-LLM-Interpretability](https://github.com/cooperleong00/Awesome-LLM-Interpretability)\n- [LLM-Transparency-Tool](https://github.com/facebookresearch/llm-transparency-tool)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dce01ed6-c1b2-44c9-9b98-db9d58c3fbce",
+            "isSidechain": true,
+            "agentId": "a673e285be8a2ca66",
+            "requestId": "req_011Cb5kR2icoqXywVMfbRRhm",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "32ae4ee6-38f2-44e8-81c7-0236ee1374f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "3bbc0513-910d-48c4-b837-41d3d647b4d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018PXJsQoVHZQA2T53iTFreL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2973,
+                "cache_read_input_tokens": 30293,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2973,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000060"
+        }
+      ],
+      "message_count": 60
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-for-existing-implementations-and-datasets-related-to-a-researc.md"
+}

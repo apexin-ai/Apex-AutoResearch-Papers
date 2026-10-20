@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "d37ae1cbc5aa64f8bea2",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are auditing research scripts for reproducibility and verifying appendix numbers. Two tasks: **TASK 1: Script Reprod",
+  "task_key": "agent-a04f1938d209e906b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a04f1938d209e906b.jsonl",
+    "occurrence": 1,
+    "bytes": 570282,
+    "sha256": "80c66e11260f91c303c7e0efd863f1eb5614dd08cfb418c9a932409e517d0e23"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 88,
+      "tool_result": 88
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "d37ae1cbc5aa64f8bea2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d37ae1cbc5aa64f8bea2-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-auditing-research-scripts-for-reproducibility-and-verifying-appendix-n.md"
+}

@@ -1,0 +1,923 @@
+{
+  "schema_version": "1.0",
+  "id": "c94f0c1683d5713461cd",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to understand the exact difference between these methods for hallucination detection: 1. \"Shaking to Reveal\" / SS",
+  "task_key": "agent-a527b027893fcf9f6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a527b027893fcf9f6.jsonl",
+    "occurrence": 1,
+    "bytes": 39241,
+    "sha256": "8af63280bb4bd99401dfdc945ca58183236fc71c6553ccbf48716ebeb31b02f3"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T09:47:26.333Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to understand the exact difference between these methods for hallucination detection:\n\n1. \"Shaking to Reveal\" / SSP (arxiv 2506.02696) - uses perturbation sensitivity at intermediate representations with a trained encoder\n2. SHINE (arxiv 2411.09689) - perturbs entity embeddings and measures KL divergence of output distributions\n3. A proposed method called \"LSP\" that would inject Gaussian noise into the residual stream at intermediate layers and measure KL divergence between clean and perturbed OUTPUT logit distributions\n\nThe key question: Does SHINE already do essentially what LSP proposes? SHINE perturbs embeddings and measures KL divergence of outputs. LSP proposes perturbing the residual stream at intermediate layers and measuring KL divergence of output logits.\n\nSearch for the SHINE paper (arxiv 2411.09689) and use WebFetch to read its methodology section carefully. I need to know:\n1. Does SHINE perturb at the INPUT embedding level only, or also at intermediate layers?\n2. Does SHINE measure KL divergence of the full output distribution (logits), or something else?\n3. Does SHINE specifically target high-confidence hallucinations?\n4. What is the key technical difference if you perturb intermediate residual stream vs input embeddings?\n\nReport your findings."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "a527b027893fcf9f6",
+            "type": "user",
+            "uuid": "5c57458b-b320-496f-b5f7-c15f440257d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T09:47:26.335Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "5c57458b-b320-496f-b5f7-c15f440257d1",
+                "isSidechain": true,
+                "agentId": "a527b027893fcf9f6",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "5ea03c19-4125-40fe-9fb2-802fc06489c3",
+                "timestamp": "2026-05-16T09:47:26.335Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T09:47:29.187Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YDKQAYQUYULNyJxvZVrV5L",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch,WebSearch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ea03c19-4125-40fe-9fb2-802fc06489c3",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb633vr3SvunRQvDHode8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d71e6bf6-b54e-4c22-9493-bff73c272eb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LsobaYb8A2aRUmsreZ8m1s",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 857,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 857
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 857,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 857,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T09:47:29.190Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01YDKQAYQUYULNyJxvZVrV5L",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d71e6bf6-b54e-4c22-9493-bff73c272eb9",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "a527b027893fcf9f6",
+            "type": "user",
+            "uuid": "3e2c874c-0495-415a-845f-3098baa42e22",
+            "sourceToolAssistantUUID": "d71e6bf6-b54e-4c22-9493-bff73c272eb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T09:47:34.273Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012F1MBMw8xkjR3WbC3B6AxH",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2411.09689",
+                "prompt": "Extract the full methodology/approach section of this paper. I need to understand: 1) Where exactly are perturbations applied - at input embeddings only or also at intermediate layers? 2) What is measured - KL divergence of full output logit distributions or something else? 3) Does it target high-confidence hallucinations specifically? 4) What type of perturbation is used (Gaussian noise, entity replacement, etc.)? Give me all technical details about the perturbation mechanism and measurement."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e2c874c-0495-415a-845f-3098baa42e22",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb6349KsvMUwhM8RegWAN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f1ee95ca-6d2a-49f7-bb1b-77f6fb9203c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AaVzURAfW4VpdBbFNA3Rtx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 9080,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T09:47:34.368Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AurKM5tPeikeMwuPnhR3te",
+              "name": "WebSearch",
+              "input": {
+                "query": "SHINE hallucination detection arxiv 2411.09689 methodology perturbation embedding"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1ee95ca-6d2a-49f7-bb1b-77f6fb9203c8",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb6349KsvMUwhM8RegWAN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c98c6ded-7b7e-4664-b882-462eae1575e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AaVzURAfW4VpdBbFNA3Rtx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 9080,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T09:47:38.766Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012F1MBMw8xkjR3WbC3B6AxH",
+              "type": "tool_result",
+              "content": "# Response\n\nI cannot provide the full methodology section as requested because **the webpage content provided does not include the paper's methodology details**. The page only contains the abstract, metadata, and navigation elements from arXiv.\n\n## What's Available\n\nThe abstract states that the approach:\n- Introduces \"hallucination probing, a new task that classifies LLM-generated text into three categories: aligned, misaligned, and fabricated\"\n- Is \"Driven by our novel discovery that perturbing key entities in prompts affects LLM's generation of these three types of text differently\"\n- Proposes \"SHINE, a novel hallucination probing method that does not require external knowledge, supervised training, or LLM fine-tuning\"\n\n## What's Missing\n\nTo answer your specific technical questions about:\n1. Perturbation location (input vs. intermediate layers)\n2. Measurement mechanism (KL divergence vs. alternatives)\n3. High-confidence hallucination targeting\n4. Perturbation type specifics\n\n**I would need access to the full paper**, which you can retrieve via the provided links ([View PDF](/pdf/2411.09689) or [HTML version](https://arxiv.org/html/2411.09689v4)).\n\nThe webpage excerpt does not contain sufficient technical depth to answer these implementation questions accurately."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1ee95ca-6d2a-49f7-bb1b-77f6fb9203c8",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "a527b027893fcf9f6",
+            "type": "user",
+            "uuid": "411fc431-0ed8-45a4-b6c3-c5363b629bd2",
+            "sourceToolAssistantUUID": "f1ee95ca-6d2a-49f7-bb1b-77f6fb9203c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T09:47:41.436Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AurKM5tPeikeMwuPnhR3te",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SHINE hallucination detection arxiv 2411.09689 methodology perturbation embedding\"\n\nLinks: [{\"title\":\"Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge\",\"url\":\"https://arxiv.org/html/2411.09689\"},{\"title\":\"[2411.09689] Probing LLM Hallucination from Within: Perturbation-Driven Approach via Internal Knowledge\",\"url\":\"https://arxiv.org/abs/2411.09689\"},{\"title\":\"LLM Hallucination Reasoning with Zero-shot Knowledge Test\",\"url\":\"https://arxiv.org/html/2411.09689v1\"},{\"title\":\"Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis\",\"url\":\"https://arxiv.org/html/2502.08663v1\"},{\"title\":\"Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses\",\"url\":\"https://arxiv.org/html/2407.05474v1\"},{\"title\":\"[2502.08663] Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis\",\"url\":\"https://arxiv.org/abs/2502.08663\"},{\"title\":\"Shaking to Reveal: Perturbation-Based Detection of LLM Hallucinations\",\"url\":\"https://arxiv.org/html/2506.02696v1\"},{\"title\":\"[Literature Review] Hallucination Detection: A Probabilistic Framework Using Embeddings Distance Analysis\",\"url\":\"https://www.themoonlight.io/en/review/hallucination-detection-a-probabilistic-framework-using-embeddings-distance-analysis\"},{\"title\":\"VL-Uncertainty: Detecting Hallucination in Large Vision-Language Model via Uncertainty Estimation\",\"url\":\"https://arxiv.org/html/2411.11919v1\"},{\"title\":\"[2407.05474] Enhancing Hallucination Detection through Perturbation-Based Synthetic Data Generation in System Responses\",\"url\":\"https://arxiv.org/abs/2407.05474\"}]\n\nBased on the search results, here's information about the SHINE hallucination detection method from arXiv paper 2411.09689:\n\n## Overview\n\nSHINE is a novel hallucination probing method that does not require external knowledge, supervised training, or LLM fine-tuning.\n\n## Core Methodology\n\nThe method classifies LLM-generated text into three categories: aligned, misaligned, and fabricated. It is driven by the discovery that perturbing key entities in prompts affects LLM's generation of these three types of text differently.\n\n### Perturbation and Embedding Approach\n\nThe method is based on findings that perturbing the token embeddings of the subject in a statement significantly hinders an LLM from retrieving relevant knowledge about the subject. More specifically, the Model Knowledge Test (MKT) consists of three steps: (1) identifying the key subject, (2) perturbing the subject tokens' embeddings, and (3) measuring the perturbation's impact on text generation. The perturbation is performed by adding Gaussian noise to all occurrences of the subject in the embeddings.\n\n## Two-Stage Workflow\n\nThe method uses a two-stage workflow consisting of the Model Knowledge Test (MKT) and the Alignment Test. The MKT identifies whether the LLM has sufficient knowledge to generate the text by perturbing the subject in the prompt and the text and evaluating the impact; fabricated text is differentiated at this stage. For pairs where LLM has enough knowledge, the Alignment Test examines whether the text is aligned with the LLM's knowledge.\n\n## Performance\n\nSHINE achieves state-of-the-art performance in hallucination detection, outperforming seven competing methods across four datasets and four LLMs.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c98c6ded-7b7e-4664-b882-462eae1575e4",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "a527b027893fcf9f6",
+            "type": "user",
+            "uuid": "b3852731-ad17-4a08-83e9-3a6380c451a8",
+            "sourceToolAssistantUUID": "c98c6ded-7b7e-4664-b882-462eae1575e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T09:47:47.539Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WvPsRe8ES1fEdWDbsBHvXR",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2411.09689",
+                "prompt": "I need detailed technical information about the SHINE methodology. Specifically: 1) WHERE exactly are perturbations applied - at the input embedding layer only, or also at intermediate/hidden layers of the transformer? 2) WHAT is measured after perturbation - is it KL divergence of the full output logit distribution, or token-level probability changes, or something else? 3) What exactly is the 'impact' metric used? Is it comparing full output distributions (all logits) or just the probability of specific tokens? 4) Does SHINE specifically target high-confidence hallucinations? 5) Is the perturbation Gaussian noise added to embeddings, and at which exact layer(s)? Please extract all relevant equations and technical details about the perturbation mechanism and the measurement/scoring mechanism."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3852731-ad17-4a08-83e9-3a6380c451a8",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb6353RTbNsE5jjxNipVf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4af0901d-a7d4-423d-9525-15a5069639de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TYQFTNm1dFkXdArh45Pn59",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1526,
+                "cache_read_input_tokens": 10968,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1526
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 10968,
+                    "cache_creation_input_tokens": 1526,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1526,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T09:47:58.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WvPsRe8ES1fEdWDbsBHvXR",
+              "type": "tool_result",
+              "content": "# SHINE Technical Architecture: Perturbation Mechanism Analysis\n\n## 1. Perturbation Layer Location\n\nPerturbations are applied **exclusively at the input embedding layer**. The paper states: \"we add Gaussian noise ϵ∼𝒩(0,(3𝝈₀)²)∈ℝ^(K×d) to all occurrences of S\" where embeddings are modified before feeding into the LLM. No intermediate or hidden layer modifications are mentioned.\n\n## 2. Measurement After Perturbation\n\nSHINE measures **two complementary metrics**:\n\n**KL Divergence (global):** \"Kullback-Leibler (KL) divergence between 𝐏ᵢ and 𝐏̂ᵢ...to capture global effects across the entire vocabulary\"\n\n**Token-level probability change:** \"change in the generation probability of token tᵢ (i.e., ΔPᵢ=𝐏̂ᵢ(tᵢ)−𝐏ᵢ(tᵢ)), focusing on generated tokens\"\n\nBoth compare original distribution 𝐏 against perturbed distribution 𝐏̂.\n\n## 3. Impact Metrics Defined\n\n**Model Knowledge Score (MKS):** Takes \"the mean of top-p^(MKS) values of MKSᵢ for i=M+1,…,M+N\" where MKSᵢ=KL(𝐏ᵢ∥𝐏ᵢ^(MKT))\n\n**Alignment Score (AS):** Takes \"the mean of top-p^(AS) ΔPᵢ values\" sorted descending\n\nBoth aggregate token-level signals; MKS uses KL divergence (full distribution), AS uses probability deltas.\n\n## 4. Targeting High-Confidence Hallucinations\n\n**Yes, indirectly.** The method specifically addresses \"overconfident fabrication despite lacking knowledge\" by detecting when perturbations have minimal effect—indicating the model is generating tokens disconnected from entity knowledge, even confidently.\n\n## 5. Perturbation Specifics\n\n**Gaussian noise at embedding layer only:**\n\n- Added to token embeddings: \"𝐞̂ᵢ:ᵢ₊ₖ₋₁^(MKT) = 𝐞ᵢ:ᵢ₊ₖ₋₁+ϵₗ^(MKT)\"\n- Standard deviation weighted by entity: \"𝝈ₗ^(MKT)=wₗ⋅𝝈\" where wₗ combines attention and likelihood scores\n- Repeated 10 times with different random seeds to mitigate noise variance\n\n**No other layers modified.**"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4af0901d-a7d4-423d-9525-15a5069639de",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "a527b027893fcf9f6",
+            "type": "user",
+            "uuid": "a061078b-2cff-4afd-ad8e-57533c7550af",
+            "sourceToolAssistantUUID": "4af0901d-a7d4-423d-9525-15a5069639de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T09:48:07.347Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C2qXxQ1z356RNTwq3hrhp3",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2411.09689",
+                "prompt": "I need more details about the SHINE method. Specifically: 1) When measuring KL divergence - is this KL(P_i || P_hat_i) computed at EACH token position in the output, comparing the full vocabulary distribution at that position? 2) The perturbation is applied to the INPUT embeddings (layer 0) - is there any discussion of why intermediate layers were NOT chosen? 3) What is the 'Alignment Test' stage - does it perturb different things than the MKT stage? 4) Are there any ablation studies about perturbation at different layers? 5) What is the exact forward pass procedure - do they run a full forward pass with perturbed input embeddings and compare the output distributions token by token? Please give me all equations and algorithmic details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a061078b-2cff-4afd-ad8e-57533c7550af",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb636LsUPmH4aebvjrZNM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e5a0aef-8168-4ef3-8019-a5eaf5ed7045",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DxF4GEVdUB2kwLBKVHgNhG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 956,
+                "cache_read_input_tokens": 12494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 956,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T09:48:10.134Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qi7mRt4q83JC9Hv7MkhcXg",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2506.02696v1",
+                "prompt": "I need detailed technical information about the 'Shaking to Reveal' / SSP method. Specifically: 1) At which layers are perturbations applied - intermediate layers or input embeddings? 2) What type of perturbation is used? 3) What is measured after perturbation - output logit distributions, internal representations, or something else? 4) How does this method differ from approaches that perturb input embeddings? 5) Does it use KL divergence? What metric does it use? Please extract all relevant equations and technical details about the perturbation and measurement mechanisms."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e5a0aef-8168-4ef3-8019-a5eaf5ed7045",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb636LsUPmH4aebvjrZNM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9c076b2b-d40d-4882-9e79-9a8995227173",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DxF4GEVdUB2kwLBKVHgNhG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 956,
+                "cache_read_input_tokens": 12494,
+                "output_tokens": 455,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 956
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 455,
+                    "cache_read_input_tokens": 12494,
+                    "cache_creation_input_tokens": 956,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 956,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T09:48:15.819Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C2qXxQ1z356RNTwq3hrhp3",
+              "type": "tool_result",
+              "content": "# SHINE Method: Technical Details Analysis\n\n## 1) KL Divergence Computation\n\nYes, KL divergence is computed at **each token position** in the generated output. According to the paper:\n\n> \"For each token position i in G, we evaluate the Entity Perturbation Impact using: (1) Kullback-Leibler (KL) divergence between P_i and P̂_i\"\n\nThe procedure compares full vocabulary distributions: KL(P_i ∥ P̂_i) where P_i ∈ ℝ|T| represents probabilities across the entire token set at position i.\n\n## 2) Input Layer Perturbation Choice\n\nThe paper provides **no explicit justification** for choosing embedding layer (layer 0) over intermediate layers. The approach follows prior work: \"Inspired by prior work that explores GPT-2's knowledge by perturbing entities in templated prompts.\" However, no ablation study compares perturbation at different depths.\n\n## 3) Alignment Test vs. Model Knowledge Test\n\nBoth stages perturb entities but differ in methodology:\n\n| Stage | Perturbation Strength | Metric |\n|-------|----------------------|--------|\n| **MKT** | Weighted by attention AND negative log-likelihood | KL divergence (global effect) |\n| **AT** | Weighted by attention only (knowledge already verified) | ΔP_i (change in token generation probability) |\n\nThe Alignment Test uses: \"ΔP_i = P̂_i(t_i) − P_i(t_i), focusing on generated tokens\"\n\n## 4) Ablation Studies on Layers\n\n**No ablation studies exist** examining perturbation effects across different transformer layers. This represents a significant limitation not addressed in the paper.\n\n## 5) Forward Pass Procedure\n\nThe complete procedure:\n\n1. **Input preparation**: Tokenize prompt P into [t₁,...,t_M] and response G into [t_{M+1},...,t_{M+N}]\n\n2. **Embedding perturbation** (for entity S appearing at positions I_S):\n   - ê_{i:i+K-1} = e_{i:i+K-1} + ε where ε ∼ N(0, (σ_l^{MKT})²)\n   - Leave all other embeddings unchanged\n\n3. **Full forward pass**: Input perturbed embedding sequence to LLM f\n\n4. **Distribution comparison**: Obtain P̂_{1:M+N} = f(ê_{1:M+N}) and compare with original P_{1:M+N}\n\n5. **Score aggregation**: Take mean of top-p% KL divergence values to reduce dependency-induced noise\n\nThe paper notes: \"To mitigate the impact of random Gaussian noise, we repeat this process 10 times with different random seeds.\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e5a0aef-8168-4ef3-8019-a5eaf5ed7045",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "a527b027893fcf9f6",
+            "type": "user",
+            "uuid": "f9b01fd7-1b75-4f96-8c61-24e61546ad1b",
+            "sourceToolAssistantUUID": "9e5a0aef-8168-4ef3-8019-a5eaf5ed7045",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T09:48:18.247Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qi7mRt4q83JC9Hv7MkhcXg",
+              "type": "tool_result",
+              "content": "# Technical Analysis of SSP Perturbation Method\n\n## 1. Layer Application Location\n\nSSP applies perturbations at the **input embedding level**, not intermediate layers themselves. The method modifies embeddings through a learnable prompt generator before feeding the sequence through the frozen LLM backbone.\n\nSpecifically: \"the embedding of the noise prompt N is updated as: Embθ(N) = Mφ(h) + Embθ(N)\" where the MLP generator produces adjustments to initial embeddings.\n\n## 2. Perturbation Type\n\nThe perturbation consists of **sample-specific noise prompts** (natural language sentences) dynamically generated per input pair. These are initialized via: \"N ∼ Pθ(x|SeedPrompt, Q, A)\" using an instruction that generates stylistically varied sentences without semantic contradiction.\n\n## 3. What Gets Measured\n\nThe method measures **intermediate representation shifts** rather than output distributions. After perturbation, it extracts features at intermediate layers: \"z = fϕ(Eθ(x=True|Q,A,T))\" and perturbed versions, then applies a lightweight encoder to amplify differences.\n\n## 4. Distinction from Input Embedding Perturbation\n\nUnlike simple embedding perturbation, SSP includes a **contrastive learning objective** with a trainable encoder that actively amplifies representational discrepancy. The encoder serves as \"a lightweight encoder to amplify the changes in representations caused by the perturbation.\"\n\n## 5. Distance Metric Used\n\nSSP employs **cosine-based distance**, not KL divergence: \"Disc(z,z̃) = 1 - cos(z,z̃) = 1 - (z·z̃)/(|z||z̃|)\"\n\nThe method justifies this choice because \"cosine-based metrics are robust to variations in feature magnitudes across different layers.\"\n\n## Key Equations\n\n- **Perturbation sensitivity** (Eq. 6): ΔEθ(Q,A,N,T) = Disc(Eθ(x=True|Q,A,T), Eθ(x=True|Q,A,N,T))\n- **Training objective** (Eq. 14-15): Separate margin-based losses for truthful (maximize cosine distance) vs. hallucinated (minimize distance) samples\n- **Detection** (Eq. 17): Binary classification using threshold λ on discrepancy scores"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9c076b2b-d40d-4882-9e79-9a8995227173",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "a527b027893fcf9f6",
+            "type": "user",
+            "uuid": "c9ff2bd0-8b07-42d1-a9ec-f7357e03f467",
+            "sourceToolAssistantUUID": "9c076b2b-d40d-4882-9e79-9a8995227173",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T09:48:21.689Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have detailed technical information on both SHINE and SSP. Let me fetch one more detail to clarify what SSP measures at intermediate layers."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9ff2bd0-8b07-42d1-a9ec-f7357e03f467",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb637kouoJ4FctcvJYPCf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "92dfe1d2-7253-4a81-a2e4-f9fed82a5384",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FECdZ9tDHUjFRKppGuYheY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1756,
+                "cache_read_input_tokens": 13450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1756,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T09:48:25.598Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013ygnuPLTSKN8ekWVrDD4QL",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2506.02696v1",
+                "prompt": "I need to understand exactly what SSP extracts from intermediate layers. Does it extract the residual stream representation at a specific intermediate layer after the forward pass? Which layer does it use? Does it compare intermediate hidden states between clean and perturbed runs, or does it compare output logits? Also, what is the 'frozen LLM backbone' - does it run a full forward pass through the LLM and then extract a hidden state at some layer? Please clarify: the perturbation is added to embeddings (input), but the MEASUREMENT is at intermediate layers? Give me the exact architecture details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92dfe1d2-7253-4a81-a2e4-f9fed82a5384",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb637kouoJ4FctcvJYPCf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "752b25a3-a93b-4ece-b9f4-e432be4d547f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FECdZ9tDHUjFRKppGuYheY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1756,
+                "cache_read_input_tokens": 13450,
+                "output_tokens": 243,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1756
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 243,
+                    "cache_read_input_tokens": 13450,
+                    "cache_creation_input_tokens": 1756,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1756,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T09:48:31.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013ygnuPLTSKN8ekWVrDD4QL",
+              "type": "tool_result",
+              "content": "# SSP Architecture: Intermediate Layer Extraction Details\n\n## Core Measurement Location\n\nSSP extracts representations from **intermediate transformer layers**, not output logits. The paper states: \"we extract intermediate-layer representations from the original input (Q,A,T) and perturbed input (Q,A,N,T).\"\n\n## Exact Process\n\n1. **Perturbation Application**: Noise is injected at the embedding level via a learned MLP: \"the embedding of the noise prompt N is updated as: Emb_θ(N) = M_φ(h) + Emb_θ(N).\"\n\n2. **Layer Selection**: The method uses middle layers rather than final layers. Figure 3 shows optimal performance peaks at intermediate depths, with the paper noting: \"performance increases with depth up to the middle layers, after which it starts to decline.\"\n\n3. **Representation Extraction**: After forward propagation, hidden states are extracted and processed through a lightweight encoder: \"z=f_φ(E_θ(x=True|Q,A,T))\" where E_θ represents intermediate layer activations.\n\n4. **Frozen Backbone**: The LLM itself remains frozen—only the added components train. Specifically, \"φ denotes the trainable parameters of the generator\" for the noise prompt MLP and encoder, while the underlying LLM parameters stay constant.\n\n## Measurement vs. Perturbation\n\nThis distinction is crucial: **perturbations occur at embeddings, but measurements happen at intermediate hidden states**. The method compares how these internal representations shift between clean and perturbed runs using cosine similarity as a discrepancy metric."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "752b25a3-a93b-4ece-b9f4-e432be4d547f",
+            "isSidechain": true,
+            "promptId": "ab5656e8-b9e4-40d4-bf76-8cf45c241dcf",
+            "agentId": "a527b027893fcf9f6",
+            "type": "user",
+            "uuid": "00fd171b-bc82-4ac4-85a1-d9b1f012e567",
+            "sourceToolAssistantUUID": "752b25a3-a93b-4ece-b9f4-e432be4d547f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T09:49:03.174Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the technical details needed to provide a comprehensive answer. Here is my analysis:\n\n---\n\n## Findings: SHINE vs. SSP vs. the Proposed \"LSP\"\n\n### 1. SHINE (arxiv 2411.09689) - Exact Mechanism\n\n**Where perturbation is applied:** Exclusively at the **input embedding layer (layer 0)**. Gaussian noise is added to the token embeddings of key entities (subjects) in the prompt. Specifically: `e_hat = e + epsilon` where `epsilon ~ N(0, (3*sigma)^2)`. The noise magnitude is weighted by attention scores and negative log-likelihood. No intermediate layers are perturbed.\n\n**What is measured:** Two things, both at the **output distribution level**:\n- **KL divergence** `KL(P_i || P_hat_i)` at each token position, comparing full vocabulary distributions between clean and perturbed forward passes (used in the Model Knowledge Test stage)\n- **Delta P_i** = `P_hat_i(t_i) - P_i(t_i)`, the change in generation probability of the specific generated token (used in the Alignment Test stage)\n\nScores are aggregated by taking the mean of the top-p% values across token positions. The process is repeated 10 times with different random seeds to reduce noise variance.\n\n**Does it target high-confidence hallucinations?** Yes, indirectly. The two-stage design (MKT then Alignment Test) specifically detects cases where the model generates text confidently despite lacking relevant knowledge - the perturbation has minimal effect on outputs when the model is fabricating (since the entity knowledge isn't being used anyway).\n\n---\n\n### 2. SSP / \"Shaking to Reveal\" (arxiv 2506.02696) - Exact Mechanism\n\n**Where perturbation is applied:** At the **input embedding level**, but via a learned MLP that generates sample-specific noise prompts (not raw Gaussian noise). The perturbation is semantically structured.\n\n**What is measured:** **Intermediate-layer hidden states** (NOT output logits). The method extracts representations at middle transformer layers from both clean and perturbed runs, then computes cosine distance: `Disc(z, z_tilde) = 1 - cos(z, z_tilde)`. A trained lightweight encoder amplifies representational differences via contrastive learning.\n\n**Key distinction from SHINE:** SSP perturbs at embeddings but **measures at intermediate representations**, while SHINE perturbs at embeddings and **measures at output distributions**. SSP also requires supervised training of both the noise generator and the encoder.\n\n---\n\n### 3. Does SHINE Already Do What \"LSP\" Proposes?\n\nThe proposed LSP method:\n- Perturbs the **residual stream at intermediate layers** (not input embeddings)\n- Measures **KL divergence of output logit distributions**\n\n**SHINE does NOT already do what LSP proposes.** The critical differences:\n\n| Aspect | SHINE | Proposed LSP |\n|--------|-------|-------------|\n| Perturbation location | Input embeddings (layer 0) | Intermediate residual stream |\n| Measurement location | Output logits | Output logits |\n| Perturbation type | Gaussian noise on entity tokens | Gaussian noise on residual stream |\n| Training required | None | None (as described) |\n\nSHINE and LSP share the measurement mechanism (KL divergence of output distributions) but differ fundamentally in **where the perturbation is injected**.\n\n---\n\n### 4. Key Technical Difference: Intermediate Residual Stream vs. Input Embeddings\n\nThis is the most important conceptual distinction:\n\n1. **Input embedding perturbation (SHINE):** Tests whether the model's output depends on the *identity* of the entity. If you corrupt the entity's embedding and the output barely changes, the model wasn't actually using entity-specific knowledge -- it was fabricating. This is a test of **knowledge retrieval dependency**.\n\n2. **Intermediate residual stream perturbation (LSP):** Tests the **stability of the computation at a specific processing stage**. By the time information reaches intermediate layers, the model has already performed attention operations and begun composing representations. Perturbing here tests whether the model's downstream computation is robust -- a different question than whether it depends on the input entity. Hallucinated content might be generated via \"shortcut\" circuits that are less robust to mid-computation noise, or conversely, might be generated by highly stable but disconnected circuits.\n\n3. **Intermediate representation measurement (SSP):** Measures how internal representations shift, which captures different information than output distribution shifts. Internal representations encode more than just next-token predictions.\n\n**The gap LSP fills:** Neither SHINE nor SSP does exactly what LSP proposes. SHINE perturbs inputs and measures outputs. SSP perturbs inputs and measures intermediate states. LSP would perturb intermediate states and measure outputs -- a genuinely distinct combination that tests a different hypothesis: that hallucinated tokens arise from fragile intermediate computations that, when disturbed, produce different output distributions (high KL), while factually grounded tokens arise from robust intermediate computations (low KL when perturbed).\n\n**However**, there is no published ablation in the SHINE paper comparing perturbation at different depths. The paper simply followed prior work (GPT-2 knowledge probing) without justifying the choice of layer 0. LSP's hypothesis that intermediate-layer perturbation would be more informative is plausible but unvalidated by either paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "00fd171b-bc82-4ac4-85a1-d9b1f012e567",
+            "isSidechain": true,
+            "agentId": "a527b027893fcf9f6",
+            "requestId": "req_011Cb638mStFgrgfkW2JhHhe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fdfd5858-cd2f-473a-8160-83cba6e637ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "1c70a808-ac42-40e9-b451-f24d9f6e7546",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GYu1s4W8oa4t6DMi7CCNgq",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 625,
+                "cache_read_input_tokens": 15206,
+                "output_tokens": 1273,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 625
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1273,
+                    "cache_read_input_tokens": 15206,
+                    "cache_creation_input_tokens": 625,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 625,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-understand-the-exact-difference-between-these-methods-for-hallucinat.md"
+}

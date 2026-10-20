@@ -1,0 +1,1682 @@
+{
+  "schema_version": "1.0",
+  "id": "e098648b205880831499",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Check the figure generation scripts in /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figu",
+  "task_key": "agent-a51925d3ef4c07cd0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a51925d3ef4c07cd0.jsonl",
+    "occurrence": 1,
+    "bytes": 119555,
+    "sha256": "cb577cc379c9bdad0d7a9b48103ff6f10b6394ec59a940de3c4b6022e314481a"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T19:34:47.579Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Check the figure generation scripts in /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/ for what data files they load. List all figure scripts and their data sources.\n\nAlso specifically check:\n1. gen_fig3.py or similar (ASV ranking figure) - what data does it load?\n2. gen_fig5.py or similar (F1 vs bias figure) - what data does it load?\n3. Any figure script that loads from artifacts/ - confirm the file path matches actual existing files\n\nJust list: script name → data source file(s) → exists? (yes/no)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "8b8d289c-30cc-44be-a16e-97073d8a168c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T19:34:49.125Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you check the figure generation scripts and their data sources. Let me start by exploring the figures directory."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b8d289c-30cc-44be-a16e-97073d8a168c",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4W8EJ6zJNQp47bMmWA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d6359c96-ca4c-4f51-a6e6-404ff2ad0a43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017aWcEG6HBv2952Km7uQ52d",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17909,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17909,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T19:34:49.486Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FniBcv7tTaM8yC9pmTWFgJ",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/*.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6359c96-ca4c-4f51-a6e6-404ff2ad0a43",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4W8EJ6zJNQp47bMmWA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5bb596b8-ae97-49b3-b3ab-1452bf0fbbd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017aWcEG6HBv2952Km7uQ52d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17909,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17909
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17909,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17909,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T19:34:49.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FniBcv7tTaM8yC9pmTWFgJ",
+              "type": "tool_result",
+              "content": "figures/paper/gen_fig4.py\nfigures/paper/gen_fig1.py\nfigures/paper/gen_fig3.py\nfigures/paper/gen_diagnostic_plots.py\nfigures/paper/gen_fig7.py\nfigures/paper/gen_fig2.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bb596b8-ae97-49b3-b3ab-1452bf0fbbd2",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "27a71a6c-bad0-451b-bbec-cdc8cfce86c7",
+            "sourceToolAssistantUUID": "5bb596b8-ae97-49b3-b3ab-1452bf0fbbd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T19:34:51.237Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read each of these scripts to identify their data sources:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27a71a6c-bad0-451b-bbec-cdc8cfce86c7",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WGRfPYPLpLMxbj9Qy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2d44ec5a-d35f-4255-a32f-161e1439ea91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXRqgebrVGiQ6AsUXwHa2g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 17909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1022,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T19:34:51.491Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FK6Q6qLMRhHWx54Q5FgeeS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig1.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d44ec5a-d35f-4255-a32f-161e1439ea91",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WGRfPYPLpLMxbj9Qy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a5d576e1-7678-4d9c-b539-32d04380d8cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXRqgebrVGiQ6AsUXwHa2g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 17909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1022,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T19:34:51.497Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FK6Q6qLMRhHWx54Q5FgeeS",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Figure 1: DAG Taxonomy — annotation error positions across 7 causal topologies.\n3\tv3: 4+3 layout (7 panels), fixed collider label, added conditioned legend.\"\"\"\n4\t\n5\timport matplotlib\n6\tmatplotlib.use('Agg')\n7\timport matplotlib.pyplot as plt\n8\tfrom matplotlib.patches import FancyArrowPatch, Circle, FancyBboxPatch, Rectangle\n9\tfrom matplotlib.lines import Line2D\n10\tfrom matplotlib.gridspec import GridSpec\n11\timport numpy as np\n12\timport os\n13\t\n14\tplt.rcParams.update({\n15\t    'font.family': 'DejaVu Sans',\n16\t    'font.size': 11,\n17\t    'figure.dpi': 300,\n18\t    'savefig.dpi': 300,\n19\t    'savefig.bbox': 'tight',\n20\t    'savefig.pad_inches': 0.08,\n21\t    'pdf.fonttype': 42,\n22\t    'ps.fonttype': 42,\n23\t})\n24\t\n25\tR = 0.058\n26\tBLACK = '#1a1a1a'\n27\tBLUE = '#0072B2'\n28\tGRAY = '#555555'\n29\tLGRAY = '#888888'\n30\tVERM = '#D55E00'\n31\t\n32\t\n33\tdef draw_node(ax, x, y, label, style='observed'):\n34\t    if style == 'conditioned':\n35\t        box = FancyBboxPatch(\n36\t            (x - R * 1.3, y - R * 1.1), R * 2.6, R * 2.2,\n37\t            boxstyle='round,pad=0.008',\n38\t            fc='#E8F0FE', ec=BLUE, lw=1.6, zorder=10)\n39\t        ax.add_patch(box)\n40\t        ax.text(x, y, label, ha='center', va='center', fontsize=10,\n41\t                color=BLUE, fontweight='bold', zorder=11)\n42\t        return\n43\t    kw = dict(fc='white', zorder=10)\n44\t    if style == 'latent':\n45\t        kw.update(ec=BLACK, lw=1.0, ls=(0, (4, 3)))\n46\t    elif style == 'star':\n47\t        kw.update(ec=BLUE, lw=1.6, fc='#E8F0FE')\n48\t    else:\n49\t        kw.update(ec=BLACK, lw=1.0)\n50\t    ax.add_patch(Circle((x, y), R, **kw))\n51\t    c = BLUE if style == 'star' else BLACK\n52\t    w = 'bold' if style == 'star' else 'normal'\n53\t    ax.text(x, y, label, ha='center', va='center', fontsize=10,\n54\t            color=c, fontweight=w, zorder=11)\n55\t\n56\t\n57\tdef draw_edge(ax, p1, p2, style='causal', rad=0):\n58\t    dx, dy = p2[0] - p1[0], p2[1] - p1[1]\n59\t    d = np.hypot(dx, dy)\n60\t    if d < 1e-6:\n61\t        return\n62\t    g = R * 1.22\n63\t    s = (p1[0] + dx / d * g, p1[1] + dy / d * g)\n64\t    e = (p2[0] - dx / d * g, p2[1] - dy / d * g)\n65\t    kw = dict(arrowstyle='->', mutation_scale=12, zorder=5,\n66\t              connectionstyle=f'arc3,rad={rad}')\n67\t    if style == 'meas':\n68\t        kw.update(lw=1.0, ls='--', color=LGRAY)\n69\t    else:\n70\t        kw.update(lw=1.3, color=BLACK)\n71\t    ax.add_patch(FancyArrowPatch(s, e, **kw))\n72\t\n73\t\n74\t# ── Figure: 4+3 layout ──\n75\tfig = plt.figure(figsize=(12, 5.5))\n76\tgs = GridSpec(2, 12, figure=fig,\n77\t              hspace=0.32, wspace=0.05,\n78\t              left=0.01, right=0.99, top=0.92, bottom=0.07)\n79\t\n80\tpanels = [\n81\t    ('(a) Confounding',      'Attenuation (toward OVB)'),\n82\t    ('(b) Exposure',         'Sign reversal (83.4%)'),\n83\t    ('(c) Mediation',        'Amplification'),\n84\t    ('(d) Collider',         'Attenuation (no sign flip)'),\n85\t    ('(e) Front-door',       'Moderate sensitivity'),\n86\t    ('(f) M-bias',           'Immune'),\n87\t    ('(g) IV (Instrument)',  'Fragile (Wald amplification)'),\n88\t]\n89\t\n90\taxs = []\n91\t# Row 1: 4 panels, each spanning 3 of 12 columns\n92\tfor i in range(4):\n93\t    ax = fig.add_subplot(gs[0, i*3:(i+1)*3])\n94\t    ax.set_xlim(0, 1.35)\n95\t    ax.set_ylim(0, 0.85)\n96\t    ax.set_aspect('equal')\n97\t    ax.axis('off')\n98\t    axs.append(ax)\n99\t\n100\t# Row 2: 3 panels, each spanning 4 of 12 columns\n101\tfor i in range(3):\n102\t    ax = fig.add_subplot(gs[1, i*4:(i+1)*4])\n103\t    ax.set_xlim(0, 1.35)\n104\t    ax.set_ylim(0, 0.85)\n105\t    ax.set_aspect('equal')\n106\t    ax.axis('off')\n107\t    axs.append(ax)\n108\t\n109\tfor i in range(7):\n110\t    ax = axs[i]\n111\t    title, subtitle = panels[i]\n112\t    ax.text(0.5, 1.10, title, ha='center', va='top', fontsize=10.5,\n113\t            fontweight='bold', transform=ax.transAxes)\n114\t    sub_color = VERM if i == 1 else GRAY\n115\t    ax.text(0.5, 0.99, subtitle, ha='center', va='top', fontsize=9,\n116\t            fontstyle='italic', color=sub_color, transform=ax.transAxes)\n117\t\n118\t# Exposure panel: subtle red background\n119\trect = Rectangle((0, 0), 1.35, 0.85, fc='#FFF5F3', ec=VERM, lw=1.5, zorder=0)\n120\taxs[1].add_patch(rect)\n121\t\n122\t\n123\t# ═══════════════════════════════════════════════════\n124\t# (a) Confounding: A→X, A→Y, X→Y, A⇢A*\n125\t# ═══════════════════════════════════════════════════\n126\tax = axs[0]\n127\tA  = (0.50, 0.68); As = (0.98, 0.68)\n128\tX  = (0.25, 0.20); Y  = (0.85, 0.20)\n129\tdraw_node(ax, *A,  'A',  'latent')\n130\tdraw_node(ax, *As, 'A*', 'star')\n131\tdraw_node(ax, *X,  'X')\n132\tdraw_node(ax, *Y,  'Y')\n133\tdraw_edge(ax, A, X)\n134\tdraw_edge(ax, A, Y)\n135\tdraw_edge(ax, X, Y)\n136\tdraw_edge(ax, A, As, 'meas')\n137\t\n138\t\n139\t# ═══════════════════════════════════════════════════\n140\t# (b) Exposure: A→Y, A⇢A*\n141\t# ═══════════════════════════════════════════════════\n142\tax = axs[1]\n143\tA  = (0.32, 0.55); As = (1.02, 0.55); Y = (0.67, 0.17)\n144\tdraw_node(ax, *A,  'A',  'latent')\n145\tdraw_node(ax, *As, 'A*', 'star')\n146\tdraw_node(ax, *Y,  'Y')\n147\tdraw_edge(ax, A, Y)\n148\tdraw_edge(ax, A, As, 'meas')\n149\t\n150\t\n151\t# ═══════════════════════════════════════════════════\n152\t# (c) Mediation: X→A, A→Y, X→Y (direct), A⇢A*\n153\t# ═══════════════════════════════════════════════════\n154\tax = axs[2]\n155\tX  = (0.08, 0.35); A  = (0.55, 0.67)\n156\tAs = (1.02, 0.67); Y  = (1.24, 0.35)\n157\tdraw_node(ax, *X,  'X')\n158\tdraw_node(ax, *A,  'A',  'latent')\n159\tdraw_node(ax, *As, 'A*', 'star')\n160\tdraw_node(ax, *Y,  'Y')\n161\tdraw_edge(ax, X, A)\n162\tdraw_edge(ax, A, Y)\n163\tdraw_edge(ax, X, Y, rad=-0.2)\n164\tdraw_edge(ax, A, As, 'meas')\n165\t\n166\t\n167\t# ═══════════════════════════════════════════════════\n168\t# (d) Collider: X→A, Y→A, A⇢A*, condition on A*\n169\t# ═══════════════════════════════════════════════════\n170\tax = axs[3]\n171\tX  = (0.22, 0.70); Y  = (1.12, 0.70)\n172\tA  = (0.67, 0.42); As = (0.67, 0.10)\n173\tdraw_node(ax, *X,  'X')\n174\tdraw_node(ax, *Y,  'Y')\n175\tdraw_node(ax, *A,  'A',  'latent')\n176\tdraw_node(ax, *As, 'A*', 'conditioned')\n177\tdraw_edge(ax, X, A)\n178\tdraw_edge(ax, Y, A)\n179\tdraw_edge(ax, A, As, 'meas')\n180\t\n181\t\n182\t# ═══════════════════════════════════════════════════\n183\t# (e) Front-door: X→A→Y, U→X, U→Y, A⇢A*\n184\t# ═══════════════════════════════════════════════════\n185\tax = axs[4]\n186\tX  = (0.15, 0.35); A  = (0.55, 0.67)\n187\tAs = (1.02, 0.67); Y  = (1.20, 0.35)\n188\tU  = (0.67, 0.10)\n189\tdraw_node(ax, *X,  'X')\n190\tdraw_node(ax, *A,  'A',  'latent')\n191\tdraw_node(ax, *As, 'A*', 'star')\n192\tdraw_node(ax, *Y,  'Y')\n193\tdraw_node(ax, *U,  'U',  'latent')\n194\tdraw_edge(ax, X, A)\n195\tdraw_edge(ax, A, Y)\n196\tdraw_edge(ax, U, X)\n197\tdraw_edge(ax, U, Y)\n198\tdraw_edge(ax, A, As, 'meas')\n199\t\n200\t\n201\t# ═══════════════════════════════════════════════════\n202\t# (f) M-bias: U₁→X, U₁→A, U₂→A, U₂→Y, X→Y, A⇢A*\n203\t# ═══════════════════════════════════════════════════\n204\tax = axs[5]\n205\tU1 = (0.12, 0.73); U2 = (1.22, 0.73)\n206\tX  = (0.12, 0.27); Y  = (1.22, 0.27)\n207\tA  = (0.67, 0.52); As = (0.67, 0.10)\n208\tdraw_node(ax, *U1, 'U₁', 'latent')\n209\tdraw_node(ax, *U2, 'U₂', 'latent')\n210\tdraw_node(ax, *X,  'X')\n211\tdraw_node(ax, *Y,  'Y')\n212\tdraw_node(ax, *A,  'A',  'latent')\n213\tdraw_node(ax, *As, 'A*', 'star')\n214\tdraw_edge(ax, U1, X)\n215\tdraw_edge(ax, U1, A)\n216\tdraw_edge(ax, U2, A)\n217\tdraw_edge(ax, U2, Y)\n218\tdraw_edge(ax, X, Y)\n219\tdraw_edge(ax, A, As, 'meas')\n220\t\n221\t\n222\t# ═══════════════════════════════════════════════════\n223\t# (g) IV: A→X, X→Y, U→X, U→Y, A⇢A*\n224\t# ═══════════════════════════════════════════════════\n225\tax = axs[6]\n226\tA  = (0.15, 0.68); As = (0.65, 0.68)\n227\tX  = (0.40, 0.34); Y  = (0.98, 0.34)\n228\tU  = (0.69, 0.07)\n229\tdraw_node(ax, *A,  'A',  'latent')\n230\tdraw_node(ax, *As, 'A*', 'star')\n231\tdraw_node(ax, *X,  'X')\n232\tdraw_node(ax, *Y,  'Y')\n233\tdraw_node(ax, *U,  'U',  'latent')\n234\tdraw_edge(ax, A, X)\n235\tdraw_edge(ax, X, Y)\n236\tdraw_edge(ax, U, X)\n237\tdraw_edge(ax, U, Y)\n238\tdraw_edge(ax, A, As, 'meas')\n239\t\n240\t\n241\t# ── Legend ──\n242\thandles = [\n243\t    Line2D([0], [0], marker='o', color='w', markerfacecolor='white',\n244\t           markeredgecolor=BLACK, markeredgewidth=1.0, markersize=9,\n245\t           linestyle='none', label='Observed'),\n246\t    Line2D([0], [0], marker='o', color='w', markerfacecolor='white',\n247\t           markeredgecolor=BLACK, markeredgewidth=1.0, markersize=9,\n248\t           linestyle='none', label='Latent (dashed ○)'),\n249\t    Line2D([0], [0], marker='o', color='w', markerfacecolor='#E8F0FE',\n250\t           markeredgecolor=BLUE, markeredgewidth=1.6, markersize=9,\n251\t           linestyle='none', label='Misclassified (A*)'),\n252\t    Line2D([0], [0], marker='s', color='w', markerfacecolor='#E8F0FE',\n253\t           markeredgecolor=BLUE, markeredgewidth=1.6, markersize=9,\n254\t           linestyle='none', label='Conditioned on (A*)'),\n255\t    Line2D([0], [0], color=BLACK, lw=1.3, linestyle='-',\n256\t           marker='>', markersize=4.5, markeredgewidth=0,\n257\t           label='Causal'),\n258\t    Line2D([0], [0], color=LGRAY, lw=1.0, linestyle='--',\n259\t           marker='>', markersize=4.5, markeredgewidth=0,\n260\t           label='Measurement'),\n261\t]\n262\tfig.legend(handles=handles, loc='lower center', ncol=6, fontsize=8.5,\n263\t           frameon=False, handletextpad=0.4, columnspacing=1.5,\n264\t           bbox_to_anchor=(0.5, 0.005))\n265\t\n266\t\n267\t# ── Save ──\n268\tout_dir = os.path.dirname(os.path.abspath(__file__))\n269\tpdf_path = os.path.join(out_dir, 'fig1_dag_taxonomy.pdf')\n270\tpng_path = os.path.join(out_dir, 'fig1_dag_taxonomy.png')\n271\t\n272\tfig.savefig(pdf_path, format='pdf')\n273\tfig.savefig(png_path, format='png')\n274\tplt.close()\n275\t\n276\tprint(f'PDF: {pdf_path}')\n277\tprint(f'PNG: {png_path}')\n278\tfor p in [pdf_path, png_path]:\n279\t    print(f'  {os.path.basename(p)}: {os.path.getsize(p):,} bytes')\n280\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5d576e1-7678-4d9c-b539-32d04380d8cf",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "e143762f-a462-4ea6-a642-70cafcedb37c",
+            "sourceToolAssistantUUID": "a5d576e1-7678-4d9c-b539-32d04380d8cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T19:34:51.890Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LvL23NGueqKHRgzGqBnvBV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig2.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e143762f-a462-4ea6-a642-70cafcedb37c",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WGRfPYPLpLMxbj9Qy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9eed8956-997a-450d-9c9b-c634264f881a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXRqgebrVGiQ6AsUXwHa2g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 17909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1022,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T19:34:51.894Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LvL23NGueqKHRgzGqBnvBV",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Figure 2: 2×4 Bias Distribution Across 7 DAG Topologies under K=3 Misclassification.\"\"\"\n3\t\n4\timport matplotlib\n5\tmatplotlib.use('Agg')\n6\timport matplotlib.pyplot as plt\n7\timport matplotlib.patheffects as pe\n8\timport matplotlib.transforms as mtransforms\n9\timport numpy as np\n10\tfrom scipy.stats import gaussian_kde\n11\timport os\n12\t\n13\tplt.rcParams.update({\n14\t    'font.family': 'DejaVu Sans',\n15\t    'font.size': 11,\n16\t    'axes.titlesize': 12,\n17\t    'axes.labelsize': 11,\n18\t    'xtick.labelsize': 9,\n19\t    'ytick.labelsize': 9,\n20\t    'legend.fontsize': 9,\n21\t    'figure.dpi': 300,\n22\t    'savefig.dpi': 300,\n23\t    'savefig.bbox': 'tight',\n24\t    'savefig.pad_inches': 0.05,\n25\t    'axes.spines.top': False,\n26\t    'axes.spines.right': False,\n27\t    'pdf.fonttype': 42,\n28\t    'ps.fonttype': 42,\n29\t    'lines.linewidth': 1.8,\n30\t})\n31\t\n32\tSAFE = '#0072B2'    # blue (colorblind-friendly)\n33\tDANGER = '#E69F00'  # orange (colorblind-friendly)\n34\tDIST = '#0072B2'\n35\tREF = '#555555'\n36\tN_MC = 100_000\n37\tN_POP = 2_000_000\n38\t\n39\trng_main = np.random.default_rng(42)\n40\tCs = np.zeros((N_MC, 3, 3))\n41\tfor j in range(3):\n42\t    Cs[:, :, j] = rng_main.dirichlet(np.ones(3), size=N_MC)\n43\t\n44\t\n45\tdef softmax_vec(x):\n46\t    e = np.exp(x - x.max())\n47\t    return e / e.sum()\n48\t\n49\t\n50\tdef softmax_sample_batch(logits, rng):\n51\t    e = np.exp(logits - logits.max(axis=1, keepdims=True))\n52\t    p = e / e.sum(axis=1, keepdims=True)\n53\t    cu = np.cumsum(p, axis=1)\n54\t    u = rng.uniform(size=logits.shape[0])\n55\t    return (u >= cu[:, 0]).astype(int) + (u >= cu[:, 1]).astype(int)\n56\t\n57\t\n58\tdef safe_batch_solve(A, b):\n59\t    try:\n60\t        return np.linalg.solve(A, b[:, :, None])[:, :, 0]\n61\t    except np.linalg.LinAlgError:\n62\t        n = A.shape[0]\n63\t        results = np.full((n, A.shape[1]), np.nan)\n64\t        for i in range(n):\n65\t            try:\n66\t                results[i] = np.linalg.solve(A[i], b[i])\n67\t            except np.linalg.LinAlgError:\n68\t                pass\n69\t        return results\n70\t\n71\t\n72\t# ═══════════════════════════════════════════════════════════════════════════════\n73\t# 1. CONFOUNDING: A→T, A→Y, T→Y.  OLS: Y ~ 1+T+D*₁+D*₂.  Coeff on T.\n74\t# ═══════════════════════════════════════════════════════════════════════════════\n75\tdef compute_confounding(Cs):\n76\t    P_A = np.array([0.4, 0.35, 0.25])\n77\t    a1, a2 = 1.5, -1.0\n78\t    beta = np.array([0.0, 1.0, 1.0, -0.5])\n79\t    p0, p1, p2 = P_A\n80\t    n = len(Cs)\n81\t\n82\t    ET = a1 * p1 + a2 * p2\n83\t    ET2 = a1**2 * p1 + a2**2 * p2 + 1.0\n84\t    q = Cs @ P_A\n85\t    ET_Ds = a1 * Cs[:, :, 1] * p1 + a2 * Cs[:, :, 2] * p2\n86\t\n87\t    EZZ = np.zeros((n, 4, 4))\n88\t    EZZ[:, 0, 0] = 1\n89\t    EZZ[:, 0, 1] = EZZ[:, 1, 0] = ET\n90\t    EZZ[:, 0, 2] = EZZ[:, 2, 0] = q[:, 1]\n91\t    EZZ[:, 0, 3] = EZZ[:, 3, 0] = q[:, 2]\n92\t    EZZ[:, 1, 1] = ET2\n93\t    EZZ[:, 1, 2] = EZZ[:, 2, 1] = ET_Ds[:, 1]\n94\t    EZZ[:, 1, 3] = EZZ[:, 3, 1] = ET_Ds[:, 2]\n95\t    EZZ[:, 2, 2] = q[:, 1]\n96\t    EZZ[:, 3, 3] = q[:, 2]\n97\t\n98\t    EZX = np.zeros((n, 4, 4))\n99\t    EZX[:, 0, :] = [1, ET, p1, p2]\n100\t    EZX[:, 1, :] = [ET, ET2, a1 * p1, a2 * p2]\n101\t    EZX[:, 2, 0] = q[:, 1]\n102\t    EZX[:, 2, 1] = ET_Ds[:, 1]\n103\t    EZX[:, 2, 2] = Cs[:, 1, 1] * p1\n104\t    EZX[:, 2, 3] = Cs[:, 1, 2] * p2\n105\t    EZX[:, 3, 0] = q[:, 2]\n106\t    EZX[:, 3, 1] = ET_Ds[:, 2]\n107\t    EZX[:, 3, 2] = Cs[:, 2, 1] * p1\n108\t    EZX[:, 3, 3] = Cs[:, 2, 2] * p2\n109\t\n110\t    rhs = np.einsum('nij,j->ni', EZX, beta)\n111\t    return safe_batch_solve(EZZ, rhs)[:, 1]\n112\t\n113\t\n114\t# ═══════════════════════════════════════════════════════════════════════════════\n115\t# 2. EXPOSURE: A→Y.  OLS: Y ~ 1+D*₁+D*₂.  Coeff on D*₁.\n116\t# ═══════════════════════════════════════════════════════════════════════════════\n117\tdef compute_exposure(Cs):\n118\t    P_A = np.array([0.4, 0.35, 0.25])\n119\t    BETA = np.array([0.0, 1.0, -0.5])\n120\t    p0, p1, p2 = P_A\n121\t    n = len(Cs)\n122\t\n123\t    q = Cs @ P_A\n124\t    EZZ = np.zeros((n, 3, 3))\n125\t    EZZ[:, 0, 0] = 1\n126\t    EZZ[:, 0, 1] = EZZ[:, 1, 0] = q[:, 1]\n127\t    EZZ[:, 0, 2] = EZZ[:, 2, 0] = q[:, 2]\n128\t    EZZ[:, 1, 1] = q[:, 1]\n129\t    EZZ[:, 2, 2] = q[:, 2]\n130\t\n131\t    EZX = np.zeros((n, 3, 3))\n132\t    EZX[:, 0, :] = [1, p1, p2]\n133\t    EZX[:, 1, 0] = q[:, 1]\n134\t    EZX[:, 1, 1] = Cs[:, 1, 1] * p1\n135\t    EZX[:, 1, 2] = Cs[:, 1, 2] * p2\n136\t    EZX[:, 2, 0] = q[:, 2]\n137\t    EZX[:, 2, 1] = Cs[:, 2, 1] * p1\n138\t    EZX[:, 2, 2] = Cs[:, 2, 2] * p2\n139\t\n140\t    rhs = np.einsum('nij,j->ni', EZX, BETA)\n141\t    plim = safe_batch_solve(EZZ, rhs)\n142\t    return plim[:, 1], plim[:, 2]\n143\t\n144\t\n145\t# ═══════════════════════════════════════════════════════════════════════════════\n146\t# 3. MEDIATION: T→A→Y, T→Y(direct).  OLS: Y ~ 1+T+D*₁+D*₂.  Coeff on T.\n147\t# ═══════════════════════════════════════════════════════════════════════════════\n148\tdef compute_mediation(Cs):\n149\t    BETA = np.array([0.0, 1.0, -0.5])\n150\t    TAU = 1.0\n151\t    GAMMA = np.array([0.0, 0.5, -0.3])\n152\t    DELTA = np.array([0.0, 0.8, -0.6])\n153\t    n = len(Cs)\n154\t\n155\t    p0 = softmax_vec(GAMMA)\n156\t    p1 = softmax_vec(GAMMA + DELTA)\n157\t    pm = 0.5 * (p0 + p1)\n158\t    q0 = Cs @ p0\n159\t    q1 = Cs @ p1\n160\t    qm = 0.5 * (q0 + q1)\n161\t\n162\t    EZZ = np.zeros((n, 4, 4))\n163\t    EZZ[:, 0, 0] = 1\n164\t    EZZ[:, 0, 1] = EZZ[:, 1, 0] = 0.5\n165\t    EZZ[:, 0, 2] = EZZ[:, 2, 0] = qm[:, 1]\n166\t    EZZ[:, 0, 3] = EZZ[:, 3, 0] = qm[:, 2]\n167\t    EZZ[:, 1, 1] = 0.5\n168\t    EZZ[:, 1, 2] = EZZ[:, 2, 1] = 0.5 * q1[:, 1]\n169\t    EZZ[:, 1, 3] = EZZ[:, 3, 1] = 0.5 * q1[:, 2]\n170\t    EZZ[:, 2, 2] = qm[:, 1]\n171\t    EZZ[:, 3, 3] = qm[:, 2]\n172\t\n173\t    EZX = np.zeros((n, 4, 4))\n174\t    EZX[:, 0, :] = [1, 0.5, pm[1], pm[2]]\n175\t    EZX[:, 1, :] = [0.5, 0.5, 0.5 * p1[1], 0.5 * p1[2]]\n176\t    EZX[:, 2, 0] = qm[:, 1]\n177\t    EZX[:, 2, 1] = 0.5 * q1[:, 1]\n178\t    EZX[:, 2, 2] = Cs[:, 1, 1] * pm[1]\n179\t    EZX[:, 2, 3] = Cs[:, 1, 2] * pm[2]\n180\t    EZX[:, 3, 0] = qm[:, 2]\n181\t    EZX[:, 3, 1] = 0.5 * q1[:, 2]\n182\t    EZX[:, 3, 2] = Cs[:, 2, 1] * pm[1]\n183\t    EZX[:, 3, 3] = Cs[:, 2, 2] * pm[2]\n184\t\n185\t    b = np.array([BETA[0], TAU, BETA[1], BETA[2]])\n186\t    rhs = np.einsum('nij,j->ni', EZX, b)\n187\t    return safe_batch_solve(EZZ, rhs)[:, 1]\n188\t\n189\t\n190\t# ═══════════════════════════════════════════════════════════════════════════════\n191\t# 4/5. COLLIDER & M-BIAS: precompute (T,Y,A) stats, vectorise per-C\n192\t#   OLS: Y ~ 1+T+D*₁+D*₂.  Coeff on T.\n193\t# ═══════════════════════════════════════════════════════════════════════════════\n194\tdef _precompute_stats(T, Y, A):\n195\t    return dict(\n196\t        ET=T.mean(), ET2=(T**2).mean(), EY=Y.mean(), ETY=(T * Y).mean(),\n197\t        p=np.array([np.mean(A == j) for j in range(3)]),\n198\t        ET_A=np.array([np.mean(T * (A == j)) for j in range(3)]),\n199\t        EY_A=np.array([np.mean(Y * (A == j)) for j in range(3)]),\n200\t    )\n201\t\n202\t\n203\tdef _plim_from_stats(Cs, st):\n204\t    n = len(Cs)\n205\t    q = Cs @ st['p']\n206\t    ETDs = Cs @ st['ET_A']\n207\t    EYDs = Cs @ st['EY_A']\n208\t\n209\t    EZZ = np.zeros((n, 4, 4))\n210\t    EZZ[:, 0, 0] = 1\n211\t    EZZ[:, 0, 1] = EZZ[:, 1, 0] = st['ET']\n212\t    EZZ[:, 0, 2] = EZZ[:, 2, 0] = q[:, 1]\n213\t    EZZ[:, 0, 3] = EZZ[:, 3, 0] = q[:, 2]\n214\t    EZZ[:, 1, 1] = st['ET2']\n215\t    EZZ[:, 1, 2] = EZZ[:, 2, 1] = ETDs[:, 1]\n216\t    EZZ[:, 1, 3] = EZZ[:, 3, 1] = ETDs[:, 2]\n217\t    EZZ[:, 2, 2] = q[:, 1]\n218\t    EZZ[:, 3, 3] = q[:, 2]\n219\t\n220\t    EZY = np.zeros((n, 4))\n221\t    EZY[:, 0] = st['EY']\n222\t    EZY[:, 1] = st['ETY']\n223\t    EZY[:, 2] = EYDs[:, 1]\n224\t    EZY[:, 3] = EYDs[:, 2]\n225\t    return safe_batch_solve(EZZ, EZY)[:, 1]\n226\t\n227\t\n228\tdef compute_collider(Cs):\n229\t    print(\"  Precomputing collider (N=2M)...\")\n230\t    rng = np.random.default_rng(999)\n231\t    N = N_POP\n232\t    T = rng.normal(0, 1, N)\n233\t    Y = 1.0 * T + rng.normal(0, 1, N)\n234\t    logits = np.column_stack([np.zeros(N), 0.5 * T + 0.8 * Y, -0.3 * T + 0.6 * Y])\n235\t    A = softmax_sample_batch(logits, rng)\n236\t    return _plim_from_stats(Cs, _precompute_stats(T, Y, A))\n237\t\n238\t\n239\tdef compute_mbias(Cs):\n240\t    print(\"  Precomputing M-bias (N=2M)...\")\n241\t    rng = np.random.default_rng(999)\n242\t    N = N_POP\n243\t    U1 = rng.normal(0, 1, N)\n244\t    U2 = rng.normal(0, 1, N)\n245\t    T = 1.0 * U1 + rng.normal(0, 1, N)\n246\t    Y = 1.0 * T + 1.0 * U2 + rng.normal(0, 1, N)\n247\t    logits = np.column_stack([np.zeros(N), 0.8 * U1 + 0.6 * U2, -0.5 * U1 + 0.9 * U2])\n248\t    A = softmax_sample_batch(logits, rng)\n249\t    return _plim_from_stats(Cs, _precompute_stats(T, Y, A))\n250\t\n251\t\n252\t# ═══════════════════════════════════════════════════════════════════════════════\n253\t# 6. IV (naive OLS): Z(binary)→A(3-class)→Y, U→{A,Y}.\n254\t#   Naive OLS: Y ~ 1+D*₁+D*₂.  Coeff on D*₁.  True β₁=1.0.\n255\t# ═══════════════════════════════════════════════════════════════════════════════\n256\tdef compute_iv(Cs):\n257\t    print(\"  Precomputing IV naive OLS (N=2M)...\")\n258\t    rng = np.random.default_rng(999)\n259\t    N = N_POP\n260\t    Z_iv = rng.binomial(1, 0.5, N).astype(float)\n261\t    U = rng.normal(0, 1, N)\n262\t    logits = np.column_stack([\n263\t        np.zeros(N),\n264\t        1.0 * Z_iv + 0.8 * U,\n265\t        -0.5 * Z_iv + 0.6 * U,\n266\t    ])\n267\t    A = softmax_sample_batch(logits, rng)\n268\t    Y = (1.0 * (A == 1).astype(float)\n269\t         - 0.5 * (A == 2).astype(float)\n270\t         + 1.0 * U + rng.normal(0, 1, N))\n271\t\n272\t    p = np.array([np.mean(A == j) for j in range(3)])\n273\t    EY_A = np.array([np.mean(Y * (A == j)) for j in range(3)])\n274\t\n275\t    n = len(Cs)\n276\t    q = Cs @ p\n277\t    EYDs = Cs @ EY_A\n278\t    EY_cond = EYDs / np.clip(q, 1e-10, None)\n279\t    return EY_cond[:, 1] - EY_cond[:, 0]\n280\t\n281\t\n282\t# ═══════════════════════════════════════════════════════════════════════════════\n283\t# 7. IV (Wald estimator): Z(binary)→A→Y, U→{A,Y}.\n284\t#   Wald = Cov(A*,Y)/Cov(A*,Z).  52.6% sign reversal.\n285\t# ═══════════════════════════════════════════════════════════════════════════════\n286\tdef compute_iv_wald(Cs):\n287\t    print(\"  Precomputing IV Wald (N=2M)...\")\n288\t    rng = np.random.default_rng(999)\n289\t    N = N_POP\n290\t    Z_iv = rng.binomial(1, 0.5, N).astype(float)\n291\t    U = rng.normal(0, 1, N)\n292\t    logits = np.column_stack([\n293\t        np.zeros(N),\n294\t        1.0 * Z_iv + 0.8 * U,\n295\t        -0.5 * Z_iv + 0.6 * U,\n296\t    ])\n297\t    A = softmax_sample_batch(logits, rng)\n298\t    Y = (1.0 * (A == 1).astype(float)\n299\t         - 0.5 * (A == 2).astype(float)\n300\t         + 1.0 * U + rng.normal(0, 1, N))\n301\t\n302\t    D1_true = (A == 1).astype(float)\n303\t    cov_D1Z = np.mean(D1_true * Z_iv) - np.mean(D1_true) * np.mean(Z_iv)\n304\t    cov_YZ = np.mean(Y * Z_iv) - np.mean(Y) * np.mean(Z_iv)\n305\t    tau_true_wald = cov_YZ / cov_D1Z\n306\t\n307\t    p_z0 = np.array([np.mean((A == j) & (Z_iv == 0)) / np.mean(Z_iv == 0) for j in range(3)])\n308\t    p_z1 = np.array([np.mean((A == j) & (Z_iv == 1)) / np.mean(Z_iv == 1) for j in range(3)])\n309\t    EY_z0 = np.mean(Y[Z_iv == 0])\n310\t    EY_z1 = np.mean(Y[Z_iv == 1])\n311\t\n312\t    n = len(Cs)\n313\t    q_z0 = Cs @ p_z0\n314\t    q_z1 = Cs @ p_z1\n315\t    first_stage = q_z1[:, 1] - q_z0[:, 1]\n316\t    reduced_form = EY_z1 - EY_z0\n317\t    wald = reduced_form / np.where(np.abs(first_stage) > 1e-10, first_stage, np.nan)\n318\t    return wald, tau_true_wald\n319\t\n320\t\n321\t# ═══════════════════════════════════════════════════════════════════════════════\n322\t# COMPUTE ALL\n323\t# ═══════════════════════════════════════════════════════════════════════════════\n324\tprint(\"Computing distributions...\")\n325\tplim_conf = compute_confounding(Cs)\n326\tplim_exp1, plim_exp2 = compute_exposure(Cs)\n327\tplim_med = compute_mediation(Cs)\n328\tplim_col = compute_collider(Cs)\n329\tplim_mb = compute_mbias(Cs)\n330\tplim_iv = compute_iv(Cs)\n331\tplim_iv_wald, tau_wald = compute_iv_wald(Cs)\n332\t\n333\tBETA_EXP = np.array([0.0, 1.0, -0.5])\n334\tsf_exp_combined = np.nanmean(\n335\t    (plim_exp1 * BETA_EXP[1] < 0) | (plim_exp2 * BETA_EXP[2] < 0)\n336\t)\n337\td_wald = plim_iv_wald[np.isfinite(plim_iv_wald)]\n338\tsf_iv_wald = np.mean(d_wald * tau_wald < 0)\n339\t\n340\tprint(f\"\\nExposure combined sign-flip rate: {sf_exp_combined:.1%}\")\n341\tfor name, data, true in [\n342\t    (\"Confounding\", plim_conf, 1.0),\n343\t    (\"Exposure(γ1)\", plim_exp1, 1.0),\n344\t    (\"Mediation\", plim_med, 1.0),\n345\t    (\"Collider\", plim_col, 1.0),\n346\t    (\"M-bias\", plim_mb, 1.0),\n347\t    (\"IV(OLS)\", plim_iv, 1.0),\n348\t    (\"IV(Wald)\", plim_iv_wald, tau_wald),\n349\t]:\n350\t    d = data[np.isfinite(data)]\n351\t    sf = np.mean(d * true < 0)\n352\t    print(f\"  {name:15s}: median={np.median(d):.4f}, mean={np.mean(d):.4f}, \"\n353\t          f\"sf={sf:.1%}, range=[{np.percentile(d, 1):.3f}, {np.percentile(d, 99):.3f}]\")\n354\t\n355\t\n356\t# ═══════════════════════════════════════════════════════════════════════════════\n357\t# PLOT — 2×4 grid, per-panel x-axis, regime bands, KDE + histogram\n358\t# ═══════════════════════════════════════════════════════════════════════════════\n359\tprint(\"\\nPlotting...\")\n360\tfig, axes = plt.subplots(2, 4, figsize=(14, 7))\n361\t\n362\tpanels = [\n363\t    dict(label='(a) Confounding', sub='Residual confounding',\n364\t         data=plim_conf, tau=1.0, sub_color=DANGER),\n365\t    dict(label='(b) Exposure', sub=f'{sf_exp_combined:.1%} β₁ sign reversal',\n366\t         data=plim_exp1, tau=1.0, sub_color=DANGER, include_zero=True),\n367\t    dict(label='(c) Mediation', sub='Direct-effect amplification',\n368\t         data=plim_med, tau=1.0, sub_color=DANGER),\n369\t    dict(label='(d) Collider', sub='Collider bias attenuated',\n370\t         data=plim_col, tau=1.0, sub_color=SAFE),\n371\t    dict(label='(e) M-bias', sub='Near-immune',\n372\t         data=plim_mb, tau=1.0, sub_color=SAFE),\n373\t    dict(label='(f) IV (naive OLS)', sub='Endogeneity compounded',\n374\t         data=plim_iv, tau=1.0, sub_color=DANGER),\n375\t    dict(label='(g) IV (Wald)', sub='52.6% sign reversal',\n376\t         data=plim_iv_wald, tau=tau_wald, sub_color=DANGER, include_zero=True),\n377\t]\n378\t\n379\taxes.flat[7].set_visible(False)\n380\t\n381\tfor ax, cfg in zip(axes.flat, panels):\n382\t    data = cfg['data']\n383\t    tau = cfg['tau']\n384\t    d = data[np.isfinite(data)]\n385\t\n386\t    # ── Per-panel x-range ────────────────────────────────────────────────────\n387\t    p_lo, p_hi = np.percentile(d, [0.5, 99.5])\n388\t    x_lo = min(p_lo, tau)\n389\t    x_hi = max(p_hi, tau)\n390\t    if cfg.get('include_zero', False):\n391\t        x_lo = min(x_lo, -0.2)\n392\t    span = x_hi - x_lo\n393\t    pad = max(0.1 * span, 0.02)\n394\t    x_range = (x_lo - pad, x_hi + pad)\n395\t\n396\t    # ── Regime bands ─────────────────────────────────────────────────────────\n397\t    if x_range[0] < 0:\n398\t        ax.axvspan(x_range[0], 0, alpha=0.07, color=DANGER, zorder=0)\n399\t    safe_w = 0.05 * abs(tau)\n400\t    ax.axvspan(max(tau - safe_w, x_range[0]), min(tau + safe_w, x_range[1]),\n401\t               alpha=0.12, color=SAFE, zorder=0)\n402\t\n403\t    # ── Histogram ────────────────────────────────────────────────────────────\n404\t    d_plot = d[(d >= x_range[0]) & (d <= x_range[1])]\n405\t    ax.hist(d_plot, bins=60, range=x_range, density=True,\n406\t            alpha=0.25, color=DIST, edgecolor='none', zorder=2)\n407\t\n408\t    # ── KDE ──────────────────────────────────────────────────────────────────\n409\t    if len(d_plot) > 50:\n410\t        try:\n411\t            kde = gaussian_kde(d_plot, bw_method='scott')\n412\t            xk = np.linspace(x_range[0], x_range[1], 400)\n413\t            yk = kde(xk)\n414\t            ax.plot(xk, yk, color=DIST, lw=1.5, zorder=3)\n415\t            ax.fill_between(xk, yk, alpha=0.12, color=DIST, zorder=2)\n416\t        except Exception:\n417\t            pass\n418\t\n419\t    # ── Reference line ───────────────────────────────────────────────────────\n420\t    ax.axvline(tau, color=REF, ls='--', lw=1.2, alpha=0.7, zorder=4)\n421\t\n422\t    # ── Title + subtitle ─────────────────────────────────────────────────────\n423\t    ax.set_title(cfg['label'], fontsize=12, fontweight='bold', pad=16)\n424\t    ax.text(0.5, 1.01, cfg['sub'], transform=ax.transAxes,\n425\t            fontsize=9, ha='center', va='bottom', color=cfg['sub_color'],\n426\t            fontstyle='italic')\n427\t\n428\t    # ── Stats box ────────────────────────────────────────────────────────────\n429\t    sf_rate = np.nanmean(d * tau < 0)\n430\t    viol_rate = np.nanmean(np.abs(d - tau) / max(abs(tau), 1e-8) > 0.10)\n431\t    box_txt = (f'sign_flip={sf_rate:.1%}\\n'\n432\t               f'viol>10%={viol_rate:.1%}\\n'\n433\t               f'n={len(d):,}')\n434\t    ax.text(0.97, 0.95, box_txt, transform=ax.transAxes,\n435\t            fontsize=7.5, ha='right', va='top', family='monospace',\n436\t            bbox=dict(boxstyle='round,pad=0.3', fc='white', alpha=0.85,\n437\t                      ec='#cccccc', lw=0.5))\n438\t\n439\t    # ── Axis limits ──────────────────────────────────────────────────────────\n440\t    ax.set_xlim(x_range)\n441\t    ax.set_ylim(bottom=0)\n442\t\n443\t    # ── τ_true label (after ylim is set) ─────────────────────────────────────\n444\t    trans = mtransforms.blended_transform_factory(ax.transData, ax.transAxes)\n445\t    offset = 0.03 * (x_range[1] - x_range[0])\n446\t    t = ax.text(tau + offset, 0.75, r'$\\tau_{true}$', fontsize=8,\n447\t                color=REF, alpha=0.6, va='center', transform=trans)\n448\t    t.set_path_effects([pe.withStroke(linewidth=2, foreground='white')])\n449\t\n450\tfor ax in axes[1, :]:\n451\t    if ax.get_visible():\n452\t        ax.set_xlabel(r'plim $\\hat{\\tau}$', fontsize=11)\n453\tfor ax in axes[:, 0]:\n454\t    ax.set_ylabel('Density', fontsize=13)\n455\t\n456\tfig.suptitle(\n457\t    'Bias Distribution Under K=3 Non-Differential Misclassification\\n'\n458\t    '100,000 Random Confusion Matrices (Dirichlet(1,1,1) per column)',\n459\t    fontsize=13, y=1.04)\n460\t\n461\tplt.tight_layout(h_pad=2.5, w_pad=1.2)\n462\t\n463\tout_dir = os.path.dirname(os.path.abspath(__file__))\n464\tpdf_path = os.path.join(out_dir, 'fig2_bias_distribution.pdf')\n465\tpng_path = os.path.join(out_dir, 'fig2_bias_distribution.png')\n466\tfig.savefig(pdf_path)\n467\tfig.savefig(png_path, dpi=300)\n468\tplt.close()\n469\t\n470\tprint(f\"\\nSaved: {pdf_path}\")\n471\tprint(f\"Saved: {png_path}\")\n472\tprint(f\"PDF size: {os.path.getsize(pdf_path) / 1024:.0f} KB\")\n473\tprint(f\"PNG size: {os.path.getsize(png_path) / 1024:.0f} KB\")\n474\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9eed8956-997a-450d-9c9b-c634264f881a",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "71049f88-2b25-4529-8795-0c86dd0e27e7",
+            "sourceToolAssistantUUID": "9eed8956-997a-450d-9c9b-c634264f881a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T19:34:52.116Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013KVEUvAkMqSN62Hx74oCNg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig3.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "71049f88-2b25-4529-8795-0c86dd0e27e7",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WGRfPYPLpLMxbj9Qy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ee6070ee-dd99-444b-8f5d-3d1f76604c94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXRqgebrVGiQ6AsUXwHa2g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 17909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1022,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T19:34:52.119Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013KVEUvAkMqSN62Hx74oCNg",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Generate fig3_asv_ranking: Forest-plot comparison of ASV sensitivity rankings.\n3\t\n4\tThree-panel layout: Magnitude ASV | Significance Power | Inline stats (+ sign-flip).\n5\tNarrative intent: different ASV types give DIFFERENT vulnerability rankings.\n6\t\"\"\"\n7\timport matplotlib\n8\tmatplotlib.use('Agg')\n9\timport matplotlib.pyplot as plt\n10\timport matplotlib.patches as mpatches\n11\timport matplotlib.patheffects as pe\n12\timport numpy as np\n13\timport os\n14\t\n15\tplt.rcParams.update({\n16\t    'font.family': 'DejaVu Sans',\n17\t    'font.size': 10,\n18\t    'axes.titlesize': 12,\n19\t    'axes.labelsize': 10,\n20\t    'xtick.labelsize': 9,\n21\t    'ytick.labelsize': 10,\n22\t    'legend.fontsize': 9,\n23\t    'figure.dpi': 300,\n24\t    'savefig.dpi': 300,\n25\t    'savefig.bbox': 'tight',\n26\t    'savefig.pad_inches': 0.08,\n27\t    'axes.spines.top': False,\n28\t    'axes.spines.right': False,\n29\t    'pdf.fonttype': 42,\n30\t    'ps.fonttype': 42,\n31\t    'lines.linewidth': 1.8,\n32\t})\n33\t\n34\t# ── Colors (colorblind-safe Okabe-Ito) ────────────────────────────────────\n35\tC_MAG  = '#0072B2'   # blue — magnitude ASV\n36\tC_SIG  = '#E69F00'   # orange — significance power\n37\tC_SIGN = '#D55E00'   # vermillion — sign-flip risk\n38\tC_FRAG = '#D55E00'   # fragile zone tint (low alpha)\n39\tC_IMMUNE = '#009E73'  # green — immune / structural guarantee\n40\t\n41\t# ── Data ──────────────────────────────────────────────────────────────────\n42\t# Ordered by composite vulnerability (most fragile → most robust)\n43\ttopologies = [\n44\t    'IV', 'Front-door', 'Exposure', 'Confounding',\n45\t    'Mediation', 'Collider', 'M-bias',\n46\t]\n47\tN = len(topologies)\n48\t\n49\t# Magnitude ASV ranges (τ=0.5, 10% threshold). None=N/A, 'inf'=immune\n50\tmag_asv = {\n51\t    'IV':          (0.101, 0.607),\n52\t    'Front-door':  (0.064, 0.387),\n53\t    'Exposure':    None,\n54\t    'Confounding': (0.081, 0.487),\n55\t    'Mediation':   (0.076, 0.454),\n56\t    'Collider':    (0.338, 2.028),\n57\t    'M-bias':      'inf',\n58\t}\n59\t\n60\t# Significance power (τ=0.05 filter). None=N/A\n61\tsig_power = {\n62\t    'IV':          0,\n63\t    'Front-door':  100,\n64\t    'Exposure':    None,\n65\t    'Confounding': 100,\n66\t    'Mediation':   0,\n67\t    'Collider':    0,\n68\t    'M-bias':      98,   # midpoint of 96–100%\n69\t}\n70\t\n71\t# Sign-flip ASV\n72\tsign_flip = {\n73\t    'Exposure': '83.4%',\n74\t    'IV':       '1.1–6.7',\n75\t}\n76\t\n77\t# Brief characterization for significance panel annotations\n78\tsig_note = {\n79\t    'Mediation': 'attenuating',\n80\t    'Collider':  'attenuating',\n81\t    'IV':        'Wald underpowered',\n82\t}\n83\t\n84\t\n85\tdef fmt_mag(topo):\n86\t    v = mag_asv[topo]\n87\t    if v is None:\n88\t        return '—'\n89\t    if v == 'inf':\n90\t        return '∞'\n91\t    return f'{v[0]:.2f} – {v[1]:.2f}'\n92\t\n93\t\n94\tdef fmt_sig(topo):\n95\t    v = sig_power[topo]\n96\t    if v is None:\n97\t        return '—'\n98\t    return f'{v}%'\n99\t\n100\t\n101\tdef fmt_sf(topo):\n102\t    return sign_flip.get(topo, '—')\n103\t\n104\t\n105\t# ══════════════════════════════════════════════════════════════════════════\n106\t#  BUILD FIGURE\n107\t# ══════════════════════════════════════════════════════════════════════════\n108\tfig = plt.figure(figsize=(9.5, 5))\n109\tgs = fig.add_gridspec(1, 3, width_ratios=[2.2, 1.3, 2.0], wspace=0.08)\n110\t\n111\tax_mag  = fig.add_subplot(gs[0])\n112\tax_sig  = fig.add_subplot(gs[1])\n113\tax_stat = fig.add_subplot(gs[2])\n114\t\n115\t# Shared y setup\n116\tfor ax in (ax_mag, ax_sig, ax_stat):\n117\t    ax.set_ylim(N - 0.5, -0.5)\n118\t    # Alternating row backgrounds\n119\t    for i in range(N):\n120\t        if i % 2 == 0:\n121\t            ax.axhspan(i - 0.5, i + 0.5, color='#f5f5f5', zorder=0, lw=0)\n122\t\n123\t# ── Panel 1: Magnitude ASV ────────────────────────────────────────────────\n124\tax_mag.axvspan(0, 0.3, alpha=0.07, color=C_FRAG, zorder=0)\n125\tax_mag.axvline(0.3, color=C_FRAG, lw=0.6, ls=':', alpha=0.35, zorder=0)\n126\t\n127\tfor i, t in enumerate(topologies):\n128\t    v = mag_asv[t]\n129\t    if v is None:\n130\t        ax_mag.text(0.8, i, 'N/A', fontsize=8.5, color='#bbbbbb',\n131\t                    ha='center', va='center', fontstyle='italic')\n132\t    elif v == 'inf':\n133\t        ax_mag.annotate(\n134\t            '', xy=(2.35, i), xytext=(1.5, i),\n135\t            arrowprops=dict(arrowstyle='->', color=C_IMMUNE, lw=2.2,\n136\t                            mutation_scale=14))\n137\t        ax_mag.text(2.4, i, '∞', fontsize=14, color=C_IMMUNE,\n138\t                    ha='left', va='center', fontweight='bold')\n139\t    else:\n140\t        lo, hi = v\n141\t        mid = (lo + hi) / 2\n142\t        ax_mag.plot([lo, hi], [i, i], color=C_MAG, lw=3,\n143\t                    solid_capstyle='round', zorder=2, alpha=0.7)\n144\t        ax_mag.plot(mid, i, 'o', color=C_MAG, ms=8, zorder=3,\n145\t                    mec='white', mew=0.9)\n146\t        ax_mag.plot(lo, i, '|', color=C_MAG, ms=6, mew=1.2, zorder=3)\n147\t        ax_mag.plot(hi, i, '|', color=C_MAG, ms=6, mew=1.2, zorder=3)\n148\t\n149\tax_mag.set_xlim(-0.02, 2.65)\n150\tax_mag.set_xlabel('ASV value  (lower → more fragile)')\n151\tax_mag.set_title('Magnitude ASV', fontweight='bold', color=C_MAG,\n152\t                 loc='left', pad=8)\n153\tax_mag.set_yticks(range(N))\n154\tax_mag.set_yticklabels(topologies)\n155\tax_mag.grid(True, axis='x', alpha=0.12, zorder=0)\n156\tax_mag.spines['left'].set_visible(False)\n157\tax_mag.tick_params(axis='y', length=0)\n158\t\n159\t# Italicize 'Exposure' (sign-flip-only topology)\n160\tfor lbl in ax_mag.get_yticklabels():\n161\t    if lbl.get_text() == 'Exposure':\n162\t        lbl.set_fontstyle('italic')\n163\t        lbl.set_color('#888888')\n164\t\n165\t# ── Panel 2: Significance Power ───────────────────────────────────────────\n166\tax_sig.axvspan(0, 50, alpha=0.07, color=C_FRAG, zorder=0)\n167\tax_sig.axvline(50, color=C_FRAG, lw=0.6, ls=':', alpha=0.35, zorder=0)\n168\t\n169\tfor i, t in enumerate(topologies):\n170\t    v = sig_power[t]\n171\t    if v is None:\n172\t        ax_sig.text(50, i, 'N/A', fontsize=8.5, color='#bbbbbb',\n173\t                    ha='center', va='center', fontstyle='italic')\n174\t    else:\n175\t        # Lollipop: thin line from 0 to value\n176\t        ax_sig.plot([0, v], [i, i], color=C_SIG, lw=1.5, alpha=0.4, zorder=2)\n177\t        ax_sig.plot(v, i, '^', color=C_SIG, ms=10, zorder=3,\n178\t                    mec='white', mew=0.9)\n179\t        # Brief annotation for 0% power topologies\n180\t        if t in sig_note:\n181\t            ax_sig.text(\n182\t                4, i + 0.28, sig_note[t], fontsize=6.5,\n183\t                color='#999999', fontstyle='italic', va='top')\n184\t\n185\tax_sig.set_xlim(-5, 115)\n186\tax_sig.set_xlabel('Power (%)')\n187\tax_sig.set_title('Significance Power', fontweight='bold', color=C_SIG,\n188\t                 loc='left', pad=8)\n189\tax_sig.set_yticks(range(N))\n190\tax_sig.set_yticklabels([])\n191\tax_sig.grid(True, axis='x', alpha=0.12, zorder=0)\n192\tax_sig.spines['left'].set_visible(False)\n193\tax_sig.tick_params(axis='y', length=0)\n194\t\n195\t# ── Panel 3: Inline stats table ───────────────────────────────────────────\n196\tax_stat.set_xlim(0, 1)\n197\tax_stat.axis('off')\n198\t\n199\tcx = [0.01, 0.40, 0.66]\n200\theaders = ['Mag ASV', 'Power', 'Sign-flip']\n201\th_colors = [C_MAG, C_SIG, C_SIGN]\n202\t\n203\t# Column headers\n204\tfor j, (hdr, hc) in enumerate(zip(headers, h_colors)):\n205\t    ax_stat.text(cx[j], -0.35, hdr, fontsize=9, fontweight='bold',\n206\t                 color=hc, va='center', clip_on=False)\n207\t\n208\t# Header underline\n209\tax_stat.plot([0.0, 0.98], [-0.12, -0.12], color='#dddddd', lw=0.6,\n210\t             clip_on=False, transform=ax_stat.transData)\n211\t\n212\tfor i, t in enumerate(topologies):\n213\t    # Magnitude value\n214\t    mc = C_IMMUNE if mag_asv[t] == 'inf' else '#444444'\n215\t    ax_stat.text(cx[0], i, fmt_mag(t), fontsize=8.5, color=mc,\n216\t                 va='center', family='monospace')\n217\t    # Significance power\n218\t    ax_stat.text(cx[1], i, fmt_sig(t), fontsize=8.5, color='#444444',\n219\t                 va='center', family='monospace')\n220\t    # Sign-flip\n221\t    sf = fmt_sf(t)\n222\t    if t in sign_flip:\n223\t        ax_stat.plot(cx[2] - 0.04, i, 'D', color=C_SIGN, ms=5,\n224\t                     mec='white', mew=0.5, zorder=3, clip_on=False)\n225\t        ax_stat.text(cx[2], i, sf, fontsize=8.5, color=C_SIGN,\n226\t                     va='center', fontweight='bold', family='monospace')\n227\t    else:\n228\t        ax_stat.text(cx[2], i, sf, fontsize=8.5, color='#cccccc',\n229\t                     va='center', family='monospace')\n230\t\n231\t# ── Suptitle (insight, not description) ───────────────────────────────────\n232\tfig.suptitle(\n233\t    'Different ASV types yield different vulnerability rankings',\n234\t    fontsize=11.5, fontstyle='italic', color='#444444', y=1.01)\n235\t\n236\t# ── Legend ─────────────────────────────────────────────────────────────────\n237\thandles = [\n238\t    plt.Line2D([0], [0], marker='o', color=C_MAG, ls='-', lw=2.5,\n239\t               ms=7, mec='white', mew=0.9, alpha=0.7,\n240\t               label='Magnitude ASV (range)'),\n241\t    plt.Line2D([0], [0], marker='^', color=C_SIG, ls='-', lw=1.5,\n242\t               ms=9, mec='white', mew=0.9, alpha=0.6,\n243\t               label='Significance power'),\n244\t    plt.Line2D([0], [0], marker='D', color=C_SIGN, ls='None',\n245\t               ms=6, mec='white', mew=0.5,\n246\t               label='Sign-flip risk'),\n247\t    mpatches.Patch(fc=C_FRAG, alpha=0.07, ec='none',\n248\t                   label='Fragile zone'),\n249\t]\n250\tfig.legend(handles=handles, loc='lower center', ncol=4,\n251\t           bbox_to_anchor=(0.42, -0.04), frameon=False, fontsize=8.5)\n252\t\n253\tfig.subplots_adjust(left=0.08, right=0.98, top=0.92, bottom=0.13, wspace=0.08)\n254\t\n255\t# ── Save ──────────────────────────────────────────────────────────────────\n256\toutdir = os.path.dirname(os.path.abspath(__file__))\n257\tbase = os.path.join(outdir, 'fig3_asv_ranking')\n258\tfig.savefig(f'{base}.pdf')\n259\tfig.savefig(f'{base}.png', dpi=300)\n260\tplt.close()\n261\tprint(f'Saved: {base}.pdf')\n262\tprint(f'Saved: {base}.png')\n263\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee6070ee-dd99-444b-8f5d-3d1f76604c94",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "d738acde-aa23-43d2-a8ed-569913df271f",
+            "sourceToolAssistantUUID": "ee6070ee-dd99-444b-8f5d-3d1f76604c94",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T19:34:52.355Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K8QECxoZ441KZNUUsCWLfJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig4.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d738acde-aa23-43d2-a8ed-569913df271f",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WGRfPYPLpLMxbj9Qy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "933bc4bd-941d-4175-ba35-40b38b5e0b5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXRqgebrVGiQ6AsUXwHa2g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 17909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1022,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T19:34:52.361Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K8QECxoZ441KZNUUsCWLfJ",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Generate fig4_binarization: Binarization collapse Δ across 6 topologies.\n3\t\n4\tNarrative intent: Collapsing K=3 to binary is a dangerous shortcut —\n5\tΔ varies 150x from M-bias (0.006) to IV (0.926), and sign flips\n6\temerge in exposure + IV.\n7\t\n8\tData source: registry plan008_binarization_collapse (100k Dirichlet samples).\n9\t\"\"\"\n10\timport matplotlib\n11\tmatplotlib.use('Agg')\n12\timport matplotlib.pyplot as plt\n13\timport matplotlib.patches as mpatches\n14\timport numpy as np\n15\t\n16\t# ── Data from registry (plan008_binarization_collapse) ─────────────────\n17\t# Sorted by Δ_mean ascending for visual impact\n18\t\n19\tdata = {\n20\t    'M-bias':      {'D_mean': 0.0063, 'D_med': 0.0054, 'D_P95': 0.0147, 'D_max': 0.0328,\n21\t                    'frac_gt_001': 0.181, 'frac_gt_005': 0.0, 'sign_flip': 0.0},\n22\t    'Collider':    {'D_mean': 0.0169, 'D_med': 0.0125, 'D_P95': 0.0472, 'D_max': 0.1069,\n23\t                    'frac_gt_001': 0.572, 'frac_gt_005': 0.039, 'sign_flip': 0.0},\n24\t    'Confounding': {'D_mean': 0.0253, 'D_med': 0.0182, 'D_P95': 0.0733, 'D_max': 0.2213,\n25\t                    'frac_gt_001': 0.686, 'frac_gt_005': 0.138, 'sign_flip': 0.0},\n26\t    'Mediation':   {'D_mean': 0.0446, 'D_med': 0.0355, 'D_P95': 0.1179, 'D_max': 0.252,\n27\t                    'frac_gt_001': 0.835, 'frac_gt_005': 0.36, 'sign_flip': 0.0},\n28\t    'Exposure':    {'D_mean': 0.5164, 'D_med': 0.506, 'D_P95': 0.8453, 'D_max': 1.3876,\n29\t                    'frac_gt_001': 1.0, 'frac_gt_005': 0.999, 'sign_flip': 0.14},\n30\t    'IV':          {'D_mean': 0.926, 'D_med': 0.9394, 'D_P95': 1.3426, 'D_max': 2.0809,\n31\t                    'frac_gt_001': 1.0, 'frac_gt_005': 1.0, 'sign_flip': 0.175},\n32\t}\n33\t\n34\ttopos = list(data.keys())\n35\tn = len(topos)\n36\ty_pos = np.arange(n)\n37\t\n38\t# Colors\n39\tC_LOW  = '#0072B2'   # blue — low collapse\n40\tC_HIGH = '#D55E00'   # vermillion — high collapse\n41\tC_MED  = '#E69F00'   # orange — medium\n42\tC_DANGER = '#FFF0E0'\n43\tC_SAFE   = '#E8F5E8'\n44\t\n45\tdef get_color(d_mean):\n46\t    if d_mean < 0.02:\n47\t        return C_LOW\n48\t    elif d_mean < 0.1:\n49\t        return C_MED\n50\t    else:\n51\t        return C_HIGH\n52\t\n53\tfig, ax = plt.subplots(figsize=(8, 4.5))\n54\t\n55\t# Background danger band\n56\tax.axvspan(0.05, 2.5, color=C_DANGER, alpha=0.3, zorder=0)\n57\tax.axvspan(0, 0.05, color=C_SAFE, alpha=0.3, zorder=0)\n58\tax.axvline(x=0.05, color='gray', linestyle=':', linewidth=0.8, alpha=0.7, zorder=1,\n59\t           label='Δ = 0.05 (practical threshold)')\n60\t\n61\tfor i, topo in enumerate(topos):\n62\t    d = data[topo]\n63\t    color = get_color(d['D_mean'])\n64\t\n65\t    # Range bar: median to P95\n66\t    ax.plot([d['D_med'], d['D_P95']], [y_pos[i], y_pos[i]],\n67\t            color=color, linewidth=2.5, zorder=3, alpha=0.6)\n68\t\n69\t    # Extend thin line to max\n70\t    ax.plot([d['D_P95'], d['D_max']], [y_pos[i], y_pos[i]],\n71\t            color=color, linewidth=1, zorder=3, alpha=0.4)\n72\t\n73\t    # Mean marker\n74\t    ax.plot(d['D_mean'], y_pos[i], 'o', color=color, markersize=9, zorder=4,\n75\t            markeredgecolor='white', markeredgewidth=1)\n76\t\n77\t    # Median marker (smaller)\n78\t    ax.plot(d['D_med'], y_pos[i], '|', color=color, markersize=12, zorder=4,\n79\t            markeredgewidth=2)\n80\t\n81\t    # Numeric label\n82\t    label = f\"Δ̄={d['D_mean']:.3f}\"\n83\t    if d['sign_flip'] > 0:\n84\t        label += f\"  ⚠ {d['sign_flip']*100:.0f}% sign flip\"\n85\t    ax.text(d['D_max'] + 0.03, y_pos[i], label,\n86\t            va='center', ha='left', fontsize=8.5, color=color, fontweight='bold')\n87\t\n88\tax.set_yticks(y_pos)\n89\tax.set_yticklabels(topos, fontsize=10)\n90\tax.set_xlabel('Binarization collapse Δ = |bias$_{K=3}$ − bias$_{K→2}$|', fontsize=10)\n91\tax.set_xlim(-0.02, 2.5)\n92\tax.invert_yaxis()\n93\t\n94\t# 150x annotation\n95\tax.annotate('150×', xy=(0.926, 5), xytext=(0.926, 0),\n96\t            fontsize=14, fontweight='bold', color=C_HIGH, alpha=0.3,\n97\t            ha='center', va='center',\n98\t            arrowprops=dict(arrowstyle='<->', color=C_HIGH, alpha=0.3, lw=1.5))\n99\t\n100\tax.set_title('Binarization Collapse Across DAG Topologies\\n'\n101\t             'Collapsing K=3 → binary introduces topology-dependent bias',\n102\t             fontsize=11, fontweight='bold', loc='left')\n103\t\n104\tax.spines['top'].set_visible(False)\n105\tax.spines['right'].set_visible(False)\n106\t\n107\t# Legend\n108\tleg_elements = [\n109\t    plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=C_LOW, markersize=8,\n110\t               label='Low collapse (Δ̄ < 0.02)'),\n111\t    plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=C_MED, markersize=8,\n112\t               label='Medium (0.02 ≤ Δ̄ < 0.1)'),\n113\t    plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=C_HIGH, markersize=8,\n114\t               label='High collapse (Δ̄ ≥ 0.1)'),\n115\t    plt.Line2D([0], [0], color='gray', linestyle=':', linewidth=1,\n116\t               label='Practical threshold (Δ = 0.05)'),\n117\t]\n118\tax.legend(handles=leg_elements, loc='lower right', fontsize=8, framealpha=0.9)\n119\t\n120\tplt.tight_layout()\n121\t\n122\t# ── Save ────────────────────────────────────────────────────────────────\n123\tout_base = '/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/fig4_binarization'\n124\tfig.savefig(f'{out_base}.pdf', bbox_inches='tight', dpi=300, pad_inches=0.1)\n125\tfig.savefig(f'{out_base}.png', bbox_inches='tight', dpi=300, pad_inches=0.1)\n126\tprint(f'Saved: {out_base}.pdf and .png')\n127\tplt.close()\n128\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "933bc4bd-941d-4175-ba35-40b38b5e0b5d",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "2f7a8269-4bde-4cda-aa0d-b51cca02e422",
+            "sourceToolAssistantUUID": "933bc4bd-941d-4175-ba35-40b38b5e0b5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T19:34:52.958Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FvwDy3twzNWCpBp7NDBdSM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_fig7.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f7a8269-4bde-4cda-aa0d-b51cca02e422",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WGRfPYPLpLMxbj9Qy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6d2f735f-d1a7-4ec7-9a6a-bf5c027a8365",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXRqgebrVGiQ6AsUXwHa2g",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 17909,
+                "output_tokens": 477,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1022
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 477,
+                    "cache_read_input_tokens": 17909,
+                    "cache_creation_input_tokens": 1022,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1022,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T19:34:52.961Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FvwDy3twzNWCpBp7NDBdSM",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tfig7_dirichlet_overlay: overlay 14 empirical confusion-matrix configs on theoretical\n3\tDirichlet-subspace violation curves (exposure + IV topologies).\n4\t\n5\tX-axis: min diagonal dominance = min_k C[k,k]\n6\tY-axis: rate (violation_rate / sign_flip_rate from Dirichlet subspace analysis)\n7\tTheory: violation_rate as gray-shaded area; sign_flip_rate as dashed line.\n8\tEmpirical: 14 points placed at (min_diag, interpolated_violation_rate), markers\n9\tencode dataset/model. Demonstrates \"theory (K=3) vs practice (K=2,3,10)\" gap.\n10\t\"\"\"\n11\timport json\n12\tfrom pathlib import Path\n13\t\n14\timport matplotlib\n15\tmatplotlib.use(\"Agg\")\n16\timport matplotlib.pyplot as plt\n17\timport matplotlib.patheffects as pe\n18\timport numpy as np\n19\tfrom scipy.interpolate import PchipInterpolator\n20\t\n21\tPROJ = Path(\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib\")\n22\tART = PROJ / \"artifacts\"\n23\tOUT = PROJ / \"figures/paper/fig7_dirichlet_overlay.pdf\"\n24\t\n25\t# ---------- global style ----------\n26\tplt.rcParams.update({\n27\t    \"font.family\": \"DejaVu Sans\",\n28\t    \"font.size\": 10,\n29\t    \"axes.titlesize\": 11,\n30\t    \"axes.labelsize\": 10,\n31\t    \"xtick.labelsize\": 9,\n32\t    \"ytick.labelsize\": 9,\n33\t    \"legend.fontsize\": 8,\n34\t    \"figure.dpi\": 300,\n35\t    \"savefig.dpi\": 300,\n36\t    \"savefig.bbox\": \"tight\",\n37\t    \"savefig.pad_inches\": 0.05,\n38\t    \"axes.spines.top\": False,\n39\t    \"axes.spines.right\": False,\n40\t    \"lines.linewidth\": 1.6,\n41\t})\n42\t\n43\t# ---------- theoretical data (K=3 Dirichlet subspace) ----------\n44\tEXPOSURE_THEORY = {\n45\t    \"diag_thresh\":     [0.0,   0.5,   0.7,   0.9],\n46\t    \"violation_rate\":  [0.850, 0.325, 0.137, 0.119],\n47\t    \"sign_flip_rate\":  [0.834, 0.216, 0.021, 0.000],\n48\t}\n49\t\n50\twith open(ART / \"iv_dirichlet_subspace_results.json\") as f:\n51\t    iv_raw = json.load(f)\n52\tIV_THEORY = {\n53\t    \"diag_thresh\":    [],\n54\t    \"violation_rate\": [],\n55\t    \"sign_flip_rate\": [],\n56\t}\n57\tfor t in (\"0.0\", \"0.5\", \"0.7\", \"0.9\"):\n58\t    IV_THEORY[\"diag_thresh\"].append(float(t))\n59\t    IV_THEORY[\"violation_rate\"].append(iv_raw[\"thresholds\"][t][\"violation_rate\"])\n60\t    IV_THEORY[\"sign_flip_rate\"].append(iv_raw[\"thresholds\"][t][\"sign_flip_rate\"])\n61\t\n62\t# ---------- empirical 14 configs ----------\n63\t# (min_diag, dataset, model, prompt)  - 14 valid paper configs\n64\t# HumAID (K=10): full 10x10 CM\n65\twith open(ART / \"plan006/asv_empirical_results.json\") as f:\n66\t    plan006 = json.load(f)\n67\tHUMAID_CMS = plan006[\"confusion_matrices\"]\n68\t\n69\t# VAST and CivilComments diagonals extracted from plan006_full filter pipeline\n70\t# (vast: from plan006_full_filtered_stats.json[\"filtered_stats\"][\"vast_per_class_recall\"])\n71\tVAST_DIAG = {\n72\t    \"qwen2.5-7b_zero-shot\":   [0.4613733905579399, 0.847457627118644,   0.10956175298804781],\n73\t    \"qwen2.5-7b_few-shot-3\":  [0.4132762312633833, 0.8210922787193974,  0.1254980079681275],\n74\t    \"qwen2.5-7b_few-shot-5\":  [0.4753747323340471, 0.775894538606403,   0.1254980079681275],\n75\t}\n76\tCIVIL_DIAG = {\n77\t    \"qwen2.5-7b_zero-shot\":   [0.7481536189069424, 0.684931506849315],\n78\t    \"qwen2.5-7b_few-shot-3\":  [0.6787296898079763, 0.7808219178082192],\n79\t    \"qwen2.5-7b_few-shot-5\":  [0.7370753323485968, 0.7602739726027398],\n80\t}\n81\t\n82\tPAPER_CONFIGS = []\n83\t# humaid 8 (exclude qwen3_few-shot-5 which is all zeros)\n84\tHUMAID_KEYS = [\n85\t    \"humaid_llama4_zero-shot\",\n86\t    \"humaid_llama4_few-shot-3\",\n87\t    \"humaid_llama4_few-shot-5\",\n88\t    \"humaid_qwen3_zero-shot\",\n89\t    \"humaid_qwen3_few-shot-3\",\n90\t    \"humaid_deepseek_zero-shot\",\n91\t    \"humaid_deepseek_few-shot-3\",\n92\t    \"humaid_deepseek_few-shot-5\",\n93\t]\n94\tfor k in HUMAID_KEYS:\n95\t    C = np.array(HUMAID_CMS[k])\n96\t    mind = float(np.min(np.diag(C)))\n97\t    parts = k.split(\"_\", 2)\n98\t    PAPER_CONFIGS.append({\n99\t        \"dataset\": \"humaid\", \"model\": parts[1], \"prompt\": parts[2],\n100\t        \"K\": 10, \"min_diag\": mind,\n101\t    })\n102\tfor k, diag in VAST_DIAG.items():\n103\t    model, prompt = k.split(\"_\", 1)\n104\t    PAPER_CONFIGS.append({\n105\t        \"dataset\": \"vast\", \"model\": model, \"prompt\": prompt,\n106\t        \"K\": 3, \"min_diag\": float(min(diag)),\n107\t    })\n108\tfor k, diag in CIVIL_DIAG.items():\n109\t    model, prompt = k.split(\"_\", 1)\n110\t    PAPER_CONFIGS.append({\n111\t        \"dataset\": \"civil_comments\", \"model\": model, \"prompt\": prompt,\n112\t        \"K\": 2, \"min_diag\": float(min(diag)),\n113\t    })\n114\t\n115\tassert len(PAPER_CONFIGS) == 14, f\"expected 14, got {len(PAPER_CONFIGS)}\"\n116\t\n117\t# ---------- marker / color encoding ----------\n118\t# HumAID circles, blue shades by model\n119\t# VAST squares, orange\n120\t# CivilComments triangles, green\n121\tHUMAID_COLOR = {\n122\t    \"llama4\":   \"#A6CEE3\",   # light blue\n123\t    \"qwen3\":    \"#1F78B4\",   # mid blue\n124\t    \"deepseek\": \"#08306B\",   # dark blue\n125\t}\n126\tDATASET_STYLE = {\n127\t    \"humaid\":         {\"marker\": \"o\", \"size\": 55},\n128\t    \"vast\":           {\"marker\": \"s\", \"color\": \"#E6550D\", \"size\": 55},\n129\t    \"civil_comments\": {\"marker\": \"^\", \"color\": \"#2CA25F\", \"size\": 70},\n130\t}\n131\t\n132\t\n133\tdef smooth_curve(xs, ys, n=200):\n134\t    \"\"\"Monotonic interpolation on [0, 1]; extend constant beyond endpoints.\"\"\"\n135\t    xs = np.asarray(xs, dtype=float)\n136\t    ys = np.asarray(ys, dtype=float)\n137\t    interp = PchipInterpolator(xs, ys, extrapolate=False)\n138\t    xx = np.linspace(0.0, 1.0, n)\n139\t    yy = interp(xx)\n140\t    yy[xx < xs[0]] = ys[0]\n141\t    yy[xx > xs[-1]] = ys[-1]\n142\t    return xx, yy\n143\t\n144\t\n145\tdef interp_at(x, xs, ys):\n146\t    \"\"\"Evaluate monotone interp at a single x with constant tails.\"\"\"\n147\t    xs = np.asarray(xs, dtype=float)\n148\t    ys = np.asarray(ys, dtype=float)\n149\t    if x <= xs[0]:\n150\t        return float(ys[0])\n151\t    if x >= xs[-1]:\n152\t        return float(ys[-1])\n153\t    return float(PchipInterpolator(xs, ys, extrapolate=False)(x))\n154\t\n155\t\n156\tdef draw_panel(ax, theory, panel_title, panel_letter, *, show_violation_fill=True):\n157\t    xs_t = theory[\"diag_thresh\"]\n158\t    vr_t = theory[\"violation_rate\"]\n159\t    sf_t = theory[\"sign_flip_rate\"]\n160\t\n161\t    xx, vr_curve = smooth_curve(xs_t, vr_t)\n162\t    _,  sf_curve = smooth_curve(xs_t, sf_t)\n163\t\n164\t    # Theory: violation zone (gray fill above 0) + sign-flip dashed line\n165\t    if show_violation_fill:\n166\t        ax.fill_between(\n167\t            xx, 0, vr_curve,\n168\t            color=\"#888888\", alpha=0.18, zorder=1,\n169\t            label=\"Violation rate (theory)\",\n170\t        )\n171\t        ax.plot(xx, vr_curve, color=\"#666666\", linewidth=1.2, zorder=2)\n172\t    else:\n173\t        # IV violation_rate is trivially 1.0; show as flat ceiling line w/o fill\n174\t        ax.axhline(1.0, color=\"#888888\", linewidth=1.0, alpha=0.5, zorder=1,\n175\t                   label=\"Violation rate (theory) $=1$\")\n176\t    ax.plot(xx, sf_curve, color=\"#B22222\", linewidth=1.4,\n177\t            linestyle=\"--\", zorder=3,\n178\t            label=\"Sign-flip rate (theory)\")\n179\t\n180\t    # Theory anchor points (small ticks at 0.0, 0.5, 0.7, 0.9)\n181\t    ax.scatter(xs_t, vr_t, s=18, color=\"#666666\",\n182\t               marker=\"x\", linewidth=1.0, zorder=4, label=\"_nolegend_\")\n183\t    ax.scatter(xs_t, sf_t, s=18, color=\"#B22222\",\n184\t               marker=\"x\", linewidth=1.0, zorder=4, label=\"_nolegend_\")\n185\t\n186\t    # Safe / danger zone shading\n187\t    ax.axvspan(0.9, 1.0, color=\"#2CA25F\", alpha=0.07, zorder=0)\n188\t    ax.axvspan(0.0, 0.5, color=\"#E6550D\", alpha=0.07, zorder=0)\n189\t\n190\t    # Empirical points: Y = interp(violation_rate at min_diag)\n191\t    handled = set()\n192\t    for cfg in PAPER_CONFIGS:\n193\t        x = cfg[\"min_diag\"]\n194\t        y = interp_at(x, xs_t, vr_t)\n195\t        ds = cfg[\"dataset\"]\n196\t        style = DATASET_STYLE[ds]\n197\t        marker = style[\"marker\"]\n198\t        size = style[\"size\"]\n199\t        color = HUMAID_COLOR[cfg[\"model\"]] if ds == \"humaid\" else style[\"color\"]\n200\t\n201\t        legend_key = (ds, cfg[\"model\"]) if ds == \"humaid\" else (ds,)\n202\t        if legend_key not in handled:\n203\t            handled.add(legend_key)\n204\t            if ds == \"humaid\":\n205\t                lbl = f\"HumAID/{cfg['model']} (K=10)\"\n206\t            elif ds == \"vast\":\n207\t                lbl = \"VAST/qwen2.5-7b (K=3)\"\n208\t            else:\n209\t                lbl = \"CivilComments/qwen2.5-7b (K=2)\"\n210\t        else:\n211\t            lbl = None\n212\t\n213\t        ax.scatter(\n214\t            x, y, marker=marker, s=size,\n215\t            facecolor=color, edgecolor=\"white\", linewidth=0.8,\n216\t            zorder=6, label=lbl,\n217\t        )\n218\t\n219\t    # Zone annotations\n220\t    txt_safe = ax.text(\n221\t        0.95, 0.04, \"safe\\nzone\", ha=\"center\", va=\"bottom\",\n222\t        fontsize=7.5, color=\"#1B7A45\", fontstyle=\"italic\",\n223\t        transform=ax.transAxes,\n224\t    )\n225\t    txt_safe.set_path_effects([pe.withStroke(linewidth=2.0, foreground=\"white\")])\n226\t    txt_danger = ax.text(\n227\t        0.05, 0.45, \"danger\\nzone\", ha=\"left\", va=\"center\",\n228\t        fontsize=7.5, color=\"#A53A0C\", fontstyle=\"italic\",\n229\t        transform=ax.transAxes,\n230\t    )\n231\t    txt_danger.set_path_effects([pe.withStroke(linewidth=2.0, foreground=\"white\")])\n232\t\n233\t    ax.set_xlim(0.0, 1.0)\n234\t    ax.set_ylim(-0.02, 1.12)\n235\t    ax.set_xlabel(r\"min diagonal dominance  $\\min_k C_{kk}$\")\n236\t    if panel_letter == \"a\":\n237\t        ax.set_ylabel(\"Rate (theory) / dot Y = violation rate\")\n238\t    ax.set_title(f\"({panel_letter}) {panel_title}\", loc=\"left\", pad=4)\n239\t    ax.grid(True, axis=\"y\", alpha=0.25, linewidth=0.5, zorder=0)\n240\t\n241\t\n242\t# ---------- build figure ----------\n243\tfig, axes = plt.subplots(1, 2, figsize=(7.2, 3.6), sharey=True)\n244\t\n245\tdraw_panel(axes[0], EXPOSURE_THEORY,\n246\t           \"Exposure topology\", \"a\",\n247\t           show_violation_fill=True)\n248\tdraw_panel(axes[1], IV_THEORY,\n249\t           \"IV topology\", \"b\",\n250\t           show_violation_fill=False)\n251\t\n252\t# Unified legend across both panels (de-duplicate)\n253\thandles, labels = [], []\n254\tfor ax in axes:\n255\t    h, l = ax.get_legend_handles_labels()\n256\t    for hh, ll in zip(h, l):\n257\t        if ll and ll not in labels:\n258\t            handles.append(hh); labels.append(ll)\n259\tfig.legend(\n260\t    handles, labels,\n261\t    loc=\"lower center\", bbox_to_anchor=(0.5, -0.04),\n262\t    ncol=4, frameon=False, columnspacing=1.2, handletextpad=0.5,\n263\t)\n264\t\n265\tfig.suptitle(\n266\t    r\"Theory (random $K{=}3$ $C$) vs. practice\"\n267\t    r\" (14 LLM-annotated configs, $K\\in\\{2,3,10\\}$)\",\n268\t    fontsize=10, y=1.01,\n269\t)\n270\t\n271\tplt.tight_layout(rect=(0, 0.02, 1, 0.98))\n272\tOUT.parent.mkdir(parents=True, exist_ok=True)\n273\tplt.savefig(OUT)\n274\tplt.savefig(str(OUT).replace(\".pdf\", \".png\"))\n275\tplt.close()\n276\tprint(f\"Saved: {OUT}\")\n277\tprint(f\"Saved: {str(OUT).replace('.pdf', '.png')}\")\n278\t\n279\t# ---------- print empirical points for sanity ----------\n280\tprint()\n281\tprint(f\"{'config':<48} {'K':>3} {'min_diag':>9}\")\n282\tfor cfg in sorted(PAPER_CONFIGS, key=lambda c: c[\"min_diag\"]):\n283\t    key = f\"{cfg['dataset']}_{cfg['model']}_{cfg['prompt']}\"\n284\t    print(f\"{key:<48} {cfg['K']:>3} {cfg['min_diag']:>9.4f}\")\n285\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d2f735f-d1a7-4ec7-9a6a-bf5c027a8365",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "32a46b89-ee35-4754-b87d-3895caac535a",
+            "sourceToolAssistantUUID": "6d2f735f-d1a7-4ec7-9a6a-bf5c027a8365",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T19:34:52.992Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UorT6hbDF48gp1LdVoMyDh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/gen_diagnostic_plots.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32a46b89-ee35-4754-b87d-3895caac535a",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WGRfPYPLpLMxbj9Qy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0b3ece14-c9c9-49ae-8fb6-5a0cda730ae1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JXRqgebrVGiQ6AsUXwHa2g",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1022,
+                "cache_read_input_tokens": 17909,
+                "output_tokens": 477,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1022
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 477,
+                    "cache_read_input_tokens": 17909,
+                    "cache_creation_input_tokens": 1022,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1022,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T19:34:52.994Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UorT6hbDF48gp1LdVoMyDh",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Generate diagnostic plots for §4.6 empirical validation.\n2\t\n3\tData source: HumAID (K=10) ONLY — real LLM confusion matrices from\n4\tplan_006_asv_empirical.py, loaded directly from asv_empirical_results.json.\n5\t\n6\tOutputs:\n7\t  fig5_f1_vs_bias.pdf / .png  — F1 vs downstream bias scatter (HumAID only)\n8\t  fig6_asv_heatmap.pdf / .png — ASV magnitude by topology (HumAID only)\n9\t\"\"\"\n10\t\n11\timport json\n12\timport numpy as np\n13\timport matplotlib.pyplot as plt\n14\t\n15\tJSON_PATH = '../../artifacts/plan006/asv_empirical_results.json'\n16\t\n17\twith open(JSON_PATH) as f:\n18\t    data = json.load(f)\n19\t\n20\tTOPOS = ['confounding', 'mediation', 'collider', 'exposure', 'M-bias', 'IV', 'front-door']\n21\tTOPO_KEYS = ['confounding', 'mediation', 'collider', 'exposure', 'mbias', 'iv', 'frontdoor']\n22\t\n23\t# Identify zero-matrix configs (macro_f1 == 0) to exclude from all stats.\n24\tzero_configs = {(e['model'], e['prompt'])\n25\t                for e in data['f1_vs_bias'] if e['macro_f1'] == 0}\n26\t\n27\t\n28\tdef is_valid(e):\n29\t    return (e['model'], e['prompt']) not in zero_configs\n30\t\n31\ttopo_colors = {\n32\t    'confounding': '#1f77b4', 'mediation': '#ff7f0e', 'collider': '#2ca02c',\n33\t    'exposure': '#d62728', 'mbias': '#9467bd', 'iv': '#8c564b',\n34\t    'frontdoor': '#e377c2',\n35\t}\n36\ttopo_markers = {\n37\t    'confounding': 'o', 'mediation': 's', 'collider': '^',\n38\t    'exposure': 'D', 'mbias': 'v', 'iv': 'X',\n39\t    'frontdoor': 'P',\n40\t}\n41\t\n42\t# ── Figure 5: F1 vs Downstream Bias (exact values from JSON) ──\n43\t\n44\tentries = [e for e in data['f1_vs_bias'] if is_valid(e) and e['macro_f1'] > 0]\n45\t\n46\tfig, ax = plt.subplots(1, 1, figsize=(5.5, 4.0))\n47\t\n48\tfor ti, tk in enumerate(TOPO_KEYS):\n49\t    pts = [e for e in entries if e['topology'] == tk]\n50\t    if not pts:\n51\t        continue\n52\t    f1s = np.array([e['macro_f1'] for e in pts])\n53\t    biases = np.array([abs(e['bias_pct']) * 100 for e in pts])\n54\t    ax.scatter(f1s, biases, c=topo_colors[tk],\n55\t               marker=topo_markers[tk], s=40, alpha=0.8, linewidths=0.4,\n56\t               edgecolors='k', label=TOPOS[ti], zorder=3)\n57\t\n58\tax.axhline(10, color='#d62728', ls='--', lw=0.8, alpha=0.6)\n59\tax.text(0.692, 10.5, '10% bias threshold', ha='right', va='bottom',\n60\t        fontsize=7, color='#d62728', alpha=0.8)\n61\t\n62\tiv_pts = [e for e in entries if e['topology'] == 'iv']\n63\tmax_iv = max(iv_pts, key=lambda e: abs(e['bias_pct']))\n64\tax.annotate(f'IV: {abs(max_iv[\"bias_pct\"])*100:.1f}% bias at F1={max_iv[\"macro_f1\"]:.2f}',\n65\t            xy=(max_iv['macro_f1'], abs(max_iv['bias_pct'])*100),\n66\t            xytext=(max_iv['macro_f1'] + 0.025, abs(max_iv['bias_pct'])*100 - 4),\n67\t            fontsize=7, ha='left', color='#8c564b',\n68\t            arrowprops=dict(arrowstyle='->', color='#8c564b', lw=0.8))\n69\t\n70\tax.set_xlabel('Macro F1', fontsize=10)\n71\tax.set_ylabel('|Relative Bias| (%)', fontsize=10)\n72\tf1_all = [e['macro_f1'] for e in entries]\n73\tax.set_xlim(min(f1_all) - 0.01, max(f1_all) + 0.01)\n74\tax.set_ylim(0, 48)\n75\tax.legend(fontsize=6.5, ncol=2, loc='upper right', framealpha=0.9,\n76\t          handletextpad=0.3, columnspacing=0.8)\n77\tax.tick_params(labelsize=8)\n78\tax.grid(True, alpha=0.15)\n79\tax.set_title('HumAID (K=10): Topology Determines Bias, Not F1', fontsize=10, pad=8)\n80\t\n81\tplt.tight_layout()\n82\tfor ext in ['pdf', 'png']:\n83\t    fig.savefig(f'fig5_f1_vs_bias.{ext}', dpi=300, bbox_inches='tight')\n84\tplt.close()\n85\tprint(\"fig5: plotted\", len(entries), \"exact data points from JSON\")\n86\t\n87\t\n88\t# ── Figure 6: ASV Magnitude by Topology (HumAID K=10 only) ──\n89\t\n90\t# Compute ASV ranges and unsafe counts from JSON type1_type2 data\n91\tt1t2 = [e for e in data['type1_type2'] if is_valid(e)]\n92\t\n93\tasv_ranges = {}\n94\tasv_unsafe = {}\n95\tfor tk in TOPO_KEYS:\n96\t    topo_entries = [e for e in t1t2 if e['topology'] == tk]\n97\t    magnitudes = [e['magnitude_asv'] for e in topo_entries\n98\t                  if e['magnitude_asv'] is not None]\n99\t    unsafe_count = sum(1 for e in topo_entries if not e['asv_safe'])\n100\t    total_count = len(topo_entries)\n101\t    asv_unsafe[tk] = (unsafe_count, total_count)\n102\t    if magnitudes and unsafe_count > 0:\n103\t        asv_ranges[tk] = (min(magnitudes), max(magnitudes))\n104\t    else:\n105\t        asv_ranges[tk] = None\n106\t\n107\tfig, (ax_asv, ax_bar) = plt.subplots(1, 2, figsize=(6.0, 2.8),\n108\t                                      gridspec_kw={'width_ratios': [3, 1.3], 'wspace': 0.08})\n109\t\n110\ty_pos = np.arange(len(TOPO_KEYS))\n111\t\n112\tfor i, tk in enumerate(TOPO_KEYS):\n113\t    rng = asv_ranges[tk]\n114\t    if rng is None:\n115\t        ax_asv.barh(i, 2.0, left=0, color='#d4edda', edgecolor='#2ca02c',\n116\t                    linewidth=0.8, height=0.6)\n117\t        ax_asv.text(1.0, i, 'safe (bias < 10%)', ha='center', va='center',\n118\t                    fontsize=7, color='#2ca02c', fontweight='bold')\n119\t    else:\n120\t        lo, hi = rng\n121\t        mid = (lo + hi) / 2\n122\t        width = hi - lo\n123\t        color = '#d62728' if hi < 0.5 else '#ff7f0e' if hi < 1.0 else '#ffc107'\n124\t        ax_asv.barh(i, width, left=lo, color=color, edgecolor='k',\n125\t                    linewidth=0.5, height=0.6, alpha=0.8)\n126\t        ax_asv.plot([lo, hi], [i, i], 'k-', lw=1.5)\n127\t        ax_asv.plot(lo, i, 'k|', markersize=8)\n128\t        ax_asv.plot(hi, i, 'k|', markersize=8)\n129\t        ax_asv.text(mid, i + 0.35, f'{lo:.2f}--{hi:.2f}', ha='center',\n130\t                    va='bottom', fontsize=6.5)\n131\t\n132\tax_asv.set_xlim(0, 2.0)\n133\tax_asv.set_yticks(y_pos)\n134\tax_asv.set_yticklabels(TOPOS, fontsize=8)\n135\tax_asv.set_xlabel('Magnitude ASV ($\\\\delta^*$)', fontsize=9)\n136\tax_asv.set_title('ASV Range (HumAID, K=10)', fontsize=9, pad=6)\n137\tax_asv.axvline(1.0, color='grey', ls=':', lw=0.6, alpha=0.5)\n138\tax_asv.text(1.02, 6.5, '$\\\\delta^*{=}1$\\n(reference)', fontsize=6, color='grey', va='top')\n139\tax_asv.invert_yaxis()\n140\t\n141\tunsafe_pcts = [asv_unsafe[tk][0] / asv_unsafe[tk][1] * 100 for tk in TOPO_KEYS]\n142\tcolors_bar = ['#d62728' if p > 50 else '#ff7f0e' if p > 0 else '#2ca02c' for p in unsafe_pcts]\n143\tax_bar.barh(y_pos, unsafe_pcts, color=colors_bar, edgecolor='white', linewidth=0.5, height=0.6)\n144\tax_bar.set_xlim(0, 115)\n145\tax_bar.set_yticks([])\n146\tax_bar.set_xlabel('% Unsafe', fontsize=8)\n147\tax_bar.set_title('ASV Filter', fontsize=9, pad=6)\n148\tax_bar.tick_params(labelsize=7)\n149\t\n150\tfor i, pct in enumerate(unsafe_pcts):\n151\t    label = f'{pct:.0f}%' if pct == 0 or pct == 100 else f'{pct:.1f}%'\n152\t    ax_bar.text(pct + 2, i, label, va='center', fontsize=6.5)\n153\t\n154\tax_bar.invert_yaxis()\n155\t\n156\tplt.subplots_adjust(left=0.14, right=0.97, top=0.86, bottom=0.16)\n157\tfor ext in ['pdf', 'png']:\n158\t    fig.savefig(f'fig6_asv_heatmap.{ext}', dpi=300, bbox_inches='tight')\n159\tplt.close()\n160\t\n161\tprint(\"fig6: ASV ranges and unsafe counts computed from JSON\")\n162\tfor tk in TOPO_KEYS:\n163\t    u, t = asv_unsafe[tk]\n164\t    rng = asv_ranges[tk]\n165\t    rng_str = f'{rng[0]:.4f}--{rng[1]:.4f}' if rng else 'safe'\n166\t    print(f\"  {tk}: {u}/{t} unsafe ({u/t*100:.1f}%), ASV range: {rng_str}\")\n167\t\n168\tprint(\"\\nGenerated: fig5_f1_vs_bias.pdf/.png, fig6_asv_heatmap.pdf/.png\")\n169\tprint(\"Data source: HumAID (K=10) ONLY — all values from asv_empirical_results.json\")\n170\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b3ece14-c9c9-49ae-8fb6-5a0cda730ae1",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "f93fad3e-0c20-4f91-8d85-a30738138c42",
+            "sourceToolAssistantUUID": "0b3ece14-c9c9-49ae-8fb6-5a0cda730ae1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T19:34:54.977Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the artifacts directory to verify what files actually exist:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f93fad3e-0c20-4f91-8d85-a30738138c42",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WXQa7wRwnjKY8vf7S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2bedf8d4-927f-4f10-8023-8acf3032f28b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DiSsr9BiD6DMzGYiN2N2xg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 28878,
+                "cache_read_input_tokens": 18931,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 28878,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T19:34:55.616Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HQByN9Hgco7RnM9xJyVUVE",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts -type f -name \"*.json\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bedf8d4-927f-4f10-8023-8acf3032f28b",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WXQa7wRwnjKY8vf7S",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a23f0bab-b552-44d2-a157-546912daaac5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DiSsr9BiD6DMzGYiN2N2xg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 28878,
+                "cache_read_input_tokens": 18931,
+                "output_tokens": 110,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 28878
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 110,
+                    "cache_read_input_tokens": 18931,
+                    "cache_creation_input_tokens": 28878,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 28878,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T19:34:55.669Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HQByN9Hgco7RnM9xJyVUVE",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/adversarial_monotonicity_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/adversarial_monotonicity_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/e2e_demo_results_c9b14d.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/adversarial_monotonicity_results_b60bb1.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/plan011_frontier_cms.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/nondiff_structured_stress_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/exp_d_epsilon_tau_sensitivity.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/nondiff_y_stratified_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/ppi_empirical_validation.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/updated_empirical_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/nondiff_stress_test_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/case_study_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/verify_lambda_bound_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/e2e_demo_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/bootstrap_ci_convergence_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/_project/data/symmetry_deviation_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_proportional_effects_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/within_topo_f1_bias_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/exp_primary_coeff_breakdown_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/structured_nondiff_violation_results.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a23f0bab-b552-44d2-a157-546912daaac5",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "85137232-b5d1-4207-b645-e6f1832caf93",
+            "sourceToolAssistantUUID": "a23f0bab-b552-44d2-a157-546912daaac5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T19:34:57.247Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for the specific artifact files referenced in the scripts:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85137232-b5d1-4207-b645-e6f1832caf93",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WicG5TKfrRBqKNwpH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0fd2d04b-be23-4a8e-b449-4892c0139aab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VBERNaGkKnii5EkhAhsBHJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1137,
+                "cache_read_input_tokens": 47809,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1137,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T19:34:57.676Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G9FgMRGVYgrbqg6b2fooYy",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ | grep -E \"\\.json|^d\" | head -30"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0fd2d04b-be23-4a8e-b449-4892c0139aab",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WicG5TKfrRBqKNwpH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3db94267-0577-459a-a274-8d9eff4248cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VBERNaGkKnii5EkhAhsBHJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1137,
+                "cache_read_input_tokens": 47809,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1137,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T19:34:57.727Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G9FgMRGVYgrbqg6b2fooYy",
+              "type": "tool_result",
+              "content": "drwxr-xr-x 41 ubuntu ubuntu  12288 May 23 19:01 .\ndrwxr-xr-x 16 ubuntu ubuntu   4096 May 23 18:34 ..\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 23 14:35 __pycache__\ndrwxr-xr-x  7 ubuntu ubuntu   4096 May 21 10:11 _project\n-rw-r--r--  1 ubuntu ubuntu   9709 May 23 18:02 adversarial_monotonicity_results.json\n-rw-r--r--  1 ubuntu ubuntu   3557 May 23 05:10 bootstrap_ci_convergence_results.json\n-rw-r--r--  1 ubuntu ubuntu  20032 May 23 14:57 c_estimation_robustness_results.json\n-rw-r--r--  1 ubuntu ubuntu  45552 May 23 14:45 conjecture_dgp_sensitivity_results.json\n-rw-r--r--  1 ubuntu ubuntu   4624 May 23 09:02 correction_k_sensitivity_results.json\n-rw-r--r--  1 ubuntu ubuntu  23193 May 22 04:00 delta_max_results.json\ndrwxr-xr-x 13 ubuntu ubuntu   4096 May 21 08:32 dream_reports\n-rw-r--r--  1 ubuntu ubuntu   5142 May 23 14:59 e2e_demo_results.json\n-rw-r--r--  1 ubuntu ubuntu  39314 May 22 11:24 exp_a_stress_test_results.json\n-rw-r--r--  1 ubuntu ubuntu  44385 May 22 14:33 exp_b_logistic_results.json\n-rw-r--r--  1 ubuntu ubuntu  68284 May 22 11:43 exp_c_bootstrap_results.json\n-rw-r--r--  1 ubuntu ubuntu  11722 May 22 11:50 exp_d_conjecture_results.json\n-rw-r--r--  1 ubuntu ubuntu  11766 May 22 12:25 exp_d_conjecture_results_v2.json\n-rw-r--r--  1 ubuntu ubuntu  33200 May 22 15:34 exp_d_epsilon_tau_sensitivity.json\n-rw-r--r--  1 ubuntu ubuntu   8572 May 22 11:53 exp_e_asv_stability_results.json\n-rw-r--r--  1 ubuntu ubuntu   8115 May 22 17:36 exp_fwl_logistic_results.json\n-rw-r--r--  1 ubuntu ubuntu  40971 May 23 02:23 exp_fwl_nonlinear_scaling_results.json\n-rw-r--r--  1 ubuntu ubuntu  13894 May 23 00:21 exp_primary_coeff_breakdown_results.json\n-rw-r--r--  1 ubuntu ubuntu   4551 May 23 02:12 exp_proportional_effects_results.json\n-rw-r--r--  1 ubuntu ubuntu  12444 May 23 03:32 exp_proportional_real_matrices_results.json\n-rw-r--r--  1 ubuntu ubuntu  36018 May 23 02:29 exp_realistic_epsilon_results.json\n-rw-r--r--  1 ubuntu ubuntu   3196 May 21 05:12 iv_dirichlet_subspace_results.json\n-rw-r--r--  1 ubuntu ubuntu    670 May 23 17:54 k3_symmetric_verify_results.json\n-rw-r--r--  1 ubuntu ubuntu   2653 May 23 00:29 nondiff_stress_test_results.json\n-rw-r--r--  1 ubuntu ubuntu  40686 May 23 04:39 nondiff_structured_stress_results.json\n-rw-r--r--  1 ubuntu ubuntu 137309 May 23 07:16 nondiff_topic_stratified_results.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3db94267-0577-459a-a274-8d9eff4248cd",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "ad5ed410-8b96-4122-ba28-52482c8711f9",
+            "sourceToolAssistantUUID": "3db94267-0577-459a-a274-8d9eff4248cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T19:34:58.017Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SYJzMt9TnKPdpNbxpBuTHQ",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts -maxdepth 2 -name \"*empirical*\" -o -name \"*dirichlet*\" -o -name \"*plan006*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad5ed410-8b96-4122-ba28-52482c8711f9",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WicG5TKfrRBqKNwpH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "32be1fcf-89b1-41b5-a7c0-d65fa8932875",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VBERNaGkKnii5EkhAhsBHJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1137,
+                "cache_read_input_tokens": 47809,
+                "output_tokens": 213,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1137
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 213,
+                    "cache_read_input_tokens": 47809,
+                    "cache_creation_input_tokens": 1137,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1137,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T19:34:58.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SYJzMt9TnKPdpNbxpBuTHQ",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/iv_dirichlet_subspace_appendix.tex\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_full_filtered_stats.txt\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/__pycache__/compute_ppi_empirical.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_full_summary.txt\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/iv_dirichlet_subspace_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape_table.tex\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006/asv_empirical_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_empirical_validation_table.tex\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_theory_empirical_mape.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_empirical_data.txt\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_empirical_validation_appendix.tex\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/ppi_empirical_validation.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_exact_values.txt\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_asv_empirical\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_exposure_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_exposure_dirichlet_subspace_output.log\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_mock\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_mock/asv_empirical_results.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_full_filtered_summary.txt\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_updated_empirical.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/theory_empirical_mape.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/compute_ppi_empirical.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_full\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_full_filtered_stats.json\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_iv_dirichlet_subspace.py\n/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_iv_dirichlet_subspace_output.log",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32be1fcf-89b1-41b5-a7c0-d65fa8932875",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "e6f22d5d-eedd-423d-a0d0-ce28e6f9f1f1",
+            "sourceToolAssistantUUID": "32be1fcf-89b1-41b5-a7c0-d65fa8932875",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T19:35:00.281Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me verify the exact file paths that exist and cross-reference with what the scripts require:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6f22d5d-eedd-423d-a0d0-ce28e6f9f1f1",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WtquvCZeTj81bHDCM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fd1dfb35-d502-448c-a26c-2b66da415a17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FDYNmC1ZbCp6N1yLabQygg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2520,
+                "cache_read_input_tokens": 48946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2520,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T19:35:00.972Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014kNFWjXjEaijuHWbH6JHhV",
+              "name": "Bash",
+              "input": {
+                "command": "ls -1 /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006/ 2>/dev/null || echo \"Directory does not exist\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd1dfb35-d502-448c-a26c-2b66da415a17",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WtquvCZeTj81bHDCM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "655fc1b5-0fb5-40aa-80ec-6d7f25e92de2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FDYNmC1ZbCp6N1yLabQygg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2520,
+                "cache_read_input_tokens": 48946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2520,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T19:35:01.012Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014kNFWjXjEaijuHWbH6JHhV",
+              "type": "tool_result",
+              "content": "asv_empirical_results.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "655fc1b5-0fb5-40aa-80ec-6d7f25e92de2",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "d8e86ef1-c52e-45c3-bfba-24f9e3e7dd07",
+            "sourceToolAssistantUUID": "655fc1b5-0fb5-40aa-80ec-6d7f25e92de2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T19:35:01.183Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TpRiCQFtaJVEFioPrRhQTe",
+              "name": "Bash",
+              "input": {
+                "command": "test -f /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/iv_dirichlet_subspace_results.json && echo \"EXISTS: iv_dirichlet_subspace_results.json\" || echo \"MISSING: iv_dirichlet_subspace_results.json\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8e86ef1-c52e-45c3-bfba-24f9e3e7dd07",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WtquvCZeTj81bHDCM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "73f4976d-e0e5-4457-9609-039bd637a659",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FDYNmC1ZbCp6N1yLabQygg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2520,
+                "cache_read_input_tokens": 48946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2520,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T19:35:01.214Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TpRiCQFtaJVEFioPrRhQTe",
+              "type": "tool_result",
+              "content": "EXISTS: iv_dirichlet_subspace_results.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73f4976d-e0e5-4457-9609-039bd637a659",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "25acf43a-05eb-462c-9f14-edf73377a017",
+            "sourceToolAssistantUUID": "73f4976d-e0e5-4457-9609-039bd637a659",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T19:35:01.566Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XAkdm8j5H3Y3qHuG2CDE5p",
+              "name": "Bash",
+              "input": {
+                "command": "test -f /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006/asv_empirical_results.json && echo \"EXISTS: plan006/asv_empirical_results.json\" || echo \"MISSING: plan006/asv_empirical_results.json\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25acf43a-05eb-462c-9f14-edf73377a017",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WtquvCZeTj81bHDCM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a546259f-0a3e-4551-a1ac-fcccab278517",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FDYNmC1ZbCp6N1yLabQygg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2520,
+                "cache_read_input_tokens": 48946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2520,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T19:35:01.604Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XAkdm8j5H3Y3qHuG2CDE5p",
+              "type": "tool_result",
+              "content": "EXISTS: plan006/asv_empirical_results.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a546259f-0a3e-4551-a1ac-fcccab278517",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "aa1715d2-f1b3-4cb6-bfb6-507dda6de753",
+            "sourceToolAssistantUUID": "a546259f-0a3e-4551-a1ac-fcccab278517",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T19:35:01.905Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017LXm9k3JVxdLY1n4LFk7ue",
+              "name": "Bash",
+              "input": {
+                "command": "test -f /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006_full_filtered_stats.json && echo \"EXISTS: plan006_full_filtered_stats.json\" || echo \"MISSING: plan006_full_filtered_stats.json\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa1715d2-f1b3-4cb6-bfb6-507dda6de753",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4WtquvCZeTj81bHDCM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "916112eb-8bbd-4c0b-93bf-8eab484dd7f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FDYNmC1ZbCp6N1yLabQygg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2520,
+                "cache_read_input_tokens": 48946,
+                "output_tokens": 471,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2520
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 471,
+                    "cache_read_input_tokens": 48946,
+                    "cache_creation_input_tokens": 2520,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2520,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T19:35:01.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017LXm9k3JVxdLY1n4LFk7ue",
+              "type": "tool_result",
+              "content": "EXISTS: plan006_full_filtered_stats.json",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "916112eb-8bbd-4c0b-93bf-8eab484dd7f6",
+            "isSidechain": true,
+            "promptId": "6231d775-db71-46d9-bac6-397081d485cb",
+            "agentId": "a51925d3ef4c07cd0",
+            "type": "user",
+            "uuid": "417ce087-441a-4eb5-9004-7546d2fd8b5a",
+            "sourceToolAssistantUUID": "916112eb-8bbd-4c0b-93bf-8eab484dd7f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T19:35:10.356Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me create a comprehensive summary of all figure scripts and their data sources:\n\n## Summary: Figure Generation Scripts and Data Sources\n\nHere's the complete mapping of all figure scripts in `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/figures/paper/`:\n\n### Scripts and Data Sources\n\n| Script | Figure | Data Source(s) | Exists? |\n|--------|--------|----------------|---------|\n| **gen_fig1.py** | DAG Taxonomy (7 panels) | *Programmatically generated* (no data files loaded) | N/A |\n| **gen_fig2.py** | Bias Distribution (2×4 grid) | *Programmatically generated* (100k Dirichlet samples created in-memory) | N/A |\n| **gen_fig3.py** | ASV Ranking (forest plot) | *Hardcoded in script* (mag_asv, sig_power, sign_flip dicts) | N/A |\n| **gen_fig4.py** | Binarization Collapse | *Hardcoded in script* (data dict with K=3→binary deltas) | N/A |\n| **gen_fig7.py** | Dirichlet Overlay | `artifacts/iv_dirichlet_subspace_results.json` `artifacts/plan006/asv_empirical_results.json` `artifacts/plan006_full_filtered_stats.json` (inferred) | YES, YES, YES |\n| **gen_diagnostic_plots.py** | F1 vs Bias (fig5) + ASV Heatmap (fig6) | `../../artifacts/plan006/asv_empirical_results.json` | YES |\n\n---\n\n### Specific Answers to Your Questions\n\n**1. ASV Ranking Figure (gen_fig3.py):**\n- Data: *Hardcoded in the script itself* (lines 42-82)\n- No external data files are loaded\n- Contains: magnitude ASV ranges, significance power percentages, sign-flip rates for 7 topologies\n\n**2. F1 vs Bias Figure (gen_diagnostic_plots.py - produces fig5):**\n- Data source: `../../artifacts/plan006/asv_empirical_results.json`\n- Full path: `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan006/asv_empirical_results.json`\n- **EXISTS: YES**\n- Content: HumAID K=10 confusion matrices, topology-specific F1 and bias metrics\n\n**3. Dirichlet Overlay Figure (gen_fig7.py):**\n- Data sources:\n  - `artifacts/iv_dirichlet_subspace_results.json` (line 50) → **EXISTS: YES**\n  - `artifacts/plan006/asv_empirical_results.json` (line 65) → **EXISTS: YES**\n  - `artifacts/plan006_full_filtered_stats.json` (inferred from lines 69-80, VAST/CivilComments diagonal recall) → **EXISTS: YES**\n- Full paths all verified to exist in `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/`\n\n**4. Scripts with Relative Paths:**\n- `gen_diagnostic_plots.py` uses relative path `'../../artifacts/plan006/asv_empirical_results.json'` (line 15) which resolves correctly from the script's location\n\nAll artifact file paths referenced in the figure scripts match actual existing files. No broken references detected."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "417ce087-441a-4eb5-9004-7546d2fd8b5a",
+            "isSidechain": true,
+            "agentId": "a51925d3ef4c07cd0",
+            "requestId": "req_011CbL4XBXkrD1zUXFAivEHK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8b684f0c-d2f7-475c-9f16-ec874afca1ff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "e9d5f9d6-ebc0-4e07-b12b-925be82052c1",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JGLPxXGCt546PZpGzCYGuM",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 629,
+                "cache_read_input_tokens": 51466,
+                "output_tokens": 873,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 629
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 873,
+                    "cache_read_input_tokens": 51466,
+                    "cache_creation_input_tokens": 629,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 629,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-check-the-figure-generation-scripts-in-home-ubuntu-agent-ml-research-prod-0510.md"
+}

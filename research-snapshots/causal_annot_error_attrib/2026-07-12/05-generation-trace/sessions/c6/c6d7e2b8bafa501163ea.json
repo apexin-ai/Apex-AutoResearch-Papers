@@ -1,0 +1,1516 @@
+{
+  "schema_version": "1.0",
+  "id": "c6d7e2b8bafa501163ea",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: causal_annot_error_attrib ## 运行环境 - 服务器名: home-1x5090 - SSH 账户: sonny（调用 ssh_execute / submit_tr",
+  "task_key": "bda960fb-f645-4405-a119-332fbfa4589a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/bda960fb-f645-4405-a119-332fbfa4589a.jsonl",
+    "occurrence": 1,
+    "bytes": 93564,
+    "sha256": "e49a52c2f9d3ea179e3c079727481b6403a338837570e0c1fde4763aadfba4aa"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "record": 11,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T14:56:46.488Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-23T14:56:46.488Z",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+                "content": "<project_context>\n# 项目: causal_annot_error_attrib\n\n## 运行环境\n- 服务器名: home-1x5090\n- SSH 账户: sonny（调用 ssh_execute / submit_training_job 时传入 account=\"sonny\"）\n- SSH 连接命令: ssh implicit5638.xyfu.me  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /home/sonny/causal_annot_error_attrib\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## Task: Sign Reversal 决定因素分析\n\n**目标**：对 23 个实证 LLM confusion matrices，提取矩阵特征并找到简单判别规则，预测哪些矩阵会导致 sign reversal。\n\n**方法**：\n1. 读取 23 个实证 LLM confusion matrices（搜索 `artifacts/` 目录下的 empirical confusion matrices JSON）\n2. 对每个矩阵提取特征：\n   - min diagonal (最小对角线元素)\n   - max off-diagonal ratio (最大非对角元素/对角元素比)\n   - condition number (条件数)\n   - entropy (每列的归一化熵)\n   - spectral gap (最大和第二大特征值之差)\n3. 对 exposure topology 下的 sign_reversal ∈ {0,1}，做 descriptive analysis\n   - 23 samples 太小做 logistic regression，改用分组对比 + decision boundary\n   - 用 beta = [0, 1.0, -0.5] 作为默认效应向量\n4. 找到简单判别规则（如 \"sign reversal only when min_diag < X AND max_offdiag > Y\"）\n5. 也测试其他 beta 配置的鲁棒性\n\n**参考代码**：\n- Bias plim 计算：`artifacts/ranking_stability.py` 或 `artifacts/compute_all_tasks.py` 中的 exposure bias 公式\n- Confusion matrices：搜索 `artifacts/` 下包含 confusion_matrices 的 JSON\n\n**产出**：\n- 脚本：`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants.py`\n- 结果：`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants_results.json`\n\n运行脚本并确认结果写入 JSON 后再结束。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T14:56:46.491Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-23T14:56:46.491Z",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T14:56:46.519Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: causal_annot_error_attrib\n\n## 运行环境\n- 服务器名: home-1x5090\n- SSH 账户: sonny（调用 ssh_execute / submit_training_job 时传入 account=\"sonny\"）\n- SSH 连接命令: ssh implicit5638.xyfu.me  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /home/sonny/causal_annot_error_attrib\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## Task: Sign Reversal 决定因素分析\n\n**目标**：对 23 个实证 LLM confusion matrices，提取矩阵特征并找到简单判别规则，预测哪些矩阵会导致 sign reversal。\n\n**方法**：\n1. 读取 23 个实证 LLM confusion matrices（搜索 `artifacts/` 目录下的 empirical confusion matrices JSON）\n2. 对每个矩阵提取特征：\n   - min diagonal (最小对角线元素)\n   - max off-diagonal ratio (最大非对角元素/对角元素比)\n   - condition number (条件数)\n   - entropy (每列的归一化熵)\n   - spectral gap (最大和第二大特征值之差)\n3. 对 exposure topology 下的 sign_reversal ∈ {0,1}，做 descriptive analysis\n   - 23 samples 太小做 logistic regression，改用分组对比 + decision boundary\n   - 用 beta = [0, 1.0, -0.5] 作为默认效应向量\n4. 找到简单判别规则（如 \"sign reversal only when min_diag < X AND max_offdiag > Y\"）\n5. 也测试其他 beta 配置的鲁棒性\n\n**参考代码**：\n- Bias plim 计算：`artifacts/ranking_stability.py` 或 `artifacts/compute_all_tasks.py` 中的 exposure bias 公式\n- Confusion matrices：搜索 `artifacts/` 下包含 confusion_matrices 的 JSON\n\n**产出**：\n- 脚本：`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants.py`\n- 结果：`/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants_results.json`\n\n运行脚本并确认结果写入 JSON 后再结束。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "cda5cfc5-1136-4ede-bcf5-df8462bcccbd",
+            "type": "user",
+            "uuid": "5bc5c7c9-aaf9-4fca-bdad-c39e361f4e72",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T14:56:46.518Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "5bc5c7c9-aaf9-4fca-bdad-c39e361f4e72",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "603ff380-7f63-40c3-912e-7af8b192c75c",
+                "timestamp": "2026-05-23T14:56:46.518Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T14:56:46.518Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "603ff380-7f63-40c3-912e-7af8b192c75c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "4d11b6ec-9b46-41ac-9afe-9497f6edc07c",
+                "timestamp": "2026-05-23T14:56:46.518Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T14:56:46.518Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4d11b6ec-9b46-41ac-9afe-9497f6edc07c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "46d08ffb-8059-4275-86cc-1ad364b3d612",
+                "timestamp": "2026-05-23T14:56:46.518Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze sign reversal determinants in confusion matrices",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T14:56:49.976Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by exploring the codebase to find the empirical confusion matrices and understand the bias computation logic."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46d08ffb-8059-4275-86cc-1ad364b3d612",
+            "isSidechain": false,
+            "requestId": "req_011CbKhJVTxLnvriBxqbpW2U",
+            "type": "assistant",
+            "uuid": "2902b7c7-47a0-4fa4-98b4-e4802749d44f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gv7xgajbY1yEegp5yv6Xu8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13163,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 278,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13163,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 278,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13163,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13163
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T14:56:54.553Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gj8UQwvvX1eWJEHQb3chwB",
+              "name": "Agent",
+              "input": {
+                "subagent_type": "Explore",
+                "description": "Find confusion matrices and bias code",
+                "prompt": "I need to find two things in the codebase under /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/:\n\n1. JSON files in artifacts/ that contain empirical LLM confusion matrices (search for files with \"confusion\" in the name, or JSON files containing \"confusion_matrix\" or \"confusion_matrices\" keys)\n2. The bias plim / exposure bias computation code in artifacts/ranking_stability.py or artifacts/compute_all_tasks.py — I need to understand how sign reversal is determined from a confusion matrix and a beta vector under exposure topology.\n\nSearch breadth: very thorough. Show me the relevant file paths and code snippets."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2902b7c7-47a0-4fa4-98b4-e4802749d44f",
+            "isSidechain": false,
+            "requestId": "req_011CbKhJVTxLnvriBxqbpW2U",
+            "type": "assistant",
+            "uuid": "afeda63e-09b6-47b9-ba22-c730558886c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gv7xgajbY1yEegp5yv6Xu8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13163,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 278,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 13163,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 278,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 13163,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 13163
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T14:57:44.775Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gj8UQwvvX1eWJEHQb3chwB",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! Now I have all the information needed. Let me compile the comprehensive report.\n\n## Summary: Empirical LLM Confusion Matrices and Bias/Sign Reversal Computation\n\n### Part 1: Empirical LLM Confusion Matrices (JSON Files)\n\nI found multiple JSON files containing empirical LLM confusion matrices:\n\n**Main empirical confusion matrix files:**\n\n1. **/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json**\n   - Structure: `\"confusion_matrices\"` key containing 23 empirical LLM confusion matrices\n   - Coverage: 3 datasets × models/prompts combinations\n   - Example keys: `\"civil_comments_qwen3_zero-shot\"`, `\"humaid_deepseek_few-shot-3\"`, `\"vast/llama4_few-shot-5\"`\n   - Format: Column-stochastic K×K matrices (K=2 for civil_comments, K=3 for vast, K=10 for humaid)\n\n2. **/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_new_cms.json**\n   - Structure: Config-level confusion matrices with metadata (labels, n_valid, accuracy, normalized and count versions)\n   - Example structure shows both normalized column-stochastic form and raw counts\n   - Contains fields: `confusion_matrix_normalized`, `confusion_matrix_counts`, `labels`, `n_valid`, `accuracy`, `source`\n\n3. **/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_new_cms_round2.json** and **plan011_new_cms_vast_qwen3_zs.json**\n   - Additional variants with similar structure\n\n**Other files containing confusion matrix data:**\n- `plan006/asv_empirical_results.json` - Contains `\"confusion_matrices\"` key with 10×10 HumAID matrices\n- `plan006_mock/asv_empirical_results.json` - Mock versions for testing\n- Various results JSON files from different experiments that reference confusion matrices\n\n---\n\n### Part 2: Exposure Bias and Sign Reversal Computation\n\nThe core computational pipeline is in **plan_006_asv_empirical.py** with specialized implementations in other scripts. Here's the detailed flow:\n\n#### **Core Functions (plan_006_asv_empirical.py, lines 369-420):**\n\n**1. compute_plim(C, st, K) — Main bias computation under exposure topology:**\n\n```python\ndef compute_plim(C, st, K):\n    if st['topology'] == 'exposure':\n        q = C @ st['p_A']                    # q = C * p_A (Eq: E[D_k])\n        cy = C @ st['E_YD']                  # cy = C * E[Y*D] (Eq: E[Y*D_k])\n        \n        # Build EZZ = E[Z'Z] where Z = [1, D_1, D_2, ..., D_{K-1}]\n        EZZ = np.zeros((K, K))\n        EZZ[0, 0] = 1.0\n        for j in range(1, K):\n            EZZ[0, j] = EZZ[j, 0] = q[j]\n            EZZ[j, j] = q[j]\n        \n        # Build EZY = E[Z'Y]\n        EZY = np.zeros(K)\n        EZY[0] = st['E_Y']                  # E[Y]\n        for j in range(1, K):\n            EZY[j] = cy[j]                  # E[Y*D_j]\n        \n        return np.linalg.solve(EZZ, EZY)    # Solve for plim coefficients\n```\n\n**Key insight:** Under exposure, the observed confound is C (confusion matrix), which transforms:\n- True group probabilities **p_A** → biased group probabilities **q = C @ p_A**\n- True moment E[Y·D_k] → biased moment cy = C @ E[Y·D_k]\n\nThe plim is then `(E[Z'Z])^{-1} E[Z'Y]` where the moments are all computed under C.\n\n**2. extract_tau(plim_result, topology) — Extract treatment effect:**\n\n```python\ndef extract_tau(plim_result, topology):\n    if isinstance(plim_result, np.ndarray):\n        return float(plim_result[1])         # Return second element (treatment coefficient)\n    return np.nan\n```\n\n#### **Sign Reversal Detection (sign_reversal_determinants.py, lines 109-147):**\n\n```python\ndef exposure_outcome(C, beta, p_A=None, seed=42):\n    \"\"\"Run exposure DGP with custom beta and return sign-flip details.\"\"\"\n    K = C.shape[0]\n    if p_A is None:\n        p_A = plan_006.make_p_A(K)\n    \n    params = {\"beta\": np.asarray(beta), \"p_A\": p_A}\n    st = plan_006.precompute_suff_stats(K, \"exposure\", params, seed=seed)\n    \n    # Compute plim under identity matrix (true params)\n    plim_true = plan_006.compute_plim(np.eye(K), st, K)\n    tau_true = plan_006.extract_tau(plim_true, \"exposure\")\n    \n    # Compute plim under confusion matrix C (biased)\n    plim_biased = plan_006.compute_plim(C, st, K)\n    tau_hat = plan_006.extract_tau(plim_biased, \"exposure\")\n    \n    # Detect sign flip for each coefficient k ∈ {1, ..., K-1}\n    any_flip = False\n    for i in range(1, K):\n        tv = float(plim_true[i])\n        bv = float(plim_biased[i])\n        sign_flip = bool(np.sign(bv) != np.sign(tv)) if abs(tv) > 1e-10 else False\n        if sign_flip:\n            any_flip = True\n    \n    return {\n        \"any_flip\": any_flip,\n        \"per_coef\": [...],\n        \"tau_true\": float(tau_true),\n        \"tau_hat\": float(tau_hat),\n    }\n```\n\n#### **Direct Exposure Violation Analysis (mvp_exposure_dirichlet_subspace.py, lines 36-51):**\n\nThis provides a clearer view of how sign reversal is determined:\n\n```python\ndef theoretical_plim(C, p_A, beta):\n    \"\"\"Compute plim gamma under exposure for column-stochastic C.\"\"\"\n    q = C @ p_A                            # Biased marginal: E[D_k]\n    \n    # EZZ = E[Z'Z] with Z = [1, D_1, D_2]\n    EZZ = np.array([\n        [1.0,  q[1], q[2]],\n        [q[1], q[1], 0.0],\n        [q[2], 0.0,  q[2]],\n    ])\n    \n    # EZX = E[Z'X·diag] where X represents treatment assignment\n    EZX = np.array([\n        [1.0,  p[1],        p[2]],\n        [q[1], C[1,1]*p[1], C[1,2]*p[2]],\n        [q[2], C[2,1]*p[1], C[2,2]*p[2]],\n    ])\n    \n    return np.linalg.solve(EZZ, EZX @ beta)\n\n# Sign reversal detection (lines 99-105):\nfor k in [1, 2]:\n    if abs(beta[k]) < 1e-10:\n        continue\n    if plim[k] * beta[k] < 0:      # <-- SIGN REVERSAL CONDITION\n        sr = True                   # True beta and plim have opposite signs\n    if abs(plim[k]) > abs(beta[k]):\n        amp = True                  # Amplification (magnitude increases)\n```\n\n#### **Insufficient Statistics Precomputation (plan_006_asv_empirical.py, lines 342-366):**\n\n```python\ndef precompute_suff_stats(K, topology, params, N=N_PRECOMP, seed=42):\n    rng = np.random.default_rng(seed)\n    first_var, Y, A = GEN_FNS[topology](K, N, params, rng)\n    \n    elif topology == 'exposure':\n        DA = np.zeros((N, K))\n        for k in range(K):\n            DA[:, k] = (A == k).astype(float)\n        return dict(\n            p_A=DA.mean(0),              # P(A=k)\n            E_Y=Y.mean(),                # E[Y]\n            E_YD=(DA * Y[:, None]).mean(0),  # E[Y·D_k]\n            topology='exposure'\n        )\n```\n\n---\n\n### Part 3: How Sign Reversal is Determined Under Exposure\n\n**The process:**\n\n1. **Input:** Confusion matrix C (K×K column-stochastic), beta vector (K-dim causal effects), p_A (marginal probabilities)\n\n2. **Transform via C:**\n   - Compute biased marginals: **q = C @ p_A**\n   - Compute biased moments: **cy = C @ E[Y·D]**\n   - Build moment matrix: **EZZ** with elements q[j], **EZY** with elements cy[j]\n\n3. **Solve for plim:**\n   - **plim = EZZ^{-1} @ EZY**\n   - Extract treatment coefficient: **gamma_true = plim[1]** (true) vs **gamma_biased = plim[1]** (under C)\n\n4. **Detect sign reversal:**\n   - For each coefficient k ∈ {1, ..., K-1}:\n     - **Sign flips if: sign(plim[k]) ≠ sign(beta[k])** and |beta[k]| > 1e-10\n   - Any flip → overall `any_flip = True`\n\n**Key files implementing this:**\n- `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants.py` (lines 109-147)\n- `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_exposure_dirichlet_subspace.py` (lines 36-134)\n- `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py` (lines 369-510)\n\n**Results:** The analysis found that at min_diag ≥ 0.9 (realistic LLM confusion matrices), the sign reversal rate drops to near zero, while at min_diag < 0.5, violation rates exceed 83%."
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afeda63e-09b6-47b9-ba22-c730558886c5",
+            "isSidechain": false,
+            "promptId": "cda5cfc5-1136-4ede-bcf5-df8462bcccbd",
+            "type": "user",
+            "uuid": "b6efad90-e721-4339-81dd-ff8ffd951638",
+            "toolUseResult": {
+              "status": "completed",
+              "prompt": "I need to find two things in the codebase under /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/:\n\n1. JSON files in artifacts/ that contain empirical LLM confusion matrices (search for files with \"confusion\" in the name, or JSON files containing \"confusion_matrix\" or \"confusion_matrices\" keys)\n2. The bias plim / exposure bias computation code in artifacts/ranking_stability.py or artifacts/compute_all_tasks.py — I need to understand how sign reversal is determined from a confusion matrix and a beta vector under exposure topology.\n\nSearch breadth: very thorough. Show me the relevant file paths and code snippets.",
+              "agentId": "a8d5f7280dd4c25d0",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Perfect! Now I have all the information needed. Let me compile the comprehensive report.\n\n## Summary: Empirical LLM Confusion Matrices and Bias/Sign Reversal Computation\n\n### Part 1: Empirical LLM Confusion Matrices (JSON Files)\n\nI found multiple JSON files containing empirical LLM confusion matrices:\n\n**Main empirical confusion matrix files:**\n\n1. **/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json**\n   - Structure: `\"confusion_matrices\"` key containing 23 empirical LLM confusion matrices\n   - Coverage: 3 datasets × models/prompts combinations\n   - Example keys: `\"civil_comments_qwen3_zero-shot\"`, `\"humaid_deepseek_few-shot-3\"`, `\"vast/llama4_few-shot-5\"`\n   - Format: Column-stochastic K×K matrices (K=2 for civil_comments, K=3 for vast, K=10 for humaid)\n\n2. **/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_new_cms.json**\n   - Structure: Config-level confusion matrices with metadata (labels, n_valid, accuracy, normalized and count versions)\n   - Example structure shows both normalized column-stochastic form and raw counts\n   - Contains fields: `confusion_matrix_normalized`, `confusion_matrix_counts`, `labels`, `n_valid`, `accuracy`, `source`\n\n3. **/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/plan011_new_cms_round2.json** and **plan011_new_cms_vast_qwen3_zs.json**\n   - Additional variants with similar structure\n\n**Other files containing confusion matrix data:**\n- `plan006/asv_empirical_results.json` - Contains `\"confusion_matrices\"` key with 10×10 HumAID matrices\n- `plan006_mock/asv_empirical_results.json` - Mock versions for testing\n- Various results JSON files from different experiments that reference confusion matrices\n\n---\n\n### Part 2: Exposure Bias and Sign Reversal Computation\n\nThe core computational pipeline is in **plan_006_asv_empirical.py** with specialized implementations in other scripts. Here's the detailed flow:\n\n#### **Core Functions (plan_006_asv_empirical.py, lines 369-420):**\n\n**1. compute_plim(C, st, K) — Main bias computation under exposure topology:**\n\n```python\ndef compute_plim(C, st, K):\n    if st['topology'] == 'exposure':\n        q = C @ st['p_A']                    # q = C * p_A (Eq: E[D_k])\n        cy = C @ st['E_YD']                  # cy = C * E[Y*D] (Eq: E[Y*D_k])\n        \n        # Build EZZ = E[Z'Z] where Z = [1, D_1, D_2, ..., D_{K-1}]\n        EZZ = np.zeros((K, K))\n        EZZ[0, 0] = 1.0\n        for j in range(1, K):\n            EZZ[0, j] = EZZ[j, 0] = q[j]\n            EZZ[j, j] = q[j]\n        \n        # Build EZY = E[Z'Y]\n        EZY = np.zeros(K)\n        EZY[0] = st['E_Y']                  # E[Y]\n        for j in range(1, K):\n            EZY[j] = cy[j]                  # E[Y*D_j]\n        \n        return np.linalg.solve(EZZ, EZY)    # Solve for plim coefficients\n```\n\n**Key insight:** Under exposure, the observed confound is C (confusion matrix), which transforms:\n- True group probabilities **p_A** → biased group probabilities **q = C @ p_A**\n- True moment E[Y·D_k] → biased moment cy = C @ E[Y·D_k]\n\nThe plim is then `(E[Z'Z])^{-1} E[Z'Y]` where the moments are all computed under C.\n\n**2. extract_tau(plim_result, topology) — Extract treatment effect:**\n\n```python\ndef extract_tau(plim_result, topology):\n    if isinstance(plim_result, np.ndarray):\n        return float(plim_result[1])         # Return second element (treatment coefficient)\n    return np.nan\n```\n\n#### **Sign Reversal Detection (sign_reversal_determinants.py, lines 109-147):**\n\n```python\ndef exposure_outcome(C, beta, p_A=None, seed=42):\n    \"\"\"Run exposure DGP with custom beta and return sign-flip details.\"\"\"\n    K = C.shape[0]\n    if p_A is None:\n        p_A = plan_006.make_p_A(K)\n    \n    params = {\"beta\": np.asarray(beta), \"p_A\": p_A}\n    st = plan_006.precompute_suff_stats(K, \"exposure\", params, seed=seed)\n    \n    # Compute plim under identity matrix (true params)\n    plim_true = plan_006.compute_plim(np.eye(K), st, K)\n    tau_true = plan_006.extract_tau(plim_true, \"exposure\")\n    \n    # Compute plim under confusion matrix C (biased)\n    plim_biased = plan_006.compute_plim(C, st, K)\n    tau_hat = plan_006.extract_tau(plim_biased, \"exposure\")\n    \n    # Detect sign flip for each coefficient k ∈ {1, ..., K-1}\n    any_flip = False\n    for i in range(1, K):\n        tv = float(plim_true[i])\n        bv = float(plim_biased[i])\n        sign_flip = bool(np.sign(bv) != np.sign(tv)) if abs(tv) > 1e-10 else False\n        if sign_flip:\n            any_flip = True\n    \n    return {\n        \"any_flip\": any_flip,\n        \"per_coef\": [...],\n        \"tau_true\": float(tau_true),\n        \"tau_hat\": float(tau_hat),\n    }\n```\n\n#### **Direct Exposure Violation Analysis (mvp_exposure_dirichlet_subspace.py, lines 36-51):**\n\nThis provides a clearer view of how sign reversal is determined:\n\n```python\ndef theoretical_plim(C, p_A, beta):\n    \"\"\"Compute plim gamma under exposure for column-stochastic C.\"\"\"\n    q = C @ p_A                            # Biased marginal: E[D_k]\n    \n    # EZZ = E[Z'Z] with Z = [1, D_1, D_2]\n    EZZ = np.array([\n        [1.0,  q[1], q[2]],\n        [q[1], q[1], 0.0],\n        [q[2], 0.0,  q[2]],\n    ])\n    \n    # EZX = E[Z'X·diag] where X represents treatment assignment\n    EZX = np.array([\n        [1.0,  p[1],        p[2]],\n        [q[1], C[1,1]*p[1], C[1,2]*p[2]],\n        [q[2], C[2,1]*p[1], C[2,2]*p[2]],\n    ])\n    \n    return np.linalg.solve(EZZ, EZX @ beta)\n\n# Sign reversal detection (lines 99-105):\nfor k in [1, 2]:\n    if abs(beta[k]) < 1e-10:\n        continue\n    if plim[k] * beta[k] < 0:      # <-- SIGN REVERSAL CONDITION\n        sr = True                   # True beta and plim have opposite signs\n    if abs(plim[k]) > abs(beta[k]):\n        amp = True                  # Amplification (magnitude increases)\n```\n\n#### **Insufficient Statistics Precomputation (plan_006_asv_empirical.py, lines 342-366):**\n\n```python\ndef precompute_suff_stats(K, topology, params, N=N_PRECOMP, seed=42):\n    rng = np.random.default_rng(seed)\n    first_var, Y, A = GEN_FNS[topology](K, N, params, rng)\n    \n    elif topology == 'exposure':\n        DA = np.zeros((N, K))\n        for k in range(K):\n            DA[:, k] = (A == k).astype(float)\n        return dict(\n            p_A=DA.mean(0),              # P(A=k)\n            E_Y=Y.mean(),                # E[Y]\n            E_YD=(DA * Y[:, None]).mean(0),  # E[Y·D_k]\n            topology='exposure'\n        )\n```\n\n---\n\n### Part 3: How Sign Reversal is Determined Under Exposure\n\n**The process:**\n\n1. **Input:** Confusion matrix C (K×K column-stochastic), beta vector (K-dim causal effects), p_A (marginal probabilities)\n\n2. **Transform via C:**\n   - Compute biased marginals: **q = C @ p_A**\n   - Compute biased moments: **cy = C @ E[Y·D]**\n   - Build moment matrix: **EZZ** with elements q[j], **EZY** with elements cy[j]\n\n3. **Solve for plim:**\n   - **plim = EZZ^{-1} @ EZY**\n   - Extract treatment coefficient: **gamma_true = plim[1]** (true) vs **gamma_biased = plim[1]** (under C)\n\n4. **Detect sign reversal:**\n   - For each coefficient k ∈ {1, ..., K-1}:\n     - **Sign flips if: sign(plim[k]) ≠ sign(beta[k])** and |beta[k]| > 1e-10\n   - Any flip → overall `any_flip = True`\n\n**Key files implementing this:**\n- `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants.py` (lines 109-147)\n- `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/mvp_exposure_dirichlet_subspace.py` (lines 36-134)\n- `/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/plan_006_asv_empirical.py` (lines 369-510)\n\n**Results:** The analysis found that at min_diag ≥ 0.9 (realistic LLM confusion matrices), the sign reversal rate drops to near zero, while at min_diag < 0.5, violation rates exceed 83%."
+                }
+              ],
+              "totalDurationMs": 50215,
+              "totalTokens": 78793,
+              "totalToolUseCount": 17,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 3733,
+                "cache_read_input_tokens": 72225,
+                "output_tokens": 2829,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3733
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 2829,
+                    "cache_read_input_tokens": 72225,
+                    "cache_creation_input_tokens": 3733,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3733,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 9,
+                "searchCount": 5,
+                "bashCount": 3,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            },
+            "sourceToolAssistantUUID": "afeda63e-09b6-47b9-ba22-c730558886c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T14:57:48.563Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The agent found a lot of useful information. Let me now look at the existing sign_reversal_determinants.py file and the confusion matrices JSON to understand exactly what's available.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6efad90-e721-4339-81dd-ff8ffd951638",
+            "isSidechain": false,
+            "requestId": "req_011CbKhNnU1pKio7Nkwfxssm",
+            "type": "assistant",
+            "uuid": "067e8d20-b467-4bfa-a379-a99a57fe99f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017GRmxq5CjnxeV5m6MWRz1J",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3117,
+                "cache_read_input_tokens": 25004,
+                "output_tokens": 262,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3117,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 262,
+                    "cache_read_input_tokens": 25004,
+                    "cache_creation_input_tokens": 3117,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3117
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T14:57:49.530Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have a clear picture of the codebase. Let me now read the key files to build the script."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "067e8d20-b467-4bfa-a379-a99a57fe99f7",
+            "isSidechain": false,
+            "requestId": "req_011CbKhNnU1pKio7Nkwfxssm",
+            "type": "assistant",
+            "uuid": "4e612907-1ccf-4263-a4f5-a9256fa3ad32",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017GRmxq5CjnxeV5m6MWRz1J",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3117,
+                "cache_read_input_tokens": 25004,
+                "output_tokens": 262,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3117,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 262,
+                    "cache_read_input_tokens": 25004,
+                    "cache_creation_input_tokens": 3117,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3117
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T14:57:50.610Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GjB3z5T5YDF3bAxbWv6kmg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json",
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e612907-1ccf-4263-a4f5-a9256fa3ad32",
+            "isSidechain": false,
+            "requestId": "req_011CbKhNnU1pKio7Nkwfxssm",
+            "type": "assistant",
+            "uuid": "62dbdb37-b1ad-4bc8-b10c-323c9341bf02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017GRmxq5CjnxeV5m6MWRz1J",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3117,
+                "cache_read_input_tokens": 25004,
+                "output_tokens": 262,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3117,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 262,
+                    "cache_read_input_tokens": 25004,
+                    "cache_creation_input_tokens": 3117,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3117
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T14:57:51.025Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q4zXFpeppTAR8FrKQXLe2r",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Sign-reversal determinants on the 23 empirical LLM confusion matrices.\n3\t\n4\tFor each CM:\n5\t  * extract simple matrix features\n6\t  * compute exposure-topology sign-reversal under default beta and several alt betas\n7\t  * search for a simple decision rule that separates flip / no-flip groups\n8\t\"\"\"\n9\t\n10\timport json\n11\timport sys\n12\timport itertools\n13\timport numpy as np\n14\tfrom pathlib import Path\n15\tfrom collections import defaultdict\n16\t\n17\tPROJ = Path(\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib\")\n18\tsys.path.insert(0, str(PROJ))\n19\t\n20\timport importlib.util\n21\tspec = importlib.util.spec_from_file_location(\n22\t    \"plan_006\", str(PROJ / \"plan_006_asv_empirical.py\"))\n23\tplan_006 = importlib.util.module_from_spec(spec)\n24\tspec.loader.exec_module(plan_006)\n25\t\n26\tEMPIRICAL_FILE = PROJ / \"artifacts/updated_empirical_results.json\"\n27\tOUT_FILE = PROJ / \"artifacts/sign_reversal_determinants_results.json\"\n28\t\n29\t\n30\t# ----------------------------------------------------------------------\n31\t# Matrix features\n32\t# ----------------------------------------------------------------------\n33\t\n34\tdef matrix_features(C):\n35\t    \"\"\"Compute scalar features of a column-stochastic K x K confusion matrix.\"\"\"\n36\t    K = C.shape[0]\n37\t    diag = np.diag(C)\n38\t    off = C - np.diag(diag)\n39\t\n40\t    min_diag = float(np.min(diag))\n41\t    mean_diag = float(np.mean(diag))\n42\t\n43\t    # max off-diagonal element across the matrix\n44\t    max_off = float(off.max())\n45\t    # max ratio of off-diagonal element to the diagonal of its column\n46\t    safe_diag = np.where(diag > 1e-12, diag, np.nan)\n47\t    # off[i,j] / diag[j]\n48\t    ratio = off / safe_diag[None, :]\n49\t    max_off_ratio = float(np.nanmax(ratio))\n50\t\n51\t    # condition number\n52\t    try:\n53\t        cond = float(np.linalg.cond(C))\n54\t    except np.linalg.LinAlgError:\n55\t        cond = float(\"inf\")\n56\t    if not np.isfinite(cond):\n57\t        cond = 1e12\n58\t\n59\t    # per-column entropy (normalized to [0,1])\n60\t    H = []\n61\t    log_K = np.log(K) if K > 1 else 1.0\n62\t    for j in range(K):\n63\t        col = C[:, j]\n64\t        col = col / col.sum() if col.sum() > 0 else col\n65\t        col = np.clip(col, 1e-12, 1.0)\n66\t        H.append(-(col * np.log(col)).sum() / log_K)\n67\t    mean_entropy = float(np.mean(H))\n68\t    max_entropy = float(np.max(H))\n69\t\n70\t    # spectral gap of |eigenvalues|\n71\t    eigvals = np.linalg.eigvals(C)\n72\t    abs_eig = np.sort(np.abs(eigvals))[::-1]\n73\t    if len(abs_eig) >= 2:\n74\t        spectral_gap = float(abs_eig[0] - abs_eig[1])\n75\t    else:\n76\t        spectral_gap = float(abs_eig[0])\n77\t\n78\t    # determinant (sign and magnitude indicator)\n79\t    det = float(np.linalg.det(C))\n80\t\n81\t    # minimum singular value (closer to 0 => closer to singular)\n82\t    sv = np.linalg.svd(C, compute_uv=False)\n83\t    min_sv = float(sv.min())\n84\t    sv_ratio = float(sv.max() / sv.min()) if sv.min() > 0 else float(\"inf\")\n85\t    if not np.isfinite(sv_ratio):\n86\t        sv_ratio = 1e12\n87\t\n88\t    return {\n89\t        \"K\": K,\n90\t        \"min_diag\": min_diag,\n91\t        \"mean_diag\": mean_diag,\n92\t        \"max_off\": max_off,\n93\t        \"max_off_ratio\": max_off_ratio,\n94\t        \"cond\": cond,\n95\t        \"log_cond\": float(np.log10(max(cond, 1.0))),\n96\t        \"mean_entropy\": mean_entropy,\n97\t        \"max_entropy\": max_entropy,\n98\t        \"spectral_gap\": spectral_gap,\n99\t        \"det\": det,\n100\t        \"min_sv\": min_sv,\n101\t        \"sv_ratio\": sv_ratio,\n102\t    }\n103\t\n104\t\n105\t# ----------------------------------------------------------------------\n106\t# Exposure sign-reversal evaluation\n107\t# ----------------------------------------------------------------------\n108\t\n109\tdef exposure_outcome(C, beta, p_A=None, seed=42):\n110\t    \"\"\"Run the exposure DGP with custom beta and return sign-flip details.\"\"\"\n111\t    K = C.shape[0]\n112\t    if p_A is None:\n113\t        p_A = plan_006.make_p_A(K)\n114\t    params = {\"beta\": np.asarray(beta, dtype=float), \"p_A\": p_A}\n115\t    st = plan_006.precompute_suff_stats(K, \"exposure\", params, seed=seed)\n116\t    plim_true = plan_006.compute_plim(np.eye(K), st, K)\n117\t    plim_biased = plan_006.compute_plim(C, st, K)\n118\t\n119\t    if not isinstance(plim_biased, np.ndarray):\n120\t        return {\n121\t            \"any_flip\": None,\n122\t            \"per_coef\": None,\n123\t            \"max_relbias\": float(\"inf\"),\n124\t            \"tau_true\": None,\n125\t            \"tau_hat\": None,\n126\t        }\n127\t\n128\t    per = []\n129\t    any_flip = False\n130\t    max_relbias = 0.0\n131\t    for i in range(1, K):\n132\t        tv = float(plim_true[i])\n133\t        bv = float(plim_biased[i])\n134\t        sf = bool(np.sign(bv) != np.sign(tv)) if abs(tv) > 1e-10 else False\n135\t        rel = abs(bv - tv) / max(abs(tv), 1e-10)\n136\t        max_relbias = max(max_relbias, rel)\n137\t        if sf:\n138\t            any_flip = True\n139\t        per.append({\"coef_idx\": i, \"true\": tv, \"biased\": bv, \"sign_flip\": sf})\n140\t\n141\t    return {\n142\t        \"any_flip\": any_flip,\n143\t        \"per_coef\": per,\n144\t        \"max_relbias\": float(max_relbias),\n145\t        \"tau_true\": float(plim_true[1]),\n146\t        \"tau_hat\": float(plim_biased[1]),\n147\t    }\n148\t\n149\t\n150\t# ----------------------------------------------------------------------\n151\t# Beta configurations\n152\t# ----------------------------------------------------------------------\n153\t\n154\tDEFAULT_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n155\t\n156\t\n157\tdef beta_default(K):\n158\t    return DEFAULT_POOL[:K]\n159\t\n160\t\n161\tdef beta_uniform_pos(K):\n162\t    return [0.0] + [1.0] * (K - 1)\n163\t\n164\t\n165\tdef beta_alt_signs(K):\n166\t    \"\"\"Alternating signs of magnitude 1.0 starting positive at index 1.\"\"\"\n167\t    v = [0.0]\n168\t    for j in range(K - 1):\n169\t        v.append(1.0 if j % 2 == 0 else -1.0)\n170\t    return v\n171\t\n172\t\n173\tdef beta_only_first(K):\n174\t    \"\"\"Only coefficient at index 1 is nonzero.\"\"\"\n175\t    v = [0.0] * K\n176\t    if K >= 2:\n177\t        v[1] = 1.0\n178\t    return v\n179\t\n180\t\n181\tdef beta_small(K):\n182\t    \"\"\"Default vector scaled by 0.3 (smaller effect sizes — sign flips easier).\"\"\"\n183\t    return [0.3 * x for x in DEFAULT_POOL[:K]]\n184\t\n185\t\n186\tdef beta_large(K):\n187\t    \"\"\"Default vector scaled by 3.0 (larger effect sizes — flips harder).\"\"\"\n188\t    return [3.0 * x for x in DEFAULT_POOL[:K]]\n189\t\n190\t\n191\tBETA_CONFIGS = {\n192\t    \"default\": beta_default,\n193\t    \"uniform_pos\": beta_uniform_pos,\n194\t    \"alt_signs\": beta_alt_signs,\n195\t    \"only_first\": beta_only_first,\n196\t    \"scale_0p3\": beta_small,\n197\t    \"scale_3p0\": beta_large,\n198\t}\n199\t\n200\t\n201\t# ----------------------------------------------------------------------\n202\t# Simple rule search\n203\t# ----------------------------------------------------------------------\n204\t\n205\tdef evaluate_rule(rows, feat_a, op_a, thr_a, feat_b=None, op_b=None, thr_b=None,\n206\t                  combine=\"AND\"):\n207\t    def predict(row):\n208\t        fa = row[\"features\"][feat_a]\n209\t        ok_a = (fa < thr_a) if op_a == \"<\" else (fa > thr_a)\n210\t        if feat_b is None:\n211\t            return ok_a\n212\t        fb = row[\"features\"][feat_b]\n213\t        ok_b = (fb < thr_b) if op_b == \"<\" else (fb > thr_b)\n214\t        return (ok_a and ok_b) if combine == \"AND\" else (ok_a or ok_b)\n215\t\n216\t    tp = fp = tn = fn = 0\n217\t    for r in rows:\n218\t        truth = r[\"sign_flip\"]\n219\t        pred = predict(r)\n220\t        if pred and truth:\n221\t            tp += 1\n222\t        elif pred and not truth:\n223\t            fp += 1\n224\t        elif (not pred) and truth:\n225\t            fn += 1\n226\t        else:\n227\t            tn += 1\n228\t    n = tp + fp + tn + fn\n229\t    acc = (tp + tn) / n if n else 0.0\n230\t    sens = tp / (tp + fn) if (tp + fn) else 0.0\n231\t    spec = tn / (tn + fp) if (tn + fp) else 0.0\n232\t    return {\n233\t        \"tp\": tp, \"fp\": fp, \"tn\": tn, \"fn\": fn,\n234\t        \"accuracy\": acc, \"sensitivity\": sens, \"specificity\": spec,\n235\t    }\n236\t\n237\t\n238\tdef search_simple_rules(rows, features):\n239\t    \"\"\"Brute-force search over single-feature thresholds and 2-feature AND.\"\"\"\n240\t    # quantile thresholds per feature\n241\t    candidates = {}\n242\t    for f in features:\n243\t        vals = sorted({row[\"features\"][f] for row in rows})\n244\t        # midpoints between sorted unique values\n245\t        thrs = []\n246\t        for i in range(len(vals) - 1):\n247\t            thrs.append(0.5 * (vals[i] + vals[i + 1]))\n248\t        candidates[f] = thrs\n249\t\n250\t    # single-feature rules\n251\t    best_single = None\n252\t    for f in features:\n253\t        for thr in candidates[f]:\n254\t            for op in (\"<\", \">\"):\n255\t                m = evaluate_rule(rows, f, op, thr)\n256\t                key = (m[\"accuracy\"], m[\"sensitivity\"] + m[\"specificity\"])\n257\t                if best_single is None or key > best_single[\"key\"]:\n258\t                    best_single = {\n259\t                        \"rule\": f\"{f} {op} {thr:.4f} -> sign_flip\",\n260\t                        \"feature\": f, \"op\": op, \"thr\": thr,\n261\t                        \"metrics\": m, \"key\": key,\n262\t                    }\n263\t\n264\t    # AND-of-2 rules\n265\t    best_and = None\n266\t    for fa, fb in itertools.combinations(features, 2):\n267\t        for ta in candidates[fa]:\n268\t            for oa in (\"<\", \">\"):\n269\t                for tb in candidates[fb]:\n270\t                    for ob in (\"<\", \">\"):\n271\t                        m = evaluate_rule(rows, fa, oa, ta, fb, ob, tb, \"AND\")\n272\t                        key = (m[\"accuracy\"], m[\"sensitivity\"] + m[\"specificity\"])\n273\t                        if best_and is None or key > best_and[\"key\"]:\n274\t                            best_and = {\n275\t                                \"rule\": (f\"({fa} {oa} {ta:.4f}) AND \"\n276\t                                         f\"({fb} {ob} {tb:.4f}) -> sign_flip\"),\n277\t                                \"feat_a\": fa, \"op_a\": oa, \"thr_a\": ta,\n278\t                                \"feat_b\": fb, \"op_b\": ob, \"thr_b\": tb,\n279\t                                \"metrics\": m, \"key\": key,\n280\t                            }\n281\t    for d in (best_single, best_and):\n282\t        if d is not None:\n283\t            d.pop(\"key\", None)\n284\t    return best_single, best_and\n285\t\n286\t\n287\t# ----------------------------------------------------------------------\n288\t# Descriptive comparisons\n289\t# ----------------------------------------------------------------------\n290\t\n291\tdef group_compare(rows, features):\n292\t    flip = [r for r in rows if r[\"sign_flip\"]]\n293\t    no_flip = [r for r in rows if not r[\"sign_flip\"]]\n294\t    out = {}\n295\t    for f in features:\n296\t        vf = np.array([r[\"features\"][f] for r in flip], dtype=float)\n297\t        vn = np.array([r[\"features\"][f] for r in no_flip], dtype=float)\n298\t        out[f] = {\n299\t            \"n_flip\": int(vf.size),\n300\t            \"n_no_flip\": int(vn.size),\n301\t            \"mean_flip\": float(np.nanmean(vf)) if vf.size else None,\n302\t            \"mean_no_flip\": float(np.nanmean(vn)) if vn.size else None,\n303\t            \"median_flip\": float(np.nanmedian(vf)) if vf.size else None,\n304\t            \"median_no_flip\": float(np.nanmedian(vn)) if vn.size else None,\n305\t            \"min_flip\": float(np.nanmin(vf)) if vf.size else None,\n306\t            \"min_no_flip\": float(np.nanmin(vn)) if vn.size else None,\n307\t            \"max_flip\": float(np.nanmax(vf)) if vf.size else None,\n308\t            \"max_no_flip\": float(np.nanmax(vn)) if vn.size else None,\n309\t        }\n310\t    return out\n311\t\n312\t\n313\t# ----------------------------------------------------------------------\n314\t# Main\n315\t# ----------------------------------------------------------------------\n316\t\n317\tdef main():\n318\t    with open(EMPIRICAL_FILE) as f:\n319\t        emp = json.load(f)\n320\t    cms = {k: np.array(v) for k, v in emp[\"confusion_matrices\"].items()}\n321\t    print(f\"Loaded {len(cms)} confusion matrices\")\n322\t\n323\t    # 1. features for each matrix\n324\t    feat_table = {}\n325\t    for name, C in cms.items():\n326\t        feat_table[name] = matrix_features(C)\n327\t\n328\t    # 2. exposure outcomes per beta config\n329\t    per_beta_results = {}\n330\t    for beta_name, beta_fn in BETA_CONFIGS.items():\n331\t        rows = []\n332\t        for name, C in cms.items():\n333\t            K = C.shape[0]\n334\t            beta = beta_fn(K)\n335\t            res = exposure_outcome(C, beta)\n336\t            row = {\n337\t                \"config\": name,\n338\t                \"K\": K,\n339\t                \"beta\": beta,\n340\t                \"sign_flip\": bool(res[\"any_flip\"]) if res[\"any_flip\"] is not None else False,\n341\t                \"tau_true\": res[\"tau_true\"],\n342\t                \"tau_hat\": res[\"tau_hat\"],\n343\t                \"max_relbias\": res[\"max_relbias\"],\n344\t                \"per_coef\": res[\"per_coef\"],\n345\t                \"features\": feat_table[name],\n346\t            }\n347\t            rows.append(row)\n348\t        n_flip = sum(1 for r in rows if r[\"sign_flip\"])\n349\t        per_beta_results[beta_name] = {\n350\t            \"beta_label\": beta_name,\n351\t            \"n_total\": len(rows),\n352\t            \"n_flip\": n_flip,\n353\t            \"rows\": rows,\n354\t        }\n355\t        print(f\"  beta={beta_name}: {n_flip}/{len(rows)} sign_flips\")\n356\t\n357\t    # 3. descriptive analysis under default beta\n358\t    feature_names = [\n359\t        \"min_diag\", \"mean_diag\", \"max_off\", \"max_off_ratio\",\n360\t        \"log_cond\", \"mean_entropy\", \"max_entropy\",\n361\t        \"spectral_gap\", \"det\", \"min_sv\",\n362\t    ]\n363\t    default_rows = per_beta_results[\"default\"][\"rows\"]\n364\t    group_stats = group_compare(default_rows, feature_names)\n365\t\n366\t    # 4. simple-rule search (default beta)\n367\t    best_single, best_and = search_simple_rules(default_rows, feature_names)\n368\t\n369\t    # 5. robustness: best single-feature rule under default re-evaluated on\n370\t    #    every other beta configuration\n371\t    robustness = {}\n372\t    if best_single is not None:\n373\t        for beta_name, payload in per_beta_results.items():\n374\t            m = evaluate_rule(\n375\t                payload[\"rows\"],\n376\t                best_single[\"feature\"], best_single[\"op\"], best_single[\"thr\"])\n377\t            robustness[beta_name] = m\n378\t\n379\t    # 6. K-stratified\n380\t    by_K = defaultdict(list)\n381\t    for r in default_rows:\n382\t        by_K[r[\"K\"]].append(r)\n383\t    k_stratified = {}\n384\t    for K, rs in by_K.items():\n385\t        n_flip = sum(1 for r in rs if r[\"sign_flip\"])\n386\t        k_stratified[str(K)] = {\n387\t            \"n\": len(rs),\n388\t            \"n_flip\": n_flip,\n389\t            \"configs\": [r[\"config\"] for r in rs],\n390\t            \"flips\": [r[\"config\"] for r in rs if r[\"sign_flip\"]],\n391\t        }\n392\t\n393\t    # ------------------------------------------------------------------\n394\t    # write JSON\n395\t    # ------------------------------------------------------------------\n396\t    out = {\n397\t        \"n_matrices\": len(cms),\n398\t        \"beta_configs_tested\": list(BETA_CONFIGS.keys()),\n399\t        \"feature_names\": feature_names,\n400\t        \"features_per_config\": feat_table,\n401\t        \"per_beta_results\": per_beta_results,\n402\t        \"default_beta_descriptive\": {\n403\t            \"group_compare\": group_stats,\n404\t            \"best_single_rule\": best_single,\n405\t            \"best_AND_rule\": best_and,\n406\t            \"k_stratified\": k_stratified,\n407\t        },\n408\t        \"rule_robustness_across_betas\": robustness,\n409\t    }\n410\t    with open(OUT_FILE, \"w\") as f:\n411\t        json.dump(out, f, indent=2, default=float)\n412\t    print(f\"\\nWrote {OUT_FILE}\")\n413\t    print(f\"Best single rule (default beta): {best_single['rule'] if best_single else None}\")\n414\t    if best_single:\n415\t        print(f\"  metrics: {best_single['metrics']}\")\n416\t    print(f\"Best AND rule (default beta): {best_and['rule'] if best_and else None}\")\n417\t    if best_and:\n418\t        print(f\"  metrics: {best_and['metrics']}\")\n419\t    print(\"Rule robustness across betas:\")\n420\t    for k, v in robustness.items():\n421\t        print(f\"  {k}: acc={v['accuracy']:.3f} sens={v['sensitivity']:.3f} spec={v['specificity']:.3f}\")\n422\t\n423\t\n424\tif __name__ == \"__main__\":\n425\t    main()\n426\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea17a9bd-635d-494d-b0cf-3dd3aa85754e",
+            "isSidechain": false,
+            "promptId": "cda5cfc5-1136-4ede-bcf5-df8462bcccbd",
+            "type": "user",
+            "uuid": "41106d0e-e8b5-4144-abdd-ef42d6989461",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Sign-reversal determinants on the 23 empirical LLM confusion matrices.\n\nFor each CM:\n  * extract simple matrix features\n  * compute exposure-topology sign-reversal under default beta and several alt betas\n  * search for a simple decision rule that separates flip / no-flip groups\n\"\"\"\n\nimport json\nimport sys\nimport itertools\nimport numpy as np\nfrom pathlib import Path\nfrom collections import defaultdict\n\nPROJ = Path(\"/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib\")\nsys.path.insert(0, str(PROJ))\n\nimport importlib.util\nspec = importlib.util.spec_from_file_location(\n    \"plan_006\", str(PROJ / \"plan_006_asv_empirical.py\"))\nplan_006 = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(plan_006)\n\nEMPIRICAL_FILE = PROJ / \"artifacts/updated_empirical_results.json\"\nOUT_FILE = PROJ / \"artifacts/sign_reversal_determinants_results.json\"\n\n\n# ----------------------------------------------------------------------\n# Matrix features\n# ----------------------------------------------------------------------\n\ndef matrix_features(C):\n    \"\"\"Compute scalar features of a column-stochastic K x K confusion matrix.\"\"\"\n    K = C.shape[0]\n    diag = np.diag(C)\n    off = C - np.diag(diag)\n\n    min_diag = float(np.min(diag))\n    mean_diag = float(np.mean(diag))\n\n    # max off-diagonal element across the matrix\n    max_off = float(off.max())\n    # max ratio of off-diagonal element to the diagonal of its column\n    safe_diag = np.where(diag > 1e-12, diag, np.nan)\n    # off[i,j] / diag[j]\n    ratio = off / safe_diag[None, :]\n    max_off_ratio = float(np.nanmax(ratio))\n\n    # condition number\n    try:\n        cond = float(np.linalg.cond(C))\n    except np.linalg.LinAlgError:\n        cond = float(\"inf\")\n    if not np.isfinite(cond):\n        cond = 1e12\n\n    # per-column entropy (normalized to [0,1])\n    H = []\n    log_K = np.log(K) if K > 1 else 1.0\n    for j in range(K):\n        col = C[:, j]\n        col = col / col.sum() if col.sum() > 0 else col\n        col = np.clip(col, 1e-12, 1.0)\n        H.append(-(col * np.log(col)).sum() / log_K)\n    mean_entropy = float(np.mean(H))\n    max_entropy = float(np.max(H))\n\n    # spectral gap of |eigenvalues|\n    eigvals = np.linalg.eigvals(C)\n    abs_eig = np.sort(np.abs(eigvals))[::-1]\n    if len(abs_eig) >= 2:\n        spectral_gap = float(abs_eig[0] - abs_eig[1])\n    else:\n        spectral_gap = float(abs_eig[0])\n\n    # determinant (sign and magnitude indicator)\n    det = float(np.linalg.det(C))\n\n    # minimum singular value (closer to 0 => closer to singular)\n    sv = np.linalg.svd(C, compute_uv=False)\n    min_sv = float(sv.min())\n    sv_ratio = float(sv.max() / sv.min()) if sv.min() > 0 else float(\"inf\")\n    if not np.isfinite(sv_ratio):\n        sv_ratio = 1e12\n\n    return {\n        \"K\": K,\n        \"min_diag\": min_diag,\n        \"mean_diag\": mean_diag,\n        \"max_off\": max_off,\n        \"max_off_ratio\": max_off_ratio,\n        \"cond\": cond,\n        \"log_cond\": float(np.log10(max(cond, 1.0))),\n        \"mean_entropy\": mean_entropy,\n        \"max_entropy\": max_entropy,\n        \"spectral_gap\": spectral_gap,\n        \"det\": det,\n        \"min_sv\": min_sv,\n        \"sv_ratio\": sv_ratio,\n    }\n\n\n# ----------------------------------------------------------------------\n# Exposure sign-reversal evaluation\n# ----------------------------------------------------------------------\n\ndef exposure_outcome(C, beta, p_A=None, seed=42):\n    \"\"\"Run the exposure DGP with custom beta and return sign-flip details.\"\"\"\n    K = C.shape[0]\n    if p_A is None:\n        p_A = plan_006.make_p_A(K)\n    params = {\"beta\": np.asarray(beta, dtype=float), \"p_A\": p_A}\n    st = plan_006.precompute_suff_stats(K, \"exposure\", params, seed=seed)\n    plim_true = plan_006.compute_plim(np.eye(K), st, K)\n    plim_biased = plan_006.compute_plim(C, st, K)\n\n    if not isinstance(plim_biased, np.ndarray):\n        return {\n            \"any_flip\": None,\n            \"per_coef\": None,\n            \"max_relbias\": float(\"inf\"),\n            \"tau_true\": None,\n            \"tau_hat\": None,\n        }\n\n    per = []\n    any_flip = False\n    max_relbias = 0.0\n    for i in range(1, K):\n        tv = float(plim_true[i])\n        bv = float(plim_biased[i])\n        sf = bool(np.sign(bv) != np.sign(tv)) if abs(tv) > 1e-10 else False\n        rel = abs(bv - tv) / max(abs(tv), 1e-10)\n        max_relbias = max(max_relbias, rel)\n        if sf:\n            any_flip = True\n        per.append({\"coef_idx\": i, \"true\": tv, \"biased\": bv, \"sign_flip\": sf})\n\n    return {\n        \"any_flip\": any_flip,\n        \"per_coef\": per,\n        \"max_relbias\": float(max_relbias),\n        \"tau_true\": float(plim_true[1]),\n        \"tau_hat\": float(plim_biased[1]),\n    }\n\n\n# ----------------------------------------------------------------------\n# Beta configurations\n# ----------------------------------------------------------------------\n\nDEFAULT_POOL = [0.0, 1.0, -0.5, 0.7, -0.3, 0.5, -0.2, 0.4, -0.15, 0.3]\n\n\ndef beta_default(K):\n    return DEFAULT_POOL[:K]\n\n\ndef beta_uniform_pos(K):\n    return [0.0] + [1.0] * (K - 1)\n\n\ndef beta_alt_signs(K):\n    \"\"\"Alternating signs of magnitude 1.0 starting positive at index 1.\"\"\"\n    v = [0.0]\n    for j in range(K - 1):\n        v.append(1.0 if j % 2 == 0 else -1.0)\n    return v\n\n\ndef beta_only_first(K):\n    \"\"\"Only coefficient at index 1 is nonzero.\"\"\"\n    v = [0.0] * K\n    if K >= 2:\n        v[1] = 1.0\n    return v\n\n\ndef beta_small(K):\n    \"\"\"Default vector scaled by 0.3 (smaller effect sizes — sign flips easier).\"\"\"\n    return [0.3 * x for x in DEFAULT_POOL[:K]]\n\n\ndef beta_large(K):\n    \"\"\"Default vector scaled by 3.0 (larger effect sizes — flips harder).\"\"\"\n    return [3.0 * x for x in DEFAULT_POOL[:K]]\n\n\nBETA_CONFIGS = {\n    \"default\": beta_default,\n    \"uniform_pos\": beta_uniform_pos,\n    \"alt_signs\": beta_alt_signs,\n    \"only_first\": beta_only_first,\n    \"scale_0p3\": beta_small,\n    \"scale_3p0\": beta_large,\n}\n\n\n# ----------------------------------------------------------------------\n# Simple rule search\n# ----------------------------------------------------------------------\n\ndef evaluate_rule(rows, feat_a, op_a, thr_a, feat_b=None, op_b=None, thr_b=None,\n                  combine=\"AND\"):\n    def predict(row):\n        fa = row[\"features\"][feat_a]\n        ok_a = (fa < thr_a) if op_a == \"<\" else (fa > thr_a)\n        if feat_b is None:\n            return ok_a\n        fb = row[\"features\"][feat_b]\n        ok_b = (fb < thr_b) if op_b == \"<\" else (fb > thr_b)\n        return (ok_a and ok_b) if combine == \"AND\" else (ok_a or ok_b)\n\n    tp = fp = tn = fn = 0\n    for r in rows:\n        truth = r[\"sign_flip\"]\n        pred = predict(r)\n        if pred and truth:\n            tp += 1\n        elif pred and not truth:\n            fp += 1\n        elif (not pred) and truth:\n            fn += 1\n        else:\n            tn += 1\n    n = tp + fp + tn + fn\n    acc = (tp + tn) / n if n else 0.0\n    sens = tp / (tp + fn) if (tp + fn) else 0.0\n    spec = tn / (tn + fp) if (tn + fp) else 0.0\n    return {\n        \"tp\": tp, \"fp\": fp, \"tn\": tn, \"fn\": fn,\n        \"accuracy\": acc, \"sensitivity\": sens, \"specificity\": spec,\n    }\n\n\ndef search_simple_rules(rows, features):\n    \"\"\"Brute-force search over single-feature thresholds and 2-feature AND.\"\"\"\n    # quantile thresholds per feature\n    candidates = {}\n    for f in features:\n        vals = sorted({row[\"features\"][f] for row in rows})\n        # midpoints between sorted unique values\n        thrs = []\n        for i in range(len(vals) - 1):\n            thrs.append(0.5 * (vals[i] + vals[i + 1]))\n        candidates[f] = thrs\n\n    # single-feature rules\n    best_single = None\n    for f in features:\n        for thr in candidates[f]:\n            for op in (\"<\", \">\"):\n                m = evaluate_rule(rows, f, op, thr)\n                key = (m[\"accuracy\"], m[\"sensitivity\"] + m[\"specificity\"])\n                if best_single is None or key > best_single[\"key\"]:\n                    best_single = {\n                        \"rule\": f\"{f} {op} {thr:.4f} -> sign_flip\",\n                        \"feature\": f, \"op\": op, \"thr\": thr,\n                        \"metrics\": m, \"key\": key,\n                    }\n\n    # AND-of-2 rules\n    best_and = None\n    for fa, fb in itertools.combinations(features, 2):\n        for ta in candidates[fa]:\n            for oa in (\"<\", \">\"):\n                for tb in candidates[fb]:\n                    for ob in (\"<\", \">\"):\n                        m = evaluate_rule(rows, fa, oa, ta, fb, ob, tb, \"AND\")\n                        key = (m[\"accuracy\"], m[\"sensitivity\"] + m[\"specificity\"])\n                        if best_and is None or key > best_and[\"key\"]:\n                            best_and = {\n                                \"rule\": (f\"({fa} {oa} {ta:.4f}) AND \"\n                                         f\"({fb} {ob} {tb:.4f}) -> sign_flip\"),\n                                \"feat_a\": fa, \"op_a\": oa, \"thr_a\": ta,\n                                \"feat_b\": fb, \"op_b\": ob, \"thr_b\": tb,\n                                \"metrics\": m, \"key\": key,\n                            }\n    for d in (best_single, best_and):\n        if d is not None:\n            d.pop(\"key\", None)\n    return best_single, best_and\n\n\n# ----------------------------------------------------------------------\n# Descriptive comparisons\n# ----------------------------------------------------------------------\n\ndef group_compare(rows, features):\n    flip = [r for r in rows if r[\"sign_flip\"]]\n    no_flip = [r for r in rows if not r[\"sign_flip\"]]\n    out = {}\n    for f in features:\n        vf = np.array([r[\"features\"][f] for r in flip], dtype=float)\n        vn = np.array([r[\"features\"][f] for r in no_flip], dtype=float)\n        out[f] = {\n            \"n_flip\": int(vf.size),\n            \"n_no_flip\": int(vn.size),\n            \"mean_flip\": float(np.nanmean(vf)) if vf.size else None,\n            \"mean_no_flip\": float(np.nanmean(vn)) if vn.size else None,\n            \"median_flip\": float(np.nanmedian(vf)) if vf.size else None,\n            \"median_no_flip\": float(np.nanmedian(vn)) if vn.size else None,\n            \"min_flip\": float(np.nanmin(vf)) if vf.size else None,\n            \"min_no_flip\": float(np.nanmin(vn)) if vn.size else None,\n            \"max_flip\": float(np.nanmax(vf)) if vf.size else None,\n            \"max_no_flip\": float(np.nanmax(vn)) if vn.size else None,\n        }\n    return out\n\n\n# ----------------------------------------------------------------------\n# Main\n# ----------------------------------------------------------------------\n\ndef main():\n    with open(EMPIRICAL_FILE) as f:\n        emp = json.load(f)\n    cms = {k: np.array(v) for k, v in emp[\"confusion_matrices\"].items()}\n    print(f\"Loaded {len(cms)} confusion matrices\")\n\n    # 1. features for each matrix\n    feat_table = {}\n    for name, C in cms.items():\n        feat_table[name] = matrix_features(C)\n\n    # 2. exposure outcomes per beta config\n    per_beta_results = {}\n    for beta_name, beta_fn in BETA_CONFIGS.items():\n        rows = []\n        for name, C in cms.items():\n            K = C.shape[0]\n            beta = beta_fn(K)\n            res = exposure_outcome(C, beta)\n            row = {\n                \"config\": name,\n                \"K\": K,\n                \"beta\": beta,\n                \"sign_flip\": bool(res[\"any_flip\"]) if res[\"any_flip\"] is not None else False,\n                \"tau_true\": res[\"tau_true\"],\n                \"tau_hat\": res[\"tau_hat\"],\n                \"max_relbias\": res[\"max_relbias\"],\n                \"per_coef\": res[\"per_coef\"],\n                \"features\": feat_table[name],\n            }\n            rows.append(row)\n        n_flip = sum(1 for r in rows if r[\"sign_flip\"])\n        per_beta_results[beta_name] = {\n            \"beta_label\": beta_name,\n            \"n_total\": len(rows),\n            \"n_flip\": n_flip,\n            \"rows\": rows,\n        }\n        print(f\"  beta={beta_name}: {n_flip}/{len(rows)} sign_flips\")\n\n    # 3. descriptive analysis under default beta\n    feature_names = [\n        \"min_diag\", \"mean_diag\", \"max_off\", \"max_off_ratio\",\n        \"log_cond\", \"mean_entropy\", \"max_entropy\",\n        \"spectral_gap\", \"det\", \"min_sv\",\n    ]\n    default_rows = per_beta_results[\"default\"][\"rows\"]\n    group_stats = group_compare(default_rows, feature_names)\n\n    # 4. simple-rule search (default beta)\n    best_single, best_and = search_simple_rules(default_rows, feature_names)\n\n    # 5. robustness: best single-feature rule under default re-evaluated on\n    #    every other beta configuration\n    robustness = {}\n    if best_single is not None:\n        for beta_name, payload in per_beta_results.items():\n            m = evaluate_rule(\n                payload[\"rows\"],\n                best_single[\"feature\"], best_single[\"op\"], best_single[\"thr\"])\n            robustness[beta_name] = m\n\n    # 6. K-stratified\n    by_K = defaultdict(list)\n    for r in default_rows:\n        by_K[r[\"K\"]].append(r)\n    k_stratified = {}\n    for K, rs in by_K.items():\n        n_flip = sum(1 for r in rs if r[\"sign_flip\"])\n        k_stratified[str(K)] = {\n            \"n\": len(rs),\n            \"n_flip\": n_flip,\n            \"configs\": [r[\"config\"] for r in rs],\n            \"flips\": [r[\"config\"] for r in rs if r[\"sign_flip\"]],\n        }\n\n    # ------------------------------------------------------------------\n    # write JSON\n    # ------------------------------------------------------------------\n    out = {\n        \"n_matrices\": len(cms),\n        \"beta_configs_tested\": list(BETA_CONFIGS.keys()),\n        \"feature_names\": feature_names,\n        \"features_per_config\": feat_table,\n        \"per_beta_results\": per_beta_results,\n        \"default_beta_descriptive\": {\n            \"group_compare\": group_stats,\n            \"best_single_rule\": best_single,\n            \"best_AND_rule\": best_and,\n            \"k_stratified\": k_stratified,\n        },\n        \"rule_robustness_across_betas\": robustness,\n    }\n    with open(OUT_FILE, \"w\") as f:\n        json.dump(out, f, indent=2, default=float)\n    print(f\"\\nWrote {OUT_FILE}\")\n    print(f\"Best single rule (default beta): {best_single['rule'] if best_single else None}\")\n    if best_single:\n        print(f\"  metrics: {best_single['metrics']}\")\n    print(f\"Best AND rule (default beta): {best_and['rule'] if best_and else None}\")\n    if best_and:\n        print(f\"  metrics: {best_and['metrics']}\")\n    print(\"Rule robustness across betas:\")\n    for k, v in robustness.items():\n        print(f\"  {k}: acc={v['accuracy']:.3f} sens={v['sensitivity']:.3f} spec={v['specificity']:.3f}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 426,
+                "startLine": 1,
+                "totalLines": 426
+              }
+            },
+            "sourceToolAssistantUUID": "ea17a9bd-635d-494d-b0cf-3dd3aa85754e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T14:57:50.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GjB3z5T5YDF3bAxbWv6kmg",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"confusion_matrices\": {\n3\t    \"civil_comments_deepseek_few-shot-5\": [\n4\t      [\n5\t        0.7341211225997046,\n6\t        0.19863013698630136\n7\t      ],\n8\t      [\n9\t        0.2658788774002954,\n10\t        0.8013698630136986\n11\t      ]\n12\t    ],\n13\t    \"civil_comments_qwen2.5-7b_few-shot-3\": [\n14\t      [\n15\t        0.6787296898079763,\n16\t        0.2191780821917808\n17\t      ],\n18\t      [\n19\t        0.3212703101920236,\n20\t        0.7808219178082192\n21\t      ]\n22\t    ],\n23\t    \"civil_comments_qwen2.5-7b_few-shot-5\": [\n24\t      [\n25\t        0.7370753323485968,\n26\t        0.23972602739726026\n27\t      ],\n28\t      [\n29\t        0.26292466765140327,\n30\t        0.7602739726027398\n31\t      ]\n32\t    ],\n33\t    \"civil_comments_qwen2.5-7b_zero-shot\": [\n34\t      [\n35\t        0.7481536189069424,\n36\t        0.3150684931506849\n37\t      ],\n38\t      [\n39\t        0.2518463810930576,\n40\t        0.684931506849315\n41\t      ]\n42\t    ],\n43\t    \"civil_comments_qwen3_few-shot-3\": [\n44\t      [\n45\t        0.8179126572908957,\n46\t        0.25517241379310346\n47\t      ],\n48\t      [\n49\t        0.18208734270910437,\n50\t        0.7448275862068966\n51\t      ]\n52\t    ],\n53\t    \"civil_comments_qwen3_few-shot-5\": [\n54\t      [\n55\t        0.8240534521158129,\n56\t        0.20689655172413793\n57\t      ],\n58\t      [\n59\t        0.1759465478841871,\n60\t        0.7931034482758621\n61\t      ]\n62\t    ],\n63\t    \"civil_comments_qwen3_zero-shot\": [\n64\t      [\n65\t        0.778118609406953,\n66\t        0.25742574257425743\n67\t      ],\n68\t      [\n69\t        0.22188139059304704,\n70\t        0.7425742574257426\n71\t      ]\n72\t    ],\n73\t    \"humaid_deepseek_few-shot-3\": [\n74\t      [\n75\t        0.5795454545454546,\n76\t        0.15,\n77\t        0.050955414012738856,\n78\t        0.0,\n79\t        0.0,\n80\t        0.011363636363636364,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62dbdb37-b1ad-4bc8-b10c-323c9341bf02",
+            "isSidechain": false,
+            "promptId": "cda5cfc5-1136-4ede-bcf5-df8462bcccbd",
+            "type": "user",
+            "uuid": "c49f8bf5-d798-473c-b620-6baefc721f19",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/updated_empirical_results.json",
+                "content": "{\n  \"confusion_matrices\": {\n    \"civil_comments_deepseek_few-shot-5\": [\n      [\n        0.7341211225997046,\n        0.19863013698630136\n      ],\n      [\n        0.2658788774002954,\n        0.8013698630136986\n      ]\n    ],\n    \"civil_comments_qwen2.5-7b_few-shot-3\": [\n      [\n        0.6787296898079763,\n        0.2191780821917808\n      ],\n      [\n        0.3212703101920236,\n        0.7808219178082192\n      ]\n    ],\n    \"civil_comments_qwen2.5-7b_few-shot-5\": [\n      [\n        0.7370753323485968,\n        0.23972602739726026\n      ],\n      [\n        0.26292466765140327,\n        0.7602739726027398\n      ]\n    ],\n    \"civil_comments_qwen2.5-7b_zero-shot\": [\n      [\n        0.7481536189069424,\n        0.3150684931506849\n      ],\n      [\n        0.2518463810930576,\n        0.684931506849315\n      ]\n    ],\n    \"civil_comments_qwen3_few-shot-3\": [\n      [\n        0.8179126572908957,\n        0.25517241379310346\n      ],\n      [\n        0.18208734270910437,\n        0.7448275862068966\n      ]\n    ],\n    \"civil_comments_qwen3_few-shot-5\": [\n      [\n        0.8240534521158129,\n        0.20689655172413793\n      ],\n      [\n        0.1759465478841871,\n        0.7931034482758621\n      ]\n    ],\n    \"civil_comments_qwen3_zero-shot\": [\n      [\n        0.778118609406953,\n        0.25742574257425743\n      ],\n      [\n        0.22188139059304704,\n        0.7425742574257426\n      ]\n    ],\n    \"humaid_deepseek_few-shot-3\": [\n      [\n        0.5795454545454546,\n        0.15,\n        0.050955414012738856,\n        0.0,\n        0.0,\n        0.011363636363636364,",
+                "numLines": 80,
+                "startLine": 1,
+                "totalLines": 4212
+              }
+            },
+            "sourceToolAssistantUUID": "62dbdb37-b1ad-4bc8-b10c-323c9341bf02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T14:57:51.021Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q4zXFpeppTAR8FrKQXLe2r",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c49f8bf5-d798-473c-b620-6baefc721f19",
+            "isSidechain": false,
+            "requestId": "req_011CbKhNnU1pKio7Nkwfxssm",
+            "type": "assistant",
+            "uuid": "ea17a9bd-635d-494d-b0cf-3dd3aa85754e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017GRmxq5CjnxeV5m6MWRz1J",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3117,
+                "cache_read_input_tokens": 25004,
+                "output_tokens": 262,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3117,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 262,
+                    "cache_read_input_tokens": 25004,
+                    "cache_creation_input_tokens": 3117,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3117
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "41106d0e-e8b5-4144-abdd-ef42d6989461",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze sign reversal determinants in confusion matrices",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T14:57:54.894Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The script already exists and looks complete. Let me check what the plan_006_asv_empirical.py contains for the functions being called, and then just run the script.",
+              "signature": "EuoCCmMIDhgCKkA7IiaDyKSLzOt9Cq5mhccnSWtM0Acb3cWvjg2ed0K6n8SSbG3QMCgab4D+XuMud7UaVtRvoN19mygM7yCvGvvyMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDC07fmgI26V9xxjgpRoM0IHyNzTzFOMh04ODIjApSLr1xvT4rYFI2HAV5MHDQU+LLpevMsqkIOdP/BwH6KvqhcOVL5cI+Z2fP0FCEj4qtAG0zxcBIhYnPePvj531sC8eTa5Fh2iqYPK1MwORTyozfR/V9pcuRi9wB6bDCFXKDJvVP1OCl2eyrghECzJ4RWT7v8X7nE47oAIxqB2yWhjoUXa7JwkoC/p5NMmfYzpCCUspN53bGlny9aYzUUtT80Z2Ma5OrNzTwnlYRvGBtFnC+pMEACDyb33HZe1OVs9DPzxFju9wP4nJ6aWIU+b2ozzSEWvINTLoeNGn3r22uc7cJs70LbsYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41106d0e-e8b5-4144-abdd-ef42d6989461",
+            "isSidechain": false,
+            "requestId": "req_011CbKhPFPWnuSkLfbctEL6G",
+            "type": "assistant",
+            "uuid": "cea3f82f-51ec-45bf-8897-7d12504ee100",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JsF4892NGtbNy4QKmpVj3X",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6804,
+                "cache_read_input_tokens": 28121,
+                "output_tokens": 178,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6804,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 178,
+                    "cache_read_input_tokens": 28121,
+                    "cache_creation_input_tokens": 6804,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6804
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T14:57:55.367Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The script already exists and looks complete. Let me run it."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cea3f82f-51ec-45bf-8897-7d12504ee100",
+            "isSidechain": false,
+            "requestId": "req_011CbKhPFPWnuSkLfbctEL6G",
+            "type": "assistant",
+            "uuid": "322d9ffe-3e47-4812-af96-c69321bef9de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JsF4892NGtbNy4QKmpVj3X",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6804,
+                "cache_read_input_tokens": 28121,
+                "output_tokens": 178,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6804,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 178,
+                    "cache_read_input_tokens": 28121,
+                    "cache_creation_input_tokens": 6804,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6804
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T14:57:57.156Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CGohttZ6xiwmxfLQRadz7j",
+              "name": "Bash",
+              "input": {
+                "command": "python artifacts/sign_reversal_determinants.py",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "322d9ffe-3e47-4812-af96-c69321bef9de",
+            "isSidechain": false,
+            "requestId": "req_011CbKhPFPWnuSkLfbctEL6G",
+            "type": "assistant",
+            "uuid": "fcc16128-5586-4a41-b927-74be8b977d23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JsF4892NGtbNy4QKmpVj3X",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6804,
+                "cache_read_input_tokens": 28121,
+                "output_tokens": 178,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6804,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 178,
+                    "cache_read_input_tokens": 28121,
+                    "cache_creation_input_tokens": 6804,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6804
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T14:57:57.224Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01CGohttZ6xiwmxfLQRadz7j"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcc16128-5586-4a41-b927-74be8b977d23",
+            "isSidechain": false,
+            "promptId": "cda5cfc5-1136-4ede-bcf5-df8462bcccbd",
+            "type": "user",
+            "uuid": "13398e7c-1c91-44c8-afc6-0c66e817464c",
+            "toolUseResult": "Error: Exit code 127\n/bin/bash: line 1: python: command not found",
+            "sourceToolAssistantUUID": "fcc16128-5586-4a41-b927-74be8b977d23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T14:58:01.195Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C7RVoYmFNgNj8GMvZRpaSk",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/sign_reversal_determinants.py",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13398e7c-1c91-44c8-afc6-0c66e817464c",
+            "isSidechain": false,
+            "requestId": "req_011CbKhPhhJobcUr5ChkwcQP",
+            "type": "assistant",
+            "uuid": "5c2d4e91-eea3-409a-a9bf-81e1bfaf2b60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GvJWwZBdGaZgcchgBpTkEn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 187,
+                "cache_read_input_tokens": 34925,
+                "output_tokens": 113,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 187,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 113,
+                    "cache_read_input_tokens": 34925,
+                    "cache_creation_input_tokens": 187,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 187
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T14:59:13.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C7RVoYmFNgNj8GMvZRpaSk",
+              "type": "tool_result",
+              "content": "Loaded 23 confusion matrices\n  beta=default: 14/23 sign_flips\n  beta=uniform_pos: 0/23 sign_flips\n  beta=alt_signs: 6/23 sign_flips\n  beta=only_first: 7/23 sign_flips\n  beta=scale_0p3: 14/23 sign_flips\n  beta=scale_3p0: 14/23 sign_flips\n\nWrote /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants_results.json\nBest single rule (default beta): det < 0.0137 -> sign_flip\n  metrics: {'tp': 12, 'fp': 0, 'tn': 9, 'fn': 2, 'accuracy': 0.9130434782608695, 'sensitivity': 0.8571428571428571, 'specificity': 1.0}\nBest AND rule (default beta): (min_diag < 0.5523) AND (mean_entropy > 0.3986) -> sign_flip\n  metrics: {'tp': 14, 'fp': 1, 'tn': 8, 'fn': 0, 'accuracy': 0.9565217391304348, 'sensitivity': 1.0, 'specificity': 0.8888888888888888}\nRule robustness across betas:\n  default: acc=0.913 sens=0.857 spec=1.000\n  uniform_pos: acc=0.478 sens=0.000 spec=0.478\n  alt_signs: acc=0.739 sens=1.000 spec=0.647\n  only_first: acc=0.522 sens=0.571 spec=0.500\n  scale_0p3: acc=0.913 sens=0.857 spec=1.000\n  scale_3p0: acc=0.913 sens=0.857 spec=1.000",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c2d4e91-eea3-409a-a9bf-81e1bfaf2b60",
+            "isSidechain": false,
+            "promptId": "cda5cfc5-1136-4ede-bcf5-df8462bcccbd",
+            "type": "user",
+            "uuid": "0f2c0734-0617-4503-8e54-11de84f278c9",
+            "toolUseResult": {
+              "stdout": "Loaded 23 confusion matrices\n  beta=default: 14/23 sign_flips\n  beta=uniform_pos: 0/23 sign_flips\n  beta=alt_signs: 6/23 sign_flips\n  beta=only_first: 7/23 sign_flips\n  beta=scale_0p3: 14/23 sign_flips\n  beta=scale_3p0: 14/23 sign_flips\n\nWrote /home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib/artifacts/sign_reversal_determinants_results.json\nBest single rule (default beta): det < 0.0137 -> sign_flip\n  metrics: {'tp': 12, 'fp': 0, 'tn': 9, 'fn': 2, 'accuracy': 0.9130434782608695, 'sensitivity': 0.8571428571428571, 'specificity': 1.0}\nBest AND rule (default beta): (min_diag < 0.5523) AND (mean_entropy > 0.3986) -> sign_flip\n  metrics: {'tp': 14, 'fp': 1, 'tn': 8, 'fn': 0, 'accuracy': 0.9565217391304348, 'sensitivity': 1.0, 'specificity': 0.8888888888888888}\nRule robustness across betas:\n  default: acc=0.913 sens=0.857 spec=1.000\n  uniform_pos: acc=0.478 sens=0.000 spec=0.478\n  alt_signs: acc=0.739 sens=1.000 spec=0.647\n  only_first: acc=0.522 sens=0.571 spec=0.500\n  scale_0p3: acc=0.913 sens=0.857 spec=1.000\n  scale_3p0: acc=0.913 sens=0.857 spec=1.000",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "5c2d4e91-eea3-409a-a9bf-81e1bfaf2b60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T14:59:16.680Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are written. Let me verify the JSON output exists."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0f2c0734-0617-4503-8e54-11de84f278c9",
+            "isSidechain": false,
+            "requestId": "req_011CbKhVJJoRCrxkvxBM6FJa",
+            "type": "assistant",
+            "uuid": "0e3c8d47-ae06-45af-85a9-cecee6010008",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012J1JmFFpgkaned3sDjyuj5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 596,
+                "cache_read_input_tokens": 35112,
+                "output_tokens": 153,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 596,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 153,
+                    "cache_read_input_tokens": 35112,
+                    "cache_creation_input_tokens": 596,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 596
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T14:59:18.194Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q2xiABFPqaq3zE6yptYy6h",
+              "name": "Bash",
+              "input": {
+                "command": "wc -c artifacts/sign_reversal_determinants_results.json && python3 -c \"import json; d=json.load(open('artifacts/sign_reversal_determinants_results.json')); print('Keys:', list(d.keys())); print('n_matrices:', d['n_matrices']); print('beta_configs:', d['beta_configs_tested'])\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e3c8d47-ae06-45af-85a9-cecee6010008",
+            "isSidechain": false,
+            "requestId": "req_011CbKhVJJoRCrxkvxBM6FJa",
+            "type": "assistant",
+            "uuid": "d2298aa8-56b5-4013-ae04-ca50b0896d13",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012J1JmFFpgkaned3sDjyuj5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 596,
+                "cache_read_input_tokens": 35112,
+                "output_tokens": 153,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 596,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 153,
+                    "cache_read_input_tokens": 35112,
+                    "cache_creation_input_tokens": 596,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 596
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T14:59:18.270Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q2xiABFPqaq3zE6yptYy6h",
+              "type": "tool_result",
+              "content": "260038 artifacts/sign_reversal_determinants_results.json\nKeys: ['n_matrices', 'beta_configs_tested', 'feature_names', 'features_per_config', 'per_beta_results', 'default_beta_descriptive', 'rule_robustness_across_betas']\nn_matrices: 23\nbeta_configs: ['default', 'uniform_pos', 'alt_signs', 'only_first', 'scale_0p3', 'scale_3p0']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2298aa8-56b5-4013-ae04-ca50b0896d13",
+            "isSidechain": false,
+            "promptId": "cda5cfc5-1136-4ede-bcf5-df8462bcccbd",
+            "type": "user",
+            "uuid": "7306edc6-820d-43d6-8a15-e01960cbb63c",
+            "toolUseResult": {
+              "stdout": "260038 artifacts/sign_reversal_determinants_results.json\nKeys: ['n_matrices', 'beta_configs_tested', 'feature_names', 'features_per_config', 'per_beta_results', 'default_beta_descriptive', 'rule_robustness_across_betas']\nn_matrices: 23\nbeta_configs: ['default', 'uniform_pos', 'alt_signs', 'only_first', 'scale_0p3', 'scale_3p0']",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "d2298aa8-56b5-4013-ae04-ca50b0896d13",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T14:59:18.273Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7306edc6-820d-43d6-8a15-e01960cbb63c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "f4a42f90-24c8-4383-a365-391f92aad23c",
+                "timestamp": "2026-05-23T14:59:18.273Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T14:59:27.384Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行完成，结果已写入 JSON。\n\n**关键发现**：\n\n- **23 个矩阵**，default beta `[0, 1.0, -0.5, ...]` 下 **14/23 发生 sign reversal**（61%）\n- **最佳单特征规则**：`det < 0.0137` — 准确率 91.3%，specificity 100%（无假阳），sensitivity 85.7%\n- **最佳双特征规则**：`(min_diag < 0.5523) AND (mean_entropy > 0.3986)` — 准确率 95.7%，sensitivity 100%（无遗漏），specificity 88.9%\n- **跨 beta 鲁棒性**：det 规则在 scale_0p3 和 scale_3p0 上同样 91.3%，但在 uniform_pos（全正 beta）下完全失效（47.8%），因为 uniform_pos 下 0/23 矩阵产生 sign reversal\n- `uniform_pos` 配置 0 个 sign flip，说明方向相同的 beta 不会被混淆矩阵翻转符号"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4a42f90-24c8-4383-a365-391f92aad23c",
+            "isSidechain": false,
+            "requestId": "req_011CbKhVgCgKU6FqPz6CXrWj",
+            "type": "assistant",
+            "uuid": "c199b68b-0b85-45fe-a4db-77715fceb665",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod_0510/projects/causal_annot_error_attrib",
+            "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015nm88wGDNVMHxWbdwGZFHL",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 393,
+                "cache_read_input_tokens": 35708,
+                "output_tokens": 329,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 393,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 329,
+                    "cache_read_input_tokens": 35708,
+                    "cache_creation_input_tokens": 393,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 393
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c199b68b-0b85-45fe-a4db-77715fceb665",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze sign reversal determinants in confusion matrices",
+                "sessionId": "bda960fb-f645-4405-a119-332fbfa4589a"
+              }
+            }
+          ],
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-causal-annot-error-attrib-home-1x5090-ssh-sonny-ssh-execute-su-copy-30.md"
+}

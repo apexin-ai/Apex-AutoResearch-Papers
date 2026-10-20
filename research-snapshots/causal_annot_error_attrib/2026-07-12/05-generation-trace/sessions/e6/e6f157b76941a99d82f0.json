@@ -1,0 +1,1312 @@
+{
+  "schema_version": "1.0",
+  "id": "e6f157b76941a99d82f0",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to find and deeply read the paper \"Beyond Prompts: Space-Time Decoupling Control-Plane Jailbreaks in LLM Structur",
+  "task_key": "agent-aba53dbf8214eeda6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-aba53dbf8214eeda6.jsonl",
+    "occurrence": 1,
+    "bytes": 90399,
+    "sha256": "d916d9f145df8a9fd4815b29b9b6697590f26e9d8641cc2dab45f4744cb42b51"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "record": 2,
+      "assistant": 5,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T09:26:52.191Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to find and deeply read the paper \"Beyond Prompts: Space-Time Decoupling Control-Plane Jailbreaks in LLM Structured Output\" (arXiv 2503.24191, Mar 2025, revised Jan 2026). \n\nPlease:\n1. Search for this paper using multiple queries: the title, the arXiv ID, \"structured output jailbreak constrained decoding\"\n2. Fetch the arXiv abstract page (https://arxiv.org/abs/2503.24191) to get the full abstract and details\n3. If possible, fetch the HTML version (https://arxiv.org/html/2503.24191) to read methodology details\n\nI need to understand:\n- What exactly is \"Space-Time Decoupling\"? What are \"Control-Plane Jailbreaks\"?\n- How do they achieve 94.3-99.5% ASR? What models were tested?\n- What specific evidence do they provide that constrained decoding/structured output suppresses refusal?\n- How does this relate to tool-call generation specifically?\n\nReport detailed findings - this paper is supposedly the strongest empirical motivation for a mechanistic study of why refusal fails during structured/tool-call output."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "245b2186-a364-4b4d-aeb1-863ca53fa748",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T09:26:52.194Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "245b2186-a364-4b4d-aeb1-863ca53fa748",
+                "isSidechain": true,
+                "agentId": "aba53dbf8214eeda6",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": []
+                },
+                "type": "attachment",
+                "uuid": "ae830862-c278-4da8-af97-6b775512a79f",
+                "timestamp": "2026-05-19T09:26:52.194Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea-gen-pipeline",
+                "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T09:26:52.195Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "ae830862-c278-4da8-af97-6b775512a79f",
+                "isSidechain": true,
+                "agentId": "aba53dbf8214eeda6",
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "311c7ea6-da55-4c92-a0b6-ff4bb885bfc2",
+                "timestamp": "2026-05-19T09:26:52.195Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea-gen-pipeline",
+                "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T09:26:55.496Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for this paper using multiple approaches and fetch the actual arXiv pages. Let me start with all the searches and fetches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "311c7ea6-da55-4c92-a0b6-ff4bb885bfc2",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBguhijGcdd6G9imqmWx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "890f6363-05f9-4510-a16e-f2ea71e90c7f",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VXN6MeYJfNhFtm7zNZZC7u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1629,
+                "cache_read_input_tokens": 7773,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1629,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T09:26:55.765Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WuKbgrt28jevbHwLKeWXFV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "890f6363-05f9-4510-a16e-f2ea71e90c7f",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBguhijGcdd6G9imqmWx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "652cecca-9858-4108-b89d-3cfce287b28e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VXN6MeYJfNhFtm7zNZZC7u",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1629,
+                "cache_read_input_tokens": 7773,
+                "output_tokens": 112,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1629
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 112,
+                    "cache_read_input_tokens": 7773,
+                    "cache_creation_input_tokens": 1629,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1629,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T09:26:55.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01WuKbgrt28jevbHwLKeWXFV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "652cecca-9858-4108-b89d-3cfce287b28e",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "fdb0fedf-149c-4152-a55c-92b4de105bcd",
+            "sourceToolAssistantUUID": "652cecca-9858-4108-b89d-3cfce287b28e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T09:26:59.121Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all the searches and fetches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fdb0fedf-149c-4152-a55c-92b4de105bcd",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBguyD9G3p5cPfbqfrsn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ea44f031-dfa5-4282-bb1b-21cd7e59af27",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmueVKzkuarfHgcnTpf4xx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 9402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1134,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T09:26:59.326Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017A5hhpVe5qknMgywtcTefa",
+              "name": "WebSearch",
+              "input": {
+                "query": "Beyond Prompts Space-Time Decoupling Control-Plane Jailbreaks LLM Structured Output arXiv 2503.24191"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea44f031-dfa5-4282-bb1b-21cd7e59af27",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBguyD9G3p5cPfbqfrsn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6caee1e3-de9e-43c8-bc04-565f4216caf0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmueVKzkuarfHgcnTpf4xx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 9402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1134,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T09:27:05.694Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017A5hhpVe5qknMgywtcTefa",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Beyond Prompts Space-Time Decoupling Control-Plane Jailbreaks LLM Structured Output arXiv 2503.24191\"\n\nLinks: [{\"title\":\"[2503.24191] Beyond Prompts: Space-Time Decoupling Control-Plane Jailbreaks in LLM Structured Output\",\"url\":\"https://arxiv.org/abs/2503.24191\"},{\"title\":\"Beyond Prompts: Space–Time Decoupling Control-Plane Jailbreaks in LLM Structured Output\",\"url\":\"https://arxiv.org/html/2503.24191\"},{\"title\":\"Space-Time Decoupling Control-Plane Jailbreaks in LLM ...\",\"url\":\"https://arxiv.org/pdf/2503.24191\"},{\"title\":\"Do Internal Layers of LLMs Reveal Patterns for Jailbreak Detection?\",\"url\":\"https://arxiv.org/pdf/2510.06594\"},{\"title\":\"Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\",\"url\":\"https://arxiv.org/html/2503.24191v1\"},{\"title\":\"Anyone Can Jailbreak: Prompt-Based Attacks on LLMs and T2Is\",\"url\":\"https://arxiv.org/pdf/2507.21820\"}]\n\nI found the paper! Here's what the search revealed:\n\nThe paper focuses on how LLMs are used through structured output APIs to ensure syntax compliance, but this feature presents significant security vulnerabilities.\n\nThe research introduces Constrained Decoding Attack (CDA), a novel jailbreak class that weaponizes structured output constraints to bypass both external auditing and internal safety alignment, operating by embedding malicious intent in schema-level grammar rules (control-plane) while maintaining benign surface prompts (data-plane).\n\nThe paper instantiates this with two proof-of-concept attacks: EnumAttack, which embeds malicious content in enum fields; and DictAttack, which decouples the malicious payload across a benign prompt and a dictionary-based grammar.\n\nThe vulnerability is particularly relevant as LLMs are increasingly integrated into complex agent frameworks and enterprise automation pipelines where they function as core reasoning engines.\n\nThe paper was published on arXiv on January 5, 2026 (version 2) and appears to be addressing a previously overlooked attack surface in LLM safety mechanisms.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6caee1e3-de9e-43c8-bc04-565f4216caf0",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "1db2e18c-5969-4e20-be57-988494092704",
+            "sourceToolAssistantUUID": "6caee1e3-de9e-43c8-bc04-565f4216caf0",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T09:27:08.291Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016CXNxAorvwoFojHJCeibg2",
+              "name": "WebSearch",
+              "input": {
+                "query": "structured output jailbreak constrained decoding attack safety bypass 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1db2e18c-5969-4e20-be57-988494092704",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBgvhNgDGQcyX5BZrKei",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8178f7b3-9e24-4998-9906-130b2ba37834",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016ysNcsbbEm9rjgaC5ZH1CV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 697,
+                "cache_read_input_tokens": 10536,
+                "output_tokens": 66,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 697
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 66,
+                    "cache_read_input_tokens": 10536,
+                    "cache_creation_input_tokens": 697,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 697,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T09:27:15.378Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016CXNxAorvwoFojHJCeibg2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"structured output jailbreak constrained decoding attack safety bypass 2025\"\n\nLinks: [{\"title\":\"Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms - Advanced AI News\",\"url\":\"https://advancedainews.com/output-constraints-as-attack-surface-exploiting-structured-generation-to-bypass-llm-safety-mechanisms/\"},{\"title\":\"Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\",\"url\":\"https://arxiv.org/html/2503.24191v1\"},{\"title\":\"Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing Jailbreak Attacking\",\"url\":\"https://arxiv.org/html/2502.13527\"},{\"title\":\"Awesome-LM-SSP/collection/paper/safety/jailbreak.md at main · CryptoAILab/Awesome-LM-SSP\",\"url\":\"https://github.com/CryptoAILab/Awesome-LM-SSP/blob/main/collection/paper/safety/jailbreak.md\"},{\"title\":\"Output Constraints as Attack Surface: Exploiting Structured ...\",\"url\":\"https://arxiv.org/abs/2503.24191\"},{\"title\":\"(PDF) Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\",\"url\":\"https://www.researchgate.net/publication/390404554_Output_Constraints_as_Attack_Surface_Exploiting_Structured_Generation_to_Bypass_LLM_Safety_Mechanisms\"},{\"title\":\"Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250324191Z/abstract\"},{\"title\":\"[Literature Review] Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\",\"url\":\"https://www.themoonlight.io/en/review/output-constraints-as-attack-surface-exploiting-structured-generation-to-bypass-llm-safety-mechanisms\"}]\n\nBased on the search results, here's what I found about structured output jailbreak and constrained decoding attacks:\n\n## Key Findings\n\nConstrained Decoding Attack (CDA) is a novel jailbreak class that weaponizes structured output constraints to bypass safety mechanisms. This represents a significant recent development in LLM security research from 2025.\n\n### How It Works\n\nCDA exploits the output constraints enforced by structured output APIs, effectively bypassing the LLM's safety mechanisms, differing from traditional attacks that focus on input prompts. Constrained Decoding Attacks represent a significant shift in the jailbreaking paradigm by targeting the decoding process rather than relying on prompt engineering.\n\n### The Underlying Vulnerability\n\nLLMs are extensively used as tooling platforms through structured output APIs to ensure syntax compliance for robust integration with existing software, but the feature enabling grammar-guided structured output presents significant security vulnerabilities. Constrained decoding combines grammar-level rules with LLM decoding process to ensure grammar-compatible output, enabling structured output features like regular expressions, JSON schema or arbitrary EBNF grammars.\n\n### Threat Assessment\n\nChain Enum Attack bypasses most existing prompt-based external safeguards, including industrially deployed defenses from OpenAI and Gemini. To counter structured output-based jailbreak attacks, service vendors could implement real-time constrained decoding monitors to detect adversarial pattern manipulation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8178f7b3-9e24-4998-9906-130b2ba37834",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "c81cc46a-148a-4a23-a84a-e36a734fe77c",
+            "sourceToolAssistantUUID": "8178f7b3-9e24-4998-9906-130b2ba37834",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T09:27:17.941Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SZXjvTr6VSsDyB1ssGjWfG",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"constrained decoding attack\" \"EnumAttack\" \"DictAttack\" jailbreak LLM safety alignment"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c81cc46a-148a-4a23-a84a-e36a734fe77c",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBgwQp3ouKDsLCe8PwcL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3df9fcf3-38a8-4c49-b923-d8d79ae9cff1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Azb1By59QtTdhsAE4ZBMdV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 932,
+                "cache_read_input_tokens": 11233,
+                "output_tokens": 78,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 932
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 78,
+                    "cache_read_input_tokens": 11233,
+                    "cache_creation_input_tokens": 932,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 932,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T09:27:26.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SZXjvTr6VSsDyB1ssGjWfG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"constrained decoding attack\" \"EnumAttack\" \"DictAttack\" jailbreak LLM safety alignment\"\n\nLinks: [{\"title\":\"Beyond Prompts: Space–Time Decoupling Control-Plane Jailbreaks in LLM Structured Output\",\"url\":\"https://arxiv.org/html/2503.24191\"},{\"title\":\"Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\",\"url\":\"https://arxiv.org/html/2503.24191v1\"},{\"title\":\"[2503.24191] Beyond Prompts: Space-Time Decoupling Control-Plane Jailbreaks in LLM Structured Output\",\"url\":\"https://arxiv.org/abs/2503.24191\"},{\"title\":\"[Literature Review] Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\",\"url\":\"https://www.themoonlight.io/en/review/output-constraints-as-attack-surface-exploiting-structured-generation-to-bypass-llm-safety-mechanisms\"},{\"title\":\"Space-Time Decoupling Control-Plane Jailbreaks in LLM ...\",\"url\":\"https://arxiv.org/pdf/2503.24191\"},{\"title\":\"BreakFun: Jailbreaking LLMs via Schema Exploitation\",\"url\":\"https://arxiv.org/html/2510.17904v2\"},{\"title\":\"Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing Jailbreak Attacking\",\"url\":\"https://arxiv.org/html/2502.13527\"}]\n\nBased on the search results, here's what I found about constrained decoding attacks, EnumAttack, and DictAttack:\n\n## Overview\n\nConstrained Decoding Attack (CDA) is a novel class of jailbreaks that targets the LLM control plane—the grammar that dictates the output structure. Unlike conventional jailbreak attacks on the data plane, hiding unsafe instructions inside otherwise benign prompts, CDA embeds malicious intent directly into the grammar itself.\n\n## EnumAttack and DictAttack\n\nEnumAttack embeds malicious content in enum fields; and the more evasive DictAttack decouples the malicious payload across a benign prompt and a dictionary-based grammar. \n\nEnum Attack leverages JSON Schema's enum feature to exploit structured output constraints in modern LLM APIs, allowing attackers to bypass safety mechanisms and generate harmful outputs.\n\n## Attack Effectiveness and Defense Challenges\n\nThe attacks show significant success rates: DictAttack achieves 94.3--99.5% ASR across five benchmarks on gpt-5, gemini-2.5-pro, deepseek-r1, and gpt-oss-120b.\n\nWhile basic grammar auditing mitigates EnumAttack, the more sophisticated DictAttack maintains a 75.8% ASR even against multiple state-of-the-art jailbreak guardrails. This exposes a critical \"semantic gap\" in current safety architectures and underscores the urgent need for cross-plane defenses that can bridge the data and control planes to secure the LLM generation pipeline.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3df9fcf3-38a8-4c49-b923-d8d79ae9cff1",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "abb7c18b-5e1c-45ba-9468-45c8ec010aa7",
+            "sourceToolAssistantUUID": "3df9fcf3-38a8-4c49-b923-d8d79ae9cff1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T09:27:28.871Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the actual arXiv pages for detailed content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abb7c18b-5e1c-45ba-9468-45c8ec010aa7",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBgxCf5ZJjk34XGvqoxg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eb4256f0-d5df-4205-932e-46d78a7d635b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WCMhxNd22WZiJHQ6ain1Kz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 858,
+                "cache_read_input_tokens": 12165,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 858,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T09:27:30.536Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016J4XMG5gUWRUMoj6iV27zy",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2503.24191",
+                "prompt": "Extract ALL information from this arXiv abstract page: full title, all authors, full abstract text, submission dates, revision history, all categories, and any other metadata. Be complete - capture every detail."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb4256f0-d5df-4205-932e-46d78a7d635b",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBgxCf5ZJjk34XGvqoxg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5db11813-ecdb-4586-b256-e9040d628dde",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WCMhxNd22WZiJHQ6ain1Kz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 858,
+                "cache_read_input_tokens": 12165,
+                "output_tokens": 138,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 858
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 138,
+                    "cache_read_input_tokens": 12165,
+                    "cache_creation_input_tokens": 858,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 858,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T09:27:36.485Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016J4XMG5gUWRUMoj6iV27zy",
+              "type": "tool_result",
+              "content": "# arXiv Paper Extraction: 2503.24191\n\n## Title\n\"Beyond Prompts: Space-Time Decoupling Control-Plane Jailbreaks in LLM Structured Output\"\n\n## Authors\nShuoming Zhang, Jiacheng Zhao, Hanyuan Dong, Ruiyuan Xu, Zhicheng Li, Yangyu Zhang, Shuaijiang Li, Yuan Wen, Chunwei Xia, Zheng Wang, Xiaobing Feng, Huimin Cui\n\n## Abstract Summary\nThe paper introduces Constrained Decoding Attack (CDA), a novel jailbreak technique targeting structured output APIs in large language models. Unlike conventional prompt-based attacks, CDA embeds harmful content within schema-level grammar rules while keeping surface prompts benign. Two proof-of-concept attacks are presented: EnumAttack (embedding malicious content in enumeration fields) and DictAttack (distributing payloads across prompts and dictionary-based grammars). Testing across 13 models showed DictAttack achieving \"94.3--99.5% ASR across five benchmarks\" on certain GPT and other models, with 75.8% effectiveness even against guardrails.\n\n## Submission Information\n- **Original submission:** March 31, 2025\n- **Latest revision:** January 5, 2026 (version 2)\n- **arXiv identifier:** 2503.24191\n\n## Categories\n- Cryptography and Security (cs.CR)\n- Artificial Intelligence (cs.AI)\n\n## Additional Metadata\n- **Paper length:** 15 pages, 9 figures, 8 tables\n- **License:** CC BY 4.0\n- **DOI:** https://doi.org/10.48550/arXiv.2503.24191"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5db11813-ecdb-4586-b256-e9040d628dde",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "b52c6ead-64be-45dc-a69d-003a6508a12f",
+            "sourceToolAssistantUUID": "5db11813-ecdb-4586-b256-e9040d628dde",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T09:27:45.218Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NEfAPtNzwaHpXf5ELTCxWr",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2503.24191",
+                "prompt": "Extract the FULL content of this paper in maximum detail. I need:\n\n1. The complete abstract verbatim\n2. The full Introduction section - what problem they identify, what is the \"control plane\" vs \"data plane\" distinction\n3. The full methodology: How exactly do EnumAttack and DictAttack work? What is \"Space-Time Decoupling\"? What does \"control plane jailbreak\" mean precisely?\n4. All experimental results: Which 13 models were tested? What were the exact ASR numbers for each model? What benchmarks were used?\n5. The specific evidence/analysis of WHY constrained decoding suppresses refusal - any mechanistic explanation they provide\n6. Discussion of how this relates to tool-call generation and agent frameworks\n7. Defense analysis - what defenses were tested and how effective were they?\n8. All figures and tables descriptions\n\nBe as thorough and detailed as possible. Extract actual numbers, actual model names, actual methodology details. Do not summarize - give me the full details."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b52c6ead-64be-45dc-a69d-003a6508a12f",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBgxy4JE5bUg3sJGxwu7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "352b6dcd-3a03-4424-a31d-1b797d915429",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VAPdQJDh1YUri9yXQ3RNoe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 569,
+                "cache_read_input_tokens": 13023,
+                "output_tokens": 308,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 569
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 308,
+                    "cache_read_input_tokens": 13023,
+                    "cache_creation_input_tokens": 569,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 569,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T09:29:07.939Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NEfAPtNzwaHpXf5ELTCxWr",
+              "type": "tool_result",
+              "content": "# Comprehensive Extraction: \"Beyond Prompts: Space–Time Decoupling Control-Plane Jailbreaks in LLM Structured Output\"\n\n## 1. COMPLETE ABSTRACT\n\n\"Large Language Models (LLMs) are extensively used as tooling platforms through structured output APIs to ensure syntax compliance so that robust integration with existing software, like agent systems, can be achieved. However, the feature enabling the functionality of grammar-guided structured output presents significant security vulnerabilities. In this work, we reveal a critical control-plane attack surface orthogonal to traditional data-plane vulnerabilities. We introduce Constrained Decoding Attack (CDA), a novel jailbreak class that weaponizes structured output constraints to bypass both external auditing and internal safety alignment. Unlike prior attacks focused on input prompt designs, CDA operates by embedding malicious intent in schema-level grammar rules (control-plane) while maintaining benign surface prompts (data-plane). We instantiate this with two proof-of-concept attacks: EnumAttack, which embeds malicious content in enum fields; and the more evasive DictAttack, which decouples the malicious payload across a benign prompt and a dictionary-based grammar. Our evaluation spans a broad spectrum of 13 proprietary/open-weight models. In particular, DictAttack achieves 94.3–99.5% ASR across five benchmarks on gpt-5, gemini-2.5-pro, deepseek-r1, and gpt-oss-120b. Furthermore, we demonstrate the significant challenge in defending against these threats: while basic grammar auditing mitigates EnumAttack, the more sophisticated DictAttack maintains a 75.8% ASR even against multiple state-of-the-art jailbreak guardrails. This exposes a critical \"semantic gap\" in current safety architectures and underscores the urgent need for cross-plane defenses that can bridge the data and control planes to secure the LLM generation pipeline.\"\n\n---\n\n## 2. INTRODUCTION: PROBLEM IDENTIFICATION & CONCEPTUAL FRAMEWORK\n\n### Core Problem Identified\n\nThe paper reveals that modern LLM deployments rely heavily on **structured output** mechanisms to generate formatted, syntactically-compliant outputs. These mechanisms use **constrained decoding**—grammar-guided generation that masks invalid tokens during inference. While this ensures reliable tool integration and function calling, it introduces a novel attack vector previously unexamined in jailbreak literature.\n\n### Data Plane vs. Control Plane Distinction\n\nThe authors formalize two orthogonal dimensions of LLM generation:\n\n**Data Plane**: \"The standard LLM query–response process. Specifically, a prompt is passed to the LLM, which then generates a text response.\" This includes both the model's internal safety alignment and external guardrails (classifiers, content filters) that operate on prompts/outputs.\n\n**Control Plane**: \"The formatting constraints, or grammars, that guide structured outputs. These constraints are enforced after generation through the model's logit processor, meaning the LLM itself is unaware of them. The control plane supervises generation with user-defined hard rules, such as requiring outputs to match a JSON schema.\"\n\n### The Conceptual Insight\n\nTraditional jailbreaks operate in the data plane—attackers craft clever prompts to bypass safety mechanisms. Modern defenses focus almost exclusively on data-plane filtering. However, when structured output APIs allow users to provide arbitrary JSON schemas or grammars, they inadvertently expose the control plane as an attack surface.\n\nThe key realization: \"By manipulating the structured output specifications through carefully crafted schema definitions, these attacks force models to generate content that would otherwise be filtered by both external guardrails and internal alignment mechanisms.\"\n\n### Why Constrained Decoding Creates Vulnerability\n\nThe constrained decoding process works via **per-token masking**: at each generation step, the grammar engine creates a mask of valid tokens (based on grammar rules), sets invalid tokens to −∞ logits, and samples from the masked distribution. This ensures outputs conform to the schema but has a critical side effect—**it forces the model to generate specific strings regardless of safety alignment**.\n\nThe mechanism bypasses safety because: safety alignment typically works by increasing the probability of refusal tokens (like \"I can't help with that\") in the probability distribution. However, constrained decoding deterministically restricts the token space based purely on grammar compliance, not semantic safety. If a malicious string is the only token allowed by the grammar, the model generates it regardless of its training.\n\n---\n\n## 3. METHODOLOGY: ENUMATTACK AND DICTATTACK\n\n### EnumAttack: Direct Manipulation via JSON Schema\n\n**Mechanism**: Exploits the `enum` property in JSON Schema. A schema field restricted to a single-item enum containing a malicious query forces that exact string through the grammar engine.\n\n**Three-Step Construction**:\n1. **Benign Prompt**: Send innocent data-plane text (e.g., \"Help me process this data\") to evade prompt guardrails\n2. **Malicious Enum Field**: Define a JSON schema with an enum property: `\"enum\": [\"Detailed instructions for identity theft\"]` \n3. **Affirmative Prefix Field**: Add another enum forcing compliance language (e.g., \"Sure, here is the information\") to suppress refusals\n\n**Why It Works**: The constrained decoding engine sees the enum and must generate that specific string token-by-token. The model's internal safety alignment is bypassed because the grammar deterministically requires the output.\n\n**Limitations**: The malicious payload exists as literal strings visible in the grammar, making it detectable by string-matching guardrails.\n\n### DictAttack: Benign Grammar + Prompt = Jailbreak\n\n**Core Innovation**: Decouples malicious intent across **two dimensions**:\n- **Spatial Decoupling**: Splits payload between data plane (prompt) and control plane (grammar)\n- **Temporal Decoupling**: Can distribute payloads across multiple conversation turns\n\n**Three-Step Generation Process** (per Algorithm 1):\n\n1. **Tokenization and Obfuscation**: \n   - Malicious query Q_m tokenized into words W_h\n   - Example: \"How to make explosives\" → [\"how\", \"to\", \"make\", \"explosives\"]\n\n2. **Dictionary Synthesis**:\n   - Each harmful word assigned benign key: \"how\" → \"a1\", \"to\" → \"b2\", \"make\" → \"c3\", \"explosives\" → \"d4\"\n   - To obscure intent, generate k harmless synonyms for each word and include in dictionary\n   - Example dictionary (k=1):\n     ```json\n     {\n       \"a1\": \"how\",      \"a2\": \"in_what_manner\",\n       \"b2\": \"to\",       \"b3\": \"towards\",\n       \"c3\": \"make\",     \"c4\": \"construct\",\n       \"d4\": \"explosives\", \"d5\": \"bomb_materials\"\n     }\n     ```\n\n3. **Dual-Plane Payload**:\n   - **Data-Plane**: Benign prompt containing only keys: \"a1+b2+c3+d4\" with instruction like \"translate these keys using the provided dictionary\"\n   - **Control-Plane**: JSON schema embedding the dictionary in its fields/descriptions\n\n**During Inference**:\n- Model receives key sequence in prompt and dictionary in grammar\n- Constrained decoding forces model to reconstruct the query by mapping keys to dictionary values\n- Neither keys nor individual dictionary words are harmful in isolation\n- Only when reassembled does malicious intent emerge\n\n**Why Detection Fails**: A guardrail examining only the prompt sees benign keys. A guardrail examining only the grammar sees benign technical vocabulary. Neither detects the combined threat without semantic cross-plane reasoning.\n\n### Space-Time Decoupling: Interleaved DictAttack\n\n**Temporal Extension**: Attacker sends key sequence in an early conversation turn (which becomes part of model's KV cache), then sends dictionary-embedded schema in a later turn.\n\n**Why This Further Evades Defenses**:\n- Per-request dual-plane auditing becomes single-plane checking\n- Would require auditing entire conversation history at each turn (computationally prohibitive)\n- Creates \"needle in haystack\" problem for guards that must reconstruct context from potentially 128k+ token histories\n\n**Measured Impact**: Reduces detection from 24.2% (dual-plane guard on simultaneous payloads) to 5.3% (same guard against interleaved variant).\n\n---\n\n## 4. EXPERIMENTAL DESIGN & RESULTS\n\n### Models Tested (13 Total)\n\n**Proprietary Models** (with flagship emphasis):\n- gpt-4o (2024-0806)\n- gpt-4o-mini (2024-0718)\n- gpt-5 (flagship)\n- gemini-2.0-flash\n- gemini-2.5-pro (flagship)\n\n**Open-Weight Models**:\n- llama-3.1-8b-instruct\n- qwen-2.5-32b-instruct\n- mistral-nemo\n- phi-3.5-moe\n- gemma-2-9b-it\n- deepseek-v3-0324\n- deepseek-r1-0528\n- gpt-oss-120b\n\n### Benchmarks (6 datasets)\n\n| Dataset | Size | Categories | Special Properties |\n|---------|------|-----------|-------------------|\n| AdvBench | 520 | General | — |\n| StrongREJECT | 311 | 6 categories | — |\n| JailbreakBench | 100 | 10 categories | — |\n| HarmBench | 100 | 3 categories | — |\n| SorryBench | 440 | 44 categories | 21 attack variants |\n| JBShield | 850 | — | 9 attack variants |\n\n### Exact ASR Results\n\n#### EnumAttack Results (Table 2)\n\nOn AdvBench with JBShield prompt guard:\n- phi-3.5-moe: 99.2%\n- mistral-nemo: 100.0%\n- qwen-2.5-32b: 99.0%\n- llama-3.1-8b: 99.2%\n- gemma-2-9b: 98.6%\n- deepseek-v3: 98.7%\n- gpt-4o: 100.0%\n- gpt-4o-mini: 99.0%\n- gemini-2.0-flash: 95.8%\n\n**Key Finding**: ASR identical with/without prompt guard (showing complete bypass of data-plane defenses).\n\n#### DictAttack Results on Mainstream Models (Table 4)\n\n**gpt-4o**:\n- AdvBench: 98.1% (with guard) / 99.8% (without)\n- HarmBench: 98.3% / 100.0%\n- JailbreakBench: 98.3% / 100.0%\n- SorryBench: 96.9% / 98.6%\n- StrongREJECT: 96.7% / 98.4%\n\n**gpt-4o-mini**:\n- AdvBench: 95.5% / 97.1%\n- HarmBench: 83.6% / 85.0%\n- JailbreakBench: 92.4% / 94.0%\n- SorryBench: 83.8% / 85.2%\n- StrongREJECT: 69.4% / 70.6%\n\n**gemini-2.0-flash**:\n- AdvBench: 96.8% / 98.5%\n- HarmBench: 97.3% / 99.0%\n- JailbreakBench: 89.5% / 91.0%\n- SorryBench: 93.9% / 95.5%\n- StrongREJECT: 91.4% / 93.0%\n\n#### DictAttack on Flagship/High-Capability Models (Table 5)\n\n**gpt-5**:\n- AdvBench: 94.4% (with guard) / 96.0%\n- HarmBench: 90.4% / 92.0%\n- JailbreakBench: 93.4% / 95.0%\n- SorryBench: 91.6% / 93.2%\n- StrongREJECT: 93.9% / 95.5%\n\n**gemini-2.5-pro**:\n- AdvBench: 97.5% / 99.2%\n- HarmBench: 98.3% / 100.0%\n- JailbreakBench: 98.3% / 100.0%\n- SorryBench: 97.6% / 99.3%\n- StrongREJECT: 97.3% / 99.0%\n\n**deepseek-r1**:\n- AdvBench: 97.2% / 98.9%\n- HarmBench: 93.4% / 95.0%\n- JailbreakBench: 95.4% / 97.0%\n- SorryBench: 96.9% / 98.6%\n- StrongREJECT: 96.4% / 98.1%\n\n**gpt-oss-120b**:\n- AdvBench: 96.6% / 98.3%\n- HarmBench: 90.4% / 92.0%\n- JailbreakBench: 89.4% / 91.0%\n- SorryBench: 94.8% / 96.4%\n- StrongREJECT: 94.2% / 95.8%\n\n**Summary**: Average DictAttack ASR across flagship models is 94.3-99.5% (near-perfect success).\n\n#### Comparison to SOTA Data-Plane Attacks (Table 6)\n\nAgainst gpt-4o on AdvBench:\n- PAIR: 11.5% ASR undefended, 1.6% with guard\n- TAP: 24.4% undefended, 0.4% with guard\n- AutoDAN-Turbo: 96.0% undefended, 26.0% with guard\n- **DictAttack: 99.8% undefended, 75.8% with dual-plane guard**\n\n### Defense Evaluation Results\n\n#### Table 3: EnumAttack vs. JBShield on llama-3.1-8b\n\nBaseline attacks (data-plane, AdvBench):\n- IJP: 0.85% ASR with JBShield (48.9% without)\n- DrAttack: 0% with JBShield (65.9% without)\n- Puzzler: 0% with JBShield (100% without)\n- Zulu: 0% with JBShield (2.7% without)\n- Base64: 0.82% with JBShield (8.4% without)\n\n**EnumAttack**: \n- ASR identical with/without JBShield (completely bypasses it)\n\n#### Table 7: Detection Rates Under Different Guards (AdvBench)\n\n**Defense 1 (Grammar-Only)**:\n- EnumAttack detection: 97.7% (llamaguard), 90.2% (Moderation), 100.0% (gpt-4o)\n- DictAttack (k=0): 6.5%, 0.0%, 17.7%\n- DictAttack (k=1): 1.7%, 0.0%, 8.1%\n- DictAttack (k=10): 1.5%, 0.0%, 5.3%\n\n**Defense 2 (Dual-Plane Guard, SelfDefend-based)**:\n- DictAttack (simultaneous payloads): 28.6% (llamaguard), 0.2% (Moderation), 24.2% (gpt-4o)\n- **Interleaved DictAttack**: 1.5% (llamaguard), 0.0% (Moderation), 5.3% (gpt-4o)\n\n**Key Finding**: Grammar-only guard achieves 97.7% detection of EnumAttack but only 1.7% of DictAttack. Dual-plane guard improves detection to 24.2% but Interleaved variant reduces to 5.3%.\n\n### Infrastructure Sensitivity (Figure 5)\n\nTested combinations:\n- Grammar backends: xgrammar, outlines\n- Serving frameworks: vLLM 0.10.1, SGLang 0.4.10\n\n**Result**: EnumAttack achieves ~99-100% ASR across all four combinations, demonstrating vulnerability is backend-agnostic.\n\n### Baseline Results (Undefended Models)\n\n- AdvBench: 1.2% ASR on gpt-4o (showing strong baseline safety)\n- Average across benchmarks: 6.7-38.7% ASR\n\n---\n\n## 5. MECHANISTIC ANALYSIS: WHY CONSTRAINED DECODING SUPPRESSES REFUSAL\n\n### Token Distribution Analysis (Figures 7-8)\n\nThe authors conducted case study using **phi-3.5-moe**, examining token probability distributions across seven progressive attack stages:\n\n1. **Direct Prompt**: Refusal tokens achieve ~100% probability\n   - Model strongly refuses harmful request\n\n2. **Yes-Prefix**: Minimal impact\n   - Refusal tokens remain ~90% probable\n   - Safety alignment strongly suppresses jailbreak tokens\n\n3. **JSON Format**: Refusal probability drops ~50%\n   - Structured output constraint begins affecting alignment\n\n4. **EnumAttack**: Refusal tokens disappear\n   - Safe tokens remain highly probable (~70%)\n   - Jailbreak tokens possible but not dominant\n\n5. **System Prompt Injection**: Refusal/safe tokens suppressed\n   - Jailbreak tokens become most likely\n\n6. **Chain EnumAttack**: Complete alignment breakdown\n   - Top-5 generation beams are all jailbreak tokens\n   - Model fully compromised\n\n7. **Chained Steps**: Permanent alignment collapse\n   - Continued degradation through multi-turn attacks\n\n### Quantitative Shift (Figure 8)\n\nToken proportion evolution:\n- **Normal state**: 90% refusal tokens, 8% safe, 2% jailbreak\n- **After EnumAttack**: Refusal tokens eliminated\n- **Final state**: Balanced distribution with jailbreak tokens dominant (no token type dominating)\n\n### Mechanistic Explanation Provided\n\nThe authors argue: \"While pre-trained LLMs naturally exhibit a diverse and open-ended token distribution, safety alignment artificially distorts this space by forcing refusal tokens to dominate when harmful intents are detected. By imposing structured constraints that fall outside the model's safety-aligned training distribution, CDAs allow the generation process to 'escape' these artificial refusal peaks. Consequently, the distribution reverts from a safety-aligned state (dominated by refusal tokens, ¿90%) to a balanced, context-sensitive state, restoring the model's original open-ended generation capacity.\"\n\nThey further note alignment is \"only a few tokens deep\" (consistent with deepalignment research). By using grammar to force specific initial tokens (affirmative prefixes, malicious queries), CDAs \"bypass this shallow layer of internal resistance.\"\n\n**Critical Insight**: Safety alignment primarily works by steering token selection at the response's start. Once constrained decoding forces specific initial tokens (via enum fields or dictionary reconstruction), the model's subsequent generation behaves as if no alignment exists—the safety mechanism has been circumvented through forced initial context rather than through genuine model reasoning.\n\n---\n\n## 6. RELATIONSHIP TO TOOL-CALL GENERATION & AGENT FRAMEWORKS\n\n### Context for Structured Output Deployment\n\nThe paper emphasizes that structured output has become essential for agent frameworks:\n\n\"Beyond standalone chatbots, LLMs are increasingly integrated into complex agent frameworks (langchain; langgraph) and enterprise automation pipelines (mcp2025website; cursor_ide) where they function as core reasoning engines. In these agentic workflows (e.g., Cursor, LangChain, and Model Context Protocol), a service component or an agent backend often supplies a grammar—typically a JSON schema—to a hosted LLM to ensure structured and reliable outputs.\"\n\n### Specific Use Cases at Risk\n\n1. **Function Calling**: Agents provide JSON schemas defining available functions with parameters. DictAttack could force malicious function calls.\n\n2. **Code Generation**: Grammar constraints ensure syntactic validity. Attackers could hide code injection in schema-level structures.\n\n3. **API Integration**: Structured outputs enable reliable tool interaction. A compromised schema could force unintended API invocations.\n\n### Why Tool-Calling Amplifies Risk\n\nTraditional jailbreaks produce harmful text—the user can ignore it. But structured output jailbreaks force specific API calls, function parameters, or tool invocations that execute automatically in agent pipelines. This transforms jailbreaks from information leaks into **actionable exploits** that directly manipulate external systems.\n\n---\n\n## 7. DEFENSE ANALYSIS & EFFECTIVENESS EVALUATION\n\n### Tested Defense Mechanisms\n\n#### Industrial Guardrails\n- **llama-guard-3-8b**: String-based filtering on prompts and outputs\n- **OpenAI Moderation API**: Content classification system\n\n#### SOTA Academic Defenses\n- **JBShield**: Lightweight defense using static attack profiles\n- **SelfDefend**: LLM-based auditing system examining responses for jailbreak indicators\n\n#### Dual-Plane Guard\n- Adapted SelfDefend to jointly audit prompt and grammar simultaneously\n- Uses gpt-4o as auditing LLM\n\n### Effectiveness Against EnumAttack\n\n**Grammar-Only Guard (llama-guard-3-8b)**:\n- Detection rate: 97.7%\n- ASR reduction: 100% → 3.4% (near-complete mitigation)\n\n**Simple string matching suffices** because enum fields contain literal malicious strings.\n\n### Effectiveness Against DictAttack\n\n**Grammar-Only Guard**:\n- Detection rate: 1.7% (k=1) to 6.5% (k=0)\n- ASR reduction: 99.8% → 98.1% (minimal impact)\n- **Reason**: Dictionary contains only benign words; no suspicious strings to detect\n\n**Dual-Plane Guard (simultaneous payloads)**:\n- Detection rate: 24.2% (gpt-4o), 28.6% (llamaguard)\n- ASR reduction: 99.8% → 75.8% (35% reduction)\n- **Limitation**: LLM auditor struggles to semantically reconstruct query from distributed components; complex JSON schemas defeat reasoning\n\n**Dual-Plane Guard (interleaved payloads)**:\n- Detection rate: 5.3% (gpt-4o)\n- ASR reduction: 99.8% → 75.8% (identical to simultaneous due to full conversation auditing failure)\n- **Critical Problem**: Would require auditing entire 128k-token history at each turn; computationally prohibitive\n\n### Why Defenses Fail\n\n1. **Single-Plane Myopia**: Prompt guardrails see benign keys; grammar guardrails see benign dictionary\n2. **Semantic Complexity**: Complex JSON schemas exceed reasoning capability of lightweight guard models\n3. **Temporal Coupling**: Multi-turn attacks defeat per-request auditing; full-history auditing is economically unfeasible\n4. **Fundamental Deadlock** (BenignEnumAttack): Legitimate safety research output (e.g., StrongREJECT jailbreak reports) appears identical to actual jailbreak outputs structurally; any defense risks false positives\n\n### Proposed Mitigations (§7)\n\n1. **Lightweight Heuristics**: Flag suspicious \"Literal-to-Logic Ratios\" or semantic mismatches (limited by false positives)\n\n2. **Grammar-Plane Auditing**: Direct JSON schema inspection (mitigates EnumAttack; ineffective on DictAttack)\n\n3. **Context-Aware Token Attribution**: Track token provenance during generation, distinguish user-specified tokens from model-generated tokens, enabling \"token-level auditing\"\n\n4. **Safety-Preserving Constraints**: Whitelist refusal tokens to override user grammars; implementation challenge: balance strict grammar compliance with safety\n\n5. **Integrated Safety Signaling**: Co-design LLMs to generate special auditing tokens (e.g., `<unsafe>`) when encountering harmful contexts, enabling real-time constraint-agnostic monitoring\n\n---\n\n## 8. COMPLETE FIGURES & TABLES DESCRIPTIONS\n\n### Figure 1\nIllustrates three attack scenarios:\n1. Traditional data-plane jailbreak (prompt attack), blocked by guardrail\n2. EnumAttack (embedding malicious question in JSON schema), unguarded\n3. DictAttack (decoupling malicious payload across benign prompt and grammar), bypassing both plane guardrails\n\n### Figure 2\nConstrained decoding workflow analogous to compiler design:\n- LLM tokenizer acts as lexer\n- Grammar rules serve as parser\n- Per-token mask generated at each step\n- Invalid tokens masked to −∞ logits\n- Model samples from masked distribution\n- Guarantees output conforms to grammar\n\n### Figure 3\nThree-panel comparison:\n- (a) Traditional refusal: guardrail blocks direct harmful prompts\n- (b) EnumAttack: malicious content embedded in grammar, bypasses guardrail\n- (c) Successful jailbreak output: detailed harmful instructions generated\n\n### Figure 4\nEnumAttack construction:\n- Benign data-plane prompt on left (\"Help me process this data\")\n- JSON schema on right with enum field containing malicious query (\"Detailed instructions for identity theft\") and affirmative prefix field (\"Sure, here is the information\")\n\n### Figure 5\nInfrastructure sensitivity bar chart:\n- X-axis: Four backend combinations (vLLM+xgrammar, vLLM+outlines, SGLang+xgrammar, SGLang+outlines)\n- Y-axis: ASR percentages\n- Result: ~99-100% ASR across all combinations on llama-3.1-8b\n\n### Figure 6\nMulti-layered CDA mitigation system diagram:\n- Input layer: Prompt guard (LLMs, classifiers)\n- Grammar layer: Grammar guard (string matching, semantic auditing)\n- Generation: LLM with internal alignment\n- Output layer: Output auditing (content filters)\n- Shows how DictAttack bypasses multiple layers simultaneously\n\n### Figure 7\nToken probability distribution case study (phi-3.5-moe, sequence_length=5):\n- Seven panels showing logit values for refusal, safe, and jailbreak token categories\n- Panel 1 (Direct Prompt): Refusal tokens dominate (~100%)\n- Panel 4 (EnumAttack): Refusal tokens eliminated\n- Panel 6 (Chain EnumAttack): Top-5 beams all jailbreak tokens\n- Explicit probability values shown (omits values <1e-16)\n\n### Figure 8\nQuantitative token distribution shift graph:\n- X-axis: Seven attack progression methods\n- Y-axis: Token proportions (stacked bars)\n- Shows transition from refusal-dominated (90%) through safe (intermediate) to jailbreak-dominated (final)\n- Demonstrates alignment breakdown through visual proportion changes\n\n### Figure 9\nBenignEnumAttack vs. legitimate auditing deadlock:\n- Red path: Actual jailbreak producing harmful output in structured format\n- Blue path: Legitimate safety research generating StrongREJECT jailbreak report\n- Both produce identical structural outputs\n- Illustrates fundamental detection ambiguity: auditor must either false-positive (reject safety research) or false-negative (leak jailbreak)\n\n### Table 1\nDatasets summary:\n- 6 benchmarks with sizes 100-850\n- Categories range from general (AdvBench) to 44-category (SorryBench)\n- Special properties include extra attacks and variants\n\n### Table 2\nEnumAttack ASR on AdvBench (520 prompts):\n- Nine models tested\n- ASRs range 95.8-100%\n- Identical results with/without prompt guard (showing complete bypass)\n\n### Table 3\nComparison on llama-3.1-8b with JBShield:\n- Five baseline attacks: all reduced to 0-0.85% ASR with guard\n- EnumAttack: identical ASR with/without guard (~47-74% depending on dataset)\n- Shows baseline attacks are well-defended; EnumAttack evades completely\n\n### Table 4\nDictAttack on mainstream models (gpt-4o, gpt-4o-mini, gemini-2.0-flash):\n- Five benchmarks tested\n- Values shown as \"with guard (without guard)\"\n- gpt-4o: 96.7-99.8% ASR range\n- gpt-4o-mini: Lower performance (~69-97%)\n- gemini-2.0-flash: 89.5-99.0% range\n- Grammar guard has minimal impact (1-3% reduction)\n\n### Table 5\nDictAttack on flagship models (gpt-5, gemini-2.5-pro, deepseek-r1, gpt-oss-120b):\n- Five benchmarks: Adv, Harm, JB, Sorry, SR\n- Column values: \"with guard/without guard\"\n- All models: 90.4-99.2% ASR range\n- Demonstrates vulnerability persists in latest, most-aligned models\n\n### Table 6\nSOTA comparison on gpt-4o AdvBench:\n- PAIR: 11.5% → 1.6% (effective defense)\n- TAP: 24.4% → 0.4% (effective defense)\n- AutoDAN-Turbo: 96.0% → 26.0% (significant reduction)\n- DictAttack: 99.8% → 75.8% (minimal reduction, marked with asterisk)\n- Asterisk note: DictAttack uses dual-plane guard; others use best data-plane guard\n- Demonstrates fundamental gap between traditional and control-plane defenses\n\n### Table 7\nDetection rates on AdvBench under two defense policies:\n- Defense 1 (Grammar-only): EnumAttack 97.7-100%, DictAttack 1.5-6.5%\n- Defense 2 (Dual-plane): DictAttack 24.2%, Interleaved DictAttack 5.3%\n- Three guard types tested: llamaguard, Moderation API, gpt-4o\n- Shows synthesis ratio k increases → detection decreases\n- Interleaved variant drastically reduces detectability\n\n### Table 8\nExtended jailbreak taxonomy table:\n- Categorizes 18+ attack methods across 6 categories\n- New category added: \"Output-based\" (CDAs)\n- Distinguishes white-box (∘) vs. black-box (∙) attacks\n- Notes target LLM query counts and whether attacks target input or output\n- EnumAttack and DictAttack positioned in output-based category with ~1 query requirement\n\n---\n\n## CRITICAL QUANTITATIVE SUMMARY\n\n**Attack Effectiveness**:\n- EnumAttack: 95.8-100% ASR across all 13 models\n- DictAttack: 90.4-99.8% ASR, with 94.3-99.5% average on flagship models\n\n**Defense Bypass Rates**:\n- EnumAttack vs. grammar guard: 97.7% detection (mostly mitigated)\n- DictAttack vs. grammar-only guard: 1.7% detection (nearly complete bypass)\n- DictAttack vs. dual-plane guard: 24.2% detection (still majority bypass)\n- Interleaved DictAttack vs. dual-plane guard: 5.3% detection (defeats practical defenses)\n\n**Benchmark Coverage**: 2,421 total test cases across six standard jailbreak benchmarks\n\n**Models at Risk**: All 13 tested models remain vulnerable; no model showed strong resistance to DictAttack"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "352b6dcd-3a03-4424-a31d-1b797d915429",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "04134b23-8405-496f-a0b0-8105382e228d",
+            "sourceToolAssistantUUID": "352b6dcd-3a03-4424-a31d-1b797d915429",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T09:29:10.903Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for additional context on the mechanistic explanation and the relationship to tool-call generation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04134b23-8405-496f-a0b0-8105382e228d",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBh5i7KibHTUWzPj9Kqd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a69307ec-e7b8-426e-85db-4e79ccca7628",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KQs1s5sLFAcrQPVkajm26u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7976,
+                "cache_read_input_tokens": 13592,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7976,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T09:29:14.203Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012LShuzLcpFgETkBLkx8d44",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://www.themoonlight.io/en/review/output-constraints-as-attack-surface-exploiting-structured-generation-to-bypass-llm-safety-mechanisms",
+                "prompt": "Extract the full literature review content. I need any additional analysis about: 1) the mechanistic explanation for why constrained decoding suppresses safety alignment, 2) how this relates to tool-call/function-call generation, 3) any critique or limitations noted, 4) comparison with other structured output attack papers like the prefix-tree paper (2502.13527). Be thorough."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a69307ec-e7b8-426e-85db-4e79ccca7628",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBh5i7KibHTUWzPj9Kqd",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "48938110-5b24-4f93-b9b4-078d85132ff1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KQs1s5sLFAcrQPVkajm26u",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7976,
+                "cache_read_input_tokens": 13592,
+                "output_tokens": 214,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7976
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 214,
+                    "cache_read_input_tokens": 13592,
+                    "cache_creation_input_tokens": 7976,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7976,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T09:29:26.598Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012LShuzLcpFgETkBLkx8d44",
+              "type": "tool_result",
+              "content": "# Analysis of \"Output Constraints as Attack Surface\"\n\n## 1) Mechanistic Explanation for Safety Suppression\n\nThe paper explains that constrained decoding bypasses safety mechanisms through several pathways:\n\n**Token Distribution Compromise:** The masking process forces the model to generate from a restricted token set. When harmful enum values are embedded in JSON schemas, the model's logits are modified via the equation: `z'[i] = z[i] if valid; -∞ otherwise`. This mathematically eliminates safe token alternatives.\n\n**Shallow Alignment Exploitation:** The document notes that \"current LLM safety mechanisms predominantly protect only the first few tokens of generation.\" Chain Enum Attack weaponizes this by using a weakly-aligned model to generate harmful prefixes, then forcing a strongly-aligned model to continue those prefixes via grammar constraints. The result is a \"cascading failure pattern where subsequent tokens increasingly favor harmful content completion.\"\n\n**Prompt vs. Grammar Separation:** The key insight is the split between benign input prompts (data plane) and malicious grammar rules (control plane). Since safety auditing focuses on prompts, the attack \"bypasses prompt-based guardrails because the attack body is concealed within structured output.\"\n\n## 2) Relationship to Tool-Call/Function-Call Generation\n\nThe paper does **not explicitly discuss** tool-call or function-call APIs. However, the mechanism is directly applicable: any structured output API that constrains generation through grammar—including function signatures and their parameters—would be vulnerable to similar attacks. The paper's JSON schema exploitation suggests that function-call systems using similar constrained decoding would face equivalent risks.\n\n## 3) Critique and Limitations Noted\n\n**Limitations acknowledged:**\n\n- The paper addresses \"false positives\" and \"false negatives\" in output auditing through BenignEnumAttack, noting that auditing \"is not a silver bullet\"\n- Output auditing faces practical constraints: \"latency, computational cost, and false positives\"\n- The threat model assumes \"API access and grammar-level control\"—this may not apply universally\n\n**Proposed mitigations offered:**\n- Token whitelisting to prevent user-controlled grammar constraints\n- Context-aware token attribution to track provenance\n- Integrated safety signaling tokens\n\nThe paper does not substantially critique its own methodology or discuss failure cases.\n\n## 4) Comparison with Other Structured Output Attack Papers\n\n**The document does not reference or compare** this work with arxiv:2502.13527 (the prefix-tree paper you mention) or other structured output attack literature beyond briefly categorizing existing jailbreak types. The review provides no comparative analysis with contemporaneous work in this emerging attack surface area."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48938110-5b24-4f93-b9b4-078d85132ff1",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "2c30754e-7e66-49e3-af20-34dbe876bfc4",
+            "sourceToolAssistantUUID": "48938110-5b24-4f93-b9b4-078d85132ff1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T09:29:29.376Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KSCmsz4ZbfneLw173hgxqT",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2502.13527 prefix-tree structured output jailbreak constrained decoding comparison"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c30754e-7e66-49e3-af20-34dbe876bfc4",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBh75wmGzwER3GmTZi4Q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c873a6af-0c40-45a0-8802-2190fc6e440e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RYy22hAZiYMAQvJwizrScB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 916,
+                "cache_read_input_tokens": 21568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 916,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 45,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T09:29:36.320Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KSCmsz4ZbfneLw173hgxqT",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2502.13527 prefix-tree structured output jailbreak constrained decoding comparison\"\n\nLinks: [{\"title\":\"[2502.13527] Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing Jailbreak Attacking\",\"url\":\"https://arxiv.org/abs/2502.13527\"},{\"title\":\"Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing Jailbreak Attacking\",\"url\":\"https://powerdrill.ai/discover/summary-exploiting-prefix-tree-in-structured-output-cm7dttucq6o1907pgyfwxx86y\"},{\"title\":\"Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing\",\"url\":\"https://arxiv.org/pdf/2502.13527\"},{\"title\":\"Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing Jailbreak Attacking\",\"url\":\"https://arxiv.org/html/2502.13527\"},{\"title\":\"Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing Jailbreak Attacking | Read Paper on Bytez\",\"url\":\"https://bytez.com/docs/arxiv/2502.13527/paper\"},{\"title\":\"Sockpuppetting: Jailbreaking LLMs Without Optimization Through Output Prefix Injection\",\"url\":\"https://arxiv.org/pdf/2601.13359\"},{\"title\":\"Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\",\"url\":\"https://arxiv.org/html/2503.24191v1\"},{\"title\":\"Prefix Guidance: A Steering Wheel for Large Language Models to Defend   Against Jailbreak Attacks\",\"url\":\"https://arxiv.org/pdf/2408.08924\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n## Paper Summary\n\narXiv paper 2502.13527 is titled \"Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing Jailbreak Attacking\", submitted on February 19, 2025.\n\n**Main Contribution:**\nThe paper reveals a new threat model targeting structured output interfaces that enable attackers to manipulate the inner logit during LLM generation with only API access permissions. The authors introduce a black-box attack framework called AttackPrefixTree (APT) that exploits structured output interfaces to dynamically construct attack patterns.\n\n**Key Findings:**\nBy leveraging prefixes of models' safety refusal responses and latent harmful outputs, APT effectively bypasses safety measures. The paper also evaluates the attack on reasoning models and shows results on benchmarks like JailbreakBench and HarmBench.\n\nThe research highlights a critical vulnerability in structured output interfaces—a security mechanism designed to constrain model outputs—which can paradoxically be exploited to enhance jailbreak attacks by manipulating the underlying token probabilities during generation.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c873a6af-0c40-45a0-8802-2190fc6e440e",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "89d23c79-7f6d-4c2b-bed5-07a67cf630b1",
+            "sourceToolAssistantUUID": "c873a6af-0c40-45a0-8802-2190fc6e440e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T09:29:39.325Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TGvYVh7Ug8vBYZsRwpeEAC",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"constrained decoding\" \"safety alignment\" mechanistic explanation refusal suppression token probability structured output 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89d23c79-7f6d-4c2b-bed5-07a67cf630b1",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBh7oNPZ7sTcb2Ltt3kS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "77673d9f-3bf9-440e-8178-2578a00e65a5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XhvVWLUNfEFdqSUGPSs9MM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 789,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 789,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T09:29:51.118Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TGvYVh7Ug8vBYZsRwpeEAC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"constrained decoding\" \"safety alignment\" mechanistic explanation refusal suppression token probability structured output 2025 2026\"\n\nLinks: [{\"title\":\"Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\",\"url\":\"https://arxiv.org/html/2503.24191v1\"},{\"title\":\"Constrained Decoding Mechanism\",\"url\":\"https://www.emergentmind.com/topics/constrained-decoding-mechanism\"},{\"title\":\"Correctness-Guaranteed Code Generation via Constrained Decoding\",\"url\":\"https://arxiv.org/html/2508.15866v1\"},{\"title\":\"A Guide to Structured Outputs Using Constrained Decoding\",\"url\":\"https://www.aidancooper.co.uk/constrained-decoding/\"},{\"title\":\"Vulnerability Constrained Decoding\",\"url\":\"https://www.catalyzex.com/s/Vulnerability%20Constrained%20Decoding\"},{\"title\":\"Refusal Falls off a Cliff: How Safety Alignment Fails in Reasoning?\",\"url\":\"https://arxiv.org/pdf/2510.06036\"},{\"title\":\"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\",\"url\":\"https://arxiv.org/pdf/2603.03305\"},{\"title\":\"Alignment-Enhanced Decoding: Defending via Token-Level Adaptive Refining of Probability Distributions WARNING: This paper contains harmful content that can be offensive.\",\"url\":\"https://arxiv.org/html/2408.07663\"}]\n\nI've found several highly relevant research papers and resources on constrained decoding and its relationship to safety alignment. Here are the key findings:\n\n## Constrained Decoding Mechanism\n\nConstrained decoding is a class of post-hoc generation algorithms for sequence models that explicitly restricts the output space at each decoding step so that only sequences satisfying user-specified hard or soft constraints can ever be generated. At each decoding step, tokens that violate the constraint have their probability set to 0 in the next-token probability vector output by the LM, and the masked-out probability vector is then renormalized before sampling the next token.\n\n## Safety Alignment and Token Probabilities\n\nTechniques that modify output distribution through constrained decoding demonstrate different behavior patterns, with four distinct token types identified: refusal tokens, safe tokens, weak jailbreak tokens and strong jailbreak tokens, in ascending threat level to conduct jailbreak behaviors.\n\nRecent mechanistic research on refusal has revealed interesting dynamics: Safety-aligned LLMs often undergo shallow safety alignment, where the first few tokens largely determine whether the response will be harmful, with safety-aligned LLMs generating highly similar initial tokens in their refusal responses, which are defined as safety trigger tokens.\n\nResearchers observe a recurrent pattern called the Refusal Cliff, where intermediate reasoning steps yield refusal scores comparable to strongly aligned models but scores drop sharply in final steps, reflecting suppression of refusal behavior even where refusal would be the alignment-consistent choice.\n\n## Potential Vulnerabilities\n\nDirect prompt attacks are mostly ineffective for safety aligned models, but techniques that modify output distribution through constrained decoding demonstrate different behavior patterns.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77673d9f-3bf9-440e-8178-2578a00e65a5",
+            "isSidechain": true,
+            "promptId": "a8927760-54f5-4249-ad03-f69ac6716d84",
+            "agentId": "aba53dbf8214eeda6",
+            "type": "user",
+            "uuid": "2affb660-b0e8-4f59-b04a-e895fe742a70",
+            "sourceToolAssistantUUID": "77673d9f-3bf9-440e-8178-2578a00e65a5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T09:31:25.778Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive information. Let me compile the detailed findings.\n\n---\n\n## Detailed Findings: \"Beyond Prompts: Space-Time Decoupling Control-Plane Jailbreaks in LLM Structured Output\"\n\n**arXiv ID:** 2503.24191  \n**Authors:** Shuoming Zhang, Jiacheng Zhao, Hanyuan Dong, Ruiyuan Xu, Zhicheng Li, Yangyu Zhang, Shuaijiang Li, Yuan Wen, Chunwei Xia, Zheng Wang, Xiaobing Feng, Huimin Cui  \n**Original submission:** March 31, 2025 | **Revised:** January 5, 2026 (v2)  \n**Categories:** cs.CR (Cryptography and Security), cs.AI  \n**Note on title:** The v1 title was \"Output Constraints as Attack Surface: Exploiting Structured Generation to Bypass LLM Safety Mechanisms\"; v2 adopted the current title.\n\n---\n\n### 1. What Exactly Is \"Space-Time Decoupling\"? What Are \"Control-Plane Jailbreaks\"?\n\n**Control-Plane vs. Data-Plane:**\n\nThe paper formalizes LLM generation as operating on two orthogonal planes, borrowing networking terminology:\n\n- **Data Plane**: The standard query-response process. The prompt goes in, the model generates text. Both the model's internal safety alignment and external guardrails (classifiers, content filters) operate here. All prior jailbreak research targets this plane.\n\n- **Control Plane**: The formatting constraints/grammars that guide structured output. These constraints are enforced *after* generation through the model's logit processor -- the LLM itself is not aware of them. The control plane supervises generation with user-defined hard rules (e.g., requiring outputs to match a JSON schema). Crucially, when structured output APIs allow users to provide arbitrary JSON schemas or grammars, they expose the control plane as an attack surface.\n\nA **Control-Plane Jailbreak** embeds malicious intent not in the prompt (data plane) but in the schema-level grammar rules (control plane), while keeping the surface prompt completely benign. Because safety auditing focuses overwhelmingly on prompts and outputs, the attack body hidden in the grammar is invisible to standard defenses.\n\n**Space-Time Decoupling** refers to the two axes along which DictAttack distributes its malicious payload:\n\n- **Spatial Decoupling**: The payload is split between the data plane (prompt contains only benign lookup keys like \"a1+b2+c3\") and the control plane (grammar contains a benign-looking dictionary mapping keys to words). Neither plane contains recognizably harmful content alone.\n\n- **Temporal Decoupling**: The key sequence can be sent in an early conversation turn (becoming part of the KV cache), and the dictionary-embedded schema sent in a later turn. This defeats per-request auditing because no single request contains both halves of the payload.\n\n---\n\n### 2. How Do They Achieve 94.3-99.5% ASR? What Models Were Tested?\n\n**Two Attack Instantiations:**\n\n**EnumAttack** (simpler, detectable): Exploits JSON Schema's `enum` property. A field restricted to a single-item enum containing a malicious query (e.g., `\"enum\": [\"Detailed instructions for identity theft\"]`) forces the constrained decoding engine to emit that exact string token-by-token. An additional enum field forces an affirmative prefix (e.g., \"Sure, here is the information\") to suppress any residual refusal tendency. The data-plane prompt remains innocent. This achieves 95.8-100% ASR across all 13 models but is detectable by grammar-level string matching (97.7% detection rate).\n\n**DictAttack** (sophisticated, evasive): The malicious query is tokenized into words, each assigned a benign key. Harmless synonyms are generated for each word (controlled by parameter k) and included as noise. The dictionary is embedded in the JSON schema. The prompt contains only the key sequence plus an instruction like \"translate these keys using the provided dictionary.\" During inference, constrained decoding forces the model to reconstruct the harmful query by mapping keys to dictionary values. Neither the keys nor individual dictionary words are harmful in isolation.\n\n**13 Models Tested:**\n\nProprietary: gpt-4o, gpt-4o-mini, gpt-5, gemini-2.0-flash, gemini-2.5-pro  \nOpen-weight: llama-3.1-8b-instruct, qwen-2.5-32b-instruct, mistral-nemo, phi-3.5-moe, gemma-2-9b-it, deepseek-v3-0324, deepseek-r1-0528, gpt-oss-120b\n\n**DictAttack ASR on Flagship Models (the 94.3-99.5% headline):**\n\n| Model | AdvBench | HarmBench | JailbreakBench | SorryBench | StrongREJECT |\n|-------|----------|-----------|----------------|------------|---------------|\n| gpt-5 | 94.4% | 90.4% | 93.4% | 91.6% | 93.9% |\n| gemini-2.5-pro | 97.5% | 98.3% | 98.3% | 97.6% | 97.3% |\n| deepseek-r1 | 97.2% | 93.4% | 95.4% | 96.9% | 96.4% |\n| gpt-oss-120b | 96.6% | 90.4% | 89.4% | 94.8% | 94.2% |\n\n(Values shown are with grammar guard; without guard, add ~1.5-2%.)\n\nFor comparison, traditional SOTA data-plane attacks on gpt-4o: PAIR achieves 11.5% ASR, TAP 24.4%, AutoDAN-Turbo 96.0% but drops to 26.0% with a guard. DictAttack: 99.8% undefended, 75.8% even against a dual-plane guard.\n\n**6 Benchmarks used:** AdvBench (520), StrongREJECT (311), JailbreakBench (100), HarmBench (100), SorryBench (440), JBShield (850) -- totaling 2,421 test cases.\n\n**Infrastructure-agnostic:** Tested across vLLM and SGLang serving frameworks with xgrammar and outlines grammar backends. ASR ~99-100% across all four combinations.\n\n---\n\n### 3. What Specific Evidence That Constrained Decoding Suppresses Refusal?\n\nThis is the mechanistically richest part of the paper. They provide a detailed token probability distribution analysis using phi-3.5-moe, tracking four token categories (refusal, safe, weak-jailbreak, strong-jailbreak) across seven progressive attack stages:\n\n**The Token Distribution Shift (Figures 7-8):**\n\n1. **Direct harmful prompt**: Refusal tokens dominate at ~90-100% probability. Model strongly refuses.\n2. **Yes-prefix added**: Minimal impact. Refusal tokens remain ~90%. Safety alignment is robust against simple prefix injection.\n3. **JSON format constraint imposed**: Refusal probability drops ~50%. This is the key transition -- merely requiring structured output begins degrading alignment.\n4. **EnumAttack**: Refusal tokens *disappear entirely*. Safe tokens remain at ~70%. Jailbreak tokens become possible but not dominant.\n5. **System prompt injection added**: Refusal and safe tokens suppressed. Jailbreak tokens become most likely.\n6. **Chain EnumAttack**: Complete alignment breakdown. Top-5 generation beams are ALL jailbreak tokens.\n7. **Chained multi-turn steps**: Permanent alignment collapse with continued degradation.\n\n**Their Mechanistic Explanation:**\n\nThe authors argue that safety alignment \"artificially distorts\" the natural token distribution by forcing refusal tokens to dominate when harmful intent is detected. Constrained decoding imposes constraints that fall *outside the model's safety-aligned training distribution*, allowing the generation process to \"escape\" these artificial refusal peaks. The distribution reverts from a safety-aligned state (dominated by refusal tokens, >90%) to a \"balanced, context-sensitive state, restoring the model's original open-ended generation capacity.\"\n\nThey further note that alignment is **\"only a few tokens deep\"** -- safety mechanisms primarily work by steering token selection at the response's start. Once constrained decoding forces specific initial tokens (via enum fields or dictionary reconstruction), subsequent generation behaves as if no alignment exists. The safety mechanism is circumvented through forced initial context rather than genuine model reasoning.\n\n**The formal mechanism:** Constrained decoding applies per-token masking: `z'[i] = z[i] if valid; -inf otherwise`. When a malicious string is the only token sequence allowed by the grammar, the model generates it regardless of its safety training. Refusal tokens (like \"I can't help with that\") are literally impossible to produce when the grammar does not permit them.\n\n---\n\n### 4. How Does This Relate to Tool-Call Generation Specifically?\n\nThe paper explicitly motivates its work in the context of agent frameworks and tool-calling:\n\n> \"Beyond standalone chatbots, LLMs are increasingly integrated into complex agent frameworks (LangChain, LangGraph) and enterprise automation pipelines (MCP, Cursor IDE) where they function as core reasoning engines. In these agentic workflows, a service component or agent backend often supplies a grammar -- typically a JSON schema -- to a hosted LLM to ensure structured and reliable outputs.\"\n\n**Specific tool-call implications identified:**\n\n1. **Function calling**: Agents provide JSON schemas defining available functions with parameters. DictAttack could force malicious function calls by embedding the attack in the schema that constrains the function-call output.\n\n2. **Escalation from text to action**: Traditional jailbreaks produce harmful text that a user can ignore. Structured output jailbreaks force specific API calls, function parameters, or tool invocations that *execute automatically* in agent pipelines. This transforms jailbreaks from information leaks into **actionable exploits** that directly manipulate external systems.\n\n3. **The supply-chain threat**: In agent architectures, the grammar/schema is often supplied by a service component or plugin, not the end user. A compromised or malicious plugin providing schemas could use CDA to hijack the LLM's tool-call generation without the user or the main agent framework being aware.\n\n**Critical gap the paper identifies but does not fully explore:** The paper does not conduct experiments specifically on tool-call/function-call APIs (e.g., OpenAI's function calling, Anthropic's tool use). It demonstrates the vulnerability on generic structured output (JSON schema constrained decoding) and argues the mechanism transfers. This is a significant open question for follow-up work -- whether the specific constrained decoding implementations used in tool-call generation exhibit the same vulnerability, and whether tool-call-specific defenses (like tool approval workflows) provide any additional protection.\n\n---\n\n### 5. Defense Landscape and the \"Semantic Gap\"\n\n**What defenses were tested and how they fared:**\n\n| Defense | vs. EnumAttack | vs. DictAttack | vs. Interleaved DictAttack |\n|---------|---------------|----------------|---------------------------|\n| Grammar-only (string matching) | 97.7% detection | 1.7% detection | N/A |\n| Dual-plane guard (gpt-4o auditor) | N/A | 24.2% detection | 5.3% detection |\n| JBShield (industrial) | 0% impact (complete bypass) | N/A | N/A |\n| OpenAI Moderation API | 90.2% on grammar | 0.0% on grammar | 0.0% |\n\nThe fundamental problem they identify is the **\"semantic gap\"**: current safety architectures operate on either the data plane or control plane independently but cannot reason about the *combined* semantics across both planes. DictAttack exploits this by ensuring each plane individually appears benign.\n\n**Proposed but unvalidated mitigations**: (1) Grammar-plane auditing for literal payloads, (2) Context-aware token attribution tracking provenance, (3) Safety-preserving constraints that whitelist refusal tokens, (4) Integrated safety signaling where models emit special `<unsafe>` tokens.\n\n---\n\n### 6. Why This Paper Is the Strongest Empirical Motivation for Studying Refusal During Structured/Tool-Call Output\n\nThe paper provides:\n\n1. **Quantitative proof** that constrained decoding eliminates refusal: the token distribution analysis showing refusal probability going from >90% to 0% when grammar constraints are applied.\n\n2. **Scale of evidence**: 13 models, 6 benchmarks, 2,421 test cases, including the latest flagship models (gpt-5, gemini-2.5-pro, deepseek-r1).\n\n3. **Defense futility**: Even the best dual-plane defense only detects 24.2% of attacks, and temporal decoupling reduces that to 5.3%.\n\n4. **The mechanism is fundamental, not model-specific**: The vulnerability stems from how constrained decoding works (per-token masking at the logit level), not from any particular model's alignment weakness. Every model that uses grammar-guided generation is affected.\n\n5. **Direct agent-framework relevance**: The paper explicitly connects to LangChain, MCP, Cursor, and tool-calling workflows where structured output is mandatory.\n\n**What the paper does NOT provide** (and where a mechanistic follow-up study would add value): The paper observes that refusal tokens are eliminated but does not explain *why* at the representation level. They note alignment is \"shallow\" but do not probe internal model representations (attention patterns, residual stream directions, refusal features) to explain the mechanism. A mechanistic interpretability study could investigate: Do refusal-direction features still activate during constrained decoding but get overridden at the logit level? Or does the constraint itself propagate backward through the model's computation, suppressing refusal features at earlier layers? This is the gap between the empirical observation (this paper) and mechanistic understanding.\n\n---\n\n### Related Work\n\nA companion paper worth noting: [arXiv 2502.13527](https://arxiv.org/abs/2502.13527) \"Exploiting Prefix-Tree in Structured Output Interfaces for Enhancing Jailbreak Attacking\" (Feb 2025) introduces AttackPrefixTree (APT), a black-box framework that exploits structured output interfaces by leveraging prefixes of safety refusal responses and latent harmful outputs to dynamically construct attack patterns. This approaches the same vulnerability from a different angle (prefix-tree manipulation vs. grammar/schema embedding).\n\nSources:\n- [arXiv Abstract: 2503.24191](https://arxiv.org/abs/2503.24191)\n- [arXiv HTML: 2503.24191](https://arxiv.org/html/2503.24191)\n- [Literature Review on Moonlight](https://www.themoonlight.io/en/review/output-constraints-as-attack-surface-exploiting-structured-generation-to-bypass-llm-safety-mechanisms)\n- [Advanced AI News Coverage](https://advancedainews.com/output-constraints-as-attack-surface-exploiting-structured-generation-to-bypass-llm-safety-mechanisms/)\n- [Prefix-Tree Paper: 2502.13527](https://arxiv.org/abs/2502.13527)\n- [Emergent Mind: Constrained Decoding Mechanism](https://www.emergentmind.com/topics/constrained-decoding-mechanism)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2affb660-b0e8-4f59-b04a-e895fe742a70",
+            "isSidechain": true,
+            "agentId": "aba53dbf8214eeda6",
+            "requestId": "req_011CbBh8theJuwvkrijRiEEn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0d00e4cf-bb5b-489b-810f-297c8c44d5df",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea-gen-pipeline",
+            "sessionId": "06627d67-0d68-4ced-a8db-17daf79b8a83",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KRYMKMiin2CkJ4ZpePFWBC",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 846,
+                "cache_read_input_tokens": 23273,
+                "output_tokens": 3729,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 846
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3729,
+                    "cache_read_input_tokens": 23273,
+                    "cache_creation_input_tokens": 846,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 846,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-find-and-deeply-read-the-paper-beyond-prompts-space-time-decoupling.md"
+}

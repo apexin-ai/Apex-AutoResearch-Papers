@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "ab1679a7aca49b36fdb6",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> ## annotate.py 结构摘要 - API-based: AnnotationPipeline 类，通过 HTTP POST 调 OpenRouter API - 3 个数据集: humaid (K=",
+  "task_key": "da464efd-c2dc-4c33-860d-ef01aeb648ce",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/da464efd-c2dc-4c33-860d-ef01aeb648ce.jsonl",
+    "occurrence": 1,
+    "bytes": 730975,
+    "sha256": "1b72a0a7a59d9c0a6bf4f01760196a9270dc3fd885e726e22d46246dc7d831d3"
+  },
+  "statistics": {
+    "messages": 362,
+    "user_turns": 1,
+    "tool_calls": 120,
+    "roles": {
+      "record": 61,
+      "user": 1,
+      "assistant": 60,
+      "tool_call": 120,
+      "tool_result": 120
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ab1679a7aca49b36fdb6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 360,
+      "chunks": [
+        {
+          "path": "ab1679a7aca49b36fdb6-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "ab1679a7aca49b36fdb6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ab1679a7aca49b36fdb6-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-annotate-py-api-based-annotationpipeline-http-post-openrouter-ap.md"
+}

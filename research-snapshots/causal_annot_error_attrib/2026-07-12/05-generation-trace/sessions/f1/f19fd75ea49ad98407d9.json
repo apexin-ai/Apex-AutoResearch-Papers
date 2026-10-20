@@ -1,0 +1,2544 @@
+{
+  "schema_version": "1.0",
+  "id": "f19fd75ea49ad98407d9",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: # MaxSim-Rank: Does the Max Operati",
+  "task_key": "002c9454-43c6-4d81-a97f-a39718a6a599",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/002c9454-43c6-4d81-a97f-a39718a6a599.jsonl",
+    "occurrence": 1,
+    "bytes": 138966,
+    "sha256": "22b5f394ecffe60058177c468991ff848bc8a523bfe65afe02c5b818878fc2ea"
+  },
+  "statistics": {
+    "messages": 48,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "record": 16,
+      "user": 1,
+      "assistant": 9,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-30T07:29:11.571Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-30T07:29:11.571Z",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+                "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?\n\n## Motivation and Central Question\n\nSingle-vector retrieval capacity is now well-characterized: sign-rank determines the minimum embedding dimension (Weller et al., ICLR 2026), and Wang et al. (arXiv 2026) proved MED = Θ(k) via cyclic polytopes, concluding that \"limitations stem primarily from learnability challenges, not geometric constraints.\" But multi-vector models (ColBERT, LEMUR (arXiv 2026)) empirically outperform single-vector — is this because MaxSim's max operation genuinely expands representational capacity, or merely redistributes parameters? Despite 4+ recent papers explicitly identifying this as a critical open problem — Archish S et al. (arXiv 2026) calls for \"formal theoretical analysis of multi-vector embedding capacity\"; Wang et al. (arXiv 2026) restricts to single-vector; Hierarchical Retrieval (NeurIPS 2025) notes multi-vector dimension bounds are \"unexplored\"; Drowning in Documents (SIGIR Workshop 2025) demonstrates practical urgency — no formal framework exists for multi-vector retrieval capacity.\n\nWe introduce MaxSim-rank, the first complexity measure for multi-vector retrieval, establishing a formal capacity theory for MaxSim scoring analogous to how sign-rank characterizes single-vector capacity. Given a binary relevance matrix A, MaxSim-rank(A, k) is the minimum dimension d such that k vectors per entity with sum-of-max-inner-product scoring realize A's sign pattern. The central question: **does MaxSim's max operation provide expressiveness beyond linear parameter scaling?** For fixed parameter budget B = kd, does (k vectors, d = B/k dims) under MaxSim achieve strictly greater sign-pattern capacity than (1 vector, B dims) under inner product?\n\nIf yes: the max operation creates genuine geometric capacity gains, formally explaining multi-vector models' empirical advantages as a capacity phenomenon. If no: multi-vector advantage must arise from learnability/optimization — extending Wang et al.'s single-vector finding and revealing that MaxSim's success is an optimization story, not a capacity story. Either answer is significant.\n\n## Why Max Is the Essential Ingredient\n\n**MaxSim ≠ concatenation.** Concatenating k vectors into one kd-dimensional vector yields ⟨concat(Q), concat(D)⟩ = Σᵢ⟨qᵢ, dᵢ⟩ — a sum of **fixed-position** inner products (query vector i always pairs with document vector i). MaxSim computes Σᵢ maxⱼ⟨qᵢ, dⱼ⟩ — a sum of **optimally-matched** inner products. The max allows each query vector to select its best-matching document vector, creating piecewise-linear rather than bilinear scoring.\n\n**Sum-of-all collapses to single-vector.** Consider replacing max with sum: Σᵢ Σⱼ⟨qᵢ, dⱼ⟩ = ⟨Σᵢqᵢ, Σⱼdⱼ⟩. This is algebraically equivalent to a single inner product between the average query and average document vectors — identical sign-pattern capacity to single-vector. This proves that multi-vector representation alone (without max) provides zero capacity gain; any capacity advantage must arise precisely from the max operation's optimal-matching structure.\n\n**Tropical algebra observation.** MaxSim's operations — max (selection) and sum (aggregation of inner products) — correspond to tropical semiring (max, +) operations. MaxSim-rank vs sign-rank thus instantiates tropical algebraic complexity vs classical algebraic complexity in a concrete retrieval setting.\n\n## Research Landscape\n\n**Single-vector capacity (solved).** Weller et al. (ICLR 2026) proved dimension ≥ rank±(2A−1)−1 is necessary and sufficient, demonstrated catastrophic failures on LIMIT (46 documents, k=2), and showed critical-n grows cubically with dimension for free embeddings. Wang et al. (arXiv 2026) proved MED = Θ(k) independent of corpus size via cyclic polytopes. Frick et al. (arXiv 2026) achieved the tightest sign-rank lower bounds via Z₂-equivariant topology (ind^{lin}_{Z₂}(S(A)) = rank±(A)−1), strictly for bilinear scoring. Hatami & Mande (APPROX/RANDOM 2022) characterized the limitations of three known sign-rank lower bound methods (VC-dimension, Forster's method, monochromatic rectangle density), showing that for some n×n matrices with sign-rank n^{Ω(1)}, none yields super-constant bounds.\n\n**Multi-vector capacity (open — this paper).** Archish S et al. (arXiv 2026) compared single-vector vs multi-vector drowning susceptibility via toy Gaussian models, acknowledging bounds are \"suggestive but not tight.\" MUVERA (NeurIPS 2024) proved FDEs ε-approximate MaxSim/Chamfer similarity — an approximate, data-oblivious reduction (FDE dimension depends on ε and k, not on specific matrix A). LEMUR (arXiv 2026) demonstrates empirical multi-vector advantages without theoretical grounding.\n\n**Complementarity with MUVERA.** MUVERA shows multi-vector's approximate capacity can be matched by single-vector (FDE ε-approximation). This paper asks whether multi-vector's exact capacity strictly exceeds single-vector's. If both results hold, they yield a striking theoretical picture: multi-vector achieves strictly higher exact capacity, but this advantage vanishes under approximation — the gap between exact and approximate capacity is itself a fundamental insight into MaxSim's structure. MaxSim-rank is also data-dependent (dimension depends on matrix A's combinatorial structure), while FDE dimension is data-oblivious (universal for all matrices of given size); comparing the two quantifies the value of instance-adaptivity.\n\n## Proposed Approach\n\n**Definition.** MaxSim-rank(A, k) := min{d : ∃ query vectors {q^(i)_1,...,q^(i)_k} ⊂ R^d ∀i, document vectors {d^(j)_1,...,d^(j)_k} ⊂ R^d ∀j, s.t. sign(Σ_l max_m ⟨q^(i)_l, d^(j)_m⟩) = A_{ij} ∀i,j}.\n\n**Upper bound.** MaxSim-rank(A, k) ≤ ⌈rank±(2A−1)/k⌉ via partitioned cyclic polytope moment-curve constructions. Assign consecutive blocks of ⌈rank±/k⌉ moment-curve coordinates to each of k vectors. The blocks span orthogonal subspaces, so each sub-inner-product ⟨q^(i)_l, d^(j)_m⟩ depends only on block l's coordinates. Within each block, the max selects the best-matching document sub-vector; the sum across blocks reconstructs the target sign pattern. Orthogonality prevents cross-block interference.\n\n**Lower bound (two strategies, ranked by feasibility).** Extending lower bounds from bilinear to piecewise-linear scoring is the central technical challenge.\n\n- **Primary (Strategy B): k-fold product.** If the MaxSim sign complex decomposes as a k-fold product (one factor per query vector position) with Z₂-index additive over products (cf. Volovikov-type results), the k-factor reduction follows. **Key technical caveat:** (a) the MaxSim sign complex's structure (simplicial vs cell complex) under piecewise-linear scoring needs independent verification — Frick et al.'s definition relies on bilinear kernel structure; (b) document-vector sharing across queries may break the product decomposition. These are non-trivial intermediate results, not automatic extensions.\n\n- **Secondary (Strategy A): ordering decomposition.** Decompose MaxSim into k! bilinear orderings; the MaxSim sign complex becomes a union of bilinear sign complexes. Requires Z₂-index sub-additivity under unions — a property without established support in the topological combinatorics literature, making this more speculative.\n\n**Fallback plan.** If topological extensions fail: (a) information-theoretic/counting arguments for Ω(rank±(A)/(k · polylog)) lower bounds; (b) tight lower bounds for specific matrix families (Hadamard, structured sign matrices). Paper reframed as \"near-tight bounds.\" The upper bound, MaxSim-rank definition, sum-of-all collapse result, and experimental evidence remain independently valuable.\n\n**Modular contributions** (each independently meaningful): (1) MaxSim-rank definition and framework, (2) upper bound via partitioned cyclic polytopes, (3) sum-of-all collapse theorem isolating max operation, (4) lower bound (tight or near-tight), (5) comprehensive experimental validation.\n\n## Experimental Design\n\nNotation: k_vec = number of vectors per entity; k_ret = top-k in retrieval. All capacity experiments use free embeddings (directly optimized vectors, no neural encoder). **Methodological note:** free embedding experiments provide **upper bounds** on MaxSim-rank — successful realization at dimension d proves MaxSim-rank ≤ d, but optimization failure does not prove MaxSim-rank > d (since MaxSim optimization is non-convex). Theoretical lower bounds and constructive certificates complement experiments to provide two-sided evidence.\n\n**Exp 1: Optimizer Reliability & Capacity Certificates.** Before measuring capacity, validate optimization methodology for MaxSim's non-convex landscape:\n- For (d, k_vec, n) known feasible (d above theoretical threshold), run ≥100 restarts; report success-rate vs restarts curves per (d, k_vec) regime.\n- Compare softmax relaxation (temperature annealing τ→0) and Gumbel-softmax with straight-through estimator; report which performs better per regime.\n- **Constructive capacity certificate:** at configurations where the upper bound guarantees feasibility, directly construct solutions using the cyclic polytope partition and verify correctness. If constructive certificate succeeds but optimization search fails nearby, diagnose as optimization gap (not capacity limitation).\n\n**Exp 2: Critical-n Measurement.** Define critical-n(d, k_vec) = largest n s.t. free multi-vector embedding (best of R≥50 restarts) achieves 100% correct sign-pattern realization across T≥20 independent random binary matrices. Binary-search with termination at adjacent success/failure n differing by 1. Also report median critical-n (≥50% of matrices succeed) for robustness. Cap: n_max = 5000; if not reached, report as \"> 5000.\"\n- Grid: d ∈ {2, 4, 8, 16, 32, 64}, k_vec ∈ {1, 2, 4, 8, 16, 32}.\n- k_vec=1 replicates Weller et al.'s cubic growth (sanity check).\n- Log-log fit of critical-n vs d, verify exponent grows with k_vec, report 95% CI.\n- Report minimum margin at critical-n to detect capacity saturation.\n\n**Exp 3: Scoring Function & Parameter Allocation Comparison (Core Experiment).** This experiment directly addresses the central question. Fix parameter budget B = k_vec × d. Compare four scoring functions at matched total parameters:\n- **(a) Single-vector inner product:** 1 vector, B dims.\n- **(b) Fixed-position sum:** k_vec vectors, d dims, scoring = Σᵢ⟨qᵢ, dᵢ⟩ (bilinear, equivalent to (a)).\n- **(c) MaxSim:** k_vec vectors, d dims, scoring = Σᵢ maxⱼ⟨qᵢ, dⱼ⟩.\n- **(d) Chamfer similarity:** k_vec vectors, d dims, scoring = Σᵢ maxⱼ⟨qᵢ, dⱼ⟩ + Σⱼ maxᵢ⟨qᵢ, dⱼ⟩ (bidirectional max-sum).\n- B ∈ {32, 64, 128, 256, 512}; for each B sweep k_vec ∈ {1, 2, 4, 8, ...}.\n- Measure critical-n for each (B, k_vec, scoring) across T≥20 matrices. Report effect size (capacity gain ratio = critical-n(MaxSim)/critical-n(single)) with paired comparison across matrix instances.\n- If (c) > (b) ≈ (a): max operation provides genuine capacity gain beyond parameter redistribution.\n- If (d) > (c): bidirectional matching provides additional capacity.\n\n**Exp 4: Ablation Studies.**\n- k_vec-sweep: matrices with known sign-rank upper bounds (via rank-r real matrices → sign, r ∈ {8, 16, 32, 64}; Hadamard matrices with sign-rank O(log n); Identity extensions with sign-rank n; Kronecker products of small known-sign-rank matrices). Sweep k_vec, verify MaxSim-rank ∝ 1/k_vec.\n- Matrix structure ablation: verify MaxSim-rank ∝ rank±(A)/k across diverse matrix families.\n\n**Exp 5: Cross-Framework Validation (MUVERA).** For matrices in Exp 4, compute MUVERA's theoretical FDE dimension for ε-approximation. Verify FDE dim ≥ MaxSim-rank (expected since FDE is data-oblivious/universal). This is a sanity check on framework consistency, not a claim of equivalence.\n\n**Exp 6: LIMIT Benchmark.** Free multi-vector embeddings on LIMIT's 46-document setup (Weller et al., ICLR 2026). Binary relevance matrices via top-k_ret ∈ {1, 2, 5}. Compare k_vec=1 vs k_vec ∈ {2, 4, 8}. Demonstrates practical relevance.\n\n**Compute budget.** Free-embedding optimization only (no neural training). Primary cost: Exp 2 grid (36 cells × binary search × 50 restarts) + Exp 3 (5 budgets × sweeps × 4 scoring × 20 matrices). Estimated ≤200 GPU-hours on a single modern GPU with n_max=5000 cap.\n\n## Key References\n\n- On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)\n- R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., arXiv 2026)\n- A Z₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., arXiv 2026)\n- MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)\n- On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., arXiv 2026)\n- LEMUR: Learned Multi-Vector Retrieval (arXiv 2026)\n- Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe (NeurIPS 2025)\n- Drowning in Documents: Consequences of Scaling Reranker Inference (SIGIR Workshop 2025)\n- Lower Bound Methods for Sign-Rank and Their Limitations (Hatami & Mande, APPROX/RANDOM 2022)"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-30T07:29:11.575Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-30T07:29:11.575Z",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-30T07:29:11.594Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n# MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?\n\n## Motivation and Central Question\n\nSingle-vector retrieval capacity is now well-characterized: sign-rank determines the minimum embedding dimension (Weller et al., ICLR 2026), and Wang et al. (arXiv 2026) proved MED = Θ(k) via cyclic polytopes, concluding that \"limitations stem primarily from learnability challenges, not geometric constraints.\" But multi-vector models (ColBERT, LEMUR (arXiv 2026)) empirically outperform single-vector — is this because MaxSim's max operation genuinely expands representational capacity, or merely redistributes parameters? Despite 4+ recent papers explicitly identifying this as a critical open problem — Archish S et al. (arXiv 2026) calls for \"formal theoretical analysis of multi-vector embedding capacity\"; Wang et al. (arXiv 2026) restricts to single-vector; Hierarchical Retrieval (NeurIPS 2025) notes multi-vector dimension bounds are \"unexplored\"; Drowning in Documents (SIGIR Workshop 2025) demonstrates practical urgency — no formal framework exists for multi-vector retrieval capacity.\n\nWe introduce MaxSim-rank, the first complexity measure for multi-vector retrieval, establishing a formal capacity theory for MaxSim scoring analogous to how sign-rank characterizes single-vector capacity. Given a binary relevance matrix A, MaxSim-rank(A, k) is the minimum dimension d such that k vectors per entity with sum-of-max-inner-product scoring realize A's sign pattern. The central question: **does MaxSim's max operation provide expressiveness beyond linear parameter scaling?** For fixed parameter budget B = kd, does (k vectors, d = B/k dims) under MaxSim achieve strictly greater sign-pattern capacity than (1 vector, B dims) under inner product?\n\nIf yes: the max operation creates genuine geometric capacity gains, formally explaining multi-vector models' empirical advantages as a capacity phenomenon. If no: multi-vector advantage must arise from learnability/optimization — extending Wang et al.'s single-vector finding and revealing that MaxSim's success is an optimization story, not a capacity story. Either answer is significant.\n\n## Why Max Is the Essential Ingredient\n\n**MaxSim ≠ concatenation.** Concatenating k vectors into one kd-dimensional vector yields ⟨concat(Q), concat(D)⟩ = Σᵢ⟨qᵢ, dᵢ⟩ — a sum of **fixed-position** inner products (query vector i always pairs with document vector i). MaxSim computes Σᵢ maxⱼ⟨qᵢ, dⱼ⟩ — a sum of **optimally-matched** inner products. The max allows each query vector to select its best-matching document vector, creating piecewise-linear rather than bilinear scoring.\n\n**Sum-of-all collapses to single-vector.** Consider replacing max with sum: Σᵢ Σⱼ⟨qᵢ, dⱼ⟩ = ⟨Σᵢqᵢ, Σⱼdⱼ⟩. This is algebraically equivalent to a single inner product between the average query and average document vectors — identical sign-pattern capacity to single-vector. This proves that multi-vector representation alone (without max) provides zero capacity gain; any capacity advantage must arise precisely from the max operation's optimal-matching structure.\n\n**Tropical algebra observation.** MaxSim's operations — max (selection) and sum (aggregation of inner products) — correspond to tropical semiring (max, +) operations. MaxSim-rank vs sign-rank thus instantiates tropical algebraic complexity vs classical algebraic complexity in a concrete retrieval setting.\n\n## Research Landscape\n\n**Single-vector capacity (solved).** Weller et al. (ICLR 2026) proved dimension ≥ rank±(2A−1)−1 is necessary and sufficient, demonstrated catastrophic failures on LIMIT (46 documents, k=2), and showed critical-n grows cubically with dimension for free embeddings. Wang et al. (arXiv 2026) proved MED = Θ(k) independent of corpus size via cyclic polytopes. Frick et al. (arXiv 2026) achieved the tightest sign-rank lower bounds via Z₂-equivariant topology (ind^{lin}_{Z₂}(S(A)) = rank±(A)−1), strictly for bilinear scoring. Hatami & Mande (APPROX/RANDOM 2022) characterized the limitations of three known sign-rank lower bound methods (VC-dimension, Forster's method, monochromatic rectangle density), showing that for some n×n matrices with sign-rank n^{Ω(1)}, none yields super-constant bounds.\n\n**Multi-vector capacity (open — this paper).** Archish S et al. (arXiv 2026) compared single-vector vs multi-vector drowning susceptibility via toy Gaussian models, acknowledging bounds are \"suggestive but not tight.\" MUVERA (NeurIPS 2024) proved FDEs ε-approximate MaxSim/Chamfer similarity — an approximate, data-oblivious reduction (FDE dimension depends on ε and k, not on specific matrix A). LEMUR (arXiv 2026) demonstrates empirical multi-vector advantages without theoretical grounding.\n\n**Complementarity with MUVERA.** MUVERA shows multi-vector's approximate capacity can be matched by single-vector (FDE ε-approximation). This paper asks whether multi-vector's exact capacity strictly exceeds single-vector's. If both results hold, they yield a striking theoretical picture: multi-vector achieves strictly higher exact capacity, but this advantage vanishes under approximation — the gap between exact and approximate capacity is itself a fundamental insight into MaxSim's structure. MaxSim-rank is also data-dependent (dimension depends on matrix A's combinatorial structure), while FDE dimension is data-oblivious (universal for all matrices of given size); comparing the two quantifies the value of instance-adaptivity.\n\n## Proposed Approach\n\n**Definition.** MaxSim-rank(A, k) := min{d : ∃ query vectors {q^(i)_1,...,q^(i)_k} ⊂ R^d ∀i, document vectors {d^(j)_1,...,d^(j)_k} ⊂ R^d ∀j, s.t. sign(Σ_l max_m ⟨q^(i)_l, d^(j)_m⟩) = A_{ij} ∀i,j}.\n\n**Upper bound.** MaxSim-rank(A, k) ≤ ⌈rank±(2A−1)/k⌉ via partitioned cyclic polytope moment-curve constructions. Assign consecutive blocks of ⌈rank±/k⌉ moment-curve coordinates to each of k vectors. The blocks span orthogonal subspaces, so each sub-inner-product ⟨q^(i)_l, d^(j)_m⟩ depends only on block l's coordinates. Within each block, the max selects the best-matching document sub-vector; the sum across blocks reconstructs the target sign pattern. Orthogonality prevents cross-block interference.\n\n**Lower bound (two strategies, ranked by feasibility).** Extending lower bounds from bilinear to piecewise-linear scoring is the central technical challenge.\n\n- **Primary (Strategy B): k-fold product.** If the MaxSim sign complex decomposes as a k-fold product (one factor per query vector position) with Z₂-index additive over products (cf. Volovikov-type results), the k-factor reduction follows. **Key technical caveat:** (a) the MaxSim sign complex's structure (simplicial vs cell complex) under piecewise-linear scoring needs independent verification — Frick et al.'s definition relies on bilinear kernel structure; (b) document-vector sharing across queries may break the product decomposition. These are non-trivial intermediate results, not automatic extensions.\n\n- **Secondary (Strategy A): ordering decomposition.** Decompose MaxSim into k! bilinear orderings; the MaxSim sign complex becomes a union of bilinear sign complexes. Requires Z₂-index sub-additivity under unions — a property without established support in the topological combinatorics literature, making this more speculative.\n\n**Fallback plan.** If topological extensions fail: (a) information-theoretic/counting arguments for Ω(rank±(A)/(k · polylog)) lower bounds; (b) tight lower bounds for specific matrix families (Hadamard, structured sign matrices). Paper reframed as \"near-tight bounds.\" The upper bound, MaxSim-rank definition, sum-of-all collapse result, and experimental evidence remain independently valuable.\n\n**Modular contributions** (each independently meaningful): (1) MaxSim-rank definition and framework, (2) upper bound via partitioned cyclic polytopes, (3) sum-of-all collapse theorem isolating max operation, (4) lower bound (tight or near-tight), (5) comprehensive experimental validation.\n\n## Experimental Design\n\nNotation: k_vec = number of vectors per entity; k_ret = top-k in retrieval. All capacity experiments use free embeddings (directly optimized vectors, no neural encoder). **Methodological note:** free embedding experiments provide **upper bounds** on MaxSim-rank — successful realization at dimension d proves MaxSim-rank ≤ d, but optimization failure does not prove MaxSim-rank > d (since MaxSim optimization is non-convex). Theoretical lower bounds and constructive certificates complement experiments to provide two-sided evidence.\n\n**Exp 1: Optimizer Reliability & Capacity Certificates.** Before measuring capacity, validate optimization methodology for MaxSim's non-convex landscape:\n- For (d, k_vec, n) known feasible (d above theoretical threshold), run ≥100 restarts; report success-rate vs restarts curves per (d, k_vec) regime.\n- Compare softmax relaxation (temperature annealing τ→0) and Gumbel-softmax with straight-through estimator; report which performs better per regime.\n- **Constructive capacity certificate:** at configurations where the upper bound guarantees feasibility, directly construct solutions using the cyclic polytope partition and verify correctness. If constructive certificate succeeds but optimization search fails nearby, diagnose as optimization gap (not capacity limitation).\n\n**Exp 2: Critical-n Measurement.** Define critical-n(d, k_vec) = largest n s.t. free multi-vector embedding (best of R≥50 restarts) achieves 100% correct sign-pattern realization across T≥20 independent random binary matrices. Binary-search with termination at adjacent success/failure n differing by 1. Also report median critical-n (≥50% of matrices succeed) for robustness. Cap: n_max = 5000; if not reached, report as \"> 5000.\"\n- Grid: d ∈ {2, 4, 8, 16, 32, 64}, k_vec ∈ {1, 2, 4, 8, 16, 32}.\n- k_vec=1 replicates Weller et al.'s cubic growth (sanity check).\n- Log-log fit of critical-n vs d, verify exponent grows with k_vec, report 95% CI.\n- Report minimum margin at critical-n to detect capacity saturation.\n\n**Exp 3: Scoring Function & Parameter Allocation Comparison (Core Experiment).** This experiment directly addresses the central question. Fix parameter budget B = k_vec × d. Compare four scoring functions at matched total parameters:\n- **(a) Single-vector inner product:** 1 vector, B dims.\n- **(b) Fixed-position sum:** k_vec vectors, d dims, scoring = Σᵢ⟨qᵢ, dᵢ⟩ (bilinear, equivalent to (a)).\n- **(c) MaxSim:** k_vec vectors, d dims, scoring = Σᵢ maxⱼ⟨qᵢ, dⱼ⟩.\n- **(d) Chamfer similarity:** k_vec vectors, d dims, scoring = Σᵢ maxⱼ⟨qᵢ, dⱼ⟩ + Σⱼ maxᵢ⟨qᵢ, dⱼ⟩ (bidirectional max-sum).\n- B ∈ {32, 64, 128, 256, 512}; for each B sweep k_vec ∈ {1, 2, 4, 8, ...}.\n- Measure critical-n for each (B, k_vec, scoring) across T≥20 matrices. Report effect size (capacity gain ratio = critical-n(MaxSim)/critical-n(single)) with paired comparison across matrix instances.\n- If (c) > (b) ≈ (a): max operation provides genuine capacity gain beyond parameter redistribution.\n- If (d) > (c): bidirectional matching provides additional capacity.\n\n**Exp 4: Ablation Studies.**\n- k_vec-sweep: matrices with known sign-rank upper bounds (via rank-r real matrices → sign, r ∈ {8, 16, 32, 64}; Hadamard matrices with sign-rank O(log n); Identity extensions with sign-rank n; Kronecker products of small known-sign-rank matrices). Sweep k_vec, verify MaxSim-rank ∝ 1/k_vec.\n- Matrix structure ablation: verify MaxSim-rank ∝ rank±(A)/k across diverse matrix families.\n\n**Exp 5: Cross-Framework Validation (MUVERA).** For matrices in Exp 4, compute MUVERA's theoretical FDE dimension for ε-approximation. Verify FDE dim ≥ MaxSim-rank (expected since FDE is data-oblivious/universal). This is a sanity check on framework consistency, not a claim of equivalence.\n\n**Exp 6: LIMIT Benchmark.** Free multi-vector embeddings on LIMIT's 46-document setup (Weller et al., ICLR 2026). Binary relevance matrices via top-k_ret ∈ {1, 2, 5}. Compare k_vec=1 vs k_vec ∈ {2, 4, 8}. Demonstrates practical relevance.\n\n**Compute budget.** Free-embedding optimization only (no neural training). Primary cost: Exp 2 grid (36 cells × binary search × 50 restarts) + Exp 3 (5 budgets × sweeps × 4 scoring × 20 matrices). Estimated ≤200 GPU-hours on a single modern GPU with n_max=5000 cap.\n\n## Key References\n\n- On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)\n- R^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., arXiv 2026)\n- A Z₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., arXiv 2026)\n- MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)\n- On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., arXiv 2026)\n- LEMUR: Learned Multi-Vector Retrieval (arXiv 2026)\n- Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe (NeurIPS 2025)\n- Drowning in Documents: Consequences of Scaling Reranker Inference (SIGIR Workshop 2025)\n- Lower Bound Methods for Sign-Rank and Their Limitations (Hatami & Mande, APPROX/RANDOM 2022)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "7e8e817e-e753-4642-8a73-d59ab2a6d9f8",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-30T07:29:11.593Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7e8e817e-e753-4642-8a73-d59ab2a6d9f8",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "cd6fc1b0-cf94-45be-ba63-d22cac1c97c5",
+                "timestamp": "2026-05-30T07:29:11.593Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-30T07:29:11.593Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "cd6fc1b0-cf94-45be-ba63-d22cac1c97c5",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "66d392de-0d31-4abe-b530-6c3563dfd640",
+                "timestamp": "2026-05-30T07:29:11.593Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze MaxSim-Rank proposal acceptance probability",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-30T07:29:18.348Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to evaluate a research proposal for AAAI 2026. Let me first do the required literature search to understand the field, then provide a comprehensive evaluation.\n\nThe proposal is about \"MaxSim-Rank\" - a theoretical framework for understanding multi-vector retrieval capacity, specifically whether the max operation in MaxSim scoring provides genuine capacity gains beyond parameter scaling.\n\nLet me search for the key topics:\n1. Multi-vector retrieval theory / ColBERT / MaxSim\n2. Sign-rank and embedding retrieval capacity\n\n\n3. MUVERA and related work on multi-vector retrieval systems\n4. Recent theoretical advances in understanding retrieval capacity",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66d392de-0d31-4abe-b530-6c3563dfd640",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqJzkMgjyR7ZqsVfTw",
+            "type": "assistant",
+            "uuid": "8fc7ebe8-2ed4-46d2-b146-47d33ae46221",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KAaEBzeZkkp7z8YWqEgAg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7793,
+                "cache_read_input_tokens": 11014,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7793,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 11014,
+                    "cache_creation_input_tokens": 7793,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7793
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-30T07:29:18.357Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to do thorough literature research before evaluating this proposal. Let me search for the key topics in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8fc7ebe8-2ed4-46d2-b146-47d33ae46221",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqJzkMgjyR7ZqsVfTw",
+            "type": "assistant",
+            "uuid": "5199659f-61c0-4c56-9660-94aec3a3ac7a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KAaEBzeZkkp7z8YWqEgAg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7793,
+                "cache_read_input_tokens": 11014,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7793,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 11014,
+                    "cache_creation_input_tokens": 7793,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7793
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-30T07:29:18.813Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ho69e7Bk36Ev8zrPWEQtSG",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5199659f-61c0-4c56-9660-94aec3a3ac7a",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqJzkMgjyR7ZqsVfTw",
+            "type": "assistant",
+            "uuid": "cdac9d70-89aa-4bcb-98db-5611cbc35ebd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KAaEBzeZkkp7z8YWqEgAg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7793,
+                "cache_read_input_tokens": 11014,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7793,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 11014,
+                    "cache_creation_input_tokens": 7793,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7793
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-30T07:29:18.821Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Ho69e7Bk36Ev8zrPWEQtSG",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdac9d70-89aa-4bcb-98db-5611cbc35ebd",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "f7d13b11-5970-436b-871d-294fa7d05de7",
+            "toolUseResult": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            },
+            "sourceToolAssistantUUID": "cdac9d70-89aa-4bcb-98db-5611cbc35ebd",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?  ## Motivation and Centr…",
+                "leafUuid": "f7d13b11-5970-436b-871d-294fa7d05de7",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze MaxSim-Rank proposal acceptance probability",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-30T07:29:21.853Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me conduct the required literature searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7d13b11-5970-436b-871d-294fa7d05de7",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqr3YfFaZuM1rmxxx5",
+            "type": "assistant",
+            "uuid": "96694d66-18ac-40d2-9a3e-752d37925fa1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017uGmpA5uBxCq6hhdxLjZmn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 18807,
+                "output_tokens": 291,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 291,
+                    "cache_read_input_tokens": 18807,
+                    "cache_creation_input_tokens": 783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-30T07:29:22.413Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TsrJpdpW6fvJ8LnjRiGNRz",
+              "name": "WebSearch",
+              "input": {
+                "query": "sign-rank embedding retrieval capacity limitations Weller ICLR 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96694d66-18ac-40d2-9a3e-752d37925fa1",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqr3YfFaZuM1rmxxx5",
+            "type": "assistant",
+            "uuid": "d0892c06-6efe-4913-8879-f16c1bccac1b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017uGmpA5uBxCq6hhdxLjZmn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 18807,
+                "output_tokens": 291,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 291,
+                    "cache_read_input_tokens": 18807,
+                    "cache_creation_input_tokens": 783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-30T07:29:22.883Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013YgNWtbXKE8Nbj7GuEdrPX",
+              "name": "WebSearch",
+              "input": {
+                "query": "MUVERA multi-vector retrieval fixed dimensional encodings NeurIPS 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0892c06-6efe-4913-8879-f16c1bccac1b",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqr3YfFaZuM1rmxxx5",
+            "type": "assistant",
+            "uuid": "447b0cfe-b158-46f2-805a-bef605031774",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017uGmpA5uBxCq6hhdxLjZmn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 18807,
+                "output_tokens": 291,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 291,
+                    "cache_read_input_tokens": 18807,
+                    "cache_creation_input_tokens": 783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-30T07:29:23.357Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018GMo6nMnGxXank8Dzw5D4t",
+              "name": "WebSearch",
+              "input": {
+                "query": "multi-vector retrieval capacity theory MaxSim ColBERT 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "447b0cfe-b158-46f2-805a-bef605031774",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqr3YfFaZuM1rmxxx5",
+            "type": "assistant",
+            "uuid": "d6aee5e3-c56d-4566-8dce-3531816e0373",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017uGmpA5uBxCq6hhdxLjZmn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 18807,
+                "output_tokens": 291,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 291,
+                    "cache_read_input_tokens": 18807,
+                    "cache_creation_input_tokens": 783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-30T07:29:24.296Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CFTt6KxjoAf2z2bnEsZkd1",
+              "name": "WebSearch",
+              "input": {
+                "query": "Wang cyclic polytopes minimum embedding dimension top-k retrieval 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6aee5e3-c56d-4566-8dce-3531816e0373",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqr3YfFaZuM1rmxxx5",
+            "type": "assistant",
+            "uuid": "6496a6b6-b664-4e2f-ae0b-b4d2763a34c7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017uGmpA5uBxCq6hhdxLjZmn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 18807,
+                "output_tokens": 291,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 291,
+                    "cache_read_input_tokens": 18807,
+                    "cache_creation_input_tokens": 783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-30T07:29:24.822Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017rchLLAuPb2J54nAqtee8J",
+              "name": "WebSearch",
+              "input": {
+                "query": "tropical algebra piecewise linear scoring retrieval complexity theory 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6496a6b6-b664-4e2f-ae0b-b4d2763a34c7",
+            "isSidechain": false,
+            "requestId": "req_011CbYMqr3YfFaZuM1rmxxx5",
+            "type": "assistant",
+            "uuid": "eec744db-51c7-4636-bde0-eccd4e7b9620",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017uGmpA5uBxCq6hhdxLjZmn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 783,
+                "cache_read_input_tokens": 18807,
+                "output_tokens": 291,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 783,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 291,
+                    "cache_read_input_tokens": 18807,
+                    "cache_creation_input_tokens": 783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 783
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-30T07:29:28.373Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TsrJpdpW6fvJ8LnjRiGNRz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"sign-rank embedding retrieval capacity limitations Weller ICLR 2026\"\n\nLinks: [{\"title\":\"Aihola\",\"url\":\"https://aihola.com/article/rag-embedding-limits-deepmind-limit-benchmark\"},{\"title\":\"Published as a conference paper at ICLR 2026 ON THE THEORETICAL LIMITATIONS OF\",\"url\":\"https://arxiv.org/pdf/2508.21038\"},{\"title\":\"On the Theoretical Limitations of Embedding-Based Retrieval — a technical blog | by Shubham | Medium\",\"url\":\"https://shubh7.medium.com/on-the-theoretical-limitations-of-embedding-based-retrieval-a-technical-blog-4a76e2e0946f\"},{\"title\":\"On the Theoretical Limitations of Embedding-Based Retrieval\",\"url\":\"https://arxiv.org/html/2508.21038v1\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://arxiv.org/pdf/2509.24291\"},{\"title\":\"[2508.21038] On the Theoretical Limitations of Embedding-Based Retrieval\",\"url\":\"https://arxiv.org/abs/2508.21038\"}]\n\nBased on the search results, I found relevant information about the paper you're looking for:\n\nThe paper \"On the Theoretical Limitations of Embedding-Based Retrieval\" was published in late August 2025 by authors from Google DeepMind and Johns Hopkins: Orion Weller, Michael Boratko, Iftekhar Naim, and Jinhyuk Lee. The paper was published as a conference paper at ICLR 2026.\n\nThe paper's core findings involve connecting classic results in communication complexity and sign-rank to the representational capacity of dot-product embeddings, showing why for any fixed embedding dimension d, there are combinatorial sets of documents that no single-vector embedding model can return as a top-k result for any query.\n\nSpecifically regarding capacity limitations: if you're using 512-dimensional embeddings, retrieval breaks down around 500K documents, while with 4096 dimensions you get to roughly 250 million documents before hitting the wall.\n\nThe work demonstrates that these theoretical limitations may be encountered in realistic settings with extremely simple queries.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0892c06-6efe-4913-8879-f16c1bccac1b",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "9bd6f7d3-d1e0-46ce-a09c-a103d139a37a",
+            "toolUseResult": {
+              "query": "sign-rank embedding retrieval capacity limitations Weller ICLR 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01U8bni24P6Kd1upztnfWyRL",
+                  "content": [
+                    {
+                      "title": "Aihola",
+                      "url": "https://aihola.com/article/rag-embedding-limits-deepmind-limit-benchmark"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026 ON THE THEORETICAL LIMITATIONS OF",
+                      "url": "https://arxiv.org/pdf/2508.21038"
+                    },
+                    {
+                      "title": "On the Theoretical Limitations of Embedding-Based Retrieval — a technical blog | by Shubham | Medium",
+                      "url": "https://shubh7.medium.com/on-the-theoretical-limitations-of-embedding-based-retrieval-a-technical-blog-4a76e2e0946f"
+                    },
+                    {
+                      "title": "On the Theoretical Limitations of Embedding-Based Retrieval",
+                      "url": "https://arxiv.org/html/2508.21038v1"
+                    },
+                    {
+                      "title": "Published as a conference paper at ICLR 2026",
+                      "url": "https://arxiv.org/pdf/2509.24291"
+                    },
+                    {
+                      "title": "[2508.21038] On the Theoretical Limitations of Embedding-Based Retrieval",
+                      "url": "https://arxiv.org/abs/2508.21038"
+                    }
+                  ]
+                },
+                "Based on the search results, I found relevant information about the paper you're looking for:\n\nThe paper \"On the Theoretical Limitations of Embedding-Based Retrieval\" was published in late August 2025 by authors from Google DeepMind and Johns Hopkins: Orion Weller, Michael Boratko, Iftekhar Naim, and Jinhyuk Lee. The paper was published as a conference paper at ICLR 2026.\n\nThe paper's core findings involve connecting classic results in communication complexity and sign-rank to the representational capacity of dot-product embeddings, showing why for any fixed embedding dimension d, there are combinatorial sets of documents that no single-vector embedding model can return as a top-k result for any query.\n\nSpecifically regarding capacity limitations: if you're using 512-dimensional embeddings, retrieval breaks down around 500K documents, while with 4096 dimensions you get to roughly 250 million documents before hitting the wall.\n\nThe work demonstrates that these theoretical limitations may be encountered in realistic settings with extremely simple queries."
+              ],
+              "durationSeconds": 5.954827046999998,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "d0892c06-6efe-4913-8879-f16c1bccac1b",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-30T07:29:29.555Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013YgNWtbXKE8Nbj7GuEdrPX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MUVERA multi-vector retrieval fixed dimensional encodings NeurIPS 2024\"\n\nLinks: [{\"title\":\"MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings\",\"url\":\"https://research.google/pubs/muvera-multi-vector-retrieval-via-fixed-dimensional-encodings/\"},{\"title\":\"MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encoding | OpenReview\",\"url\":\"https://openreview.net/forum?id=X3ydKRcQr6\"},{\"title\":\"MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings Laxman Dhulipala\",\"url\":\"https://papers.nips.cc/paper_files/paper/2024/file/b71cfefae46909178603b5bc6c11d3ae-Paper-Conference.pdf\"},{\"title\":\"[2405.19504] MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings\",\"url\":\"https://arxiv.org/abs/2405.19504\"},{\"title\":\"[2405.19504v1] MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings\",\"url\":\"https://arxiv.org/abs/2405.19504v1\"},{\"title\":\"MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings\",\"url\":\"https://arxiv.org/pdf/2405.19504\"},{\"title\":\"MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encoding\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/b71cfefae46909178603b5bc6c11d3ae-Abstract-Conference.html\"},{\"title\":\"NeurIPS Poster MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encoding\",\"url\":\"https://neurips.cc/virtual/2024/poster/94793\"},{\"title\":\"ruvector MUVERA FDE: 301x faster multi-vector search, ColBERT-compatible Fixed Dimensional Encodings in Rust (NeurIPS 2024, arXiv:2405.19504) · GitHub\",\"url\":\"https://gist.github.com/ruvnet/d5783fe3ec893249b1f7590f00a2c087\"}]\n\nHere are the search results for MUVERA:\n\n## Overview\n\nMUVERA (Multi-Vector Retrieval Algorithm) is a retrieval mechanism which reduces multi-vector similarity search to single-vector similarity search. It was published at NeurIPS 2024 and represents a significant advancement in information retrieval technology.\n\n## Key Technical Approach\n\nMUVERA asymmetrically generates Fixed Dimensional Encodings (FDEs) of queries and documents, which are vectors whose inner product approximates multi-vector similarity. This enables the usage of off-the-shelf MIPS solvers for multi-vector retrieval.\n\n## Problem It Addresses\n\nMulti-vector models, which produce a set of embeddings per data point, have achieved superior performance for IR tasks but are computationally expensive due to the increased complexity of multi-vector retrieval and scoring.\n\n## Theoretical and Empirical Results\n\nMUVERA provides the first single-vector proxy for multi-vector similarity with theoretical guarantees, proving that FDEs give high-quality ε-approximations. Empirically, MUVERA achieves an average of 10% improved recall with 90% lower latency across BEIR retrieval datasets.\n\nThe paper and related resources are available on Google Research, OpenReview, arXiv, and the official NeurIPS proceedings.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "447b0cfe-b158-46f2-805a-bef605031774",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "c387242f-b7e1-4098-86fd-fe8a6971f6af",
+            "toolUseResult": {
+              "query": "MUVERA multi-vector retrieval fixed dimensional encodings NeurIPS 2024",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_015q8jadf1Lnz1UNs6qW6fjX",
+                  "content": [
+                    {
+                      "title": "MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings",
+                      "url": "https://research.google/pubs/muvera-multi-vector-retrieval-via-fixed-dimensional-encodings/"
+                    },
+                    {
+                      "title": "MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encoding | OpenReview",
+                      "url": "https://openreview.net/forum?id=X3ydKRcQr6"
+                    },
+                    {
+                      "title": "MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings Laxman Dhulipala",
+                      "url": "https://papers.nips.cc/paper_files/paper/2024/file/b71cfefae46909178603b5bc6c11d3ae-Paper-Conference.pdf"
+                    },
+                    {
+                      "title": "[2405.19504] MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings",
+                      "url": "https://arxiv.org/abs/2405.19504"
+                    },
+                    {
+                      "title": "[2405.19504v1] MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings",
+                      "url": "https://arxiv.org/abs/2405.19504v1"
+                    },
+                    {
+                      "title": "MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings",
+                      "url": "https://arxiv.org/pdf/2405.19504"
+                    },
+                    {
+                      "title": "MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encoding",
+                      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/b71cfefae46909178603b5bc6c11d3ae-Abstract-Conference.html"
+                    },
+                    {
+                      "title": "NeurIPS Poster MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encoding",
+                      "url": "https://neurips.cc/virtual/2024/poster/94793"
+                    },
+                    {
+                      "title": "ruvector MUVERA FDE: 301x faster multi-vector search, ColBERT-compatible Fixed Dimensional Encodings in Rust (NeurIPS 2024, arXiv:2405.19504) · GitHub",
+                      "url": "https://gist.github.com/ruvnet/d5783fe3ec893249b1f7590f00a2c087"
+                    }
+                  ]
+                },
+                "Here are the search results for MUVERA:\n\n## Overview\n\nMUVERA (Multi-Vector Retrieval Algorithm) is a retrieval mechanism which reduces multi-vector similarity search to single-vector similarity search. It was published at NeurIPS 2024 and represents a significant advancement in information retrieval technology.\n\n## Key Technical Approach\n\nMUVERA asymmetrically generates Fixed Dimensional Encodings (FDEs) of queries and documents, which are vectors whose inner product approximates multi-vector similarity. This enables the usage of off-the-shelf MIPS solvers for multi-vector retrieval.\n\n## Problem It Addresses\n\nMulti-vector models, which produce a set of embeddings per data point, have achieved superior performance for IR tasks but are computationally expensive due to the increased complexity of multi-vector retrieval and scoring.\n\n## Theoretical and Empirical Results\n\nMUVERA provides the first single-vector proxy for multi-vector similarity with theoretical guarantees, proving that FDEs give high-quality ε-approximations. Empirically, MUVERA achieves an average of 10% improved recall with 90% lower latency across BEIR retrieval datasets.\n\nThe paper and related resources are available on Google Research, OpenReview, arXiv, and the official NeurIPS proceedings."
+              ],
+              "durationSeconds": 6.669021725999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "447b0cfe-b158-46f2-805a-bef605031774",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-30T07:29:31.175Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018GMo6nMnGxXank8Dzw5D4t",
+              "type": "tool_result",
+              "content": "Web search results for query: \"multi-vector retrieval capacity theory MaxSim ColBERT 2025 2026\"\n\nLinks: [{\"title\":\"LIR: The First Workshop on Late Interaction and Multi Vector Retrieval @ ECIR 2026\",\"url\":\"https://arxiv.org/html/2511.00444\"},{\"title\":\"ColBERT: Late Interaction Neural Retrieval\",\"url\":\"https://www.emergentmind.com/topics/colbert-model-architecture\"},{\"title\":\"ColBERT-XM: A Modular Multi-Vector Representation ...\",\"url\":\"https://aclanthology.org/2025.coling-main.295.pdf\"},{\"title\":\"LEMUR: Learned Multi-Vector Retrieval\",\"url\":\"https://arxiv.org/pdf/2601.21853\"},{\"title\":\"WARP: An Efficient Engine for Multi-Vector Retrieval\",\"url\":\"https://arxiv.org/html/2501.17788v1\"},{\"title\":\"Cascading retrieval with multi-vector representations: balancing efficiency and effectiveness | Pinecone\",\"url\":\"https://www.pinecone.io/blog/cascading-retrieval-with-multi-vector-representations/\"},{\"title\":\"Reducing the Footprint of Multi-Vector Retrieval with Minimal   Performance Impact via Token Pooling\",\"url\":\"https://arxiv.org/pdf/2409.14683\"},{\"title\":\"ColBERT-Style Late Interaction\",\"url\":\"https://www.emergentmind.com/topics/colbert-style-late-interaction\"}]\n\nBased on the search results, here's what I found about multi-vector retrieval, capacity theory, MaxSim, and ColBERT in 2025-2026:\n\n## Multi-Vector Retrieval and ColBERT\n\nLate-interaction multi-vector retrieval has emerged as a particularly promising area of research, with ColBERT demonstrating very strong performance, especially in out-of-domain settings. Multi-vector models represent both queries and documents as sets of embeddings, generating one embedding per token, with similarity measured by MaxSim similarity.\n\n## MaxSim Operator\n\nA document's relevance to a query is computed via the maxsim operator, which compares every query token to every document token, keeping the highest score for each query token and finally summing them up to obtain a document-level score.\n\n## Recent Developments (2025-2026)\n\nThe search results show active development in this area:\n\n- A workshop on Late Interaction and Multi Vector Retrieval was established at ECIR 2026, indicating this remains a vibrant research area.\n\n- After ColBERT and ColBERTv2, better-performing and more memory-efficient multi-vector models have been introduced.\n\n- Multi-vector models such as ColPali have recently achieved state-of-the-art results in visual document retrieval.\n\nHowever, I did not find specific information about \"capacity theory\" applied to multi-vector retrieval, MaxSim, or ColBERT in these results. If you're looking for theoretical work on the capacity or expressivity of these systems, you may need to search for more specific papers on that topic.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6aee5e3-c56d-4566-8dce-3531816e0373",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "c212116a-bdfe-42a9-8198-554d2e266cdb",
+            "toolUseResult": {
+              "query": "multi-vector retrieval capacity theory MaxSim ColBERT 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01DzytoBdxSiaGWZjoGJr2FH",
+                  "content": [
+                    {
+                      "title": "LIR: The First Workshop on Late Interaction and Multi Vector Retrieval @ ECIR 2026",
+                      "url": "https://arxiv.org/html/2511.00444"
+                    },
+                    {
+                      "title": "ColBERT: Late Interaction Neural Retrieval",
+                      "url": "https://www.emergentmind.com/topics/colbert-model-architecture"
+                    },
+                    {
+                      "title": "ColBERT-XM: A Modular Multi-Vector Representation ...",
+                      "url": "https://aclanthology.org/2025.coling-main.295.pdf"
+                    },
+                    {
+                      "title": "LEMUR: Learned Multi-Vector Retrieval",
+                      "url": "https://arxiv.org/pdf/2601.21853"
+                    },
+                    {
+                      "title": "WARP: An Efficient Engine for Multi-Vector Retrieval",
+                      "url": "https://arxiv.org/html/2501.17788v1"
+                    },
+                    {
+                      "title": "Cascading retrieval with multi-vector representations: balancing efficiency and effectiveness | Pinecone",
+                      "url": "https://www.pinecone.io/blog/cascading-retrieval-with-multi-vector-representations/"
+                    },
+                    {
+                      "title": "Reducing the Footprint of Multi-Vector Retrieval with Minimal   Performance Impact via Token Pooling",
+                      "url": "https://arxiv.org/pdf/2409.14683"
+                    },
+                    {
+                      "title": "ColBERT-Style Late Interaction",
+                      "url": "https://www.emergentmind.com/topics/colbert-style-late-interaction"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about multi-vector retrieval, capacity theory, MaxSim, and ColBERT in 2025-2026:\n\n## Multi-Vector Retrieval and ColBERT\n\nLate-interaction multi-vector retrieval has emerged as a particularly promising area of research, with ColBERT demonstrating very strong performance, especially in out-of-domain settings. Multi-vector models represent both queries and documents as sets of embeddings, generating one embedding per token, with similarity measured by MaxSim similarity.\n\n## MaxSim Operator\n\nA document's relevance to a query is computed via the maxsim operator, which compares every query token to every document token, keeping the highest score for each query token and finally summing them up to obtain a document-level score.\n\n## Recent Developments (2025-2026)\n\nThe search results show active development in this area:\n\n- A workshop on Late Interaction and Multi Vector Retrieval was established at ECIR 2026, indicating this remains a vibrant research area.\n\n- After ColBERT and ColBERTv2, better-performing and more memory-efficient multi-vector models have been introduced.\n\n- Multi-vector models such as ColPali have recently achieved state-of-the-art results in visual document retrieval.\n\nHowever, I did not find specific information about \"capacity theory\" applied to multi-vector retrieval, MaxSim, or ColBERT in these results. If you're looking for theoretical work on the capacity or expressivity of these systems, you may need to search for more specific papers on that topic."
+              ],
+              "durationSeconds": 7.815393815999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "d6aee5e3-c56d-4566-8dce-3531816e0373",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-30T07:29:31.382Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CFTt6KxjoAf2z2bnEsZkd1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Wang cyclic polytopes minimum embedding dimension top-k retrieval 2026\"\n\nLinks: [{\"title\":\"[2601.20844] $\\\\mathbb{R}^{2k}$ is Theoretically Large Enough for Embedding-based Top-$k$ Retrieval\",\"url\":\"https://arxiv.org/abs/2601.20844\"},{\"title\":\"ℝ^{2⁢𝑘} is Theoretically Large Enough for Embedding-based Top-𝑘 Retrieval\",\"url\":\"https://arxiv.org/html/2601.20844v2\"},{\"title\":\"R2k is Theoretically Large Enough for Embedding-based Top-k Retrieval\",\"url\":\"https://arxiv.org/pdf/2601.20844\"},{\"title\":\"[2508.21038] On the Theoretical Limitations of Embedding-Based Retrieval\",\"url\":\"https://arxiv.org/abs/2508.21038\"},{\"title\":\"On the Theoretical Limitations of Embedding-Based Retrieval\",\"url\":\"https://arxiv.org/pdf/2508.21038\"},{\"title\":\"On the Theoretical Limitations of Embedding-Based Retrieval\",\"url\":\"https://arxiv.org/html/2508.21038v1\"}]\n\nBased on the web search results, I found a highly relevant recent paper:\n\n## Search Results\n\nThe paper \"ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval\" was submitted by Zihao Wang and 6 other authors on January 28-29, 2026.\n\nThe paper studies the minimal dimension required to embed subset memberships (m elements and (m choose k) subsets of at most k elements) into vector spaces, denoted as Minimal Embeddable Dimension (MED).\n\nThe upper bound is established through the cyclic polytope construction, where the approach for a retrieval system with m elements is to place elements in the vertices of a cyclic polytope in ℝ^{2k} and learn query embeddings that clearly separate the (at most k) answers from the rest.\n\nThe findings imply that embedding-based retrieval limitations stem primarily from learnability challenges, not geometric constraints, guiding future algorithm design.\n\nThis paper appears to directly address your query topic by combining the concepts of Wang's recent work, cyclic polytopes, minimum embedding dimension, and top-k retrieval in 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6496a6b6-b664-4e2f-ae0b-b4d2763a34c7",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "79a6fc41-e99a-4ffb-8a6c-3422124439c5",
+            "toolUseResult": {
+              "query": "Wang cyclic polytopes minimum embedding dimension top-k retrieval 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_013k4HLFybJfwevvkAiiEjDu",
+                  "content": [
+                    {
+                      "title": "[2601.20844] $\\mathbb{R}^{2k}$ is Theoretically Large Enough for Embedding-based Top-$k$ Retrieval",
+                      "url": "https://arxiv.org/abs/2601.20844"
+                    },
+                    {
+                      "title": "ℝ^{2⁢𝑘} is Theoretically Large Enough for Embedding-based Top-𝑘 Retrieval",
+                      "url": "https://arxiv.org/html/2601.20844v2"
+                    },
+                    {
+                      "title": "R2k is Theoretically Large Enough for Embedding-based Top-k Retrieval",
+                      "url": "https://arxiv.org/pdf/2601.20844"
+                    },
+                    {
+                      "title": "[2508.21038] On the Theoretical Limitations of Embedding-Based Retrieval",
+                      "url": "https://arxiv.org/abs/2508.21038"
+                    },
+                    {
+                      "title": "On the Theoretical Limitations of Embedding-Based Retrieval",
+                      "url": "https://arxiv.org/pdf/2508.21038"
+                    },
+                    {
+                      "title": "On the Theoretical Limitations of Embedding-Based Retrieval",
+                      "url": "https://arxiv.org/html/2508.21038v1"
+                    }
+                  ]
+                },
+                "Based on the web search results, I found a highly relevant recent paper:\n\n## Search Results\n\nThe paper \"ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval\" was submitted by Zihao Wang and 6 other authors on January 28-29, 2026.\n\nThe paper studies the minimal dimension required to embed subset memberships (m elements and (m choose k) subsets of at most k elements) into vector spaces, denoted as Minimal Embeddable Dimension (MED).\n\nThe upper bound is established through the cyclic polytope construction, where the approach for a retrieval system with m elements is to place elements in the vertices of a cyclic polytope in ℝ^{2k} and learn query embeddings that clearly separate the (at most k) answers from the rest.\n\nThe findings imply that embedding-based retrieval limitations stem primarily from learnability challenges, not geometric constraints, guiding future algorithm design.\n\nThis paper appears to directly address your query topic by combining the concepts of Wang's recent work, cyclic polytopes, minimum embedding dimension, and top-k retrieval in 2026."
+              ],
+              "durationSeconds": 7.082743754999999,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "6496a6b6-b664-4e2f-ae0b-b4d2763a34c7",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-30T07:29:32.044Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017rchLLAuPb2J54nAqtee8J",
+              "type": "tool_result",
+              "content": "Web search results for query: \"tropical algebra piecewise linear scoring retrieval complexity theory 2025 2026\"\n\nLinks: [{\"title\":\"Tropical Attention: Neural Algorithmic Reasoning for Combinatorial Algorithms | OpenReview\",\"url\":\"https://openreview.net/forum?id=3CbwwCpsSk\"},{\"title\":\"Tropical solution of discrete best approximation problems\",\"url\":\"https://arxiv.org/pdf/2507.22634\"},{\"title\":\"Algebraic Statistics Vol. 15, No. 1, 2024\",\"url\":\"https://msp.org/astat/2024/15-1/p03.xhtml\"},{\"title\":\"On solution of tropical discrete best approximation problems\",\"url\":\"https://arxiv.org/pdf/2403.16337\"},{\"title\":\"Compressibility Measures and Succinct Data Structures for Piecewise Linear Approximations\",\"url\":\"https://arxiv.org/html/2509.07827\"},{\"title\":\"What Tropical Geometry Tells Us about the Complexity of Linear Programming | SIAM Review\",\"url\":\"https://epubs.siam.org/doi/10.1137/20M1380211\"},{\"title\":\"Complexity of tropical and min-plus linear prevarieties\",\"url\":\"https://arxiv.org/pdf/1204.4578\"},{\"title\":\"Tropical Geometry and Piecewise-Linear Approximation of Curves and   Surfaces on Weighted Lattices\",\"url\":\"https://arxiv.org/pdf/1912.03891\"}]\n\nI found several relevant results combining tropical algebra with piecewise linear concepts. Here are the key findings:\n\n## Recent Work (2025-2026)\n\nA NeurIPS 2025 paper introduces Tropical Attention, an attention mechanism grounded in tropical geometry that lifts the attention kernel into tropical projective space, where reasoning is piecewise-linear and 1-Lipschitz, thus preserving the polyhedral decision structure inherent to combinatorial reasoning. The paper proves that multi-head Tropical Attention (MHTA) stacks universally approximate tropical circuits and realize tropical transitive closure through composition, achieving polynomial resource bounds without invoking recurrent mechanisms.\n\n## Tropical Algebra and Approximation\n\nEach Puiseux polynomial written in terms of max-plus algebra is represented as a piecewise linear function in the standard notation, whereas the tropical metric coincides with the standard Chebyshev metric. In the context of max-plus algebra, tropical rational functions define ordinary piecewise linear functions, whereas the tropical metric coincides with the standard Chebyshev metric, offering opportunity to handle conventional discrete best Chebyshev approximation problems through tropical algebra.\n\n## Complexity Theory\n\nIn tropical semiring, no polynomial time algorithm is known for tropical linear systems or min-plus linear systems.\n\nThe search results show active research combining tropical geometry with piecewise-linear structures, though the specific combination with \"scoring retrieval\" complexity theory appears to be emerging in the latest 2025-2026 literature.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eec744db-51c7-4636-bde0-eccd4e7b9620",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "52b162b0-ebd1-4e8d-a7e7-108c71375622",
+            "toolUseResult": {
+              "query": "tropical algebra piecewise linear scoring retrieval complexity theory 2025 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Hx8HMyQvAVxXVAYL176dFf",
+                  "content": [
+                    {
+                      "title": "Tropical Attention: Neural Algorithmic Reasoning for Combinatorial Algorithms | OpenReview",
+                      "url": "https://openreview.net/forum?id=3CbwwCpsSk"
+                    },
+                    {
+                      "title": "Tropical solution of discrete best approximation problems",
+                      "url": "https://arxiv.org/pdf/2507.22634"
+                    },
+                    {
+                      "title": "Algebraic Statistics Vol. 15, No. 1, 2024",
+                      "url": "https://msp.org/astat/2024/15-1/p03.xhtml"
+                    },
+                    {
+                      "title": "On solution of tropical discrete best approximation problems",
+                      "url": "https://arxiv.org/pdf/2403.16337"
+                    },
+                    {
+                      "title": "Compressibility Measures and Succinct Data Structures for Piecewise Linear Approximations",
+                      "url": "https://arxiv.org/html/2509.07827"
+                    },
+                    {
+                      "title": "What Tropical Geometry Tells Us about the Complexity of Linear Programming | SIAM Review",
+                      "url": "https://epubs.siam.org/doi/10.1137/20M1380211"
+                    },
+                    {
+                      "title": "Complexity of tropical and min-plus linear prevarieties",
+                      "url": "https://arxiv.org/pdf/1204.4578"
+                    },
+                    {
+                      "title": "Tropical Geometry and Piecewise-Linear Approximation of Curves and   Surfaces on Weighted Lattices",
+                      "url": "https://arxiv.org/pdf/1912.03891"
+                    }
+                  ]
+                },
+                "I found several relevant results combining tropical algebra with piecewise linear concepts. Here are the key findings:\n\n## Recent Work (2025-2026)\n\nA NeurIPS 2025 paper introduces Tropical Attention, an attention mechanism grounded in tropical geometry that lifts the attention kernel into tropical projective space, where reasoning is piecewise-linear and 1-Lipschitz, thus preserving the polyhedral decision structure inherent to combinatorial reasoning. The paper proves that multi-head Tropical Attention (MHTA) stacks universally approximate tropical circuits and realize tropical transitive closure through composition, achieving polynomial resource bounds without invoking recurrent mechanisms.\n\n## Tropical Algebra and Approximation\n\nEach Puiseux polynomial written in terms of max-plus algebra is represented as a piecewise linear function in the standard notation, whereas the tropical metric coincides with the standard Chebyshev metric. In the context of max-plus algebra, tropical rational functions define ordinary piecewise linear functions, whereas the tropical metric coincides with the standard Chebyshev metric, offering opportunity to handle conventional discrete best Chebyshev approximation problems through tropical algebra.\n\n## Complexity Theory\n\nIn tropical semiring, no polynomial time algorithm is known for tropical linear systems or min-plus linear systems.\n\nThe search results show active research combining tropical geometry with piecewise-linear structures, though the specific combination with \"scoring retrieval\" complexity theory appears to be emerging in the latest 2025-2026 literature."
+              ],
+              "durationSeconds": 7.219716313000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "eec744db-51c7-4636-bde0-eccd4e7b9620",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?  ## Motivation and Centr…",
+                "leafUuid": "52b162b0-ebd1-4e8d-a7e7-108c71375622",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze MaxSim-Rank proposal acceptance probability",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-30T07:29:34.567Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have some initial results. Let me search for a few more specific topics to round out my understanding.",
+              "signature": "ErQCCmMIDhgCKkDYJJEgMlrYDlj45zIljOG3gj9e5IdXhzGBPGg+Ppu8p8pTZDQKe+A+1krVJWpeDXlwF6SJDnQUFCxW255BV2yUMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDB3XEyFit9f1nLBUwRoM3L55CSg7SzjnBv7SIjA+UMqYE4eRtlKvIDiMBOUx9JaKaPaWA6tGYr/dZgTfF0wiy0ezjQTg84CuEFszHvgqfxyQoQa8nZzdc/jCnu2dtXeokX6Rmd1Ltm25bzug1MjPlHVp15UP4R2V59gk78QKZWT3r/yNcecEIzTDDB6U4LpJ8Tn4IBemrWnXYBC7SxLPcMMYPFP1Kn44SbjBPIrcNT6pNt0idbGcCSt3ix61WefokkG00GwIQz+wIrww0KkYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52b162b0-ebd1-4e8d-a7e7-108c71375622",
+            "isSidechain": false,
+            "requestId": "req_011CbYMrpGAdhoeK5Y4upzug",
+            "type": "assistant",
+            "uuid": "1a3c0a57-d551-439d-8367-47c916b571f4",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmnsqwNoTHFQvh3U6TkCka",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3905,
+                "cache_read_input_tokens": 19590,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3905,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 19590,
+                    "cache_creation_input_tokens": 3905,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3905
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-30T07:29:35.471Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do a few more targeted searches to complete the picture."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a3c0a57-d551-439d-8367-47c916b571f4",
+            "isSidechain": false,
+            "requestId": "req_011CbYMrpGAdhoeK5Y4upzug",
+            "type": "assistant",
+            "uuid": "e92015a3-3e8c-49ca-80d0-deb1373f1d1a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmnsqwNoTHFQvh3U6TkCka",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3905,
+                "cache_read_input_tokens": 19590,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3905,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 19590,
+                    "cache_creation_input_tokens": 3905,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3905
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-30T07:29:35.970Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FQMKJaoLnKDUwFSUcoJ97Z",
+              "name": "WebSearch",
+              "input": {
+                "query": "Frick Z2-equivariant topology sign-rank lower bounds arXiv 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e92015a3-3e8c-49ca-80d0-deb1373f1d1a",
+            "isSidechain": false,
+            "requestId": "req_011CbYMrpGAdhoeK5Y4upzug",
+            "type": "assistant",
+            "uuid": "2d901ecc-4c8d-4363-95c4-fa46afdea514",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmnsqwNoTHFQvh3U6TkCka",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3905,
+                "cache_read_input_tokens": 19590,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3905,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 19590,
+                    "cache_creation_input_tokens": 3905,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3905
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-30T07:29:36.917Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K9AnTN6AzJHo2Vyb2XGtEV",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Archish\" single-vector multi-vector drowning embedding capacity arXiv 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d901ecc-4c8d-4363-95c4-fa46afdea514",
+            "isSidechain": false,
+            "requestId": "req_011CbYMrpGAdhoeK5Y4upzug",
+            "type": "assistant",
+            "uuid": "1b00769d-2d0c-4695-9a23-b7d0aa463c6a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmnsqwNoTHFQvh3U6TkCka",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3905,
+                "cache_read_input_tokens": 19590,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3905,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 19590,
+                    "cache_creation_input_tokens": 3905,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3905
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-30T07:29:37.660Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wup937tvLJu1TtC1exFr3W",
+              "name": "WebSearch",
+              "input": {
+                "query": "sign-rank lower bound techniques limitations Hatami Mande communication complexity"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b00769d-2d0c-4695-9a23-b7d0aa463c6a",
+            "isSidechain": false,
+            "requestId": "req_011CbYMrpGAdhoeK5Y4upzug",
+            "type": "assistant",
+            "uuid": "6539b4f1-ccf8-4aab-8cb1-9b490178c32e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RmnsqwNoTHFQvh3U6TkCka",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3905,
+                "cache_read_input_tokens": 19590,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3905,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 19590,
+                    "cache_creation_input_tokens": 3905,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3905
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-30T07:29:41.736Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FQMKJaoLnKDUwFSUcoJ97Z",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Frick Z2-equivariant topology sign-rank lower bounds arXiv 2026\"\n\nLinks: [{\"title\":\"[2604.01510] A $\\\\mathbb{Z}_2$-Topological Framework for Sign-rank Lower Bounds\",\"url\":\"https://arxiv.org/abs/2604.01510\"},{\"title\":\"ECCC - TR26-056\",\"url\":\"https://eccc.weizmann.ac.il/report/2026/056/\"},{\"title\":\"A ℤ₂–Topological Framework for Sign-rank Lower Bounds\",\"url\":\"https://arxiv.org/html/2604.01510v2\"},{\"title\":\"A $\\\\mathbb{Z}_2$-Topological Framework for Sign-rank Lower Bounds\",\"url\":\"https://arxiv.org/pdf/2604.01510\"},{\"title\":\"Probabilistic Rank and Matrix Rigidity\",\"url\":\"https://arxiv.org/pdf/1611.05558\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**\"A ℤ₂-Topological Framework for Sign-rank Lower Bounds\"** by Florian Frick, Kaave Hosseini, and Aliaksei Vasileuski was submitted on April 2, 2026, with version 2 released on April 10, 2026 (arXiv:2604.01510).\n\nThe paper develops a topological framework for proving lower bounds on sign-rank via ℤ₂-equivariant topology, and uses it to resolve the sign-rank of the Gap Hamming Distance problem up to lower-order terms. For every (partial) sign matrix A, they associate a free ℤ₂-simplicial complex S(A) and show that sign-rank of A is characterized by the linear analog of ℤ₂-index of S(A).\n\nThe main application proves an essentially tight lower bound for the Gap Hamming Distance function, showing that sign-rank(GHD_k^n) = (1 - o_k(1)) 2k, which improves on the previous lower bound of Ω(k/log(n/k)) from STOC 2023.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d901ecc-4c8d-4363-95c4-fa46afdea514",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "40b99fd1-ccb8-4cb0-9d28-9157e4b777c0",
+            "toolUseResult": {
+              "query": "Frick Z2-equivariant topology sign-rank lower bounds arXiv 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SZ4UADRVUCSWu2fnqEftGh",
+                  "content": [
+                    {
+                      "title": "[2604.01510] A $\\mathbb{Z}_2$-Topological Framework for Sign-rank Lower Bounds",
+                      "url": "https://arxiv.org/abs/2604.01510"
+                    },
+                    {
+                      "title": "ECCC - TR26-056",
+                      "url": "https://eccc.weizmann.ac.il/report/2026/056/"
+                    },
+                    {
+                      "title": "A ℤ₂–Topological Framework for Sign-rank Lower Bounds",
+                      "url": "https://arxiv.org/html/2604.01510v2"
+                    },
+                    {
+                      "title": "A $\\mathbb{Z}_2$-Topological Framework for Sign-rank Lower Bounds",
+                      "url": "https://arxiv.org/pdf/2604.01510"
+                    },
+                    {
+                      "title": "Probabilistic Rank and Matrix Rigidity",
+                      "url": "https://arxiv.org/pdf/1611.05558"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're looking for:\n\n**\"A ℤ₂-Topological Framework for Sign-rank Lower Bounds\"** by Florian Frick, Kaave Hosseini, and Aliaksei Vasileuski was submitted on April 2, 2026, with version 2 released on April 10, 2026 (arXiv:2604.01510).\n\nThe paper develops a topological framework for proving lower bounds on sign-rank via ℤ₂-equivariant topology, and uses it to resolve the sign-rank of the Gap Hamming Distance problem up to lower-order terms. For every (partial) sign matrix A, they associate a free ℤ₂-simplicial complex S(A) and show that sign-rank of A is characterized by the linear analog of ℤ₂-index of S(A).\n\nThe main application proves an essentially tight lower bound for the Gap Hamming Distance function, showing that sign-rank(GHD_k^n) = (1 - o_k(1)) 2k, which improves on the previous lower bound of Ω(k/log(n/k)) from STOC 2023."
+              ],
+              "durationSeconds": 5.760568887000002,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "2d901ecc-4c8d-4363-95c4-fa46afdea514",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-30T07:29:42.840Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K9AnTN6AzJHo2Vyb2XGtEV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Archish\" single-vector multi-vector drowning embedding capacity arXiv 2026\"\n\nLinks: [{\"title\":\"[2603.29519] On Strengths and Limitations of Single-Vector Embeddings\",\"url\":\"https://arxiv.org/abs/2603.29519\"},{\"title\":\"[2603.29519v1] On Strengths and Limitations of Single-Vector Embeddings\",\"url\":\"https://arxiv.org/abs/2603.29519v1\"},{\"title\":\"On Strengths and Limitations of Single-Vector Embeddings Archish S 1\",\"url\":\"https://arxiv.org/pdf/2603.29519\"},{\"title\":\"On Strengths and Limitations of Single-Vector Embeddings\",\"url\":\"https://arxiv.org/html/2603.29519v1\"},{\"title\":\"[2502.13063v1] Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity\",\"url\":\"https://arxiv.org/abs/2502.13063v1\"},{\"title\":\"[2502.13063] Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity\",\"url\":\"https://arxiv.org/abs/2502.13063\"},{\"title\":\"Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity\",\"url\":\"https://arxiv.org/pdf/2502.13063\"},{\"title\":\"Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity\",\"url\":\"https://arxiv.org/html/2502.13063v1\"}]\n\nI found a relevant paper! Here are the search results for your query:\n\nThe paper \"On Strengths and Limitations of Single-Vector Embeddings\" is authored by Archish S and was submitted to arXiv on March 31, 2026.\n\nThe paper addresses the key concepts you mentioned:\n\n- **Single-vector vs. Multi-vector embeddings**: Single-vector models remain markedly weaker than multi-vector representations, pointing to fundamental limitations.\n\n- **Drowning in documents paradox**: The paper studies the drowning in documents paradox—as the corpus grows, relevant documents are increasingly \"drowned out\" because embedding similarities behave, in part, like noisy statistical proxies for relevance.\n\n- **Embedding capacity analysis**: Through experiments and mathematical calculations on toy mathematical models, the paper illustrates why single-vector models are more susceptible to drowning effects compared to multi-vector models.\n\nThe paper is available on arXiv with identifier 2603.29519. You can access it directly at https://arxiv.org/abs/2603.29519.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b00769d-2d0c-4695-9a23-b7d0aa463c6a",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "af7e4c41-6de2-48b6-ba39-88a7eacd66d6",
+            "toolUseResult": {
+              "query": "\"Archish\" single-vector multi-vector drowning embedding capacity arXiv 2026",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01FAsoATdy7LXuDSv2QYdDYD",
+                  "content": [
+                    {
+                      "title": "[2603.29519] On Strengths and Limitations of Single-Vector Embeddings",
+                      "url": "https://arxiv.org/abs/2603.29519"
+                    },
+                    {
+                      "title": "[2603.29519v1] On Strengths and Limitations of Single-Vector Embeddings",
+                      "url": "https://arxiv.org/abs/2603.29519v1"
+                    },
+                    {
+                      "title": "On Strengths and Limitations of Single-Vector Embeddings Archish S 1",
+                      "url": "https://arxiv.org/pdf/2603.29519"
+                    },
+                    {
+                      "title": "On Strengths and Limitations of Single-Vector Embeddings",
+                      "url": "https://arxiv.org/html/2603.29519v1"
+                    },
+                    {
+                      "title": "[2502.13063v1] Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity",
+                      "url": "https://arxiv.org/abs/2502.13063v1"
+                    },
+                    {
+                      "title": "[2502.13063] Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity",
+                      "url": "https://arxiv.org/abs/2502.13063"
+                    },
+                    {
+                      "title": "Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity",
+                      "url": "https://arxiv.org/pdf/2502.13063"
+                    },
+                    {
+                      "title": "Cramming 1568 Tokens into a Single Vector and Back Again: Exploring the Limits of Embedding Space Capacity",
+                      "url": "https://arxiv.org/html/2502.13063v1"
+                    }
+                  ]
+                },
+                "I found a relevant paper! Here are the search results for your query:\n\nThe paper \"On Strengths and Limitations of Single-Vector Embeddings\" is authored by Archish S and was submitted to arXiv on March 31, 2026.\n\nThe paper addresses the key concepts you mentioned:\n\n- **Single-vector vs. Multi-vector embeddings**: Single-vector models remain markedly weaker than multi-vector representations, pointing to fundamental limitations.\n\n- **Drowning in documents paradox**: The paper studies the drowning in documents paradox—as the corpus grows, relevant documents are increasingly \"drowned out\" because embedding similarities behave, in part, like noisy statistical proxies for relevance.\n\n- **Embedding capacity analysis**: Through experiments and mathematical calculations on toy mathematical models, the paper illustrates why single-vector models are more susceptible to drowning effects compared to multi-vector models.\n\nThe paper is available on arXiv with identifier 2603.29519. You can access it directly at https://arxiv.org/abs/2603.29519."
+              ],
+              "durationSeconds": 5.919462453,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "1b00769d-2d0c-4695-9a23-b7d0aa463c6a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-30T07:29:44.472Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wup937tvLJu1TtC1exFr3W",
+              "type": "tool_result",
+              "content": "Web search results for query: \"sign-rank lower bound techniques limitations Hatami Mande communication complexity\"\n\nLinks: [{\"title\":\"Lower Bound Methods for Sign-Rank and Their Limitations\",\"url\":\"https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22\"},{\"title\":\"Lower Bound Methods for Sign-Rank and Their Limitations Hamed Hatami # Ñ\",\"url\":\"https://drops.dagstuhl.de/storage/00lipics/lipics-vol245-approx-random2022/LIPIcs.APPROX-RANDOM.2022.22/LIPIcs.APPROX-RANDOM.2022.22.pdf\"},{\"title\":\"A Borsuk-Ulam Lower Bound for Sign-Rank and Its Applications | Proceedings of the 55th Annual ACM Symposium on Theory of Computing\",\"url\":\"https://dl.acm.org/doi/10.1145/3564246.3585210\"},{\"title\":\"A Borsuk-Ulam Lower Bound for Sign-Rank and Its Applications | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/A-Borsuk-Ulam-Lower-Bound-for-Sign-Rank-and-Its-Hatami-Hosseini/2ded7615c8b177420b9d504aa722be4073dbcb9a\"},{\"title\":\"Lower Bound Methods for Sign-rank and their Limitations\",\"url\":\"https://eccc.weizmann.ac.il/report/2022/079/\"},{\"title\":\"Video: Hamed Hatami, \\\"Lower Bound Methods for Sign-rank and their Limitations\\\"\",\"url\":\"https://www.birs.ca/events/2022/5-day-workshops/22w5124/videos/watch/202207251532-Hatami.html\"},{\"title\":\"ECCC - Hamed Hatami\",\"url\":\"https://eccc.weizmann.ac.il/author/1002/\"},{\"title\":\"Separation of the Factorization Norm and Randomized Communication Complexity\",\"url\":\"https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2023.1\"},{\"title\":\"✍ – Pooya Hatami\",\"url\":\"https://pooyahatami.org/publications/\"}]\n\nBased on the search results, here's information about sign-rank lower bound techniques and their limitations, as addressed by Hatami and collaborators in their work on communication complexity:\n\n## Overview\n\nThere are only three known methods for proving lower bounds on the sign-rank of explicit matrices: (i) Sign-rank is at least the VC-dimension; (ii) Forster's method, which states that sign-rank is at least the inverse of the largest possible average margin.\n\n## Key Limitations\n\nA major finding from the Hatami group's research is that there exist n × n matrices with sign-rank n^Ω(1) for which none of these methods can provide a super-constant lower bound. This demonstrates a fundamental limitation in the existing techniques.\n\n## Upper Bounds Discovered\n\nThe research also established upper bounds on sign-rank: Sign-rank is at most an exponential function of the deterministic communication complexity with access to an equality oracle. They combine this result with Green and Sanders' quantitative version of Cohen's idempotent theorem to show that for a large class of sign matrices (e.g., xor-lifts), sign-rank is at most an exponential function of the γ₂ norm of the matrix.\n\n## Additional Findings\n\nA new topological argument based on the Borsuk-Ulam theorem has been introduced to prove a lower bound on sign-rank, which implies the strongest possible separation between randomized and unbounded-error communication complexity.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6539b4f1-ccf8-4aab-8cb1-9b490178c32e",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "f03c94ca-d6c5-4399-a1d3-b227731c8134",
+            "toolUseResult": {
+              "query": "sign-rank lower bound techniques limitations Hatami Mande communication complexity",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01GADUpHtXGTSRwMdVUABUks",
+                  "content": [
+                    {
+                      "title": "Lower Bound Methods for Sign-Rank and Their Limitations",
+                      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22"
+                    },
+                    {
+                      "title": "Lower Bound Methods for Sign-Rank and Their Limitations Hamed Hatami # Ñ",
+                      "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol245-approx-random2022/LIPIcs.APPROX-RANDOM.2022.22/LIPIcs.APPROX-RANDOM.2022.22.pdf"
+                    },
+                    {
+                      "title": "A Borsuk-Ulam Lower Bound for Sign-Rank and Its Applications | Proceedings of the 55th Annual ACM Symposium on Theory of Computing",
+                      "url": "https://dl.acm.org/doi/10.1145/3564246.3585210"
+                    },
+                    {
+                      "title": "A Borsuk-Ulam Lower Bound for Sign-Rank and Its Applications | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/A-Borsuk-Ulam-Lower-Bound-for-Sign-Rank-and-Its-Hatami-Hosseini/2ded7615c8b177420b9d504aa722be4073dbcb9a"
+                    },
+                    {
+                      "title": "Lower Bound Methods for Sign-rank and their Limitations",
+                      "url": "https://eccc.weizmann.ac.il/report/2022/079/"
+                    },
+                    {
+                      "title": "Video: Hamed Hatami, \"Lower Bound Methods for Sign-rank and their Limitations\"",
+                      "url": "https://www.birs.ca/events/2022/5-day-workshops/22w5124/videos/watch/202207251532-Hatami.html"
+                    },
+                    {
+                      "title": "ECCC - Hamed Hatami",
+                      "url": "https://eccc.weizmann.ac.il/author/1002/"
+                    },
+                    {
+                      "title": "Separation of the Factorization Norm and Randomized Communication Complexity",
+                      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CCC.2023.1"
+                    },
+                    {
+                      "title": "✍ – Pooya Hatami",
+                      "url": "https://pooyahatami.org/publications/"
+                    }
+                  ]
+                },
+                "Based on the search results, here's information about sign-rank lower bound techniques and their limitations, as addressed by Hatami and collaborators in their work on communication complexity:\n\n## Overview\n\nThere are only three known methods for proving lower bounds on the sign-rank of explicit matrices: (i) Sign-rank is at least the VC-dimension; (ii) Forster's method, which states that sign-rank is at least the inverse of the largest possible average margin.\n\n## Key Limitations\n\nA major finding from the Hatami group's research is that there exist n × n matrices with sign-rank n^Ω(1) for which none of these methods can provide a super-constant lower bound. This demonstrates a fundamental limitation in the existing techniques.\n\n## Upper Bounds Discovered\n\nThe research also established upper bounds on sign-rank: Sign-rank is at most an exponential function of the deterministic communication complexity with access to an equality oracle. They combine this result with Green and Sanders' quantitative version of Cohen's idempotent theorem to show that for a large class of sign matrices (e.g., xor-lifts), sign-rank is at most an exponential function of the γ₂ norm of the matrix.\n\n## Additional Findings\n\nA new topological argument based on the Borsuk-Ulam theorem has been introduced to prove a lower bound on sign-rank, which implies the strongest possible separation between randomized and unbounded-error communication complexity."
+              ],
+              "durationSeconds": 6.806330888000001,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "6539b4f1-ccf8-4aab-8cb1-9b490178c32e",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-30T07:29:44.480Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f03c94ca-d6c5-4399-a1d3-b227731c8134",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "task_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "7d7757dd-608e-4b75-a08d-75291d86f2bc",
+                "timestamp": "2026-05-30T07:29:44.480Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_adversarial",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-30T07:29:48.349Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I now have a solid understanding of the research landscape. Let me compile my evaluation.\n\nLet me also check one more thing - the LEMUR paper and any recent theoretical work on multi-vector capacity specifically.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d7757dd-608e-4b75-a08d-75291d86f2bc",
+            "isSidechain": false,
+            "requestId": "req_011CbYMsjWwjPNLLiw45GvVu",
+            "type": "assistant",
+            "uuid": "f1b47c01-0e75-4681-bb34-5763899c836a",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FffHg3busW8Ceu5Ruuve9K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2556,
+                "cache_read_input_tokens": 23495,
+                "output_tokens": 201,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2556,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 201,
+                    "cache_read_input_tokens": 23495,
+                    "cache_creation_input_tokens": 2556,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2556
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-30T07:29:48.841Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one final round of searches for completeness."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1b47c01-0e75-4681-bb34-5763899c836a",
+            "isSidechain": false,
+            "requestId": "req_011CbYMsjWwjPNLLiw45GvVu",
+            "type": "assistant",
+            "uuid": "d63e6788-0adb-4480-8e4f-6828963d04a1",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FffHg3busW8Ceu5Ruuve9K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2556,
+                "cache_read_input_tokens": 23495,
+                "output_tokens": 201,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2556,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 201,
+                    "cache_read_input_tokens": 23495,
+                    "cache_creation_input_tokens": 2556,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2556
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-30T07:29:49.363Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QatT7sdDxy1FyanAwAvFbJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "LEMUR learned multi-vector retrieval 2026 arXiv theoretical capacity"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d63e6788-0adb-4480-8e4f-6828963d04a1",
+            "isSidechain": false,
+            "requestId": "req_011CbYMsjWwjPNLLiw45GvVu",
+            "type": "assistant",
+            "uuid": "764143dd-3181-4e0a-897c-7a65ce665800",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FffHg3busW8Ceu5Ruuve9K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2556,
+                "cache_read_input_tokens": 23495,
+                "output_tokens": 201,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2556,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 201,
+                    "cache_read_input_tokens": 23495,
+                    "cache_creation_input_tokens": 2556,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2556
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-30T07:29:50.299Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011LYnT2L1vGnWetuvAdrzDz",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"hierarchical retrieval\" geometry pretrain finetune NeurIPS 2025 multi-vector dimension bounds"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "764143dd-3181-4e0a-897c-7a65ce665800",
+            "isSidechain": false,
+            "requestId": "req_011CbYMsjWwjPNLLiw45GvVu",
+            "type": "assistant",
+            "uuid": "4a79547f-ce4f-4e74-9aa6-b8d708936409",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FffHg3busW8Ceu5Ruuve9K",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2556,
+                "cache_read_input_tokens": 23495,
+                "output_tokens": 201,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2556,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 201,
+                    "cache_read_input_tokens": 23495,
+                    "cache_creation_input_tokens": 2556,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2556
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-30T07:29:55.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QatT7sdDxy1FyanAwAvFbJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LEMUR learned multi-vector retrieval 2026 arXiv theoretical capacity\"\n\nLinks: [{\"title\":\"[2601.21853] LEMUR: Learned Multi-Vector Retrieval\",\"url\":\"https://arxiv.org/abs/2601.21853\"},{\"title\":\"LEMUR: Learned Multi-Vector Retrieval | Request PDF\",\"url\":\"https://www.researchgate.net/publication/400237898_LEMUR_Learned_Multi-Vector_Retrieval\"},{\"title\":\"LEMUR: Learned Multi-Vector Retrieval\",\"url\":\"https://arxiv.org/html/2601.21853v1\"},{\"title\":\"LEMUR: Learned Multi-Vector Retrieval\",\"url\":\"https://arxiv.org/pdf/2601.21853\"},{\"title\":\"GitHub - ejaasaari/lemur: LEMUR: Learned Multi-Vector Retrieval\",\"url\":\"https://github.com/ejaasaari/lemur\"}]\n\nBased on the search results, I found information about LEMUR, a research paper submitted to arXiv in January 2026:\n\n## LEMUR: Learned Multi-Vector Retrieval\n\nLEMUR is a simple-yet-efficient framework for multi-vector similarity search. Multi-vector representations generated by late interaction models, such as ColBERT, enable superior retrieval quality compared to single-vector representations in information retrieval applications.\n\nHowever, the improved recall of multi-vector retrieval comes at the expense of significantly increased latency, necessitating the design of efficient approximate nearest neighbor search (ANNS) algorithms for multi-vector search.\n\n**Technical Approach:**\n\nLEMUR formulates multi-vector similarity search as a supervised learning problem that can be solved using a one-hidden-layer neural network. It reduces inference under this model to single-vector similarity search in its latent space, which enables the use of existing single-vector ANNS methods for speeding up retrieval.\n\n**Performance:**\n\nLEMUR outperforms the state-of-the-art multi-vector similarity search methods on all evaluated datasets, thus helping to bridge the latency gap between single-vector and multi-vector retrieval. Additionally, LEMUR is an order of magnitude faster than earlier multi-vector similarity search methods.\n\nThe paper was submitted on January 29, 2026 and is available on arXiv. Regarding \"theoretical capacity,\" the search results don't contain specific information about theoretical capacity analysis in the paper. You may need to review the full paper for details on that aspect.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "764143dd-3181-4e0a-897c-7a65ce665800",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "c0353b31-cad0-4131-a6fa-53dc9730b9f5",
+            "toolUseResult": {
+              "query": "LEMUR learned multi-vector retrieval 2026 arXiv theoretical capacity",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SxBhWiwmYpxTK6womm274J",
+                  "content": [
+                    {
+                      "title": "[2601.21853] LEMUR: Learned Multi-Vector Retrieval",
+                      "url": "https://arxiv.org/abs/2601.21853"
+                    },
+                    {
+                      "title": "LEMUR: Learned Multi-Vector Retrieval | Request PDF",
+                      "url": "https://www.researchgate.net/publication/400237898_LEMUR_Learned_Multi-Vector_Retrieval"
+                    },
+                    {
+                      "title": "LEMUR: Learned Multi-Vector Retrieval",
+                      "url": "https://arxiv.org/html/2601.21853v1"
+                    },
+                    {
+                      "title": "LEMUR: Learned Multi-Vector Retrieval",
+                      "url": "https://arxiv.org/pdf/2601.21853"
+                    },
+                    {
+                      "title": "GitHub - ejaasaari/lemur: LEMUR: Learned Multi-Vector Retrieval",
+                      "url": "https://github.com/ejaasaari/lemur"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about LEMUR, a research paper submitted to arXiv in January 2026:\n\n## LEMUR: Learned Multi-Vector Retrieval\n\nLEMUR is a simple-yet-efficient framework for multi-vector similarity search. Multi-vector representations generated by late interaction models, such as ColBERT, enable superior retrieval quality compared to single-vector representations in information retrieval applications.\n\nHowever, the improved recall of multi-vector retrieval comes at the expense of significantly increased latency, necessitating the design of efficient approximate nearest neighbor search (ANNS) algorithms for multi-vector search.\n\n**Technical Approach:**\n\nLEMUR formulates multi-vector similarity search as a supervised learning problem that can be solved using a one-hidden-layer neural network. It reduces inference under this model to single-vector similarity search in its latent space, which enables the use of existing single-vector ANNS methods for speeding up retrieval.\n\n**Performance:**\n\nLEMUR outperforms the state-of-the-art multi-vector similarity search methods on all evaluated datasets, thus helping to bridge the latency gap between single-vector and multi-vector retrieval. Additionally, LEMUR is an order of magnitude faster than earlier multi-vector similarity search methods.\n\nThe paper was submitted on January 29, 2026 and is available on arXiv. Regarding \"theoretical capacity,\" the search results don't contain specific information about theoretical capacity analysis in the paper. You may need to review the full paper for details on that aspect."
+              ],
+              "durationSeconds": 6.3153151020000005,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "764143dd-3181-4e0a-897c-7a65ce665800",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?  ## Motivation and Centr…",
+                "leafUuid": "c0353b31-cad0-4131-a6fa-53dc9730b9f5",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze MaxSim-Rank proposal acceptance probability",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-30T07:29:57.278Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011LYnT2L1vGnWetuvAdrzDz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"hierarchical retrieval\" geometry pretrain finetune NeurIPS 2025 multi-vector dimension bounds\"\n\nLinks: [{\"title\":\"Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe | OpenReview\",\"url\":\"https://openreview.net/forum?id=ktk4mxNzFe\"},{\"title\":\"Statistics Sep 2025\",\"url\":\"https://arxiv.org/list/stat/2025-09?skip=900&show=100\"},{\"title\":\"Computation and Language 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025?skip=21800&show=25\"},{\"title\":\"2025-09-19 Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe\",\"url\":\"https://arxiv.org/pdf/2509.16411\"},{\"title\":\"[2509.16411] Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe\",\"url\":\"https://arxiv.org/abs/2509.16411\"},{\"title\":\"Information Retrieval Sep 2025\",\"url\":\"https://arxiv.org/list/cs.IR/2025-09?skip=100&show=50\"},{\"title\":\"Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe\",\"url\":\"https://arxiv.org/html/2509.16411v1\"},{\"title\":\"Chong You' Homepage - Homepage\",\"url\":\"https://chongyou.github.io/\"},{\"title\":\"ℝ^{2⁢𝑘} is Theoretically Large Enough for Embedding-based Top-𝑘 Retrieval\",\"url\":\"https://arxiv.org/html/2601.20844v2\"}]\n\nI found excellent results for your query. Here's what I found:\n\n## \"Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe\"\n\nThis is a NeurIPS 2025 poster paper by Chong You, Rajesh Jayaram, Ananda Theertha Suresh, Robin Nittka, Felix Yu, and Sanjiv Kumar.\n\n**Key Findings:**\n\nThe paper investigates limitations of dual encoders in hierarchical retrieval, where the document set has a hierarchical structure and the matching documents for a query are all of its ancestors.\n\n**Dimension Bounds:** The authors prove that dual encoders are feasible for hierarchical retrieval as long as the embedding dimension is linear in the depth of the hierarchy and logarithmic in the number of documents.\n\n**The \"Lost-in-the-Long-Distance\" Phenomenon:** Their experiments reveal a lost-in-the-long-distance phenomenon, where retrieval accuracy degrades for documents further away in the hierarchy.\n\n**Pretrain-Finetune Solution:** The paper introduces a pretrain-finetune recipe that significantly improves long-distance retrieval without sacrificing performance on closer documents, boosting recall on long-distance pairs from 19% to 76%.\n\nThe paper is available on [arXiv (2509.16411)](https://arxiv.org/abs/2509.16411) and [OpenReview](https://openreview.net/forum?id=ktk4mxNzFe).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a79547f-ce4f-4e74-9aa6-b8d708936409",
+            "isSidechain": false,
+            "promptId": "45222853-74fb-44f8-9c1f-badbc32da3bc",
+            "type": "user",
+            "uuid": "86745d66-ee2c-46ae-b50f-9350329849cb",
+            "toolUseResult": {
+              "query": "\"hierarchical retrieval\" geometry pretrain finetune NeurIPS 2025 multi-vector dimension bounds",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_011BHdKpsmjtZBooaUn95WX6",
+                  "content": [
+                    {
+                      "title": "Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe | OpenReview",
+                      "url": "https://openreview.net/forum?id=ktk4mxNzFe"
+                    },
+                    {
+                      "title": "Statistics Sep 2025",
+                      "url": "https://arxiv.org/list/stat/2025-09?skip=900&show=100"
+                    },
+                    {
+                      "title": "Computation and Language 2025",
+                      "url": "https://arxiv.org/list/cs.CL/2025?skip=21800&show=25"
+                    },
+                    {
+                      "title": "2025-09-19 Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe",
+                      "url": "https://arxiv.org/pdf/2509.16411"
+                    },
+                    {
+                      "title": "[2509.16411] Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe",
+                      "url": "https://arxiv.org/abs/2509.16411"
+                    },
+                    {
+                      "title": "Information Retrieval Sep 2025",
+                      "url": "https://arxiv.org/list/cs.IR/2025-09?skip=100&show=50"
+                    },
+                    {
+                      "title": "Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe",
+                      "url": "https://arxiv.org/html/2509.16411v1"
+                    },
+                    {
+                      "title": "Chong You' Homepage - Homepage",
+                      "url": "https://chongyou.github.io/"
+                    },
+                    {
+                      "title": "ℝ^{2⁢𝑘} is Theoretically Large Enough for Embedding-based Top-𝑘 Retrieval",
+                      "url": "https://arxiv.org/html/2601.20844v2"
+                    }
+                  ]
+                },
+                "I found excellent results for your query. Here's what I found:\n\n## \"Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe\"\n\nThis is a NeurIPS 2025 poster paper by Chong You, Rajesh Jayaram, Ananda Theertha Suresh, Robin Nittka, Felix Yu, and Sanjiv Kumar.\n\n**Key Findings:**\n\nThe paper investigates limitations of dual encoders in hierarchical retrieval, where the document set has a hierarchical structure and the matching documents for a query are all of its ancestors.\n\n**Dimension Bounds:** The authors prove that dual encoders are feasible for hierarchical retrieval as long as the embedding dimension is linear in the depth of the hierarchy and logarithmic in the number of documents.\n\n**The \"Lost-in-the-Long-Distance\" Phenomenon:** Their experiments reveal a lost-in-the-long-distance phenomenon, where retrieval accuracy degrades for documents further away in the hierarchy.\n\n**Pretrain-Finetune Solution:** The paper introduces a pretrain-finetune recipe that significantly improves long-distance retrieval without sacrificing performance on closer documents, boosting recall on long-distance pairs from 19% to 76%.\n\nThe paper is available on [arXiv (2509.16411)](https://arxiv.org/abs/2509.16411) and [OpenReview](https://openreview.net/forum?id=ktk4mxNzFe)."
+              ],
+              "durationSeconds": 6.975995671999997,
+              "searchCount": 1
+            },
+            "sourceToolAssistantUUID": "4a79547f-ce4f-4e74-9aa6-b8d708936409",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-30T07:30:47.529Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a comprehensive picture of the research landscape. Let me compile my evaluation.\n\nLet me assess this proposal carefully:\n\n**Summary of the Proposal:**\n- Introduces \"MaxSim-rank\" - a complexity measure for multi-vector retrieval capacity\n- Central question: Does MaxSim's max operation provide expressiveness beyond linear parameter scaling?\n- Proposes upper bounds via partitioned cyclic polytopes\n- Proposes lower bounds via topological methods (Z₂-equivariant topology)\n- Comprehensive experimental design with 6 experiments\n\n**Literature Landscape:**\n\n\nThe foundational work on single-vector retrieval established sign-rank as the key complexity measure, while recent results have characterized multi-vector approximation capabilities and their limitations. The relevant papers span theoretical foundations using cyclic polytopes and topological methods, empirical studies on multi-vector retrieval systems, and comparative analyses of single versus multi-vector approaches.\n\nNow I'm evaluating the research question itself—the gap between well-understood single-vector capacity and the open problem of multi-vector capacity is genuinely important and well-motivated. The MaxSim-rank formulation is clean and natural, and there's an elegant structural insight showing that without the max operation, multi-vector capacity collapses to single-vector capacity. The experimental design appears comprehensive with proper controls across multiple settings.\n\nThe main concern is that the core lower bound strategy is quite uncertain—the primary approach requires verifying non-trivial intermediate results about MaxSim sign complexes and Z₂-index additivity, while the secondary strategy lacks established theoretical support, and even the fallback counting arguments would only yield weaker polylogarithmic gaps.\n\nBeyond that, extending the topological framework to piecewise-linear scoring is genuinely difficult, and the proposal doesn't demonstrate the authors can overcome these open research problems. The upper bound construction, while clean, may also be loose since it doesn't leverage cross-block interactions, potentially leaving a significant gap between the bounds.\n\nThe experimental setup has real limitations too—free-embedding experiments only give upper bounds on MaxSim-rank, so they can't actually prove lower bounds, which makes the theoretical lower bound absolutely essential. This is also a pure theory paper with synthetic experiments, so it's somewhat of a stretch for AAAI's scope, and a negative result might be difficult to publish unless the lower bound proof is both tight and technically impressive.\n\nThe core issue is that while the problem is genuine and the experimental design is solid, the central technical challenge—extending topological methods from bilinear to piecewise-linear scoring for tight lower bounds—is extremely ambitious and carries substantial risk. The proposal could end up as a \"near-tight bounds\" paper with experiments rather than the definitive answer it's aiming for. For AAAI, the research question and experimental design are strong, the method is medium-to-strong (the upper bound is solid but the lower bound is speculative), and feasibility is medium overall since the lower bound proof is the high-risk component.\n\nThe probability estimate breaks down as: 45-55% if tight lower bounds are achieved (strong theory paper), 25-35% if only near-tight bounds (still valuable but less impactful), with an overall risk-adjusted estimate around 25-40% (median ~33%). The real concern is that reviewers might see the contribution as incremental without the tight lower bounds—just a definition, upper bound, and experiments. But stepping back, the modular contributions are actually quite strong on their own: the MaxSim-rank definition is novel and natural, the sum-of-all collapse theorem is elegant, the upper bound via partitioned cyclic polytopes is constructive, and the experimental design is thorough. Even without tight lower bounds, these pieces collectively form a solid contribution, though the question remains whether it's sufficient for a top venue.\n\nThe risk-adjusted probability sits around 28-38% (median ~33%), hinging on whether the lower bound proof works, whether reviewers have the right expertise in sign-rank theory, and how convincingly the experiments support the conjecture. I'm realizing this is a highly specialized theory paper at the intersection of IR theory, communication complexity, and algebraic topology—the reviewer pool at a broad conference might be thin, and it could perform better at more theory-focused venues. But focusing on quality alone, the work is solid and well-motivated with a sound approach.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86745d66-ee2c-46ae-b50f-9350329849cb",
+            "isSidechain": false,
+            "requestId": "req_011CbYMtgA4cTWB8rGndf9N9",
+            "type": "assistant",
+            "uuid": "b0ab2c90-b586-44e4-b19c-c18e597a5bb5",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011SMmQNaXjwej1VV15MNBZY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1659,
+                "cache_read_input_tokens": 26051,
+                "output_tokens": 6901,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1659,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6901,
+                    "cache_read_input_tokens": 26051,
+                    "cache_creation_input_tokens": 1659,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1659
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-30T07:32:37.836Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have sufficient information to provide a comprehensive evaluation. Here is my assessment:\n\n---\n\n```\n【阶段】: Triage\n\n【领域调研】:\n- [On the Theoretical Limitations of Embedding-Based Retrieval](https://arxiv.org/abs/2508.21038) (Weller et al., ICLR 2026): 奠基性工作，用 sign-rank 刻画单向量检索容量，证明维度 ≥ rank±(2A−1)−1 是必要且充分条件，并在 LIMIT benchmark（46 文档，k=2）上展示了灾难性失败。本 proposal 直接将其框架从单向量扩展到多向量。\n- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval](https://arxiv.org/abs/2601.20844) (Wang et al., arXiv 2026): 通过 cyclic polytope 证明 MED = Θ(k)，结论是\"限制主要来自可学习性挑战而非几何约束\"。本 proposal 的上界构造直接借鉴 cyclic polytope 方法，并试图将 Wang et al. 的结论扩展到多向量场景。\n- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds](https://arxiv.org/abs/2604.01510) (Frick et al., arXiv 2026): 用 Z₂-等变拓扑建立 sign-rank 下界框架，解决了 Gap Hamming Distance 的 sign-rank。本 proposal 的下界策略试图将此拓扑框架从双线性扩展到分段线性（MaxSim）评分——这是核心技术挑战。\n- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings](https://arxiv.org/abs/2405.19504) (NeurIPS 2024): 证明 FDE 可以 ε-近似 MaxSim/Chamfer 相似度，实现多向量到单向量的近似约化。本 proposal 与 MUVERA 形成精确/近似容量的互补关系——这是一个有深度的理论洞察。\n- [On Strengths and Limitations of Single-Vector Embeddings](https://arxiv.org/abs/2603.29519) (Archish S et al., arXiv 2026): 通过 toy Gaussian 模型比较单/多向量的 drowning 效应，明确呼吁\"需要对多向量嵌入容量进行正式理论分析\"。直接支持本 proposal 的动机。\n- [LEMUR: Learned Multi-Vector Retrieval](https://arxiv.org/abs/2601.21853) (arXiv 2026): 将多向量搜索归约为单向量搜索的实用框架，展示多向量的经验优势但无理论解释。\n- [Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe](https://arxiv.org/abs/2509.16411) (NeurIPS 2025): 研究层次检索的维度界，明确指出多向量维度界\"未被探索\"。\n- [Lower Bound Methods for Sign-Rank and Their Limitations](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22) (Hatami & Mande, APPROX/RANDOM 2022): 证明三种已知 sign-rank 下界方法对某些 n^Ω(1) sign-rank 矩阵只能给出常数下界——揭示下界证明的根本困难。这直接影响本 proposal 下界策略的可行性评估。\n- 调研总结: 单向量检索容量理论在 2025-2026 年经历了快速发展（Weller、Wang、Frick 三篇重要工作），已相当成熟。多向量容量理论是一个公认的开放问题，多篇论文明确指出其重要性。本 proposal 精准地定位在这个理论空白上，提出的 MaxSim-rank 是自然且必要的下一步。该方向目前尚无竞争性工作。\n\n【整体印象】: \n作为审稿人，我的第一反应是**谨慎积极**。这是一份高度成熟、数学严谨的理论 proposal，精准定位了一个被多篇顶会/顶刊论文明确标注的开放问题。研究问题的动机非常充分——不是人为制造的问题，而是领域自然演进中浮现的关键缺口。MaxSim-rank 的定义优雅自然，\"sum-of-all collapse\"定理是一个漂亮的结构性洞察。实验设计极为周全，罕见地在 proposal 阶段就达到了这样的完备度。\n\n然而，我的核心担忧在于**下界证明的可行性**。将 Frick et al. 的 Z₂-拓扑框架从双线性推广到 MaxSim 的分段线性评分，涉及至少两个独立的、非平凡的数学难题（sign complex 的结构验证、product decomposition 的可行性），且 proposal 自身坦率承认这些\"不是自动的扩展\"。如果下界证明失败，论文将退化为\"定义 + 上界 + 实验\"的组合，虽然仍有价值但显著削弱了核心贡献的力度。\n\n倾向：**弱 accept / borderline**，取决于下界证明的最终结果。\n\n【核心贡献】: \n本工作的核心贡献是建立**多向量检索容量的第一个形式化理论框架**。具体包括：\n1. MaxSim-rank 的形式化定义——类比 sign-rank 之于单向量，为多向量检索提供复杂性度量\n2. \"Sum-of-all collapse\"定理——严格证明没有 max 操作的多向量与单向量等价，隔离出 max 作为容量增益的必要条件\n3. 上界 MaxSim-rank(A,k) ≤ ⌈rank±(2A−1)/k⌉——通过分区 cyclic polytope 构造\n4. （若成功）下界证明——确立 MaxSim-rank ≈ rank±/k 的紧界\n\n对领域的价值：**高**。这将回答一个基本问题——ColBERT 等多向量模型的经验优势是容量现象还是优化现象——这对理解和设计检索系统有深远意义。与 MUVERA 的互补关系（精确容量严格超过单向量但在近似下差距消失）如果成立，将是一个极有深度的理论发现。\n\n【方法合理性】: \n方法整体合理，但技术挑战需分层评估：\n\n**坚实部分：**\n- MaxSim-rank 定义是 sign-rank 的自然推广，无争议\n- 上界构造（分区 cyclic polytope）思路清晰，利用正交子空间消除跨块干扰，技术上可行\n- \"Sum-of-all collapse\"证明是基础代数恒等式，完全可靠\n- 热带代数视角提供了有趣的结构性理解\n\n**高风险部分：**\n- 下界 Strategy B（k-fold product decomposition）：需要 (a) 验证 MaxSim sign complex 在分段线性评分下的拓扑结构，(b) 证明 Z₂-index 在乘积上的可加性，(c) 处理文档向量共享打破乘积分解的问题。这三个中任一个都是非平凡的研究问题。\n- 下界 Strategy A（ordering decomposition）：需要 Z₂-index 在并集下的次可加性——proposal 坦承\"在拓扑组合学文献中没有已建立的支持\"。\n\n**更简单的替代方案？** 对于严格的 Θ(rank±/k) 界，没有明显更简单的途径——sign-rank 下界本身就是困难的（Hatami & Mande 2022 证明了现有方法的根本局限）。但信息论 counting argument 可以给出 Ω(rank±/(k·polylog)) 的较弱下界，这是合理的 fallback。\n\n【5 维度打分】:\n  1. 研究问题: 【强】— 多向量检索容量是一个被至少 4 篇近期论文（Archish S et al. 2026, Wang et al. 2026, Hierarchical Retrieval NeurIPS 2025, Drowning in Documents SIGIR 2025）明确标注的开放问题。问题本身非常自然：单向量理论已成熟（Weller ICLR 2026, Wang 2026），多向量是必然的下一步。\"max 操作是否提供真正的容量增益\"这个问题干净、可形式化、答案无论正负都有重要意义。\n\n  2. 方法与创新: 【中偏强】— MaxSim-rank 定义是自然的概念创新；上界通过分区 cyclic polytope 构造有技术含量（直接扩展 Wang et al. 2026 的 cyclic polytope 方法）；sum-of-all collapse 是优雅的结构性结果。但核心创新——下界证明——依赖于将 Frick et al. (2026) 的 Z₂-拓扑框架从双线性扩展到分段线性，这不是一个已完成的技术贡献而是一个未解决的数学挑战。如果只有上界 + counting lower bound，与领域内已有的技术工具（cyclic polytope、信息论 counting）差异化不够鲜明。\n\n  3. 实验设计: 【强】— 这是该 proposal 的一个明显亮点。6 个实验环环相扣：Exp 1 先验证优化器可靠性（这一点常被忽视，体现了方法论严谨性）；Exp 2 测量 critical-n；Exp 3 是核心实验，通过固定参数预算比较 4 种评分函数——这直接回答中心问题；Exp 4 在已知 sign-rank 的矩阵族上做 ablation；Exp 5 与 MUVERA 框架交叉验证。实验设计中明确标注了方法论局限（free embedding 只提供上界、优化失败 ≠ 容量限制），这种自我审视在 proposal 阶段罕见且加分。\n\n  4. 可行性: 【中】— 分两层评估。实验部分高度可行（free embedding 优化，≤200 GPU-hours，无需神经网络训练）。理论部分风险显著：下界证明涉及前沿拓扑组合学问题，成功概率不确定；proposal 的 fallback plan（counting argument + 特定矩阵族的紧界）合理但会削弱贡献。整体而言，这是一个\"高风险高回报\"的理论项目，fallback 保证了可发表性但不保证顶会水平。\n\n  5. 写作与呈现: 【强】— Proposal 结构清晰，逻辑链条紧密：从动机（单向量理论已解决 → 多向量理论缺失）到方法（定义 → 上界 → 下界策略 → fallback）到实验设计。数学表述精确规范。对自身方法的局限性（下界策略的技术困难、实验方法论的限制）有坦率且准确的说明，这增加了可信度。tropical algebra 视角的引入为论文提供了额外的概念深度。\"Why Max Is the Essential Ingredient\" 一节的论证清晰有力。\n\n【概率估计】: [25% - 40%] 中位 32%\n\n【估计理由】: \n研究问题的质量和动机无可挑剔（+），MaxSim-rank 定义和 sum-of-all collapse 是扎实的贡献（+），实验设计在同类理论工作中属于上乘（+），写作清晰且数学严谨（+）。\n\n但有两个关键不确定性压低了估计：\n(1) **下界证明的高度不确定性**是最大风险。如果只有上界 + counting-based 弱下界 + 实验验证，论文的理论深度显著下降——从\"建立紧界的完整理论\"退化为\"提出框架 + 部分结果\"。在严格审稿中，这种\"我们定义了问题，证了一半\"的论文容易被批评为 incomplete。对比 Weller et al. (ICLR 2026) 提供了完整的充要条件，Wang et al. 提供了 MED = Θ(k) 的紧界——如果本文只能给出单边界，对比之下会显得不够成熟。\n(2) **审稿人匹配风险**。本文处于 IR 理论、通信复杂性、代数拓扑的交叉地带，需要同时熟悉 sign-rank 理论和多向量检索的审稿人。\n\n反面考量：即使下界不紧，\"MaxSim-rank 定义 + 上界 + sum-of-all collapse + 全面实验\"的组合仍然是一个有实质贡献的论文包——它开辟了一个新的理论方向，后续工作可以在此框架上改进下界。模块化贡献策略是聪明的，降低了全面失败的风险。\n\n综合判断：如果下界证明成功（紧界），概率可升至 40-50%；如果只有 fallback 结果，概率降至 22-28%。取期望值约 32%。\n\n【主要风险】: \n1. **下界证明失败导致贡献不完整**：将 Z₂-拓扑框架从双线性扩展到分段线性评分是未经验证的数学挑战。如果只有上界而无匹配下界，\"MaxSim-rank ≈ rank±/k\" 的核心主张沦为猜想，论文从 \"建立理论\" 退化为 \"提出猜想并给出部分证据\"，对审稿人而言说服力不足。\n2. **纯理论贡献 + 纯合成实验的双重抽象性**：所有实验均为 free embedding 优化 + 随机二值矩阵，仅 Exp 6（LIMIT benchmark，46 文档）有微弱的实践联系。审稿人可能质疑：这些理论界在实际神经编码器和大规模语料上是否有实际指导意义？缺乏任何 learned embedding 实验可能被视为与实践脱节。\n\n【实施评估】:\n  - 计算资源: 低。≤200 GPU-hours（单卡），仅需 free embedding 向量优化（无神经网络），完全可行。\n  - 数据需求: 极低。实验使用随机生成的二值矩阵和已有的 LIMIT benchmark（公开可用），无新数据收集需求。\n  - 人工介入: 低。实验流程高度自动化（binary search for critical-n），主要人工投入在理论证明上。\n  - 训练需求: 无模型训练。仅有直接向量优化（SGD/Adam on free embeddings），无 encoder 训练。\n  - 新 Benchmark: 不需要新 benchmark。使用已有的 LIMIT benchmark + 合成矩阵。\n  - 预估周期: \n    - 理论部分（下界证明）：高度不确定，可能需要 2-6 个月，且有失败风险。\n    - 上界 + sum-of-all collapse + 定义：2-4 周。\n    - 实验实现与运行：3-5 周。\n    - 论文写作：2-3 周。\n    - 总计（乐观/下界证明顺利）：3-4 个月。\n    - 总计（悲观/采用 fallback）：2-3 个月（理论更快但贡献更弱）。\n```\n\nSources:\n- [On the Theoretical Limitations of Embedding-Based Retrieval (Weller et al., ICLR 2026)](https://arxiv.org/abs/2508.21038)\n- [ℝ^{2k} is Theoretically Large Enough for Embedding-based Top-k Retrieval (Wang et al., 2026)](https://arxiv.org/abs/2601.20844)\n- [A ℤ₂-Topological Framework for Sign-rank Lower Bounds (Frick et al., 2026)](https://arxiv.org/abs/2604.01510)\n- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings (NeurIPS 2024)](https://arxiv.org/abs/2405.19504)\n- [On Strengths and Limitations of Single-Vector Embeddings (Archish S et al., 2026)](https://arxiv.org/abs/2603.29519)\n- [LEMUR: Learned Multi-Vector Retrieval (2026)](https://arxiv.org/abs/2601.21853)\n- [Hierarchical Retrieval: The Geometry and a Pretrain-Finetune Recipe (NeurIPS 2025)](https://arxiv.org/abs/2509.16411)\n- [Lower Bound Methods for Sign-Rank and Their Limitations (Hatami & Mande, APPROX/RANDOM 2022)](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2022.22)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0ab2c90-b586-44e4-b19c-c18e597a5bb5",
+            "isSidechain": false,
+            "requestId": "req_011CbYMtgA4cTWB8rGndf9N9",
+            "type": "assistant",
+            "uuid": "33382006-7856-44f8-821c-155399327731",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_adversarial",
+            "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011SMmQNaXjwej1VV15MNBZY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1659,
+                "cache_read_input_tokens": 26051,
+                "output_tokens": 6901,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1659,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6901,
+                    "cache_read_input_tokens": 26051,
+                    "cache_creation_input_tokens": 1659,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1659
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?  ## Motivation and Centr…",
+                "leafUuid": "33382006-7856-44f8-821c-155399327731",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze MaxSim-Rank proposal acceptance probability",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: # MaxSim-Rank: Does the Max Operation Expand Retrieval Capacity Beyond Parameter Scaling?  ## Motivation and Centr…",
+                "leafUuid": "33382006-7856-44f8-821c-155399327731",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Analyze MaxSim-Rank proposal acceptance probability",
+                "sessionId": "002c9454-43c6-4d81-a97f-a39718a6a599"
+              }
+            }
+          ],
+          "id": "event-000048"
+        }
+      ],
+      "message_count": 46
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-proposal-rubric-go-kill-proposal-maxsim-rank-does-the-max-operati-copy-2.md"
+}

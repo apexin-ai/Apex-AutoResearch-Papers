@@ -1,0 +1,849 @@
+{
+  "schema_version": "1.0",
+  "id": "d3d9f9a866fd61b53b24",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to deep-check two papers that are potentially very close competitors to a proposal called LACVLA: 1. **RoboMAP (a",
+  "task_key": "agent-a3ae3fa35c8d4550f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a3ae3fa35c8d4550f.jsonl",
+    "occurrence": 1,
+    "bytes": 26370,
+    "sha256": "b083e54b03ea140d3a021105660895dfdfc745fa31d1f8ecc3ce7a67948651f9"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T19:27:25.150Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to deep-check two papers that are potentially very close competitors to a proposal called LACVLA:\n\n1. **RoboMAP (arXiv 2510.10912)**: This paper produces language-conditioned affordance heatmaps and hands them to a downstream controller. I need to know: is this end-to-end or modular? Does it use consistency/self-supervised objectives? How does it condition on language? Use WebFetch on https://arxiv.org/abs/2510.10912 to read the abstract and method.\n\n2. **Affordance-based Robot Manipulation with Flow Matching (arXiv 2409.01083)**: This paper claims to \"unify affordance learning and action generation.\" I need to know: is it truly end-to-end? Does it use a VLM backbone? Does it handle open-vocabulary instructions? Use WebFetch on https://arxiv.org/abs/2409.01083 to check.\n\n3. **RAAP (arXiv 2603.29419, March 2026)**: The proposal cites this but I need more detail. Does it do end-to-end affordance-action training? Use WebSearch for \"RAAP affordance robot arXiv 2603.29419\".\n\nReport under 250 words with specific details about each paper's architecture and training paradigm."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d7baa623-bbed-44db-943d-1b134b9153a2",
+            "agentId": "a3ae3fa35c8d4550f",
+            "type": "user",
+            "uuid": "e4ca61c0-9079-44bd-919c-062149df847c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T19:27:25.153Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e4ca61c0-9079-44bd-919c-062149df847c",
+                "isSidechain": true,
+                "agentId": "a3ae3fa35c8d4550f",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c02eee54-f870-4cea-88e9-486529d7b91d",
+                "timestamp": "2026-05-18T19:27:25.153Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T19:27:27.446Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll fetch all three sources in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c02eee54-f870-4cea-88e9-486529d7b91d",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAatvvzmL1FcBAA2UMoE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5da11673-7c54-4e02-87be-2041c37fb88d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WxCLoE1rzqGL7h4oz3GxVL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 8223,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 862,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T19:27:28.013Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015wH2Q5sUzwSPBufhuvNmeE",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch,WebSearch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5da11673-7c54-4e02-87be-2041c37fb88d",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAatvvzmL1FcBAA2UMoE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "35a75406-732c-4687-ae4d-839853f41c4b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WxCLoE1rzqGL7h4oz3GxVL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 90,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 862
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 90,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 862,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 862,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T19:27:28.016Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015wH2Q5sUzwSPBufhuvNmeE",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35a75406-732c-4687-ae4d-839853f41c4b",
+            "isSidechain": true,
+            "promptId": "d7baa623-bbed-44db-943d-1b134b9153a2",
+            "agentId": "a3ae3fa35c8d4550f",
+            "type": "user",
+            "uuid": "a4a49192-c76e-4856-b685-4f3dad78063c",
+            "sourceToolAssistantUUID": "35a75406-732c-4687-ae4d-839853f41c4b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T19:27:30.733Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow I'll fetch all three sources in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4a49192-c76e-4856-b685-4f3dad78063c",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAau9NrKie296kK1bdbk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "76c4cfb7-7749-4b70-9f6f-ebdde62d4190",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LCJLCeEsudvcDeQajGTTDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1899,
+                "cache_read_input_tokens": 9085,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1899,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T19:27:32.210Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016aDskpm5TL9u8H76TB1GPq",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2510.10912",
+                "prompt": "Extract the full abstract and any method/architecture details visible on this page. Specifically: Is RoboMAP end-to-end or modular? Does it use consistency or self-supervised objectives? How does it condition on language? What is the training paradigm?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76c4cfb7-7749-4b70-9f6f-ebdde62d4190",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAau9NrKie296kK1bdbk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2571c362-1c1c-4854-861d-e3eff98d1fb1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LCJLCeEsudvcDeQajGTTDY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1899,
+                "cache_read_input_tokens": 9085,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1899,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T19:27:33.565Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Qdx3r96dp6ZT6rnfabZK6",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2409.01083",
+                "prompt": "Extract the full abstract and any method/architecture details visible on this page. Specifically: Is this paper truly end-to-end? Does it use a VLM backbone? Does it handle open-vocabulary instructions? What is the training paradigm? How does it unify affordance learning and action generation?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2571c362-1c1c-4854-861d-e3eff98d1fb1",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAau9NrKie296kK1bdbk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0dac3020-5222-47d7-8433-647e882bccad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LCJLCeEsudvcDeQajGTTDY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1899,
+                "cache_read_input_tokens": 9085,
+                "output_tokens": 329,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1899
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 329,
+                    "cache_read_input_tokens": 9085,
+                    "cache_creation_input_tokens": 1899,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1899,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T19:27:33.571Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019NRf4cDFKX4MxBWagArMoZ",
+              "name": "WebSearch",
+              "input": {
+                "query": "RAAP affordance robot arXiv 2603.29419"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0dac3020-5222-47d7-8433-647e882bccad",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAau9NrKie296kK1bdbk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b4149b80-21ec-40a7-ba94-48287eabe26b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LCJLCeEsudvcDeQajGTTDY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1899,
+                "cache_read_input_tokens": 9085,
+                "output_tokens": 329,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1899
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 329,
+                    "cache_read_input_tokens": 9085,
+                    "cache_creation_input_tokens": 1899,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1899,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T19:27:36.462Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016aDskpm5TL9u8H76TB1GPq",
+              "type": "tool_result",
+              "content": "# RoboMAP Analysis\n\n## Abstract\nThe provided abstract states: \"Many language-guided robotic systems rely on collapsing spatial reasoning into discrete points, making them brittle to perceptual noise and semantic ambiguity.\" RoboMAP addresses this by representing \"spatial targets as continuous, adaptive affordance heatmaps\" that \"capture the uncertainty in spatial grounding and provide richer information for downstream policies.\"\n\nThe framework achieves \"82% success rate in real-world manipulation\" and demonstrates \"zero-shot generalization to navigation.\"\n\n## Information Gaps\n\nBased on the webpage content provided, the following architectural and training details are **not disclosed**:\n\n- **End-to-end vs. modular design**: Not specified\n- **Consistency or self-supervised objectives**: Not mentioned\n- **Language conditioning mechanism**: Not described\n- **Training paradigm**: Not detailed\n\nThe abstract only confirms the system is \"language-guided\" but does not explain how language inputs are processed or integrated into the heatmap generation.\n\n## Conclusion\n\nThe webpage provides only high-level performance claims and problem motivation. Specific architectural, loss function, and training methodology details would require access to the full paper (via PDF or HTML link provided)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2571c362-1c1c-4854-861d-e3eff98d1fb1",
+            "isSidechain": true,
+            "promptId": "d7baa623-bbed-44db-943d-1b134b9153a2",
+            "agentId": "a3ae3fa35c8d4550f",
+            "type": "user",
+            "uuid": "569ef08a-af67-49db-8d5e-f164c9588f77",
+            "sourceToolAssistantUUID": "2571c362-1c1c-4854-861d-e3eff98d1fb1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T19:27:39.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Qdx3r96dp6ZT6rnfabZK6",
+              "type": "tool_result",
+              "content": "# Analysis of \"Affordance-based Robot Manipulation with Flow Matching\"\n\n## Full Abstract\nThe paper presents a framework for assistive robot manipulation addressing two challenges: adapting large-scale models to scene affordance understanding in daily living scenarios, and learning robot action trajectories grounded in visual affordance models. It employs \"parameter-efficient prompt tuning method that prepends learnable text prompts to the frozen vision model\" for multi-task affordance prediction, then uses supervised flow matching to learn trajectories. The authors introduce a real-world dataset with 10 Activities of Daily Living tasks and demonstrate that their prompt tuning approach outperforms other fine-tuning protocols while maintaining efficiency, with flow matching providing faster inference than diffusion policy alternatives.\n\n## Key Architectural Details\n\n**VLM Backbone**: Yes—the method uses a frozen vision model with learnable text prompts prepended for affordance prediction.\n\n**End-to-End Design**: The framework \"seamlessly unifies affordance learning and action generation with flow matching for robot manipulation,\" suggesting an integrated pipeline rather than modular stages.\n\n**Training Paradigm**: Supervised learning using flow matching, which \"represents a robot visuomotor policy as a conditional process of flowing random waypoints to desired robot action trajectories.\"\n\n**Open-Vocabulary**: The abstract does not indicate open-vocabulary instruction handling; it focuses on multi-task adaptation within defined Activities of Daily Living scenarios.\n\n**Affordance-Action Unification**: The method grounds visual affordance predictions directly in the flow matching process, enabling joint learning of where and how to manipulate objects."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0dac3020-5222-47d7-8433-647e882bccad",
+            "isSidechain": true,
+            "promptId": "d7baa623-bbed-44db-943d-1b134b9153a2",
+            "agentId": "a3ae3fa35c8d4550f",
+            "type": "user",
+            "uuid": "cf366b28-4ba7-408d-bb53-85a44feddc62",
+            "sourceToolAssistantUUID": "0dac3020-5222-47d7-8433-647e882bccad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T19:27:40.735Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019NRf4cDFKX4MxBWagArMoZ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RAAP affordance robot arXiv 2603.29419\"\n\nLinks: [{\"title\":\"[2603.29419] RAAP: Retrieval-Augmented Affordance Prediction with Cross-Image Action Alignment\",\"url\":\"https://arxiv.org/abs/2603.29419\"},{\"title\":\"RAAP: Advanced Retrieval-Augmented Affordance Prediction\",\"url\":\"https://richlyai.com/blog/raap-advanced-retrieval-augmented-affordance-prediction-ai-news/\"},{\"title\":\"RAAP: Retrieval-Augmented Affordance Prediction with Cross-Image Action Alignment | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2603.29419v1\"},{\"title\":\"(PDF) RAAP: Retrieval-Augmented Affordance Prediction with Cross-Image Action Alignment\",\"url\":\"https://www.researchgate.net/publication/403379861_RAAP_Retrieval-Augmented_Affordance_Prediction_with_Cross-Image_Action_Alignment\"},{\"title\":\"RAAP: Retrieval-Augmented Affordance Prediction with Cross-Image Action Alignment\",\"url\":\"https://arxiv.org/pdf/2603.29419\"},{\"title\":\"RAAP: Retrieval-Augmented Affordance Prediction with Cross-Image Action Alignment\",\"url\":\"https://arxiv.org/html/2603.29419\"}]\n\nBased on the search results, here's what I found about this paper:\n\nRAAP (Retrieval-Augmented Affordance Prediction) is a paper submitted on March 31, 2026 by authors including Qiyuan Zhuang, He-Yang Xu, Yijun Wang, and others.\n\n**Overview:**\nThe paper addresses understanding object affordances to enable robots to perform purposeful and fine-grained interactions in diverse and unstructured environments.\n\n**Problem:**\nExisting approaches either rely on retrieval (which is fragile due to sparsity and coverage gaps) or on large-scale models (which frequently mislocalize contact points and mispredict post-contact actions when applied to unseen categories).\n\n**Solution:**\nRAAP is a framework that unifies affordance retrieval with alignment-based learning. By decoupling static contact localization and dynamic action direction, RAAP transfers contact points via dense correspondence and predicts action directions through a retrieval-augmented alignment model that consolidates multiple references with dual-weighted attention.\n\n**Results:**\nTrained on compact subsets of DROID and HOI4D with as few as tens of samples per task, RAAP achieves consistent performance across unseen objects and categories, and enables zero-shot robotic manipulation in both simulation and the real world.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4149b80-21ec-40a7-ba94-48287eabe26b",
+            "isSidechain": true,
+            "promptId": "d7baa623-bbed-44db-943d-1b134b9153a2",
+            "agentId": "a3ae3fa35c8d4550f",
+            "type": "user",
+            "uuid": "a820016c-d9e2-4e83-8e17-cda14e03819d",
+            "sourceToolAssistantUUID": "b4149b80-21ec-40a7-ba94-48287eabe26b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T19:27:43.589Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more detail on RoboMAP by fetching the HTML version of the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a820016c-d9e2-4e83-8e17-cda14e03819d",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAav5ZBnKxP4JBYhw77V",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "13991b3f-4d3b-40fe-bef5-44a5d66349f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VF9S4zmLUogZp6S7CwKacD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1693,
+                "cache_read_input_tokens": 10984,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1693,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T19:27:45.531Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SKisqA3QMfdF93s38aMQvw",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2510.10912",
+                "prompt": "Extract details about: (1) Is RoboMAP end-to-end or modular (separate affordance prediction then downstream policy)? (2) Does it use any consistency loss, self-supervised objective, or contrastive loss? (3) How exactly does it condition on language -- does it use a VLM, CLIP, or language encoder? (4) What is the training pipeline -- what losses are used?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13991b3f-4d3b-40fe-bef5-44a5d66349f7",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAav5ZBnKxP4JBYhw77V",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cab98509-b2d6-4e83-b3d9-99694684e830",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VF9S4zmLUogZp6S7CwKacD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1693,
+                "cache_read_input_tokens": 10984,
+                "output_tokens": 196,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1693
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 196,
+                    "cache_read_input_tokens": 10984,
+                    "cache_creation_input_tokens": 1693,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1693,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T19:27:51.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SKisqA3QMfdF93s38aMQvw",
+              "type": "tool_result",
+              "content": "# RoboMAP Architecture and Training Analysis\n\n## (1) End-to-End vs. Modular\n\nRoboMAP is **modular**. It separates affordance prediction from downstream policy execution. The framework \"generates our core intermediate representation: the adaptive affordance heatmap\" which then \"guide[s] a low-level controller.\" In real-world experiments, the heatmap output is processed through additional modules like SAM and GraspNet to compute final 6-DoF coordinates for motion planning.\n\n## (2) Loss Functions and Training Objectives\n\nRoboMAP uses **only Binary Cross-Entropy (BCE) loss**—no consistency, self-supervised, or contrastive objectives are mentioned. The paper states: \"The model is optimized by minimizing the pixel-wise Binary Cross-Entropy (BCE) loss between the predicted heatmap M̂ and the procedurally generated ground-truth heatmap M*.\"\n\n## (3) Language Conditioning Mechanism\n\nRoboMAP conditions on language via **PaliGemma**, a Vision-Language Model backbone. The architecture description notes: \"we adopt PaliGemma for its ability to produce language-conditioned visual tokens that remain consistent with the input image grid after multi-modal fusion.\"\n\n## (4) Training Pipeline and Losses\n\nThe training pipeline involves:\n- **Single loss function**: Pixel-wise BCE\n- **Data composition**: 132K samples from Robodata, COCO, OXE-MAP, and RoboRefIt\n- **Supervision strategy**: Procedurally synthesized dense heatmaps from sparse annotations (keypoints via Gaussians, bounding boxes via elliptical Gaussians, trajectories via distance transforms)\n- **Training details**: 2 epochs, frozen vision encoder, AdamW optimizer, no geometric augmentations"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cab98509-b2d6-4e83-b3d9-99694684e830",
+            "isSidechain": true,
+            "promptId": "d7baa623-bbed-44db-943d-1b134b9153a2",
+            "agentId": "a3ae3fa35c8d4550f",
+            "type": "user",
+            "uuid": "746a1c3c-7e14-4ecb-bbd2-a363c8cf3937",
+            "sourceToolAssistantUUID": "cab98509-b2d6-4e83-b3d9-99694684e830",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T19:28:05.733Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the competitive analysis:\n\n---\n\n**1. RoboMAP (2510.10912)** -- **Modular, not end-to-end.** It predicts a language-conditioned affordance heatmap as an intermediate representation, then hands it to a separate low-level controller (SAM + GraspNet for 6-DoF grasps). The backbone is **PaliGemma** (a VLM), with a frozen vision encoder. Training uses **only pixel-wise BCE loss** on procedurally generated heatmap ground truth (Gaussians from keypoints, ellipses from bboxes, distance transforms from trajectories). No consistency, contrastive, or self-supervised objectives. Data: 132K samples, 2 epochs. Key gap vs. LACVLA: no joint affordance-action optimization; the policy is decoupled.\n\n**2. Affordance-based Manipulation with Flow Matching (2409.01083)** -- **Not truly end-to-end.** It has two stages: (a) affordance prediction via a frozen vision model with **parameter-efficient prompt tuning** (learnable text prompts), then (b) action trajectory generation via **supervised flow matching**. It does **not** handle open-vocabulary instructions; it operates over a fixed set of 10 Activities of Daily Living tasks. No VLM-scale language grounding -- the \"text prompts\" are learned task tokens, not free-form language. The \"unification\" is a shared flow-matching formalism, not joint gradient flow.\n\n**3. RAAP (2603.29419, March 2026)** -- **Not end-to-end affordance-action training.** RAAP decouples static contact localization from dynamic action-direction prediction. It uses retrieval-augmented alignment with dual-weighted attention over multiple references, transferring contact points via dense correspondence. Trained on small subsets of DROID and HOI4D (tens of samples per task). It achieves zero-shot generalization but does not jointly learn a manipulation policy -- it predicts affordances that are consumed by a separate controller.\n\n**Bottom line:** None of these three papers perform joint end-to-end affordance-to-action training, which is the central claim of LACVLA's novelty.\n\nSources:\n- [RoboMAP (2510.10912)](https://arxiv.org/abs/2510.10912)\n- [Affordance-based Manipulation with Flow Matching (2409.01083)](https://arxiv.org/abs/2409.01083)\n- [RAAP (2603.29419)](https://arxiv.org/abs/2603.29419)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "746a1c3c-7e14-4ecb-bbd2-a363c8cf3937",
+            "isSidechain": true,
+            "agentId": "a3ae3fa35c8d4550f",
+            "requestId": "req_011CbAavtukwWGd2Wvrgkcy9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0126a250-3a84-4ce5-966f-78d13dfb3893",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "af248400-588b-43bf-bd53-91a9f73469de",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BCDyySHxPvCZk24hy3513X",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 622,
+                "cache_read_input_tokens": 12677,
+                "output_tokens": 619,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 622
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 619,
+                    "cache_read_input_tokens": 12677,
+                    "cache_creation_input_tokens": 622,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 622,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-deep-check-two-papers-that-are-potentially-very-close-competitors-to.md"
+}

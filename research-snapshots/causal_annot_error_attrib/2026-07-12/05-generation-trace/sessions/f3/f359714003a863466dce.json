@@ -1,0 +1,438 @@
+{
+  "schema_version": "1.0",
+  "id": "f359714003a863466dce",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。 【proposal】: ## Title Detecting Safety Transitio",
+  "task_key": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/2d83922c-4a1a-46c8-8c09-2f5a3ed3b463.jsonl",
+    "occurrence": 1,
+    "bytes": 67970,
+    "sha256": "1650b64c0b5cd41eb9e1eb90335a36a0e8903beeaa906b997370d548dfb5b9ee"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "record": 10,
+      "user": 1,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T12:36:51.343Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-16T12:36:51.343Z",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463",
+                "content": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n## Title\n\nDetecting Safety Transitions in Reasoning Models: Cross-Architecture Analysis via Temporal Contrastive Learning on Hidden-State Trajectories\n\n## Problem Statement\n\nExtended reasoning models (e.g., DeepSeek-R1, QwQ) can undergo safety transitions mid-reasoning—shifting from safe chain-of-thought to harmful content generation within their thinking traces. Existing hidden-state safety detectors, designed for instruction-tuned (non-reasoning) models, operate at the token level with local geometric thresholding. We argue these methods face a fundamental inductive bias mismatch: safety transitions in reasoning models are multi-scale phenomena involving coordinated shifts across multiple reasoning steps and multiple representational layers, and token-level methods—even with enlarged windows—lack the appropriate inductive bias to efficiently learn these cross-step joint distributional changes from finite training data. This is not a claim of theoretical impossibility (a sufficiently large window with exponentially more data could in principle work), but rather a claim about practical learnability: without an inductive bias that directly models temporal phase transitions, token-level methods are sample-inefficient for this task.\n\nBeyond detection accuracy, hidden-state methods offer a unique capability unavailable to text-level monitors: **pre-textual detection**. Because safety transitions manifest in representational space *before* harmful tokens are actually decoded, hidden-state trajectory analysis enables preemptive intervention (truncation or steering) at a point when text-level methods cannot yet react. This timing advantage makes hidden-state approaches not merely an alternative to text monitoring, but the only viable path to preemptive safety intervention in reasoning models.\n\n## Research Questions\n\n**RQ1 (Inductive Bias Limitation):** Do existing hidden-state safety detectors fail on reasoning model traces due to distributional mismatch, or due to the lack of appropriate inductive bias for modeling multi-step transition dynamics? We test this by: (a) providing the strongest token-level method (TrajGuard) with reasoning-step-level aggregation, joint multi-model training data, sliding-window variants, and re-calibrated thresholds; (b) testing whether simple temporal post-processing on per-step probe scores (classical change-point detection: PELT, BOCPD) can close the gap; (c) testing whether generic sequence models (reconstruction-based, classification-based) on multi-layer features suffice. If all three fail while CRTA succeeds, this isolates temporal contrastive learning's inductive bias—explicit phase discrimination—as the critical ingredient.\n\n**RQ2 (Cross-Architecture Generalization):** Can a learned projection into a shared representation space enable safety transition detection to generalize across model architectures? We distinguish: (a) within-family generalization (same base architecture, different scales) where zero-shot transfer via shared projection heads is expected; (b) cross-family generalization (different base architectures) where architecture-specific projection heads require training, but the temporal encoder and shared representation space transfer. We assess the transfer gap at each level.\n\n**RQ3 (Universal Geometry of Safety Transitions):** In the shared representation space, do safety transition states cluster by behavior type (e.g., constraint erosion, intent rationalization, harmful generation) rather than by source model architecture? If confirmed, this suggests that safety training (RLHF/distillation) induces convergent computational structures for safety-override mechanisms across independently trained architectures—consistent with the Platonic Representation Hypothesis (Huh et al., 2024) applied to the safety-critical representational subspace. This would constitute evidence that safety training creates structural representational changes that converge across architectures, rather than surface-level behavioral patches. If disconfirmed, the negative result reveals architecture-specific safety mechanisms with implications for per-architecture monitoring requirements.\n\n**RQ4 (Transition Dynamics):** Are safety transitions sharp (single reasoning step) or gradual (multi-step window)? This determines optimal detection targets and informs understanding of how reasoning models' safety mechanisms erode under adversarial pressure.\n\n## Core Claims\n\n**Claim 1 (Two-layer argument for inductive bias limitation):**\n- *Theoretical layer:* Token-level geometric methods operate on marginal statistics within local windows and lack an inductive bias for modeling coordinated cross-step phase transitions. Even with window size enlarged to reasoning-step granularity, these methods must learn cross-step joint distributional changes from per-window statistics—an inherently sample-inefficient proposition analogous to learning sequence structure from bag-of-ngrams features. The relevant limitation is not expressivity (arbitrarily large windows + infinite data could in principle suffice) but practical learnability given finite training data.\n- *Empirical layer:* Even with maximum advantage—reasoning-step-level aggregation, joint training data, sliding-window variants, hyperparameter search, and re-calibrated thresholds—the strongest token-level baseline (enhanced TrajGuard), the simplest temporal approach (probe scores + classical change-point detection), and generic sequence models (LSTM/Transformer + classification/reconstruction) all significantly underperform CRTA, empirically confirming the inductive bias argument.\n\n**Claim 2:** CRTA (Cross-architecture Reasoning Trajectory Analyzer) uses temporal contrastive learning whose inductive bias—explicit phase discrimination across temporal segments—directly matches the structure of safety transitions. Combined with learned cross-architecture projection, it achieves zero-shot within-family transfer and effective cross-family generalization.\n\n**Claim 3 (Conditional):** Safety transitions may exhibit universal geometric signatures in a shared representation space, clustering by behavior type rather than by architecture—potentially the first evidence for convergent safety-override computational structures across independently trained architectures.\n\n## Why Temporal Contrastive Learning (Not Generic Sequence Modeling)\n\nThe choice of contrastive objective over alternatives (reconstruction, classification) is motivated by inductive bias alignment with the detection task:\n- **Reconstruction-based** (e.g., LSTM-AE) optimizes \"predict/reconstruct the sequence\"—transition boundaries are only *implicitly* signaled as high reconstruction error, not directly optimized for.\n- **Per-step classification** optimizes \"label each step correctly\"—effective for individual steps but does not directly model the *joint transition structure* (what the boundary between phases looks like).\n- **Temporal contrastive** directly optimizes \"discriminate between trajectory segments from different phases\"—the learning signal is maximally aligned with the detection task (identifying where the phase boundary is).\n\nThis is testable: ablation (iii) compares all three objectives on the same architecture, isolating the contribution of the contrastive inductive bias.\n\n## Method: CRTA\n\n**Hidden-State Trajectory Extraction:** For each reasoning trace, extract hidden states at each reasoning step from multiple Transformer layers. Each step is represented by a multi-layer feature vector.\n\n**Segmentation Strategy:** Primary: unified token-window-based segmentation (calibrated for approximately matched mean steps-per-trace across models). Secondary (robustness check): model-specific natural boundaries (paragraph breaks, `<think>` tags). Per-model statistics (mean/median/std steps per trace, mean tokens per step) reported. Segmentation granularity sensitivity (coarse/medium/fine) included in ablations.\n\n**Temporal Contrastive Learning:** A temporal encoder learns to distinguish pre-transition, post-transition, and transition-boundary trajectory segments. Contrastive pairs are constructed at the segment level: positive pairs share transition phase across different traces; negative pairs come from different phases. Unlike post-hoc change-point detection on scalar probe scores (which only detects \"something changed\"), the contrastive encoder operates on full multi-layer hidden-state trajectories and learns *what kind of representational shift corresponds to what kind of transition*—i.e., transition-specific pattern recognition rather than generic anomaly detection.\n\n**Data Efficiency:** With ~20 steps per trace and ~1,440 training traces (leave-one-out worst case), the contrastive objective operates on O(N² × T) pairs where N=steps and T=traces, yielding millions of training pairs from relatively few traces. Hard negative mining (within-batch hardest negatives) and momentum encoder are employed for sample-efficient learning. Training data scaling ablation verifies convergence.\n\n**Cross-Architecture Projection:** Architecture-specific projection heads map hidden states into a shared representation space, trained jointly with the contrastive objective. Within an architecture family (e.g., Qwen2.5-7B and Qwen2.5-32B), the same projection head enables zero-shot transfer. Across families, a new projection head is learned but the temporal encoder and shared space are reused.\n\n**Transition Detection:** Per-step transition scores are produced. Detection outputs: (a) highest-scoring single transition step; (b) transition window (contiguous steps above threshold); (c) \"no transition detected\" for always-safe traces; (d) multiple transitions via peak detection with minimum inter-peak distance for traces with repeated safe→unsafe shifts.\n\n**Threshold and Hyperparameter Selection:** All methods (CRTA and all baselines) use a unified protocol: train 60% / val 20% / test 20% split per evaluation setting. Thresholds and hyperparameters are optimized on the validation split. For cross-architecture transfer settings, thresholds are selected on the source domain and frozen when applied to the target domain (simulating realistic deployment). Threshold sensitivity curves (performance vs. threshold) reported as supplementary analysis.\n\n## Model Selection: 2×2 Architecture × Scale Matrix\n\n| | Qwen2.5-base | Llama 3.1-base |\n|---|---|---|\n| **Large (~32B)** | DeepSeek-R1-Distill-Qwen-32B | — |\n| **Small (~7-8B)** | OpenThinker-7B (Qwen2.5-7B base) | DeepSeek-R1-Distill-Llama-8B |\n\nEnables: architecture effect (scale-matched: OpenThinker-7B vs. Llama-8B), scale effect (architecture-matched: OpenThinker-7B vs. Qwen-32B), combined effect (Qwen-32B vs. Llama-8B). The Llama family has only one model (8B); cross-family leave-one-out holding out Llama-8B tests generalization to an architecture family with minimal training representation (honestly framed as such).\n\n## Dataset\n\n**HarmThoughts** (existing): 56,931 annotations, 16-label per-step behavioral taxonomy. ~600 traces per model, ~2,400 total.\n\n**OpenThinker-7B annotation:** Generated via the same LLM-based annotation pipeline (same prompt templates) used for existing models. Quality verification: re-run pipeline on 100 steps from each existing model, compute self-agreement rate; additionally, 50-100 steps human-verified for inter-annotator agreement.\n\n**Ground-truth transition definition:**\n- *Single transition:* First step where labels shift from safety-preserving to safety-violating.\n- *Gradual:* Interval [last preserving, first violating]; predicted step in interval = exact match.\n- *Multiple transitions:* Each safe→unsafe shift labeled; evaluation via Hungarian matching.\n- *Always harmful:* Transition at step 0; evaluated as detection negative (false alarm rate).\n- *Always safe:* No transition; evaluated for false positive rate.\n- Dataset statistics report distribution across categories with per-category performance.\n\n## Evaluation Settings\n\n**(i) Within-model** (upper bound).\n**(ii) Within-family, cross-scale** (Qwen-32B ↔ OpenThinker-7B).\n**(iii) Cross-family, scale-matched** (OpenThinker-7B ↔ Llama-8B). Cleanest architecture test.\n**(iv) Cross-family, scale-mismatched** (Qwen-32B ↔ Llama-8B).\n**(v) Leave-one-out** (train on 3, test on held-out; 4 configs).\n\n## Evaluation Metrics\n\n- **Detection:** AUROC, F1, TPR@5%FPR.\n- **Localization:** Exact-step accuracy + within-k (k=1,2,3).\n- **Detection lead time:** Steps between CRTA detection and first harmful token generation. Positive values indicate pre-textual detection capability.\n- **Transfer gap:** Performance drop from within-model to cross-architecture.\n- **Statistical rigor:** Bootstrap 95% CI (1000 resamples); paired bootstrap test for CRTA vs. strongest baseline; significance markers in tables; CI width noted for cells <100 samples.\n- **Inference efficiency:** Per-trace latency (ms), GPU memory overhead (MB), accuracy-efficiency Pareto frontier.\n\n## Comparison Ladder\n\n**(i) Text-level monitors** [Tier 1: SafeRemind; Tier 3: others]: LLM-as-judge on trace text.\n\n**(ii) Input-level** [Tier 3: SALO-style]: Cite numbers + discuss inapplicability to mid-reasoning transitions.\n\n**(iii) Static + simple-temporal representation methods:**\n- [Tier 1] Per-step linear probes (HarmThoughts).\n- [Tier 1] **Temporal CPD on Probe Scores:** PELT + BOCPD on per-step probe score time series. Critical simple-temporal baseline.\n- [Tier 1] HarmThoughts probes + CCA/CKA alignment: Trivial cross-architecture alternative.\n- [Tier 2] RTV: Multi-layer refusal-direction fingerprints.\n\n**(iv) Trajectory-based methods:**\n- [Tier 1] TrajGuard (standard): Token-level geometric, retrained on reasoning traces.\n- [Tier 1] **Enhanced TrajGuard (step-level, joint, sliding-window):** Reasoning-step-level aggregation (mean pooling; ablated with last-token and attention-weighted), joint training on all 4 models (PCA to shared dimensionality, reporting variance retained), re-calibrated threshold on validation set, plus a sliding-window-of-K-steps variant. Maximum advantage to test inductive bias limitation.\n- [Tier 1] Self-Jailbreaking direction vectors.\n\n**(v) Generic sequence models on multi-layer features:**\n- [Tier 1, via ablation (iii)] LSTM-AE (reconstruction), Transformer encoder + binary classification on step sequences. Same input features as CRTA but different objectives/architectures. Directly tests whether contrastive inductive bias is necessary.\n\n**(vi) Temporal/dynamic methods:**\n- [Tier 2] SafeSwitch retrained, SIREN retrained.\n\n**Fair-baseline ablation:** TrajGuard and SafeSwitch also jointly trained on 4-model data (PCA to common dim) to isolate CRTA's temporal contrastive contribution from joint-training advantage.\n\n## Ablation Studies\n\n**(i) Temporal window size:** 1, 3, 5, 7 steps.\n**(ii) Layer selection:** All vs. top-k vs. specific subsets.\n**(iii) Objective variants:** Temporal contrastive vs. standard contrastive vs. classification-only vs. reconstruction (LSTM-AE). Framed as testing which inductive bias best matches transition detection.\n**(iv) Projection architecture + dimensionality:** Linear/MLP/arch-specific/zero-padding × dimensions {256, 512, 1024, 2048, 4096}. Report performance saturation curve.\n**(v) Joint vs. single-model training:** CRTA per-model vs. joint. Also joint-trained TrajGuard/SafeSwitch.\n**(vi) Training data scaling + convergence:** 25%/50%/75%/100%. Report convergence curve to verify data sufficiency.\n**(vii) Attack family generalization:** Train on subset of attack families, test on held-out.\n**(viii) Segmentation granularity:** Coarse/medium/fine sensitivity.\n\n## Causal Validation (Two-Stage)\n\n**Stage A — Phenomenon Validation:**\nAt ground-truth transition steps, bidirectional activation patching:\n- Forward: Replace transition-step states with safe donor states → greedy decode 256 tokens → classify harmfulness.\n- Backward: Replace safe-step states with harmful transition states → decode → classify.\n- **Donor selection:** Same prompt, safe response from same model (primary); different-prompt safe trace (robustness check).\n- **Harmfulness quantification:** Dual classifier (Llama-Guard-3 + HarmBench); report Cohen's κ. Causal effect: Δ_harm = P(harmful|patched) − P(harmful|original), mean ± std.\n- **Scope:** 50-100 traces/model (50 for 32B, 100 for 7-8B); patching at GT step ± 2 steps only.\n\n**Stage B — Detection Validation:**\n- Offset distribution: CRTA-detected minus GT step (mean, median, within-k tolerance).\n- Causal comparison: Patching at CRTA-detected steps (7-8B models) vs. GT steps' effect sizes.\n- 32B: Offset distribution only (no additional patching unless compute permits).\n\n**Compute:** ~2,000 forward passes (7-8B, few hours) + ~1,000 forward passes (32B, 1-2 days). Total ~2-3 days.\n\n## Shared Space Geometry Analysis (RQ3)\n\n- t-SNE/UMAP visualization colored by behavior type vs. model identity.\n- Silhouette scores and adjusted mutual information for behavior-type vs. model clusters.\n- Theoretical interpretation via Platonic Representation Hypothesis: if transition states cluster by behavior type, this suggests convergent safety-override representations across architectures—potentially the first empirical evidence for the Platonic hypothesis in safety-critical representational subspaces.\n- Negative result reported as informative: architecture-specific safety mechanisms imply per-architecture monitoring necessity.\n\n## Related Work Differentiation (Three Main Lines)\n\n**1. Refusal Directions & Linear Probes (Mechanistic Interpretability):** Static safety-related directions; no temporal dynamics. CRTA models temporal phase transitions, not static features.\n\n**2. Representation Engineering & Cross-Model Transfer (Model Stitching, Activation Patching):** Studies representational similarity across models but not designed for safety detection. CRTA's projection is specialized for temporal safety dynamics.\n\n**3. Time Series Anomaly Detection on Neural Activations:** Classical CPD/anomaly detection detects \"something changed\" on scalar sequences. CRTA learns *transition-specific multi-layer representational patterns*—what kind of change maps to what kind of transition, with explicit phase discrimination inductive bias.\n\nSpecific systems (TrajGuard, RTV, SafeSwitch, SIREN, etc.) positioned within this framework.\n\n## Deployment Scenarios\n\nTwo scenarios where hidden-state access is available:\n1. **Model provider-side monitoring:** API providers (e.g., DeepSeek) have full hidden-state access internally. CRTA operates as a real-time safety layer in serving infrastructure, enabling preemptive truncation/steering before harmful tokens reach the user.\n2. **Safety audit of open-weight reasoning models:** For open-source models, safety researchers and red-teams need post-hoc analysis tools to characterize failure modes and transition dynamics at the representational level.\n\n## Expected Contributions\n\n1. **Mechanistic insight:** Two-layer evidence (theoretical inductive-bias argument + comprehensive empirical verification across 3 baseline categories) that safety transitions resist token-level detection and simple temporal post-processing, requiring the temporal contrastive inductive bias.\n2. **Method:** CRTA with pre-textual detection capability enabling preemptive intervention—the unique advantage of hidden-state approaches over text-level monitoring.\n3. **Empirical characterization:** Transition dynamics (sharp/gradual) across 4 models, 2 architecture families, 2 scales.\n4. **Alignment science finding (conditional):** Universal geometry analysis connecting to the Platonic Representation Hypothesis in safety-critical subspaces.\n\n## Feasibility\n\n- **Compute:** 4×A100-80GB for 32B extraction; contrastive training single GPU, hours; causal validation ~2-3 days. University-lab accessible.\n- **Storage:** Step-level features ~8 GB/model (32 GB total); token-level subset for ablation ~130 GB/model (subset of 100 traces); total ~300 GB.\n- **Data:** HarmThoughts existing for 3 models; LLM-based pipeline for OpenThinker-7B (1-2 weeks including quality verification).\n- **Baselines (tiered):** Tier 1 (~2 weeks): TrajGuard (both variants), Self-Jailbreaking directions, SafeRemind, probes + CCA, temporal CPD, generic sequence models. Tier 2 (~1 week): RTV, SafeSwitch, SIREN. Tier 3 (cite): SALO, others.\n- **Timeline:** 10-12 weeks total. Extraction + annotation: 2w. CRTA development: 2-3w. Baselines (parallel): 2-3w. Evaluation + causal + geometry: 2-3w. Writing: 2w (overlapping)."
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T12:36:51.349Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-16T12:36:51.349Z",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T12:36:51.367Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "【任务】: 请评估以下 proposal 的客观中稿概率。\n必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。\n\n【proposal】:\n## Title\n\nDetecting Safety Transitions in Reasoning Models: Cross-Architecture Analysis via Temporal Contrastive Learning on Hidden-State Trajectories\n\n## Problem Statement\n\nExtended reasoning models (e.g., DeepSeek-R1, QwQ) can undergo safety transitions mid-reasoning—shifting from safe chain-of-thought to harmful content generation within their thinking traces. Existing hidden-state safety detectors, designed for instruction-tuned (non-reasoning) models, operate at the token level with local geometric thresholding. We argue these methods face a fundamental inductive bias mismatch: safety transitions in reasoning models are multi-scale phenomena involving coordinated shifts across multiple reasoning steps and multiple representational layers, and token-level methods—even with enlarged windows—lack the appropriate inductive bias to efficiently learn these cross-step joint distributional changes from finite training data. This is not a claim of theoretical impossibility (a sufficiently large window with exponentially more data could in principle work), but rather a claim about practical learnability: without an inductive bias that directly models temporal phase transitions, token-level methods are sample-inefficient for this task.\n\nBeyond detection accuracy, hidden-state methods offer a unique capability unavailable to text-level monitors: **pre-textual detection**. Because safety transitions manifest in representational space *before* harmful tokens are actually decoded, hidden-state trajectory analysis enables preemptive intervention (truncation or steering) at a point when text-level methods cannot yet react. This timing advantage makes hidden-state approaches not merely an alternative to text monitoring, but the only viable path to preemptive safety intervention in reasoning models.\n\n## Research Questions\n\n**RQ1 (Inductive Bias Limitation):** Do existing hidden-state safety detectors fail on reasoning model traces due to distributional mismatch, or due to the lack of appropriate inductive bias for modeling multi-step transition dynamics? We test this by: (a) providing the strongest token-level method (TrajGuard) with reasoning-step-level aggregation, joint multi-model training data, sliding-window variants, and re-calibrated thresholds; (b) testing whether simple temporal post-processing on per-step probe scores (classical change-point detection: PELT, BOCPD) can close the gap; (c) testing whether generic sequence models (reconstruction-based, classification-based) on multi-layer features suffice. If all three fail while CRTA succeeds, this isolates temporal contrastive learning's inductive bias—explicit phase discrimination—as the critical ingredient.\n\n**RQ2 (Cross-Architecture Generalization):** Can a learned projection into a shared representation space enable safety transition detection to generalize across model architectures? We distinguish: (a) within-family generalization (same base architecture, different scales) where zero-shot transfer via shared projection heads is expected; (b) cross-family generalization (different base architectures) where architecture-specific projection heads require training, but the temporal encoder and shared representation space transfer. We assess the transfer gap at each level.\n\n**RQ3 (Universal Geometry of Safety Transitions):** In the shared representation space, do safety transition states cluster by behavior type (e.g., constraint erosion, intent rationalization, harmful generation) rather than by source model architecture? If confirmed, this suggests that safety training (RLHF/distillation) induces convergent computational structures for safety-override mechanisms across independently trained architectures—consistent with the Platonic Representation Hypothesis (Huh et al., 2024) applied to the safety-critical representational subspace. This would constitute evidence that safety training creates structural representational changes that converge across architectures, rather than surface-level behavioral patches. If disconfirmed, the negative result reveals architecture-specific safety mechanisms with implications for per-architecture monitoring requirements.\n\n**RQ4 (Transition Dynamics):** Are safety transitions sharp (single reasoning step) or gradual (multi-step window)? This determines optimal detection targets and informs understanding of how reasoning models' safety mechanisms erode under adversarial pressure.\n\n## Core Claims\n\n**Claim 1 (Two-layer argument for inductive bias limitation):**\n- *Theoretical layer:* Token-level geometric methods operate on marginal statistics within local windows and lack an inductive bias for modeling coordinated cross-step phase transitions. Even with window size enlarged to reasoning-step granularity, these methods must learn cross-step joint distributional changes from per-window statistics—an inherently sample-inefficient proposition analogous to learning sequence structure from bag-of-ngrams features. The relevant limitation is not expressivity (arbitrarily large windows + infinite data could in principle suffice) but practical learnability given finite training data.\n- *Empirical layer:* Even with maximum advantage—reasoning-step-level aggregation, joint training data, sliding-window variants, hyperparameter search, and re-calibrated thresholds—the strongest token-level baseline (enhanced TrajGuard), the simplest temporal approach (probe scores + classical change-point detection), and generic sequence models (LSTM/Transformer + classification/reconstruction) all significantly underperform CRTA, empirically confirming the inductive bias argument.\n\n**Claim 2:** CRTA (Cross-architecture Reasoning Trajectory Analyzer) uses temporal contrastive learning whose inductive bias—explicit phase discrimination across temporal segments—directly matches the structure of safety transitions. Combined with learned cross-architecture projection, it achieves zero-shot within-family transfer and effective cross-family generalization.\n\n**Claim 3 (Conditional):** Safety transitions may exhibit universal geometric signatures in a shared representation space, clustering by behavior type rather than by architecture—potentially the first evidence for convergent safety-override computational structures across independently trained architectures.\n\n## Why Temporal Contrastive Learning (Not Generic Sequence Modeling)\n\nThe choice of contrastive objective over alternatives (reconstruction, classification) is motivated by inductive bias alignment with the detection task:\n- **Reconstruction-based** (e.g., LSTM-AE) optimizes \"predict/reconstruct the sequence\"—transition boundaries are only *implicitly* signaled as high reconstruction error, not directly optimized for.\n- **Per-step classification** optimizes \"label each step correctly\"—effective for individual steps but does not directly model the *joint transition structure* (what the boundary between phases looks like).\n- **Temporal contrastive** directly optimizes \"discriminate between trajectory segments from different phases\"—the learning signal is maximally aligned with the detection task (identifying where the phase boundary is).\n\nThis is testable: ablation (iii) compares all three objectives on the same architecture, isolating the contribution of the contrastive inductive bias.\n\n## Method: CRTA\n\n**Hidden-State Trajectory Extraction:** For each reasoning trace, extract hidden states at each reasoning step from multiple Transformer layers. Each step is represented by a multi-layer feature vector.\n\n**Segmentation Strategy:** Primary: unified token-window-based segmentation (calibrated for approximately matched mean steps-per-trace across models). Secondary (robustness check): model-specific natural boundaries (paragraph breaks, `<think>` tags). Per-model statistics (mean/median/std steps per trace, mean tokens per step) reported. Segmentation granularity sensitivity (coarse/medium/fine) included in ablations.\n\n**Temporal Contrastive Learning:** A temporal encoder learns to distinguish pre-transition, post-transition, and transition-boundary trajectory segments. Contrastive pairs are constructed at the segment level: positive pairs share transition phase across different traces; negative pairs come from different phases. Unlike post-hoc change-point detection on scalar probe scores (which only detects \"something changed\"), the contrastive encoder operates on full multi-layer hidden-state trajectories and learns *what kind of representational shift corresponds to what kind of transition*—i.e., transition-specific pattern recognition rather than generic anomaly detection.\n\n**Data Efficiency:** With ~20 steps per trace and ~1,440 training traces (leave-one-out worst case), the contrastive objective operates on O(N² × T) pairs where N=steps and T=traces, yielding millions of training pairs from relatively few traces. Hard negative mining (within-batch hardest negatives) and momentum encoder are employed for sample-efficient learning. Training data scaling ablation verifies convergence.\n\n**Cross-Architecture Projection:** Architecture-specific projection heads map hidden states into a shared representation space, trained jointly with the contrastive objective. Within an architecture family (e.g., Qwen2.5-7B and Qwen2.5-32B), the same projection head enables zero-shot transfer. Across families, a new projection head is learned but the temporal encoder and shared space are reused.\n\n**Transition Detection:** Per-step transition scores are produced. Detection outputs: (a) highest-scoring single transition step; (b) transition window (contiguous steps above threshold); (c) \"no transition detected\" for always-safe traces; (d) multiple transitions via peak detection with minimum inter-peak distance for traces with repeated safe→unsafe shifts.\n\n**Threshold and Hyperparameter Selection:** All methods (CRTA and all baselines) use a unified protocol: train 60% / val 20% / test 20% split per evaluation setting. Thresholds and hyperparameters are optimized on the validation split. For cross-architecture transfer settings, thresholds are selected on the source domain and frozen when applied to the target domain (simulating realistic deployment). Threshold sensitivity curves (performance vs. threshold) reported as supplementary analysis.\n\n## Model Selection: 2×2 Architecture × Scale Matrix\n\n| | Qwen2.5-base | Llama 3.1-base |\n|---|---|---|\n| **Large (~32B)** | DeepSeek-R1-Distill-Qwen-32B | — |\n| **Small (~7-8B)** | OpenThinker-7B (Qwen2.5-7B base) | DeepSeek-R1-Distill-Llama-8B |\n\nEnables: architecture effect (scale-matched: OpenThinker-7B vs. Llama-8B), scale effect (architecture-matched: OpenThinker-7B vs. Qwen-32B), combined effect (Qwen-32B vs. Llama-8B). The Llama family has only one model (8B); cross-family leave-one-out holding out Llama-8B tests generalization to an architecture family with minimal training representation (honestly framed as such).\n\n## Dataset\n\n**HarmThoughts** (existing): 56,931 annotations, 16-label per-step behavioral taxonomy. ~600 traces per model, ~2,400 total.\n\n**OpenThinker-7B annotation:** Generated via the same LLM-based annotation pipeline (same prompt templates) used for existing models. Quality verification: re-run pipeline on 100 steps from each existing model, compute self-agreement rate; additionally, 50-100 steps human-verified for inter-annotator agreement.\n\n**Ground-truth transition definition:**\n- *Single transition:* First step where labels shift from safety-preserving to safety-violating.\n- *Gradual:* Interval [last preserving, first violating]; predicted step in interval = exact match.\n- *Multiple transitions:* Each safe→unsafe shift labeled; evaluation via Hungarian matching.\n- *Always harmful:* Transition at step 0; evaluated as detection negative (false alarm rate).\n- *Always safe:* No transition; evaluated for false positive rate.\n- Dataset statistics report distribution across categories with per-category performance.\n\n## Evaluation Settings\n\n**(i) Within-model** (upper bound).\n**(ii) Within-family, cross-scale** (Qwen-32B ↔ OpenThinker-7B).\n**(iii) Cross-family, scale-matched** (OpenThinker-7B ↔ Llama-8B). Cleanest architecture test.\n**(iv) Cross-family, scale-mismatched** (Qwen-32B ↔ Llama-8B).\n**(v) Leave-one-out** (train on 3, test on held-out; 4 configs).\n\n## Evaluation Metrics\n\n- **Detection:** AUROC, F1, TPR@5%FPR.\n- **Localization:** Exact-step accuracy + within-k (k=1,2,3).\n- **Detection lead time:** Steps between CRTA detection and first harmful token generation. Positive values indicate pre-textual detection capability.\n- **Transfer gap:** Performance drop from within-model to cross-architecture.\n- **Statistical rigor:** Bootstrap 95% CI (1000 resamples); paired bootstrap test for CRTA vs. strongest baseline; significance markers in tables; CI width noted for cells <100 samples.\n- **Inference efficiency:** Per-trace latency (ms), GPU memory overhead (MB), accuracy-efficiency Pareto frontier.\n\n## Comparison Ladder\n\n**(i) Text-level monitors** [Tier 1: SafeRemind; Tier 3: others]: LLM-as-judge on trace text.\n\n**(ii) Input-level** [Tier 3: SALO-style]: Cite numbers + discuss inapplicability to mid-reasoning transitions.\n\n**(iii) Static + simple-temporal representation methods:**\n- [Tier 1] Per-step linear probes (HarmThoughts).\n- [Tier 1] **Temporal CPD on Probe Scores:** PELT + BOCPD on per-step probe score time series. Critical simple-temporal baseline.\n- [Tier 1] HarmThoughts probes + CCA/CKA alignment: Trivial cross-architecture alternative.\n- [Tier 2] RTV: Multi-layer refusal-direction fingerprints.\n\n**(iv) Trajectory-based methods:**\n- [Tier 1] TrajGuard (standard): Token-level geometric, retrained on reasoning traces.\n- [Tier 1] **Enhanced TrajGuard (step-level, joint, sliding-window):** Reasoning-step-level aggregation (mean pooling; ablated with last-token and attention-weighted), joint training on all 4 models (PCA to shared dimensionality, reporting variance retained), re-calibrated threshold on validation set, plus a sliding-window-of-K-steps variant. Maximum advantage to test inductive bias limitation.\n- [Tier 1] Self-Jailbreaking direction vectors.\n\n**(v) Generic sequence models on multi-layer features:**\n- [Tier 1, via ablation (iii)] LSTM-AE (reconstruction), Transformer encoder + binary classification on step sequences. Same input features as CRTA but different objectives/architectures. Directly tests whether contrastive inductive bias is necessary.\n\n**(vi) Temporal/dynamic methods:**\n- [Tier 2] SafeSwitch retrained, SIREN retrained.\n\n**Fair-baseline ablation:** TrajGuard and SafeSwitch also jointly trained on 4-model data (PCA to common dim) to isolate CRTA's temporal contrastive contribution from joint-training advantage.\n\n## Ablation Studies\n\n**(i) Temporal window size:** 1, 3, 5, 7 steps.\n**(ii) Layer selection:** All vs. top-k vs. specific subsets.\n**(iii) Objective variants:** Temporal contrastive vs. standard contrastive vs. classification-only vs. reconstruction (LSTM-AE). Framed as testing which inductive bias best matches transition detection.\n**(iv) Projection architecture + dimensionality:** Linear/MLP/arch-specific/zero-padding × dimensions {256, 512, 1024, 2048, 4096}. Report performance saturation curve.\n**(v) Joint vs. single-model training:** CRTA per-model vs. joint. Also joint-trained TrajGuard/SafeSwitch.\n**(vi) Training data scaling + convergence:** 25%/50%/75%/100%. Report convergence curve to verify data sufficiency.\n**(vii) Attack family generalization:** Train on subset of attack families, test on held-out.\n**(viii) Segmentation granularity:** Coarse/medium/fine sensitivity.\n\n## Causal Validation (Two-Stage)\n\n**Stage A — Phenomenon Validation:**\nAt ground-truth transition steps, bidirectional activation patching:\n- Forward: Replace transition-step states with safe donor states → greedy decode 256 tokens → classify harmfulness.\n- Backward: Replace safe-step states with harmful transition states → decode → classify.\n- **Donor selection:** Same prompt, safe response from same model (primary); different-prompt safe trace (robustness check).\n- **Harmfulness quantification:** Dual classifier (Llama-Guard-3 + HarmBench); report Cohen's κ. Causal effect: Δ_harm = P(harmful|patched) − P(harmful|original), mean ± std.\n- **Scope:** 50-100 traces/model (50 for 32B, 100 for 7-8B); patching at GT step ± 2 steps only.\n\n**Stage B — Detection Validation:**\n- Offset distribution: CRTA-detected minus GT step (mean, median, within-k tolerance).\n- Causal comparison: Patching at CRTA-detected steps (7-8B models) vs. GT steps' effect sizes.\n- 32B: Offset distribution only (no additional patching unless compute permits).\n\n**Compute:** ~2,000 forward passes (7-8B, few hours) + ~1,000 forward passes (32B, 1-2 days). Total ~2-3 days.\n\n## Shared Space Geometry Analysis (RQ3)\n\n- t-SNE/UMAP visualization colored by behavior type vs. model identity.\n- Silhouette scores and adjusted mutual information for behavior-type vs. model clusters.\n- Theoretical interpretation via Platonic Representation Hypothesis: if transition states cluster by behavior type, this suggests convergent safety-override representations across architectures—potentially the first empirical evidence for the Platonic hypothesis in safety-critical representational subspaces.\n- Negative result reported as informative: architecture-specific safety mechanisms imply per-architecture monitoring necessity.\n\n## Related Work Differentiation (Three Main Lines)\n\n**1. Refusal Directions & Linear Probes (Mechanistic Interpretability):** Static safety-related directions; no temporal dynamics. CRTA models temporal phase transitions, not static features.\n\n**2. Representation Engineering & Cross-Model Transfer (Model Stitching, Activation Patching):** Studies representational similarity across models but not designed for safety detection. CRTA's projection is specialized for temporal safety dynamics.\n\n**3. Time Series Anomaly Detection on Neural Activations:** Classical CPD/anomaly detection detects \"something changed\" on scalar sequences. CRTA learns *transition-specific multi-layer representational patterns*—what kind of change maps to what kind of transition, with explicit phase discrimination inductive bias.\n\nSpecific systems (TrajGuard, RTV, SafeSwitch, SIREN, etc.) positioned within this framework.\n\n## Deployment Scenarios\n\nTwo scenarios where hidden-state access is available:\n1. **Model provider-side monitoring:** API providers (e.g., DeepSeek) have full hidden-state access internally. CRTA operates as a real-time safety layer in serving infrastructure, enabling preemptive truncation/steering before harmful tokens reach the user.\n2. **Safety audit of open-weight reasoning models:** For open-source models, safety researchers and red-teams need post-hoc analysis tools to characterize failure modes and transition dynamics at the representational level.\n\n## Expected Contributions\n\n1. **Mechanistic insight:** Two-layer evidence (theoretical inductive-bias argument + comprehensive empirical verification across 3 baseline categories) that safety transitions resist token-level detection and simple temporal post-processing, requiring the temporal contrastive inductive bias.\n2. **Method:** CRTA with pre-textual detection capability enabling preemptive intervention—the unique advantage of hidden-state approaches over text-level monitoring.\n3. **Empirical characterization:** Transition dynamics (sharp/gradual) across 4 models, 2 architecture families, 2 scales.\n4. **Alignment science finding (conditional):** Universal geometry analysis connecting to the Platonic Representation Hypothesis in safety-critical subspaces.\n\n## Feasibility\n\n- **Compute:** 4×A100-80GB for 32B extraction; contrastive training single GPU, hours; causal validation ~2-3 days. University-lab accessible.\n- **Storage:** Step-level features ~8 GB/model (32 GB total); token-level subset for ablation ~130 GB/model (subset of 100 traces); total ~300 GB.\n- **Data:** HarmThoughts existing for 3 models; LLM-based pipeline for OpenThinker-7B (1-2 weeks including quality verification).\n- **Baselines (tiered):** Tier 1 (~2 weeks): TrajGuard (both variants), Self-Jailbreaking directions, SafeRemind, probes + CCA, temporal CPD, generic sequence models. Tier 2 (~1 week): RTV, SafeSwitch, SIREN. Tier 3 (cite): SALO, others.\n- **Timeline:** 10-12 weeks total. Extraction + annotation: 2w. CRTA development: 2-3w. Baselines (parallel): 2-3w. Evaluation + causal + geometry: 2-3w. Writing: 2w (overlapping)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "6b31c983-3769-4822-a849-1a4859d58269",
+            "type": "user",
+            "uuid": "92078926-31e6-41b2-bb95-00d059419408",
+            "permissionMode": "default",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463",
+            "version": "2.1.142",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T12:36:51.366Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "92078926-31e6-41b2-bb95-00d059419408",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskCreate",
+                    "TaskGet",
+                    "TaskList",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TaskUpdate",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": [],
+                  "readdedNames": [],
+                  "pendingMcpServers": []
+                },
+                "type": "attachment",
+                "uuid": "7332fe33-3e3e-4324-bd5b-6bd77c27f6cd",
+                "timestamp": "2026-05-16T12:36:51.366Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T12:36:51.366Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7332fe33-3e3e-4324-bd5b-6bd77c27f6cd",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "a40de0c6-2a2c-4e3f-8d66-b8f1c5f6da2b",
+                "timestamp": "2026-05-16T12:36:51.366Z",
+                "userType": "external",
+                "entrypoint": "sdk-py",
+                "cwd": "/home/ubuntu/idea_review",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463",
+                "version": "2.1.142",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## Title  Detecting Safety Transitions in Reasoning Models: Cross-Architecture Analysis via Temporal Contrastive L…",
+                "leafUuid": "a40de0c6-2a2c-4e3f-8d66-b8f1c5f6da2b",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Safety transitions in reasoning models via contrastive learning",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T12:37:55.995Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me carefully evaluate this proposal for EMNLP 2026 main conference submission. I need to assess it across the 5 dimensions and provide an objective evaluation.\n\nLet me think through this systematically.\n\n## Understanding the Proposal\n\nThe proposal is about detecting safety transitions in reasoning models (like DeepSeek-R1, QwQ) by analyzing hidden-state trajectories using temporal contrastive learning. The key idea is that existing token-level safety detectors have an \"inductive bias mismatch\" for reasoning models where safety transitions happen across multiple reasoning steps, and that temporal contrastive learning provides the right inductive bias for detecting these transitions.\n \n## Trivial Alternative Check\n\nI should consider whether simpler approaches could achieve similar results. Per-step linear probes with classical change-point detection are already included as a baseline, so the question is whether the added complexity of contrastive learning is justified empirically. Sliding window classification on sequences of reasoning steps seems like a natural alternative to the proposed temporal contrastive approach, though the proposal does compare against generic sequence models. There's also the possibility that directly analyzing the text of the reasoning trace itself could be sufficient for detecting safety transitions without needing to work with hidden states at all.\n\n## Premise Check\n\nThe core assumption driving this work is that safety transitions manifest as coordinated shifts across multiple reasoning steps, but I'm not convinced this is universally true. Some harmful compliance decisions might happen abruptly in a single step rather than gradually building up over several steps. The proposal does investigate this in RQ4 by examining sharp versus gradual transitions, but the entire framework rests on the premise that multi-step phenomena are the norm, which is an empirical claim that needs validation.\n\nThere's also the question of whether hidden states actually contain meaningful pre-textual signals with enough lead time to matter. Prior work on refusal directions suggests this is plausible, but if safety transitions are typically sharp (just one or two steps), the advantage of detecting them early might be negligible. The universality claim about cross-architecture safety signatures is appropriately hedged as conditional, which is good. And the whole approach depends on HarmThoughts being a high-quality dataset with the right taxonomy—if the annotations are noisy or miss important distinctions, the entire method could fail.\n\n## Novelty Assessment\n\nThe framing of inductive bias mismatch for reasoning model safety is genuinely novel, and applying temporal contrastive learning to hidden-state trajectories is a creative combination that hasn't been explored before.\n\nThe cross-architecture transfer through a shared projection space is interesting, and connecting this to the Platonic Representation Hypothesis in a safety context is original. However, the individual pieces—contrastive learning, projection heads, change-point detection—are all standard techniques, and the core pipeline of extracting features, projecting them, and applying contrastive learning is somewhat incremental relative to existing representation engineering work. The temporal contrastive framing is essentially segment-level contrastive learning, which is well-established in time series analysis. I'd say the novelty is moderate overall—the problem formulation and framing are what's novel, not the technical approach itself.\n\n## Technical Soundness\n\nThe experimental design looks extremely thorough, with four models spanning two architecture families and two different scales, plus a comprehensive baseline ladder.\n\nThe evaluation covers multiple settings—within-model, within-family, cross-family, and leave-one-out comparisons—with proper statistical rigor including bootstrap confidence intervals and significance tests. There's also causal validation through activation patching, training data scaling curves, and extensive ablations. This is clearly one of the strongest parts of the proposal, showing multiple rounds of refinement. The main limitations are that the 2×2 model matrix is incomplete (missing Llama-32B, which they acknowledge), 600 traces per model is reasonable but not enormous, and the causal validation only uses 50-100 traces. Overall, the technical soundness is strong.\n\n## Significance\n\nThe research question matters—safety in reasoning models is a timely area, and pre-textual detection would be a genuine capability advantage. Understanding cross-architecture alignment of these representations could have real implications for how we think about model safety and interpretability.\n\nThat said, the practical deployment scenario is somewhat constrained since it requires access to hidden states, and whether the improvements over simpler baselines are substantial enough to shift practice remains an open question. If safety transitions tend to be sharp rather than gradual, the temporal modeling advantage might be less pronounced.\n\nI'm settling on a rating between moderate and strong for significance—the problem is genuinely important and the cross-architecture angle is compelling, but the empirical results will ultimately determine whether this translates to meaningful impact.\n\n## Feasibility\n\nThe work is clearly doable with university-lab resources: 4×A100 GPUs, an existing dataset covering 3 of the 4 models, and a reasonable 10-12 week timeline with well-scoped tasks.\n\nI'd rate this as strong.\n\n## Related Work\n\nThe proposal shows solid grounding in the literature—it positions itself against refusal directions, representation engineering, and time series anomaly detection approaches, with specific baselines like TrajGuard, SafeSwitch, and SIREN. The connection to the Platonic Representation Hypothesis is also well-articulated.\n\nThe main uncertainty is whether very recent work might cover similar ground, though the reasoning model safety space is still relatively nascent and temporal contrastive learning for safety detection appears novel. The cross-architecture transfer angle is well-differentiated from existing model stitching work.\n\nI'd rate this as moderate-to-strong—good positioning despite the field moving quickly.\n\n## Overall Assessment\n\nThe proposal has several compelling strengths...\n\nThe experiments are comprehensive with solid baselines, the problem formulation is novel and timely, and there's good theoretical grounding for the approach. The authors are honest about limitations and have built clear falsification criteria into the design.\n\nBut there are real concerns. The core technical novelty is moderate—it's essentially a well-motivated combination of existing techniques. The central empirical claim about temporal contrastive learning outperforming simpler methods could be problematic if the performance gap turns out to be small. The inductive bias argument, while articulate, is somewhat speculative and ultimately an empirical question. There's also dependency on HarmThoughts dataset quality and the possibility that the pre-textual detection advantage is minimal if state transitions are sharp.\n\nThe biggest risk is that simpler baselines like probe plus change point detection or generic sequence models might perform nearly as well, which would significantly weaken the contribution.\n\nThinking through the probability estimate: the novelty is moderate, which caps things around 35-40%, but the technical soundness is strong and the problem is timely and important. The experimental design is thorough, which helps. EMNLP does value empirical contributions with comprehensive methodology, and this proposal has both a clear research question and solid experimental rigor. The safety angle is particularly timely right now.\n\nThe core issue is that temporal contrastive learning on hidden-state trajectories is really just applying an existing technique to a new domain—the novelty comes from the problem formulation and cross-architecture angle rather than technical innovation. The central claim is empirical and might not hold up, and the inductive bias argument feels more like a compelling narrative than proven science at this point.\n\nWeighing everything together, I'm settling on 28-38% with a median around 33% for EMNLP 2026. 30-40% range. It's a solid paper that could get in if the empirical results are strong and the presentation is good, but it's not a clear accept.\n\nLet me settle on 28-38%, median 32%.\n\nActually, I want to reconsider one more time. This proposal has several things going for it at EMNLP:\n- Safety is a priority topic\n- Reasoning models are very hot\n- The experimental design is exceptionally thorough\n- The cross-architecture angle is genuinely interesting\n- Multiple research questions, each with clear evaluation\n\nAnd the risks:\n- If results don't support the claims, it's hard to publish\n- The novelty is more in the formulation than the technique\n- Reviewers might see it as \"applying contrastive learning to a new task\"\n\nI'll go with 28-38%, median 33%.\n\nGiven that EMNLP's acceptance rate hovers around 20-25%, papers typically need either strong novelty or compelling empirical contributions with clear impact. This one leans toward the latter—a solid empirical study on a timely topic that could resonate with the community. I'll stick with 28-38%, median 33%.\n\nThe proposal shows good awareness of related work like TrajGuard, SafeSwitch, and SIREN, and the temporal contrastive approach on reasoning traces feels like a genuine combination rather than a straightforward application. I don't think I need to dig deeper into the literature here—my concerns are about the fundamental contribution level, not missing context.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a40de0c6-2a2c-4e3f-8d66-b8f1c5f6da2b",
+            "isSidechain": false,
+            "requestId": "req_011Cb6FyEpu7wbqrbaG58ao4",
+            "type": "assistant",
+            "uuid": "c8c02ac2-ef3d-48bf-ba61-d7e21a816919",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YFgu63oBG5w3UqtYpTmEgK",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8218,
+                "cache_read_input_tokens": 11374,
+                "output_tokens": 4880,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8218,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4880,
+                    "cache_read_input_tokens": 11374,
+                    "cache_creation_input_tokens": 8218,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8218
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T12:38:47.536Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n【阶段】: Triage\n\n【Trivial Alternative 检验】:\n最需要警惕的 trivial alternative 是：**Per-step linear probe scores + classical change-point detection (PELT/BOCPD)**。如果对每一步的 probe output 做简单的 CPD，效果已经 \"good enough\"，那么整个 temporal contrastive learning 框架的附加价值就被极大削弱。\n\n提案已经将此作为 Tier 1 baseline 纳入，这是关键加分项——但风险在于：如果实验结果显示 probe+CPD 与 CRTA 差距仅在 2-3 F1 points，审稿人会质疑是否值得引入如此复杂的框架。提案的 \"inductive bias limitation\" 论证在这一点上本质是 empirical bet：如果 gap 不够大，理论论证再漂亮也无法自圆其说。\n\n另一个 trivial alternative：直接对 thinking trace 文本做 sliding-window 分类器。提案用 \"pre-textual detection\" 作为区分点，这是合理的——但如果检测 lead time 只有 1-2 步（几十个 token），实际部署价值有限。\n\n**结论：提案充分预见了这一风险并设计了对应实验，但最终是否成立完全取决于 empirical gap 的大小。**\n\n【前提假设检验】:\n核心逻辑链中有两个 \"想当然\" 环节：\n\n1. **\"Safety transitions are multi-step phenomena\"**——这是整个 temporal modeling 动机的基础。但如果多数 reasoning model 的 safety transition 实际上是 sharp（1步内完成），则 temporal window 的优势大幅缩水。提案虽在 RQ4 调查此问题，但整个方法设计已经 presuppose 了多步结构。如果 RQ4 的答案是 \"mostly sharp\"，论文叙事会自相矛盾。\n\n2. **\"Token-level methods are sample-inefficient for this task\"**——提案用 \"bag-of-ngrams vs. sequence model\" 做类比，但这个类比有漏洞。Token-level methods 在每一步内已经利用了 rich multi-layer representations；问题不是信息量不够，而是跨步关联的建模。但如果 per-step representation 本身已经足够 discriminative（如同一个好的 frame-level feature 对 video 分类已足够），则跨步 temporal modeling 是 overkill。\n\n**这两个假设互相关联：如果 transitions 是 sharp 且 per-step features 已充分 discriminative，整个 temporal contrastive 框架就是 over-engineering。**\n\n【5 维度打分】:\n1. Novelty: 中 — 核心贡献是将 temporal contrastive learning 应用于 hidden-state trajectory 的 safety transition detection。问题 formulation（reasoning model 的 inductive bias mismatch）新颖且有洞见，cross-architecture 共享表示空间角度有趣。但技术手段（contrastive learning + projection heads + segment-level features）均为成熟组件的组合，非方法论创新。本质上是 \"well-motivated application paper\"——对已有技术的 novel application 到 timely problem。\n\n2. Technical Soundness: 强 — 实验设计堪称 exemplary：4 model × 5 evaluation settings × comprehensive baseline ladder（含 fair-comparison ablations）× causal validation × geometry analysis。统计 rigor（bootstrap CI, paired tests），threshold protocol 统一，training data scaling curves，segmentation sensitivity ablation。几乎找不到实验设计缺陷。唯一小瑕疵：2×2 matrix 缺少 Llama-32B，causal validation 样本量偏小（50-100 traces）。\n\n3. Significance: 中偏强 — Reasoning model safety 是 2025-2026 热点议题，pre-textual detection 的 timing advantage 是 genuine capability。Cross-architecture universality（如果成立）有 alignment science implications。但 deployment scenario 受限（需要 hidden-state access），且如果 lead time 小、gap 小，实际影响力会打折。\n\n4. Feasibility: 强 — 4×A100-80GB，10-12 周，现有数据集支撑 3/4 models，timeline realistic。唯一风险是 empirical results 不支撑核心 claims，但这是 research risk 而非 feasibility risk。\n\n5. Related Work: 中偏强 — 对 mechanistic interpretability、representation engineering、time series anomaly detection 三条线的定位清晰。具体系统（TrajGuard, RTV, SafeSwitch, SIREN）均纳入。Platonic Representation Hypothesis 连接恰当。潜在 gap：reasoning model safety 领域在 2025-2026 发展迅速，可能有 concurrent work 覆盖类似 territory（如 hidden-state probing for reasoning traces）。\n\n【概率估计】: [28% - 38%] 中位 33%\n\n【估计理由】:\n- **Idea 质量约束**：Novelty 为\"中\"，Significance 为\"中偏强\"。核心贡献是 technique application 而非 technique invention 或 surprising finding。这设定了概率上限在 ~40% 附近——即使实验完美，\"applying contrastive learning to a new detection task\" 在 EMNLP 主会的 novelty bar 下有天花板。\n- **实验完备性加分**：Technical Soundness 为\"强\"，将地板从 ~20% 抬至 ~28%。设计之周密在同级 novelty 的论文中属上乘，会获得审稿人好感。\n- **关键 empirical dependency**：如果实际 gap（CRTA vs. probe+CPD vs. generic sequence model）显著（>5 F1/AUROC points），论文叙事成立，概率可达上界 38%；如果 gap 勉强（2-3 points），整篇论文的核心论证坍塌，概率降至下界。\n- **Topic timeliness bonus**：Reasoning model safety 在 2026 年仍为社区热点，可为 borderline paper 加分 2-3 个百分点。\n- **EMNLP 接收率 ~22-25%**：该 proposal 属于 \"solid empirical work on timely topic with moderate novelty\" 类别——恰好在 accept/reject borderline。\n\n【主要风险】:\n1. **Empirical gap 不足**：如果 probe+CPD 或 generic sequence models 与 CRTA 差距不够显著，\"inductive bias limitation\" 的核心叙事崩塌，论文降格为 \"yet another detection method with marginal improvement\"——这是最大的致命风险。\n2. **Transitions 多为 sharp（RQ4 disconfirms multi-step assumption）**：如果绝大多数 safety transitions 在 1-2 步内完成，temporal modeling 的动机被釜底抽薪，lead time 优势也变得微乎其微。\n\n【实施评估】:\n- 计算资源: 4×A100-80GB（提取 32B hidden states）；contrastive training 单卡数小时；causal validation 2-3 天。大学实验室可达。\n- 数据需求: HarmThoughts 现有（3/4 models），OpenThinker-7B 需 LLM-based 标注 + 人工验证。总 ~2,400 traces。\n- 人工介入: OpenThinker-7B 标注质量验证（50-100 steps human annotation），约 1-2 周。\n- 训练需求: Contrastive encoder 训练（lightweight，单卡小时级）；不需要训练/微调 LLM 本身。\n- 新 Benchmark: 不需要构建全新 benchmark；依赖现有 HarmThoughts + 一个新模型扩展。\n- 预估周期: 10-12 周（含写作），realistic for a 2-3 人团队。\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8c02ac2-ef3d-48bf-ba61-d7e21a816919",
+            "isSidechain": false,
+            "requestId": "req_011Cb6FyEpu7wbqrbaG58ao4",
+            "type": "assistant",
+            "uuid": "5a91d869-1d61-4ec7-932d-5f3608f92bec",
+            "userType": "external",
+            "entrypoint": "sdk-py",
+            "cwd": "/home/ubuntu/idea_review",
+            "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463",
+            "version": "2.1.142",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YFgu63oBG5w3UqtYpTmEgK",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8218,
+                "cache_read_input_tokens": 11374,
+                "output_tokens": 4880,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 8218,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4880,
+                    "cache_read_input_tokens": 11374,
+                    "cache_creation_input_tokens": 8218,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 8218
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## Title  Detecting Safety Transitions in Reasoning Models: Cross-Architecture Analysis via Temporal Contrastive L…",
+                "leafUuid": "5a91d869-1d61-4ec7-932d-5f3608f92bec",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463"
+              }
+            }
+          ],
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Safety transitions in reasoning models via contrastive learning",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "【任务】: 请评估以下 proposal 的客观中稿概率。 必须先走 rubric、再估概率，按指定格式输出（不要输出 GO/KILL 决策）。  【proposal】: ## Title  Detecting Safety Transitions in Reasoning Models: Cross-Architecture Analysis via Temporal Contrastive L…",
+                "leafUuid": "5a91d869-1d61-4ec7-932d-5f3608f92bec",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Safety transitions in reasoning models via contrastive learning",
+                "sessionId": "2d83922c-4a1a-46c8-8c09-2f5a3ed3b463"
+              }
+            }
+          ],
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-proposal-rubric-go-kill-proposal-title-detecting-safety-transitio-copy-2.md"
+}

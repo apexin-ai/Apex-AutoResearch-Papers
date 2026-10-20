@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "id": "e1d22994c22aa60be4e5",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: causal_annot_error_attrib - 论文路径: projects/causal_annot_error_attrib/docs/paper/main.te",
+  "task_key": "ca7507d3-9c7c-4145-968b-1750660c577b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/ca7507d3-9c7c-4145-968b-1750660c577b.jsonl",
+    "occurrence": 1,
+    "bytes": 662357,
+    "sha256": "74cff20077aca435e5678ab28295f179447fa9b30ed3f9cc65e0da0d5d7ba540"
+  },
+  "statistics": {
+    "messages": 159,
+    "user_turns": 12,
+    "tool_calls": 33,
+    "roles": {
+      "record": 50,
+      "user": 12,
+      "assistant": 31,
+      "tool_call": 33,
+      "tool_result": 33
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 83,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 83
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "e1d22994c22aa60be4e5-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "e1d22994c22aa60be4e5-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-causal-annot-error-attrib-projects-causal-annot-error-attrib-docs-paper-main-t-copy-6.md"
+}

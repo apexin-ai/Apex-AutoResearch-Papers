@@ -1,0 +1,1120 @@
+{
+  "schema_version": "1.0",
+  "id": "aaea095215c9e39dad30",
+  "project": "causal_annot_error_attrib--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Use WebSearch to find and verify the paper \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\" ",
+  "task_key": "agent-add766dc6f6f2b147",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-add766dc6f6f2b147.jsonl",
+    "occurrence": 1,
+    "bytes": 45880,
+    "sha256": "cc553a9ac0a1cbf021cab98ae301b00f916d1c7252df62c3a7d8dfe8ef4d89ad"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T08:45:27.273Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Use WebSearch to find and verify the paper \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\" (arXiv 2602.08169). I need to know:\n1. Does it actually exist? What are its exact claims?\n2. Does it use a \"von Mises-Fisher confidence gate\" that \"dynamically modulates steering strength based on input uncertainty\"?\n3. What TruthfulQA results does it achieve (specifically MC1 percentage improvement)?\n4. Does it operate per-token or per-sequence?\n5. Is it actually accepted at ICML 2026?\n6. Does it have released code?\n\nSearch for: \"Spherical Steering geometry-aware activation rotation\" and \"arxiv 2602.08169\". Also try fetching the arxiv page if possible."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "92f8201e-a8bb-47e9-8337-6032508576c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T08:45:27.278Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "92f8201e-a8bb-47e9-8337-6032508576c8",
+                "isSidechain": true,
+                "agentId": "add766dc6f6f2b147",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "c2469f22-821d-479d-978c-52161e64fe9e",
+                "timestamp": "2026-05-16T08:45:27.278Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T08:45:29.975Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0133gjKMyfhcHXPLme8fw3dE",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2469f22-821d-479d-978c-52161e64fe9e",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xKnPukvMtJYhP2wnp6",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a2951427-d7f9-45f8-8d33-5b9caf3090b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015viJpGDF3CPvSD7CmFBBVp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8957,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8957
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 8957,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8957,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T08:45:29.980Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0133gjKMyfhcHXPLme8fw3dE",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2951427-d7f9-45f8-8d33-5b9caf3090b8",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "aea00ee6-3a92-4618-acc4-4ec39678c4b6",
+            "sourceToolAssistantUUID": "a2951427-d7f9-45f8-8d33-5b9caf3090b8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T08:45:32.774Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xe7ZZYs336wPHV3DADoSuc",
+              "name": "WebSearch",
+              "input": {
+                "query": "Spherical Steering geometry-aware activation rotation language models arxiv 2602.08169"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aea00ee6-3a92-4618-acc4-4ec39678c4b6",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xKz9qv7YcfUNKjWHmn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cabf67e3-f73b-472e-987f-2125dec26ef2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ss3fjuFmLdTnrikHN7qJxa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T08:45:32.820Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PkrPXiDWEPV6gDJmHPUfHB",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"arxiv 2602.08169\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cabf67e3-f73b-472e-987f-2125dec26ef2",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xKz9qv7YcfUNKjWHmn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a523ec9e-9292-4fdd-ae49-fa15162be840",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ss3fjuFmLdTnrikHN7qJxa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1888,
+                "cache_read_input_tokens": 8957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1888,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T08:45:37.515Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PkrPXiDWEPV6gDJmHPUfHB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"arxiv 2602.08169\"\"\n\nLinks: [{\"title\":\"[2602.08169] Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/abs/2602.08169\"},{\"title\":\"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/pdf/2602.08169\"},{\"title\":\"The Approximate Fisher Influence Function:\",\"url\":\"https://arxiv.org/pdf/2407.08169\"},{\"title\":\"arXiv:2406.08169v2 [quant-ph] 19 Jul 2024\",\"url\":\"https://arxiv.org/pdf/2406.08169\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2504.08169\"},{\"title\":\"Machine Learning\",\"url\":\"https://www.arxiv.org/list/cs.LG/pastweek?skip=200&show=1000\"},{\"title\":\"[2601.08169] Relational Knowledge Distillation Using Fine-tuned Function Vectors\",\"url\":\"https://arxiv.org/abs/2601.08169\"},{\"title\":\"Computer Science Jun 2025\",\"url\":\"https://arxiv.org/list/cs/2025-06?skip=4400\"},{\"title\":\"Changxin Lao\",\"url\":\"https://scholar.google.com/citations?user=LnrMFI4AAAAJ&hl=en\"},{\"title\":\"Computer Science\",\"url\":\"https://arxiv.org/list/cs/recent?skip=543&show=2000\"}]\n\nThe search found the paper you're looking for! Here are the details:\n\n**Title:** Spherical Steering: Geometry-Aware Activation Rotation for Language Models\n\n**Authors:** Zejia You and 2 other authors\n\n**Submission Date:** February 9, 2026\n\n**Summary:** Inference-time steering has emerged as a promising paradigm for controlling language models without the cost of retraining. However, standard approaches typically rely on activation addition, a geometric operation that inevitably alters the magnitude of hidden representations. The paper explores Spherical Steering, a training-free primitive that resolves this trade-off through activation rotation, where activations are rotated along a geodesic toward a target direction, guiding the activation toward the target concept while preserving the integrity of the signal.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2602.08169\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a523ec9e-9292-4fdd-ae49-fa15162be840",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "5ccd3063-f4fd-47c5-8328-be53670eeced",
+            "sourceToolAssistantUUID": "a523ec9e-9292-4fdd-ae49-fa15162be840",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T08:45:39.817Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xe7ZZYs336wPHV3DADoSuc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Spherical Steering geometry-aware activation rotation language models arxiv 2602.08169\"\n\nLinks: [{\"title\":\"[2602.08169] Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/abs/2602.08169\"},{\"title\":\"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/html/2602.08169v1\"},{\"title\":\"(PDF) Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://www.researchgate.net/publication/400605038_Spherical_Steering_Geometry-Aware_Activation_Rotation_for_Language_Models\"},{\"title\":\"GitHub - chili-lab/Spherical-Steering: [ICML 2026] Spherical Steering: Geometry-Aware Activation Rotation for Language Models · GitHub\",\"url\":\"https://github.com/chili-lab/Spherical-Steering\"},{\"title\":\"Publications\",\"url\":\"https://hanjiechen.github.io/publication.html\"},{\"title\":\"Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention\",\"url\":\"https://arxiv.org/html/2605.05892\"},{\"title\":\"Hanjie Chen's research works | Johns Hopkins University and other places\",\"url\":\"https://www.researchgate.net/scientific-contributions/Hanjie-Chen-2260402100\"},{\"title\":\"ICML Angular Steering: Behavior Control via Rotation in Activation Space\",\"url\":\"https://icml.cc/virtual/2025/50230\"},{\"title\":\"Angular Steering: Behavior Control via Rotation in Activation Space\",\"url\":\"https://openreview.net/pdf/9a82b26d157916819f7a69e1e31ced6f640ca130.pdf\"},{\"title\":\"NeurIPS Poster Angular Steering: Behavior Control via Rotation in Activation Space\",\"url\":\"https://neurips.cc/virtual/2025/poster/117017\"}]\n\nI found the paper! Here are the search results for arxiv 2602.08169:\n\n## Paper Overview\n\nThe paper \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\" was submitted on February 9, 2026, by authors Zejia You, Chunyuan Deng, and Hanjie Chen.\n\n## Key Concept\n\nThe work explores Spherical Steering, a training-free primitive that resolves the trade-off between control and generation quality through activation rotation. Standard inference-time steering approaches rely on activation addition, a geometric operation that inevitably alters the magnitude of hidden representations, raising concerns about representation collapse and degradation of open-ended generation capabilities.\n\n## Method\n\nRather than using fixed vector addition, the method rotates activations along a geodesic toward a target direction, guiding the activation toward the target concept while preserving the integrity of representations. To further enhance adaptivity, the approach incorporates a confidence gate that dynamically modulates steering strength based on input uncertainty.\n\n## Results\n\nExtensive experiments across multiple-choice benchmarks demonstrate that Spherical Steering significantly outperforms addition-based baselines (notably by +10% on TruthfulQA, COPA, and Storycloze), while simultaneously maintaining the model's general open-ended generation quality.\n\nThe paper has been accepted to the Forty-Third International Conference on Machine Learning (ICML) in Seoul, South Korea in July 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cabf67e3-f73b-472e-987f-2125dec26ef2",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "9b994107-68d8-4b3d-8043-0bcc448e9871",
+            "sourceToolAssistantUUID": "cabf67e3-f73b-472e-987f-2125dec26ef2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T08:45:42.583Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me fetch the actual arxiv page and GitHub repo for more specific details about the claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b994107-68d8-4b3d-8043-0bcc448e9871",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xLhrqXG9rgWuodJySG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3051e60e-de97-480b-95b5-facbc01d1a6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018buLfjtHwzPp5v9TRjYVvs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 643,
+                "cache_creation_input_tokens": 995,
+                "cache_read_input_tokens": 10845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 995,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T08:45:44.627Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01261jAGYB7o4LFje9k7uPUH",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.08169",
+                "prompt": "Extract all details from this paper page: full title, all authors, abstract, submission date, any mention of von Mises-Fisher, confidence gate, TruthfulQA MC1 results, per-token vs per-sequence operation, ICML acceptance, and any code links."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3051e60e-de97-480b-95b5-facbc01d1a6f",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xLhrqXG9rgWuodJySG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "24580706-8766-40d4-bb9b-020f90ec459c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018buLfjtHwzPp5v9TRjYVvs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 643,
+                "cache_creation_input_tokens": 995,
+                "cache_read_input_tokens": 10845,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 995,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T08:45:45.686Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R3b5Nf8K72Aw6dDcpR9kjz",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/chili-lab/Spherical-Steering",
+                "prompt": "Extract all details about this repository: what code is available, README contents, any mention of von Mises-Fisher confidence gate, TruthfulQA MC1 results, per-token vs per-sequence operation, ICML 2026 acceptance status."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24580706-8766-40d4-bb9b-020f90ec459c",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xLhrqXG9rgWuodJySG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c2e87e44-0e53-492d-9d20-8f2c33e9bed2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018buLfjtHwzPp5v9TRjYVvs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 643,
+                "cache_creation_input_tokens": 995,
+                "cache_read_input_tokens": 10845,
+                "output_tokens": 288,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 995
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 643,
+                    "output_tokens": 288,
+                    "cache_read_input_tokens": 10845,
+                    "cache_creation_input_tokens": 995,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 995,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T08:45:49.659Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01261jAGYB7o4LFje9k7uPUH",
+              "type": "tool_result",
+              "content": "# Paper Details: Spherical Steering\n\n**Full Title:**\n\"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\"\n\n**Authors:**\n- Zejia You\n- Chunyuan Deng\n- Hanjie Chen\n\n**Abstract Summary:**\nThe paper introduces a training-free method for inference-time control of language models. Rather than using activation addition (which alters magnitude), it employs \"activation rotation along a geodesic toward a target direction\" while preserving signal integrity. A confidence gate dynamically adjusts steering strength based on input uncertainty. Results show improvements of approximately 10% on multiple-choice benchmarks including TruthfulQA, COPA, and Storycloze.\n\n**Submission Date:**\nFebruary 9, 2026\n\n**Key Findings - NOT Mentioned:**\n- von Mises-Fisher: Not mentioned in the provided content\n- TruthfulQA MC1 specific results: Not detailed (only generic \"+10%\" improvement noted)\n- Per-token vs per-sequence operation: Not discussed in available excerpt\n- ICML acceptance: Not mentioned\n\n**Key Findings - Present:**\n- Confidence gate: Confirmed as incorporated feature\n- Code availability: \"The code is at: [this https URL]\" linking to https://github.com/chili-lab/Spherical-Steering\n\n**License:**\nCC-BY-NC-SA 4.0"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24580706-8766-40d4-bb9b-020f90ec459c",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "37297522-b837-47fd-b8e1-386689619597",
+            "sourceToolAssistantUUID": "24580706-8766-40d4-bb9b-020f90ec459c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T08:45:51.562Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R3b5Nf8K72Aw6dDcpR9kjz",
+              "type": "tool_result",
+              "content": "# Spherical Steering Repository Analysis\n\n## Repository Overview\nThis is a GitHub repository for \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models,\" an ICML 2026 paper by the chili-lab group.\n\n## Available Code\nThe repository contains Python scripts for:\n- **get_activations.py**: Extracts last-token hidden states from answer pairs\n- **get_prototypes.py**: Computes steering targets with question-level splits\n- **evaluate_mc.py**: Multiple-choice evaluation (MC1/MC2/MC3 metrics)\n- **evaluate_llm_judge.py**: Open-ended generation with truth/information scoring\n- **spherical_steering.py**: Core steering logic with geometric intervention hooks\n- **utils.py**: Data loading and activation extraction utilities\n\nAdditionally, quickstart scripts are provided for Llama3.1-8B-Instruct and Qwen2.5-7B-Instruct models.\n\n## README Summary\nThe methodology treats steering as \"a directional update in representation space\" by rotating activations along a geodesic toward target directions while preserving magnitudes.\n\n## Information Not Present\nThe provided content does **not** mention:\n- Von Mises-Fisher confidence gates\n- Specific TruthfulQA MC1 benchmark results\n- Whether operations are per-token or per-sequence\n- ICML 2026 acceptance confirmation (though the header suggests acceptance)\n\n## Environment & Dependencies\nPython 3.10 with dependencies specified in environment.yml. The codebase uses TruthfulQA benchmark data and acknowledges baukit, TruthfulQA, and ITI projects."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2e87e44-0e53-492d-9d20-8f2c33e9bed2",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "2f632cca-9cc9-4b06-8bd0-1661c70a2d53",
+            "sourceToolAssistantUUID": "c2e87e44-0e53-492d-9d20-8f2c33e9bed2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T08:45:54.397Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for more specific details about the von Mises-Fisher distribution connection and the per-token vs per-sequence question."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f632cca-9cc9-4b06-8bd0-1661c70a2d53",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xMa6Hp3dTB5o97MkYg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0748aa6c-1099-4400-bbd3-6f0e3d17ccbc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TjwrQ41cdE2Vf2trTwjxLt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1694,
+                "cache_read_input_tokens": 11840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1694,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T08:45:54.874Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UnRghaqKHtoGgznjs8ESiY",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Spherical Steering\" \"von Mises-Fisher\" confidence gate language model"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0748aa6c-1099-4400-bbd3-6f0e3d17ccbc",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xMa6Hp3dTB5o97MkYg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a46a1221-c1a2-4f9d-8646-9711d43b591b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TjwrQ41cdE2Vf2trTwjxLt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1694,
+                "cache_read_input_tokens": 11840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1694,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T08:45:55.173Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LtZsYGotz5bjeXLcKJFrKR",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Spherical Steering\" TruthfulQA MC1 results percentage improvement 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a46a1221-c1a2-4f9d-8646-9711d43b591b",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xMa6Hp3dTB5o97MkYg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "921b0f88-2eeb-4e25-a37f-f7e68b530003",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TjwrQ41cdE2Vf2trTwjxLt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1694,
+                "cache_read_input_tokens": 11840,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1694
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 11840,
+                    "cache_creation_input_tokens": 1694,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1694,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T08:45:59.728Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LtZsYGotz5bjeXLcKJFrKR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Spherical Steering\" TruthfulQA MC1 results percentage improvement 2026\"\n\nLinks: [{\"title\":\"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/pdf/2602.08169\"},{\"title\":\"GitHub - chili-lab/Spherical-Steering: [ICML 2026] Spherical Steering: Geometry-Aware Activation Rotation for Language Models · GitHub\",\"url\":\"https://github.com/chili-lab/Spherical-Steering\"},{\"title\":\"(PDF) Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://www.researchgate.net/publication/400605038_Spherical_Steering_Geometry-Aware_Activation_Rotation_for_Language_Models\"},{\"title\":\"Spherical Steering is highly complementary to few-shot prompting.... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Spherical-Steering-is-highly-complementary-to-few-shot-prompting-Performance-on_fig3_400605038\"},{\"title\":\"GitHub - sylinrl/TruthfulQA: TruthfulQA: Measuring How Models Imitate Human Falsehoods · GitHub\",\"url\":\"https://github.com/sylinrl/TruthfulQA\"},{\"title\":\"[2602.08169] Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/abs/2602.08169\"},{\"title\":\"TruthfulQA | DeepEval by Confident AI - The LLM Evaluation Framework\",\"url\":\"https://deepeval.com/docs/benchmarks-truthful-qa\"},{\"title\":\"Steering off Course: Reliability Challenges in Steering Language Models\",\"url\":\"https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=osu1744632039595936&disposition=inline\"},{\"title\":\"MSRS: Adaptive Multi-Subspace Representation Steering for Attribute Alignment in Large Language Models\",\"url\":\"https://arxiv.org/html/2508.10599\"},{\"title\":\"Steering When Necessary: Flexible Steering Large Language Models with Backtracking\",\"url\":\"https://arxiv.org/html/2508.17621\"}]\n\nBased on the search results, I found relevant information about Spherical Steering and its TruthfulQA MC1 results:\n\nSpherical Steering significantly outperforms addition-based baselines by +10% on TruthfulQA. This represents the percentage improvement for the method on the TruthfulQA MC1 benchmark.\n\nThe research paper on Spherical Steering was published in February 2026 and demonstrates that Spherical Steering achieves the best multiple-choice performance while simultaneously maintaining or improving generation quality—a Pareto improvement over all baselines. The method was specifically designed as a technique that rotates activations along a geodesic toward a target direction, guiding the activation toward the target concept while preserving the integrity of the signal.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "921b0f88-2eeb-4e25-a37f-f7e68b530003",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "83062d9d-e81b-4f2c-992c-dc0caae036d6",
+            "sourceToolAssistantUUID": "921b0f88-2eeb-4e25-a37f-f7e68b530003",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T08:46:01.499Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UnRghaqKHtoGgznjs8ESiY",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Spherical Steering\" \"von Mises-Fisher\" confidence gate language model\"\n\nLinks: [{\"title\":\"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/pdf/2602.08169\"},{\"title\":\"(PDF) Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://www.researchgate.net/publication/400605038_Spherical_Steering_Geometry-Aware_Activation_Rotation_for_Language_Models\"},{\"title\":\"[2602.08169] Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/abs/2602.08169\"},{\"title\":\"SteerConf: Steering LLMs for Confidence Elicitation\",\"url\":\"https://arxiv.org/pdf/2503.02863\"},{\"title\":\"GitHub - chili-lab/Spherical-Steering: [ICML 2026] Spherical Steering: Geometry-Aware Activation Rotation for Language Models · GitHub\",\"url\":\"https://github.com/chili-lab/Spherical-Steering\"},{\"title\":\"von Mises–Fisher distribution - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Von_Mises%E2%80%93Fisher_distribution\"},{\"title\":\"NeurIPS Poster SteerConf: Steering LLMs for Confidence Elicitation\",\"url\":\"https://neurips.cc/virtual/2025/poster/119826\"},{\"title\":\"(PDF) Understanding Unreliability of Steering Vectors in Language Models: Geometric Predictors and the Limits of Linear Approximations\",\"url\":\"https://www.researchgate.net/publication/401057888_Understanding_Unreliability_of_Steering_Vectors_in_Language_Models_Geometric_Predictors_and_the_Limits_of_Linear_Approximations\"},{\"title\":\"Von Mises-Fisher Clustering Models Siddharth Gopal SGOPAL1@CS.CMU.EDU\",\"url\":\"https://www.cs.cmu.edu/~sgopal1/papers/ICML14.pdf\"},{\"title\":\"A Collection of Functions for Directional Data Analysis - CRAN\",\"url\":\"https://cran.r-project.org/web/packages/Directional/Directional.pdf\"}]\n\nI found relevant information about your search query. Here's what the results show:\n\n## Spherical Steering Overview\n\nSpherical Steering is a training-free primitive that resolves the trade-off between steering and open-ended generation through activation rotation, which rotates activations along a geodesic toward a target direction rather than shifting them with a fixed vector.\n\n## Von Mises-Fisher Confidence Gate\n\nThe method uses a von Mises-Fisher (vMF)-based confidence gate that dynamically modulates steering strength based on input uncertainty. The vMF confidence gate maps the alignment-derived score to determine steering behavior.\n\n## Key Results\n\nExtensive experiments across multiple-choice benchmarks demonstrate that Spherical Steering significantly outperforms addition-based baselines (notably by +10% on TruthfulQA, COPA, and Storycloze), while simultaneously maintaining the model's general open-ended generation quality.\n\n## Technical Details\n\nThe approach includes controllable parameters: the overall intervention is primarily controlled by β, which sets the selection boundary, and α, which controls the rotation strength, and tuning involves choosing a permissive threshold and moderate steering strength to identify promising layers.\n\nThis work was published at ICML 2026 and includes implementations available on GitHub.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a46a1221-c1a2-4f9d-8646-9711d43b591b",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "a1569670-a19a-4cf8-aba0-081e69e914d8",
+            "sourceToolAssistantUUID": "a46a1221-c1a2-4f9d-8646-9711d43b591b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T08:46:04.343Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UX9sH75hE2aiMHZY7spULm",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Spherical Steering\" per-token per-sequence \"last token\" activation intervention"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1569670-a19a-4cf8-aba0-081e69e914d8",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xNJZvPYZDBN2ho76Km",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "90ea7ffe-d0a6-4b4b-8257-876eded819b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jdf7EStjuou6pCbpUdBWk2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 800,
+                "cache_creation_input_tokens": 1064,
+                "cache_read_input_tokens": 13534,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1064,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T08:46:07.418Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y9LGt5mGUPzVHe9Lx3Lo2p",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2602.08169v1",
+                "prompt": "I need very specific details: 1) Does the paper use a \"von Mises-Fisher confidence gate\"? What exactly is the confidence gate mechanism? 2) What are the exact TruthfulQA MC1 percentage improvements reported (specific numbers, not just +10%)? 3) Does the method operate per-token or per-sequence? How are activations extracted - last token only or all tokens? 4) Is ICML 2026 acceptance mentioned? 5) Any specific MC1 accuracy numbers in tables?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90ea7ffe-d0a6-4b4b-8257-876eded819b4",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xNJZvPYZDBN2ho76Km",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d203b218-6e4f-41c3-b3c9-19f467e616ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jdf7EStjuou6pCbpUdBWk2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 800,
+                "cache_creation_input_tokens": 1064,
+                "cache_read_input_tokens": 13534,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1064
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 800,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 13534,
+                    "cache_creation_input_tokens": 1064,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1064,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T08:46:11.621Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UX9sH75hE2aiMHZY7spULm",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Spherical Steering\" per-token per-sequence \"last token\" activation intervention\"\n\nLinks: [{\"title\":\"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/pdf/2602.08169\"},{\"title\":\"(PDF) Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://www.researchgate.net/publication/400605038_Spherical_Steering_Geometry-Aware_Activation_Rotation_for_Language_Models\"},{\"title\":\"GitHub - chili-lab/Spherical-Steering: [ICML 2026] Spherical Steering: Geometry-Aware Activation Rotation for Language Models · GitHub\",\"url\":\"https://github.com/chili-lab/Spherical-Steering\"},{\"title\":\"[2602.08169] Spherical Steering: Geometry-Aware Activation Rotation for Language Models\",\"url\":\"https://arxiv.org/abs/2602.08169\"},{\"title\":\"Beyond Steering Vector: Flow-based Activation Steering for Inference-Time Intervention\",\"url\":\"https://arxiv.org/html/2605.05892\"},{\"title\":\"Steer Like the LLM: Activation Steering that Mimics Prompting\",\"url\":\"https://arxiv.org/html/2605.03907\"},{\"title\":\"Activation Steering for Masked Diffusion Language Models\",\"url\":\"https://arxiv.org/html/2512.24143v2\"},{\"title\":\"The Development of Activation Steering\",\"url\":\"https://sidn.baulab.info/steering/\"},{\"title\":\"Activation Steering in LLMs\",\"url\":\"https://www.emergentmind.com/topics/activation-steering-method\"},{\"title\":\"Vector Steering Intervention in Neural Models\",\"url\":\"https://www.emergentmind.com/topics/vector-steering-intervention\"}]\n\nBased on the search results, here's what I found about Spherical Steering and activation intervention approaches:\n\n## Spherical Steering Overview\n\nSpherical Steering is an inference-time activation steering method for controlling language models via geometry-consistent interventions. Rather than shifting activations with a fixed vector, the method rotates them along a geodesic toward a target direction, guiding the activation toward the target concept while preserving the integrity of the signal.\n\n## Key Technical Approach\n\nSpherical Steering is a training-free primitive that resolves the activation addition trade-off through activation rotation, rotating activations along a geodesic toward a target direction while preserving signal integrity. To further enhance adaptivity, it incorporates a confidence gate that dynamically modulates steering strength based on input uncertainty.\n\n## Performance Results\n\nExtensive experiments across multiple-choice benchmarks demonstrate that Spherical Steering significantly outperforms addition-based baselines (notably by +10% on TruthfulQA, COPA, and Storycloze), while simultaneously maintaining the model's general open-ended generation quality. Spherical Steering achieves the best multiple-choice performance while simultaneously maintaining or improving generation quality—a Pareto improvement over all baselines.\n\n## Relationship to Per-Token and Last-Token Interventions\n\nAnalysis includes the mean ℓ2 norm of last-token activations at each residual layer for correct vs. incorrect answers. The research also addresses how different layers may prefer different intervention rates and strengths through per-layer tuning of parameters.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90ea7ffe-d0a6-4b4b-8257-876eded819b4",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "c500765f-4534-4176-ba2b-d1cddc21812e",
+            "sourceToolAssistantUUID": "90ea7ffe-d0a6-4b4b-8257-876eded819b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T08:46:14.102Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y9LGt5mGUPzVHe9Lx3Lo2p",
+              "type": "tool_result",
+              "content": "# Spherical Steering: Technical Details\n\n## 1. Von Mises-Fisher Confidence Gate\n\nYes, the paper employs a vMF-based confidence gate. The mechanism works as follows:\n\nThe gate computes alignment scores between the current activation direction and both truthful/hallucinated directions using cosine similarity. These scores feed into vMF-induced exponential terms: \"f(u;m,κ)∝exp(κ m⊤u)\" normalized via softmax to produce probabilities pT and pH. The difference δ=pH−pT∈[−1,1] maps to intervention strength t∈[0,1] through a thresholded rule controlled by three hyperparameters (α, β, κ).\n\n## 2. TruthfulQA MC1 Improvements\n\nSpecific percentage improvements reported in Table 1:\n- **LLaMA-3.1-8B-Instruct**: 34.15% (baseline) → 49.95% (Spherical Steering) = **+15.8 percentage points**\n- **Qwen-2.5-7B-Instruct**: 35.87% (baseline) → 48.71% (Spherical Steering) = **+12.84 percentage points**\n\n## 3. Per-Token vs Per-Sequence Operation\n\nThe method operates **per-token during generation**. Activations are extracted at the last token position: \"we extract the layer-l activation of the last token\" during offline prototype construction, but at inference, the steering applies to each decoding step j where rotations occur token-by-token based on current activations.\n\n## 4. Conference/Venue\n\nThe document is an arXiv preprint (arXiv:2602.08169v1). **No ICML 2026 acceptance is mentioned**.\n\n## 5. Additional MC1 Numbers\n\nTable 2 provides zero-shot results across six benchmarks on LLaMA-3.1-8B showing Spherical Steering achieves 49.95% on TruthfulQA MC1 with average improvement of +8.06 points across all benchmarks tested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d203b218-6e4f-41c3-b3c9-19f467e616ef",
+            "isSidechain": true,
+            "promptId": "fa61ad10-397c-4783-9490-82353cc0b8e8",
+            "agentId": "add766dc6f6f2b147",
+            "type": "user",
+            "uuid": "9b78235c-2470-4a32-9f99-f867e60e043a",
+            "sourceToolAssistantUUID": "d203b218-6e4f-41c3-b3c9-19f467e616ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T08:46:35.967Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have comprehensive information. Let me compile the findings.\n\nBased on my research, here is a detailed verification of each claim about \"Spherical Steering: Geometry-Aware Activation Rotation for Language Models\" (arXiv 2602.08169):\n\n---\n\n## 1. Does the paper exist?\n\n**Yes, it exists.** It is a real paper on arXiv (2602.08169), submitted February 9, 2026, by Zejia You, Chunyuan Deng, and Hanjie Chen. The paper proposes a training-free inference-time steering method that rotates activations along a geodesic toward a target direction (rather than using standard activation addition), preserving representation magnitude while steering model behavior.\n\n---\n\n## 2. Does it use a \"von Mises-Fisher confidence gate\" that \"dynamically modulates steering strength based on input uncertainty\"?\n\n**Yes, confirmed.** The paper employs a vMF-based confidence gate. The mechanism computes alignment scores between the current activation direction and both truthful/hallucinated prototype directions using cosine similarity. These scores are fed into vMF-induced exponential terms (f(u;m,kappa) proportional to exp(kappa * m^T * u)), normalized via softmax to produce probabilities pT and pH. The difference delta = pH - pT maps to intervention strength t in [0,1] through a thresholded rule controlled by hyperparameters alpha, beta, and kappa. So the claim about \"dynamically modulating steering strength based on input uncertainty\" is accurate.\n\n---\n\n## 3. TruthfulQA MC1 results?\n\nThe paper reports specific MC1 improvements:\n- **LLaMA-3.1-8B-Instruct**: 34.15% (baseline) to 49.95% (Spherical Steering) = **+15.8 percentage points**\n- **Qwen-2.5-7B-Instruct**: 35.87% (baseline) to 48.71% (Spherical Steering) = **+12.84 percentage points**\n\nThe general claim of \"+10% on TruthfulQA\" in the abstract appears to be a rounded/conservative figure; actual improvements are larger (12-16 percentage points on MC1). The average improvement across all six benchmarks tested is +8.06 points.\n\n---\n\n## 4. Per-token or per-sequence?\n\n**Per-token during generation.** Prototypes are constructed using last-token activations extracted offline, but at inference time, the steering rotation is applied at each decoding step (token-by-token) based on the current activations. So it operates per-token.\n\n---\n\n## 5. Is it accepted at ICML 2026?\n\n**Evidence is mixed but leans toward yes.** The arXiv paper itself does not explicitly state ICML 2026 acceptance (it is posted as a preprint). However, the GitHub repository (github.com/chili-lab/Spherical-Steering) has \"[ICML 2026]\" in its title/description, and search results consistently reference it as an ICML 2026 paper. This is consistent with papers that receive acceptance after the preprint is posted and update their repo but not the arXiv abstract immediately.\n\n---\n\n## 6. Does it have released code?\n\n**Yes.** Code is available at: https://github.com/chili-lab/Spherical-Steering\n\nThe repository contains:\n- `spherical_steering.py` - Core steering logic with geometric intervention hooks\n- `get_activations.py` - Extracts last-token hidden states from answer pairs\n- `get_prototypes.py` - Computes steering targets with question-level splits\n- `evaluate_mc.py` - Multiple-choice evaluation (MC1/MC2/MC3 metrics)\n- `evaluate_llm_judge.py` - Open-ended generation with truth/information scoring\n- `utils.py` - Data loading and activation extraction utilities\n- Quickstart scripts for Llama3.1-8B-Instruct and Qwen2.5-7B-Instruct\n\nLicense: CC-BY-NC-SA 4.0, Python 3.10, dependencies in environment.yml.\n\n---\n\n## Summary\n\nAll major claims check out as real. The paper exists, uses a vMF confidence gate, achieves substantial TruthfulQA MC1 improvements (+12-16 percentage points), operates per-token at inference, appears accepted at ICML 2026 (per GitHub repo tagging), and has publicly released code.\n\nSources:\n- [arXiv:2602.08169 Abstract](https://arxiv.org/abs/2602.08169)\n- [arXiv:2602.08169 HTML](https://arxiv.org/html/2602.08169v1)\n- [GitHub: chili-lab/Spherical-Steering](https://github.com/chili-lab/Spherical-Steering)\n- [ResearchGate Publication](https://www.researchgate.net/publication/400605038_Spherical_Steering_Geometry-Aware_Activation_Rotation_for_Language_Models)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b78235c-2470-4a32-9f99-f867e60e043a",
+            "isSidechain": true,
+            "agentId": "add766dc6f6f2b147",
+            "requestId": "req_011Cb5xPETu6gM1AHUWGcdG9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1af4bbff-546a-4534-8f65-3a24cafa1f5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "73813be2-f916-4121-a2d7-450b728cd138",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BFdmUdvKpHExLgdJSgxqmU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2429,
+                "cache_read_input_tokens": 14598,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2429,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-use-websearch-to-find-and-verify-the-paper-spherical-steering-geometry-aware-a.md"
+}
